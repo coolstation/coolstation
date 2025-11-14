@@ -1,6 +1,6 @@
 /obj/computerframe
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	name = "Console-frame"
 	icon = 'icons/obj/machines/computer_frame.dmi'
 	icon_state = "0"
@@ -15,7 +15,7 @@
 ABSTRACT_TYPE(/obj/item/circuitboard)
 /obj/item/circuitboard
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	w_class = W_CLASS_SMALL
 	name = "Circuit board"
 	icon = 'icons/obj/items/module.dmi'
@@ -248,7 +248,7 @@ ABSTRACT_TYPE(/obj/item/circuitboard)
 		if(0)
 			if(user.equipped(P) && iswrenchingtool(P))
 				boutput(user, "<span class='notice'>You wrench the frame into place.</span>")
-				src.anchored = 1
+				src.anchored = ANCHORED
 				src.state = 1
 			if(user.equipped(P) && isweldingtool(P))
 				boutput(user, "<span class='notice'>You deconstruct the frame.</span>")
@@ -263,7 +263,7 @@ ABSTRACT_TYPE(/obj/item/circuitboard)
 		if(1)
 			if(user.equipped(P) && iswrenchingtool(P))
 				boutput(user, "<span class='notice'>You unfasten the frame.</span>")
-				src.anchored = 0
+				src.anchored = UNANCHORED
 				src.state = 0
 		if(2)
 			if(user.equipped(P) && istype(P, /obj/item/cable_coil))

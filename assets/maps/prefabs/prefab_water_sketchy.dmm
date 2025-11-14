@@ -53,8 +53,7 @@
 	desc = "A poster that reads 'CLEAN HANDS SAVE LIVES'.";
 	icon_state = "chsl";
 	name = "CLEAN HANDS SAVE LIVES";
-	pixel_x = 32;
-	pixel_y = 0
+	pixel_x = 32
 	},
 /obj/item/storage/pill_bottle/cyberpunk,
 /turf/floor/scorched,
@@ -94,14 +93,12 @@
 /area/prefab/sea_sketch)
 "au" = (
 /obj/stool/chair/couch/blue{
-	icon_state = "chair_couch-blue";
 	dir = 8
 	},
 /turf/floor/grime,
 /area/prefab/sea_sketch)
 "av" = (
 /obj/stool/chair/couch/blue{
-	icon_state = "chair_couch-blue";
 	dir = 4
 	},
 /turf/floor/grime,
@@ -110,14 +107,6 @@
 /turf/floor/scorched,
 /area/prefab/sea_sketch)
 "ax" = (
-/turf/floor/scorched2,
-/area/prefab/sea_sketch)
-"ay" = (
-/obj/item/implant/tracking,
-/obj/item/scalpel,
-/obj/decal/cleanable/blood{
-	icon_state = "drip5"
-	},
 /turf/floor/scorched2,
 /area/prefab/sea_sketch)
 "az" = (
@@ -230,14 +219,9 @@
 /area/prefab/sea_sketch)
 "aY" = (
 /obj/stool/chair/comfy{
-	icon_state = "chair_comfy";
 	dir = 8
 	},
 /turf/floor/scorched2,
-/area/prefab/sea_sketch)
-"aZ" = (
-/turf/space/fluid,
-/turf/floor/plating/damaged2,
 /area/prefab/sea_sketch)
 "ba" = (
 /obj/stool/chair/comfy{
@@ -258,7 +242,6 @@
 /area/prefab/sea_sketch)
 "bd" = (
 /obj/stool/chair/comfy{
-	icon_state = "chair_comfy";
 	dir = 1
 	},
 /turf/floor/plating/random,
@@ -273,14 +256,12 @@
 /area/prefab/sea_sketch)
 "bf" = (
 /obj/stool/chair/couch/purple{
-	icon_state = "chair_couch-purple";
 	dir = 9
 	},
 /turf/floor/plating/random,
 /area/prefab/sea_sketch)
 "bg" = (
 /obj/stool/chair/couch/purple{
-	icon_state = "chair_couch-purple";
 	dir = 5
 	},
 /turf/floor/plating/random,
@@ -295,7 +276,6 @@
 /area/prefab/sea_sketch)
 "bj" = (
 /obj/table/wood/auto,
-/obj/item/gun/energy/phaser_gun,
 /turf/floor/plating/random,
 /area/prefab/sea_sketch)
 "bk" = (
@@ -447,6 +427,17 @@
 /obj/item/medical/bruise_pack,
 /turf/floor/plating,
 /area/prefab/sea_sketch)
+"Cm" = (
+/obj/item/implant/tracking,
+/obj/item/scalpel,
+/obj/decal/cleanable/tracked_reagents/blood{
+	icon_state = "drip5"
+	},
+/turf/floor/scorched2,
+/area/prefab/sea_sketch)
+"IJ" = (
+/turf/floor/plating/damaged2,
+/area/prefab/sea_sketch)
 
 (1,1,1) = {"
 ab
@@ -562,7 +553,7 @@ br
 bT
 aQ
 aQ
-aZ
+IJ
 bO
 ap
 ab
@@ -711,7 +702,7 @@ aa
 aI
 bn
 bp
-ay
+Cm
 bz
 bi
 bL

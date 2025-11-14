@@ -608,7 +608,7 @@
 			boutput(M, "<span class='alert'>It cuts the roof of your mouth! WHY DID YOU TRY EATING THIS DRY?!</span>")
 			random_brute_damage(M, 3)
 			take_bleeding_damage(M, null, 0, DAMAGE_STAB, 0)
-			bleed(M, 3, 1)
+			bleed(M, 3)
 			M.emote("scream")
 
 		if(src.hasPrize && ishuman(M))
@@ -618,7 +618,7 @@
 			H.changeStatus("weakened", 3 SECONDS)
 			affecting.take_damage(10, 0)
 			take_bleeding_damage(H, null, 0, DAMAGE_STAB, 0)
-			bleed(H, rand(10,30), rand(1,3))
+			bleed(H, rand(10,30))
 			H.UpdateDamageIcon()
 			src.hasPrize = 0
 			new /obj/item/razor_blade( get_turf(src) )
@@ -863,8 +863,8 @@
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 
-						var/obj/decal/cleanable/blood/gibs/G = null // For forensics (Convair880).
-						G = make_cleanable( /obj/decal/cleanable/blood/gibs,M.loc)
+						var/obj/decal/cleanable/tracked_reagents/blood/gibs/G = null // For forensics (Convair880).
+						G = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,M.loc)
 						if (H.bioHolder.Uid && H.bioHolder.bloodType)
 							G.blood_DNA = H.bioHolder.Uid
 							G.blood_type = H.bioHolder.bloodType
@@ -971,7 +971,7 @@
 		name = "[random_spaghetti_name()] noodles"
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W,/obj/item/reagent_containers/food/snacks/condiment/ketchup) && icon_state == "spag_plain" )// don't forget, other shit inherits this too!
+		if(istype(W,/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce) && icon_state == "spag_plain")// don't forget, other shit inherits this too! blank slate
 			boutput(user, "<span class='notice'>You create [random_spaghetti_name()] with tomato sauce...</span>")
 			var/obj/item/reagent_containers/food/snacks/spaghetti/sauce/D
 			if (user.mob_flags & IS_BONER)
@@ -982,6 +982,31 @@
 				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce(W.loc)
 			user.u_equip(W)
 			user.put_in_hand_or_drop(D)
+			qdel(W)
+			qdel(src)
+
+		if(istype(W,/obj/item/reagent_containers/food/snacks/condiment/ketchup) && icon_state == "spag_plain")
+			boutput(user, "<span class='notice'>You create [random_spaghetti_name()] with ketchup...</span>")
+			var/obj/item/reagent_containers/food/snacks/spaghetti/sauce/D
+			if (user.traitHolder.hasTrait("italian"))
+				boutput(user, "<span class='alert'>... you have never felt such shame in your entire life.</span>")
+				user.changeStatus("stunned", 5 SECONDS)
+				//todo: aggro all italians in visible range
+			D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce(W.loc)
+			user.u_equip(W)
+			user.put_in_hand_or_drop(D)
+			D.name = "spaghetti with ketchup"
+			D.desc = "outrageous. who would do such a thing."
+			qdel(W)
+			qdel(src)
+
+		else if(istype(W,/obj/item/reagent_containers/food/snacks/meatball) && icon_state == "spag_plain")
+			boutput(user, "<span class='notice'>You sprinkle some of that meatball all over [random_spaghetti_name()] ...</span>")
+			var/obj/item/reagent_containers/food/snacks/spaghetti/meatball/D
+			D = new/obj/item/reagent_containers/food/snacks/spaghetti/meatball(W.loc)
+			user.u_equip(W)
+			user.put_in_hand_or_drop(D)
+			D.name = "spaghetti with meatballs"
 			qdel(W)
 			qdel(src)
 
@@ -1009,13 +1034,13 @@
 /obj/item/reagent_containers/food/snacks/spaghetti/sauce/skeletal
 	name = "boneless spaghetti"
 	desc = "Eh, this isn't very good at all..."
-	icon_state = "spag-dish"
+	icon_state = "spag-glitter"
 	needfork = 1
 	heal_amt = 1
 	amount = 5
 	initial_volume = 60
 	food_effects = list("food_energized","food_explosion_resist")
-	initial_reagents = list("milk"=50)
+	initial_reagents = list("milk"=50,"glitter"=1)
 
 	New()
 		. = ..()
@@ -1027,7 +1052,7 @@
 
 /obj/item/reagent_containers/food/snacks/spaghetti/sauce
 	name = "spaghetti with tomato sauce"
-	desc = "Eh, the sauce tastes pretty bland..."
+	desc = "Standard issue Italian pasta dish. Could still be taken to the next level..."
 	icon_state = "spag-dish"
 	needfork = 1
 	heal_amt = 3
@@ -1056,6 +1081,15 @@
 			user.put_in_hand_or_drop(D)
 			qdel(W)
 			qdel(src)
+		else if(istype(W,/obj/item/reagent_containers/food/snacks/meatball))
+			boutput(user, "<span class='notice'>You sprinkle some of that meatball all over the sauced-up [random_spaghetti_name()] ...</span>")
+			var/obj/item/reagent_containers/food/snacks/spaghetti/theworks/D
+			D = new/obj/item/reagent_containers/food/snacks/spaghetti/theworks(W.loc)
+			user.u_equip(W)
+			user.put_in_hand_or_drop(D)
+			D.name = "spaghetti with meatballs"
+			qdel(W)
+			qdel(src)
 		else return ..()
 
 /obj/item/reagent_containers/food/snacks/spaghetti/spicy
@@ -1075,7 +1109,7 @@
 
 /obj/item/reagent_containers/food/snacks/spaghetti/meatball
 	name = "spaghetti and meatballs"
-	desc = "That's better!"
+	desc = "Italian pasta with unsauced balls all over it."
 	icon_state = "spag-meatball"
 	needfork = 1
 	heal_amt = 2
@@ -1087,6 +1121,31 @@
 	New()
 		. = ..()
 		name = "[random_spaghetti_name()] and meatballs"
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if(istype(W,/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce))
+			boutput(user, "<span class='notice'>You finalize the be-meatballed [random_spaghetti_name()] with tomato sauce...</span>")
+			var/obj/item/reagent_containers/food/snacks/spaghetti/theworks/D
+			D = new/obj/item/reagent_containers/food/snacks/spaghetti/theworks(W.loc)
+			user.u_equip(W)
+			user.put_in_hand_or_drop(D)
+			qdel(W)
+			qdel(src)
+
+/obj/item/reagent_containers/food/snacks/spaghetti/theworks
+	name = "spaghetti and meatballs in sauce"
+	desc = "Meaty, beaty, all complete-y!"
+	icon_state = "spag-theworks"
+	needfork = 1
+	heal_amt = 2
+	amount = 5
+	initial_volume = 15
+	initial_reagents = "synaptizine"
+	food_effects = list("food_energized","food_hp_up","food_brute","food_burn")
+
+	New()
+		. = ..()
+		name = "[random_spaghetti_name()] and meatballs in sauce"
 
 /obj/item/reagent_containers/food/snacks/lasagna
 	name = "lasagna"
@@ -1272,6 +1331,17 @@
 	icon_state = "crumpet"
 	heal_amt = 1
 	food_effects = list("food_brute")
+
+/obj/item/reagent_containers/food/snacks/plant/cattail
+	name = "cattail"
+	desc = "Looks suspiciously like a corndog, but it's not. Right?"
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "cattail"
+	amount = 1
+	heal_amt = 0
+	food_effects = list("food_cateyes")
+	initial_reagents = list("cattail_fluff"=10)
+	eat_message = "the cattail erupts in your mouth when you take a bite!"
 
 /obj/item/reagent_containers/food/snacks/mushroom
 	name = "space mushroom"

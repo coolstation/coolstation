@@ -82,7 +82,7 @@ WET FLOOR SIGN
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "tsunami"
 	alpha = 175
-	anchored = 1
+	anchored = ANCHORED
 
 	New(var/_loc, var/atom/target)
 		..()
@@ -327,7 +327,7 @@ WET FLOOR SIGN
 				src.reagents.remove_any(5)
 			else if(src.reagents.has_reagent("blood"))
 				src.reagents.remove_reagent("blood",3)
-				make_cleanable( /obj/decal/cleanable/blood, U)
+				make_cleanable( /obj/decal/cleanable/tracked_reagents/blood, U)
 			else
 				src.reagents.remove_any(3)
 				make_cleanable( /obj/decal/cleanable/dirt, U)
@@ -544,6 +544,7 @@ WET FLOOR SIGN
 /obj/item/sponge
 	name = "sponge"
 	desc = "After careful analysis, you've come to the conclusion that the strange object is, in fact, a sponge."
+	hint = "this can clean fingerprints off of objects."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "sponge"
 	item_state = "sponge"
@@ -711,6 +712,10 @@ WET FLOOR SIGN
 				"<span class='notice'>You wipe down [target] with [src].</span>")
 				if (src.reagents.has_reagent("water"))
 					target.clean_forensic()
+				if (istype(target, /obj/item/reagent_containers/food/drinks/))
+					var/obj/item/reagent_containers/food/drinks/d = target
+					if(d.drank_from)
+						d.drank_from = null
 				src.reagents.reaction(target, TOUCH, 5)
 				src.reagents.remove_any(5)
 				JOB_XP(user, "Janitor", 3)
@@ -853,7 +858,7 @@ WET FLOOR SIGN
 	throw_spin = 0
 	var/currentSelection = "wet"
 	var/ownerKey = null
-	anchored = 0
+	anchored = UNANCHORED
 
 	attack_hand(mob/user)
 		if(user.key != ownerKey && ownerKey != null)
@@ -915,7 +920,7 @@ WET FLOOR SIGN
 	icon_state = "holo-wet"
 	alpha = 230
 	pixel_y = 16
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_BASE
 	var/datum/light/light
 	var/obj/holoparticles/holoparticles
@@ -951,7 +956,7 @@ WET FLOOR SIGN
 	name = ""
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "holoparticles"
-	anchored = 1
+	anchored = ANCHORED
 	alpha= 230
 	pixel_y = 14
 	layer = EFFECTS_LAYER_BASE
@@ -973,9 +978,12 @@ WET FLOOR SIGN
 
 	New()
 		..()
+		if (prob(50))
+			icon_state = "handvac-O"
 		src.setItemSpecial(/datum/item_special/suck)
 		src.bucket = new(src)
 		src.trashbag = new(src)
+		update_icon()
 
 	get_desc(dist, mob/user)
 		. = ..()
@@ -1017,6 +1025,7 @@ WET FLOOR SIGN
 			user.put_in_hand_or_drop(src.trashbag)
 			boutput(user, "<span class='notice'>You remove \the [src.trashbag] from \the [src]</span>")
 			src.trashbag = null
+			update_icon()
 		else if(src.bucket)
 			src.bucket.set_loc(user.loc)
 			user.put_in_hand_or_drop(src.bucket)
@@ -1070,12 +1079,20 @@ WET FLOOR SIGN
 		if(isnull(T)) // fluids getting disposed or something????
 			return
 		new/obj/effect/suck(T, get_dir(T, user))
-		if(src.suck(T, user))
+		if(src.suck(user, T))
 			playsound(T, "sound/effects/suck.ogg", 20, TRUE, 0, 1.5)
 		else
 			playsound(T, "sound/effects/brrp.ogg", 20, TRUE, 0, 0.8)
 
-	proc/suck(turf/T, mob/user)
+	pickup(mob/M)
+		RegisterSignal(M, COMSIG_MOVABLE_MOVED, PROC_REF(suck))
+		..()
+
+	dropped(mob/user)
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		..()
+
+	proc/suck(mob/user, turf/T)
 		. = TRUE
 		var/success = FALSE
 		if(T.active_airborne_liquid)
@@ -1121,21 +1138,30 @@ WET FLOOR SIGN
 				boutput(user, "<span class='alert'>\The [src] tries to suck up [item_desc] but its [src.trashbag] is full!</span>")
 				. = FALSE
 			else
-				for(var/obj/item/I as anything in items_to_suck)
-					I.set_loc(get_turf(user))
-				success = TRUE
-				SPAWN_DBG(0.5 SECONDS)
+				if (T != get_turf(user))
+					for(var/obj/item/I as anything in items_to_suck)
+						I.set_loc(get_turf(user))
+					SPAWN_DBG(0.5 SECONDS)
+						for(var/obj/item/I as anything in items_to_suck) // yes, this can go over capacity of the bag, that's intended
+							I.set_loc(src.trashbag)
+						src.trashbag.calc_w_class(null)
+						if(src.trashbag.current_stuff >= src.trashbag.max_stuff)
+							boutput(user, "<span class='notice'>[src]'s [src.trashbag] is now full.</span>")
+				else //do it immediately if it's our own turf
 					for(var/obj/item/I as anything in items_to_suck) // yes, this can go over capacity of the bag, that's intended
 						I.set_loc(src.trashbag)
 					src.trashbag.calc_w_class(null)
 					if(src.trashbag.current_stuff >= src.trashbag.max_stuff)
 						boutput(user, "<span class='notice'>[src]'s [src.trashbag] is now full.</span>")
+				success = TRUE
 
 		src.tooltip_rebuild = 1
 		. |= success
 
 	attackby(obj/item/W, mob/user, params, is_special=0)
 		if(istype(W, /obj/item/clothing/under/trash_bag))
+			user.u_equip(W) //doing this early because we succeed anyway, lets the put_in_hand_or_drop work nicer.
+			W.dropped()
 			if(isnull(src.trashbag))
 				boutput(user, "<span class='notice'>You insert \the [W] into \the [src].")
 				src.trashbag = W
@@ -1147,9 +1173,8 @@ WET FLOOR SIGN
 				src.trashbag.set_loc(src)
 				old_trashbag.set_loc(user.loc)
 				user.put_in_hand_or_drop(old_trashbag)
-			user.u_equip(W)
-			W.dropped()
 			src.tooltip_rebuild = 1
+			update_icon()
 		else if(istype(W, /obj/item/reagent_containers/glass/bucket))
 			if(isnull(src.bucket))
 				boutput(user, "<span class='notice'>You insert \the [W] into \the [src].")
@@ -1168,6 +1193,14 @@ WET FLOOR SIGN
 		else
 			. = ..()
 
+/obj/item/handheld_vacuum/proc/update_icon()
+	if (trashbag)
+		var/image/I = image(src.icon, "handvac-bag")
+		I.color = istype(trashbag, /obj/item/clothing/under/trash_bag/biohazard) ? "#ff4459" : "#777777"
+		UpdateOverlays(I, "bag")
+	else
+		UpdateOverlays(null, "bag")
+
 /obj/item/handheld_vacuum/overcharged
 	name = "overcharged handheld vacuum"
 	mats = list("neutronium"=3, "MET-1"=10)
@@ -1183,7 +1216,6 @@ WET FLOOR SIGN
 
 /datum/item_special/suck
 	cooldown = 30
-	staminaCost = 10
 	moveDelay = 8
 	moveDelayDuration = 10
 	var/range = 3
@@ -1260,7 +1292,7 @@ WET FLOOR SIGN
 			playsound(master, "sound/effects/suck.ogg", 40, TRUE, 0, 0.5)
 
 /obj/effect/suck
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	mouse_opacity = FALSE
 	plane = PLANE_NOSHADOW_BELOW
 	icon = 'icons/effects/effects.dmi'

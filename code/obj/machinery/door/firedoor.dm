@@ -30,6 +30,7 @@
 
 /obj/machinery/door/firedoor
 	name = "Firelock"
+	hint = "use a crowbar to pry this open!"
 	desc = "Thick, fire-proof doors that prevent the spread of fire, they can only be pried open unless the fire alarm is cleared."
 	icon = 'icons/obj/doors/Doorfire.dmi'
 	icon_state = "door0"
@@ -37,9 +38,7 @@
 	opacity = 0
 	density = 0
 	var/nextstate = null
-	var/datum/radio_frequency/control_frequency = FREQ_ALARM
-	var/zone
-	var/zone2 //mbc hack
+	var/control_frequency = FREQ_ALARM
 	var/image/welded_image = null
 	var/welded_icon_state = "welded"
 	has_crush = 0
@@ -58,25 +57,26 @@
 
 /obj/machinery/door/firedoor/New()
 	..()
-	if(!zone)
-		var/area/A = get_area(loc)
-		if (A?.name)
-			zone = A.name
 	SPAWN_DBG(0.5 SECONDS)
-		if (radio_controller)
-			radio_controller.add_object(src, "[control_frequency]")
+		var/list/zones = list()
+		for (var/d in list(0) + cardinal)
+			var/turf/T = get_step(src,d)
+			if(T.density)
+				continue
+			var/area/A = get_area(T)
+			if (A?.name)
+				zones |= A.name
 
-		if (!zone2) //MBC : Hey, this is pretty shitty! But I want to be able to handle firelocks that are bordering 2 areas... without reworking the whole dang thing
-			for (var/d in cardinal)
-				var/area/A = get_area(get_step(src,d))
-				if (A?.name && A.name != zone)
-					zone2 = A.name
-					break
-
-/obj/machinery/door/firedoor/disposing()
-	if (radio_controller)
-		radio_controller.remove_object(src, "[control_frequency]")
-	..()
+		src.AddComponent( \
+			/datum/component/packet_connected/radio, \
+			"alarm", \
+			control_frequency, \
+			null, \
+			"receive_signal", \
+			FALSE, \
+			zones, \
+			FALSE \
+		)
 
 /obj/machinery/door/firedoor/proc/set_open()
 	if(!blocked)
@@ -98,12 +98,13 @@
 
 // listen for fire alert from firealarm
 /obj/machinery/door/firedoor/receive_signal(datum/signal/signal)
-	if((signal.data["zone"] == zone || signal.data["zone"] == zone2) && signal.data["type"] == "Fire")
+	if(!("address_tag" in signal.data) && !("address_1" in signal.data))
+		return
+	if(signal.data["type"] == "Fire")
 		if(signal.data["alert"] == "fire")
 			set_closed()
 		else
 			set_open()
-	return
 
 
 /obj/machinery/door/firedoor/power_change()
@@ -200,6 +201,7 @@
 	..()
 	check_nextstate()
 
+/*
 /obj/machinery/door/firedoor/border_only
 	gas_cross(turf/target)
 		return (dir != get_dir(src,target))
@@ -227,6 +229,7 @@
 			if(istype(destination)) air_master.tiles_to_update |= destination
 
 		return 1
+*/
 
 /obj/machinery/door/firedoor/update_icon(var/toggling = 0)
 	if(toggling? !density : density)
@@ -256,7 +259,7 @@
 	src.close()
 	var/obj/head = user.organHolder.drop_organ("head")
 	qdel(head)
-	make_cleanable( /obj/decal/cleanable/blood/gibs,src.loc)
+	make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 	playsound(src.loc, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 	return 1

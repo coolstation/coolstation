@@ -12,6 +12,7 @@ datum
 			viscosity = 0.6
 			var/disease = null
 			var/minimum_to_infect = 4.5
+			taste = "like a bug report"
 
 			/* this wont work properly and has been driving me fucking insane so disabling it for now
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
@@ -41,8 +42,9 @@ datum
 			fluid_r = 255
 			fluid_g = 255
 			fluid_b = 255
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/disease/clowning_around
+			taste = "multichromatic"
 
 		disease/vampire_serum
 			name = "vampire serum"
@@ -54,6 +56,7 @@ datum
 			fluid_b = 0
 			transparency = 255
 			disease = /datum/ailment/disease/vampiritis
+			taste = "evil"
 
 		disease/painbow_fluid // CLUWNE VIRUS
 			name = "painbow fluid"
@@ -63,8 +66,9 @@ datum
 			fluid_r = 255
 			fluid_g = 255
 			fluid_b = 255
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/disease/cluwneing_around
+			taste = "painful"
 
 		disease/lycanthropy //Please never give this an actual recipe .I
 			name = "werewolf serum"
@@ -75,8 +79,9 @@ datum
 			fluid_r = 173
 			fluid_g = 65
 			fluid_b = 133
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/disease/lycanthropy
+			taste = "like fur"
 
 		disease/mucus // Cold
 			name = "mucus"
@@ -89,6 +94,7 @@ datum
 			fluid_b = 245
 			transparency = 235
 			disease = /datum/ailment/disease/cold
+			taste = "snotty"
 
 		disease/stringy_gibbis // Fake GBS
 			name = "stringy gibbis"
@@ -100,6 +106,7 @@ datum
 			fluid_b = 0
 			transparency = 60
 			disease = /datum/ailment/disease/fake_gbs
+			taste = "stringy"
 
 		disease/green_mucus // Flu
 			name = "green Mucus"
@@ -112,6 +119,7 @@ datum
 			fluid_b = 215
 			transparency = 235
 			disease = /datum/ailment/disease/flu
+			taste = "green"
 
 		disease/gibbis // GBS
 			name = "gibbis"
@@ -124,6 +132,7 @@ datum
 			fluid_b = 0
 			transparency = 150
 			disease = /datum/ailment/disease/gbs
+			taste = "not stringy"
 
 		disease/liquid_plasma // Plasmatoid
 			name = "liquid plasma"
@@ -135,6 +144,7 @@ datum
 			fluid_b = 200
 			transparency = 80
 			disease = /datum/ailment/disease/plasmatoid
+			taste = "hot"
 
 		disease/hootonium // Owlstone juice
 			name = "Hootonium"
@@ -146,6 +156,7 @@ datum
 			fluid_b = 44
 			transparency = 80
 			disease = /datum/ailment/disease/hootonium
+			taste = "dangerous"
 
 		disease/nanites // Robot Transformation
 			name = "nanomachines"
@@ -158,6 +169,7 @@ datum
 			fluid_b = 101
 			transparency = 110
 			disease = /datum/ailment/disease/robotic_transformation
+			taste = "contrived"
 
 		disease/goodnanites
 			name = "Directed nanites"
@@ -170,6 +182,7 @@ datum
 			fluid_b = 101
 			transparency = 110
 			disease = /datum/ailment/disease/good_robotic_transformation
+			taste = "slightly contrived"
 
 
 		disease/corruptednanites // Robot Transformation with a dark, sinister twist.
@@ -183,6 +196,7 @@ datum
 			fluid_b = 85
 			transparency = 110
 			disease = /datum/ailment/disease/corrupt_robotic_transformation
+			taste = "very contrived"
 
 		disease/medusa
 			name = "Petrification"
@@ -194,6 +208,7 @@ datum
 			fluid_g = 128
 			fluid_b = 128
 			disease = /datum/ailment/disease/medusa
+			taste = "like minerals"
 
 		disease/liquid_spacetime // Teleportitis
 			name = "liquid spacetime"
@@ -205,6 +220,7 @@ datum
 			fluid_b = 0
 			transparency = 60
 			disease = /datum/ailment/disease/teleportitis
+			taste = "wrong"
 
 		disease/pubbie_tears // Berserker
 			name = "pubbie tears"
@@ -216,6 +232,7 @@ datum
 			fluid_b = 255
 			transparency = 30
 			disease = /datum/ailment/disease/berserker
+			taste = "bitter"
 
 		disease/salts1 //cogwerks drugs
 			name = "jagged crystals"
@@ -228,6 +245,7 @@ datum
 			fluid_b = 0
 			transparency = 30
 			disease = /datum/ailment/disease/berserker
+			taste = "jagged"
 
 		disease/salmonella // Food Poisoning
 			name = "salmonella bacteria"
@@ -240,6 +258,7 @@ datum
 			fluid_b = 0
 			transparency = 255
 			disease = /datum/ailment/disease/food_poisoning
+			taste = "spoiled"
 
 		disease/ecoli // Food Poisoning 2
 			name = "e.coli bacteria"
@@ -252,6 +271,7 @@ datum
 			fluid_b = 0
 			transparency = 255
 			disease = /datum/ailment/disease/food_poisoning
+			taste = "nasty"
 
 		disease/MRSA // for infected wounds
 			name = "MRSA"
@@ -264,6 +284,7 @@ datum
 			transparency = 255
 			minimum_to_infect = 1.5
 			disease = /datum/ailment/disease/infection
+			taste = "virulent"
 
 		disease/necrovirus // Necrotic Degeneration
 			name = "necrovirus"
@@ -275,6 +296,7 @@ datum
 			fluid_b = 200
 			transparency = 170
 			disease = /datum/ailment/disease/necrotic_degeneration
+			taste = "like necrosis"
 
 		disease/viral_curative // Panacaea
 			name = "viral curative"
@@ -287,6 +309,7 @@ datum
 			fluid_b = 255
 			transparency = 10
 			disease = /datum/ailment/disease/panacaea
+			taste = "strange"
 
 		disease/rotting // Tissue Necrosis
 			name = "rotting"
@@ -299,6 +322,7 @@ datum
 			transparency = 10
 			penetrates_skin = 1
 			disease = /datum/ailment/disease/tissue_necrosis
+			taste = "like necrosis"
 
 		disease/plague // Space Plague
 			name = "rat venom"
@@ -311,6 +335,7 @@ datum
 			fluid_b = 40
 			transparency = 50
 			disease = /datum/ailment/disease/space_plague
+			taste = "strangely like rat poison"
 
 		disease/loose_screws // Space Madness
 			name = "loose screws"
@@ -322,6 +347,7 @@ datum
 			fluid_b = 70
 			transparency = 70
 			disease = /datum/ailment/disease/space_madness
+			taste = "screwy"
 
 		disease/grave_dust // Vampire Plague
 			name = "grave dust"
@@ -333,6 +359,7 @@ datum
 			fluid_b = 70
 			transparency = 255
 			disease = /datum/ailment/disease/vamplague
+			taste = "dusty"
 
 		disease/prions // Kuru.
 			name = "prions"
@@ -345,6 +372,7 @@ datum
 			fluid_b = 255
 			transparency = 60
 			disease = /datum/ailment/disease/kuru
+			taste = "like prions"
 
 		disease/spidereggs // oh god
 			name = "spider eggs"
@@ -357,6 +385,7 @@ datum
 			fluid_b = 255
 			transparency = 60
 			disease = /datum/ailment/parasite/spidereggs
+			taste = "like it's too late" // but it was too late /ref
 
 		disease/bee
 			name = "bee"
@@ -369,6 +398,7 @@ datum
 			transparency = 40
 			minimum_to_infect = 0.4
 			disease = /datum/ailment/parasite/bee_larva
+			taste = "like bees"
 
 		disease/concentrated_initro // please do not give a recipe, just a thing for testing heart-related things atm
 			name = "concentrated initropidril"
@@ -378,8 +408,9 @@ datum
 			fluid_r = 192
 			fluid_g = 32
 			fluid_b = 232
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/malady/flatline
+			taste = "like a bug report"
 
 		disease/bacon_grease // please do not give a recipe, just a thing for testing heart-related things atm
 			name = "pure bacon grease"
@@ -389,8 +420,9 @@ datum
 			fluid_r = 247
 			fluid_g = 230
 			fluid_b = 177
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/malady/heartfailure
+			taste = "greasy"
 
 		disease/toomuch // High Fever
 			name = "too much" //your'e
@@ -402,6 +434,7 @@ datum
 			fluid_b = 100
 			transparency = 255
 			disease = /datum/ailment/disease/high_fever
+			taste = "like too much"
 
 
 
@@ -413,8 +446,9 @@ datum
 			fluid_r = 146
 			fluid_g = 93
 			fluid_b = 108
-			transparency = 0
+			transparency = 255
 			disease = /datum/ailment/disease/noheart
+			taste = "gross"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -436,6 +470,7 @@ datum
 			fluid_b = 121
 			transparency = 180
 			disease = /datum/ailment/disease/avian_flu
+			taste = "like feathers"
 
 		disease/mewtini
 			name = "Mewtini"
@@ -462,6 +497,7 @@ datum
 			transparency = 200
 			depletion_rate = 0.8
 			smoke_spread_mod = 10
+			taste = "like science"
 
 			reaction_turf(var/turf/T, var/volume)
 				return
@@ -488,6 +524,7 @@ datum
 			id = "antiviral"
 			description = "An agent which can be used to create a specialized cure for a viral pathogen."
 			reagent_state = 2
+			taste = "specialized"
 
 		// To make matters easier, fungi and parasites are both cured by the same biocides
 		biocide
@@ -495,6 +532,7 @@ datum
 			id = "biocide"
 			description = "An agent which can be used to create a specialized cure for a fungal or parasitic pathogen."
 			reagent_state = 2
+			taste = "specialized"
 
 		// A mutation inhibitor that should destroy great mutatis cells.
 		// A derivative of mutadone.
@@ -503,6 +541,7 @@ datum
 			id = "inhibitor"
 			description = "An agent which can be used to create a specialized cure for a cellular mutative pathogen"
 			reagent_state = 2
+			taste = "specialized"
 
 		bacterialmedium
 			name = "Bacterial Medium"
@@ -510,6 +549,7 @@ datum
 			description = "A solution useful for the cultivation of bacteria."
 			reagent_state = 2
 			pathogen_nutrition = list("water", "sugar", "sodium", "iron", "nitrogen")
+			taste = "nutritious"
 
 		parasiticmedium
 			name = "Parasitic Medium"
@@ -517,6 +557,7 @@ datum
 			description = "A solution useful for the cultivation of parasites."
 			reagent_state = 2
 			pathogen_nutrition = list("water", "sugar", "sodium", "iron", "nitrogen")
+			taste = "nutritious"
 
 		fungalmedium
 			name = "Fungal Medium"
@@ -524,3 +565,4 @@ datum
 			description = "A solution encouraging the growth of fungi."
 			reagent_state = 2
 			pathogen_nutrition = list("water", "sugar", "sodium", "iron", "nitrogen")
+			taste = "nutritious"

@@ -446,7 +446,7 @@
 /obj/trait/blind
 	name = "Blind (+2)"
 	cleanName = "Blind"
-	desc = "Spawn with permanent blindness and a VISOR."
+	desc = "Spawn with permanent blindness and a white cane."
 	icon_state = "blind"
 	id = "blind"
 	category = "vision"
@@ -458,7 +458,7 @@
 			if(istype(owner, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = owner
 				owner.bioHolder.AddEffect("blind", 0, 0, 0, 1)
-				H.equip_if_possible(new /obj/item/clothing/glasses/visor(H), H.slot_glasses)
+				H.equip_if_possible(new /obj/item/white_cane(H), H.slot_r_hand)
 
 	onLife(var/mob/owner) //Just to be safe.
 		if(owner.bioHolder && !owner.bioHolder.HasEffect("blind"))
@@ -598,15 +598,31 @@
 	isPositive = 1
 	category = "trinkets"
 
-/obj/trait/pawnstar
-	name = "Pawn Star (-1) \[Trinkets\]"
-	cleanName = "Pawn Star"
-	desc = "You sold your trinket before you departed for the station. You start with a bonus of 25% of your starting cash in your inventory."
-	id = "pawnstar"
-	icon_state = "pawnP"
+/obj/trait/immaculate
+	name = "Immaculate (-1) \[Trinkets\]"
+	cleanName = "Immaculate"
+	desc = "Start off with a rag as your trinket."
+	id = "emaculate"
 	points = -1
 	isPositive = 1
 	category = "trinkets"
+
+//2025-6-17: Moved from 25% of wage bonus starting cash to a flat 300$ and from -1 to 0 pts
+//300 was the highest you'd get out of it (being captain), which is't much anyway
+//Even then it's hardly on par with Unionized for cost.
+/obj/trait/pawnstar
+	name = "Pawn Star (0) \[Trinkets\]"
+	cleanName = "Pawn Star"
+	//desc has to be done at runtime :v
+	id = "pawnstar"
+	icon_state = "pawnP"
+	points = 0
+	isPositive = 1
+	category = "trinkets"
+
+	New()
+		desc = "You sold your trinket before you departed for the station. You start with a bonus of 300[CREDIT_SIGN] to your starting cash in your inventory."
+		..()
 
 /obj/trait/beestfriend
 	name = "BEEst friend (-1) \[Trinkets\]"
@@ -775,7 +791,7 @@
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 			H.add_stam_mod_max("trait", STAMINA_MAX * 0.1)
-			APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "trait", STAMINA_REGEN * 0.1)
+			APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "trait", STAMINA_REGEN * 0.1)
 
 /obj/trait/bigbruiser
 	name = "Big Bruiser (-2) \[Stats\]"
@@ -1185,9 +1201,9 @@ obj/trait/pilot
 /obj/trait/cat
 	name = "Feline (0) \[Species\]"
 	cleanName = "Feline"
-	icon_state = "fertT"
+	icon_state = "catT"
 	desc = "Normal cat."
-	id = "cat" //need cat icon, but for now,
+	id = "cat"
 	points = 0
 	isPositive = 0
 	category = "species"
@@ -1310,7 +1326,7 @@ obj/trait/pilot
 		..()
 		if(isliving(owner))
 			var/mob/living/L = owner
-			L.blood_id = "bloodc"
+			L.replace_blood_with("bloodc")
 
 /obj/trait/super_slips
 	name = "Slipping Hazard (+1)"
@@ -1318,6 +1334,16 @@ obj/trait/pilot
 	id = "super_slips"
 	desc = "You never were good at managing yourself slipping."
 	points = 1
+
+/obj/trait/hardcore
+	name = "Hardcore (-1)"
+	cleanName= "Hardcore"
+	id = "hardcore"
+	icon_state = "hardcoreT"
+	desc = "You were born with juice in your blood. You've been smoking since pre-K. To you, CoolStation is just a normal space station."
+	points = -1
+	isPositive = 1
+
 
 //Infernal Contract Traits
 /obj/trait/hair

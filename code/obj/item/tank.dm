@@ -328,13 +328,13 @@ Contains:
 			processing_items |= src
 			if(src.process())
 				var/mob/M = src.loc // process can't return true otherwise
-				APPLY_MOB_PROPERTY(M, PROP_ATOM_FLOATING, src)
+				APPLY_ATOM_PROPERTY(M, PROP_ATOM_FLOATING, src)
 		else
 			boutput(usr, "<span class='notice'>The jetpack is now off</span>")
 			processing_items.Remove(src)
 			if(ismob(src.loc))
 				var/mob/M = src.loc
-				REMOVE_MOB_PROPERTY(M, PROP_ATOM_FLOATING, src)
+				REMOVE_ATOM_PROPERTY(M, PROP_ATOM_FLOATING, src)
 		return
 
 	proc/allow_thrust(num, mob/user as mob)

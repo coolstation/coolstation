@@ -59,7 +59,7 @@
 	var/MAX_DAMAGE = 100	//Max damage before organ "dies"
 	var/FAIL_DAMAGE = 65	//Total damage amount at which organ failure starts
 
-	var/created_decal = /obj/decal/cleanable/blood // what kinda mess it makes.  mostly so cyberhearts can splat oil on the ground, but idk maybe you wanna make something that creates a broken balloon or something on impact vOv
+	var/created_decal = /obj/decal/cleanable/tracked_reagents/blood // what kinda mess it makes.  mostly so cyberhearts can splat oil on the ground, but idk maybe you wanna make something that creates a broken balloon or something on impact vOv
 	var/blood_color = null
 	var/blood_reagent = null
 	var/decal_done = FALSE // fuckers are tossing these around a lot so I guess they're only gunna make one, ever now
@@ -90,9 +90,9 @@
 			if(HA.organ_scan)
 				animate_scanning(src, "#0AEFEF")
 				boutput(user, "<span style='color:purple'><b>[src]</b> - [src.get_damage()]</span>")
-				var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "dna", src.donor_DNA)
+				var/datum/db_record/MR = data_core.general.find_record("dna", src.donor_DNA)
 				if(MR)
-					boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR.fields["name"]] ([MR.fields["dna"]])</span>")
+					boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR["name"]] ([MR["dna"]])</span>")
 				else
 					boutput(user, "<span style='color:purple'><b>DNA not on file</b></span>")
 				return
@@ -122,6 +122,8 @@
 			if(usr.traitHolder.hasTrait("organ_connoisseur"))
 				if (src.donor_name && well_known)
 					. += "<br>You know this one well, it belongs to [src.donor_name]."
+					src.name = "[src.donor_name]'s [initial(src.name)]"
+					src.real_name = src.name
 				. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "It's seen better days. Unfortunate." : "Seems good enough to sell."]"
 			else if(usr.traitHolder.hasTrait("training_medical"))
 				. += "<br>[src.get_damage() >= FAIL_DAMAGE ? "It's seen better days." : "Seems good enough to reuse!"]"
@@ -177,8 +179,8 @@
 		var/obj/decal/cleanable/cleanable = make_cleanable(src.created_decal, T)
 		cleanable.blood_DNA = src.blood_DNA
 		cleanable.blood_type = src.blood_type
-		if(istype(cleanable, /obj/decal/cleanable/blood))
-			var/obj/decal/cleanable/blood/blood = cleanable
+		if(istype(cleanable, /obj/decal/cleanable/tracked_reagents/blood))
+			var/obj/decal/cleanable/tracked_reagents/blood/blood = cleanable
 			blood.set_sample_reagent_custom(src.blood_reagent, 10)
 			if(!isnull(src.blood_color))
 				blood.color = src.blood_color

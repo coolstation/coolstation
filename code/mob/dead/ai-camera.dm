@@ -40,8 +40,8 @@
 		last_loc = src.loc
 		..()
 		sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_AI_EYE)
-		APPLY_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_AI_EYE)
+		APPLY_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
 		if (render_special)
 			render_special.set_centerlight_icon("nightvision", rgb(0.5 * 255, 0.5 * 255, 0.5 * 255))
 	Login()
@@ -88,7 +88,13 @@
 		if (C.tg_controls)
 			C.apply_keybind("robot_tg")
 
-	Move(NewLoc, direct)//Ewww!
+	process_move(keys)
+		if(keys && src.move_dir && !src.override_movement_controller && !istype(src.loc, /turf)) //when a movement key is pressed, move out of tracked mob
+			var/mob/dead/aieye/O = src
+			O.set_loc(get_turf(src))
+		. = ..()
+
+	Move(var/turf/NewLoc, direct) //Ewww!
 		last_loc = src.loc
 
 		src.closeContextActions()
@@ -146,6 +152,9 @@
 		if (!src.mainframe.stat && !src.mainframe.restrained() && !src.mainframe.hasStatus(list("weakened", "paralysis", "stunned")))
 			if(src.client.check_any_key(KEY_OPEN | KEY_BOLT | KEY_SHOCK) && istype(target, /obj) )
 				var/obj/O = target
+				if(istype(O,/obj/machinery/door/firedoor))
+					for(var/obj/machinery/door/airlock/airlock in O.loc)
+						O = airlock
 				O.receive_silicon_hotkey(src)
 				return
 

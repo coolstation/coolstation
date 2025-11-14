@@ -1,7 +1,7 @@
 var/list/observers = list()
 
 /mob/dead/target_observer
-	density = 1
+	density = FALSE
 	name = "spooky ghost"
 	icon = null
 	event_handler_flags = 0
@@ -11,16 +11,16 @@ var/list/observers = list()
 
 	New()
 		..()
-		APPLY_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
+		APPLY_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
 		observers += src
 		mobs += src
 		//set_observe_target(target)
 /*
 	unpooled()
 		..()
-		src.mob_properties = list()
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
+		src.atom_properties = list()
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
 		observers += src
 		mobs += src
 		src.move_dir = 0
@@ -108,7 +108,7 @@ var/list/observers = list()
 		if(src.target)
 			var/mob/living/M = src.target
 			src.target = null
-			M.removeOverlaysClient(src.client)
+			removeOverlaysClient(src.client)
 			for (var/datum/hud/hud in M.huds)
 				src.detach_hud(hud)
 			if(istype(M))
@@ -129,7 +129,7 @@ var/list/observers = list()
 		if (istype(M))
 			M.observers += src
 			if(src.client)
-				M.updateOverlaysClient(src.client)
+				addOverlaysClient(src.client, M)
 			for (var/datum/hud/hud in M.huds)
 				src.attach_hud(hud)
 
@@ -157,7 +157,7 @@ var/list/observers = list()
 	my_ghost.delete_on_logout = my_ghost.delete_on_logout_reset
 
 	if (src.client)
-		src.removeOverlaysClient(src.client)
+		removeOverlaysClient(src.client)
 		client.mob = my_ghost
 
 	if (src.mind)

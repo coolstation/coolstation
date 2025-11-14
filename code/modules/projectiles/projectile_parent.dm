@@ -33,7 +33,7 @@
 	var/facing_dir = 1 //default dir we set to in do_step()
 
 	var/data = 0
-	var/was_pointblank = 0 // Adjusts the log entry accordingly.
+	var/was_pointblank = 0 // Adjusts the log entry accordingly and allows point blank impact
 
 	var/was_setup = 0
 	var/far_border_hit
@@ -56,6 +56,8 @@
 	var/reflectcount = 0
 	var/is_processing = 0//MBC BANDAID FOR BAD BUG : Sometimes Launch() is called twice and spawns two process loops, causing DOUBLEBULLET speed and collision. this fix is bad but i cant figure otu the real issue
 	var/is_detonating = 0//to start modeling fuses
+
+	var/max_spread = 0 // tracks summed maximums of possible spread applied, currently used for buckshot style effects
 
 	proc/rotateDirection(var/angle)
 		var/oldxo = xo
@@ -89,7 +91,7 @@
 
 	proc/process()
 		if(hitlist.len)
-			hitlist.len = 0
+			hitlist.Cut()
 		is_processing = 1
 		while (!QDELETED(src))
 
@@ -97,7 +99,7 @@
 			sleep(1 DECI SECOND) //Changed from 1, minor proj. speed buff
 		is_processing = 0
 
-	proc/collide(atom/A as mob|obj|turf|area, first = 1)
+	proc/collide(atom/A as mob|obj|turf, first = 1)
 		if (!A) return // you never know ok??
 		if (QDELETED(src)) return // if disposed = true, QDELETED(src) or set for garbage collection and shouldn't process bumps
 		if (!proj_data) return // this apparently happens sometimes!! (more than you think!)
@@ -105,14 +107,16 @@
 			return // Our bullet doesnt want to hit this
 		if (A in hitlist)
 			return
-		else
-			hitlist += A
-		if (A == shooter) return // never collide with the original shooter
+		if (A == shooter && !src.was_pointblank) return // only collide with the original shooter if they pointblank themself
 		if (ismob(A)) //don't doublehit
+			if (proj_data.time_between_same_mob_hit && ON_COOLDOWN(A, "proj_rehit_\ref[src]", proj_data.time_between_same_mob_hit))
+				return
 			if (ticks_until_can_hit_mob > 0 || goes_through_mobs)
 				return
 			if (src.proj_data) //ZeWaka: Fix for null.ticks_between_mob_hits
 				ticks_until_can_hit_mob = src.proj_data.ticks_between_mob_hits
+		else
+			hitlist += A
 		var/turf/T = get_turf(A)
 		src.power = src.proj_data.get_power(src, A)
 		if(src.power <= 0 && src.proj_data.power != 0) return //we have run out of power
@@ -226,6 +230,7 @@
 			src.icon_state = proj_data.icon_state
 			if (!proj_data.override_color)
 				src.color = proj_data.color_icon
+			src.plane = proj_data.override_plane
 		else
 			src.icon = 'icons/obj/projectiles.dmi'
 			src.icon_state = null
@@ -236,7 +241,7 @@
 	proc/setup()
 		if(QDELETED(src))
 			return
-		if (src.proj_data == null || (xo == 0 && yo == 0) || proj_data.projectile_speed == 0)
+		if (src.proj_data == null)
 			die()
 			return
 
@@ -248,9 +253,11 @@
 
 		var/len = sqrt(src.xo * src.xo + src.yo * src.yo)
 
-		if (len == 0)
-			die()
-			return
+		var/speed = internal_speed || proj_data.projectile_speed
+
+		if (len == 0 || speed == 0)
+			return //will die on next step before moving
+
 		src.xo = src.xo / len
 		src.yo = src.yo / len
 
@@ -273,8 +280,8 @@
 		transform = null
 		Turn(angle)
 		if (!proj_data.precalculated)
+			src.was_setup = 1
 			return
-		var/speed = internal_speed || proj_data.projectile_speed
 		var/x32 = 0
 		var/xs = 1
 		var/y32 = 0
@@ -332,16 +339,15 @@
 
 	proc/collide_with_applicable_in_tile(var/turf/T)
 		var/i = 0
-		for(var/thing as mob|obj|turf|area in T)
-			var/atom/A = thing
-			if (A == src) continue
-			if (!A.CanPass(src, get_step(src, A.dir)))
-				src.collide(A)
+		for(var/atom/movable/AM in T)
+			if (AM == src) continue
+			if (!AM.CanPass(src, get_step(src, AM.dir)))
+				src.collide(AM)
 
-			if (collide_with_other_projectiles && A.type == src.type)
-				var/obj/projectile/P = A
+			if (collide_with_other_projectiles && AM.type == src.type)
+				var/obj/projectile/P = AM
 				if (P.proj_data && src.proj_data && P.proj_data.type != src.proj_data.type) //ignore collisions with me own subtype
-					src.collide(A)
+					src.collide(AM)
 
 			if(i++ >= 50)
 				break
@@ -354,6 +360,11 @@
 		src.ticks_until_can_hit_mob--
 		proj_data.tick(src)
 		if (QDELETED(src))
+			return
+
+		if(!was_setup) //if setup failed due to us having no speed or no direction, try to collide with something before dying
+			collide_with_applicable_in_tile(loc)
+			die()
 			return
 
 		var/turf/curr_turf = loc
@@ -451,10 +462,6 @@
 
 			animate(src,pixel_x = wx-dpx, pixel_y = wy-dpy, time = 1 DECI SECOND, flags = ANIMATION_END_NOW) //todo figure out later
 
-	track_blood()
-		src.tracked_blood = null
-		return
-
 	temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 		return
 
@@ -499,8 +506,8 @@ datum/projectile
 		zone = null              // todo: if fired from a handheld gun, check the targeted zone --- this should be in the goddamn obj
 		caliber = null
 		dud_freq = 1			 // How often this thing simply doesn't fire and sucks as a projectile
-		fiddlyness = 1			 // How hard is this to handle when there's a jam or misfire
 		fouling = 1				 // How much smut and filth does this thing leave in the receiver/barrel/etc
+		ignores_spread = FALSE	// Ignores all spread from the gun, usually used for things that just need to pass that spread to subprojectiles they create
 
 		datum/material/material = null
 
@@ -512,8 +519,6 @@ datum/projectile
 		hit_object_sound = 0
 		hit_mob_sound = 0
 
-		///if a fullauto-capable weapon should be able to fullauto this ammo type
-		fullauto_valid = 0
 
 	// Determines the amount of length units the projectile travels each tick
 	// A tile is 32 wide, 32 long, and 32 * sqrt(2) across.
@@ -537,9 +542,11 @@ datum/projectile
 	var/goes_through_walls = 0
 	var/goes_through_mobs = 0
 	var/pierces = 0
+	var/time_between_same_mob_hit = 0
 	var/ticks_between_mob_hits = 0
 	var/is_magical = 0              //magical projectiles, i.e. the chaplain is immune to these
 	var/ie_type = "T"	//K, E, T
+	var/override_plane = PLANE_DEFAULT
 	// var/type = "K"					//3 types, K = Kinetic, E = Energy, T = Taser
 
 	/// for on_pre_hit. Causes it to early-return TRUE if the thing checked was already cleared for pass-thru
@@ -674,7 +681,7 @@ datum/projectile/bullet/frog/getout
 datum/projectile/bullet/rod
 	impact_range = 16
 
-datum/projectile/bullet/flare/ufo
+datum/projectile/bullet/slug/flare/ufo
 	impact_range = 8
 
 datum/projectile/owl
@@ -731,15 +738,13 @@ datum/projectile/snowball
 			T.visible_message("<b><span class='alert'>...but the projectile bounces off uselessly!</span></b>")
 			P.die()
 			return
-		if (P.proj_data)
+		if (P.was_pointblank && P.proj_data)
 			P.proj_data.on_pointblank(P, T)
 	P.collide(T) // The other immunity check is in there (Convair880).
 
 /proc/shoot_projectile_ST(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/obj/projectile/Q = shoot_projectile_relay(S, DATA, T, remote_sound_source, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
 		SPAWN_DBG(-1)
@@ -751,8 +756,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_ST_pixel(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/obj/projectile/Q = shoot_projectile_relay_pixel(S, DATA, T, pox, poy, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
 		SPAWN_DBG(-1)
@@ -764,8 +767,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_ST_pixel_spread(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/spread_angle, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/obj/projectile/Q = shoot_projectile_relay_pixel_spread(S, DATA, T, pox, poy, spread_angle, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
 		SPAWN_DBG(-1)
@@ -777,8 +778,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_DIR(var/atom/movable/S, var/datum/projectile/DATA, var/dir, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return null
 	var/turf/T = get_step(get_turf(S), dir)
 	if (T)
 		return shoot_projectile_ST(S, DATA, T, remote_sound_source, alter_proj = alter_proj)
@@ -786,8 +785,6 @@ datum/projectile/snowball
 
 /proc/shoot_projectile_relay(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/obj/projectile/P = initialize_projectile_ST(S, DATA, T, remote_sound_source, alter_proj = alter_proj)
 	if (P)
@@ -797,8 +794,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_relay_pixel(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return
 	var/obj/projectile/P = initialize_projectile_pixel(S, DATA, T, pox, poy, alter_proj = alter_proj)
 	if (P)
 		P.launch()
@@ -807,8 +802,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_relay_pixel_spread(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/spread_angle, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return
 	var/obj/projectile/P = initialize_projectile_pixel_spread(S, DATA, T, pox, poy, spread_angle, alter_proj = alter_proj)
 	if (P)
 		P.launch()
@@ -816,8 +809,6 @@ datum/projectile/snowball
 
 /proc/shoot_projectile_XY(var/atom/movable/S, var/datum/projectile/DATA, var/xo, var/yo, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/obj/projectile/Q = shoot_projectile_XY_relay(S, DATA, xo, yo, alter_proj = alter_proj)
 	if (DATA.shot_number > 1)
@@ -830,8 +821,6 @@ datum/projectile/snowball
 /proc/shoot_projectile_XY_relay(var/atom/movable/S, var/datum/projectile/DATA, var/xo, var/yo, var/datum/callback/alter_proj = null)
 	if (!S)
 		return
-	if (!isturf(S) && !isturf(S.loc))
-		return
 	var/obj/projectile/P = initialize_projectile(get_turf(S), DATA, xo, yo, S, alter_proj = alter_proj)
 	if (P)
 		P.launch()
@@ -839,8 +828,6 @@ datum/projectile/snowball
 
 /proc/initialize_projectile_ST(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/atom/movable/remote_sound_source, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/turf/Q1 = get_turf(S)
 	var/turf/Q2 = get_turf(T)
@@ -850,8 +837,6 @@ datum/projectile/snowball
 
 /proc/initialize_projectile_pixel(var/atom/movable/S, var/datum/projectile/DATA, var/T, var/pox, var/poy, var/datum/callback/alter_proj = null)
 	if (!S)
-		return
-	if (!isturf(S) && !isturf(S.loc))
 		return
 	var/turf/Q1 = get_turf(S)
 	var/turf/Q2 = get_turf(T)
@@ -864,8 +849,10 @@ datum/projectile/snowball
 	if (P && spread_angle)
 		if (spread_angle < 0)
 			spread_angle = -spread_angle
-		var/spread = rand(spread_angle * 10) / 10
-		P.rotateDirection(prob(50) ? spread : -spread)
+		P.max_spread += spread_angle
+		if(!P.proj_data.ignores_spread)
+			var/spread = rand(spread_angle * 10) / 10
+			P.rotateDirection(prob(50) ? spread : -spread)
 	return P
 
 /proc/initialize_projectile(var/turf/S, var/datum/projectile/DATA, var/xo, var/yo, var/shooter = null, var/turf/remote_sound_source, var/play_shot_sound = TRUE, var/datum/callback/alter_proj = null)
@@ -881,7 +868,7 @@ datum/projectile/snowball
 	P.power = DATA.power
 
 	P.proj_data = DATA
-	alter_proj?.Invoke(P)
+	alter_proj?.Invoke(P, shooter)
 
 
 	if(P.proj_data == DATA)
@@ -910,10 +897,9 @@ datum/projectile/snowball
 				for (var/mob/M in shooter)
 					M << sound(DATA.shot_sound, volume=DATA.shot_volume)
 /* // warc: this is an innapropriate place for this stat because a LOT of things use projectiles as a parent now!!!!
-#ifdef DATALOGGER
 	if (game_stats && istype(game_stats))
 		game_stats.Increment("gunfire")
-#endif*/
+*/
 	if (DATA.brightness)
 		P.add_simple_light("proj", list(DATA.color_red*255, DATA.color_green*255, DATA.color_blue*255, DATA.brightness * 255))
 

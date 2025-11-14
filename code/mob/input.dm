@@ -1,26 +1,25 @@
 
+/mob/var/prev_loc = 0
 /mob/var/move_dir = 0
 /mob/var/next_move = 0
 
 
 /mob/hotkey(name)
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			return controller.hotkey(src, name)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		return controller.hotkey(src, name)
 	return ..()
 
 /mob/keys_changed(keys, changed)
 	if (changed & KEY_EXAMINE)
-		if (keys & KEY_EXAMINE && HAS_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES))
+		if (keys & KEY_EXAMINE && HAS_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES))
 			src.client?.get_plane(PLANE_EXAMINE).alpha = 255
 		else
 			src.client?.get_plane(PLANE_EXAMINE).alpha = 0
 
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			controller.keys_changed(src, keys, changed)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		controller.keys_changed(src, keys, changed)
 		return
 
 	if (changed & (KEY_FORWARD|KEY_BACKWARD|KEY_RIGHT|KEY_LEFT))
@@ -55,23 +54,24 @@
 /mob/proc/process_move(keys)
 	set waitfor = 0
 
-	if (src.use_movement_controller)
-		var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-		if (controller)
-			return controller.process_move(src, keys)
+	var/datum/movement_controller/controller = src.override_movement_controller
+	if (controller)
+		return controller.process_move(src, keys)
 
 	if (isdead(src) && !isobserver(src) && !istype(src, /mob/zoldorf))
-		return
+		return 0
 
 	if (src.next_move - world.time >= world.tick_lag / 10)
-		return max(world.tick_lag, (src.next_move - world.time) - world.tick_lag / 10)
+		// from mylies tests, this is an error from years ago, so im removing it so that process_move returns a truthy value ONLY when it actually moves
+		//return max(world.tick_lag, (src.next_move - world.time) - world.tick_lag / 10)
+		return 0
 
 	if (src.move_dir)
 		//SPRINTING REMOVAL - Despite the name, this running var seems to actually be what dictates the speed increase when sprinting
 		//Sadly it's scattered all over this code so I'm leaving it dormant instead of commenting all of it out.
 		var/running = 0
 		var/mob/living/carbon/human/H = src
-		//if ((keys & KEY_RUN) && H.get_stamina() > STAMINA_SPRINT && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT) && (H.health > -15))
+		//if ((keys & KEY_RUN) && H.get_stamina() > STAMINA_SPRINT && !HAS_ATOM_PROPERTY(src, PROP_CANTSPRINT) && (H.health > -15))
 		//	running = 1
 		if (H.pushing && get_dir(H,H.pushing) != H.move_dir) //Stop pushing before calculating move_delay if we've changed direction
 			H.pushing = 0
@@ -100,7 +100,7 @@
 			if (src.restrained())
 				for(var/mob/M in range(src, 1))
 					if ((M.pulling == src && (!M.restrained() && isalive(M))) || length(src.grabbed_by))
-						return
+						return 0
 
 			var/misstep_angle = 0
 			if (src.traitHolder && prob(5) && src.traitHolder.hasTrait("leftfeet"))
@@ -135,6 +135,7 @@
 						qdel(G)
 
 				var/turf/old_loc = src.loc
+				src.prev_loc = old_loc
 
 				//use commented bit if you wanna have world fps different from client. But its not perfect!
 				var/glide = (world.icon_size / ceil(delay / world.tick_lag)) //* (world.tick_lag / CLIENTSIDE_TICK_LAG_SMOOTH))
@@ -220,7 +221,7 @@
 							if (G.assailant == pushing || G.affecting == pushing) continue
 							if (G.state < GRAB_NECK) continue
 							if (!G.assailant || !isturf(G.assailant.loc) || G.assailant.anchored)
-								return
+								return 0
 							src.set_density(0) //assailant shouldn't be able to bump us here. Density is set to 0 by the grab stuff but *SAFETY!*
 							step(G.assailant, move_dir)
 							if(G.assailant)

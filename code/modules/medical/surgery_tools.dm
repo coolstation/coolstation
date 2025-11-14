@@ -340,26 +340,19 @@ CONTAINS:
 				surgery_limb.surgery(src)
 			return
 
-	attackby(obj/item/W, mob/user)
-		..()
+	afterattack(atom/target, mob/user, reach, params)
+		if (istype(target, /obj/item/gun_exploder))
+			user.show_text("You smash out part of [src] to make a receiver. This looks pretty unsafe!")
+			user.u_equip(src)
+			var/turf/T = get_turf(src)
+			playsound(T, "sound/items/Deconstruct.ogg", 50, 1)
+			qdel(src)
+			var/obj/item/gun/modular/zip/base/new_gun = new(T)
+			user.put_in_hand_or_drop(new_gun)
+		else
+			. = ..()
 
-		if (istype(W,/obj/item/pipebomb/frame))
-			var/obj/item/pipebomb/frame/F = W
-			if (F.state < 2)
-				user.show_text("This might work better if [F] was hollowed out.")
-			else if (F.state == 2)
-				user.show_text("You combine [F] and [src]. This looks pretty unsafe!")
-				user.u_equip(F)
-				user.u_equip(src)
-				var/turf/T = get_turf(src)
-				playsound(T, "sound/items/Deconstruct.ogg", 50, 1)
-				new/obj/item/gun/kinetic/zipgun(T)
-				qdel(F)
-				qdel(src)
 
-			else
-				user.show_text("You can't seem to combine these two items this way.")
-		return
 
 
 // a mostly decorative thing from z2 areas I want to add to office closets
@@ -422,7 +415,7 @@ CONTAINS:
 		if (!isliving(M) || issilicon(M))
 			return ..()
 		if (src.defibrillate(M, user, src.emagged, src.makeshift, src.cell))
-			JOB_XP(user, "Medical Doctor", 5)
+			JOB_XP_DEPT(user, "Medical Doctor", "medical", 5)
 			src.charged = 0
 			if(istype(src.loc, /obj/machinery/atmospherics/unary/cryo_cell))
 				var/obj/machinery/atmospherics/unary/cryo_cell/cryo = src.loc
@@ -673,7 +666,7 @@ CONTAINS:
 	icon = 'icons/obj/machines/compact_machines.dmi'
 	desc = "Used to resuscitate critical patients."
 	icon_state = "defib1"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mats = 25
 	var/obj/item/robodefibrillator/mounted/defib = null
@@ -970,7 +963,7 @@ CONTAINS:
 			if (zone && surgery_status)
 				target.visible_message("<span class='success'>[owner] [vrb]es the surgical incisions on [owner == target ? his_or_her(owner) : "[target]'s"] [zone_sel2name[zone]] closed with [tool].</span>",
 				"<span class='success'>[owner == target ? "You [vrb]e" : "[owner] [vrb]es"] the surgical incisions on your [zone_sel2name[zone]] closed with [tool].</span>")
-				JOB_XP(ownerMob, "Medical Doctor", 5)
+				JOB_XP_DEPT(ownerMob, "Medical Doctor","medical", 5)
 				if (target.organHolder)
 					if (zone == "chest")
 						if (target.organHolder.heart)
@@ -993,7 +986,7 @@ CONTAINS:
 				target.visible_message("<span class='success'>[owner] [vrb]es [owner == target ? "[his_or_her(owner)]" : "[target]'s"] wounds closed with [tool].</span>",\
 				"<span class='success'>[owner == target ? "You [vrb]e" : "[owner] [vrb]es"] your wounds closed with [tool].</span>")
 				repair_bleeding_damage(target, 100, repair_amount)
-				JOB_XP(ownerMob, "Medical Doctor", 5)
+				JOB_XP_DEPT(ownerMob, "Medical Doctor","medical", 5)
 				if (brute_heal || burn_heal)
 					target.HealDamage("All", brute_heal, burn_heal)
 
@@ -1765,4 +1758,4 @@ CONTAINS:
 		New()
 			. = ..()
 			SPAWN_DBG(1 DECI SECOND) //sync with the organs spawn
-				make_cleanable(/obj/decal/cleanable/blood/gibs, src.loc)
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, src.loc)

@@ -206,7 +206,7 @@
 
 	if (M.reagents)
 		if (verbose_reagent_info)
-			reagent_data = scan_reagents(M, 0, 0, 0, 1)
+			reagent_data = scan_reagents(M, show_temp = 0, single_line = 0, visible = 0, medical = 1, show_volume = 0, show_contraband = 0, min_volume = 0)
 		else
 			var/ephe_amt = M.reagents:get_reagent_amount("ephedrine")
 			var/epi_amt = M.reagents:get_reagent_amount("epinephrine")
@@ -256,7 +256,7 @@
 			return obfuscate_organ_health(O)
 		else
 			if (damage > 0)
-				return "<br><span style='color:[damage >= 65 ? "red" : "purple"]'><b>[input]</b> - [O.get_damage()]</span>"
+				return "<br><span style='color:[damage >= 65 ? "red" : "purple"]'><b>[O.name]</b> - [O.get_damage()]</span>"
 			else
 				return null
 
@@ -293,28 +293,26 @@
 	if (M:wear_id && M:wear_id:registered)
 		patientname = M.wear_id:registered
 
-	for (var/datum/data/record/E in data_core.general)
-		if (E.fields["name"] == patientname)
-			switch (M.stat)
-				if (0)
-					if (M.bioHolder && M.bioHolder.HasEffect("strong"))
-						E.fields["p_stat"] = "Very Active"
-					else
-						E.fields["p_stat"] = "Active"
-				if (1)
-					E.fields["p_stat"] = "*Unconscious*"
-				if (2)
-					E.fields["p_stat"] = "*Deceased*"
-			for (var/datum/data/record/R in data_core.medical)
-				if ((R.fields["id"] == E.fields["id"]))
-					R.fields["bioHolder.bloodType"] = M.bioHolder.bloodType
-					R.fields["cdi"] = english_list(M.ailments, "No diseases have been diagnosed at the moment.")
-					if (M.ailments.len)
-						R.fields["cdi_d"] = "Diseases detected at [time2text(world.realtime,"hh:mm")]."
-					else
-						R.fields["cdi_d"] = "No notes."
-					break
-			break
+	var/datum/db_record/E = data_core.general.find_record("name", patientname)
+	if(E)
+		switch (M.stat)
+			if (0)
+				if (M.bioHolder && M.bioHolder.HasEffect("strong"))
+					E["p_stat"] = "Very Active"
+				else
+					E["p_stat"] = "Active"
+			if (1)
+				E["p_stat"] = "*Unconscious*"
+			if (2)
+				E["p_stat"] = "*Deceased*"
+		var/datum/db_record/R = data_core.medical.find_record("id", E["id"])
+		if(R)
+			R["bioHolder.bloodType"] = M.bioHolder.bloodType
+			R["cdi"] = english_list(M.ailments, "No diseases have been diagnosed at the moment.")
+			if (M.ailments.len)
+				R["cdi_d"] = "Diseases detected at [time2text(world.realtime,"hh:mm")]."
+			else
+				R["cdi_d"] = "No notes."
 	return
 
 // output a health pop-up overhead thing to the client
@@ -350,8 +348,8 @@
 		animate_scanning(M, "#0AEFEF")
 
 	var/mob/living/carbon/human/H = M
-	var/datum/data/record/GR = FindRecordByFieldValue(data_core.general, "name", H.name)
-	var/datum/data/record/MR = FindRecordByFieldValue(data_core.medical, "name", H.name)
+	var/datum/db_record/GR = data_core.general.find_record("name", H.name)
+	var/datum/db_record/MR = data_core.medical.find_record("name", H.name)
 	if (!MR)
 		return "<span class='alert'>ERROR: NO RECORD FOUND</span>"
 
@@ -368,7 +366,7 @@
 	record_prog.mode = 1
 	pda.attack_self(usr)
 
-/proc/scan_reagents(var/atom/A as turf|obj|mob, var/show_temp = 1, var/single_line = 0, var/visible = 0, var/medical = 0)
+/proc/scan_reagents(var/atom/A as turf|obj|mob, var/show_temp = 1, var/single_line = 0, var/visible = 0, var/medical = 0, var/show_volume = 0, var/show_contraband = 0, var/min_volume = 0)
 	if (!A)
 		return "<span class='alert'>ERROR: NO SUBJECT DETECTED</span>"
 
@@ -391,25 +389,31 @@
 		if (reagents.reagent_list.len > 0)
 			if("cloak_juice" in reagents.reagent_list)
 				var/datum/reagent/cloaker = reagents.reagent_list["cloak_juice"]
-				if(cloaker.volume >= 5)
+				if(cloaker.volume >= 0.05 * reagents.total_volume)
 					data = "<span class='alert'>ERR: SPECTROSCOPIC ANALYSIS OF THIS SUBSTANCE IS NOT POSSIBLE.</span>"
 					return data
 
 			var/reagents_length = length(reagents.reagent_list)
 			data = "<span class='notice'>[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found in [A].</span>"
-
+			var/count
 			for (var/current_id in reagents.reagent_list)
 				var/datum/reagent/current_reagent = reagents.reagent_list[current_id]
+				if(min_volume > current_reagent.volume)
+					continue
 				var/show_OD = (medical && current_reagent.overdose != 0 && current_reagent.volume >= current_reagent.overdose)
+				var/show_contra_alert = (show_contraband && current_reagent.contraband != 0)
 				if (single_line)
-					reagent_data += "<span [show_OD ? "class='alert'" : "class='notice'"]>[current_reagent] ([current_reagent.volume])[show_OD? " - OD!":""]</span>,"
+					reagent_data += "<span [(show_OD || show_contra_alert) ? "class='alert'" : "class='notice'"]>[current_reagent][show_volume ? " ([current_reagent.volume])" : ""][show_OD? " - OD!":""][show_contra_alert? " - CONTRABAND [current_reagent.contraband]!":""]</span>,"
 				else
-					reagent_data += "<span [show_OD ? "class='alert'" : "class='notice'"]><br>&emsp;[current_reagent.name] - [current_reagent.volume][show_OD? " - OD!":""]</span>"
+					reagent_data += "<span [(show_OD || show_contra_alert) ? "class='alert'" : "class='notice'"]><br>&emsp;[current_reagent.name][show_volume ? " - [current_reagent.volume]" : ""][show_OD? " - OD!":""][show_contra_alert? " - CONTRABAND [current_reagent.contraband]!":""]</span>"
+				count++
+			if(!count)
+				data = "<span class='alert'>ERR: SPECTROSCOPIC ANALYSIS FAILED DUE TO SAMPLE SIZE.</span>"
+				return data
 			if (single_line)
 				data += "[copytext(reagent_data, 1, -1)]"
 			else
 				data += "[reagent_data]"
-
 			if (show_temp)
 				data += "<br><span class='notice'>Overall temperature: [reagents.total_temperature - T0C]&deg;C ([reagents.total_temperature * 1.8-459.67]&deg;F)</span>"
 		else
@@ -559,8 +563,9 @@
 
 		if (isitem(A))
 			var/obj/item/I = A
-			if(I.contraband)
-				contraband_data = "<span class='alert'>(CONTRABAND: LEVEL [I.contraband])</span>"
+			var/contra = GET_ATOM_PROPERTY(I,PROP_MOVABLE_VISIBLE_CONTRABAND) + GET_ATOM_PROPERTY(I,PROP_MOVABLE_VISIBLE_GUNS)
+			if (contra)
+				contraband_data = SPAN_ALERT("(CONTRABAND: LEVEL [contra])")
 
 		if (istype(A, /obj/item/clothing/gloves))
 			var/obj/item/clothing/gloves/G = A

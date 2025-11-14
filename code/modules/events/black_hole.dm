@@ -105,7 +105,8 @@
 	icon_state = "bhole"
 	opacity = 0
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
+	event_handler_flags = IMMUNE_SINGULARITY
 	pixel_x = -64
 	pixel_y = -64
 	var/move_prob = 12
@@ -148,7 +149,7 @@
 			if(A?.sanctuary) continue
 			if(isobj(X))
 				var/obj/O = X
-				if(O.anchored == 2) continue
+				if(O.anchored == ANCHORED_TECHNICAL) continue
 				var/pull_prob = 0
 				var/hit_strength = 0
 				var/distance = get_dist(src,O)
@@ -170,7 +171,7 @@
 
 				if (O.anchored)
 					if (prob(pull_prob))
-						O.anchored = 0
+						O.anchored = UNANCHORED
 				if (prob(pull_prob))
 					step_towards(O,src)
 					if (hit_strength)

@@ -10,7 +10,7 @@
 	//var/heart_op_stage = 0.0
 
 	infra_luminosity = 4
-	var/poop_amount = 5
+	var/poop_amount = 9
 
 /mob/living/carbon/New()
 	START_TRACKING
@@ -95,21 +95,20 @@
 	. = ..(give_medal, include_ejectables)
 
 /mob/living/carbon/proc/poop()
-	if(ON_COOLDOWN(src, "poo", 20 MINUTES))
+	if(ON_COOLDOWN(src, "poo", 30 MINUTES))
 		boutput(src, "You don't feel ready to go.")
 		return
 	SPAWN_DBG(0.1 SECOND)
 		var/mob/living/carbon/human/H = src
 		var/obj/item/reagent_containers/poo_target = src.equipped()
-		var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new()
-		shit.amount = src.poop_amount
+		var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(src.loc, src.poop_amount)
 		shit.owner = src // this is your shit.
 		if(src.poops)
 			src.poops--
 		if(!istype(H)) // just in case something unhuman poops, lets still make a turd.
 			var/turf/T = get_turf(src)
 			if (istype(T))
-				make_cleanable( /obj/decal/cleanable/mud,T)
+				make_cleanable( /obj/decal/cleanable/tracked_reagents/mud,T)
 			return
 		playsound(H, "sound/voice/hoooagh2.ogg", 50, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		if(H.wear_suit || H.w_uniform) // wearing pants while shitting? fine!!
@@ -127,9 +126,9 @@
 				H.visible_message("<span class='alert'><B>[H] shits [his_or_her(H)] pants!</B></span>")
 			H.wiped = 0 //+1 trait idea: nothin' but net
 			if(H.w_uniform)
-				H.w_uniform.add_mud(H, H.poop_amount ? H.poop_amount : 5)
+				H.w_uniform.add_mud(H, H.poop_amount ? H.poop_amount : 15)
 			else
-				H.wear_suit?.add_mud(H, H.poop_amount ? H.poop_amount : 5)
+				H.wear_suit?.add_mud(H, H.poop_amount ? H.poop_amount : 15)
 			H.set_clothing_icon_dirty() //ur a shitter
 			playsound(H, H.sound_fart, 50, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			return
@@ -144,7 +143,7 @@
 				else
 					playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 100, 1)
 					poo_target.reagents.add_reagent("poo",\
-						(H.poop_amount ? H.poop_amount : 5))
+						(H.poop_amount ? H.poop_amount : 15))
 					qdel(shit)
 				H.cleanhands = 0
 				H.wiped = 0
@@ -171,7 +170,7 @@
 		if(WEST)
 			target_dir = EAST
 
-	shit.loc = C.loc
+	shit.set_loc(C.loc)
 	shit.throw_at(get_turf(get_steps(C, target_dir, rand(2,5))), rand(2,5), rand(1,4))
 	C.visible_message("<span class='alert'><b>[C] [pick("hurls a loaf",\
 		"unloads at speed", "lobs a loaf", "shits with gusto", \
@@ -186,7 +185,7 @@
 		if(istype(pee_target) && pee_target.reagents && pee_target.reagents.total_volume < pee_target.reagents.maximum_volume && pee_target.is_open_container())
 			src.visible_message("<span class='alert'><B>[src] pees in [pee_target]!</B></span>")
 			playsound(src, "sound/misc/pourdrink.ogg", 50, 1)
-			pee_target.reagents.add_reagent("urine", 4)
+			pee_target.reagents.add_reagent("urine", min(src.urine, 80))
 			src.cleanhands = 0 //probably made a mess, gross, wash em
 			return
 
@@ -194,6 +193,8 @@
 		src.visible_message(pick("<B>[src]</B> unzips their pants and pees on the floor.", "<B>[src]</B> pisses all over the floor!", "<B>[src]</B> makes a big piss puddle on the floor."))
 		src.cleanhands = 0
 		var/obj/decal/cleanable/urine/U = make_cleanable(/obj/decal/cleanable/urine, src.loc)
+		U.sample_amt = min(src.urine, 80)
+		src.urine = 0
 
 		// Flag the urine stain if the pisser is trying to make fake initropidril
 		if(src.reagents.has_reagent("tongueofdog"))
@@ -214,19 +215,11 @@
 			var/perpname = src.name
 			if(src:wear_id && src:wear_id:registered)
 				perpname = src:wear_id:registered
-			// find the matching security record
-			for(var/datum/data/record/R in data_core.general)
-				if(R.fields["name"] == perpname)
-					for (var/datum/data/record/S in data_core.security)
-						if (S.fields["id"] == R.fields["id"])
-							// now add to rap sheet
 
-							S.fields["criminal"] = "*Arrest*"
-							S.fields["mi_crim"] = "Public urination."
-
-							break
-
-
+			var/datum/db_record/sec_record = data_core.security.find_record("name", perpname)
+			if(sec_record && sec_record["criminal"] != "*Arrest*")
+				sec_record["criminal"] = "*Arrest*"
+				sec_record["mi_crim"] = "Public urination."
 
 /mob/living/carbon/swap_hand()
 	var/obj/item/grab/block/B = src.check_block(ignoreStuns = 1)
@@ -234,18 +227,17 @@
 		qdel(B)
 	src.hand = !src.hand
 
-/mob/living/carbon/lastgasp(allow_dead=FALSE)
-	..(allow_dead, grunt=pick("NGGH","OOF","UGH","ARGH","BLARGH","BLUH","URK") )
-
+/mob/living/carbon/lastgasp(allow_dead=FALSE,overrideGrunt=FALSE,customGrunt=null)
+	if(!overrideGrunt)
+		..(allow_dead, grunt=pick("NGGH","OOF","UGH","ARGH","BLARGH","BLUH","URK") )
+	else
+		..(allow_dead, grunt=customGrunt)
 
 /mob/living/carbon/full_heal()
 	src.remove_ailments()
 	src.take_toxin_damage(-INFINITY)
 	src.take_oxygen_deprivation(-INFINITY)
 	src.change_misstep_chance(-INFINITY)
-	if (src.reagents)
-		src.reagents.clear_reagents()
-		src.reagents.stop_combusting()
 	..()
 
 /mob/living/carbon/take_brain_damage(var/amount)
@@ -287,7 +279,7 @@
 	if (..())
 		return
 
-	if (HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+	if (HAS_ATOM_PROPERTY(src, PROP_BREATHLESS))
 		src.oxyloss = 0
 		return
 
@@ -301,7 +293,7 @@
 	if (!losebreath && amount < 0)
 		return
 
-	if (ischangeling(src) || HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+	if (ischangeling(src) || HAS_ATOM_PROPERTY(src, PROP_BREATHLESS))
 		src.losebreath = 0
 		return
 

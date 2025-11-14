@@ -1,5 +1,10 @@
 
 //the bottle parent to all this is an open container so just do src.flags |= OPENCONTAINER on New() if you want it to start closed (see champagne)
+//35 units = 350ml =~ 12oz = regular single serve bottle (let's call this a pint)
+//75 units = 750ml = fifth
+//100 units = 1 litre
+//175 units = 1.75 litre = handle
+//left 5 units leeway for poisoning purposes
 
 // all the stuff in fancy full-fledged bottles
 /obj/item/reagent_containers/food/drinks/bottle/beer
@@ -12,8 +17,8 @@
 	g_amt = 40
 	bottle_style = "brown"
 	label = "alcohol1"
-	initial_volume = 50
-	initial_reagents = list("beer"=30)
+	initial_volume = 40
+	initial_reagents = list("beer"=35)
 
 /obj/item/reagent_containers/food/drinks/bottle/beer/borg
 	cap_type = null
@@ -26,8 +31,8 @@
 	desc = "Some kind of fancy-pants IPA or lager or ale. Some sort of beer-type thing."
 	cap_type = "cap"
 	icon_state = "bottle-green"
-	initial_volume = 50
-	initial_reagents = list("beer"=25,"ethanol"=5)
+	initial_volume = 40
+	initial_reagents = list("ethanol"=5)
 
 	New()
 		..()
@@ -48,6 +53,8 @@
 			adulterants--
 			reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_adulterants"), rand(1,3))
 
+		reagents.add_reagent("beer", src.initial_volume - src.reagents.total_volume - 5)
+
 		update_icon()
 
 	UpdateName()
@@ -63,8 +70,8 @@
 	bottle_style = "wine"
 	label = "wine"
 	fluid_style = "none"
-	initial_volume = 50
-	initial_reagents = list("wine"=30)
+	initial_volume = 80
+	initial_reagents = list("wine"=75)
 
 /obj/item/reagent_containers/food/drinks/bottle/hobo_wine
 	name = "fortified wine"
@@ -78,8 +85,8 @@
 	label = "vermouth"
 	alt_filled_state = 1
 	var/safe = 0
-	initial_volume = 50
-	initial_reagents = list("wine"=20,"ethanol"=5)
+	initial_volume = 80
+	initial_reagents = list("ethanol"=15)
 
 	New()
 		..()
@@ -93,15 +100,17 @@
 
 		if (safe)
 			name = "Watered Down [name]"
-			reagents.add_reagent("water", 1) // how is this safe? - this isn't the safe part, the safe part is up there ^ and down there v where it changes what chem list it uses  :v
+			src.reagents.add_reagent("water", 1) // how is this safe? - this isn't the safe part, the safe part is up there ^ and down there v where it changes what chem list it uses  :v
 
 		while (flavors > 0)
 			flavors--
-			reagents.add_reagent(pick_string("chemistry_tools.txt", "BOOZE_flavors"), rand(2,5))
+			src.reagents.add_reagent(pick_string("chemistry_tools.txt", "BOOZE_flavors"), rand(2,5))
 
 		while (adulterants > 0)
 			adulterants--
-			reagents.add_reagent(pick(adulterant_safety), rand(1,3))
+			src.reagents.add_reagent(pick_string("chemistry_tools.txt", adulterant_safety), rand(1,3))
+
+		src.reagents.add_reagent("wine", src.initial_volume - src.reagents.total_volume - 5)
 
 	UpdateName()
 		src.name = "[name_prefix(null, 1)][src.real_name][name_suffix(null, 1)]"
@@ -121,8 +130,8 @@
 	heal_amt = 1
 	alphatest_closecontainer = 1
 	g_amt = 60
-	initial_volume = 50
-	initial_reagents = list("champagne"=30)
+	initial_volume = 80
+	initial_reagents = list("champagne"=75)
 	var/makes_shards_on_break = 1
 
 	New()
@@ -257,8 +266,8 @@
 		alt_filled_state = 1
 		heal_amt = 1
 		g_amt = 60
-		initial_volume = 50
-		initial_reagents = list("champagne"=30)
+		initial_volume = 80
+		initial_reagents = list("champagne"=75)
 
 	breakaway_glass
 		makes_shards_on_break = 0
@@ -272,20 +281,20 @@
 	g_amt = 40
 	bottle_style = "green"
 	label = "alcohol1"
-	initial_volume = 50
-	initial_reagents = list("cider"=30)
+	initial_volume = 40
+	initial_reagents = list("cider"=35)
 
 /obj/item/reagent_containers/food/drinks/bottle/rum
 	name = "rum"
 	desc = "Yo ho ho and all that."
 	cap_type = "screw"
-	bottle_style = "spicedrum"
+	bottle_style = "bottle-spicedrum"
 	fluid_style = "spicedrum"
 	label = "spicedrum"
 	alt_filled_state = 1
 	heal_amt = 1
-	initial_volume = 50
-	initial_reagents = list("rum"=30)
+	initial_volume = 80
+	initial_reagents = list("rum"=75)
 
 /obj/item/reagent_containers/food/drinks/bottle/mead
 	name = "mead"
@@ -296,8 +305,8 @@
 	g_amt = 40
 	bottle_style = "barf"
 	label = "alcohol5"
-	initial_volume = 50
-	initial_reagents = list("mead"=30)
+	initial_volume = 40
+	initial_reagents = list("mead"=35)
 
 /obj/item/reagent_containers/food/drinks/bottle/vintage
 	name = "2010 Vintage"
@@ -308,8 +317,8 @@
 	g_amt = 40
 	bottle_style = "barf"
 	label = "alcohol5"
-	initial_volume = 50
-	initial_reagents = list("urine"=30)
+	initial_volume = 80
+	initial_reagents = list("urine"=75) //fuck it it's a fifth of piss
 
 /obj/item/reagent_containers/food/drinks/bottle/vodka
 	name = "vodka"
@@ -321,8 +330,8 @@
 	label = "none"
 	heal_amt = 1
 	g_amt = 60
-	initial_volume = 50
-	initial_reagents = list("vodka"=30)
+	initial_volume = 105
+	initial_reagents = list("vodka"=100) //well
 
 /obj/item/reagent_containers/food/drinks/bottle/vodka/vr
 	icon_state = "vr_vodka"
@@ -340,8 +349,8 @@
 	alt_filled_state = 1
 	heal_amt = 1
 	g_amt = 60
-	initial_volume = 50
-	initial_reagents = list("tequila"=30)
+	initial_volume = 80
+	initial_reagents = list("tequila"=75)
 
 /obj/item/reagent_containers/food/drinks/bottle/gin
 	name = "gin"
@@ -354,8 +363,8 @@
 	alt_filled_state = 1
 	heal_amt = 1
 	g_amt = 60
-	initial_volume = 50
-	initial_reagents = list("gin"=30)
+	initial_volume = 80
+	initial_reagents = list("gin"=75)
 
 /obj/item/reagent_containers/food/drinks/bottle/ntbrew
 	name = "NanoTrasen Brew"
@@ -368,8 +377,22 @@
 	alt_filled_state = 1
 	heal_amt = 1
 	g_amt = 60
-	initial_volume = 60
-	initial_reagents = list("wine"=40,"charcoal"=20)
+	initial_volume = 80
+	initial_reagents = list("wine"=50,"charcoal"=25)
+
+/obj/item/reagent_containers/food/drinks/bottle/vermouth
+	name = "vermouth"
+	desc = "a foul tasting and strong wine."
+	cap_type = "screw"
+	icon_state = "bottle-vermouth"
+	bottle_style = "vermouth"
+	fluid_style = "vermouth"
+	label = "vermouth"
+	alt_filled_state = 1
+	heal_amt = 1
+	g_amt = 60
+	initial_volume = 80
+	initial_reagents = list("vermouth"=80)
 
 /obj/item/reagent_containers/food/drinks/bottle/thegoodstuff
 	name = "Stinkeye's Special Reserve"
@@ -382,12 +405,46 @@
 	alt_filled_state = 1
 	heal_amt = 1
 	g_amt = 60
-	initial_volume = 120
+	initial_volume = 125
 	initial_reagents = list("champagne"=20,"wine"=20,"cider"=20,"vodka"=20,"eyeofnewt"=40)
 
-/obj/item/reagent_containers/food/drinks/bottle/bojackson
-	name = "Bo Jack Daniel's"
-	desc = "Bo knows how to get you drunk, by diddley!"
+/obj/item/reagent_containers/food/drinks/bottle/brandy
+	name = "brandy"
+	desc= "Darwin's favorite. Nice and sweet."
+	cap_type = "screw"
+	icon_state = "bottle-brandy"
+	bottle_style = "brandy"
+	fluid_style = "brandy"
+	label = "brandy"
+	alt_filled_state = 1
+	heal_amt = 1
+	g_amt = 40
+	initial_volume = 100
+	initial_reagents = "brandy"
+
+/obj/item/reagent_containers/food/drinks/bottle/brandy/silovitz
+	name = "silovitz"
+	desc = "The night is chill, mein Herr"
+	initial_reagents = "silovitz"
+
+/obj/item/reagent_containers/food/drinks/bottle/bitters
+	name = "bitters"
+	desc = "Used for flavoring cocktails, tastes like death."
+	cap_type = "screw"
+	icon_state = "bottle-bitters"
+	bottle_style = "bitters"
+	fluid_style = "bitters"
+	label = "bitters"
+	alt_filled_state = 1
+	heal_amt = 1
+	g_amt = 20
+	initial_volume = 30
+	initial_reagents = "bitters"
+
+
+/obj/item/reagent_containers/food/drinks/bottle/bourbon
+	name = "bourbon"
+	desc = "Some no-name crap brewed in a shed somewhere. Don't drink it for the taste."
 	cap_type = "screw"
 	icon_state = "bottle-whiskey"
 	bottle_style = "whiskey"
@@ -396,8 +453,22 @@
 	alt_filled_state = 1
 	heal_amt = 1
 	g_amt = 40
-	initial_volume = 60
+	initial_volume = 100
+	initial_reagents = "bourbon"
+
+/obj/item/reagent_containers/food/drinks/bottle/bojackson
+	name = "Bo Jack Daniel's"
+	desc = "Bo knows how to get you drunk, by diddley!"
+	cap_type = "screw"
+	icon_state = "bottle-bojack"
+	bottle_style = "bojack"
+	fluid_style = "bojack"
+	label = "bojack"
+	alt_filled_state = 1
+	heal_amt = 1
+	g_amt = 40
 	initial_reagents = "bojack"
+	initial_volume = 90
 
 // knickknacks for making fancy drinks
 
@@ -448,7 +519,7 @@
 	g_amt = 40
 	bottle_style = "vermouthC"
 	label = "label-none"
-	initial_volume = 50
+	initial_volume = 80
 
 /obj/item/reagent_containers/food/drinks/bottle/empty/tall
 	name = "tall bottle"
@@ -456,11 +527,11 @@
 	icon_state = "bottle-tvodka"
 	bottle_style = "tvodka"
 	fluid_style = "tvodka"
-	label = "label-none"
+	label = "label-tvodka"
 	alt_filled_state = 1
 	heal_amt = 1
 	g_amt = 60
-	initial_volume = 50
+	initial_volume = 80
 
 /obj/item/reagent_containers/food/drinks/bottle/empty/rectangular
 	name = "rectangular bottle"
@@ -472,7 +543,7 @@
 	alt_filled_state = 1
 	heal_amt = 1
 	g_amt = 60
-	initial_volume = 50
+	initial_volume = 80
 
 /obj/item/reagent_containers/food/drinks/bottle/empty/square
 	name = "square bottle"
@@ -484,7 +555,7 @@
 	alt_filled_state = 1
 	heal_amt = 1
 	g_amt = 60
-	initial_volume = 50
+	initial_volume = 80
 
 /obj/item/reagent_containers/food/drinks/bottle/empty/masculine
 	name = "wide bottle"
@@ -496,7 +567,7 @@
 	alt_filled_state = 1
 	heal_amt = 1
 	g_amt = 60
-	initial_volume = 50
+	initial_volume = 80
 
 // the non-bottle/legacy boozes
 /obj/item/reagent_containers/food/drinks/rum_spaced
@@ -504,16 +575,16 @@
 	desc = "Rum which has been exposed to cosmic radiation. Don't worry, radiation does everything!"
 	icon_state = "rum"
 	heal_amt = 1
-	initial_volume = 60
-	initial_reagents = list("rum"=30,"yobihodazine"=30)
+	initial_volume = 105
+	initial_reagents = list("rum"=50,"yobihodazine"=50)
 
 /obj/item/reagent_containers/food/drinks/grog
 	name = "Ye Olde Grogge"
 	desc = "The dusty glass bottle has caustic fumes wafting out of it. You're not sure drinking it is a good idea."
 	icon_state = "moonshine"
 	heal_amt = 0
-	initial_volume = 60
-	initial_reagents = "grog"
+	initial_volume = 105
+	initial_reagents = list("grog"=100)
 
 /obj/item/reagent_containers/food/drinks/grodyjug
 	name = "grody jug"
@@ -525,7 +596,7 @@
 
 /obj/item/reagent_containers/food/drinks/moonshine
 	name = "jug of moonshine"
-	desc = "A jug of an illegaly brewed alchoholic beverage, which is quite potent."
+	desc = "A jug of an illegally brewed alchoholic beverage, which is quite potent."
 	icon_state = "moonshine"
 	heal_amt = 1
 	rc_flags = RC_FULLNESS
@@ -538,8 +609,8 @@
 	icon_state = "curacao"
 	heal_amt = 1
 	rc_flags = RC_FULLNESS
-	initial_volume = 50
-	initial_reagents = "curacao"
+	initial_volume = 80
+	initial_reagents = list("curacao"=75)
 
 /obj/item/reagent_containers/food/drinks/dehab
 	name = "Dehab"

@@ -3,7 +3,7 @@
 	desc = "The compressor stage of a gas turbine generator."
 	icon = 'icons/obj/atmospherics/pipes.dmi'
 	icon_state = "compressor"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	machine_registry_idx = MACHINES_MISC
 	var/obj/machinery/power/turbine/turbine
@@ -20,7 +20,7 @@
 	desc = "A gas turbine used for backup power generation."
 	icon = 'icons/obj/atmospherics/pipes.dmi'
 	icon_state = "turbine"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/obj/machinery/compressor/compressor
 	directwired = 1
@@ -32,7 +32,7 @@
 	desc = "A computer to remotely control a gas turbine"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "airtunnel0e"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	circuit_type = /obj/item/circuitboard/turbine_control
 	id = 0

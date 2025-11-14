@@ -134,6 +134,10 @@ TRAYS
 	dir = NORTH
 	throwforce = 7
 
+	New()
+		..()
+		//setItemSpecial(/datum/item_special/jab)
+
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(user?.bioHolder.HasEffect("clumsy") && prob(50))
 			user.visible_message("<span class='alert'><b>[user]</b> fumbles [src] and stabs [himself_or_herself(user)].</span>")
@@ -170,6 +174,7 @@ TRAYS
 
 	New()
 		..()
+		src.AddComponent(/datum/component/bloodflick)
 		src.setItemSpecial(/datum/item_special/double)
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -439,7 +444,7 @@ TRAYS
 	desc = "LOOKS NORMAL!!!"
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "homph"
-	anchored = 1
+	anchored = ANCHORED
 	flags = NOSPLASH
 	var/emagged = FALSE //hoo hoo
 	var/wine = null
@@ -597,7 +602,7 @@ TRAYS
 			src.icon_state= "homph"
 
 	unchained
-		anchored = 0
+		anchored = UNANCHORED
 
 /obj/item/kitchen/food_box // I came in here just to make donut/egg boxes put the things in your hand when you take one out and I end up doing this instead, kill me. -haine
 	name = "food box"

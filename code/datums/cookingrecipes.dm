@@ -143,14 +143,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/heartburger
 	category = "Burgers"
-
+/*
 /datum/cookingrecipe/oven/flockburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/organ/brain/flockdrone
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/flockburger
 	category = "Burgers"
-
+*/
 /datum/cookingrecipe/oven/brainburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/organ/brain
@@ -286,7 +286,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 
 /datum/cookingrecipe/oven/spaghetti_t
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
-	item2 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
+	item2 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/sauce
 	category = "Pasta"
@@ -305,9 +305,17 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/meatball
 	category = "Pasta"
 
+/datum/cookingrecipe/oven/spaghetti_tw
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
+	item2 = /obj/item/reagent_containers/food/snacks/meatball
+	item3 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
+	cookbonus = 16
+	output = /obj/item/reagent_containers/food/snacks/spaghetti/theworks
+	category = "Pasta"
+
 /datum/cookingrecipe/oven/lasagna
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/pasta/sheet
-	item2 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
+	item2 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/lasagna
@@ -315,7 +323,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 
 /datum/cookingrecipe/oven/spaghetti_pg
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
-	item2 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
+	item2 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	item3 = /obj/item/reagent_containers/food/snacks/pizza
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/pizzaghetti
@@ -600,7 +608,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	item1 = /obj/item/reagent_containers/food/snacks/meatball
 	item2 = /obj/item/reagent_containers/food/snacks/breadloaf
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
-	item4 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
+	item4 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meatball
 	category = "Sandwiches"
@@ -609,7 +617,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	item1 = /obj/item/reagent_containers/food/snacks/meatball
 	item2 = /obj/item/baguette
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
-	item4 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
+	item4 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meatball
 	category = "Sandwiches"

@@ -112,9 +112,6 @@
 				boutput(usr, "<span class='hint'>Please press a number to bind this ability to...</span>")
 				return
 
-		if (!isturf(owner.holder.owner.loc))
-			boutput(owner.holder.owner, "<span class='alert'>You can't use this spell here.</span>")
-			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
 			usr.update_cursor()
@@ -154,6 +151,7 @@
 	last_cast = 0
 	pointCost = 0
 	preferred_holder_type = /datum/abilityHolder/cyalume_knight
+	turf_check = TRUE
 
 	New(datum/abilityHolder/holder)
 		..(holder)
@@ -435,6 +433,7 @@
 	targeted = 1
 	target_anything = 0
 	max_range = 8
+	ai_range = 8
 	cooldown = 20 SECONDS
 	pointCost = 25
 	var/radius = 2

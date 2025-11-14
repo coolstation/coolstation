@@ -821,7 +821,7 @@ var/global/noir = 0
 							<A href='byond://?src=\ref[src];action=[cmd];type=assday'>Ass Day Classic (For testing only.)</A><br>
 							<A href='byond://?src=\ref[src];action=[cmd];type=construction'>Construction (For testing only. Don't select this!)</A><br>
 							"})
-#if FOOTBALL_MODE
+#ifdef FOOTBALL_MODE
 				dat += "<A href='byond://?src=\ref[src];action=[cmd];type=football'>Football</A>"
 #endif
 				dat += "</body></html>"
@@ -995,6 +995,23 @@ var/global/noir = 0
 			else
 				alert("You need to be at least a Primary Adminstrator to revive players.")
 
+		if ("revive2")
+			if (src.level >= LEVEL_SA)
+				var/mob/M = locate(href_list["target"])
+				if (ismob(M))
+					if(isobserver(M))
+						alert("You can't revive a ghost! How does that even work?!")
+						return
+					if(config.allow_admin_rev)
+						M.revive2()
+						message_admins("<span class='alert'>Admin [key_name(usr)] healed / revived [key_name(M)]!</span>")
+						logTheThing("admin", usr, M, "healed / revived [constructTarget(M,"admin")]")
+						logTheThing("diary", usr, M, "healed / revived [constructTarget(M,"diary")]", "admin")
+					else
+						alert("Reviving is currently disabled.")
+			else
+				alert("You need to be at least a Primary Adminstrator to revive players.")
+
 		if ("makeai")
 			if (src.level >= LEVEL_SA)
 				var/mob/M = locate(href_list["target"])
@@ -1027,6 +1044,13 @@ var/global/noir = 0
 			else
 				alert("You need to be at least a Secondary Administrator to modify limbs.")
 
+		if ("setblood")
+			if (src.level >= LEVEL_SA)
+				var/mob/MC = locate(href_list["target"])
+				if (MC && usr.client)
+					usr.client.set_blood_id(MC)
+			else
+				alert("You need to be at least a Secondary Administrator to set blood reagent.")
 
 		if ("jumpto")
 			if(src.level >= LEVEL_SA)
@@ -1780,6 +1804,37 @@ var/global/noir = 0
 			if(!M) return
 			usr.client.cmd_admin_alert(M)
 
+		if ("disableai")
+			if( src.level < LEVEL_PA )
+				alert("You must be at least a Primary Administrator to edit AI.")
+				return
+			var/mob/M = locate(href_list["target"])
+			if (!M) return
+			message_admins("[key_name(usr)] removed AI from [key_name(M)].")
+			logTheThing("admin", usr, M, "removed AI from [constructTarget(M,"admin")].")
+			qdel(M.ai)
+			M.ai = null
+			if(isliving(M))
+				var/mob/living/L = M
+				L.is_npc = FALSE
+
+		if ("violentai")
+			if( src.level < LEVEL_PA )
+				alert("You must be at least a Primary Administrator to edit AI.")
+				return
+			var/mob/M = locate(href_list["target"])
+			if (!M) return
+			message_admins("[key_name(usr)] added violent AI to [key_name(M)].")
+			logTheThing("admin", usr, M, "added violent AI to [constructTarget(M,"admin")].")
+			qdel(M.ai)
+			M.ai = new /datum/aiHolder/violent(M)
+			if(isliving(M))
+				var/mob/living/L = M
+				L.is_npc = TRUE
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					H.uses_mobai = TRUE
+
 		if ("makewraith")
 			if( src.level < LEVEL_PA)
 				alert("You must be at least a Primary Administrator to make someone a wraith.")
@@ -1881,7 +1936,6 @@ var/global/noir = 0
 					ticker.mode.Agimmicks += M.mind
 					M.antagonist_overlay_refresh(1, 0)
 
-
 		if ("makemacho")
 			if( src.level < LEVEL_PA )
 				alert("You must be at least a Primary Administrator to make someone a Macho Man.")
@@ -1939,7 +1993,7 @@ var/global/noir = 0
 					if(!amt)
 						amt = INFINITY
 					M.cubeize(amt, CT)
-
+/*
 		if ("makeflock")
 			if( src.level < LEVEL_PA)
 				alert("You must be at least a Primary Administrator to make someone a flockmind or flocktrace.")
@@ -1977,7 +2031,7 @@ var/global/noir = 0
 					mind.special_role = "flocktrace"
 				ticker.mode.Agimmicks += mind
 				F.antagonist_overlay_refresh(1, 0)
-
+*/
 		if("makefloorgoblin")
 			if( src.level < LEVEL_PA)
 				alert("You must be at least a Primary Administrator to make someone a floor goblin.")
@@ -3277,6 +3331,14 @@ var/global/noir = 0
 						logTheThing("admin", usr, null, "used Farty Party secret")
 						logTheThing("diary", usr, null, "used Farty Party secret", "admin")
 
+					if("wysiwyg")
+						if(src.level >= LEVEL_ADMIN)
+							if(whatcha_see_is_whatcha_get)
+								whatcha_see_is_whatcha_get = FALSE
+								message_admins("[key_name(usr)] swapped combat to old-style with no WYSIWYG.")
+							else
+								whatcha_see_is_whatcha_get = TRUE
+								message_admins("[key_name(usr)] swapped combat to new-style with WYSIWYG.")
 					else
 				if (usr) logTheThing("admin", usr, null, "used secret [href_list["secretsfun"]]")
 				logTheThing("diary", usr, null, "used secret [href_list["secretsfun"]]", "admin")
@@ -3321,6 +3383,8 @@ var/global/noir = 0
 						src.owner:debug_variables(data_core)
 					if("miningcontrols")
 						src.owner:debug_variables(mining_controls)
+					if("miningstats")
+						mining_controls.show_stats()
 					if("mapsettings")
 						src.owner:debug_variables(map_settings)
 					if("ghostnotifications")
@@ -3339,6 +3403,8 @@ var/global/noir = 0
 						valiant_controls?.debug_panel()
 					if("sun_solar") //tired of having to dig the global vars for this fucker
 						src.owner:debug_variables(sun)
+					if("trains")
+						src.owner:debug_variables(train_spotter)
 			else
 				alert("You need to be at least a Coder to use debugging secrets.")
 
@@ -3546,8 +3612,8 @@ var/global/noir = 0
 						simsController.showControls(usr)
 					if("artifacts")
 						artifact_controls.config()
-					if("miningstats")
-						mining_controls.show_stats()
+					if("trains")
+						train_spotter.config()
 					if("ghostnotifier")
 						ghost_notifier.config()
 					if("unelectrify_all")
@@ -4284,10 +4350,10 @@ var/global/noir = 0
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=unelectrify_all'>De-electrify all Airlocks</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=ghostnotifier'>Ghost Notification Controls</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=jobcaps'>Job Controls</A><BR>
-				<A href='byond://?src=\ref[src];action=secretsadmin;type=miningstats'>Mining Generation Statistics</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=motives'>Motive Control</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=randomevents'>Random Event Controls</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=respawn_panel'>Respawn Panel</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=trains'>Train Builder</A><BR>
 
 			"}
 #ifdef SECRETS_ENABLED
@@ -4318,10 +4384,12 @@ var/global/noir = 0
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=mapsettings'>Map Settings</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=mechanic'>Mechanics</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=miningcontrols'>Mining Controls</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=miningstats'>Mining Generation Statistics</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=randevent'>Random Events</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=market'>Shipping Market</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=stock'>Stock Market</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=sun_solar'>Sun</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=trains'>Train Controller</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=valiant'>Valiant Azone</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=budget'>Wages/Money</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=world'>World</A>
@@ -4412,6 +4480,7 @@ var/global/noir = 0
 				<A href='byond://?src=\ref[src];action=secretsfun;type=noir'>Noir</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsfun;type=the_great_switcharoo'>The Great Switcharoo</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsfun;type=fartyparty'>Farty Party All The Time</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsfun;type=wysiwyg'>Toggle Whatcha See is Whatcha Get</A><BR>
 		"}
 
 	dat += "</div>"
@@ -4542,6 +4611,13 @@ var/global/noir = 0
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		H.full_heal()
+		H.remove_ailments() // don't spawn with heart failure
+	return
+
+/mob/proc/revive2()
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		H.part_heal()
 		H.remove_ailments() // don't spawn with heart failure
 	return
 

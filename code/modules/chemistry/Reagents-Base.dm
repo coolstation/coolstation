@@ -10,6 +10,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			taste = "metalic"
 
 		barium
 			name = "barium"
@@ -20,6 +21,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			taste = "bad"
 
 		bromine
 			name = "bromine"
@@ -30,6 +32,7 @@ datum
 			fluid_g = 50
 			fluid_b = 50
 			transparency = 50
+			taste = "bad"
 
 		calcium
 			name = "calcium"
@@ -40,17 +43,19 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "like bones"
 
 		carbon
 			name = "carbon"
 			id = "carbon"
 			description = "A chemical element critical to organic chemistry."
 			reagent_state = SOLID
-			fluid_r = 0
-			fluid_g = 0
-			fluid_b = 0
+			fluid_r = 5
+			fluid_g = 5
+			fluid_b = 5
 			hygiene_value = -0.5
 			transparency = 255
+			taste = "carbonated"
 
 			reaction_turf(var/turf/T, var/volume)
 				if(!istype(T, /turf/space))
@@ -69,6 +74,8 @@ datum
 			fluid_b = 160
 			transparency = 60
 			penetrates_skin = 1
+			evaporates_cleanly = TRUE
+			taste = "horrible"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -89,6 +96,7 @@ datum
 			fluid_b = 220
 			transparency = 255
 			penetrates_skin = 0
+			taste = "metalic"
 
 		copper
 			name = "copper"
@@ -100,6 +108,7 @@ datum
 			fluid_b = 51
 			transparency = 255
 			penetrates_skin = 0
+			taste = "coppery"
 
 		fluorine
 			name = "fluorine"
@@ -111,6 +120,8 @@ datum
 			fluid_b = 160
 			transparency = 60
 			penetrates_skin = 1
+			evaporates_cleanly = TRUE
+			taste = "horrible and horrible"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -130,7 +141,7 @@ datum
 			fluid_r = 255
 			fluid_b = 255
 			fluid_g = 255
-			transparency = 5
+			transparency = 15
 			addiction_prob = 1
 			addiction_min = 10
 			depletion_rate = 0.05 // ethanol depletes slower but is formed in smaller quantities
@@ -142,9 +153,11 @@ datum
 			burn_temperature = 900
 			burn_volatility = 4
 			thirst_value = -0.02
-			bladder_value = -0.2
+			kidney_multiplier = 0.3
 			hygiene_value = 1
 			target_organs = list("liver")	//heart,  "stomach", "intestines", "left_kidney", "right_kidney"
+			evaporates_cleanly = TRUE
+			taste = "like vodka"
 
 			on_add()
 				if (holder && ismob(holder.my_atom))
@@ -265,6 +278,8 @@ datum
 			fluid_g = 254
 			fluid_b = 252
 			transparency = 20
+			evaporates_cleanly = TRUE
+			taste = "tasteless"
 
 		iodine
 			name = "iodine"
@@ -275,6 +290,8 @@ datum
 			fluid_g = 0
 			fluid_b = 255
 			transparency = 50
+			evaporates_cleanly = TRUE
+			taste = "purple"
 
 		iron
 			name = "iron"
@@ -287,13 +304,15 @@ datum
 			transparency = 255
 			overdose = 20
 			pathogen_nutrition = list("iron")
+			taste = "ironic"
 
 			on_mob_life(var/mob/living/H, var/mult = 1)
 				..()
-				if (H.can_bleed)
-					H.blood_volume += 0.5 * mult
+				if (H.uses_blood && H.organHolder && H.organHolder.spleen)
+					H.organHolder.heal_organ(0.33*mult, 0.33*mult, 0.33*mult, "spleen")
 					if(prob(10))
 						H.take_oxygen_deprivation(-1 * mult)
+
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				M.take_toxin_damage(1 * mult) // Iron overdose fucks you up bad
 				if(probmult(5))
@@ -316,6 +335,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -339,6 +359,7 @@ datum
 			burn_energy = 85000
 			burn_temperature = 3000
 			burn_volatility = 4
+			taste = "metalic"
 
 			reaction_turf(var/turf/T, var/volume)
 				if (volume >= 10)
@@ -357,6 +378,7 @@ datum
 			penetrates_skin = 1
 			touch_modifier = 0.2
 			depletion_rate = 0.2
+			taste = "mercurial"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -377,6 +399,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			taste = "metalic"
 
 		nitrogen
 			name = "nitrogen"
@@ -388,6 +411,8 @@ datum
 			fluid_b = 252
 			transparency = 20
 			pathogen_nutrition = list("nitrogen")
+			evaporates_cleanly = TRUE
+			taste = "tasteless"
 
 		oxygen
 			name = "oxygen"
@@ -398,6 +423,8 @@ datum
 			fluid_g = 254
 			fluid_b = 252
 			transparency = 20
+			evaporates_cleanly = TRUE
+			taste = "tasteless"
 
 		phosphorus
 			name = "phosphorus"
@@ -408,6 +435,7 @@ datum
 			fluid_g = 110
 			fluid_b = 110
 			transparency = 255
+			taste = "bad"
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(66))
@@ -424,6 +452,7 @@ datum
 			burn_energy = 950000
 			burn_temperature = 2700
 			burn_volatility = 8
+			taste = "hot"
 
 			fluid_r = 130
 			fluid_g = 40
@@ -472,6 +501,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			taste = "metalic"
 
 		potassium
 			name = "potassium"
@@ -482,6 +512,7 @@ datum
 			fluid_g = 190
 			fluid_b = 190
 			transparency = 255
+			taste = "unpleasantly reactive"
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(40))
@@ -497,6 +528,7 @@ datum
 			fluid_g = 140
 			fluid_b = 150
 			transparency = 255
+			taste = "not quite metalic"
 
 		silver
 			name = "silver"
@@ -563,6 +595,7 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 255
+			taste = "bad"
 
 		sugar
 			name = "sugar"
@@ -583,18 +616,18 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar", 2)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
-				M.make_jittery(2 )
+				M.make_jittery(2)
 				M.drowsyness = max(M.drowsyness-(5), 0)
 				if(prob(4))
 					M.reagents.add_reagent("epinephrine", 1.2 * mult) // let's not metabolize into meth anymore
@@ -653,6 +686,7 @@ datum
 			transparency = 235
 			thirst_value = 0.7909
 			hunger_value = 0.098
+			taste = "sweet and like tea"
 
 		helium
 			name = "helium"
@@ -664,7 +698,9 @@ datum
 			fluid_b = 160
 			transparency = 155
 			data = null
+			evaporates_cleanly = TRUE
 			var/granted_updraft = FALSE
+			taste = "tasteless"
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -722,6 +758,7 @@ datum
 			penetrates_skin = 1
 			touch_modifier = 0.5 //Half the dose lands on the floor
 			blob_damage = 1
+			taste = "tingly"
 
 			New()
 				..()
@@ -758,6 +795,7 @@ datum
 			fluid_b = 200
 			transparency = 255
 			pathogen_nutrition = list("sodium")
+			taste = "reactive"
 
 		uranium
 			name = "uranium"
@@ -768,6 +806,7 @@ datum
 			fluid_g = 40
 			fluid_b = 40
 			transparency = 255
+			taste = "heavy"
 
 			on_mob_life(var/mob/M, var/mult = 1 )
 				if(!M) M = holder.my_atom
@@ -790,14 +829,15 @@ datum
 			pathogen_nutrition = list("water")
 			thirst_value = 0.8909
 			hygiene_value = 1.33
-			bladder_value = -0.2
-			taste = "bland"
+			kidney_multiplier = 0.3
+			taste = "like water" // fym "bland?"
 			minimum_reaction_temperature = -INFINITY
 			target_organs = list("left_kidney", "right_kidney")
 			heat_capacity = 400
 			reagent_state = LIQUID
 			flammable_influence = TRUE
 			burn_volatility = -5
+			evaporates_cleanly = TRUE
 #ifdef UNDERWATER_MAP
 			block_slippy = 1
 			description = "A little strange. Not like any water you've seen. But definitely OSHA approved."
@@ -875,6 +915,30 @@ datum
 						playsound(L, "sound/impact_sounds/burn_sizzle.ogg", 50, 1, pitch = 0.8)
 				return 1
 
+
+		water/dirtyWater
+
+			name = "filthy water"
+			id = "dirtywater"
+			description = "This water is choked with ash, dust, and god knows what else."
+			reagent_state = LIQUID
+			fluid_r = 106
+			fluid_b = 117
+			fluid_g = 122
+			transparency = 90
+			thirst_value = -0.5
+			hygiene_value = 0.8
+			kidney_multiplier = 0.2
+			taste = "musty"
+
+			on_mob_life(var/mob/living/L, var/mult = 1)
+				..()
+				if (ishuman(L))
+					var/mob/living/carbon/human/H = L
+					if (H.organHolder)
+						H.organHolder.damage_organs(1*mult, 0, 1, target_organs, 20)
+				L.nutrition += 1  * mult
+
 		water/water_holy
 			name = "holy water"
 			id = "water_holy"
@@ -882,6 +946,7 @@ datum
 			thirst_value = 0.8909
 			hygiene_value = 2
 			value = 3 // 1 1 1
+			taste = "holy"
 
 			reaction_mob(var/mob/target, var/method=TOUCH, var/volume)
 				..()
@@ -928,7 +993,7 @@ datum
 			reagent_state = LIQUID
 			thirst_value = 0.8909
 			hygiene_value = 0.75
-			bladder_value = -0.25
+			kidney_multiplier = 0.25
 			taste = "bitter"
 
 			reaction_temperature(exposed_temperature, exposed_volume) //Just an example.
@@ -968,7 +1033,7 @@ datum
 			reagent_state = LIQUID
 			thirst_value = -0.3 //Sea water actually slowly dehydrates you because you use more liquid to get rid of the salt then you gain.
 			hygiene_value = 0.3
-			bladder_value = -0.5
+			kidney_multiplier = 0.5
 			taste = "gross"
 
 		ice
@@ -981,9 +1046,10 @@ datum
 			fluid_b = 250
 			transparency = 200
 			thirst_value = 0.8909
-			bladder_value = -0.2
+			kidney_multiplier = 0.2
 			minimum_reaction_temperature = T0C+1 // if it adds 1'C water, 1'C is good enough.
 			taste = "cold"
+			evaporates_cleanly = TRUE
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/prev_vol = volume
@@ -1011,3 +1077,4 @@ datum
 			fluid_b = 180
 			transparency = 35
 			value = 5 // 3c + 1c + 1c
+			taste = "like carbolic acid"

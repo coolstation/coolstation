@@ -79,7 +79,7 @@
 
 /obj/hotspot
 	mouse_opacity = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
 
@@ -97,7 +97,6 @@
 	var/temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
 	var/just_spawned = 1
 	var/bypassing = 0
-	var/catalyst_active = FALSE
 	var/cleanup_active = TRUE
 
 	New()
@@ -208,6 +207,7 @@
 
 			src.volume = affected.fuel_burnt*FIRE_GROWTH_RATE
 
+/*
 			//Inhibit hotspot use as turf heats up to resolve abuse of hotspots unless catalyst is present...
 			//Scale volume at 40% of HOTSPOT_MAX_TEMPERATURE to allow for hotspot icon to transition to 2nd state
 			if(src.temperature > ( HOTSPOT_MAX_NOCAT_TEMPERATURE * 0.4 ))
@@ -218,6 +218,7 @@
 					max_temp = HOTSPOT_MAX_CAT_TEMPERATURE
 				var/temperature_scaled_volume = clamp((src.temperature * CELL_VOLUME /  max_temp), 1, CELL_VOLUME)
 				src.volume = max(src.volume, temperature_scaled_volume)
+*/
 
 			location.assume_air(affected)
 
@@ -259,7 +260,6 @@
 
 		perform_exposure()
 
-		if (catalyst_active) catalyst_active = FALSE
 		if (location.wet) location.wet = 0
 
 		if (bypassing)

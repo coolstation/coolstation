@@ -763,7 +763,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 		shotgun
 			name = "Ballistic"
-			myProj = /datum/projectile/bullet/shot_heavy
+			myProj = /datum/projectile/special/spreader/buckshot_burst/juicer/scrap
 			ammo = 40
 			abstract = 0
 			icon = 'icons/obj/items/gun.dmi'
@@ -771,7 +771,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 		aex
 			name = "Ballistic (explosive)"
-			myProj = /datum/projectile/bullet/slug_boom
+			myProj = /datum/projectile/bullet/slug/boom
 			ammo = 20
 			abstract = 0
 			icon = 'icons/obj/colosseum.dmi'
@@ -857,7 +857,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 				for (var/turf/T in orange(2, C))
 					if (get_dist(T, Q) == 2)
 						var/obj/overlay/Wall = new(T)
-						Wall.anchored = 1
+						Wall.anchored = ANCHORED
 						Wall.set_density(1)
 						Wall.opacity = 0
 						Wall.icon = 'icons/effects/effects.dmi'
@@ -925,7 +925,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 			hunting_rifle
 				name = "30.06 Shots"
-				myProj = /datum/projectile/bullet/rifle_heavy
+				myProj = /datum/projectile/bullet/rifle/juicer
 				ammo = 6
 				abstract = 0
 				icon = 'icons/obj/items/gun.dmi'
@@ -979,7 +979,7 @@ proc/get_colosseum_message(var/name, var/message)
 	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "miniputt"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/owner = null
 	var/mob/living/carbon/human/piloting = null
 	var/flying = 0
@@ -1058,9 +1058,6 @@ proc/get_colosseum_message(var/name, var/message)
 		radio = new(src)
 
 		movement_controller = new(src)
-
-	get_movement_controller()
-		return movement_controller
 
 	proc/on_damage()
 		next_shield_regen = ticker.round_elapsed_ticks + 50
@@ -1709,7 +1706,7 @@ proc/get_colosseum_message(var/name, var/message)
 	icon = 'icons/effects/VR.dmi'
 	icon_state = "intercom"
 	desc = "A special virtual radio that immediately distributes messages to all virtual hearers."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 
@@ -1740,7 +1737,7 @@ proc/get_colosseum_message(var/name, var/message)
 /obj/colosseum_mine
 	name = "Mine"
 	desc = "You should probably not ram this."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	icon = 'icons/obj/colosseum.dmi'

@@ -16,7 +16,7 @@
 	layer = 3;
 	name = "button"
 	},
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/station/turret_protected/sea_crashed)
 "af" = (
 /obj/item/raw_material/scrap_metal,
@@ -124,17 +124,6 @@
 /obj/decal/cleanable/dirt,
 /turf/floor/darkblue,
 /area/station/turret_protected/sea_crashed)
-"aE" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "A large rack of server modules.  It doesn't seem to be in service.";
-	icon = 'icons/obj/machines/networked.dmi';
-	icon_state = "server0";
-	name = "downed server"
-	},
-/turf/floor/circuit,
-/area/station/turret_protected/sea_crashed)
 "aG" = (
 /obj/wingrille_spawn/auto,
 /turf/variableTurf/wall,
@@ -149,7 +138,7 @@
 /turf/floor/carpet/green/fancy/edge/ne,
 /area/station/turret_protected/sea_crashed)
 "aK" = (
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor6"
 	},
 /turf/floor/grime,
@@ -173,7 +162,7 @@
 /turf/floor/grime,
 /area/station/turret_protected/sea_crashed)
 "aQ" = (
-/obj/decal/cleanable/blood,
+/obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/grime,
 /area/station/turret_protected/sea_crashed)
 "aR" = (
@@ -183,7 +172,7 @@
 	icon_state = "body7";
 	name = "decomposed corpse"
 	},
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor5"
 	},
 /turf/floor/grime,
@@ -198,25 +187,11 @@
 /turf/floor/darkblue,
 /area/station/turret_protected/sea_crashed)
 "aT" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "A large rack of server modules.  It appears to be in a low-power idle state.";
-	icon = 'icons/obj/machines/networked.dmi';
-	icon_state = "server0";
-	name = "idle server"
-	},
+/obj/decal/fakeobjects/broken_governor,
 /turf/floor/circuit,
 /area/station/turret_protected/sea_crashed)
 "aU" = (
-/obj/decal/fakeobjects{
-	anchored = 1;
-	density = 1;
-	desc = "A large rack of server modules.  It appears to be in a low-power idle state.";
-	icon = 'icons/obj/machines/networked.dmi';
-	icon_state = "server0";
-	name = "idle server"
-	},
+/obj/decal/fakeobjects/tapedeck,
 /turf/floor/circuit/vintage,
 /area/station/turret_protected/sea_crashed)
 "aV" = (
@@ -250,7 +225,6 @@
 "ba" = (
 /obj/decal/fakeobjects/firealarm_broken{
 	dir = 8;
-	icon_state = "firex";
 	pixel_x = -24
 	},
 /turf/floor/grime,
@@ -271,7 +245,7 @@
 	icon_state = "camerax";
 	name = "security camera"
 	},
-/obj/decal/cleanable/blood/drip/low,
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
 /turf/floor/grime,
 /area/station/turret_protected/sea_crashed)
 "bd" = (
@@ -281,10 +255,10 @@
 /turf/floor/darkblue,
 /area/station/turret_protected/sea_crashed)
 "be" = (
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/station/turret_protected/sea_crashed)
 "bf" = (
-/obj/decal/cleanable/blood/drip/low,
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
 /turf/floor/grime,
 /area/station/turret_protected/sea_crashed)
 "bg" = (
@@ -292,7 +266,6 @@
 /obj/machinery/turretid{
 	layer = 9.1;
 	lethal = 1;
-	pixel_x = 0;
 	pixel_y = 25
 	},
 /obj/decal/cleanable/cobweb,
@@ -347,11 +320,11 @@
 /area/station/turret_protected/sea_crashed)
 "bo" = (
 /obj/decal/cleanable/rust,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/station/turret_protected/sea_crashed)
 "bp" = (
 /obj/decal/fakeobjects/apc_broken,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/station/turret_protected/sea_crashed)
 "bq" = (
 /obj/machinery/door/firedoor/border_only,
@@ -386,8 +359,7 @@
 /area/station/turret_protected/sea_crashed)
 "bu" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/floor{
 	icon_state = "floorscorched1"
@@ -396,7 +368,6 @@
 "bv" = (
 /obj/decal/fakeobjects/firealarm_broken{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /turf/floor/grime,
@@ -408,8 +379,7 @@
 /area/station/turret_protected/sea_crashed)
 "bx" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/floor/grime,
 /area/station/turret_protected/sea_crashed)
@@ -434,27 +404,23 @@
 /area/station/turret_protected/sea_crashed)
 "bD" = (
 /turf/wall/setpieces/leadwall/gray{
-	dir = 9;
-	icon_state = "leadwall_gray"
+	dir = 9
 	},
 /area/station/turret_protected/sea_crashed)
 "bE" = (
 /obj/decal/cleanable/rust,
 /turf/wall/setpieces/leadwall/gray{
-	dir = 4;
-	icon_state = "leadwall_gray"
+	dir = 4
 	},
 /area/station/turret_protected/sea_crashed)
 "bF" = (
 /turf/wall/setpieces/leadwall/gray{
-	dir = 4;
-	icon_state = "leadwall_gray"
+	dir = 4
 	},
 /area/station/turret_protected/sea_crashed)
 "bG" = (
 /turf/wall/setpieces/leadwall/gray{
-	dir = 5;
-	icon_state = "leadwall_gray"
+	dir = 5
 	},
 /area/station/turret_protected/sea_crashed)
 "bH" = (
@@ -488,8 +454,7 @@
 /area/station/turret_protected/sea_crashed)
 "bM" = (
 /obj/critter/gunbot/heavy{
-	dir = 4;
-	icon_state = "mars_sec_bot"
+	dir = 4
 	},
 /turf/floor/black/grime,
 /area/station/turret_protected/sea_crashed)
@@ -510,8 +475,7 @@
 /area/station/turret_protected/sea_crashed)
 "bQ" = (
 /obj/critter/gunbot/heavy{
-	dir = 8;
-	icon_state = "mars_sec_bot"
+	dir = 8
 	},
 /turf/floor/black/grime,
 /area/station/turret_protected/sea_crashed)
@@ -562,7 +526,6 @@
 	anchored = 1;
 	density = 1;
 	desc = "This is the central node of the MNX-12/777 superminicomputer that managed Lunaport for decades.";
-	dir = 2;
 	icon = 'icons/misc/lunar.dmi';
 	icon_state = "olddwaine";
 	name = "old mainframe"
@@ -648,8 +611,7 @@
 "ci" = (
 /obj/decal/cleanable/rust,
 /turf/wall/setpieces/leadwall/gray{
-	dir = 10;
-	icon_state = "leadwall_gray"
+	dir = 10
 	},
 /area/station/turret_protected/sea_crashed)
 "cj" = (
@@ -661,8 +623,7 @@
 	name = "broken computer"
 	},
 /turf/wall/setpieces/leadwall/gray{
-	dir = 4;
-	icon_state = "leadwall_gray"
+	dir = 4
 	},
 /area/station/turret_protected/sea_crashed)
 "ck" = (
@@ -676,8 +637,7 @@
 /area/station/turret_protected/sea_crashed)
 "cl" = (
 /turf/wall/setpieces/leadwall/gray{
-	dir = 6;
-	icon_state = "leadwall_gray"
+	dir = 6
 	},
 /area/station/turret_protected/sea_crashed)
 "cm" = (
@@ -715,18 +675,16 @@
 	name = "emergency stop button'";
 	pixel_x = -24
 	},
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/station/turret_protected/sea_crashed)
 "cu" = (
 /obj/item/storage/toilet{
 	dir = 4;
-	icon_state = "toilet";
 	tag = ""
 	},
 /obj/window/cubicle{
 	desc = "A panel designed to separate bathroom stalls, turning one gross room into many.";
 	dir = 2;
-	icon_state = "cubicle";
 	name = "stall panel";
 	tag = ""
 	},
@@ -789,8 +747,7 @@
 /area/station/turret_protected/sea_crashed)
 "cB" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/floor/red,
 /area/station/turret_protected/sea_crashed)
@@ -805,8 +762,7 @@
 /area/station/turret_protected/sea_crashed)
 "cE" = (
 /obj/stool/chair/office/red{
-	dir = 8;
-	icon_state = "office_chair_red"
+	dir = 8
 	},
 /turf/floor/neutral,
 /area/station/turret_protected/sea_crashed)
@@ -828,7 +784,6 @@
 "cH" = (
 /obj/item/storage/wall/medical{
 	dir = 1;
-	icon_state = "minimed";
 	pixel_y = 32
 	},
 /turf/floor/neutral,
@@ -869,7 +824,7 @@
 	icon_state = "body6";
 	name = "decomposed corpse"
 	},
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor5"
 	},
 /turf/floor/red,
@@ -904,7 +859,7 @@
 /turf/variableTurf/wall,
 /area/space)
 "cT" = (
-/obj/decal/cleanable/blood,
+/obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/red,
 /area/station/turret_protected/sea_crashed)
 "cU" = (
@@ -924,7 +879,6 @@
 "cW" = (
 /obj/machinery/shower{
 	dir = 8;
-	icon_state = "showerhead";
 	pixel_y = 6
 	},
 /obj/decal/fakeobjects{
@@ -935,7 +889,6 @@
 /obj/window/cubicle{
 	desc = "A panel designed to separate bathroom stalls, turning one gross room into many.";
 	dir = 2;
-	icon_state = "cubicle";
 	name = "stall panel";
 	tag = ""
 	},
@@ -944,7 +897,7 @@
 	},
 /area/station/turret_protected/sea_crashed)
 "cX" = (
-/obj/decal/cleanable/blood/splatter{
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
 	icon_state = "floor4"
 	},
 /turf/floor{
@@ -978,13 +931,12 @@
 /area/station/turret_protected/sea_crashed)
 "db" = (
 /obj/stool/chair/red{
-	dir = 8;
-	icon_state = "chair-r"
+	dir = 8
 	},
 /turf/floor/neutral,
 /area/station/turret_protected/sea_crashed)
 "dc" = (
-/obj/decal/cleanable/blood/splatter{
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
 	icon_state = "floor3"
 	},
 /turf/floor/red,
@@ -1003,7 +955,6 @@
 "df" = (
 /obj/machinery/shower{
 	dir = 8;
-	icon_state = "showerhead";
 	pixel_y = 6
 	},
 /obj/decal/fakeobjects{
@@ -1016,7 +967,7 @@
 	},
 /area/station/turret_protected/sea_crashed)
 "dg" = (
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor5"
 	},
 /obj/decal/skeleton{
@@ -1045,10 +996,9 @@
 /area/station/turret_protected/sea_crashed)
 "dk" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor6"
 	},
 /turf/floor/red,
@@ -1065,11 +1015,11 @@
 /area/station/turret_protected/sea_crashed)
 "dn" = (
 /obj/item/storage/wall/fire,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/station/turret_protected/sea_crashed)
 "do" = (
 /obj/item/storage/wall/emergency,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/station/turret_protected/sea_crashed)
 "dp" = (
 /obj/decal/fakeobjects{
@@ -1119,7 +1069,6 @@
 "du" = (
 /obj/decal/fakeobjects/firealarm_broken{
 	dir = 8;
-	icon_state = "firex";
 	pixel_x = -24
 	},
 /turf/floor/red,
@@ -1386,8 +1335,7 @@
 /area/station/turret_protected/sea_crashed)
 "dM" = (
 /obj/decal/fakeobjects/firelock_broken{
-	dir = 8;
-	icon_state = "door0"
+	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/pyro/security/alt,
@@ -1395,7 +1343,6 @@
 /area/station/turret_protected/sea_crashed)
 "dN" = (
 /obj/machinery/shuttle/engine/propulsion{
-	dir = 2;
 	icon_state = "alt_propulsion"
 	},
 /turf/variableTurf/clear,
@@ -1442,14 +1389,12 @@
 /area/space)
 "eb" = (
 /obj/grille/catwalk{
-	dir = 2;
 	icon_state = "catwalk_cross"
 	},
 /turf/variableTurf/clear,
 /area/station/turret_protected/sea_crashed)
 "ec" = (
 /obj/machinery/shuttle/engine/propulsion{
-	dir = 2;
 	icon_state = "alt_propulsion"
 	},
 /turf/variableTurf/wall,
@@ -1996,11 +1941,11 @@ aa
 aa
 ai
 av
-aE
-aE
 aT
 aT
-aE
+aT
+aT
+aT
 av
 be
 as
@@ -2064,11 +2009,11 @@ aa
 aa
 ai
 av
-aE
-aE
+aT
+aT
 aU
 aT
-aE
+aT
 bl
 be
 by

@@ -224,6 +224,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Miscellaneous"
 
+/*
 /datum/manufacture/stunrounds
 	name = ".38 Stunner Rounds"
 	item_paths = list("MET-1","CON-1", "CRY-1")
@@ -250,15 +251,17 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 30 SECONDS
 	create = 1
 	category = "Resource"
+*/
 
-/datum/manufacture/bullet_smoke
-	name = "40mm Smoke Grenade"
+/datum/manufacture/fog_grenade
+	name = "Fog Grenade"
 	item_paths = list("MET-2","CON-1")
 	item_amounts = list(30,25)
-	item_outputs = list(/obj/item/ammo/bullets/smoke)
+	item_outputs = list(/obj/item/chem_grenade/fog)
 	time = 35 SECONDS
 	create = 1
 	category = "Resource"
+
 
 /datum/manufacture/extinguisher
 	name = "Fire Extinguisher"
@@ -629,6 +632,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
+/*
 /datum/manufacture/gas_extract/agent_b_can
 	name = "Agent B"
 	item_paths = list("MET-2","molitz_b")
@@ -637,6 +641,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 100 SECONDS
 	create = 1
 	category = "Machinery"
+*/
 
 /datum/manufacture/gas_extract/n2_can
 	name = "N2"
@@ -963,6 +968,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Clothing"
 
+/datum/manufacture/white_cane
+	name = "White Cane"
+	item_paths = list("MET-1","FAB-1")
+	item_amounts = list(4,1)
+	item_outputs = list(/obj/item/white_cane)
+	time = 4 SECONDS
+	create = 1
+	category = "Clothing"
+
 /datum/manufacture/glasses
 	name = "Prescription Glasses"
 	item_paths = list("MET-1","CRY-1")
@@ -1005,6 +1019,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	item_amounts = list(3)
 	item_outputs = list(/obj/item/body_bag)
 	time = 15 SECONDS
+	create = 1
+	category = "Tool"
+
+/datum/manufacture/rag
+	name = "Rag"
+	item_paths = list("FAB-1")
+	item_amounts = list(2)
+	item_outputs = list(/obj/item/material_piece/cloth/rag)
+	time = 5 SECONDS
 	create = 1
 	category = "Tool"
 
@@ -1470,7 +1493,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	name = "Security Drone"
 	item_paths = list("MET-2","CON-2","POW-1")
 	item_amounts = list(30,20,20)
-	item_outputs = list(/obj/machinery/bot/secbot)
+	item_outputs = list(/mob/living/critter/robotic/bot/securitron)
 	time = 120 SECONDS
 	create = 1
 	category = "Machinery"
@@ -3013,17 +3036,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Miscellaneous"
 
-/******************** GUNS *******************/
-
-/datum/manufacture/alastor
-	name = "Alastor pattern laser rifle"
-	item_paths = list("DEN-1","MET-3","CON-1","CRY-1")
-	item_amounts = list(1,10,20,20)
-	item_outputs = list(/obj/item/gun/energy/alastor)
-	time = 30 SECONDS
-	create = 1
-	category = "Tool"
-
 /************ INTERDICTOR STUFF ************/
 
 /datum/manufacture/interdictor_frame
@@ -3063,6 +3075,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Weapon"
 
+/*
 /datum/manufacture/saa	//
 	name = "Colt SAA"
 	item_paths = list("MET-2")
@@ -3112,7 +3125,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 7 SECONDS
 	create = 1
 	category = "ammo"
-
 /datum/manufacture/riot_launcher	//
 	name = "Riot Launcher"
 	item_paths = list("MET-1")
@@ -3145,7 +3157,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 10 SECONDS
 	create = 1
 	category = "ammo"
-
 /datum/manufacture/sniper	//
 	name = "Sniper"
 	item_paths = list("DEN-1","MET-3","CON-1","CRY-1")
@@ -3194,6 +3205,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 7 SECONDS
 	create = 1
 	category = "Ammo"
+*/
 /datum/manufacture/plank	//
 	name = "Plank/Barricade"
 	item_paths = list("MET-1")

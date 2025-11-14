@@ -34,7 +34,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 		src.equip_new_if_possible(/obj/item/device/radio/headset, slot_ears)
 
 		if(!shitty)
-			APPLY_MOB_PROPERTY(src, PROP_LIFT_ANYTHING, src)
+			APPLY_ATOM_PROPERTY(src, PROP_LIFT_ANYTHING, src)
 			for (var/datum/targetable/macho/A as() in concrete_typesof(/datum/targetable/macho))
 				src.abilityHolder.addAbility(A)
 			src.abilityHolder.updateButtons()
@@ -116,7 +116,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 								C.show_message("<span class='alert'><B>[src] forcefully kicks [D]!</B></span>", 1)
 							if (prob(33))
 								qdel(D)
-					else if(O.anchored != 2)
+					else if(O.anchored != ANCHORED_TECHNICAL)
 						boutput(src, "<span class='alert'><B>You crash into [O]!</B></span>")
 						for (var/mob/C in oviewers(src))
 							shake_camera(C, 8, 24)
@@ -142,7 +142,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				src.put_in_hand_or_drop(W)
 				src.visible_message("<span class='alert'><B>[src] grabs the [W.name] out of [M]'s hands, shoving [M] to the ground!</B></span>")
 			else
-				src.visible_message("<span class='alert'><B>[src] parries [M]'s attack, knocking them to the ground!</B></span>")
+				src.visible_message("<span class='alert'><B>[src] parries [M]'s attack, knocking [him_or_her(M)] to the ground!</B></span>")
 			M.changeStatus("weakened", 10 SECONDS)
 			playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 65, 1)
 			SPAWN_DBG(2 SECONDS)
@@ -356,7 +356,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 			if (H)
 				src.visible_message("<span class='alert'><B>[src] ultra atomic piledrives [H]!!</B></span>")
 				var/obj/overlay/O = new/obj/overlay(get_turf(src))
-				O.anchored = 1
+				O.anchored = ANCHORED
 				O.name = "Explosion"
 				O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 				O.pixel_x = -92
@@ -791,7 +791,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					playsound(src.loc, "explosion", 50)
 					src.visible_message("<span class='alert'><B>[src] atomic piledrives [H]!</B></span>")
 					var/obj/overlay/O = new/obj/overlay(get_turf(src))
-					O.anchored = 1
+					O.anchored = ANCHORED
 					O.name = "Explosion"
 					O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 					O.pixel_x = -92
@@ -859,7 +859,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 							sleep(1.5 SECONDS)
 							playsound(src.loc, "explosion", 50)
 							var/obj/overlay/O = new/obj/overlay(get_turf(H))
-							O.anchored = 1
+							O.anchored = ANCHORED
 							O.name = "Explosion"
 							O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 							O.pixel_x = -92
@@ -1115,7 +1115,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 
 				for (var/I = 1, I <= 5 && heart_to_punt && step(heart_to_punt,direction, 1), I++)
 //						new D(heart_to_punt.loc)
-					bleed(H, 25, 5)
+					bleed(H, 25, violent = TRUE)
 					playsound(heart_to_punt,'sound/impact_sounds/Slimy_Splat_1.ogg', 50, 1)
 
 				H.emote("scream")
@@ -1320,8 +1320,8 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 	CritterDeath()
 		..()
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 75, 1)
-		var/obj/decal/cleanable/blood/gibs/gib = null
-		gib = make_cleanable(/obj/decal/cleanable/blood/gibs,src.loc)
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
+		gib = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
 		gib.streak_cleanable(NORTH)
 		qdel(src)
 
@@ -1425,7 +1425,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 			playsound(user.loc, "explosion", 100, 1)
 			SPAWN_DBG(0)
 				var/obj/overlay/O = new/obj/overlay(T)
-				O.anchored = 1
+				O.anchored = ANCHORED
 				O.name = "Explosion"
 				O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 				O.pixel_x = -92
@@ -1595,7 +1595,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 			if (H)
 				holder.owner.visible_message("<span class='alert'><B>[holder.owner] ultra atomic piledrives [H]!!</B></span>")
 				var/obj/overlay/O = new/obj/overlay(get_turf(holder.owner))
-				O.anchored = 1
+				O.anchored = ANCHORED
 				O.name = "Explosion"
 				O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 				O.pixel_x = -92
@@ -1651,6 +1651,10 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	desc = "Instantly grab someone in a headlock"
 	icon_state = "badtouch"
 	targeted = 1
+	attack_mobs = TRUE
+	max_range = 1
+	ai_range = 1
+
 	cast(atom/target)
 		var/mob/M = target
 		if (!IN_RANGE(M, holder.owner, 1))
@@ -1674,6 +1678,9 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	desc = "Pulverize the head of a dude you grabbed"
 	icon_state = "corruption"
 	targeted = 0
+	attack_mobs = TRUE
+	max_range = 0
+
 	cast(atom/target)
 		if (isalive(holder.owner) && !holder.owner.transforming)
 			for (var/obj/item/grab/G in holder.owner)
@@ -1703,6 +1710,9 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	desc = "Pulverize the ribcage of a dude you grabbed"
 	icon_state = "pet"
 	targeted = 0
+	attack_mobs = TRUE
+	max_range = 0
+
 	cast(atom/target)
 		if (isalive(holder.owner) && !holder.owner.transforming)
 			for (var/obj/item/grab/G in holder.owner)
@@ -1730,6 +1740,9 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	name = "Macho Rend"
 	desc = "Tears a target limb from limb"
 	icon_state = "nostun"
+	attack_mobs = TRUE
+	max_range = 0
+
 	cast(atom/target)
 		if (isalive(holder.owner) && !holder.owner.transforming)
 			for (var/obj/item/grab/G in holder.owner)
@@ -1816,6 +1829,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	name = "Macho Arena"
 	desc = "Summon a wrestling ring."
 	icon_state = "lightning_cd"
+
 	var/list/macho_arena_turfs
 	cast(atom/target)
 
@@ -1915,6 +1929,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	name = "Macho Slim-Jim Snap"
 	desc = "Snaps a target into a slim jim."
 	icon_state = "lesser"
+
 	cast(atom/target)
 		if (isalive(holder.owner) && !holder.owner.transforming)
 			for (var/obj/item/grab/G in holder.owner)
@@ -2147,7 +2162,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					playsound(holder.owner.loc, "explosion", 50)
 					holder.owner.visible_message("<span class='alert'><B>[holder.owner] atomic piledrives [H]!</B></span>")
 					var/obj/overlay/O = new/obj/overlay(get_turf(holder.owner))
-					O.anchored = 1
+					O.anchored = ANCHORED
 					O.name = "Explosion"
 					O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 					O.pixel_x = -92
@@ -2216,7 +2231,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 							sleep(1.5 SECONDS)
 							playsound(holder.owner.loc, "explosion", 50)
 							var/obj/overlay/O = new/obj/overlay(get_turf(H))
-							O.anchored = 1
+							O.anchored = ANCHORED
 							O.name = "Explosion"
 							O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 							O.pixel_x = -92
@@ -2463,6 +2478,10 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 	desc = "Punches a guy's heart. Right out of their body."
 	icon_state = "stasis"
 	targeted = 1
+	attack_mobs = TRUE
+	max_range = 1
+	ai_range = 1
+
 	cast(atom/target)
 		var/mob/M = target
 		if (!IN_RANGE(M, holder.owner, 1))
@@ -2482,7 +2501,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 
 				for (var/I = 1, I <= 5 && heart_to_punt && step(heart_to_punt,direction, 1), I++)
 //						new D(heart_to_punt.loc)
-					bleed(H, 25, 5)
+					bleed(H, 25, violent = TRUE)
 					playsound(heart_to_punt,'sound/impact_sounds/Slimy_Splat_1.ogg', 50, 1)
 
 				H.emote("scream")

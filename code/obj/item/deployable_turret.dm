@@ -383,7 +383,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		src.visible_message("<span class='alert'>[src]'s quick deploy system engages, automatically securing it!</span>")
 		playsound(src.loc, "sound/items/Welder2.ogg", 30, 1)
 		set_projectile()
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.active = 1
 		src.icon_state = "[src.icon_tag]_idle"
 
@@ -535,15 +535,15 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 /obj/deployable_turret/syndicate
 	name = "NAS-T"
 	desc = "A Nuclear Agent Sentry Turret."
-	projectile_type = /datum/projectile/bullet/rifle_medium
+	projectile_type = /datum/projectile/bullet/rifle/soviet
 	icon_tag = "st"
 	associated_deployer = /obj/item/turret_deployer/syndicate
 
 	is_friend(var/mob/living/C)
-		return istype(C.get_id(), /obj/item/card/id/syndicate) || istype(C, /mob/living/critter/gunbot/) //dumb lazy
+		return istype(C.get_id(), /obj/item/card/id/syndicate) || istype(C, /mob/living/critter/robotic/gunbot) //dumb lazy
 
 /obj/deployable_turret/syndicate/active
-	anchored = 1
+	anchored = ANCHORED
 
 	New(loc)
 		..(src.loc, src.dir)
@@ -555,7 +555,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	health = 125
 	max_health = 125
 	range = 5
-	projectile_type = /datum/projectile/bullet/slug_rubber
+	projectile_type = /datum/projectile/bullet/slug/rubber
 	burst_size = 1
 	fire_rate = 1
 	angle_arc_size = 60
@@ -572,7 +572,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		. = (access_security in I.access) || (access_heads in I.access)
 
 /obj/deployable_turret/riot/active
-	anchored = 1
+	anchored = ANCHORED
 
 	New(loc)
 		..(src.loc, src.dir)
@@ -584,7 +584,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	health = 125
 	max_health = 125
 	range = 7
-	projectile_type = /datum/projectile/bullet/pistol_medium
+	projectile_type = /datum/projectile/bullet/rifle/soviet
 	burst_size = 2
 	fire_rate = 1
 	angle_arc_size = 90
@@ -699,7 +699,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 	health = 120
 	max_health = 120
 	range = 12
-	projectile_type = /datum/projectile/bullet/rifle_medium/slow
+	projectile_type = /datum/projectile/bullet/rifle/soviet/slow
 	spread = 3
 	burst_size = 1
 	fire_rate = 2

@@ -47,9 +47,9 @@ proc/get_moving_lights_stats()
 
 
 // requires atten to be defined outside
-#define RL_APPLY_LIGHT_EXPOSED_ATTEN(src, lx, ly, brightness, height2, r, g, b) do { \
+#define RL_APPLY_LIGHT_EXPOSED_ATTEN(src, lx, ly, brightness, height2, r, g, b, atten_con) do { \
 	if (src.loc?:force_fullbright) { break } \
-	atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)*(src.x - lx) + (src.y - ly)*(src.y - ly) + height2) + RL_Atten_Constant ; \
+	atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)*(src.x - lx) + (src.y - ly)*(src.y - ly) + height2) + atten_con ; \
 	if (atten < RL_Atten_Threshold) { break } \
 	src.turf_persistent.RL_LumR += r*atten ; \
 	src.turf_persistent.RL_LumG += g*atten ; \
@@ -60,14 +60,14 @@ proc/get_moving_lights_stats()
 	src.turf_persistent.RL_NeedsAdditive = src.turf_persistent.RL_AddLumR + src.turf_persistent.RL_AddLumG + src.turf_persistent.RL_AddLumB ; \
 	} while(false)
 
-#define RL_APPLY_LIGHT(src, lx, ly, brightness, height2, r, g, b) do { \
+#define RL_APPLY_LIGHT(src, lx, ly, brightness, height2, r, g, b, atten_con) do { \
 	var/atten ; \
-	 RL_APPLY_LIGHT_EXPOSED_ATTEN(src, lx, ly, brightness, height2, r, g, b) ; \
+	 RL_APPLY_LIGHT_EXPOSED_ATTEN(src, lx, ly, brightness, height2, r, g, b, atten_con) ; \
 	} while(false)
 
-#define RL_APPLY_LIGHT_LINE(src, lx, ly, dir, radius, brightness, height2, r, g, b) do { \
+#define RL_APPLY_LIGHT_LINE(src, lx, ly, dir, radius, brightness, height2, r, g, b, atten_con) do { \
 	if (src.loc?:force_fullbright) { break } \
-	var/atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)*(src.x - lx) + (src.y - ly)*(src.y - ly) + height2) + RL_Atten_Constant ; \
+	var/atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)*(src.x - lx) + (src.y - ly)*(src.y - ly) + height2) + atten_con ; \
 	var/exponent = 3.5 ;\
 	atten *= (max( abs(ly-src.y),abs(lx-src.x),0.85 )/radius)**exponent ;\
 	if (radius <= 1) { atten *= 0.1 }\
@@ -112,6 +112,7 @@ proc/get_moving_lights_stats()
 #define D_HEIGHT 4
 #define D_ENABLE 8
 #define D_MOVE 16
+#define D_ATTEN_CON 32
 						//only if lag				OR we already have stuff queued  OR lighting is suspeded 	also game needs to be started lol		and not doing a queue process currently
 //#define SHOULD_QUEUE ((APPROX_TICK_USE > LIGHTING_MAX_TICKUSAGE || light_update_queue.cur_size) && current_state > GAME_STATE_SETTING_UP && !queued_run)
 #define SHOULD_QUEUE (( light_update_queue.cur_size || APPROX_TICK_USE > LIGHTING_MAX_TICKUSAGE || RL_Suspended) && !queued_run && current_state > GAME_STATE_SETTING_UP)
@@ -144,6 +145,10 @@ datum/light
 	var/height_des = 1
 
 	var/enabled = 0
+
+	var/atten_con = RL_Atten_Constant
+
+	var/atten_con_des = RL_Atten_Constant
 
 	var/radius = 1
 	var/premul_r = 1
@@ -183,6 +188,32 @@ datum/light
 		..()
 
 	proc
+		set_atten_con(atten_con, queued_run = 0)
+			src.atten_con_des = atten_con
+			if (src.atten_con == atten_con && !queued_run)
+				return
+
+			if (src.enabled)
+				if (SHOULD_QUEUE)
+					light_update_queue.queue(src)
+					dirty_flags |= D_ATTEN_CON
+					return
+
+				var/strip_gen = ++RL_Generation
+				var/list/affected = src.strip(strip_gen)
+
+				src.atten_con = atten_con
+				src.precalc()
+
+				APPLY_AND_UPDATE
+				if (RL_Started)
+					for (var/turf/T as anything in affected)
+						if (T.turf_persistent.RL_UpdateGeneration <= strip_gen)
+							RL_UPDATE_LIGHT(T)
+			else
+				src.atten_con = atten_con
+				src.precalc()
+
 		set_brightness(brightness, queued_run = 0)
 			src.brightness_des = brightness
 			if (src.brightness == brightness && !queued_run)
@@ -333,7 +364,7 @@ datum/light
 			src.premul_r = src.r * src.brightness
 			src.premul_g = src.g * src.brightness
 			src.premul_b = src.b * src.brightness
-			src.radius = min(floor(sqrt(max((brightness * (RL_Atten_Quadratic - RL_Rad_QuadConstant)) / (-RL_Atten_Constant + RL_Rad_ConstConstant) - src.height**2, 0))), RL_MaxRadius)
+			src.radius = min(floor(sqrt(max((brightness * (RL_Atten_Quadratic - RL_Rad_QuadConstant)) / (-src.atten_con + RL_Rad_ConstConstant) - src.height**2, 0))), RL_MaxRadius)
 
 		apply()
 			if (!RL_Started)
@@ -426,7 +457,7 @@ datum/light
 
 	point
 		apply_to(turf/T)
-			RL_APPLY_LIGHT(T, src.x, src.y, src.brightness, src.height**2, r, g, b)
+			RL_APPLY_LIGHT(T, src.x, src.y, src.brightness, src.height**2, r, g, b, atten_con)
 
 		#define ADDUPDATE(var) if (var.turf_persistent.RL_UpdateGeneration < generation) { var.turf_persistent.RL_UpdateGeneration = generation; . += var; }
 		apply_internal(generation, r, g, b)
@@ -440,7 +471,7 @@ datum/light
 				if(T.turf_persistent.opaque_atom_count > 0)
 					continue
 
-				RL_APPLY_LIGHT_EXPOSED_ATTEN(T, src.x, src.y, src.brightness, height2, r, g, b)
+				RL_APPLY_LIGHT_EXPOSED_ATTEN(T, src.x, src.y, src.brightness, height2, r, g, b, atten_con)
 				if(atten < RL_Atten_Threshold)
 					continue
 				T.turf_persistent.RL_ApplyGeneration = generation
@@ -452,7 +483,7 @@ datum/light
 				var/turf/E = get_step(T, EAST)
 				if (E && E.turf_persistent.RL_ApplyGeneration < generation)
 					E_new = 1
-					RL_APPLY_LIGHT_EXPOSED_ATTEN(E, src.x, src.y, src.brightness, height2, r, g, b)
+					RL_APPLY_LIGHT_EXPOSED_ATTEN(E, src.x, src.y, src.brightness, height2, r, g, b, atten_con)
 					if(atten >= RL_Atten_Threshold)
 						E.turf_persistent.RL_ApplyGeneration = generation
 						if(get_step(T, SOUTHEAST))
@@ -461,7 +492,7 @@ datum/light
 
 				var/turf/N = get_step(T, NORTH)
 				if (N && N.turf_persistent.RL_ApplyGeneration < generation)
-					RL_APPLY_LIGHT_EXPOSED_ATTEN(N, src.x, src.y, src.brightness, height2, r, g, b)
+					RL_APPLY_LIGHT_EXPOSED_ATTEN(N, src.x, src.y, src.brightness, height2, r, g, b, atten_con)
 					if(atten >= RL_Atten_Threshold)
 						N.turf_persistent.RL_ApplyGeneration = generation
 						if(get_step(T, NORTHWEST))
@@ -474,7 +505,7 @@ datum/light
 					// i.e. it should only get updated if both T.E and T.N are not added in the view() phase
 					var/turf/NE = get_step(T, NORTHEAST)
 					if (E_new && NE && NE.turf_persistent.RL_ApplyGeneration < generation)
-						RL_APPLY_LIGHT_EXPOSED_ATTEN(NE, src.x, src.y, src.brightness, height2, r, g, b)
+						RL_APPLY_LIGHT_EXPOSED_ATTEN(NE, src.x, src.y, src.brightness, height2, r, g, b, atten_con)
 						if(atten >= RL_Atten_Threshold)
 							NE.turf_persistent.RL_ApplyGeneration = generation
 							ADDUPDATE(NE)
@@ -492,11 +523,11 @@ datum/light
 			src.premul_r = src.r * src.brightness
 			src.premul_g = src.g * src.brightness
 			src.premul_b = src.b * src.brightness
-			src.radius = min(floor(sqrt(max((brightness * (RL_Atten_Quadratic)) / -RL_Atten_Constant - src.height**2, 0))), RL_MaxRadius) * 0.6
+			src.radius = min(floor(sqrt(max((brightness * (RL_Atten_Quadratic)) / -src.atten_con - src.height**2, 0))), RL_MaxRadius) * 0.6
 
 
 		apply_to(turf/T)
-			RL_APPLY_LIGHT_LINE(T, src.x, src.y, src.dir, dist_cast, src.brightness, src.height**2, r, g, b)
+			RL_APPLY_LIGHT_LINE(T, src.x, src.y, src.dir, dist_cast, src.brightness, src.height**2, r, g, b, atten_con)
 
 		apply_internal(generation, r, g, b)
 			. = list()
@@ -522,7 +553,7 @@ datum/light
 			dist_cast = max(turfline.len,1)
 
 			for (var/turf/T in turfline)
-				RL_APPLY_LIGHT_LINE(T, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b)
+				RL_APPLY_LIGHT_LINE(T, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b, atten_con)
 				T.turf_persistent.RL_ApplyGeneration = generation
 				T.turf_persistent.RL_UpdateGeneration = generation
 				. += T
@@ -532,7 +563,7 @@ datum/light
 				var/turf/E = get_step(T, EAST)
 				if (E && E.turf_persistent.RL_ApplyGeneration < generation)
 					E.turf_persistent.RL_ApplyGeneration = generation
-					RL_APPLY_LIGHT_LINE(E, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b)
+					RL_APPLY_LIGHT_LINE(E, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b, atten_con)
 					ADDUPDATE(E)
 					if(get_step(T, SOUTHEAST))
 						ADDUPDATE(get_step(T, SOUTHEAST))
@@ -540,14 +571,14 @@ datum/light
 				var/turf/N = get_step(T, NORTH)
 				if (N && N.turf_persistent.RL_ApplyGeneration < generation)
 					N.turf_persistent.RL_ApplyGeneration = generation
-					RL_APPLY_LIGHT_LINE(N, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b)
+					RL_APPLY_LIGHT_LINE(N, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b, atten_con)
 					ADDUPDATE(N)
 					if(get_step(T, NORTHWEST))
 						ADDUPDATE(get_step(T, NORTHWEST))
 
 				var/turf/NE = get_step(T, NORTHEAST)
 				if (NE && NE.turf_persistent.RL_ApplyGeneration < generation)
-					RL_APPLY_LIGHT_LINE(NE, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b)
+					RL_APPLY_LIGHT_LINE(NE, src.x, src.y, src.dir, dist_cast, src.brightness, height2, r, g, b, atten_con)
 					NE.turf_persistent.RL_ApplyGeneration = generation
 					ADDUPDATE(NE)
 
@@ -626,7 +657,7 @@ proc
 	blend_mode = BLEND_ADD
 	plane = PLANE_LIGHTING
 	layer = LIGHTING_LAYER_BASE
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/overlay/tile_effect/lighting/mul
 	plane = PLANE_LIGHTING
@@ -674,7 +705,7 @@ turf
 				RL_UPDATE_LIGHT(src)
 
 	proc
-		RL_ApplyLight(lx, ly, brightness, height2, r, g, b) // use the RL_APPLY_LIGHT macro instead if at all possible!!!!
+		RL_ApplyLight(lx, ly, brightness, height2, r, g, b, atten_con) // use the RL_APPLY_LIGHT macro instead if at all possible!!!!
 #ifdef DEBUG_LIGHTING_UPDATES
 			if (!src.counter)
 				counter = new(src)
@@ -690,7 +721,7 @@ turf
 			//if (fullbright)
 			//	return
 
-			var/atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)**2 + (src.y - ly)**2 + height2) + RL_Atten_Constant
+			var/atten = (brightness*RL_Atten_Quadratic) / ((src.x - lx)**2 + (src.y - ly)**2 + height2) + atten_con
 			if (atten < RL_Atten_Threshold)
 				return
 			turf_persistent.RL_LumR += r*atten

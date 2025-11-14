@@ -149,12 +149,12 @@
 		onAdd(optional=null)
 			..()
 			var/mob/M = owner
-			APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, id, change)
+			APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, id, change)
 
 		onRemove()
 			..()
 			var/mob/M = owner
-			REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, id)
+			REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, id)
 
 	maxhealth
 		id = "maxhealth"
@@ -289,9 +289,10 @@
 			. = ..()
 			if(ismob(owner))
 				var/mob/M = owner
-				APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims", 50)
+				APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims", 50)
 				M.add_stam_mod_max("stims", 50)
-				M.add_stun_resist_mod("stims", 1000)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "stims", 1000)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "stims", 1000)
 				M.filters += filter(type="displace", icon=icon('icons/effects/distort.dmi', "muscly"), size=0)
 				src.filter = M.filters[length(M.filters)]
 				animate(filter, size=src.muscliness_factor, time=1 SECOND, easing=SINE_EASING)
@@ -301,9 +302,10 @@
 			. = ..()
 			if(ismob(owner))
 				var/mob/M = owner
-				REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims")
+				REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "stims")
 				M.remove_stam_mod_max("stims")
-				M.remove_stun_resist_mod("stims")
+				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "stims")
+				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "stims")
 				animate(filter, size=0, time=1 SECOND, easing=SINE_EASING)
 				SPAWN_DBG(1 SECOND)
 					M.filters -= filter
@@ -696,12 +698,12 @@
 				. = ..()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					APPLY_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					APPLY_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 
 			onRemove()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					REMOVE_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					REMOVE_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 				. = ..()
 
 		weakened
@@ -716,12 +718,12 @@
 				. = ..()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					APPLY_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					APPLY_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 
 			onRemove()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					REMOVE_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					REMOVE_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 				. = ..()
 
 			pinned
@@ -773,12 +775,12 @@
 				. = ..()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					APPLY_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					APPLY_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 
 			onRemove()
 				if (ismob(owner) && !QDELETED(owner))
 					var/mob/mob_owner = owner
-					REMOVE_MOB_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
+					REMOVE_ATOM_PROPERTY(mob_owner, PROP_CANTMOVE, src.type)
 				. = ..()
 
 		dormant
@@ -1036,31 +1038,31 @@
 		unique = 1
 		duration = INFINITE_STATUS
 		maxDuration = null
-		var/mob/living/carbon/human/H
+		var/mob/M
 		var/sleepcount = 5 SECONDS
 
 		onAdd(optional=null)
 			. = ..()
-			if (ishuman(owner))
-				H = owner
+			if (ismob(owner))
+				M = owner
 				sleepcount = 5 SECONDS
 			else
 				owner.delStatus("buckled")
 
 		clicked(list/params)
-			if(H.buckled)
-				H.buckled.Attackhand(H)
+			if(M.buckled)
+				M.buckled.Attackhand(M)
 
 		onUpdate(timePassed)
-			if (H && !H.buckled)
+			if (M && !M.buckled)
 				owner.delStatus("buckled")
 			else
 				if (sleepcount > 0)
 					sleepcount -= timePassed
 					if (sleepcount <= 0)
-						if (H.hasStatus("resting") && istype(H.buckled,/obj/stool/bed))
-							var/obj/stool/bed/B = H.buckled
-							B.sleep_in(H)
+						if (M.hasStatus("resting") && istype(M.buckled,/obj/stool/bed))
+							var/obj/stool/bed/B = M.buckled
+							B.sleep_in(M)
 						else
 							sleepcount = 3 SECONDS
 
@@ -1144,7 +1146,7 @@
 			H.max_health += max_health
 			health_update_queue |= H
 			H.add_stam_mod_max("ganger_max", max_stam)
-			APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "ganger_regen", regen_stam)
+			APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "ganger_regen", regen_stam)
 			if (ismob(owner))
 				var/mob/M = owner
 				if (M.mind)
@@ -1155,7 +1157,7 @@
 			H.max_health -= max_health
 			health_update_queue |= H
 			H.remove_stam_mod_max("ganger_max")
-			REMOVE_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "ganger_regen")
+			REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "ganger_regen")
 			gang = null
 
 		onUpdate(timePassed)
@@ -1207,7 +1209,8 @@
 			if(ismob(owner))
 				owner.delStatus("janktank_withdrawl")
 				var/mob/M = owner
-				M.add_stun_resist_mod("janktank", 40)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "janktank", 40)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "janktank", 40)
 			else
 				owner.delStatus("janktank")
 
@@ -1216,7 +1219,8 @@
 			if(ismob(owner))
 				owner.changeStatus("janktank_withdrawl", 10 MINUTES)
 				var/mob/M = owner
-				M.remove_stun_resist_mod("janktank")
+				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "janktank")
+				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "janktank")
 
 		onUpdate(timePassed)
 			var/mob/living/carbon/human/H
@@ -1282,14 +1286,14 @@
 			H.max_health += max_health
 			health_update_queue |= H
 			H.add_stam_mod_max("mutiny_max", max_stam)
-			APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "mutiny_regen", regen_stam)
+			APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "mutiny_regen", regen_stam)
 
 		onRemove()
 			. = ..()
 			H.max_health -= max_health
 			health_update_queue |= H
 			H.remove_stam_mod_max("mutiny_max")
-			REMOVE_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "mutiny_regen")
+			REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "mutiny_regen")
 
 		getTooltip()
 			. = "Your max health, max stamina, and stamina regen have been increased because of your bossy attitude."
@@ -1316,17 +1320,19 @@
 			H.max_health += max_health
 			health_update_queue |= H
 			H.add_stam_mod_max("revspirit_max", max_stam)
-			APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "revspirit_regen", regen_stam)
+			APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "revspirit_regen", regen_stam)
 
 		onRemove()
 			. = ..()
 			H.max_health -= max_health
 			health_update_queue |= H
 			H.remove_stam_mod_max("revspirit_max")
-			REMOVE_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "revspirit_regen")
+			REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "revspirit_regen")
 
 		getTooltip()
 			. = "Your max stamina and stamina regen have been increased slightly."
+
+
 
 	patho_oxy_speed
 		id = "patho_oxy_speed"
@@ -1420,15 +1426,14 @@
 			owner.delStatus("bloodcurse")
 
 	onUpdate()
-		if (H.blood_volume > 400 && H.blood_volume > 0)
-			H.blood_volume -= units
+		if (H.reagents.total_volume)
+			H.reagents.remove_any(units)
 		if (prob(5))
 			var/damage = rand(1,5)
-			var/bleed = rand(3,5)
 			H.visible_message("<span class='alert'>[H] [damage > 3 ? "vomits" : "coughs up"] blood!</span>", "<span class='alert'>You [damage > 3 ? "vomit" : "cough up"] blood!</span>")
 			playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 			H.TakeDamage(zone="All", brute=damage)
-			bleed(H, damage, bleed)
+			bleed(H, damage, violent = pick(TRUE, FALSE))
 
 /datum/statusEffect/mentor_mouse
 	id = "mentor_mouse"
@@ -1613,6 +1618,39 @@
 				if(how_miasma > 4)
 					. += " You might get sick."
 				#endif
+/datum/statusEffect/sandy
+	id = "sandy"
+	name = "Sandy"
+	desc = "You're getting sand everywhere! It's coarse and rough!"
+	icon_state = "painted" //you better sprite this wack
+
+	onAdd(optional)
+		. = ..()
+		if(istype(owner, /mob/living))
+			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(track_sand))
+	onRemove()
+		. = ..()
+		if(istype(owner, /mob/living))
+			UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+
+	proc/track_sand(mob/living/M, oldLoc, direct)
+		var/turf/T = get_turf(M)
+		if(!istype(T.loc,/area/gehenna))
+			var/obj/decal/cleanable/sand/S
+			if (T.messy > 0)
+				S = locate(/obj/decal/cleanable/sand) in T
+			if	(!S)
+				if(prob(30))
+					S = make_cleanable(/obj/decal/cleanable/sand, T)
+			var/list/states = M.get_step_image_states()
+			if(S)
+				if (states[1] || states[2])
+					if(states[1])
+						S.create_overlay(states[1], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //gimme gimme
+					if(states[2])
+						S.create_overlay(states[2], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //awawa
+				else
+					S.create_overlay("smear2", "#9a865a", direct, 'icons/obj/decals/blood.dmi')
 
 /datum/statusEffect/dripping_paint
 	id = "marker_painted"
@@ -1697,15 +1735,15 @@
 		//No atom properties around these parts :V
 		var/mob/ffs = owner
 		animate_swim(owner)
-		APPLY_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors and pitfalls
-		APPLY_MOB_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
+		APPLY_ATOM_PROPERTY(ffs, PROP_ATOM_FLOATING, src) //footsteps and glass shards and conveyors and pitfalls
+		APPLY_ATOM_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
 		..()
 
 	onRemove()
 		var/mob/ffs = owner
 		animate(owner, pixel_y = 0)
-		REMOVE_MOB_PROPERTY(ffs, PROP_ATOM_FLOATING, src)
-		REMOVE_MOB_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
+		REMOVE_ATOM_PROPERTY(ffs, PROP_ATOM_FLOATING, src)
+		REMOVE_ATOM_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
 		var/turf/space/fluid/warp_z5/trenchhole = owner.loc
 		ON_COOLDOWN(owner,"re-swim", 0.5 SECONDS) //Small cooldown so the trench hole doesn't immediately put the mob on swimming again (they plummet instead :D)
 		var/end_z_cross = TRUE
@@ -1767,3 +1805,99 @@
 				var/obj/hallucinated_item/O = new /obj/hallucinated_item(pick(turf_line), H, item_inst)
 				var/image/hallucinated_image = image(item_inst, O)
 				H << hallucinated_image
+
+/datum/statusEffect/graffiti
+	id = "graffiti_blind"
+	name = "Tagged!"
+	desc = "You've been tagged! <br>Movement speed is reduced. Eyesight reduced."
+	icon_state = "tagged"
+	unique = TRUE
+	maxDuration = 15 SECONDS
+	var/emote_delay_counter = 0
+	var/sound = 'sound/effects/electric_shock_short.ogg'
+	var/emote_cooldown = 7
+	var/list/tag_images = list()
+	var/list/tag_filters = list()
+	movement_modifier = /datum/movement_modifier/tagged
+	var/datum/hud/vision_impair_tag/hud = new
+
+	onAdd(optional)
+		..()
+		if (ismob(owner))
+			var/mob/victim = owner
+			victim.attach_hud(src.hud)
+
+	onRemove()
+		if (ismob(owner))
+			var/mob/victim = owner
+			victim.detach_hud(src.hud)
+		qdel(hud)
+		hud = null
+		. = ..()
+		for (var/i in 1 to length(tag_images))
+			owner.ClearSpecificOverlays("graffitisplat[i]")
+
+	onUpdate(timePassed)
+		emote_delay_counter += timePassed
+		if (duration < 4 SECONDS)
+			for (var/i in 1 to length(tag_images))
+				var/image/tag = tag_images[i]
+				var/target_alpha = duration * 5
+				if (tag.alpha > target_alpha)
+					tag.alpha = target_alpha
+					owner.UpdateOverlays(tag,"graffitisplat[i]")
+		if (emote_delay_counter >= emote_cooldown && owner && !owner.hasStatus(list("knockdown", "unconscious")) )
+			emote_delay_counter -= emote_cooldown
+			if (prob(10) && ismob(owner))
+				var/mob/victim = owner
+				victim.emote(pick("cough", "blink"))
+			playsound(owner, sound, 17, TRUE, 0.4, 1.6)
+			violent_twitch(owner)
+		. = ..(timePassed)
+
+///give lings a timer to look at on this. The ability cooldown already functioned as such, but this is more explicit.
+/datum/statusEffect/regenerative_stasis
+	id = "regenerative_stasis"
+	name = "Regenerating"
+	desc = "You're undergoing regeneration, and will awake again after this time."
+	icon_state = "regenerative_stasis"
+	unique = TRUE
+	var/mob_prop_id
+
+	onAdd(optional)
+		..()
+		mob_prop_id = optional
+
+	onRemove()
+		if (ishuman(owner))
+			var/mob/living/carbon/human/changeling = owner
+			if (!isdead(changeling))
+				changeling_super_heal_step(changeling, 100, 100) //get those limbs back i didn't lay here for 45 seconds to be hopping around on one leg dang it
+				changeling.HealDamage("All", 1000, 1000)
+				changeling.take_brain_damage(-INFINITY)
+				changeling.take_toxin_damage(-INFINITY)
+				changeling.take_oxygen_deprivation(-INFINITY)
+				changeling.delStatus("paralysis")
+				changeling.delStatus("stunned")
+				changeling.delStatus("weakened")
+				changeling.delStatus("radiation")
+				changeling.health = 100
+				changeling.reagents.clear_reagents()
+				changeling.lying = FALSE
+				changeling.canmove = TRUE
+				boutput(changeling, "<span class='notice'>We have regenerated.</span>")
+				logTheThing("combat", changeling, null, "[changeling] finishes regenerative statis as a changeling [log_loc(changeling)].")
+				changeling.visible_message(__red("<B>[changeling] appears to wake from the dead, having healed all wounds.</span>"))
+				for(var/obj/item/implant/I in changeling)
+					if (istype(I, /obj/item/implant/projectile))
+						boutput(changeling, "<span class='alert'>\an [I] falls out of your abdomen.</span>")
+						I.on_remove(changeling)
+						changeling.implant.Remove(I)
+						I.set_loc(changeling.loc)
+						continue
+
+			changeling.set_clothing_icon_dirty()
+			var/datum/abilityHolder/changeling/H = changeling.get_ability_holder(/datum/abilityHolder/changeling)
+			H.in_fakedeath = FALSE
+			REMOVE_ATOM_PROPERTY(changeling, PROP_CANTMOVE, mob_prop_id)
+		..()

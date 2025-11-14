@@ -29,7 +29,7 @@
 		if (src.blood <= 0) return ..()
 
 		if (istype(T))
-			make_cleanable( /obj/decal/cleanable/blood,T)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,T)
 			blood--
 		..()
 
@@ -245,6 +245,7 @@
 	amount = 1
 	food_color = "#FFFFFF"
 	value = 20
+	hint = "Add water at a sink to make dough."
 
 /obj/item/reagent_containers/food/snacks/ingredient/flour/semolina
 	name = "semolina"
@@ -270,6 +271,7 @@
 	amount = 1
 	food_color = "#E3E3E3"
 	value = 20
+	hint = "Add water at a sink to make sticky rice."
 
 /obj/item/reagent_containers/food/snacks/ingredient/sugar
 	name = "sugar"
@@ -429,6 +431,13 @@
 	custom_food = 0
 	value = -1 //standard for used but not completed ingredients
 
+	get_desc(dist, mob/user) //sorry for adding in a joke a whole two days after the hint thing has been added
+		..()
+		if (user.traitHolder.hasTrait("training_security"))
+			hint = "Use your baton to turn this into a snack." //cops need know nothing else
+		else //defib recipe left out
+			hint = "Add sugar for sweet dough. You can also roll it out into a pizza base, use a fork to poke holes or cut it into strips."
+
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/sugar))
 			boutput(user, "<span class='notice'>You add [W] to [src] to make sweet dough!</span>")
@@ -450,16 +459,6 @@
 				new /obj/item/reagent_containers/food/snacks/ingredient/pizza_base(get_turf(src))
 			user.u_equip(src)
 			qdel(src)
-		else if (istype(W, /obj/item/axe) || istype(W, /obj/item/circular_saw) || istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/scalpel) || istype(W, /obj/item/sword) || istype(W,/obj/item/saw) || istype(W,/obj/item/knife/butcher))
-			boutput(user, "<span class='notice'>You cut the dough into two strips.</span>")
-			if (prob(25))
-				JOB_XP(user, "Chef", 1)
-			if(prob(1))
-				playsound(src.loc, "sound/voice/screams/male_scream.ogg", 100, 1, channel=VOLUME_CHANNEL_EMOTE)
-				src.visible_message("<span class='alert'><B>The [src] screams!</B></span>")
-			for(var/i = 1, i <= 2, i++)
-				new /obj/item/reagent_containers/food/snacks/ingredient/dough_strip(get_turf(src))
-			qdel(src)
 		else if (istype(W, /obj/item/kitchen/utensil/fork))
 			boutput(user, "<span class='notice'>You stab holes in the dough. How vicious.</span>")
 			if (prob(25))
@@ -470,6 +469,16 @@
 			var/obj/item/reagent_containers/food/snacks/ingredient/holey_dough/H = new /obj/item/reagent_containers/food/snacks/ingredient/holey_dough(W.loc)
 			user.u_equip(src)
 			user.put_in_hand_or_drop(H)
+			qdel(src)
+		else if (istool(W, TOOL_CUTTING | TOOL_SAWING))
+			boutput(user, "<span class='notice'>You cut the dough into two strips.</span>")
+			if (prob(25))
+				JOB_XP(user, "Chef", 1)
+			if(prob(1))
+				playsound(src.loc, "sound/voice/screams/male_scream.ogg", 100, 1, channel=VOLUME_CHANNEL_EMOTE)
+				src.visible_message("<span class='alert'><B>The [src] screams!</B></span>")
+			for(var/i = 1, i <= 2, i++)
+				new /obj/item/reagent_containers/food/snacks/ingredient/dough_strip(get_turf(src))
 			qdel(src)
 		else if (istype(W, /obj/item/robodefibrillator))
 			boutput(user, "<span class='notice'>You defibrilate the dough, yielding a perfect stack of flapjacks.</span>")
@@ -686,22 +695,6 @@
 	get_desc()
 		..()
 		.= "Original italian [name]."
-
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(istype(W,/obj/item/reagent_containers/food/snacks/condiment/ketchup))
-			boutput(user, "<span class='notice'>You create [random_spaghetti_name()] with tomato sauce...</span>")
-			var/obj/item/reagent_containers/food/snacks/spaghetti/sauce/D
-			if (user.mob_flags & IS_BONER)
-				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce/skeletal(W.loc)
-				boutput(user, "<span class='alert'>... whoa, that felt good. Like really good.</span>")
-				user.reagents.add_reagent("satisghetti",20)
-			else
-				D = new/obj/item/reagent_containers/food/snacks/spaghetti/sauce(W.loc)
-			user.u_equip(W)
-			user.put_in_hand_or_drop(D)
-			qdel(W)
-			qdel(src)
 
 	heal(var/mob/M)
 		boutput(M, "<span class='alert'>The noodles taste terrible uncooked...</span>")

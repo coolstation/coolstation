@@ -15,7 +15,7 @@
 	desc = "The automatic chef of the future!"
 	icon_state = "mw"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE | TABLEPASS
 	object_flags = CAN_BE_LIFTED
 	/// Current number of eggs inside the microwave
@@ -73,7 +73,7 @@
 			L.force_laydown_standup()
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 		..()
 		if(ismob(usr))
 			var/mob/living/L = usr
@@ -320,9 +320,6 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 						src.cook(MW_COOK_EGG)
 					else if(src.extra_item != null) // However if there's a weird item inside we want to break it, not dirty it
 						for(var/obj/item/gun_parts/P in src.contents)
-							if(prob(49) && istype(P, /obj/item/gun/modular/NT/long)) // slightly less than half a chance to fry the annoying smartloader in NT long receivers
-								var/obj/item/gun/modular/NT/long/ntl = P
-								ntl.electrics_intact = FALSE
 							if(prob(25)) // if you put a gun part in, theres a chance youll change it's DRM. Still breaks the microwave.
 								P.part_DRM = pick(GUN_FOSS,GUN_ITALIAN,GUN_JUICE,GUN_NANO,GUN_SOVIET)
 								src.visible_message("<span class='notice'>[P] lets off a few sparks.</span>")

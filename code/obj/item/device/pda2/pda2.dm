@@ -3,6 +3,7 @@
 /obj/item/device/pda2
 	name = "PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by an EEPROM cartridge."
+	hint = "This can be put in your ID slot, and can hold your ID."
 	icon = 'icons/obj/items/pda.dmi'
 	icon_state = "pda"
 	item_state = "pda"
@@ -31,7 +32,6 @@
 	var/frequency = FREQ_PDA
 	var/bot_freq = FREQ_BOT_CONTROL //Bot control frequency
 	var/beacon_freq = FREQ_BOT_NAV //Beacon frequency for locating beacons (I love beacons)
-	var/datum/radio_frequency/radio_connection
 	var/net_id = null //Hello dude intercepting our radio transmissions, here is a number that is not just \ref
 
 	var/tmp/list/pdasay_autocomplete = list()
@@ -169,6 +169,7 @@
 		icon_state = "pda-md"
 		setup_default_pen = /obj/item/pen/fancy
 		setup_default_cartridge = /obj/item/disk/data/cartridge/medical_director
+		setup_default_module = /obj/item/device/pda_module/cigarette_lighter //;3
 		setup_drive_size = 32
 		mailgroups = list(MGD_MEDRESEARCH,MGD_MEDBAY,MGD_COMMAND,MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_DEATH, MGA_MEDCRIT, MGA_CLONER, MGA_CRISIS)
@@ -196,10 +197,11 @@
 		mailgroups = list(MGD_SECURITY,MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_CHECKPOINT, MGA_ARREST, MGA_DEATH, MGA_MEDCRIT, MGA_CRISIS, MGA_TRACKING)
 
-	forensic
+	forensic //detective's
 		icon_state = "pda-s"
 		setup_default_pen = /obj/item/clothing/mask/cigarette
 		setup_default_cartridge = /obj/item/disk/data/cartridge/forensic
+		setup_default_module = /obj/item/device/pda_module/cigarette_lighter //naturally
 		mailgroups = list(MGD_SECURITY,MGD_PARTY)
 		alertgroups = list(MGA_MAIL, MGA_RADIO, MGA_CHECKPOINT, MGA_ARREST, MGA_DEATH, MGA_MEDCRIT, MGA_CRISIS, MGA_TRACKING)
 
@@ -333,8 +335,8 @@
 		src.hd.title = "Minidrive"
 
 		if(src.setup_system_os_path)
-			src.host_program = new src.setup_system_os_path
-			src.active_program = src.host_program
+			src.set_host_program(new src.setup_system_os_path)
+			src.set_active_program(src.host_program)
 
 			src.hd.file_amount = max(src.hd.file_amount, src.host_program.size)
 
@@ -358,8 +360,6 @@
 
 		src.net_id = format_net_id("\ref[src]")
 
-		radio_controller?.add_object(src, "[frequency]")
-
 		if (src.setup_default_pen)
 			src.pen = new src.setup_default_pen(src)
 			if(istype(src.pen, /obj/item/clothing/mask/cigarette))
@@ -378,23 +378,17 @@
 
 		if (src.setup_scanner_on && src.cartridge)
 			var/datum/computer/file/pda_program/scan/scan = locate() in src.cartridge.root.contents
-			if (scan && istype(scan))
-				src.scan_program = scan
+			if (istype(scan))
+				src.set_scan_program(scan)
 
 /obj/item/device/pda2/disposing()
 	if (src.cartridge)
-		for (var/datum/computer/file/pda_program/P in src.cartridge.root?.contents)
-			if (P.name == "Packet Sniffer")
-				radio_controller.remove_object(src, "[P:scan_freq]")
-				continue
-			if (P.name == "Ping Tool")
-				radio_controller.remove_object(src, "[P:send_freq]")
 		src.cartridge.dispose()
 		src.cartridge = null
 
-	src.active_program = null
-	src.host_program = null
-	src.scan_program = null
+	src.set_active_program(null)
+	src.set_host_program(null)
+	src.set_scan_program(null)
 	qdel(src.r_tone)
 	qdel(src.r_tone_temp)
 	src.r_tone = null
@@ -410,12 +404,6 @@
 			src.alert_ringtones[T] = null
 
 	if (src.hd)
-		for (var/datum/computer/file/pda_program/P in src.hd.root?.contents)
-			if (P.name == "Packet Sniffer")
-				radio_controller.remove_object(src, "[P:scan_freq]")
-				continue
-			if (P.name == "Ping Tool")
-				radio_controller.remove_object(src, "[P:send_freq]")
 		src.hd.dispose()
 		src.hd = null
 
@@ -427,12 +415,6 @@
 		src.module.remove_abilities_from_host()
 		src.module.dispose()
 		src.module = null
-
-	radio_controller.remove_object(src, "[frequency]")
-
-	if (radio_connection)
-		radio_connection.devices -= src
-		radio_connection = null
 
 	var/mob/living/ourHolder = src.loc
 	if (istype(ourHolder))
@@ -550,12 +532,7 @@
 		src.add_fingerprint(usr)
 		src.add_dialog(usr)
 
-		if (href_list["return_to_host"])
-			if (src.host_program)
-				src.active_program = src.host_program
-				src.host_program = null
-
-		else if (href_list["eject_cart"])
+		if (href_list["eject_cart"])
 			src.eject_cartridge(usr ? usr : null)
 
 		else if (href_list["eject_id_card"])
@@ -675,6 +652,14 @@
 		if (!src.pen)
 			src.insert_pen(C, user)
 		else
+			if(istype(C, /obj/item/clothing/mask/cigarette)) //having to insert and then verb out every cig would be a pain, so
+				if (istype(src.module, /obj/item/device/pda_module/cigarette_lighter)) //let's just say you can access the lighter on
+					//var/obj/item/device/pda_module/cigarette_lighter/lighter = src.module //the back of the case or something.
+					//if (lighter.lit)
+					var/obj/item/clothing/mask/cigarette/cig = C //Besides, that implies an exposed heating element :3 :3 :3
+					cig.light(user)
+					boutput(user, "[src] helpfully lights [cig] for you.", group = "cig_light")
+					return
 			boutput(user, "<span class='alert'>There is already something in [src]'s pen slot!</span>")
 
 /obj/item/device/pda2/examine()
@@ -684,58 +669,6 @@
 		. += "[ID_card] has been inserted into it."
 	if (src.pen)
 		. += "[pen] is sticking out of the pen slot."
-
-/obj/item/device/pda2/receive_signal(datum/signal/signal, rx_method, rx_freq)
-
-	//let programs receive encrypted signals
-	if(!signal || !src.owner) return
-
-	src.host_program?.network_hook(signal, rx_method, rx_freq)
-
-	if(src.active_program && (src.active_program != src.host_program))
-		src.active_program.network_hook(signal, rx_method, rx_freq)
-
-	if(signal.encryption) return
-
-
-
-	if(signal.data["address_1"] && signal.data["address_1"] != src.net_id)
-
-		// special programs can receive all signals
-		if((signal.data["address_1"] == "ping") && signal.data["sender"])
-			var/datum/signal/pingreply = new
-			pingreply.source = src
-			pingreply.data["device"] = "NET_PDA_51XX"
-			pingreply.data["netid"] = src.net_id
-			pingreply.data["address_1"] = signal.data["sender"]
-			pingreply.data["command"] = "ping_reply"
-			pingreply.data["data"] = src.owner
-			SPAWN_DBG(0.5 SECONDS)
-				src.post_signal(pingreply)
-
-			return
-
-		else if (!signal.data["group"]) // only accept broadcast signals if they are filtered
-			return
-
-	if (islist(signal.data["group"]))
-		var/any_member = FALSE
-		for (var/group in signal.data["group"])
-			if (group in src.mailgroups)
-				any_member = TRUE
-				break
-		if (!any_member) // not a member of any specified group; discard
-			return
-	else if (signal.data["group"])
-		if (!(signal.data["group"] in src.mailgroups) && !(signal.data["group"] in src.alertgroups)) // not a member of the specified group; discard
-			return
-
-	src.host_program?.receive_signal(signal, rx_method, rx_freq)
-
-	if(src.active_program && (src.active_program != src.host_program))
-		src.active_program.receive_signal(signal, rx_method, rx_freq)
-
-	return
 
 /obj/item/device/pda2/attack(mob/M as mob, mob/user as mob)
 	if(src.scan_program)
@@ -850,6 +783,21 @@
 
 		src.update_overlay()
 
+	proc/set_active_program(datum/computer/file/pda_program/program)
+		src.active_program?.on_deactivated(src)
+		src.active_program = program
+		src.active_program?.on_activated(src)
+
+	proc/set_host_program(datum/computer/file/pda_program/program)
+		src.host_program?.on_unset_host(src)
+		src.host_program = program
+		src.host_program?.on_set_host(src)
+
+	proc/set_scan_program(datum/computer/file/pda_program/program)
+		src.scan_program?.on_unset_scan(src)
+		src.scan_program = program
+		src.scan_program?.on_set_scan(src)
+
 	proc/is_user_in_interact_range(var/mob/user)
 		return in_interact_range(src, user) || loc == user || isAI(user)
 
@@ -863,24 +811,20 @@
 		signal.source = src
 		signal.data["sender"] = src.net_id
 
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency("[freq]")
-
-		signal.transmission_method = TRANSMISSION_RADIO
-		if(frequency)
-			return frequency.post_signal(src, signal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, null, freq)
 
 	proc/eject_cartridge(var/mob/user as mob)
 		if (src.cartridge && src.ejectable_cartridge)
 			var/turf/T = get_turf(src)
 
 			if(src.active_program && (src.active_program.holder == src.cartridge))
-				src.active_program = null
+				src.set_active_program(null)
 
 			if(src.host_program && (src.host_program.holder == src.cartridge))
-				src.host_program = null
+				src.set_host_program(null)
 
 			if(src.scan_program && (src.scan_program.holder == src.cartridge))
-				src.scan_program = null
+				src.set_scan_program(null)
 
 			src.cartridge.set_loc(T)
 			if (istype(user))
@@ -929,6 +873,13 @@
 			else
 				var/turf/T = get_turf(src)
 				src.pen.set_loc(T)
+			if(istype(src.pen, /obj/item/clothing/mask/cigarette))
+				if (istype(src.module, /obj/item/device/pda_module/cigarette_lighter))
+					//var/obj/item/device/pda_module/cigarette_lighter/lighter = src.module
+					//if (lighter.lit)
+					var/obj/item/clothing/mask/cigarette/cig = src.pen
+					cig.light(user)
+					boutput(user, "[src] helpfully lights [cig] for you.", group = "cig_light")
 			src.pen = null
 			src.UpdateOverlays(null, "pen")
 			return
@@ -1114,16 +1065,16 @@
 			program.master = src
 
 		if(!src.host_program && istype(program, /datum/computer/file/pda_program/os))
-			src.host_program = program
+			src.set_host_program(program)
 
 		if(istype(program, /datum/computer/file/pda_program/scan))
 			if(program == src.scan_program)
-				src.scan_program = null
+				src.set_scan_program(null)
 			else
-				src.scan_program = program
+				src.set_scan_program(program)
 			return 1
 
-		src.active_program = program
+		src.set_active_program(program)
 		program.init()
 
 		if(program.setup_use_process) processing_items |= src
@@ -1140,7 +1091,7 @@
 		if(src.host_program && src.host_program.holder && (src.host_program.holder in src.contents))
 			src.run_program(src.host_program)
 		else
-			src.active_program = null
+			src.set_active_program(null)
 
 		src.updateSelfDialog()
 		return 1
@@ -1153,7 +1104,7 @@
 
 		//Don't delete the running program you jerk
 		if(src.active_program == theFile || src.host_program == theFile)
-			src.active_program = null
+			src.set_active_program(null)
 
 		//boutput(world, "Now calling del on [file]...")
 		//qdel(file)

@@ -1,7 +1,7 @@
 // PLEASE DONT ADD STUFF TO THIS THAT ISNT DIRECTLY RELATED TO GAME SETUP
 
 //#define IM_REALLY_IN_A_FUCKING_HURRY_HERE 1 //Uncomment this to just skip everything possible and get into the game asap.
-//#define GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW 1 // uncomment this to use atlas as the single map and disable all other z levels. Speeds up compile/boot times but will mess up anything relying on other z-levels
+//#define GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW 1 // uncomment this to use Chunk as the single map and disable all other z levels. Speeds up compile/boot times but will mess up anything relying on other z-levels
 
 #ifdef RUNTIME_CHECKING
 #define ABSTRACT_VIOLATION_CRASH
@@ -49,8 +49,6 @@
 #define GAME_STATE_PLAYING		4
 #define GAME_STATE_FINISHED		5
 
-#define DATALOGGER
-
 #define CREW_OBJECTIVES
 
 #define MISCREANTS
@@ -82,7 +80,7 @@
 
 // other toggles
 
-#define FOOTBALL_MODE 1
+//#define FOOTBALL_MODE 1
 //#define RP_MODE
 //#define ASS_JAM_ENABLED 1 //you need to set BUILD_TIME_DAY to 13 manually in __build.dm
 

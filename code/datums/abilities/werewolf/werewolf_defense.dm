@@ -4,12 +4,13 @@
 	icon_state = "howl"
 	targeted = 0
 	target_nodamage_check = 0
-	max_range = 0
+	ai_range = 6
 	cooldown = 500
 	pointCost = 0
 	when_stunned = 1
 	not_when_handcuffed = 0
 	werewolf_only = 1
+	attack_mobs = TRUE
 
 	cast(mob/target)
 		if (!holder)

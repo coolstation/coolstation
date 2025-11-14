@@ -297,9 +297,7 @@
 	if(src?.client?.preferences.auto_capitalization)
 		message = capitalize(message)
 
-#ifdef DATALOGGER
 	game_stats.ScanText(message)
-#endif
 
 	message = src.say_quote(message)
 	//logTheThing("say", src, null, "SAY: [message]")
@@ -357,9 +355,7 @@
 			name = src.name
 			alt_name = " (MASTER)"
 
-#ifdef DATALOGGER
 	game_stats.ScanText(message)
-#endif
 
 	message = src.say_quote(message)
 	//logTheThing("say", src, null, "SAY: [message]")
@@ -392,9 +388,7 @@
 		name = src.real_name
 		alt_name = " (THRALL)"
 
-#ifdef DATALOGGER
 	game_stats.ScanText(message)
-#endif
 
 	message = src.say_quote(message)
 	//logTheThing("say", src, null, "SAY: [message]")
@@ -419,9 +413,7 @@
 	if (!message)
 		return
 
-#ifdef DATALOGGER
 	game_stats.ScanText(message)
-#endif
 	logTheThing("diary", src, null, "(KUDZU): [message]", "hivesay")
 
 	message = src.say_quote(message)
@@ -626,14 +618,14 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 	act = lowertext(act)
 	if (m_type & MESSAGE_VISIBLE)
 		for (var/mob/O in viewers(src, null))
-			O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
+			O.show_message("<span class='emote'>[message]</span>", m_type, group = (actual_emote.group ? actual_emote.group : "[src]_[act]_[custom]"), assoc_maptext = chat_text)
 	else if (m_type & MESSAGE_AUDIBLE)
 		for (var/mob/O in hearers(src, null))
-			O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
+			O.show_message("<span class='emote'>[message]</span>", m_type, group = (actual_emote.group ? actual_emote.group : "[src]_[act]_[custom]"), assoc_maptext = chat_text)
 	else if (!isturf(src.loc))
 		var/atom/A = src.loc
 		for (var/mob/O in A.contents)
-			O.show_message("<span class='emote'>[message]</span>", m_type, group = "[src]_[act]_[custom]", assoc_maptext = chat_text)
+			O.show_message("<span class='emote'>[message]</span>", m_type, group = (actual_emote.group ? actual_emote.group : "[src]_[act]_[custom]"), assoc_maptext = chat_text)
 
 /mob/proc/emote_check(var/voluntary = 1, var/time = 10, var/admin_bypass = 1, var/dead_check = 1)
 	if (src.emote_allowed)
@@ -696,9 +688,7 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 
 	logTheThing("diary", src, null, ": [msg]", "ooc")
 
-#ifdef DATALOGGER
 	game_stats.ScanText(msg)
-#endif
 
 	for (var/client/C in clients)
 		// DEBUGGING
@@ -777,9 +767,7 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 
 	logTheThing("diary", src, null, ": [msg]", "ooc")
 
-#ifdef DATALOGGER
 	game_stats.ScanText(msg)
-#endif
 
 	var/list/recipients = list()
 
@@ -1080,6 +1068,7 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 //#define FLOCK_SPEAKER_FLOCKTRACE 4
 //#define FLOCK_SPEAKER_NPC 5
 
+/*
 /proc/flock_speak(var/mob/speaker, var/message as text, var/datum/flock/flock, var/speak_as_admin=0)
 
 	var/client/C = null
@@ -1149,3 +1138,5 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 			thisR = "<span class='adminHearing' data-ctx='[M.client.chatOutput.getContextFlags()]'>[thisR]</span>"
 		if(thisR != "")
 			M.show_message(thisR, 2)
+
+*/

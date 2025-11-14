@@ -27,6 +27,7 @@
 	var/paint_color = "#ff0000"
 	var/add_orig = 0.2
 	var/paint_intensity = 0.6
+	has_glow = FALSE
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if(user)
@@ -72,7 +73,7 @@
 	desc = "Would dispense paint, if it were not broken."
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "paint-vend"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/repair_stage = 0
 	var/paint_needed = 20

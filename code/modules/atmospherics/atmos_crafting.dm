@@ -80,7 +80,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	get_desc(dist, mob/user)
 		..()
 		if (!welded)
-			. += " You'll have to weld the seams first though."
+			hint = "You'll have to weld the seams first though."
 
 	afterattack(atom/target, mob/user, reach, params)
 		if (!istype(user)) //Gonna need those sweet, sweet component vars
@@ -238,9 +238,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 	get_desc(dist, mob/user)
 		..()
 		if (welded && isnull(gizmo))
-			. += " Add a metal sheet to make a pipebomb frame."
-		if (!welded)
-			. += " You'll have to weld the seam shut first."
+			hint = "Add a metal sheet to turn this into a pipebomb frame."
 
 	///We might have differing modules attached
 	check_valid_stack(obj/item/atmospherics/pipeframe/regular/O)
@@ -372,7 +370,7 @@ ABSTRACT_TYPE(/obj/item/atmospherics/pipeframe)
 		if (istype(W, /obj/item/atmospherics/module/))
 			stack_item(W)
 		else if (istype(W, /obj/item/atmospherics/pipeframe))
-			W.attackby(src, user, params, is_special) //fuck crafting recipes that demand you slap A on B but not B on A
+			W.Attackby(src, user, params, is_special) //fuck crafting recipes that demand you slap A on B but not B on A
 		..()
 
 ///Here's where you sort out the direction your specific thing should get placed at.

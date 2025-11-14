@@ -349,10 +349,8 @@ obj/machinery/atmospherics/pipe
 
 		proc/rupture(pressure, destroy=FALSE)
 			var/new_rupture
-			#ifdef DATALOGGER
 			if (!src.ruptured) //new breaks only
 				game_stats.Increment("workplacesafety")
-			#endif
 			if (src.destroyed || destroy)
 				ruptured = 4
 				src.destroyed = TRUE
@@ -369,7 +367,9 @@ obj/machinery/atmospherics/pipe
 			icon_state = "exposed"
 			src.desc = "A one meter section of ruptured pipe still looks salvageable through some careful welding."
 
-		ex_act(severity) // cogwerks - adding an override so pda bombs aren't quite so ruinous in the engine
+		ex_act(severity, last_touched, epicenter, turf_safe) // cogwerks - adding an override so pda bombs aren't quite so ruinous in the engine
+			if(turf_safe)
+				return
 			switch(severity)
 				if(OLD_EX_SEVERITY_1)
 					if(prob(5))
@@ -757,6 +757,7 @@ obj/machinery/atmospherics/pipe
 
 				..()
 
+/*
 		oxygen_agent_b
 			icon = 'icons/obj/atmospherics/tanks/red_orange_pipe_tank.dmi'
 			name = "Pressure Tank (Oxygen Agent B)"
@@ -779,6 +780,7 @@ obj/machinery/atmospherics/pipe
 				trace_gas.moles = (50*ONE_ATMOSPHERE)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature)
 
 				..()
+*/
 
 		rad_particles
 			icon = 'icons/obj/atmospherics/tanks/green_pipe_tank.dmi'

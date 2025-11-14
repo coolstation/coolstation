@@ -3,7 +3,7 @@
 	icon = 'icons/obj/machines/manufacturer.dmi'
 	icon_state = "fab"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	mats = 16
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS
 
@@ -61,7 +61,7 @@
 /obj/machinery/conduitdispenser/mobile
 	name = "Conduit Dispenser Cart"
 	desc = "A tool for removing some of the tedium from conduit-laying."
-	anchored = 0
+	anchored = UNANCHORED
 	icon_state = "fab-mobile"
 	mats = 16
 	var/laying_conduit = 0

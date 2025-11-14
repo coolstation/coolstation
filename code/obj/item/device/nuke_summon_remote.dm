@@ -5,7 +5,7 @@
 	icon_state = "bomb_remote"
 	item_state = "electronic"
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	w_class = W_CLASS_SMALL
 
 	var/charges = 1

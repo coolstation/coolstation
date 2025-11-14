@@ -9,17 +9,23 @@
 /mob/proc/addOverlayComposition(var/compType) //Adds composition type to active compositions on mob
 	if(!ispath(compType))return
 	if(!screenOverlayLibrary.Find(compType))return
-	var/instance = screenOverlayLibrary[compType]
-	if(screenoverlays.Find(instance))return //Only one instance per overlay Type. Keep this. Im serious. Else mobs will end up with 324598762 blind overlays
-	screenoverlays.Add(instance)
+	var/datum/overlayComposition/comp = screenOverlayLibrary[compType]
+	if(screenoverlays.Find(comp))return //Only one instance per overlay Type. Keep this. Im serious. Else mobs will end up with 324598762 blind overlays
+	screenoverlays.Add(comp)
+	if(src.client)
+		for(var/atom/movable/screen/screenoverlay/overlay in comp.instances)
+			src.client.screen += overlay
 	return
 
 /mob/proc/removeOverlayComposition(var/compType) //Removes composition type from active compositions on mob
 	if(!ispath(compType)) return
 	if(!screenOverlayLibrary.Find(compType)) return
-	var/instance = screenOverlayLibrary[compType]
-	if(screenoverlays.Find(instance))
-		screenoverlays.Remove(instance)
+	var/datum/overlayComposition/comp = screenOverlayLibrary[compType]
+	if(screenoverlays.Find(comp))
+		if(src.client)
+			for(var/atom/movable/screen/screenoverlay/overlay in comp.instances)
+				src.client.screen -= overlay
+		screenoverlays.Remove(comp)
 	return
 
 /mob/proc/hasOverlayComposition(var/compType) //Does that mob have the overlay active?
@@ -28,36 +34,22 @@
 	var/instance = screenOverlayLibrary[compType]
 	return screenoverlays.Find(instance)
 
-/mob/proc/updateOverlaysClient(var/client/CL) //Updates the overlays of current mob to given client
-	removeOverlaysClient(CL)
-	addOverlaysClient(CL)
-	return
-
-/mob/proc/addOverlaysClient(var/client/CL) //Adds the overlays of current mob to given client
-	if(!CL) return
-	for(var/datum/overlayComposition/C in screenoverlays)
+/proc/addOverlaysClient(var/client/CL, var/mob/source) //Adds the overlays of current mob to given client
+	if(!CL || !source) return
+	for(var/datum/overlayComposition/C in source.screenoverlays)
 		for(var/atom/movable/screen/screenoverlay/S in C.instances)
 			CL.screen += S
 
-/mob/proc/removeOverlaysClient(var/client/CL) //Removes all overlays of given client
+/proc/removeOverlaysClient(var/client/CL) //Removes all overlays of given client
 	if(!CL) return
 	for(var/atom/movable/screen/screenoverlay/S in CL.screen)
 		CL.screen -= S
 
-//Because dead mobs don't have a life loop
-/mob/dead/addOverlayComposition()
-	..()
-	updateOverlaysClient(src.client)
-
-/mob/dead/removeOverlayComposition()
-	..()
-	updateOverlaysClient(src.client)
-
 /atom/movable/screen/screenoverlay
 	name = ""
 	icon = 'icons/effects/overlays/cloudy.dmi'
-	layer = HUD_LAYER_UNDER_2
-	plane = PLANE_HUD
+	layer = HUD_LAYER_UNDER_4
+	plane = PLANE_HUD - 1 // needed so maptext renders OVER overlays bc blindness shouldn't impair hearing
 	screen_loc = "CENTER-7,CENTER-7"
 
 /datum/overlayDefinition
@@ -66,8 +58,8 @@
 	var/d_alpha = 255
 	var/d_color = "#ffffff"
 	var/d_blend_mode = 1
-	var/d_layer = HUD_LAYER_UNDER_2		//18 is just below the ui but above everything else.
-	var/d_plane = PLANE_HUD
+	var/d_layer = HUD_LAYER_UNDER_4
+	var/d_plane = PLANE_HUD - 1 // see above
 	var/d_mouse_opacity = 0 //In case you want it to block clicks. For blindness and such.
 	var/do_wide_fill = 1 //If true, use underlays to 'fill out' the area that extends to the sides in widescreen
 	var/d_screen_loc = "CENTER-7,CENTER-7"
@@ -344,11 +336,33 @@
 	special_blend = BLEND_SUBTRACT
 
 // temporary blindness overlay until the other one is fixed
+// TODO: make the overlay sprite better
 /datum/overlayComposition/blinded
 	New()
 		var/datum/overlayDefinition/dither = new()
 		dither.d_icon = 'icons/effects/overlays/knockout2t.dmi'
-		dither.d_icon_state = "knockout2t"
+		dither.d_icon_state = "knockout2t_narrow" // make the white cane more useful
+		dither.d_blend_mode = 1
+		dither.d_mouse_opacity = 0 // fuck not being able to click on things, if we want blindness to have disadvantages then find something else
+		dither.d_screen_loc = "CENTER-7,CENTER-7"
+		definitions.Add(dither)
+
+		var/datum/overlayDefinition/meaty = new()
+		meaty.d_icon = 'icons/effects/overlays/meatyC.dmi'
+		meaty.d_icon_state = "meatyC"
+		meaty.d_blend_mode = 2
+		meaty.d_alpha = 30//140
+		//meaty.d_color = "#610306"
+		definitions.Add(meaty)
+		return ..()
+
+// copied from the above, provides a wider vision radius when holding the white cane
+// TODO: make the overlay sprite better
+/datum/overlayComposition/blinded_with_cane
+	New()
+		var/datum/overlayDefinition/dither = new()
+		dither.d_icon = 'icons/effects/overlays/knockout2t.dmi'
+		dither.d_icon_state = "knockout2t_wide" // gives a slightly increased vision radius.
 		dither.d_blend_mode = 1
 		dither.d_mouse_opacity = 0 // fuck not being able to click on things, if we want blindness to have disadvantages then find something else
 		dither.d_screen_loc = "CENTER-7,CENTER-7"
@@ -431,16 +445,6 @@
 
 		return ..()
 
-/datum/overlayComposition/sniper_scope
-	New()
-		var/datum/overlayDefinition/sniper_scope = new()
-		sniper_scope.d_icon = 'icons/effects/overlays/sniper_scope.dmi'
-		sniper_scope.d_icon_state = "sniper_scope"
-		sniper_scope.do_wide_fill = 0
-		definitions.Add(sniper_scope)
-
-		return ..()
-
 /datum/overlayComposition/insanity
 	New()
 		var/datum/overlayDefinition/insanity = new()
@@ -451,5 +455,37 @@
 		//insanity.d_alpha = 190
 		insanity.d_screen_loc = "CENTER-10,CENTER-7"
 		definitions.Add(insanity)
+
+		return ..()
+
+/datum/overlayComposition/sniper_scope_old
+	New()
+		var/datum/overlayDefinition/sniper_scope = new()
+		sniper_scope.d_icon = 'icons/effects/overlays/sniper_scope_old.dmi'
+		sniper_scope.d_icon_state = "sniper_scope"
+		sniper_scope.do_wide_fill = 0
+		definitions.Add(sniper_scope)
+
+		return ..()
+
+/datum/overlayComposition/sniper_scope
+	New()
+		var/datum/overlayDefinition/sniper_scope = new()
+		sniper_scope.d_icon = 'icons/effects/overlays/sniper_scopes.dmi'
+		sniper_scope.d_icon_state = "base"
+		sniper_scope.do_wide_fill = 0
+		sniper_scope.d_screen_loc = "CENTER-5,CENTER-5"
+		definitions.Add(sniper_scope)
+
+		return ..()
+
+/datum/overlayComposition/sniper_scope_italian
+	New()
+		var/datum/overlayDefinition/sniper_scope = new()
+		sniper_scope.d_icon = 'icons/effects/overlays/sniper_scopes.dmi'
+		sniper_scope.d_icon_state = "italian"
+		sniper_scope.do_wide_fill = 0
+		sniper_scope.d_screen_loc = "CENTER-5,CENTER-5"
+		definitions.Add(sniper_scope)
 
 		return ..()

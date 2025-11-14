@@ -22,16 +22,12 @@
 	var/encase_in_web = 1 // do they encase people in ice, web, or uh, cotton candy?
 	var/reacting = 1 // when they inject their venom, does it react immediately or not?
 
-	var/health_brute = 50
-	var/health_brute_vuln = 0.45
-	var/health_burn = 50
-	var/health_burn_vuln = 0.65
-	reagent_capacity = 100
+	health_brute = 50
+	health_brute_vuln = 0.45
+	health_burn = 50
+	health_burn_vuln = 0.65
 
-	can_help = 1
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	var/good_grip = 1
 
 	butcherable = 1
@@ -56,9 +52,9 @@
 		for (var/i=src.hand_count, i>0, i--)
 			HH = hands[i]
 			if (src.good_grip)
-				HH.limb = new /datum/limb // todo: make spider hands. feet? weird spindly bug appendage??
+				HH.limb = new /datum/limb(src) // todo: make spider hands. feet? weird spindly bug appendage??
 			else
-				HH.limb = new /datum/limb/small_critter
+				HH.limb = new /datum/limb/small_critter(src)
 			HH.icon = 'icons/ui/hud_human.dmi'
 			if (i > (src.hand_count / 2)) // if we're halfway through making our hands, start making right-facing ones
 				HH.icon_state = "handr"
@@ -66,14 +62,7 @@
 			else
 				HH.icon_state = "handl"
 			HH.name = "leg [get_english_num(i)]"
-			HH.limb_name = "spider leg"
-
-	setup_healths()
-		..()
-		add_hh_flesh(health_brute, health_brute_vuln)
-		add_hh_flesh_burn(health_burn, health_burn_vuln)
-		add_health_holder(/datum/healthHolder/toxin)
-		add_health_holder(/datum/healthHolder/brain)
+			HH.limb.name = "spider leg"
 
 	on_pet()
 		if (..())
@@ -175,7 +164,6 @@
 	density = 0
 	flags = TABLEPASS
 	fits_under_table = 1
-	can_grab = 0 // Causes issues with tablepass, and doesn't make too much sense
 	health_brute = 25
 	health_burn = 25
 	good_grip = 0
@@ -297,8 +285,6 @@
 	custom_gib_handler = /proc/funnygibs
 	hand_count = 0
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 0
 	butcherable = 0
 	health_brute = 5
 	health_burn = 5
@@ -443,12 +429,12 @@
 	SPAWN_DBG(0)
 		playsound(location, "sound/musical_instruments/Bikehorn_1.ogg", 100, 1)
 		playsound(location, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
-	var/obj/decal/cleanable/blood/splatter/extra/blood = null
+	var/obj/decal/cleanable/tracked_reagents/blood/splatter/extra/blood = null
 
 	var/list/bloods = list()
 
 	for (var/i in cardinal)
-		blood = make_cleanable(/obj/decal/cleanable/blood/splatter/extra, location)
+		blood = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter/extra, location)
 		blood.blood_DNA = bDNA
 		blood.blood_type = btype
 		blood.color = random_saturated_hex_color()
@@ -457,7 +443,7 @@
 
 	var/extra = rand(2,4)
 	for (var/i = 1, i <= extra, i++)
-		blood = make_cleanable(/obj/decal/cleanable/blood/splatter/extra, location)
+		blood = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter/extra, location)
 		blood.blood_DNA = bDNA
 		blood.blood_type = btype
 		blood.color = random_saturated_hex_color()

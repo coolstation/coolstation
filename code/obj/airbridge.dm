@@ -23,7 +23,7 @@
 	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "airbr"
 	invisibility = 99
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 	///Total tunnel width in tiles including walls. Even width biases to negative (a vertically oriented bridge of width 4 goes from x-2 to x+1)
@@ -544,7 +544,7 @@
 	desc = ""
 	var/id = "noodles"
 	var/state = 0
-	anchored = 1.0
+	anchored = ANCHORED
 
 	attack_hand(mob/user as mob)
 		for(var/obj/airbridge_controller/C in range(3, src))

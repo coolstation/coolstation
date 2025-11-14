@@ -95,11 +95,11 @@
 				src.real_name = "Sconto Danilo's Quik-Noodles - Italian Strozzapreti Lunare Flavor"
 				src.initial_reagents["juice_tomato"] = 4 //I guess the lunar style of pasta is with a tomato wine red sauce
 				src.initial_reagents["wine"] = 2
-				src.initial_reagents["water_holy"] = 2
+				src.initial_reagents["garlic"] = 2
 				src.initial_reagents["venom"] = 2
 /*				R.add_reagent("juice_tomato",4) //I guess the lunar style of pasta is with a tomato wine red sauce
 				R.add_reagent("wine",2)
-				R.add_reagent("water_holy",2)
+				R.add_reagent("garlic",2)
 				R.add_reagent("venom",2)
 */
 			if (10)
@@ -113,7 +113,7 @@
 */
 			if (11)
 				src.real_name = "Frycook Dan's Quik-Noodles - Curly Fry Ketchup Hoedown Flavor"
-				src.initial_reagents["juice_tomato"] = 3
+				src.initial_reagents["ketchup"] = 3
 				src.initial_reagents["mugwort"] = 3
 				src.initial_reagents["capsaicin"] = 3
 				src.initial_reagents["mashedpotatoes"] = 3
@@ -361,7 +361,7 @@
 
 		var/i = 3
 		while(i-- > 0)
-			reagents.add_reagent(pick("beff","sugar","eggnog","chocolate","vanilla","cleaner","luminol","poo","urine","nicotine","weedkiller","venom","jenkem","ethanol","ectoplasm","itching","infernite","histamine","foof","pancuronium","cyanide"), 5)
+			reagents.add_reagent(pick("beff","sugar","eggnog","chocolate","vanilla","cleaner","luminol","poo","urine","nicotine","weedkiller","venom","jenkem","ethanol","ectoplasm","itching","infernite","histamine","ghostchilijuice","pancuronium","cyanide"), 5)
 
 		if (prob(color_prob))
 			src.color = random_saturated_hex_color()

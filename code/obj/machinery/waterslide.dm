@@ -125,14 +125,14 @@
 		if(deployed_path.len)
 			current_step = 1
 			deployed = TRUE
-			anchored = 1
+			anchored = ANCHORED
 			update_icon()
 			SPAWN_DBG(0) process()
 			src.updateUsrDialog()
 
 	proc/remove_slide()
 		deployed = FALSE
-		anchored = 0
+		anchored = UNANCHORED
 		update_icon()
 		for(var/obj/item/reagent_containers/waterslide/slide_tile in deployed_path)
 			slide_tile.dispose()
@@ -218,7 +218,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "waterslide"
 	desc = "A slippery plastic surface spread across the floor."
-	anchored = 1
+	anchored = ANCHORED
 	layer = 2
 	initial_volume = 5
 	var/image/fluid_image = null

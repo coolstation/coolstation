@@ -30,7 +30,7 @@
 		playsound(src.loc, pick('sound/voice/Zgroan1.ogg', 'sound/voice/Zgroan2.ogg', 'sound/voice/Zgroan3.ogg', 'sound/voice/Zgroan4.ogg'), 25, 0)*/
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -142,7 +142,7 @@
 						playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, -2)
 						M.canmove = 0
 						M.icon = null
-						APPLY_MOB_PROPERTY(M, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+						APPLY_ATOM_PROPERTY(M, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 						M:death()
 						var/obj/critter/zombie/P = new(M.loc)
 						///this little bit of code prevents multiple zombies from the same victim

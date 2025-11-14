@@ -33,10 +33,10 @@
 
 	equipped(mob/user)
 		. = ..()
-		APPLY_MOB_PROPERTY(user, PROP_THERMALVISION_MK2, src)
+		APPLY_ATOM_PROPERTY(user, PROP_THERMALVISION_MK2, src)
 
 	unequipped(mob/user)
-		REMOVE_MOB_PROPERTY(user, PROP_THERMALVISION_MK2, src)
+		REMOVE_ATOM_PROPERTY(user, PROP_THERMALVISION_MK2, src)
 		. = ..()
 
 /mob/living/carbon/human/repo
@@ -103,6 +103,7 @@
 		src.color = "#890000"
 
 // pew pew
+/*
 /obj/item/implant/projectile/bullet_flechette
 	name = "flechette"
 	desc = "A small, nasty-looking steel dart designed to pierce through armor and space suits."
@@ -168,3 +169,4 @@ obj/item/ammo/bullets/flechette_mag
 		ammo = new/obj/item/ammo/bullets/flechette_mag
 		set_current_projectile(new/datum/projectile/bullet/flechette)
 		..()
+*/

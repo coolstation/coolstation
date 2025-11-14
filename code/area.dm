@@ -46,6 +46,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	// To help decided objective difficulty for spy thieves
 	var/spy_secure_area = 0
 
+	var/area_door_group
+
 	//fucking ANTS getting EVERYWHERE
 	var/no_ants = 1
 
@@ -65,6 +67,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	mat_changename = 0
 	mat_changedesc = 0
 	text = ""
+	//if this isnt set here, the bottom left turf of each area gets confused about passability caching
+	pass_unstable = PRESERVE_CACHE
 	var/lightswitch = 1
 
 	/// If the area is on a restricted z leve, this controls if people can eat within it. (The reason for this might shock you!)
@@ -74,7 +78,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	var/obj/machinery/power/apc/area_apc = null // okay in certain cases you may have more than one apc, but for my purposes the latest apc works just fine
 
-	var/requires_power = TRUE
+	var/requires_power = FALSE
 	var/tmp/power_equip = 1
 	var/tmp/power_light = 1
 	var/tmp/power_environ = 1
@@ -141,6 +145,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/tmp/played_fx_2 = 0
 	var/sound_group = null
 	var/sound_group_varied = null //crossfade between sounds in group, outside is rain inside is rain on roof etc
+	var/sandstorm = FALSE
+	var/blowOrigin = 0
+	var/sandstormIntensity = 0
 
 	/// default environment for sounds - see sound datum vars documentation for the presets.
 	var/sound_environment = EAX_PADDED_CELL
@@ -161,7 +168,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/obj/machinery/light_area_manager/light_manager = 0
 
 	//list of the density of each tile in the area
-	var/list/densityMap = list()
+	//var/list/densityMap = list()
 
 	/// Local list of obj/machines found in the area
 	var/list/machines = list()
@@ -219,6 +226,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				//20 is 95% and is a special case to just mute the sound without stopping it
 				if(M.loc.loc.type == /area/gehenna)
 					insideness = 1
+
 				else if(M.loc.loc.type != /area/space) //bleh
 					insideness = 4 //this is the easiest level to check so let's just use this as our non-space case FOR NOW (happy 2053 to you reading this)
 					//can make a proc that does a calculation that might be useful for adjusting a room's sound environment in general
@@ -254,7 +262,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 							var/target = get_turf(oldloc)
 							if( !target && blocked_waypoint )
 								target = get_turf(locate(blocked_waypoint) in world)
-							enteringM.loc = target
+							enteringM.set_loc(target)
 						var/area/oldarea = get_area(oldloc)
 						if( sanctuary && !blocked && !(oldarea.sanctuary))
 							boutput( enteringM, "<b style='color:#31BAE8'>You are entering a sanctuary zone. You cannot be harmed by other players here.</b>" )
@@ -263,13 +271,16 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 							if (!src.active)
 								src.active = 1
 								SEND_SIGNAL(src, COMSIG_AREA_ACTIVATED)
-/*
+
+
+	/*
+
 						//Dumb fucking medal fuck
 						if (src.name == "Space" && istype(A, /obj/vehicle/segway))
 							enteringM.unlock_medal("Jimi Heselden", 1)
 */
 		else if(oldloc && !ismob(A) && !CanEnter( A ))
-			A.loc = oldloc
+			A.set_loc(oldloc)
 		..()
 
 	/// Gets called when a movable atom exits an area.
@@ -470,7 +481,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			light_manager = new
 			light_manager.my_area = src
 			for(var/turf/T in src)
-				light_manager.loc = T
+				light_manager.set_loc(T)
 				break
 		light_manager.lights += L
 
@@ -639,8 +650,11 @@ ABSTRACT_TYPE(/area/shuttle)
 	name = "Arrival Shuttle"
 	teleport_blocked = 2
 
+/area/shuttle/arrival/pre_load
+	icon_state = "shuttle_preload"
+
 /area/shuttle/arrival/pre_game
-	icon_state = "shuttle2"
+	icon_state = "shuttle_transit"
 
 /area/shuttle/arrival/station
 	icon_state = "shuttle"
@@ -1113,7 +1127,7 @@ ABSTRACT_TYPE(/area/adventure)
 	name ="Martian Trade Outpost"
 	icon_state = "yellow"
 	sound_environment = EAX_CAVE
-#ifdef MAP_OVERRIDE_OSHAN
+#ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
 
@@ -1173,7 +1187,7 @@ ABSTRACT_TYPE(/area/adventure)
 	name = "Derelict Space Station"
 	icon_state = "derelict"
 	is_atmos_simulated = TRUE
-#ifdef MAP_OVERRIDE_OSHAN
+#ifdef UNDERWATER_MAP
 	requires_power = FALSE
 #endif
 
@@ -1619,6 +1633,7 @@ ABSTRACT_TYPE(/area/sim)
 /// Base station area
 ABSTRACT_TYPE(/area/station)
 /area/station
+	requires_power = TRUE
 	is_atmos_simulated = TRUE
 	is_construction_allowed = TRUE
 	do_not_irradiate = 0
@@ -1667,6 +1682,9 @@ ABSTRACT_TYPE(/area/station/atmos/hookups)
 
 /area/station/atmos/hookups/central
 	name = "Central Air Hookups"
+
+/area/station/atmos/hookups/ai
+	name = "AI Cooling Hookups"
 
 ABSTRACT_TYPE(/area/station/communications)
 /area/station/communications
@@ -1758,6 +1776,26 @@ ABSTRACT_TYPE(/area/station/maintenance/inner)
 
 /area/station/maintenance/inner/central
   name = "Central Inner Maintenance"
+
+ABSTRACT_TYPE(/area/station/maintenance/sublevel)
+/area/station/maintenance/sublevel
+	name = "Sublevel Maintenance"
+
+/area/station/maintenance/sublevel/north
+	name = "North Sublevel Maintenance"
+	icon_state = "Nmaint"
+
+/area/station/maintenance/sublevel/east
+	name = "East Sublevel Maintenance"
+	icon_state = "Emaint"
+
+/area/station/maintenance/sublevel/south
+	name = "South Sublevel Maintenance"
+	icon_state = "Smaint"
+
+/area/station/maintenance/sublevel/west
+	name = "West Sublevel Maintenance"
+	icon_state = "Wmaint"
 
 // Donut 3 specific areas //
 
@@ -1877,6 +1915,10 @@ ABSTRACT_TYPE(/area/station/maintenance/outer)
 /area/station/maintenance/inner/nw
 	name = "Northwest Inner Maintenance"
 	icon_state = "IN_NWmaint"
+
+/area/station/maintenance/oldstation
+	name = "Old Station"
+	icon_state = "maintcentral"
 
 // OUTER maintenance
 
@@ -2131,6 +2173,7 @@ ABSTRACT_TYPE(/area/station/mining)
 	name = "Mining"
 	icon_state = "abstract"
 	sound_environment = EAX_HANGAR
+	area_door_group = "logistics"
 
 /area/station/mining/staff_room
 	name = "Mining Staff Room"
@@ -2181,6 +2224,7 @@ ABSTRACT_TYPE(/area/station/mining)
 	icon_state = "bridge"
 	sound_environment = EAX_LIVINGROOM
 	mail_tag = "Bridge"
+	area_door_group = "bridge"
 
 /area/station/bridge/united_command //currently only on atlas - ET
 	name = "United Command"
@@ -2627,21 +2671,21 @@ ABSTRACT_TYPE(/area/station/com_dish)
 /area/station/com_dish/comdish
 	name = "Communications Dish"
 	icon_state = "yellow"
-#ifndef UNDERWATER_MAP
+#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
 	force_fullbright = 1 // ????
 #endif
 
 /area/station/com_dish/auxdish
 	name = "Auxilary Communications Dish"
 	icon_state = "yellow"
-#ifndef UNDERWATER_MAP
+#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
 	force_fullbright = 1
 #endif
 
 /area/station/com_dish/research_outpost
 	name = "Research Outpost Communications Dish"
 	icon_state = "yellow"
-#ifndef UNDERWATER_MAP
+#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
 	force_fullbright = 1
 #endif
 
@@ -2651,6 +2695,7 @@ ABSTRACT_TYPE(/area/station/engine)
 /area/station/engine
 	sound_environment = EAX_STONEROOM
 	workplace = 1
+	area_door_group = "engineering"
 
 /area/station/engine/engineering
 	name = "Engineering"
@@ -2824,6 +2869,7 @@ ABSTRACT_TYPE(/area/station/medical)
 	name = "Medical area"
 	icon_state = "abstract"
 	workplace = 1
+	area_door_group = "medbay"
 
 /area/station/medical/medbay
 	name = "Medbay"
@@ -2945,6 +2991,7 @@ ABSTRACT_TYPE(/area/station/security)
 	teleport_blocked = 1
 	workplace = 1
 	spy_secure_area = TRUE
+	area_door_group = "security"
 
 /area/station/security/main
 	name = "Security"
@@ -3107,6 +3154,7 @@ ABSTRACT_TYPE(/area/station/security)
 	icon_state = "storage"
 	do_not_irradiate = 1
 	spy_secure_area = FALSE	// Easy to get into
+	area_door_group = "engineering"
 
 // solums
 
@@ -3155,6 +3203,7 @@ ABSTRACT_TYPE(/area/station/quartermaster)
 	name = "Quartermaster's"
 	icon_state = "abstract"
 	workplace = 1
+	area_door_group = "logistics"
 
 /area/station/quartermaster/office
 	name = "Quartermaster's Office"
@@ -3216,6 +3265,7 @@ ABSTRACT_TYPE(/area/station/janitor)
 	icon_state = "abstract"
 	sound_environment = EAX_BATHROOM
 	workplace = 1
+	area_door_group = "logistics"
 
 /area/station/janitor/office
 	name = "Janitor's Office"
@@ -3238,6 +3288,7 @@ ABSTRACT_TYPE(/area/station/science)
 	icon_state = "abstract"
 	sound_environment = EAX_BATHROOM
 	workplace = 1
+	area_door_group = "research"
 
 /area/station/science/chemistry
 	name = "Chemistry"
@@ -3877,6 +3928,12 @@ ABSTRACT_TYPE(/area/station/turret_protected)
 	sound_environment = EAX_HALLWAY
 	force_fullbright = 1
 
+/area/station/turret_protected/AIbaseoceanfloor
+	name = "AI Perimeter Defenses"
+	icon_state = "AIt"
+	requires_power = 0
+	sound_environment = EAX_HALLWAY
+
 /area/station/turret_protected/AIbasecore2
 	name = "AI Core 2"
 	icon_state = "AIt"
@@ -4111,12 +4168,9 @@ ABSTRACT_TYPE(/area/mining)
 		icon = 'icons/effects/dark.dmi'
 #endif*/
 
-	if(!requires_power)
-		power_light = 1
-		power_equip = 1
-		power_environ = 1
-	else
+	if(requires_power)
 		luminosity = 0
+	power_equip = power_light = power_environ = !requires_power
 	global.area_list_is_up_to_date = 0
 
 	SPAWN_DBG(1.5 SECONDS)

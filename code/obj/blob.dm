@@ -9,10 +9,10 @@
 	color = "#FF0000"
 	var/original_color = "#FF0000"
 	alpha = 180
-	density = 1
+	density = 0
 	opacity = 0
-	anchored = 1
-	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
+	anchored = ANCHORED
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED
 	var/evolution_flags = 0
 	var/health = 30         // current health of the blob
 	var/health_max = 30     // health cap
@@ -36,7 +36,7 @@
 	var/poison_spread_coefficient = 0.5
 	var/poison_depletion = 1
 	var/heat_divisor = 15
-	var/temp_tolerance = 40
+	var/temp_tolerance = 70
 	mat_changename = 0
 	mat_changedesc = 0
 	var/runOnLife = 0 //Should this obj run Life?
@@ -62,13 +62,14 @@
 			if (istype(src.loc.loc,/area))
 				src.loc.loc.Entered(src)
 
-		SPAWN_DBG(0.1 SECONDS)
-			for (var/mob/living/carbon/human/H in src.loc)
-				if (H.decomp_stage == 4 || check_target_immunity(H))//too decomposed or too cool to be eaten
-					continue
-				src.visible_message("<span class='alert'><b>The blob starts trying to absorb [H.name]!</b></span>")
-				actions.start(new /datum/action/bar/blob_absorb(H, blob_holder), src)
-				playsound(src.loc, "sound/voice/blob/blobsucc[rand(1, 3)].ogg", 10, 1)
+		if(src.can_absorb)
+			SPAWN_DBG(0.1 SECONDS)
+				for (var/mob/living/carbon/human/H in src.loc)
+					if (H == src.blob_holder.owner || H.decomp_stage == 4 || check_target_immunity(H)) //too decomposed or too cool to be eaten
+						continue
+					src.visible_message("<span class='alert'><b>The blob starts trying to absorb [H.name]!</b></span>")
+					actions.start(new /datum/action/bar/blob_absorb(H, blob_holder), H)
+					playsound(src.loc, "sound/voice/blob/blobsucc[rand(1, 3)].ogg", 10, 1)
 
 	proc/right_click_action()
 		usr.examine_verb(src)
@@ -82,6 +83,7 @@
 		else
 			..()
 
+/*
 	CanPass(atom/movable/mover, turf/target)
 		. = ..()
 		var/obj/projectile/P = mover
@@ -90,6 +92,34 @@
 				return 1
 		if (istype(mover, /obj/decal))
 			return 1
+*/
+
+	HasEntered(atom/movable/AM, atom/OldLoc)
+		. = ..()
+		if(src.can_absorb && isliving(AM))
+			var/mob/living/L = AM
+			if(L == src.blob_holder.owner || isintangible(L) || check_target_immunity(L)) //too cool to be eaten
+				return
+			if(!actions.hasAction(L, "blobabsorb"))
+				src.visible_message("<span class='alert'><b>The blob starts absorbing [L.name]!</b></span>")
+				actions.start(new /datum/action/bar/blob_absorb(L, blob_holder), L)
+		else if(istype(AM, /obj/projectile))
+			var/obj/projectile/P = AM
+			if (!P.proj_data || P.proj_data.type == /datum/projectile/slime)
+				return
+			if(isnull(P.internal_speed))
+				P.internal_speed = P.proj_data.projectile_speed
+			P.internal_speed = P.internal_speed * 0.85
+			P.travelled = P.travelled * 1.25
+			src.bullet_act(P)
+
+	Exited(atom/movable/AM, newloc)
+		. = ..()
+		if(isliving(AM))
+			var/mob/living/L = AM
+			if((!locate(/obj/blob) in newloc) && actions.hasAction(L, "blobabsorb"))
+				actions.stopId("blobabsorb", L)
+
 
 	proc/setHolder(var/datum/abilityHolder/blob/AH)
 		if (blob_holder == AH)
@@ -443,18 +473,10 @@
 
 
 		src.setMaterial(src.material)
-		var/healthperc = get_fraction_of_percentage_and_whole(src.health,src.health_max)
-		switch(healthperc)
-			if (-INFINITY to 33)
-				src.alpha *= 0.25
-			if (34 to 66)
-				src.alpha *= 0.5
-			if (66 to 99)
-				src.alpha *= 0.8
-		src.alpha = max(src.alpha, 32)
+		src.alpha = max(src.alpha * src.health / src.health_max, 50)
 
 	proc/spread(var/turf/T)
-		if (!istype(T) || !T.can_blob_spread_here(null, null, isadmin(blob_holder.owner)))
+		if (!istype(T) || !T.can_blob_spread_here(null, null))
 			return
 
 		var/blob_type = /obj/blob/
@@ -562,11 +584,6 @@
 				var/pc_new = pc_orig * (om_corr / c_corr)
 				poison_coefficient = pc_new
 
-			if (material.alpha > 210)
-				opacity = 1
-			else
-				opacity = initial(opacity)
-
 		else
 			src.name = initial(src.name)
 			var/hm_curr = health_max
@@ -574,7 +591,6 @@
 			health *= health_max / hm_curr
 			heat_divisor = initial(heat_divisor)
 			fire_coefficient = initial(fire_coefficient)
-			opacity = initial(opacity)
 		original_color = color
 
 /obj/blob/nucleus
@@ -582,6 +598,7 @@
 	state_overlay = "nucleus"
 	anim_overlay = "nucleus_blink"
 	special_icon = 1
+	density = 1
 	desc = "The core of the blob. Destroying all nuclei effectively stops the organism dead in its tracks."
 	armor = 1.5
 	health_max = 500
@@ -590,6 +607,7 @@
 	fire_coefficient = 0.5
 	poison_coefficient = 0.5
 	poison_depletion = 3
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED | USE_CANPASS
 	var/nextAttackMsg = 0
 
 	New()
@@ -597,8 +615,10 @@
 		START_TRACKING
 
 	disposing()
-		. = ..()
+		if (src in blob_holder.nuclei)
+			src.onKilled()
 		STOP_TRACKING
+		. = ..()
 
 	bullet_act(var/obj/projectile/P)
 		if (P.proj_data.damage_type == D_ENERGY && src.blob_holder && prob(src.blob_holder.nucleus_reflectivity))
@@ -606,6 +626,13 @@
 			playsound(src.loc, "sound/voice/blob/blobreflect[rand(1, 5)].ogg", 100, 1)
 		else
 			..()
+
+	CanPass(atom/movable/mover, turf/target)
+		. = ..()
+		var/obj/projectile/P = mover
+		if (istype(P) && P.proj_data)
+			if (P.proj_data.type == /datum/projectile/slime)
+				return 1
 
 	onAttach(var/datum/abilityHolder/blob/AH)
 		..()
@@ -1048,16 +1075,23 @@
 	name = "reflective membrane"
 	state_overlay = "reflective"
 	special_icon = 1
-	desc = "This cell seems to reflect light."
+	desc = "This membrane is designed to reflect kinetic and energy projectiles, but will allow fluids through."
 	armor = 0
 	gen_rate_value = 0
 	can_absorb = 0
-	opacity = 1
-	health = 85
-	health_max = 85
+	health = 75
+	health_max = 75
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED | USE_CANPASS
+
+	CanPass(atom/movable/mover, turf/target)
+		. = ..()
+		var/obj/projectile/P = mover
+		if (istype(P) && P.proj_data)
+			if (P.proj_data.type == /datum/projectile/slime)
+				return 1
 
 	bullet_act(var/obj/projectile/P)
-		if (P.proj_data.damage_type == D_ENERGY)
+		if (P.proj_data.damage_type & (D_KINETIC | D_ENERGY))
 			shoot_reflected_to_sender(P, src)
 			playsound(src.loc, "sound/voice/blob/blobreflect[rand(1, 5)].ogg", 100, 1)
 		else
@@ -1212,13 +1246,21 @@
 	name = "thick membrane"
 	desc = "This blob is encased in a tough membrane. It'll be harder to get rid of."
 	state_overlay = "wall"
-	opacity = 1
+	density = 1
 	special_icon = 1
 	armor = 2
 	health = 75
 	health_max = 75
 	can_absorb = 0
 	flags = ALWAYS_SOLID_FLUID
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED | USE_CANPASS
+
+	CanPass(atom/movable/mover, turf/target)
+		. = ..()
+		var/obj/projectile/P = mover
+		if (istype(P) && P.proj_data)
+			if (P.proj_data.type == /datum/projectile/slime)
+				return 1
 
 	take_damage(var/amount,var/damage_mult = 1,var/damtype,var/mob/user)
 		if (damage_mult == 0)
@@ -1235,11 +1277,20 @@
 	name = "fire-resistant membrane"
 	desc = "This blob is encased in a fireproof and gas impermeable membrane."
 	state_overlay = "firewall"
-	opacity = 1
+	density = 1
 	special_icon = 1
 	armor = 1
 	can_absorb = 0
 	gas_impermeable = TRUE
+	flags = ALWAYS_SOLID_FLUID
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED | USE_CANPASS
+
+	CanPass(atom/movable/mover, turf/target)
+		. = ..()
+		var/obj/projectile/P = mover
+		if (istype(P) && P.proj_data)
+			if (P.proj_data.type == /datum/projectile/slime)
+				return 1
 
 	take_damage(amount, mult, damtype, mob/user)
 		if (damtype == "burn")
@@ -1366,7 +1417,7 @@
 
 	return null
 
-/turf/proc/can_blob_spread_here(var/mob/feedback, var/skip_adjacent, var/admin_overmind = 0)
+/turf/proc/can_blob_spread_here(var/mob/feedback, var/skip_adjacent)
 	if (!src)
 		return 0
 
@@ -1375,11 +1426,15 @@
 			boutput(feedback, "<span class='alert'>You can't spread the blob into space.</span>")
 		return 0
 
-	if (!admin_overmind) //admins can spread wherever (within reason)
-		if (!issimulatedturf(src))
-			if (feedback)
-				boutput(feedback, "<span class='alert'>You can't spread the blob onto that kind of tile.</span>")
-			return 0
+	if (locate(/obj/blob) in src)
+		if (feedback)
+			boutput(feedback, "<span class='alert'>There's already blob there.</span>")
+		return 0
+
+	if (!issimulatedturf(src) && !istype(src.loc, /area/shuttle/escape))
+		if (feedback)
+			boutput(feedback, "<span class='alert'>You can't spread the blob onto unsimulated tiles.</span>")
+		return 0
 
 	if (src.density)
 		if (feedback)

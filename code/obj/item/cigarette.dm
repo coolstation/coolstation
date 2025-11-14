@@ -120,7 +120,7 @@
 			if(prob(3))
 				broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/cigarettes, 1, 1)
 
-			hit_type = DAMAGE_BURN
+			//hit_type = DAMAGE_BURN
 
 	proc/put_out(var/mob/user as mob, var/message as text)
 		if (src.on == 1)
@@ -204,11 +204,15 @@
 					src.light(user, "<span class='alert'><b>[user]</b> lights [his_or_her(user)] [src.name] with [M]'s flaming body. That's cold, man. That's real cold.</span>")
 				return
 			else if (src.on == 1)
-				src.put_out(user, "<span class='alert'><b>[user]</b> puts [src] out on [target].</span>")
+				if (user.traitHolder && user.traitHolder.hasTrait("hardcore") && target == user)
+					src.put_out(user, "<span class='alert'>With zero hesitation, <b>[user]</b> puts [src] out on [himself_or_herself(user)] and doesn't even scream. God damn.</span>")
+				else src.put_out(user, "<span class='alert'><b>[user]</b> puts [src] out on [target].</span>")
+
 				if (ishuman(target))
 					var/mob/living/carbon/human/chump = target
 					if (!chump.stat)
-						chump.emote("scream")
+						if (!chump.traitHolder || (chump.traitHolder && !chump.traitHolder.hasTrait("hardcore")))
+							chump.emote("scream")
 				if (src.exploding)
 					trick_explode()
 				return
@@ -249,10 +253,9 @@
 				if (9) message_append = " Wow!"
 				if (10,11,12,13) message_append = ""
 			user.visible_message("<span class='alert'><B>[user]</B> blows smoke right into <B>[target]</B>'s face![message_append]</span>", group = "[user]_blow_smoke_at_[target]")
-#ifdef DATALOGGER
+			JOB_XP_FORCE(user,"CIGARETTE",5)
 			if (target.mind && target.mind.assigned_role == "Clown")
 				game_stats.Increment("clownabuse")
-#endif
 			var/mob/living/carbon/human/human_target = target
 			if (human_target && rand(1,5) == 1)
 				SPAWN_DBG(0) target.emote("cough")
@@ -271,6 +274,7 @@
 				if (9) message = "<B>[user]</B> pulls on [his_or_her(user)] [src.name]."
 				//if (10) message = "<B>[user]</B> blows out some smoke in the shape of a [pick("butt","bee","heart","burger","gun","cube","face","dog","star")]!"
 			user.visible_message("<span class='alert'>[message]</span>", group = "blow_smoke")
+			JOB_XP_FORCE(user,"CIGARETTE",2)
 		src.cycle = 0 //do the transfer on the next cycle. Also means we get the lung damage etc rolls
 
 		src.puff_ready = 0
@@ -296,6 +300,7 @@
 							H.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
 						src.reagents.trans_to(M, puffrate)
 						src.reagents.reaction(M, INGEST, puffrate)
+						JOB_XP_FORCE(H,"CIGARETTE",1)
 						//lung damage
 						if (prob(40))
 							if (prob(70))
@@ -304,6 +309,7 @@
 							else
 								if (!H.organHolder.right_lung.robotic)
 									H.organHolder.damage_organ(0, 0, 1, "right_lung")
+							JOB_XP_FORCE(H,"CIGARETTE",2)
 				else
 					src.reagents.trans_to(M, puffrate)
 					src.reagents.reaction(M, INGEST, puffrate)
@@ -1175,6 +1181,7 @@
 		src.item_state = "zippoon"
 		light.enable()
 		processing_items |= src
+		src.tool_flags |= TOOL_OPENFLAME
 		if (user != null)
 			user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
 			playsound(user, 'sound/items/zippo_open.ogg', 30, 1)
@@ -1187,6 +1194,7 @@
 		src.item_state = "zippo"
 		light.disable()
 		processing_items.Remove(src)
+		src.tool_flags &= ~TOOL_OPENFLAME
 		if (user != null)
 			user.visible_message("<span class='alert'>You hear a quiet click, as [user] shuts off [src] without even looking what they're doing. Wow.</span>")
 			playsound(user, 'sound/items/zippo_close.ogg', 30, 1)

@@ -236,7 +236,7 @@
 			if (movement_modifier)
 				APPLY_MOVEMENT_MODIFIER(M, movement_modifier, src.type)
 			if (!needs_oxy)
-				APPLY_MOB_PROPERTY(M, PROP_BREATHLESS, src.type)
+				APPLY_ATOM_PROPERTY(M, PROP_BREATHLESS, src.type)
 			src.AH = M.bioHolder?.mobAppearance // i mean its called appearance holder for a reason
 			if(!(src.mutant_appearance_flags & NOT_DIMORPHIC))
 				MakeMutantDimorphic(M)
@@ -278,7 +278,7 @@
 			if (movement_modifier)
 				REMOVE_MOVEMENT_MODIFIER(mob, movement_modifier, src.type)
 			if (needs_oxy)
-				REMOVE_MOB_PROPERTY(mob, PROP_BREATHLESS, src.type)
+				REMOVE_ATOM_PROPERTY(mob, PROP_BREATHLESS, src.type)
 
 			var/list/obj/item/clothing/restricted = list(mob.w_uniform, mob.shoes, mob.wear_suit)
 			for (var/obj/item/clothing/W in restricted)
@@ -901,7 +901,7 @@
 					make_spitter(M)
 
 			M.add_stam_mod_max("zombie", 100)
-			APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "zombie", -5)
+			APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "zombie", -5)
 
 			SHOW_ZOMBIE_TIPS(M)
 
@@ -933,7 +933,7 @@
 	disposing()
 		if (ishuman(mob))
 			mob.remove_stam_mod_max("zombie")
-			REMOVE_MOB_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "zombie")
+			REMOVE_ATOM_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "zombie")
 		..()
 
 	proc/add_ability(var/mob/living/carbon/human/H)
@@ -986,7 +986,8 @@
 
 					mob.blinded = 0
 					mob.bleeding = 0
-					mob.blood_volume = 500
+					mob.reagents.remove_any(mob.blood_id, INFINITY)
+					mob.reagents.add_reagent(mob.blood_id, mob.ideal_blood_volume, temp_new = mob.base_body_temp)
 
 					if (!mob.organHolder)
 						mob.organHolder = new(mob)
@@ -1048,12 +1049,12 @@
 		if(ishuman(mob))
 			src.add_ability(mob)
 			M.add_stam_mod_max("vampiric_thrall", 100)
-			//APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "vampiric_thrall", 15)
+			//APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "vampiric_thrall", 15)
 
 	disposing()
 		if (ishuman(mob))
 			mob.remove_stam_mod_max("vampiric_thrall")
-			//REMOVE_MOB_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "vampiric_thrall")
+			//REMOVE_ATOM_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "vampiric_thrall")
 		..()
 
 	proc/add_ability(var/mob/living/carbon/human/H)
@@ -1070,7 +1071,7 @@
 		blood_points = max(0,blood_points)
 		cleanable_tally += (prev_blood - blood_points)
 		if (cleanable_tally > 20)
-			make_cleanable(/obj/decal/cleanable/blood,get_turf(mob))
+			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,get_turf(mob))
 			cleanable_tally = 0
 
 		mob.max_health = blood_points * blood_to_health_scalar
@@ -1109,12 +1110,13 @@
 		..()
 		if(ishuman(M))
 			M.mob_flags |= IS_BONER
-			M.blood_id = "calcium"
-			all_blood_reagents |= "calcium"
+			M.replace_blood_with("calcium")
 			M.mob_flags |= SHOULD_HAVE_A_TAIL
 
 	disposing()
 		if (ishuman(mob))
+			var/mob/living/carbon/human/H = mob
+			H.replace_blood_with(initial(H.blood_id))
 			mob.mob_flags &= ~IS_BONER
 			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
 		. = ..()
@@ -1155,18 +1157,20 @@
 		emote_overrides = abomination_emotes
 		if(ruff_tuff_and_ultrabuff && ishuman(M))
 			M.add_stam_mod_max("abomination", 100)
-			APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "abomination", 100)
-			M.add_stun_resist_mod("abomination", 1000)
-			APPLY_MOB_PROPERTY(M, PROP_CANTSPRINT, src)
+			APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "abomination", 100)
+			APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "abomination", 1000)
+			APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "abomination", 1000)
+			APPLY_ATOM_PROPERTY(M, PROP_CANTSPRINT, src)
 		last_drain = world.time
 		return ..(M)
 
 	disposing()
 		if(mob)
 			mob.remove_stam_mod_max("abomination")
-			REMOVE_MOB_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "abomination")
-			mob.remove_stun_resist_mod("abomination")
-			REMOVE_MOB_PROPERTY(mob, PROP_CANTSPRINT, src)
+			REMOVE_ATOM_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "abomination")
+			REMOVE_ATOM_PROPERTY(mob, PROP_STUN_RESIST, "abomination")
+			REMOVE_ATOM_PROPERTY(mob, PROP_STUN_RESIST_MAX, "abomination")
+			REMOVE_ATOM_PROPERTY(mob, PROP_CANTSPRINT, src)
 		return ..()
 
 
@@ -1246,8 +1250,9 @@
 			mob.AddComponent(/datum/component/consume/can_eat_inedible_organs, 1) // can also eat heads
 			mob.mob_flags |= SHOULD_HAVE_A_TAIL
 			mob.add_stam_mod_max("werewolf", 40) // Gave them a significant stamina boost, as they're melee-orientated (Convair880).
-			APPLY_MOB_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "werewolf", 9) //mbc : these increase as they feast now. reduced!
-			mob.add_stun_resist_mod("werewolf", 40)
+			APPLY_ATOM_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "werewolf", 9) //mbc : these increase as they feast now. reduced!
+			APPLY_ATOM_PROPERTY(mob, PROP_STUN_RESIST, "werewolf", 40)
+			APPLY_ATOM_PROPERTY(mob, PROP_STUN_RESIST_MAX, "werewolf", 40)
 			mob.max_health += 50
 			health_update_queue |= mob
 			src.original_name = mob.real_name
@@ -1264,8 +1269,9 @@
 			var/datum/component/D = mob.GetComponent(/datum/component/consume/can_eat_inedible_organs)
 			D?.RemoveComponent(/datum/component/consume/can_eat_inedible_organs)
 			mob.remove_stam_mod_max("werewolf")
-			REMOVE_MOB_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "werewolf")
-			mob.remove_stun_resist_mod("werewolf")
+			REMOVE_ATOM_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "werewolf")
+			REMOVE_ATOM_PROPERTY(mob, PROP_STUN_RESIST, "werewolf")
+			REMOVE_ATOM_PROPERTY(mob, PROP_STUN_RESIST_MAX, "werewolf")
 			mob.max_health -= 50
 			health_update_queue |= mob
 			mob.bioHolder.RemoveEffect("protanopia")
@@ -1324,12 +1330,12 @@
 		. = ..()
 		if(ishuman(M))
 			M.add_stam_mod_max("hunter", 50)
-			APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "hunter", 10)
+			APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "hunter", 10)
 
 	disposing()
 		if(ishuman(mob))
 			mob.remove_stam_mod_max("hunter")
-			REMOVE_MOB_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "hunter")
+			REMOVE_ATOM_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "hunter")
 		return ..()
 
 	sight_modifier()
@@ -1562,7 +1568,7 @@
 		. = ..()
 		if(ishuman(M))
 			M.mob_flags |= SHOULD_HAVE_A_TAIL
-		APPLY_MOB_PROPERTY(M, PROP_RADPROT, src, 100)
+		APPLY_ATOM_PROPERTY(M, PROP_RADPROT, src, 100)
 
 	say_verb()
 		return "clicks"
@@ -1575,7 +1581,7 @@
 		if(ishuman(mob))
 			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
 		if(mob)
-			REMOVE_MOB_PROPERTY(mob, PROP_RADPROT, src)
+			REMOVE_ATOM_PROPERTY(mob, PROP_RADPROT, src)
 		. = ..()
 
 /datum/mutantrace/cat // god imagine gatekeeping this shit
@@ -1752,7 +1758,7 @@
 			if(ishuman(mob))
 				H.setStatus("maxhealth-", null, -50)
 				H.add_stam_mod_max("kudzu", -100)
-				APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "kudzu", -5)
+				APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "kudzu", -5)
 				H.bioHolder.AddEffect("xray", magical=1)
 				H.abilityHolder = new /datum/abilityHolder/kudzu(H)
 				H.abilityHolder.owner = H
@@ -1777,7 +1783,7 @@
 				H.abilityHolder.removeAbility(/datum/targetable/kudzu/kudzusay)
 				H.abilityHolder.removeAbility(/datum/targetable/kudzu/vine_appendage)
 			H.remove_stam_mod_max("kudzu")
-			REMOVE_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "kudzu")
+			REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "kudzu")
 		return ..()
 /* Commented out as this bypasses restricted Z checks. We will just lazily give them xray genes instead
 	// vision modifier (see_mobs, etc i guess)
@@ -1863,16 +1869,13 @@
 			mob.kickMessage = "stomps"
 			mob.traitHolder?.addTrait("hemophilia")
 
-			H.blood_id = "milk"
-			all_blood_reagents |= "milk"
-			H.blood_color = "FFFFFF"
+			mob.replace_blood_with("milk")
 
 
 	disposing()
 		if (ishuman(mob))
 			var/mob/living/carbon/human/H = mob
-			H.blood_id = initial(H.blood_id)
-			H.blood_color = initial(H.blood_color)
+			H.replace_blood_with(initial(H.blood_id))
 			if (H.mob_flags & SHOULD_HAVE_A_TAIL)
 				H.mob_flags &= ~SHOULD_HAVE_A_TAIL
 			H.kickMessage = initial(H.kickMessage)
@@ -1909,18 +1912,13 @@
 		var/obj/item/storage/toilet/toilet = locate() in mob.loc
 		var/obj/item/reagent_containers/glass/beaker = locate() in mob.loc
 
-		var/can_output = 0
-		if (ishuman(mob))
-			var/mob/living/carbon/human/H = mob
-			if (H.blood_volume > 0)
-				can_output = 1
-
-		if (!can_output)
+		if (!mob.reagents?.total_volume)
 			.= "<B>[mob]</B> strains, but fails to output milk!"
 		else if (toilet && (mob.buckled != null))
-			for (var/obj/item/storage/toilet/T in mob.loc)
+			for (var/obj/item/storage/toilet/terlet in mob.loc)
 				.= "<B>[mob]</B> dispenses milk into the toilet. What a waste."
-				T.clogged += 0.10
+				terlet.clogged += 0.25
+				transfer_blood(mob, terlet, 10)
 				break
 		else if (beaker)
 			.= pick("<B>[mob]</B> takes aim and dispenses some milk into the beaker.", "<B>[mob]</B> takes aim and dispenses milk into the beaker!", "<B>[mob]</B> fills the beaker with milk!")
@@ -1937,7 +1935,7 @@
 			.= (pick("<B>[mob]</B> milk fall out.", "<B>[mob]</B> makes a milk puddle on the floor."))
 
 			var/turf/T = get_turf(mob)
-			bleed(mob, 10, 3, T)
+			bleed(mob, 10, T)
 			T.react_all_cleanables()
 
 

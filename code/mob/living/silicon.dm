@@ -36,6 +36,7 @@
 /mob/living/silicon/New()
 	..()
 	src.botcard = new /obj/item/card/id(src)
+	APPLY_ATOM_PROPERTY(src, PROP_CAN_CONSTRUCT_WITHOUT_HOLDING, src)
 
 /mob/living/silicon/disposing()
 	req_access = null
@@ -265,12 +266,13 @@
 					if (S.client && S.client.holder && src.mind)
 						thisR = "<span class='adminHearing' data-ctx='[S.client.chatOutput.getContextFlags()]'>[rendered]</span>"
 					S.show_message(thisR, 2)
+/*
 			else if(istype(S, /mob/living/intangible/flock))
 				var/mob/living/intangible/flock/f = S
 				if(f.flock?.snooping)
 					var/flockrendered = "<i><span class='game say'>[flockBasedGarbleText("Robotic Talk", -20, f.flock)], <span class='name' data-ctx='\ref[src.mind]'>[flockBasedGarbleText(src.name, -15, f.flock)]</span> <span class='message'>[flockBasedGarbleText(message_a, 0, f.flock)]</span></span></i>"
 					f.show_message(flockrendered, 2)
-
+*/
 	var/list/listening = hearers(1, src)
 	listening |= src
 
@@ -712,9 +714,7 @@ var/global/list/module_editors = list()
 	logTheThing("combat", src, null, "is struck by [AM] [AM.is_open_container() ? "[log_reagents(AM)]" : ""] at [log_loc(src)].")
 	random_brute_damage(src, AM.throwforce,1)
 
-	#ifdef DATALOGGER
 	game_stats.Increment("violence")
-	#endif
 
 	if(AM.throwforce >= 40)
 		src.throw_at(get_edge_target_turf(src,get_dir(AM, src)), 10, 1)

@@ -3,7 +3,7 @@
 	desc = "A small impulse drive that moves the shuttle."
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "propulsion"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 0
 
@@ -12,7 +12,7 @@
 	desc = "A weapons system for shuttles and similar craft."
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "shuttle_laser"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 0
 
@@ -24,6 +24,6 @@
 	desc = "A generator unit that uses complex technology."
 	icon = 'icons/turf/shuttle.dmi'
 	icon_state = "heater"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 0

@@ -52,7 +52,7 @@
 		return null
 
 	on_tick()
-		if (HAS_MOB_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
+		if (HAS_ATOM_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
 			return
 
 		if(!holder.target)
@@ -90,7 +90,7 @@
 			. = 1
 
 	on_tick()
-		if (HAS_MOB_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
+		if (HAS_ATOM_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
 			return
 
 		if(!holder.target)
@@ -144,7 +144,7 @@
 			. = 1
 
 	on_tick()
-		if (HAS_MOB_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
+		if (HAS_ATOM_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
 			return
 
 		if(!holder.target)
@@ -180,7 +180,7 @@
 	var/last_seek = 0
 
 	on_tick()
-		if (HAS_MOB_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
+		if (HAS_ATOM_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
 			return
 
 		if(!holder.target)
@@ -217,7 +217,7 @@
 
 					holder.ownhuman.hand_attack(M, params)
 				if(prob(25))
-					holder.move_circ(holder.target,2)
+					holder.move_circ(holder.target,1) // trying 2 -> 1
 
 		..()
 
@@ -231,7 +231,7 @@
 
 	on_tick()
 
-		if (HAS_MOB_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
+		if (HAS_ATOM_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
 			return
 
 		if(!holder.target)
@@ -294,7 +294,7 @@
 	var/last_seek = 0
 
 	on_tick()
-		if (HAS_MOB_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
+		if (HAS_ATOM_PROPERTY(holder.ownhuman, PROP_CANTMOVE) || !isalive(holder.ownhuman))
 			return
 
 		if(!holder.target)

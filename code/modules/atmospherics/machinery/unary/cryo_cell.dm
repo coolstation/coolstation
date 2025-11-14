@@ -1,9 +1,10 @@
 /obj/machinery/atmospherics/unary/cryo_cell
 	name = "cryogenic healing pod"
+	hint = "set this up by wrenching the oxygen tank to the connector port, placing the cryogenic fluid beaker into the cryo tube, and activating the cooler on the lowest temperature."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "celltop-P"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_BASE//MOB_EFFECT_LAYER
 	flags = NOSPLASH
 	var/on = 0
@@ -173,7 +174,7 @@
 			beaker_text = "<B>Beaker:</B> <A href='byond://?src=\ref[src];eject=1'>Eject</A><BR>"
 			beaker_text += "<B>Beaker Contents:</B> <A href='byond://?src=\ref[src];show_beaker_contents=1'>[show_beaker_contents ? "Hide" : "Show"]</A> "
 			if (show_beaker_contents)
-				beaker_text += "<BR>[scan_reagents(src.beaker)]"
+				beaker_text += "<BR>[scan_reagents(src.beaker, show_volume = 1)]"
 		else
 			beaker_text = "<B>Beaker:</B> <FONT color=red>No beaker loaded</FONT>"
 

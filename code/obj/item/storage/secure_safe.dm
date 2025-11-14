@@ -452,7 +452,7 @@
 	flags = FPRINT | TABLEPASS
 	force = 8.0
 	w_class = W_CLASS_BULKY
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 0
 	mats = 8
 	desc = "A extremely tough secure safe."
@@ -505,8 +505,8 @@
 					var/obj/item/spacecash/thousand/S = new()
 					S.setup(src)
 			if (7)
-				new /obj/item/gun/modular/NT/long/shotty(src)
-				new /obj/item/stackable_ammo/scatter/slug_rubber/five(src)
+				new /obj/item/gun/modular/NT/shotty(src)
+				new /obj/item/stackable_ammo/shotgun/slug_rubber/five(src)
 				for (var/i=3, i>0, i--)
 					var/obj/item/spacecash/thousand/S = new()
 					S.setup(src)
@@ -635,7 +635,7 @@
 			if (1)
 				new /obj/item/storage/pill_bottle/cyberpunk(src)
 				new /obj/item/storage/pill_bottle/ipecac(src)
-				new /obj/item/gun/modular/italian/basic(src)
+				new /obj/item/gun/modular/italian/revolver/basic(src)
 				new /obj/item/stackable_ammo/pistol/NT/five(src)
 				new /obj/item/paper/orangeroomsafe(src)
 			if (2)
@@ -683,8 +683,8 @@
 				var/obj/item/spacecash/random/tourist/S = new()
 				S.setup(src)
 			if (3)
-				new /obj/item/gun/modular/NT/long/shotty(src)
-				new /obj/item/stackable_ammo/scatter/slug_rubber/ten(src)
+				new /obj/item/gun/modular/NT/shotty(src)
+				new /obj/item/stackable_ammo/shotgun/slug_rubber/ten(src)
 			if (4)
 				new /obj/item/paper/freeze(src)
 
@@ -709,7 +709,7 @@
 /obj/item/storage/secure/ssafe/icemoon
 	configure_mode = 0
 	random_code = 1
-	spawn_contents = list(/obj/item/gun/modular/italian/italiano,
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/improved,
 	/obj/item/chilly_orb, // a thing to confuse people
 	/obj/item/spacecash/thousand = 3)
 
@@ -718,7 +718,7 @@
 	random_code = 1
 	spawn_contents = list(/obj/item/robot_foodsynthesizer,\
 	/obj/item/spacecash/thousand,\
-	/obj/item/gun/kinetic/derringer/empty)
+	/obj/item/stackable_ammo/rifle/tranq/three)
 
 /obj/item/storage/secure/ssafe/shooting_range //prefab safe
 	configure_mode = 0

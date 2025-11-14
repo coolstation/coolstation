@@ -12,7 +12,8 @@
 #endif
 	name = "conveyor belt"
 	desc = "A conveyor belt."
-	anchored = 1
+	pass_unstable = TRUE
+	anchored = ANCHORED
 	power_usage = 100
 	layer = 2
 	machine_registry_idx = MACHINES_CONVEYORS
@@ -108,7 +109,7 @@
 		return
 	if (ismob(A))
 		var/mob/peep = A
-		if(HAS_MOB_PROPERTY(peep, PROP_ATOM_FLOATING)) // Don't put new checks here, apply this atom prop instead.
+		if(HAS_ATOM_PROPERTY(peep, PROP_ATOM_FLOATING)) // Don't put new checks here, apply this atom prop instead.
 			return
 	var/movedir = dir	// base movement dir
 	if(divert && dir == divdir)	// update if diverter present
@@ -269,7 +270,8 @@
 	icon_state = "diverter0"
 	name = "diverter"
 	desc = "A diverter arm for a conveyor belt."
-	anchored = 1
+	pass_unstable = TRUE
+	anchored = ANCHORED
 	layer = FLY_LAYER
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT
 	var/obj/machinery/conveyor/conv // the conveyor this diverter works on
@@ -402,7 +404,7 @@
 	var/id = "" 				// must match conveyor IDs to control them
 
 	var/list/conveyors		// the list of converyors that are controlled by this switch
-	anchored = 1
+	anchored = ANCHORED
 
 
 
@@ -567,7 +569,7 @@
 	name = "carousel power unit"
 	desc = "All power dumped into this power unit will boost the speed of the station's cargo carousel."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	event_handler_flags = USE_CANPASS | USE_FLUID_ENTER
 
 	var/icon_base = "battery-"

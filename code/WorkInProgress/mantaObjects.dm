@@ -13,7 +13,7 @@
 
 /obj/decal/mantaBubbles
 	density = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	layer =  EFFECTS_LAYER_4
 	event_handler_flags = USE_FLUID_ENTER
 	name = ""
@@ -53,7 +53,7 @@
 	desc = "An electrical junction box is an enclosure housing electrical connections, to protect the connections and provide a safety barrier."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "junctionbox"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	var/open = 0
 	var/iconopen = "junctionbox_open"
 	var/iconclosed = "junctionbox"
@@ -149,7 +149,7 @@
 	name = "Communications Tower"
 	icon_state = "commstower"
 	density = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	var/health = 100
 	var/maxhealth = 100
 	var/broken = 0
@@ -192,7 +192,7 @@
 	icon = 'icons/misc/32x64.dmi'
 	icon_state = "englrt0"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	var/recharging =0
 	var/id = "shuttle" //The main location of the teleporter
 	var/recharge = 20 //A short recharge time between teleports
@@ -262,20 +262,6 @@
 
 //CONSTRUCTION WORKER STUFF//
 
-/obj/item/sledgehammer
-	name = "sledgehammer"
-	desc = "A heavy hammer that takes great deal of strenght to wield."
-	icon_state = "sledgehammer"
-	item_state = "sledgehammer"
-	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
-	two_handed = 1
-	click_delay = 30
-	force = 50
-
-	New()
-		..()
-		BLOCK_SETUP(BLOCK_ROD)
-
 /obj/item/constructioncone
 	desc = "Caution!"
 	name = "construction cone"
@@ -296,7 +282,7 @@
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "impact_marker"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	mouse_opacity = 0
 	desc = "Uh oh.."
 	pixel_x = -16
@@ -310,7 +296,7 @@
 	desc = "A flight recorder is an electronic recording device placed in an spacecraft for the purpose of facilitating the investigation of accidents and incidents. Someone from Nanotrasen would surely want to see this."
 	item_state = "electropack"
 	force = 5.0
-
+/*
 /turf/floor/polarispit
 	name = "deep abyss"
 	desc = "You can't see the bottom."
@@ -337,7 +323,7 @@
 
 		pitwall
 			icon_state = "pit_wall"
-
+*/
 //-------------------------------------------- NSS MANTA SECRET VAULT --------------------------------------------
 
 /obj/vaultdoor
@@ -345,7 +331,7 @@
 	icon = 'icons/obj/large/96x32.dmi'
 	icon_state = "vaultdoor_closed"
 	density = 1
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	opacity = 1
 	bound_width = 96
 	appearance_flags = TILE_BOUND

@@ -29,7 +29,7 @@ var/list/ban_from_airborne_fluid = list()
 	mouse_opacity = 1
 	opacity = 0
 	layer = FLUID_AIR_LAYER
-	event_handler_flags = Z_ANCHORED
+	event_handler_flags = USE_HASENTERED | Z_ANCHORED
 
 	set_up(var/newloc, var/do_enters = 1)
 		if (is_setup) return
@@ -76,7 +76,6 @@ var/list/ban_from_airborne_fluid = list()
 		alpha = 255
 		color = "#ffffff"
 		amt = 0
-		avg_viscosity = initial(avg_viscosity)
 		movement_speed_mod = 0
 		group = 0
 		touched_other_group = 0
@@ -136,6 +135,11 @@ var/list/ban_from_airborne_fluid = list()
 
 		src.group.reagents.reaction(M, TOUCH, react_volume/2, 0, paramslist = plist)
 		src.group.reagents.reaction(M, INGEST, react_volume/2,1,src.group.members.len, paramslist = plist)
+		if(isliving(M))
+			var/mob/living/L = M
+			if(L.organHolder && L.organHolder.stomach)
+				src.group.reagents.trans_to(L.organHolder.stomach, react_volume)
+				return
 		src.group.reagents.trans_to(M, react_volume)
 
 	//incorporate touch_modifier?
@@ -149,10 +153,6 @@ var/list/ban_from_airborne_fluid = list()
 		return
 		//if (AM.event_handler_flags & USE_FLUID_ENTER)
 		//	AM.ExitedFluid(src,newloc)
-
-
-	add_tracked_blood(atom/movable/AM as mob|obj)
-		.=0
 
 	update() //returns list of created fluid tiles
 		if (!src.group) return
@@ -188,7 +188,6 @@ var/list/ban_from_airborne_fluid = list()
 						F.finalcolor = src.finalcolor
 						F.alpha = src.finalalpha
 						F.finalalpha = src.finalalpha
-						F.avg_viscosity = src.avg_viscosity
 						F.last_depth_level = src.last_depth_level
 						F.step_sound = src.step_sound
 						F.movement_speed_mod = src.movement_speed_mod
@@ -203,7 +202,7 @@ var/list/ban_from_airborne_fluid = list()
 
 						F.done_init()
 
-
+		var/turf/T = get_turf(src)
 		for( var/dir in cardinal )
 			LAGCHECK(LAG_LOW)
 			if (!src.group)
@@ -215,84 +214,96 @@ var/list/ban_from_airborne_fluid = list()
 				continue
 			if (!IS_VALID_FLUID_TURF(t))
 				blocked_dirs++
-				if (IS_PERSPECTIVE_WALL(t))
+#ifdef STRICT_PERSPECTIVE_FLUID
+			if (!IS_VALID_FLUID_TURF(t))
+				blocked_dirs++
+				if (IS_PERSPECTIVE_BLOCK(t))
 					blocked_perspective_objects["[dir]"] = 1
 				continue
+
+			if(!t.gas_cross(T))
+				continue
+#else
+			if(!IS_VALID_FLUID_TURF(t) || !t.gas_cross(T))
+				blocked_dirs++
+				blocked_perspective_objects["[dir]"] = 1
+				continue
+#endif
 			if (t.active_airborne_liquid && !t.active_airborne_liquid.pooled)
 				blocked_dirs++
 				if (t.active_airborne_liquid.group && t.active_airborne_liquid.group != src.group)
 					touched_other_group = t.active_airborne_liquid.group
 					t.active_airborne_liquid.icon_state = "airborne"
 				continue
-			if(! t.density )
-				var/suc = 1
-				var/push_thing = 0
-				for(var/obj/thing in t.contents) //HEY maybe do item pushing here since you're looping thru turf contents anyway??
-					LAGCHECK(LAG_MED)
-					var/found = 0
-					if (IS_SOLID_TO_FLUID(thing))
+			var/suc = 1
+			var/push_thing = 0
+			for(var/obj/thing in t.contents) //HEY maybe do item pushing here since you're looping thru turf contents anyway??
+				LAGCHECK(LAG_MED)
+				var/found = 0
+				if (IS_SOLID_TO_FLUID(thing))
+					found = 1
+				else if (!push_thing && !thing.anchored)
+					push_thing = thing
+				/*
+				for(var/type_string in solid_to_fluid)
+					if (istype(thing,text2path(type_string)))
 						found = 1
-					else if (!push_thing && !thing.anchored)
-						push_thing = thing
-					/*
-					for(var/type_string in solid_to_fluid)
-						if (istype(thing,text2path(type_string)))
-							found = 1
-							break
-					*/
-					if (found)
-						if( thing.density )
-							suc=0
-							blocked_dirs++
-							if (IS_PERSPECTIVE_BLOCK(thing))
-							//for(var/type_string in perspective_blocks)
-							//	if (istype(thing,text2path(type_string)))
-								blocked_perspective_objects["[dir]"] = 1
-							break
+						break
+				*/
+				if (found)
+					if( thing.density )
+						suc=0
+						blocked_dirs++
+#ifdef STRICT_PERSPECTIVE_FLUID
+						if (IS_PERSPECTIVE_BLOCK(thing))
+						//for(var/type_string in perspective_blocks)
+						//	if (istype(thing,text2path(type_string)))
+							blocked_perspective_objects["[dir]"] = 1
+#endif
+						break
 
-						if (istype(thing,/obj/channel))
-							src.touched_channel = thing //Save this for later, we can't make use of it yet
-							suc=0
-							break
+					if (istype(thing,/obj/channel))
+						src.touched_channel = thing //Save this for later, we can't make use of it yet
+						suc=0
+						break
 
-				if(suc && src.group) //group went missing? ok im doin a check here lol
-					LAGCHECK(LAG_MED)
-					spawned_any = 1
-					src.icon_state = "airborne"
-					var/obj/fluid/F = new /obj/fluid/airborne()
-					F.set_up(t,0)
-					if (!F || !src.group) continue //set_up may decide to remove F
+			if(suc && src.group) //group went missing? ok im doin a check here lol
+				LAGCHECK(LAG_MED)
+				spawned_any = 1
+				src.icon_state = "airborne"
+				var/obj/fluid/F = new /obj/fluid/airborne()
+				F.set_up(t,0)
+				if (!F || !src.group) continue //set_up may decide to remove F
 
-					F.amt = src.group.amt_per_tile
-					F.name = src.name
-					F.color = src.finalcolor
-					F.finalcolor = src.finalcolor
-					F.alpha = src.finalalpha
-					F.finalalpha = src.finalalpha
-					F.avg_viscosity = src.avg_viscosity
-					F.last_depth_level = src.last_depth_level
-					F.step_sound = src.step_sound
-					F.movement_speed_mod = src.movement_speed_mod
+				F.amt = src.group.amt_per_tile
+				F.name = src.name
+				F.color = src.finalcolor
+				F.finalcolor = src.finalcolor
+				F.alpha = src.finalalpha
+				F.finalalpha = src.finalalpha
+				F.last_depth_level = src.last_depth_level
+				F.step_sound = src.step_sound
+				F.movement_speed_mod = src.movement_speed_mod
 
-					if (src.group)
-						F.group = src.group
-						. += F
+				if (src.group)
+					F.group = src.group
+					. += F
+				else
+					var/datum/fluid_group/FG = new
+					FG.add(F, src.group.amt_per_tile)
+					F.group = FG
+
+				F.done_init()
+				last_spread_was_blocked = 0
+
+				if (push_thing && prob(50))
+					if (src.last_depth_level <= 3)
+						if (isitem(push_thing))
+							var/obj/item/I = push_thing
+							if (I.w_class <= src.last_depth_level)
+								step_away(I,src)
 					else
-						var/datum/fluid_group/FG = new
-						FG.add(F, src.group.amt_per_tile)
-						F.group = FG
-
-					F.done_init()
-					last_spread_was_blocked = 0
-
-					if (push_thing && prob(50))
-						if (src.last_depth_level <= 3)
-							if (isitem(push_thing))
-								var/obj/item/I = push_thing
-								if (I.w_class <= src.last_depth_level)
-									step_away(I,src)
-						else
-							step_away(push_thing,src)
+						step_away(push_thing,src)
 
 		if (spawned_any && prob(40))
 			playsound( src.loc, 'sound/effects/smoke_tile_spread.ogg', 30,1,7)

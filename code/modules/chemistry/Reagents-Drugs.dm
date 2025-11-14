@@ -6,6 +6,7 @@ datum
 	reagent
 		drug/
 			name = "some drug"
+			taste = "like drugs"
 
 		drug/bathsalts
 			name = "bath salts"
@@ -22,8 +23,10 @@ datum
 			depletion_rate = 0.6
 			energy_value = 1
 			hunger_value = -0.1
-			bladder_value = -0.1
+			kidney_multiplier = 1.4
 			thirst_value = -0.05
+			contraband = 8
+			taste = "salty"
 			var/static/list/halluc_attackers = list(
 				new /image('icons/mob/critter.dmi',"death") = list("death","the bell guy","GO METS!"),
 				new /image('icons/mob/critter.dmi', "cluwnespider_queen") = list("your mother","fat fuck","horrible green crab"),
@@ -68,13 +71,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts", 3)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts", 3)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts")
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1) // commence bad times
@@ -198,11 +201,13 @@ datum
 			addiction_min = 5
 			value = 2 // 1 1  :I
 			viscosity = 0.4
-			bladder_value = -0.03
+			kidney_multiplier = 0.9
 			hunger_value = -0.04
 			hygiene_value = -0.5
 			thirst_value = -0.04
 			energy_value = -0.04
+			contraband = 2
+			taste = "extremely disgusting"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -227,10 +232,12 @@ datum
 			overdose = 20
 			value = 20 // 10 2 1 3 1 heat explosion :v
 			energy_value = 1.5
-			bladder_value = -0.1
+			kidney_multiplier = 0.9
 			hunger_value = -0.05
 			thirst_value = -0.05
 			stun_resist = 60
+			contraband = 6
+			taste = "cheap"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -300,6 +307,8 @@ datum
 			transparency = 20
 			value = 6 // 4 2
 			thirst_value = -0.03
+			contraband = 4
+			taste = "slightly bitter"
 			var/static/list/halluc_sounds = list(
 				"punch",
 				'sound/vox/poo-vox.ogg',
@@ -433,6 +442,8 @@ datum
 			transparency = 100
 			value = 5
 			thirst_value = -0.03
+			contraband = 4.2
+			taste = "slightly bee-ter"
 			var/static/list/bee_halluc = list(
 				new /image('icons/mob/bee.dmi',"zombee-wings") = list("zombee", "undead bee", "BZZZZZZZZ"),
 				new /image('icons/mob/bee.dmi',"syndiebee-wings") = list("syndiebee", "evil bee", "syndicate assassin bee", "IT HAS A GUN"),
@@ -480,6 +491,7 @@ datum
 			viscosity = 0.2
 			thirst_value = -0.03
 			minimum_reaction_temperature = T0C+400
+			taste = "illegal"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/myvol = volume
@@ -511,6 +523,8 @@ datum
 			viscosity = 0.4
 			hunger_value = -0.04
 			thirst_value = -0.04
+			contraband = 1
+			taste = "tangy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -550,6 +564,7 @@ datum
 			viscosity = 0.4
 			hunger_value = -0.04
 			thirst_value = 0.03
+			taste = "tangy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -589,17 +604,18 @@ datum
 			value = 3
 			thirst_value = -0.07
 			stun_resist = 8
+			taste = "bitter"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine", 1)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine", 1)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -658,17 +674,19 @@ datum
 			addiction_prob = 100
 			overdose = 70
 			stun_resist = 11
+			contraband = 2
+			taste = "too bitter"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine2", 3)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine2", 3)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine2")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine2")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -762,6 +780,8 @@ datum
 			value = 3
 			viscosity = 0.1
 			thirst_value = -0.3
+			contraband = 4
+			taste = "weird"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -811,13 +831,15 @@ datum
 			overdose = 20
 			hunger_value = -0.1
 			thirst_value = -0.09
+			contraband = 7
 			var/fake_health = 40
+			taste = "sketchy"
 
 			on_remove()
 				src.fake_health = 40
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil")
+					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -844,7 +866,7 @@ datum
 				if(prob(2))
 					boutput(M, "<span class='alert'><b>Your skin feels all rough and dry.</b></span>")
 					random_brute_damage(M, 2 * mult)
-				APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil", src.fake_health)
+				APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil", src.fake_health)
 				..()
 				return
 
@@ -894,6 +916,8 @@ datum
 			transparency = 20
 			viscosity = 0.14
 			thirst_value = -0.1
+			contraband = 2
+			taste = "like catnip"
 			var/static/list/cat_halluc = list(
 				new /image('icons/mob/critter.dmi',"cat-ghost") = list("ghost cat"),
 				new /image('icons/mob/critter.dmi', "cat1-wild") = list("wild cat"),
@@ -937,6 +961,8 @@ datum
 			transparency = 20
 			viscosity = 0.14
 			thirst_value = -0.1
+			contraband = 2
+			taste = "like batnip"
 			var/static/list/bat_halluc = list(
 				new /image('icons/mob/critter.dmi',"bat-dance") = list("ghost bat"),
 				new /image('icons/mob/critter.dmi', "scarybat-dance") = list("wild bat"),
@@ -984,15 +1010,18 @@ datum
 			depletion_rate = 0.2
 			value = 39 // 13c * 3  :v
 			energy_value = 3
-			bladder_value = -0.1
+			kidney_multiplier = 3
 			hunger_value = -0.3
 			thirst_value = -0.2
+			contraband = 18
+			taste = "like meth, like meth, and like meth"
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth")
-					M.remove_stun_resist_mod("triplemeth")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth")
+					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "triplemeth")
+					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "triplemeth")
 
 				if(hascall(holder.my_atom,"removeOverlayComposition"))
 					holder.my_atom:removeOverlayComposition(/datum/overlayComposition/triplemeth)
@@ -1003,8 +1032,9 @@ datum
 				if(!M) M = holder.my_atom
 
 				if(holder.has_reagent("methamphetamine")) return ..() //Since is created by a meth overdose, dont react while meth is in their system.
-				M.add_stun_resist_mod("triplemeth", 98)
-				APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth", 100)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "triplemeth", 98)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "triplemeth", 98)
+				APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth", 100)
 
 				if(hascall(holder.my_atom,"addOverlayComposition"))
 					holder.my_atom:addOverlayComposition(/datum/overlayComposition/triplemeth)
@@ -1064,24 +1094,30 @@ datum
 			depletion_rate = 0.6
 			value = 13 // 9c + 1c + 1c + 1c + heat
 			energy_value = 1.5
-			bladder_value = -0.09
+			kidney_multiplier = 0.8
 			hunger_value = -0.09
 			thirst_value = -0.09
 			stun_resist = 50
+			contraband = 6
+			taste = "like meth"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine", 3)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine", 3)
 				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/energydrink, src.type)
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth")
+					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "triplemeth")
+					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "triplemeth")
+
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine")
 				if(holder && ismob(holder.my_atom))
 					holder.del_reagent("triplemeth")
 				if (ismob(holder?.my_atom))
@@ -1144,6 +1180,8 @@ datum
 			fluid_b = 63
 			transparency = 100
 			depletion_rate = 0.3
+			contraband = 13
+			taste = "unpleasant"
 
 			on_mob_life(var/mob/M, var/mult = 1) // commence bad times
 				if(!M) M = holder.my_atom

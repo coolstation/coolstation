@@ -103,7 +103,7 @@
 	A.icon_state = "batarang"
 	A.icon = 'icons/effects/effects.dmi'
 	A.name = "a batarang"
-	A.anchored = 0
+	A.anchored = UNANCHORED
 	A.set_density(0)
 	var/i
 	for(i=0, i<100, i++)
@@ -112,7 +112,7 @@
 			playsound(T, "sound/impact_sounds/Blade_Small_Bloody.ogg", 70, 0, 0)
 			random_brute_damage(T, 7)
 			take_bleeding_damage(T, usr, 5, DAMAGE_STAB, 0)
-			bleed(T, 3, 1)
+			bleed(T, 3)
 			T.changeStatus("weakened", 7 SECONDS)
 			T.changeStatus("stunned", 7 SECONDS)
 			T.visible_message("<span class='alert'>[T] was struck by the batarang!</span>", "<span class='alert'>You were struck by a batarang!</span>")
@@ -152,7 +152,7 @@
 
 /obj/decal/batman_pow
 	name = "POW!"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	mouse_opacity = 0

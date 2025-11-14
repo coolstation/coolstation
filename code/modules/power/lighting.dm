@@ -57,8 +57,10 @@
 	#define LIGHTING_POWER_FACTOR 40
 	name = "Area Lighting"
 	event_handler_flags = IMMUNE_SINGULARITY | USE_FLUID_ENTER
+	anchored = ANCHORED_TECHNICAL
 	invisibility = INVIS_ALWAYS_ISH
 	flags = TECHNICAL_ATOM
+	pass_unstable = FALSE
 	var/area/my_area = null
 	var/list/lights = list()
 	var/brightness_placeholder = 1	//hey, maybe later use this in a way that is more optimized than iterating through each individual light
@@ -81,9 +83,10 @@
 /obj/machinery/light //basic root of lighting, currently hosts fluorescent/tube/large lights, maybe move that to /obj/machinery/light/large for clarity
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
+	pass_unstable = FALSE
 	icon_state = "tube1"
 	desc = "A lighting fixture."
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
 	plane = PLANE_NOSHADOW_ABOVE
 	text = ""
@@ -126,13 +129,25 @@
 	var/has_glow = TRUE //TODO - transition maps to /obj/machinery/light/fluorescent so this can be false by default
 	var/obj/overlay/glow = null
 
+	var/has_bulb_overlay = FALSE
+	var/image/bulb_overlay
+
 	New()
 		..()
 		light = new
+		light.set_atten_con(initial(src.light_type.atten_con))
 		light.set_brightness(brightness)
 		light.set_color(initial(src.light_type.color_r), initial(src.light_type.color_g), initial(src.light_type.color_b))
 		light.set_height(2.4)
 		light.attach(src)
+
+		if(src.has_bulb_overlay)
+			src.bulb_overlay = image(src.icon, src, "[src.base_state]_g")
+			src.bulb_overlay.plane = PLANE_SELFILLUM
+			src.bulb_overlay.layer = LIGHTING_LAYER_FULLBRIGHT
+			src.bulb_overlay.blend_mode = BLEND_OVERLAY
+			src.bulb_overlay.color = rgb(clamp(src.light.r * 255, 150, 255), clamp(src.light.g * 255, 150, 255), clamp(src.light.b * 220, 150, 255))
+
 		SPAWN_DBG(1 DECI SECOND)
 			update()
 
@@ -145,10 +160,10 @@
 				if (istype(inserted_lamp, allowed_type)) //also catches null
 					insert(null, inserted_lamp) // a lil backwards going by names but shh
 				else
-					inserted_lamp = new light_type()
+					inserted_lamp = new light_type(src)
 					current_lamp = inserted_lamp
 		else
-			inserted_lamp = new light_type()
+			inserted_lamp = new light_type(src)
 			current_lamp = inserted_lamp
 
 
@@ -164,7 +179,10 @@
 		if (has_glow)
 			glow = new(src)//mage(src.icon,src,"[base_state]-glow",PLANE_NOSHADOW_ABOVE,src.dir)
 			glow.icon_state = "[base_state]-glow"
-			glow.vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR | VIS_INHERIT_LAYER | VIS_INHERIT_PLANE //IDK
+			glow.plane = PLANE_LIGHTING
+			glow.layer = LIGHTING_LAYER_BASE
+			glow.blend_mode = BLEND_ADD
+			glow.vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR  //IDK
 			glow.mouse_opacity = FALSE //Here's what we do this for
 
 		var/area/A = get_area(src)
@@ -254,7 +272,7 @@
 	name = "floor lamp"
 	icon = 'icons/obj/lighting.dmi'
 	desc = "A tall and thin lamp that rests comfortably on the floor."
-	anchored = 1
+	anchored = ANCHORED
 	light_type = /obj/item/light/bulb
 	allowed_type = /obj/item/light/bulb
 	fitting = "bulb"
@@ -269,10 +287,15 @@
 	icon_state = "bulb1"
 	base_state = "bulb"
 	fitting = "bulb"
-	brightness = 1.2
+	brightness = 1.5
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light/bulb
 	allowed_type = /obj/item/light/bulb
+	has_bulb_overlay = TRUE
+
+	New()
+		..()
+
 
 /obj/machinery/light/small/auto
 	nostick = FALSE
@@ -289,6 +312,7 @@
 	plane = PLANE_FLOOR
 	allowed_type = /obj/item/light/bulb
 	wallmounted = FALSE
+	has_bulb_overlay = FALSE
 
 //ceiling lights!!
 /obj/machinery/light/small/ceiling
@@ -300,6 +324,7 @@
 	level = 2
 	wallmounted = FALSE
 	ceilingmounted = TRUE
+	has_bulb_overlay = FALSE
 
 //finally redid these sprites
 //good for shitty areas like maint
@@ -307,6 +332,7 @@
 	icon_state = "overbulb1"
 	base_state = "overbulb"
 	desc = "A small bare-bulb lighting fixture, embedded in the ceiling."
+	has_bulb_overlay = FALSE
 
 //emergency lights that turn on when either the power is out or an alert is triggered on the bridge
 /obj/machinery/light/emergency
@@ -320,6 +346,7 @@
 	on = 0
 	removable_bulb = 0
 	has_glow = TRUE
+	has_bulb_overlay = FALSE
 
 //Same as the above but starts on and stays on
 /obj/machinery/light/emergencyflashing
@@ -334,6 +361,7 @@
 	on = 1
 	removable_bulb = 0
 	has_glow = TRUE
+	has_bulb_overlay = FALSE
 
 	//repurpose for actual exit signs per room that flash when the shuttle's here
 	exitsign
@@ -520,7 +548,7 @@
 	name = "tripod light"
 	desc = "A large portable light tripod."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon_state = "tripod1"
 	base_state = "tripod"
 	fitting = "bulb"
@@ -529,6 +557,7 @@
 	light_type = /obj/item/light/big_bulb
 	allowed_type = /obj/item/light/big_bulb
 	power_usage = 0
+	has_bulb_overlay = FALSE
 
 	attackby(obj/item/W, mob/user)
 
@@ -577,6 +606,7 @@
 	wallmounted = FALSE
 	deconstruct_flags = DECON_SIMPLE
 	plane = PLANE_DEFAULT
+	has_bulb_overlay = FALSE
 
 	var/switchon = 0		// independent switching for lamps - not controlled by area lightswitch
 
@@ -601,6 +631,7 @@
 	nostick = 0
 	name = "fluorescent light fixture"
 	light_type = /obj/item/light/tube/neutral
+	has_bulb_overlay = TRUE
 
 /obj/machinery/light/fluorescent/auto
 	nostick = FALSE //do the stick
@@ -620,6 +651,16 @@
 	ceilingmounted = TRUE
 	//check something like wiring for how to set direction relative to what tile you place it by hand, since we can freely rotate this thing unlike floor/ceiling lights and wall lights
 
+/// horrible low pressure sodium lamps that suck
+/obj/machinery/light/sodium
+	name = "low pressure sodium lamp"
+	desc = "A lamp that glows orange by arcing through sodium vapor and mercury. Waterproof, sealed fixture, and awful to look at."
+	has_glow = FALSE
+	has_bulb_overlay = TRUE
+	removable_bulb = FALSE
+	icon_state = "industrial1"
+	base_state = "industrial"
+	light_type = /obj/item/light/tube/sodium
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update()
@@ -664,9 +705,13 @@
 	//if(src.light.enabled != on)
 
 	if (on)
-		light.enable()
+		src.light.enable()
+		if(src.has_bulb_overlay)
+			src.UpdateOverlays(src.bulb_overlay, "bulb")
 	else
-		light.disable()
+		src.light.disable()
+		if(src.has_bulb_overlay)
+			src.UpdateOverlays(null, "bulb")
 
 	SPAWN_DBG(0)
 		// now check to see if the bulb is burned out
@@ -689,6 +734,8 @@
 				current_lamp.update()
 				on = 0
 				light.disable()
+				if(src.has_bulb_overlay)
+					src.UpdateOverlays(null, "bulb")
 			else
 				current_lamp.breakprob += 0.15 // critical that your "increasing probability" thing actually, yknow, increase. ever.
 
@@ -740,7 +787,10 @@
 	inserted_lamp = newlamp
 	current_lamp = inserted_lamp
 	current_lamp.set_loc(null)
+	light.set_atten_con(current_lamp.atten_con)
 	light.set_color(current_lamp.color_r, current_lamp.color_g, current_lamp.color_b)
+	if(src.bulb_overlay)
+		src.bulb_overlay.color = rgb(clamp(current_lamp.color_r * 255, 150, 255), clamp(current_lamp.color_g * 255, 150, 255), clamp(current_lamp.color_b * 220, 150, 255))
 	brightness = initial(brightness)
 	on = has_power()
 	update()
@@ -847,7 +897,7 @@
 	else if(current_lamp.light_status != LIGHT_BROKEN)
 
 
-		if(prob(1+W.force * 5))
+		if(prob(1+W.force * current_lamp.fragility))
 
 			boutput(user, "You hit the light, and it smashes!")
 			logTheThing("station", user, null, "smashes a light at [log_loc(src)]")
@@ -858,8 +908,8 @@
 			if(on && (W.flags & CONDUCT))
 				if(!user.bioHolder.HasEffect("resist_electric"))
 					src.electrocute(user, 50, null, 20000)
-			broken()
-
+			current_lamp.broken()
+			src.broken()
 
 		else
 			boutput(user, "You hit the light!")
@@ -962,16 +1012,18 @@
 // explosion effect
 // destroy the whole light fixture or just shatter it
 
-/obj/machinery/light/ex_act(severity)
+/obj/machinery/light/ex_act(severity, last_touched, epicenter, turf_safe)
+	if(turf_safe)
+		severity = severity - 6
 	switch(severity)
 		if(OLD_EX_SEVERITY_1)
 			qdel(src)
 			return
 		if(OLD_EX_SEVERITY_2)
-			if (prob(75))
+			if (prob(15 * current_lamp.fragility))
 				broken()
 		if(OLD_EX_SEVERITY_3)
-			if (prob(50))
+			if (prob(10 * current_lamp.fragility))
 				broken()
 	return
 
@@ -1117,10 +1169,15 @@
 	var/rigged = 0		// true if rigged to explode
 	var/mob/rigger = null // mob responsible
 	mats = 1
+	var/atten_con = RL_Atten_Constant
 	var/color_r = 1
 	var/color_g = 1
 	var/color_b = 1
 	var/canberigged = 1
+	var/fragility = 5
+
+/obj/item/light/proc/broken()
+	return
 
 /obj/item/light/tube
 	name = "light tube"
@@ -1132,6 +1189,26 @@
 	color_r = 0.95
 	color_g = 0.95
 	color_b = 1
+
+	sodium
+		name = "low pressure sodium tube"
+		desc = "An industrial light tube."
+		color_r = 1.4 // fucked up and evil
+		color_g = 0.6
+		color_b = 0
+		icon_state = "itube-orange"
+		base_state = "itube-orange"
+		fragility = 1
+		atten_con = -0.045
+
+		New()
+			. = ..()
+			src.create_reagents(30)
+			src.reagents.add_reagent("mercury", 5)
+			src.reagents.add_reagent("sodium", 10)
+
+		broken()
+			src.reagents.smoke_start(0)
 
 	red
 		name = "red light tube"
@@ -1303,9 +1380,9 @@
 	base_state = "bulb-yellow"
 	item_state = "contvapour"
 	g_amt = 100
-	color_r = 1
-	color_g = 1
-	color_b = 0.9
+	color_r = 0.98
+	color_g = 0.75
+	color_b = 0.5
 
 	red
 		name = "red light bulb"

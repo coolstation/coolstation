@@ -12,7 +12,7 @@
 	var/obj/our_thing = null
 	var/machine_was_previously_processing = FALSE
 
-	w_class = W_CLASS_BULKY
+	w_class = W_CLASS_HUGE
 
 	New(obj/held_thing, mob/living/holder)
 		if (!istype(held_thing) || !istype(holder))
@@ -81,11 +81,25 @@
 			place_the_thing(get_turf(src), ismob(src.loc) ? src.loc : null)
 		. = ..()
 
-	dropped(mob/user)
-		..()
-		if (our_thing)
-			place_the_thing(get_turf(user), user)
+	set_loc(newloc)
+		var/mob/user = ismob(src.loc) ? src.loc : null
+		. = ..()
+		if (our_thing && isturf(newloc))
+			place_the_thing(newloc, user)
+		else if(user && src.loc != user)
+			REMOVE_MOVEMENT_MODIFIER(user, /datum/movement_modifier/lifting, "lifting")
 
+	Move(target)
+		var/mob/user = ismob(src.loc) ? src.loc : null
+		. = ..()
+		if (our_thing && isturf(src.loc))
+			place_the_thing(src.loc, user)
+		else if(user && src.loc != user)
+			REMOVE_MOVEMENT_MODIFIER(user, /datum/movement_modifier/lifting, "lifting")
+
+	pickup(mob/user)
+		. = ..()
+		APPLY_MOVEMENT_MODIFIER(user, /datum/movement_modifier/lifting, "lifting")
 
 /obj/item/lifted_thing/proc/place_the_thing(atom/target, mob/user, var/params)
 	if (!target)

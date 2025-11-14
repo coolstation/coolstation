@@ -7,7 +7,7 @@
 	icon = 'icons/obj/foodNdrink/espresso.dmi'
 	icon_state = "espresso_machine"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	flags = FPRINT | NOSPLASH | TABLEPASS
 	object_flags = CAN_BE_LIFTED
 	mats = 30
@@ -31,7 +31,7 @@
 		playsound(src.loc, 'sound/impact_sounds/Metal_Clang_2.ogg', 50, 1)
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 		..()
 		if(ismob(usr))
 			var/mob/living/L = usr
@@ -63,42 +63,42 @@
 							switch (drink_choice)  //finds cup in contents and adds chosen drink to it
 								if ("Espresso")
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso",10)
+										C.reagents.add_reagent("espresso", 10, temp_new = T0C + 60)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Latte") // 5:1 milk:espresso
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso", 1.6)
+										C.reagents.add_reagent("espresso", 1.6, temp_new = T0C + 60)
 										C.reagents.add_reagent("milk", 8.4)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Mocha") // 3:1:3 espresso:milk:chocolate
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso", 4.3)
+										C.reagents.add_reagent("espresso", 4.3, temp_new = T0C + 60)
 										C.reagents.add_reagent("milk", 1.4)
 										C.reagents.add_reagent("chocolate", 4.3)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Cappuchino") // 1:1:1 milk foam:milk:espresso
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso", 3.5)
+										C.reagents.add_reagent("espresso", 3.5, temp_new = T0C + 60)
 										C.reagents.add_reagent("milk", 6.5)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Americano") // 3:2 water:espresso
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso", 4)
+										C.reagents.add_reagent("espresso", 4, temp_new = T0C + 60)
 										C.reagents.add_reagent("water", 6)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Decaf") // 1 decaf espresso
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("decafespresso", 10)
+										C.reagents.add_reagent("decafespresso", 10, temp_new = T0C + 60)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
 								if ("Flat White") // 3:2 milk:espresso
 									for(var/obj/item/reagent_containers/food/drinks/espressocup/C in src.contents)
-										C.reagents.add_reagent("espresso", 4)
+										C.reagents.add_reagent("espresso", 4, temp_new = T0C + 60)
 										C.reagents.add_reagent("milk", 6)
 										playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 									return
@@ -156,7 +156,7 @@
 	desc = "It's a rack to hang your fancy coffee cups." //*tip
 	icon = 'icons/obj/foodNdrink/espresso.dmi'
 	icon_state = "cuprack7" //changes based on cup_ammount in updateicon
-	anchored = 1
+	anchored = ANCHORED
 	var/cup_amount = 7
 	var/contained_cup = /obj/item/reagent_containers/food/drinks/espressocup
 	var/contained_cup_name = "espresso cup"
@@ -200,7 +200,7 @@
 	icon = 'icons/obj/foodNdrink/espresso.dmi'
 	icon_state = "coffeemaker-eng"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	flags = FPRINT | NOSPLASH | TABLEPASS
 	mats = 30
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS
@@ -211,6 +211,7 @@
 	var/obj/item/reagent_containers/food/drinks/carafe/my_carafe
 	var/default_carafe = /obj/item/reagent_containers/food/drinks/carafe
 	var/image/fluid_image
+	var/obj/item/coffee_pod/an_pod
 	throw_speed = 2
 	throw_range = 6
 	throwforce = 10
@@ -221,6 +222,13 @@
 		if (ispath(src.default_carafe))
 			src.my_carafe = new src.default_carafe (src)
 		src.update()
+
+	disposing()
+		qdel(src.an_pod)
+		an_pod = null
+		qdel(src.my_carafe)
+		my_carafe = null
+		..()
 
 	throw_end(list/params, turf/thrown_from)
 		. = ..()
@@ -235,7 +243,7 @@
 			src.update()
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 		..()
 		if(ismob(usr))
 			var/mob/living/L = usr
@@ -253,6 +261,13 @@
 				user.show_text ("You place the [src.carafe_name] into the [src].")
 				src.update()
 				return ..()
+		else if (istype(W, /obj/item/coffee_pod))
+			if (!src.an_pod)
+				user.drop_item()
+				an_pod = W
+				W.set_loc(src)
+				user.show_text ("You put [W] into [src].")
+		else ..()
 
 	attack_hand(mob/user as mob)
 		if (can_reach(user,src))
@@ -261,8 +276,15 @@
 				if (!(status & (NOPOWER|BROKEN)))
 					switch (alert("What would you like to do with [src]?",,"Brew coffee","Remove carafe","Nothing"))
 						if ("Brew coffee")
-							for(var/obj/item/reagent_containers/food/drinks/carafe/C in src.contents)
-								C.reagents.add_reagent("coffee_fresh",100)
+							if (my_carafe)
+								if (src.an_pod)
+									my_carafe.reagents.add_reagent(an_pod.flavour,100 * an_pod.flavour_to_coffee_ratio)
+									my_carafe.reagents.add_reagent("coffee_fresh",100 * (1 - an_pod.flavour_to_coffee_ratio))
+									qdel(src.an_pod)
+									an_pod = null
+								else
+									my_carafe.reagents.add_reagent("coffee_fresh",100)
+								my_carafe.reagents.set_reagent_temp(T0C + 60) //kinda want it to be 80 but tolerances + no cooloff, this is good enough
 								playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
 						if ("Remove carafe")
 							if (!src.my_carafe)
@@ -273,7 +295,7 @@
 								return
 							user.put_in_hand_or_drop(src.my_carafe)
 							src.my_carafe = null
-							user.show_text("You have removed the [src.carafe_name] from the [src].")
+							user.show_text("You have removed the [src.carafe_name] from [src].")
 							src.update()
 						if ("Nothing")
 							return
@@ -333,6 +355,10 @@
 	icon_state = "coffeemaker-com"
 	default_carafe = /obj/item/reagent_containers/food/drinks/carafe/command
 
+/obj/machinery/coffeemaker/generic
+	icon_state = "coffeemaker-gen"
+	default_carafe = /obj/item/reagent_containers/food/drinks/carafe/generic
+
 
 /* ===================================================== */
 /* ---------------------- Mug Rack --------------------- */
@@ -342,7 +368,7 @@
 	desc = "It's a rack to hang your not-so-fancy coffee cups." //*tip
 	icon = 'icons/obj/foodNdrink/espresso.dmi'
 	icon_state = "mugrack4" //changes based on cup_ammount in updateicon
-	anchored = 1
+	anchored = ANCHORED
 	var/cup_amount = 4
 	var/contained_cup = /obj/item/reagent_containers/food/drinks/mug
 	var/contained_cup_name = "mug"

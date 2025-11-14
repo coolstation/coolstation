@@ -1,3 +1,4 @@
+/*
 /mob/living/critter/flock/drone
 	name = "weird glowy thing"
 	desc = "Is it broccoli? A glass chicken? A peacock? A green roomba? A shiny discobot? A crystal turkey? A bugbird? A radio pigeon??"
@@ -5,9 +6,6 @@
 	density = 1
 	hand_count = 3
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
-	can_help = 1
 	death_text = "%src% clatters into a heap of fragments."
 	pet_text = list("taps", "pats", "drums on", "ruffles", "touches", "pokes", "prods")
 	custom_brain_type = /obj/item/organ/brain/flockdrone
@@ -90,7 +88,7 @@
 	walk(src, 0)
 	src.is_npc = 0
 	src.dormant = 0
-	src.anchored = 0
+	src.anchored = UNANCHORED
 	// move mind into flockdrone
 	var/datum/mind/mind = pilot.mind
 	if (mind)
@@ -142,7 +140,7 @@
 /mob/living/critter/flock/drone/proc/dormantize()
 	src.dormant = 1
 	src.canmove = 0
-	src.anchored = 1 // unfun nerds ruin everything yet again
+	src.anchored = ANCHORED // unfun nerds ruin everything yet again
 	src.is_npc = 0 // technically false, but it turns off the AI
 	src.icon_state = "drone-dormant"
 	src.a_intent = INTENT_DISARM // stop swapping places
@@ -150,7 +148,7 @@
 /mob/living/critter/flock/drone/proc/undormantize()
 	src.dormant = 0
 	src.canmove = 1
-	src.anchored = 0
+	src.anchored = UNANCHORED
 	src.damaged = -1
 	src.check_health() // handles updating the icon to something more appropriate
 	src.visible_message("<span class='notice'><b>[src]</b> begins to glow and hover.</span>")
@@ -247,31 +245,31 @@
 /mob/living/critter/flock/drone/setup_hands()
 	..()
 	var/datum/handHolder/HH = hands[1]
-	HH.limb = new /datum/limb/flock_grip
+	HH.limb = new /datum/limb/flock_grip(src)
 	HH.name = "grip tool"
 	HH.icon = 'icons/ui/unused/flock_ui.dmi'
 	HH.icon_state = "griptool"
-	HH.limb_name = HH.name
+	HH.limb.name = HH.name
 	HH.can_hold_items = 1
 	HH.can_attack = 1
 	HH.can_range_attack = 0
 
 	HH = hands[2]
-	HH.limb = new /datum/limb/flock_converter
+	HH.limb = new /datum/limb/flock_converter(src)
 	HH.name = "nanite spray"
 	HH.icon = 'icons/ui/unused/flock_ui.dmi'
 	HH.icon_state = "converter"
-	HH.limb_name = HH.name
+	HH.limb.name = HH.name
 	HH.can_hold_items = 0
 	HH.can_attack = 1
 	HH.can_range_attack = 0
 
 	HH = hands[3]
-	HH.limb = new /datum/limb/gun/flock_stunner
+	HH.limb = new /datum/limb/gun/flock_stunner(src)
 	HH.name = "incapacitor"
 	HH.icon = 'icons/ui/unused/flock_ui.dmi'
 	HH.icon_state = "incapacitor"
-	HH.limb_name = HH.name
+	HH.limb.name = HH.name
 	HH.can_hold_items = 0
 	HH.can_attack = 0
 	HH.can_range_attack = 1
@@ -707,8 +705,6 @@
 /datum/limb/flock_converter // requires 20 resources to initiate a conversion action, 10 for a repair (give target drone 33% of max health)
 
 /datum/limb/flock_converter/attack_hand(atom/target, var/mob/living/critter/flock/drone/user, var/reach, params, location, control)
-	if (!holder)
-		return
 	if(check_target_immunity( target ))
 		return
 	if (!istype(user))
@@ -894,3 +890,4 @@
 	if(temp)
 		animate(temp) // cancel animation
 	..()
+*/

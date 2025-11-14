@@ -4,7 +4,8 @@
 		return
 	var/mob/living/L = src
 	if(istype(L))
-		L.blood_id = "bloodc"
+		L.thermoregulation_mult = L.thermoregulation_mult * 4
+		L.replace_blood_with("bloodc")
 
 	if (src.mind && !src.mind.is_changeling && (src.mind.special_role != ROLE_OMNITRAITOR))
 		src.Browse(grabResource("html/traitorTips/changelingTips.html"),"window=antagTips;size=600x400;title=Antagonist Tips")
@@ -68,9 +69,6 @@
 				boutput(usr, "<span class='notice'>Please press a number to bind this ability to...</span>")
 				return
 
-		if (!isturf(owner.holder.owner.loc) && !spell.can_use_in_container)
-			boutput(owner.holder.owner, "<span class='alert'>Using that in here will do just about no good for you.</span>")
-			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
 			usr.update_cursor()
@@ -344,7 +342,7 @@
 	last_cast = 0
 	var/abomination_only = 0
 	var/human_only = 0
-	var/can_use_in_container = 0
+	turf_check = TRUE
 	preferred_holder_type = /datum/abilityHolder/changeling
 
 	New()

@@ -1,12 +1,14 @@
 /mob/dead
+	density = FALSE
 	stat = 2
 	event_handler_flags = USE_CANPASS
+	pass_unstable = PRESERVE_CACHE
 
 // dead
 
 /mob/dead/New()
 	..()
-	APPLY_MOB_PROPERTY(src, PROP_ATOM_FLOATING, src)
+	APPLY_ATOM_PROPERTY(src, PROP_ATOM_FLOATING, src)
 
 // No log entries for unaffected mobs (Convair880).
 /mob/dead/ex_act(severity)
@@ -40,7 +42,7 @@
 		src.examine_verb(target)
 
 /mob/dead/process_move(keys)
-	if(keys && src.move_dir && !src.use_movement_controller && !istype(src.loc, /turf)) //Pop observers and Follow-Thingers out!!
+	if(keys && src.move_dir && !src.override_movement_controller && !istype(src.loc, /turf)) //Pop observers and Follow-Thingers out!!
 		var/mob/dead/O = src
 		O.set_loc(get_turf(src))
 	. = ..()
@@ -106,10 +108,8 @@
 						break
 					else
 						M.show_text("<i>You feel \an [fluff] [pick("draft", "wind", "breeze", "chill", "pall")]...</i>")
-#ifdef DATALOGGER
 						if (M.mind && M.mind.assigned_role == "Clown")
 							game_stats.Increment("clownabuse")
-#endif
 						break
 				if (!fart_on_other)
 					message = "<B>[src]</B> lets out \an [fluff] fart!"

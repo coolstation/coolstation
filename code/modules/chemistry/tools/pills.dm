@@ -47,11 +47,16 @@
 			"<span class='notice'>You swallow [src].</span>")
 			logTheThing("combat", user, null, "swallows a pill [log_reagents(src)] at [log_loc(user)].")
 			if (reagents.total_volume)
-				reagents.reaction(user, INGEST)
-				sleep(0.1 SECONDS)
-				reagents.trans_to(user, reagents.total_volume)
+				var/mob/living/L = user
+				if(L.organHolder)
+					if(L.organHolder.stomach)
+						src.set_loc(L.organHolder.stomach)
+				else
+					reagents.reaction(user, INGEST)
+					SPAWN_DBG(0.1 SECONDS)
+						reagents.trans_to(user, reagents.total_volume)
+						qdel(src)
 			user.u_equip(src)
-			qdel(src)
 		return
 
 	attack(mob/M as mob, mob/user as mob, def_zone)
@@ -84,11 +89,16 @@
 
 			logTheThing("combat", user, M, "[user == M ? "swallows" : "makes [constructTarget(M,"combat")] swallow"] a pill [log_reagents(src)] at [log_loc(user)].")
 			if (reagents.total_volume)
-				reagents.reaction(M, INGEST)
-				sleep(0.1 SECONDS)
-				reagents.trans_to(M, reagents.total_volume)
+				var/mob/living/L = M
+				if(L.organHolder)
+					if(L.organHolder.stomach)
+						src.set_loc(L.organHolder.stomach)
+				else
+					reagents.reaction(M, INGEST)
+					SPAWN_DBG(0.1 SECONDS)
+						reagents.trans_to(M, reagents.total_volume)
+						qdel(src)
 			user.u_equip(src)
-			qdel(src)
 			return 1
 
 		return 0
@@ -341,7 +351,7 @@
 			adulterants--
 			reagents.add_reagent(pick_string("chemistry_tools.txt", "CYBERPUNK_drug_adulterants"), 3)
 
-		reagents.add_reagent("cloak_juice", 5) //listed ingredients on packaging may differ
+		reagents.add_reagent("cloak_juice", 10) //listed ingredients on packaging may differ
 		reagents.add_reagent("grime", 5)
 		reagents.add_reagent("bonerjuice", 30) //active ingredient
 		reagents.add_reagent("bhjuice", 10) //also active ingredient

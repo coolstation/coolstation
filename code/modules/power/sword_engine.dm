@@ -14,7 +14,7 @@
 	icon = 'icons/misc/retribution/SWORD_loot.dmi'
 	icon_state = "engine_mangled"
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	requires_power = FALSE
 	var/output = 30000
 	var/lastout = 0
@@ -72,7 +72,7 @@
 			return
 		playsound(src.loc, "sound/items/Ratchet.ogg", 100, 1)
 		var/turf/T = get_turf(user)
-		if(src.anchored == 0)
+		if(src.anchored == UNANCHORED)
 			boutput(user, "<span class='notice'>Now securing the SWORD Engine.</span>")
 		else
 			boutput(user, "<span class='notice'>Now unsecuring the SWORD Engine.</span>")
@@ -81,13 +81,13 @@
 			boutput(user, "<span class='alert'>You feel like your body is being ripped apart from the inside. Maybe you shouldn't try that again. For your own safety, I mean.</span>")
 			return
 		if(get_turf(user) == T)
-			if(src.anchored == 0)
+			if(src.anchored == UNANCHORED)
 				boutput(user, "<span class='notice'>You secured the SWORD Engine!</span>")
-				src.anchored = 1
+				src.anchored = ANCHORED
 				//terminal_setup()
 			else
 				boutput(user, "<span class='notice'>You unsecured the SWORD Engine!</span>")
-				src.anchored = 0
+				src.anchored = UNANCHORED
 				//for(var/obj/machinery/power/terminal/temp_term in get_turf(src))
 				//	if(temp_term.master == src)
 				//		qdel(temp_term)
@@ -183,12 +183,12 @@
 	if (prob(4))
 		elecflash(src.loc)
 
-	if (online == 1 && (!core_inserted || integrity_state == 0 || anchored != 1))
+	if (online == 1 && (!core_inserted || integrity_state == 0 || anchored != ANCHORED))
 		src.charging = 0
 		src.online = 0
 		return
 
-	//if (!terminal && core_inserted && integrity_state != 0 && anchored == 1)
+	//if (!terminal && core_inserted && integrity_state != 0 && anchored == ANCHORED)
 	//	terminal_setup()
 	//	return
 

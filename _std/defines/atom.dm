@@ -32,6 +32,7 @@
 #define IN_COYOTE_TIME				(1<<15) // its coyote timing OVER a pitfall - might be replaced by atom property
 #define CAN_UPDRAFT					(1<<16) // this thing will float up an updraft and refuse to fall down a pitfall
 #define Z_ANCHORED					(1<<17) // this thing wont be moved by elevators and pitfalls in general
+#define STAIR_ANIM					(1<<18)// This thing will play an animation when moving over stairs
 //TBD the rest
 
 //THROW flags (what kind of throw, we can have ddifferent kinds of throws ok)
@@ -41,6 +42,9 @@
 #define THROW_SLIP (1<<3)
 #define THROW_SANDWICH (1<<4) //This is for one single item, because I'm pretty sure this would never have been clean.
 #define THROW_KNOCKDOWN (1<<5) //i know what i'm doing
+#define THROW_BASEBALL  (1<<6)
+#define THROW_SPACED (1<<7)
+#define THROW_SAFEISH (1<<8)
 
 //For serialization purposes
 #define DESERIALIZE_ERROR 0
@@ -59,3 +63,11 @@
 #define OLD_EX_TOTAL 6.1 //decimals to avoid the overlap
 #define OLD_EX_HEAVY 3.1
 #define OLD_EX_LIGHT 1
+
+//Might as well make anchoring assignments define based, since it's kinda obscure that it's not strictly boolean
+///freely movable
+#define UNANCHORED 0
+///regular "don't move this"
+#define ANCHORED 1
+///Things that should not be moved even in cases where random shit gets unanchored, like gravity grenades and black holes
+#define ANCHORED_TECHNICAL 2 //Surprisingly not as much overlap with TECHNICAL_ATOM as I'd expected

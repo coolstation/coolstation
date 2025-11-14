@@ -19,7 +19,8 @@
 	var/artifact = null
 	var/cannot_be_stored = FALSE
 	var/move_triggered = 0
-	var/object_flags = 0
+	var/w_class = W_CLASS_NORMAL
+//	var/object_flags = 0 // moved to atom/movable
 
 	animate_movement = 2
 //	desc = "<span class='alert'>HI THIS OBJECT DOESN'T HAVE A DESCRIPTION MAYBE IT SHOULD???</span>"
@@ -108,7 +109,9 @@
 		setupProperties()
 		. = ..()
 
-	ex_act(severity=0,last_touched=0, epicenter = null)
+	ex_act(severity=0,last_touched=0, epicenter = null, turf_safe=FALSE)
+		if(turf_safe)
+			severity = severity - 4
 		src.material?.triggerExp(src, severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
@@ -125,7 +128,7 @@
 	onMaterialChanged()
 		..()
 		if(istype(src.material))
-			pressure_resistance = floor((material.getProperty("density") + material.getProperty("density")) / 2)
+			//pressure_resistance = floor((material.getProperty("density") + material.getProperty("density")) / 2)
 			throwforce = floor(max(material.getProperty("hard"),1) / 8)
 			throwforce = max(throwforce, initial(throwforce))
 			quality = src.material.quality
@@ -287,10 +290,8 @@
 	deserialize_postprocess()
 		return
 
-/obj/proc/get_movement_controller(mob/user)
-	return
-
 /obj/lattice
+	pass_unstable = FALSE
 	desc = "A lightweight support lattice."
 	name = "lattice"
 	icon = 'icons/obj/structures.dmi'
@@ -302,7 +303,7 @@
 
 	density = 0
 	stops_space_move = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	layer = LATTICE_LAYER
 	plane = PLANE_FLOOR
 	//	flags = CONDUCT
@@ -319,7 +320,9 @@
 			qdel(src)
 			return
 
-	ex_act(severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 8
 		src.material?.triggerExp(src, severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
@@ -448,7 +451,7 @@
 	icon_state = "girder"
 	density = 1
 	stops_space_move = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	var/strength = 2
 
 	proc/barricade_damage(var/hitstrength)
@@ -515,6 +518,7 @@
 /obj/overlay
 	name = "overlay"
 	anchored = TRUE
+	pass_unstable = PRESERVE_CACHE
 	mat_changename = 0
 	mat_changedesc = 0
 	density = 0
@@ -535,10 +539,6 @@
 		else
 			return ..()
 
-	track_blood()
-		src.tracked_blood = null
-		return
-
 /obj/overlay/fake
 
 /obj/overlay/self_deleting
@@ -550,14 +550,14 @@
 
 /obj/projection
 	name = "Projection"
-	anchored = 1.0
+	anchored = ANCHORED
 
 /obj/deskclutter
 	name = "desk clutter"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "deskclutter"
 	desc = "What a mess..."
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 

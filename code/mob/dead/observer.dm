@@ -9,7 +9,7 @@
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1	//  don't get pushed around
+	anchored = ANCHORED	//  don't get pushed around
 	var/mob/corpse = null	//	observer mode
 	var/observe_round = 0
 	var/health_shown = 0
@@ -65,7 +65,8 @@
 /mob/dead/observer/Login()
 	..()
 	if(src.client)
-		src.updateOverlaysClient(src.client)
+		removeOverlaysClient(src.client)
+		addOverlaysClient(src.client, src)
 		src.updateButtons()
 	// ok so in logout we set your ghost to 101 invisibility.
 	// in login we set it back to whatever it was. so you keep your ghost.
@@ -73,7 +74,7 @@
 	// heres a thought: maybe ghostize() could look for your ghost or smth
 	// and put you in it instead of just making a new one.
 	// idk this codebase is an eldritch horror and i dont wanna try rn
-	REMOVE_MOB_PROPERTY(src, PROP_INVISIBILITY, "clientless")
+	REMOVE_ATOM_PROPERTY(src, PROP_INVISIBILITY, "clientless")
 
 
 /mob/dead/observer/point_at(var/atom/target)
@@ -197,8 +198,6 @@
 	if (..(parent))
 		return 1
 	if (src.client && src.client.holder) //ov1
-		// overlays
-		//src.updateOverlaysClient(src.client)
 		src.antagonist_overlay_refresh(0, 0) // Observer Life() only runs for admin ghosts (Convair880).
 
 #ifdef TWITCH_BOT_ALLOWED
@@ -222,8 +221,8 @@
 
 /mob/dead/observer/New(mob/corpse)
 	. = ..()
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, ghost_invisibility)
-	APPLY_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, ghost_invisibility)
+	APPLY_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
 	src.sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	src.see_invisible = 16
 	src.see_in_dark = SEE_DARK_FULL
@@ -485,7 +484,7 @@
 		// but that's way too much effort to fix and i do not feel like debugging
 		// 2000 different "use after free" issues.
 		// so. your ghost doesnt go away. it just, uh. it takes a break for a while.
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_ALWAYS)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_ALWAYS)
 	return
 
 /mob/dead/observer/Move(NewLoc, direct)

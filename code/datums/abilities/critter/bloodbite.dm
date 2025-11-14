@@ -8,6 +8,8 @@
 	targeted = 1
 	target_anything = 1
 	icon_state = "bloodbite"
+	ai_range = 1
+	attack_mobs = TRUE
 
 	cast(atom/target)
 		if (..())
@@ -28,14 +30,10 @@
 		var/mob/M = target
 
 		holder.owner.visible_message(__red("<b>[holder.owner] sucks some blood from [M]!</b>"), __red("You suck some blood from [M]!"))
-		holder.owner.reagents.add_reagent("blood", 1)
 		if (isliving(M))
 			if (M.reagents)
-				holder.owner.reagents.trans_to(M,0.1) //swap a bit ;)
-				M.reagents.trans_to(holder.owner,1.1)
-			if (ishuman(M))
-				var/mob/living/carbon/human/HH = M
-				HH.blood_volume -= 1
+				holder.owner.reagents.trans_to(M,1) //swap a bit ;)
+				M.reagents.trans_to(holder.owner,5)
 
 		holder.owner.TakeDamage("All", -5, -5)
 		return 0

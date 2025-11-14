@@ -21,6 +21,7 @@
 	see_face = 0.0
 	item_state = "s_helmet"
 	desc = "Helps protect against vacuum."
+	hint = "you will also need a breath mask and supply of air if you're planning on going out into space."
 	seal_hair = 1
 	path_prot = 0
 	permeability_coefficient = 0.2
@@ -295,10 +296,10 @@
 					if (istype(H.head, /obj/item/clothing/head/helmet/space/syndicate/specialist/engineer)) //handling of the rest is done in life.dm
 						if (src.on)
 							H.vision.set_scan(1)
-							APPLY_MOB_PROPERTY(toggler, PROP_MESONVISION, src)
+							APPLY_ATOM_PROPERTY(toggler, PROP_MESONVISION, src)
 						else
 							H.vision.set_scan(0)
-							REMOVE_MOB_PROPERTY(toggler, PROP_MESONVISION, src)
+							REMOVE_ATOM_PROPERTY(toggler, PROP_MESONVISION, src)
 
 			equipped(var/mob/living/user, var/slot)
 				..()
@@ -306,14 +307,14 @@
 					return
 				if (slot == SLOT_HEAD && on)
 					user.vision.set_scan(1)
-					APPLY_MOB_PROPERTY(user, PROP_MESONVISION, src)
+					APPLY_ATOM_PROPERTY(user, PROP_MESONVISION, src)
 
 			unequipped(var/mob/living/user)
 				..()
 				if(!isliving(user))
 					return
 				user.vision.set_scan(0)
-				REMOVE_MOB_PROPERTY(user, PROP_MESONVISION, src)
+				REMOVE_ATOM_PROPERTY(user, PROP_MESONVISION, src)
 
 		medic
 			name = "specialist health monitor"

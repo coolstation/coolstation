@@ -31,13 +31,14 @@
 	name = "sea plant"
 	icon = 'icons/obj/sealab_objects.dmi'
 	desc = "It's thriving."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = EFFECTS_LAYER_UNDER_1
+	pass_unstable = FALSE
 	var/database_id = null
 	var/random_color = 1
 	var/drop_type = 0
-	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER | USE_CANPASS
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	New()
 		..()
@@ -59,7 +60,7 @@
 
 
 //mbc : added dumb layer code to keep perspective intact *most of the time*
-/obj/sea_plant/CanPass(atom/A, turf/T)
+/obj/sea_plant/HasEntered(atom/movable/A, atom/OldLoc)
 	if (ismob(A))
 
 		var/mob/M = A

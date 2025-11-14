@@ -54,11 +54,13 @@ datum/preferences
 	var/flying_chat_hidden = 0
 	var/auto_capitalization = 0
 	var/local_deadchat = 0
+	var/hidden_spiders = 0
 	var/use_wasd = 1
 	var/use_azerty = 0 // do they have an AZERTY keyboard?
 	var/spessman_direction = SOUTH
 	var/PDAcolor = "#6F7961"
 
+	var/only_spawn_favorite = 0 //if they don't roll their favorite job they're thrown back to the latejoin menu
 	var/job_favorite = null
 	var/list/jobs_med_priority = list()
 	var/list/jobs_low_priority = list()
@@ -217,6 +219,22 @@ datum/preferences
 			"preferredMap" = src.preferred_map,
 			"skipLobbyMusic" = src.skip_lobby_music
 		)
+	proc/legal_json_check(var/list/json)
+		for(var/c in bad_name_characters)
+			if(findtext(json["name_first"],c) || findtext(json["name_middle"],c) || findtext(json["name_last"],c)) //illegal names
+				return 0
+		if(json["gender"] != NEUTER && json["gender"] != MALE && json["gender"] != FEMALE)
+			return 0
+		if(json["age"] < 20 || json["age"] > 80)
+			return 0
+		if(json["fartsound"] && !(json["fartsound"] in AH.fartsounds))
+			return 0
+		if(!(json["screamsound"] in AH.screamsounds))
+			return 0
+		if(!is_valid_color_string(json["PDAcolor"]) || !is_valid_color_string(json["eye_color"]) || !is_valid_color_string(json["hair_color"]) || !is_valid_color_string(json["facial_color"]) || !is_valid_color_string(json["detail_color"]) || !is_valid_color_string(json["underwear_color"]))
+			return 0
+		return 1
+
 
 //disable options on slots that have been played *or* on characters with the same name as a played one.
 #define NOT_ON_PLAYED_CHARACTERS if ((src.real_name in client.player.character_names_expended) && (!(admins_can_reuse_characters && isadmin(client)))) {boutput(usr, "<b><span class='alert'>You can't do this with a character you've already played this round.</span></b>"); return FALSE;}
@@ -878,6 +896,21 @@ datum/preferences
 				src.profile_modified = TRUE
 				return TRUE
 
+			if ("json-export")
+				var/json = savefile_to_json(usr)
+				boutput(usr, "<b><span class='alert'>Char JSON: </b>[json]</span>")
+				return TRUE
+
+			if ("json-import")
+				var/rawjson = input(usr, "Paste raw JSON data here","JSON Import",src.pin) as null|text
+
+				if(rawjson && isThisShitEvenJson(rawjson))//is this actually json? it better be pal
+					src.json_to_character(client,rawjson)
+				else
+					boutput(usr, "<b><span class='alert'>JSON import failed</b></span>")
+				return TRUE
+
+
 			if ("reset")
 				src.profile_modified = TRUE
 
@@ -1271,6 +1304,7 @@ datum/preferences
 				print_the_job = TRUE
 			if(print_the_job)
 				HTML += " <a href=\"byond://?src=\ref[src];preferences=1;occ=1;job=[J_Fav.name];level=0\" style='font-weight: bold; color: [J_Fav.linkcolor];'>[J_Fav.name]</a>"
+		HTML += {"  <a href="byond://?src=\ref[src];preferences=1;only_spawn_favorite=1" class="[src.only_spawn_favorite ? "yup" : "nope"]">[crap_checkbox(src.only_spawn_favorite)] Only spawn as favorite job</a><span class='info-thing' title=\"Check this box if you want to be sent back to the latejoin spawn menu if you don't get your favorite job. From there, you can either choose a different character, or just roll with this one. If you don't get your favorite, you'll have to choose from the jobs that are still available. <b>If you roll antag, you will spawn normally with a different job.</b>\">?</span>"}
 
 		HTML += {"
 	<table class='jobtable'>
@@ -1630,6 +1664,11 @@ datum/preferences
 			src.SetChoices(user)
 			return
 
+		if (link_tags["only_spawn_favorite"])
+			src.only_spawn_favorite = !(src.only_spawn_favorite)
+			src.SetChoices(user)
+			return
+
 		src.ShowChoices(user)
 
 	proc/copy_to(mob/living/character,var/mob/user,ignore_randomizer = 0)//LOOK SORRY, I MADE THIS /mob/living iF THIS BREAKS SOMETHING YOU SHOULD PROBABLY NOT BE CALLING THIS ON A NON LIVING MOB
@@ -1759,6 +1798,9 @@ datum/preferences
 
 /proc/random_saturated_hex_color()
 	return pick(rgb(255, rand(0, 255), rand(0, 255)), rgb(rand(0, 255), 255, rand(0, 255)), rgb(rand(0, 255), rand(0, 255), 255))
+
+/proc/random_greyish_hex_color(var/low = 110, var/high = 140)
+	return rgb(rand(low,high), rand(low,high), rand(low,high))
 
 /proc/randomize_hair_color(var/hcolor)
 	if (!hcolor)
@@ -1999,3 +2041,4 @@ var/global/list/female_screams = list("female", "femalescream1", "femalescream2"
 /proc/crap_checkbox(var/checked)
 	if (checked) return "&#9745;"
 	else return "&#9744;"
+

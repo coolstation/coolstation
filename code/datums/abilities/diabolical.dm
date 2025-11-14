@@ -23,9 +23,6 @@
 			return
 		if (!spell.holder)
 			return
-		if (!isturf(owner.holder.owner.loc))
-			boutput(owner.holder.owner, "<span class='alert'>You can't use this ability here.</span>")
-			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
 			usr.update_cursor()
@@ -63,6 +60,7 @@
 	last_cast = 0
 	pointCost = 0
 	preferred_holder_type = /datum/abilityHolder/merchant
+	turf_check = TRUE
 	var/when_stunned = 1 // 0: Never | 1: Ignore mob.stunned and mob.weakened | 2: Ignore all incapacitation vars
 	var/not_when_handcuffed = 0
 
@@ -328,27 +326,27 @@
 
 		if(usr.plane == PLANE_UNDERFLOOR)
 			usr.flags &= ~(NODRIFT | DOORPASS | TABLEPASS)
-			APPLY_MOB_PROPERTY(usr, PROP_CANTMOVE, "floorswitching")
-			REMOVE_MOB_PROPERTY(usr, PROP_NO_MOVEMENT_PUFFS, "floorswitching")
-			REMOVE_MOB_PROPERTY(usr, PROP_NEVER_DENSE, "floorswitching")
+			APPLY_ATOM_PROPERTY(usr, PROP_CANTMOVE, "floorswitching")
+			REMOVE_ATOM_PROPERTY(usr, PROP_NO_MOVEMENT_PUFFS, "floorswitching")
+			REMOVE_ATOM_PROPERTY(usr, PROP_NEVER_DENSE, "floorswitching")
 			usr.set_density(initial(usr.density))
 			animate_slide(floorturf, x_coeff * -slide_amount, y_coeff * -slide_amount, 4)
 			SPAWN_DBG(0.4 SECONDS)
 				if(usr)
 					usr.plane = PLANE_DEFAULT
 					usr.layer = 4
-					REMOVE_MOB_PROPERTY(usr, PROP_CANTMOVE, "floorswitching")
+					REMOVE_ATOM_PROPERTY(usr, PROP_CANTMOVE, "floorswitching")
 				if(floorturf)
 					animate_slide(floorturf, 0, 0, 4)
 
 		else
-			APPLY_MOB_PROPERTY(usr, PROP_CANTMOVE, "floorswitching")
+			APPLY_ATOM_PROPERTY(usr, PROP_CANTMOVE, "floorswitching")
 			animate_slide(floorturf, x_coeff * -slide_amount, y_coeff * -slide_amount, 4)
 			SPAWN_DBG(0.4 SECONDS)
 				if(usr)
-					REMOVE_MOB_PROPERTY(usr, PROP_CANTMOVE, "floorswitching")
-					APPLY_MOB_PROPERTY(usr, PROP_NO_MOVEMENT_PUFFS, "floorswitching")
-					APPLY_MOB_PROPERTY(usr, PROP_NEVER_DENSE, "floorswitching")
+					REMOVE_ATOM_PROPERTY(usr, PROP_CANTMOVE, "floorswitching")
+					APPLY_ATOM_PROPERTY(usr, PROP_NO_MOVEMENT_PUFFS, "floorswitching")
+					APPLY_ATOM_PROPERTY(usr, PROP_NEVER_DENSE, "floorswitching")
 					usr.flags |= NODRIFT | DOORPASS | TABLEPASS
 					usr.set_density(0)
 					usr.layer = 4

@@ -53,9 +53,9 @@
 	icon_state = "hard_case"
 	desc = "A box containing an italian revolver and ammo."
 	// cogwerks - i think the ammo boxes are dumb, giving the starting box more ammo
-	spawn_contents = list(/obj/item/gun/modular/italian/big_italiano,\
-	/obj/item/stackable_ammo/pistol/italian/ten,\
-	/obj/item/stackable_ammo/pistol/italian/AP/five,\
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/masterwork,\
+	/obj/item/stackable_ammo/pistol/italian/ten = 2,\
+	/obj/item/stackable_ammo/pistol/italian/AP/ten,\
 	/obj/item/stackable_ammo/pistol/capacitive/five)
 
 /obj/item/storage/box/detectivegun
@@ -63,11 +63,13 @@
 	icon_state = "hard_case"
 	desc = "A box containing an italian revolver and ammo."
 	// Reduced the amount of ammo. The detective had four lethal and five stun speedloaders total in his closet, perhaps a bit too much (Convair880).
-	spawn_contents = list(/obj/item/gun/modular/italian/italiano,\
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/improved,\
 	/obj/item/gun_parts/grip/italian/bigger,\
 	/obj/item/stackable_ammo/pistol/capacitive/ten,\
-	/obj/item/stackable_ammo/pistol/NT/five)
+	/obj/item/stackable_ammo/pistol/capacitive/five,\
+	/obj/item/stackable_ammo/pistol/NT/ten)
 
+/*
 /obj/item/storage/box/ak47 // cogwerks, terrorism update
 	name = "rifle box"
 	icon_state = "hard_case"
@@ -75,31 +77,32 @@
 	// this might be a terrible idea giving them so much ammo, but whatevs
 	spawn_contents = list(/obj/item/gun/kinetic/ak47,\
 	/obj/item/ammo/bullets/ak47 = 2)
+*/
 
 /obj/item/storage/box/pistol
 	name = "corporate pistol box"
 	icon_state = "hard_case"
 	desc = "A box containing a standard issue pistol and some ammo."
 	// this might be a terrible idea giving them so much ammo, but whatevs
-	spawn_contents = list(/obj/item/gun/modular/NT/short/pistol,\
+	spawn_contents = list(/obj/item/gun/modular/NT/pistol,\
 	/obj/item/stackable_ammo/pistol/NT/ten = 2,\
-	/obj/item/stackable_ammo/pistol/tranq)
+	/obj/item/stackable_ammo/rifle/tranq)
 
 /obj/item/storage/box/derringer
 	name = "derringer box"
 	icon_state = "hard_case"
-	desc = "A box containing a derringer and some ammo."
-	spawn_contents = list(/obj/item/gun/kinetic/derringer,\
-	/obj/item/ammo/bullets/derringer = 4)
+	desc = "A box containing a derringer and a bit of vicious rimfire ammo."
+	spawn_contents = list(/obj/item/gun/modular/italian/revolver/derringer,\
+	/obj/item/stackable_ammo/pistol/italian/derringer/three)
 
 /obj/item/storage/box/shotgun
 	name = "shotgun box"
 	icon_state = "hard_case"
 	desc = "A box containing a low-powered shotgun and some ammo."
-	spawn_contents = list(/obj/item/gun/modular/NT/long/shotty,\
-	/obj/item/stackable_ammo/scatter/juicer/five,\
+	spawn_contents = list(/obj/item/gun/modular/NT/shotty,\
+	/obj/item/stackable_ammo/shotgun/juicer/five,\
 	/obj/item/stackable_ammo/rifle/capacitive/burst/ten,\
-	/obj/item/stackable_ammo/scatter/slug_rubber/ten)
+	/obj/item/stackable_ammo/shotgun/slug_rubber/ten)
 
 //TODO: grunge up the case
 /obj/item/storage/box/shotgun/juicer
@@ -107,35 +110,24 @@
 	icon_state = "hard_case"
 	desc = "A box containing a high-powered juicer shotgun and some ammo."
 	spawn_contents = list(/obj/item/gun/modular/juicer/blunder,\
-	/obj/item/stackable_ammo/scatter/juicer/ten,\
-	/obj/item/stackable_ammo/scatter/juicer/denim/three,\
+	/obj/item/stackable_ammo/shotgun/juicer/ten,\
+	/obj/item/stackable_ammo/shotgun/juicer/denim/three,\
 	/obj/item/stackable_ammo/rifle/capacitive/burst/five,\
-	/obj/item/stackable_ammo/scatter/slug_rubber/five)
+	/obj/item/stackable_ammo/shotgun/slug_rubber/five)
 
-/obj/item/storage/box/revolver_ammo
-	name = "revolver ammo box"
+/obj/item/storage/box/ammoITAP
+	name = "Italian AP ammo box"
 	icon_state = "revolver"
-	desc = "A box containing armour-piercing (AP) revolver rounds."
-	spawn_contents = list(/obj/item/ammo/bullets/a357/AP = 3)
-
-/obj/item/storage/box/revolver_ammo2
-	name = "revolver ammo box"
-	icon_state = "revolver"
-	desc = "A box containing standard revolver rounds."
-	spawn_contents = list(/obj/item/ammo/bullets/a357 = 3)
-
-/obj/item/storage/box/ammo38AP // 2 TC for 1 speedloader was very poor value compared to other guns and traitor items in general (Convair880).
-	name = ".38 AP ammo box"
-	icon_state = "revolver"
-	desc = "A box containing a couple of AP speedloaders for a .38 Special revolver."
-	spawn_contents = list(/obj/item/ammo/bullets/a38/AP = 3)
+	desc = "A box containing thirty rounds for an Italian revolver."
+	spawn_contents = list(/obj/item/stackable_ammo/pistol/italian/AP/ten = 3)
 
 /obj/item/storage/box/flaregun // For surplus crates (Convair880).
 	name = "flare gun box"
 	icon_state = "revolver"
-	desc = "A box containing a flare gun and spare ammo."
-	spawn_contents = list(/obj/item/gun/kinetic/flaregun,\
-	/obj/item/ammo/bullets/flare)
+	desc = "A box containing a flare gun and flares."
+	spawn_contents = list(/obj/item/gun/modular/NT/flare_gun,\
+	/obj/item/stackable_ammo/shotgun/slug_flare/ten)
+
 
 /* -------------------- Grenades -------------------- */
 
@@ -155,7 +147,7 @@
 	name = "stinger grenade box"
 	desc = "<FONT color=red><B>WARNING: Do not use without reading these preautions!</B></FONT><br><B>These devices are extremely dangerous and can cause limbs to experience severe damage!</B><br>Excercise extreme care when detonating in closed spaces.<br>&emsp;Make an attempt to not to detonate closer than 2 meters of the intended target. It is imperative<br>&emsp;that the targets visit a medical professional after usage. <B>EXERCISE CAUTION REGARDLESS OF CIRCUMSTANCES</B><br>Operating Directions:<br>&emsp;1. Pull detonnation pin. <B>ONCE THE PIN IS PULLED THE GRENADE CAN NOT BE DISARMED!</B><br>&emsp;2. Throw grenade. <br>&emsp;3. The grenade will detonate 3 seconds after being primed. <br><B>Never prime another grenade until after the first is detonated</B><br>Default 3 second wait till from prime to detonation. This can be switched with a screwdriver to 6 seconds.<br>Copyright of Nanotrasen Industries- Military Armnaments Division"
 	icon_state = "flashbang"
-	spawn_contents = list(/obj/item/old_grenade/stinger = 7)
+	spawn_contents = list(/obj/item/old_grenade/projectile/stinger = 7)
 
 /obj/item/storage/box/tactical_kit // cogwerks - tactical as heck
 	name = "tactical grenade box"
@@ -164,7 +156,7 @@
 	spawn_contents = list(/obj/item/chem_grenade/incendiary = 2,\
 	/obj/item/chem_grenade/shock,\
 	/obj/item/old_grenade/smoke = 1,\
-	/obj/item/old_grenade/stinger/frag,\
+	/obj/item/old_grenade/projectile/stinger/frag,\
 	/obj/item/chem_grenade/flashbang,\
 	/obj/item/old_grenade/graviton)
 
@@ -220,7 +212,7 @@
 	spawn_contents = list(/obj/item/chem_grenade/pepper = 2,\
 	/obj/item/old_grenade/smoke = 2,\
 	/obj/item/chem_grenade/flashbang,\
-	/obj/item/old_grenade/stinger,\
+	/obj/item/old_grenade/projectile/stinger,\
 	/obj/item/chem_grenade/shock)
 
 // For QM crate "Experimental Weapons" (Convair880).
@@ -377,12 +369,14 @@
 	spawn_contents = list(/obj/item/reagent_containers/glass/bottle/poison = 7)
 
 // Starter kit used in the conspiracy/spy game mode.
+
 /obj/item/storage/box/spykit
 	name = "spy starter kit"
 	icon_state = "implant"
 	spawn_contents = list(/obj/item/dagger/syndicate,\
-	/obj/item/gun/kinetic/silenced_22,\
-	/obj/item/ammo/bullets/bullet_22,\
+	/obj/item/gun/modular/italian/sniper/basic,\
+	/obj/item/stackable_ammo/pistol/italian/ten,\
+	/obj/item/stackable_ammo/pistol/italian/AP/ten,\
 	/obj/item/card/id/syndicate,\
 	/obj/item/device/spy_implanter)
 

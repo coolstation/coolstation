@@ -93,6 +93,15 @@ var/global/list/cycling_airlocks = list()
 		logTheThing("combat", usr, null, "de-electrified airlock ([src]) at [log_loc(src)].")
 		message_admins("[key_name(user)] de-electrified airlock ([src]) at [log_loc(src)].")
 
+/obj/machinery/door/airlock/hitby(atom/movable/M, datum/thrown_thing/thr)
+	if (iscarbon(M))
+		playsound(src, "sound/impact_sounds/doorbang.ogg", 80, 1)
+	else
+		playsound(src, "sound/impact_sounds/wallbang_small.ogg", 50, 1)
+
+	..()
+
+
 
 /obj/machinery/door/airlock/proc/idscantoggle(mob/user)
 	if(!src.arePowerSystemsOn() || (status & NOPOWER))
@@ -122,12 +131,18 @@ var/global/list/cycling_airlocks = list()
 
 
 //This generates the randomized airlock wire assignments for the game.
-/proc/RandomAirlockWires()
+/proc/RandomAirlockWires(door_group)
+	if (!door_group) return
 	//to make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
 	var/list/wires = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-	airlockIndexToFlag = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-	airlockIndexToWireColor = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-	airlockWireColorToIndex = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	airlockWireColorToFlag.Add(door_group)
+	//airlockWireColorToFlag[door_group] = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	airlockIndexToFlag.Add(door_group)
+	airlockIndexToFlag[door_group] = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	airlockIndexToWireColor.Add(door_group)
+	airlockIndexToWireColor[door_group] = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	airlockWireColorToIndex.Add(door_group)
+	airlockWireColorToIndex[door_group] = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 	var/flagIndex = 1
 	for (var/flag=1, flag<1024, flag+=flag)
 		var/valid = 0
@@ -136,11 +151,11 @@ var/global/list/cycling_airlocks = list()
 			if (wires[colorIndex]==0)
 				valid = 1
 				wires[colorIndex] = flag
-				airlockIndexToFlag[flagIndex] = flag
-				airlockIndexToWireColor[flagIndex] = colorIndex
-				airlockWireColorToIndex[colorIndex] = flagIndex
+				airlockIndexToFlag[door_group][flagIndex] = flag
+				airlockIndexToWireColor[door_group][flagIndex] = colorIndex
+				airlockWireColorToIndex[door_group][colorIndex] = flagIndex
 		flagIndex+=1
-	return wires
+	airlockWireColorToFlag[door_group] = wires
 
 /* Example:
 Airlock wires color -> flag are { 64, 128, 256, 2, 16, 4, 8, 32, 1 }.
@@ -181,6 +196,8 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	var/aiDisabledIdScanner = 0
 	var/aiHacking = 0
 
+	///Which group of wires-2-function airlocks this door belongs to, overridden in determine_wire_group so try editing there first
+	var/door_group = "fuck" //Maybe don't varedit this when an airlock had it's wiring fucked with already
 
 	var/cycle_id = ""	//! Which airlock junction network it's in.
 	var/cycle_enter_id = "" //! An ID for a certain entrance in a junction
@@ -215,8 +232,10 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 		..()
 		if(!isrestrictedz(src.z) && src.name == initial(src.name)) //The latter half prevents renaming varedited doors.
 			var/area/station/A = get_area(src)
-			src.name = A.name
+			if(A)
+				src.name = A.name
 		src.net_access_code = rand(1, NET_ACCESS_OPTIONS)
+		determine_wire_group()
 		START_TRACKING
 
 
@@ -559,6 +578,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	health = 500
 	health_max = 500
 	layer = 3.5
+	flags = FPRINT | IS_PERSPECTIVE_FLUID | ALWAYS_SOLID_FLUID
 	object_flags = BOTS_DIRBLOCK | CAN_REPROGRAM_ACCESS | HAS_DIRECTIONAL_BLOCKING
 
 	bumpopen(mob/user as mob)
@@ -786,6 +806,23 @@ About the new airlock wires panel:
 	play_animation("deny")
 	playsound(src, src.sound_deny_temp, 100, 0)
 
+//keywords: door hacking group, door group, airlock group, airlock hacking group, airlock wires, door wires
+//While we all seem to agree that wiring groups were good to make hacking in more difficult, there wasn't agreement on how to divvy them up
+//So this is the place you edit to decide that shit, thanks
+/obj/machinery/door/airlock/proc/determine_wire_group()
+	//ATM I've set it on a visual basis: doors that look the same have the same wires.
+	var/area/A = get_area(src)
+	if (A.area_door_group)
+		src.door_group = A.area_door_group
+	else
+		if (src.icon_base == "door") //non-pyro doors are all in their own dmis
+			src.door_group = src.icon
+		else //pyro/perspective airlocks set icon_base
+			src.door_group = src.icon_base
+
+	if (!(src.door_group in airlockWireColorToFlag))
+		RandomAirlockWires(src.door_group)
+
 /obj/machinery/door/airlock/proc/try_pulse(var/wire_color, mob/user)
 	if (!user.find_tool_in_hand(TOOL_PULSING))
 		boutput(user, "You need a multitool or similar!")
@@ -797,8 +834,8 @@ About the new airlock wires panel:
 	return TRUE
 
 /obj/machinery/door/airlock/proc/pulse(var/wireColor)
-	//var/wireFlag = airlockWireColorToFlag[wireColor] //not used in this function
-	var/wireIndex = airlockWireColorToIndex[wireColor]
+	//var/wireFlag = airlockWireColorToFlag[src.door_group][wireColor] //not used in this function
+	var/wireIndex = airlockWireColorToIndex[src.door_group][wireColor]
 	switch(wireIndex)
 		if(AIRLOCK_WIRE_IDSCAN)
 			//Sending a pulse through this flashes the red light on the door (if the door has power).
@@ -923,15 +960,16 @@ About the new airlock wires panel:
 	return TRUE
 
 /obj/machinery/door/airlock/proc/cut(var/wireColor)
-	var/wireFlag = airlockWireColorToFlag[wireColor]
-	var/wireIndex = airlockWireColorToIndex[wireColor]
+	var/wireFlag = airlockWireColorToFlag[src.door_group][wireColor]
+	var/wireIndex = airlockWireColorToIndex[src.door_group][wireColor]
 	wires &= ~wireFlag
 	switch(wireIndex)
 		if(AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2)
 			//Cutting either one disables the main door power, but unless backup power is also cut, the backup power re-powers the door in 10 seconds. While unpowered, the door may be crowbarred open, but bolts-raising will not work. Cutting these wires may electocute the user.
 			src.loseMainPower()
-			SPAWN_DBG(1 DECI SECOND)
-				src.shock(usr, 50)
+			if(usr)
+				SPAWN_DBG(1 DECI SECOND)
+					src.shock(usr, 50)
 		if (AIRLOCK_WIRE_DOOR_BOLTS)
 			//Cutting this wire also drops the door bolts, and mending it does not raise them. (This is what happens now, except there are a lot more wires going to door bolts at present)
 			if (src.locked!=1)
@@ -943,8 +981,9 @@ About the new airlock wires panel:
 		if (AIRLOCK_WIRE_BACKUP_POWER1, AIRLOCK_WIRE_BACKUP_POWER2)
 			//Cutting either one disables the backup door power (allowing it to be crowbarred open, but disabling bolts-raising), but may electocute the user.
 			src.loseBackupPower()
-			SPAWN_DBG(1 DECI SECOND)
-				src.shock(usr, 50)
+			if(usr)
+				SPAWN_DBG(1 DECI SECOND)
+					src.shock(usr, 50)
 
 		if (AIRLOCK_WIRE_AI_CONTROL)
 			//one wire for AI control. Cutting this prevents the AI from controlling the door unless it has hacked the door through the power connection (which takes about a minute). If both main and backup power are cut, as well as this wire, then the AI cannot operate or hack the door at all.
@@ -953,8 +992,9 @@ About the new airlock wires panel:
 				src.aiControlDisabled = 1
 			else if (src.aiControlDisabled == -1)
 				src.aiControlDisabled = 2
-			SPAWN_DBG(1 DECI SECOND)
-				src.shock(usr, 25)
+			if(usr)
+				SPAWN_DBG(1 DECI SECOND)
+					src.shock(usr, 25)
 
 		if (AIRLOCK_WIRE_ELECTRIFY)
 			//Cutting this wire electrifies the door, so that the next person to touch the door without insulated gloves gets electrocuted.
@@ -976,8 +1016,8 @@ About the new airlock wires panel:
 	return TRUE
 
 /obj/machinery/door/airlock/proc/mend(var/wireColor)
-	var/wireFlag = airlockWireColorToFlag[wireColor]
-	var/wireIndex = airlockWireColorToIndex[wireColor] //not used in this function
+	var/wireFlag = airlockWireColorToFlag[src.door_group][wireColor]
+	var/wireIndex = airlockWireColorToIndex[src.door_group][wireColor] //not used in this function
 	wires |= wireFlag
 	switch(wireIndex)
 		if(AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2)
@@ -1014,11 +1054,11 @@ About the new airlock wires panel:
 	return (src.secondsElectrified != 0)
 
 /obj/machinery/door/airlock/proc/isWireColorCut(var/wireColor)
-	var/wireFlag = airlockWireColorToFlag[wireColor]
+	var/wireFlag = airlockWireColorToFlag[src.door_group][wireColor]
 	return ((src.wires & wireFlag) == 0)
 
 /obj/machinery/door/airlock/proc/isWireCut(var/wireIndex)
-	var/wireFlag = airlockIndexToFlag[wireIndex]
+	var/wireFlag = airlockIndexToFlag[src.door_group][wireIndex]
 	return ((src.wires & wireFlag) == 0)
 
 /obj/machinery/door/airlock/proc/canAIControl()
@@ -1577,7 +1617,6 @@ obj/machinery/door/airlock
 	var/last_radio_login = 0
 	mats = 18
 
-	var/datum/radio_frequency/radio_connection
 
 	receive_signal(datum/signal/signal)
 		if(!signal || signal.encryption)
@@ -1595,9 +1634,8 @@ obj/machinery/door/airlock
 				pingsignal.data["sender"] = src.net_id
 				pingsignal.data["address_1"] = signal.data["sender"]
 				pingsignal.data["command"] = "ping_reply"
-				pingsignal.transmission_method = TRANSMISSION_RADIO
 
-				radio_connection.post_signal(src, pingsignal, radiorange)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, pingsignal, radiorange)
 				return
 
 			else if (!id_tag || id_tag != signal.data["tag"])
@@ -1606,7 +1644,6 @@ obj/machinery/door/airlock
 		if (signal.data["command"] && signal.data["command"] == "help")
 			var/datum/signal/reply = get_free_signal()
 			reply.source = src
-			reply.transmission_method = TRANSMISSION_RADIO
 			reply.data["sender"] = src.net_id
 			reply.data["address_1"] = signal.data["sender"]
 			if (!signal.data["topic"])
@@ -1635,7 +1672,7 @@ obj/machinery/door/airlock
 						reply.data["args"] = "access_code"
 					else
 						reply.data["description"] = "ERROR: UNKNOWN TOPIC"
-			radio_connection.post_signal(src, reply, radiorange)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, reply, radiorange)
 			return
 
 		var/sent_code = text2num(signal.data["access_code"])
@@ -1650,9 +1687,8 @@ obj/machinery/door/airlock
 			rejectsignal.data["command"] = "nack"
 			rejectsignal.data["data"] = "badpass"
 			rejectsignal.data["sender"] = src.net_id
-			rejectsignal.transmission_method = TRANSMISSION_RADIO
 
-			radio_connection.post_signal(src, rejectsignal, radiorange)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, rejectsignal, radiorange)
 			return
 
 		if (!signal.data["command"])
@@ -1711,28 +1747,26 @@ obj/machinery/door/airlock
 					send_status(,senderid)
 
 	proc/send_status(userid,target)
-		if(radio_connection)
-			var/datum/signal/signal = get_free_signal()
-			signal.transmission_method = 1 //radio signal
-			signal.source = src
-			if (id_tag)
-				signal.data["tag"] = id_tag
-			signal.data["sender"] = net_id
-			signal.data["timestamp"] = "[air_master.current_cycle]"
+		var/datum/signal/signal = get_free_signal()
+		signal.source = src
+		if (id_tag)
+			signal.data["tag"] = id_tag
+		signal.data["sender"] = net_id
+		signal.data["timestamp"] = "[air_master.current_cycle]"
+		signal.data["address_tag"] = "door" // prevents other doors from receiving this packet unnecessarily
 
-			if (userid)
-				signal.data["user_id"] = "[userid]"
-			if (target)
-				signal.data["address_1"] = target
-			signal.data["door_status"] = density?("closed"):("open")
-			signal.data["lock_status"] = locked?("locked"):("unlocked")
+		if (userid)
+			signal.data["user_id"] = "[userid]"
+		if (target)
+			signal.data["address_1"] = target
+		signal.data["door_status"] = density?("closed"):("open")
+		signal.data["lock_status"] = locked?("locked"):("unlocked")
 
-			radio_connection.post_signal(src, signal, radiorange)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, radiorange)
 
 	proc/send_packet(userid,target,message) //For unique conditions like a rejection message instead of overall status
-		if(radio_connection && message)
+		if(message)
 			var/datum/signal/signal = get_free_signal()
-			signal.transmission_method = 1 //radio signal
 			signal.source = src
 			if (id_tag)
 				signal.data["tag"] = id_tag
@@ -1743,10 +1777,11 @@ obj/machinery/door/airlock
 				signal.data["user_id"] = "[userid]"
 			if (target)
 				signal.data["address_1"] = target
+			signal.data["address_tag"] = "door" // prevents other doors from receiving this packet unnecessarily
 
 			signal.data["data"] = "[message]"
 
-			radio_connection.post_signal(src, signal, radiorange)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, radiorange)
 
 	open(surpress_send)
 		. = ..()
@@ -1802,29 +1837,27 @@ obj/machinery/door/airlock
 				send_packet(user_name, ,"denied")
 			src.last_update_time = ticker.round_elapsed_ticks
 
-	proc/set_frequency(new_frequency)
-		radio_controller.remove_object(src, "[frequency]")
-		if(new_frequency)
-			frequency = new_frequency
-			radio_connection = radio_controller.add_object(src, "[frequency]")
-
 	initialize()
 		..()
-		if(frequency)
-			set_frequency(frequency)
-
 		update_icon()
 
 	New()
 		..()
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
-		if(radio_controller)
-			set_frequency(frequency)
-
-	disposing()
-		if (radio_controller)
-			set_frequency(null)
-		..()
+/obj/machinery/door/airlock/take_damage(amount, mob/user = null, chopping = FALSE)
+	if (!(..()) && src.health <= health_max * 0.9)
+		if(!chopping && prob(3 + amount * 0.2))
+			src.pulse(rand(1,10))
+		else if(prob(1 + amount * 0.2))
+			src.cut(rand(1,10))
+		if(src.health <= health_max * 0.35)
+			if (user && prob(3))
+				src.shock(user, 3)
+				elecflash(src,power=2)
+			if(prob(floor(amount)))
+				SPAWN_DBG(0)
+					src.open()
 
 /obj/machinery/door/airlock/emp_act()
 	..()
@@ -1946,7 +1979,7 @@ obj/machinery/door/airlock
 
 	var/list/wire_states = list()
 	for(var/I in src.wire_colors)
-		wire_states += src.isWireCut(airlockWireColorToIndex[src.wire_colors[I]])
+		wire_states += src.isWireCut(airlockWireColorToIndex[src.door_group][src.wire_colors[I]])
 	. += list("wireStates" = wire_states)
 
 /obj/machinery/door/airlock/proc/aidoor_access_check(mob/user)

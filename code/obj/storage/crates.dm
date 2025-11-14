@@ -556,6 +556,7 @@
 
 // Gannets' Nuke Ops Specialist Class Crates
 
+
 /obj/storage/crate/classcrate
 	name = "class crate"
 	desc = "A class crate"
@@ -565,6 +566,7 @@
 	icon_closed = "attachecase"
 	weld_image_offset_Y = -5
 
+/*
 	demo
 		name = "Class Crate - Grenadier"
 		desc = "A crate containing a Specialist Operative loadout. This one features a hand-held grenade launcher and a pile of ordnance."
@@ -704,9 +706,10 @@
 		/obj/item/clothing/gloves/swat/knight,
 		//obj/item/clothing/suit/space/syndicate/knight,
 		/obj/item/clothing/head/helmet/space/syndicate/specialist/knight)
+*/
 
 	qm //Hi Gannets, I like your crate and wanted to use it for some QM stuff. Come yell at Azungar if this is not ok.
-		name = "Weapons crate"
+		name = "weapons crate"
 		desc = "Just a fancy crate that may or may not contain weapons."
 
 
@@ -842,7 +845,7 @@
 	weapons
 		spawn_contents = list(/obj/item/gun/modular/soviet/short/covert,
 		/obj/item/stackable_ammo/pistol/zaubertube/five,
-		/obj/item/old_grenade/stinger = 2,)
+		/obj/item/old_grenade/projectile/stinger = 2,)
 
 	weapons2
 		spawn_contents = list(/obj/item/gun/modular/soviet/long/advanced,
@@ -854,9 +857,33 @@
 		/obj/item/chem_grenade/shock = 2)
 
 	weapons4
-		spawn_contents = list(/obj/item/gun/modular/italian/big_italiano,
+		spawn_contents = list(/obj/item/gun/modular/italian/revolver/masterwork,
 		/obj/item/stackable_ammo/pistol/italian/AP/ten)
 
 	escape
 		spawn_contents = list(/obj/item/sea_ladder,
 		/obj/item/pipebomb/bomb/engineering = 2)
+
+// evil nasty biohazard crate
+/obj/storage/crate/sarincrate
+	name = "sarin grenade crate"
+	desc = "A menacing crate to store deadly sarin grenades."
+	icon_state = "stxcrate"
+	icon_opened = "stxcrate_open"
+	icon_closed = "stxcrate"
+
+	filled_4
+		New()
+			var/datum/loot_generator/sarin_filler
+			src.vis_controller = new(src)
+			sarin_filler = new /datum/loot_generator(2,1)
+			sarin_filler.fill_remaining_with_instance(src, new /obj/loot_spawner/short/two_sarin_grenades)
+			..()
+
+	filled_8
+		New()
+			var/datum/loot_generator/sarin_filler
+			src.vis_controller = new(src)
+			sarin_filler = new /datum/loot_generator(2,2)
+			sarin_filler.fill_remaining_with_instance(src, new /obj/loot_spawner/short/two_sarin_grenades)
+			..()

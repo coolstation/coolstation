@@ -429,18 +429,13 @@
 	var/text = ""
 	if(finished == 1)
 		boutput(world, "<span class='alert'><FONT size = 3><B> The heads of staff were killed or abandoned the [station_or_ship()]! The revolutionaries win!</B></FONT></span>")
+		game_stats.Increment("traitorwin")
 	else if(finished == 2)
 		boutput(world, "<span class='alert'><FONT size = 3><B> The heads of staff managed to stop the revolution!</B></FONT></span>")
+		game_stats.Increment("traitorloss")
 	else if(finished == 3)
 		boutput(world, "<span class='alert'><FONT size = 3><B> Everyone was terminated! CentCom wins!</B></FONT></span>")
 
-#ifdef DATALOGGER
-	switch(finished)
-		if(1)
-			game_stats.Increment("traitorwin")
-		if(2)
-			game_stats.Increment("traitorloss")
-#endif
 
 	boutput(world, "<FONT size = 2><B>The head revolutionaries were: </B></FONT>")
 	for(var/datum/mind/rev_mind in head_revolutionaries)

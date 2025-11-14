@@ -3,8 +3,10 @@
 #define APC_WIRE_MAIN_POWER2 3
 #define APC_WIRE_AI_CONTROL 4
 
+/*
 var/zapLimiter = 0
-#define APC_ZAP_LIMIT_PER_5 2
+#define APC_ZAP_LIMIT_PER_5 4
+*/
 
 // the Area Power Controller (APC), formerly Power Distribution Unit (PDU)
 // one per area, needs wire conection to power network
@@ -19,8 +21,9 @@ var/zapLimiter = 0
 
 /obj/machinery/power/apc
 	name = "area power controller"
+	hint = "These supply the area with power, and contain a power cell inside."
 	icon_state = "apc0-map"
-	anchored = 1
+	anchored = ANCHORED
 	plane = PLANE_NOSHADOW_ABOVE
 	req_access = list(access_engineering_power)
 	object_flags = CAN_REPROGRAM_ACCESS
@@ -214,20 +217,33 @@ var/zapLimiter = 0
 						netexcess = max(netexcess, S.terminal.powernet.netexcess)
 	return netexcess
 
-/obj/machinery/power/apc/proc/zapStuff() // COGWERKS NOTE: disabling calls to this proc for now, it is ruining the live servers
+ // COGWERKS NOTE: disabling calls to this proc for now, it is ruining the live servers
+ // MYLIE NOTE: this proc is really funny, time to zap people again
+/obj/machinery/power/apc/proc/zapStuff(var/zap_amt)
 	var/atom/target = null
 	var/atom/last = src
 
 	var/list/starts = new/list()
-	for(var/mob/living/M in oview(5, src))
+	for(var/mob/living/M in oview(2, src)) // mylie - 5 range, now you just need to dodge the APCs!
 		if(M.invisibility) continue
 		starts.Add(M)
 
-	if(!starts.len) return 0
+	if(!starts.len)
+		if(prob(66)) // combined with the *3 in the logarithmic prob for doing this at all, we are 3x more likely to strike PEOPLE if we can
+			return 0
+		var/turf/T = locate(src.x + rand(-6,6), src.y + rand(-6,6), src.z)
+		if(!T)
+			return 0
+		var/mob/living/M = locate() in T
+		if(M)
+			arcFlash(last, M, zap_amt)
+			return 1
+		arcFlashTurf(last, T, zap_amt)
+		return 1
 
 	target = pick(starts)
 
-	arcFlash(last, target, 500000)
+	arcFlash(last, target, zap_amt)
 
 	return 1
 
@@ -258,6 +274,7 @@ var/zapLimiter = 0
 		UpdateOverlays(isWireColorCut(APC_WIRE_MAIN_POWER2) ? I_wirewhite : null, "wirewhite", 0, 1)
 		UpdateOverlays(isWireColorCut(APC_WIRE_AI_CONTROL) ? I_wireyellow : null, "wireyellow", 0, 1)
 
+
 		return
 	else
 		icon_state = "apc0"
@@ -270,6 +287,24 @@ var/zapLimiter = 0
 		var/image/I_equp = SafeGetOverlayImage("equipment", 'icons/obj/machines/power.dmi', "apco0-[equipment]")
 		var/image/I_envi = SafeGetOverlayImage("environment", 'icons/obj/machines/power.dmi', "apco2-[environ]")
 
+		I_lock.blend_mode = BLEND_OVERLAY
+		I_lock.plane = PLANE_SELFILLUM
+
+		I_chrg.blend_mode = BLEND_OVERLAY
+		I_chrg.plane = PLANE_SELFILLUM
+
+		I_brke.blend_mode = BLEND_OVERLAY
+		I_brke.plane = PLANE_SELFILLUM
+
+		I_lite.blend_mode = BLEND_OVERLAY
+		I_lite.plane = PLANE_SELFILLUM
+
+		I_equp.blend_mode = BLEND_OVERLAY
+		I_equp.plane = PLANE_SELFILLUM
+
+		I_envi.blend_mode = BLEND_OVERLAY
+		I_envi.plane = PLANE_SELFILLUM
+
 		UpdateOverlays(I_lock, "lock", 0, 1)
 		UpdateOverlays(I_chrg, "charge", 0, 1)
 		UpdateOverlays(I_brke, "breaker", 0, 1)
@@ -278,6 +313,7 @@ var/zapLimiter = 0
 			UpdateOverlays(I_lite, "lighting", 0, 1)
 			UpdateOverlays(I_equp, "equipment", 0, 1)
 			UpdateOverlays(I_envi, "environment", 0, 1)
+
 
 /obj/machinery/power/apc/emp_act()
 	..()
@@ -1198,12 +1234,14 @@ var/zapLimiter = 0
 	if(terminal?.powernet)
 		perapc = terminal.powernet.perapc
 
-	if(zapLimiter < APC_ZAP_LIMIT_PER_5 && prob(6) && !shorted && avail() > 3000000)
-		SPAWN_DBG(0)
-			if(zapStuff())
-				zapLimiter += 1
-				sleep(5 SECONDS)
-				zapLimiter -= 1
+		if(/*zapLimiter < APC_ZAP_LIMIT_PER_5 && */!shorted && perapc >= 40 KILO WATTS && prob((log(perapc) - 8) * 2) && !ON_COOLDOWN(src, "zap_a_fool", rand(30 DECI SECONDS, 80 DECI SECONDS)))
+			var/zap_amt = perapc * 0.85
+			SPAWN_DBG(0)
+				if(zapStuff(zap_amt))
+					terminal.powernet.newload += zap_amt
+					/*zapLimiter += 1
+					sleep(5 SECONDS)
+					zapLimiter -= 1*/
 
 	if(cell && !shorted)
 

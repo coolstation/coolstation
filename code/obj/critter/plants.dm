@@ -23,7 +23,7 @@
 		playsound(src.loc, pick("sound/voice/MEilive.ogg"), 45, 0)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -64,7 +64,7 @@
 					M.transforming = 1
 					M.canmove = 0
 					M.icon = null
-					APPLY_MOB_PROPERTY(M, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+					APPLY_ATOM_PROPERTY(M, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 					if(ishuman(M))
 						animation = new(src.loc)
 						animation.icon_state = "blank"
@@ -111,7 +111,7 @@
 	generic = 0
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -144,6 +144,6 @@
 	CritterDeath()
 		..()
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
-		var/obj/decal/cleanable/blood/B = make_cleanable(/obj/decal/cleanable/blood,src.loc)
+		var/obj/decal/cleanable/tracked_reagents/blood/B = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,src.loc)
 		B.name = "ruined tomato"
 		qdel (src)

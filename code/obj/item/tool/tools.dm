@@ -17,6 +17,7 @@ Handsaw
 /obj/item/crowbar
 	name = "crowbar"
 	desc = "A tool used as a lever to pry objects."
+	hint = "you can throw tiles by preforming a special attack with the disarm intent."
 	icon = 'icons/obj/items/tools/tools.dmi'
 	// TODO: crowbar inhand icon
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
@@ -98,6 +99,7 @@ Handsaw
 	New()
 		..()
 		BLOCK_SETUP(BLOCK_KNIFE)
+		//src.setItemSpecial(/datum/item_special/jab)
 
 	suicide(var/mob/user as mob)
 		if (!src.user_can_suicide(user))
@@ -278,9 +280,6 @@ Handsaw
 	var/net_id
 	//And the wifi frequency
 	var/frequency
-	//Beacon and control frequencies for bots!
-	var/control
-	var/beacon
 	//turf and data_terminal for powernet check
 	var/turf/T = get_turf(target.loc)
 	var/obj/machinery/power/data_terminal/test_link = locate() in T
@@ -288,8 +287,6 @@ Handsaw
 	//net_id block, except computers, where we do it all in one go
 	if (hasvar(target, "net_id"))
 		net_id = target:net_id
-	else if (hasvar(target, "botnet_id"))
-		net_id = target:botnet_id
 	else if (istype(target,/obj/machinery/computer3))
 		var/obj/computer = target
 		var/obj/item/peripheral/network/peripheral = locate(/obj/item/peripheral/network) in computer.contents
@@ -306,34 +303,16 @@ Handsaw
 		net_id = targetimplant.net_id
 		frequency = targetimplant.pda_alert_frequency
 
-	//frequency block
-	if (hasvar(target, "alarm_frequency"))
-		frequency = target:alarm_frequency
-	else if (hasvar(target, "freq"))
-		frequency = target:freq
-	else if (hasvar(target, "control_freq"))
-		control = target:control_freq
-		if (hasvar(target, "beacon_freq"))
-			beacon = target:beacon_freq
-	else if (hasvar(target, "radio_connection.frequency"))
-		var/datum/radio_frequency/radiofreq = target:radio_connection
-		frequency = radiofreq.frequency
-	else if (hasvar(target, "frequency"))
-		if(isnum(target:frequency) || istext(target:frequency))
-			frequency = target:frequency
-	//We'll do lockers safely since nothing else seems to store the frequency exactly like this
-	else if (istype(target, /obj/storage/secure))
-		var/obj/storage/secure/lockerfreq = target
-		frequency = lockerfreq.radio_control.frequency
-
 	if(net_id)
 		boutput(user, "<span class='alert'>NETID#[net_id]</span>")
-	if(frequency)
-		boutput(user, "<span class='alert'>FREQ#[frequency]</span>")
-	if(control)
-		boutput(user, "<span class='alert'>CTRLFREQ#[control]</span>")
-	if(beacon)
-		boutput(user, "<span class='alert'>BCKNFREQ#[beacon]</span>")
+
+	//frequencies
+	var/freq_num = 1
+	for(var/datum/component/packet_connected/radio/comp as anything in target.GetComponents(/datum/component/packet_connected/radio))
+		frequency = comp.get_frequency()
+		var/freq_name = comp.connection_id ? uppertext(comp.connection_id + "_FREQ") : "FREQ[freq_num++]"
+		boutput(user, "<span class='alert'>[freq_name]#[frequency]</span>")
+
 	//Powernet Test Block
 	//If we have a net_id but no wireless frequency, we're probably a powernet device
 	if(isturf(T) && net_id && !frequency)
@@ -342,6 +321,7 @@ Handsaw
 	if (test_link)
 		if (length(test_link.powernet.cables) < 1)
 			boutput(user, "<span class='alert'>ERR#NOTATERM</span>")
+
 
 
 //--------------------------- Please Hammer Don't Hurt 'Em (1990) ------------------------------------------

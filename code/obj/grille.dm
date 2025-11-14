@@ -18,7 +18,7 @@
 	var/list/connects_to_turf = list(/turf/wall/auto, /turf/wall/auto/reinforced, /turf/shuttle/wall, /turf/wall)
 	var/list/connects_to_obj = list(/obj/indestructible/shuttle_corner,	/obj/grille/, /obj/machinery/door, /obj/window)
 	text = "<font color=#aaa>+"
-	anchored = 1
+	anchored = ANCHORED
 	flags = FPRINT | CONDUCT | USEDELAY
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	layer = GRILLE_LAYER
@@ -81,7 +81,9 @@
 		name = "catwalk surface"
 		icon = 'icons/obj/grille.dmi'
 		icon_state = "catwalk"
+		var/icon_base = "catwalk"
 		density = 0
+		pass_unstable = FALSE
 		desc = "This doesn't look very safe at all!"
 		layer = CATWALK_LAYER
 		shock_when_entered = 0
@@ -91,24 +93,28 @@
 		connects_to_turf = null
 		flags = FPRINT | CONDUCT | USEDELAY | MINERAL_MAGNET_SAFE
 
+		New()
+			..()
+			icon_base = icon_state //make varedited catwalks not change when at all damaged
+
 		update_icon(special_icon_state)
 			if (ruined)
 				return
 
 			if (istext(special_icon_state))
-				icon_state = initial(src.icon_state) + "-" + special_icon_state
+				icon_state = icon_base + "-" + special_icon_state
 				return
 
 			var/diff = get_fraction_of_percentage_and_whole(health,health_max)
 			switch(diff)
 				if(-INFINITY to 25)
-					icon_state = initial(src.icon_state) + "-3"
+					icon_state = icon_base + "-3"
 				if(26 to 50)
-					icon_state = initial(src.icon_state) + "-2"
+					icon_state = icon_base + "-2"
 				if(51 to 75)
-					icon_state = initial(src.icon_state) + "-1"
+					icon_state = icon_base + "-1"
 				if(76 to INFINITY)
-					icon_state = initial(src.icon_state) + "-0"
+					icon_state = icon_base + "-0"
 
 		//If we're an elevator platform that got borked, see that the things we were "carrying" fall down the shaft
 		//Can't do this in exited() on the elevator shaft because these catwalks already only function as they do
@@ -396,7 +402,9 @@
 	blob_act(var/power)
 		src.damage_blunt(3 * power / 20)
 
-	ex_act(severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 4
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				src.damage_blunt(40)
@@ -529,7 +537,10 @@
 			else
 				..()
 				return
-
+		else if (istype(W, /obj/item/gun))
+			var/obj/item/gun/G = W
+			G.Shoot(get_turf(src), get_turf(user), user, point_blank_target = src)
+			return
 		// electrocution check
 
 		var/OSHA_is_crying = 1

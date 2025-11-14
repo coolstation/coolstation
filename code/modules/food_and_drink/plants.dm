@@ -585,7 +585,7 @@
 			hitMob.do_disorient(stamina_damage = 35, weakened = 0, stunned = 0, disorient = 30, remove_stamina_below_zero = 0)
 			hitMob.TakeDamageAccountArmor("chest", rand(damMin, damMax), 0)
 
-	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1, allow_anchored = 0, bonus_throwforce = 0)
+	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1, allow_anchored = FALSE, bonus_throwforce = 0)
 		throw_unlimited = 1
 		if(target.x > src.x || (target.x == src.x && target.y > src.y))
 			src.icon_state = "[base_icon_state]-spin-right"
@@ -1299,7 +1299,9 @@
 
 	make_reagents()
 		..()
-		reagents.add_reagent("water_holy", 10)
+		reagents.add_reagent("garlic", 10)
+
+	//TODO: add a mutation variant of holy garlic that is "bland" because instead of garlic flavor it's just holy water. no bad breath on that either.
 
 /obj/item/reagent_containers/food/snacks/plant/avocado
 	name = "avocado"

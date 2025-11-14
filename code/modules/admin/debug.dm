@@ -1186,7 +1186,7 @@ proc/display_camera_paths()
 	for(var/i=0, i<amount, i++)
 		. += rand_deci(-range,range,0,9)
 
-
+/*
 /client/proc/test_mass_flock_convert()
 	set name = "Test Mass Flock Convert"
 	set desc = "Don't fucking use this EVER"
@@ -1210,7 +1210,7 @@ var/datum/flock/testflock
 
 	var/chui/window/flockpanel/panel = testflock.panel
 	panel.Subscribe(usr.client)
-
+*/
 /client/proc/clear_string_cache()
 	set name = "Clear String Cache"
 	set desc = "Invalidates/clears the string cache to allow for files to be reloaded."
@@ -1252,6 +1252,27 @@ var/datum/flock/testflock
 			src.init_admin()
 			boutput(src, "<B><I>Your adminnery has returned.</I></B>")
 
+
+/client/proc/save_body_persist()
+	set name = "save body savefile2"
+	set desc = "Save your current mob to the experimental savefile2 system."
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	admin_only
+
+	if(src.mob && src.mob.bioHolder)
+		if(ishuman(src.mob))
+			var/id = input(src,"Enter save ID(write this down!)","savefile2 save","default")
+			src.preferences.body_save(src,id)
+			logTheThing("admin", src, null, "[src.ckey] saved [id] as savefile2.","admin")
+
+/client/proc/load_body_persist()
+	set name = "load body savefile2"
+	set desc = "loads the savefile2 id into your prefs. Run respawn_as_self after this."
+	SET_ADMIN_CAT(ADMIN_CAT_SELF)
+	admin_only
+	var/id = input(src,"Enter save ID","savefile2 load","default")
+	src.preferences.body_load(src,id)
+	logTheThing("admin", src, null, "[src.ckey] loaded [id] savefile2.","admin")
 
 /var/datum/debugthing/thething
 

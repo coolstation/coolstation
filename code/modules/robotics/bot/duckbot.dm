@@ -8,7 +8,7 @@
 	//TODO LAYER
 	layer = 5.0
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	// ACTION
 	on = 1
 	health = 5
@@ -256,12 +256,11 @@
 
 	var/datum/signal/signal = get_free_signal()
 	signal.source = src
-	signal.data["sender"] = src.botnet_id
+	signal.data["sender"] = src.net_id
 	signal.data["sender_name"] = src
 	signal.data["message"] = "BUMP N GO TO [src.duck_migration_target]."
 	signal.data["target"] = src.duck_migration_target
-	signal.transmission_method = TRANSMISSION_RADIO
-	frequency.post_signal(src, signal)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 	return TRUE
 */
 /*
@@ -305,7 +304,7 @@
 		if(!frequency) return FALSE
 		var/datum/signal/sigsend = get_free_signal()
 		sigsend.source = src
-		sigsend.data["sender"] = src.botnet_id
+		sigsend.data["sender"] = src.net_id
 		sigsend.data["command"] = "message"
 		sigsend.data["sender_name"] = src
 		sigsend.data["message"] = "[msg]"

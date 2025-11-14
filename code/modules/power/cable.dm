@@ -58,7 +58,8 @@
 // the power cable object
 /obj/cable
 	level = 1
-	anchored =1
+	anchored = ANCHORED
+	pass_unstable = FALSE
 	var/tmp/netnum = 0
 	name = "power cable"
 	desc = "A flexible power cable."
@@ -284,7 +285,9 @@
 
 	return src.electrocute(user, prb, netnum)
 
-/obj/cable/ex_act(severity)
+/obj/cable/ex_act(severity, last_touched, epicenter, turf_safe)
+	if(turf_safe)
+		severity = severity - 8
 	switch (severity)
 		if (OLD_EX_SEVERITY_1)
 			qdel(src)

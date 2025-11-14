@@ -518,36 +518,12 @@
 	},
 /turf/floor/dirt,
 /area/nomad/outside)
-"bu" = (
-/turf/wall/nothing,
-/area/space)
-"bv" = (
-/obj/decal/cleanable/dirt,
-/obj/stone{
-	desc = "It looks like the tunnel collapsed."
-	},
-/obj/decal/cleanable/machine_debris,
-/obj/decal/cleanable/blood/drip/high,
-/turf/floor/setpieces/Azarak/cavefloor/floor2,
-/area/nomad/inside)
 "bw" = (
 /obj/decal/cleanable/machine_debris{
 	icon_state = "gib7";
 	layer = 0
 	},
 /obj/decal/cleanable/ash,
-/turf/floor/setpieces/Azarak/cavefloor/floor2,
-/area/nomad/inside)
-"bx" = (
-/obj/decal/cleanable/dirt/dirt4,
-/obj/item/brick{
-	desc = "This definitely doesn't work any more.";
-	icon = 'icons/obj/items/card.dmi';
-	icon_state = "emag-busted";
-	interesting = "Significant burn damage. Coated in trace amounts of black powder.";
-	name = "destroyed Electromagnetic Card"
-	},
-/obj/decal/cleanable/blood/splatter,
 /turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
 "by" = (
@@ -584,28 +560,12 @@
 	},
 /turf/floor/setpieces/Azarak/cavefloor/floor2,
 /area/nomad/inside)
-"bA" = (
-/obj/decal/cleanable/dirt/dirt5,
-/obj/decal/cleanable/blood/drip/low,
-/turf/floor/setpieces/Azarak/cavefloor/floor2,
-/area/nomad/inside)
-"bB" = (
-/obj/decal/cleanable/blood/drip/low,
-/turf/floor/setpieces/Azarak/cavefloor/floor2,
-/area/nomad/inside)
 "bC" = (
 /obj/decal/fakeobjects/cpucontroller{
 	desc = "It looks to be in pretty bad shape.";
 	icon_state = "gannets_machine10"
 	},
 /turf/floor/setpieces/Azarak/cavefloor/floor3,
-/area/nomad/inside)
-"bD" = (
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 9
-	},
-/turf/floor/wood,
 /area/nomad/inside)
 "bE" = (
 /obj/decal/cliff{
@@ -711,15 +671,6 @@
 /obj/random_item_spawner/desk_stuff,
 /turf/floor/purple,
 /area/nomad/inside)
-"bP" = (
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 1
-	},
-/turf/floor/stairs{
-	dir = 1
-	},
-/area/nomad/inside)
 "bQ" = (
 /obj/decoration/clock/frozen{
 	desc = "There are no numbers or markings on this clock. The hands are not moving.";
@@ -730,46 +681,6 @@
 	name = "reinforced wall";
 	opacity = 0
 	},
-/area/nomad/inside)
-"bR" = (
-/obj/decal/cleanable/ash,
-/obj/decal/cleanable/dirt/dirt3,
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 1
-	},
-/turf/floor/black,
-/area/nomad/inside)
-"bS" = (
-/obj/decal/cleanable/blood/drip/low,
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 10
-	},
-/turf/floor/black,
-/area/nomad/inside)
-"bT" = (
-/obj/shrub{
-	desc = "Looks suspiciously just like an Earth ficus.";
-	dir = 1;
-	icon = 'icons/obj/stationobjs.dmi';
-	icon_state = "plant";
-	layer = 2;
-	name = "space ficus";
-	pixel_y = 0
-	},
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 8
-	},
-/turf/floor/black/grime,
-/area/nomad/inside)
-"bU" = (
-/obj/stool/chair/office/purple{
-	dir = 8
-	},
-/obj/decal/cleanable/blood/tracks,
-/turf/floor/black,
 /area/nomad/inside)
 "bV" = (
 /obj/item/paper/empty_bloody{
@@ -786,14 +697,6 @@
 /obj/decal/cleanable/dirt/dirt5,
 /turf/floor/black,
 /area/nomad/inside)
-"bX" = (
-/obj/decal/cleanable/blood/tracks,
-/turf/floor/black,
-/area/nomad/inside)
-"bY" = (
-/obj/decal/cleanable/blood/drip/low,
-/turf/floor/black/grime,
-/area/nomad/inside)
 "bZ" = (
 /obj/decal/cleanable/dirt/dirt3,
 /turf/floor/black/side{
@@ -804,83 +707,9 @@
 /obj/decal/cleanable/dirt,
 /turf/floor/white,
 /area/nomad/inside)
-"cb" = (
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 10
-	},
-/turf/floor/black,
-/area/nomad/inside)
-"cc" = (
-/obj/decal/cleanable/dirt/dirt5,
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 4
-	},
-/turf/floor/black,
-/area/nomad/inside)
-"cd" = (
-/obj/decal/cleanable/blood/drip/low,
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 5
-	},
-/turf/floor/black/grime,
-/area/nomad/inside)
-"ce" = (
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 1
-	},
-/turf/floor/stairs/dark,
-/area/nomad/inside)
 "cf" = (
 /obj/decal/cleanable/ash,
 /turf/floor/purple,
-/area/nomad/inside)
-"cg" = (
-/obj/decal/cleanable/blood/drip/low,
-/obj/decal/cleanable/dirt/dirt2,
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "tracks";
-	dir = 1
-	},
-/turf/floor/purple,
-/area/nomad/inside)
-"ch" = (
-/obj/decal/cleanable/blood/drip/low,
-/obj/item/mine/stun/armed,
-/turf/floor/purple,
-/area/nomad/inside)
-"ci" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "gibbl2"
-	},
-/turf/floor/setpieces/Azarak/cavefloor/floor3,
-/area/nomad/inside)
-"cj" = (
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "u_ketchup"
-	},
-/turf/floor/setpieces/Azarak/cavefloor/floor3,
-/area/nomad/inside)
-"ck" = (
-/obj/decal/cleanable/blood/splatter{
-	icon_state = "gibbl2"
-	},
-/turf/floor/setpieces/Azarak/cavefloor/floor2,
-/area/nomad/inside)
-"cl" = (
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "u_ketchup"
-	},
-/turf/floor/setpieces/Azarak/cavefloor/floor2,
-/area/nomad/inside)
-"cm" = (
-/obj/decal/cleanable/blood/tracks{
-	icon_state = "u_ketchup"
-	},
-/turf/floor/setpieces/Azarak/cavefloor,
 /area/nomad/inside)
 "cn" = (
 /obj/decal/fakeobjects{
@@ -1191,6 +1020,174 @@
 /obj/decal/fakeobjects/carcosa/tree/four,
 /turf/floor/setpieces/carcosa/carcosa_dirt,
 /area/nomad/outside)
+"fa" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl2"
+	},
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
+/area/nomad/inside)
+"kA" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/floor/black,
+/area/nomad/inside)
+"lH" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter{
+	icon_state = "gibbl2"
+	},
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
+/area/nomad/inside)
+"nV" = (
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
+/area/nomad/inside)
+"oi" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 1
+	},
+/turf/floor/stairs/dark,
+/area/nomad/inside)
+"qt" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 1
+	},
+/turf/floor/stairs{
+	dir = 1
+	},
+/area/nomad/inside)
+"wz" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "u_ketchup"
+	},
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
+/area/nomad/inside)
+"yq" = (
+/obj/shrub{
+	desc = "Looks suspiciously just like an Earth ficus.";
+	dir = 1;
+	icon = 'icons/obj/stationobjs.dmi';
+	icon_state = "plant";
+	layer = 2;
+	name = "space ficus";
+	pixel_y = 0
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 8
+	},
+/turf/floor/black/grime,
+/area/nomad/inside)
+"zy" = (
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
+/obj/item/mine/stun/armed,
+/turf/floor/purple,
+/area/nomad/inside)
+"zW" = (
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 5
+	},
+/turf/floor/black/grime,
+/area/nomad/inside)
+"Ai" = (
+/obj/decal/cleanable/dirt/dirt5,
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
+/area/nomad/inside)
+"EP" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "u_ketchup"
+	},
+/turf/floor/setpieces/Azarak/cavefloor,
+/area/nomad/inside)
+"Gk" = (
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
+/obj/decal/cleanable/dirt/dirt2,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 1
+	},
+/turf/floor/purple,
+/area/nomad/inside)
+"GN" = (
+/obj/stool/chair/office/purple{
+	dir = 8
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor/black,
+/area/nomad/inside)
+"Ku" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 9
+	},
+/turf/floor/wood,
+/area/nomad/inside)
+"KE" = (
+/obj/decal/cleanable/dirt/dirt4,
+/obj/item/brick{
+	desc = "This definitely doesn't work any more.";
+	icon = 'icons/obj/items/card.dmi';
+	icon_state = "emag-busted";
+	interesting = "Significant burn damage. Coated in trace amounts of black powder.";
+	name = "destroyed Electromagnetic Card"
+	},
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
+/area/nomad/inside)
+"LG" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "u_ketchup"
+	},
+/turf/floor/setpieces/Azarak/cavefloor/floor3,
+/area/nomad/inside)
+"Oe" = (
+/obj/decal/cleanable/ash,
+/obj/decal/cleanable/dirt/dirt3,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 1
+	},
+/turf/floor/black,
+/area/nomad/inside)
+"OQ" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks,
+/turf/floor/black,
+/area/nomad/inside)
+"OY" = (
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/floor/black,
+/area/nomad/inside)
+"Rz" = (
+/obj/decal/cleanable/tracked_reagents/blood/drip/low,
+/turf/floor/black/grime,
+/area/nomad/inside)
+"Wi" = (
+/obj/decal/cleanable/dirt,
+/obj/stone{
+	desc = "It looks like the tunnel collapsed."
+	},
+/obj/decal/cleanable/machine_debris,
+/obj/decal/cleanable/tracked_reagents/blood/drip/high,
+/turf/floor/setpieces/Azarak/cavefloor/floor2,
+/area/nomad/inside)
+"YE" = (
+/obj/decal/cleanable/dirt/dirt5,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/floor/black,
+/area/nomad/inside)
 
 (1,1,1) = {"
 aa
@@ -2189,11 +2186,11 @@ aa
 aa
 aa
 aa
-bu
 aa
-bu
-bu
-bu
+aa
+aa
+aa
+aa
 aa
 aa
 ab
@@ -2221,11 +2218,11 @@ aa
 aa
 aa
 aa
-bu
 aa
-bu
 aa
-bu
+aa
+aa
+aa
 aa
 aa
 ab
@@ -2233,7 +2230,7 @@ ac
 ac
 ad
 ap
-bB
+nV
 ah
 ah
 ac
@@ -2253,18 +2250,18 @@ aa
 aa
 aa
 aa
-bu
-bu
-bu
 aa
-bu
+aa
+aa
+aa
+aa
 aa
 aa
 ab
 ad
 bC
 bw
-bA
+Ai
 aj
 ao
 ao
@@ -2295,7 +2292,7 @@ aa
 ab
 ad
 ah
-bx
+KE
 ac
 ac
 ac
@@ -2326,7 +2323,7 @@ aa
 aa
 ab
 ad
-bv
+Wi
 by
 ac
 ar
@@ -2428,12 +2425,12 @@ ab
 ar
 ar
 az
-bD
-bP
-bR
-bU
-bX
-cb
+Ku
+qt
+Oe
+GN
+OQ
+kA
 bj
 bn
 bm
@@ -2462,10 +2459,10 @@ ar
 az
 bN
 aI
-bS
+OY
 bV
-bY
-cc
+Rz
+YE
 bO
 cf
 bm
@@ -2494,13 +2491,13 @@ ar
 az
 az
 bQ
-bT
+yq
 bW
 aM
-cd
-ce
-cg
-ch
+zW
+oi
+Gk
+zy
 az
 ar
 ab
@@ -3150,11 +3147,11 @@ aa
 aa
 aa
 aa
-bu
 aa
 aa
 aa
-bu
+aa
+aa
 aa
 aa
 ab
@@ -3182,11 +3179,11 @@ aa
 aa
 aa
 aa
-bu
 aa
-bu
 aa
-bu
+aa
+aa
+aa
 aa
 aa
 ab
@@ -3214,16 +3211,16 @@ aa
 aa
 aa
 aa
-bu
-bu
-bu
-bu
-bu
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 ab
 ad
-ci
+fa
 aj
 aj
 aj
@@ -3256,7 +3253,7 @@ aa
 ab
 ad
 ah
-cm
+EP
 ac
 ac
 ac
@@ -3288,7 +3285,7 @@ aa
 ab
 ad
 aj
-cl
+wz
 ac
 cp
 cq
@@ -3320,7 +3317,7 @@ aa
 ab
 ad
 aj
-cl
+wz
 ac
 cq
 cq
@@ -3352,7 +3349,7 @@ aa
 ab
 ad
 ao
-cl
+wz
 ac
 cp
 cq
@@ -3383,7 +3380,7 @@ aa
 aa
 ab
 ad
-cj
+LG
 aj
 ac
 cq
@@ -3415,7 +3412,7 @@ aa
 aa
 ab
 ad
-ck
+lH
 aj
 ac
 cq
@@ -3447,7 +3444,7 @@ aa
 aa
 ab
 ad
-cl
+wz
 aj
 ac
 cq
@@ -3480,7 +3477,7 @@ aa
 ab
 ad
 ah
-cm
+EP
 ac
 cq
 cs
@@ -3511,7 +3508,7 @@ aa
 aa
 ab
 ad
-cl
+wz
 aj
 ac
 cq

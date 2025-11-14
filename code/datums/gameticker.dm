@@ -40,7 +40,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	var/tmp/timeDilationUpperBound = OVERLOADED_WORLD_TICKLAG
 	var/tmp/highMapCpuCount = 0 // how many times in a row has the map_cpu been high
 
-	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg', 'sound/radio_station/lobby/onn105.ogg')
+	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg', 'sound/radio_station/lobby/onn105.ogg', 'sound/radio_station/lobby/robocop.ogg')
 	var/picked_music = null
 
 
@@ -68,8 +68,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	#endif
 
 	var/did_mapvote = 0
-	if (!player_capa)
-		new /obj/overlay/zamujasa/round_start_countdown/encourage()
+	//if (!player_capa)
+	//	new /obj/overlay/zamujasa/round_start_countdown/encourage()
 	var/obj/overlay/zamujasa/round_start_countdown/timer/title_countdown = new()
 	while (current_state <= GAME_STATE_PREGAME)
 		sleep(1 SECOND)
@@ -99,7 +99,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			title_countdown.update_time(-1)
 
 
-		if(pregame_timeleft <= 0)
+		if(pregame_timeleft <= 0 || current_state == GAME_STATE_SETTING_UP)
 			current_state = GAME_STATE_SETTING_UP
 			qdel(title_countdown)
 			qdel(game_start_countdown)
@@ -157,7 +157,13 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		src.mode.announce()
 
 	// uhh is this where this goes??
-	src.centralized_ai_laws = new /datum/ai_laws/asimov()
+	var/list/good_laws = list()
+	for(var/A in typesof(/datum/ai_laws))
+		var/datum/ai_laws/ai = new A()
+		if(ai.randomly_selectable)
+			good_laws += ai
+
+	src.centralized_ai_laws = pick(good_laws)
 
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = src.mode.pre_setup()
@@ -174,11 +180,20 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 	logTheThing("debug", null, null, "Chosen game mode: [mode] ([master_mode]) on map [getMapNameFromID(map_setting)].")
 
+	#if (defined(I_DONT_WANNA_WAIT_FOR_THIS_PREGAME_SHIT_JUST_GO)) || (DYNAMIC_ARRIVAL_SHUTTLE_TIME == 0)
+	if (map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
+		transit_controls.move_vehicle("arrivals_shuttle", "arrivals_dock", "(shuttle start skipped)")
+	#else
+	if (map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
+		var/area/A = locate(/area/shuttle/arrival/pre_game)
+		for (var/obj/machinery/door/airlock/an_door in A.machines)
+			if (istype(an_door, /obj/machinery/door/airlock/external/shuttle_connect) || istype(an_door, /obj/machinery/door/airlock/pyro/external/shuttle_connect))
+				if (!an_door.locked)
+					an_door.toggle_bolt()
+	#endif
+
 	//Tell the participation recorder to queue player data while the round starts up
 	participationRecorder.setHold()
-
-	//initiliase this fucker in case we get spies (hard to say at this stage, since they also show up in mixed modes)
-	ALL_ACCESS_CARD = new /obj/item/card/id/captains_spare()
 
 #ifdef RP_MODE
 	looc_allowed = 1
@@ -271,7 +286,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 		logTheThing("ooc", null, null, "<b>Current round begins</b>")
 		boutput(world, "<FONT class='notice'><B>Enjoy the game!</B></FONT>")
+		boutput(world, "<span class='notice'><b>Alt+Click anything to examine and see hints!</b></span>")
 		boutput(world, "<span class='notice'><b>[prob(10)?"Pro ":"Cool "]Tip:</b> [pick(dd_file2list("strings/roundstart_hints.txt"))]</span>")
+
 		// keywords -  pro tip: cool tip: protips roundstart tips roundstart hints
 
 		//Setup the hub site logging
@@ -285,7 +302,20 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		//Tell the participation recorder that we're done FAFFING ABOUT
 		participationRecorder.releaseHold()
 
-	SPAWN_DBG (6000) // 10 minutes in
+	#if DYNAMIC_ARRIVAL_SHUTTLE_TIME > 0
+	if (map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
+		SPAWN_DBG (DYNAMIC_ARRIVAL_SHUTTLE_TIME)
+			var/area/A = locate(/area/shuttle/arrival/pre_game)
+			for (var/obj/machinery/door/airlock/an_door in A.machines)
+				if (istype(an_door, /obj/machinery/door/airlock/external/shuttle_connect) || istype(an_door, /obj/machinery/door/airlock/pyro/external/shuttle_connect))
+					if (an_door.locked)
+						an_door.toggle_bolt()
+			transit_controls.move_vehicle("arrivals_shuttle", "arrivals_dock", "(shuttle start normal)")
+		SPAWN_DBG (DYNAMIC_ARRIVAL_SHUTTLE_TIME - (5 SECONDS))
+			playsound(pick(get_area_turfs(/area/shuttle/arrival/pre_game)), "sound/effects/ship_engage.ogg", 100, 1)
+	#endif
+
+	SPAWN_DBG ((map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC) ? (10 MINUTES + DYNAMIC_ARRIVAL_SHUTTLE_TIME) : (10 MINUTES)) // 10 minutes in
 		for(var/obj/machinery/power/monitor/smes/E in machine_registry[MACHINES_POWER])
 			LAGCHECK(LAG_LOW)
 			if(E.powernet?.avail <= 0)
@@ -381,7 +411,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 						B.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", B, null, "<b>Late join</b>: assigned antagonist role: blob.")
 						antagWeighter.record(role = ROLE_BLOB, ckey = B.ckey)
-
+/*
 				else if (player.mind && player.mind.special_role == ROLE_FLOCKMIND)
 					player.close_spawn_windows()
 					var/mob/living/intangible/flock/flockmind/F = player.make_flockmind()
@@ -389,7 +419,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 						F.set_loc(pick_landmark(LANDMARK_OBSERVER))
 						logTheThing("debug", F, null, "<b>Late join</b>: assigned antagonist role: flockmind.")
 						antagWeighter.record(role = ROLE_FLOCKMIND, ckey = F.ckey)
-
+*/
 				else if (player.mind)
 					if (player.client.using_antag_token)
 						player.client.use_antag_token()	//Removes a token from the player
@@ -511,7 +541,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 				boutput(world, "<span class='bold notice'>A new round will begin soon.</span>")
 
-				var/datum/hud/roundend/roundend_countdown = new()
+				var/datum/hud/roundend/roundend_countdown = get_singleton(/datum/hud/roundend)
 
 				for (var/client/C in clients)
 					roundend_countdown.add_client(C)
@@ -533,7 +563,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 					ircmsg["msg"] = "Server would have restarted now, but the restart has been delayed[game_end_delayer ? " by [game_end_delayer]" : null]."
 					ircbot.export("admin", ircmsg)
 				else
+
 					// Put together a package of score data that we can hand off to the discord bot
+					var/clownabuse = game_stats.GetStat("clownabuse")
 					var/list/roundend_score = list(
 						"map" = getMapNameFromID(map_setting),
 						"survival" = score_tracker.score_crew_survival_rate,
@@ -551,7 +583,13 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 						"doinks"   = doinkssparked,
 						"clowns"   = clownabuse
 						)
-					ircbot.event("roundend", list("score" = roundend_score))
+					/* todo:
+						,
+							"food_finished" = game_stats.GetStat("food_finished"),
+							"mining_ores_mined" = game_stats.GetStat("mining_ores_mined"),
+							"mining_turfs_cleared" = game_stats.GetStat("mining_turfs_cleared")
+						*/
+					ircbot.event("roundend", roundend_score)
 					//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] REBOOTING THE SERVER!!!!!!!!!!!!!!!!!")
 					Reboot_server()
 

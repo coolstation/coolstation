@@ -57,6 +57,7 @@
 			qdel(src)
 			user.put_in_hand_or_drop(P)
 			JOB_XP(user, "Botanist", 1)
+			JOB_XP_FORCE(user,"CIGARETTE",2)
 
 		else if (istype(W, /obj/item/bluntwrap))
 			boutput(user, "<span class='alert'>You roll [src] up in [W] and make a fat doink.</span>")
@@ -75,6 +76,7 @@
 			qdel(src)
 			user.put_in_hand_or_drop(doink)
 			JOB_XP(user, "Botanist", 2)
+			JOB_XP_FORCE(user,"CIGARETTE",5)
 
 	combust_ended()
 		smoke_reaction(src.reagents, 1, get_turf(src), do_sfx = 0)
@@ -93,6 +95,14 @@
 	w_class = W_CLASS_TINY
 	value = -5 //small crime
 	alt_value = 50 //but why not
+
+	New()
+		. = ..()
+		START_TRACKING
+
+	disposing()
+		STOP_TRACKING
+		. = ..()
 
 /obj/item/plant/herb/cannabis/spawnable
 	make_reagents()

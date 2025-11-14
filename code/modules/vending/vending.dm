@@ -1,5 +1,6 @@
 /datum/data/vending_product
 	var/product_name = "generic"
+	var/icon_override = null
 	var/atom/product_path = null
 
 	var/product_cost
@@ -58,15 +59,20 @@
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
+	hint = "Hit the machine with cash or your ID to put credit into it."
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
 	machinery_flags = MAY_REQUIRE_MAINT
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 20
 	layer = OBJ_LAYER - 0.1 // so items get spawned at 3, don't @ me
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_MULTITOOL
 	object_flags = CAN_REPROGRAM_ACCESS
+	var/voice_sound = "sound/misc/talk/bottalk_1.ogg"
+	var/speech_color = null
+	var/maptext_speech = TRUE
+
 	var/freestuff = 0
 	var/obj/item/card/id/scan = null
 
@@ -128,9 +134,12 @@
 	var/print_receipts = TRUE
 	var/print_receipts_long = FALSE
 	var/receipt_count = 20 // TODO: Printer rolls for receipts?
+	var/current_receipt // Where we're building the HTML receipt for the current transaction
+	var/current_receipt_subtotal // how many bux is this current receipt
+	var/receipt_serv_chg_total   // How much has been racked up in service charges?
 	var/min_serv_chg = 2 // 2 bux just to use your damn machine? Rasm frasm grumble!
 	var/serv_chg_pct = 0.02
-	var/datum/data/record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
+	var/datum/db_record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
 
 	var/HTML = null // guh
 	var/vending_HTML = null // buh
@@ -143,6 +152,9 @@
 	var/light_g = 1
 	var/light_b = 1
 
+	var/has_glow = TRUE // is this machine emissive?
+	var/image/glow
+
 	var/output_target = null
 
 	power_usage = 50
@@ -150,6 +162,13 @@
 	var/window_size = "400x475"
 
 	New()
+		if(has_glow)
+			src.glow = image(src.icon, src, "[icon_state]_g")
+			src.glow.plane = PLANE_LIGHTING
+			src.glow.layer = LIGHTING_LAYER_BASE
+			src.glow.blend_mode = BLEND_ADD
+			src.UpdateOverlays(glow, "glow")
+
 		src.create_products()
 		AddComponent(/datum/component/mechanics_holder)
 		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"Vend Random", "vendinput")
@@ -166,24 +185,41 @@
 
 	var/lastvend = 0
 
-	proc/printReceipt(var/datum/data/record/accountFrom, item, amount, serv_chg_amount)
+	proc/newReceipt()
+		// Reset everythin'
 		if(!print_receipts)
 			return
 
-		var/receiptText = "<b>Payment Receipt</b><br><i>Please keep this for departmental records.</i><br>"
-		receiptText += "[item]: $[amount]<br>"
-		if(serv_chg_amount > 0 || amount != 0)
-			receiptText += "<b>Service Charge</b>: $[serv_chg_amount]<br>"
-		else
-			receiptText += "<b>-Service Charge Waived-</b><br>"
-			serv_chg_amount = 0
+		src.current_receipt = "<html><head><style>body{background-color: #B3AFA9; color: #3B3632; font-family: monospace;}</style></head><body><center><b>[src.name] Receipt</b><br>"
+		src.current_receipt += "<i>Please keep this receipt for departmental records</i><br></center><hr><br>"
+		src.current_receipt_subtotal = 0
+		src.receipt_serv_chg_total   = 0
 
-		receiptText += "<hr>"
+	proc/addToReceipt(productName, productCost, serviceCharge)
+		if(!print_receipts)
+			return
 
-		if(!istype(accountFrom))
-			receiptText += "<b>Total</b>: $[amount + serv_chg_amount]"
+		src.current_receipt += "[productName]: $[productCost]<br>"
+		src.current_receipt_subtotal += productCost
+		src.receipt_serv_chg_total += serviceCharge
+
+	proc/printReceipt()
+		// Transactions done, dump the paperwork
+		if(!print_receipts || receipt_count <= 0 || current_receipt_subtotal <= 0)
+			return
+
+		src.current_receipt += "<hr><br>"
+
+		if(receipt_serv_chg_total > 0)
+			src.current_receipt += "<b>Service Charge</b>: $[receipt_serv_chg_total]<br>"
 		else
-			receiptText += "<b>Total</b> (deducted from [accountFrom.fields["name"]]): $[amount + serv_chg_amount]"
+			current_receipt += "<center><b>-Service Charge Waived-</b></center><br>"
+			receipt_serv_chg_total = 0
+
+
+		current_receipt += "<b>Total</b>: $[current_receipt_subtotal + receipt_serv_chg_total]<br><hr>"
+
+		current_receipt += "<b><i>Thank-you for your [pick("trade", "custom", "money")].</i></b></body></html>"
 
 		playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 40, 1)
 
@@ -192,13 +228,21 @@
 			P.set_loc(src.loc)
 			if(print_receipts_long)
 				P.icon_state = "thermal_paper_med"
-				P.desc = "Holy crap, how long does a receipt need to be?!"
+				P.desc = pick("Holy crap, how long does a receipt need to be?!",
+						"Ooh, nice, this one has a coupon!",
+						"...Did this really need to be this big?",
+						"an excessive thermal-paper receipt")
 			else
 				P.icon_state = "thermal_paper"
+				P.desc = "a flimsy thermal-paper receipt"
 
-			P.name = "'[item]' receipt"
-			P.info = receiptText
+			P.name = "[src.name] receipt"
+			P.info = current_receipt
+			current_receipt = ""
+			current_receipt_subtotal = 0
+			receipt_serv_chg_total = 0
 
+		// Todo: When we have receipt printer re-stocking
 		// receipt_count--
 
 
@@ -208,8 +252,6 @@
 		var/datum/data/vending_product/R = throw_item()
 		if (!R) //pizza machine = special
 			return
-		var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost * serv_chg_pct)
-		printReceipt(0, R.product_name, R.product_cost, service_charge)
 		if(R?.logged_on_vend)
 			logTheThing("station", usr, null, "randomly vended a logged product ([R.product_name]) using mechcomp from [src] at [log_loc(src)].")
 
@@ -231,17 +273,18 @@
 		if(istype(thing, /obj/item/popsicle))
 			return thing // dont refreeze these. hopefully thats all the exceptions.
 
-		var/obj/item/reagent_containers/food/snacks/shell/frozen/freezie = new(src)
+		var/obj/item/reagent_containers/food/snacks/shell/frozen/freezie
 
 		if(istype(thing, /obj/item/reagent_containers/food/snacks/))
 			var/obj/item/reagent_containers/food/snacks/S = thing
 			if("food_cold" in S.food_effects)
 				return S // if the dispensed item is meant to be cold, don't treat it as "frozen"
 			else
+				freezie = new(src)
 				freezie.food_effects |= S.food_effects
 				freezie.food_effects -= "food_warm"
-
-
+		else
+			freezie = new(src)
 
 		freezie.name = "frozen [thing.name]"
 
@@ -262,8 +305,6 @@
 
 		thing.set_loc(freezie)
 		return freezie
-
-
 
 	MouseDrop(over_object, src_location, over_location)
 		if(!istype(usr,/mob/living/))
@@ -295,6 +336,9 @@
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set [src] to output to [over_object]!</span>")
 
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
+
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
 		return
@@ -323,8 +367,10 @@
 		sleep(1.5 SECONDS)
 		if(prob(50)) // Additionally, fuck you. *smack*
 			var/datum/data/vending_product/R = throw_item()
+			newReceipt()
 			var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
-			printReceipt(0, R.product_name, R.product_cost, service_charge)
+			addToReceipt(R.product_name, R.product_cost, service_charge)
+			printReceipt()
 
 
 	proc/get_output_location()
@@ -415,8 +461,8 @@
 	if (!card || !user || !src.acceptcard)
 		return
 	boutput(user, "<span class='notice'>You swipe [card].</span>")
-	var/datum/data/record/account = null
-	account = FindBankAccountById(card.registered_id)
+	var/datum/db_record/account = null
+	account = FindBankAccountByName(card.registered)
 	if (account)
 		var/enterpin = input(user, "Please enter your PIN number.", "Enter PIN", 0) as null|num
 		if (enterpin == card.pin)
@@ -428,6 +474,10 @@
 	else
 		boutput(user, "<span class='alert'>No bank account associated with this ID found.</span>")
 		src.scan = null
+
+/* For potential festivities! */
+/obj/machinery/vending/proc/seasonal_check(mob/user as mob, datum/data/vending_product/product)
+	return
 
 /obj/machinery/vending/proc/generate_HTML(var/update_vending = 0, var/update_wire = 0)
 	src.HTML = ""
@@ -444,44 +494,285 @@
 	src.updateUsrDialog()
 
 /obj/machinery/vending/proc/generate_vending_HTML()
+
 	var/list/html_parts = list()
-	html_parts += "<b>Welcome!</b><br>"
+	html_parts += {"<style type="text/css">
+		body
+		{
+			background: #030602;
+			font-family: "Not Jam Mono Clean 16";
+			font-size: 12pt;
+			letter-spacing: 1px;
+			color: #52ff00;
+			padding = 5px;
+
+		}
+		hr{
+			border: 1px solid #fffe03;
+		}
+
+		@font-face {
+				font-family: "Not Jam Mono Clean 16";
+				font-style: normal;
+				src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
+			}
+			html { background: #0e0c05;
+					font-family: "Not Jam Mono Clean 16";
+					font-size: 16pt;
+					line-height: 1;
+					background: #030602;
+					animation-duration: 0.01s;
+					animation-name: textflicker;
+					animation-iteration-count: infinite;
+					animation-direction: alternate;
+					topmargin=0;
+					bottommargin=0;
+					leftmargin=0;
+					rightmargin=0
+					marginwidth=0;
+					marginheight=0;
+			}
+			h1 {
+				font-size: 32px;
+				text-transform: uppercase;
+				background-color: #0A3609;
+				color: #08FF03;
+				width: 100%;
+				font-weight: bold;
+				animation: run 4s linear infinite;
+				padding: 0px 5px 0px 5px ;
+
+			}
+			.container {
+				display: flex;
+				flex-direction: row;
+			}
+            .box{
+				border: 2px solid #08FF03;
+				background-color: #11F20C;
+				color: #011201;
+				padding: 3px;
+				font-size: 12pt;
+				animation-duration: 0.01s;
+				animation-name: boxflicker;
+				animation-iteration-count: infinite;
+				animation-direction: alternate;
+				width: fit-content;
+				display: inline;
+				line-height: 200%;
+				text-align: center;
+				font-weight: normal;
+            }
+            .box.button{
+            background-color: #020600;
+			color: #52ff00;
+			border: 2px solid #52ff00;
+			font-size: 12pt;
+            }
+			.box.blank{
+            background-color: #020600;
+			color: #020600;
+			border: 2px solid #52ff00;
+            }
+			.holder{
+			color: #171716;
+			}
+            .box.error{
+               border: 5px groove red;
+               padding: 3px;
+               color: red;
+               background-color: black ;
+            }
+			.box.warning{
+				border: 2px groove #c6ff00;
+				background-color: #0c1500;
+				color: #c6ff00;
+			}
+			a{
+				color:#fffe03;
+			}
+			    .crt::before {
+				content: " ";
+				display: block;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				opacuty: 0.1;
+				background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+				z-index: 2;
+				background-size: 100% 2px, 3px 100%;
+				pointer-events: none;
+			}
+			.box.center{
+			max-width: fit-content;
+			margin-left: auto;
+			margin-right: auto;
+				}
+
+			@keyframes flicker {
+				0% {
+				opacity: 0.05;
+				}
+				5% {
+				opacity: 0.01;
+				}
+				10% {
+				opacity:0.05;
+				}
+				15% {
+				opacity: 0.001;
+				}
+				20% {
+				opacity: 0.05;
+				}
+				25% {
+				opacity: 0.005;
+				}
+				30% {
+				opacity: 0.05;
+				}
+				35% {
+				opacity:0.05;
+				}
+			}
+
+			.crt::after {
+				content: " ";
+				display: block;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				background: rgba(18, 16, 16, 0.1);
+				opacity: 0.01;
+				z-index: 2;
+				pointer-events: none;
+				animation: flicker 0.15s infinite;
+			}
+		tbody td {
+			/* 1. Animate the background-color
+				from transparent to white on hover */
+			background-color: rgba(205, 168, 60, 0);
+			transition: all 0.2s linear;
+			transition-delay: 0.3s, 0s;
+			/* 2. Animate the opacity on hover */
+			opacity: 0.98;
+			}
+			tbody tr:hover td {
+			background-color: rgba(205, 168, 60, .2);
+			transition-delay: 0s, 0s;
+			opacity: 1;
+			}
+
+			.disclaimer{
+			text-align: center;
+			height: auto;
+			}
+
+			.header{
+			width: 100%;
+			display: flex;
+			white-space: nowrap ;
+			background-color: #0A3609;
+			overflow: hidden;
+			height:36px;
+			align-items: center;
+
+			}
+
+			@keyframes run {
+			from {
+				transform: translateX(0%);
+			}
+			/* Magic is here. This is the width of the elem with text after rendering the page */
+			to {
+				transform: translateX( -100% );
+			}
+			}
+
+
+
+
+			/* Codepen styling */
+			* { box-sizing: border-box }
+
+
+			th, td {
+			padding: 0.1em;
+			border-bottom: 1px solid #52ff00;
+			text-align: center;
+			}
+
+			.itemBox {
+			border: 2px solid #08FF03;
+			background-color: #11F20C;
+			color: #011201;
+			padding: 3px;
+			font-size: 12pt;
+			animation-duration: 0.01s;
+			animation-name: boxflicker;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			text-align: center;
+			font-weight: normal;
+			}
+
+			.blank:hover {
+				color:#52ff00;
+				background-color:#52ff00
+			}
+			.blank:active {
+				color:#ffffff;
+				background-color:#ffffff
+			}
+
+
+		</style>
+
+		<head><div class="crt"></div></head>"}
+
+	html_parts += "<div class = 'header'><h1><b>[name]</b></h1> <h1><b>[name]</b></h1> <h1><b>[name]</b></h1> <h1><b>[name]</b></h1></div>"
 
 	if (src.paying_for && (!istype(src.paying_for, /datum/data/vending_product) || !src.pay))
 		src.paying_for = null
 
 	if (src.pay && src.acceptcard)
+		if(src.min_serv_chg)
+			html_parts += "<i><div class = 'disclaimer'>This machine charges a minimum $[src.min_serv_chg] service charge</div></i>"
 		if (src.paying_for && !src.scan)
-			html_parts += "<B>You have selected the following item:</b><br>"
-			html_parts += "&emsp;<b>[src.paying_for.product_name]</b><br>"
-			html_parts += "Please swipe your card to authorize payment.<br>"
-			html_parts += "<B>Current ID:</B> None<BR>"
+			html_parts += "<br><div class = 'disclaimer'>You have selected the following item:</div><br>"
+			html_parts += "<div class = 'itemBox'>[src.paying_for.product_name]</div><br>"
+			html_parts += "<div class = 'disclaimer'>Please swipe your card to authorize payment.</div>"
+			html_parts += "<div class= 'box'><B>Current ID:</B></div>  None<BR>"
 		else if (src.scan)
 			if (src.paying_for)
-				html_parts += "<B>You have selected the following item for purchase:</b><br>"
-				html_parts += "&emsp;[src.paying_for.product_name]<br>"
-				html_parts += "<B>Please swipe your card to authorize payment.</b><br>"
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
-			html_parts += "<B>Current ID:</B> <a href='byond://?src=\ref[src];logout=1'><u>([src.scan])</u></A><BR>"
-			html_parts += "<B>Credits on Account: [account.fields["current_money"]] Credits</B> <BR>"
+				html_parts += "<br><div class = 'disclaimer'>You have selected the following item for purchase:</div><br>"
+				html_parts += "<div class = 'itembBox'>[src.paying_for.product_name]</div><br>"
+				html_parts += "<div class = 'disclaimer'>Please swipe your card to authorize payment.</div><br>"
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
+			html_parts += "<div class= 'box'><B>Current ID :</B></div>  <a href='byond://?src=\ref[src];logout=1'><div class = 'itemBox'><u>([src.scan])</u></div></A><BR>"
+			html_parts += "<div class= 'box'>Credits on Account:</div> <div class = 'itemBox'>[account["current_money"]] Credits</div> <br>"
 		else
-			html_parts += "<B>Current ID:</B> None<BR>"
+			html_parts += "<div class= 'box'><B>Current ID :</B></div> None<BR>"
 
 	if (!length(src.product_list) && !length(src.player_list))
 		html_parts += "<font color = 'red'>No product loaded!</font>"
 
 	else if (src.paying_for)
-		html_parts += "<a href='byond://?src=\ref[src];vend=\ref[src.paying_for]'><u><b>Continue</b></u></a>"
-		html_parts += " | <a href='byond://?src=\ref[src];cancel_payfor=1;logout=1'><u><b>Cancel</b></u></a>"
+		html_parts += "<a href='byond://?src=\ref[src];vend=\ref[src.paying_for]'><div class= 'box'>Continue</div></a>"
+		html_parts += " | <a href='byond://?src=\ref[src];cancel_payfor=1;logout=1'><div class= 'box'>Cancel</b></div></a>"
 
 	else
-		html_parts += "<table style='width: 100%; border: none; border-collapse: collapse;'><thead><tr><th>Product</th><th>Amt.</th><th>Price</th></tr></thead>"
+		html_parts += "<table style='width: 100%; border: none; border-collapse: collapse;'><thead><tr><th style = 'color: #020600;'>XXX</th><th>Product</th><th>Amt.</th><th>Price</th></tr></thead>"
 		for (var/datum/data/vending_product/R in src.product_list)
 			if (R.product_hidden && !src.extended_inventory)
 				continue
 			if (R.product_amount > 0)
-				html_parts += "<tr><td><a href='byond://?src=\ref[src];vend=\ref[R]'>[R.product_name]</a></td><td style='text-align: right;'>[R.product_amount]</td><td style='text-align: right;'> $[R.product_cost]</td></tr>"
+				html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [R.product_name]</td><td>[R.product_amount]</td><td> $[R.product_cost]</td></tr>"
 			else
 				html_parts += "<tr><td>[R.product_name]</a></td><td colspan='2' style='text-align: center;'><strong>SOLD OUT</strong></td></tr>"
 		if (player_list)
@@ -490,15 +781,15 @@
 				var/obj/item/productholder = R.contents[1]
 				var/nextproduct = html_encode(sanitize(productholder.name))
 				if (!T.unlocked)
-					html_parts += "<tr><td><a href='byond://?src=\ref[src];vend=\ref[R]'>[nextproduct]</a></td><td style='text-align: right;'>[R.product_amount]</td><td style='text-align: right;'> $[R.product_cost]</td></tr>"
+					html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [nextproduct]</a></td><td>[R.product_amount]</td><td> $[R.product_cost]</td></tr>"
 					//Player vending machines don't have "out of stock" items
 				else if (T.unlocked)
 					//Links for setting prices when player vending machines are unlocked
-					html_parts += "<tr><td><a href='byond://?src=\ref[src];vend=\ref[R]'>[nextproduct]</a></td><td style='text-align: right;'>[R.product_amount]</td><td style='text-align: right;'><a href='byond://?src=\ref[src];setprice=\ref[R]'>$[R.product_cost]</a> (<a href='byond://?src=\ref[src];icon=\ref[R]'>*</a>)</td></tr>"
+					html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [nextproduct]</a></td><td>[R.product_amount]</td><td><a href='byond://?src=\ref[src];setprice=\ref[R]'>$[R.product_cost]</a> (<a href='byond://?src=\ref[src];icon=\ref[R]'>*</a>)</td></tr>"
 		html_parts += "</table>";
 
 		if (src.pay)
-			html_parts += "<BR><B>Available Credits:</B> $[src.credit] <a href='byond://?src=\ref[src];return_credits=1'>Return Credits</A>"
+			html_parts += "<BR><div class= 'box'>Available Credits:</div> $[src.credit] <br> <a class = 'box error' href='byond://?src=\ref[src];return_credits=1'>Return Credits</A>"
 			if (!src.acceptcard)
 				html_parts += "<BR>This machine only takes credit bills."
 
@@ -539,6 +830,8 @@
 		return
 	if (istype(W, /obj/item/spacecash))
 		if (src.pay)
+			if(!length(src.current_receipt))
+				src.newReceipt()
 			src.credit += W.amount
 			W.amount = 0
 			boutput(user, "<span class='notice'>You insert [W].</span>")
@@ -555,6 +848,7 @@
 	if (istype(W, /obj/item/card/id))
 		if (src.acceptcard)
 			src.scan_card(W, user)
+			src.newReceipt()
 			src.generate_HTML(1)
 			return
 			/*var/amount = input(user, "How much money would you like to deposit?", "Deposit", 0) as null|num
@@ -629,9 +923,13 @@
 			src.fall(user)
 
 /obj/machinery/vending/hitby(atom/movable/M, datum/thrown_thing/thr)
-	if (iscarbon(M) && M.throwing && prob(25))
-		src.fall(M)
-		return
+	if (iscarbon(M) && M.throwing)
+		if(prob(25))
+			src.fall(M)
+			animate_storage_thump(src)
+			return
+		else
+			animate_storage_thump(src)
 
 	..()
 
@@ -718,10 +1016,12 @@
 				trigger_anti_cheat(usr, "tried to href exploit [src] to spawn an invalid item.")
 				return
 
-			var/datum/data/record/account = null
+			var/datum/db_record/account = null
+			var/service_charge = 0
 			if (src.pay)
 				if (src.acceptcard && src.scan)
-					account = FindBankAccountById(src.scan.registered_id)
+					service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
+					account = FindBankAccountByName(src.scan.registered)
 					if (!account)
 						boutput(usr, "<span class='alert'>No bank account associated with ID found.</span>")
 						flick(src.icon_deny,src)
@@ -729,16 +1029,17 @@
 						src.paying_for = R
 						src.generate_HTML(1)
 						return
-					if (account.fields["current_money"] < R.product_cost)
+					if (account["current_money"] < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient funds in account. To use machine credit, log out.</span>")
-						account.fields["current_money"] -= min_serv_chg
-						servicechgaccount.fields["current_money"] += min_serv_chg
+						account["current_money"] -= min_serv_chg
+						servicechgaccount["current_money"] += min_serv_chg
 						flick(src.icon_deny,src)
 						src.vend_ready = 1
 						src.paying_for = R
 						src.generate_HTML(1)
 						return
 				else
+					service_charge = 0 // No service charge for using cash
 					if (src.credit < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient Credit.</span>")
 						flick(src.icon_deny,src)
@@ -759,21 +1060,17 @@
 			src.prevend_effect()
 			if(!src.freestuff) R.product_amount--
 
-			var/service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
 			if (src.pay)
 				if (src.acceptcard && account)
-					account.fields["current_money"] -= R.product_cost
-					account.fields["current_money"] -= service_charge
-					servicechgaccount.fields["current_money"] += service_charge
+					account["current_money"] -= R.product_cost
 				else
 					src.credit -= R.product_cost
-					service_charge = 0
 				if (!isplayer)
 					wagesystem.shipping_budget += round(R.product_cost * profit) // cogwerks - maybe money shouldn't just vanish into the aether idk
 				else
 					//Players get 90% of profit from player vending machines QMs get 10%
 					var/obj/machinery/vending/player/T = src
-					T.owneraccount.fields["current_money"] += round(R.product_cost * profit)
+					T.owneraccount["current_money"] += round(R.product_cost * profit)
 					wagesystem.shipping_budget += round(R.product_cost * (1 - profit))
 				if(R.product_amount <= 0 && !isplayer == 0)
 					src.player_list -= R
@@ -785,7 +1082,7 @@
 				T.contents -= playervended
 			SPAWN_DBG(src.vend_delay)
 				src.vend_ready = 1 // doin this at the top here just in case something goes fucky and the proc crashes
-
+				src.seasonal_check(usr, R)
 				if (ispath(product_path))
 					var/atom/movable/vended = new product_path(src.get_output_location()) // changed from obj, because it could be a mob, THANKS VALUCHIMP
 					vended.layer = src.layer + 0.1 //So things stop spawning under the fukin thing
@@ -813,8 +1110,10 @@
 					if (S)
 						playsound(src.loc, S, 50, 0)
 				src.postvend_effect()
-				if(account || print_receipts_long)//trying out no receipts for cash transactions - warc
-					printReceipt(account, R.product_name, R.product_cost, service_charge)
+				if(print_receipts)
+					addToReceipt(R.product_name, R.product_cost, service_charge)
+					if(!(src.acceptcard && account) && (credit < 1))
+						printReceipt()
 
 				SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "productDispensed=[R.product_name]")
 
@@ -828,6 +1127,7 @@
 			if(player_list)
 				logTheThing("station", usr, null, "vended a player product ([R.product_name]) from [src] at [log_loc(src)].")
 		if (href_list["logout"])
+			src.printReceipt()
 			src.scan = null
 			src.generate_HTML(1)
 
@@ -836,15 +1136,19 @@
 			src.generate_HTML(1)
 
 		if (href_list["return_credits"])
-			SPAWN_DBG(src.vend_delay)
-				if (src.credit > 0)
-					var/obj/item/spacecash/returned = new()
-					returned.setup(src.get_output_location(), src.credit)
+			if(src.vend_ready)
+				src.vend_ready = 0
+				SPAWN_DBG(src.vend_delay)
+					src.vend_ready = 1
+					src.printReceipt()
+					if (src.credit > 0)
+						var/obj/item/spacecash/returned = new()
+						returned.setup(src.get_output_location(), src.credit)
 
-					usr.put_in_hand_or_eject(returned) // try to eject it into the users hand, if we can
-					src.credit = 0
-					boutput(usr, "<span class='notice'>You receive [returned].</span>")
-					src.generate_HTML(1)
+						usr.put_in_hand_or_eject(returned) // try to eject it into the users hand, if we can
+						src.credit = 0
+						boutput(usr, "<span class='notice'>You receive [returned].</span>")
+						src.generate_HTML(1)
 
 		if ((href_list["cutwire"]) && (src.panel_open))
 			var/twire = text2num(href_list["cutwire"])
@@ -895,20 +1199,41 @@
 
 	return
 
-/obj/machinery/vending/proc/speak(var/message)
-	if (status & NOPOWER)
+/obj/machinery/vending/proc/speak(var/message, var/sing, var/just_float, var/just_chat, var/req_power = TRUE)
+	if (req_power && status & NOPOWER)
 		return
 
 	if (!message)
 		return
 
-	for (var/mob/O in hearers(src, null))
-		if (src.glitchy_slogans)
-			O.show_message("<span class='game say'><span class='name'>[src]</span> beeps,</span> \"[voidSpeak(message)]\"", 2)
-		else
-			O.show_message("<span class='subtle'><span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span></span>", 2)
+	var/image/chat_maptext/maptext = null
 
-	return
+	if (src.maptext_speech && !just_chat)
+		if( !src.chat_text )
+			src.chat_text = new
+			src.vis_contents += src.chat_text
+		if(!src.speech_color)
+			var/num = hex2num(copytext(md5("[src.name][TIME]"), 1, 7))
+			src.speech_color = hsv2rgb(num % 360, (num / 360) % 10 + 18, num / 360 / 10 % 15 + 85)
+		var/singing_italics = sing ? " font-style: italic;" : ""
+		var/maptext_color
+		if (sing)
+			maptext_color ="#D8BFD8"
+		else
+			maptext_color = src.speech_color
+		maptext = make_chat_maptext(src, message, "color: [maptext_color];" + singing_italics, 150)
+		if(maptext && src.chat_text && length(src.chat_text.lines))
+			maptext.measure(src)
+			for(var/image/chat_maptext/I in src.chat_text.lines)
+				if(I != maptext)
+					I.bump_up(maptext.measured_height)
+
+	if(src.glitchy_slogans)
+		src.audible_message("<span class='game say'><span class='name'>[src]</span> beeps, \"[voidSpeak(message)]\"</span>", just_maptext = just_float, assoc_maptext = maptext)
+	else
+		src.audible_message("<span class='subtle'><span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span></span>", just_maptext = just_float, assoc_maptext = maptext)
+	if(src.voice_sound)
+		playsound(src, src.voice_sound, 40, 1)
 
 /obj/machinery/vending/proc/prevend_effect()
 	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, 0.1)
@@ -927,16 +1252,22 @@
 	if (status & BROKEN)
 		icon_state = icon_broken ? icon_broken : "[initial(icon_state)]-broken"
 		light.disable()
+		if(src.has_glow)
+			src.UpdateOverlays(null, "glow")
 	else
 		if ( powered() )
 			icon_state = initial(icon_state)
 			status &= ~NOPOWER
 			light.enable()
+			if(src.has_glow)
+				src.UpdateOverlays(glow, "glow")
 		else
 			SPAWN_DBG(rand(0, 15))
 				src.icon_state = icon_off ? icon_off : "[initial(icon_state)]-off"
 				status |= NOPOWER
 				light.disable()
+				if(src.has_glow)
+					src.UpdateOverlays(null, "glow")
 
 /obj/machinery/vending/proc/fall(mob/living/carbon/victim)
 	if (can_fall != 1)
@@ -962,7 +1293,7 @@
 		src.visible_message("<b><font color=red>[src.name] tips over!</font></b>")
 
 	src.power_change()
-	src.anchored = 0
+	src.anchored = UNANCHORED
 	return
 
 //Oh no we're getting roughed up!  Dump out some product and break.
@@ -1225,7 +1556,7 @@
 		if(src.owner && vendor && (src.vendor.status & BROKEN))
 			src.vendor.can_fall = 1
 			src.vendor.layer = initial(src.vendor.layer)
-			src.vendor.anchored = 1
+			src.vendor.anchored = ANCHORED
 			src.vendor.status &= ~BROKEN
 			src.vendor.power_change()
 
@@ -1242,13 +1573,18 @@
 	name = "coffee machine"
 	desc = "A Robust Coffee vending machine."
 	pay = 1
-	vend_delay = 15
+	vend_delay = 25
 	icon_state = "coffee"
-	icon_vend = "coffee-vend"
+	icon_vend = "coffee-vend" //TODO: resprite vend state (along with broken/tipped and tipped glow, other vending machines also require this)
 	icon_panel = "coffee-panel"
-	light_r =1
+	light_r = 1
 	light_g = 0.88
 	light_b = 0.3
+
+	//i'd love at some point for this fuckin' thing to rarely drop a cup wrong or out entirely and then it just spills on the floor (and do it more often if hacked)
+	prevend_effect()
+		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, 0.1)
+		return
 
 	create_products()
 		..()
@@ -1271,9 +1607,9 @@
 	"Fill the gap in your stomach right now!",
 	"A fresh delight is only a bite away!",
 	"We feature Discount Dan's Noodle Soups!")
-	light_r =1
-	light_g = 0.4
-	light_b = 0.4
+	light_r =0.6
+	light_g = 0.92
+	light_b = 0.85
 
 	create_products()
 		..()
@@ -1326,9 +1662,9 @@
 	"I'd rather toolbox than switch.",
 	"Smoke!",
 	"Don't believe the reports - smoke today!")
-	light_r =0.55
-	light_g = 1
-	light_b = 0.5
+	light_r =0.7
+	light_g = 0.67
+	light_b = 0.51
 
 	create_products()
 		..()
@@ -1355,12 +1691,14 @@
 	noknobs
 		desc = "If you want to get cancer, might as well do it in style!"
 		icon_state = "cigs"
+		has_glow = FALSE
 
 /obj/machinery/vending/cigarette/schweewa
 	icon_state = "s_cigs_old"
 	icon_panel = "cigs-panel"
 	acceptcard = 0
 	desc = "Who still smokes these?"
+	has_glow = FALSE
 	slogan_list = list("Juicer Schweet's Original Rowdy Rillos, Quality you can crave.",
 	"Fresh Fine Flamable Farmaceuticals.",
 	"Smoke!",
@@ -1522,13 +1860,13 @@
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/capacitive/burst/three, 2)
 		product_list += new/datum/data/vending_product(/obj/item/implantcase/antirev, 3)
 		product_list += new/datum/data/vending_product(/obj/item/implanter, 1)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 3)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/shotty, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 3)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 2)
 #ifdef RP_MODE
 		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/space_law, 1)
 #endif
 		product_list += new/datum/data/vending_product(/obj/item/device/flash/turbo, rand(1, 6), hidden=1)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/a38, rand(1, 2), hidden=1) // Obtaining a backpack full of lethal ammo required no effort whatsoever, hence why nobody ordered AP speedloaders from the Syndicate (Convair880).
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, rand(1, 2), hidden=1)
 
 /obj/machinery/vending/security_ammo //ass jam time yes
 	name = "AmmoTech"
@@ -1547,11 +1885,11 @@
 		..()
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 3)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber/ten, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/juicer/three, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts, 3)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/tranq_darts/anti_mutant, 3)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/three, 1, hidden=1) // this may be a bad idea, but it's only one box //Maybe don't put the delimbing version in here
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber/ten, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/juicer/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/tranq/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/anti_mutant/three, 3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/three, 1, hidden=1) // not sure why this is in here - mylie
 
 /obj/machinery/vending/cola
 	name = "soda machine"
@@ -1603,6 +1941,8 @@
 		light_g = 0.5
 		light_b = 1
 
+
+
 		create_products()
 			..()
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/blue, 10, cost=PAY_UNTRAINED/10)
@@ -1613,6 +1953,29 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/italian, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/random, 10, cost=PAY_UNTRAINED/10)
+
+	splurt
+		name = "Mr. Splurt machine"
+		icon_state = "splurt"
+		icon_panel = "splurt-panel"
+		slogan_list = list("boire de mon nectar...",
+		"Je serai là longtemps après toi",
+		"Je suis comme l'arbre qui donne",
+		"je suis excellent")
+
+		light_r =0.1
+		light_g = 0.65
+		light_b = 0.39
+
+
+
+		create_products()
+			..()
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
 
 /obj/machinery/vending/electronics
 	name = "ElecTek Vendomaticotron"
@@ -1650,6 +2013,7 @@
 	icon_panel = "generic-panel"
 	acceptcard = 0
 	pay = 0
+	has_glow = FALSE
 
 	light_r =1
 	light_g = 0.88
@@ -1826,6 +2190,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/ringtone_chimes, 5, cost=PAY_TRADESMAN/3)
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/ringtone_beepy, 5, cost=PAY_TRADESMAN/3)
 		product_list += new/datum/data/vending_product(/obj/item/device/pda_module/flashlight/high_power, 10, cost=PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/device/pda_module/cigarette_lighter, 2, cost=PAY_UNTRAINED/2)
 
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/security, 1, cost=PAY_TRADESMAN/3, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/head, 1, cost=PAY_IMPORTANT/3, hidden=1)
@@ -1923,6 +2288,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/tomato, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/apple, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/lettuce, 10)
@@ -1967,6 +2333,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/tomato, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/apple, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/lettuce, 10)
@@ -2011,7 +2378,7 @@
 	create_products()
 		//..()
 		/*
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/revolver/improved, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/basic, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2)
@@ -2021,22 +2388,20 @@
 */
 		//above this line is for debug and testing only, they'll go in the bin later.
 		//all should require permit, some should require permit and sec
+		product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/gunsmith, 5, cost = 10)
 		//full gunse
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 2, cost = PAY_TRADESMAN)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/rifle, 1, cost = PAY_TRADESMAN*1.5)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/shotty, 1, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/rifle, 1, cost = PAY_TRADESMAN*1.5)
+		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 1, cost = PAY_TRADESMAN*1.5)
 		//DIY section
 		//receivers
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/receiver, 2, cost = PAY_TRADESMAN/2)
-		product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/receiver, 2, hidden=1, cost = PAY_TRADESMAN)
 		//partse
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT, 5, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long, 5, cost = PAY_UNTRAINED*1.1)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/long/very, 1, hidden=1, cost = PAY_TRADESMAN*1.2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/short, 2, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/NT/shotty, 2, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT, 5, cost = PAY_UNTRAINED)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/guardless, 2, cost = PAY_UNTRAINED)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT, 6, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/fancy, 2, cost = PAY_UNTRAINED/2)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/ceremonial, 2, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/NT/stub, 2, cost = PAY_UNTRAINED/2)
@@ -2053,20 +2418,21 @@
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/receiver, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 1, hidden=1, cost = PAY_UNTRAINED*2)
 		product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 1, hidden=1, cost = PAY_UNTRAINED*2)
-		product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
+		product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 1, hidden=1, cost = PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, hidden=1, cost = PAY_UNTRAINED)
 		product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, hidden=1, cost = PAY_UNTRAINED*1.1)
-		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/coil/ten, 3, cost = PAY_TRADESMAN*1.3)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/coil/ten, 3, cost = PAY_TRADESMAN*1.3)
 
 	diner
 		name = "Fucile Fusilli"
 		desc = "Un distributore automatico pieno di armi."
 		create_products()
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/silly, 1, cost = PAY_DOCTORATE)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/big_italiano, 2, cost = PAY_DOCTORATE)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 4, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/short/pistol, 2, cost = PAY_TRADESMAN*0.9)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/rifle, 1, cost = PAY_TRADESMAN*1.4)
+			product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/gunsmith, 5, cost = 10)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/revolver/silly, 1, cost = PAY_DOCTORATE)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/revolver/masterwork, 2, cost = PAY_DOCTORATE)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/revolver/improved, 4, cost = PAY_TRADESMAN)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/pistol, 2, cost = PAY_TRADESMAN*0.9)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/rifle, 1, cost = PAY_TRADESMAN*1.4)
 
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 3, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  2, cost = PAY_UNTRAINED*1.1)
@@ -2075,7 +2441,7 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/spicy, 5, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/italian/accurate, 5, cost = PAY_UNTRAINED*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/wizard, 1, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 5, cost = PAY_UNTRAINED*1.3)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 5, cost = PAY_UNTRAINED*1.3)
 
 
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/breakfast, rand(2, 4), cost = 15)
@@ -2108,12 +2474,13 @@
 		color = "#bbFFbb"
 		name = "JUICER SYSTEN"
 		create_products()
+			product_list += new/datum/data/vending_product(/obj/item/paper/book/from_file/pocketguide/gunsmith, 5, cost = 10)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/blunder, 2, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/long, 2, cost = PAY_TRADESMAN*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/juicer/ribbed, 2, cost = PAY_TRADESMAN)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/italiano, 2, cost = PAY_UNTRAINED*1.1)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/italian/revolver/improved, 2, cost = PAY_UNTRAINED*1.1)
 			product_list += new/datum/data/vending_product(/obj/item/gun/modular/soviet/short/basic, 2, cost = PAY_TRADESMAN*1.2)
-			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/long/shotty, 3, hidden=1, cost = PAY_TRADESMAN)
+			product_list += new/datum/data/vending_product(/obj/item/gun/modular/NT/shotty, 3, hidden=1, cost = PAY_TRADESMAN)
 			//product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss, 2)
 			//product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/long, 2)
 			//product_list += new/datum/data/vending_product(/obj/item/gun/modular/foss/punt, 2)
@@ -2129,8 +2496,8 @@
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/barrel/juicer/ribbed, 4, cost = PAY_UNTRAINED*0.7)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/horn, 1, cost = PAY_UNTRAINED/5)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/flashlight, 3, cost = PAY_UNTRAINED/4)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer, 3, cost = PAY_UNTRAINED)
-			product_list += new/datum/data/vending_product(/obj/item/gun_parts/magazine/juicer/four, 1, cost = PAY_UNTRAINED*1.5)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer, 3, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/gun_parts/accessory/magazine/juicer/four, 1, cost = PAY_UNTRAINED*1.5)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian, 1, cost = PAY_UNTRAINED*0.9)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/italian/bigger,  1, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/gun_parts/grip/juicer/black, 4, cost = PAY_UNTRAINED*0.7)
@@ -2140,8 +2507,8 @@
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/zaubertube/ten, 10, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/NT/ten, 10, cost = PAY_TRADESMAN)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/pistol/capacitive/ten, 10, cost = PAY_UNTRAINED)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/juicer, 10, cost = PAY_UNTRAINED*3)
-			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/scatter/slug_rubber, 10, cost = PAY_UNTRAINED)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/juicer, 10, cost = PAY_UNTRAINED*3)
+			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber, 10, cost = PAY_UNTRAINED)
 			product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/rifle/capacitive/burst, 10, cost = PAY_UNTRAINED*3)
 			product_list += new/datum/data/vending_product(/obj/item/storage/box/foss_flashbulbs, 1, cost = PAY_UNTRAINED*1.1)
 
@@ -2348,10 +2715,11 @@
 	//card display name
 	var/cardname
 	//Bank account
-	var/datum/data/record/owneraccount = null
+	var/datum/db_record/owneraccount = null
 	var/image/crtoverlay = null
 	var/image/promoimage = null
 	player_list = list()
+	has_glow = FALSE
 
 	New()
 		. = ..()
@@ -2525,7 +2893,7 @@
 				src.generate_HTML(0, 1)
 		else if (href_list["unlock"] && src.panel_open)
 			if (!owner && src.scan?.registered)
-				owneraccount = FindBankAccountById(src.scan.registered_id)
+				owneraccount = FindBankAccountByName(src.scan.registered)
 				owner = src.scan.registered
 				cardname = src.scan.name
 				unlocked = TRUE
@@ -2574,7 +2942,7 @@
 	desc = "A vending machine that serves... pizza?"
 	var/pizcooking = 0
 	var/piztopping = "plain"
-	anchored = 0
+	anchored = UNANCHORED
 	acceptcard = 0
 	pay = 1
 	credit = 100
@@ -2721,7 +3089,7 @@
 /obj/machinery/vending/grub //remove this once there's literally any other method of generating grubs
 	name = "Grub Hub"
 	desc = "There's bugs in this here box!"
-	icon_state = "monkey"
+	icon_state = "grub"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
 	acceptcard = 0
@@ -2862,6 +3230,7 @@
 	light_r =0.3
 	light_g = 0.3
 	light_b = 1
+	has_glow = FALSE
 #else
 	name = "Zoldorf"
 	desc = "A horrid old fortune-telling machine."
@@ -2885,6 +3254,7 @@
 	light_r =0.3
 	light_g = 0.3
 	light_b = 1
+	has_glow = FALSE
 #endif
 	New()
 		..()
@@ -3010,16 +3380,16 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/beer, 6)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/fancy_beer, 6)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vodka, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/tequila, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/wine, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/cider, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/mead, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/gin, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/rum, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/champagne, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/beer, 3)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/fancy_beer, 3)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vodka, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/tequila, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/wine, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/cider, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/mead, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/gin, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/rum, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/champagne, 2)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bojackson, 1)
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/cocktail_umbrellas, 4)
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/cocktail_doodads, 4)
@@ -3030,7 +3400,58 @@
 
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/hobo_wine, 2, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/thegoodstuff, 1, hidden=1)
-		product_list += new/datum/data/vending_product(/obj/item/ammo/bullets/abg, 2, cost=PAY_TRADESMAN, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber/five, 3, cost=PAY_TRADESMAN, hidden=1)
+
+/obj/machinery/vending/minibar //meant to go behind bars and replace the fountain.
+	name = "Surplus Booze Supply"
+	desc = "an alcohol fridge fit for use behind a bar."
+	icon_state = "minibar"
+	icon_panel = "minibar_panel"
+	icon_off = "minibar_off"
+	icon_broken = "minibar_broken"
+	icon_fallen = "minibar_fallen"
+	pay = 1
+	slogan_list = list("Wet your whistle!","I may be drunk now, but tomorrow I will also be drunk.","Drinking is good for you.")
+	light_r = 0.2
+	light_g = 0.3
+	light_b = 0.95
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/beer, 15, cost=15)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/fancy_beer, 6, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vodka, 10, cost=25)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/tequila, 10, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/wine, 15, cost=20)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vermouth, 3, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/cider, 6, cost=20)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/mead, 3, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/gin, 4, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/rum, 6, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/champagne, 5, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bitters, 5, cost=45)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bourbon, 5, cost=50)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/brandy, 5, cost=60)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bojackson, 1, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/curacao, 2, cost=65)
+
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/grog, 1, cost=60, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, 5, cost=20, hidden=1)
+/*
+	attack_hand(mob/user as mob)
+		//tab print out thing, i'll do this later i just wanted to make the thing exist
+*/
+/obj/machinery/vending/minibar/jank
+	name = "janky surplus booze supply"
+	desc = "an alcohol fridge fit for use behind a bar. This one has seen better days."
+	icon_state = "minibarjank"
+	icon_panel = "minibarjank_panel"
+	icon_off = "minibarjank_off"
+	icon_broken = "minibarjank_broken"
+	icon_fallen = "minibarjank_fallen"
+	glitchy_slogans = 1
+	slogan_list = list("*violent coughing*","ffugh off, ah'm on brreaghh...","jesus, my fucking head...")
+
 
 /obj/machinery/vending/chem
 	name = "ChemDepot"
@@ -3119,6 +3540,7 @@
 	pay = 1
 	acceptcard = 1
 	vend_delay = 20
+	has_glow = FALSE
 	slogan_list = list("Look snappy in seconds!",
 	"Style over substance.")
 
@@ -3202,6 +3624,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/mousetraps, 4)
 		product_list += new/datum/data/vending_product(/obj/item/caution, 10)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/gloves/long, 2)
+		product_list += new/datum/data/vending_product(/obj/item/material_piece/cloth/rag, 2)
 
 		product_list += new/datum/data/vending_product(/obj/item/sponge/cheese, 2, hidden=1)
 
@@ -3280,10 +3703,10 @@
 		html += "<TT><b>Welcome!</b><br>"
 		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
 		if (src.scan)
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
-			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
-			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
+			html += "<b>Current ID:</b> <a href='?src=\ref[src];logout=1'>[src.scan]</a><br />"
+			html += "<b>Credits on Account: [account["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
 		if(src.holding)
@@ -3324,9 +3747,9 @@
 					src.updateUsrDialog()
 					return
 				else if(scan)
-					var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
-					if (account && account.fields["current_money"] >= cost)
-						account.fields["current_money"] -= cost
+					var/datum/db_record/account = FindBankAccountByName(src.scan.registered)
+					if (account && account["current_money"] >= cost)
+						account["current_money"] -= cost
 						src.fill()
 						boutput(usr, "<span class='notice'>You fill up the [src.holding].</span>")
 						src.updateUsrDialog()
@@ -3394,10 +3817,10 @@
 		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
 		//bank balance
 		if (src.scan)
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
 			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
-			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
+			html += "<b>Credits on Account: [account["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
 
@@ -3429,9 +3852,9 @@
 				src.updateUsrDialog()
 				return
 			else if(scan)
-				var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
-				if (account && account.fields["current_money"] >= cost)
-					account.fields["current_money"] -= cost
+				var/datum/db_record/account = FindBankAccountByName(src.scan.registered)
+				if (account && account["current_money"] >= cost)
+					account["current_money"] -= cost
 					src.fill()
 					boutput(usr, "<span class='notice'>Thank you for your purchase.</span>")
 					src.updateUsrDialog()
@@ -3513,3 +3936,71 @@
 			interrupt(INTERRUPT_ALWAYS)
 			return false
 		return true
+
+
+
+/obj/machinery/vending/sause // todo: make it slather sauce on stuff instead of selling loose sauce but this is funny anyway.
+	name = "sause"
+	desc = "looks normal."
+	icon_state = "sauce"
+	icon_panel = "standard-panel"
+	icon_off = "monkey-off"
+	icon_broken = "monkey-broken"
+	icon_fallen = "monkey-fallen"
+	pay = 1
+	acceptcard = 0
+	slogan_list = list("<span style=\"font-family:'Comic Sans MS', sans-serif; \">for they <span style=\"color:#0F0;\">HIGH ROLLERS</span> out there...... </span>",
+	"<span style=\"font-family:'Comic Sans MS', sans-serif; \">get it on their. </span>",
+	"<span style=\"font-family:'Comic Sans MS', sans-serif; color: yellow; \">exclusive, premiume <span style=\"color:brown;\">GOURMéT BARBEBEQUE SAUCE.</span></span>",
+	"<span style=\"font-family:'Comic Sans MS', sans-serif; color:gold; \">CHRIST</span>",
+	"<span style=\"font-family:'Comic Sans MS', sans-serif; \">INGREGIENTS: it`s is, 100% <span style=\"color:gold;\">SAUSCE!!</span></span>",
+	"<span style=\"font-family:'Comic Sans MS', sans-serif; \">Cash Only.</span>")
+
+	light_r = 0.9
+	light_g = 0.6
+	light_b = 0.1
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5, cost=PAY_UNTRAINED/9)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5, cost=PAY_UNTRAINED/9)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/hotsauce, 5, cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/coldsauce, 5, cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/cream, 5, cost=PAY_UNTRAINED/7)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/custard, 5, cost=PAY_UNTRAINED/7)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/butters, 5, cost=PAY_UNTRAINED/4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5, cost=PAY_UNTRAINED/4)
+		product_list += new/datum/data/vending_product(/obj/item/shaker/mustard, 5, cost=PAY_UNTRAINED/3)
+		product_list += new/datum/data/vending_product(/obj/item/shaker/ketchup, 5, cost=PAY_UNTRAINED/3)
+
+/obj/machinery/vending/meat //MEAT VENDING MACHINE
+	name = "Meat4cash"
+	desc = "An exotic meat vendor."
+	icon_state = "steak"
+	icon_panel = "standard-panel"
+	icon_off = "monkey-off"
+	icon_broken = "monkey-broken"
+	icon_fallen = "monkey-fallen"
+	pay = 1
+	acceptcard = 0
+	slogan_list = list("It's meat you can buy!",
+	"Trade your money for meat!",
+	"Buy the meat! It's meat!",
+	"Why not buy the meat?",
+	"Please, please buy meat.")
+
+	light_r = 0.9
+	light_g = 0.1
+	light_b = 0.1
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat, 10, cost=PAY_UNTRAINED/4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat, 10, cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat, 20, cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/meatball, 5, cost=PAY_UNTRAINED/6)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/meatpaste, 5, cost=PAY_UNTRAINED/7)
+
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat, 2, cost=PAY_UNTRAINED, hidden=1)
+
+

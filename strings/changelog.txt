@@ -1,5 +1,240 @@
-
+(t)thu nov 13 25
+(u)Mylie
+(*)The plasma in radiation collectors drains 10x faster now.
+(*)Radiation collectors will benefit from multiple singularities just fine now.
+(*)Singularities are hungrier now.
+(*)Singularities can get pretty damn big, and radiation collector energy scales on it.
+(t)tue nov 11 25
+(u)Gnash
+(p)638
+(e)|
+(*)Fixed bug with the hardcore trait where you could continouously smash broken bottles against the table to generate glass shards.
+(*)Made the Hardcore trait properly cost one point.
+(*)Changed the border of the skeleton trait to match those of other racial traits.
+(t)mon nov 10 25
+(u)Gnash
+(p)637
+(e)|
+(*)Hardcore trait! Be more hardcore!
+(t)sat nov 08 25
+(u)Gnash
+(p)617
+(e)|
+(*)Anouncemnt puter!
+(u)BatElite
+(*)Added a cigarette lighter PDA module. You can start with them on a couple jobs, or buy them from a CartyParty machine.
+(t)fri nov 07 25
+(u)HowToLoLu
+(p)635
+(e)|
+(*)The sprites for floor tiles and rods now appear correctly when making them from sheets.
+(u)Sothanforax
+(p)630
+(e)|
+(*)Derelict Satellite with Bradbury II is now simulated again.
+(u)chell
+(p)629
+(e)|
+(*)Most reagents now have flavors you can taste.
+(t)thu nov 06 25
+(u)DecidedlyUnethical
+(p)628
+(e)|
+(*)You may now throw single credits like you're at the strip club by throwing a stack of cash while on disarm intent.
+(u)ReddDragon
+(p)626
+(e)|
+(*)Creates the JaniBelt, and gives the janitor the janibelt.
+(u)chell
+(p)627
+(e)|
+(*)Blind characters now spawn with a white cane instead of a VISOR.
+(+)Added white cane.
+(+)White cane increases blind players' vision radius slightly when held.
+(+)Slightly decreased blind players' vision radius when not holding a white cane.
+(+)Maptext now renders above overlays.
+(t)tue nov 04 25
+(u)Mylie
+(*)Blood exists in people before they are cut, and stomachs digest things, not people. THIS IS GONNA BE A BUGGY MESS! REPORT THESE BUGS PLEASE!
+(t)sun nov 02 25
+(u)ReddDragon
+(p)625
+(e)|
+(+)fixes type path for belt
+(u)ReddDragon
+(p)624
+(e)|
+(*)The janitor has a belt now
+(u)warc
+(*)you should now be able to sell all sorts of chaff to cargo merchants for a paltry sum.
+(u)ReddDragon
+(p)623
+(e)|
+(+)Adjusted a single line of code, fixing a chat message for when Chaplain hits a wraith or revenant
+(t)fri oct 17 25
+(u)klushy
+(*)Adds rags that you can wipe things down with. Find them in white clothes lockers, or in general fabs.
+(t)thu oct 10 25
+(u)klushy
+(*)Adds cattail seeds to the hidden seed vendor catalogue with two unique mutations.
+(t)fri aug 29 25
+(u)BatElite
+(p)282
+(e)|
+(*)Big overhaul in the backend for how powernets are organised. There shouldn't be any noticeable changes for players, so let us know if you run into issues.
+(t)thu aug 21 25
+(u)Mylie
+(*)Breaches might suck you into space!
+(*)Oxygen B does not exist anymore, expect many more gas changes!
+(*)Reagent combustion consumes oxygen and makes CO2!
+(t)mon aug 12 25
+(u)Mylie
+(*)Changeling headspiders are AI controlled once more. soul.
+(t)mon aug 04 25
+(u)klushy
+(*)The detective has a new look
+(t)wed jul 30 25
+(u)Mylie
+(*)New chemical, made with soybean oil. I dunno. Figure it out.
+(t)sun jul 27 25
+(u)Mylie
+(p)605
+(e)|
+(*)Gunse Refactor: Further gunse rework and balance, converted a bunch of guns to gunse, balanced some and added some ammo types.
+(t)wed jul 24 25
+(u)BatElite
+(+)Timers should be a little nicer to use. You can also set a time directly instead of the +1s/+30s controls.
+(+)Once a land mine's timer is running, you can't mess with it anymore. Good luck. :3
+(+)Filled in some of the missing AI faces, and cleaned out some others we don't have. You can be cheeky again. :3
+(t)wed jul 24 25
+(u)klushy
+(+)You can now choose to not spawn at all if you don't roll your favorite job in the occupation tab.
+(t)tue jul 23 25
+(u)warc
+(*)roundstart silicon laws are now variable- current rotation is kind of a placeholder to test out a few formulations. Subject to change. READ YOUR LAWS!
+(t)tue jul 15 25
+(u)BatElite
+(p)595
+(e)|
+(+)Datumised emotes for silicons. Borgs can now dance also!!
+(t)wed jul 09 25
+(u)Mylie
+(p)588
+(e)|
+(*)Gunse Remaster: A lot of work into optimizing gunse code, report any bugs you find.
+(*)Gunse Remaster: NT firearms are now simple single actions that must be chambered (C, or V on tg controls) before firing.
+(*)Gunse Remaster: Italian pistols are now double action revolvers that can be fanned by cocking the hammer (C, or V on tg controls) before they finish firing. You can spin their cylinder by dragging them to themself, mix and match ammo, and play Russian Roulette. Rumor has it two other kinds of Italian firearm exist.
+(*)Gunse Remaster: Gun size depends on the size of the parts, the very smallest can be hidden in clothing.
+(u)GnarlyGnasher
+(p)586
+(e)|
+(+)Lamp resprite
+(t)tue jul 08 25
+(u)Wackalope
+(p)590
+(e)|
+(+)Phones now have a new animation, proper overlays, and a fresh coat of paint
+(u)Wackalope
+(p)585
+(e)|
+(*)Added crew quarters to the Crag basement
+(*)Resprited train tracks and personal computers
+(*)Various small tweaks to crag basement
+(t)thu jul 03 25
+(u)Wackalope
+(p)589
+(e)|
+(*)Resprited coffee pots and espresso makers
+(t)sat jun 28 25
+(u)Mylie
+(p)584
+(e)🆕|enhancement
+(*)Janitor is now a higher stress job. Reagents make messes everywhere, visual remaster of fluid groups, any reagent can be tracked around. I dunno, being a janitor is hard work.
+(t)fri jun 27 25
+(u)Mylie
+(p)582
+(e)🐛|bug
+(*)Backend map optimizations, unlikely to go wrong but if it does yell at me.
+(t)thu jun 26 25
+(u)klushy
+(*)New roundstart command job with a random bureaucrat name
+(t)fri jun 20 25
+(u)BatElite
+(*)Work in Progress: on Cogmap, the crew will will first spawn on the arrivals shuttle. The shuttle then docks with the station after 2 minutes.
+(t)tue jun 17 25
+(u)BatElite
+(*)Pawn Star now gives a flat 300 credit bonus and no longer takes up a trait point, overall a better deal.
+(t)sun may 18 25
+(u)BatElite
+(*)Borgs can now climb ladders, but you also need sufficient limbs to do so. Crew with treads can't climb ladders.
+(t)sun may 04 25
+(u)klushy
+(*)Sandstorms can now spawn on desert maps. Better turn those plates upside down.
+(t)fri may 02 25
+(u)BatElite
+(*)New gene: High Efficiency Thrust Buttocks. Guess what it does. :3
+(t)wed apr 30 25
+(u)klushy
+(+)hyposprays actually dump chems on the floor now
+(t)tue apr 29 25
+(u)Mylie
+(p)578
+(e)|
+(*)Two handed guns and also breaching hammers can go on your back now, but two handed guns don't fit on your belt no more.
+(t)sun apr 27 25
+(u)BatElite
+(+)Guardbuddy boards can be renamed after naming them once, and you can rename the frame after inserting the board too. It's also possible again to put the tool module in during assembly.
+(t)thu apr 24 25
+(u)BatElite
+(p)575
+(e)|
+(*)To make hacking a bit more difficult, airlock wiring is now grouped per type of door.
+(t)sat apr 19 25
+(u)CodeDude
+(p)577
+(e)|
+(*)Added soft soft penis to the gunse systen.
+(u)TDHooligan, Mora, and Mylie
+(p)574
+(e)|
+(*)New special attacks for breaching hammers, baseball bats
+(t)thu apr 10 25
+(u)klushy225
+(p)571
+(e)|
+(+)JSON character save data can now be exported and imported- soon to be a webapp!!!!
+(t)tue apr 08 25
+(u)TDHooligan
+(p)565
+(e)|
+(*)Gunse now kick your screen about. disable it under Game->Effects->Camera Recoil
+(u)Wackalope
+(p)570
+(e)|
+(*)Majorly changed the design of CHUI, animates hyperlinks and close button on hover
+(u)Mylie
+(p)569
+(e)|
+(*)Narcotic reagents now have contraband values scannable by NARCO scanners.
+(*)Reagent scanning has been nerfed (sorgy), you can't get numbers from medical scanners or NARCO scanners anymore. Regular reagent scanners give you numbers if you scan a non-mob container.
+(u)Mylie
+(p)566
+(e)|
+(*)MULEbots can now be sent directly to nerds via a cargo PDA, and should run a little more... robotically but also smoother? Lemme know if they get super stuck!
+(u)TDHooligan
+(p)567
+(e)|
+(*)Melee attack range checks have been adjusted, you can now more reliably hit players as they are moving away from you.
+(u)BatElite
+(+)The mario toilet thing now lets you crawl around the sewer pipes instead of teleporting at random Just make sure the pipes are clear. :3
+(t)fri apr 05 25
+(u)BatElite
+(+)You can now *cry in the corner.
 (t)fri apr 04 25
+(u)Colossus
+(p)563
+(e)|
+(+)Badly made pufferfish now also drops the liver, and has a chance of not being poisonous.
 (u)BatElite
 (*)Discount Dan sells peanuts now in the snack machines.
 (*)Birbfolk have new speech sounds.

@@ -13,16 +13,17 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	icon = 'icons/mob/sea_critter.dmi'
 	density = 0
 	hand_count = 1
-	can_disarm = 1
-	can_help = 1
 	butcherable = 1
 
 	is_npc = 1
 
-	var/health_brute = 10
-	var/health_brute_vuln = 1
-	var/health_burn = 10
-	var/health_burn_vuln = 2
+	health_brute = 10
+	health_brute_vuln = 1
+	health_burn = 10
+	health_burn_vuln = 2
+
+	takes_tox = FALSE
+	takes_brain = FALSE
 
 	var/out_of_water_debuff = 1 // debuff amount for being out of water
 	var/in_water_buff = 1 // buff amount for being in water
@@ -49,15 +50,6 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 		STOP_TRACKING_CAT(TR_CAT_PETS)
 	remove_lifeprocess(/datum/lifeprocess/aquatic_breathing)
 	..()
-
-/mob/living/critter/aquatic/setup_healths()
-	add_hh_flesh(src.health_brute, src.health_brute_vuln)
-	add_hh_flesh_burn(src.health_burn, src.health_burn_vuln)
-
-/mob/living/critter/aquatic/Login()
-	..()
-	if(is_npc)
-		is_npc = 0
 
 /mob/living/critter/aquatic/Life(datum/controller/process/mobs/parent)
 	if (isdead(src))
@@ -106,7 +98,7 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 
 	process()
 		src.update_water_status()
-		if (HAS_MOB_PROPERTY(src.critter_owner, PROP_BREATHLESS)) return
+		if (HAS_ATOM_PROPERTY(src.critter_owner, PROP_BREATHLESS)) return
 		if(src.critter_owner)
 			if(src.water_need)
 				if(prob(50 * src.water_need) && !critter_owner.nodamage) // question: this gets rid of like one proc call; worth it?
@@ -180,7 +172,7 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	// todo: skinresult of scales, custom_brain_type of fish egg item (caviar?)
 
 	throws_can_hit_me = 0
-	ai = null
+	ai_type = /datum/aiHolder/aquatic/fish
 
 	var/swimming_away = 0
 
@@ -188,16 +180,15 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 /mob/living/critter/aquatic/fish/setup_hands()
 	..()
 	var/datum/handHolder/HH = hands[1]
-	HH.limb = new /datum/limb/mouth/fish
+	HH.limb = new /datum/limb/mouth/fish(src)
 	HH.icon = 'icons/ui/critter_ui.dmi'
 	HH.icon_state = "mouth"
 	HH.name = "mouth"
-	HH.limb_name = "mouth"
+	HH.limb.name = "mouth"
 	HH.can_hold_items = 0
 
 /mob/living/critter/aquatic/fish/New()
 	..()
-	src.ai = new /datum/aiHolder/aquatic/fish(src)
 	animate_bumble(src)
 
 	/*SPAWN_DBG(0)
@@ -380,9 +371,6 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	base_move_delay = 1
 	density = 1
 	hand_count = 2
-	can_disarm = 1
-	can_help = 1
-	can_grab = 1
 	can_throw = 1
 	can_choke = 1
 	pet_text = "pokes"
@@ -410,17 +398,17 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	..()
 	var/datum/handHolder/HH = hands[1]
 	HH.icon = 'icons/ui/hud_human.dmi'
-	HH.limb = new /datum/limb/king_crab
+	HH.limb = new /datum/limb/king_crab(src)
 	HH.icon_state = "handl"
 	HH.name = "pincer"
-	HH.limb_name = "pincer"
+	HH.limb.name = "pincer"
 
 	HH = hands[2]
 	HH.icon = 'icons/ui/hud_human.dmi'
-	HH.limb = new /datum/limb/king_crab
+	HH.limb = new /datum/limb/king_crab(src)
 	HH.icon_state = "handr"
 	HH.name = "pincer"
-	HH.limb_name = "pincer"
+	HH.limb.name = "pincer"
 
 /mob/living/critter/aquatic/king_crab/New()
 	..()
@@ -517,11 +505,9 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	stam_damage_mult = 0.2
 
 /datum/limb/king_crab // modified claw limb
+	name = "massive claw"
 
 /datum/limb/king_crab/attack_hand(atom/target, var/mob/living/user, var/reach, params, location, control)
-	if (!holder)
-		return
-
 	if (!istype(user))
 		target.Attackhand(user, params, location, control)
 		return
@@ -586,7 +572,7 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 	var/datum/attackResults/msgs = user.calculate_melee_attack(target, affecting, 10, 20, 0, 2)
 	user.attack_effects(target, affecting)
 	var/action = pick("slashes", "tears into", "gouges", "rips into", "lacerates", "mutilates")
-	msgs.base_attack_message = "<b><span class='alert'>[user] [action] [target] with [his_or_her(user)] [src.holder]!</span></b>"
+	msgs.base_attack_message = "<b><span class='alert'>[user] [action] [target] with [his_or_her(user)] [src.name]!</span></b>"
 	msgs.played_sound = "sound/impact_sounds/Glub_1.ogg"
 	msgs.damage_type = DAMAGE_CUT
 	msgs.flush(SUPPRESS_LOGS)

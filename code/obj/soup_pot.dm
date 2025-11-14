@@ -57,7 +57,7 @@
 	desc = "A perfectly ordinary kitchen stove; not that you'll be doing anything ordinary with it.<br>It seems this model doesn't have a built in igniter, so you'll have to light it manually."
 	icon = 'icons/obj/foodNdrink/soup_pot.dmi'
 	icon_state = "stove0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 18
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER

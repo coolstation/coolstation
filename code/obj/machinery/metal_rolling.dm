@@ -3,7 +3,7 @@
 	desc = "Heats and squishes blocks of material."
 	icon_state = "hot_roller_off"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 40
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL
 	processing_tier = PROCESSING_HALF
@@ -150,9 +150,7 @@
 			limb_to_grab.remove()
 			limb_to_grab.set_loc(src)
 			logTheThing("combat", H, null, "loses an arm to a hot roller at [log_loc(src)].")
-			#ifdef DATALOGGER
 			game_stats.Increment("workplacesafety")
-			#endif
 
 
 	proc/get_sucked_in(var/mob/living/user)
@@ -161,9 +159,7 @@
 		SPAWN_DBG(0.4 SECONDS)
 			user.set_loc(src)
 		logTheThing("combat", user, null, "gets sucked into a hot roller at [log_loc(src)].")
-		#ifdef DATALOGGER
 		game_stats.Increment("workplacesafety")
-		#endif
 
 	process()
 		..()

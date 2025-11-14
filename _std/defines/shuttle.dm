@@ -16,7 +16,10 @@
 
 // you might be asking "why in seconds?" the answer is that shuttle code uses seconds as a base unit and I'm too tired to refactor it
 
+/// Time it takes the arrivals shuttle to dock with SS13
+#define DYNAMIC_ARRIVAL_SHUTTLE_TIME 2 MINUTES
 
+//IDK why the naming on these sucks so bad
 #define SHUTTLE_SOUTH    "cogmap"
 #define SHUTTLE_EAST  	 "cogmap2"
 #define SHUTTLE_WEST   	 "donut2"

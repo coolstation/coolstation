@@ -4,6 +4,8 @@
 	soundproofing = 5
 	can_flip_bust = 1
 	p_class = 3
+	open_sound = "sound/impact_sounds/locker_open2.ogg"
+	close_sound = "sound/impact_sounds/lockerclose.ogg"
 
 /obj/storage/secure/closet/personal
 	name = "personal locker"
@@ -78,7 +80,7 @@
 	/obj/item/clothing/suit/armor/vest,
 	/obj/item/clothing/head/helmet/hardhat/security,
 	/obj/item/clothing/glasses/sunglasses/sechud,
-	/obj/item/gun/modular/NT/long/rifle,
+	/obj/item/gun/modular/NT/rifle,
 	/obj/item/device/radio/headset/security,
 	/obj/item/clothing/glasses/thermal,
 	/obj/item/stamp/hos,
@@ -131,10 +133,10 @@
 	/obj/item/gun/implanter,
 	/obj/item/gun/reagent/syringe/NT,
 	/obj/item/reagent_containers/mender/both,
-	/obj/item/gun/modular/NT/long/rifle,
-	/obj/item/stackable_ammo/pistol/tranq/five,
-	/obj/item/stackable_ammo/pistol/tranq/five,
-	/obj/item/stackable_ammo/pistol/anti_mutant/five,
+	/obj/item/gun/modular/NT/rifle,
+	/obj/item/stackable_ammo/rifle/tranq/five,
+	/obj/item/stackable_ammo/rifle/tranq/five,
+	/obj/item/stackable_ammo/rifle/anti_mutant/five,
 	/obj/item/robodefibrillator,
 	/obj/item/clothing/gloves/latex,
 	/obj/item/storage/belt/medical,
@@ -241,9 +243,9 @@
 	/obj/item/clothing/glasses/nightvision = 2,
 	/obj/item/clothing/glasses/sunglasses,
 	/obj/item/clothing/glasses/sunglasses,
-	/obj/item/stackable_ammo/pistol/tranq/five = 2,
+	/obj/item/stackable_ammo/rifle/tranq/five = 2,
 	/obj/item/stackable_ammo/pistol/italian/AP/ten,
-	/obj/item/stackable_ammo/scatter/juicer/ten)
+	/obj/item/stackable_ammo/shotgun/juicer/ten)
 
 /obj/storage/secure/closet/brig
 	name = "\improper Confiscated Items locker"

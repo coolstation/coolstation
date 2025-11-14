@@ -7,10 +7,10 @@
 // responsible for: selecting a target (and reporting back the evaluation score based on its value)
 // and moving through the following two tasks:
 // moving to a selected target, performing a /datum/action on the selected target
-/datum/aiTask/sequence/goalbased/
+/datum/aiTask/sequence/goalbased
 	name = "goal parent"
 	var/weight = 1 // for weighting the importance of the goal this sequence is in charge of
-	var/max_dist = 5 // the maximum tile distance that we look for targets
+	max_dist = 5 // the maximum tile distance that we look for targets
 	var/can_be_adjacent_to_target = 1 // do we need to be AT the target specifically, or is being in 1 tile of it fine?
 
 /datum/aiTask/sequence/goalbased/New(parentHolder, transTask)
@@ -20,26 +20,6 @@
 
 /datum/aiTask/sequence/goalbased/evaluate()
 	. = score_goal() * weight
-
-/datum/aiTask/sequence/goalbased/proc/get_best_target(var/list/targets)
-	. = null
-	var/best_score = -1.#INF
-	if(length(targets))
-		for(var/atom/A in targets)
-			var/score = src.score_target(A)
-			if(score > best_score)
-				best_score = score
-				. = A
-	holder.target = .
-
-/datum/aiTask/sequence/goalbased/proc/get_targets()
-	// obviously a specific goal will have specific requirements for targets
-	. = list()
-
-/datum/aiTask/sequence/goalbased/proc/score_target(var/atom/target)
-	. = 0
-	if(target)
-		return max_dist - GET_MANHATTAN_DIST(get_turf(holder.owner), get_turf(target))
 
 /datum/aiTask/sequence/goalbased/proc/precondition()
 	// useful for goals that have a requirement, return 0 to instantly make this state score 0 and not be picked
@@ -55,23 +35,23 @@
 
 /datum/aiTask/sequence/goalbased/on_tick()
 	..()
-	if(!holder.target)
+	if(!holder.target && !(holder.seek_cooldown && ON_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown", holder.seek_cooldown)))
 		holder.target = get_best_target(get_targets())
 	if(subtask_index == 1) // MOVE TASK
 		// make sure we both set our target and move to our target correctly
 		var/datum/aiTask/succeedable/move/M = subtasks[subtask_index]
 		if(M && !M.move_target)
 			var/target_turf = get_turf(holder.target)
-			if(can_be_adjacent_to_target)
-				var/list/tempPath = cirrAstar(get_turf(holder.owner), target_turf, 1, 40)
-				var/length_of_path = length(tempPath)
-				if(length_of_path) // fix runtime Cannot read length(null)
-					M.move_target = tempPath[length_of_path]
-					if(M.move_target)
-						return
+			var/list/tempPath = get_path_to(holder.owner, target_turf, 40, can_be_adjacent_to_target, do_doorcheck = TRUE)
+			var/length_of_path = length(tempPath)
+			if(length_of_path) // fix runtime Cannot read length(null)
+				M.move_target = tempPath[length_of_path]
+				if(M.move_target)
+					return
 			M.move_target = target_turf
 
 /datum/aiTask/sequence/goalbased/on_reset()
+	..()
 	holder.target = null
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,6 +86,7 @@
 				holder.owner.say("fuck")
 			else
 				holder.owner.say(pick("that sure is swell","oh boy","gee whiz","hot dog","hee hee"))
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TARGETED TASK
 // a timed task that also relates to a target and the acquisition of said target
@@ -113,74 +94,67 @@
 	name = "targeted"
 	var/target_range = 8
 
-/datum/aiTask/timed/targeted/proc/get_best_target(var/list/targets)
-	. = null
-	var/best_score = -1.#INF
-	if(length(targets))
-		for(var/atom/A in targets)
-			var/score = src.score_target(A)
-			if(score > best_score)
-				best_score = score
-				. = A
-	holder.target = .
-
-// vvv OVERRIDE THE PROCS BELOW AS REQUIRED vvv
-
-/datum/aiTask/timed/targeted/proc/get_targets()
-	. = list()
-
-/datum/aiTask/timed/targeted/proc/score_target(var/atom/target)
-	. = 0
-	if(target)
-		return target_range - GET_MANHATTAN_DIST(get_turf(holder.owner), get_turf(target))
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MOVE TASK
 // target: holder target assigned by a sequence task
 /datum/aiTask/succeedable/move
 	name = "moving"
 	max_fails = 5
+	distance_from_target = 1
+	var/max_path_dist = 30
+	var/move_adjacent = TRUE
 	var/list/found_path = null
 	var/atom/move_target = null
+	var/turf/next_turf = null
 
 // use the target from our holder
 /datum/aiTask/succeedable/move/proc/get_path()
-	if(!move_target)
+	if(!src.move_target)
 		fails++
 		return
-	src.found_path = cirrAstar(get_turf(holder.owner), get_turf(move_target), 0, 60)
-	if(!src.found_path) // no path :C
+	src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
+	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner, options = list("do_doorcheck" = TRUE, "move_through_space" = move_through_space))) // no path :C
 		fails++
 
 /datum/aiTask/succeedable/move/on_reset()
+	..()
 	src.found_path = null
 	src.move_target = null
+	src.next_turf = null
+	src.holder.stop_move()
 
 /datum/aiTask/succeedable/move/on_tick()
-	walk(holder.owner, 0)
 	if(src.found_path)
 		if(src.found_path.len > 0)
 			// follow the path
-			src.found_path.Cut(1, 2)
-			var/turf/next
-			if(src.found_path.len >= 1)
-				next = src.found_path[1]
-			else
-				next = move_target
-			walk_to(holder.owner, next, 0, 4)
-			if(get_dist(get_turf(holder.owner), next) <= 1)
-				fails = 0
-			else
-				// we aren't where we ought to be
-				fails++
-				get_path()
-	else
-		// get a path
-		get_path()
+			if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
+				if(src.found_path.len >= 2)
+					src.next_turf = src.found_path[1]
+					var/i = 2
+					var/dir_line = get_dir(src.found_path[1],src.found_path[2])
+					while(get_dir(src.next_turf, src.found_path[i]) == dir_line)
+						src.next_turf = src.found_path[i]
+						i++
+						if(i > length(src.found_path))
+							break
+					src.found_path.Cut(1, i)
+				else
+					src.next_turf = get_turf(src.found_path[1])
+					src.found_path.Cut()
+			holder.move_to(src.next_turf, 0)
+			return
+	get_path()
 
 /datum/aiTask/succeedable/move/succeeded()
-	if(move_target)
-		return ((get_dist(get_turf(holder.owner), get_turf(move_target)) == 0) || (src.found_path && src.found_path.len <= 0))
+	if(src.move_target)
+		return ((GET_DIST(get_turf(holder.owner), get_turf(src.move_target)) <= distance_from_target))
+
+/datum/aiTask/succeedable/move/inherit_target
+
+/datum/aiTask/succeedable/move/inherit_target/tick()
+	src.move_target = holder.target
+	return ..()
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // WAIT TASK
@@ -219,3 +193,183 @@
 		M.registered_area = get_area(M)
 		if(M.registered_area)
 			M.registered_area.registered_mob_critters |= M
+
+/datum/aiTask/endless
+	name = "endless"
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ENDLESS MOVE TASK
+/datum/aiTask/endless/move
+	name = "endlessly moving"
+	distance_from_target = 1
+	var/max_path_dist = 30
+	var/move_adjacent = TRUE
+	var/list/found_path = null
+	var/atom/move_target = null
+	var/turf/next_turf = null
+
+// use the target from our holder
+/datum/aiTask/endless/move/proc/get_path()
+	if(!src.move_target)
+		return
+	src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
+	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner, options = list("do_doorcheck" = TRUE, "move_through_space" = move_through_space))) // no path :C
+		return
+
+/datum/aiTask/endless/move/on_reset()
+	..()
+	src.found_path = null
+	src.move_target = null
+	src.next_turf = null
+	src.holder.stop_move()
+
+/datum/aiTask/endless/move/on_tick()
+	if(src.found_path)
+		if(src.found_path.len > 0)
+			if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
+				// follow the path
+				if(src.found_path.len >= 2)
+					src.next_turf = src.found_path[1]
+					var/i = 2
+					var/dir_line = get_dir(src.found_path[1],src.found_path[2])
+					while(get_dir(src.next_turf, src.found_path[i]) == dir_line)
+						src.next_turf = src.found_path[i]
+						i++
+						if(i > length(src.found_path))
+							break
+					src.found_path.Cut(1, i)
+				else
+					src.next_turf = get_turf(src.found_path[1])
+					src.found_path.Cut()
+			holder.move_to(src.next_turf, 0)
+			return
+	get_path()
+
+/datum/aiTask/endless/move/inherit_target
+
+/datum/aiTask/endless/move/inherit_target/tick()
+	src.move_target = holder.target
+	return ..()
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LA VIOLENCIA
+
+/datum/aiHolder/violent
+	move_shuffle_at_target = 3
+	seek_cooldown = 1.5 SECONDS
+
+/datum/aiHolder/violent/New()
+	..()
+	default_task = get_instance(/datum/aiTask/concurrent/violence, list(src))
+	src.tick()
+
+/datum/aiTask/concurrent/violence
+	name = "violence"
+	max_dist = 9
+	score_by_distance_only = FALSE
+
+/datum/aiTask/concurrent/violence/New(parentHolder, transTask)
+	..(parentHolder, transTask)
+	add_task(holder.get_instance(/datum/aiTask/endless/violence_subtask, list(holder)))
+	add_task(holder.get_instance(/datum/aiTask/endless/move/inherit_target, list(holder)))
+
+/datum/aiTask/concurrent/violence/get_targets()
+	. = ..()
+	for(var/mob/living/L in oview(src.holder.owner, src.max_dist))
+		if(src.holder.owner.ai_is_valid_target(L))
+			. |= L
+
+/datum/aiTask/concurrent/violence/tick()
+	if(!src.holder.target && !ON_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown", src.holder.seek_cooldown))
+		src.holder.target = src.get_best_target(get_targets())
+	// when fighting, move to the heavyweight ai ticks
+	if(src.holder.owner.mob_flags & HEAVYWEIGHT_AI_MOB)
+		if(!src.holder.target)
+			src.holder.owner.mob_flags &= ~HEAVYWEIGHT_AI_MOB
+	else if(src.holder.target)
+		src.holder.owner.mob_flags |= HEAVYWEIGHT_AI_MOB
+	. = ..()
+
+/datum/aiTask/concurrent/violence/score_target(atom/target)
+	. = ..()
+	if(.)
+		. *= src.holder.owner.ai_rate_target(target)
+
+// this task causes violence forever
+/datum/aiTask/endless/violence_subtask
+	name = "violence subtask"
+	var/boredom_ticks = 120
+	var/ability_cooldown = 4 SECONDS
+	var/mob/living/queued_target = null
+	var/ticks_since_combat = 0
+
+/datum/aiTask/endless/violence_subtask/on_tick()
+	var/mob/living/critter/owncritter = src.holder.owner
+	if (!src.holder.owner || HAS_ATOM_PROPERTY(src.holder.owner, PROP_CANTMOVE))
+		return
+
+	if(src.holder.target)
+		var/mob/living/M = src.holder.target
+		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z || src.ticks_since_combat >= src.boredom_ticks || !src.holder.owner.ai_is_valid_target(M))
+			src.queued_target = null
+			src.holder.target = null
+			src.ticks_since_combat = 0
+			if(!src.holder.target && !GET_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown"))
+				src.holder.target = src.get_best_target(get_targets())
+			if(!src.holder.target)
+				return ..()
+
+		if(src.holder.owner.ai_a_intent)
+			src.holder.owner.a_intent = src.holder.owner.ai_a_intent
+		else
+			src.holder.owner.a_intent = prob(80) ? INTENT_HARM : pick(INTENT_DISARM, INTENT_GRAB)
+
+		owncritter.hud.update_intent() // this works even on humans. hate it though.
+
+		if(src.holder.owner.next_click > world.time)
+			return ..()
+
+		if((!src.ability_cooldown || !ON_COOLDOWN(src.holder.owner, "ai_ability_cooldown", src.ability_cooldown)) && src.holder.owner.ability_attack(M))
+			src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
+			return ..()
+
+		// bit of a shitshow here, but this ensures the ai mobs dont alternate between choking and letting go of people
+		var/obj/item/grab/G = src.holder.owner.equipped()
+		if(G && istype(G) && G.state > GRAB_NECK)
+			var/prev_hand = src.holder.owner.hand
+			src.holder.owner.swap_hand()
+			if(src.holder.owner.hand == prev_hand)
+				return ..()
+
+		if(GET_DIST(src.holder.owner, M) <= 1)
+			src.holder.owner.hand_attack(M)
+			src.ticks_since_combat = 0
+			src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
+			src.queued_target = null
+		else if(istype(owncritter))
+			var/datum/handHolder/HH = owncritter.get_active_hand()
+			if(HH.can_range_attack)
+				src.holder.owner.hand_attack(M)
+				src.ticks_since_combat = 0
+				src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
+				src.queued_target = null
+			else
+				src.queued_target = M
+				src.ticks_since_combat++
+		else
+			src.queued_target = M
+			src.ticks_since_combat++
+		src.holder.owner.set_dir(get_dir(src.holder.owner, M))
+
+	if(prob(30)) // may do a more intelligent check later, but this is decent
+		src.holder.owner.swap_hand()
+
+	..()
+
+/datum/aiTask/endless/violence_subtask/on_move()
+	if(src.queued_target && src.holder.owner.next_click <= world.time && GET_DIST(src.holder.owner, src.queued_target) <= 1 && prob(80))
+		src.ticks_since_combat = 0
+		SPAWN_DBG(rand(1,2))
+			if(src.queued_target && GET_DIST(src.holder.owner, src.queued_target) <= 1)
+				src.holder.owner.hand_attack(src.queued_target)
+				src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY

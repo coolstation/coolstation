@@ -19,7 +19,7 @@
 	rc_flags = RC_SCALE | RC_SPECTRO | RC_INV_COUNT_AMT
 	initial_volume = 400
 	can_recycle = FALSE
-	can_chug = 0
+	//can_chug = 0
 	initial_reagents = "fuel"
 
 /obj/item/reagent_containers/food/drinks/fueltank/empty
@@ -71,7 +71,7 @@
 			L.force_laydown_standup()
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 		..()
 		if(ismob(usr))
 			var/mob/living/L = usr

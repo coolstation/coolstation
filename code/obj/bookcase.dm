@@ -5,7 +5,7 @@
 	desc = "A storage unit designed to fit a lot of books. Been a while since you've seen one of these!"
 	icon = 'icons/obj/furniture/bookshelf.dmi'
 	icon_state = "bookshelf_empty"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/variant = 1 //just used for normal shelves
 	var/update_icon_suffix = "" //set to either "1" or "2" in New()

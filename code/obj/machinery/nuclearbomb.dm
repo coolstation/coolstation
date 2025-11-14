@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb"//1"
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	_health = 150
 	_max_health = 150
 	var/armed = 0
@@ -15,7 +15,7 @@
 	var/done = 0
 	var/debugmode = 0
 	var/datum/hud/nukewires/wirepanel
-	var/datum/hud/nuclear/nuclear_countdown
+	var/datum/hud/roundend/nuclear_countdown
 	var/obj/item/disk/data/floppy/read_only/authentication/disk = null
 	var/isitspacemas = 0
 
@@ -76,7 +76,6 @@
 		if (det_time && ticker.round_elapsed_ticks >= det_time)
 			SPAWN_DBG(0)
 				explode()
-				nuclear_countdown.you_lose()
 			src.maptext = "<span style=\"color: red; font-family: Fixedsys, monospace; text-align: center; vertical-align: top; -dm-text-outline: 1 black;\">--:--</span>"
 		else
 			src.maptext = "<span style=\"color: red; font-family: Fixedsys, monospace; text-align: center; vertical-align: top; -dm-text-outline: 1 black;\">[get_countdown_timer()]</span>"
@@ -142,7 +141,7 @@
 						else
 							if (alert("Deploy and arm [src.name] here?", src.name, "Yes", "No") == "Yes" && !src.armed && get_dist(src, user) <= 1 && !(is_incapacitated(user) || user.restrained()))
 								src.armed = 1
-								src.anchored = 1
+								src.anchored = ANCHORED
 								if (!src.image_light)
 									src.image_light = image(src.icon, "nblightc")
 									src.UpdateOverlays(src.image_light, "light")
@@ -157,7 +156,8 @@
 								//This is the most straightforward spot to do this, but yes it is silly that the bomb itself is sending out the emergency alert
 								var/datum/directed_broadcast/emergency/broadcast = new(station_name, prob(95) ? "Nuclear Detonation" : "Open-Source Aggression", "Ten Minutes")
 								broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
-								nuclear_countdown = new()
+								nuclear_countdown = get_singleton(/datum/hud/roundend)
+								nuclear_countdown.countdown_text = "Your employment contract will end in"
 								for (var/client/C in clients)
 									nuclear_countdown.add_client(C)	// New Hud
 								logTheThing("bombing", user, null, "armed [src] at [log_loc(src)].")
@@ -348,10 +348,8 @@
 			command_alert("\A [src] has been detonated in [A].", "Attention")
 			explosion_new(src, get_turf(src), src.boom_size)
 			qdel(src)
-#ifdef DATALOGGER
 			if (istype(A, /area/station))
 				game_stats.Increment("workplacesafety")
-#endif
 			return
 		var/datum/game_mode/nuclear/NUKEMODE = ticker?.mode
 		var/turf/nuke_turf = get_turf(src)
@@ -369,9 +367,7 @@
 			explosion(src, src.loc, 20, 30, 40, 50)
 			qdel(src)
 			return
-#ifdef DATALOGGER
 		game_stats.Increment("workplacesafety")
-#endif
 #ifdef MAP_OVERRIDE_GEHENNA
 		var/datum/hud/cinematic/cinematic = new
 		for (var/client/C in clients)
@@ -441,7 +437,7 @@
 		..()
 		if (owner && the_bomb)
 			var/timer_modifier = round((the_bomb.det_time - ticker.round_elapsed_ticks) / 2)
-			the_bomb.anchored = 0
+			the_bomb.anchored = UNANCHORED
 
 			for (var/mob/O in AIviewers(owner))
 				O.show_message("<span class='alert'><b>[owner]</b> unscrews [the_bomb]'s floor bolts.</span>", 1)
@@ -463,7 +459,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb"
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	_health = 10
 
 	proc/checkhealth()

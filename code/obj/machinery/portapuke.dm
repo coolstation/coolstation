@@ -4,7 +4,7 @@
 	icon_state = "puke_0"
 	desc = "A weapon of pure terror."
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	p_class = 1.5
 	processing_tier = PROCESSING_FULL
 	var/list/list/mob/occupant_buckets
@@ -100,7 +100,7 @@
 			for (var/turf/T in range(src, rand(1, 3)))
 				if(T.density)
 					continue
-				make_cleanable(/obj/decal/cleanable/blood/gibs, T)
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, T)
 
 			if (prob(5) && occupant.organHolder?.heart)
 				occupant.organHolder.drop_organ("heart")

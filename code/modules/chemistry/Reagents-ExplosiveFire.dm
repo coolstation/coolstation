@@ -6,6 +6,7 @@ datum
 	reagent
 		combustible/
 			name = "fire stuff"
+			taste = "hot"
 
 		combustible/phlogiston //This is used for the smoke/phlogiston reaction.
 			name = "phlogiston"
@@ -27,6 +28,7 @@ datum
 			burn_volatility = 10
 			minimum_reaction_temperature = T0C - 50
 			var/mob_burning = 33
+			taste = "combustible"
 
 			reaction_turf(var/turf/T, var/volume)
 				. = ..()
@@ -81,6 +83,7 @@ datum
 			burn_temperature = 1500
 			burn_volatility = 6
 			minimum_reaction_temperature = T0C
+			taste = "combustible and dusty"
 
 		combustible/napalm_goo  // adapated from weldfuel
 			name = "napalm goo"
@@ -101,6 +104,7 @@ datum
 			minimum_reaction_temperature = T0C + 100
 			var/temp_reacted = 0
 			penetrates_skin = 1
+			taste = "like gasoline"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				. = ..()
@@ -141,6 +145,7 @@ datum
 				burn_energy = 690000
 				burn_temperature = 1800
 				burn_volatility = 3
+				taste = "like extra gasoline"
 
 				reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 					. = ..()
@@ -170,6 +175,7 @@ datum
 			burn_temperature = 5000
 			burn_volatility = 14
 			minimum_reaction_temperature = T0C+600
+			taste = "not quite like gasoline"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				. = ..()
@@ -208,6 +214,7 @@ datum
 			transparency = 255
 			volatility = 1.5
 			minimum_reaction_temperature = T0C+100
+			taste = "metalic and dusty"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/turf/A = holder.my_atom
@@ -259,7 +266,9 @@ datum
 			fluid_b = 200
 			transparency = 230
 			minimum_reaction_temperature = T0C+25
+			evaporates_cleanly = TRUE
 			var/ignited = 0
+			taste = "smokey"
 /*
 			pooled()
 				..()
@@ -267,7 +276,7 @@ datum
 */
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/datum/reagents/myholder = holder
-				if(!holder?.my_atom?.is_open_container())
+				if(!istype(holder,/datum/reagents/fluid_group) && !holder?.my_atom?.is_open_container())
 					if(holder.my_atom)
 						for(var/mob/M in AIviewers(5, get_turf(holder.my_atom)))
 							boutput(M, "<span class='notice'>With nowhere to go, the smoke settles.</span>")
@@ -288,7 +297,9 @@ datum
 			fluid_b = 255
 			transparency = 230
 			minimum_reaction_temperature = T0C + 100
+			evaporates_cleanly = TRUE
 			var/ignited = FALSE
+			taste = "bad"
 /*
 			pooled()
 				..()
@@ -319,6 +330,7 @@ datum
 			penetrates_skin = 1 // coat them with it?
 			minimum_reaction_temperature = T0C+100
 			var/no_fluff = 0
+			taste = "loud"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(!reacting)
@@ -392,6 +404,7 @@ datum
 			penetrates_skin = 1 // coat them with it?
 			viscosity = 0.5
 			minimum_reaction_temperature = T0C+100
+			taste = "like flammable dust"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(!reacting)
@@ -420,6 +433,7 @@ datum
 			burn_energy = 0 // not a fuel, its an oxidizer
 			burn_temperature = 3500
 			burn_volatility = 14
+			taste = "unfathomably horrible"
 
 			reaction_turf(var/turf/T, var/volume)
 				var/datum/reagents/old_holder = src.holder //mbc pls, ZeWaka fix: null.holder
@@ -502,8 +516,9 @@ datum
 			burn_energy = 1500000
 			burn_temperature = 9000
 			burn_volatility = 20
-			minimum_reaction_temperature = -INFINITY
-
+			minimum_reaction_temperature = T0C - 160
+			evaporates_cleanly = TRUE
+			taste = "like it's too late"
 
 			reaction_turf(var/turf/T, var/volume)
 				. = ..()
@@ -528,7 +543,6 @@ datum
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1)
-
 				var/mob/living/L = M
 				if(istype(L))
 					L.update_burning(50 * mult)
@@ -545,6 +559,7 @@ datum
 			transparency = 150
 			viscosity = 0.7
 			minimum_reaction_temperature = 1000
+			taste = "sticky"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				holder.del_reagent(id)
@@ -575,7 +590,7 @@ datum
 			viscosity = 0.6
 			volatility = 3
 			minimum_reaction_temperature = -INFINITY
-
+			taste = "strange"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(exposed_temperature < T0C)
@@ -602,6 +617,8 @@ datum
 			viscosity = 0.6
 			volatility = 1.25
 			minimum_reaction_temperature = T0C + 200
+			evaporates_cleanly = TRUE
+			taste = "shocking"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(!src.reacting)
@@ -624,6 +641,8 @@ datum
 			viscosity = 0.9
 			volatility = 1.5 // lol no
 			minimum_reaction_temperature = T0C+200
+			evaporates_cleanly = TRUE
+			taste = "like science"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(!src.reacting)
@@ -659,6 +678,7 @@ datum
 			fluid_b = 100
 			transparency = 250
 			viscosity = 0.2
+			taste = "like something"
 
 		combustible/fuel // COGWERKS CHEM REVISION PROJECT. treat like acetylene or similar basic hydrocarbons for other reactions
 			name = "fuel"
@@ -681,6 +701,7 @@ datum
 			burn_temperature = 1300
 			burn_volatility = 5
 			var/smoke_counter = 0
+			taste = "faintly like gasoline"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				. = ..()
@@ -758,6 +779,7 @@ datum
 			depletion_rate = 0.05
 			penetrates_skin = 1 // think of it as just being all over them i guess
 			minimum_reaction_temperature = T0C+200
+			taste = "like gunpowder"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				if(src.reacting)
@@ -851,6 +873,7 @@ datum
 			fluid_b = 64
 			minimum_reaction_temperature = T0C+100
 			var/is_dry = 0
+			taste = "like a bug report"
 /*
 			pooled()
 				..()
@@ -902,6 +925,7 @@ datum
 			random_chem_blacklisted = 1
 			volatility = 2
 			viscosity = 0.3
+			taste = "wet"
 
 			New()
 				..()
@@ -924,6 +948,7 @@ datum
 			is_dry = 1
 			reagent_state = SOLID
 			minimum_reaction_temperature = -INFINITY
+			taste = "volatile"
 
 			New()
 				..()

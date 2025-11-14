@@ -143,6 +143,7 @@
 					<div class='r'>
 						<a href='[playeropt_link(M, "checkhealth")]'>Check</a> &bull;
 						<a href='[playeropt_link(M, "revive")]'>Heal</a> &bull;
+						<a href='[playeropt_link(M, "revive2")]'>(Barely)</a> &bull;
 						[(M.stat == 2 || M.max_health == 0) ? "Dead" : "[round(100 * M.health / M.max_health)]%"]
 						[isliving(M) ? {" &bull; <a href='[playeropt_link(M, "makesick")]'>Give Ailment</a>"} : ""]
 					</div>
@@ -294,6 +295,22 @@
 	if(!istype(M, /mob/new_player))
 		dat += {"
 			<div class='optionGroup' style='border-color: #B57EDC;'>
+				<h2 style='background-color: #B57EDC;'>AI Controls</h2>
+				<div>
+					<div class='l'>Current</div>
+					<div class='r'>
+						[M.ai ? M.ai.type : "No AI"]
+					</div>
+					<div class='l'>Alter AI</div>
+					<div class='r'>
+						[M.ai ? "<a href='[playeropt_link(M, "disableai")]'>Remove AI</a>" : "<a href='[playeropt_link(M, "violentai")]'>Violent AI</a>"]
+					</div>
+				</div>
+			</div>
+			"}
+
+		dat += {"
+			<div class='optionGroup' style='border-color: #B57EDC;'>
 				<h2 style='background-color: #B57EDC;'>Antagonist Options</h2>
 				<div>
 					<div class='l'>Antag Status</div>
@@ -305,7 +322,6 @@
 						[iswraith(M) ? "<em>Is Wraith</em>" : "<a href='[playeropt_link(M, "makewraith")]'>Wraith</a>"] &bull;
 						[isblob(M) ? "<em>Is Blob</em>" : "<a href='[playeropt_link(M, "makeblob")]'>Blob</a>"] &bull;
 						[istype(M, /mob/living/carbon/human/machoman) ? "<em>Is Macho Man</em>" : "<a href='[playeropt_link(M, "makemacho")]'>Macho Man</a>"] &bull;
-						[isflock(M) ? "<em>Is Flock</em>" : "<a href='[playeropt_link(M, "makeflock")]'>Flock</a>"] &bull;
 						[isfloorgoblin(M) ? "<em>Is Floor Goblin</em>" : "<a href='[playeropt_link(M, "makefloorgoblin")]'>Floor Goblin</a>"]
 					</div>
 				</div>
@@ -331,6 +347,7 @@
 						<a href='[playeropt_link(M, "makeghostdrone")]'>Ghostdrone</a>
 						<br>
 						<a href='[playeropt_link(M, "polymorph")]'>Edit Appearance</a> &bull;
+						<a href='[playeropt_link(M, "setblood")]'>Set Blood</a> &bull;
 						<a href='[playeropt_link(M, "modifylimbs")]'>Modify Limbs/Organs</a> &bull;
 						<a href='[playeropt_link(M, "respawntarget")]'>Respawn</a> &bull;
 						<a href='[playeropt_link(M, "respawnas")]'>Respawn As</a>

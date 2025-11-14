@@ -8,6 +8,7 @@ datum
 		medical/
 			name = "medical thing"
 			viscosity = 0.1
+			taste = "medicinal"
 
 		//seems silly but reading the star trek wiki (lol) this apparently knocked out McCoy and helped with brain healing, so
 		//a brain damage chem that puts you into a coma but fixes your brain damage + a rename may make this pointful
@@ -23,17 +24,18 @@ datum
 			transparency = 80
 			depletion_rate = 0.2
 			value = 3
+			taste = "contrived"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_REBREATHING, src.type)
+					APPLY_ATOM_PROPERTY(M, PROP_REBREATHING, src.type)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_REBREATHING, src.type)
+					REMOVE_ATOM_PROPERTY(M, PROP_REBREATHING, src.type)
 				return
 
 
@@ -55,6 +57,7 @@ datum
 			transparency = 255
 			depletion_rate = 0.2
 			value = 3 // 2c + 1c
+			taste = "antibiotic"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -78,22 +81,24 @@ datum
 			addiction_min = 15
 			overdose = 15
 			depletion_rate = 0.2
+			contraband = 1
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
+			taste = "like opiates"
 
 			on_add()
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
-					APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine", 75)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
+					APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine", 75)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
-					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
+					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -145,18 +150,19 @@ datum
 			fluid_b = 241
 			transparency = 40
 			value = 2
+			taste = "life-saving"
 
 			on_add()
 				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
 				return
 
@@ -183,17 +189,19 @@ datum
 			burn_volatility = 15 // Very Dangerous
 			minimum_reaction_temperature = T0C + 80 //This stuff is extremely flammable
 			value = 5
+			evaporates_cleanly = TRUE
+			taste = "aromatic"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ether", -5)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ether", -5)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ether")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ether")
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -246,6 +254,7 @@ datum
 			overdose = 35
 			var/static/list/halluc_skeleton = list(new /image('icons/mob/human.dmi',"skeleton"))
 			var/static/list/sex_garfield = list(new /image('icons/obj/vehicles/vehicles.dmi', "sex"))
+			taste = "like gas station boner pills"
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (prob(5))
@@ -311,6 +320,7 @@ datum
 			addiction_prob = 6
 			overdose = 30
 			value = 7 // Okay there are two recipes, so two different values... I'll just go with the lower one.
+			taste = "like medicine"
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -368,6 +378,7 @@ datum
 			addiction_min = 10
 			overdose = 50
 			value = 7 // 5c + 1c + 1c
+			taste = "lukewarm"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -393,12 +404,13 @@ datum
 			depletion_rate = 0.1
 			value = 11 // 5c + 3c + 1c + 1c + 1c
 			var/fake_health = -10
+			taste = "like medicine"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				if(src.fake_health < 45)
 					src.fake_health += mult
-				APPLY_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid", src.fake_health)
+				APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid", src.fake_health)
 				if(prob(55))
 					M.HealDamage("All", 2 * mult, 0)
 				//set it so it only slowly reduces mild fevers from disease and not, you know, burn victims
@@ -417,7 +429,7 @@ datum
 				src.fake_health = -10
 				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid")
+					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
 
 		//hmm. well.
@@ -435,6 +447,7 @@ datum
 			penetrates_skin = 1
 			value = 2 // I think this is correct?
 			hygiene_value = 1
+			taste = "minty"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -460,6 +473,7 @@ datum
 			depletion_rate = 0.8
 			transparency = 200
 			value = 3 // 1c + 1c + heat
+			taste = "potent"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -511,6 +525,7 @@ datum
 			addiction_prob2 = 20
 			addiction_min = 5
 			value = 13
+			taste = "unpleasant"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -537,6 +552,7 @@ datum
 			fluid_g = 235
 			transparency = 255
 			value = 9 // 6c + 2c + 1c
+			taste = "like tofu"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume_passed, var/list/paramslist = 0)
 				. = ..()
@@ -570,9 +586,9 @@ datum
 					volume = (volume/covered.len)
 
 				if(volume >= 5)
-					if(!locate(/obj/decal/cleanable/blood/gibs) in T)
+					if(!locate(/obj/decal/cleanable/tracked_reagents/blood/gibs) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/blood/gibs,T)
+						make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,T)
 			/*reaction_obj(var/obj/O, var/volume)
 				if(istype(O,/obj/item/parts/robot_parts/robot_frame))
 					if (O.check_completion() && volume >= 20)
@@ -597,17 +613,18 @@ datum
 			overdose = 40
 			value = 7
 			stun_resist = 31
+			taste = "tangy"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_synaptizine", 4)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_synaptizine", 4)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_synaptizine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_synaptizine")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -656,6 +673,7 @@ datum
 			overdose = 30
 			value = 22
 			target_organs = list("brain", "left_eye", "right_eye", "heart", "left_lung", "right_lung", "left_kidney", "right_kidney", "liver", "stomach", "intestines", "spleen", "pancreas", "appendix", "tail")	//RN this is all the organs. Probably I'll remove some from this list later.
+			taste = "like medicine"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M)
@@ -669,12 +687,13 @@ datum
 					var/mob/living/L = M
 					if (L.bleeding)
 						repair_bleeding_damage(L, 10, 1 * mult)
-					if (L.blood_volume < 500)
-						L.blood_volume ++
-					if (ishuman(M))
-						var/mob/living/carbon/human/H = M
-						if (H.organHolder)
-							H.organHolder.heal_organs(1*mult, 1*mult, 1*mult, target_organs)
+
+					if (L.organHolder)
+						L.organHolder.heal_organs(1*mult, 1*mult, 1*mult, target_organs)
+						if (L.organHolder.spleen && L.reagents.total_volume < L.ideal_blood_volume)
+							L.reagents.add_reagent(L.organHolder.spleen.blood_id, L.ideal_blood_volume * 1.5 * BLOOD_SCALAR * mult, temp_new = L.base_body_temp)
+					else if (L.reagents.total_volume < L.ideal_blood_volume)
+						L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 1.5 * BLOOD_SCALAR * mult)
 
 				//M.UpdateDamageIcon()
 				..()
@@ -725,16 +744,14 @@ datum
 			penetrates_skin = 1 // splashing saline on someones wounds would sorta help clean them
 			depletion_rate = 0.15
 			value = 5 // 3c + 1c + 1c
+			evaporates_cleanly = TRUE
+			taste = "salty"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
 					M = holder.my_atom
 				if (prob(33))
 					M.HealDamage("All", 2 * mult, 2 * mult)
-				if (blood_system && isliving(M) && prob(33))
-					var/mob/living/H = M
-					H.blood_volume += 1  * mult
-					H.nutrition += 1  * mult
 				//M.UpdateDamageIcon()
 				..()
 				return
@@ -753,6 +770,7 @@ datum
 			transparency = 40
 			value = 2 // 1c + 1c
 			target_organs = list("left_kidney", "right_kidney", "liver")
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -782,17 +800,18 @@ datum
 			fluid_b = 60
 			transparency = 40
 			value = 3
+			taste = "smelly"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_smelling_salt", 5)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_smelling_salt", 5)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_smelling_salt")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_smelling_salt")
 				return
 
 			on_mob_life(var/mob/M, var/method=INGEST, var/mult = 1)
@@ -834,6 +853,7 @@ datum
 			transparency = 111
 			penetrates_skin = 1
 			value = 26 // 18 5 3
+			taste = "healthy"
 
 			// I've added hearing damage here (Convair880).
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -878,18 +898,19 @@ datum
 			fluid_b = 255
 			transparency = 255
 			value = 8 // 2c + 3c + 1c + 1c + 1c
+			taste = "suspicious"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					APPLY_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
 					M.change_misstep_chance(25)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					REMOVE_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
 				return
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
@@ -949,11 +970,12 @@ datum
 			overdose = 20
 			value = 17 // 5c + 5c + 4c + 1c + 1c + 1c
 			stun_resist = 10
+			taste = "bad"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_epinephrine", 3)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_epinephrine", 3)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/epinepherine, src.type)
 				..()
 
@@ -962,7 +984,7 @@ datum
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_epinephrine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_epinephrine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/epinepherine, src.type)
 				..()
 
@@ -1017,6 +1039,7 @@ datum
 			transparency = 80
 			depletion_rate = 0.4
 			overdose = 20
+			taste = "runny"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -1034,15 +1057,15 @@ datum
 					if (effect <= 2)
 						M.visible_message("<span class='alert'>[M] coughs up a lot of blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(5,10) * mult, 3 * mult)
+						bleed(M, rand(5,10) * mult)
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'>[M] coughs up a little blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(1,2) * mult, 1 * mult)
+						bleed(M, rand(1,2) * mult)
 				else if (severity == 2) // greater
 					if (effect <= 2)
 						M.visible_message("<span class='alert'><b>[M] is bleeding from [his_or_her(M)] very pores!</span>")
-						bleed(M, rand(10,20) * mult, rand(1,3) * mult)
+						bleed(M, rand(10,20) * mult)
 						if (ishuman(M))
 							var/mob/living/carbon/human/H = M
 							var/list/gear_to_bloody = list(H.r_hand, H.l_hand, H.head, H.wear_mask, H.w_uniform, H.wear_suit, H.belt, H.gloves, H.glasses, H.shoes, H.wear_id, H.back)
@@ -1054,11 +1077,11 @@ datum
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'>[M] coughs up a lot of blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(5,10) * mult, 3 * mult)
+						bleed(M, rand(5,10) * mult)
 					else if (effect <= 8)
 						M.visible_message("<span class='alert'>[M] coughs up a little blood!</span>")
 						playsound(M, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(M, rand(1,2) * mult, 1 * mult)
+						bleed(M, rand(1,2) * mult)
 
 		// old name for factor VII, which is a protein that causes blood to clot.
 		//this stuff is seemingly just used for people with hemophilia but this is ss13 so let's give it to everybody who's bleeding a little, it's fine.
@@ -1072,6 +1095,7 @@ datum
 			fluid_b = 224
 			transparency = 230
 			depletion_rate = 0.3
+			taste = "congealed"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -1097,13 +1121,18 @@ datum
 			transparency = 120
 			depletion_rate = 0.2
 			target_organs = list("left_lung", "right_lung")
+			taste = "strange"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
 					M = holder.my_atom
 				if (isliving(M))
-					var/mob/living/H = M
-					H.blood_volume += 2 * mult
+					var/mob/living/L = M
+					if (L.organHolder)
+						if (L.organHolder.spleen && L.reagents.total_volume < L.ideal_blood_volume)
+							L.reagents.add_reagent(L.organHolder.spleen.blood_id, L.ideal_blood_volume * 3 * BLOOD_SCALAR * mult, temp_new = L.base_body_temp)
+					else if (L.reagents.total_volume < L.ideal_blood_volume)
+						L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 3 * BLOOD_SCALAR * mult)
 				..()
 				return
 
@@ -1121,7 +1150,7 @@ datum
 					else if (severity > 1 && prob(50))
 						L.visible_message("<span class='alert'>[L] coughs up a little blood!</span>")
 						playsound(L, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-						bleed(L, rand(2,8) * mult, 3 * mult)
+						bleed(L, rand(2,8) * mult)
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 						if (H.organHolder)
@@ -1141,6 +1170,7 @@ datum
 			fluid_b = 240
 			transparency = 50
 			value = 6
+			taste = "like medicine"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1164,6 +1194,7 @@ datum
 			transparency = 225
 			depletion_rate = 3
 			value = 6 // 2c + 1c + 1c + 1c + 1c
+			taste = "cool"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1214,6 +1245,7 @@ datum
 			fluid_b = 200
 			transparency = 255
 			value = 9 // 5 3 1
+			taste = "boring"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1261,6 +1293,7 @@ datum
 			value = 9 // 4c + 3c + 1c + 1c
 			var/remove_buff = 0
 			stun_resist = 15
+			taste = "tingly"
 /*
 			pooled()
 				..()
@@ -1268,13 +1301,13 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ephedrine", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ephedrine", 2)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ephedrine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ephedrine")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -1329,6 +1362,7 @@ datum
 			transparency = 200
 			value = 16 // 7 2 4 1 1 1
 			target_organs = list("left_kidney", "right_kidney", "liver", "stomach", "intestines")
+			taste = "sour"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1363,17 +1397,18 @@ datum
 			addiction_prob = 1//10
 			addiction_min = 10
 			value = 10 // 4 3 1 1 1
+			taste = "like medicine"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_diphenhydramine", -3)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_diphenhydramine", -3)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_diphenhydramine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_diphenhydramine")
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -1408,6 +1443,7 @@ datum
 			transparency = 255
 			depletion_rate = 3
 			value = 6 // 3c + 1c + 1c + 1c
+			taste = "unpleasant"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1478,6 +1514,7 @@ datum
 			transparency = 255
 			value = 12 // 5 3 3 1
 			target_organs = list("left_eye", "right_eye", "heart", "left_lung", "right_lung", "left_kidney", "right_kidney", "liver", "stomach", "intestines", "spleen", "pancreas", "appendix", "tail")	//RN this is all the organs. Probably I'll remove some from this list later. no "brain",  either
+			taste = "cold"
 
 			/*reaction_temperature(exposed_temperature, exposed_volume)
 				var/myvol = volume
@@ -1531,6 +1568,7 @@ datum
 			var/remove_buff = 0
 			var/total_misstep = 0
 			value = 18 // 5 4 5 3 1
+			taste = "bad"
 /*
 			pooled()
 				..()
@@ -1593,6 +1631,7 @@ datum
 			value = 16 // 11 2 1 1 1
 			overdose = 50
 			target_organs = list("left_lung", "right_lung", "spleen")
+			taste = "like medicine"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1637,6 +1676,7 @@ datum
 			addiction_min = 10
 			value = 6 // 3 1 1 heat
 			target_organs = list("left_lung", "right_lung", "spleen")
+			taste = "unpleasant"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1665,6 +1705,7 @@ datum
 			transparency = 40
 			value = 4 // 1 1 1 1
 			overdose = 10
+			taste = "dated"
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1704,6 +1745,8 @@ datum
 			transparency = 240
 			value = 3 // 1 1 1
 			target_organs = list("brain")		//unused for now
+			evaporates_cleanly = TRUE
+			taste = "like alcohol"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1723,6 +1766,7 @@ datum
 			fluid_g = 0
 			value = 5 // 3c + 1c + heat
 			target_organs = list("left_kidney", "right_kidney", "liver", "stomach", "intestines")
+			taste = "like dirt"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1769,6 +1813,7 @@ datum
 			fluid_g = 200
 			transparency = 220
 			value = 6 // 5c + 1c
+			taste = "depressing"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1790,6 +1835,7 @@ datum
 			depletion_rate = 0.8
 			value = 3 // 1c + 1c + heat
 			viscosity = 0.8
+			taste = "bitter"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -1814,3 +1860,4 @@ datum
 			fluid_g = 220
 			fluid_b = 200
 			transparency = 230
+			taste = "contrived"

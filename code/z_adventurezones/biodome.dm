@@ -200,7 +200,7 @@ SYNDICATE DRONE FACTORY AREAS
 
 	Entered(atom/movable/O, atom/old_loc)
 		..()
-		if(src.deadly && !(isnull(old_loc) || O.anchored == 2))
+		if(src.deadly && !(isnull(old_loc) || O.anchored == ANCHORED_TECHNICAL))
 			if (istype(O, /obj/critter) && O:flying)
 				return
 
@@ -242,7 +242,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "light"
 	desc = "There's light coming through a hole in the ceiling."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
@@ -254,7 +254,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "stalactite" // c, not g! c as in ceiling, g as in ground. dang!
 	desc = "It's a stalactite."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = EFFECTS_LAYER_BASE
 	icon = 'icons/misc/exploration.dmi'
@@ -264,7 +264,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "stalagmite"
 	desc = "It's a stalagmite."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = EFFECTS_LAYER_BASE
 	icon = 'icons/misc/exploration.dmi'
@@ -274,7 +274,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "snow"
 	desc = "A bit of snow."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = OBJ_LAYER
 	plane = PLANE_NOSHADOW_BELOW
@@ -285,7 +285,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "runes"
 	desc = "A set of dimly glowing runes is carved into the rock here."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = OBJ_LAYER
 	icon = 'icons/misc/exploration.dmi'
@@ -295,7 +295,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "cliff"
 	desc = "The edge of a cliff."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = OBJ_LAYER
 	icon = 'icons/misc/exploration.dmi'
@@ -309,7 +309,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "statue"
 	desc = "A statue of some humanoid being."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = OBJ_LAYER
 	icon = 'icons/misc/exploration.dmi'
@@ -331,7 +331,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "pieces of wood"
 	desc = "Theres bits and pieces of wood all over the place."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = OBJ_LAYER
 	icon = 'icons/misc/exploration.dmi'
@@ -341,7 +341,7 @@ SYNDICATE DRONE FACTORY AREAS
 	name = "mushroom"
 	desc = "Some sort of mushroom."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	layer = OBJ_LAYER
 	icon = 'icons/misc/exploration.dmi'
@@ -441,14 +441,14 @@ SYNDICATE DRONE FACTORY AREAS
 /obj/line_obj/whip
 	name = "Whip"
 	desc = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 
 /obj/whip_trg_dummy
 	name = ""
 	desc = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	invisibility = 99
@@ -484,7 +484,7 @@ SYNDICATE DRONE FACTORY AREAS
 		var/list/affected = DrawLine(src.loc, target_r, /obj/line_obj/whip ,'icons/obj/projectiles.dmi',"WholeWhip",1,1,"HalfStartWhip","HalfEndWhip",OBJ_LAYER,1)
 
 		for(var/obj/O in affected)
-			O.anchored = 1 //Proc wont spawn the right object type so lets do that here.
+			O.anchored = ANCHORED //Proc wont spawn the right object type so lets do that here.
 			O.name = "Whip"
 
 			var/turf/T = O.loc
@@ -506,7 +506,7 @@ SYNDICATE DRONE FACTORY AREAS
 	icon = 'icons/misc/exploration.dmi'
 	icon_state = "boulder"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 
 	New(var/atom/sloc)
@@ -545,7 +545,7 @@ SYNDICATE DRONE FACTORY AREAS
 	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "x4"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/ready = 1
 	var/resets = 0
@@ -626,7 +626,7 @@ SYNDICATE DRONE FACTORY AREAS
 	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "ydn"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/active = 0
 	event_handler_flags = USE_HASENTERED
@@ -676,7 +676,7 @@ SYNDICATE DRONE FACTORY AREAS
 	playsound(src.loc, 'sound/machines/ArtifactEld2.ogg', 30, 1)
 	user.reagents.add_reagent("itching", 10)
 	take_bleeding_damage(user, null, 0, DAMAGE_STAB, 0)
-	bleed(user, 5, 5)
+	bleed(user, 5, violent = TRUE)
 	src.desc = "This isn't coming off... oh god..."
 	if (!src.processing)
 		src.processing++
@@ -685,21 +685,21 @@ SYNDICATE DRONE FACTORY AREAS
 		boutput(user, "<span class='notice'>The [src] feels like it's getting tighter. Ouch! Seems to have a lot of sharp edges inside.</span>")
 		random_brute_damage(user, 5)
 		take_bleeding_damage(user, null, 0, DAMAGE_STAB, 0)
-		bleed(user, 5, 5)
+		bleed(user, 5, violent = TRUE)
 		sleep(9 SECONDS)
 		user.visible_message("<span class='alert'><b>[src] violently contracts around [user]!</B></span>")
 		playsound(user.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1, -1)
 		random_brute_damage(user, 15)
 		user.emote("scream")
 		take_bleeding_damage(user, null, 0, DAMAGE_STAB, 0)
-		bleed(user, 5, 1)
+		bleed(user, 5, violent = TRUE)
 		sleep(5 SECONDS)
 		user.visible_message("<span class='alert'><b>[src] digs into [user]!</B></span>")
 		playsound(user.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1, -1)
 		random_brute_damage(user, 15)
 		user.emote("scream")
 		take_bleeding_damage(user, null, 0, DAMAGE_STAB, 0)
-		bleed(user, 5, 5)
+		bleed(user, 5, violent = TRUE)
 		sleep(5 SECONDS)
 		var/mob/living/carbon/human/H = user
 		playsound(user.loc, 'sound/impact_sounds/Slimy_Hit_4.ogg', 50, 1, -1)
@@ -709,7 +709,7 @@ SYNDICATE DRONE FACTORY AREAS
 		if (!H.decomp_stage)
 			H.bioHolder.AddEffect("eaten") //gross
 		take_bleeding_damage(user, null, 0, DAMAGE_CUT, 0)
-		bleed(user, 15, 5)
+		bleed(user, 15, violent = TRUE)
 		user.emote("faint")
 		user.reagents.add_reagent("ectoplasm", 50)
 
@@ -749,7 +749,7 @@ SYNDICATE DRONE FACTORY AREAS
 	icon = 'icons/map-editing/mark.dmi'
 	icon_state = "ydn"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/active = 0
 	event_handler_flags = USE_HASENTERED
@@ -772,7 +772,7 @@ SYNDICATE DRONE FACTORY AREAS
 	dir = 4
 	density = 1
 	opacity = 1
-	anchored = 1
+	anchored = ANCHORED
 	desc = "These rocks are riddled with small cracks and fissures. A cold draft lingers around them."
 	name = "Rock Wall"
 	var/id = "alchemy"
@@ -930,7 +930,7 @@ SYNDICATE DRONE FACTORY AREAS
 /obj/alchemy/empty
 	name = "Empty Circle"
 	desc = "An Empty Circle, waiting to be filled"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity= 0
 	icon = 'icons/obj/items/alchemy.dmi'
@@ -958,7 +958,7 @@ SYNDICATE DRONE FACTORY AREAS
 /obj/alchemy/circle
 	name = "Alchemy Circle"
 	desc = "A bizzare looking mass of lines and circles is drawn onto the floor here."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity= 0
 	layer = FLOOR_EQUIP_LAYER1
@@ -979,7 +979,7 @@ SYNDICATE DRONE FACTORY AREAS
 			var/turf/middle = locate(src.x + 2, src.y + 2, src.z)
 			var/blood = 0
 			for(var/atom/A in range(2, middle))
-				if(istype(A, /obj/decal/cleanable/blood))
+				if(istype(A, /obj/decal/cleanable/tracked_reagents/blood))
 					blood = 1
 					break
 			if(blood == 1)
@@ -1097,7 +1097,7 @@ SYNDICATE DRONE FACTORY AREAS
 var/satellite_crash_event_status = -1
 /obj/effects/sat_crash
 	name = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "impact_marker"
@@ -1122,7 +1122,7 @@ var/satellite_crash_event_status = -1
 		satellite.pixel_x = -16
 		satellite.icon = 'icons/effects/64x64.dmi'
 		satellite.icon_state = "syndsat"
-		satellite.anchored = 1
+		satellite.anchored = ANCHORED
 		satellite.bound_width = 64
 		satellite.bound_height = 64
 		satellite.name = "Syndicate TeleRelay Satellite"

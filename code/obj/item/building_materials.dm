@@ -343,7 +343,7 @@ MATERIAL
 					a_amount = rodsinput * 2
 					a_cost = rodsinput
 					a_icon = 'icons/obj/items/metal.dmi'
-					a_icon_state = "rods"
+					a_icon_state = "rods_1"
 					a_name = "rods"
 					duration_alt = 1.7 SECONDS
 
@@ -357,7 +357,7 @@ MATERIAL
 					a_amount = tileinput * 4
 					a_cost = tileinput
 					a_icon = 'icons/obj/items/metal.dmi'
-					a_icon_state = "tile"
+					a_icon_state = "tile_1"
 					a_name = "floor tiles"
 					duration_alt = 2 SECONDS
 
@@ -854,7 +854,7 @@ MATERIAL
 	desc = "A human head impaled on a spike, dim-eyed, grinning faintly, blood blackening between the teeth."
 	icon = 'icons/obj/items/metal.dmi'
 	icon_state = "head_spike"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	var/list/heads = list()
 	var/head_offset = 0 //so the ones at the botton don't teleport upwards when a head is removed
@@ -993,7 +993,7 @@ MATERIAL
 			head.set_loc(src)
 			heads += head
 			src.update()
-			make_cleanable( /obj/decal/cleanable/blood,user.loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,user.loc)
 			playsound(src.loc, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 		SPAWN_DBG(50 SECONDS)
@@ -1104,7 +1104,7 @@ MATERIAL
 				if (istype(T, /turf/floor))
 					// If it's still a floor, attempt to place or replace the floor tile
 					var/turf/floor/F = T
-					F.attackby(src, user)
+					F.Attackby(src, user)
 					tooltip_rebuild = 1
 
 		src.add_fingerprint(user)

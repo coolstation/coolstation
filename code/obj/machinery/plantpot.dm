@@ -87,10 +87,10 @@
 /obj/machinery/plantpot/bareplant
 	name = "arable soil"
 	desc = "A small mound of arable soil for planting and plant based activities."
-	anchored = 1
+	anchored = ANCHORED
 	mats = 0
 	deconstruct_flags = 0
-	icon_state = null
+	icon_state = "blank"
 	power_usage = 0
 	growth_rate = 1
 	/// plant to grow
@@ -101,7 +101,7 @@
 	var/list/datum/plant_gene_strain/spawn_commuts = list()
 	var/auto_water = TRUE
 
-	New()
+	New(newLoc, obj/item/seed/initial_seed)
 		SPAWN_DBG(0) // delay for prefab attribute assignment
 			var/datum/plant/P
 			//Adjust processing tier to slow down server burden unless necessary
@@ -112,8 +112,11 @@
 			..()
 			status |= BROKEN
 
-			if(P)
-				var/obj/item/seed/S = new()
+			if(initial_seed)
+				src.HYPnewplant(initial_seed)
+				update_icon()
+			else if(P)
+				var/obj/item/seed/S = new /obj/item/seed
 
 				S.generic_seed_setup(P)
 				src.HYPnewplant(S)
@@ -177,7 +180,7 @@
 	process()
 		..()
 		if(auto_water)
-			if(!src.reagents.has_reagent("water", 50))
+			if(src.reagents && !src.reagents.has_reagent("water", 50))
 				src.reagents.add_reagent("water", 200)
 
 	flower
@@ -207,9 +210,10 @@
 	// get kind of resource intensive past a certain point.
 	name = "hydroponics tray"
 	desc = "A tray filled with nutrient solution capable of sustaining plantlife."
+	hint = "click plus drag to yourself to clear the tray."
 	icon = 'icons/obj/hydroponics/machines_hydroponics.dmi'
 	icon_state = "tray"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	mats = 2
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR
@@ -229,7 +233,7 @@
 	var/weedproof = 0  // Does this tray block weeds from appearing in it? (Won't stop deliberately planted weeds)
 	var/list/contributors = list() // Who helped grow this plant? Mainly used for critters.
 
-	var/report_freq = 1433 //Radio channel to report plant status/death/whatever.
+	var/report_freq = FREQ_HYDRO //Radio channel to report plant status/death/whatever.
 	var/net_id = null
 
 	var/health_warning = 0
@@ -260,22 +264,13 @@
 		src.plant_sprite = image('icons/obj/hydroponics/plants_weed.dmi', "")
 		update_icon()
 
-		SPAWN_DBG(0.5 SECONDS)
-			radio_controller?.add_object(src, "[report_freq]")
-
-			if(!net_id)
-				net_id = generate_net_id(src)
-
-	disposing()
-		radio_controller.remove_object(src, "[report_freq]")
-		..()
+		if(!net_id)
+			net_id = generate_net_id(src)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, report_freq)
 
 	proc/post_alert(var/alert_msg)
 		if(status & (NOPOWER|BROKEN)) return
-
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency("[report_freq]")
-
-		if(!frequency || !alert_msg) return
+		if(!alert_msg) return
 
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src
@@ -283,7 +278,7 @@
 		signal.data["data"] = alert_msg
 		signal.data["netid"] = net_id
 
-		frequency.post_signal(src, signal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
 	proc/update_water_level() //checks reagent contents of the pot, then returns the cuurent water level
 		var/current_total_volume = (src.reagents ? src.reagents.total_volume : 0)
@@ -530,7 +525,7 @@
 						src.contributors += user
 					if(do_after(user, 3 SECONDS)) // Same as the gibber and reclaimer. Was 20 (Convair880).
 						if(src && W && W.loc == user && C)
-							user.visible_message("<span class='alert'>[src.name] grabs [C] and devours them ravenously!</span>")
+							user.visible_message("<span class='alert'>[src.name] grabs [C] and devours [him_or_her(C)] ravenously!</span>")
 							logTheThing("combat", user, (C), "feeds [constructTarget(C,"combat")] to a man-eater at [log_loc(src)].")
 							message_admins("[key_name(user)] feeds [key_name(C, 1)] ([isdead(C) ? "dead" : "alive"]) to a man-eater at [log_loc(src)].")
 							if(C.mind)
@@ -590,11 +585,11 @@
 			if(src.anchored)
 				user.visible_message("<b>[user]</b> unbolts the [src] from the floor.")
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 100, 1)
-				src.anchored = 0
+				src.anchored = UNANCHORED
 			else
 				user.visible_message("<b>[user]</b> secures the [src] to the floor.")
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 100, 1)
-				src.anchored = 1
+				src.anchored = ANCHORED
 
 		else if(isweldingtool(W) || istype(W, /obj/item/device/light/zippo) || istype(W, /obj/item/device/igniter))
 			// These are for burning down plants with.
@@ -909,12 +904,9 @@
 			pingsignal.data["netid"] = src.net_id
 			pingsignal.data["address_1"] = signal.data["sender"]
 			pingsignal.data["command"] = "ping_reply"
-			pingsignal.transmission_method = TRANSMISSION_RADIO
 
-			var/datum/radio_frequency/frequency = radio_controller.return_frequency("[report_freq]")
-			if(!frequency) return
 			SPAWN_DBG(0.5 SECONDS) //Send a reply for those curious jerks
-				frequency.post_signal(src, pingsignal)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, pingsignal)
 
 		return //Just toss out the rest of the signal then I guess
 
@@ -1897,7 +1889,7 @@ proc/HYPmutationcheck_sub(var/lowerbound,var/upperbound,var/checkedvariable)
 	icon = 'icons/obj/hydroponics/machines_hydroponics.dmi'
 	icon_state = "growlamp0" // sprites by Clarks
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	mats = 6
 	var/active = 0
 	var/datum/light/light
@@ -1963,7 +1955,7 @@ proc/HYPmutationcheck_sub(var/lowerbound,var/upperbound,var/checkedvariable)
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "fogmachine0"
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	mats = 6
 	var/active = 0
 	var/mode = 1

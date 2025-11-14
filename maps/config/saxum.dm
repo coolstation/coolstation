@@ -1,0 +1,8 @@
+#include "..\schwickwip\saxum.dmm"
+#include "..\z2.dmm"
+#include "..\schwickwip\z3_saxum.dmm"
+#include "z4.dm"
+#include "..\z5.dmm"
+#include "nudebris.dm"
+#include "..\z3.dmm"
+#define MAP_MODE "standard"

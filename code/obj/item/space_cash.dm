@@ -1,6 +1,7 @@
 
 /obj/item/spacecash
 	name = "1 credit"
+	hint = "Split a stack by clicking it with an empty active hand while the stack is in your inactive hand."
 	real_name = "credit"
 	desc = "You gotta have money."
 	icon = 'icons/obj/items/items.dmi'
@@ -8,9 +9,9 @@
 	uses_multiple_icon_states = 1
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	force = 1.0
-	throwforce = 1.0
+	throwforce = 0
 	throw_speed = 1
 	throw_range = 8
 	w_class = W_CLASS_TINY
@@ -122,6 +123,33 @@
 				young_money.Attackhand(user)
 		else
 			..(user)
+
+	pre_thrown(target, params)
+		var/mob/living/L = src.loc
+
+		if (L.next_click > world.time)
+			return TRUE
+
+		if (src.amount > 1)
+			if (L.a_intent == INTENT_DISARM)
+				//THROW 1S LIKE YOU'RE AT THE STRIP CLUB
+				var/obj/item/spacecash/young_money = new()
+				young_money.setup(L.loc, 1)
+				change_stack_amount(-1)
+				young_money.throw_at(target, young_money.throw_range, young_money.throw_speed, params = params)
+
+				if (get_dist(L, target) > 0)
+					L.set_dir(get_dir(L, target))
+				playsound(L.loc, 'sound/effects/throw.ogg', 20, 1, 0.1)
+
+				L.next_click = world.time + (L.combat_click_delay / 4)
+
+				attack_twitch(L)
+				return TRUE
+
+			else if (L.a_intent == INTENT_HARM)
+				//OH, SO YOU'RE FINING ME, HUH BOOTLICKER?
+				return
 
 //	attack_self(mob/user as mob)
 //		user.visible_message("fart")
@@ -279,7 +307,7 @@
 
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1

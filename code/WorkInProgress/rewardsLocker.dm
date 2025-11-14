@@ -1294,7 +1294,7 @@
 	name = "smug"
 	icon = 'icons/mob/64.dmi'
 	icon_state = "smug"
-	anchored = 1.0
+	anchored = ANCHORED
 	pixel_x = -16
 	pixel_y = -16
 
@@ -1330,8 +1330,8 @@
 			var/mob/living/carbon/human/H = activator
 			if(L.blood_id)
 				blood_id = L.blood_id
-			if(istype(H) && H.blood_volume)
-				blood_amount = H.blood_volume
+			if(istype(H) && H.reagents)
+				blood_amount = H.reagents.total_volume
 		activator.suiciding = 1
 		var/turf/T = get_turf(activator)
 		if (L?.traitHolder?.hasTrait("hemophilia"))

@@ -17,6 +17,7 @@
 #define USR_DIALOG_UPDATES_RANGE (1<<13)	//updateusrdialog will consider this mob as being able to 'attack_ai' and update its ui at range
 #define UNUSED_16384 (1<<14)
 #define SHOULD_HAVE_A_TAIL (1<<15) //Would we miss our tail if it comes off?
+#define HEAVYWEIGHT_AI_MOB (1<<16) //ai gets ticked every 0.2 seconds instead of the usual 1 seconds - gotta go fast
 
 //mob intent type defines
 #define INTENT_HARM "harm"
@@ -63,3 +64,6 @@
 //message type flags for show_message (emote stuff)
 #define MESSAGE_VISIBLE 1
 #define MESSAGE_AUDIBLE 2
+
+//multiplies all blood regen, 0.002 is because humans have 500 units ideally and get 1 unit back usually
+#define BLOOD_SCALAR 0.002

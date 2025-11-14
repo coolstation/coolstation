@@ -34,6 +34,18 @@ datum
 		var/consume_all = 0 //If set to 1, the recipe will consume ALL of its components instead of just proportional parts.
 
 
+		New()
+			..()
+			if (result_amount < 0)
+
+				switch (result_amount)
+					if (RECIPE_AUTO_PRESERVE_VOLUME)
+						result_amount = 0
+						for (var/id in src.required_reagents)
+							result_amount += required_reagents[id]
+					else
+						result_amount = 0 //functionally 1 if you look elsewhere, but it's the default atm
+
 #ifdef CHEM_REACTION_PRIORITIES
 		proc/operator<(var/datum/chemical_reaction/reaction)
 			return priority > reaction.priority
@@ -574,6 +586,16 @@ datum
 					boutput(M, "<span class='alert'>A horrible smell assaults your nose! What in space is it?</span>")
 				return
 
+		//tomato sauce + sugar at 4:1 and heat to 200F/94C/366K
+		ketchup
+			name = "Ketchup"
+			id = "ketchup"
+			result = "ketchup"
+			required_reagents = list("tomato_sauce" = 4, "sugar" = 1)
+			required_temperature = T0C + 94
+			result_amount = 5
+			mix_phrase = "The tomato sauce gets thicker and sweeter."
+
 		lemonade
 			name = "Lemonade"
 			id = "lemonade"
@@ -618,7 +640,11 @@ datum
 			name = "Eggnog"
 			id = "eggnog"
 			result = "eggnog"
+#ifdef XMAS
 			required_reagents = list("egg" = 1, "milk" = 1, "sugar" = 1)
+#else
+			required_reagents = list("egg" = 1, "milk" = 1, "sugar" = 1, "liquid spacetime" = 0.05)
+#endif
 			result_amount = 3
 			mix_phrase = "The eggs nog together. Pretend that \"nog\" is a verb."
 			drinkrecipe = 1
@@ -784,10 +810,8 @@ datum
 			mix_sound = 'sound/vox/shoot.ogg'
 			drinkrecipe = 1
 			on_reaction()
-				#ifdef DATALOGGER
 				if (game_stats && istype(game_stats))
 					game_stats.Increment("gunfire")
-				#endif
 
 		cocktail_espressomartini
 			name = "Espresso Martini"
@@ -859,7 +883,7 @@ datum
 		cocktail_beach/beach2
 			id = "beach2"
 			required_reagents = list("screwdriver" = 2, "juice_cran" = 1)
-			result_amount = 2
+			result_amount = 3
 
 		cocktail_screwdriver
 			name = "Screwdriver"
@@ -878,6 +902,36 @@ datum
 			required_reagents = list("vodka" = 1, "juice_tomato" = 1)
 			result_amount = 2
 			mix_phrase = "The vodka and tomato juice mix together nicely."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+			drinkrecipe = 1
+
+		cocktail_fancybrandy
+			name = "Fancy Brandy"
+			id = "fancybrandy"
+			result = "fancybrandy"
+			required_reagents = list("brandy" = 1, "curacao"=1, "bitters"=1)
+			result_amount = 3
+			mix_phrase = "The brandy, curaçao, and bitters blend together pleasently."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+			drinkrecipe = 1
+
+		cocktail_brandydaisy
+			name = "Brandy Daisy"
+			result = "brandydaisy"
+			id = "brandydaisy"
+			required_reagents = list("brandy" = 1,"juice_lemon" = 1,"rum" = 1)
+			result_amount = 3
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+			drinkrecipe = 1
+			mix_phrase = "There is a faint scent of flowers hanging in the air."
+
+		cocktail_vieuxcarre
+			name = "Vieux Carré"
+			id = "vieuxcarre"
+			result = "vieuxcarre"
+			required_reagents = list("brandy"=2,"bitters"=1,"vermouth"=1)
+			result_amount = 4
+			mix_phrase = "Mon dieu, ça sent l'écrevisse!"
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 			drinkrecipe = 1
 
@@ -915,7 +969,7 @@ datum
 			name = "Pisco Sour"
 			id = "piscosour"
 			result = "piscosour"
-			required_reagents = list("egg" = 1, "simplesyrup" = 1, "bitters"= 1, "juice_lime" = 1, "white_wine" = 1)
+			required_reagents = list("egg" = 1, "simplesyrup" = 1, "bitters"= 1, "juice_lime" = 1, "brandy" = 1)
 			result_amount = 5
 			mix_phrase = "The egg white foams and floats atop the lime-colored drink."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
@@ -1347,7 +1401,7 @@ datum
 			id = "pinacolada"
 			result = "pinacolada"
 			required_reagents = list("juice_pineapple" = 1, "rum" = 1, "coconut_milk" = 1)
-			result_amount = 4
+			result_amount = RECIPE_AUTO_PRESERVE_VOLUME
 			mix_phrase = "The drink gives off the smell of a rainy beach."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
@@ -1356,7 +1410,7 @@ datum
 			id = "mimosa"
 			result = "mimosa"
 			required_reagents = list("juice_orange" = 1, "champagne" = 1)
-			result_amount = 1
+			result_amount = RECIPE_AUTO_PRESERVE_VOLUME
 			mix_phrase = "The drink fizzes as the pulp settles to the top."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
@@ -1381,7 +1435,7 @@ datum
 		cocktail_tomcollins/tomcollins2
 			id = "tomcollins2"
 			required_reagents = list("gtonic" = 2, "lemonade" = 1)
-			result_amount = 3
+			result_amount = RECIPE_AUTO_PRESERVE_VOLUME
 
 		cocktail_sangria
 			name = "Sangria"
@@ -2817,6 +2871,7 @@ datum
 			result = "jenkem"
 			required_reagents = list("urine" = 1, "poo" = 1)
 			result_amount = 2
+			required_temperature = T100C - 2 // just below boilin
 			mix_phrase = "The mixture ferments into a filthy morass."
 			mix_sound = 'sound/impact_sounds/Slimy_Hit_4.ogg'
 
@@ -4032,3 +4087,12 @@ datum
 			mix_phrase = "The mixture comes together slowly. It doesn't seem like it wants to be here."
 			required_reagents = list("poor_cement" = 1, "silicon_dioxide" = 5, "water" = 1)
 			result_amount = 7
+
+		cuprorivaite
+			name = "cuprorivaite"
+			id = "cuprorivaite"
+			result = "cuprorivaite"
+			mix_phrase = "A puff of smoke escapes the mixture as blue crystals form."
+			required_reagents = list("calcium_carbonate" = 2, "silicon_dioxide" = 8, "copper_nitrate" = 1)
+			required_temperature = T0C + 175
+			result_amount = 11

@@ -49,7 +49,7 @@ var/list/admin_verbs = list(
 		/client/proc/dronesay,
 		/client/proc/hivesay,
 		/client/proc/marsay,
-		/client/proc/flocksay,
+//		/client/proc/flocksay,
 		/client/proc/silisay,
 		/client/proc/toggle_hearing_all_looc,
 		/client/proc/cmd_admin_alert,
@@ -70,6 +70,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_remove_all_labels,
 		/client/proc/game_panel,
 		/client/proc/game_panel_but_called_secrets,
+		/client/proc/change_magindaran_weather, // mylie note - maybe move somewhere else?
 		//client/proc/admin_force_ambience,
 
 		//toggles
@@ -133,6 +134,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_admin_show_player_compids,
 
 		//movement
+		/client/proc/Jump,
 		/client/proc/jump_to_area,
 		/client/proc/jumptomob,
 		/client/proc/jtm,
@@ -142,6 +144,9 @@ var/list/admin_verbs = list(
 		/client/proc/jtt,
 		/client/proc/jumptocoord,
 		/client/proc/jtc,
+
+		//teehee
+		/client/proc/set_blood_id,
 
 		//toggles
 		/datum/admins/proc/toggle_farting,
@@ -323,6 +328,7 @@ var/list/admin_verbs = list(
 		/datum/admins/proc/enable_pixelexplosion,
 		/datum/admins/proc/disable_pixelexplosion,
 
+		/client/proc/strike_lightning_here,
 		/client/proc/sega_bass_fishing,
 		/client/proc/cmd_customgrenade,
 		/client/proc/open_dj_panel,
@@ -367,6 +373,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_mass_modify_object_variables,
 		/client/proc/cmd_debug_mutantrace,
 		/client/proc/cmd_admin_rejuvenate,
+		/client/proc/cmd_admin_rejuvenate_crit,
 		/client/proc/cmd_admin_drop_everything,
 		/client/proc/cmd_admin_humanize,
 		/client/proc/cmd_admin_mobileAIize,
@@ -410,6 +417,7 @@ var/list/admin_verbs = list(
 		/client/proc/cmd_crusher_walls,
 		/client/proc/cmd_disco_lights,
 		/client/proc/cmd_blindfold_monkeys,
+		/client/proc/cmd_no_evil_players,
 		/client/proc/cmd_swampify_station,
 		/client/proc/cmd_trenchify_station,
 		/client/proc/cmd_special_shuttle,
@@ -428,6 +436,7 @@ var/list/admin_verbs = list(
 		/client/proc/dereplace_space,
 		/client/proc/ghostdroneAll,
 		/client/proc/showPregameHTML,
+		/client/proc/dbg_radio_controller,
 
 		/client/proc/call_proc,
 		/client/proc/call_proc_all,
@@ -449,6 +458,9 @@ var/list/admin_verbs = list(
 		/client/proc/toggle_extra_verbs,
 		/client/proc/cmd_randomize_look,
 		/client/proc/temporary_deadmin_self,
+
+		/client/proc/save_body_persist,
+		/client/proc/load_body_persist,
 
 		//player management
 		// /client/proc/export_banlist,
@@ -503,8 +515,8 @@ var/list/admin_verbs = list(
 		/client/proc/debug_pools,
 		/client/proc/debug_variables,
 		/client/proc/debug_global_variable,
-		/client/proc/test_mass_flock_convert,
-		/client/proc/test_flock_panel,
+//		/client/proc/test_mass_flock_convert,
+//		/client/proc/test_flock_panel,
 		/client/proc/player_panel_tgui, //testing
 		// /client/proc/debug_check_possible_reactions,
 		// /client/proc/show_runtime_window,
@@ -798,7 +810,7 @@ var/list/special_pa_observing_verbs = list(
 	return
 
 /client/proc/jump_to_area()
-	set name = "Jump"
+	set name = "Jump Menu"
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
 	if (src.holder)
 		src.holder.jump_to(usr)
@@ -883,12 +895,13 @@ var/list/special_pa_observing_verbs = list(
 	logTheThing("diary", src.owner, null, "has turned stealth mode [src.owner:stealth ? "ON using key \"[src.owner:fakekey]\"" : "OFF"]", "admin")
 	message_admins("[key_name(src.owner)] has turned stealth mode [src.owner:stealth ? "ON using key \"[src.owner:fakekey]\"" : "OFF"]")
 
-	if (src.owner:stealth)
-		var/ircmsg[] = new()
-		ircmsg["key"] = src.owner:key
-		ircmsg["name"] = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
-		ircmsg["msg"] = "Has enabled stealth mode as ([src.owner:fakekey])"
-		ircbot.export("admin", ircmsg)
+	// SHUT UP ABOUT THE STEALTH MODE
+	// if (src.owner:stealth)
+	// 	var/ircmsg[] = new()
+	// 	ircmsg["key"] = src.owner:key
+	// 	ircmsg["name"] = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
+	// 	ircmsg["msg"] = "Has enabled stealth mode as ([src.owner:fakekey])"
+	// 	ircbot.export("admin", ircmsg)
 
 /client/proc/alt_key()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
@@ -1570,6 +1583,7 @@ var/list/fun_images = list()
 		return
 	martian_speak(src.mob, msg, 1)
 
+/*
 /client/proc/flocksay(msg as text)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set name = "flocksay"
@@ -1586,7 +1600,7 @@ var/list/fun_images = list()
 	if (!msg)
 		return
 	flock_speak(src.mob, msg, null, 1)
-
+*/
 
 /client/proc/cmd_dectalk()
 	set name = "Dectalk"
@@ -2128,6 +2142,58 @@ var/list/fun_images = list()
 			boutput(usr, "<span class='alert'>Implanted [implanted] people with microbombs. Any further humans that spawn will also have bombs.</span>")
 	else
 		boutput(usr, "<span class='alert'>Turned off spawning with microbombs. No existing microbombs have been deleted or disabled.</span>")
+
+
+/client/proc/set_blood_id(var/mob/M as mob in world)
+	set popup_menu = 0
+	set name = "Set Blood ID"
+	set desc = "Change the blood ID of a mob! Oh my!"
+	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	admin_only
+
+	if (!M)
+		M = input("Choose a target.", "Selection") as null|anything in mobs
+		if (!M)
+			return
+
+	if (!isliving(M))
+		boutput(usr, "<span class='alert'>Not a valid /mob/living (only those have blood_id's).</span>")
+		return
+
+	var/mob/living/poor_soul = M
+
+	var/list/L = list()
+	var/searchFor = input(usr, "Look for a part of the reagent name (or leave blank for all)", "Add reagent") as null|text
+	if(searchFor)
+		for(var/R in concrete_typesof(/datum/reagent))
+			if(findtext("[R]", searchFor)) L += R
+	else
+		L = concrete_typesof(/datum/reagent)
+
+	var/type
+	if(L.len == 1)
+		type = L[1]
+	else if(L.len > 1)
+		type = input(usr,"Select Reagent:","Reagents",null) as null|anything in L
+	else
+		usr.show_text("No reagents matching that name", "red")
+		return
+
+	if(!type) return
+	var/datum/reagent/reagent = new type()
+
+	poor_soul.replace_blood_with(reagent.id)
+
+	boutput(usr, "<span class='success'>Changed [poor_soul.name]'s blood to [reagent.id]</span>")
+
+	logTheThing("admin", src, poor_soul, "changed [poor_soul]'s blood to [reagent.id].")
+	logTheThing("diary", usr, poor_soul, "changed [poor_soul]'s blood to [reagent.id].", "admin")
+	if (poor_soul.key) // important!
+		message_admins("[key_name(src)] replaced the blood of [key_name(poor_soul.key)] with [reagent.id] at [log_loc(poor_soul)].")
+
+	qdel(reagent)
+
+	return
 /*
 /client/proc/set_nukie_score()
 	set popup_menu = 0
@@ -2268,6 +2334,8 @@ var/list/fun_images = list()
 			C.cmd_admin_check_health(A)
 		if("Heal")
 			C.cmd_admin_rejuvenate(A)
+		if("Heal Partly")
+			C.cmd_admin_rejuvenate_crit(A)
 		if("Gib")
 			C.cmd_admin_gib(A)
 		if("Polymorph")

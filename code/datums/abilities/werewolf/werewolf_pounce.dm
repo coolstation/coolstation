@@ -6,12 +6,14 @@
 	target_nodamage_check = 1
 	target_anything = 1
 	max_range = 10
+	ai_range = 8
 	cooldown = 100
 	pointCost = 0
 	when_stunned = 0
 	not_when_handcuffed = 1
 	werewolf_only = 1
 	restricted_area_check = 2
+	attack_mobs = TRUE
 
 	cast(turf/target)
 		if (!holder)

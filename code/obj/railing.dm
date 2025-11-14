@@ -1,7 +1,7 @@
 /obj/railing
 	name = "railing"
-	desc = "Two sets of bars shooting onward with the sole goal of blocking you off. They can't stop you from vaulting over them though!"
-	anchored = 1
+	desc = "A set of bars shooting onward with the sole goal of blocking you off. They can't stop you from vaulting over them though!"
+	anchored = ANCHORED
 	density = 1
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "railing"
@@ -14,6 +14,7 @@
 	custom_suicide = 1
 	var/broken = 0
 	var/is_reinforced = 0
+	var/reinforced_suffix = "-reinforced"
 
 	proc/layerify()
 		SPAWN_DBG(3 DECI SECONDS)
@@ -57,7 +58,9 @@
 				R.setMaterial(M)
 		qdel(src)
 
-	ex_act(severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 8
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				qdel(src)
@@ -84,8 +87,9 @@
 
 	New()
 		..()
-		if(src.is_reinforced)
-			src.flags |= ALWAYS_SOLID_FLUID
+// so why exactly were railings fluid tight?
+//		if(src.is_reinforced)
+//			src.flags |= ALWAYS_SOLID_FLUID
 		layerify()
 
 	Turn()
@@ -122,7 +126,7 @@
 		else if (issnippingtool(W))
 			if(src.is_reinforced)
 				user.show_text("You cut off the reinforcement on [src].", "blue")
-				src.icon_state = "railing"
+				src.icon_state = initial(src.icon_state)
 				src.is_reinforced = 0
 				var/obj/item/rods/R = new /obj/item/rods(get_turf(src))
 				R.amount = 1
@@ -139,7 +143,7 @@
 				if(R.change_stack_amount(-1))
 					user.show_text("You reinforce [src] with the rods.", "blue")
 					src.is_reinforced = 1
-					src.icon_state = "railing-reinforced"
+					src.icon_state = "railing[src.reinforced_suffix]"
 			else
 				user.show_text("[src] is already reinforced!", "red")
 
@@ -401,13 +405,41 @@
 				playsound(the_railing, "sound/items/Welder.ogg", 50, 1)
 			if (RAILING_FASTEN)
 				verbens = "fastens"
-				the_railing.anchored = 1
+				the_railing.anchored = ANCHORED
 				playsound(the_railing, "sound/items/Screwdriver.ogg", 50, 1)
 			if (RAILING_UNFASTEN)
 				verbens = "unfastens"
-				the_railing.anchored = 0
+				the_railing.anchored = UNANCHORED
 				playsound(the_railing, "sound/items/Screwdriver.ogg", 50, 1)
 		for(var/mob/O in AIviewers(ownerMob))
 			O.show_text("[owner] [verbens] [the_railing].", "red", group = "[owner]-tool_on_railing")
 			logTheThing("station", ownerMob, the_railing, "[verbens] [the_railing].")
 
+/obj/railing/cool
+	icon = 'icons/obj/large/32x48.dmi'
+	icon_state = "railing-cool"
+	layer = MOB_LAYER + 0.1
+	reinforced_suffix = ""
+	color = "#9b9593"
+
+	railing_break()
+		qdel(src)
+
+	layerify()
+		SPAWN_DBG(3 DECI SECONDS)
+		if (dir == EAST)
+			pixel_x = 4
+			pixel_y = 0
+			layer = MOB_LAYER + 0.1
+		else if (dir == WEST)
+			pixel_x = -4
+			pixel_y = 0
+			layer = MOB_LAYER + 0.1
+		else
+			pixel_x = 0
+			if (dir == NORTH)
+				layer = MOB_LAYER + 0.11
+				pixel_y = -1
+			else
+				layer = MOB_LAYER + 0.09
+				pixel_y = -2

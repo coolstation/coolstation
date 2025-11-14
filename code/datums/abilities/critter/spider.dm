@@ -8,6 +8,8 @@
 	cooldown = 200
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
+	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
 
@@ -55,6 +57,8 @@
 	cooldown = 300
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
+	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
 
@@ -240,6 +244,9 @@
 	cooldown = 100
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
+	attack_mobs = TRUE
+
 	var/sound/sound_kick = 'sound/musical_instruments/Bikehorn_1.ogg'
 
 	var/datum/projectile/slam/proj = new
@@ -283,6 +290,9 @@
 	cooldown = 300
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
+	attack_mobs = TRUE
+
 	var/sound/sound_kick = "clownstep"
 
 	var/datum/projectile/slam/proj = new
@@ -362,6 +372,9 @@
 	cooldown = 150
 	targeted = 1
 	target_anything = 1
+	ai_range = 8
+	attack_mobs = TRUE
+
 	var/egg_path = /obj/item/reagent_containers/food/snacks/ingredient/egg/critter/clown
 	var/flavor_text = "clown"
 

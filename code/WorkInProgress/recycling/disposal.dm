@@ -74,33 +74,6 @@
 				var/mob/living/carbon/human/H = AM
 				H.unlock_medal("It'sa me, Mario", 1)
 
-	proc/init_sewer(var/obj/item/storage/toilet/toilet)
-		if(toilet.trunk)		//copypasted
-			src.set_loc(toilet.trunk)
-		else
-			src.set_loc(toilet)
-
-		if(!src.reagents)
-			src.reagents = new(1000)
-
-		src.reagents.add_reagent("water", 50)
-		src.reagents.add_reagent("sewage", rand(10,55))
-
-		if(toilet.poops)
-			src.reagents.add_reagent("poo",toilet.poops*25)
-			toilet.poops = 0
-		if(toilet.peeps)
-			src.reagents.add_reagent("urine",toilet.peeps*25)
-			toilet.peeps = 0
-
-		if(toilet.reagents && toilet.reagents.total_volume)
-			toilet.reagents.trans_to(src, toilet.reagents.total_volume)
-
-
-		for(var/atom/movable/AM in toilet)
-			AM.set_loc(src)
-
-
 	// start the movement process
 	// argument is the disposal unit the holder started in
 	proc/start(var/obj/machinery/disposal/D)
@@ -160,6 +133,18 @@
 	// merge two holder objects
 	// used when a a holder meets a stuck holder
 	proc/merge(var/obj/disposalholder/other)
+		if (istype(other, /obj/disposalholder/crawler)) //early return here to have mercy on pipe crawling players
+			var/obj/disposalholder/crawler/C = other
+			boutput(C.pilot, "<span class='alert'><b>Something else coming down the pipes sweeps you with it! [pick("Fuck", "Damn it", "Piss", "Noooooo", "Bitter hubris", "Oh the humanity")]!</b></span>")
+			C.pilot?.emote("scream")
+			if (istype(src, /obj/disposalholder/crawler) && !src.active) //partly funny, partly to avoid having to deal with two pilots (or someone holding another person indefinitely)
+				C = src
+				C.movement_controller.in_control = FALSE
+				C.pilot?.emote("scream")
+				C.active = TRUE
+				boutput(C.pilot, "<span class='alert'><b>You slam into someone else in the pipes, and lose your grip! [pick("Fuck", "Damn it", "Piss", "Noooooo", "Bitter hubris", "Oh the humanity")]!</b></span>")
+				SPAWN_DBG(1 DECI SECOND) //Get fucked
+					process()		// spawn off the movement process
 		for(var/atom/movable/AM in other)
 			AM.set_loc(src)	// move everything in other holder to this one
 		if(other.mail_tag && !src.mail_tag)
@@ -232,14 +217,52 @@
 	// this is a special guy created specifically to help automatically configure the mail system.
 	autoconfig = 1
 
+/obj/disposalholder/crawler
+	// bat sex: \\
+	// this is a special gal that lets players traverse the disposals network
+	var/mob/pilot
+	var/datum/movement_controller/pipe_crawler/movement_controller
+	var/obj/item/device/t_scanner/vision
+
+	New()
+		vision = new(src)
+		vision.set_on(TRUE)
+		movement_controller = new()
+		movement_controller.owner = src
+		..()
+
+	disposing()
+		pilot?.override_movement_controller = null
+		qdel(vision)
+		qdel(movement_controller)
+		vision = null
+		movement_controller = null
+		pilot = null
+		..()
+
+	start(obj/machinery/disposal/D)
+		if (!can_act(pilot, TRUE))
+			movement_controller.in_control = TRUE
+			return ..()
+
+		if(!D.trunk || D.trunk.loc != D.loc)
+			D.expel(src)	// no trunk connected, so expel immediately
+			return
+
+		set_loc(D.trunk)
+		set_dir(D.trunk.dir)
+
+
+
 // Disposal pipes
 
 /obj/disposalpipe
 	icon = 'icons/obj/machines/disposal.dmi'
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
-	anchored = 1
-	density = 0
+	anchored = ANCHORED
+	density = FALSE
+	pass_unstable = FALSE
 	text = ""
 
 	level = 1			// underfloor only
@@ -449,8 +472,9 @@
 
 
 	// pipe affected by explosion
-	ex_act(severity)
-
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 8
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				broken(0)
@@ -574,60 +598,252 @@
 		desc = "An underfloor brig pipe. Bripe."
 		color = PIPEC_BRIG
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	ejection
 		name = "ejection pipe"
 		desc = "An underfloor ejection pipe."
 		color = PIPEC_EJECTION
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	morgue
 		name = "morgue pipe"
 		desc = "An underfloor morgue pipe, for dead people."
 		color = PIPEC_MORGUE
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	quarantine
 		name = "quarantine pipe"
 		desc = "An underfloor quarantine pipe."
 		color = PIPEC_QUARANTINE
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	genetics
 		name = "genetics pipe"
 		desc = "An underfloor genetics pipe, for dead people."
 		color = PIPEC_GENETICS
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	crematorium
 		name = "crematorium pipe"
 		desc = "An underfloor crematorium pipe, for dead people."
 		color = PIPEC_CREMATORIUM
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	food
 		name = "food pipe"
 		desc = "An underfloor food pipe lined with non-stick, probably-food-safe materials."
 		color = PIPEC_FOOD
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	produce
 		name = "produce pipe"
 		desc = "An underfloor produce pipe."
 		color = PIPEC_PRODUCE
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	transport
 		name = "transport pipe"
 		desc = "An underfloor transport pipe."
 		color = PIPEC_TRANSPORT
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	mineral
 		name = "mineral pipe"
 		desc = "An underfloor mineral pipe."
 		color = PIPEC_MINERAL
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	cargo
 		name = "cargo pipe"
 		desc = "An underfloor cargo pipe."
 		color = PIPEC_CARGO
 
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
+
 	sewage // sewer
 		name = "sewer pipe"
 		desc = "... we have those?"
 		color = PIPEC_SEWAGE
+
+		horizontal
+			dir = EAST
+		vertical
+			dir = NORTH
+		bent
+			icon_state = "pipe-c"
+
+			north
+				dir = NORTH
+			east
+				dir = EAST
+			south
+				dir = SOUTH
+			west
+				dir = WEST
 
 	New()
 		..()
@@ -1447,7 +1663,7 @@
 	name = "smart disposal outlet"
 	desc = "A disposal outlet with a little sonar sensor on the front, so it only dumps contents if it is unblocked."
 	icon_state = "unblockoutlet"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/turf/stuff_chucking_target
 
@@ -1688,6 +1904,8 @@
 
 //a trunk joining to a disposal bin or outlet on the same turf
 /obj/disposalpipe/trunk
+	var/target_z
+	var/id
 	icon_state = "pipe-t"
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
@@ -1772,11 +1990,46 @@
 	New()
 		..()
 		dpdir = dir
+		src.event_handler_flags |= USE_HASENTERED
 		SPAWN_DBG(1 DECI SECOND)
 			getlinked()
 
+
 		update()
 		return
+
+	HasEntered(atom/movable/AM, atom/OldLoc)
+		..()
+		if(target_z || linked)
+			return
+		var/turf/T = get_turf(src)
+		if(T.intact)
+			return // this trunk is not exposed
+		if(ismob(AM))
+			var/mob/schmuck = AM
+			if ((schmuck.stat || schmuck.getStatusDuration("weakened")) && prob(50) || prob(10))
+				src.visible_message("[AM] falls down the pipe trunk.")
+				random_brute_damage(schmuck, 10)
+				schmuck.show_text("You fall down the pipe trunk!", "red")
+				schmuck.changeStatus("weakened", 3 SECONDS)
+				game_stats.Increment("workplacesafety")
+
+				var/obj/disposalholder/D = new (src)
+				D.set_loc(src)
+
+				AM.set_loc(D)
+
+				//flush time
+				if(ishuman(AM))
+					var/mob/living/carbon/human/H = AM
+					H.unlock_medal("Gay Luigi?", 1)
+
+				//D.start() wants a disposal unit
+				D.active = 1
+				D.set_dir(DOWN)
+				D.process()
+
+
 
 	disposing()
 		if (linked && istype(linked, /obj/machinery/disposal))
@@ -1828,8 +2081,7 @@
 			return 0
 
 /obj/disposalpipe/trunk/zlevel
-	var/target_z
-	var/id
+
 	name = "vertical disposal trunk"
 	desc = "a section of vertical riser."
 	icon_state = "pipe-vt"
@@ -1907,7 +2159,8 @@
 	icon = 'icons/obj/machines/disposal.dmi'
 	icon_state = "outlet"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
+	pass_unstable = FALSE
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	mats = 12
@@ -1918,10 +2171,11 @@
 	var/mailgroup2 = null //Do not refactor into a list, maps override these properties
 	var/net_id = null
 	var/frequency = FREQ_PDA
-	var/datum/radio_frequency/radio_connection
 	throw_speed = 1
 
-	ex_act(var/severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		if(turf_safe)
+			severity = severity - 8
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				qdel(src)
@@ -1950,25 +2204,21 @@
 
 		SPAWN_DBG(1 DECI SECOND)
 			target = get_ranged_target_turf(src, dir, range)
-		SPAWN_DBG(0.8 SECONDS)
-			if(radio_controller)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
-			if(!src.net_id)
-				src.net_id = generate_net_id(src)
+		if(!src.net_id)
+			src.net_id = generate_net_id(src)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
 
 	disposing()
 		var/obj/disposalpipe/trunk/trunk = locate() in src.loc
 		if (trunk && trunk.linked == src)
 			trunk.linked = null
 		trunk = null
-
-		radio_controller.remove_object(src, "[frequency]")
 		..()
 
 	// expel the contents of the holder object, then delete it
 	// called when the holder exits the outlet
 	proc/expel(var/obj/disposalholder/H)
-		if (message && (mailgroup || mailgroup2) && radio_connection)
+		if (message && (mailgroup || mailgroup2))
 			var/groups = list()
 			if (mailgroup)
 				groups += mailgroup
@@ -1978,7 +2228,6 @@
 
 			var/datum/signal/newsignal = get_free_signal()
 			newsignal.source = src
-			newsignal.transmission_method = TRANSMISSION_RADIO
 			newsignal.data["command"] = "text_message"
 			newsignal.data["sender_name"] = "CHUTE-MAILBOT"
 			newsignal.data["message"] = "[message]"
@@ -1986,7 +2235,7 @@
 			newsignal.data["group"] = groups
 			newsignal.data["sender"] = src.net_id
 
-			radio_connection.post_signal(src, newsignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 		flick("outlet-open", src)
 		playsound(src, "sound/machines/warning-buzzer.ogg", 50, 0, 0)
@@ -2015,7 +2264,7 @@
 	src.changeStatus("weakened", 2 SECONDS)
 	return
 
-/obj/decal/cleanable/blood/gibs/pipe_eject(var/direction)
+/obj/decal/cleanable/tracked_reagents/blood/gibs/pipe_eject(var/direction)
 	var/list/dirs
 	if(direction in cardinal)
 		dirs = direction

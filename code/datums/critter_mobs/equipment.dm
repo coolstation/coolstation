@@ -37,10 +37,10 @@
 	proc/equip(var/obj/item/I)
 		if (item || !can_equip(I))
 			return 0
-		if (screenObj)
-			I.screen_loc = screenObj.screen_loc
 		item = I
 		item.set_loc(holder)
+		if (screenObj)
+			I.screen_loc = screenObj.screen_loc
 		holder.update_clothing()
 		on_equip()
 		return 1
@@ -69,10 +69,13 @@
 		on_unequip()
 		return 1
 
+	proc/after_setup(var/datum/hud/hud)
+		if (item)
+			hud.add_object(item, HUD_LAYER+1, screenObj.screen_loc)
+
 	proc/on_update()
 	proc/on_equip()
 	proc/on_unequip()
-	proc/after_setup(var/datum/hud)
 
 	head
 		name = "head"
@@ -139,5 +142,10 @@
 				// it's a built in radio, they can't take it off.
 				O.cant_self_remove = TRUE
 				O.cant_other_remove = TRUE
-				if (item)
-					hud.add_object(item, HUD_LAYER+1, screenObj.screen_loc)
+				. = ..()
+
+	storage
+		name = "storage"
+		type_filters = list(/obj/item/storage)
+		icon_state = "back"
+		show_on_holder = FALSE

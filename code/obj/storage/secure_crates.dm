@@ -33,19 +33,19 @@
 
 		tranquilizer
 			name = "tranquilizer crate" //one extra set of darts cause the old rifles came pre-loaded
-			spawn_contents = list(/obj/item/gun/modular/NT/long/rifle = 2,\
-			/obj/item/stackable_ammo/pistol/tranq/five = 3,\
-			/obj/item/stackable_ammo/pistol/anti_mutant/five)
+			spawn_contents = list(/obj/item/gun/modular/NT/rifle = 2,\
+			/obj/item/stackable_ammo/rifle/tranq/five = 3,\
+			/obj/item/stackable_ammo/rifle/anti_mutant/five)
 
 		phaser
 			name = "phaser crate"
-			spawn_contents = list(/obj/item/gun/modular/NT/long/rifle = 4,\
+			spawn_contents = list(/obj/item/gun/modular/NT/rifle = 4,\
 			/obj/item/stackable_ammo/rifle/capacitive/burst/ten = 4)
 
 		shotgun
 			name = "shotgun crate"
-			spawn_contents = list(/obj/item/gun/modular/NT/long/shotty = 4,\
-			/obj/item/stackable_ammo/scatter/NT/ten = 4)
+			spawn_contents = list(/obj/item/gun/modular/NT/shotty = 4,\
+			/obj/item/stackable_ammo/shotgun/NT/ten = 4)
 
 		pod_weapons
 			name = "pod weapons crate"

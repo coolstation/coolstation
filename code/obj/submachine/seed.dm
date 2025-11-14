@@ -2,7 +2,7 @@
 	name = "PlantMaster Mk3"
 	desc = "An advanced machine used for manipulating the genes of plant seeds. It also features an inbuilt seed extractor."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 10
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL
 	icon = 'icons/obj/objects.dmi'
@@ -735,7 +735,7 @@
 	name = "Reagent Extractor"
 	desc = "A machine which can extract reagents from organic matter."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 6
 	event_handler_flags = NO_MOUSEDROP_QOL
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL
@@ -1053,6 +1053,9 @@
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the extractor to output to [over_object]!</span>")
 
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
+
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
 		return
@@ -1102,7 +1105,7 @@
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "seeds"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 6
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WIRECUTTERS | DECON_MULTITOOL
 	var/vendamt = 1

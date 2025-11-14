@@ -4899,7 +4899,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=sec";
-	location = "crew";
+	beacon_id = "crew";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -6370,7 +6370,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=medbay";
-	location = "research";
+	beacon_id = "research";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/transport,
@@ -6804,7 +6804,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=depot";
-	location = "eva";
+	beacon_id = "eva";
 	name = "bot navigation beacon"
 	},
 /turf/floor{
@@ -7261,7 +7261,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	location = "Pod Bay"
+	beacon_id = "Pod Bay"
 	},
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -8644,7 +8644,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	location = "Catering"
+	beacon_id = "Catering"
 	},
 /obj/disposalpipe/segment/mail,
 /obj/machinery/light_switch{
@@ -10268,7 +10268,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=research";
-	location = "depot";
+	beacon_id = "depot";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/mail{
@@ -13410,7 +13410,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	location = "Courtroom"
+	beacon_id = "Courtroom"
 	},
 /turf/floor/bot,
 /area/station/bridge)
@@ -13422,7 +13422,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	location = "Research"
+	beacon_id = "Research"
 	},
 /turf/floor/bot,
 /area/station/science/lobby)
@@ -13434,7 +13434,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	location = "Security"
+	beacon_id = "Security"
 	},
 /obj/disposalpipe/segment{
 	dir = 8;
@@ -13450,7 +13450,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=crew";
-	location = "pool";
+	beacon_id = "pool";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/mail{
@@ -13466,7 +13466,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=escape";
-	location = "engine";
+	beacon_id = "engine";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -13479,7 +13479,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=eva";
-	location = "court";
+	beacon_id = "court";
 	name = "bot navigation beacon"
 	},
 /obj/machinery/atmospherics/pipe/simple{
@@ -15425,15 +15425,6 @@
 	},
 /turf/floor/specialroom/gym,
 /area/station/crew_quarters/fitness)
-"ayD" = (
-/obj/decal/cleanable/blood/splatter,
-/obj/item/reagent_containers/food/drinks/bottle/hobo_wine,
-/obj/decal/fakeobjects/airmonitor_broken{
-	dir = 4;
-	pixel_x = -24
-	},
-/turf/floor/airless/damaged3,
-/area/station/wreckage)
 "ayE" = (
 /obj/decal/cleanable/cobweb,
 /obj/decal/cleanable/dirt,
@@ -17973,7 +17964,7 @@
 /obj/disposalpipe/segment,
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=court";
-	location = "sec";
+	beacon_id = "sec";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -23741,7 +23732,7 @@
 	},
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=disposals";
-	location = "warehouse";
+	beacon_id = "warehouse";
 	name = "bot navigation beacon"
 	},
 /turf/floor/bot,
@@ -25057,17 +25048,6 @@
 	icon_state = "catwalk_cross"
 	},
 /area/station/quartermaster/refinery)
-"aST" = (
-/obj/grille/catwalk{
-	dir = 8
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 8
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 8
-	},
-/area/space)
 "aSU" = (
 /obj/grille/catwalk{
 	dir = 8
@@ -48534,14 +48514,14 @@
 "bNr" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=1";
-	location = "Engineering"
+	beacon_id = "Engineering"
 	},
 /turf/floor/bot,
 /area/station/engine/engineering)
 "bNs" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	location = "Crew Quarters"
+	beacon_id = "Crew Quarters"
 	},
 /obj/disposalpipe/segment/mail{
 	dir = 8
@@ -48551,7 +48531,7 @@
 "bNt" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	location = "Escape Hallway"
+	beacon_id = "Escape Hallway"
 	},
 /turf/floor/escape/corner{
 	dir = 8
@@ -48560,14 +48540,14 @@
 "bNu" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=2";
-	location = "Market"
+	beacon_id = "Market"
 	},
 /turf/floor/bot,
 /area/station/crew_quarters/market)
 "bNv" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "Chapel"
+	beacon_id = "Chapel"
 	},
 /obj/machinery/light_switch{
 	name = "S light switch";
@@ -48578,7 +48558,7 @@
 "bNw" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "QM #1"
+	beacon_id = "QM #1"
 	},
 /obj/machinery/bot/mulebot{
 	home_destination = "QM #1"
@@ -48588,14 +48568,14 @@
 "bNx" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "QM #2"
+	beacon_id = "QM #2"
 	},
 /turf/floor/bot,
 /area/station/quartermaster/office)
 "bNy" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=4";
-	location = "Tool Storage"
+	beacon_id = "Tool Storage"
 	},
 /obj/machinery/light_switch{
 	name = "S light switch";
@@ -48608,14 +48588,14 @@
 "bNz" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
-	location = "Hydroponics"
+	beacon_id = "Hydroponics"
 	},
 /turf/floor/bot,
 /area/station/hydroponics/lobby)
 "bNA" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
-	location = "Medbay"
+	beacon_id = "Medbay"
 	},
 /obj/disposalpipe/segment/morgue{
 	dir = 8
@@ -48627,7 +48607,7 @@
 "bNB" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=bar";
-	location = "chapel";
+	beacon_id = "chapel";
 	name = "bot navigation beacon"
 	},
 /obj/machinery/atmospherics/pipe/simple{
@@ -48640,7 +48620,7 @@
 "bNC" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=cargo";
-	location = "escape";
+	beacon_id = "escape";
 	name = "bot navigation beacon"
 	},
 /turf/floor,
@@ -48648,7 +48628,7 @@
 "bND" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=chapel";
-	location = "disposals";
+	beacon_id = "disposals";
 	name = "bot navigation beacon"
 	},
 /obj/disposalpipe/segment/morgue{
@@ -48660,7 +48640,7 @@
 "bNE" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=engine";
-	location = "medbay";
+	beacon_id = "medbay";
 	name = "bot navigation beacon"
 	},
 /turf/floor/white,
@@ -48668,7 +48648,7 @@
 "bNF" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=pool";
-	location = "bar";
+	beacon_id = "bar";
 	name = "bot navigation beacon"
 	},
 /turf/floor/specialroom/bar,
@@ -48676,7 +48656,7 @@
 "bNG" = (
 /obj/machinery/navbeacon{
 	codes_txt = "patrol;next_patrol=warehouse";
-	location = "cargo";
+	beacon_id = "cargo";
 	name = "bot navigation beacon"
 	},
 /obj/machinery/light{
@@ -51196,11 +51176,11 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/obj/item/gun/kinetic/riot40mm{
+/obj/item/gun/modular/italian/launcher/basic{
 	pixel_x = 4;
 	pixel_y = 10
 	},
-/obj/item/gun/kinetic/riot40mm{
+/obj/item/gun/modular/italian/launcher/basic{
 	pixel_x = 2;
 	pixel_y = 5
 	},
@@ -58514,7 +58494,7 @@
 "cgX" = (
 /obj/table/auto,
 /obj/decal/cleanable/cobweb2,
-/obj/item/gun/kinetic/zipgun{
+/obj/item/gun/modular/zip/classic{
 	pixel_x = 4;
 	pixel_y = 6
 	},
@@ -68380,15 +68360,6 @@
 /obj/wingrille_spawn/auto/crystal,
 /turf/floor/plating/airless,
 /area/station/turret_protected/armory_outside)
-"fdV" = (
-/obj/displaycase{
-	displayed = new /obj/item/captaingun
-	},
-/obj/window/reinforced{
-	dir = 2
-	},
-/turf/floor/carpet/arcade,
-/area/station/crew_quarters/captain)
 "feN" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 8
@@ -68529,6 +68500,22 @@
 /obj/wingrille_spawn/auto,
 /turf/floor,
 /area/station/ranch)
+"gSM" = (
+/obj/item/reagent_containers/food/snacks/plant/corn{
+	doants = 0
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 5;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -10
+	},
+/turf/floor/dirt,
+/area/station/ranch)
 "gUm" = (
 /obj/table/auto,
 /obj/item/paper/book/from_file/matsci_guide{
@@ -68585,6 +68572,14 @@
 	},
 /turf/floor/black,
 /area/station/bridge)
+"hfv" = (
+/obj/table/auto,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/floor/dirt,
+/area/station/ranch)
 "hkd" = (
 /obj/cable{
 	d1 = 4;
@@ -68697,6 +68692,15 @@
 /obj/item/card_box/plain,
 /turf/floor/escape,
 /area/station/hallway/secondary/exit)
+"jlt" = (
+/obj/displaycase{
+	displayed = new/obj/item/captaingun
+	},
+/obj/window/reinforced{
+	dir = 2
+	},
+/turf/floor/carpet/arcade,
+/area/station/crew_quarters/captain)
 "jTl" = (
 /obj/disposalpipe/segment{
 	dir = 4;
@@ -69322,17 +69326,6 @@
 	},
 /turf/floor,
 /area/station/quartermaster/office)
-"rMs" = (
-/obj/table/auto,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/turf/floor/dirt,
-/area/station/ranch)
 "rQH" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	can_rupture = 0
@@ -69349,6 +69342,15 @@
 	dir = 1
 	},
 /area/station/ranch)
+"sUn" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/item/reagent_containers/food/drinks/bottle/hobo_wine,
+/obj/decal/fakeobjects/airmonitor_broken{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/floor/airless/damaged3,
+/area/station/wreckage)
 "sWs" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
@@ -69532,6 +69534,14 @@
 	dir = 4
 	},
 /area/station/hydroponics/bay)
+"vzq" = (
+/obj/grille/catwalk{
+	dir = 8
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 8
+	},
+/area/space)
 "vDg" = (
 /obj/table/auto,
 /obj/item/paper/book/from_file/dwainedummies{
@@ -69584,17 +69594,16 @@
 /obj/item/paper/book/from_file/the_trial,
 /turf/floor/plating/scorched,
 /area/station/crew_quarters/clown)
-"wpb" = (
-/obj/submachine/chicken_incubator,
-/obj/item/reagent_containers/food/snacks/ingredient/egg{
-	rand_pos = 0
-	},
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "wGo" = (
 /obj/machinery/light_switch{
 	name = "W light switch";
 	pixel_x = 24
+	},
+/turf/floor/grass/leafy,
+/area/station/ranch)
+"wHZ" = (
+/obj/item/reagent_containers/food/snacks/ingredient/egg{
+	rand_pos = 0
 	},
 /turf/floor/grass/leafy,
 /area/station/ranch)
@@ -69612,23 +69621,6 @@
 	name = "astroturf"
 	},
 /area/station/hydroponics/bay)
-"wJp" = (
-/obj/submachine/chicken_feed_grinder,
-/obj/item/reagent_containers/food/snacks/plant/corn{
-	doants = 0
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 5;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -10
-	},
-/turf/floor/dirt,
-/area/station/ranch)
 "wNa" = (
 /obj/machinery/power/data_terminal,
 /obj/cable{
@@ -95517,8 +95509,8 @@ kev
 kGY
 mVv
 oiv
-rMs
-wJp
+hfv
+gSM
 erv
 mVv
 xli
@@ -96420,14 +96412,14 @@ cCO
 cCO
 bhe
 gMo
-wpb
+wHZ
 wGo
 spP
 cHf
 jTl
 wbu
 fPE
-wpb
+wHZ
 gMo
 bgm
 cCO
@@ -106736,7 +106728,7 @@ aIh
 aIW
 cCO
 cCO
-aST
+vzq
 bgb
 bgS
 cCO
@@ -107038,7 +107030,7 @@ bgm
 cCO
 cCO
 cCO
-aST
+vzq
 bgm
 cCO
 cCO
@@ -107340,7 +107332,7 @@ bgm
 cCO
 cCO
 cCO
-aST
+vzq
 czM
 czM
 bCa
@@ -107642,7 +107634,7 @@ bgm
 cCO
 cCO
 cCO
-aST
+vzq
 czM
 ctN
 ctB
@@ -107944,7 +107936,7 @@ bgm
 cCO
 cCO
 cCO
-aST
+vzq
 czM
 cug
 cug
@@ -108246,7 +108238,7 @@ bgm
 cCO
 cCO
 cCO
-aST
+vzq
 czM
 bJS
 cug
@@ -108548,7 +108540,7 @@ bgm
 cCO
 cCO
 cCO
-aST
+vzq
 czM
 cug
 cug
@@ -108850,7 +108842,7 @@ bgm
 cCO
 cCO
 cCO
-aST
+vzq
 czM
 bPs
 bRT
@@ -109152,7 +109144,7 @@ bgb
 bgY
 bgY
 bgY
-aST
+vzq
 czM
 apv
 ajR
@@ -109752,7 +109744,7 @@ brA
 btJ
 btJ
 aRb
-aST
+vzq
 bgb
 bgu
 bgb
@@ -110054,7 +110046,7 @@ bFr
 cAk
 cAk
 aRb
-aST
+vzq
 bgm
 cCO
 bgN
@@ -113062,7 +113054,7 @@ czN
 czN
 czN
 bfW
-aST
+vzq
 bgm
 cCO
 bWZ
@@ -113364,7 +113356,7 @@ aYT
 bfV
 bgs
 bfX
-aST
+vzq
 bgm
 cCO
 cAz
@@ -113666,7 +113658,7 @@ bfV
 bgQ
 cCO
 bhe
-aST
+vzq
 bgb
 cAz
 cAz
@@ -113968,7 +113960,7 @@ bgQ
 cCO
 cCO
 bhe
-aST
+vzq
 bgb
 cAz
 abP
@@ -114270,7 +114262,7 @@ cCO
 cCO
 cCO
 bhe
-aST
+vzq
 bgb
 cAz
 cke
@@ -114572,7 +114564,7 @@ cCO
 cCO
 cCO
 bhe
-aST
+vzq
 bXt
 cAz
 bvd
@@ -114874,7 +114866,7 @@ cCO
 cCO
 cCO
 bhe
-aST
+vzq
 bve
 cpC
 cpz
@@ -115176,7 +115168,7 @@ cCO
 cCO
 cCO
 bhe
-aST
+vzq
 bLY
 bLZ
 cpY
@@ -115478,7 +115470,7 @@ cCO
 bhi
 cCO
 bhe
-aST
+vzq
 bXt
 cAz
 aWq
@@ -115780,7 +115772,7 @@ baC
 baC
 baC
 bgb
-aST
+vzq
 bgb
 cAz
 ckj
@@ -116988,7 +116980,7 @@ baC
 baC
 baC
 bgb
-aST
+vzq
 bgb
 cAz
 cAz
@@ -117290,7 +117282,7 @@ bgY
 bgY
 bgY
 bgb
-aST
+vzq
 bgm
 cCO
 cAz
@@ -125709,7 +125701,7 @@ cCO
 baA
 bdE
 bfG
-ayD
+sUn
 cfY
 aoA
 bQp
@@ -134808,7 +134800,7 @@ cfq
 avU
 css
 ayd
-fdV
+jlt
 coJ
 cix
 aUP

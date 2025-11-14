@@ -8,7 +8,7 @@ PIPE BOMBS + CONSTRUCTION
 */
 
 ////////////////////////////// Old-style grenades ///////////////////////////////////////
-
+ABSTRACT_TYPE(/obj/item/old_grenade)
 /obj/item/old_grenade
 	desc = "You shouldn't be able to see this!"
 	name = "old grenade"
@@ -16,6 +16,7 @@ PIPE BOMBS + CONSTRUCTION
 	var/det_time = 3 SECONDS
 	var/org_det_time = 3 SECONDS
 	var/alt_det_time = 6 SECONDS
+	hint = "Use in hand to arm. You can toggle between two detonation timings with a screwdriver."
 	w_class = W_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
@@ -51,7 +52,7 @@ PIPE BOMBS + CONSTRUCTION
 					return
 			else
 				boutput(user, "<span class='alert'>You prime [src]! [det_time/10] seconds!</span>")
-				src.icon_state = src.icon_state_armed
+				src.armed_fx()
 				playsound(src.loc, src.sound_armed, 75, 1, -3)
 				src.add_fingerprint(user)
 				SPAWN_DBG(src.det_time)
@@ -91,7 +92,12 @@ PIPE BOMBS + CONSTRUCTION
 				user.show_message("<span class='notice'>You set [src] for a [det_time/10] second detonation time.</span>")
 				src.desc = "It is set to detonate in [det_time/10] seconds."
 			src.add_fingerprint(user)
+		else if (istype(W, /obj/item/gun/modular))
+			actions.start(new/datum/action/bar/private/load_grenade(W, src), user)
 		return
+
+	proc/armed_fx()
+		src.icon_state = src.icon_state_armed
 
 	proc/prime() // Most grenades require a turf reference.
 		var/turf/T = get_turf(src)
@@ -230,7 +236,7 @@ PIPE BOMBS + CONSTRUCTION
 				if (istype(X, /obj))
 					var/area/t = get_area(X)
 					if(t?.sanctuary) continue
-					if (prob(50) && X:anchored != 2)
+					if (prob(50) && X:anchored != ANCHORED_TECHNICAL)
 						step_towards(X,src)
 		qdel(src)
 		return
@@ -299,7 +305,7 @@ PIPE BOMBS + CONSTRUCTION
 			gen.set_active(1)
 			gen.state = 3
 			gen.power = 250
-			gen.anchored = 1
+			gen.anchored = ANCHORED
 			icon_state = "Field_Gen +a"
 		qdel(src)
 
@@ -341,8 +347,73 @@ PIPE BOMBS + CONSTRUCTION
 			qdel(src)
 		return
 
+ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
+/obj/item/old_grenade/projectile
+	name = "projectile grenade"
+	desc = "It is set to detonate in 3 seconds."
+	icon_state = "fragnade"
+	icon_state_armed = "fragnade1"
+	det_time = 3 SECONDS
+	org_det_time = 3 SECONDS
+	alt_det_time = 6 SECONDS
+	item_state = "fragnade"
+	sound_armed = "sound/weapons/pindrop.ogg"
+	var/projectile_type = /datum/projectile/bullet/flak_chunk
+	var/pellets_to_fire = 20
+	var/sound_detonation = "sound/weapons/grenade.ogg"
 
-/obj/item/old_grenade/stinger
+
+	prime()
+		. = ..()
+		var/turf/T = .
+		if(T)
+			if(sound_detonation)
+				playsound(T, sound_detonation, 25, 1)
+			var/datum/projectile/special/spreader/uniform_burst/circle/PJ = new /datum/projectile/special/spreader/uniform_burst/circle(T)
+			if(src.projectile_type)
+				PJ.spread_projectile_type = src.projectile_type
+				PJ.pellet_shot_volume = 75 / PJ.pellets_to_fire //anti-ear destruction
+			PJ.pellets_to_fire = src.pellets_to_fire
+			var/targetx = src.y - rand(-5,5)
+			var/targety = src.y - rand(-5,5)
+			var/turf/newtarget = locate(targetx, targety, src.z)
+			shoot_projectile_ST(src, PJ, newtarget)
+			SPAWN_DBG(0.5 SECONDS)
+				qdel(src)
+		else
+			qdel(src)
+
+/obj/item/old_grenade/projectile/vortex
+	name = "vortex grenade"
+	icon_state = "vortex"
+	icon_state_armed = "vortex_pull"
+	projectile_type = /datum/projectile/special/spreader/uniform_burst/listed/vortex_blast
+	pellets_to_fire = 1 // hate this
+	sound_detonation = null
+	sound_armed = "sound/effects/ripcord.ogg"
+	var/datum/light/point/light
+
+	armed_fx()
+		..()
+		SPAWN_DBG(max(src.det_time - 1.4 SECONDS, 0))
+			playsound(src.loc, "sound/effects/splode2.ogg", 50, 1)
+			src.icon_state = "vortex_crush"
+			sleep(0.6 SECONDS)
+			var/obj/overlay/fullbright_overlay = new(src)
+			fullbright_overlay.icon = src.icon
+			fullbright_overlay.plane = PLANE_SELFILLUM
+			src.vis_contents += fullbright_overlay
+			fullbright_overlay.icon_state = "vortex_overlay"
+			src.light = new
+			light.attach(src)
+			light.set_brightness(1)
+			light.set_color(0.2, 1, 0.2)
+			sleep(0.2 SECONDS)
+			light.enable()
+			sleep(1 SECOND)
+			qdel(fullbright_overlay)
+
+/obj/item/old_grenade/projectile/stinger
 	name = "stinger grenade"
 	desc = "It is set to detonate in 3 seconds."
 	icon_state = "fragnade"
@@ -353,47 +424,26 @@ PIPE BOMBS + CONSTRUCTION
 	is_syndicate = 0
 	sound_armed = "sound/weapons/pindrop.ogg"
 	icon_state_armed = "fragnade1"
-	var/custom_projectile_type = null
-	var/pellets_to_fire = 20
+	projectile_type = /datum/projectile/bullet/flak_chunk
 
 	prime()
-		var/turf/T = ..()
+		. = ..()
+		var/turf/T = .
 		if (T)
-			playsound(T, "sound/weapons/grenade.ogg", 25, 1)
 			explosion(src, T, -1, -1, -0.25, 1)
 			var/obj/overlay/O = new/obj/overlay(get_turf(T))
-			O.anchored = 1
+			O.anchored = ANCHORED
 			O.name = "Explosion"
 			O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			O.icon = 'icons/effects/64x64.dmi'
 			O.icon_state = "explo_fiery"
-			var/obj/item/old_grenade/stinger/frag/F = null
-			if (istype(src, /obj/item/old_grenade/stinger/frag))
-				F = src
-			if (F)
-				playsound(T, "sound/effects/smoke.ogg", 20, 1, -2)
-				SPAWN_DBG(0)
-					if (F?.smoke) //Wire note: Fix for Cannot execute null.start()
-						for(var/i = 1 to 6)
-							F.smoke.start()
-							sleep(1 SECOND)
-			var/datum/projectile/special/spreader/uniform_burst/circle/PJ = new /datum/projectile/special/spreader/uniform_burst/circle(T)
-			if(src.custom_projectile_type)
-				PJ.spread_projectile_type = src.custom_projectile_type
-				PJ.pellet_shot_volume = 75 / PJ.pellets_to_fire //anti-ear destruction
-			PJ.pellets_to_fire = src.pellets_to_fire
-			var/targetx = src.y - rand(-5,5)
-			var/targety = src.y - rand(-5,5)
-			var/turf/newtarget = locate(targetx, targety, src.z)
-			shoot_projectile_ST(src, PJ, newtarget)
 			SPAWN_DBG(0.5 SECONDS)
 				qdel(O)
-				qdel(src)
 		else
 			qdel(src)
 		return
 
-/obj/item/old_grenade/stinger/frag
+/obj/item/old_grenade/projectile/stinger/frag
 	name = "frag grenade"
 	icon_state = "fragnade-alt"
 	icon_state_armed = "fragnade-alt1"
@@ -404,6 +454,16 @@ PIPE BOMBS + CONSTRUCTION
 		src.smoke = new /datum/effects/system/bad_smoke_spread/
 		src.smoke.attach(src)
 		src.smoke.set_up(7, 1, src.loc)
+
+	prime()
+		. = ..()
+		var/turf/T = .
+		playsound(T, "sound/effects/smoke.ogg", 20, 1, -2)
+		SPAWN_DBG(0)
+			if (src.smoke) //Wire note: Fix for Cannot execute null.start()
+				for(var/i = 1 to 6)
+					src.smoke.start()
+					sleep(1 SECOND)
 
 /obj/item/old_grenade/high_explosive
 	name = "HE grenade"
@@ -423,7 +483,7 @@ PIPE BOMBS + CONSTRUCTION
 			explosion_new(src, T, 5.0, 2)
 			playsound(T, "sound/weapons/grenade.ogg", 25, 1)
 			var/obj/overlay/O = new/obj/overlay(get_turf(T))
-			O.anchored = 1
+			O.anchored = ANCHORED
 			O.name = "Explosion"
 			O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			O.icon = 'icons/effects/64x64.dmi'
@@ -501,7 +561,7 @@ PIPE BOMBS + CONSTRUCTION
 			pulse.icon = 'icons/effects/effects.dmi'
 			pulse.icon_state = "emppulse"
 			pulse.name = "emp pulse"
-			pulse.anchored = 1
+			pulse.anchored = ANCHORED
 			SPAWN_DBG(2 SECONDS)
 				if (pulse) qdel(pulse)
 
@@ -863,7 +923,7 @@ PIPE BOMBS + CONSTRUCTION
 
 	prearmed
 		armed = 1
-		anchored = 1
+		anchored = ANCHORED
 
 		New()
 			SPAWN_DBG(0)
@@ -919,7 +979,7 @@ PIPE BOMBS + CONSTRUCTION
 			SPAWN_DBG(0)
 				//Center tile
 				var/obj/effects/spray/S = spraybits[1]
-				make_cleanable(/obj/decal/cleanable/mud,S.loc)
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,S.loc)
 				if(is_blocked_turf(S.loc))
 					spraybits -= S
 					qdel(S)
@@ -928,9 +988,9 @@ PIPE BOMBS + CONSTRUCTION
 				for(var/i=0, i<src.splashzone, i++)
 					for(var/obj/effects/spray/SP in spraybits)
 						SP.set_loc(get_step(SP.loc, SP.original_dir))
-						make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+						make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,SP.loc)
 						if(is_blocked_turf(SP.loc))
-							make_cleanable(/obj/decal/cleanable/mud,SP.loc)
+							make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,SP.loc)
 							spraybits -= SP
 							qdel(SP)
 
@@ -953,7 +1013,7 @@ PIPE BOMBS + CONSTRUCTION
 			..()
 		prearmed
 			armed = 1
-			anchored = 1
+			anchored = ANCHORED
 
 			New()
 				SPAWN_DBG(0)
@@ -982,7 +1042,7 @@ PIPE BOMBS + CONSTRUCTION
 
 /obj/item/gimmickbomb/owlgib/prearmed
 	armed = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		SPAWN_DBG(0)
@@ -991,7 +1051,7 @@ PIPE BOMBS + CONSTRUCTION
 
 /obj/item/gimmickbomb/owlclothes/prearmed
 	armed = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		SPAWN_DBG(0)
@@ -1010,7 +1070,7 @@ PIPE BOMBS + CONSTRUCTION
 	icon_state = "firework"
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1
@@ -1220,7 +1280,7 @@ PIPE BOMBS + CONSTRUCTION
 					src.icon_state = "bcharge2"
 					user.u_equip(src)
 					src.set_loc(get_turf(target))
-					src.anchored = 1
+					src.anchored = ANCHORED
 					src.state = 1
 
 					// Yes, please (Convair880).
@@ -1321,7 +1381,7 @@ PIPE BOMBS + CONSTRUCTION
 					src.icon_state = "bcharge2"
 					user.u_equip(src)
 					src.set_loc(get_turf(target))
-					src.anchored = 1
+					src.anchored = ANCHORED
 					src.state = 1
 
 					// Yes, please (Convair880).
@@ -1358,7 +1418,7 @@ PIPE BOMBS + CONSTRUCTION
 				O.name = "Thermite"
 				O.desc = "A searing wall of flames."
 				O.icon = 'icons/effects/fire.dmi'
-				O.anchored = 1
+				O.anchored = ANCHORED
 				O.layer = TURF_EFFECTS_LAYER
 				O.color = "#ff9a3a"
 				var/datum/light/point/light = new
@@ -1451,6 +1511,18 @@ PIPE BOMBS + CONSTRUCTION
 			src.reagents = null
 			state = 2
 		return
+
+	afterattack(atom/target, mob/user, reach, params)
+		if (src.state == 2 && istype(target, /obj/item/gun_exploder))
+			user.show_text("With [src] and some good ol' percussive force, you make a barrel. This looks pretty dangerous!")
+			user.u_equip(src)
+			var/turf/T = get_turf(src)
+			playsound(T, "sound/impact_sounds/Metal_Hit_1.ogg", 50, 1)
+			qdel(src)
+			var/obj/item/gun_parts/barrel/pipeframe/new_barrel = new(T)
+			user.put_in_hand_or_drop(new_barrel)
+		else
+			. = ..()
 
 	attackby(obj/item/W, mob/user)
 		//NOTE: state 1 is unused since the first stages of pipe frames now happen through constructable atmos
@@ -1681,7 +1753,7 @@ PIPE BOMBS + CONSTRUCTION
 				if (meat > 1)
 					gibs(src.loc)
 				for (var/turf/splat in view(meat,src.loc))
-					make_cleanable( /obj/decal/cleanable/blood,splat)
+					make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,splat)
 			if (ghost) //throw objects towards bomb center
 				var/turf/T = get_turf(src.loc)
 				if (ghost > 1)
@@ -1878,22 +1950,23 @@ PIPE BOMBS + CONSTRUCTION
 /mob/proc/blowthefuckup(var/strength = 1,var/visible_message = 1) // similar proc for mobs
 	var/T = get_turf(src)
 	if(visible_message) src.visible_message("<span class='alert'>[src] explodes!</span>")
-	var/sqstrength = sqrt(strength)
-	var/shrapnel_range = 3 + sqstrength
-	for (var/mob/living/carbon/human/M in view(T, shrapnel_range))
-		if(check_target_immunity(M)) continue
-		if (M != src)
-			M.TakeDamage("chest", 15/M.get_ranged_protection(), 0)
-			if (M.get_ranged_protection()>=1.5)
-				boutput(M, "<span class='alert'><b>Your armor blocks the chunks of [src.name]!</b></span>")
-			else
-				var/obj/item/implant/projectile/shrapnel/implanted = new /obj/item/implant/projectile/shrapnel(M)
-				implanted.owner = M
-				M.implant += implanted
-				implanted.implanted(M, null, 25 * sqstrength)
-				boutput(M, "<span class='alert'><b>You are struck by chunks of [src.name]!</b></span>")
-				if (!M.stat)
-					M.emote("scream")
+	if(strength)
+		var/sqstrength = sqrt(strength)
+		var/shrapnel_range = 3 + sqstrength
+		for (var/mob/living/carbon/human/M in view(T, shrapnel_range))
+			if(check_target_immunity(M)) continue
+			if (M != src)
+				M.TakeDamage("chest", 15/M.get_ranged_protection(), 0)
+				if (M.get_ranged_protection()>=1.5)
+					boutput(M, "<span class='alert'><b>Your armor blocks the chunks of [src.name]!</b></span>")
+				else
+					var/obj/item/implant/projectile/shrapnel/implanted = new /obj/item/implant/projectile/shrapnel(M)
+					implanted.owner = M
+					M.implant += implanted
+					implanted.implanted(M, null, 25 * sqstrength)
+					boutput(M, "<span class='alert'><b>You are struck by chunks of [src.name]!</b></span>")
+					if (!M.stat)
+						M.emote("scream")
 
 	explosion_new(src, T, strength, 1)
 	src.gib()

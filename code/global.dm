@@ -14,9 +14,10 @@ var/global/list/queue_stat_list = list()
 #endif
 
 // dumb, bad
-var/list/extra_resources = list('code/pressstart2p.ttf', 'ibmvga9.ttf', 'xfont.ttf')
+var/list/extra_resources = list('code/pressstart2p.ttf', 'ibmvga9.ttf', 'xfont.ttf', 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf')
 // Press Start 2P - 6px
 // PxPlus IBM VGA9 - 12px
+// Not Jam Mono Clean - 16px
 
 
 // -------------------- GLOBAL VARS --------------------
@@ -49,6 +50,7 @@ var/global
 	list/processing_fluid_turfs = list()
 	list/warping_mobs = list()
 	datum/hotspot_controller/hotspot_controller = new
+	datum/storm_controller/storm_controller = new
 		//items that ask to be called every cycle
 
 	list/muted_keys = list()
@@ -56,7 +58,7 @@ var/global
 	server_start_time = 0
 	round_time_check = 0			// set to world.timeofday when round starts, then used to calculate round time
 	defer_powernet_rebuild = 0		// true if net rebuild will be called manually after an event
-	machines_may_use_wired_power = 0
+	machines_may_use_wired_power = TRUE // fuck it, we ball? - mylie
 	regex/url_regex = null
 	force_random_names = 0			// for the pre-roundstart thing
 	force_random_looks = 0			// same as above
@@ -312,6 +314,7 @@ var/global
 	signal_loss = 0
 	fart_attack = 0
 	blowout = 0
+	sandstorm = 0
 	farty_party = 0
 	deep_farting = 0
 
@@ -423,10 +426,10 @@ var/global
 	//airlockWireColorToIndex takes a number representing the wire color, e.g. the orange wire is always 1, the dark red wire is always 2, etc. It returns the index for whatever that wire does.
 	//airlockIndexToWireColor does the opposite thing - it takes the index for what the wire does, for example AIRLOCK_WIRE_IDSCAN is 1, AIRLOCK_WIRE_POWER1 is 2, etc. It returns the wire color number.
 	//airlockWireColorToFlag takes the wire color number and returns the flag for it (1, 2, 4, 8, 16, etc)
-	list/airlockWireColorToFlag = RandomAirlockWires()
-	list/airlockIndexToFlag
-	list/airlockIndexToWireColor
-	list/airlockWireColorToIndex
+	list/airlockWireColorToFlag = list()// = RandomAirlockWires()
+	list/airlockIndexToFlag = list()
+	list/airlockIndexToWireColor = list()
+	list/airlockWireColorToIndex = list()
 	list/APCWireColorToFlag = RandomAPCWires()
 	list/APCIndexToFlag
 	list/APCIndexToWireColor
@@ -547,6 +550,8 @@ var/global
 	list/cooldowns
 
 	syndicate_currency = "[pick("Flooz","Beenz","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals")]"
+
+	whatcha_see_is_whatcha_get = TRUE
 
 /proc/updateAreaLists()
 	//Admin jump list

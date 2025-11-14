@@ -9,7 +9,7 @@
 #define MAX_FAILED_CLONE_TICKS 200 // vOv
 
 /obj/machinery/clonepod
-	anchored = 1
+	anchored = ANCHORED
 	name = "cloning pod"
 	desc = "An electronically-lockable pod for growing organic tissue."
 	density = 1
@@ -49,7 +49,6 @@
 	var/list/mailgroups
 	var/net_id = null
 	var/pdafrequency = FREQ_PDA
-	var/datum/radio_frequency/pda_connection
 
 	var/datum/light/light
 
@@ -79,18 +78,15 @@
 		light.set_height(0.75)
 		light.attach(src)
 
-		SPAWN_DBG(10 SECONDS)
-			if (radio_controller)
-				pda_connection = radio_controller.add_object(src, "[pdafrequency]")
-			if (!src.net_id)
-				src.net_id = generate_net_id(src)
+		if (!src.net_id)
+			src.net_id = generate_net_id(src)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 		if (current_state <= GAME_STATE_PREGAME && src.z == Z_LEVEL_STATION)
 			object_flags |= ROUNDSTART_CLONER_PART
 
 	disposing()
 		mailgroups.len = 0
-		radio_controller.remove_object(src, "[pdafrequency]")
 		genResearch?.clonepods?.Remove(src) //Bye bye
 		connected?.linked_pods -= src
 		if(connected?.scanner?.pods)
@@ -126,12 +122,9 @@
 			msg = src.message
 		else if (!msg)
 			return
-		if(!pda_connection)
-			return
 
 		var/datum/signal/newsignal = get_free_signal()
 		newsignal.source = src
-		newsignal.transmission_method = TRANSMISSION_RADIO
 		newsignal.data["command"] = "text_message"
 		newsignal.data["sender_name"] = "CLONEPOD-MAILBOT"
 		newsignal.data["message"] = "[msg]"
@@ -140,7 +133,7 @@
 		newsignal.data["group"] = mailgroups + MGA_CLONER
 		newsignal.data["sender"] = src.net_id
 
-		pda_connection.post_signal(src, newsignal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal, null, "pda")
 
 	attack_hand(mob/user as mob)
 		interact_particle(user, src)
@@ -238,9 +231,7 @@
 
 		src.eject_wait = 10 SECONDS
 
-#ifdef DATALOGGER
 		game_stats.Increment("clones")
-#endif
 
 		if (istype(oldholder))
 			oldholder.clone_generation++
@@ -809,7 +800,7 @@
 	proc/look_busy(var/big = 0)
 		if (big)
 			animate_shake(src,5,rand(3,8),rand(3,8))
-			playsound(src.loc, pick(src.sounds_function), 50, 2)
+			playsound(src.loc, pick(src.sounds_function), 40, 2)
 		else
 			animate_shake(src,3,rand(1,4),rand(1,4))
 
@@ -834,7 +825,7 @@
 	desc = "A tank resembling a rather large blender, designed to recover biomatter for use in cloning."
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "grinder0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 10
 	var/list/pods = null // cloning pods we're tied to

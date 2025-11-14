@@ -28,6 +28,10 @@
 		emote_string = "looks at"
 		action_phrase = "look at"
 		inaction_phrase = list("out of sight" = 1, "not in sight" = 99)
+	leer
+		emote_string = "leers at"
+		action_phrase = "leer at"
+		inaction_phrase = list("out of sight" = 1, "not in sight" = 99)
 	boggle
 		no_out_of_range = TRUE
 		target_type = "both"
@@ -223,6 +227,8 @@
 				var/obj/machinery/bot/secbot/SB = target
 				SB.EngageTarget(user,0,0,1) //pig can't help itself
 				user.add_karma(5)
+			if (istype(target,/mob/living/critter/robotic/bot/securitron))
+				EXTEND_COOLDOWN(user, "MARKED_FOR_SECURITRON_ARREST", 7 SECONDS)
 			if(istype(target,/obj/machinery/bot/guardbot))
 				var/obj/machinery/bot/guardbot/GB = target
 				if(user != GB.arrest_target)
@@ -276,6 +282,8 @@
 			if (istype(target,/obj/machinery/bot/secbot))
 				var/obj/machinery/bot/secbot/SB = target
 				SB.EngageTarget(user,0,0,1) //pig can't help itself
+			if (istype(target,/mob/living/critter/robotic/bot/securitron))
+				EXTEND_COOLDOWN(user, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
 			if(istype(target,/obj/machinery/bot/guardbot))
 				//buddies won't arrest you for this but they will make you feel bad
 				var/obj/machinery/bot/guardbot/GB = target

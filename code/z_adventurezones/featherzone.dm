@@ -1,6 +1,6 @@
 // FEATHERZONE
 // because we all saw it coming
-
+/*
 // TURFS
 /turf/floor/feather
 	name = "strange floor"
@@ -28,7 +28,7 @@
 	desc = "A pile of metal and glass fibre that seems to have... congealed? Weird. Also gross."
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "drone-long-dead"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/permanentcage
@@ -36,7 +36,7 @@
 	desc = "A permanent cage used for keeping things in one place."
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "cage"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	New()
@@ -47,3 +47,4 @@
 
 	attack_hand(mob/user as mob)
 		user.visible_message("<span class='combat'><b>[user]</b> kicks [src], but it doesn't budge.</span>", "<span class='alert'>You kick [src], but it doesn't budge.</span>")
+*/

@@ -1,7 +1,7 @@
 // rest in peace the_very_holy_global_bible_list_amen (??? - 2020)
 var/global/list/bible_contents = list()
 
-/obj/item/storage/bible
+/obj/item/storage/bible //keyword: ol bib
 	name = "ol' bib"
 	desc = "A facsimile of a xerox of a copy of a daguerrotype of some historical italian text. Someone seems to have hollowed it out for hiding things in."
 	icon_state ="bible"
@@ -73,7 +73,7 @@ var/global/list/bible_contents = list()
 		if (iswraith(M) || (M.bioHolder && M.bioHolder.HasEffect("revenant")))
 			M.visible_message("<span class='alert'><B>[user] smites [M] with the [src]!</B></span>")
 			bless(M, user)
-			boutput(M, "<span_class='alert'><B>IT BURNS!</B></span>")
+			boutput(M, "<span class='alert'><B>IT BURNS!</B></span>")
 			if (narrator_mode)
 				playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, -1)
 			else
@@ -185,7 +185,7 @@ var/global/list/bible_contents = list()
 
 /obj/item/storage/bible/mini
 	//Grif
-	name = "O.C. Bible"
+	name = "Ol' Piccola Bib"
 	desc = "For when you don't want the good book to take up too much space in your life."
 	icon_state = "minibible"
 	item_state = null

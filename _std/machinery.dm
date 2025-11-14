@@ -6,10 +6,6 @@
 
 #define MACHINE_PROC_INTERVAL (0.4 SECONDS)
 
-//communications stuff
-#define TRANSMISSION_WIRE	0
-#define TRANSMISSION_RADIO	1
-
 //lighting stuff
 //moved to defines\lighting_colors.dm
 

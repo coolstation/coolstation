@@ -3,7 +3,7 @@
 	desc = "A large assembly of fan blades rotated by steam pressure to generate electricity."
 	icon = 'icons/obj/machines/fusion.dmi'
 	icon_state = "cab3"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = FLOOR_EQUIP_LAYER1
 

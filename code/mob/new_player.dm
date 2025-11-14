@@ -1,5 +1,5 @@
 mob/new_player
-	anchored = 1
+	anchored = ANCHORED
 
 	var/ready = 0
 	var/spawning = 0
@@ -14,13 +14,13 @@ mob/new_player
 	stat = 2
 	canmove = 0
 
-	anchored = 1	//  don't get pushed around
+	anchored = ANCHORED	//  don't get pushed around
 
 	//var/chui/window/spend_spacebux/bank_menu
 
 	New()
 		. = ..()
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_ALWAYS)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_ALWAYS)
 
 	// How could this even happen? Regardless, no log entries for unaffected mobs (Convair880).
 	ex_act(severity)

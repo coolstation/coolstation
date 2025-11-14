@@ -2,7 +2,7 @@
 	name = "teleport"
 	icon = 'icons/obj/machines/teleporter.dmi'
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	mats = 10
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS | DECON_MULTITOOL
 
@@ -201,7 +201,7 @@
 					continue
 				m_blocked = 1
 				break
-
+/*
 		if (get_dist(tmploc,A) <= 4)
 			if (istype(atom, /obj/item/device/flockblocker))
 				var/obj/item/device/flockblocker/F = atom
@@ -212,6 +212,7 @@
 					continue
 				m_blocked = 1
 				break
+*/
 
 	//if((istype(tmploc,/area/wizard_station)) || (istype(tmploc,/area/syndicate_station)))
 	var/area/myArea = get_area(tmploc)

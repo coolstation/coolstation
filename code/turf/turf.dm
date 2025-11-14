@@ -28,6 +28,11 @@
 
 	#undef _UNSIM_TURF_GAS_DEF
 
+	/// Sum of all unstable atoms on the turf.
+	pass_unstable = FALSE
+	/// Whether this turf is passable. Used in the pathfinding system.
+	var/tmp/passability_cache
+
 	//Properties for both
 	var/temperature = T20C
 
@@ -251,7 +256,7 @@
 		overlays += /image/fullbright
 
 
-/turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
+/turf/Enter(atom/movable/mover as mob|obj, atom/oldLoc as mob|obj|turf|area)
 	if (!mover)
 		return 1
 
@@ -265,7 +270,7 @@
 			var/obj/obstacle = thing
 			if(obstacle == mover)
 				continue
-			if((mover != obstacle) && (forget != obstacle))
+			if(oldLoc != obstacle)
 				if(obstacle.event_handler_flags & USE_CHECKEXIT)
 					if(!obstacle.CheckExit(mover, src))
 						mover.Bump(obstacle, 1)
@@ -282,7 +287,7 @@
 			var/atom/movable/obstacle = thing
 			if(obstacle == mover) continue
 			if(!mover)	return 0
-			if ((forget != obstacle))
+			if ((oldLoc != obstacle))
 				if(obstacle.event_handler_flags & USE_CANPASS)
 					if(!obstacle.CanPass(mover, cturf, 1, 0))
 
@@ -303,7 +308,7 @@
 					var/atom/movable/obstacle = thing
 					if(obstacle == mover) continue
 					if(!mover)	return 0
-					if ((forget != obstacle))
+					if ((oldLoc != obstacle))
 						if(obstacle.event_handler_flags & USE_CANPASS)
 							if(!obstacle.CanPass(mover, cturf, 1, 0))
 
@@ -464,7 +469,16 @@
 	if(src.density)
 		if(AM.throwforce >= 80)
 			src.meteorhit(AM)
-		. = 'sound/impact_sounds/Generic_Stab_1.ogg'
+		if (iscarbon(AM))
+			if(istype(src, /turf/wall/r_wall))
+				playsound(src, "sound/impact_sounds/wallbang_r.ogg", 50, 1)
+			else
+				playsound(src, "sound/impact_sounds/wallbang.ogg", 50, 1)
+		else
+			if(istype(src, /turf/wall/r_wall))
+				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
+			else
+				playsound(src, "sound/impact_sounds/wallbang_small.ogg", 50, 1)
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
@@ -516,6 +530,15 @@
 		if(old_loc)
 			old_loc.contents -= src.loc
 	*/
+	if ((map_currently_abovewater && what == "Space")  && (src.z == 1 || src.z == 3))
+		var/area/area = src.loc
+		if(istype(area, /area/shuttle/))
+			what = "Plating"
+			keep_old_material = 1
+		else
+			what = "Above Ocean"
+			keep_old_material = 0
+
 	if ((map_currently_underwater && what == "Space")  && (src.z == 1 || src.z == 5))
 		var/area/area = src.loc
 		if(istype(area, /area/shuttle/))
@@ -543,6 +566,7 @@
 	var/old_opacity = src.opacity
 
 	var/old_checkinghasproximity = src.checkinghasproximity
+	var/old_pass_unstable = src.pass_unstable
 
 	var/new_type = ispath(what) ? what : text2path(what) //what what, what WHAT WHAT WHAAAAAAAAT
 	if (new_type)
@@ -551,6 +575,13 @@
 			new_turf = new /turf/space(src, src.turf_persistent)
 
 	else switch(what)
+		if ("Above Ocean")
+			if(src.z==3)
+				new_turf = new /turf/space/fluid(src, src.turf_persistent)
+			else
+				new_turf = new /turf/space/magindara(src, src.turf_persistent)
+				var/turf/space/magindara/new_pitfall = new_turf
+				new_pitfall.initialise_component()
 		if ("Desert")
 			if(src.z==3)
 				new_turf = new /turf/floor/plating/gehenna(src, src.turf_persistent)
@@ -596,6 +627,8 @@
 	new_turf.levelupdate()
 
 	new_turf.checkinghasproximity = old_checkinghasproximity
+	new_turf.pass_unstable += old_pass_unstable
+
 
 	//cleanup old overlay to prevent some Stuff
 	//This might not be necessary, i think its just the wall overlays that could be manually cleared here.
@@ -765,7 +798,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 /obj/overlay/tile_effect
 	name = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
 	alpha = 255
@@ -781,7 +814,7 @@
 
 /obj/overlay/tile_gas_effect
 	name = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
 
@@ -801,6 +834,7 @@
 /turf/space
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
+	hint = "deals burn damage if unprotected."
 	icon_state = "placeholder"
 	fullbright = 1
 #ifndef HALLOWEEN
@@ -860,6 +894,9 @@
 	else
 		UpdateOverlays(null, "starlight")
 
+/turf/space/assume_air(datum/gas_mixture/giver)
+	qdel(giver)
+	return 1
 
 /turf/space/no_replace
 
@@ -1008,18 +1045,21 @@ proc/generate_space_color()
 	if (istype(A, /area/supply/spawn_point || /area/supply/delivery_point || /area/supply/sell_point))
 		boutput(user, "<span class='alert'>You can't build here.</span>")
 		return
-	var/obj/item/rods/R = C
-	if (istype(R))
-		//no more stacking lattices thx
+	if (istype(C, /obj/item/rods))
+		var/obj/item/rods/R = C
 		var/obj/lattice/lat = locate() in src
 		if (lat)
+			boutput(user, "<span class='alert'>There's already a lattice there.</span>")
 			return //lat.Attackby(R, user)
-		else if (R.change_stack_amount(-1))
-			boutput(user, "<span class='notice'>Constructing support lattice ...</span>")
+		else if (R.change_stack_amount(-2))
+			boutput(user, "<span class='notice'>You build a support lattice!</span>")
 			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
-			ReplaceWithLattice()
-			if (R.material)
-				src.setMaterial(C.material)
+			lat = new(src)
+			if(R.material)
+				lat.setMaterial(R.material)
+			return
+		else
+			boutput(user, "<span class='alert'>You need two rods to build a lattice.</span>")
 			return
 
 	if (istype(C, /obj/item/tile))
@@ -1030,6 +1070,7 @@ proc/generate_space_color()
 				qdel(L)
 			playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1)
 			T.build(src)
+			return
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1045,6 +1086,7 @@ proc/generate_space_color()
 	invisibility = 101
 	explosion_resistance = 999999
 	density = 1
+	pathable = FALSE
 	opacity = 1
 
 	Enter()
@@ -1117,7 +1159,7 @@ proc/generate_space_color()
 	text = "<font color=#aaa>#"
 	density = 1
 	pathable = 0
-	turf_flags = ALWAYS_SOLID_FLUID
+
 #ifndef IN_MAP_EDITOR // display disposal pipes etc. above walls in map editors
 	plane = PLANE_WALL
 #else
@@ -1315,6 +1357,7 @@ proc/generate_space_color()
 	name = "expedition chute"
 	icon = 'icons/obj/machines/delivery.dmi'
 	icon_state = "floorflush_o"
+	pathable = FALSE
 
 	Enter(atom/movable/mover, atom/forget)
 		. = ..()

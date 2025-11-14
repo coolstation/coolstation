@@ -13,14 +13,6 @@
 				owner.bleeding = 0 // also stop bleeding if we happen to be doing that
 			return ..()
 
-		//This is now handled by the on_life in the spleen organ in the organHolder
-		// if (src.blood_volume < 500 && src.blood_volume > 0) // if we're full or empty, don't bother v
-		// 	if (prob(66))
-		// 		src.blood_volume += 1 * mult // maybe get a little blood back ^
-		// else if (src.blood_volume > 500) // just in case there's no reagent holder
-		// 	if (prob(20))
-		// 		src.blood_volume -= 1 * mult
-
 		var/mult = get_multiplier()
 
 
@@ -59,26 +51,15 @@
 
 			owner.bleeding = clamp(owner.bleeding, 0, 5)
 
-			if (owner.blood_volume)
+			if (owner.reagents.total_volume)
 				var/final_bleed = clamp(owner.bleeding, 0, 5) // trying this at 5 being the max
 				//var/final_bleed = clamp(src.bleeding, 0, 10) // still don't want this above 10
 
 				if (anticoag_amt)
 					final_bleed += round(clamp((anticoag_amt / 10), 0, 2), 1)
 				final_bleed *= mult
-				if (prob(max(0, min(final_bleed, 10)) * 5)) // up to 50% chance to make a big bloodsplatter
-					bleed(owner, final_bleed, 5)
-
-				else
-					switch (owner.bleeding)
-						if (1)
-							bleed(owner, final_bleed, 1) // this proc creates a bloodsplatter on src's tile
-						if (2)
-							bleed(owner, final_bleed, 2) // it takes care of removing blood, and transferring reagents, color and ling status to the blood
-						if (3 to 4)
-							bleed(owner, final_bleed, 3) // see blood_system.dm for the proc
-						if (5)
-							bleed(owner, final_bleed, 4)
+				// up to 50% chance to make a big bloodsplatter
+				bleed(owner, final_bleed, violent = prob(max(0, min(final_bleed, 10)) * 5))
 
 
 		////////////////////////////////////////////
@@ -88,14 +69,17 @@
 		if (!blood_system)
 			return ..()
 
-
 		if (critter_owner)
-			if (critter_owner.blood_volume < 500 && critter_owner.blood_volume > 0) // if we're full or empty, don't bother v
+			var/blood_in_ya = critter_owner.reagents.get_reagent_amount(critter_owner.blood_id)
+			if (blood_in_ya < critter_owner.ideal_blood_volume * 0.99 && blood_in_ya > critter_owner.ideal_blood_volume * BLOOD_SCALAR * 5) // if we're full or mostly empty, don't bother v
 				if (prob(66))
-					critter_owner.blood_volume += 1 * mult // maybe get a little blood back ^
-			else if (critter_owner.blood_volume > 500)
+					critter_owner.reagents.add_reagent(critter_owner.blood_id, critter_owner.ideal_blood_volume * BLOOD_SCALAR * mult, temp_new = critter_owner.base_body_temp) // maybe get a little blood back ^
+			else if (critter_owner.reagents.total_volume > critter_owner.ideal_blood_volume * 1.01)
 				if (prob(20))
-					critter_owner.blood_volume -= 1 * mult
+					critter_owner.reagents.remove_reagent(critter_owner.blood_id, critter_owner.ideal_blood_volume * BLOOD_SCALAR * mult)
+
+		if (!owner.reagents)
+			return ..()
 
 		// very low (90/60 or lower) (<375u)
 		// low (100/65) (<415u)
@@ -111,10 +95,8 @@
 			owner.blood_pressure["status"] = "Normal"
 			return ..()
 
-		owner.blood_volume = max(0, owner.blood_volume) //clean up negative blood amounts here. Lazy fix, but easier than cleaning up every place that blood is removed
-		var/current_blood_amt = owner.blood_volume + (owner.reagents ? owner.reagents.total_volume / 4 : 0) // dropping how much reagents count so that people stop going hypertensive at the drop of a hat
+		var/current_blood_amt = owner.reagents.total_volume
 		var/cho_amt = (owner.reagents ? owner.reagents.get_reagent_amount("cholesterol") : 0)
-		var/gnesis_amt = (owner.reagents ? owner.reagents.get_reagent_amount("flockdrone_fluid") : 0)
 		if (anticoag_amt)
 			current_blood_amt -= ((anticoag_amt / 4) + anticoag_amt) * mult// set the total back to what it would be without the heparin, then remove the total of the heparin
 		if (coag_amt)
@@ -123,9 +105,6 @@
 		if (cho_amt)
 			current_blood_amt -= (cho_amt / 4) * mult // same as proconvertin above
 			current_blood_amt += cho_amt * mult
-		if (gnesis_amt)
-			current_blood_amt -= (gnesis_amt / 4) * mult
-			current_blood_amt += (gnesis_amt / 2) * mult //makes it stay somewhat constant with regular spleen and conversion so you wont feel the effects of blood loss. since gnesis is flock blood and this is human blood so it must be similar right?
 		current_blood_amt = round(current_blood_amt, 1)
 
 		var/current_systolic = round((current_blood_amt * 0.24), 1)
@@ -134,7 +113,7 @@
 		owner.blood_pressure["diastolic"] = current_diastolic
 		owner.blood_pressure["rendered"] = "[max(rand(current_systolic-5,current_systolic+5), 0)]/[max(rand(current_diastolic-2,current_diastolic+2), 0)]"
 		owner.blood_pressure["total"] = current_blood_amt
-		owner.blood_pressure["status"] = (current_blood_amt < 415) ? "HYPOTENSIVE" : (current_blood_amt > 584) ? "HYPERTENSIVE" : "NORMAL"
+		owner.blood_pressure["status"] = (current_blood_amt < owner.ideal_blood_volume * 0.85) ? "HYPOTENSIVE" : (current_blood_amt > owner.ideal_blood_volume * 1.15) ? "HYPERTENSIVE" : "NORMAL"
 
 		if (ischangeling(owner))
 			return ..()
@@ -151,8 +130,10 @@
 		if (isdead(owner))
 			return ..()
 
-		switch (current_blood_amt)
-			if (-INFINITY to 0) // welp
+		var/relevant_blood_amount = owner.reagents.get_reagent_amount(owner.blood_id) / owner.ideal_blood_volume * 500
+
+		switch (relevant_blood_amount) // oxygen deprivation from lack of blood cells
+			if (-INFINITY to 1) // welp
 				owner.take_oxygen_deprivation(1 * mult)
 				owner.take_brain_damage(2 * mult)
 				owner.losebreath += (1 * mult)
@@ -167,10 +148,10 @@
 					boutput(owner, "<span class='alert'><b>You feel [feeling]!</b></span>")
 					owner.changeStatus("weakened", 4 SECONDS * mult)
 				owner.contract_disease(/datum/ailment/malady/shock, null, null, 1) // if you have no blood you're gunna be in shock
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -3)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -3)
 				owner.add_stam_mod_max("hypotension", -15)
 
-			if (1 to 370) // very low (90/60)
+			if (1 to 340) // very low (90/60)
 				owner.take_oxygen_deprivation(0.8 * mult)
 				owner.take_brain_damage(0.8 * mult)
 				owner.losebreath += (0.8 * mult)
@@ -186,10 +167,10 @@
 					owner.changeStatus("weakened", 3 SECONDS * mult)
 				if (prob(25))
 					owner.contract_disease(/datum/ailment/malady/shock, null, null, 1)
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -2)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -2)
 				owner.add_stam_mod_max("hypotension", -10)
 
-			if (370 to 415) // low (100/65)
+			if (340 to 415) // low (100/65)
 				if (prob(3))
 					owner.emote(pick("pale", "shudder", "shiver"))
 				if (prob(5))
@@ -201,17 +182,20 @@
 				if (probmult(12))
 					owner.change_eye_blurry(6, 6)
 					owner.stuttering = max(owner.stuttering, 15)
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -1)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension", -1)
 				owner.add_stam_mod_max("hypotension", -5)
 
-			if (415 to 584) // normal (120/80)
-				REMOVE_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension")
-				REMOVE_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension")
-				owner.remove_stam_mod_max("hypertension")
+			if (415 to INFINITY)
+				REMOVE_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypotension")
 				owner.remove_stam_mod_max("hypotension")
+
+		switch (current_blood_amt) // hypertension
+			if (0 to 625) // normal (120/80)
+				REMOVE_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension")
+				owner.remove_stam_mod_max("hypertension")
 				return ..()
 
-			if (585 to 665) // high (140/90)
+			if (625 to 680) // high (140/90)
 				if (prob(2))
 					var/msg = pick("You feel kinda sweaty",\
 					"You can feel your heart beat loudly in your chest",\
@@ -223,10 +207,10 @@
 					owner.emote("gasp")
 				if (prob(1) && prob(10))
 					owner.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -1)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -1)
 				owner.add_stam_mod_max("hypertension", -5)
 
-			if (666 to 749) // very high (160/100)
+			if (680 to 750) // very high (160/100)
 				if (prob(2))
 					var/msg = pick("You feel sweaty",\
 					"Your heart beats rapidly",\
@@ -239,7 +223,7 @@
 					owner.emote("gasp")
 				if (prob(1))
 					owner.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -2)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -2)
 				owner.add_stam_mod_max("hypertension", -10)
 
 			if (750 to INFINITY) // critically high (180/110)
@@ -261,8 +245,8 @@
 				if (prob(2))
 					owner.visible_message("<span class='alert'>[owner] coughs up a little blood!</span>")
 					playsound(owner, "sound/impact_sounds/Slimy_Splat_1.ogg", 30, 1)
-					bleed(owner, rand(1,2) * mult, 1)
-				APPLY_MOB_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -3)
+					bleed(owner, rand(1,2) * mult)
+				APPLY_ATOM_PROPERTY(owner, PROP_STAMINA_REGEN_BONUS, "hypertension", -3)
 				owner.add_stam_mod_max("hypertension", -15)
 
 		..()

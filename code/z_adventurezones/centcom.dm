@@ -82,3 +82,16 @@
 	wackalope
 		ckey = "wackalope"
 		name = "ITS A LIGHTNING ROD OK"
+	mylie
+		ckey = "myliedaniels"
+		name = "Mylie's Office"
+	cyan
+		ckey = "sothanforax"
+		name = "Cyan's Shithole"
+		is_construction_allowed = TRUE //Its a server closet, you didn't expect this?
+	gnash
+		ckey = "fancyshmancynecromancy"
+		name = "The Gnarly Gnash"
+	faye
+		ckey = "enfaeutchie"
+

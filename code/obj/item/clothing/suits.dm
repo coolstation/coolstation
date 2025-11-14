@@ -5,7 +5,7 @@
 
 /obj/item/clothing/suit
 	name = "leather jacket"
-	desc = "Made from real Space Bovine, but don't call it cowhide under penalty of Article 5.P3RG."
+	desc = "Made from real Space Bovine, but don't call it cowhide."
 	icon = 'icons/obj/clothing/overcoats/item_suit.dmi'
 	inhand_image_icon = 'icons/mob/inhand/overcoat/hand_suit.dmi'
 	wear_image_icon = 'icons/mob/overcoats/worn_suit.dmi'
@@ -235,6 +235,7 @@
 	var/armored = 0
 	body_parts_covered = TORSO|LEGS|ARMS
 	permeability_coefficient = 0.005
+	hint = "You can add an armor vest to this."
 
 	setupProperties()
 		..()
@@ -372,9 +373,23 @@
 		setProperty("rangedprot", 0.5)
 		setProperty("disorient_resist", 15)
 
+/obj/item/clothing/suit/cap_coat
+	name = "Captain's coat"
+	desc = "Prone to getting stuck in airlocks."
+	icon_state = "captain"
+	item_state = "cap_coat"
+	body_parts_covered = TORSO|LEGS|ARMS
+	bloodoverlayimage = SUITBLOOD_COAT
+
+	setupProperties()
+		..()
+		setProperty("meleeprot", 2)
+		setProperty("rangedprot", 0.5)
+
+
 /obj/item/clothing/suit/det_suit
-	name = "coat"
-	desc = "Someone who wears this means business."
+	name = "blazer"
+	desc = "If you listen closely, you can still hear faint church bells."
 	icon_state = "detective"
 	item_state = "det_suit"
 	body_parts_covered = TORSO|LEGS|ARMS
@@ -584,6 +599,7 @@
 /obj/item/clothing/suit/bedsheet
 	name = "bedsheet"
 	desc = "A linen sheet used to cover yourself while you sleep. Preferably on a bed."
+	hint = "you can thread a wire through this to make a cape."
 	icon_state = "bedsheet"
 	uses_multiple_icon_states = 1
 	item_state = "bedsheet"

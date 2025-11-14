@@ -30,3 +30,16 @@
 
 //macro for lag-compensated probability - assumes lag-compensation multiplier is always called mult
 #define probmult(x) (prob(percentmult((x), mult)))
+
+//chemical reaction result amounts can be negative and it's not useful, it's free real estate!
+
+///When instantiating the recipe, make the output volume consistent with combined input volume (e.g. 5u of reagents go in, 5u of reagent come out)
+#define RECIPE_AUTO_PRESERVE_VOLUME -1
+
+/// for combustion of reagents, we need at least this many moles of oxy
+#define REAGENT_COMBUSTION_MINIMUM_OXYGEN_NEEDED (2 MOLES)
+/// when combusting, we need at least this much of the gas to be oxygen or we kill the combustion
+#define REAGENT_COMBUSTION_MINIMUM_OXYGEN_PERCENTAGE 0.10
+/// this could be better, but for now we convert oxy to co2 based on the thermal output
+#define REAGENT_COMBUSTION_OXYGEN_PER_JOULE 0.001
+

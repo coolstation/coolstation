@@ -193,6 +193,17 @@
 			logTheThing("debug", player, null, "assigned job: [player.mind.assigned_role]")
 			unassigned -= player
 			JOB.assigned++
+		else if(player.client.preferences.only_spawn_favorite && !checktraitor(player))
+			logTheThing("debug",null,null, "<B>I Said No/Jobs:<B> [player] was unreadied after not recieving their favorite job, [JOB.name].")
+			player.ready = 0
+			unassigned -= player //out for the count
+			boutput(player, "<b>You were sent back to the lobby after not rolling your favorite job.</b> <br> You can disable this by going to occupation>Only Spawn as favorite job.")
+			winset(player, "joinmenu.button_charsetup", "is-disabled=false")
+			winset(player, "joinmenu.button_ready", "is-disabled=false;is-visible=true")
+			winset(player, "joinmenu.button_cancel", "is-disabled=true;is-visible=false")
+			winset(player, "joinmenu.button_ready_antag", "is-disabled=false")
+			//this is if they checked the "Only Spawn as Favorite Job" check in job prefs. If they got antag, though, they get to keep rolling.
+			//if they chose a command role they won't be promoted anyway, because the only way for them to be promoted is if the slot were empty, and we already checked
 
 	// Do this loop twice - once for med priority and once for low priority, because elsewise
 	// it was causing weird shit to happen where having something in low priority would
@@ -314,6 +325,7 @@
 		player.mind.assigned_role = pick(low_priority_jobs)
 		logTheThing("debug", player, null, "assigned job: [player.mind.assigned_role]")
 
+
 	return 1
 
 //Given a list of candidates returns candidates that are acceptable to be promoted based on their medium/low priorities
@@ -425,14 +437,23 @@
 	src.mind.assigned_role = JOB.name
 
 	if (!joined_late)
+		//if the arrival shuttle starts in transit, put everyone who isn't a head of staff on it.
 		if (ticker?.mode && !istype(ticker.mode, /datum/game_mode/construction))
-			if (job_start_locations && islist(job_start_locations[JOB.name]))
-				var/tries = 8
+			if (map_settings?.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC /*&& !istype(JOB, /datum/job/command)*/)
+				var/tries = 8 //these loops try to make people not start the round on top of one another
 				var/turf/T
 				do
-					T = pick(job_start_locations[JOB.name])
+					T = pick_landmark(LANDMARK_LATEJOIN)
 				while((locate(/mob) in T) && tries--)
 				src.set_loc(T)
+			else
+				if (job_start_locations && islist(job_start_locations[JOB.name]))
+					var/tries = 8
+					var/turf/T
+					do
+						T = pick(job_start_locations[JOB.name])
+					while((locate(/mob) in T) && tries--)
+					src.set_loc(T)
 		else
 			src.set_loc(pick_landmark(LANDMARK_LATEJOIN))
 	else
@@ -559,26 +580,26 @@
 				var/obj/item/disk/data/floppy/read_only/D = new /obj/item/disk/data/floppy/read_only(src)
 				src.equip_if_possible(D, slot_in_backpack)
 				var/datum/computer/file/clone/R = new
-				R.fields["ckey"] = ckey(src.key)
-				R.fields["name"] = src.real_name
-				R.fields["id"] = copytext(md5(src.real_name), 2, 6)
+				R["ckey"] = ckey(src.key)
+				R["name"] = src.real_name
+				R["id"] = copytext(md5(src.real_name), 2, 6)
 
 				var/datum/bioHolder/B = new/datum/bioHolder(null)
 				B.CopyOther(src.bioHolder)
 
-				R.fields["holder"] = B
+				R["holder"] = B
 
-				R.fields["abilities"] = null
+				R["abilities"] = null
 				if (src.abilityHolder)
 					var/datum/abilityHolder/A = src.abilityHolder.deepCopy()
-					R.fields["abilities"] = A
+					R["abilities"] = A
 
 				SPAWN_DBG(0)
 					if(src.traitHolder && length(src.traitHolder.traits))
-						R.fields["traits"] = src.traitHolder.traits.Copy()
+						R["traits"] = src.traitHolder.traits.Copy()
 
-				R.fields["imp"] = null
-				R.fields["mind"] = src.mind
+				R["imp"] = null
+				R["mind"] = src.mind
 				R.name = "CloneRecord-[ckey(src.real_name)]"
 				D.root.add_file(R)
 
@@ -631,6 +652,8 @@
 		trinket = new picked(src)
 	else if (src.traitHolder && src.traitHolder.hasTrait("conspiracytheorist"))
 		trinket = new/obj/item/clothing/head/tinfoil_hat
+	else if (src.traitHolder && src.traitHolder.hasTrait("emaculate"))
+		trinket = new/obj/item/material_piece/cloth/rag
 	else if (src.traitHolder && src.traitHolder.hasTrait("beestfriend"))
 		if (prob(15))
 			trinket = new/obj/item/reagent_containers/food/snacks/ingredient/egg/bee/buddy(src)
@@ -683,7 +706,7 @@
 
 	if(C)
 		var/realName = src.real_name
-		var/datum/data/record/B = FindBankAccountByName(src.real_name)
+		var/datum/db_record/B = FindBankAccountByName(src.real_name)
 
 		if(src.traitHolder && src.traitHolder.hasTrait("clericalerror"))
 			realName = replacetext(realName, "a", "o")
@@ -693,12 +716,12 @@
 			if(prob(50)) realName = replacetext(realName, "t", pick("d", "k"))
 			if(prob(50)) realName = replacetext(realName, "p", pick("b", "t"))
 
-			if (B?.fields["name"])
-				B.fields["name"] = realName
+			if (B?["name"])
+				B["name"] = realName
 
 		C.registered = realName
-		if(B?.fields["id"])
-			C.registered_id = B?.fields["id"]
+		if(B?["id"])
+			C.registered_id = B?["id"]
 		C.assignment = JOB.name
 		C.name = "[C.registered]'s ID Card ([C.assignment])"
 		C.access = JOB.access.Copy()
@@ -719,12 +742,9 @@
 		src.mind.store_memory("Your pin to your ID is: [C.pin]")
 
 	if (wagesystem.jobs[JOB.name])
-		var/cashModifier = 1.0
-		if (src.traitHolder && src.traitHolder.hasTrait("pawnstar"))
-			cashModifier = 1.25
-
+		//300$ extra for folks with Pawn Star
 		var/obj/item/spacecash/S = new()
-		S.setup(src,wagesystem.jobs[JOB.name] * cashModifier)
+		S.setup(src,wagesystem.jobs[JOB.name] + (src.traitHolder?.hasTrait("pawnstar") ? 300 : 0))
 
 		if (isnull(src.get_slot(slot_r_store)))
 			src.equip_if_possible(S, slot_r_store)
@@ -791,31 +811,121 @@ proc/antagify(mob/H, var/traitor_role, var/agimmick)
 // cogwerks - personalized trinkets project //
 /////////////////////////////////////////////
 
-var/list/trinket_safelist = list(/obj/item/basketball,/obj/item/instrument/bikehorn, /obj/item/brick, /obj/item/clothing/glasses/eyepatch,
-/obj/item/clothing/glasses/regular, /obj/item/clothing/glasses/sunglasses, /obj/item/clothing/gloves/boxing,
-/obj/item/clothing/mask/horse_mask, /obj/item/clothing/mask/clown_hat, /obj/item/clothing/head/cowboy, /obj/item/clothing/shoes/cowboy, /obj/item/clothing/shoes/moon,
-/obj/item/clothing/suit/sweater, /obj/item/clothing/suit/sweater/red, /obj/item/clothing/suit/sweater/green, /obj/item/clothing/suit/sweater/grandma, /obj/item/clothing/under/shorts,
-/obj/item/clothing/under/suit/pinstripe, /obj/item/cigpacket, /obj/item/coin, /obj/item/crowbar, /obj/item/pen/crayon/lipstick,
-/obj/item/dice, /obj/item/dice/d20, /obj/item/device/light/flashlight, /obj/item/device/key/random, /obj/item/extinguisher, /obj/item/firework,
-/obj/item/football, /obj/item/material_piece/gold, /obj/item/instrument/harmonica, /obj/item/horseshoe,
-/obj/item/kitchen/utensil/knife, /obj/item/raw_material/rock, /obj/item/pen/fancy, /obj/item/pen/odd, /obj/item/plant/herb/cannabis/spawnable,
-/obj/item/razor_blade,/obj/item/rubberduck, /obj/item/instrument/saxophone, /obj/item/scissors, /obj/item/screwdriver, /obj/item/skull, /obj/item/stamp,
-/obj/item/instrument/vuvuzela, /obj/item/wrench, /obj/item/device/light/zippo, /obj/item/reagent_containers/food/drinks/bottle/beer, /obj/item/reagent_containers/food/drinks/bottle/vintage,
-/obj/item/reagent_containers/food/drinks/bottle/vodka, /obj/item/reagent_containers/food/drinks/bottle/rum, /obj/item/reagent_containers/food/drinks/bottle/hobo_wine/safe,
-/obj/item/reagent_containers/food/snacks/burger, /obj/item/reagent_containers/food/snacks/burger/cheeseburger,
-/obj/item/reagent_containers/food/snacks/burger/moldy,/obj/item/reagent_containers/food/snacks/candy/chocolate, /obj/item/reagent_containers/food/snacks/chips,
-/obj/item/reagent_containers/food/snacks/cookie,/obj/item/reagent_containers/food/snacks/ingredient/egg,
-/obj/item/reagent_containers/food/snacks/ingredient/egg/bee,/obj/item/reagent_containers/food/snacks/plant/apple,
-/obj/item/reagent_containers/food/snacks/plant/banana, /obj/item/reagent_containers/food/snacks/plant/potato, /obj/item/reagent_containers/food/snacks/sandwich/pb,
-/obj/item/reagent_containers/food/snacks/sandwich/cheese, /obj/item/reagent_containers/syringe/krokodil, /obj/item/reagent_containers/syringe/morphine,
-/obj/item/reagent_containers/patch/LSD, /obj/item/reagent_containers/patch/lsd_bee, /obj/item/reagent_containers/patch/nicotine, /obj/item/reagent_containers/glass/bucket, /obj/item/reagent_containers/glass/beaker,
-/obj/item/reagent_containers/food/drinks/drinkingglass, /obj/item/reagent_containers/food/drinks/drinkingglass/shot,/obj/item/storage/pill_bottle/bathsalts,
-/obj/item/storage/pill_bottle/catdrugs, /obj/item/storage/pill_bottle/crank, /obj/item/storage/pill_bottle/cyberpunk, /obj/item/storage/pill_bottle/methamphetamine,
-/obj/item/spraybottle,/obj/item/staple_gun,/obj/item/clothing/head/NTberet,/obj/item/clothing/head/biker_cap, /obj/item/clothing/head/black, /obj/item/clothing/head/blue,
-/obj/item/clothing/head/brummie, /obj/item/clothing/head/det_hat, /obj/item/clothing/head/green, /obj/item/clothing/head/helmet/hardhat, /obj/item/clothing/head/merchant_hat,
-/obj/item/clothing/head/mj_hat, /obj/item/clothing/head/red, /obj/item/clothing/head/that, /obj/item/clothing/head/wig, /obj/item/clothing/head/turban, /obj/item/dice/magic8ball,
-/obj/item/reagent_containers/food/drinks/mug/random_color, /obj/item/reagent_containers/food/drinks/skull_chalice, /obj/item/pen/marker/random, /obj/item/pen/crayon/random,
-/obj/item/clothing/gloves/yellow/unsulated, /obj/item/reagent_containers/food/snacks/fortune_cookie, /obj/item/instrument/triangle, /obj/item/instrument/tambourine, /obj/item/instrument/cowbell,
-/obj/item/toy/plush/small/bee, /obj/item/paper/book/from_file/the_trial, /obj/item/paper/book/from_file/deep_blue_sea, /obj/item/clothing/suit/bedsheet/cape/red, /obj/item/disk/data/cartridge/clown,
-/obj/item/clothing/mask/cigarette/cigar, /obj/item/device/light/sparkler, /obj/item/toy/sponge_capsule, /obj/item/reagent_containers/food/snacks/plant/pear, /obj/item/reagent_containers/food/snacks/donkpocket/honk/warm,
-/obj/item/seed/alien, /obj/item/clothing/under/gimmick/bossCalifornia)
+var/list/trinket_safelist = list(\
+	/obj/item/basketball,\
+	/obj/item/instrument/bikehorn,\
+	/obj/item/brick,\
+	/obj/item/clothing/glasses/eyepatch,\
+	/obj/item/clothing/glasses/regular,\
+	/obj/item/clothing/glasses/sunglasses,\
+	/obj/item/clothing/gloves/boxing,\
+	/obj/item/clothing/mask/horse_mask,\
+	/obj/item/clothing/mask/clown_hat,\
+	/obj/item/clothing/head/cowboy,\
+	/obj/item/clothing/shoes/cowboy,\
+	/obj/item/clothing/shoes/moon,\
+	/obj/item/clothing/suit/sweater,\
+	/obj/item/clothing/suit/sweater/red,\
+	/obj/item/clothing/suit/sweater/green,\
+	/obj/item/clothing/suit/sweater/grandma,\
+	/obj/item/clothing/under/shorts,\
+	/obj/item/clothing/under/suit/pinstripe,\
+	/obj/item/cigpacket,\
+	/obj/item/coin,\
+	/obj/item/crowbar,\
+	/obj/item/pen/crayon/lipstick,\
+	/obj/item/dice,\
+	/obj/item/dice/d20,\
+	/obj/item/device/light/flashlight,\
+	/obj/item/device/key/random,\
+	/obj/item/extinguisher,\
+	/obj/item/firework,\
+	/obj/item/football,\
+	/obj/item/material_piece/gold,\
+	/obj/item/instrument/harmonica,\
+	/obj/item/horseshoe,\
+	/obj/item/kitchen/utensil/knife,\
+	/obj/item/raw_material/rock,\
+	/obj/item/pen/fancy,\
+	/obj/item/pen/odd,\
+	/obj/item/plant/herb/cannabis/spawnable,\
+	/obj/item/razor_blade,\
+	/obj/item/rubberduck,\
+	/obj/item/instrument/saxophone,\
+	/obj/item/scissors,\
+	/obj/item/screwdriver,\
+	/obj/item/skull,\
+	/obj/item/stamp,\
+	/obj/item/instrument/vuvuzela,\
+	/obj/item/wrench,\
+	/obj/item/device/light/zippo,\
+	/obj/item/reagent_containers/food/drinks/bottle/beer,\
+	/obj/item/reagent_containers/food/drinks/bottle/vintage,\
+	/obj/item/reagent_containers/food/drinks/bottle/vodka,\
+	/obj/item/reagent_containers/food/drinks/bottle/rum,\
+	/obj/item/reagent_containers/food/drinks/bottle/hobo_wine/safe,\
+	/obj/item/reagent_containers/food/snacks/burger,\
+	/obj/item/reagent_containers/food/snacks/burger/cheeseburger,\
+	/obj/item/reagent_containers/food/snacks/burger/moldy,\
+	/obj/item/reagent_containers/food/snacks/candy/chocolate,\
+	/obj/item/reagent_containers/food/snacks/chips,\
+	/obj/item/reagent_containers/food/snacks/cookie,\
+	/obj/item/reagent_containers/food/snacks/ingredient/egg,\
+	/obj/item/reagent_containers/food/snacks/ingredient/egg/bee,\
+	/obj/item/reagent_containers/food/snacks/plant/apple,\
+	/obj/item/reagent_containers/food/snacks/plant/banana,\
+	/obj/item/reagent_containers/food/snacks/plant/potato,\
+	/obj/item/reagent_containers/food/snacks/sandwich/pb,\
+	/obj/item/reagent_containers/food/snacks/sandwich/cheese,\
+	/obj/item/reagent_containers/syringe/krokodil,\
+	/obj/item/reagent_containers/syringe/morphine,\
+	/obj/item/reagent_containers/patch/LSD,\
+	/obj/item/reagent_containers/patch/lsd_bee,\
+	/obj/item/reagent_containers/patch/nicotine,\
+	/obj/item/reagent_containers/glass/bucket,\
+	/obj/item/reagent_containers/glass/beaker,\
+	/obj/item/reagent_containers/food/drinks/drinkingglass,\
+	/obj/item/reagent_containers/food/drinks/drinkingglass/shot,\
+	/obj/item/storage/pill_bottle/bathsalts,\
+	/obj/item/storage/pill_bottle/catdrugs,\
+	/obj/item/storage/pill_bottle/crank,\
+	/obj/item/storage/pill_bottle/cyberpunk,\
+	/obj/item/storage/pill_bottle/methamphetamine,\
+	/obj/item/spraybottle,\
+	/obj/item/staple_gun,\
+	/obj/item/clothing/head/NTberet,\
+	/obj/item/clothing/head/biker_cap,\
+	/obj/item/clothing/head/black,\
+	/obj/item/clothing/head/blue,\
+	/obj/item/clothing/head/brummie,\
+	/obj/item/clothing/head/det_hat,\
+	/obj/item/clothing/head/green,\
+	/obj/item/clothing/head/helmet/hardhat,\
+	/obj/item/clothing/head/merchant_hat,\
+	/obj/item/clothing/head/mj_hat,\
+	/obj/item/clothing/head/red,\
+	/obj/item/clothing/head/that,\
+	/obj/item/clothing/head/wig,\
+	/obj/item/clothing/head/turban,\
+	/obj/item/dice/magic8ball,\
+	/obj/item/reagent_containers/food/drinks/mug/random_color,\
+	/obj/item/reagent_containers/food/drinks/skull_chalice,\
+	/obj/item/pen/marker/random,\
+	/obj/item/pen/crayon/random,\
+	/obj/item/clothing/gloves/yellow/unsulated,\
+	/obj/item/reagent_containers/food/snacks/fortune_cookie,\
+	/obj/item/instrument/triangle,\
+	/obj/item/instrument/tambourine,\
+	/obj/item/instrument/cowbell,\
+	/obj/item/toy/plush/small/bee,\
+	/obj/item/paper/book/from_file/the_trial,\
+	/obj/item/paper/book/from_file/deep_blue_sea,\
+	/obj/item/clothing/suit/bedsheet/cape/red,\
+	/obj/item/disk/data/cartridge/clown,\
+	/obj/item/clothing/mask/cigarette/cigar,\
+	/obj/item/device/light/sparkler,\
+	/obj/item/toy/sponge_capsule,\
+	/obj/item/reagent_containers/food/snacks/plant/pear,\
+	/obj/item/reagent_containers/food/snacks/donkpocket/honk/warm,\
+	/obj/item/seed/alien,\
+	/obj/item/clothing/under/gimmick/bossCalifornia)

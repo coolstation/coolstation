@@ -63,6 +63,8 @@ var/global/list/datum/mind/battle_pass_holders = list()
 	current_battle_spawn_name = pick(drop_locations)
 	current_battle_spawn = drop_locations[current_battle_spawn_name]
 
+	for_by_tcl(secbot, /mob/living/critter/robotic/bot/securitron)
+		qdel(secbot)
 
 	hide_weapons_everywhere()
 	next_storm = world.time + rand(MIN_TIME_BETWEEN_STORMS,MAX_TIME_BETWEEN_STORMS)
@@ -167,9 +169,9 @@ proc/hide_weapons_everywhere()
 
 
 	// Feel free to add more!
-	murder_supplies.Add(/obj/item/gun/kinetic/light_machine_gun)
+	/*murder_supplies.Add(/obj/item/gun/kinetic/light_machine_gun)
 	murder_supplies.Add(/obj/item/gun/kinetic/assault_rifle)
-	murder_supplies.Add(/obj/item/gun/kinetic/pistol)
+	murder_supplies.Add(/obj/item/gun/kinetic/pistol)*/
 
 
 	for_by_tcl(S, /obj/storage) // imcoder

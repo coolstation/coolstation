@@ -101,7 +101,7 @@
 					boutput(user, "<span class='alert'>[src] is full.</span>")
 					return
 
-				if (target.is_open_container() != 1 && !istype(target,/obj/reagent_dispensers))
+				if (!target.is_open_container() && !istype(target,/obj/reagent_dispensers))
 					boutput(user, "<span class='alert'>You cannot directly remove reagents from this object.</span>")
 					return
 
@@ -196,7 +196,7 @@
 				// Also ignore that second container of blood entirely if it's a vampire (Convair880).
 				var/mob/living/carbon/human/H = target
 				if (istype(H))
-					if ((isvampire(H) && (H.get_vampire_blood() <= 0)) || (!isvampire(H) && (H.blood_volume + H.reagents.total_volume == 0)))
+					if ((isvampire(H) && (H.get_vampire_blood() <= 0)) || (!isvampire(H) && !H.reagents.total_volume))
 						user.show_text("[H]'s veins appear to be completely dry!", "red")
 						return
 

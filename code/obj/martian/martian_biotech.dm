@@ -9,7 +9,7 @@
   desc = "What the fuck even is this?"
   icon = 'icons/obj/unused/martian.dmi'
   icon_state = "cloner"
-  anchored = 1
+  anchored = ANCHORED
   density = 1
   var/health = 100
   var/maxHealth

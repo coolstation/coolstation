@@ -461,7 +461,6 @@
 	special_screen_loc="NORTH,EAST-1"
 	min_req_dist = 10
 
-	var/datum/radio_frequency/pda_connection
 	var/obj/spookMarker/marker = new /obj/spookMarker()		//removed for now
 	var/status = 0
 	var/static/list/effects = list("Flip light switches" = 1, "Burn out lights" = 2, "Create smoke" = 3, "Create ectoplasm" = 4, "Sap APC" = 5, "Haunt PDAs" = 6, "Open doors, lockers, crates" = 7, "Random" = 8)
@@ -470,7 +469,6 @@
 
 	New()
 		..()
-		pda_connection = radio_controller.return_frequency("[FREQ_PDA]")
 		object.contextLayout = new /datum/contextLayout/screen_HUD_default(2, 16, 16)//, -32, -32)
 		if (!object.contextActions)
 			object.contextActions = list()
@@ -479,25 +477,18 @@
 			var/datum/contextAction/wraith_spook_button/newcontext = new /datum/contextAction/wraith_spook_button(i)
 			object.contextActions += newcontext
 
-	disposing()
-		radio_controller.remove_object(src, "[FREQ_PDA]")
-		..()
-
 	proc/haunt_pda(var/obj/item/device/pda2/pda)
-		if (!pda_connection)
-			return
 		var/message = pick("boo", "git spooked", "BOOM", "there's a skeleton inside of you", "DEHUMANIZE YOURSELF AND FACE TO BLOODSHED", "ICARUS HAS FOUND YOU!!!!! RUN WHILE YOU CAN!!!!!!!!!!!")
 
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src.holder.owner
-		signal.transmission_method = TRANSMISSION_RADIO
 		signal.data["command"] = "text_message"
 		signal.data["sender_name"] = holder.owner.name
 		signal.data["message"] = "[message]" // (?)
 		signal.data["sender"] = "00000000" // surely this isn't going to be a problem
 		signal.data["address_1"] = pda.net_id
 
-		pda_connection.post_signal(src, signal)
+		radio_controller.get_frequency(FREQ_PDA).post_packet_without_source(signal)
 
 	cast()
 		if (..())
@@ -746,7 +737,7 @@
 	icon_state = "acursed"
 	// invisibility = 101
 	invisibility = 10
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	mouse_opacity = 0

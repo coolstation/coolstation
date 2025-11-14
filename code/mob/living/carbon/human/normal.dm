@@ -320,7 +320,7 @@
 				src.equip_new_if_possible(/obj/item/clothing/under/patient_gown, slot_w_uniform)
 
 				// they were embalmed so no free blood
-				src.blood_volume = 0
+				src.reagents.clear_reagents()
 				src.reagents.add_reagent("formaldehyde", 15)
 
 				// some organs may have been harvested as well?
@@ -343,7 +343,7 @@
 				src.equip_new_if_possible(/obj/item/clothing/under/misc/clown, slot_w_uniform)
 				src.equip_new_if_possible(/obj/item/clothing/shoes/clown_shoes, slot_shoes)
 
-				src.blood_volume = 0
+				src.reagents.clear_reagents()
 				src.reagents.add_reagent("formaldehyde", 15)
 
 
@@ -361,7 +361,7 @@
 				src.real_name = "martian"
 				src.hair_override = FALSE
 				src.set_mutantrace(/datum/mutantrace/martian)
-				src.blood_volume = 0
+				src.reagents.clear_reagents()
 
 		miner_accident
 			New()
@@ -372,7 +372,7 @@
 				src.equip_new_if_possible(/obj/item/clothing/gloves/black, slot_gloves)
 
 				src.real_name = "headless miner"
-				src.blood_volume = 0
+				src.reagents.clear_reagents()
 				if(src.get_organ("head"))
 					qdel(src.get_organ("head"))
 				src.bioHolder.AddEffect("dwarf")

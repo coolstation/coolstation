@@ -17,14 +17,6 @@
 	dir = 4
 	},
 /area/station/maintenance/disposal)
-"aau" = (
-/obj/table/reinforced/industrial/auto,
-/obj/machinery/light/small/cool{
-	dir = 1
-	},
-/obj/item/stackable_ammo/scatter/juicer/three,
-/turf/floor/black,
-/area/station/ai_monitored/armory)
 "aaE" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
@@ -5912,6 +5904,22 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/medical/staff)
+"dBA" = (
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-4"
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/plating{
+	icon_old = "fullblack"
+	},
+/area/station/engine/hotloop)
 "dBU" = (
 /obj/item/instrument/harmonica,
 /turf/floor/plating,
@@ -5978,7 +5986,7 @@
 /turf/floor/plating,
 /area/station/storage/warehouse)
 "dDy" = (
-/obj/item/gun_parts/magazine/juicer,
+/obj/item/gun_parts/accessory/magazine/juicer,
 /obj/lattice,
 /turf/floor/plating/gehenna,
 /area/noGenerate)
@@ -6588,7 +6596,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
-/obj/item/gun/modular/NT/short/pistol,
+/obj/item/gun/modular/NT/pistol,
 /turf/floor/black,
 /area/station/security/armory{
 	name = "Small Arms"
@@ -8374,6 +8382,11 @@
 "eOd" = (
 /turf/wall,
 /area/station/engine/hotloop)
+"eOh" = (
+/obj/table/reinforced/auto,
+/obj/item/stackable_ammo/shotgun/slug_rubber/ten,
+/turf/floor/black,
+/area/station/ai_monitored/armory)
 "eOL" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -8754,8 +8767,8 @@
 	icon_state = "bot2"
 	},
 /obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	location = "Mechlab #2"
+	beacon_id = "Mechlab #2";
+	codes_txt = "delivery;dir=4"
 	},
 /obj/item/storage/box/cablesbox{
 	pixel_x = -3;
@@ -10576,8 +10589,8 @@
 	icon_state = "bot2"
 	},
 /obj/machinery/navbeacon{
-	codes_txt = "delivery;dir=4";
-	location = "Mechlab #1"
+	beacon_id = "Mechlab #1";
+	codes_txt = "delivery;dir=4"
 	},
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_x = 32
@@ -13412,16 +13425,6 @@
 	},
 /area/station/maintenance/outer/east{
 	name = "East Lower Maintenance"
-	})
-"hPR" = (
-/obj/table/auto{
-	color = "#666666"
-	},
-/obj/machinery/light/fluorescent/cool/very,
-/obj/item/stackable_ammo/scatter/slug_rubber/ten,
-/turf/floor/black,
-/area/station/security/armory{
-	name = "Small Arms"
 	})
 "hPT" = (
 /obj/cable{
@@ -16363,6 +16366,14 @@
 /obj/disposalpipe/segment/sewage,
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"jwa" = (
+/obj/table/reinforced/industrial/auto,
+/obj/machinery/light/small/cool{
+	dir = 1
+	},
+/obj/item/stackable_ammo/shotgun/juicer/three,
+/turf/floor/black,
+/area/station/ai_monitored/armory)
 "jxi" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -18566,7 +18577,6 @@
 	pixel_x = -7;
 	pixel_y = 6
 	},
-/obj/item/paper/hellburn,
 /obj/item/wrench{
 	pixel_y = 5
 	},
@@ -21226,7 +21236,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
-/obj/item/gun/modular/NT/long/shotty,
+/obj/item/gun/modular/NT/shotty,
 /turf/floor/black,
 /area/station/security/armory{
 	name = "Small Arms"
@@ -25811,7 +25821,7 @@
 /obj/table/glass/reinforced/auto{
 	color = "#666666"
 	},
-/obj/item/gun/modular/NT/long/rifle,
+/obj/item/gun/modular/NT/rifle,
 /turf/floor/black,
 /area/station/security/armory{
 	name = "Small Arms"
@@ -25906,11 +25916,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/south)
-"pcc" = (
-/obj/table/reinforced/auto,
-/obj/item/stackable_ammo/scatter/slug_rubber/ten,
-/turf/floor/black,
-/area/station/ai_monitored/armory)
 "pcg" = (
 /obj/machinery/vending/gunse{
 	acceptcard = 0;
@@ -26262,7 +26267,7 @@
 "ppc" = (
 /obj/table/wood/auto,
 /obj/displaycase{
-	displayed = new/obj/item/captaingun;
+	displayed = new/obj/item/saxophone;
 	pixel_y = 6
 	},
 /turf/floor/carpet/arcade/half,
@@ -33365,7 +33370,7 @@
 /turf/floor,
 /area/station/security/processing)
 "tFT" = (
-/obj/decal/cleanable/bigchallenges,
+/obj/decal/cleanable/gang_graffiti/bigchallenges,
 /turf/wall/r_wall,
 /area/gehenna/underground/staffies_nest)
 "tGb" = (
@@ -34654,22 +34659,6 @@
 "uuY" = (
 /turf/wall,
 /area/station/science/research_director)
-"uvo" = (
-/obj/machinery/power/data_terminal/cable_tray{
-	target_z = 1
-	},
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-4"
-	},
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/floor/plating{
-	icon_old = "fullblack"
-	},
-/area/station/engine/hotloop)
 "uvE" = (
 /obj/table/wood/auto,
 /obj/machinery/coffeemaker/medbay{
@@ -39689,6 +39678,16 @@
 	},
 /turf/floor/grey,
 /area/station/science/bot_storage)
+"xxh" = (
+/obj/table/auto{
+	color = "#666666"
+	},
+/obj/machinery/light/fluorescent/cool/very,
+/obj/item/stackable_ammo/shotgun/slug_rubber/ten,
+/turf/floor/black,
+/area/station/security/armory{
+	name = "Small Arms"
+	})
 "xxn" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9
@@ -90666,7 +90665,7 @@ taZ
 taZ
 tXJ
 iYQ
-pcc
+eOh
 iYQ
 mpC
 iYQ
@@ -92174,7 +92173,7 @@ pdO
 pdO
 taZ
 taZ
-aau
+jwa
 xXb
 kWS
 kgJ
@@ -93398,7 +93397,7 @@ ybs
 ijD
 ijD
 ijD
-hPR
+xxh
 qbq
 qbq
 rBb
@@ -96786,8 +96785,8 @@ hzE
 sdO
 aLW
 hFz
-uvo
-uvo
+dBA
+dBA
 wZK
 asl
 nOQ

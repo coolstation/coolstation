@@ -7,11 +7,14 @@
 	target_nodamage_check = 1
 	target_selection_check = 1
 	max_range = 1
+	ai_range = 1
 	cooldown = 350
 	start_on_cooldown = 1
 	pointCost = 0
 	when_stunned = 0
 	not_when_handcuffed = 1
+	attack_mobs = TRUE
+
 
 	cast(mob/target)
 		if (!holder)

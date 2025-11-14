@@ -13,10 +13,10 @@ What are the archived variables for?
 
 /datum/gas/sleeping_agent
 	specific_heat = 40
+/*
 /datum/gas/oxygen_agent_b
 	specific_heat = 300
-/datum/gas/volatile_fuel
-	specific_heat = 30
+*/
 /datum/gas/rad_particles
 	specific_heat = 20
 
@@ -84,14 +84,6 @@ What are the archived variables for?
 /datum/gas_mixture/proc/zero()
 	clear_trace_gases()
 	ZERO_BASE_GASES(src)
-	if (map_currently_underwater)
-		oxygen = MOLES_O2STANDARD * 0.5
-		nitrogen = MOLES_N2STANDARD * 0.5
-		temperature = OCEAN_TEMP
-
-/datum/gas_mixture/proc/vacuum() //yknow, for when you want "zero" to actually mean "zero".
-	clear_trace_gases()
-	ZERO_BASE_GASES(src)
 
 /// Perform all handeling required to clear out trace gases
 /datum/gas_mixture/proc/clear_trace_gases()
@@ -145,6 +137,7 @@ What are the archived variables for?
 	. = 0 //set to non-zero if a notable reaction occured (used by pipe_network and hotspots)
 	var/reaction_rate
 
+/*
 	if(length(src.trace_gases))
 		if(src.temperature > 900 && src.toxins > MINIMUM_REACT_QUANTITY && src.carbon_dioxide > MINIMUM_REACT_QUANTITY)
 			// refs are accessed directly to optimize functions as trace_gases
@@ -164,6 +157,7 @@ What are the archived variables for?
 				if(reaction_rate > MINIMUM_REACT_QUANTITY)
 					. |= CATALYST_ACTIVE
 				. |= REACTION_ACTIVE
+*/
 
 	if(src.temperature > 900 && src.farts > MINIMUM_REACT_QUANTITY && src.toxins > MINIMUM_REACT_QUANTITY && src.carbon_dioxide > MINIMUM_REACT_QUANTITY)
 		reaction_rate = min(src.carbon_dioxide*0.75, src.toxins*0.25, src.farts*0.05)
@@ -185,26 +179,6 @@ What are the archived variables for?
 /datum/gas_mixture/proc/fire()
 	var/energy_released = 0
 	var/old_heat_capacity = HEAT_CAPACITY(src)
-
-	if(length(src.trace_gases))
-		var/datum/gas/volatile_fuel/fuel_store = src.get_trace_gas_by_type(/datum/gas/volatile_fuel/)
-		if(fuel_store) //General volatile gas burn
-			var/burned_fuel = 0
-
-			if(src.oxygen < fuel_store.moles)
-				burned_fuel = src.oxygen
-				fuel_store.moles -= burned_fuel
-				src.oxygen = 0
-			else
-				burned_fuel = fuel_store.moles
-				src.oxygen -= fuel_store.moles
-				//qdel(fuel_store)
-				src.remove_trace_gas(fuel_store)
-				fuel_store = null
-
-			energy_released += FIRE_CARBON_ENERGY_RELEASED * burned_fuel
-			src.carbon_dioxide += burned_fuel
-			src.fuel_burnt += burned_fuel
 
 	//Handle plasma burning
 	if(src.toxins > MINIMUM_REACT_QUANTITY)
@@ -356,6 +330,30 @@ What are the archived variables for?
 	removed.temperature = temperature
 
 	return removed
+
+//Used purely for the neverending flamethrower gimmick. works like remove_ratio but doesn't consume gas from src
+/datum/gas_mixture/proc/copy_ratio(ratio)
+	if(ratio <= 0)
+		return null
+
+	ratio = min(ratio, 1)
+
+	var/datum/gas_mixture/removed = new()
+
+	#define _REMOVE_GAS_RATIO(GAS, ...) \
+		removed.GAS = min(QUANTIZE(GAS*ratio), GAS); \
+	APPLY_TO_GASES(_REMOVE_GAS_RATIO)
+	#undef _REMOVE_GAS_RATIO
+
+	if(length(trace_gases))
+		for(var/datum/gas/trace_gas as anything in trace_gases)
+			var/datum/gas/corresponding = removed.get_or_add_trace_gas_by_type(trace_gas.type)
+			corresponding.moles = trace_gas.moles*ratio
+
+	removed.temperature = temperature
+
+	return removed
+
 
 //Similar to remove(...) but first checks to see if the amount of air removed is small enough
 //	that group processing is still accurate for source (aborts if not)
@@ -654,7 +652,7 @@ What are the archived variables for?
 
 		temperature_mimic(model, model.thermal_conductivity, border_multiplier)
 
-	if((delta_temperature > MINIMUM_TEMPERATURE_TO_MOVE))
+	if((abs(delta_temperature) > MINIMUM_TEMPERATURE_TO_MOVE) || abs(moved_moles) > MINIMUM_MOLES_DELTA_TO_MOVE)
 		var/delta_pressure = ARCHIVED(temperature)*(TOTAL_MOLES(src) + moved_moles) - model.temperature*BASE_GASES_TOTAL_MOLES(model)
 		return (delta_pressure*R_IDEAL_GAS_EQUATION/volume)
 	else

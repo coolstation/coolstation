@@ -19,6 +19,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 	var/list/initial_reagents = null // can be a list, an associative list (reagent=amt), or a string.  list will add an equal chunk of each reagent, associative list will add amt of reagent, string will add initial_volume of reagent
 	var/incompatible_with_chem_dispensers = 0
 	var/can_mousedrop = 1
+	var/has_digested = FALSE
 	move_triggered = 1
 
 	var/last_new_initial_reagents = 0 //fuck
@@ -239,7 +240,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 
 			playsound(src.loc, 'sound/impact_sounds/Liquid_Slosh_1.ogg', 25, 1, 0.3)
 
-		else if (istype(target, /obj/reagent_dispensers) || (target.is_open_container() == -1 && target.reagents) || ((istype(target, /obj/fluid) && !istype(target, /obj/fluid/airborne)) && !src.reagents.total_volume)) //A dispenser. Transfer FROM it TO us.
+		else if (istype(target, /obj/reagent_dispensers) || /*(target.is_open_container() == -1 && target.reagents) ||*/ ((istype(target, /obj/fluid) && !istype(target, /obj/fluid/airborne)) && !src.reagents.total_volume)) //A dispenser. Transfer FROM it TO us.
 			if (target.reagents && !target.reagents.total_volume)
 				boutput(user, "<span class='alert'>[target] is empty.</span>")
 				return
@@ -401,7 +402,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 		//Hacky thing to make silver bullets (maybe todo later : all items can be dipped in any solution?)
 		//OKAY SO THESE ARE FOR ALL THE OLD AMMO TYPES, gonna have to redo this for stackable. TODO: please. god. anyway disabling for now
 		/*
-		else if (istype(I, /obj/item/ammo/bullets/pistol_weak) ||istype(I, /obj/item/ammo/bullets/pistol_medium) || istype(I, /obj/item/ammo/bullets/a38) || istype(I, /obj/item/ammo/bullets/custom) || (I.type == /obj/item/handcuffs) || istype(I,/datum/projectile/bullet/revolver_38))
+		else if (istype(I, /obj/item/ammo/bullets/pistol_weak) ||istype(I, /obj/item/ammo/bullets/pistol_italian) || istype(I, /obj/item/ammo/bullets/a38) || istype(I, /obj/item/ammo/bullets/custom) || (I.type == /obj/item/handcuffs) || istype(I,/datum/projectile/bullet/revolver_38))
 			if ("silver" in src.reagents.reaction(I, react_volume = src.reagents.total_volume))
 				user.visible_message("<span class='alert'><b>[user]</b> dips [I] into [src] coating it in silver. Watch out, evil creatures!</span>")
 				I.tooltip_rebuild = 1

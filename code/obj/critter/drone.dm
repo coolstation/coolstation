@@ -78,7 +78,7 @@
 
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 
 		var/area/AR = get_area(src)
 		if (AR == colosseum_controller.colosseum)
@@ -357,7 +357,7 @@
 						if (M)
 							if(!src.attacking) ChaseAttack(M)
 							src.task = "attacking"
-							src.anchored = 1
+							src.anchored = ANCHORED
 							src.target_lastloc = M.loc
 							if(prob(15)) walk_rand(src,4) // juke around and dodge shots
 
@@ -390,7 +390,7 @@
 				if(prob(15)) walk_rand(src,4) // juke around and dodge shots
 				// see if he got away
 				if ((get_dist(src, src.target) > 1) || ((src.target:loc != src.target_lastloc)))
-					src.anchored = 0
+					src.anchored = UNANCHORED
 					src.task = "chasing"
 				else
 					if (get_dist(src, src.target) <= 1)
@@ -399,7 +399,7 @@
 						if (!src.aggressive)
 							src.task = "thinking"
 							src.target = null
-							src.anchored = 0
+							src.anchored = UNANCHORED
 							src.last_found = world.time
 							src.frustration = 0
 							src.attacking = 0
@@ -408,12 +408,12 @@
 								if (M.health < 0)
 									src.task = "thinking"
 									src.target = null
-									src.anchored = 0
+									src.anchored = UNANCHORED
 									src.last_found = world.time
 									src.frustration = 0
 									src.attacking = 0
 					else
-						src.anchored = 0
+						src.anchored = UNANCHORED
 						src.attacking = 0
 						src.task = "chasing"
 			if("wandering")
@@ -536,8 +536,8 @@
 		alertsound1 = 'sound/machines/engine_alert1.ogg'
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
 		droploot = /obj/item/shipcomponent/secondary_system/crash
-		projectile_type = /datum/projectile/bullet/slug_boom
-		current_projectile = new/datum/projectile/bullet/slug_boom
+		projectile_type = /datum/projectile/bullet/slug/boom
+		current_projectile = new/datum/projectile/bullet/slug/boom
 		attack_cooldown = 50
 		New()
 			..()
@@ -555,8 +555,8 @@
 		alertsound1 = 'sound/machines/engine_alert1.ogg'
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
 		droploot = /obj/item/bang_gun
-		projectile_type = /datum/projectile/bullet/rifle_medium
-		current_projectile = new/datum/projectile/bullet/rifle_medium
+		projectile_type = /datum/projectile/bullet/rifle/soviet
+		current_projectile = new/datum/projectile/bullet/rifle/soviet
 		attack_cooldown = 20
 		New()
 			..()
@@ -594,7 +594,7 @@
 				var/list/affected = DrawLine(src, target_r, /obj/line_obj/railgun ,'icons/obj/projectiles.dmi',"WholeRailG",1,1,"HalfStartRailG","HalfEndRailG",OBJ_LAYER,1)
 
 				for(var/obj/O in affected)
-					O.anchored = 1 //Proc wont spawn the right object type so lets do that here.
+					O.anchored = ANCHORED //Proc wont spawn the right object type so lets do that here.
 					O.name = "Energy"
 					var/turf/src_turf = O.loc
 					for(var/obj/machinery/vehicle/A in src_turf)
@@ -709,8 +709,8 @@
 		alertsound2 = 'sound/machines/engine_alert1.ogg'
 		//NT faction rep deprecated
 		//droploot = /obj/item/factionrep/ntboard
-		projectile_type = /datum/projectile/bullet/lmg/weak
-		current_projectile = new/datum/projectile/bullet/lmg/weak
+		projectile_type = /datum/projectile/bullet/pistol/juicer
+		current_projectile = new/datum/projectile/bullet/pistol/juicer
 		attack_cooldown = 20
 		projectile_spread = 13
 
@@ -1273,9 +1273,9 @@
 	alertsound1 = 0
 
 	alertsound2 = 0
-	projectile_type = /datum/projectile/bullet/pistol_heavy
-	current_projectile = new/datum/projectile/bullet/pistol_heavy
-	attack_cooldown = 20
+	projectile_type = /datum/projectile/bullet/pistol/juicer
+	current_projectile = new/datum/projectile/bullet/pistol/juicer
+	attack_cooldown = 15
 
 	var/voice_gender = "male"
 

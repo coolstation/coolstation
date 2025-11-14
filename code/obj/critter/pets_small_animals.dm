@@ -261,7 +261,7 @@
 #endif
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		//for (var/obj/critter/mouse/C in view(src.seekrange,src))
 		var/list/mice_in_area = list()
 		for (var/obj/critter/mouse/C in view(src.seekrange,src))
@@ -476,7 +476,7 @@
 		STOP_TRACKING
 /*
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/obj/critter/cat/C in view(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"
@@ -604,7 +604,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 		return
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/obj/critter/mouse/C in view(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"
@@ -1334,7 +1334,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 				return
 			if (istype(FP, /obj/stool))
 				var/obj/stool/S = FP
-				S.anchored = 0
+				S.anchored = UNANCHORED
 			else if (istype(FP, /obj/item/chair/folded))
 				var/obj/item/chair/folded/F = FP
 				F.c_color = "chair[pick("","-b","-y","-r","-g")]"

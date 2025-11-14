@@ -13,7 +13,7 @@
 	var/party = 0
 	var/duration = 60//admemes
 	var/list/lights = list()
-	anchored = 1.0
+	anchored = ANCHORED
 	mats = 0
 
 /obj/machinery/partyalarm/process()
