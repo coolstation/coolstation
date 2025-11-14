@@ -1,4 +1,4 @@
-var/list/admin_verbs = list(
+var/list/admin_verbs = alist(
 
 
 	1 = list(
