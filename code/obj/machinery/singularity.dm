@@ -212,22 +212,22 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	var/turf/T = src.get_center()
 	// the block to the south, including corners
 	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y - src.radius - src.grav_range, T.z, T.x + src.radius + src.grav_range, T.y - src.radius - src.grav_range))
-		for (var/atom/movable/AM in T)
+		for (var/atom/movable/AM in T2)
 			if (!AM.anchored)
 				step_towards(AM, src)
 	// the block to the north, including corners
 	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y + src.radius + src.grav_range, T.z, T.x + src.radius + src.grav_range, T.y + src.radius + src.grav_range))
-		for (var/atom/movable/AM in T)
+		for (var/atom/movable/AM in T2)
 			if (!AM.anchored)
 				step_towards(AM, src)
 	// the block to the east, excluding corners
 	for(var/turf/T2 in block(T.x + src.radius + src.grav_range, T.y - src.radius, T.z, T.x + src.radius + src.grav_range, T.y + src.radius))
-		for (var/atom/movable/AM in T)
+		for (var/atom/movable/AM in T2)
 			if (!AM.anchored)
 				step_towards(AM, src)
 	// the block to the west, excluding corners
 	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y - src.radius, T.z, T.x - src.radius - src.grav_range, T.y + src.radius))
-		for (var/atom/movable/AM in T)
+		for (var/atom/movable/AM in T2)
 			if (!AM.anchored)
 				step_towards(AM, src)
 
@@ -321,6 +321,12 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		for(var/turf/T in src.locs)
 			for(var/atom/movable/AM in T.contents)
 				eat_atom(AM)
+			eat_atom(T)
+
+/obj/machinery/the_singularity/Move(atom/target)
+	. = ..()
+	for(var/turf/T in src.locs)
+		eat_atom(T)
 
 /obj/machinery/the_singularity/Bumped(atom/A)
 	if(eat_atom(A))
