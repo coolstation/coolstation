@@ -9,7 +9,9 @@ Contains:
 */
 // I came here with good intentions, I swear, I didn't know what this code was like until I was already waist deep in it
 #define SINGULARITY_TIME TRUE
-#define FIELD_GENERATOR_MAX_LENGTH 11//defines the maximum dimension possible by a player created singularity.
+#define FIELD_GENERATOR_MAX_LENGTH 11			//defines the maximum dimension possible by a player created field gen.
+#define SINGULO_POWER_RADIUS_EXPONENT 1.25		//radius is put to this exponent for power generation purposes
+#define SINGULO_POWER_MULTIPLIER 6				//all power is multiplied by this
 #define EVENT_GROWTH 3//the rate at which the event proc radius is scaled relative to the radius of the singularity
 #define EVENT_MINIMUM 5//the base value added to the event proc radius, serves as the radius of a 1x1
 //Anchoring states for the emitters, field generators, and singulo jar
@@ -127,6 +129,7 @@ proc/singularity_containment_check(turf/center)
 	var/dieot = 0
 	var/selfmove = 1
 	var/radius = 0 //the variable used for all calculations involving size.this is the current size
+	var/scaled_radius = 1 //cheaper to store the radius to a formula in here when it changes
 	var/maxradius = INFINITY//the maximum size the singularity can grow to
 	var/grav_range = 3 //how many tiles from each side the singularity reaches out to pull things in
 
@@ -440,10 +443,12 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if (src.energy >= godver) //too small
 		if(src.radius < src.maxradius)
 			src.radius++
+			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
 			src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 64 * src.radius, 64 * src.radius, MATRIX_TRANSLATE)
 	else if (src.energy < godver2 && src.radius > 1)//too big
 		src.radius--
+		src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 		src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 64 * src.radius, 64 * src.radius, MATRIX_TRANSLATE)
 	src.bound_width = src.bound_height = 64 * src.radius + 32
 	src.grav_range = min(src.radius + 1, 5)
@@ -1528,7 +1533,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				//some other kind of scaling that isnt super harsh. its in the divisor idk bestie.
 				var/dist_to_singu = GET_DIST(singu.get_center(), src)
 				if(dist_to_singu < (singu.radius * 2 + (singu.active ? 15 : singu.maxradius)))
-					power_s += singu.energy * max((singu.radius**2),1) / (4 + dist_to_singu) * 4
+					power_s += singu.energy * singu.scaled_radius / (4 + dist_to_singu) * SINGULO_POWER_MULTIPLIER
 			//For each possible collector, grab the current moles of plasma in the tank and then delete some plasma
 			//If you don't top up the tank after grabbing it from the dispenser, it will take approximately 46.6 minutes (assuming no lag) at the current
 			//3.2s machine loop for an array to run dry. By that point, the SMES is max charge, so its not actually that dangerous.
@@ -1560,8 +1565,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		var/power_p = 0
 		for_by_tcl(singu, /obj/machinery/the_singularity)
 			var/dist_to_singu = GET_DIST(singu, src)
-			if(dist_to_singu < singu.radius * 8)
-				power_s += singu.energy * max((singu.radius**2),1) / (4 + dist_to_singu) * 4
+			if(dist_to_singu < (singu.radius * 2 + (singu.active ? 15 : singu.maxradius)))
+				power_s += singu.energy * singu.scaled_radius / (4 + dist_to_singu) * 4
 		power_p += 50
 		power_a = power_p*power_s*50
 		src.lastpower = power_a
