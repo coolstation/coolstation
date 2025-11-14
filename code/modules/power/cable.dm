@@ -12,6 +12,9 @@
 
 	elecflash(src)
 
+	if(!user)		//dont shock nobody ):
+		return 0
+
 	return user.shock(src, PN ? PN.avail : 0, user.hand == 1 ? "l_arm": "r_arm", 1, ignore_gloves ? 1 : 0)
 
 // attach a wire to a power machine - leads from the turf you are standing on
