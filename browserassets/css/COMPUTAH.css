@@ -16,11 +16,10 @@ body
 				font-style: normal;
 				src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
 			}
-			html { background: #0e0c05;
+			html { background-color: #0e0c05;
 					font-family: "Not Jam Mono Clean 16";
 					font-size: 16pt;
 					line-height: 1;
-					background: #030602;
 					animation-duration: 0.01s;
 					animation-name: textflicker;
 					animation-iteration-count: infinite;
@@ -40,6 +39,10 @@ body
 				display: flex;
 				flex-direction: row;
 			}
+			/**~~~~~~~~~~BOX GROUP~~~~~~~~~~ */
+			/**
+			 * The Box Class is useful for emphasizing variables, and is one of the most used classes for CSS in coolstation.
+			 */
               .box{
 				border: 2px solid #08FF03;
 				background-color: #11F20C;
@@ -58,16 +61,19 @@ body
 				font-weight: normal;
 				overflow-y:auto;
             }
+			/**Same as box but with reversed colors */
             .box.inverse{
                 border-style: solid;
 				background-color: #011201;
 				color: #08FF03;
-
-
             }
+			/*Color for Selectable items that are currently inactive */
 			.box.selector a{
 				color: #2e790c;
 			}
+			/**The 'Box Surround' Class is used typically as an outline for the whole HTML, or for storing and organizing different parts of the interface.
+			 * It utilizes flexbox.
+			 */
             .box.surround{
                 justify-content: space-around;
                 width: auto;
@@ -76,6 +82,7 @@ body
                 padding: 15px;
 				align-items: center;
             }
+			/**Box Button is used on interactable text that triggers something.  */
             .box.button{
 			 border-width: 1px 10px;
 			text-transform: uppercase;
@@ -86,6 +93,7 @@ body
             .box.inner{
                 width: 190%;
             }
+			/**Box Blank is a standin for a textless button.  */
 			.box.blank{
             background-color: #020600;
 			color: #020600;
@@ -105,9 +113,91 @@ body
 				background-color: #0c1500;
 				color: #c6ff00;
 			}
+			/**Box Center centers the text inside of a box class. */
+			.box.center{
+			max-width: fit-content;
+			margin-left: auto;
+			margin-right: auto;
+				}
+
+			/**Stylization for an inversed box button being hovered over */
+			.box.inverse.button:hover{
+				background-color: #08FF03;
+				color: #011201 !important;
+			}
+
+
+			.inHeader{
+				border-bottom: 8px double #52ff00;
+				width: 100%;
+				text-transform: uppercase;
+			}
+		tbody td {
+			/* 1. Animate the background-color
+				from transparent to white on hover */
+			background-color: rgba(205, 168, 60, 0);
+			transition: all 0.2s linear;
+			transition-delay: 0.3s, 0s;
+			/* 2. Animate the opacity on hover */
+			opacity: 0.98;
+			}
+			tbody tr:hover td {
+			background-color: rgba(205, 168, 60, .2);
+			transition-delay: 0s, 0s;
+			opacity: 1;
+			}
+			/**The disclaimer text is used for text underneath the header, or text at the very bottom */
+			.disclaimer{
+			text-align: center;
+			height: auto;
+			}
+
+			/**Mildly depracated class used as a header. */
+			.header{
+			width: 100%;
+			display: flex;
+			white-space: nowrap ;
+			background-color: #0A3609;
+			overflow: hidden;
+			height:36px;
+			align-items: center;
+
+			}
+
+
+
+
+			/* Codepen styling */
+			* { box-sizing: border-box }
+
+			/**Stylization of the table */
+			th, td {
+			padding: 0.1em;
+			border-bottom: 1px solid #52ff00;
+			text-align: center;
+			}
+
+
+			/**An older box class that was used for surrounding text. */
+			.itemBox {
+			border: 2px solid #08FF03;
+			background-color: #11F20C;
+			color: #011201;
+			padding: 3px;
+			font-size: 12pt;
+			animation-duration: 0.01s;
+			animation-name: boxflicker;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+			text-align: center;
+			font-weight: normal;
+			}
+
 			a{
 				color: #0bf532;
 			}
+
+			/**CSS for a CRT filter */
 			    .crt::before {
 				content: " ";
 				display: block;
@@ -116,18 +206,12 @@ body
 				left: 0;
 				bottom: 0;
 				right: 0;
-				opacuty: 0.1;
+				opacity: 0.1;
 				background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
 				z-index: 2;
 				background-size: 100% 2px, 3px 100%;
 				pointer-events: none;
 			}
-			.box.center{
-			max-width: fit-content;
-			margin-left: auto;
-			margin-right: auto;
-				}
-
 			@keyframes flicker {
 				0% {
 				opacity: 0.05;
@@ -169,125 +253,3 @@ body
 				pointer-events: none;
 				animation: flicker 0.15s infinite;
 			}
-			.inHeader{
-				border-bottom: 8px double #52ff00;
-				width: 100%;
-				text-transform: uppercase;
-			}
-		tbody td {
-			/* 1. Animate the background-color
-				from transparent to white on hover */
-			background-color: rgba(205, 168, 60, 0);
-			transition: all 0.2s linear;
-			transition-delay: 0.3s, 0s;
-			/* 2. Animate the opacity on hover */
-			opacity: 0.98;
-			}
-			tbody tr:hover td {
-			background-color: rgba(205, 168, 60, .2);
-			transition-delay: 0s, 0s;
-			opacity: 1;
-			}
-
-			.disclaimer{
-			text-align: center;
-			height: auto;
-			}
-
-			.header{
-			width: 100%;
-			display: flex;
-			white-space: nowrap ;
-			background-color: #0A3609;
-			overflow: hidden;
-			height:36px;
-			align-items: center;
-
-			}
-
-
-
-
-			/* Codepen styling */
-			* { box-sizing: border-box }
-
-
-			th, td {
-			padding: 0.1em;
-			border-bottom: 1px solid #52ff00;
-			text-align: center;
-			}
-
-			.itemBox {
-			border: 2px solid #08FF03;
-			background-color: #11F20C;
-			color: #011201;
-			padding: 3px;
-			font-size: 12pt;
-			animation-duration: 0.01s;
-			animation-name: boxflicker;
-			animation-iteration-count: infinite;
-			animation-direction: alternate;
-			text-align: center;
-			font-weight: normal;
-			}
-			.box.inverse.button:hover{
-				background-color: #08FF03;
-				color: #011201 !important;
-			}
-/*Collapsible Tree Menu*/
-
-*{margin:0;
-	padding:0;
-}
-input{
-	font-size:1em;
-}
-ol.tree{
-	padding-left:30px;
-}
-li{list-style-type:none;
-	color:#fff;
-	position:relative;
-	margin-left:-15px;
-}
-li label{
-	padding-left:37px;
-	cursor:pointer;
-	background:url("https://www.thecssninja.com/demo/css_tree/folder-horizontal.png") no-repeat 15px 2px;
-	display:block;
-}
-li input{
-	width:1em;
-	height:1em;
-	position:absolute;
-	left:-0.5em;
-	top:0;
-	opacity:0;
-	cursor:pointer;}
-li input + ol{height:1em;
-	margin:-16px 0 0 -44px;
-	background:url("https://www.thecssninja.com/demo/css_tree/toggle-small-expand.png") no-repeat 40px 0;
-}
-li input + ol > li{display:none;
-	margin-left:-14px !important;
-	padding-left:1px}
-li.file{margin-left:-1px !important;}
-li.file a{display:inline-block;
-	padding-left:21px;
-	color:#fff;
-	text-decoration:none;
-	background:url("https://www.thecssninja.com/demo/css_tree/document.png") no-repeat 0 0;
-}
-li input:checked + ol{
-	height:auto;
-	margin:-21px 0 0 -44px;
-	padding:25px 0 0 80px;
-	background:url("https://www.thecssninja.com/demo/css_tree/toggle-small.png") no-repeat 40px 5px;
-}
-li input:checked + ol > li{
-	display:block;margin:0 0 0.063em;
-}
-li input:checked + ol > li:first-child{
-	margin:0 0 0.125em;
-}
