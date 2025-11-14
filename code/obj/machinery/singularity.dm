@@ -105,7 +105,7 @@ proc/singularity_containment_check(turf/center)
 
 //////////////////////////////////////////////////// Singularity /////////////////////////////
 
-/obj/machinery/the_singularity/
+/obj/machinery/the_singularity
 	name = "gravitational singularity"
 	desc = "Perhaps the densest thing in existence, except for you."
 
@@ -113,7 +113,7 @@ proc/singularity_containment_check(turf/center)
 	icon_state = "Sing2"
 	anchored = ANCHORED
 	density = 1
-	event_handler_flags = IMMUNE_SINGULARITY
+	event_handler_flags = IMMUNE_SINGULARITY | USE_HASENTERED
 	deconstruct_flags = DECON_WELDER | DECON_MULTITOOL
 
 	var/maxboom = 0
@@ -126,12 +126,15 @@ proc/singularity_containment_check(turf/center)
 	var/Wtime = 0
 	var/dieot = 0
 	var/selfmove = 1
-	var/grav_pull = 6
 	var/radius = 0 //the variable used for all calculations involving size.this is the current size
 	var/maxradius = INFINITY//the maximum size the singularity can grow to
+	var/grav_range = 3 //how many tiles from each side the singularity reaches out to pull things in
 
 	///If loose, try and move towards this turf. see also proc/pick_target()
 	var/turf/current_target
+
+	pixel_x = -64
+	pixel_y = -64
 
 
 #ifdef SINGULARITY_TIME
@@ -149,7 +152,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else
 		radius = 2
 	SafeScale((radius+1)/3.0,(radius+1)/3.0)
-	grav_pull = (radius+1)*3
 	event()
 	if (Ti)
 		src.Dtime = Ti
@@ -160,7 +162,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	. = ..()
 
 /obj/machinery/the_singularity/process()
-	eat()
+	src.gravity()
 
 	if (src.Dtime)//If its a temp singularity IE: an event
 		if (Wtime != 0)
@@ -206,29 +208,28 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/the_singularity/emp_act()
 	return // No action required this should be the one doing the EMPing
 
-/obj/machinery/the_singularity/proc/eat()
-	for (var/X in range(grav_pull, src.get_center()))
-		if (!X)
-			continue
-		if (X == src)
-			continue
-
-		var/atom/A = X
-
-		if (A.event_handler_flags & IMMUNE_SINGULARITY)
-			continue
-
-		if (!active)
-			if (A.event_handler_flags & IMMUNE_SINGULARITY_INACTIVE)
-				continue
-
-		if (!isarea(X))
-			if (GET_DIST(src.get_center(), X) <= (radius + src.active)) // why was this a switch before ffs
-				src.Bumped(A)
-			else if (istype(X, /atom/movable))
-				var/atom/movable/AM = X
-				if (!AM.anchored)
-					step_towards(AM, src)
+/obj/machinery/the_singularity/proc/gravity()
+	var/turf/T = src.get_center()
+	// the block to the south, including corners
+	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y - src.radius - src.grav_range, T.z, T.x + src.radius + src.grav_range, T.y - src.radius - src.grav_range))
+		for (var/atom/movable/AM in T)
+			if (!AM.anchored)
+				step_towards(AM, src)
+	// the block to the north, including corners
+	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y + src.radius + src.grav_range, T.z, T.x + src.radius + src.grav_range, T.y + src.radius + src.grav_range))
+		for (var/atom/movable/AM in T)
+			if (!AM.anchored)
+				step_towards(AM, src)
+	// the block to the east, excluding corners
+	for(var/turf/T2 in block(T.x + src.radius + src.grav_range, T.y - src.radius, T.z, T.x + src.radius + src.grav_range, T.y + src.radius))
+		for (var/atom/movable/AM in T)
+			if (!AM.anchored)
+				step_towards(AM, src)
+	// the block to the west, excluding corners
+	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y - src.radius, T.z, T.x - src.radius - src.grav_range, T.y + src.radius))
+		for (var/atom/movable/AM in T)
+			if (!AM.anchored)
+				step_towards(AM, src)
 
 /obj/machinery/the_singularity/proc/move()
 	// if we're inside something (e.g posessed mob) dont move
@@ -314,13 +315,20 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/the_singularity/blob_act(power)
 	return
 
+/obj/machinery/the_singularity/set_loc(atom/target)
+	. = ..()
+	if(isturf(target))
+		for(var/turf/T in src.locs)
+			for(var/atom/movable/AM in T.contents)
+				eat_atom(AM)
+
 /obj/machinery/the_singularity/Bumped(atom/A)
-	eat_atom(A)
-	..()
+	if(eat_atom(A))
+		. = ..()
 
 /obj/machinery/the_singularity/Bump(atom/A)
-	eat_atom(A)
-	..()
+	if(eat_atom(A))
+		. = ..()
 
 /obj/machinery/the_singularity/proc/eat_atom(atom/A)
 	var/gain = 0
@@ -331,7 +339,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if (A.event_handler_flags & IMMUNE_SINGULARITY_INACTIVE)
 			return TRUE
 
-	// Don't bump that which no longer exists
+	// Don't eat that which no longer exists
 	if(A.disposed)
 		return
 
@@ -375,16 +383,12 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		//if (istype(A, /obj/item/graviton_grenade))
 			//src.warp = 100
 
-		if (istype(A, /obj/decal/cleanable)) //MBC : this check sucks, but its far better than cleanables doing hard-delete at the whims of the singularity. replace ASAP when i figure out cleanablessssss
-			qdel(A)
-			gain = 2
-		else
-			var/obj/O = A
-			O.set_loc(src.get_center())
-			O.ex_act(OLD_EX_TOTAL)
-			if (O)
-				qdel(O)
-			gain = 2
+		var/obj/O = A
+		O.set_loc(src.get_center())
+		O.ex_act(OLD_EX_TOTAL)
+		if (O)
+			qdel(O)
+		gain = 2
 
 	else if (isturf(A))
 		var/turf/T = A
@@ -426,6 +430,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
 	src.bound_width = 64 * radius + 32
 	src.bound_height = 64 * radius + 32
+	src.grav_range = min(src.radius, 7)
 	/*else if (src.energy < godver2)//too big
 		if (radius == 1)
 			return
