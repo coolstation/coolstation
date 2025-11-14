@@ -1002,7 +1002,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	return
 
 /obj/machinery/containment_field/CanPass(atom/movable/O as mob|obj, target as turf)
-	if(iscarbon(O) && prob(80))
+	if(isliving(O) && prob(80))
 		shock(O)
 	..()
 
