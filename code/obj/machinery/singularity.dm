@@ -113,7 +113,7 @@ proc/singularity_containment_check(turf/center)
 	icon_state = "Sing2"
 	anchored = ANCHORED
 	density = 1
-	event_handler_flags = IMMUNE_SINGULARITY | USE_HASENTERED
+	event_handler_flags = IMMUNE_SINGULARITY
 	deconstruct_flags = DECON_WELDER | DECON_MULTITOOL
 
 	var/maxboom = 0
@@ -132,9 +132,6 @@ proc/singularity_containment_check(turf/center)
 
 	///If loose, try and move towards this turf. see also proc/pick_target()
 	var/turf/current_target
-
-	pixel_x = -64
-	pixel_y = -64
 
 
 #ifdef SINGULARITY_TIME
@@ -156,6 +153,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if (Ti)
 		src.Dtime = Ti
 	..()
+	for(var/turf/T in src.locs)
+		for(var/atom/movable/AM in T.contents)
+			eat_atom(AM)
+		eat_atom(T)
 
 /obj/machinery/the_singularity/disposing()
 	STOP_TRACKING
@@ -336,6 +337,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if(eat_atom(A))
 		. = ..()
 
+/obj/machinery/the_singularity/Crossed(atom/movable/AM)
+	eat_atom(AM)
+
 /obj/machinery/the_singularity/proc/eat_atom(atom/A)
 	var/gain = 0
 
@@ -433,7 +437,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if (src.energy >= godver) //too small
 		if(radius<maxradius)
 			radius++
-			SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
+			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
+			src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), (radius+0.5)/(radius-0.5), MATRIX_SCALE), 64, 64, MATRIX_TRANSLATE)
 	src.bound_width = 64 * radius + 32
 	src.bound_height = 64 * radius + 32
 	src.grav_range = min(src.radius, 7)
@@ -1522,8 +1527,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			for_by_tcl(singu, /obj/machinery/the_singularity)//each singularity gives power - this was NOT always the case
 				//Big singulos are great (exponential scaling), fed singulos are good (linear scaling), and distance is uh...
 				//some other kind of scaling that isnt super harsh. its in the divisor idk bestie.
-				var/dist_to_singu = GET_DIST(singu, src)
-				if(dist_to_singu < singu.radius * 8)
+				var/dist_to_singu = GET_DIST(singu.get_center(), src)
+				if(dist_to_singu < (singu.radius * 2 + (singu.active ? 15 : singu.maxradius)))
 					power_s += singu.energy * max((singu.radius**2),1) / (4 + dist_to_singu) * 4
 			//For each possible collector, grab the current moles of plasma in the tank and then delete some plasma
 			//If you don't top up the tank after grabbing it from the dispenser, it will take approximately 46.6 minutes (assuming no lag) at the current
