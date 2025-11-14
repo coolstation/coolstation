@@ -11,7 +11,7 @@ Contains:
 #define SINGULARITY_TIME TRUE
 #define FIELD_GENERATOR_MAX_LENGTH 11			//defines the maximum dimension possible by a player created field gen.
 #define SINGULO_POWER_RADIUS_EXPONENT 1.25		//radius is put to this exponent for power generation purposes
-#define SINGULO_POWER_MULTIPLIER 6				//all power is multiplied by this
+#define SINGULO_POWER_MULTIPLIER 6				//all singulo power is multiplied by this
 #define EVENT_GROWTH 3//the rate at which the event proc radius is scaled relative to the radius of the singularity
 #define EVENT_MINIMUM 5//the base value added to the event proc radius, serves as the radius of a 1x1
 //Anchoring states for the emitters, field generators, and singulo jar
@@ -160,6 +160,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		for(var/atom/movable/AM in T.contents)
 			eat_atom(AM)
 		eat_atom(T)
+	src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 
 /obj/machinery/the_singularity/disposing()
 	STOP_TRACKING
@@ -445,11 +446,15 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			src.radius++
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
-			src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 64 * src.radius, 64 * src.radius, MATRIX_TRANSLATE)
-	else if (src.energy < godver2 && src.radius > 1)//too big
+			src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 32 * src.radius, 32 * src.radius, MATRIX_TRANSLATE)
+			if(isturf(src.loc))
+				var/turf/T = get_turf(src)
+				var/turf/T2 = locate(T.x - 1, T.y - 1, T.z)
+				if(T2)
+					src.set_loc(T2)
 		src.radius--
 		src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
-		src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 64 * src.radius, 64 * src.radius, MATRIX_TRANSLATE)
+		src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 32 * src.radius, 32 * src.radius, MATRIX_TRANSLATE)
 	src.bound_width = src.bound_height = 64 * src.radius + 32
 	src.grav_range = min(src.radius + 1, 5)
 
