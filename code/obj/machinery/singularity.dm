@@ -614,6 +614,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		src.net_id = format_net_id("\ref[src]")
 
 /obj/machinery/field_generator/disposing()
+	for(var/dir in cardinal)
+		src.cleanup(dir)
 	STOP_TRACKING
 	. = ..()
 
