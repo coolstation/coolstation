@@ -556,7 +556,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	var/Varpower = 0
 	var/active = 0
 	var/power = 20
-	var/max_power = 250
+	var/max_power = 100
 	var/state = UNWRENCHED
 	var/locked = 1
 	//Remote control stuff
