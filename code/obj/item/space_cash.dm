@@ -268,7 +268,8 @@
 		processing_items.Remove(src)
 		..()
 
-
+	pre_thrown()
+		return
 
 /obj/item/spacecash/bag // hufflaw cashbags
 	New(var/atom/loc)
