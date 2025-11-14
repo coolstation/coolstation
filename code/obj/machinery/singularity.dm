@@ -81,9 +81,7 @@ proc/singularity_containment_check(turf/center)
 	if (src.bhole)
 		new /obj/bhole(T, 3000)
 	else
-		var/initial_radius = min(2, max_radius)
-		var/turf/T2 = locate(T.x - initial_radius, T.y - initial_radius, T.z)
-		new /obj/machinery/the_singularity(T2 ? T2 : T, 100,,max_radius)
+		new /obj/machinery/the_singularity(T, 100,,max_radius)
 	qdel(src)
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user)
@@ -146,12 +144,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/the_singularity/New(loc, var/E = 100, var/Ti = null,var/rad = 2)
 	START_TRACKING
 	src.energy = E
-	maxradius = rad
-	if(maxradius<2)
-		radius = maxradius
-	else
-		radius = 2
-	SafeScale((radius+1)/3.0,(radius+1)/3.0)
+	src.maxradius = rad
+	src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
 	event()
 	if (Ti)
 		src.Dtime = Ti
@@ -248,13 +242,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		//might want to add some jitter to this later
 		var/dir = vector_to_dir(current_target.x - src.x, current_target.y - src.y)//pick(cardinal)
 
-		var/checkloc = get_step(src.get_center(), dir)
-		for (var/dist = 0, dist < max(2,radius+1), dist ++)
-			if (locate(/obj/machinery/containment_field) in checkloc)
-				current_target = null //can't reach
-				return
-			checkloc = get_step(checkloc, dir)
-
 		step(src, dir)
 
 ///Find a new target turf to get to
@@ -343,6 +330,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/the_singularity/Bump(atom/A)
 	if(eat_atom(A))
 		. = ..()
+		current_target = null
 
 /obj/machinery/the_singularity/HasEntered(atom/movable/AM, atom/OldLoc)
 	eat_atom(AM)
@@ -415,6 +403,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				gain = 2
 			else
 				T.ReplaceWithFloor()
+		else
+			return TRUE
 
 	src.energy += gain
 
