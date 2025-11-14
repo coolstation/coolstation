@@ -216,22 +216,22 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/the_singularity/proc/gravity()
 	var/turf/T = src.get_center()
 	// the block to the south, including corners
-	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y - src.radius - src.grav_range, T.z, T.x + src.radius + src.grav_range, T.y - src.radius - src.grav_range))
+	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y - src.radius - src.grav_range, T.z, T.x + src.radius + src.grav_range, T.y - src.radius))
 		for (var/atom/movable/AM in T2)
 			if (!AM.anchored)
 				step_towards(AM, src)
 	// the block to the north, including corners
-	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y + src.radius + src.grav_range, T.z, T.x + src.radius + src.grav_range, T.y + src.radius + src.grav_range))
+	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y + src.radius, T.z, T.x + src.radius + src.grav_range, T.y + src.radius + src.grav_range))
 		for (var/atom/movable/AM in T2)
 			if (!AM.anchored)
 				step_towards(AM, src)
 	// the block to the east, excluding corners
-	for(var/turf/T2 in block(T.x + src.radius + src.grav_range, T.y - src.radius, T.z, T.x + src.radius + src.grav_range, T.y + src.radius))
+	for(var/turf/T2 in block(T.x + src.radius, T.y - src.radius, T.z, T.x + src.radius + src.grav_range, T.y + src.radius))
 		for (var/atom/movable/AM in T2)
 			if (!AM.anchored)
 				step_towards(AM, src)
 	// the block to the west, excluding corners
-	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y - src.radius, T.z, T.x - src.radius - src.grav_range, T.y + src.radius))
+	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y - src.radius, T.z, T.x - src.radius, T.y + src.radius))
 		for (var/atom/movable/AM in T2)
 			if (!AM.anchored)
 				step_towards(AM, src)
@@ -446,7 +446,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			src.radius++
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
-			src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 32 * src.radius, 32 * src.radius, MATRIX_TRANSLATE)
+			src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
 			if(isturf(src.loc))
 				var/turf/T = get_turf(src)
 				var/turf/T2 = locate(T.x - 1, T.y - 1, T.z)
@@ -455,7 +455,13 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else if (src.energy < godver2)
 		src.radius--
 		src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
-		src.transform = matrix(matrix(matrix(-64, -64, MATRIX_TRANSLATE), 0.2 + src.radius * 0.4, MATRIX_SCALE), 32 * src.radius, 32 * src.radius, MATRIX_TRANSLATE)
+		src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
+		if(isturf(src.loc))
+			var/turf/T = get_turf(src)
+			var/turf/T2 = locate(T.x + 1, T.y + 1, T.z)
+			if(T2)
+				src.set_loc(T2)
+	src.pixel_x = src.pixel_y = 32 * src.radius - 64
 	src.bound_width = src.bound_height = 64 * src.radius + 32
 	src.grav_range = min(src.radius + 1, 5)
 
@@ -642,7 +648,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if(src.active == 0)
 			src.set_active(1)
 			src.state = WELDED
-			src.power = 250
+			src.power = 100
 			src.anchored = ANCHORED
 			icon_state = "Field_Gen +a"
 		Varedit_start = 0
@@ -830,8 +836,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		//T2 = T
 		F = (locate(/obj/machinery/containment_field) in T)
 		if(F)
-			qdel(F)
-			F = null
+			if(F.gen_primary == src || F.gen_secondary == src)
+				qdel(F)
+				F = null
 
 		G = (locate(/obj/machinery/field_generator) in T)
 		if(G)
