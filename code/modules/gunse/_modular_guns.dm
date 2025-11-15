@@ -42,23 +42,23 @@ giving an "average" spread for stock guns around 5-10
 #define GRIP_OFFSET_SHORT 0
 #define GRIP_OFFSET_LONG -1
 #define GRIP_OFFSET_BULLPUP 4
+//bitflags for jamming out
 #define JAM_FIRE 1
 #define JAM_CYCLE 2
 #define JAM_LOAD 3
 #define JAM_CATASTROPHIC 4
 //bitflags for shooting yoar lode
-#define CALIBER_TINY  0 // 00 - tiny
-#define CALIBER_WIDE  (1<<0) // 01 - wide
-#define CALIBER_LONG  (1<<1) // 10 - long
-#define CALIBER_LONG_WIDE CALIBER_LONG | CALIBER_WIDE // 11 - huge
-#define CALIBER_SPUD (1<<2)
+#define CALIBER_TINY  0 // 000 - tiny
+#define CALIBER_WIDE  (1<<0) // 001 - wide
+#define CALIBER_LONG  (1<<1) // 010 - long
+#define CALIBER_LONG_WIDE CALIBER_LONG | CALIBER_WIDE // 011 - huge
+#define CALIBER_SPUD (1<<2) // 100 - rocket rounds and such
 //bitflags for finding your bits
 #define GUN_PART_UNDEF  0
 #define GUN_PART_BARREL 1
 #define GUN_PART_STOCK  2
 #define GUN_PART_GRIP   4
 #define GUN_PART_ACCSY  8
-#define GUN_PART_RCVR	16
 
 #define STANDARD_BARREL_LEN 20 // the formula that determines ALL GUN BARREL LENGTH DAMAGE SCALING. be careful with this one.
 #define BARREL_SCALING(length) (1 + clamp(((length - STANDARD_BARREL_LEN) / (length + STANDARD_BARREL_LEN)) * 0.420, -0.25, 0.25))
@@ -74,6 +74,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	contraband = 0 //is this a crime gun made by and for crimers
 	inventory_counter_enabled = 1
 	appearance_flags = LONG_GLIDE | PIXEL_SCALE | KEEP_TOGETHER
+	w_class = W_CLASS_TINY
 
 	two_handed = FALSE
 	can_dual_wield = TRUE
@@ -87,7 +88,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/max_ammo_capacity = 1 // How much ammo this gun can hold, INCLUDING any chambered rounds
 	var/sound_type = null //bespoke set of loading and cycling noises
 	var/list/muzzle_flashes = list() // any muzzle flashes played by this gun, barrels (and other parts) can add to this list
-	var/flashbulb_only = 0 // FOSS guns only, set to GUN_PART_RCVR if its defined on the reciever
+	var/flashbulb_only = 0 // FOSS guns only
 
 	//offsets and parts
 	///how many pixels from the center (16,16) does the barrel attach. most barrels have 2 pixels above the center and 2 or 3 below.
@@ -248,7 +249,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			return
 		var/obj/item/gun_parts/part = I
 		if(src.check_DRM(part))
-			boutput(user,"<span class='notice'><b>You loosely place [I] onto [src].</b></span>")
+			boutput(user,"<span class='notice'><b>You loosely place [I] onto \the [src].</b></span>")
 			if (istype(I, /obj/item/gun_parts/barrel/))
 				if(barrel) //occupado
 					boutput(user,"<span class='notice'>...and knock [barrel] out of the way.</span>")
@@ -280,7 +281,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			//set the built receiver iconstate because this is sort of a WIP so, easier to figure out what the hell's going on
 			//icon_state = "[initial(icon_state)]-built"
 		else
-			boutput(user,"<span class='notice'><b>The [src]'s DRM prevents you from attaching [I].</b></span>")
+			boutput(user,"<span class='notice'><b>\The [src]'s DRM prevents you from attaching [I].</b></span>")
 			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
 	else
 		..()
@@ -1098,6 +1099,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = initial(max_ammo_capacity)
 	jam_frequency = initial(jam_frequency)
 	spread_angle = initial(spread_angle)
+	contraband = initial(contraband)
 	built = 0
 
 	bulk = bulkiness
