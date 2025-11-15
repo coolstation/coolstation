@@ -2291,3 +2291,50 @@
 	side = "right"
 	partlistPart = "foot_right"
 	step_image_state = "footprintsR"
+
+//// RODENTIA LIMBS ////
+// PARENT //
+/obj/item/parts/human_parts/arm/mutant/rodentia
+	icon = 'icons/mob/rodentia.dmi'
+	partIcon = 'icons/mob/rodentia.dmi'
+	// TODO: skintones? colors??
+
+/obj/item/parts/human_parts/leg/mutant/rodentia
+	icon = 'icons/mob/rodentia.dmi'
+	partIcon = 'icons/mob/rodentia.dmi'
+	// TODO: skintones? colors??
+
+// ACTUAL LIMBS //
+/obj/item/parts/human_parts/arm/mutant/rodentia/left
+	name = "left rodentia arm"
+	desc = "A rodentia's left arm."
+	icon_state = "arm_left"
+	slot = "l_arm"
+	side = "left"
+	handlistPart = "hand_left"
+
+/obj/item/parts/human_parts/arm/mutant/rodentia/right
+	name = "right rodentia arm"
+	desc = "A rodentia's right arm."
+	icon_state = "arm_right"
+	slot = "r_arm"
+	side = "right"
+	handlistPart = "hand_right"
+
+/obj/item/parts/human_parts/leg/mutant/rodentia/left
+	name = "left rodentia leg"
+	desc = "A rodentia's left leg."
+	icon_state = "leg_left"
+	slot = "l_leg"
+	side = "left"
+	partlistPart = "foot_left"
+	step_image_state = "footprintsL"
+
+/obj/item/parts/human_parts/leg/mutant/rodentia/right
+	name = "right rodentia leg"
+	desc = "A rodentia's right leg."
+	icon_state = "leg_right"
+	slot = "r_leg"
+	side = "right"
+	partlistPart = "foot_right"
+	step_image_state = "footprintsR"
