@@ -160,7 +160,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(gun_DRM)
 		. += "<div><span>DRM LICENSE: </span>"
 		if(gun_DRM & GUN_NANO)
-			. += "<img src='[resource("images/tooltips/temp_nano.png")]' alt='' class='icon' />"
+			. += "<img src='[resource("images/tooltips/gunmanu_nano.png")]' alt='' class='icon' />"
 		if(gun_DRM & GUN_FOSS)
 			. += "<img src='[resource("images/tooltips/temp_foss.png")]' alt='' class='icon' />"
 		if(gun_DRM & GUN_JUICE)
@@ -168,7 +168,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if(gun_DRM & GUN_SOVIET)
 			. += "<img src='[resource("images/tooltips/temp_soviet.png")]' alt='' class='icon' />"
 		if(gun_DRM & GUN_ITALIAN)
-			. += "<img src='[resource("images/tooltips/temp_italian.png")]' alt='' class='icon' />"
+			. += "<img src='[resource("images/tooltips/gunmanu_italian.png")]' alt='' class='icon' />"
+		if(gun_DRM & GUN_RODEO)
+			. += "<img src='[resource("images/tooltips/gunmanu_rodeo.png")]' alt='' class='icon' />"
 		. += "</div>"
 
 	if(barrel && barrel.length)

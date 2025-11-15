@@ -6,7 +6,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 	real_name = "zipgun"
 	desc = "A staple gun welded and reconfigured to fire bullets. Barely. Make sure to spin the casings out."
 	max_ammo_capacity = 1
-	gun_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN | GUN_SOVIET
+	gun_DRM = GUN_ALL
 	spread_angle = 4
 	icon_state = "zip"
 	load_time = 1.3 SECONDS
