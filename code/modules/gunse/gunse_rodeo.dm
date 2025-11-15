@@ -84,12 +84,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/rodeo)
 			return "<span class='notice'>You'll need to open the gun!</span>"
 		return ..()
 
-	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
-		if(!src.broke_open && src.barrel)
-			boutput(user, "<span class='notice'>You'll need to open the gun!</span>")
-			return FALSE
-		. = ..()
-
 ABSTRACT_TYPE(/obj/item/gun/modular/rodeo/maresleg)
 /obj/item/gun/modular/rodeo/maresleg
 	name = "abstract St. Tite mare's leg"
