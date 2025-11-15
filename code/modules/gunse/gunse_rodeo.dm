@@ -10,9 +10,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/rodeo)
 	jam_frequency = 2
 	hint = "Spin the gun, drag it to itself, or use it in hand to open it up for loading bullets and ejecting casings."
 	var/broke_open = FALSE
+	var/break_action_cooldown = 0.3 SECONDS
 
 	proc/open_break()
-		if(!src.barrel || !src.built || src.broke_open)
+		if(ON_COOLDOWN(src, "breakaction", src.break_action_cooldown) || !src.barrel || !src.built || src.broke_open)
 			return
 		src.broke_open = TRUE
 		src.eject_casings()
@@ -25,7 +26,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/rodeo)
 		src.UpdateOverlays(I, "1")
 
 	proc/close_break()
-		if(!src.barrel || !src.built || !src.broke_open)
+		if(ON_COOLDOWN(src, "breakaction", src.break_action_cooldown) || !src.barrel || !src.built || !src.broke_open)
 			return
 		if(src.jammed)
 			return src.unjam()
@@ -103,7 +104,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/rodeo/maresleg)
 /obj/item/gun/modular/rodeo/maresleg/basic
 	name = "basic St. Tite mare's leg"
 	real_name = "\improper Wild Mare"
-	desc = "A decent sidearm for a cowpoke."
+	desc = "A serviceable sidearm for a cowpoke."
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/rodeo(src)

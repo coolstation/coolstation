@@ -432,7 +432,6 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 		var/turf/T = get_turf(user)
 		src.Shoot(T, T, user, point_blank_target = user)
 		JOB_XP(user, "Clown", 3)
-		return TRUE
 
 
 ///setter for current_projectile so we can have a signal attached. do not set current_projectile on guns without this proc

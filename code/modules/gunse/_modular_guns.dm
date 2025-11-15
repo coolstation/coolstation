@@ -1078,6 +1078,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	buildTooltipContent()
 	built = 1
 
+	src.inventory_counter_enabled = TRUE
+	if(ismob(src.loc))
+		src.inventory_counter.show_count()
 	src.inventory_counter.update_number(0)
 
 	//update the icon to match!!!!!
@@ -1135,6 +1138,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		flags |= ONBELT
 		src.can_dual_wield = TRUE
 
+	src.inventory_counter_enabled = FALSE
+	src.inventory_counter.hide_count()
 	src.buildTooltipContent()
 	src.ClearAllOverlays(1) // clear the part overlays but keep cache? idk if thats better or worse.
 

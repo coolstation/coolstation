@@ -1317,7 +1317,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory/magazine)
 	process()
 		. = ..()
 		src.processes_since_ammo_gen++
-		if(src.processes_since_ammo_gen <= src.processes_per_ammo_gen)
+		if(src.processes_since_ammo_gen < src.processes_per_ammo_gen)
 			return
 		src.processes_since_ammo_gen = 0
 		if(src.my_gun && src.my_gun.built && src.my_gun.ammo_reserve() < src.my_gun.max_ammo_capacity)
