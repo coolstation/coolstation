@@ -52,7 +52,7 @@ ABSTRACT_TYPE(/obj/tuneable_receiver)
 		START_TRACKING //track these by type and not just broadcast category
 		//cause we can only tune these in code.
 
-		SUBSCRIBE_BROADCAST(current_channel, (video_dmi ? video_dmi : 1))
+		SUBSCRIBE_BROADCAST(station, 1)
 
 		//make it show up better when actually looking up
 		speakerimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE -1,src.dir)
@@ -66,8 +66,8 @@ ABSTRACT_TYPE(/obj/tuneable_receiver)
 
 /obj/ceiling_speaker/proc/tune(new_channel, target_id)
 	if (target_id == src.id || target_id == "ALL")
-		UNSUBSCRIBE_BROADCAST(current_channel)
-		SUBSCRIBE_BROADCAST(new_cat, 1)
+		UNSUBSCRIBE_BROADCAST(station)
+		SUBSCRIBE_BROADCAST(new_channel, 1)
 		current_channel = new_channel
 
 /proc/tune_ceiling_speakers(new_channel, target_id = "ALL")
@@ -149,7 +149,7 @@ ABSTRACT_TYPE(/obj/tuneable_receiver)
 		//i think this is loaded before the CLIENT_IMAGE_GROUP_CEILING_ICONS define is so, oh well,
 		get_image_group("ceiling_icons").add_image(speakerimage)
 		speakerimage.alpha = 100
-
+/*
 /obj/shitty_radio/queueing_and_interruption_demo //Testing for proper queue behaviour and priority sorting
 	name = "queue test radio"
 	desc = "Wat een verkakt stuk schroot (use a multitool to start this)"
@@ -170,7 +170,7 @@ ABSTRACT_TYPE(/obj/tuneable_receiver)
 				ignore = FALSE
 
 		..()
-
+*/
 /obj/shitty_radio/shitty_tv
 	name = "shitty test TV"
 	desc = "And you thought those radios were fucking garbage"
