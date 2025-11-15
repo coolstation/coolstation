@@ -130,6 +130,7 @@
 				src.plant.layer = initial(src.plant.layer)
 				src.plant.set_loc(get_turf(src))
 				src.plant = null
+				src.w_class = W_CLASS_TINY
 			else if (src.arm)
 				user.show_text("You remove [src.arm] from [src].", "blue")
 				src.overlays -= image(src.arm.icon, src.arm.icon_state)
@@ -174,12 +175,14 @@
 			else if (!src.arm)
 				user.show_text("You can't quite seem to get [C] to stay on [src]. Seems like it needs something to hold it in place.", "red")
 				return
-			else if (C.w_class > W_CLASS_TINY) // some plants are big
-				user.show_text("[C] is way too large. You can't find any way to balance it on the arm.", "red")
-				return
 			user.u_equip(C)
-			src.plant = C
 			C.set_loc(src)
+			if (C.w_class > W_CLASS_TINY) // some plants are big
+				src.w_class = C.w_class
+				if(istype(src.loc, /obj/item/storage))
+					user.show_text("You take it out of the bag to fit the large plant on.", "red")
+					user.put_in_hand_or_drop(src)
+			src.plant = C
 			src.overlays += image(C.icon, C.icon_state)
 			user.show_text("You carefully set [C] in [src]'s [src.arm].", "blue")
 
@@ -385,6 +388,7 @@
 			thr.thing = src.plant
 			src.plant.throw_impact(target, thr)
 			src.plant = null
+			src.w_class = W_CLASS_TINY
 
 		else if (src.pie && src.arm)
 			logTheThing("bombing", target, null, "triggers [src] (armed with: [src.arm] and [src.pie]) at [log_loc(src)]")
