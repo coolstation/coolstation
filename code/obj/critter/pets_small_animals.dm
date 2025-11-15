@@ -46,6 +46,96 @@
 				return
 		..()
 
+/obj/critter/mothroach
+	name = "mothroach"
+	desc = "This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches."
+	icon_state = "mothroach"
+	dead_state = "mothroach_dead"
+	critter_family = BUG
+	density = 1
+	health = 30
+	aggressive = 0
+	defensive = 0
+	wanderer = 1
+	opensdoors = OBJ_CRITTER_OPENS_DOORS_NONE
+	atkcarbon = 0
+	atksilicon = 0
+	chases_food = 0
+	butcherable = 3
+	name_the_meat = 1
+	health_gain_from_food = 5
+	skinresult = /obj/item/material_piece/cloth/mothroachhide
+	max_skins = 1
+	death_text = "%src% curls up and falls still!"
+	pet_text = list("pats", "pets", "squeezes", "squishes", "cuddles")
+	flags = FPRINT | CONDUCT | USEDELAY | TABLEPASS | FLUID_SUBMERGE | FLUID_SUBMERGE
+
+	ai_think()
+		..()
+		if (task == "thinking" || task == "wandering")
+			if (prob(05))
+				if (!src.muted)
+					src.audible_message("<span class='emote'><b>[src]</b> chitters!</span>")
+					playsound(src.loc, 'sound/voice/moth/moth_chitter.ogg', 100, 1, channel=VOLUME_CHANNEL_EMOTE)
+		else
+			if (prob(10))
+				src.visible_message("<span class='emote'><b>[src]</b> flutters its wings!</span>")
+				playsound(src.loc, "sound/voice/moth/moth_flutter.ogg", 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+
+	attack_hand(mob/user as mob)
+		if ((user.a_intent == INTENT_HARM))
+			..()
+			if (src.alive)
+				src.visible_message("<span class='combat'><b>[user]</b> hits the [src]!</span>")
+				if (prob(50))
+					src.audible_message("<span class='emote'><b>[src]</b> screams!</span>")
+					playsound(src.loc, 'sound/voice/moth/scream_moth.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+				return
+		else if (src.alive && (user.a_intent == INTENT_DISARM))
+			..()
+			src.visible_message("<span class='combat'><b>[user]</b> shoos the [src]!</span>")
+			return
+		else if (src.alive && (user.a_intent == INTENT_HELP))
+			..()
+			if (prob(30))
+				src.audible_message("<span class='emote'><b>[src]</b> screams!</span>")
+				playsound(src.loc, 'sound/voice/moth/scream_moth.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+				return
+			else if (prob(30))
+				src.visible_message("<span class='emote'><b>[src]</b> flutters its wings happily!</span>")
+				playsound(src.loc, 'sound/voice/moth/moth_flutter.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+				return
+		else
+			..()
+		return
+
+	attackby(obj/item/I, mob/M)
+		if(istype(I, /obj/item/clothing) && ishuman(M))
+			src.health += src.health_gain_from_food
+			playsound(M.loc, "sound/items/eatfood.ogg", 100, 1)
+			src.visible_message("[M] feeds \the [src] a [I].", "[M] feeds you a [I].")
+			qdel(I)
+			return
+		else if(I.force && src.alive)
+			..()
+			if (prob(50))
+				src.audible_message("<span class='emote'><b>[src]</b> screams!</span>")
+				playsound(src.loc, 'sound/voice/moth/scream_moth.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+				return
+		. = ..()
+
+	CritterDeath(var/gibbed)
+		..()
+		if (!gibbed)
+			playsound(src.loc, 'sound/voice/moth/moth_death.ogg', 100, 1, channel=VOLUME_CHANNEL_EMOTE)
+		return
+
+/obj/critter/mothroach/barroach
+	name = "mothroach bartender"
+	desc = "A mothroach serving drinks. Look at him go."
+	icon_state = "barroach"
+	dead_state = "barroach_dead"
+
 /obj/critter/mouse
 	name = "space rat"
 	desc = "a rat.  In space."

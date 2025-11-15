@@ -1271,7 +1271,7 @@
 		setProperty("electrical", 45)
 		return ..()
 
-/datum/material/fabric/cloth/mothroach
+/datum/material/fabric/cloth/mothroachhide
 	mat_id = "mothroachhide"
 	name = "mothroach hide"
 	desc = "The hide of a soft and fluffy mothroach!"

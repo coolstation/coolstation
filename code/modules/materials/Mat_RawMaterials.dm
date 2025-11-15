@@ -391,7 +391,7 @@
 		src.setMaterial(getMaterial("kingbrullbarhide"), appearance = 0, setname = 0)
 		..()
 
-/obj/item/material_piece/cloth/mothroach
+/obj/item/material_piece/cloth/mothroachhide
 	name = "mothroach hide"
 	desc = "The hide of a mothroach"
 	icon_state = "mothroachhide"
