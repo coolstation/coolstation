@@ -1,6 +1,9 @@
 // Problem: Pumps seem to reset the temperature or something??
 // Had a pipe on one end of a pump with 240 C, the other end was 20 C.
 
+#define ENUMERATE_PIPE_DIRS vertical{dir = NORTH} northeast{dir = NORTHEAST} horizontal{dir = EAST} southeast{dir = SOUTHEAST} southwest{dir = SOUTHWEST} northwest{dir = NORTHWEST}
+
+
 obj/machinery/atmospherics/pipe
 	text = ""
 	layer = PIPE_LAYER
@@ -95,18 +98,7 @@ obj/machinery/atmospherics/pipe
 		level = 1
 		alpha = 128
 
-		vertical
-			dir = NORTH
-		northeast
-			dir = NORTHEAST
-		horizontal
-			dir = EAST
-		southeast
-			dir = SOUTHEAST
-		southwest
-			dir = SOUTHWEST
-		northwest
-			dir = NORTHWEST
+		ENUMERATE_PIPE_DIRS
 
 		New()
 			..()
@@ -134,18 +126,31 @@ obj/machinery/atmospherics/pipe
 			alpha = 255
 			layer = PIPE_OVERCAT
 
-			vertical
-				dir = NORTH
-			northeast
-				dir = NORTHEAST
-			horizontal
-				dir = EAST
-			southeast
-				dir = SOUTHEAST
-			southwest
-				dir = SOUTHWEST
-			northwest
-				dir = NORTHWEST
+			ENUMERATE_PIPE_DIRS
+
+			tg_red
+				color = "#aa0000"
+				ENUMERATE_PIPE_DIRS
+
+			tg_green
+				color = "#00aa00"
+				ENUMERATE_PIPE_DIRS
+
+			tg_yellow
+				color = "#ddbb11"
+				ENUMERATE_PIPE_DIRS
+
+			tg_blue
+				color = "#0000ff"
+				ENUMERATE_PIPE_DIRS
+
+			tg_cyan
+				color = "#dd00ff"
+				ENUMERATE_PIPE_DIRS
+
+			tg_orange
+				color = "#ff8800"
+				ENUMERATE_PIPE_DIRS
 
 		color_pipe
 			cyan_pipe
@@ -154,36 +159,14 @@ obj/machinery/atmospherics/pipe
 				//icon = 'icons/obj/atmospherics/pipes/cyan_pipe.dmi'
 				color = "#64BCC8"
 
-				vertical
-					dir = NORTH
-				northeast
-					dir = NORTHEAST
-				horizontal
-					dir = EAST
-				southeast
-					dir = SOUTHEAST
-				southwest
-					dir = SOUTHWEST
-				northwest
-					dir = NORTHWEST
+				ENUMERATE_PIPE_DIRS
 
 				overfloor
 					level = 2
 					alpha = 255
 					layer = PIPE_OVERCAT
 
-					vertical
-						dir = NORTH
-					northeast
-						dir = NORTHEAST
-					horizontal
-						dir = EAST
-					southeast
-						dir = SOUTHEAST
-					southwest
-						dir = SOUTHWEST
-					northwest
-						dir = NORTHWEST
+					ENUMERATE_PIPE_DIRS
 
 			green_pipe
 				name = "purge pipe"
@@ -191,36 +174,14 @@ obj/machinery/atmospherics/pipe
 				//icon = 'icons/obj/atmospherics/pipes/green_pipe.dmi'
 				color = "#57C45D"
 
-				vertical
-					dir = NORTH
-				northeast
-					dir = NORTHEAST
-				horizontal
-					dir = EAST
-				southeast
-					dir = SOUTHEAST
-				southwest
-					dir = SOUTHWEST
-				northwest
-					dir = NORTHWEST
+				ENUMERATE_PIPE_DIRS
 
 				overfloor
 					level = 2
 					alpha = 255
 					layer = PIPE_OVERCAT
 
-					vertical
-						dir = NORTH
-					northeast
-						dir = NORTHEAST
-					horizontal
-						dir = EAST
-					southeast
-						dir = SOUTHEAST
-					southwest
-						dir = SOUTHWEST
-					northwest
-						dir = NORTHWEST
+					ENUMERATE_PIPE_DIRS
 
 			yellow_pipe
 				name = "riot control gas pipe"
@@ -228,36 +189,14 @@ obj/machinery/atmospherics/pipe
 				//icon = 'icons/obj/atmospherics/pipes/yellow_pipe.dmi'
 				color = "#D2C75B"
 
-				vertical
-					dir = NORTH
-				northeast
-					dir = NORTHEAST
-				horizontal
-					dir = EAST
-				southeast
-					dir = SOUTHEAST
-				southwest
-					dir = SOUTHWEST
-				northwest
-					dir = NORTHWEST
+				ENUMERATE_PIPE_DIRS
 
 				overfloor
 					level = 2
 					alpha = 255
 					layer = PIPE_OVERCAT
 
-					vertical
-						dir = NORTH
-					northeast
-						dir = NORTHEAST
-					horizontal
-						dir = EAST
-					southeast
-						dir = SOUTHEAST
-					southwest
-						dir = SOUTHWEST
-					northwest
-						dir = NORTHWEST
+					ENUMERATE_PIPE_DIRS
 
 		hide(var/i)
 			if(level == 1 && issimulatedturf(src.loc))
@@ -547,64 +486,20 @@ obj/machinery/atmospherics/pipe
 		alpha = 255
 		can_rupture = 1
 
-		vertical
-			dir = NORTH
-		northeast
-			dir = NORTHEAST
-		horizontal
-			dir = EAST
-		southeast
-			dir = SOUTHEAST
-		southwest
-			dir = SOUTHWEST
-		northwest
-			dir = NORTHWEST
+		ENUMERATE_PIPE_DIRS
 
 		cold
 			//icon = 'icons/obj/atmospherics/pipes/blue_pipe.dmi'
 			color = "#017FFF"
 
-			vertical
-				dir = NORTH
-			northeast
-				dir = NORTHEAST
-			horizontal
-				dir = EAST
-			southeast
-				dir = SOUTHEAST
-			southwest
-				dir = SOUTHWEST
-			northwest
-				dir = NORTHWEST
+			ENUMERATE_PIPE_DIRS
 		fuel
 			color = "#EFE151"
-			vertical
-				dir = NORTH
-			northeast
-				dir = NORTHEAST
-			horizontal
-				dir = EAST
-			southeast
-				dir = SOUTHEAST
-			southwest
-				dir = SOUTHWEST
-			northwest
-				dir = NORTHWEST
+			ENUMERATE_PIPE_DIRS
 
 		purge
 			color = "#a16a2f"
-			vertical
-				dir = NORTH
-			northeast
-				dir = NORTHEAST
-			horizontal
-				dir = EAST
-			southeast
-				dir = SOUTHEAST
-			southwest
-				dir = SOUTHWEST
-			northwest
-				dir = NORTHWEST
+			ENUMERATE_PIPE_DIRS
 
 	simple/junction
 		icon = 'icons/obj/atmospherics/pipes/junction_pipe.dmi'
@@ -657,18 +552,7 @@ obj/machinery/atmospherics/pipe
 		thermal_conductivity = WINDOW_HEAT_TRANSFER_COEFFICIENT
 		fatigue_pressure = INFINITY
 
-		vertical
-			dir = NORTH
-		horizontal
-			dir = EAST
-		northeast
-			dir = NORTHEAST
-		southeast
-			dir = SOUTHEAST
-		southwest
-			dir = SOUTHWEST
-		northwest
-			dir = NORTHWEST
+		ENUMERATE_PIPE_DIRS
 
 		update_icon()
 			if(node1 && node2)
