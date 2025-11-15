@@ -1620,6 +1620,13 @@ ABSTRACT_TYPE(/datum/supply_packs/misc)
 		containertype = /obj/storage/crate/packing
 		containername = "Animal Import Kit"
 
+	mothroach
+	name = "Mothroach Import Kit"
+	desc = "Gnab a few mothroaches for your department and find out what true cuteness looks like."
+	cost = 3000
+	contains = list(/mob/living/critter/small_animal/mothroach = 3)
+	containername = "Mothroach Import Kit"
+
 	takeout_chinese
 		name = "Golden Gannet Delivery"
 		desc = "A Space Chinese meal for two, delivered galaxy-wide."

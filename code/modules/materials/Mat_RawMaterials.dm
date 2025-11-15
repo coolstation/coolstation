@@ -391,6 +391,15 @@
 		src.setMaterial(getMaterial("kingbrullbarhide"), appearance = 0, setname = 0)
 		..()
 
+/obj/item/material_piece/cloth/mothroach
+	name = "mothroach hide"
+	desc = "The hide of a mothroach"
+	icon_state = "mothroachhide"
+	value = 1000 //was it worth it?
+	setup_material()
+		src.setMaterial(getMaterial("mothroachhide"), appearance = 0, setname = 0)
+		..()
+
 /obj/item/material_piece/cloth/carbon
 	name = "carbon nano fibre fabric"
 	desc = "carbon based hi-tech material."

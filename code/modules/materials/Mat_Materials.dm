@@ -1271,6 +1271,21 @@
 		setProperty("electrical", 45)
 		return ..()
 
+/datum/material/fabric/cloth/mothroach
+	mat_id = "mothroachhide"
+	name = "mothroach hide"
+	desc = "The hide of a soft and fluffy mothroach!"
+	color = "#fff5b2"
+	material_flags = MATERIAL_CLOTH
+
+	New()
+		setProperty("density", 5)
+		setProperty("hard", 5)
+		setProperty("thermal", 55)
+		setProperty("flammable", 70)
+		setProperty("electrical", 45)
+		return ..()
+
 /datum/material/fabric/cloth/cotton
 	mat_id = "cotton"
 	name = "cotton"

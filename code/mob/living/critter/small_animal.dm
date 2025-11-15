@@ -1361,6 +1361,113 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		return ..()
 
 /* =================================================== */
+/* -------------------- Mothroach -------------------- */
+/* =================================================== */
+
+/mob/living/critter/small_animal/mothroach
+
+	name = "mothroach"
+	desc = "This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches."
+	icon_state = "mothroach"
+	icon_state_dead = "mothroach_dead"
+	butcherable = 3
+	name_the_meat = 1
+	skinresult = /obj/item/material_piece/cloth/mothroach
+	health_brute = 30
+	health_burn = 30
+	flags = TABLEPASS
+	fits_under_table = 1
+	takes_tox = FALSE
+	speechverb_say = "flutters"
+	speechverb_exclaim = "flutters loudly"
+	speechverb_ask = "chitters inquisitively"
+	speechverb_gasp = "squeaks loudly"
+	speechverb_stammer = "chitters"
+
+	attack_hand(mob/living/M)
+		if(src.death(TRUE))
+			return
+		else
+			playsound(src, 'sound/voice/moth/scream_moth.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+			src.visible_message("<span class='emote'><b>[src]</b> screams!</span>")
+
+	attackby(var/obj/item/I, var/mob/M)
+		if(src.death(TRUE))
+			return
+		else
+			playsound(src, 'sound/voice/moth/scream_moth.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+			src.visible_message("<span class='emote'><b>[src]</b> screams!</span>")
+
+	Move()
+		.=..()
+		if (prob(15))
+			playsound(src, 'sound/voice/moth/moth_flutter.ogg', 1, channel=VOLUME_CHANNEL_EMOTE)
+			src.visible_message("<span class='emote'><b>[src]</b> flutters its wings!</span>")
+
+	death(gibbed)
+		if (!gibbed)
+			playsound(src, 'sound/voice/moth/moth_death.ogg', 1, channel=VOLUME_CHANNEL_EMOTE)
+		..()
+
+	setup_hands()
+		..()
+		var/datum/handHolder/HH = hands[1]
+		HH.limb = new /datum/limb/small_critter(src)
+		HH.icon = 'icons/ui/critter_ui.dmi'
+		HH.icon_state = "handn"
+		HH.name = "cute little steppers"
+		HH.limb.name = "foot"
+
+	specific_emotes(var/act, var/param = null, var/voluntary = 0)
+		switch (act)
+			if ("scream")
+				if (src.emote_check(voluntary, 50))
+					playsound(src, 'sound/voice/moth/scream_moth.ogg', 1, channel=VOLUME_CHANNEL_EMOTE)
+				return "<span class='emote'><b>[src]</b> screams!</span>"
+			if ("squeak")
+				if (src.emote_check(voluntary, 50))
+					playsound(src, 'sound/voice/moth/moth_squeak.ogg', 1, channel=VOLUME_CHANNEL_EMOTE)
+				return "<span class='emote'><b>[src]</b> squeaks!</span>"
+			if ("chitter")
+				if (src.emote_check(voluntary, 50))
+					playsound(src, 'sound/voice/moth/moth_chitter.ogg', 1, channel=VOLUME_CHANNEL_EMOTE)
+				return "<span class='emote'><b>[src]</b> chitters!</span>"
+			if ("flap")
+				if (src.emote_check(voluntary, 50))
+					playsound(src, 'sound/voice/moth/moth_flutter.ogg', 1, channel=VOLUME_CHANNEL_EMOTE)
+				return "<span class='emote'><b>[src]</b> flutters its wings!</span>"
+		return null
+
+	specific_emote_type(var/act)
+		switch (act)
+			if ("scream")
+				return 2
+			if ("squeak")
+				return 1
+			if ("chitter")
+				return 2
+			if ("flap")
+				return 1
+		return ..()
+
+	on_pet(mob/user)
+		if (..())
+			return 1
+		if (prob(30))
+			src.visible_message("<span class='emote'><b>[src]</b> screams!</span>")
+			playsound(src, 'sound/voice/moth/scream_moth.ogg', 1, channel=VOLUME_CHANNEL_EMOTE)
+		else if (prob(30))
+			src.visible_message("<span class='emote'><b>[src]</b> flutters its wings happily!</span>")
+			playsound(src, 'sound/voice/moth/moth_flutter.ogg', 1, channel=VOLUME_CHANNEL_EMOTE)
+
+
+/mob/living/critter/small_animal/mothroach/bar
+	name = "mothroach bartender"
+	desc = "A mothroach serving drinks. Look at him go."
+	icon_state = "barroach"
+	icon_state_dead = "barroach_dead"
+
+/* =================================================== */
 /* -------------------- Scorpion --------------------- */
 /* =================================================== */
 

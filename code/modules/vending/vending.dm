@@ -3596,6 +3596,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/clothing/under/rank/bartender/tuxedo, 1, cost=PAY_IMPORTANT/5, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/shoes/dress_shoes, 1, cost=PAY_IMPORTANT/5, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/gloves/ring/gold, 2, cost=PAY_IMPORTANT, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/clothing/shoes/clown_shoes/moffers, 1, cost=PAY_TRADESMAN, hidden=1)
 
 /obj/machinery/vending/janitor
 	name = "JaniTech Vendor"
