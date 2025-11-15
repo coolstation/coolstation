@@ -22,7 +22,7 @@
 		command_alert("Extreme levels of radiation detected approaching the planet surface. All personnel have [timetoreach].[timetoreachsec] seconds to reach the tunnel level. This is not a test.", "Anomaly Alert")
 
 		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "Radiation Storm", "[timetoreach] Seconds", "Seek shelter underground immediately. Do not use elevators.")
-		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
+		broadcast_controls.broadcast_start(broadcast, TRUE, set_loops = -1, process_immediately = TRUE)
 
 		SPAWN_DBG(0)
 			//The normal blowout zeroes out maint airlock access here

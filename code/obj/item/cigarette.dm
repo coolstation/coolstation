@@ -118,7 +118,7 @@
 			src.rng_stun_rate = 30 //%
 
 			if(prob(3))
-				broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/cigarettes, 1, 1)
+				broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/cigarettes, set_loops = 1, process_immediately = TRUE)
 
 			//hit_type = DAMAGE_BURN
 
