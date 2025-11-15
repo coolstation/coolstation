@@ -1,6 +1,8 @@
 #define LOOP_INFINITELY -1
 #define DEFAULT_BROADCAST_MESSAGE_TIME 4 SECONDS
 
+#define DEFAULT_PROGRAMMING_PRIORITY 2
+
 
 /*
 ABOUT (TECHNICAL):
@@ -61,6 +63,7 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 /obj/shitty_radio/shitty_tv is the recipient of that broadcast.
 */
 
+ABSTRACT_TYPE(/datum/directed_broadcast)
 /datum/directed_broadcast
 	var/list/cooldowns //needed for the ON_COOLDOWN macro
 
@@ -194,116 +197,6 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 
 
 
-/obj/shitty_radio
-	name = "shitty test radio"
-	desc = "fuck me that's one shitty radio"
-	var/on = FALSE
-	var/station = TR_CAT_RADIO_BROADCAST_RECEIVERS
-	var/video_dmi = null //Optional:
-
-	icon_state = "transmitter"
-	icon = 'icons/obj/machines/loudspeakers.dmi'
-	color = "#AAAAAA"
-
-	New()
-		..()
-		//The 1 is there for consistency with what by_cat was doing before I did my hack.
-		if(on)
-			SUBSCRIBE_BROADCAST(station, (video_dmi ? video_dmi : 1))
-			icon_state = "transmitter-on"
-
-	disposing()
-		//Fix edge case where no radio/tv starts turned on, so the by_cat list was never initialised when trying to unsub
-		if (on)
-			UNSUBSCRIBE_BROADCAST(station)
-		..()
-
-
-	attack_hand(mob/user)
-		if (on)
-			on = FALSE
-			UNSUBSCRIBE_BROADCAST(station)
-			icon_state = "transmitter"
-		else
-			SUBSCRIBE_BROADCAST(station, (video_dmi ? video_dmi : 1))
-			on = TRUE
-			icon_state = "transmitter-on"
-		. = ..()
-/*
-/obj/shitty_radio/finite_demo
-	name = "shittier test radio"
-	desc = "god damn this fucking blight on the station (use a multitool to start this)"
-	color = "#541771"
-	station = TR_CAT_FINITE_BROADCAST_RECEIVERS
-
-	attackby(obj/item/I, mob/user)
-		if (istool(I, TOOL_PULSING))
-			broadcast_controls.broadcast_start("demo_finite")
-		..()
-*/
-
-//little test but also might be a good candidate for maptext-free as an option for certain broadcasts (Mall loops and such)
-/obj/shitty_radio/ceiling
-	name = "shitty ceiling loudspeaker"
-	desc = "they're putting these things on the ceiling now???"
-	mouse_opacity = FALSE //just don't click
-	alpha = 50
-	plane = PLANE_NOSHADOW_ABOVE
-
-	icon_state = "loudspeaker-ceiling"
-	#ifdef IN_MAP_EDITOR
-	alpha = 128
-	#endif
-	color = "#c3bddb"
-	var/image/speakerimage = null
-
-	New()
-		..()
-
-		//make it show up better when actually looking up
-		speakerimage = image(src.icon,src,initial(src.icon_state),PLANE_NOSHADOW_ABOVE -1,src.dir)
-		//i think this is loaded before the CLIENT_IMAGE_GROUP_CEILING_ICONS define is so, oh well,
-		get_image_group("ceiling_icons").add_image(speakerimage)
-		speakerimage.alpha = 100
-
-/obj/shitty_radio/queueing_and_interruption_demo //Testing for proper queue behaviour and priority sorting
-	name = "queue test radio"
-	desc = "Wat een verkakt stuk schroot (use a multitool to start this)"
-	color = "#54B771"
-	station = TR_CAT_FINITE_BROADCAST_RECEIVERS
-	var/ignore = FALSE
-
-	attackby(obj/item/I, mob/user)
-		if (istool(I, TOOL_PULSING) && !ignore)
-			ignore = TRUE
-			broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/one)
-			broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/two)
-			broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/three)
-			broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/four)
-			SPAWN_DBG(5 SECONDS) //
-				broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/priority)
-				broadcast_controls.broadcast_start(new /datum/directed_broadcast/queue_test_series/highpriority)
-				ignore = FALSE
-
-		..()
-
-/obj/shitty_radio/shitty_tv
-	name = "shitty test TV"
-	desc = "And you thought those radios were fucking garbage"
-	icon_state = "POCteevee"
-	icon = 'icons/misc/broadcastsPOC.dmi'
-	station = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
-	video_dmi = 'icons/misc/broadcastsPOC.dmi'
-	color = null
-
-	//shitcode override but it's a demo object so who cares
-	attack_hand(mob/user)
-		..()
-		if (on)
-			icon_state = "POCteevee-on"
-		else
-			icon_state = "POCteevee"
-
 /datum/directed_broadcast/testing
 	id = "demo"
 	group_messages = TRUE
@@ -389,7 +282,12 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 
 /datum/directed_broadcast/ad
 	id = "generic_ad"
-	priority = 2
+	loops_remaining = 1
+	priority = DEFAULT_PROGRAMMING_PRIORITY
+	group_messages = TRUE
+	//direct children of this can go both on radios and TVs
+	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_BROADCAST_RECEIVERS)
+
 	speakers = list("announcer" = list("Announcer", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
 	messages = list(\
 		list("*static*", 2 SECONDS, null, "test-D"),\
@@ -399,12 +297,25 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("Products. Available wherever goods are sold.", 10 SECONDS, "announcer", "cigarettes-B"),\
 		list("*static*", 2 SECONDS, null, "test-D"),\
 	)
-	group_messages = TRUE
+
+
+/datum/directed_broadcast/ad/tv_only
+	id = "generic_ad_tv"
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
-/datum/directed_broadcast/ad/cigarettes
+	speakers = list("announcer" = list("Announcer", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
+	messages = list(\
+		list("*static*", 2 SECONDS, null, "test-D"),\
+		list("Remember to spend your money wisely.", 7 SECONDS, "announcer", "cigarettes-A"),\
+		list("Buy more guns. Guns. Gunse. Gunse.", 6 SECONDS, "announcer", "cigarettes-A"),\
+		list("But I have a family to feed!", 6 SECONDS, "consumer", "cigarettes-B"),\
+		list("Gunse. Yours is waiting out there for you.", 10 SECONDS, "announcer", "cigarettes-B"),\
+		list("*static*", 2 SECONDS, null, "test-D"),\
+	)
+
+
+/datum/directed_broadcast/ad/tv_only/cigarettes
 	id = "cigarette_ad"
-	priority = 2
 	speakers = list("hank" = list("Thank", "#A2DD77"), "rachelle" = list("Grachelle", "#DDA277"))
 	messages = list(\
 		list("*static*", 2 SECONDS, null, "test-D"),\
@@ -414,12 +325,9 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("Cigarettes- available at your nearest cigarette vending machine.", 10 SECONDS, "hank", "cigarettes-B"),\
 		list("*static*", 2 SECONDS, null, "test-D"),\
 	)
-	group_messages = TRUE
-	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
-/datum/directed_broadcast/ad/hotdogs
+/datum/directed_broadcast/ad/tv_only/hotdogs
 	id = "hotdog_ad"
-	priority = 2
 	speakers = list("Frank" = list("Frank", "#d3374c"))
 	messages = list(\
 		list("*static*", 2 SECONDS, null, "test-D"),\
@@ -432,10 +340,54 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 		list("Probably safe!", 4 SECONDS, "Frank", "hotdogs-B"),\
 		list("*static*", 2 SECONDS, null, "test-D"),\
 	)
-	group_messages = TRUE
-	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
-/datum/directed_broadcast/eaglestoryone
+/datum/directed_broadcast/ad/radio_only
+	id = "generic_ad_radio"
+	broadcast_channels = TR_CAT_RADIO_BROADCAST_RECEIVERS
+	speakers = list("announcer" = list("Announcer", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
+	messages = list(\
+		list("*static*", 2 SECONDS, null, "test-D"),\
+		list("You know you want it.", 3 SECONDS, "announcer"),\
+		list("You know you need it.", 3 SECONDS, "announcer"),\
+		list("Huh? What?", 2 SECONDS, "consumer"),\
+		list("Products. Available wherever goods are sold.", 10 SECONDS, "announcer", "cigarettes-B"),\
+		list("*static*", 2 SECONDS, null, "test-D"),\
+		)
+
+/datum/directed_broadcast/ad/radio_only/schweewa1
+	id = "schweewa_ad_1"
+	speakers = list("dad" = list("Your actual dad(???)", "#d1320b"))
+	messages = list(\
+		list("*Greasy jingle*", 2 SECONDS),\
+		list("Schweewa.", 2 SECONDS),\
+		list("We've got fucking food in here.", 5 SECONDS),\
+		list("Come stuff your mouth!", 4 SECONDS),\
+		list("Like a burger or whatever. Buy our shit.", 5 SECONDS),\
+		list("You love to eat at Schweewa.", 5 SECONDS),\
+		list("Don't disappoint me this time.", 5 SECONDS, "dad"),\
+		list("Eat at Schweewa.", 4 SECONDS, "dad"),\
+		list("Schweewa: Found wherever asteroid mining takes place.", 8 SECONDS),\
+	)
+
+/datum/directed_broadcast/ad/radio_only/schweewa2
+	id = "schweewa_ad_2"
+	messages = list(\
+		list("*Greasy jingle*", 2 SECONDS),\
+		list("Schweewa cares for the community.", 2 SECONDS),\
+		list("Just in 2053 alone we donated over 70 burnt-out deep fryers to children in need!", 10 SECONDS),\
+		list("Every day, our customers find physical and mental support in the bins they eat our food off of.", 10 SECONDS),\
+		list("So come on down and join in.", 5 SECONDS),\
+		list("You might just find the family you were missing inside here!", 7 SECONDS),\
+		list("And if not, there's at least fried chicken.", 6 SECONDS),\
+		list("So, so much fried chicken.", 4 SECONDS),\
+		list("Schweewa: A beacon of hope in the darkness of space.", 8 SECONDS),\
+	)
+
+/datum/directed_broadcast/programme
+	priority = DEFAULT_PROGRAMMING_PRIORITY
+	loops_remaining = 1
+
+/datum/directed_broadcast/programme/eaglestoryone
 	id = "mysteries_of_the_frontier_one"
 	speakers = list("narrator" = list("Narrator", "#A2DD77"), "doctorwhitman" = list("Doctor Whitman", "#DDA277"), "specialistvirgil" = list("Specialist Virgil", "#6969BF"), "able" = list("Able", "#d3374c"))
 	messages = list(\
@@ -488,25 +440,80 @@ Look for /datum/directed_broadcast/testing_teevee at the bottom of this file as 
 	progress_when_silent = FALSE //just in case :(
 	messages = list("Please stand by for an emergency broadcast.", 6 SECONDS, null, "emergency-A")
 
-	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_FINITE_BROADCAST_RECEIVERS , TR_CAT_RADIO_BROADCAST_RECEIVERS)
+	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_CEILING_BROADCAST_DEFAULT , TR_CAT_RADIO_BROADCAST_RECEIVERS)
 
 /datum/directed_broadcast/signoff
 	id = "signoff"
 
-	New()
-		..()
-
-		messages = list(\
-			list("That is it for our programming schedule.", 6 SECONDS, null, "emergency-A"),\
-			list("This is CoolTV, signing off.", 6 SECONDS, null, "emergency-A"),\
-			list("*shitty corporate jingle*", 6 SECONDS, null, "emergency-A"),\
-			)
+	messages = list(\
+		list("That is it for our programming schedule.", 6 SECONDS, null, "emergency-A"),\
+		list("This is CoolTV, signing off.", 6 SECONDS, null, "emergency-A"),\
+		list("*shitty corporate jingle*", 6 SECONDS, null, "emergency-A"),\
+		)
 
 	priority = 1 //last one to play
 	progress_when_silent = FALSE
 
 	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS)
 
+ABSTRACT_TYPE(/datum/directed_broadcast/interstitial)
+/datum/directed_broadcast/interstitial
+	loops_remaining = 1
+	priority = DEFAULT_PROGRAMMING_PRIORITY
+	group_messages = TRUE
+
+/datum/directed_broadcast/interstitial/tv
+	id = "tv_int1"
+
+	messages = list(\
+		list("*Bweoooow*", 1 SECONDS, null, "emergency-B"),\
+		list("This channel brought to you by Nanotrasen.", 3 SECONDS, null, "emergency-B"),\
+		)
+
+/datum/directed_broadcast/interstitial/tv/second
+	id = "tv_int2"
+
+	messages = list(\
+		list("*Bweoooow*", 1 SECONDS, null, "emergency-B"),\
+		list("Nanotrasen TV. For a productive shift.", 3 SECONDS, null, "emergency-B"),\
+		)
+
+/datum/directed_broadcast/interstitial/tv/third
+	id = "tv_int3"
+
+	messages = list(\
+		list("*Bweoooow*", 1 SECONDS, null, "emergency-B"),\
+		list("Nanotrasen TV is sponsored by Nanotrasen.", 3 SECONDS, null, "emergency-B"),\
+		)
+
+/datum/directed_broadcast/interstitial/radio
+	id = "radio_int1"
+
+	messages = list(\
+		list("*pling*", 1 SECONDS),\
+		list("You're listening to radio.", 3 SECONDS),\
+		list("*plong*", 1 SECONDS),\
+		)
+
+/datum/directed_broadcast/interstitial/radio/second
+	id = "radio_int2"
+
+	messages = list(\
+		list("*pling*", 1 SECONDS),\
+		list("Radio. It's better than heaven.", 3 SECONDS),\
+		list("*plong*", 1 SECONDS),\
+		)
+
+/datum/directed_broadcast/interstitial/radio/third
+	id = "radio_int3"
+
+	messages = list(\
+		list("*pling*", 1 SECONDS),\
+		list("Radio. I love it.", 3 SECONDS),\
+		list("*plong*", 1 SECONDS),\
+		)
+
 
 #undef LOOP_INFINITELY
 #undef DEFAULT_BROADCAST_MESSAGE_TIME
+#undef DEFAULT_PROGRAMMING_PRIORITY

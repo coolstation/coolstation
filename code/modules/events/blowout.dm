@@ -25,7 +25,7 @@
 		command_alert("Extreme levels of radiation detected approaching the [station_or_ship()]. All personnel have [timetoreach].[timetoreachsec] seconds to enter a maintenance tunnel or radiation safezone. Maintenance doors have temporarily had their access requirements removed. This is not a test.", "Anomaly Alert")
 
 		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "Radiation Storm", "[timetoreach] Seconds", "Seek shelter in maintenance corridors immediately. Interlocks have been released.")
-		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
+		broadcast_controls.broadcast_start(broadcast, TRUE, set_loops = -1, process_immediately = TRUE)
 
 		SPAWN_DBG(0)
 			for_by_tcl(A, /obj/machinery/door/airlock)
