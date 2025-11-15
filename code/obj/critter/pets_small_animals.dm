@@ -104,6 +104,9 @@
 				src.visible_message("<span class='emote'><b>[src]</b> flutters its wings happily!</span>")
 				playsound(src.loc, 'sound/voice/moth/moth_flutter.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 				return
+		else if ((user.a_intent == INTENT_GRAB))
+			..()
+			return
 		else
 			..()
 		return
