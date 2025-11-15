@@ -1197,7 +1197,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 /obj/item/gun_parts/accessory/ammofab
 	name = "ammo fabricator"
-	desc = "A small fabricator that produces low-quality ammunition and outputs it directly into the gun it has been attached to."
+	desc = "A black market fabricator that produces low-quality ammunition and outputs it directly into the gun it has been attached to."
 	icon_state = "ammofab"
 	jam_frequency = 3
 	bulkiness = 2
@@ -1221,7 +1221,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	process()
 		. = ..()
 		src.processes_since_ammo_gen++
-		if(src.processes_per_ammo_gen <= src.processes_since_ammo_gen)
+		if(src.processes_since_ammo_gen <= src.processes_per_ammo_gen)
 			return
 		src.processes_since_ammo_gen = 0
 		if(src.my_gun && src.my_gun.built && src.my_gun.ammo_reserve() < src.my_gun.max_ammo_capacity)
@@ -1236,9 +1236,18 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 				src.my_gun.inventory_counter.update_number(src.my_gun.ammo_reserve())
 
 	disposing()
-		qdel(src.stored_generated_ammo)
-		src.stored_generated_ammo = null
+		if(src.stored_generated_ammo)
+			qdel(src.stored_generated_ammo)
+			src.stored_generated_ammo = null
+		processing_items -= src
 		. = ..()
+
+/obj/item/gun_parts/accessory/ammofab/malware
+	name = "malware round ammo fabricator"
+	desc = "A cutting edge fabricator that automatically extrudes malicious nervous system inputs into 3.55 ligne rifle cartridges."
+	contraband = 7
+	add_prefix = "invasive"
+	generated_ammo_type = /obj/item/stackable_ammo/rifle/malware
 
 // the weird parts for glue'd gunse
 

@@ -395,5 +395,5 @@
 
 		playsound(target, "sound/impact_sounds/Flesh_Stab_1.ogg", 45, 1, -1)
 		target.TakeDamageAccountArmor("All", isnull(disguise) ? rand(5, 15) : rand(disguise.disguise_scaling / 2, disguise.disguise_scaling), 0, 0, DAMAGE_STAB)
-		target.changeStatus("disoriented", 3 SECONDS)
+		target.changeStatus("disorient", 3 SECONDS)
 

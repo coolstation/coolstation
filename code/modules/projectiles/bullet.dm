@@ -303,6 +303,40 @@ toxic - poisons
 	implanted = /obj/item/implant/projectile/bullet_rifle_juicer_ap
 	dud_freq = 15
 
+/datum/projectile/bullet/rifle/malware
+	power = 18
+	dissipation_delay = 7
+	dissipation_rate = 6
+	damage_type = D_PIERCING
+	hit_type = DAMAGE_CUT
+	implanted = /obj/item/implant/projectile/bullet_rifle_malware
+	dud_freq = 2
+	icon_turf_hit = "bhole-small"
+	casing = null
+	var/code_severity = 3
+	var/robotic_severity = 1
+
+	on_hit(atom/hit)
+		..()
+		if(ismob(hit))
+			var/mob/M = hit
+			playsound(M.loc, "sound/effects/sparks6.ogg", 50, TRUE, -5)
+			var/severity = src.code_severity + M.robot_talk_understand * src.robotic_severity
+			if(!severity)
+				return
+			M.change_misstep_chance(severity * 0.5)
+			M.changeStatus("slowed", severity SECONDS)
+			if(isliving(M))
+				var/mob/living/L = M
+				SPAWN_DBG(0)
+					for(var/i in 1 to severity)
+						if(QDELETED(L))
+							break
+						playsound(L.loc, "sound/effects/electric_shock_short.ogg", 35, 0, -23, 1.8)
+						L.handle_random_emotes()
+						if(prob(30))
+							break
+						sleep(rand(5, 40))
 
 /* ------------------------------ Shotgun Shit ------------------------------ */
 //First up: Shot (Tiny projectiles fired from one cartridge, these are not the projectile fired from the gun, that ones a spreader)
