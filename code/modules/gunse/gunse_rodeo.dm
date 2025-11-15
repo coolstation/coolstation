@@ -79,10 +79,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/rodeo)
 			. = ..()
 		SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
 
-	attackby(var/obj/item/I as obj, mob/user as mob)
-		if (!src.broke_open && istype(I, /obj/item/stackable_ammo))
-			boutput(user, "<span class='notice'>You'll need to open the gun!</span>")
-			return
+	cannotload()
+		if (!src.broke_open)
+			return "<span class='notice'>You'll need to open the gun!</span>"
 		return ..()
 
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
@@ -114,4 +113,4 @@ ABSTRACT_TYPE(/obj/item/gun/modular/rodeo/maresleg)
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/rodeo(src)
-		grip = new /obj/item/gun_parts/grip/rodeo(src)
+		stock = new /obj/item/gun_parts/stock/rodeo(src)

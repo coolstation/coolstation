@@ -212,6 +212,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/attackby(var/obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/stackable_ammo))
+		var/load_blocked_msg = src.cannotload()
+		if(load_blocked_msg)
+			boutput(user, load_blocked_msg)
+			return
 		actions.start(new/datum/action/bar/private/load_ammo(src, I), user)
 		return
 
@@ -344,6 +348,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/set_current_projectile(datum/projectile/newProj)
 	qdel(src.current_projectile)
 	. = ..()
+
+/obj/item/gun/modular/proc/cannotload()
+	if(src.ammo_reserve() >= src.max_ammo_capacity)
+		return "<span class='notice'>You can't load [src] any further!</span>"
+	return FALSE
 
 // load a piece of ammo, overriden by children
 /obj/item/gun/modular/proc/load_ammo(var/mob/user, var/obj/item/stackable_ammo/donor_ammo)

@@ -977,7 +977,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	w_class = W_CLASS_SMALL
 	max_ammo_capacity = 2 // a few more rounds
 	jam_frequency = 2 // a little more jammy
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	part_DRM = GUN_NANO_FRIENDLY
 	add_prefix = "sturdy"
 	icon_state = "nt_solid"
@@ -1000,7 +999,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 1
 	w_class = W_CLASS_TINY
 	foldable = 1
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_prefix = "capable"
 	icon_state = "nt_wire"
 	overlay_x = 0 //generally wire stocks should be centered, using "template-offset" as a guide
@@ -1014,7 +1012,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	w_class = W_CLASS_NORMAL
 	max_ammo_capacity = 5
 	jam_frequency = 5 // a little more jammy
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_prefix = "appointed"
 	icon_state = "nt_solid_mag"
 	overlay_x = -9
@@ -1024,7 +1021,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	real_name = "calcio del fucile"
 	desc = "Un calcio in noce robusto ma leggero per la caccia."
 	spread_angle = -5 // brety gud
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	part_DRM = GUN_ITALIAN_FRIENDLY
 	add_suffix = "cacciatore"
 	icon_state = "italian_solid"
@@ -1040,7 +1036,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 2
 	w_class = W_CLASS_SMALL
 	//foldable = 1
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_suffix = "pirite"
 	icon_state = "italian_wire"
 	overlay_x = -7
@@ -1054,7 +1049,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	w_class = W_CLASS_SMALL
 	//max_ammo_capacity = 0 // does not add ammo
 	//jam_frequency = 3 // a little more jammy
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	part_DRM = GUN_SOVIET_FRIENDLY
 	add_suffix = "ustoychivyy"
 	icon_state = "sov_solid"
@@ -1065,9 +1059,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -2 // not as better stabilisation
 	bulkiness = 1
 	w_class = W_CLASS_TINY
-
 	foldable = 1
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_prefix = "udobnyy"
 	icon_state = "sov_wire"
 	overlay_x = 0
@@ -1141,6 +1133,19 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	jam_frequency = 5 // a little more jammy
 	add_prefix = "six-sigma"
 	icon_state = "stock_double_alt"
+
+/obj/item/gun_parts/stock/rodeo
+	name = "rodeo bracing stock"
+	real_name = "rodeo bracing stock"
+	desc = "A hefty wooden stock from St. Tite Nickelworks."
+	spread_angle = -2
+	max_ammo_capacity = 1
+	part_DRM = GUN_RODEO_FRIENDLY
+	add_suffix = "on the range"
+	icon_state = "rodeo_solid"
+	bulkiness = 4
+	w_class = W_CLASS_NORMAL
+	overlay_x = -6
 
 // BASIC ACCESSORIES
 	// flashlight!!
