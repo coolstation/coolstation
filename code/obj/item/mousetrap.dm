@@ -279,7 +279,7 @@
 			src.overlays += image('icons/obj/items/weapons.dmi', "trap-buttbomb")
 		else
 			..()
-	return
+		return
 
 
 	HasEntered(AM as mob|obj)
