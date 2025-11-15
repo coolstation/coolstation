@@ -779,11 +779,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A shotgun barrel manufacted by St. Tite Nickelworks."
 	icon_state = "rodeo_shot"
 	add_prefix = "ramblin'"
-	spread_angle = 6
+	spread_angle = 10
 	length = 16
 	overlay_x = 8
-	bulkiness = 3
-	w_class = W_CLASS_SMALL
+	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 	caliber = CALIBER_WIDE
 
 /obj/item/gun_parts/barrel/pipeframe

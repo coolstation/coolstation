@@ -946,14 +946,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	spread += (recoil/recoil_max) * recoil_inaccuracy_max
 
-	var/obj/projectile/P = shoot_projectile_ST_pixel_spread(user, current_projectile, target, POX, POY, spread, alter_proj = new/datum/callback(src, PROC_REF(alter_projectile)))
-	if (P)
-		P.forensic_ID = src.forensic_ID
-		if(current_projectile.casing)
-			casing_list.Add(current_projectile.casing)
-		if(point_blank_target && GET_DIST(user,point_blank_target) <= 1)
-			P.was_pointblank = 1
-			hit_with_existing_projectile(P, point_blank_target)
+	if(point_blank_target && GET_DIST(user,point_blank_target) <= 1)
+		hit_with_projectile(user, current_projectile, point_blank_target, src.forensic_ID)
+		logTheThing("combat", user, point_blank_target, "pointblanks [point_blank_target] with \a [src] from [log_loc(user)]. Projectile typepath was [current_projectile && current_projectile.type ? current_projectile.type : null]")
+	else
+		var/obj/projectile/P = shoot_projectile_ST_pixel_spread(user, current_projectile, target, POX, POY, spread, alter_proj = new/datum/callback(src, PROC_REF(alter_projectile)))
+		if (P)
+			P.forensic_ID = src.forensic_ID
+		var/turf/T = target
+		src.log_shoot(user, T, P)
+	if(current_projectile.casing)
+		casing_list.Add(current_projectile.casing)
 
 	chamber_checked = FALSE
 
@@ -964,9 +967,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		else
 			if (ismob(user)) // Fix for: undefined proc or verb /obj/item/mechanics/gunholder/show text().
 				user.show_text("<span class='alert'>You silently fire the [src] at [target]!</span>") // Some user feedback for silenced guns would be nice (Convair880).
-
-		var/turf/T = target
-		src.log_shoot(user, T, P)
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
 	handle_recoil(user, start, target, POX, POY)
