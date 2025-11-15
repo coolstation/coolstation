@@ -468,44 +468,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	bulkiness = 4
 	w_class = W_CLASS_NORMAL
 
-/obj/item/gun_parts/barrel/rodeo
-	name = "rodeo short barrel"
-	real_name = "rodeo short barrel"
-	desc = "A short barrel manufacted by St. Tite Nickelworks."
-	icon_state = "rodeo_short"
-	part_DRM = GUN_RODEO_FRIENDLY
-	add_prefix = "wild"
-	spread_angle = 4
-	length = 13
-	overlay_x = 6
-	bulkiness = 2
-	w_class = W_CLASS_SMALL
-
-/obj/item/gun_parts/barrel/rodeo/long
-	name = "rodeo long barrel"
-	real_name = "rodeo long barrel"
-	desc = "A long barrel manufacted by St. Tite Nickelworks."
-	icon_state = "rodeo_long"
-	add_prefix = "rootin'"
-	spread_angle = 4
-	length = 23
-	overlay_x = 11
-	bulkiness = 3
-	w_class = W_CLASS_SMALL
-
-/obj/item/gun_parts/barrel/rodeo/shotty
-	name = "rodeo shotgun barrel"
-	real_name = "rodeo shotgun barrel"
-	desc = "A shotgun barrel manufacted by St. Tite Nickelworks."
-	icon_state = "rodeo_shot"
-	add_prefix = "ramblin'"
-	spread_angle = 6
-	length = 16
-	overlay_x = 8
-	bulkiness = 3
-	w_class = W_CLASS_SMALL
-	caliber = CALIBER_WIDE
-
 /obj/item/gun_parts/barrel/foss
 	name = "\improper FOSS lensed barrel"
 	desc = "A cylindrical array of lenses to focus laser blasts."
@@ -786,6 +748,44 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 			P.max_spread += spread
 		return ..()
 
+/obj/item/gun_parts/barrel/rodeo
+	name = "rodeo short barrel"
+	real_name = "rodeo short barrel"
+	desc = "A short barrel manufacted by St. Tite Nickelworks."
+	icon_state = "rodeo_short"
+	part_DRM = GUN_RODEO_FRIENDLY
+	add_prefix = "ridin'"
+	spread_angle = 4
+	length = 13
+	overlay_x = 6
+	bulkiness = 2
+	w_class = W_CLASS_SMALL
+
+/obj/item/gun_parts/barrel/rodeo/long
+	name = "rodeo long barrel"
+	real_name = "rodeo long barrel"
+	desc = "A long barrel manufacted by St. Tite Nickelworks."
+	icon_state = "rodeo_long"
+	add_prefix = "rootin'"
+	spread_angle = 4
+	length = 23
+	overlay_x = 11
+	bulkiness = 3
+	w_class = W_CLASS_SMALL
+
+/obj/item/gun_parts/barrel/rodeo/shotty
+	name = "rodeo shotgun barrel"
+	real_name = "rodeo shotgun barrel"
+	desc = "A shotgun barrel manufacted by St. Tite Nickelworks."
+	icon_state = "rodeo_shot"
+	add_prefix = "ramblin'"
+	spread_angle = 6
+	length = 16
+	overlay_x = 8
+	bulkiness = 3
+	w_class = W_CLASS_SMALL
+	caliber = CALIBER_WIDE
+
 /obj/item/gun_parts/barrel/pipeframe
 	name = "pipe barrel"
 	real_name = "pipe barrel"
@@ -842,7 +842,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -1
 	add_prefix = "woody"
 	overlay_x = -2
-	overlay_y = -2
+	overlay_y = -3
 
 /obj/item/gun_parts/grip/italian
 	name = "italian pistol grip"
@@ -910,7 +910,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	jam_frequency = 2
 	icon_state = "italian_pearl"
 
-
 /obj/item/gun_parts/grip/juicer
 	name = "da grip"
 	desc = "some kind of knockoff tacticool pistol grip"
@@ -954,6 +953,19 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -3 // basic stabilisation
 	add_prefix = "whizz-bang"
 	icon_state = "wiz"
+
+/obj/item/gun_parts/grip/rodeo
+	name = "rodeo grip"
+	real_name = "saddle grip"
+	desc = "A handsome grip manufacted by St. Tite Nickelworks."
+	icon_state = "rodeo_plain"
+	part_DRM = GUN_RODEO_FRIENDLY
+	add_prefix = "saddled"
+	spread_angle = -2
+	overlay_x = -5
+	overlay_y = -2
+	bulkiness = 2
+	w_class = W_CLASS_SMALL
 
 //stonks
 

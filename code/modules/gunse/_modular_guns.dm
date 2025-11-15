@@ -328,8 +328,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/turf/T = get_turf(src)
 		if(T)
 			SPAWN_DBG(0)
-				var/i = 1
-				var/batch = 3
+				var/i = 0
+				var/batch = 1
 				for(var/casing in src.casing_list)
 					if(i == batch)
 						sleep(1 DECI SECOND)

@@ -1,5 +1,3 @@
-
-
 //Italian Gunse
 //Lower damage, higher fire rate
 //Cylinder "magazine"
