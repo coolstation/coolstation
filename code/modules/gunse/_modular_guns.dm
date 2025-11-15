@@ -741,7 +741,29 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(flashbulb_only) // additional branch for suicide
 		return flash_process_ammo(user)
 
-	switch(jammed)
+	if(src.jammed)
+		return src.unjam(user)
+
+	var/ammo_left = src.ammo_reserve()
+
+	if(accessory && accessory_alt && (src.current_projectile || !ammo_left)) // accessory alt fire
+		accessory.alt_fire()
+		return 1
+
+	if(ammo_left > src.max_ammo_capacity)
+		var/waste = ammo_left - max_ammo_capacity
+		src.ammo_list.Cut(1,(1 + waste))
+		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
+		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,0,0.8)
+
+	if(src.chamber_round(user)) //finally, attempt to load and cycle
+		if (sound_type)
+			playsound(src.loc, "sound/weapons/modular/[sound_type]-quickcycle[rand(1,2)].ogg", 40, 1)
+		return TRUE
+	return FALSE
+
+/obj/item/gun/modular/proc/unjam(var/mob/user)
+	switch(src.jammed)
 		if(JAM_FIRE) //problem on fire, either dud round or light strike
 			if(prob(current_projectile.dud_freq)) //unlucky, dump the round
 				src.jammed = FALSE
@@ -768,24 +790,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			return 1
 		//if(4) //squib, catastrophic failure, etc. real bad time. explode if shot, or requires repair?
 		//if(5) //hangfire, figure out how to handle
-
-	var/ammo_left = src.ammo_reserve()
-
-	if(accessory && accessory_alt && (src.current_projectile || !ammo_left)) // accessory alt fire
-		accessory.alt_fire()
-		return 1
-
-	if(ammo_left > src.max_ammo_capacity)
-		var/waste = ammo_left - max_ammo_capacity
-		src.ammo_list.Cut(1,(1 + waste))
-		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
-		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,0,0.8)
-
-	if(src.chamber_round(user)) //finally, attempt to load and cycle
-		if (sound_type)
-			playsound(src.loc, "sound/weapons/modular/[sound_type]-quickcycle[rand(1,2)].ogg", 40, 1)
-		return TRUE
-	return FALSE
 
 /obj/item/gun/modular/proc/chamber_round(var/mob/user)
 	var/ammo_left = src.ammo_reserve() // this doesnt correct ammo count based on current projectile because

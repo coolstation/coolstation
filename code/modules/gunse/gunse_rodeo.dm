@@ -27,6 +27,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/rodeo)
 	proc/close_break()
 		if(!src.barrel || !src.built || !src.broke_open)
 			return
+		if(src.jammed)
+			return src.unjam()
 		src.broke_open = FALSE
 		var/image/I = src.GetOverlayImage("1")
 		if(!I)
@@ -36,14 +38,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular/rodeo)
 		I.transform = matrix(I.transform, -90, MATRIX_ROTATE)
 		src.UpdateOverlays(I, "1")
 
+	shoot(target, start, mob/user, POX, POY, is_dual_wield, mob/point_blank_target)
+		. = ..()
+		src.process_ammo(user)
+
 	canshoot()
 		if(src.broke_open && src.barrel)
 			return FALSE
 		. = ..()
 
 	reset_gun()
-		if(src.broke_open)
-			src.close_break()
+		src.broke_open = FALSE
 		..()
 
 	MouseDrop_T(obj/O as obj, mob/user as mob)
@@ -73,6 +78,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/rodeo)
 		else
 			. = ..()
 		SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
+
+	attackby(var/obj/item/I as obj, mob/user as mob)
+		if (!src.broke_open && istype(I, /obj/item/stackable_ammo))
+			boutput(user, "<span class='notice'>You'll need to open the gun!</span>")
+			return
+		return ..()
 
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
 		if(!src.broke_open && src.barrel)
