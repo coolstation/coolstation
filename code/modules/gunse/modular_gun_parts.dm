@@ -782,8 +782,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 10
 	length = 16
 	overlay_x = 8
-	bulkiness = 4
-	w_class = W_CLASS_NORMAL
+	bulkiness = 3
+	w_class = W_CLASS_SMALL
 	caliber = CALIBER_WIDE
 
 /obj/item/gun_parts/barrel/pipeframe

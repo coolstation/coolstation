@@ -101,7 +101,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/rodeo/maresleg)
 	grip_overlay_y = -2
 	stock_overlay_x = -3
 	stock_overlay_y = -2
-	load_time = 0.1 SECONDS
+	load_time = 0.2 SECONDS
 	max_ammo_capacity = 1
 	bulkiness = 2
 	w_class = W_CLASS_SMALL
