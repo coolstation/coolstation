@@ -86,7 +86,6 @@
 		if ((user.a_intent == INTENT_HARM))
 			..()
 			if (src.alive)
-				src.visible_message("<span class='combat'><b>[user]</b> hits the [src]!</span>")
 				if (prob(50))
 					src.audible_message("<span class='emote'><b>[src]</b> screams!</span>")
 					playsound(src.loc, 'sound/voice/moth/scream_moth.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
