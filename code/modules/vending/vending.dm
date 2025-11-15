@@ -1276,6 +1276,8 @@
 	status |= BROKEN
 	var/turf/vicTurf = get_turf(victim)
 	src.icon_state = "[initial(icon_state)]-fallen"
+	if(src.has_glow)
+		src.UpdateOverlays(null, "glow")
 //	SPAWN_DBG(0)
 //		src.icon_state = "[initial(icon_state)]-fall"
 //		SPAWN_DBG(2 SECONDS)
@@ -1559,6 +1561,8 @@
 			src.vendor.anchored = ANCHORED
 			src.vendor.status &= ~BROKEN
 			src.vendor.power_change()
+			if(src.vendor.has_glow)
+				src.vendor.UpdateOverlays(src.vendor.glow, "glow")
 
 			for(var/mob/M in AIviewers(src.owner))
 				M.show_message("<span class='notice'><B>[src.owner] manages to stand \the [src.vendor] back upright!</B></span>", 1)
@@ -1575,7 +1579,7 @@
 	pay = 1
 	vend_delay = 25
 	icon_state = "coffee"
-	icon_vend = "coffee-vend" //TODO: resprite vend state (along with broken/tipped and tipped glow, other vending machines also require this)
+	icon_vend = "coffee-vend"
 	icon_panel = "coffee-panel"
 	light_r = 1
 	light_g = 0.88

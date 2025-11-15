@@ -106,6 +106,7 @@
 	opacity = 0
 	density = 0
 	anchored = ANCHORED
+	event_handler_flags = IMMUNE_SINGULARITY
 	pixel_x = -64
 	pixel_y = -64
 	var/move_prob = 12

@@ -267,8 +267,8 @@ ABSTRACT_TYPE(/obj/submachine)
 	var/area/A = get_area(src)		// make sure it's in an area
 	if(!A || !isarea(A))
 		return 0					// if not, then not powered
-	if (machines_may_use_wired_power && power_usage && !A.requires_power)
-		return 0
+//	if (machines_may_use_wired_power && power_usage && !A.requires_power)
+//		return 0
 	return A.powered(chan)	// return power status of the area
 
 /obj/machinery/proc/use_power(var/amount, var/chan=EQUIP) // defaults to Equipment channel

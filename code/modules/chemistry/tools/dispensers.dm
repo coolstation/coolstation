@@ -42,8 +42,9 @@
 		if (die || src.reagents.maximum_volume == 0 || can_break == FALSE)
 			qdel(src)
 		src.icon_state = "[initial(src.icon_state)]-busted"
-		src.reagents.clear_reagents()
-		src.reagents.maximum_volume = 0
+		if(!QDELETED(src))
+			src.reagents.clear_reagents()
+			src.reagents.maximum_volume = 0
 
 
 

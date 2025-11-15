@@ -118,12 +118,12 @@
 	ex_act(severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
-				SPAWN_DBG(0)
-					src.take_damage(400)
+				//SPAWN_DBG(0)
+				src.take_damage(400)
 				return
 			if(OLD_EX_SEVERITY_2)
-				SPAWN_DBG(0)
-					src.take_damage(150)
+				//SPAWN_DBG(0)
+				src.take_damage(150)
 				return
 
 	blob_act(var/power)
