@@ -14,6 +14,7 @@
 	var/obj/item/pipebomb/bomb/pipebomb = null
 	var/obj/item/device/radio/signaler/signaler = null
 	var/obj/item/reagent_containers/food/snacks/pie/pie = null
+	var/obj/item/reagent_containers/food/snacks/plant/plant = null
 	var/obj/item/parts/arm = null
 	var/obj/item/clothing/head/butt/butt = null
 	var/obj/item/gimmickbomb/butt/buttbomb = null
@@ -96,7 +97,97 @@
 		return
 
 	attackby(obj/item/C as obj, mob/user as mob)
-		if (istype(C, /obj/item/chem_grenade) && !src.grenade && !src.grenade_old && !src.pipebomb && !src.arm && !src.signaler && !src.butt && !src.buttbomb)
+		if (iswrenchingtool(C))
+			if (src.grenade)
+				user.show_text("You detach [src.grenade].", "blue")
+				src.grenade.set_loc(get_turf(src))
+				src.grenade = null
+				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-grenade")
+			else if (src.grenade_old)
+				user.show_text("You detach [src.grenade_old].", "blue")
+				src.grenade_old.set_loc(get_turf(src))
+				src.grenade_old = null
+				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-grenade")
+			else if (src.pipebomb)
+				user.show_text("You detach [src.pipebomb].", "blue")
+				src.pipebomb.set_loc(get_turf(src))
+				src.pipebomb = null
+				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-pipebomb")
+			else if (src.signaler)
+				user.show_text("You detach [src.signaler].", "blue")
+				src.signaler.set_loc(get_turf(src))
+				src.signaler = null
+				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-signaler")
+			else if (src.pie)
+				user.show_text("You remove [src.pie] from [src].", "blue")
+				src.overlays -= image(src.pie.icon, src.pie.icon_state)
+				src.pie.layer = initial(src.pie.layer)
+				src.pie.set_loc(get_turf(src))
+				src.pie = null
+			else if (src.plant)
+				user.show_text("You remove [src.plant] from [src].", "blue")
+				src.overlays -= image(src.plant.icon, src.plant.icon_state)
+				src.plant.layer = initial(src.plant.layer)
+				src.plant.set_loc(get_turf(src))
+				src.plant = null
+			else if (src.arm)
+				user.show_text("You remove [src.arm] from [src].", "blue")
+				src.overlays -= image(src.arm.icon, src.arm.icon_state)
+				src.arm.layer = initial(src.arm.layer)
+				src.arm.set_loc(get_turf(src))
+				src.arm = null
+			else if (src.butt)
+				user.show_text("You remove [src.butt] from [src].", "blue")
+				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-[src.butt.icon_state]")
+				src.butt.layer = initial(src.butt.layer)
+				src.butt.set_loc(get_turf(src))
+				src.butt = null
+			else if (src.buttbomb)
+				user.show_text("You remove [src.buttbomb] from [src].", "blue")
+				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-buttbomb")
+				src.buttbomb.layer = initial(src.buttbomb.layer)
+				src.buttbomb.set_loc(get_turf(src))
+				src.buttbomb = null
+		else if (src.arm && (src.pie || src.plant))
+			return
+		else if (istype(C, /obj/item/reagent_containers/food/snacks/pie) && !src.grenade && !src.grenade_old && !src.pipebomb  && !src.signaler && !src.butt && !src.buttbomb && !src.plant)
+			if (src.pie)
+				user.show_text("There's already a pie attached to [src]!", "red")
+				return
+			else if (!src.arm)
+				user.show_text("You can't quite seem to get [C] to stay on [src]. Seems like it needs something to hold it in place.", "red")
+				return
+			else if (C.w_class > W_CLASS_TINY) // Transfer valve bomb pies are a thing. Shouldn't fit in a backpack, much less a box.
+				user.show_text("[C] is way too large. You can't find any way to balance it on the arm.", "red")
+				return
+			user.u_equip(C)
+			src.pie = C
+			C.set_loc(src)
+			src.overlays += image(C.icon, C.icon_state)
+			user.show_text("You carefully set [C] in [src]'s [src.arm].", "blue")
+
+			logTheThing("bombing", user, null, "rigs [src] with [src.arm] and [C] at [log_loc(user)].")
+		else if (istype(C, /obj/item/reagent_containers/food/snacks/plant) && !src.grenade && !src.grenade_old && !src.pipebomb  && !src.signaler && !src.butt && !src.buttbomb && !src.pie)
+			if (src.plant)
+				user.show_text("There's already a plant attached to [src]!", "red")
+				return
+			else if (!src.arm)
+				user.show_text("You can't quite seem to get [C] to stay on [src]. Seems like it needs something to hold it in place.", "red")
+				return
+			else if (C.w_class > W_CLASS_TINY) // some plants are big
+				user.show_text("[C] is way too large. You can't find any way to balance it on the arm.", "red")
+				return
+			user.u_equip(C)
+			src.plant = C
+			C.set_loc(src)
+			src.overlays += image(C.icon, C.icon_state)
+			user.show_text("You carefully set [C] in [src]'s [src.arm].", "blue")
+
+			logTheThing("bombing", user, null, "rigs [src] with [src.arm] and [C] at [log_loc(user)].")
+
+		else if (src.grenade || src.grenade_old || src.pipebomb || src.arm || src.signaler || src.butt || src.buttbomb)
+			return ..()
+		else if (istype(C, /obj/item/chem_grenade))
 			var/obj/item/chem_grenade/CG = C
 			if (CG.stage == 2 && !CG.state)
 				user.u_equip(CG)
@@ -108,7 +199,7 @@
 				message_admins("[key_name(user)] rigs [src] with [CG] at [log_loc(user)].")
 				logTheThing("bombing", user, null, "rigs [src] with [CG] at [log_loc(user)].")
 
-		else if (istype(C, /obj/item/old_grenade/) && !src.grenade && !src.grenade_old && !src.pipebomb && !src.arm && !src.signaler && !src.butt && !src.buttbomb)
+		else if (istype(C, /obj/item/old_grenade/) )
 			var/obj/item/old_grenade/OG = C
 			if (OG.not_in_mousetraps == 0 && !OG.state)
 				user.u_equip(OG)
@@ -120,7 +211,7 @@
 				message_admins("[key_name(user)] rigs [src] with [OG] at [log_loc(user)].")
 				logTheThing("bombing", user, null, "rigs [src] with [OG] at [log_loc(user)].")
 
-		else if (istype(C, /obj/item/pipebomb/bomb) && !src.grenade && !src.grenade_old && !src.pipebomb && !src.arm && !src.signaler && !src.butt && !src.buttbomb)
+		else if (istype(C, /obj/item/pipebomb/bomb) )
 			var/obj/item/pipebomb/bomb/PB = C
 			if (!PB.armed)
 				user.u_equip(PB)
@@ -132,7 +223,7 @@
 				message_admins("[key_name(user)] rigs [src] with [PB] at [log_loc(user)].")
 				logTheThing("bombing", user, null, "rigs [src] with [PB] at [log_loc(user)].")
 
-		else if (istype(C, /obj/item/device/radio/signaler) && !src.grenade && !src.grenade_old && !src.pipebomb && !src.arm && !src.signaler && !src.butt && !src.buttbomb)
+		else if (istype(C, /obj/item/device/radio/signaler) )
 			var/obj/item/device/radio/signaler/S = C
 			user.u_equip(S)
 			S.set_loc(src)
@@ -164,32 +255,14 @@
 			new /obj/item/mousetrap_roller(get_turf(src), src, PF)
 			return
 
-		else if (!src.arm && (istype(C, /obj/item/parts/robot_parts/arm) || istype(C, /obj/item/parts/human_parts/arm)) && !src.grenade && !src.grenade_old && !src.pipebomb  && !src.signaler && !src.butt && !src.buttbomb)
+		else if (!src.arm && (istype(C, /obj/item/parts/robot_parts/arm) || istype(C, /obj/item/parts/human_parts/arm)) )
 			user.u_equip(C)
 			src.arm = C
 			C.set_loc(src)
 			src.overlays += image(C.icon, C.icon_state)
 			user.show_text("You add [C] to [src].", "blue")
 
-		else if (istype(C, /obj/item/reagent_containers/food/snacks/pie) && !src.grenade && !src.grenade_old && !src.pipebomb  && !src.signaler && !src.butt && !src.buttbomb)
-			if (src.pie)
-				user.show_text("There's already a pie attached to [src]!", "red")
-				return
-			else if (!src.arm)
-				user.show_text("You can't quite seem to get [C] to stay on [src]. Seems like it needs something to hold it in place.", "red")
-				return
-			else if (C.w_class > W_CLASS_TINY) // Transfer valve bomb pies are a thing. Shouldn't fit in a backpack, much less a box.
-				user.show_text("[C] is way too large. You can't find any way to balance it on the arm.", "red")
-				return
-			user.u_equip(C)
-			src.pie = C
-			C.set_loc(src)
-			src.overlays += image(C.icon, C.icon_state)
-			user.show_text("You carefully set [C] in [src]'s [src.arm].", "blue")
-
-			logTheThing("bombing", user, null, "rigs [src] with [src.arm] and [C] at [log_loc(user)].")
-
-		else if (istype(C, /obj/item/clothing/head/butt) && !src.grenade && !src.grenade_old && !src.pipebomb  && !src.signaler && !src.butt && !src.buttbomb)
+		else if (istype(C, /obj/item/clothing/head/butt) )
 			var/obj/item/clothing/head/butt/B = C
 			user.u_equip(B)
 			B.set_loc(src)
@@ -197,62 +270,17 @@
 			src.butt = B
 			src.overlays += image('icons/obj/items/weapons.dmi', "trap-[src.butt.icon_state]")
 
-		else if (istype(C, /obj/item/gimmickbomb/butt) && !src.grenade && !src.grenade_old && !src.pipebomb  && !src.signaler && !src.butt && !src.buttbomb)
+		else if (istype(C, /obj/item/gimmickbomb/butt) )
 			var/obj/item/gimmickbomb/BB = C
 			user.u_equip(BB)
 			BB.set_loc(src)
 			user.show_text("You attach [BB] to [src].", "blue")
 			src.buttbomb = BB
 			src.overlays += image('icons/obj/items/weapons.dmi', "trap-buttbomb")
-
-		else if (iswrenchingtool(C))
-			if (src.grenade)
-				user.show_text("You detach [src.grenade].", "blue")
-				src.grenade.set_loc(get_turf(src))
-				src.grenade = null
-				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-grenade")
-			else if (src.grenade_old)
-				user.show_text("You detach [src.grenade_old].", "blue")
-				src.grenade_old.set_loc(get_turf(src))
-				src.grenade_old = null
-				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-grenade")
-			else if (src.pipebomb)
-				user.show_text("You detach [src.pipebomb].", "blue")
-				src.pipebomb.set_loc(get_turf(src))
-				src.pipebomb = null
-				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-pipebomb")
-			else if (src.signaler)
-				user.show_text("You detach [src.signaler].", "blue")
-				src.signaler.set_loc(get_turf(src))
-				src.signaler = null
-				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-signaler")
-			else if (src.pie)
-				user.show_text("You remove [src.pie] from [src].", "blue")
-				src.overlays -= image(src.pie.icon, src.pie.icon_state)
-				src.pie.layer = initial(src.pie.layer)
-				src.pie.set_loc(get_turf(src))
-				src.pie = null
-			else if (src.arm)
-				user.show_text("You remove [src.arm] from [src].", "blue")
-				src.overlays -= image(src.arm.icon, src.arm.icon_state)
-				src.arm.layer = initial(src.arm.layer)
-				src.arm.set_loc(get_turf(src))
-				src.arm = null
-			else if (src.butt)
-				user.show_text("You remove [src.butt] from [src].", "blue")
-				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-[src.butt.icon_state]")
-				src.butt.layer = initial(src.butt.layer)
-				src.butt.set_loc(get_turf(src))
-				src.butt = null
-			else if (src.buttbomb)
-				user.show_text("You remove [src.buttbomb] from [src].", "blue")
-				src.overlays -= image('icons/obj/items/weapons.dmi', "trap-buttbomb")
-				src.buttbomb.layer = initial(src.buttbomb.layer)
-				src.buttbomb.set_loc(get_turf(src))
-				src.buttbomb = null
 		else
 			..()
 		return
+
 
 	HasEntered(AM as mob|obj)
 		if ((ishuman(AM)) && (src.armed))
@@ -344,6 +372,19 @@
 		else if (src.signaler)
 			logTheThing("bombing", target, null, "triggers [src] (armed with: [src.signaler]) at [log_loc(src)]")
 			src.signaler.send_signal("ACTIVATE")
+
+		else if (src.plant && src.arm)
+			logTheThing("bombing", target, null, "triggers [src] (armed with: [src.arm] and [src.plant]) at [log_loc(src)]")
+			target.visible_message("<span class='alert'><b>[src]'s [src.arm] launches [src.plant] at [target]!</b></span>",\
+			"<span class='alert'><b>[src]'s [src.arm] launches [src.plant] at you!</b></span>")
+			src.overlays -= image(src.plant.icon, src.plant.icon_state)
+			src.plant.layer = initial(src.plant.layer)
+			src.plant.set_loc(get_turf(target))
+			var/datum/thrown_thing/thr = new
+			thr.user = (armer || usr) // ew gross
+			thr.thing = src.plant
+			src.plant.throw_impact(target, thr)
+			src.plant = null
 
 		else if (src.pie && src.arm)
 			logTheThing("bombing", target, null, "triggers [src] (armed with: [src.arm] and [src.pie]) at [log_loc(src)]")
