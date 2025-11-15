@@ -695,6 +695,17 @@ THE_USUAL_FLAVOURS(shotgun/coil, "coil slug round")
 	ammo_icon_state = "ammofoam"
 THE_USUAL_FLAVOURS(pistol/foamdart, "foam dart")
 
+/obj/item/stackable_ammo/rifle/malware
+	name = "malware round"
+	real_name = "malware round"
+	desc = "A 3.55 ligne rifle cartridge designed to electrify nerves and metal in rapid patterns and allow malicious code injection."
+	projectile_type = /datum/projectile/bullet/rifle/malware
+	stack_type = /obj/item/stackable_ammo/rifle/malware
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "generic"
+	ammo_icon_state = "ammopaper"
+THE_USUAL_FLAVOURS(rifle/malware, "malware round")
+
 #undef default_max_amount
 #undef default_min_amount
 #undef THE_SMALL_FLAVOURS
