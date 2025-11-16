@@ -19,7 +19,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	contraband = 1
 	barrel_overlay_x = 10
 	barrel_overlay_y = 1
-	grip_overlay_x = -4
+	grip_overlay_x = -7
 	grip_overlay_y = -2
 	stock_overlay_x = -7
 	stock_overlay_y = 1
@@ -63,7 +63,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer(src)
 		stock = new /obj/item/gun_parts/stock/juicer/wire(src)
-		accessory = new /obj/item/gun_parts/accessory/magazine/juicer/four(src)
+		if(prob(5))
+			grip = new /obj/item/gun_parts/grip/juicer/trans(src)
+		else if(prob(50))
+			grip = new /obj/item/gun_parts/grip/juicer(src)
+		else
+			grip = new /obj/item/gun_parts/grip/juicer/red(src)
 
 /obj/item/gun/modular/juicer/long
 	name = "\improper Juicer 'sniper'"
