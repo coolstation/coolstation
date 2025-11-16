@@ -241,6 +241,7 @@ datum
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
+				M.make_jittery(3 * mult)
 				if(probmult(15)) M.emote(pick("twitch", "twitch_s", "grumble", "laugh"))
 				if(prob(8))
 					boutput(M, "<span class='notice'><b>You feel great!</b></span>")
@@ -252,7 +253,6 @@ datum
 				if(prob(4))
 					boutput(M, "<span class='alert'><b>You feel kinda awful!</b></span>")
 					M.take_toxin_damage(1 * mult)
-					M.make_jittery(30 * mult)
 					M.emote(pick("groan", "moan"))
 				..()
 				return
@@ -1040,7 +1040,7 @@ datum
 					holder.my_atom:addOverlayComposition(/datum/overlayComposition/triplemeth)
 
 				if(probmult(50)) M.emote(pick("twitch","blink_r","shiver"))
-				M.make_jittery(5)
+				M.make_jittery(25 * mult)
 				M.make_dizzy(5 * mult)
 				M.change_misstep_chance(15 * mult)
 				M.take_brain_damage(1 * mult)
@@ -1074,7 +1074,7 @@ datum
 						M.hand = !M.hand
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'><b>[M.name]</b> falls to the floor and flails uncontrollably!</span>")
-						M.make_jittery(10)
+						M.make_jittery(30)
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 10 SECONDS * mult))
 					else if (effect <= 7)
 						M.emote("laugh")
@@ -1128,7 +1128,7 @@ datum
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				if(probmult(5)) M.emote(pick("twitch","blink_r","shiver"))
-				M.make_jittery(5)
+				M.make_jittery((M.jitteriness < 350 ? 20 : 8) * mult)
 				M.drowsyness = max(M.drowsyness-10, 0)
 				if(M.sleeping) M.sleeping = 0
 				if(prob(50))
@@ -1165,7 +1165,7 @@ datum
 						M.hand = !M.hand
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'><b>[M.name]</b> falls to the floor and flails uncontrollably!</span>")
-						M.make_jittery(10)
+						M.make_jittery(25)
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 2 SECONDS * mult))
 					else if (effect <= 7)
 						M.emote("laugh")

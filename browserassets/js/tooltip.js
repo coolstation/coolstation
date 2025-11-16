@@ -101,7 +101,7 @@ var tooltip = {
 
 	unInterrupt: function() {
 		tooltip.interrupt = false;
-		tooltip.removeDelays();
+		tooltip.hide();
 	},
 
 	setInterrupt: function(which) {
@@ -359,6 +359,8 @@ var tooltip = {
 	},
 
 	updateCallback: function(map) {
+		if(tooltip.interrupt) return; //Better to not create a clickable invisible window while we can still stop
+
 		if (typeof map === 'undefined' || !map) {return false;}
 
 		tooltip.map = {
