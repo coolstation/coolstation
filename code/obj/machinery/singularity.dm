@@ -11,7 +11,7 @@ Contains:
 #define SINGULARITY_TIME TRUE
 #define FIELD_GENERATOR_MAX_LENGTH 11			//defines the maximum dimension possible by a player created field gen.
 #define SINGULO_POWER_RADIUS_EXPONENT 1.25		//radius is put to this exponent for power generation purposes
-#define SINGULO_POWER_MULTIPLIER 6				//all singulo power is multiplied by this
+#define SINGULO_POWER_MULTIPLIER 1				//all singulo power is multiplied by this
 #define EVENT_GROWTH 3//the rate at which the event proc radius is scaled relative to the radius of the singularity
 #define EVENT_MINIMUM 5//the base value added to the event proc radius, serves as the radius of a 1x1
 //Anchoring states for the emitters, field generators, and singulo jar
@@ -81,7 +81,7 @@ proc/singularity_containment_check(turf/center)
 	if (src.bhole)
 		new /obj/bhole(T, 3000)
 	else
-		new /obj/machinery/the_singularity(T, 100,,max_radius)
+		new /obj/machinery/the_singularity(T, 600,,max_radius)
 	qdel(src)
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user)
