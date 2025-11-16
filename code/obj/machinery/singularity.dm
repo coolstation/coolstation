@@ -65,7 +65,7 @@ proc/singularity_containment_check(turf/center)
 	..()
 
 /obj/machinery/the_singularitygen/process()
-	var/max_radius = singularity_containment_check(get_turf(src))
+	var/max_radius = singularity_containment_check(get_center(src))
 	if(isnull(max_radius))
 		return
 
@@ -188,7 +188,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 			var/recapture_prob = clamp(30-(radius**2) , 0, 25)
 			if(prob(recapture_prob))
-				var/check_max_radius = singularity_containment_check(get_turf(src))
+				var/check_max_radius = singularity_containment_check(get_center(src))
 				if(!isnull(check_max_radius) && check_max_radius >= radius)
 					src.active = FALSE
 					maxradius = check_max_radius
@@ -196,7 +196,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 					message_admins("[src] has been contained (at maxradius [maxradius]) at [log_loc(src)]")
 
 	else
-		var/check_max_radius = singularity_containment_check(get_turf(src))
+		var/check_max_radius = singularity_containment_check(get_center(src))
 		if(isnull(check_max_radius) || check_max_radius < radius)
 			src.active = TRUE
 			maxradius = INFINITY
