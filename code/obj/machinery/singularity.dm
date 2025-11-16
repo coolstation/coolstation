@@ -647,9 +647,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if(src.Varedit_start == 1)
 		if(src.active == 0)
 			src.set_active(1)
-			src.state = WELDED
-			src.power = 100
-			src.anchored = ANCHORED
+			src.power = src.max_power
 			icon_state = "Field_Gen +a"
 		Varedit_start = 0
 
@@ -909,6 +907,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /obj/machinery/field_generator/activated
 	Varedit_start = TRUE
+	state = WELDED
+	anchored = ANCHORED
 	power = 50
 
 /////////////////////////////////////////////// Containment field //////////////////////////////////
