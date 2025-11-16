@@ -13,6 +13,8 @@ var/list/animal_spell_critter_paths = list(/mob/living/critter/small_animal/mous
 /mob/living/critter/small_animal/bird/goose/swan,
 /mob/living/critter/small_animal/cockroach,
 /mob/living/critter/small_animal/cockroach/robo,
+/mob/living/critter/small_animal/mothroach,
+/mob/living/critter/small_animal/mothroach/barroach,
 /mob/living/critter/small_animal/floateye,
 /mob/living/critter/small_animal/pig,
 /mob/living/critter/small_animal/meatslinky,

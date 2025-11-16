@@ -1365,7 +1365,6 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 /* =================================================== */
 
 /mob/living/critter/small_animal/mothroach
-
 	name = "mothroach"
 	desc = "This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches."
 	icon_state = "mothroach"
@@ -1374,9 +1373,10 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	name_the_meat = 1
 	skinresult = /obj/item/material_piece/cloth/mothroachhide
 	max_skins = 1
+	ai_type = /datum/aiHolder/wanderer
 	health_brute = 30
 	health_burn = 30
-	flags = TABLEPASS | DOORPASS
+	flags = TABLEPASS
 	fits_under_table = 1
 	takes_tox = FALSE
 	death_text = "%src% curls up and falls still!"
