@@ -485,7 +485,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 /obj/item/gun/modular/italian/revolver/silly
 	name = "jokerfied Italian revolver"
 	real_name = "\improper Grande Italiano"
-	max_ammo_capacity = 7
+	max_ammo_capacity = 5
 	desc = "Io sono il pagliaccio, bambino!"
 
 	make_parts()
