@@ -65,7 +65,7 @@ proc/singularity_containment_check(turf/center)
 	..()
 
 /obj/machinery/the_singularitygen/process()
-	var/max_radius = singularity_containment_check(get_center(src))
+	var/max_radius = singularity_containment_check(get_turf(src))
 	if(isnull(max_radius))
 		return
 
@@ -197,7 +197,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	else
 		var/check_max_radius = singularity_containment_check(get_center(src))
-		if(isnull(check_max_radius) || check_max_radius < radius)
+		if(isnull(check_max_radius))
 			src.active = TRUE
 			maxradius = INFINITY
 			logTheThing("station", null, "[src] has become loose at [log_loc(src)]")
@@ -331,6 +331,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if(eat_atom(A))
 		. = ..()
 		current_target = null
+
+/obj/machinery/the_singularity/hitby(atom/movable/AM, datum/thrown_thing/thr)
+	eat_atom(AM)
+	. = ..()
 
 /obj/machinery/the_singularity/HasEntered(atom/movable/AM, atom/OldLoc)
 	eat_atom(AM)
