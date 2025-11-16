@@ -1395,8 +1395,6 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 					src.audible_message("<span class='emote'><b>[src]</b> screams!</span>")
 					playsound(src.loc, 'sound/voice/moth/scream_moth.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 				return
-		else if ((user.a_intent == INTENT_DISARM))
-			return
 		else if (!isdead(src) && (user.a_intent == INTENT_HELP))
 			if (prob(30))
 				src.audible_message("<span class='emote'><b>[src]</b> screams!</span>")
@@ -1407,8 +1405,6 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 					src.visible_message("<span class='emote'><b>[src]</b> flutters its wings happily!</span>")
 					playsound(src.loc, 'sound/voice/moth/moth_flutter.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 				return
-		else if ((user.a_intent == INTENT_GRAB))
-			return
 		else
 			..()
 		return
