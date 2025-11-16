@@ -189,13 +189,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 		return ..()
 
 	alter_projectile(obj/projectile/P, mob/user)
-		P.power = P.power * (0.7 + 0.2 * src.two_handed)
+		P.power = P.power * (0.5 + 0.15 * src.two_handed)
 		..()
 
 	displayed_power()
 		if(src.current_projectile)
-			return "[floor(BARREL_SCALING(src.barrel?.length) * (src.current_projectile.power * (0.7 + 0.2 * src.two_handed)))] dmg - [current_projectile.ks_ratio * 100]% lethal"
-		return "[round(BARREL_SCALING(src.barrel?.length) * 100 * (0.7 + 0.2 * src.two_handed), 0.5)]% power"
+			return "[floor(BARREL_SCALING(src.barrel?.length) * (src.current_projectile.power * (0.5 + 0.15 * src.two_handed)))] dmg - [current_projectile.ks_ratio * 100]% lethal"
+		return "[round(BARREL_SCALING(src.barrel?.length) * 100 * (0.5 + 0.15 * src.two_handed), 0.5)]% power"
 
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
 		if(src.hammer_cocked)
@@ -273,12 +273,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		qdel(C)
 
 	alter_projectile(obj/projectile/P, mob/user)
-		P.power = P.power * (0.35 + 0.2 * src.two_handed + 0.25 * src.recoil / src.recoil_max)
+		P.power = P.power * (0.3 + 0.2 * src.two_handed + 0.25 * src.recoil / src.recoil_max)
 		..()
 
 	displayed_power()
-		var/lower_scale = BARREL_SCALING(src.barrel?.length) * (0.35 + 0.2 * src.two_handed)
-		var/upper_scale = BARREL_SCALING(src.barrel?.length) * (0.35 + 0.2 * src.two_handed + 0.25)
+		var/lower_scale = BARREL_SCALING(src.barrel?.length) * (0.3 + 0.2 * src.two_handed)
+		var/upper_scale = BARREL_SCALING(src.barrel?.length) * (0.3 + 0.2 * src.two_handed + 0.25)
 		if(src.current_projectile)
 			return "[floor(lower_scale * src.current_projectile.power)] to [floor(upper_scale * src.current_projectile.power)] dmg - [current_projectile.ks_ratio * 100]% lethal"
 		return "[round(100 * lower_scale, 0.5)]% to [round(100 * upper_scale, 0.5)]% power"
