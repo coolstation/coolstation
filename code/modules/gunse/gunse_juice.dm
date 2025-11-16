@@ -24,6 +24,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	stock_overlay_x = -7
 	stock_overlay_y = 1
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 	jam_frequency = 15
 	load_time = 0.75 SECONDS //surprisingly not very fiddly, loads fast, clears jams fast. built for sucking
 

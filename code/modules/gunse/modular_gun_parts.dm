@@ -14,6 +14,7 @@ accssry : mall ninja bullshit. optics. gadgets. flashlights. horns. sexy nude me
 ABSTRACT_TYPE(/obj/item/gun_parts)
 /obj/item/gun_parts/
 	icon = 'icons/obj/items/modular_guns/accessory.dmi'
+	w_class = W_CLASS_TINY
 	var/add_prefix = "" // DONT INCLUDE A TRAILING SPACE
 	var/add_suffix = "" // DONT INCLUDE A LEADING SPACE
 	var/part_type = GUN_PART_UNDEF
@@ -64,6 +65,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		my_gun.jam_frequency += src.jam_frequency
 		my_gun.spread_angle += src.spread_angle
 		my_gun.lensing += src.lensing
+		my_gun.contraband += src.contraband
 
 		//NAME
 		my_gun.name_prefix(src.add_prefix)
@@ -128,6 +130,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		my_gun.jam_frequency -= src.jam_frequency
 		my_gun.spread_angle -= src.spread_angle
 		my_gun.lensing -= src.lensing
+		my_gun.contraband -= src.contraband
 
 		//NAME
 		my_gun.name_prefixes -= src.add_prefix
@@ -174,9 +177,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 		. = ..()
 
 		if(part_DRM)
-			. += "<div><span>DRM REQUIREMENTS: </span>"
+			. += "<div><span>DRM ALLOWS: </span>"
 			if(part_DRM & GUN_NANO)
-				. += "<img src='[resource("images/tooltips/temp_nano.png")]' alt='' class='icon' />"
+				. += "<img src='[resource("images/tooltips/gunmanu_nano.png")]' alt='' class='icon' />"
 			if(part_DRM & GUN_FOSS)
 				. += "<img src='[resource("images/tooltips/temp_foss.png")]' alt='' class='icon' />"
 			if(part_DRM & GUN_JUICE)
@@ -184,7 +187,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 			if(part_DRM & GUN_SOVIET)
 				. += "<img src='[resource("images/tooltips/temp_soviet.png")]' alt='' class='icon' />"
 			if(part_DRM & GUN_ITALIAN)
-				. += "<img src='[resource("images/tooltips/temp_italian.png")]' alt='' class='icon' />"
+				. += "<img src='[resource("images/tooltips/gunmanu_italian.png")]' alt='' class='icon' />"
+			if(part_DRM & GUN_RODEO)
+				. += "<img src='[resource("images/tooltips/gunmanu_rodeo.png")]' alt='' class='icon' />"
 			. += "</div>"
 		if(length)
 			. += "<div><span>Barrel length: [src.length] cm = [round(100 * BARREL_SCALING(src.length), 0.5)]% power </span></div>"
@@ -267,7 +272,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/stock)
 	flashbulb_only = FALSE // FOSS guns only
 	max_crank_level = 0 // FOSS guns only
 	jam_frequency = 0 //attitional % chance to jam on reload. Just reload again to clear.
-	part_DRM = GUN_JUICE | GUN_NANO | GUN_SOVIET | GUN_ITALIAN //pretty much everyone by default
 	caliber = CALIBER_LONG
 	var/list/ammo_list = list() // ammo that stays in the stock when removed
 	icon_state = "nt_solid"
@@ -340,6 +344,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 0 // modifier, added to receiver
 
 	part_type = GUN_PART_ACCSY
+	part_DRM = GUN_ALL
 	icon = 'icons/obj/items/modular_guns/accessory.dmi'
 	icon_state = "generic_magazine"
 
@@ -367,11 +372,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "standard barrel"
 	desc = "A cylindrical barrel, unrifled."
 	spread_angle = 4 // decent stabilisation
-	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
+	part_DRM = GUN_NANO
 	icon_state = "nt_blue_short"
 	length = 10
 	overlay_x = 5
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 
 /obj/item/gun_parts/barrel/NT/long
 	name = "standard long barrel"
@@ -382,6 +388,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 16
 	overlay_x = 7
 	bulkiness = 3
+	w_class = W_CLASS_SMALL
 
 /obj/item/gun_parts/barrel/NT/short
 	name = "standard snub barrel"
@@ -399,6 +406,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_suffix = "shotty"
 	overlay_x = 6
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	caliber = CALIBER_WIDE
 
 /obj/item/gun_parts/barrel/NT/shotty/short
@@ -409,6 +417,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_suffix = "shottie"
 	overlay_x = 4
 	bulkiness = 1
+	w_class = W_CLASS_TINY
 	caliber = CALIBER_WIDE
 
 /obj/item/gun_parts/barrel/NT/shotty/flare
@@ -420,6 +429,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_prefix = "plastic"
 	overlay_x = 4
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	caliber = CALIBER_WIDE
 	call_alter_projectile = TRUE
 
@@ -446,6 +456,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 30
 	icon = 'icons/obj/items/modular_guns/64.dmi'
 	bulkiness = 5
+	w_class = W_CLASS_NORMAL
 
 /obj/item/gun_parts/barrel/NT/long/padded
 	name = "padded long barrel"
@@ -455,13 +466,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "nt_guarded"
 	overlay_x = 8
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 
 /obj/item/gun_parts/barrel/foss
 	name = "\improper FOSS lensed barrel"
 	desc = "A cylindrical array of lenses to focus laser blasts."
 	spread_angle = 2
 	lensing = 0.9
-	part_DRM = GUN_FOSS | GUN_SOVIET | GUN_JUICE
+	part_DRM = GUN_FOSS_FRIENDLY
 	add_suffix = "lenser"
 	icon = 'icons/obj/items/modular_guns/fossgun.dmi'
 	icon_state = "barrel_short"
@@ -477,6 +489,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "barrel_long"
 	length = 29
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 
 /obj/item/gun_parts/barrel/foss/long/very
 	name = "\improper FOSS ultra lensed barrel"
@@ -488,13 +501,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "foss_very_long"
 	length = 28
 	bulkiness = 3
+	w_class = W_CLASS_SMALL
 
 /obj/item/gun_parts/barrel/juicer
 	name = "\improper BLUNDA barrel"
 	desc = "A cheaply-built shotgun barrel. And by cheaply-built I mean someone adapted a broken vuvuzela for a gun."
 	spread_angle =  13 // jesus christ it's a spread machine
 	jam_frequency = 5 //but very poorly built
-	part_DRM = GUN_JUICE
+	part_DRM = GUN_JUICE_FRIENDLY
 	add_prefix = "BLUNDA"
 	icon_state = "juicer_blunderbuss"
 	length = 16
@@ -506,7 +520,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/juicer/chub
 	name = "\improper BUSTIN barrel"
 	desc = "Sawn-off shotgun barrel, hot-rodded with paint and donkey grease."
-	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle = 6
 	length = 11
 	overlay_x = 7
@@ -529,7 +542,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/juicer/ribbed
 	name = "\improper KNOBBIN barrel"
 	desc = "Shotgun barrel: for yuor gun's pleansure."
-	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle = 4
 	jam_frequency = 8
 	length = 17
@@ -537,17 +549,18 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "juicer_ribbed"
 	add_prefix = "Genthlemaenne's"
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 
 /obj/item/gun_parts/barrel/juicer/longer
 	name = "\improper SNIPA barrel"
 	desc = "A cheaply-built extended rifled shotgun barrel. Not good."
-	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle =  4 // accurate?? ish?
 	jam_frequency = 15 //but very!!!!!!! poorly built
 	add_prefix = "BLITZINNNNNNN'"
 	icon_state = "juicer_long"
 	overlay_x = 13
 	bulkiness = 3
+	w_class = W_CLASS_SMALL
 	length = 28
 
 
@@ -558,7 +571,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "стопка линз для фокусировки вашего пистолета"
 	spread_angle =  3
 	lensing = 1.2
-	part_DRM = GUN_SOVIET | GUN_ITALIAN
+	part_DRM = GUN_SOVIET_FRIENDLY
 	add_suffix = "comrade"
 	icon_state = "soviet_lens"
 	length = 18
@@ -568,7 +581,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "compact soviet beam former"
 	spread_angle =  3
 	lensing = 1.2
-	part_DRM = GUN_SOVIET | GUN_ITALIAN
 	add_suffix = "shpion"
 	icon_state = "soviet_lens_snub"
 	length = 14
@@ -578,7 +590,6 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "soviet diffractor"
 	spread_angle =  5
 	lensing = 1.2
-	part_DRM = GUN_SOVIET | GUN_ITALIAN
 	add_suffix = "raskolnik"
 	icon_state = "soviet_lens_scatter"
 	length = 14
@@ -587,37 +598,39 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 /obj/item/gun_parts/barrel/soviet/long
 	name = "focused soviet lenses"
 	desc = "стопка линз для фокусировки вашего пистолета"
-	part_DRM = GUN_SOVIET | GUN_ITALIAN
 	spread_angle = 2
 	lensing = 1.4
 	add_suffix = "tovarisch"
 	icon_state = "soviet_lens_long"
 	length = 23
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 
-//heavier hitting, also adaptable to foss lasers: too big for small italian revolver
+//heavier hitting, also adaptable to foss lasers
 /obj/item/gun_parts/barrel/soviet/dense
 	name = "soviet optical concentrator"
 	desc = "стопка линз для фокусировки вашего пистолета"
-	part_DRM = GUN_FOSS | GUN_SOVIET
+	part_DRM = GUN_SOVIET_FRIENDLY | GUN_FOSS
 	spread_angle = 2
 	lensing = 1.4
 	add_suffix = "medved"
 	icon_state = "soviet_lens_dense"
 	length = 25
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 
 /obj/item/gun_parts/barrel/italian
 	name = "italian pistol barrel"
 	real_name = "canna di fucile"
 	desc = "una canna di fucile di base e di alta qualità"
 	icon_state = "italian_revolver"
-	part_DRM = GUN_ITALIAN | GUN_SOVIET
+	part_DRM = GUN_ITALIAN_FRIENDLY
 	add_suffix = "paisan"
 	spread_angle = 5 // "alta qualità"
 	length = 12
 	overlay_x = 6
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 
 /obj/item/gun_parts/barrel/italian/derringer
 	name = "italian derringer barrel"
@@ -629,6 +642,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 2
 	overlay_x = 2
 	bulkiness = 1
+	w_class = W_CLASS_TINY
 
 /obj/item/gun_parts/barrel/italian/snub
 	name = "italian snub barrel"
@@ -640,6 +654,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 5
 	overlay_x = 3
 	bulkiness = 1
+	w_class = W_CLASS_TINY
 
 /obj/item/gun_parts/barrel/italian/short
 	name = "italian short barrel"
@@ -651,6 +666,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 7
 	overlay_x = 4
 	bulkiness = 1
+	w_class = W_CLASS_TINY
 
 /obj/item/gun_parts/barrel/italian/spicy
 	name = "italian weighted barrel"
@@ -690,6 +706,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 25
 	overlay_x = 14
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 
 /obj/item/gun_parts/barrel/italian/tommy
 	name = "italian thick ventilated barrel"
@@ -701,6 +718,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 18
 	overlay_x = 9
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 	caliber = CALIBER_WIDE
 	// maybe MORE recoil?
 
@@ -714,6 +732,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 16
 	overlay_x = 8
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 	silenced = TRUE
 	call_alter_projectile = TRUE
 
@@ -733,6 +752,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 18
 	overlay_x = 9
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 	caliber = CALIBER_WIDE
 	call_alter_projectile = TRUE
 
@@ -743,17 +763,56 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 			P.max_spread += spread
 		return ..()
 
+/obj/item/gun_parts/barrel/rodeo
+	name = "rodeo short barrel"
+	real_name = "rodeo short barrel"
+	desc = "A short barrel manufacted by St. Tite Nickelworks."
+	icon_state = "rodeo_short"
+	part_DRM = GUN_RODEO_FRIENDLY
+	add_prefix = "ridin'"
+	spread_angle = 4
+	length = 13
+	overlay_x = 6
+	bulkiness = 2
+	w_class = W_CLASS_SMALL
+
+/obj/item/gun_parts/barrel/rodeo/long
+	name = "rodeo long barrel"
+	real_name = "rodeo long barrel"
+	desc = "A long barrel manufacted by St. Tite Nickelworks."
+	icon_state = "rodeo_long"
+	add_prefix = "rootin'"
+	spread_angle = 4
+	length = 23
+	overlay_x = 11
+	bulkiness = 3
+	w_class = W_CLASS_SMALL
+
+/obj/item/gun_parts/barrel/rodeo/shotty
+	name = "rodeo shotgun barrel"
+	real_name = "rodeo shotgun barrel"
+	desc = "A shotgun barrel manufacted by St. Tite Nickelworks."
+	icon_state = "rodeo_shot"
+	add_prefix = "ramblin'"
+	spread_angle = 10
+	length = 16
+	overlay_x = 8
+	bulkiness = 3
+	w_class = W_CLASS_SMALL
+	caliber = CALIBER_WIDE
+
 /obj/item/gun_parts/barrel/pipeframe
 	name = "pipe barrel"
 	real_name = "pipe barrel"
 	desc = "A barrel made of metal pipe."
 	icon_state = "pipe"
 	add_prefix = "classic"
-	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN | GUN_SOVIET
+	part_DRM = GUN_ALL
 	spread_angle = 9
 	length = 13
 	overlay_x = 7
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 
 // BASIC STOCKS
 // Stocks should always have a negative spread angle unless they're particularly cumbersome.
@@ -763,7 +822,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "standard grip"
 	desc = "A comfortable NT pistol grip"
 	spread_angle = -3 // basic stabilisation
-	part_DRM = GUN_NANO
+	part_DRM = GUN_NANO_FRIENDLY
 	add_prefix = "trusty"
 	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "nt_blue"
@@ -798,8 +857,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -1
 	add_prefix = "woody"
 	overlay_x = -2
-	overlay_y = -2
-
+	overlay_y = -3
 
 /obj/item/gun_parts/grip/italian
 	name = "italian pistol grip"
@@ -808,7 +866,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 0
 	max_ammo_capacity = 1 // to make that revolver revolve!
 	jam_frequency = 3 // a lot  more jammy!!
-	part_DRM = GUN_NANO | GUN_ITALIAN | GUN_SOVIET
+	part_DRM = GUN_ITALIAN_FRIENDLY
 	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "italian_plain"
 	add_prefix = "quality"
@@ -821,10 +879,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -1
 	max_ammo_capacity = 3 // to make that revolver revolve!
 	jam_frequency = 6 // a lot  more jammy!!
-	part_DRM = GUN_ITALIAN | GUN_SOVIET
 	icon_state = "italian_fancy"
 	add_prefix = "jovial"
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	overlay_x = -2
 
 /obj/item/gun_parts/grip/italian/meatball
@@ -833,10 +891,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = -2
 	max_ammo_capacity = 2
 	jam_frequency = 4
-	part_DRM = GUN_ITALIAN | GUN_SOVIET
 	icon_state = "italian_meatballs"
 	add_prefix = "polpetti"
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	overlay_x = -2
 
 /obj/item/gun_parts/grip/italian/cowboy
@@ -845,9 +903,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 0
 	max_ammo_capacity = 2
 	jam_frequency = 4
-	part_DRM = GUN_ITALIAN | GUN_SOVIET
 	icon_state = "italian_cowboy"
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	overlay_x = -3
 	overlay_y = -3
 
@@ -867,17 +925,18 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	jam_frequency = 2
 	icon_state = "italian_pearl"
 
-
 /obj/item/gun_parts/grip/juicer
 	name = "da grip"
 	desc = "some kind of knockoff tacticool pistol grip"
 	spread_angle = -3
 	icon = 'icons/obj/items/modular_guns/grips.dmi'
 	icon_state = "white"
+	part_DRM = GUN_JUICE_FRIENDLY
 	add_prefix = "strapped"
 	overlay_x = -2
 	overlay_y = -1
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 
 /obj/item/gun_parts/grip/juicer/red
 	name = "redgrip"
@@ -899,7 +958,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "\improper FOSS grip"
 	desc = "An open-sourced 3d-printed grip with dynamic angles. Comfort secondary."
 	spread_angle = -3 // basic stabilisation
-	part_DRM = GUN_FOSS
+	part_DRM = GUN_FOSS_FRIENDLY
 	add_prefix = "hands-on"
 	icon_state = "foss"
 
@@ -910,6 +969,19 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_prefix = "whizz-bang"
 	icon_state = "wiz"
 
+/obj/item/gun_parts/grip/rodeo
+	name = "rodeo grip"
+	real_name = "saddle grip"
+	desc = "A handsome grip manufacted by St. Tite Nickelworks."
+	icon_state = "rodeo_plain"
+	part_DRM = GUN_RODEO_FRIENDLY
+	add_prefix = "saddled"
+	spread_angle = -2
+	overlay_x = -5
+	overlay_y = -2
+	bulkiness = 2
+	w_class = W_CLASS_SMALL
+
 //stonks
 
 /obj/item/gun_parts/stock/NT
@@ -917,10 +989,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A comfortable NT shoulder stock"
 	spread_angle = -4 // quite better stabilisation
 	bulkiness = 3
-
+	w_class = W_CLASS_SMALL
 	max_ammo_capacity = 2 // a few more rounds
 	jam_frequency = 2 // a little more jammy
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
+	part_DRM = GUN_NANO_FRIENDLY
 	add_prefix = "sturdy"
 	icon_state = "nt_solid"
 	overlay_x = -8
@@ -940,8 +1012,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "An uncomfortable NT wire stock, but maybe some day it can fold up" //convert from 1-2 hand and conceal
 	spread_angle = -2 // not as better stabilisation
 	bulkiness = 1
+	w_class = W_CLASS_TINY
 	foldable = 1
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_prefix = "capable"
 	icon_state = "nt_wire"
 	overlay_x = 0 //generally wire stocks should be centered, using "template-offset" as a guide
@@ -952,10 +1024,9 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A staggering 5 rounds can be loaded into this integral drum shoulder stock."
 	spread_angle = -3 // quite better stabilisation
 	bulkiness = 4
-
+	w_class = W_CLASS_NORMAL
 	max_ammo_capacity = 5
 	jam_frequency = 5 // a little more jammy
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_prefix = "appointed"
 	icon_state = "nt_solid_mag"
 	overlay_x = -9
@@ -965,10 +1036,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	real_name = "calcio del fucile"
 	desc = "Un calcio in noce robusto ma leggero per la caccia."
 	spread_angle = -5 // brety gud
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
+	part_DRM = GUN_ITALIAN_FRIENDLY
 	add_suffix = "cacciatore"
 	icon_state = "italian_solid"
 	bulkiness = 3
+	w_class = W_CLASS_SMALL
 	overlay_x = -9
 
 /obj/item/gun_parts/stock/italian/wire
@@ -977,8 +1049,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Un solido ceppo in filo metallico italiano, decorato con foglia d'oro."
 	spread_angle = -4 // not as great, but good
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	//foldable = 1
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_suffix = "pirite"
 	icon_state = "italian_wire"
 	overlay_x = -7
@@ -989,9 +1061,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A utilitarian Soviet stock (write this in russian later)" //convert from 1-2 hand and conceal
 	spread_angle = -5 // brety gud
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	//max_ammo_capacity = 0 // does not add ammo
 	//jam_frequency = 3 // a little more jammy
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
+	part_DRM = GUN_SOVIET_FRIENDLY
 	add_suffix = "ustoychivyy"
 	icon_state = "sov_solid"
 
@@ -1000,9 +1073,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "A long Soviet wire stock that currently doesn't fold"
 	spread_angle = -2 // not as better stabilisation
 	bulkiness = 1
-
+	w_class = W_CLASS_TINY
 	foldable = 1
-	icon = 'icons/obj/items/modular_guns/stocks.dmi'
 	add_prefix = "udobnyy"
 	icon_state = "sov_wire"
 	overlay_x = 0
@@ -1026,11 +1098,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "\improper FOSS laser stock"
 	desc = "An open-sourced laser dynamo, with a multiple-position winding spring."
 	spread_angle = -3 // basic stabilisation
-	part_DRM = GUN_FOSS //standards compliant with their own standard
+	part_DRM = GUN_FOSS_FRIENDLY //standards compliant with their own standard
 	flashbulb_only = 1
 	max_crank_level = 2
 	safe_crank_level = 1
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	overlay_x = -6 //absolutely know this is right
 
 	add_prefix = "agile"
@@ -1042,6 +1115,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "\improper FOSS laser rifle stock"
 	spread_angle = -4 // better stabilisation
 	bulkiness = 3
+	w_class = W_CLASS_SMALL
 
 	max_crank_level = 3 // for syndicate ops
 	safe_crank_level = 2
@@ -1068,6 +1142,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	add_prefix = "automated"
 	icon_state = "stock_double"
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 
 //mega charge for heavy hitting
 //what if this requires two bulbs inserted to get crank 4 and if one breaks you're down to crank 2? hmm
@@ -1075,12 +1150,26 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "\improper FOSS laser punt gun stock"
 	spread_angle = 3 // poor stabilisation
 	bulkiness = 5
+	w_class = W_CLASS_NORMAL
 
 	max_crank_level = 5 // for syndicate ops
 	safe_crank_level = 3
 	jam_frequency = 5 // a little more jammy
 	add_prefix = "six-sigma"
 	icon_state = "stock_double_alt"
+
+/obj/item/gun_parts/stock/rodeo
+	name = "rodeo bracing stock"
+	real_name = "rodeo bracing stock"
+	desc = "A hefty wooden stock from St. Tite Nickelworks."
+	spread_angle = -2
+	max_ammo_capacity = 1
+	part_DRM = GUN_RODEO_FRIENDLY
+	add_suffix = "on the range"
+	icon_state = "rodeo_solid"
+	bulkiness = 4
+	w_class = W_CLASS_NORMAL
+	overlay_x = -6
 
 // BASIC ACCESSORIES
 	// flashlight!!
@@ -1196,11 +1285,14 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	built_on = "nt_flash-active"
 	built_focused = "nt_flash-focused"
 
+ABSTRACT_TYPE(/obj/item/gun_parts/accessory/magazine)
+
 /obj/item/gun_parts/accessory/magazine/juicer
 	name = "\improper HOTT SHOTTS MAG"
 	desc = "Holds 3 rounds, and 30,000 followers."
 	max_ammo_capacity = 3
 	jam_frequency = 8
+	part_DRM = GUN_JUICE_FRIENDLY
 	add_suffix = "LARGE"
 	icon = 'icons/obj/items/modular_guns/magazines.dmi'
 	icon_state = "juicer_drum"
@@ -1220,16 +1312,18 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		contraband = 5
 		jam_frequency = 12
 		bulkiness = 2
+	w_class = W_CLASS_SMALL
 
 /obj/item/gun_parts/accessory/ammofab
 	name = "ammo fabricator"
-	desc = "A black market fabricator that produces low-quality ammunition and outputs it directly into the gun it has been attached to."
+	desc = "A black market fabricator that produces low-quality kinetic ammunition and outputs it directly into the gun it has been attached to."
 	icon_state = "ammofab"
 	jam_frequency = 3
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	contraband = 5
 	add_suffix = "quine"
-	part_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN
+	part_DRM = GUN_ALL
 	var/generated_ammo_type = /obj/item/stackable_ammo/pistol/ammofab
 	var/obj/item/stackable_ammo/stored_generated_ammo
 	/// in a perfect world, a process is 2.9 seconds, btw. dunno WHY, but yea
@@ -1247,7 +1341,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	process()
 		. = ..()
 		src.processes_since_ammo_gen++
-		if(src.processes_since_ammo_gen <= src.processes_per_ammo_gen)
+		if(src.processes_since_ammo_gen < src.processes_per_ammo_gen)
 			return
 		src.processes_since_ammo_gen = 0
 		if(src.my_gun && src.my_gun.built && src.my_gun.ammo_reserve() < src.my_gun.max_ammo_capacity)
@@ -1281,12 +1375,13 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "MPRT-7 barrel"
 	desc = "A smoothbore tube to fire oversized warheads."
 	icon_state = "mprt"
-	part_DRM = GUN_FOSS
+	part_DRM = GUN_FOSS_FRIENDLY
 	caliber = CALIBER_WIDE
 	overlay_x = 5
 	length = 20
 	muzzle_flash = "muzzle_flash_launch"
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 	spread_angle = 2
 	call_alter_projectile = TRUE
 
@@ -1301,9 +1396,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "MPRT-7 breach"
 	desc = "A heat-shielded tube to vent propellant backblast behind the user."
 	icon_state = "mprt"
-	part_DRM = GUN_FOSS
+	part_DRM = GUN_FOSS_FRIENDLY
 	overlay_x = -12
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 	spread_angle = -3
 
 /obj/item/gun_parts/barrel/NT/singularity_buster
@@ -1315,6 +1411,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	length = 20
 	muzzle_flash = "muzzle_flash_launch"
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	spread_angle = 2
 	call_alter_projectile = TRUE
 	var/integrity = 15
@@ -1335,4 +1432,5 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "mprt"
 	overlay_x = -12
 	bulkiness = 3
+	w_class = W_CLASS_SMALL
 	spread_angle = -3

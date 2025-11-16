@@ -2359,26 +2359,30 @@
 
 	jitteriness = min(500, jitteriness + amount)	// store what will be new value
 													// clamped to max 500
-	if (jitteriness > 100 && !is_jittery)
+	if (jitteriness > 75 && !is_jittery)
 		SPAWN_DBG(0)
 			jittery_process()
 
 
 // jittery process - shakes the mob's pixel offset randomly
-// will terminate automatically when dizziness gets <100
+// will terminate automatically when dizziness gets <45
 // jitteriness decrements automatically in the mob's Life() proc.
 /mob/proc/jittery_process()
 	var/old_x = pixel_x
 	var/old_y = pixel_y
 	is_jittery = 1
-	while(jitteriness > 100)
+	while(jitteriness > 45)
 //		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + 1) / 70
 //		pixel_x = amplitude * sin(0.008 * jitteriness * world.time)
 //		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
+		if(jitteriness >= 400 || prob(jitteriness/12))
+			var/amplitude = rand(1, ceil(min(4, jitteriness / 200)))
+			pixel_x = pixel_x + rand(-amplitude, amplitude)
+			pixel_y = pixel_y + rand(-amplitude, amplitude)
+			SPAWN_DBG(0.1 SECONDS)
+				pixel_x = old_x
+				pixel_y = old_y
 
-		var/amplitude = min(4, jitteriness / 100)
-		pixel_x = old_x + rand(-amplitude, amplitude)
-		pixel_y = old_y + rand(-amplitude/3, amplitude/3)
 
 		sleep(0.1 SECONDS)
 	//endwhile - reset the pixel offsets to zero

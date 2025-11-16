@@ -127,6 +127,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	attackby(var/obj/item/I as obj, mob/user as mob)
 		if(!stack_item(I))
 			if(istype(I, /obj/item/gun/modular/))
+				var/obj/item/gun/modular/gunse = I
+				var/load_blocked_msg = gunse.cannotload()
+				if(load_blocked_msg)
+					boutput(user, load_blocked_msg)
+					return
 				actions.start(new/datum/action/bar/private/load_ammo(I, src), user)
 			else
 				..(I, user)

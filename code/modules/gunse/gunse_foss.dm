@@ -19,6 +19,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular/foss)
 	icon_state = "foss_receiver"
 	contraband = 7
 	load_time = 1.25 SECONDS
+	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 	//set these manually because nothing really uh
 	//nothing else is like the foss guns
 	barrel_overlay_x = 6
