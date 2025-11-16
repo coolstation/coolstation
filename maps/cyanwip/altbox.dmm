@@ -87,6 +87,15 @@
 	},
 /turf/floor/airless/plating/catwalk/grey,
 /area/space)
+"aB" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/circuit,
+/area/space)
 "aC" = (
 /turf/floor/specialroom/chapel{
 	dir = 1
@@ -893,6 +902,12 @@
 /obj/machinery/portable_atmospherics/pump,
 /turf/floor,
 /area/space)
+"eV" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/black,
+/area/space)
 "eX" = (
 /turf/space,
 /area/shuttle/cargo/station)
@@ -1430,6 +1445,15 @@
 	},
 /turf/floor,
 /area/space)
+"hC" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/black,
+/area/space)
 "hD" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -1841,6 +1865,15 @@
 "jX" = (
 /turf/floor/red/side,
 /area/space)
+"kc" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/black,
+/area/space)
 "kd" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -1964,6 +1997,14 @@
 	},
 /turf/floor,
 /area/space)
+"kS" = (
+/obj/machinery/networked/radio,
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-4"
+	},
+/turf/floor/circuit,
+/area/space)
 "kT" = (
 /obj/machinery/vending/coffee,
 /turf/floor/red/corner,
@@ -1974,6 +2015,14 @@
 	},
 /obj/machinery/cell_charger,
 /turf/floor/plating,
+/area/space)
+"kY" = (
+/obj/machinery/networked/storage/tape_drive,
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-4"
+	},
+/turf/floor/circuit,
 /area/space)
 "kZ" = (
 /obj/firedoor_spawn,
@@ -1987,6 +2036,18 @@
 	dir = 9
 	},
 /turf/floor/black,
+/area/space)
+"lc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/circuit,
 /area/space)
 "lg" = (
 /obj/machinery/power/data_terminal,
@@ -2076,6 +2137,15 @@
 	dir = 1
 	},
 /area/space)
+"lB" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/black,
+/area/space)
 "lE" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Custodial Maintenance";
@@ -2155,6 +2225,12 @@
 /area/space)
 "lZ" = (
 /obj/machinery/vending/cola/blue,
+/turf/floor/black,
+/area/space)
+"ma" = (
+/obj/cable{
+	icon_state = "1-8"
+	},
 /turf/floor/black,
 /area/space)
 "md" = (
@@ -2519,6 +2595,12 @@
 /area/space)
 "nY" = (
 /obj/machinery/light,
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
 /turf/floor/circuit,
 /area/space)
 "ob" = (
@@ -2605,6 +2687,12 @@
 /turf/floor/carpet/red/standard/edge{
 	dir = 8
 	},
+/area/space)
+"ou" = (
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/black,
 /area/space)
 "ov" = (
 /obj/machinery/light_switch{
@@ -2946,6 +3034,16 @@
 /obj/table/reinforced/industrial/auto,
 /turf/floor,
 /area/space)
+"qx" = (
+/obj/machinery/computer3/terminal/zeta{
+	dir = 8
+	},
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/floor/circuit,
+/area/space)
 "qB" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -3098,6 +3196,12 @@
 	pixel_y = -23
 	},
 /turf/floor/sanitary,
+/area/space)
+"rl" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/circuit,
 /area/space)
 "rr" = (
 /obj/machinery/power/smes{
@@ -4845,6 +4949,20 @@
 	},
 /turf/space,
 /area/space)
+"Bx" = (
+/obj/machinery/networked/storage/tape_drive,
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/floor/circuit,
+/area/space)
+"By" = (
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/circuit,
+/area/space)
 "Bz" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/floor,
@@ -6025,6 +6143,12 @@
 	},
 /turf/floor,
 /area/space)
+"HQ" = (
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/black,
+/area/space)
 "HR" = (
 /obj/machinery/navbeacon{
 	codes_txt = "delivery;dir=8";
@@ -6207,6 +6331,12 @@
 	},
 /turf/floor/plating,
 /area/space)
+"Jc" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor/circuit,
+/area/space)
 "Jh" = (
 /obj/item/camera_film,
 /obj/item/camera,
@@ -6295,6 +6425,16 @@
 "Jy" = (
 /obj/machinery/light,
 /turf/floor/specialroom/cafeteria,
+/area/space)
+"JA" = (
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer3/generic/radio{
+	dir = 4
+	},
+/obj/cable{
+	icon_state = "0-4"
+	},
+/turf/floor/circuit,
 /area/space)
 "JB" = (
 /obj/item/paper_bin{
@@ -6628,6 +6768,14 @@
 	dir = 8
 	},
 /turf/floor/black,
+/area/space)
+"Lt" = (
+/obj/machinery/networked/mainframe/zeta,
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-4"
+	},
+/turf/floor,
 /area/space)
 "Lu" = (
 /turf/floor/carpet/red/fancy/edge{
@@ -6973,6 +7121,12 @@
 	dir = 1
 	},
 /area/space)
+"Nl" = (
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/circuit,
+/area/space)
 "No" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -7103,6 +7257,15 @@
 "Oh" = (
 /obj/machinery/vending/cola/red,
 /turf/floor,
+/area/space)
+"Oj" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/black,
 /area/space)
 "Ok" = (
 /obj/stool/bed,
@@ -7418,6 +7581,13 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/space)
+"PX" = (
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/floor/circuit,
+/area/space)
 "Qb" = (
 /obj/firedoor_spawn,
 /turf/floor/blue/side,
@@ -7438,6 +7608,12 @@
 /turf/floor/planter/strips{
 	dir = 8
 	},
+/area/space)
+"Qn" = (
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/circuit,
 /area/space)
 "Qo" = (
 /obj/machinery/light,
@@ -7727,6 +7903,15 @@
 	pixel_y = -5
 	},
 /turf/floor,
+/area/space)
+"Sg" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/circuit,
 /area/space)
 "Sk" = (
 /turf/floor/carpet/blue,
@@ -8298,6 +8483,12 @@
 	},
 /turf/floor/wood,
 /area/space)
+"VK" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/circuit,
+/area/space)
 "VM" = (
 /obj/grille/catwalk/cross,
 /turf/space,
@@ -8857,6 +9048,12 @@
 	dir = 8
 	},
 /area/space)
+"Zj" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/black,
+/area/space)
 "Zk" = (
 /obj/machinery/microwave{
 	pixel_x = -3;
@@ -8918,6 +9115,21 @@
 	},
 /obj/machinery/power/data_terminal,
 /turf/floor/black,
+/area/space)
+"ZB" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/circuit,
 /area/space)
 "ZD" = (
 /obj/machinery/light,
@@ -50229,15 +50441,15 @@ xy
 xy
 SU
 TB
-Dq
-Dq
+kY
+kY
 AG
 AG
 Dq
 AG
 AG
-Dq
-Dq
+kS
+JA
 TB
 SU
 SU
@@ -50531,15 +50743,15 @@ xy
 SU
 SU
 TB
-AG
-AG
+hC
+ma
 AG
 AG
 rr
 qa
 AG
-AG
-AG
+ou
+lB
 TB
 SU
 SU
@@ -50833,15 +51045,15 @@ xy
 SU
 SU
 TB
+Zj
 AG
 AG
-AG
-Dq
-Dq
-Dq
-AG
+By
+Jc
+VK
 AG
 AG
+Zj
 TB
 SU
 TB
@@ -51135,14 +51347,14 @@ xy
 xy
 SU
 TB
-ik
-Dq
-Dq
-Dq
-tg
-Dq
-Dq
-Dq
+lc
+Jc
+Jc
+aB
+Lt
+Sg
+Jc
+Jc
 nY
 TB
 SU
@@ -51437,15 +51649,15 @@ SU
 SU
 SU
 TB
+Zj
 AG
 AG
-AG
-Dq
-Dq
-Dq
-AG
+Qn
+ZB
+Nl
 AG
 AG
+Zj
 TB
 SU
 TB
@@ -51739,15 +51951,15 @@ xy
 xy
 SU
 TB
+kc
+eV
 AG
 AG
+rl
 AG
 AG
-Dq
-AG
-AG
-AG
-AG
+HQ
+Oj
 TB
 SU
 TB
@@ -52041,15 +52253,15 @@ SU
 xy
 SU
 TB
-Dq
-Dq
+Bx
+Bx
 AG
 Xd
-AG
+Zj
 Xd
 AG
-Dq
-Dq
+qx
+PX
 TB
 SU
 TB
@@ -52347,7 +52559,7 @@ Xd
 Xd
 Xd
 Xd
-AG
+Zj
 Xd
 Xd
 Xd
@@ -52649,7 +52861,7 @@ tg
 tg
 tg
 xy
-AG
+Zj
 xy
 tg
 tg
