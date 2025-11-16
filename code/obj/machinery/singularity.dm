@@ -441,7 +441,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
 			src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
-			src.pixel_x = src.pixel_y = 32 * src.radius - 64
 			src.bound_width = src.bound_height = 64 * src.radius + 32
 			src.grav_range = min(src.radius + 3, 5)
 			if(isturf(src.loc))
@@ -454,7 +453,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		src.radius--
 		src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 		src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
-		src.pixel_x = src.pixel_y = 32 * src.radius - 64
 		src.bound_width = src.bound_height = 64 * src.radius + 32
 		src.grav_range = min(src.radius + 3, 5)
 		if(isturf(src.loc))
@@ -462,6 +460,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			var/turf/T2 = locate(T.x + 1, T.y + 1, T.z)
 			if(T2)
 				src.set_loc(T2)
+	src.pixel_x = src.pixel_y = 32 * src.radius - 64
 
 // totally rewrote this proc from the ground-up because it was puke but I want to keep this comment down here vvv so we can bask in the glory of What Used To Be - haine
 		/* uh why was lighting a cig causing the singularity to have an extra process()?
