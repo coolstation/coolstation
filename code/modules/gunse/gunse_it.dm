@@ -136,7 +136,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	shoot_delay = 0.1 SECONDS // this is a lie. its actually 0.6ish seconds if youre good
 	reload_cooldown = 0.2 SECONDS
 
-	recoil_mult = 1.5
+	recoil_mult = 0.65
 	recoil_inaccuracy_max = 20
 
 	var/hammer_cocked = FALSE
