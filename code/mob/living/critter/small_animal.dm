@@ -1373,7 +1373,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	name_the_meat = 1
 	skinresult = /obj/item/material_piece/cloth/mothroachhide
 	max_skins = 1
-	ai_type = /datum/aiHolder/wanderer
+	ai_type = /datum/aiHolder/wanderers
 	health_brute = 30
 	health_burn = 30
 	flags = TABLEPASS

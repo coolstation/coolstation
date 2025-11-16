@@ -87,6 +87,16 @@
 			else
 				holder.owner.say(pick("that sure is swell","oh boy","gee whiz","hot dog","hee hee"))
 
+/datum/aiTask/timed/wander/s
+	name = "wandering slow"
+	minimum_task_ticks = 2
+	maximum_task_ticks = 5
+
+/datum/aiTask/timed/wander/s/on_tick()
+	if(prob(20))
+		holder.owner.move_dir = pick(alldirs)
+		holder.owner.process_move()
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TARGETED TASK
 // a timed task that also relates to a target and the acquisition of said target
