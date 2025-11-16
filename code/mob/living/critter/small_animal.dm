@@ -1388,29 +1388,26 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	speechverb_stammer = "chitters"
 
 	attack_hand(mob/user as mob)
+		..()
 		if ((user.a_intent == INTENT_HARM))
-			..()
 			if (!isdead(src))
 				if (prob(50))
 					src.audible_message("<span class='emote'><b>[src]</b> screams!</span>")
 					playsound(src.loc, 'sound/voice/moth/scream_moth.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 				return
-		else if (!isdead(src) && (user.a_intent == INTENT_DISARM))
-			..()
-			src.visible_message("<span class='combat'><b>[user]</b> shoos the [src]!</span>")
+		else if ((user.a_intent == INTENT_DISARM))
 			return
 		else if (!isdead(src) && (user.a_intent == INTENT_HELP))
-			..()
 			if (prob(30))
 				src.audible_message("<span class='emote'><b>[src]</b> screams!</span>")
 				playsound(src.loc, 'sound/voice/moth/scream_moth.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 				return
-			else if (prob(30))
-				src.visible_message("<span class='emote'><b>[src]</b> flutters its wings happily!</span>")
-				playsound(src.loc, 'sound/voice/moth/moth_flutter.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+			else
+				if (prob(30))
+					src.visible_message("<span class='emote'><b>[src]</b> flutters its wings happily!</span>")
+					playsound(src.loc, 'sound/voice/moth/moth_flutter.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 				return
 		else if ((user.a_intent == INTENT_GRAB))
-			..()
 			return
 		else
 			..()
