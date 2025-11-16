@@ -17,9 +17,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	gun_DRM = GUN_JUICE
 	spread_angle = 10
 	contraband = 1
-	barrel_overlay_x = BARREL_OFFSET_LONG
-	grip_overlay_x = GRIP_OFFSET_LONG
-	stock_overlay_x = STOCK_OFFSET_LONG
+	barrel_overlay_x = 10
+	barrel_overlay_y = 1
+	grip_overlay_x = -4
+	grip_overlay_y = -2
+	stock_overlay_x = -7
+	stock_overlay_y = 1
 	bulkiness = 4
 	jam_frequency = 15
 	load_time = 0.75 SECONDS //surprisingly not very fiddly, loads fast, clears jams fast. built for sucking
@@ -58,12 +61,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/juicer(src)
-		if(prob(5))
-			grip = new /obj/item/gun_parts/grip/juicer/trans(src)
-		else if(prob(50))
-			grip = new /obj/item/gun_parts/grip/juicer/black(src)
-		else
-			grip = new /obj/item/gun_parts/grip/juicer(src)
+		stock = new /obj/item/gun_parts/stock/juicer/wire(src)
 		accessory = new /obj/item/gun_parts/accessory/magazine/juicer/four(src)
 
 /obj/item/gun/modular/juicer/long

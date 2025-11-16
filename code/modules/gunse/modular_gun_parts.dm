@@ -499,6 +499,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "juicer_blunderbuss"
 	length = 16
 	bulkiness = 1
+	overlay_x = 13
 	caliber = CALIBER_WIDE
 	//absolutely needs a quiet fucked up vuvuzela honk
 
@@ -508,9 +509,22 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	part_DRM = GUN_JUICE | GUN_NANO
 	spread_angle = 6
 	length = 11
+	overlay_x = 7
 	icon_state = "juicer_chub"
 	add_prefix = "BUSTA"
 	bulkiness = 1
+
+/obj/item/gun_parts/barrel/juicer/soup
+	name = "\improper Souplencer"
+	desc = "Sounds like a fuckin soup can, what did you expect?"
+	part_DRM = GUN_JUICE | GUN_NANO
+	spread_angle = 6
+	length = 11
+	overlay_x = 11
+	icon_state = "juicer_soup"
+	add_prefix = "Souper"
+	bulkiness = 1
+	silenced = TRUE
 
 /obj/item/gun_parts/barrel/juicer/ribbed
 	name = "\improper KNOBBIN barrel"
@@ -519,6 +533,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 4
 	jam_frequency = 8
 	length = 17
+	overlay_x = 14
 	icon_state = "juicer_ribbed"
 	add_prefix = "Genthlemaenne's"
 	bulkiness = 2
@@ -531,8 +546,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	jam_frequency = 15 //but very!!!!!!! poorly built
 	add_prefix = "BLITZINNNNNNN'"
 	icon_state = "juicer_long"
+	overlay_x = 13
 	bulkiness = 3
 	length = 28
+
 
 //TODO: names and lengths
 //average laser
@@ -990,6 +1007,15 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "sov_wire"
 	overlay_x = 0
 	caliber = CALIBER_TINY // barely a stock at all
+
+/obj/item/gun_parts/stock/juicer/wire
+	name = "My First Stock"
+	desc ="A stock made out of lightweight materials, suited for ages 2+"
+	add_suffix = "JR™"
+	bulkiness = 1
+	overlay_x = -9
+	caliber = CALIBER_TINY // barely a stock at all
+	icon_state = "juicer_wire"
 
 //Free and Open Source Cranked-Up Springs/Capacitors/Etc.
 //One second per crank just imo, the spam was getting bad
