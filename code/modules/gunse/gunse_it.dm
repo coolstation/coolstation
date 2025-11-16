@@ -1,5 +1,3 @@
-
-
 //Italian Gunse
 //Lower damage, higher fire rate
 //Cylinder "magazine"
@@ -133,6 +131,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	load_time = 1 SECOND
 	max_ammo_capacity = 6
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 
 	shoot_delay = 0.1 SECONDS // this is a lie. its actually 0.6ish seconds if youre good
 	reload_cooldown = 0.2 SECONDS
@@ -222,8 +221,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	load_time = 0.3 SECONDS // reloads exceptionally fast as long as you use ammo with low load_time
 	max_ammo_capacity = 15
 	bulkiness = 3
-	var/successful_chamber_frequency = 27
-	var/failed_chamber_fudge = 3 // each failed chamber boosts successful_chamber_frequency by this much until the gun is reloaded or chambers
+	w_class = W_CLASS_NORMAL
+	var/successful_chamber_frequency = 30
+	var/failed_chamber_fudge = 5 // each failed chamber boosts successful_chamber_frequency by this much until the gun is reloaded or chambers
 	var/max_fudged_chance = 90 // maxes at this chance after enough fudges
 	var/failures_to_chamber = 0
 
@@ -305,6 +305,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	stock_overlay_y = -1
 	max_ammo_capacity = 2
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 
 	load_time = 1.3 SECONDS
 
@@ -384,6 +385,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	stock_overlay_y = -1
 	max_ammo_capacity = 3
 	bulkiness = 5
+	w_class = W_CLASS_NORMAL
 	caliber = CALIBER_SPUD
 	load_time = 1.5 SECONDS
 	spread_angle = 0
@@ -496,6 +498,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	desc = "Buttateli nella polvere con questa piccola arma da fuoco."
 	max_ammo_capacity = 2
 	bulkiness = 1
+	w_class = W_CLASS_TINY
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/derringer(src)
@@ -515,11 +518,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	name = "basic Italian rattler"
 	real_name = "\improper Bacino"
 	desc = "Tecnicamente è un revolver, con un tamburo enorme e un meccanismo di cameratura inaffidabile."
-	bulkiness = 3
 
 	load_time = 0.4 SECONDS
-	successful_chamber_frequency = 40
-	failed_chamber_fudge = 3
+	failed_chamber_fudge = 4
 
 	make_parts()
 		if(prob(60))
@@ -541,7 +542,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	desc = "Un modello recente di revolver con un massiccio tamburo lucidato."
 
 	load_time = 0.3 SECONDS
-	successful_chamber_frequency = 30
 
 	make_parts()
 		if(prob(70))
@@ -563,8 +563,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	desc = "Un revolver all'avanguardia con un cilindro massiccio ben unto con olio d'oliva."
 
 	load_time = 0.25 SECONDS
-	successful_chamber_frequency = 30
-	failed_chamber_fudge = 3.5
+	failed_chamber_fudge = 6
 
 	make_parts()
 		stock = new /obj/item/gun_parts/stock/italian(src)

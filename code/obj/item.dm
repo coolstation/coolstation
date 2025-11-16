@@ -1542,7 +1542,7 @@
 	src.material?.triggerPickup(user, src)
 	set_mob(user)
 	show_buttons()
-	if (src.inventory_counter)
+	if (src.inventory_counter && src.inventory_counter_enabled)
 		src.inventory_counter.show_count()
 	if (src.c_flags & EQUIPPED_WHILE_HELD)
 		src.equipped(user, user.get_slot_from_item(src))
