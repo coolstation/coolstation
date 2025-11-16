@@ -453,7 +453,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				src.set_loc(T2)
 	src.pixel_x = src.pixel_y = 32 * src.radius - 64
 	src.bound_width = src.bound_height = 64 * src.radius + 32
-	src.grav_range = min(src.radius + 1, 5)
+	src.grav_range = min(src.radius + 3, 5)
 
 // totally rewrote this proc from the ground-up because it was puke but I want to keep this comment down here vvv so we can bask in the glory of What Used To Be - haine
 		/* uh why was lighting a cig causing the singularity to have an extra process()?
@@ -1537,8 +1537,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				//Big singulos are great (exponential scaling), fed singulos are good (linear scaling), and distance is uh...
 				//some other kind of scaling that isnt super harsh. its in the divisor idk bestie.
 				var/dist_to_singu = GET_DIST(singu.get_center(), src)
-				if(dist_to_singu < (singu.radius * 2 + (singu.active ? 15 : singu.maxradius)))
-					power_s += singu.energy * singu.scaled_radius / (4 + dist_to_singu) * SINGULO_POWER_MULTIPLIER
+				power_s += singu.energy * singu.scaled_radius / (4 + dist_to_singu) * SINGULO_POWER_MULTIPLIER
 			//For each possible collector, grab the current moles of plasma in the tank and then delete some plasma
 			//If you don't top up the tank after grabbing it from the dispenser, it will take approximately 46.6 minutes (assuming no lag) at the current
 			//3.2s machine loop for an array to run dry. By that point, the SMES is max charge, so its not actually that dangerous.
