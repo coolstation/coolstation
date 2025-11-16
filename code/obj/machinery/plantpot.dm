@@ -90,7 +90,7 @@
 	anchored = ANCHORED
 	mats = 0
 	deconstruct_flags = 0
-	icon_state = null
+	icon_state = "blank"
 	power_usage = 0
 	growth_rate = 1
 	/// plant to grow
@@ -101,7 +101,7 @@
 	var/list/datum/plant_gene_strain/spawn_commuts = list()
 	var/auto_water = TRUE
 
-	New()
+	New(newLoc, obj/item/seed/initial_seed)
 		SPAWN_DBG(0) // delay for prefab attribute assignment
 			var/datum/plant/P
 			//Adjust processing tier to slow down server burden unless necessary
@@ -112,8 +112,11 @@
 			..()
 			status |= BROKEN
 
-			if(P)
-				var/obj/item/seed/S = new()
+			if(initial_seed)
+				src.HYPnewplant(initial_seed)
+				update_icon()
+			else if(P)
+				var/obj/item/seed/S = new /obj/item/seed
 
 				S.generic_seed_setup(P)
 				src.HYPnewplant(S)
@@ -177,7 +180,7 @@
 	process()
 		..()
 		if(auto_water)
-			if(!src.reagents.has_reagent("water", 50))
+			if(src.reagents && !src.reagents.has_reagent("water", 50))
 				src.reagents.add_reagent("water", 200)
 
 	flower

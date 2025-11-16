@@ -1053,7 +1053,8 @@
 /turf/space/gehenna/desert,
 /area/gehenna/wasteland/stormy)
 "aMR" = (
-/obj/cable/vertical{
+/obj/cable,
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
 /turf/floor/plating,
@@ -1428,9 +1429,11 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
 	},
-/obj/cable/vertical{
-	icon_state = "0-4";
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
+	},
+/obj/cable{
+	icon_state = "0-4"
 	},
 /turf/floor/plating{
 	icon_old = "diamondtile"
@@ -3343,17 +3346,6 @@
 	dir = 1
 	},
 /area/station/medical/medbay/treatment)
-"cJM" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/obj/machinery/light/small/floor/yellow,
-/turf/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	icon_state = "quart";
-	mail_tag = "Cargo Bay Dock";
-	name = "Cargo Bay Dock"
-	})
 "cJU" = (
 /obj/machinery/light/small/floor/harsh,
 /obj/machinery/camera{
@@ -3364,18 +3356,6 @@
 	},
 /turf/floor/shuttlebay,
 /area/station/hangar/medical)
-"cJY" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 8;
-	tag = "icon-xtra_bigstripe-edge (WEST)"
-	},
-/obj/machinery/light/small/floor/yellow,
-/turf/floor/industrial,
-/area/station/quartermaster/cargooffice/idk_another_one{
-	icon_state = "quart";
-	mail_tag = "Cargo Bay Dock";
-	name = "Cargo Bay Dock"
-	})
 "cKa" = (
 /turf/wall,
 /area/station/chapel/sanctuary)
@@ -8918,8 +8898,11 @@
 /turf/floor/white,
 /area/station/medical/medbay/pharmacy)
 "gHw" = (
-/obj/cable/vertical{
-	icon_state = "0-4";
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
 /turf/floor/plating,
@@ -12896,13 +12879,15 @@
 /turf/floor/plating,
 /area/station/medical/maintenance)
 "jNp" = (
+/obj/cable/blue{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 3
+	},
 /obj/grille/catwalk/jen,
 /obj/cable/blue{
-	icon_state = "2-8"
-	},
-/obj/cable/vertical/blue{
-	icon_state = "0-2";
-	target_z = 3
+	icon_state = "0-8"
 	},
 /turf/floor/plating,
 /area/station/maintenance/north)
@@ -21017,11 +21002,14 @@
 /turf/floor/grey,
 /area/station/medical/robotics)
 "qlE" = (
-/obj/grille/catwalk/jen,
-/obj/cable/vertical{
-	icon_state = "0-4";
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/north)
 "qlQ" = (
@@ -23319,15 +23307,18 @@
 /turf/floor/black,
 /area/station/engine/monitoring)
 "rXy" = (
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 3
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 4;
 	name = "autoname - SS13";
 	tag = ""
-	},
-/obj/cable/vertical{
-	icon_state = "0-4";
-	target_z = 3
 	},
 /turf/floor/plating,
 /area/station/medical/maintenance)
@@ -24236,9 +24227,12 @@
 /turf/floor/carpet/grime4,
 /area/station/medical/research)
 "sIK" = (
-/obj/cable/vertical{
-	icon_state = "0-8";
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /turf/floor/plating,
 /area/station/maintenance/northwest)
@@ -26821,10 +26815,11 @@
 	},
 /area/gehenna)
 "uHL" = (
-/obj/machinery/light/fluorescent/red,
-/obj/cable/vertical{
+/obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
+/obj/cable,
+/obj/machinery/light/fluorescent/red,
 /turf/floor/plating,
 /area/station/medical/maintenance)
 "uHM" = (
@@ -88109,8 +88104,8 @@ ybI
 qAC
 xzP
 xzP
-xzP
 smM
+aXv
 aXv
 aXv
 aXv
@@ -88411,8 +88406,8 @@ vbY
 qAC
 xzP
 smM
-cJM
-cyj
+ciH
+oLr
 oLr
 oLr
 oLr
@@ -90827,8 +90822,8 @@ vbY
 qAC
 xzP
 qJK
-cJY
-cyP
+cjl
+oLr
 oLr
 oLr
 oLr
@@ -91129,8 +91124,8 @@ ybI
 qAC
 xzP
 xzP
-xzP
 qJK
+nGu
 nGu
 nGu
 nGu

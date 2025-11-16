@@ -108,6 +108,9 @@
 	var/dropped_item = null
 	var/eat_message = null
 
+	var/poop_value = 0.5
+	var/did_react = 0
+
 	New()
 		..()
 		start_amount = amount
@@ -152,10 +155,8 @@
 					processing_items -= src
 					if (!(locate(/obj/reagent_dispensers/cleanable/ants) in src.loc))
 						new/obj/reagent_dispensers/cleanable/ants(src.loc)
-						#ifdef DATALOGGER
 						if (istype(A, /area/station))
 							game_stats.Increment("workplacesafety")
-						#endif
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -360,16 +361,15 @@
 		//	reagents.trans_to(M, reagents.total_volume/(src.amount ? src.amount : 1))
 
 		if (isliving(eater))
-			if (src.reagents && src.reagents.total_volume) //only create food chunks for reagents
+			var/mob/living/L = eater
+			if(L.organHolder && L.organHolder.stomach)
 				var/obj/item/reagent_containers/food/snacks/bite/B = new()
-				B.set_loc(eater)
-				B.reagents.maximum_volume = reagents.total_volume/(src.amount ? src.amount : 1) //MBC : I copied this from the Eat proc. It doesn't really handle the reagent transfer evenly??
-				src.reagents.trans_to(B,B.reagents.maximum_volume,1,0)						//i'll leave it tho because i dont wanna mess anything up
-				var/mob/living/L = eater
-				L.stomach_process += B
+				B.set_loc(L.organHolder.stomach)
+				if (src.reagents && src.reagents.total_volume)
+					B.reagents.maximum_volume = src.reagents.total_volume / initial(src.amount)
+					src.reagents.trans_to(B,B.reagents.maximum_volume,1,0)
 
 			if (src.food_effects.len && isliving(eater) && eater.bioHolder)
-				var/mob/living/L = eater
 				for (var/effect in src.food_effects)
 					L.add_food_bonus(effect, src)
 
@@ -387,6 +387,8 @@
 		eater.on_eat(src)
 
 	proc/on_finish(mob/eater)
+		SHOULD_CALL_PARENT(TRUE)
+		game_stats.Increment("food_finished")
 		return
 
 	proc/drop_item(var/path)
@@ -468,36 +470,11 @@
 	icon_state = "scotchegg"
 	amount = 1
 	heal_amt = 0
-	initial_volume = 100
+	initial_volume = 10
 	festivity = 0
 	rc_flags = 0
 	edible = 1
 	rand_pos = 8
-	var/poop_value = 0.5
-	var/did_react = 0
-/*
-	unpooled()
-		..()
-		did_react = 0
-
-	pooled()
-		..()
-		did_react = 0
-*/
-	proc/process_stomach(mob/living/owner, var/process_rate = 5)
-		if (owner && src.reagents)
-			if (!src.did_react)
-				src.reagents.reaction(owner, INGEST, src.reagents.total_volume)
-				src.did_react = 1
-
-			src.reagents.trans_to(owner, process_rate, HAS_ATOM_PROPERTY(owner, PROP_DIGESTION_EFFICIENCY) ? GET_ATOM_PROPERTY(owner, PROP_DIGESTION_EFFICIENCY) : 1)
-
-			if (src.reagents.total_volume <= 0)
-				owner.poops += poop_value
-				owner.stomach_process -= src
-				qdel(src)
-
-
 
 /* ================================================ */
 /* -------------------- Drinks -------------------- */
@@ -667,8 +644,14 @@
 				logTheThing("combat", user, M, "[user == M ? "takes a sip from" : "makes [constructTarget(M,"combat")] drink from"] [src] [log_reagents(src)] at [log_loc(user)].")
 				src.reagents.reaction(M, INGEST, min(reagents.total_volume, gulp_size, (M.reagents?.maximum_volume-M.reagents?.total_volume)))
 				SPAWN_DBG(0.5 SECONDS)
-					if (src?.reagents && M?.reagents)
-						src.reagents.trans_to(M, min(reagents.total_volume, gulp_size))
+					if (src?.reagents)
+						if(M && isliving(M))
+							var/mob/living/L = M
+							if(L.organHolder && L.organHolder.stomach) //drinking with no stomach just pours it into your blood
+								src.reagents.trans_to(L.organHolder.stomach, min(reagents.total_volume, gulp_size))
+							else
+								src.reagents.trans_to(L, min(reagents.total_volume, gulp_size))
+
 
 			playsound(M.loc,"sound/items/drink.ogg", rand(10,50), 1)
 			eat_twitch(M)
@@ -1085,7 +1068,7 @@
 				var/obj/item/raw_material/shard/glass/G = new()
 				G.set_loc(U)
 				qdel(src)
-				if (prob (25))
+				if (prob (25) && (!user.traitHolder && !user.traitHolder.hasTrait("hardcore")))
 					user.visible_message("<span class='alert'>The broken shards of [src] slice up [user]'s hand!</span>")
 					playsound(U, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 					var/damage = rand(5,15)
@@ -1151,7 +1134,7 @@
 			src.reagents.reaction(U)
 
 		DEBUG_MESSAGE("[src].smash_on_thing([user], [target]): success_prob [success_prob], hurt_prob [hurt_prob]")
-		if (!src.broken && prob(success_prob))
+		if (!src.broken && prob(success_prob) || (user.traitHolder && user.traitHolder.hasTrait("hardcore") && !src.broken))
 			user.visible_message("<span class='alert'><b>[user] smashes [src] on [target], shattering it open![prob(50) ? " [user] looks like they're ready for a fight!" : " [src] has one mean edge on it!"]</span>")
 			src.item_state = "broken_beer" // shattered beer inhand sprite
 			user.update_inhands()
@@ -1518,6 +1501,12 @@
 	proc/checkContinue()
 		if (glass.reagents.total_volume <= 0 || !isalive(glassholder) || !glassholder.find_in_hand(glass))
 			return FALSE
+		if(target && isliving(target))
+			var/mob/living/L = target
+			if(L.organHolder && L.organHolder.stomach && (L.organHolder.stomach.reagents?.maximum_volume - L.organHolder.stomach.reagents?.total_volume <= 0))
+				target.visible_message("[target.name] [pick("fucken HURLS.","barfs it back up!","vomits bigtime!","pukes.")]")
+				target.vomit()
+				return FALSE
 		if ((target.reagents?.maximum_volume-target.reagents?.total_volume) <= 0) // we're fuckin full, slosh slosh,
 			target.visible_message("[target.name] [pick("fucken HURLS.","barfs it back up!","vomits bigtime!","pukes.")]")
 			target.vomit()
@@ -1529,7 +1518,11 @@
 		glassholder = src.owner
 		loopStart()
 		if(glassholder == target)
-			glassholder.visible_message("[glassholder.name] starts chugging the [glass.name]!")
+			if (glassholder.traitHolder && glassholder.traitHolder.hasTrait("hardcore"))
+				duration = 0.2 SECONDS
+				glassholder.visible_message("[glassholder.name] starts chugging the [glass.name] like it's NOTHING!")
+			else
+				glassholder.visible_message("[glassholder.name] starts chugging the [glass.name]!")
 		else
 			glassholder.visible_message("[glassholder.name] starts forcing [target.name] to chug the [glass.name]!")
 		logTheThing("combat", glassholder, target, "[glassholder == target ? "starts chugging from" : "makes [constructTarget(target,"combat")] chug from"] [glass] [log_reagents(glass)] at [log_loc(target)].")
@@ -1552,14 +1545,23 @@
 	onEnd()
 
 		if (glass.reagents.total_volume) //Take a sip
+			if(target && isliving(target))
+				var/mob/living/L = target
+				if(L.organHolder && L.organHolder.stomach) //drinking with no stomach just pours it into your blood
+					glass.reagents.trans_to(L.organHolder.stomach, min(glass.reagents.total_volume, glass.gulp_size))
+				else
+					glass.reagents.trans_to(L, min(glass.reagents.total_volume, glass.gulp_size))
+			else
+				glass.reagents.trans_to(target, min(glass.reagents.total_volume, glass.gulp_size))
 			glass.reagents.reaction(target, INGEST, min(glass.reagents.total_volume, glass.gulp_size, (target.reagents?.maximum_volume-target.reagents?.total_volume)))
-			glass.reagents.trans_to(target, min(glass.reagents.total_volume, glass.gulp_size))
 			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
 			eat_twitch(target)
 
 		if(glass.reagents.total_volume <= 0)
 			..()
-			target.visible_message("[target.name] chugged everything in the [glass.name]!")
+			if (glassholder.traitHolder && glassholder.traitHolder.hasTrait("hardcore"))
+				target.visible_message("[target.name] chugged everything in the [glass.name]!")
+
 		else if(!checkContinue())
 			..()
 			target.visible_message("[target.name] stops chugging.")
@@ -2082,7 +2084,7 @@
 	icon_state = "cocktailshaker"
 	initial_volume = 120
 	can_recycle = 0
-	can_chug = 0
+	//can_chug = 0
 
 	New()
 		..()

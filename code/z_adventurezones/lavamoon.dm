@@ -1411,9 +1411,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 				schmuck.show_text("You fall down the ladder!", "red")
 				schmuck.changeStatus("weakened", 3 SECONDS)
 				AM.set_loc(get_turf(otherLadder))
-				#ifdef DATALOGGER
 				game_stats.Increment("workplacesafety")
-				#endif
 
 	attack_ai(mob/user)
 		if (!istype(user, /mob/living/silicon/ai)) //even with the chicken feet AIs don't have enough limbs to try

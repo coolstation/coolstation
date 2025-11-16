@@ -607,10 +607,16 @@
 	var/open = 1
 	var/id = null
 	var/obj/blind_switch/mySwitch = null
+	var/base_x = 0
+	var/base_y = 0
+	event_handler_flags = USE_HASENTERED
 
 	New()
 		. = ..()
 		START_TRACKING
+		base_x = pixel_x
+		base_y = pixel_y
+
 
 	disposing()
 		. = ..()
@@ -630,6 +636,40 @@
 	attackby(obj/item/W, mob/user)
 		src.toggle()
 		src.toggle_group()
+
+	proc/shake_blinds(var/volume)
+
+		playsound(src, "sound/impact_sounds/blind_rattle.ogg", volume, 1, -1)
+
+		var/wiggle = 10
+
+		SPAWN_DBG(0) //need spawn, why would we sleep in attack_hand that's disgusting
+			while (wiggle > 0)
+				wiggle--
+				animate(src, pixel_x = rand(src.base_x-3,src.base_x+3), pixel_y = rand(src.base_y-3,src.base_y+3), time = 2, easing = EASE_IN)
+				sleep(0.1 SECONDS)
+				animate(src, pixel_x = src.base_x, pixel_y = src.base_y, time = 2, easing = EASE_OUT)
+
+
+
+	//This is reused from the
+	HasEntered(atom/movable/AM as mob|obj)
+		..()
+
+		if(!(ishuman(AM) || AM.throwing))
+			return
+
+		if(isnpc(AM)) //if its a monkey (a type of human NPC)
+			src.shake_blinds(10)
+			return
+
+		if (AM.throwing) //if its a thlrown item and not a human/monke
+			src.shake_blinds(20)
+			return
+		//humans are much louder than thrown items and mobs
+		//Only players will trigger this
+		src.shake_blinds(50)
+		AM.setStatus("slowed", 0.5 SECONDS, optional = 4)
 
 	proc/toggle(var/force_state as null|num)
 		if (!isnull(force_state))
@@ -1599,6 +1639,7 @@ obj/decoration/ceilingfan
 	var/datum/light/light
 	plane = BLEND_OVERLAY
 	layer = PLANE_SELFILLUM
+	anchored = ANCHORED
 
 	New()
 		..()

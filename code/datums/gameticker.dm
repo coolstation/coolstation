@@ -1,5 +1,5 @@
 var/global/datum/controller/gameticker/ticker
-var/global/current_state = GAME_STATE_MAP_LOAD
+var/global/current_state = GAME_STATE_WORLD_INIT
 /* -- moved to _setup.dm
 #define GAME_STATE_PREGAME		1
 #define GAME_STATE_SETTING_UP	2
@@ -40,7 +40,7 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 	var/tmp/timeDilationUpperBound = OVERLOADED_WORLD_TICKLAG
 	var/tmp/highMapCpuCount = 0 // how many times in a row has the map_cpu been high
 
-	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg', 'sound/radio_station/lobby/onn105.ogg')
+	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg', 'sound/radio_station/lobby/onn105.ogg', 'sound/radio_station/lobby/robocop.ogg')
 	var/picked_music = null
 
 
@@ -68,8 +68,8 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 	#endif
 
 	var/did_mapvote = 0
-	if (!player_capa)
-		new /obj/overlay/zamujasa/round_start_countdown/encourage()
+	//if (!player_capa)
+	//	new /obj/overlay/zamujasa/round_start_countdown/encourage()
 	var/obj/overlay/zamujasa/round_start_countdown/timer/title_countdown = new()
 	while (current_state <= GAME_STATE_PREGAME)
 		sleep(1 SECOND)
@@ -86,6 +86,14 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 				did_lobbymusic = 1
 				//latecomers should be handled by client.dm in the sound section
 
+				pregameHTML = null // clear the pregame html
+				for(var/client/C)
+					try
+						C<< browse("", "window=pregameBrowser")
+						if(C)
+							winshow(C, "pregameBrowser", 0)
+					catch()
+
 			if (pregame_timeleft <= 60 && !did_mapvote)
 				// do it here now instead of before the countdown
 				// as part of the early start most people might not even see it at 150
@@ -99,7 +107,7 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 			title_countdown.update_time(-1)
 
 
-		if(pregame_timeleft <= 0)
+		if(pregame_timeleft <= 0 || current_state == GAME_STATE_SETTING_UP)
 			current_state = GAME_STATE_SETTING_UP
 			qdel(title_countdown)
 			qdel(game_start_countdown)
@@ -565,6 +573,7 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 				else
 
 					// Put together a package of score data that we can hand off to the discord bot
+					var/clownabuse = game_stats.GetStat("clownabuse")
 					var/list/roundend_score = list(
 						"map" = getMapNameFromID(map_setting),
 						"survival" = score_tracker.score_crew_survival_rate,
@@ -582,6 +591,12 @@ var/global/current_state = GAME_STATE_MAP_LOAD
 						"doinks"   = doinkssparked,
 						"clowns"   = clownabuse
 						)
+					/* todo:
+						,
+							"food_finished" = game_stats.GetStat("food_finished"),
+							"mining_ores_mined" = game_stats.GetStat("mining_ores_mined"),
+							"mining_turfs_cleared" = game_stats.GetStat("mining_turfs_cleared")
+						*/
 					ircbot.event("roundend", roundend_score)
 					//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] REBOOTING THE SERVER!!!!!!!!!!!!!!!!!")
 					Reboot_server()

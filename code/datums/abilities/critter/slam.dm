@@ -53,6 +53,11 @@
 		SPAWN_DBG(0.3 SECONDS)
 			qdel(dummy)
 
+	on_pre_hit(atom/hit, angle, obj/projectile/O)
+		. = ..()
+		if(hit == O.special_data["charger"])
+			return TRUE
+
 	on_hit(atom/hit, angle, var/obj/projectile/O)
 		O.special_data["valid_loc"] = get_turf(hit)
 		var/mob/charger = O.special_data["charger"]

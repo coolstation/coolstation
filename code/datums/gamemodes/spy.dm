@@ -204,14 +204,10 @@
 	if (istype(potential_winner) && potential_winner.current && (survived_count == 1))
 		boutput(world, "<h2><b>[potential_winner.current.real_name] succeeded! The Syndicate has promoted them to [pick("Executive Bathroom Toilet Scrubber", "Head Office Cafeteria Worker", "Board Room Custodian")]!</b></h2>")
 
-#ifdef DATALOGGER
 		game_stats.Increment("traitorwin")
-#endif
 	else
 		boutput(world, "<h2><b>The infiltrators did not succeed!</b></h2>")
-#ifdef DATALOGGER
 		game_stats.Increment("traitorloss")
-#endif
 
 
 	text = ""

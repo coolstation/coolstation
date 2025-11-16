@@ -321,11 +321,17 @@
 	name = "Satellite 29A"
 	icon_state = "AIt"
 	sound_environment = EAX_HALLWAY
+	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
+	requires_power = TRUE
 
 /area/derelict_ai_sat/core
 	name = "AI Satellite Core"
 	icon_state = "ai_chamber"
 	sound_environment = EAX_GENERIC
+	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
+	requires_power = TRUE
 
 /area/derelict_ai_sat/solar
 	name = "Satelllite 29A Solar Array"
@@ -333,6 +339,9 @@
 	requires_power = 0
 	luminosity = 1
 	force_fullbright = 1
+	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
+	requires_power = FALSE
 
 /obj/machinery/power/solar_control/derelict_ai_sat
 	id = "derelict_ai_sat"

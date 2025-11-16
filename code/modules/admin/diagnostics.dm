@@ -569,49 +569,22 @@ proc/debug_map_apc_count(delim,zlim)
 		help = {"red - contains 0 (no powernet), that's probably bad<br>white - contains multiple powernets<br>other - coloured based on the single powernet<br>numbers - ids of all powernets on the tile"}
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
 			var/list/netnums = list()
-			var/link_col
 			for(var/obj/machinery/power/M in theTurf)
 				if(M.netnum >= 0)
 					netnums |= M.netnum
 			for(var/obj/cable/C in theTurf)
-				if(C.is_a_node)
-					if (C.is_a_node.pnet?.number > 0)
-						netnums |= C.is_a_node.pnet.number
-					if (C.is_a_link) //turbofucked
-						img.app.color = "#ffff00"
-						return
-				else if (C.is_a_link)
-					link_col = debug_color_of(C.is_a_link)
+				if(C.netnum >= 0)
+					netnums |= C.netnum
 			img.app.overlays = list(src.makeText(jointext(netnums, " ")))
-			if(!length(netnums))
-				if (link_col)
-					img.app.color = link_col
-					img.app.alpha = 90
-				else
-					img.app.color = "#00000000"
-					img.app.alpha = 0
+			if(!netnums.len)
+				img.app.color = "#00000000"
+				img.app.alpha = 0
 			else if(0 in netnums)
 				img.app.color = "#ff0000"
 			else if(netnums.len >= 2)
 				img.app.color = "#ffffff"
 			else
 				img.app.color = debug_color_of(netnums[1])
-
-	powernet_link_status
-		name = "power active links"
-		help = {"green- active node<br>red - deactivated link<br>white - node<br>"}
-
-		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = "#00000000"
-			for(var/obj/cable/C in theTurf)
-				if(C.is_a_node)
-					img.app.color = "#ffffff80"
-					return
-				else if (C.is_a_link?.active <= 0)
-					img.app.color = "#ff000080"
-					return
-				else
-					img.app.color = "#00ff0080"
 
 	disposals
 		name = "disposal pipes"
@@ -1254,6 +1227,20 @@ proc/debug_map_apc_count(delim,zlim)
 						img.app.color = "#DD0000"
 						img.app.alpha = 128
 						break
+
+	singularity_containment
+		name = "singularity containment"
+		help = "Highlights tiles on which a singularity center would be contained and a singularity generator would activate.<br>Number is max singulo radius at the tile."
+
+		GetInfo(turf/theTurf, image/debugoverlay/img)
+			var/max_singulo_radius = singularity_containment_check(theTurf)
+			if(isnull(max_singulo_radius))
+				img.app.alpha = 0
+				return
+			img.app.alpha = 120
+			img.app.color = "#9944ff"
+			img.app.overlays = list(src.makeText(max_singulo_radius, RESET_ALPHA | RESET_COLOR))
+
 
 /client/var/list/infoOverlayImages
 /client/var/datum/infooverlay/activeOverlay

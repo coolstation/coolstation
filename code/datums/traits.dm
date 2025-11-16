@@ -446,7 +446,7 @@
 /obj/trait/blind
 	name = "Blind (+2)"
 	cleanName = "Blind"
-	desc = "Spawn with permanent blindness and a VISOR."
+	desc = "Spawn with permanent blindness and a white cane."
 	icon_state = "blind"
 	id = "blind"
 	category = "vision"
@@ -458,7 +458,7 @@
 			if(istype(owner, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = owner
 				owner.bioHolder.AddEffect("blind", 0, 0, 0, 1)
-				H.equip_if_possible(new /obj/item/clothing/glasses/visor(H), H.slot_glasses)
+				H.equip_if_possible(new /obj/item/white_cane(H), H.slot_r_hand)
 
 	onLife(var/mob/owner) //Just to be safe.
 		if(owner.bioHolder && !owner.bioHolder.HasEffect("blind"))
@@ -598,9 +598,9 @@
 	isPositive = 1
 	category = "trinkets"
 
-/obj/trait/emaculate
-	name = "Emaculate (-1) \[Trinkets\]"
-	cleanName = "Emaculate"
+/obj/trait/immaculate
+	name = "Immaculate (-1) \[Trinkets\]"
+	cleanName = "Immaculate"
 	desc = "Start off with a rag as your trinket."
 	id = "emaculate"
 	points = -1
@@ -1201,9 +1201,9 @@ obj/trait/pilot
 /obj/trait/cat
 	name = "Feline (0) \[Species\]"
 	cleanName = "Feline"
-	icon_state = "fertT"
+	icon_state = "catT"
 	desc = "Normal cat."
-	id = "cat" //need cat icon, but for now,
+	id = "cat"
 	points = 0
 	isPositive = 0
 	category = "species"
@@ -1326,7 +1326,7 @@ obj/trait/pilot
 		..()
 		if(isliving(owner))
 			var/mob/living/L = owner
-			L.blood_id = "bloodc"
+			L.replace_blood_with("bloodc")
 
 /obj/trait/super_slips
 	name = "Slipping Hazard (+1)"
@@ -1334,6 +1334,16 @@ obj/trait/pilot
 	id = "super_slips"
 	desc = "You never were good at managing yourself slipping."
 	points = 1
+
+/obj/trait/hardcore
+	name = "Hardcore (-1)"
+	cleanName= "Hardcore"
+	id = "hardcore"
+	icon_state = "hardcoreT"
+	desc = "You were born with juice in your blood. You've been smoking since pre-K. To you, CoolStation is just a normal space station."
+	points = -1
+	isPositive = 1
+
 
 //Infernal Contract Traits
 /obj/trait/hair

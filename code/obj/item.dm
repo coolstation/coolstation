@@ -63,7 +63,7 @@
 	/*Inventory*/
 	/*‾‾‾‾‾‾‾‾‾*/
 	var/pickup_sfx = 0 //if null, we auto-pick from a list based on w_class
-	var/w_class = W_CLASS_NORMAL // how big they are, determines if they can fit in backpacks and pockets and the like
+	w_class = W_CLASS_NORMAL // how big they are, determines if they can fit in backpacks and pockets and the like
 	p_class = 1.5 // how hard they are to pull around, determines how much something slows you down while pulling it
 
 	var/cant_self_remove = 0 // Can't remove from non-hand slots
@@ -611,29 +611,34 @@
 /obj/item/MouseDrop_T(atom/movable/O as obj, mob/user as mob)
 	..()
 	if (max_stack > 1 && src.loc == user && get_dist(O, user) <= 1 && check_valid_stack(O))
-		if ( src.amount >= max_stack)
-			failed_stack(O, user)
-			return
+		SPAWN_DBG(0)
+			if ( src.amount >= max_stack)
+				failed_stack(O, user)
+				return
 
-		var/added = 0
-		var/staystill = user.loc
-		var/stack_result = 0
+			var/added = 0
+			var/staystill = user.loc
+			var/stack_result = 0
 
-		before_stack(O, user)
+			before_stack(O, user)
 
-		for(var/obj/item/other in view(1,user))
-			stack_result = stack_item(other)
-			if (!stack_result)
-				continue
-			else
-				sleep(0.3 SECONDS)
-				added += stack_result
-				if (user.loc != staystill) break
-				if (src.amount >= max_stack)
-					failed_stack(O, user)
-					return
+			var/i = 0
 
-		after_stack(O, user, added)
+			for(var/obj/item/other in view(1,user))
+				i++
+				stack_result = stack_item(other)
+				if (!stack_result)
+					continue
+				else
+					if(!(i % (ceil(i / 5))))
+						sleep(0.1 SECONDS)
+					added += stack_result
+					if (user.loc != staystill) break
+					if (src.amount >= max_stack)
+						failed_stack(O, user)
+						return
+
+			after_stack(O, user, added)
 
 #define src_exists_inside_user_or_user_storage (src.loc == user || (istype(src.loc, /obj/item/storage) && src.loc.loc == user))
 
@@ -1537,7 +1542,7 @@
 	src.material?.triggerPickup(user, src)
 	set_mob(user)
 	show_buttons()
-	if (src.inventory_counter)
+	if (src.inventory_counter && src.inventory_counter_enabled)
 		src.inventory_counter.show_count()
 	if (src.c_flags & EQUIPPED_WHILE_HELD)
 		src.equipped(user, user.get_slot_from_item(src))

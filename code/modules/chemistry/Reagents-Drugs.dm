@@ -6,6 +6,7 @@ datum
 	reagent
 		drug/
 			name = "some drug"
+			taste = "like drugs"
 
 		drug/bathsalts
 			name = "bath salts"
@@ -25,6 +26,7 @@ datum
 			kidney_multiplier = 1.4
 			thirst_value = -0.05
 			contraband = 8
+			taste = "salty"
 			var/static/list/halluc_attackers = list(
 				new /image('icons/mob/critter.dmi',"death") = list("death","the bell guy","GO METS!"),
 				new /image('icons/mob/critter.dmi', "cluwnespider_queen") = list("your mother","fat fuck","horrible green crab"),
@@ -205,6 +207,7 @@ datum
 			thirst_value = -0.04
 			energy_value = -0.04
 			contraband = 2
+			taste = "extremely disgusting"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -234,9 +237,11 @@ datum
 			thirst_value = -0.05
 			stun_resist = 60
 			contraband = 6
+			taste = "cheap"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
+				M.make_jittery(3 * mult)
 				if(probmult(15)) M.emote(pick("twitch", "twitch_s", "grumble", "laugh"))
 				if(prob(8))
 					boutput(M, "<span class='notice'><b>You feel great!</b></span>")
@@ -248,7 +253,6 @@ datum
 				if(prob(4))
 					boutput(M, "<span class='alert'><b>You feel kinda awful!</b></span>")
 					M.take_toxin_damage(1 * mult)
-					M.make_jittery(30 * mult)
 					M.emote(pick("groan", "moan"))
 				..()
 				return
@@ -304,6 +308,7 @@ datum
 			value = 6 // 4 2
 			thirst_value = -0.03
 			contraband = 4
+			taste = "slightly bitter"
 			var/static/list/halluc_sounds = list(
 				"punch",
 				'sound/vox/poo-vox.ogg',
@@ -438,6 +443,7 @@ datum
 			value = 5
 			thirst_value = -0.03
 			contraband = 4.2
+			taste = "slightly bee-ter"
 			var/static/list/bee_halluc = list(
 				new /image('icons/mob/bee.dmi',"zombee-wings") = list("zombee", "undead bee", "BZZZZZZZZ"),
 				new /image('icons/mob/bee.dmi',"syndiebee-wings") = list("syndiebee", "evil bee", "syndicate assassin bee", "IT HAS A GUN"),
@@ -485,6 +491,7 @@ datum
 			viscosity = 0.2
 			thirst_value = -0.03
 			minimum_reaction_temperature = T0C+400
+			taste = "illegal"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/myvol = volume
@@ -517,6 +524,7 @@ datum
 			hunger_value = -0.04
 			thirst_value = -0.04
 			contraband = 1
+			taste = "tangy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -556,6 +564,7 @@ datum
 			viscosity = 0.4
 			hunger_value = -0.04
 			thirst_value = 0.03
+			taste = "tangy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -595,6 +604,7 @@ datum
 			value = 3
 			thirst_value = -0.07
 			stun_resist = 8
+			taste = "bitter"
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -665,6 +675,7 @@ datum
 			overdose = 70
 			stun_resist = 11
 			contraband = 2
+			taste = "too bitter"
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -770,6 +781,7 @@ datum
 			viscosity = 0.1
 			thirst_value = -0.3
 			contraband = 4
+			taste = "weird"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -821,6 +833,7 @@ datum
 			thirst_value = -0.09
 			contraband = 7
 			var/fake_health = 40
+			taste = "sketchy"
 
 			on_remove()
 				src.fake_health = 40
@@ -904,6 +917,7 @@ datum
 			viscosity = 0.14
 			thirst_value = -0.1
 			contraband = 2
+			taste = "like catnip"
 			var/static/list/cat_halluc = list(
 				new /image('icons/mob/critter.dmi',"cat-ghost") = list("ghost cat"),
 				new /image('icons/mob/critter.dmi', "cat1-wild") = list("wild cat"),
@@ -948,6 +962,7 @@ datum
 			viscosity = 0.14
 			thirst_value = -0.1
 			contraband = 2
+			taste = "like batnip"
 			var/static/list/bat_halluc = list(
 				new /image('icons/mob/critter.dmi',"bat-dance") = list("ghost bat"),
 				new /image('icons/mob/critter.dmi', "scarybat-dance") = list("wild bat"),
@@ -999,6 +1014,7 @@ datum
 			hunger_value = -0.3
 			thirst_value = -0.2
 			contraband = 18
+			taste = "like meth, like meth, and like meth"
 
 			on_remove()
 				if(ismob(holder?.my_atom))
@@ -1024,7 +1040,7 @@ datum
 					holder.my_atom:addOverlayComposition(/datum/overlayComposition/triplemeth)
 
 				if(probmult(50)) M.emote(pick("twitch","blink_r","shiver"))
-				M.make_jittery(5)
+				M.make_jittery(25 * mult)
 				M.make_dizzy(5 * mult)
 				M.change_misstep_chance(15 * mult)
 				M.take_brain_damage(1 * mult)
@@ -1058,7 +1074,7 @@ datum
 						M.hand = !M.hand
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'><b>[M.name]</b> falls to the floor and flails uncontrollably!</span>")
-						M.make_jittery(10)
+						M.make_jittery(30)
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 10 SECONDS * mult))
 					else if (effect <= 7)
 						M.emote("laugh")
@@ -1083,6 +1099,7 @@ datum
 			thirst_value = -0.09
 			stun_resist = 50
 			contraband = 6
+			taste = "like meth"
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -1111,7 +1128,7 @@ datum
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				if(probmult(5)) M.emote(pick("twitch","blink_r","shiver"))
-				M.make_jittery(5)
+				M.make_jittery((M.jitteriness < 350 ? 20 : 8) * mult)
 				M.drowsyness = max(M.drowsyness-10, 0)
 				if(M.sleeping) M.sleeping = 0
 				if(prob(50))
@@ -1148,7 +1165,7 @@ datum
 						M.hand = !M.hand
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'><b>[M.name]</b> falls to the floor and flails uncontrollably!</span>")
-						M.make_jittery(10)
+						M.make_jittery(25)
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 2 SECONDS * mult))
 					else if (effect <= 7)
 						M.emote("laugh")
@@ -1164,6 +1181,7 @@ datum
 			transparency = 100
 			depletion_rate = 0.3
 			contraband = 13
+			taste = "unpleasant"
 
 			on_mob_life(var/mob/M, var/mult = 1) // commence bad times
 				if(!M) M = holder.my_atom

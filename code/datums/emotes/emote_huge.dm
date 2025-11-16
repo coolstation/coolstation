@@ -100,9 +100,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 								user.add_karma(10)
 							if (M.mind && M.mind.assigned_role == "Clown")
 								user.add_karma(1)
-#ifdef DATALOGGER
 								game_stats.Increment("clownabuse")
-#endif
 						fart_on_other = 1
 						break
 					else if (istype(A,/obj/item/storage/bible))
@@ -165,7 +163,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					if (26) message = "<B>[user]</B> farts like a goone!"
 					if (27)
 						message = "<B>[user]</B> sharts! That's just nasty."
-						if(user?.bioHolder.HasEffect("teflon_colon") || user?.traitHolder.hasTrait("teflon_colon"))
+						if((user?.bioHolder.HasEffect("teflon_colon") || user?.traitHolder.hasTrait("teflon_colon"))&& user.poops >=1)
 							user.poop()
 							accident = TRUE
 					if (28) message = "<B>[user]</B> farts delicately."
@@ -260,6 +258,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					M.chest_item_attack_self_on_fart()
 
 			user.stamina_stun()
+			game_stats.Increment("farts")
 			fartcount++
 			if(fartcount == 69 || fartcount == 420)
 				var/obj/item/paper/grillnasium/fartnasium_recruitment/flyer/F = new(get_turf(user))
@@ -270,9 +269,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				var/datum/game_mode/pod_wars/mode = ticker.mode
 				mode.stats_manager?.inc_farts(user)
 			#endif
-			#ifdef DATALOGGER
-			game_stats.Increment("farts")
-			#endif
+
 	if(user.bioHolder && user.bioHolder.HasEffect("training_miner") && prob(1))
 		var/glowsticktype = pick(typesof(/obj/item/device/light/glowstick))
 		var/obj/item/device/light/glowstick/G = new glowsticktype
@@ -294,10 +291,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			if (M == user || !M.lying) continue
 			message = "<span class='alert'><B>[user]</B> farts in [M]'s face!</span>"
 			fart_on_other = 1
-#ifdef DATALOGGER
 			if (M.mind && M.mind.assigned_role == "Clown")
 				game_stats.Increment("clownabuse")
-#endif
 			break
 		if (!fart_on_other)
 			switch (rand(1, 40))
@@ -346,9 +341,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 		else
 			playsound(user.loc, user.sound_fart, 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 
-#ifdef DATALOGGER
 		game_stats.Increment("farts")
-#endif
 		return list(message, null, MESSAGE_AUDIBLE)
 
 

@@ -93,6 +93,15 @@ var/global/list/cycling_airlocks = list()
 		logTheThing("combat", usr, null, "de-electrified airlock ([src]) at [log_loc(src)].")
 		message_admins("[key_name(user)] de-electrified airlock ([src]) at [log_loc(src)].")
 
+/obj/machinery/door/airlock/hitby(atom/movable/M, datum/thrown_thing/thr)
+	if (iscarbon(M))
+		playsound(src, "sound/impact_sounds/doorbang.ogg", 80, 1)
+	else
+		playsound(src, "sound/impact_sounds/wallbang_small.ogg", 50, 1)
+
+	..()
+
+
 
 /obj/machinery/door/airlock/proc/idscantoggle(mob/user)
 	if(!src.arePowerSystemsOn() || (status & NOPOWER))
@@ -958,8 +967,9 @@ About the new airlock wires panel:
 		if(AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2)
 			//Cutting either one disables the main door power, but unless backup power is also cut, the backup power re-powers the door in 10 seconds. While unpowered, the door may be crowbarred open, but bolts-raising will not work. Cutting these wires may electocute the user.
 			src.loseMainPower()
-			SPAWN_DBG(1 DECI SECOND)
-				src.shock(usr, 50)
+			if(usr)
+				SPAWN_DBG(1 DECI SECOND)
+					src.shock(usr, 50)
 		if (AIRLOCK_WIRE_DOOR_BOLTS)
 			//Cutting this wire also drops the door bolts, and mending it does not raise them. (This is what happens now, except there are a lot more wires going to door bolts at present)
 			if (src.locked!=1)
@@ -971,8 +981,9 @@ About the new airlock wires panel:
 		if (AIRLOCK_WIRE_BACKUP_POWER1, AIRLOCK_WIRE_BACKUP_POWER2)
 			//Cutting either one disables the backup door power (allowing it to be crowbarred open, but disabling bolts-raising), but may electocute the user.
 			src.loseBackupPower()
-			SPAWN_DBG(1 DECI SECOND)
-				src.shock(usr, 50)
+			if(usr)
+				SPAWN_DBG(1 DECI SECOND)
+					src.shock(usr, 50)
 
 		if (AIRLOCK_WIRE_AI_CONTROL)
 			//one wire for AI control. Cutting this prevents the AI from controlling the door unless it has hacked the door through the power connection (which takes about a minute). If both main and backup power are cut, as well as this wire, then the AI cannot operate or hack the door at all.
@@ -981,8 +992,9 @@ About the new airlock wires panel:
 				src.aiControlDisabled = 1
 			else if (src.aiControlDisabled == -1)
 				src.aiControlDisabled = 2
-			SPAWN_DBG(1 DECI SECOND)
-				src.shock(usr, 25)
+			if(usr)
+				SPAWN_DBG(1 DECI SECOND)
+					src.shock(usr, 25)
 
 		if (AIRLOCK_WIRE_ELECTRIFY)
 			//Cutting this wire electrifies the door, so that the next person to touch the door without insulated gloves gets electrocuted.
@@ -1124,8 +1136,6 @@ About the new airlock wires panel:
 // returns 1 if shocked, 0 otherwise
 // The preceding comment was borrowed from the grille's shock script
 /obj/machinery/door/airlock/proc/shock(mob/user, prb)
-	if (!user)
-		return 0 //IDK why airlocks that get blown up are cutting their own wires but
 
 	if(!prob(prb))
 		return 0 //you lucked out, no shock for you

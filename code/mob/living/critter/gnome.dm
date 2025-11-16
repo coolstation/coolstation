@@ -5,7 +5,7 @@
 	can_throw = TRUE
 	flags = TABLEPASS
 	fits_under_table = TRUE
-	reagent_capacity = 100
+	ideal_blood_volume = 100
 	hand_count = 2
 	speechverb_say = "hisses"
 	speechverb_exclaim = "screams"

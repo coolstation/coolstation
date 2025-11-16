@@ -517,6 +517,148 @@
 		if (src.temp)
 			dat += text("<TT>[src.temp]</TT><BR><BR><A href='byond://?src=\ref[src];temp=1'>Clear Screen</A>")
 		else
+			dat+= {"<style type="text/css">
+		body
+		{
+			background: #030602;
+			font-family: "Not Jam Mono Clean 16";
+			font-size: 16pt;
+			letter-spacing: 2px;
+			color: #52ff00;
+
+		}
+		hr{
+			border: 1px solid #fffe03;
+		}
+
+		@font-face {
+				font-family: "Not Jam Mono Clean 16";
+				font-style: normal;
+				src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
+			}
+			html { background: #0e0c05;
+					font-family: "Not Jam Mono Clean 16";
+					font-size: 16pt;
+					line-height: 1;
+					animation-duration: 0.01s;
+					animation-name: textflicker;
+					animation-iteration-count: infinite;
+					animation-direction: alternate;
+			}
+			h1 {
+				font-size: 32px;
+				text-align: left;
+				background-color: #363209;
+				color: #fffe03;
+                width:auto;
+				font-weight: normal;
+			}
+			.container {
+			display: flex;
+			flex-direction: row;
+			}
+            .box{
+            border: 2px solid #fffe03;
+			background-color: #f2b70c;
+			color: #011201;
+            padding: 3px;
+			font-size: 16pt;
+            animation-duration: 0.01s;
+              animation-name: boxflicker;
+              animation-iteration-count: infinite;
+              animation-direction: alternate;
+              width: fit-content;
+              display: inline;
+              line-height: 200%;
+              text-align: center;
+              font-weight: normal;
+
+            }
+            .box.button{
+            background-color:#f2b70c
+			color: #fffe03;
+            border: 2px solid #fffe03;
+            }
+			.holder{
+			color: #171716;
+			}
+            .box.error{
+               border: 5px groove red;
+               padding: 3px;
+               color: red;
+               background-color: black ;
+            }
+			.box.warning{
+				border: 2px groove #c6ff00;
+				background-color: #0c1500;
+				color: #c6ff00;
+			}
+			a{
+				color:#fffe03;
+			}
+			    .crt::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        opacuty: 0.1;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 2;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+      }
+
+      @keyframes flicker {
+        0% {
+        opacity: 0.05;
+        }
+        5% {
+        opacity: 0.01;
+        }
+        10% {
+        opacity:0.05;
+        }
+        15% {
+        opacity: 0.001;
+        }
+        20% {
+        opacity: 0.05;
+        }
+        25% {
+        opacity: 0.005;
+        }
+        30% {
+        opacity: 0.05;
+        }
+        35% {
+        opacity:0.05;
+        }
+      }
+
+      .crt::after {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(18, 16, 16, 0.1);
+        opacity: 0.01;
+        z-index: 2;
+        pointer-events: none;
+        animation: flicker 0.15s infinite;
+      }
+
+
+
+
+		</style>
+		<body class = "crt">
+		<h1>Bank Records</h1>"}
 			dat += text("Confirm Identity: <A href='byond://?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
 			if (src.authenticated)
 				switch(src.screen)
@@ -526,24 +668,25 @@
 						for(var/datum/db_record/R as anything in data_core.bank.records)
 							payroll += R["wage"]
 						dat += {"
-						<u><b>Total Station Funds:</b> $[num2text(totalfunds,50)]</u>
+						<div class = "box">Total Station Funds:</b></div> <u>$[num2text(totalfunds,50)]</u>
 						<BR>
-						<BR><b>Current Payroll Budget:</b> $[num2text(wagesystem.station_budget,50)]
-						<BR><b>Current Research Budget:</b> $[num2text(wagesystem.research_budget,50)]
-						<BR><b>Current Shipping Budget:</b> $[num2text(wagesystem.shipping_budget,50)]
+						<BR><div class = "box">Current Payroll Budget:</b></div> $[num2text(wagesystem.station_budget,50)]
+						<BR><div class = "box">Current Research Budget:</b></div> $[num2text(wagesystem.research_budget,50)]
+						<BR><div class = "box">Current Shipping Budget:</b></div> $[num2text(wagesystem.shipping_budget,50)]
 						<BR>
-						<b>Current Payroll Cost:</b> $[payroll]
+						<div class = "box">Current Payroll Cost:</b></div> $[payroll]
 						<BR>
 						<BR><br><A href='byond://?src=\ref[src];list=1'>List Payroll Records</A>"}
-						if (wagesystem.pay_active) dat += "<BR><br><A href='byond://?src=\ref[src];payroll=1'>Suspend Payroll</A>"
-						else dat += "<BR><br><A href='byond://?src=\ref[src];payroll=1'>Resume Payroll</A>"
+						if (wagesystem.pay_active) dat += "<BR><br><a  href='byond://?src=\ref[src];payroll=1' class = 'box error'>Suspend Payroll</a>"
+						else dat += "<BR><br><A href='byond://?src=\ref[src];payroll=1' class = 'box error'>Resume Payroll</A>"
 						dat += {"<BR><br><A href='byond://?src=\ref[src];transfer=1'>Transfer Funds Between Budgets</A>
 
 						<BR><br>
 						<A href='byond://?src=\ref[src];bonus=1'>Issue Staff Bonus</A>
 						<BR><br>
 						<BR><br><A href='byond://?src=\ref[src];logout=1'>{Log Out}</A>
-						<BR><br>"}
+						<BR><br>
+						</body>"}
 					if(2.0)
 						dat += "<B>Record List</B>:<HR>"
 						for(var/datum/db_record/R as anything in data_core.bank.records)

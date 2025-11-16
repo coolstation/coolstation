@@ -630,6 +630,53 @@
 		src.setItemSpecial(/datum/item_special/nunchucks)
 		BLOCK_SETUP(BLOCK_ROPE)
 
+// white cane for blind folks
+// this might be the wrong file for it but wtv
+// TODO: Someone who's tuned into combat check the damage values
+// [mylie note: done!]
+/obj/item/white_cane
+	name = "white cane"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "white_cane"
+	item_state = "white_cane"
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	force = 4
+	var/two_handed_force = 9
+	throwforce = 6
+	hit_type = DAMAGE_BLUNT
+	w_class = W_CLASS_NORMAL
+	flags = FPRINT | TABLEPASS | SUPPRESSATTACK // should we have tablepass? not sure what it does [mylie note: it makes it fly over tables if throwed]
+	c_flags = EQUIPPED_WHILE_HELD // important for use as an accessibility tool (or knock-off quarterstaff?)
+	desc = "Useful for finding your way around, and also for hitting people."
+	hint = "Increases vision radius when held."
+
+	dropped(mob/user)
+		..()
+		setTwoHanded(FALSE)
+		src.force = initial(src.force)
+
+	attack_self(mob/user)
+		..()
+		setTwoHanded(!src.two_handed)
+		if (src.two_handed)
+			src.force = src.two_handed_force
+		else
+			src.force = initial(src.force)
+
+	attack(mob/M as mob, mob/user as mob)
+		if (user.a_intent == INTENT_HELP)
+			user.visible_message("<span class='alert'>[user] prods [M] with [src]!</span>")
+			user.examine_verb(M)
+			return
+		return ..()
+
+	afterattack(atom/target, mob/user, reach, params)
+		if (user.a_intent == INTENT_HELP)
+			user.examine_verb(target)
+		else
+			user.visible_message("<span class='combat'><B>[user] hits [target] with [src]!</B></span>")
+		return ..()
+
 /obj/item/quarterstaff
 	name = "quarterstaff"
 	icon = 'icons/obj/items/weapons.dmi'

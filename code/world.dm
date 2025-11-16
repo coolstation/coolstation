@@ -499,9 +499,7 @@ var/f_color_selector_handler/F_Color_Selector
 	changelog = new /datum/changelog()
 	admin_changelog = new /datum/admin_changelog()
 
-#ifdef DATALOGGER
 	game_stats = new
-#endif
 
 	if (config)
 		Z_LOG_DEBUG("World/New", "Loading config...")
@@ -524,7 +522,6 @@ var/f_color_selector_handler/F_Color_Selector
 	set background = 1
 	Z_LOG_DEBUG("World/Init", "init() - Lagcheck enabled")
 	lagcheck_enabled = 1
-	current_state = GAME_STATE_WORLD_INIT
 
 	game_start_countdown = new()
 	UPDATE_TITLE_STATUS("Initializing world")
@@ -837,7 +834,6 @@ var/f_color_selector_handler/F_Color_Selector
 			if (C.mob)
 				C.mob << sound(newround)
 
-#ifdef DATALOGGER
 	SPAWN_DBG(world.tick_lag*2)
 		var/playercount = 0
 		var/admincount = 0
@@ -849,7 +845,6 @@ var/f_color_selector_handler/F_Color_Selector
 		game_stats.SetValue("players", playercount)
 		game_stats.SetValue("admins", admincount)
 		//game_stats.WriteToFile("data/game_stats.txt")
-#endif
 
 	sleep(7 SECONDS) // wait for sound to play
 	if(config.update_check_enabled)
@@ -1708,6 +1703,7 @@ var/f_color_selector_handler/F_Color_Selector
 
 					SPAWN_DBG(1 DECI SECOND)
 						// A round-end report is needed!
+						var/clownabuse = game_stats.GetStat("clownabuse")
 						var/list/roundend_score = list(
 							"map" = getMapNameFromID(map_setting),
 							"survival" = score_tracker.score_crew_survival_rate,
@@ -1725,6 +1721,12 @@ var/f_color_selector_handler/F_Color_Selector
 							"doinks"   = doinkssparked,
 							"clowns"   = clownabuse
 							)
+						/* todo:
+						,
+							"food_finished" = game_stats.GetStat("food_finished"),
+							"mining_ores_mined" = game_stats.GetStat("mining_ores_mined"),
+							"mining_turfs_cleared" = game_stats.GetStat("mining_turfs_cleared")
+						*/
 						ircbot.event("roundend", roundend_score)
 						Reboot_server()
 

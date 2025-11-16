@@ -689,9 +689,7 @@
 			src.setMaterial(getMaterial("plasmaglass"), appearance = TRUE, setname = TRUE)
 
 /obj/item/raw_material/shard/proc/step_on(mob/living/carbon/human/H as mob)
-	#ifdef DATALOGGER
 	game_stats.Increment("workplacesafety")
-	#endif
 	H.changeStatus("weakened", 3 SECONDS)
 	H.force_laydown_standup()
 	var/obj/item/affecting = H.organs[pick("l_leg", "r_leg")]
@@ -1051,6 +1049,9 @@
 		else if (istype(over_object,/turf/floor/))
 			src.output_location = over_object
 			boutput(usr, "<span class='notice'>You set the reclaimer to output to [over_object]!</span>")
+
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")

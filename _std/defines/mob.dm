@@ -64,3 +64,6 @@
 //message type flags for show_message (emote stuff)
 #define MESSAGE_VISIBLE 1
 #define MESSAGE_AUDIBLE 2
+
+//multiplies all blood regen, 0.002 is because humans have 500 units ideally and get 1 unit back usually
+#define BLOOD_SCALAR 0.002

@@ -92,9 +92,7 @@
 			boutput(src, "You are currently muted and may not speak.")
 			return
 
-#ifdef DATALOGGER
 		game_stats.ScanText(message)
-#endif
 
 		var/more_class = " mhelp"
 		if(src.is_admin)

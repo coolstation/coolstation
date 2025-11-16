@@ -835,6 +835,22 @@ THROWING DARTS
 		name = "Juicer BIG AP rifle round"
 		desc = "This is just a juicer rifle round with a nail welded into it. Whatever."
 
+	bullet_rifle_malware
+		name = "3.55 ligne rifle round remnants"
+		desc = "Strange. There is wiring and a microcontroller in the shattered remains of this plastic round."
+
+		do_process(mult)
+			if(src.owner && (!ON_COOLDOWN(src.owner, "malware_implant_effects", rand(15, 40) SECONDS) || prob(5))) // multiple implants are only a bit worse
+				if (isliving(src.owner))
+					var/mob/living/L = src.owner
+					playsound(L.loc, "sound/effects/electric_shock_short.ogg", 40, 0, -23, 1.8)
+					L.changeStatus("disorient", rand(10, 40) * mult)
+					L.change_misstep_chance((1 + L.robot_talk_understand) * mult)
+					SPAWN_DBG(rand(2,12))
+						if(!QDELETED(L))
+							L.handle_random_emotes()
+			return ..()
+
 	shot_buck
 		name = "buckshot"
 		desc = "Several small balls, scattered from a long, fat pipe. Or maybe a short fat one."

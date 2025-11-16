@@ -51,7 +51,8 @@
 /datum/manufacture/bedsheet_nb,\
 /datum/manufacture/bedsheet_pan,\
 /datum/manufacture/bedsheet_poly,\
-/datum/manufacture/bedsheet_trans
+/datum/manufacture/bedsheet_trans,\
+/datum/manufacture/white_cane
 
 /obj/machinery/manufacturer
 	name = "Manufacturing Unit"
@@ -1057,6 +1058,9 @@
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the manufacturer to output to [over_object]!</span>")
 
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
+
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
 		return
@@ -1200,7 +1204,7 @@
 		var/netnum = 0
 		for(var/turf/T in range(1, user))
 			for(var/obj/cable/C in T.contents)
-				netnum = C.get_netnumber()
+				netnum = C.netnum
 				break
 			if (netnum) break
 
@@ -1574,7 +1578,7 @@
 			var/datum/material/mat = getMaterial(mat_id)
 			dat += {"
 		<tr>
-			<td><a href='byond://?src=\ref[src];eject=[mat_id]' class='buttonlink'>&#9167;</a> [mat]</td>
+			<td style = 'text-transform: capitalize;'><a href='byond://?src=\ref[src];eject=[mat_id]' class='buttonlink'>&#9167;</a> [mat]</td>
 			<td class='r'>[src.resource_amounts[mat_id]]</td>
 		</tr>
 			"}
@@ -2155,6 +2159,7 @@
 		/datum/manufacture/glasses,
 		/datum/manufacture/visor,
 		/datum/manufacture/deafhs,
+		/datum/manufacture/white_cane,
 		/datum/manufacture/hypospray,
 		/datum/manufacture/patch,
 		/datum/manufacture/mender,

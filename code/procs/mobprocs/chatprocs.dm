@@ -297,9 +297,7 @@
 	if(src?.client?.preferences.auto_capitalization)
 		message = capitalize(message)
 
-#ifdef DATALOGGER
 	game_stats.ScanText(message)
-#endif
 
 	message = src.say_quote(message)
 	//logTheThing("say", src, null, "SAY: [message]")
@@ -357,9 +355,7 @@
 			name = src.name
 			alt_name = " (MASTER)"
 
-#ifdef DATALOGGER
 	game_stats.ScanText(message)
-#endif
 
 	message = src.say_quote(message)
 	//logTheThing("say", src, null, "SAY: [message]")
@@ -392,9 +388,7 @@
 		name = src.real_name
 		alt_name = " (THRALL)"
 
-#ifdef DATALOGGER
 	game_stats.ScanText(message)
-#endif
 
 	message = src.say_quote(message)
 	//logTheThing("say", src, null, "SAY: [message]")
@@ -419,9 +413,7 @@
 	if (!message)
 		return
 
-#ifdef DATALOGGER
 	game_stats.ScanText(message)
-#endif
 	logTheThing("diary", src, null, "(KUDZU): [message]", "hivesay")
 
 	message = src.say_quote(message)
@@ -696,9 +688,7 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 
 	logTheThing("diary", src, null, ": [msg]", "ooc")
 
-#ifdef DATALOGGER
 	game_stats.ScanText(msg)
-#endif
 
 	for (var/client/C in clients)
 		// DEBUGGING
@@ -777,9 +767,7 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 
 	logTheThing("diary", src, null, ": [msg]", "ooc")
 
-#ifdef DATALOGGER
 	game_stats.ScanText(msg)
-#endif
 
 	var/list/recipients = list()
 

@@ -2671,21 +2671,21 @@ ABSTRACT_TYPE(/area/station/com_dish)
 /area/station/com_dish/comdish
 	name = "Communications Dish"
 	icon_state = "yellow"
-#ifndef UNDERWATER_MAP
+#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
 	force_fullbright = 1 // ????
 #endif
 
 /area/station/com_dish/auxdish
 	name = "Auxilary Communications Dish"
 	icon_state = "yellow"
-#ifndef UNDERWATER_MAP
+#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
 	force_fullbright = 1
 #endif
 
 /area/station/com_dish/research_outpost
 	name = "Research Outpost Communications Dish"
 	icon_state = "yellow"
-#ifndef UNDERWATER_MAP
+#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
 	force_fullbright = 1
 #endif
 
@@ -4168,12 +4168,9 @@ ABSTRACT_TYPE(/area/mining)
 		icon = 'icons/effects/dark.dmi'
 #endif*/
 
-	if(!requires_power)
-		power_light = 1
-		power_equip = 1
-		power_environ = 1
-	else
+	if(requires_power)
 		luminosity = 0
+	power_equip = power_light = power_environ = !requires_power
 	global.area_list_is_up_to_date = 0
 
 	SPAWN_DBG(1.5 SECONDS)

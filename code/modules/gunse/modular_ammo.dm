@@ -127,6 +127,11 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	attackby(var/obj/item/I as obj, mob/user as mob)
 		if(!stack_item(I))
 			if(istype(I, /obj/item/gun/modular/))
+				var/obj/item/gun/modular/gunse = I
+				var/load_blocked_msg = gunse.cannotload()
+				if(load_blocked_msg)
+					boutput(user, load_blocked_msg)
+					return
 				actions.start(new/datum/action/bar/private/load_ammo(I, src), user)
 			else
 				..(I, user)
@@ -694,6 +699,17 @@ THE_USUAL_FLAVOURS(shotgun/coil, "coil slug round")
 	icon_state = "generic"
 	ammo_icon_state = "ammofoam"
 THE_USUAL_FLAVOURS(pistol/foamdart, "foam dart")
+
+/obj/item/stackable_ammo/rifle/malware
+	name = "malware round"
+	real_name = "malware round"
+	desc = "A 3.55 ligne rifle cartridge designed to electrify nerves and metal in rapid patterns and allow malicious code injection."
+	projectile_type = /datum/projectile/bullet/rifle/malware
+	stack_type = /obj/item/stackable_ammo/rifle/malware
+	ammo_DRM = GUN_NANO | GUN_ITALIAN | GUN_JUICE
+	icon_state = "generic"
+	ammo_icon_state = "ammopaper"
+THE_USUAL_FLAVOURS(rifle/malware, "malware round")
 
 #undef default_max_amount
 #undef default_min_amount

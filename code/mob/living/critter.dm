@@ -35,8 +35,8 @@ ABSTRACT_TYPE(/mob/living/critter)
 	//this is probably crap but I can't be arsed to refactor
 	var/lie_on_death = TRUE
 
+	ideal_blood_volume = 50
 
-	var/reagent_capacity = 50
 	max_health = 0
 	health = 0
 
@@ -91,7 +91,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 		setup_hands()
 		post_setup_hands()
 		setup_equipment_slots()
-		setup_reagents()
 		setup_healths()
 		if (!healthlist.len)
 			stack_trace("Critter [type] ([name]) \[\ref[src]\] does not have health holders.")
@@ -607,12 +606,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 
 	proc/setup_equipment_slots()
 
-	proc/setup_reagents()
-		reagent_capacity = max(0, reagent_capacity)
-		var/datum/reagents/R = new(reagent_capacity)
-		R.my_atom = src
-		reagents = R
-
 	equipped()
 		RETURN_TYPE(/obj/item)
 		if (active_hand)
@@ -1065,7 +1058,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 		icon_state = icon_state_alive ? icon_state_alive : initial(icon_state)
 		density = initial(density)
 		src.can_implant = initial(src.can_implant)
-		blood_volume = initial(blood_volume)
 
 	does_it_metabolize()
 		return metabolizes
@@ -1084,25 +1076,25 @@ ABSTRACT_TYPE(/mob/living/critter)
 					ret += S.getProperty("exploprot")
 		return ret/100
 
-	ex_act(var/severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
 		..() // Logs.
 		var/ex_res = get_explosion_resistance()
 		if (ex_res >= 0.35 && prob(ex_res * 100))
-			severity++
+			severity = severity * 0.4
 		if (ex_res >= 0.80 && prob(ex_res * 75))
-			severity++
+			severity = severity * 0.4
 		switch(severity)
-			if (1)
+			if (OLD_EX_SEVERITY_1)
 				SPAWN_DBG(0)
 					gib()
-			if (2)
+			if (OLD_EX_SEVERITY_2)
 				if (health < max_health * 0.35 && prob(50))
 					SPAWN_DBG(0)
 						gib()
 				else
 					TakeDamage("All", rand(10, 30), rand(10, 30))
-			if (3)
-				TakeDamage("All", rand(20, 20))
+			if (OLD_EX_SEVERITY_3)
+				TakeDamage("All", rand(10, 15))
 
 	ghostize()
 		var/ghost_icon = src.icon
@@ -1264,6 +1256,7 @@ ABSTRACT_TYPE(/mob/living/critter/robotic)
 	dna_to_absorb = 0
 	butcherable = FALSE
 	metabolizes = FALSE
+	uses_blood = FALSE
 	var/emp_vuln = 1
 
 	New()

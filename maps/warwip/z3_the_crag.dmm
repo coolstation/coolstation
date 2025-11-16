@@ -7,6 +7,13 @@
 	},
 /turf/floor,
 /area/station/crewquarters/cryotron)
+"ab" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/item/device/radio/beacon,
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "ad" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /obj/disposalpipe/segment{
@@ -157,6 +164,7 @@
 	icon_state = "1-4"
 	},
 /obj/grille/catwalk/jen,
+/obj/item/device/radio/beacon,
 /turf/floor/plating,
 /area/station/science/teleporter)
 "aC" = (
@@ -430,6 +438,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grey/blackgrime/other,
 /area/station/security/main)
+"bt" = (
+/obj/landmark/artifact,
+/turf/floor/plating,
+/area/station/maintenance/disposal/sewage)
 "bu" = (
 /obj/disposalpipe/segment/bent{
 	dir = 1
@@ -869,6 +881,12 @@
 /area/station/bridge)
 "cK" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_north)
 "cL" = (
@@ -2468,6 +2486,9 @@
 /obj/table/auto{
 	color = "#666666"
 	},
+/obj/item/device/radio/intercom/bridge{
+	pixel_y = 6
+	},
 /turf/floor/darkblue,
 /area/station/bridge)
 "hO" = (
@@ -2526,6 +2547,7 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/jen/twosides,
+/obj/item/device/radio/beacon,
 /turf/floor/plating,
 /area/station/engine/hotloop)
 "hV" = (
@@ -3070,6 +3092,12 @@
 /obj/machinery/light/small/green{
 	dir = 4
 	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -3276,10 +3304,6 @@
 /area/station/medical/research)
 "kB" = (
 /obj/disposalpipe/segment/mail/vertical,
-/obj/item/device/radio/intercom/AI{
-	broadcasting = 0;
-	pixel_y = 6
-	},
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
@@ -3573,6 +3597,7 @@
 "lx" = (
 /obj/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/south,
+/obj/item/device/radio/beacon,
 /turf/floor,
 /area/station/crew_quarters/fitness)
 "lz" = (
@@ -5011,6 +5036,10 @@
 /obj/table/auto{
 	color = "#666666"
 	},
+/obj/item/device/radio/intercom/AI{
+	broadcasting = 0;
+	pixel_y = 6
+	},
 /turf/floor/darkblue,
 /area/station/bridge)
 "qH" = (
@@ -6152,6 +6181,11 @@
 "uz" = (
 /obj/decal/cleanable/dirt/random,
 /obj/storage/crate/freezer/milk,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 0;
+	name = "autoname - SS13"
+	},
 /turf/floor/grime,
 /area/station/crew_quarters/catering)
 "uA" = (
@@ -7211,6 +7245,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"yl" = (
+/obj/decal/cleanable/dirt/jen,
+/obj/item/device/radio/beacon,
+/turf/floor/black/grime,
+/area/station/medical/cdc)
 "yn" = (
 /obj/window{
 	dir = 2
@@ -9167,7 +9206,10 @@
 /turf/floor/grime,
 /area/station/engine/coldloop)
 "Ev" = (
-/obj/cable/vertical{
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
+	},
+/obj/cable{
 	icon_state = "0-4"
 	},
 /turf/floor/plating,
@@ -10153,9 +10195,6 @@
 	name = "North Tunnel"
 	})
 "HF" = (
-/obj/item/device/radio/intercom/bridge{
-	pixel_y = 6
-	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/stool/chair/office/blue{
 	dir = 1
@@ -10952,9 +10991,6 @@
 /area/station/bridge/customs)
 "Kq" = (
 /obj/disposalpipe/segment,
-/obj/item/device/radio/intercom/security{
-	pixel_y = 6
-	},
 /obj/stool/chair/office/blue{
 	dir = 1
 	},
@@ -11224,8 +11260,11 @@
 /turf/floor/stairs/wide/middle,
 /area/station/security/main)
 "Ln" = (
-/obj/cable/vertical/blue{
+/obj/cable/blue{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
 	},
 /turf/floor/plating,
 /area/station/engine/hotloop)
@@ -11244,6 +11283,9 @@
 /obj/disposalpipe/segment,
 /obj/table/auto{
 	color = "#666666"
+	},
+/obj/item/device/radio/intercom/security{
+	pixel_y = 6
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
@@ -11382,6 +11424,7 @@
 /area/station/crewquarters/cryotron)
 "LQ" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/item/device/radio/beacon,
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "LR" = (
@@ -12241,8 +12284,11 @@
 	name = "North Tunnel"
 	})
 "OA" = (
-/obj/cable/vertical{
+/obj/cable{
 	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
@@ -13728,6 +13774,12 @@
 /area/station/crew_quarters/fitness)
 "TW" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northwest,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/white/grime,
 /area/station/crew_quarters/quarters_north)
 "TY" = (
@@ -65419,7 +65471,7 @@ GP
 kn
 cB
 Nw
-gt
+yl
 pP
 Ab
 HB
@@ -72968,7 +73020,7 @@ LP
 jP
 jP
 YA
-ie
+ab
 jP
 AM
 MX
@@ -72979,7 +73031,7 @@ dX
 gh
 Zo
 Bj
-Bj
+bt
 gh
 Vn
 UJ

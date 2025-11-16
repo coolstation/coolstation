@@ -42,23 +42,23 @@ giving an "average" spread for stock guns around 5-10
 #define GRIP_OFFSET_SHORT 0
 #define GRIP_OFFSET_LONG -1
 #define GRIP_OFFSET_BULLPUP 4
+//bitflags for jamming out
 #define JAM_FIRE 1
 #define JAM_CYCLE 2
 #define JAM_LOAD 3
 #define JAM_CATASTROPHIC 4
 //bitflags for shooting yoar lode
-#define CALIBER_TINY  0 // 00 - tiny
-#define CALIBER_WIDE  (1<<0) // 01 - wide
-#define CALIBER_LONG  (1<<1) // 10 - long
-#define CALIBER_LONG_WIDE CALIBER_LONG | CALIBER_WIDE // 11 - huge
-#define CALIBER_SPUD (1<<2)
+#define CALIBER_TINY  0 // 000 - tiny
+#define CALIBER_WIDE  (1<<0) // 001 - wide
+#define CALIBER_LONG  (1<<1) // 010 - long
+#define CALIBER_LONG_WIDE CALIBER_LONG | CALIBER_WIDE // 011 - huge
+#define CALIBER_SPUD (1<<2) // 100 - rocket rounds and such
 //bitflags for finding your bits
 #define GUN_PART_UNDEF  0
 #define GUN_PART_BARREL 1
 #define GUN_PART_STOCK  2
 #define GUN_PART_GRIP   4
 #define GUN_PART_ACCSY  8
-#define GUN_PART_RCVR	16
 
 #define STANDARD_BARREL_LEN 20 // the formula that determines ALL GUN BARREL LENGTH DAMAGE SCALING. be careful with this one.
 #define BARREL_SCALING(length) (1 + clamp(((length - STANDARD_BARREL_LEN) / (length + STANDARD_BARREL_LEN)) * 0.420, -0.25, 0.25))
@@ -74,6 +74,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	contraband = 0 //is this a crime gun made by and for crimers
 	inventory_counter_enabled = 1
 	appearance_flags = LONG_GLIDE | PIXEL_SCALE | KEEP_TOGETHER
+	w_class = W_CLASS_TINY
 
 	two_handed = FALSE
 	can_dual_wield = TRUE
@@ -87,7 +88,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/max_ammo_capacity = 1 // How much ammo this gun can hold, INCLUDING any chambered rounds
 	var/sound_type = null //bespoke set of loading and cycling noises
 	var/list/muzzle_flashes = list() // any muzzle flashes played by this gun, barrels (and other parts) can add to this list
-	var/flashbulb_only = 0 // FOSS guns only, set to GUN_PART_RCVR if its defined on the reciever
+	var/flashbulb_only = 0 // FOSS guns only
 
 	//offsets and parts
 	///how many pixels from the center (16,16) does the barrel attach. most barrels have 2 pixels above the center and 2 or 3 below.
@@ -160,7 +161,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(gun_DRM)
 		. += "<div><span>DRM LICENSE: </span>"
 		if(gun_DRM & GUN_NANO)
-			. += "<img src='[resource("images/tooltips/temp_nano.png")]' alt='' class='icon' />"
+			. += "<img src='[resource("images/tooltips/gunmanu_nano.png")]' alt='' class='icon' />"
 		if(gun_DRM & GUN_FOSS)
 			. += "<img src='[resource("images/tooltips/temp_foss.png")]' alt='' class='icon' />"
 		if(gun_DRM & GUN_JUICE)
@@ -168,7 +169,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		if(gun_DRM & GUN_SOVIET)
 			. += "<img src='[resource("images/tooltips/temp_soviet.png")]' alt='' class='icon' />"
 		if(gun_DRM & GUN_ITALIAN)
-			. += "<img src='[resource("images/tooltips/temp_italian.png")]' alt='' class='icon' />"
+			. += "<img src='[resource("images/tooltips/gunmanu_italian.png")]' alt='' class='icon' />"
+		if(gun_DRM & GUN_RODEO)
+			. += "<img src='[resource("images/tooltips/gunmanu_rodeo.png")]' alt='' class='icon' />"
 		. += "</div>"
 
 	if(barrel && barrel.length)
@@ -209,6 +212,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 /obj/item/gun/modular/attackby(var/obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/stackable_ammo))
+		var/load_blocked_msg = src.cannotload()
+		if(load_blocked_msg)
+			boutput(user, load_blocked_msg)
+			return
 		actions.start(new/datum/action/bar/private/load_ammo(src, I), user)
 		return
 
@@ -246,7 +253,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			return
 		var/obj/item/gun_parts/part = I
 		if(src.check_DRM(part))
-			boutput(user,"<span class='notice'><b>You loosely place [I] onto [src].</b></span>")
+			boutput(user,"<span class='notice'><b>You loosely place [I] onto \the [src].</b></span>")
 			if (istype(I, /obj/item/gun_parts/barrel/))
 				if(barrel) //occupado
 					boutput(user,"<span class='notice'>...and knock [barrel] out of the way.</span>")
@@ -278,7 +285,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			//set the built receiver iconstate because this is sort of a WIP so, easier to figure out what the hell's going on
 			//icon_state = "[initial(icon_state)]-built"
 		else
-			boutput(user,"<span class='notice'><b>The [src]'s DRM prevents you from attaching [I].</b></span>")
+			boutput(user,"<span class='notice'><b>\The [src]'s DRM prevents you from attaching [I].</b></span>")
 			playsound(src.loc, "sound/machines/twobeep.ogg", 55, 1)
 	else
 		..()
@@ -325,8 +332,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/turf/T = get_turf(src)
 		if(T)
 			SPAWN_DBG(0)
-				var/i = 1
-				var/batch = 3
+				var/i = 0
+				var/batch = 1
 				for(var/casing in src.casing_list)
 					if(i == batch)
 						sleep(1 DECI SECOND)
@@ -341,6 +348,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 /obj/item/gun/modular/set_current_projectile(datum/projectile/newProj)
 	qdel(src.current_projectile)
 	. = ..()
+
+/obj/item/gun/modular/proc/cannotload()
+	if(src.ammo_reserve() >= src.max_ammo_capacity)
+		return "<span class='notice'>You can't load [src] any further!</span>"
+	return FALSE
 
 // load a piece of ammo, overriden by children
 /obj/item/gun/modular/proc/load_ammo(var/mob/user, var/obj/item/stackable_ammo/donor_ammo)
@@ -738,7 +750,29 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	if(flashbulb_only) // additional branch for suicide
 		return flash_process_ammo(user)
 
-	switch(jammed)
+	if(src.jammed)
+		return src.unjam(user)
+
+	var/ammo_left = src.ammo_reserve()
+
+	if(accessory && accessory_alt && (src.current_projectile || !ammo_left)) // accessory alt fire
+		accessory.alt_fire()
+		return 1
+
+	if(ammo_left > src.max_ammo_capacity)
+		var/waste = ammo_left - max_ammo_capacity
+		src.ammo_list.Cut(1,(1 + waste))
+		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
+		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,0,0.8)
+
+	if(src.chamber_round(user)) //finally, attempt to load and cycle
+		if (sound_type)
+			playsound(src.loc, "sound/weapons/modular/[sound_type]-quickcycle[rand(1,2)].ogg", 40, 1)
+		return TRUE
+	return FALSE
+
+/obj/item/gun/modular/proc/unjam(var/mob/user)
+	switch(src.jammed)
 		if(JAM_FIRE) //problem on fire, either dud round or light strike
 			if(prob(current_projectile.dud_freq)) //unlucky, dump the round
 				src.jammed = FALSE
@@ -765,24 +799,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			return 1
 		//if(4) //squib, catastrophic failure, etc. real bad time. explode if shot, or requires repair?
 		//if(5) //hangfire, figure out how to handle
-
-	var/ammo_left = src.ammo_reserve()
-
-	if(accessory && accessory_alt && (src.current_projectile || !ammo_left)) // accessory alt fire
-		accessory.alt_fire()
-		return 1
-
-	if(ammo_left > src.max_ammo_capacity)
-		var/waste = ammo_left - max_ammo_capacity
-		src.ammo_list.Cut(1,(1 + waste))
-		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
-		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,0,0.8)
-
-	if(src.chamber_round(user)) //finally, attempt to load and cycle
-		if (sound_type)
-			playsound(src.loc, "sound/weapons/modular/[sound_type]-quickcycle[rand(1,2)].ogg", 40, 1)
-		return TRUE
-	return FALSE
 
 /obj/item/gun/modular/proc/chamber_round(var/mob/user)
 	var/ammo_left = src.ammo_reserve() // this doesnt correct ammo count based on current projectile because
@@ -930,14 +946,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	spread += (recoil/recoil_max) * recoil_inaccuracy_max
 
-	var/obj/projectile/P = shoot_projectile_ST_pixel_spread(user, current_projectile, target, POX, POY, spread, alter_proj = new/datum/callback(src, PROC_REF(alter_projectile)))
-	if (P)
-		P.forensic_ID = src.forensic_ID
-		if(current_projectile.casing)
-			casing_list.Add(current_projectile.casing)
-		if(point_blank_target && GET_DIST(user,point_blank_target) <= 1)
-			P.was_pointblank = 1
-			hit_with_existing_projectile(P, point_blank_target)
+	if(point_blank_target && GET_DIST(user,point_blank_target) <= 1)
+		hit_with_projectile(user, current_projectile, point_blank_target, src.forensic_ID)
+		logTheThing("combat", user, point_blank_target, "pointblanks [point_blank_target] with \a [src] from [log_loc(user)]. Projectile typepath was [current_projectile && current_projectile.type ? current_projectile.type : null]")
+	else
+		var/obj/projectile/P = shoot_projectile_ST_pixel_spread(user, current_projectile, target, POX, POY, spread, alter_proj = new/datum/callback(src, PROC_REF(alter_projectile)))
+		if (P)
+			P.forensic_ID = src.forensic_ID
+		var/turf/T = target
+		src.log_shoot(user, T, P)
+	if(current_projectile.casing)
+		casing_list.Add(current_projectile.casing)
 
 	chamber_checked = FALSE
 
@@ -949,15 +968,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if (ismob(user)) // Fix for: undefined proc or verb /obj/item/mechanics/gunholder/show text().
 				user.show_text("<span class='alert'>You silently fire the [src] at [target]!</span>") // Some user feedback for silenced guns would be nice (Convair880).
 
-		var/turf/T = target
-		src.log_shoot(user, T, P)
-
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
 	handle_recoil(user, start, target, POX, POY)
-#ifdef DATALOGGER
 	if (game_stats && istype(game_stats))
 		game_stats.Increment("gunfire")
-#endif
 
 	if (ismob(user))
 		var/mob/M = user
@@ -1064,6 +1078,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	buildTooltipContent()
 	built = 1
 
+	src.inventory_counter_enabled = TRUE
+	if(ismob(src.loc))
+		src.inventory_counter.show_count()
 	src.inventory_counter.update_number(0)
 
 	//update the icon to match!!!!!
@@ -1098,6 +1115,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	max_ammo_capacity = initial(max_ammo_capacity)
 	jam_frequency = initial(jam_frequency)
 	spread_angle = initial(spread_angle)
+	contraband = initial(contraband)
 	built = 0
 
 	bulk = bulkiness
@@ -1120,6 +1138,8 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		flags |= ONBELT
 		src.can_dual_wield = TRUE
 
+	src.inventory_counter_enabled = FALSE
+	src.inventory_counter.hide_count()
 	src.buildTooltipContent()
 	src.ClearAllOverlays(1) // clear the part overlays but keep cache? idk if thats better or worse.
 

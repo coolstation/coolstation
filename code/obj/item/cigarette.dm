@@ -120,7 +120,7 @@
 			if(prob(3))
 				broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/cigarettes, 1, 1)
 
-			hit_type = DAMAGE_BURN
+			//hit_type = DAMAGE_BURN
 
 	proc/put_out(var/mob/user as mob, var/message as text)
 		if (src.on == 1)
@@ -204,11 +204,15 @@
 					src.light(user, "<span class='alert'><b>[user]</b> lights [his_or_her(user)] [src.name] with [M]'s flaming body. That's cold, man. That's real cold.</span>")
 				return
 			else if (src.on == 1)
-				src.put_out(user, "<span class='alert'><b>[user]</b> puts [src] out on [target].</span>")
+				if (user.traitHolder && user.traitHolder.hasTrait("hardcore") && target == user)
+					src.put_out(user, "<span class='alert'>With zero hesitation, <b>[user]</b> puts [src] out on [himself_or_herself(user)] and doesn't even scream. God damn.</span>")
+				else src.put_out(user, "<span class='alert'><b>[user]</b> puts [src] out on [target].</span>")
+
 				if (ishuman(target))
 					var/mob/living/carbon/human/chump = target
 					if (!chump.stat)
-						chump.emote("scream")
+						if (!chump.traitHolder || (chump.traitHolder && !chump.traitHolder.hasTrait("hardcore")))
+							chump.emote("scream")
 				if (src.exploding)
 					trick_explode()
 				return
@@ -250,10 +254,8 @@
 				if (10,11,12,13) message_append = ""
 			user.visible_message("<span class='alert'><B>[user]</B> blows smoke right into <B>[target]</B>'s face![message_append]</span>", group = "[user]_blow_smoke_at_[target]")
 			JOB_XP_FORCE(user,"CIGARETTE",5)
-#ifdef DATALOGGER
 			if (target.mind && target.mind.assigned_role == "Clown")
 				game_stats.Increment("clownabuse")
-#endif
 			var/mob/living/carbon/human/human_target = target
 			if (human_target && rand(1,5) == 1)
 				SPAWN_DBG(0) target.emote("cough")

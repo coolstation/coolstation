@@ -650,9 +650,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 						H.show_text("You find some... salvageable... meat.. you guess?", "blue")
 						H.unlock_medal("Sheesh!", 1)
 						new /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat(src.loc)
-					#ifdef DATALOGGER
 					game_stats.Increment("workplacesafety") //It's just not sanitary
-					#endif
 					src.sampled = 1
 			else
 				return ..()
@@ -1369,6 +1367,23 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			else
 				src.loc.Attackby(user.equipped(), user)
 
+	trail
+		icon_state = "dirt_trail"
+		random_dir = 0
+
+		end
+			icon_state = "dirt_trail-end"
+
+	edge
+		icon_state = "dirt_edge"
+		random_dir = 0
+
+		full
+			icon_state = "dirt_edge-full"
+
+		edge2
+			icon_state = "dirt_edge2"
+
 /obj/decal/cleanable/cobweb
 	name = "cobweb"
 	desc = "Someone should remove that."
@@ -2042,7 +2057,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 
 	New(turf/newLoc, var/amount = 9)
 		..()
-		src.create_reagents(30)
+		src.create_reagents(max(amount,20))
 		src.reagents.add_reagent("poo", amount)
 		icon_state = "mud[rand(1,3)]"
 		name = pick("shit","turd","poop","poo","loaf","deuce","brick")

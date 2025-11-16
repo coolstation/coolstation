@@ -565,10 +565,11 @@
 
 		last_stam_change = TIME
 
-
+/*
 	proc/handle_random_events()
 		if (prob(1) && prob(2))
 			emote("sneeze")
+*/
 
 	proc/handle_random_emotes()
 		if (!islist(src.random_emotes) || !src.random_emotes.len || src.stat)

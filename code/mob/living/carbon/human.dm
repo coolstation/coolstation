@@ -74,6 +74,7 @@
 
 	var/ignore_organs = 0 // set to 1 to basically skip the handle_organs() proc
 	var/last_eyes_blinded = 0 // used in handle_blindness_overlays() to determine if a change is needed!
+	var/last_had_white_cane = 0 // used in the same proc for the same reason!
 
 	var/obj/on_chair = 0
 	var/simple_examine = 0
@@ -175,7 +176,7 @@
 
 	can_bleed = 1
 	blood_id = "blood"
-	blood_volume = 500
+	ideal_blood_volume = 500
 
 /mob/living/carbon/human/New()
 	default_static_icon = human_static_base_idiocy_bullshit_crap // FUCK
@@ -186,7 +187,8 @@
 	image_cust_two = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
 	image_cust_three = image('icons/mob/human_hair.dmi', layer = MOB_HAIR_LAYER2)
 
-	src.create_reagents(330)
+	if(!src.reagents)
+		src.create_reagents(2000)
 
 	hud = new(src)
 	src.attach_hud(hud)
@@ -609,9 +611,7 @@
 		var/datum/pathogen/P = src.pathogens[uid]
 		P.ondeath()
 
-#ifdef DATALOGGER
 	game_stats.Increment("deaths")
-#endif
 
 	//The unkillable man just respawns nearby! Oh no!
 	if (src.unkillable || src.spell_soulguard)
@@ -740,9 +740,7 @@
 
 		message_ghosts("<b>[src.name]</b> has died in ([where_text]).")
 
-#ifdef DATALOGGER
 	game_stats.Increment("playerdeaths")
-#endif
 
 	if (!src.suiciding)
 		if (emergency_shuttle?.location == SHUTTLE_LOC_STATION)
@@ -2286,7 +2284,6 @@
 /mob/living/carbon/human/full_heal()
 	blinded = 0
 	bleeding = 0
-	blood_volume = 500
 
 	if (!src.limbs)
 		src.limbs = new /datum/human_limbs(src)
@@ -2548,11 +2545,9 @@
 		var/list/virus = src.ailments
 		gibs(src.loc, virus)
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -3331,11 +3326,9 @@
 			if(thr?.user)
 				src.was_harmed(thr.user, AM)
 
-			#ifdef DATALOGGER
 			game_stats.Increment("violence")
 			if(src.mind && src.mind.assigned_role == "Clown")
 				game_stats.Increment("clownabuse")
-			#endif
 
 			if(AM.throwforce >= 40)
 				src.throw_at(get_edge_target_turf(src,get_dir(AM, src)), 10, 1)
@@ -3346,9 +3339,7 @@
 			src.visible_message("<span class='alert'>[src] catches the [AM.name]!</span>")
 			logTheThing("combat", src, null, "catches [AM] [AM.is_open_container() ? "[log_reagents(AM)]" : ""] at [log_loc(src)] (likely thrown by [thr?.user ? constructName(thr.user) : "a non-mob"]).")
 			src.throw_mode_off()
-			#ifdef DATALOGGER
 			game_stats.Increment("catches")
-			#endif
 
 	else  //normmal thingy hit me
 		if (AM.throwing & THROW_CHAIRFLIP)
@@ -3367,11 +3358,9 @@
 			if(thr?.user)
 				src.was_harmed(thr.user, AM)
 
-		#ifdef DATALOGGER
 		game_stats.Increment("violence")
 		if(src.mind && src.mind.assigned_role == "Clown")
 			game_stats.Increment("clownabuse")
-		#endif
 
 		if(AM.throwforce >= 40)
 			src.throw_at(get_edge_target_turf(src, get_dir(AM, src)), 10, 1)
@@ -3453,10 +3442,8 @@
 			tread_count++
 		else limb_count++
 	if (limb_count >= 3)
-		#ifdef DATALOGGER
 		if (limb_count == 3 && silent) //You're supposed to keep 3 points of contact on a ladder at all times
 			game_stats.Increment("workplacesafety")
-		#endif
 		return ..()
 	if (tread_count == 2 && !silent)
 		boutput(src, "<span class=alert>You can't climb a ladder while equipped with treads!</span>")

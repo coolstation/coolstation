@@ -41,10 +41,10 @@
 			T.fluid_react(src.reagents, min(src.reagents.total_volume,10000))
 		if (die || src.reagents.maximum_volume == 0 || can_break == FALSE)
 			qdel(src)
-			return
 		src.icon_state = "[initial(src.icon_state)]-busted"
-		src.reagents.clear_reagents()
-		src.reagents.maximum_volume = 0
+		if(!QDELETED(src))
+			src.reagents.clear_reagents()
+			src.reagents.maximum_volume = 0
 
 
 
@@ -521,11 +521,11 @@
 		src.add_fingerprint(target)
 		src.add_blood(target)
 		target.set_loc(src)
-		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1, 3) // hilariously easy to hear someone being shoveled into a compost tank
+		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1, 13) // hilariously easy to hear someone being shoveled into a compost tank
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			src.reagents.add_reagent(H.blood_id, floor((rand() * 0.2 + 0.2) * H.blood_volume))
-			src.reagents.add_reagent("poo", floor((rand() + 0.1) * H.blood_volume))
+			H.reagents.trans_to(src, H.reagents.total_volume * 0.4)
+			src.reagents.add_reagent("poo", floor((rand() + 0.1) * H.reagents.total_volume))
 		else
 			src.reagents.add_reagent("poo", 75)
 		if (target.mind)

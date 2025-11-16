@@ -11,7 +11,6 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	speechverb_stammer = "bleeps"
 	speechverb_exclaim = "boops"
 	speechverb_ask = "bloops"
-	stepsound = "step_plating"
 	robot_talk_understand = TRUE
 	hand_count = 1
 	density = FALSE
@@ -382,7 +381,8 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	metabolizes = FALSE
 	stepsound = null
 	ai_type = /datum/aiHolder/patroller/packet_based/securitron
-	reagent_capacity = 20
+	uses_blood = TRUE // yes :3
+	ideal_blood_volume = 20
 	var/random_name = TRUE
 	var/control_freq = FREQ_BOT_CONTROL
 	var/chase_speed_bonus = 0.3

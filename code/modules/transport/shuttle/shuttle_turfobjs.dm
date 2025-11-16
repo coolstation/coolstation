@@ -47,10 +47,8 @@
 		#endif
 
 	Entered(atom/movable/A)
-		#ifdef DATALOGGER
 		if (ishuman(A) || issilicon(A))
 			game_stats.Increment("workplacesafety") //Please keep your arms and legs inside the shuttle at all times.
-		#endif
 		..()
 
 /turf/floor/shuttle_noprotections

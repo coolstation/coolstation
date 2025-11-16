@@ -118,12 +118,12 @@
 	ex_act(severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
-				SPAWN_DBG(0)
-					src.take_damage(400)
+				//SPAWN_DBG(0)
+				src.take_damage(400)
 				return
 			if(OLD_EX_SEVERITY_2)
-				SPAWN_DBG(0)
-					src.take_damage(150)
+				//SPAWN_DBG(0)
+				src.take_damage(150)
 				return
 
 	blob_act(var/power)
@@ -187,6 +187,9 @@
 		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the dispenser to output to [over_object]!</span>")
+
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
@@ -394,7 +397,7 @@
 	desc = "You see a small, fading warning label on the side of the machine:<br>WARNING: Contents artificially produced using industrial ethanol. Not recommended for human consumption."
 	dispensable_reagents = list("beer", "cider", "gin", "wine", "champagne", \
 								"rum", "vodka", "bourbon", "vermouth", "tequila", \
-								"bitters", "tonic")
+								"bitters")
 	icon_state = "alc_dispenser"
 	icon_base = "alc_dispenser"
 	glass_path = /obj/item/reagent_containers/food/drinks
@@ -448,7 +451,7 @@
 	desc = "A soda fountain that definitely does not have a suspicious similarity to the alcohol and chemical dispensers. No sir."
 	dispensable_reagents = list("cola", "juice_lime", "juice_lemon", "juice_orange", \
 								"juice_cran", "juice_cherry", "juice_pineapple", "juice_tomato", \
-								"coconut_milk", "sugar", "water", "vanilla", "tea", "grenadine")
+								"coconut_milk", "sugar", "water", "vanilla", "tea", "grenadine", "tonic", "milk")
 	icon_state = "alc_dispenser"
 	icon_base = "alc_dispenser"
 	glass_path = /obj/item/reagent_containers/food/drinks

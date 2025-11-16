@@ -640,7 +640,11 @@ datum
 			name = "Eggnog"
 			id = "eggnog"
 			result = "eggnog"
+#ifdef XMAS
 			required_reagents = list("egg" = 1, "milk" = 1, "sugar" = 1)
+#else
+			required_reagents = list("egg" = 1, "milk" = 1, "sugar" = 1, "liquid spacetime" = 0.05)
+#endif
 			result_amount = 3
 			mix_phrase = "The eggs nog together. Pretend that \"nog\" is a verb."
 			drinkrecipe = 1
@@ -806,10 +810,8 @@ datum
 			mix_sound = 'sound/vox/shoot.ogg'
 			drinkrecipe = 1
 			on_reaction()
-				#ifdef DATALOGGER
 				if (game_stats && istype(game_stats))
 					game_stats.Increment("gunfire")
-				#endif
 
 		cocktail_espressomartini
 			name = "Espresso Martini"
@@ -881,7 +883,7 @@ datum
 		cocktail_beach/beach2
 			id = "beach2"
 			required_reagents = list("screwdriver" = 2, "juice_cran" = 1)
-			result_amount = 2
+			result_amount = 3
 
 		cocktail_screwdriver
 			name = "Screwdriver"
@@ -2869,6 +2871,7 @@ datum
 			result = "jenkem"
 			required_reagents = list("urine" = 1, "poo" = 1)
 			result_amount = 2
+			required_temperature = T100C - 2 // just below boilin
 			mix_phrase = "The mixture ferments into a filthy morass."
 			mix_sound = 'sound/impact_sounds/Slimy_Hit_4.ogg'
 

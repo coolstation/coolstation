@@ -33,7 +33,9 @@
 
 		var/car_length = rand(20,40)
 		for(var/i in 1 to car_length)
-			conductor.cars += /obj/traincar/NT_shipping
+			conductor.cars += pick(/obj/traincar/NT_shipping,
+						/obj/traincar/NT_hopper,
+						/obj/traincar/NT_tanker)
 
 		SPAWN_DBG(delay_time)
 			if(QDELETED(conductor))
@@ -41,6 +43,39 @@
 			conductor.train_z = Z_LEVEL_STATION
 			conductor.active = TRUE
 			conductor.train_loop()
+
+
+// Landmark to place everywhere you want the train to automatically sound its horn
+/obj/landmark/train/whistle_board
+	deleted_on_start = FALSE
+	add_to_landmarks = FALSE
+
+/obj/landmark/train/whistle_board/Crossed(atom/movable/O)
+	var/obj/traincar/NT_engine/loco = O
+	if(istype(loco))
+		loco.sound_horn()
+
+
+// Landmark to place where you want the train to stop
+// Defaults to being 5 X away from the intended stopping point.
+// (That is, you put this 5 tiles *in front* of where you want the train to stop.)
+/obj/landmark/train/stop
+	name = "trainstop"
+	deleted_on_start = FALSE
+	var/active = FALSE // do we stop da trane?
+	var/distance_to_signal = 5
+
+/obj/landmark/train/stop/Crossed(atom/movable/O)
+	if(!src.active)
+		return
+
+	var/obj/traincar/NT_engine/loco = O
+	if(istype(loco))
+		for(var/datum/train_conductor/C in train_spotter.conductors)
+			if(loco in C.cars)
+				C.stopping(src.x - src.distance_to_signal) // this will only work for WESTbound trains
+				return
+
 
 /* ----------- THE TRAIN SPOTTER, FOR CONTROLLING TRAINS ----------- */
 
@@ -60,7 +95,7 @@ var/datum/train_controller/train_spotter
 
 /datum/train_controller/proc/config()
 	var/dat = "<html><head><title>Train Spotter</title></head><body style='background: #dad8b6;'>"
-	dat += "<style> .traintitle { display: inline-block; color:#FFFFFF; background: #3B3632; padding: 2px; text-align: center; border-radius: 5px; width: 100%; left: -2px;} .buttan { display:inline-block; border-radius: 5px; margin: 3px; padding: 3px; width: 3cm; height: 2.5em; text-align:center; font-weight: bold;} </style>"
+	dat += "<style> .traintitle { display: inline-block; color:#FFFFFF; background: #3B3632; padding: 2px; text-align: center; border-radius: 5px; width: 100%; left: -2px;} .buttan { display:inline-block; border-radius: 5px; margin: 3px; padding: 3px; width: 2.5cm; height: 2.5em; text-align:center; font-weight: bold;} </style>"
 	dat += "<h2 style='display:inline-block; text-align:center; background:#FFB347; color: black; width:98%;'>Train Controls</h2><HR>"
 
 	dat += "<a class='buttan' style='background: #20B142; color:#FFFFFF; position: absolute; left: 2%; font-weight: bold;' href='byond://?src=\ref[src];create=1'>Create New Train</a> "
@@ -83,6 +118,7 @@ var/datum/train_controller/train_spotter
 				dat += "<a class='buttan' style='background: #20B142; color: #FFFFFF; position:absolute; left: 5%; bottom: 5%;' href='byond://?src=\ref[src];start=\ref[conductor]'><b>Start</b><br>(at [conductor.train_front_x], [conductor.train_front_y], [conductor.train_z].)</a>"
 			else
 				dat += "<a class='buttan' style='background: #DB4B4B; color: #FFFFFF; position:absolute; left: 5%; bottom: 5%;' href='byond://?src=\ref[src];stop=\ref[conductor]'><b>Stop</b> train</a>"
+			dat += "<a class='buttan' style='background: #FBB608; color: #000000; position:absolute; right: 34%; bottom: 5%;' href='byond://?src=\ref[src];honk=\ref[conductor]'><b>Horn</b></a>"
 
 		dat += "<a class='buttan' style='background: #DB2828; color:#FFFFFF; position:absolute; right: 5%; bottom: 5%;' href='byond://?src=\ref[src];delete=\ref[conductor]'>Delete Train</a>"
 		dat += "</div><br>"
@@ -102,7 +138,10 @@ var/datum/train_controller/train_spotter
 	if (href_list["start"])
 		var/datum/train_conductor/conductor = locate(href_list["start"]) in src.conductors
 		if(istype(conductor))
-			conductor.active = TRUE
+			if(conductor.train_front_x < conductor.train_not_yet_loaded_x)
+				conductor.starting()
+			else
+				conductor.active = TRUE
 			conductor.train_loop()
 	if (href_list["stop"])
 		var/datum/train_conductor/conductor = locate(href_list["stop"]) in src.conductors
@@ -136,6 +175,12 @@ var/datum/train_controller/train_spotter
 				new_speed = 0.5
 
 			conductor.movement_delay = new_speed
+	if (href_list["honk"])
+		var/datum/train_conductor/conductor = locate(href_list["honk"]) in src.conductors
+		if(istype(conductor))
+			var/obj/traincar/NT_engine/loco = locate(/obj/traincar/NT_engine) in conductor.cars
+			if(istype(loco))
+				loco.sound_horn()
 	if (href_list["delete"])
 		// unwind & delete the train
 		var/datum/train_conductor/conductor = locate(href_list["delete"]) in src.conductors
@@ -148,7 +193,7 @@ var/datum/train_controller/train_spotter
 		// carves the map up from stem to stern
 		logTheThing("admin", usr, null, "Fucked everything on Y: [usr.y] Z: [usr.z] with a train")
 		var/datum/train_conductor/the_fckr = new()
-		the_fckr.train_id = 666 //  \m/
+		// the_fckr.train_id = 666 //  \m/
 		the_fckr.cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping)
 		the_fckr.train_z = usr.z
 		the_fckr.train_front_y = usr.y
@@ -182,12 +227,25 @@ ABSTRACT_TYPE(/datum/train_preset)
 
 */
 
+/datum/train_preset/fast_single_car //yeet
+	movement_delay = 0.125
+	cars = list(/obj/traincar/NT_shipping)
+
 /datum/train_preset/short_cargo
 	movement_delay = 3
 	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping)
 
 /datum/train_preset/shipping_cars
 	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_shipping, /obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping,/obj/traincar/NT_shipping)
+
+/datum/train_preset/hopper
+	movement_delay = 3
+	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper,
+	/obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper, /obj/traincar/NT_hopper,/obj/traincar/NT_hopper)
+
+/datum/train_preset/tanker
+	movement_delay = 3.5
+	cars = list(/obj/traincar/NT_engine, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker, /obj/traincar/NT_tanker)
 
 /* ----------- THE TRAIN CARS, THE GOOD LOOKIN' BITS ----------- */
 
@@ -209,6 +267,8 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/traincar_length = 8
 	var/loaded = FALSE // used to allow cars to sit in the trainyard safely
 	var/datum/train_conductor/my_conductor
+	var/list/horn_sound
+	var/last_honk = 0
 
 	var/dull_color_1 = "#FFFFFF"
 	var/dull_color_2 = "#FFFFFF"
@@ -253,10 +313,20 @@ ABSTRACT_TYPE(/datum/train_preset)
 			L.changeStatus("weakened", 3 SECONDS / src.my_conductor.movement_delay)
 			L.force_laydown_standup()
 
+/obj/traincar/proc/sound_horn()
+	if(!src.horn_sound)
+		return
+	if(src.last_honk > (world.timeofday + 5 SECONDS)) // 5 second cooldown should be enough?
+		return
+	src.last_honk = world.timeofday
+	playsound(src.loc, pick(src.horn_sound), 50, 1, 15)
+
+
 // THE ENGINE
 /obj/traincar/NT_engine
 	name = "engine"
 	icon_state = "engine_flatbody"
+	horn_sound = list('sound/effects/train/horn1.ogg','sound/effects/train/horn2.ogg', 'sound/effects/train/horn3.ogg')
 
 /obj/traincar/NT_engine/build_colors()
 	src.dull_color_1 = rand(200, 230)
@@ -334,6 +404,34 @@ ABSTRACT_TYPE(/datum/train_preset)
 		grime_2.pixel_y = container_2.pixel_y
 		src.UpdateOverlays(grime_2, "grime_two")
 
+/obj/traincar/NT_hopper
+	name = "hopper car"
+
+/obj/traincar/NT_hopper/build_colors()
+	..()
+
+/obj/traincar/NT_hopper/build_overlays()
+	var/image/da_hopper = image('icons/obj/large/trains_256x128.dmi', "hopper_main")
+	da_hopper.color = random_greyish_hex_color(25,50)
+	src.UpdateOverlays(da_hopper, "hopper")
+
+	var/image/grime = image('icons/obj/large/trains_256x128.dmi', "hopper_grime_overlay")
+	src.UpdateOverlays(grime, "grime")
+
+/obj/traincar/NT_tanker
+	name = "tanker car"
+
+/obj/traincar/NT_tanker/build_colors()
+	..()
+
+/obj/traincar/NT_tanker/build_overlays()
+	var/image/da_tanker = image('icons/obj/large/trains_256x128.dmi', "tanker_main")
+	da_tanker.color = random_greyish_hex_color(12, 95)
+	src.UpdateOverlays(da_tanker, "tanker")
+
+	var/image/grime = image('icons/obj/large/trains_256x128.dmi', "tanker_grime_overlay")
+	src.UpdateOverlays(grime, "grime")
+
 /* ----------- THE TRAIN CONDUCTOR, WHOM DRIVES THE TRAIN ----------- */
 
 /datum/train_conductor
@@ -359,6 +457,10 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/train_not_yet_loaded_x = 285 // the x coordinate to start loading at
 	var/unloading_tiles = 0 // how many tiles are currently "missing" between the unload x and the forwardmost loaded car
 
+	var/starting
+	var/stopping
+	var/original_speed
+
 /datum/train_conductor/New()
 	. = ..()
 	train_spotter.conductors.Add(src)
@@ -376,6 +478,21 @@ ABSTRACT_TYPE(/datum/train_preset)
 /datum/train_conductor/proc/setup()
 	src.train_front_x = src.train_not_yet_loaded_x
 
+// Slow the train gradually
+// Arg: distance you want to stop in. e.g. if this is called by a
+//      landmark, how far away from your target location is that landmark)
+
+/datum/train_conductor/proc/stopping(var/distance)
+	src.stopping = distance
+	src.starting = FALSE
+	src.original_speed = src.movement_delay
+
+// Start the train gradually
+/datum/train_conductor/proc/starting()
+	src.starting = TRUE
+	src.stopping = null
+	src.active = TRUE
+
 /datum/train_conductor/proc/train_loop()
 	if(QDELETED(src)) // ah hell nah
 		return
@@ -386,6 +503,23 @@ ABSTRACT_TYPE(/datum/train_preset)
 
 	if(!src.train_z || !src.active || src.movement_delay < 0.01) // refuse to process trains that havent been put on a z level
 		return
+
+	// Ramp speed down to a stop at approximately (src.stopping)
+	if(src.stopping)
+		src.movement_delay += src.movement_delay / (clamp((abs(src.stopping - src.train_front_x)), 0, 7) + (min(length(src.cars), 8) / 2))
+		if(src.movement_delay > 6) // Slow enough that we're effectively stopped?
+			src.movement_delay = 6
+			src.active = FALSE
+			return
+		// TODO?: Add brake squeal SFX?
+		// maybe even sparks if stopping 'fast enough'?
+
+	// Ramp speed up to normal
+	if(src.starting)
+		src.movement_delay -= (src.movement_delay / max(length(src.cars), 15)) // takes longer to get going
+		if(src.movement_delay <= src.original_speed)
+			src.movement_delay = src.original_speed
+			src.starting = FALSE // Done ramping
 
 	// first, time for the crushing
 	for(var/mob/living/L in src.potential_crushes)
@@ -447,7 +581,6 @@ ABSTRACT_TYPE(/datum/train_preset)
 			for(var/y_ram_bonus in 0 to src.train_ram_height_bonus)
 
 				var/turf/T = locate(src.train_front_x + x_ram_bonus - 1, src.train_front_y + y_ram_bonus, src.train_z)
-
 				for(var/mob/living/L in T.contents)
 					if(isintangible(L) || L.nodamage)
 						continue
