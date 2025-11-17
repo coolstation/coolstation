@@ -793,6 +793,9 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		else
 			src.loc.Attackby(user.equipped(), user)
 
+	grime //this type path is stupid
+		icon_state = "grime" //grime
+
 /obj/decal/cleanable/balloon
 	name = "balloon"
 	desc = "The remains of a balloon."
