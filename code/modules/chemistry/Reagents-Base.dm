@@ -920,7 +920,11 @@ datum
 
 			name = "filthy water"
 			id = "dirtywater"
+			#ifdef MAGINDARA_MAP
+			description = "This water is choked with plastic, lead, and oil. It's good for you, maybe."
+			#else
 			description = "This water is choked with ash, dust, and god knows what else."
+			#endif
 			reagent_state = LIQUID
 			fluid_r = 106
 			fluid_b = 117

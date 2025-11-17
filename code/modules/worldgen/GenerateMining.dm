@@ -20,7 +20,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 	proc/place()
 		if (map_currently_underwater)
-			src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
+			src.ReplaceWith(/turf/space/fluid/ocean/trench, FALSE, TRUE, FALSE, TRUE)
 		else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
 			src.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 		else
@@ -31,7 +31,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		icon_state = "floor"
 		place()
 			if (map_currently_underwater)
-				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/space/fluid/ocean/trench, FALSE, TRUE, FALSE, TRUE)
 			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
 				src.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
 			else
@@ -62,7 +62,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		icon_state = "clear"
 		place()
 			if (map_currently_underwater)
-				src.ReplaceWith(/turf/space/fluid/trench, FALSE, TRUE, FALSE, TRUE)
+				src.ReplaceWith(/turf/space/fluid/ocean/trench, FALSE, TRUE, FALSE, TRUE)
 			else if (map_currently_very_dusty && ((src.z == 3)||(src.z == 1)))
 				src.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
 			else
@@ -421,7 +421,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 		for (var/i=0, i<55, i++)
 			var/turf/T = locate(rand(1,world.maxx),rand(1,world.maxy),z_level)
-			for (var/turf/space/fluid/TT in range(rand(2,4),T))
+			for (var/turf/space/fluid/ocean/TT in range(rand(2,4),T))
 				TT.spawningFlags |= SPAWN_TRILOBITE
 
 		//I copied this from the desert caves without testing, how often are we gonna run Oshan anyway

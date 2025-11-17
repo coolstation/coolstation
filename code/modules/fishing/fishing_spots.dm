@@ -52,7 +52,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	return 1
 
 /datum/fishing_spot/sea
-	fishing_atom_type = /turf/space/fluid
+	fishing_atom_type = /turf/space/fluid/ocean
 	fish_available = list(/obj/item/fish/carp = 40,\
 	/obj/item/fish/bass = 30,\
 	/obj/item/fish/salmon = 20,\

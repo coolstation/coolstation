@@ -2359,26 +2359,30 @@
 
 	jitteriness = min(500, jitteriness + amount)	// store what will be new value
 													// clamped to max 500
-	if (jitteriness > 100 && !is_jittery)
+	if (jitteriness > 75 && !is_jittery)
 		SPAWN_DBG(0)
 			jittery_process()
 
 
 // jittery process - shakes the mob's pixel offset randomly
-// will terminate automatically when dizziness gets <100
+// will terminate automatically when dizziness gets <45
 // jitteriness decrements automatically in the mob's Life() proc.
 /mob/proc/jittery_process()
 	var/old_x = pixel_x
 	var/old_y = pixel_y
 	is_jittery = 1
-	while(jitteriness > 100)
+	while(jitteriness > 45)
 //		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + 1) / 70
 //		pixel_x = amplitude * sin(0.008 * jitteriness * world.time)
 //		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
+		if(jitteriness >= 400 || prob(jitteriness/12))
+			var/amplitude = rand(1, ceil(min(4, jitteriness / 200)))
+			pixel_x = pixel_x + rand(-amplitude, amplitude)
+			pixel_y = pixel_y + rand(-amplitude, amplitude)
+			SPAWN_DBG(0.1 SECONDS)
+				pixel_x = old_x
+				pixel_y = old_y
 
-		var/amplitude = min(4, jitteriness / 100)
-		pixel_x = old_x + rand(-amplitude, amplitude)
-		pixel_y = old_y + rand(-amplitude/3, amplitude/3)
 
 		sleep(0.1 SECONDS)
 	//endwhile - reset the pixel offsets to zero
@@ -3160,7 +3164,7 @@
 	if (src.lying)
 		return CANT_SWIM_LYING
 	var/turf/T = get_turf(src)
-	if (!istype(T, /turf/space/fluid) && T.active_liquid?.last_depth_level < 3)
+	if (!istype(T, /turf/space/fluid/ocean) && T.active_liquid?.last_depth_level < 3)
 		return CANT_SWIM_NO_GODDAMN_WATER
 	src.setStatus("swimming", null)
 	return CAN_SWIM
@@ -3198,16 +3202,16 @@
 				break
 
 	else //Try the old ocean hole system, I don't know if this is used anymore
-		var/turf/space/fluid/trenchfloor = src.loc
+		var/turf/space/fluid/ocean/trenchfloor = src.loc
 		if (!istype(trenchfloor))
 			boutput(src, "<span class='alert'>There's a ceiling above you, go try again outside.</span>", group = "swimtime:)") //don't give me smartassery about walls
 			return
-		for(var/turf/space/fluid/T in range(5,trenchfloor))
+		for(var/turf/space/fluid/ocean/T in range(5,trenchfloor))
 			if(T.linked_hole)
 				actions.start(new/datum/action/bar/private/swim_cross_z(T.linked_hole), src)
 				return
 			else if (istype(get_area(T), /area/trench_landing)) //the trench landing is weird, this is seems to be what sea ladders do?
-				actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/warp_z5/edge])), src)
+				actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/ocean/warp_z5/edge])), src)
 				return
 		boutput(src, "<span class='alert'>There's no nearby way up, shit.</span>", group = "swimtime:)") //RIP
 	return

@@ -793,6 +793,9 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		else
 			src.loc.Attackby(user.equipped(), user)
 
+	grime //this type path is stupid
+		icon_state = "grime" //grime
+
 /obj/decal/cleanable/balloon
 	name = "balloon"
 	desc = "The remains of a balloon."
@@ -1366,6 +1369,23 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 				..()
 			else
 				src.loc.Attackby(user.equipped(), user)
+
+	trail
+		icon_state = "dirt_trail"
+		random_dir = 0
+
+		end
+			icon_state = "dirt_trail-end"
+
+	edge
+		icon_state = "dirt_edge"
+		random_dir = 0
+
+		full
+			icon_state = "dirt_edge-full"
+
+		edge2
+			icon_state = "dirt_edge2"
 
 /obj/decal/cleanable/cobweb
 	name = "cobweb"
