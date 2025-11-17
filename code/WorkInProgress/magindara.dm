@@ -448,11 +448,11 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 
 	attackby(obj/item/I, mob/user)
 		. = src.myhorse.attackby(I, user)
-		user.last_attacked = src.myhorse
+		user.lastattacked = src.myhorse
 
 	attack_hand(mob/user, params, location, control)
 		. = src.myhorse.attack_hand(user, params, location, control)
-		user.last_attacked = src.myhorse
+		user.lastattacked = src.myhorse
 
 	ex_act(severity, last_touched, epicenter, turf_safe)
 		var/turf/epicenter_down = epicenter
