@@ -717,12 +717,14 @@ datum/projectile/snowball
 	impact_range = 4
 
 // THIS IS INTENDED FOR POINTBLANKING.
-/proc/hit_with_projectile(var/S, var/datum/projectile/DATA, var/atom/T)
+/proc/hit_with_projectile(var/S, var/datum/projectile/DATA, var/atom/T, var/forensic_ID)
 	if (!S || !T)
 		return
 	var/times = max(1, DATA.shot_number)
 	for (var/i = 1, i <= times, i++)
 		var/obj/projectile/P = initialize_projectile_ST(S, DATA, T)
+		P.forensic_ID = forensic_ID
+		P.was_pointblank = TRUE
 		if (S == T)
 			P.shooter = null
 			P.mob_shooter = S

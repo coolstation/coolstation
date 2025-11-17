@@ -71,11 +71,25 @@ proc/build_syndi_buylist_cache()
 	desc = "This shit is actually banned by the Geneva Convention. Luckily, those dorks have no jurisdiction here."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
+/datum/syndicate_buylist/weapon/gunse_ammo_fab
+	name = "Gun Part: Ammunition Extruder"
+	item = /obj/item/gun_parts/accessory/ammofab
+	cost = 2
+	desc = "An illegal accessory for your modular gun that can fabricate and load a low quality pellet every 10 to 12 seconds."
+	blockedmode = list(/datum/game_mode/revolution)
+
 /datum/syndicate_buylist/weapon/radbow
 	name = "Ammo: Rad Poison Crossbow Bolts"
 	item = /obj/item/stackable_ammo/pistol/radbow/ten
 	cost = 2
 	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisoning. Can be fired from any modular gun. Popular with the NT pistol."
+	blockedmode = list(/datum/game_mode/revolution)
+
+/datum/syndicate_buylist/weapon/pistol
+	name = "Gun: NT Modular Pistol"
+	item = /obj/item/storage/box/pistol
+	cost = 3
+	desc = "A fairly basic single action pistol. Standard issue, so it won't attract attention."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/pistol
@@ -721,7 +735,7 @@ This is basically useless for anyone but miners.
 	item = /obj/item/gun/reagent/syringe
 	cost = 3
 	desc = "This stainless-steel, revolving wonder fires needles. Perfect for today's telehealth-oriented Syndicate doctor! Loaded by transferring reagents to the gun's internal reservoir."
-	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender")
+	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender", "Chemist")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 
@@ -748,7 +762,7 @@ This is basically useless for anyone but miners.
 	item = /obj/item/reagent_containers/glass/bottle/poison
 	cost = 1
 	desc = "A bottle of poison. Which poison? Who knows."
-	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender")
+	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender", "Chemist")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/poisonbundle
@@ -756,7 +770,7 @@ This is basically useless for anyone but miners.
 	item = /obj/item/storage/box/poison
 	cost = 7
 	desc = "A box filled with seven random poison bottles."
-	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender")
+	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender", "Chemist")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 
@@ -908,7 +922,15 @@ This is basically useless for anyone but miners.
 	job = list("Staff Assistant","Test Subject","Geneticist","Pathologist")
 	blockedmode = list(/datum/game_mode/revolution)
 
+/datum/syndicate_buylist/traitor/gunse_ammo_fab_malware
+	name = "Gun Part: Malware Cartridge Extruder"
+	item = /obj/item/gun_parts/accessory/ammofab/malware
+	cost = 6
+	desc = "An illegal accessory for your modular gun that can fabricate and load an experimental rifle round every 10 to 12 seconds."
+	job = list("Research Director", "Scientist", "Mechanic")
+	blockedmode = list(/datum/game_mode/revolution)
 
+/*
 /datum/syndicate_buylist/traitor/buddy_ammofab
 	name = "Guardbuddy Ammo Replicator"
 	item = /obj/item/device/guardbot_module/ammofab
@@ -917,6 +939,7 @@ This is basically useless for anyone but miners.
 	desc = "A device that allows PR-6S Guardbuddy units to use their internal charge to replenish kinetic ammunition."
 	job = list("Research Director")
 	blockedmode = list(/datum/game_mode/revolution)
+*/
 
 /datum/syndicate_buylist/utility/wiretap
 	name = "Wiretap Radio Upgrade"
@@ -1143,7 +1166,7 @@ This is basically useless for anyone but miners.
 	cost = 0 //5
 	not_in_crates = 1
 	desc = "A handheld version of the Chemicompiler machine in Chemistry."
-	job = list("Research Director", "Scientist")
+	job = list("Research Director", "Scientist", "Chemist")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/lawndarts

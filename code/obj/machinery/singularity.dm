@@ -11,7 +11,7 @@ Contains:
 #define SINGULARITY_TIME TRUE
 #define FIELD_GENERATOR_MAX_LENGTH 11			//defines the maximum dimension possible by a player created field gen.
 #define SINGULO_POWER_RADIUS_EXPONENT 1.25		//radius is put to this exponent for power generation purposes
-#define SINGULO_POWER_MULTIPLIER 6				//all singulo power is multiplied by this
+#define SINGULO_POWER_MULTIPLIER 1				//all singulo power is multiplied by this
 #define EVENT_GROWTH 3//the rate at which the event proc radius is scaled relative to the radius of the singularity
 #define EVENT_MINIMUM 5//the base value added to the event proc radius, serves as the radius of a 1x1
 //Anchoring states for the emitters, field generators, and singulo jar
@@ -81,7 +81,7 @@ proc/singularity_containment_check(turf/center)
 	if (src.bhole)
 		new /obj/bhole(T, 3000)
 	else
-		new /obj/machinery/the_singularity(T, 100,,max_radius)
+		new /obj/machinery/the_singularity(T, 600,,max_radius)
 	qdel(src)
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user)
@@ -181,23 +181,23 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if (prob(20))//Chance for it to run a special event
 		event()
 
-	if (active == 1)
-		move()
+	move()
+
+	if (src.active)
 		SPAWN_DBG(1.1 SECONDS) // slowing this baby down a little -drsingh
 			move()
-
-			var/recapture_prob = clamp(30-(radius**2) , 0, 25)
-			if(prob(recapture_prob))
-				var/check_max_radius = singularity_containment_check(get_turf(src))
-				if(!isnull(check_max_radius) && check_max_radius >= radius)
-					src.active = FALSE
-					maxradius = check_max_radius
-					logTheThing("station", null, "[src] has been contained (at maxradius [maxradius]) at [log_loc(src)]")
-					message_admins("[src] has been contained (at maxradius [maxradius]) at [log_loc(src)]")
+		var/recapture_prob = clamp(30-(radius**2) , 0, 25)
+		if(prob(recapture_prob))
+			var/check_max_radius = singularity_containment_check(get_center(src))
+			if(!isnull(check_max_radius) && check_max_radius >= radius)
+				src.active = FALSE
+				maxradius = check_max_radius
+				logTheThing("station", null, "[src] has been contained (at maxradius [maxradius]) at [log_loc(src)]")
+				message_admins("[src] has been contained (at maxradius [maxradius]) at [log_loc(src)]")
 
 	else
-		var/check_max_radius = singularity_containment_check(get_turf(src))
-		if(isnull(check_max_radius) || check_max_radius < radius)
+		var/check_max_radius = singularity_containment_check(get_center(src))
+		if(isnull(check_max_radius))
 			src.active = TRUE
 			maxradius = INFINITY
 			logTheThing("station", null, "[src] has become loose at [log_loc(src)]")
@@ -332,6 +332,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		. = ..()
 		current_target = null
 
+/obj/machinery/the_singularity/hitby(atom/movable/AM, datum/thrown_thing/thr)
+	eat_atom(AM)
+	. = ..()
+
 /obj/machinery/the_singularity/HasEntered(atom/movable/AM, atom/OldLoc)
 	eat_atom(AM)
 
@@ -432,28 +436,34 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	var/godver2 = 50*diameter*diameter
 
 	if (src.energy >= godver) //too small
+		var/check_max_radius = singularity_containment_check(get_center(src))
+		if(!isnull(check_max_radius) && check_max_radius >= radius)
+			src.maxradius = check_max_radius
 		if(src.radius < src.maxradius)
 			src.radius++
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
 			src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
+			src.bound_width = src.bound_height = 64 * src.radius + 32
+			src.grav_range = min(src.radius + 3, 5)
 			if(isturf(src.loc))
 				var/turf/T = get_turf(src)
 				var/turf/T2 = locate(T.x - 1, T.y - 1, T.z)
 				if(T2)
 					src.set_loc(T2)
+
 	else if (src.energy < godver2)
 		src.radius--
 		src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 		src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
+		src.bound_width = src.bound_height = 64 * src.radius + 32
+		src.grav_range = min(src.radius + 3, 5)
 		if(isturf(src.loc))
 			var/turf/T = get_turf(src)
 			var/turf/T2 = locate(T.x + 1, T.y + 1, T.z)
 			if(T2)
 				src.set_loc(T2)
 	src.pixel_x = src.pixel_y = 32 * src.radius - 64
-	src.bound_width = src.bound_height = 64 * src.radius + 32
-	src.grav_range = min(src.radius + 1, 5)
 
 // totally rewrote this proc from the ground-up because it was puke but I want to keep this comment down here vvv so we can bask in the glory of What Used To Be - haine
 		/* uh why was lighting a cig causing the singularity to have an extra process()?
@@ -637,9 +647,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if(src.Varedit_start == 1)
 		if(src.active == 0)
 			src.set_active(1)
-			src.state = WELDED
-			src.power = 100
-			src.anchored = ANCHORED
+			src.power = src.max_power
 			icon_state = "Field_Gen +a"
 		Varedit_start = 0
 
@@ -899,6 +907,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /obj/machinery/field_generator/activated
 	Varedit_start = TRUE
+	state = WELDED
+	anchored = ANCHORED
 	power = 50
 
 /////////////////////////////////////////////// Containment field //////////////////////////////////
@@ -1537,8 +1547,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				//Big singulos are great (exponential scaling), fed singulos are good (linear scaling), and distance is uh...
 				//some other kind of scaling that isnt super harsh. its in the divisor idk bestie.
 				var/dist_to_singu = GET_DIST(singu.get_center(), src)
-				if(dist_to_singu < (singu.radius * 2 + (singu.active ? 15 : singu.maxradius)))
-					power_s += singu.energy * singu.scaled_radius / (4 + dist_to_singu) * SINGULO_POWER_MULTIPLIER
+				power_s += singu.energy * singu.scaled_radius / (4 + dist_to_singu) * SINGULO_POWER_MULTIPLIER
 			//For each possible collector, grab the current moles of plasma in the tank and then delete some plasma
 			//If you don't top up the tank after grabbing it from the dispenser, it will take approximately 46.6 minutes (assuming no lag) at the current
 			//3.2s machine loop for an array to run dry. By that point, the SMES is max charge, so its not actually that dangerous.
