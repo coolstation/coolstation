@@ -3377,9 +3377,6 @@
 	},
 /turf/floor/wood,
 /area/afterlife/bar)
-"aGl" = (
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
 "aGm" = (
 /obj/storage/closet/wardrobe/white,
 /obj/item/plant/herb/cannabis/mega/spawnable,
@@ -4436,10 +4433,6 @@
 	},
 /turf/space,
 /area/space)
-"aNQ" = (
-/obj/item/plant/herb/cannabis/omega/spawnable,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
 "aNR" = (
 /obj/ladder{
 	icon_state = "ladder_wall";
@@ -4603,10 +4596,6 @@
 /obj/item/cell/cerenkite,
 /turf/floor/caution/north,
 /area/drone/assembly)
-"aOz" = (
-/obj/map/light/secretblue,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
 "aOA" = (
 /turf/floor/setpieces/gauntlet{
 	color = "#55CDFC";
@@ -4636,17 +4625,6 @@
 	pixel_x = 10
 	},
 /turf/floor/wood,
-/area/afterlife/bar)
-"aOG" = (
-/obj/machinery/light/small{
-	dir = 8;
-	pixel_x = -12
-	},
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
-"aOH" = (
-/obj/decal/skeleton,
-/turf/space/fluid/noexplosion,
 /area/afterlife/bar)
 "aOI" = (
 /obj/map/light/secretblue,
@@ -5307,15 +5285,6 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/afterlife/bar)
-"aRP" = (
-/obj/disposalpipe/segment/horizontal,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
-"aRQ" = (
-/obj/disposalpipe/segment/bent/south,
-/obj/map/light/secretblue,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
 "aRR" = (
 /obj/machinery/vending/cola/red,
 /turf/floor/red/side,
@@ -5509,10 +5478,6 @@
 /obj/map/light/brightwhite,
 /turf/floor/plating,
 /area/afterlife/bar)
-"aSR" = (
-/obj/disposalpipe/segment/vertical,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
 "aSU" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet,
@@ -5664,10 +5629,6 @@
 	dir = 9
 	},
 /area/upper_arctic/exterior/surface)
-"aTG" = (
-/obj/item/plant/herb/cannabis/white/spawnable,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
 "aTH" = (
 /obj/machinery/bot/skullbot/gold,
 /turf/floor/specialroom/gym,
@@ -6021,12 +5982,6 @@
 	icon_state = "line3"
 	},
 /turf/floor/wood/two,
-/area/afterlife/bar)
-"aVh" = (
-/obj/decal/fakeobjects/pipe/heat{
-	dir = 6
-	},
-/turf/space/fluid/noexplosion,
 /area/afterlife/bar)
 "aVi" = (
 /obj/machinery/vending/clothing,
@@ -6461,10 +6416,6 @@
 /obj/storage/crate,
 /turf/floor/carpet/grime,
 /area/owlery/staffhall)
-"aYi" = (
-/obj/decal/fakeobjects/pipe/heat,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
 "aYj" = (
 /obj/decal/fakeobjects{
 	desc = "Geocities, is that you?";
@@ -10488,18 +10439,6 @@
 /obj/decal/icefloor,
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
-"bJg" = (
-/obj/disposalpipe/segment/vertical,
-/obj/decal/fakeobjects/pipe/heat{
-	dir = 10
-	},
-/obj/map/light/secretblue,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
-"bJh" = (
-/obj/critter/domestic_bee/zombee,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
 "bJi" = (
 /obj/decal/icefloor,
 /obj/chainlink_fence{
@@ -10750,11 +10689,6 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
-"bKb" = (
-/obj/disposalpipe/segment/vertical,
-/obj/decal/fakeobjects/pipe/heat,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
 "bKc" = (
 /obj/grille/catwalk{
 	dir = 9;
@@ -36063,12 +35997,6 @@
 /obj/storage/cart/medcart,
 /turf/floor/white/grime,
 /area/crypt/sigma/lab)
-"dFG" = (
-/obj/disposalpipe/segment/vertical,
-/obj/machinery/light,
-/obj/decal/fakeobjects/pipe/heat,
-/turf/space/fluid/noexplosion,
-/area/afterlife/bar)
 "dFJ" = (
 /obj/decal/nothing{
 	dir = 1;
@@ -38362,6 +38290,10 @@
 	},
 /turf/floor/engine/caution,
 /area/lower_arctic/mining)
+"iro" = (
+/obj/item/plant/herb/cannabis/omega/spawnable,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "isn" = (
 /obj/cable{
 	d1 = 1;
@@ -39142,6 +39074,14 @@
 	},
 /turf/wall/auto/reinforced,
 /area/owlery/owleryhall)
+"kfg" = (
+/obj/disposalpipe/segment/vertical,
+/obj/decal/fakeobjects/pipe/heat{
+	dir = 10
+	},
+/obj/map/light/secretblue,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "khz" = (
 /obj/window{
 	desc = "A window.  For a museum exhibit.";
@@ -39957,6 +39897,12 @@
 /obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/white,
 /area/owlery/lab)
+"mek" = (
+/obj/disposalpipe/segment/vertical,
+/obj/machinery/light,
+/obj/decal/fakeobjects/pipe/heat,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "met" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
 	icon_state = "u_ketchup"
@@ -40335,6 +40281,10 @@
 /obj/item/card/id/soviet/miner,
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"mWU" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "mXg" = (
 /obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor6"
@@ -40385,6 +40335,10 @@
 	},
 /turf/floor/engine/caution,
 /area/upper_arctic/fita/hall)
+"ndh" = (
+/obj/disposalpipe/segment/vertical,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "ndJ" = (
 /obj/critter/spider/ice/baby,
 /turf/floor/arctic/snow/ice,
@@ -40507,6 +40461,10 @@
 /obj/wingrille_spawn/auto,
 /turf/floor/concrete,
 /area/lower_arctic/mining)
+"npU" = (
+/obj/decal/skeleton,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "nrt" = (
 /obj/window{
 	desc = "A window.  For a museum exhibit.";
@@ -40938,41 +40896,6 @@
 	},
 /turf/floor/arctic/snow/ice,
 /area/lower_arctic/mining)
-"oju" = (
-/obj/decal/fakeobjects{
-	icon = 'icons/coolisland.dmi';
-	icon_state = "coolisland";
-	layer = 0.5;
-	plane = -112;
-	level = 1
-	},
-/obj/landmark{
-	name = "lobby_leftside"
-	},
-/obj/decal/fakeobjects{
-	icon = 'icons/coolisland.dmi';
-	icon_state = "coollogo";
-	layer = 0.5;
-	plane = -112;
-	level = 1
-	},
-/obj/decal/fakeobjects/waves{
-	icon = 'icons/coolisland.dmi';
-	icon_state = "bile";
-	layer = 0.5;
-	plane = -112;
-	level = 1
-	},
-/obj/decal/fakeobjects{
-	icon = 'icons/coolisland.dmi';
-	icon_state = "vin";
-	layer = 500;
-	plane = -10;
-	level = 1;
-	mouse_opacity = 0
-	},
-/turf/space,
-/area/titlescreen)
 "ojM" = (
 /mob/living/critter/small_animal/floateye,
 /turf/floor/void,
@@ -41052,6 +40975,12 @@
 	},
 /turf/floor/greenwhite,
 /area/owlery/owleryhall)
+"osN" = (
+/obj/decal/fakeobjects/pipe/heat{
+	dir = 6
+	},
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "osP" = (
 /obj/item/platestack,
 /obj/item/platestack,
@@ -41610,6 +41539,10 @@
 "pTc" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/north)
+"pTg" = (
+/obj/decal/fakeobjects/pipe/heat,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "pTH" = (
 /obj/machinery/space_heater,
 /obj/machinery/light/small/cool{
@@ -41687,6 +41620,44 @@
 	icon_state = "track_2"
 	},
 /area/shuttle/escape/transit/battle_shuttle)
+"pZd" = (
+/obj/decal/fakeobjects{
+	name = "meat island";
+	icon = 'icons/coolisland.dmi';
+	icon_state = "coolisland";
+	layer = 0.5;
+	plane = -112;
+	level = 1
+	},
+/obj/landmark{
+	name = "lobby_leftside"
+	},
+/obj/decal/fakeobjects{
+	name = "coolstation";
+	icon = 'icons/coolisland.dmi';
+	icon_state = "coollogo";
+	layer = 0.5;
+	plane = -112;
+	level = 1
+	},
+/obj/decal/fakeobjects/waves{
+	name = "bile ocean";
+	icon = 'icons/coolisland.dmi';
+	icon_state = "bile";
+	layer = 0.5;
+	plane = -112;
+	level = 1
+	},
+/obj/decal/fakeobjects{
+	icon = 'icons/coolisland.dmi';
+	icon_state = "vin";
+	layer = 500;
+	plane = -10;
+	level = 1;
+	mouse_opacity = 0
+	},
+/turf/space,
+/area/titlescreen)
 "pZL" = (
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
@@ -41751,6 +41722,10 @@
 "qcc" = (
 /turf/floor/setpieces/gauntlet,
 /area/gauntlet)
+"qdw" = (
+/obj/map/light/secretblue,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "qgO" = (
 /turf/wall/auto/sengoku{
 	icon_state = "5";
@@ -42920,6 +42895,10 @@
 	},
 /turf/floor/wood/two,
 /area/owlery/staffhall)
+"sER" = (
+/obj/critter/domestic_bee/zombee,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "sGo" = (
 /obj/map/light/white,
 /obj/disco_ball,
@@ -43424,6 +43403,9 @@
 	},
 /turf/floor/setpieces/gauntlet,
 /area/gauntlet/viewing)
+"tWh" = (
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "tYo" = (
 /obj/grille/steel,
 /obj/window/auto/reinforced,
@@ -43533,6 +43515,10 @@
 	opacity = 1
 	},
 /area/adventure/channel/flingy)
+"umO" = (
+/obj/item/plant/herb/cannabis/white/spawnable,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "unj" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -44012,6 +43998,13 @@
 /obj/item/mining_tool/power_pick,
 /turf/floor/concrete,
 /area/lower_arctic/mining)
+"vhv" = (
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = -12
+	},
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "vii" = (
 /obj/stool/chair/couch/red{
 	dir = 5
@@ -44208,6 +44201,11 @@
 /obj/decal/poster/wallsign/qm,
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/lobby)
+"vBV" = (
+/obj/disposalpipe/segment/vertical,
+/obj/decal/fakeobjects/pipe/heat,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "vBW" = (
 /obj/cable{
 	d1 = 1;
@@ -44872,6 +44870,11 @@
 "wXQ" = (
 /turf/space/shuttle_transit,
 /area/shuttle/escape/transit/destiny)
+"wYW" = (
+/obj/disposalpipe/segment/bent/south,
+/obj/map/light/secretblue,
+/turf/space/fluid/ocean/noexplosion,
+/area/afterlife/bar)
 "wZQ" = (
 /obj/machinery/gibber,
 /obj/decal/cleanable/tracked_reagents/blood/gibs{
@@ -110766,8 +110769,8 @@ aaa
 aaa
 aEU
 aEY
-aGl
-aOG
+tWh
+vhv
 aPE
 aRC
 xAQ
@@ -111067,9 +111070,9 @@ bWv
 bWv
 aaa
 aEY
-aGl
-aOz
-aGl
+tWh
+qdw
+tWh
 bHV
 bqF
 bHU
@@ -111369,10 +111372,10 @@ cwL
 bWv
 aaa
 aEY
-aGl
-aGl
-aGl
-aGl
+tWh
+tWh
+tWh
+tWh
 aRM
 aSN
 xAQ
@@ -111671,11 +111674,11 @@ cwL
 bWv
 aaa
 aEY
-aNQ
-aGl
-aGl
-bJh
-aRP
+iro
+tWh
+tWh
+sER
+mWU
 bHV
 bHV
 aXq
@@ -111974,11 +111977,11 @@ bWv
 aaa
 aEU
 aEY
-aGl
-aOz
-aGl
-aRP
-aGl
+tWh
+qdw
+tWh
+mWU
+tWh
 bHV
 bHV
 aZd
@@ -112276,14 +112279,14 @@ bWv
 aaa
 aEU
 aEY
-aGl
-aGl
-aGl
-aRP
-aGl
-aVh
-aYi
-aYi
+tWh
+tWh
+tWh
+mWU
+tWh
+osN
+pTg
+pTg
 oZu
 oZu
 oZu
@@ -112578,14 +112581,14 @@ bWv
 aaa
 aEU
 aEY
-aGl
-aOH
-aGl
-aRQ
-aSR
-bJg
-bKb
-dFG
+tWh
+npU
+tWh
+wYW
+ndh
+kfg
+vBV
+mek
 aZK
 aZS
 bar
@@ -112882,11 +112885,11 @@ aEU
 aEU
 aEU
 aEY
-aGl
-aGl
-aGl
-bJh
-aGl
+tWh
+tWh
+tWh
+sER
+tWh
 aEU
 oZu
 aZU
@@ -113186,8 +113189,8 @@ aEU
 aEU
 aEU
 aEY
-aTG
-aGl
+umO
+tWh
 aEU
 aZg
 aZL
@@ -129768,7 +129771,7 @@ xYJ
 xYJ
 xYJ
 xYJ
-oju
+pZd
 ajg
 "}
 (280,1,1) = {"

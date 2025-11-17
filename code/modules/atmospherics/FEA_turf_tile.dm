@@ -655,7 +655,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			west.tilenotify(src)
 			air_master.tiles_to_update |= west
 
-	if (map_currently_underwater || (map_currently_abovewater && src.z == Z_LEVEL_DEBRIS))
+	if (map_currently_underwater || map_currently_abovewater)
 		if(istype(north, /turf/space/fluid))
 			north.tilenotify(src)
 		if(istype(south, /turf/space/fluid))

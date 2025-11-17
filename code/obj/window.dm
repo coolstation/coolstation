@@ -515,7 +515,7 @@
 			if(istype(source)) air_master.tiles_to_update |= source
 			if(istype(target)) air_master.tiles_to_update |= target
 
-		if (map_currently_underwater)
+		if (map_currently_underwater || map_currently_abovewater)
 			var/turf/space/fluid/n = get_step(src,NORTH)
 			var/turf/space/fluid/s = get_step(src,SOUTH)
 			var/turf/space/fluid/e = get_step(src,EAST)

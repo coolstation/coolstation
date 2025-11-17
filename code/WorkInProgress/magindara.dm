@@ -2,7 +2,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 
 /turf/space/magindara
 	name = "ocean below"
-	desc = "The deep ocean of Magindara far below, whipped with waves and frigid cold."
+	desc = "The deep ocean of Magindara far below, whipped with waves and frothed with an oily sheen."
 	icon = 'icons/turf/water.dmi'
 	icon_state = "magindara_ocean"
 	opacity = 0
@@ -74,12 +74,47 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		if(!istype(., /turf/space))
 			new/obj/overlay/magindara_skylight/weather(src)
 
-
 	Del()
 		if(light)
 			light.disable()
 			qdel(light)
 		. = ..()
+
+/turf/space/fluid/magindara
+	name = "polluted ocean"
+	desc = "The sand is heavily interspersed with grains of plastic and scraps of metal."
+	light_r = 0.55
+	light_g = 0.4
+	light_b = 0.6
+	light_brightness = 0.7
+	hint = null
+#ifdef MAGINDARA_MAP
+	oxygen = MOLES_O2MAGINDARA * 0.5
+	nitrogen = MOLES_N2MAGINDARA * 0.5
+	carbon_dioxide = MOLES_CO2MAGINDARA * 2
+	temperature = MAGINDARA_OCEAN_TEMP
+#else
+	oxygen = MOLES_O2STANDARD * 0.5
+	nitrogen = MOLES_N2STANDARD * 0.5
+	temperature = OCEAN_TEMP
+#endif
+
+	New()
+		. = ..()
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else generate_worldgen()
+
+	make_light()
+		if(prob(40)) // only a 40% chance, for lag and also a dappled effect
+			. = ..()
+
+	generate_worldgen()
+		. = ..()
+		if(prob(4))
+			new /obj/random_item_spawner/junk/one(src)
+		if(prob(1) && prob(3))
+			new /mob/living/critter/magindaran_horse/ai_controlled(src)
 
 /obj/overlay/magindara_fog
 	name = "thick smog"
@@ -303,3 +338,124 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	else
 		boutput(user, "<span class='notice'>The [src] beeps, but nothing seems to happen.</span>")
 
+/mob/living/critter/magindaran_horse
+	name = "horse"
+	desc = "A common horse, frequently harvested for neck meat on Magindara."
+	icon = 'icons/obj/large/32x96.dmi'
+	icon_state = "magindarahorse"
+	icon_state_dead = "magindarahorse"
+	health_brute = 45
+	health_burn = 45
+	pull_w_class = W_CLASS_BULKY
+	takes_brain = FALSE
+	pet_text = list("slaps", "smacks", "whaps", "pets")
+	ideal_blood_volume = 200
+	blood_id = "oil"
+	caneat = FALSE
+	candrink = FALSE
+	can_lie = FALSE
+	use_stunned_icon = FALSE // for now
+	layer = MOB_LAYER + 0.12
+	base_walk_delay = 4
+	base_move_delay = 3
+	var/out_of_water_movedelay = 5
+	var/blubber_armor = 4
+	var/obj/magindaran_horsehead/myhead = null
+
+	New()
+		. = ..()
+		src.myhead = new /obj/magindaran_horsehead(src, src)
+		src.synchead()
+
+	proc/synchead()
+		if(!src.myhead)
+			src.myhead = new /obj/magindaran_horsehead(src, src)
+		if(isturf(src.loc))
+			var/turf/T = get_turf(src)
+			var/datum/component/updraft/updraft = T.GetComponent(/datum/component/updraft)
+			if(updraft && updraft.TargetTurf)
+				src.myhead.set_loc(updraft.TargetTurf)
+		src.myhead.dir = src.dir
+		src.myhead.color = src.color
+
+	Move(turf/NewLoc, direct)
+		. = ..()
+		src.myhead.dir = src.dir
+		if(isturf(src.loc))
+			var/turf/T = get_turf(src)
+			var/datum/component/updraft/updraft = T.GetComponent(/datum/component/updraft)
+			if(updraft && updraft.TargetTurf)
+				src.myhead.set_loc(updraft.TargetTurf)
+				return
+		src.myhead.set_loc(src)
+
+	set_loc(newloc)
+		. = ..()
+		src.myhead.dir = src.dir
+		if(isturf(src.loc))
+			var/turf/T = get_turf(src)
+			var/datum/component/updraft/updraft = T.GetComponent(/datum/component/updraft)
+			if(updraft && updraft.TargetTurf)
+				src.myhead.set_loc(updraft.TargetTurf)
+				return
+		src.myhead.set_loc(src)
+
+	special_movedelay_mod(delay,space_movement,aquatic_movement)
+		. = ..()
+		var/turf/T = get_turf(src)
+		if (T && !(T.turf_flags & FLUID_MOVE))
+			. += src.out_of_water_movedelay
+
+	get_head_armor_modifier()
+		return max(src.blubber_armor, ..())
+
+	get_chest_armor_modifier()
+		return max(src.blubber_armor, ..())
+
+	get_ranged_protection()
+		return max(1 + src.blubber_armor / 8, ..())
+
+	ai_controlled
+		is_npc = 1
+		ai_type = /datum/aiHolder/wanderer
+
+		New()
+			..()
+			//todo later : move this lifeprocess stuff to a component
+			remove_lifeprocess(/datum/lifeprocess/blindness)
+			remove_lifeprocess(/datum/lifeprocess/viruses)
+
+		death(var/gibbed)
+			qdel(src.ai)
+			src.ai = null
+			reduce_lifeprocess_on_death()
+			..()
+
+/obj/magindaran_horsehead
+	icon = 'icons/mob/critter.dmi'
+	icon_state = "magindarahorsehead"
+	name = "horse"
+	desc = "A common horse, frequently harvested for neck meat on Magindara."
+	anchored = ANCHORED_TECHNICAL
+	density = FALSE
+	event_handler_flags = Z_ANCHORED | USE_FLUID_ENTER
+	plane = PLANE_SPACE
+	var/mob/living/critter/magindaran_horse/myhorse = null
+
+	New(turf/newLoc, var/mob/living/critter/magindaran_horse/horse = null)
+		. = ..()
+		src.myhorse = horse
+
+	attackby(obj/item/I, mob/user)
+		. = src.myhorse.attackby(I, user)
+		user.lastattacked = src.myhorse
+
+	attack_hand(mob/user, params, location, control)
+		. = src.myhorse.attack_hand(user, params, location, control)
+		user.lastattacked = src.myhorse
+
+	ex_act(severity, last_touched, epicenter, turf_safe)
+		var/turf/epicenter_down = epicenter
+		var/turf/myhorse_turf = get_turf(src.myhorse)
+		epicenter_down = locate(epicenter_down.x, epicenter_down.y, myhorse_turf.z)
+		return src.myhorse.ex_act(severity, last_touched, epicenter_down, turf_safe)
