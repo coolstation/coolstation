@@ -3807,7 +3807,7 @@
 /turf/floor/wood,
 /area/afterlife/bar)
 "aGl" = (
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aGm" = (
 /obj/storage/closet/wardrobe/white,
@@ -5658,7 +5658,7 @@
 /area/space)
 "aNQ" = (
 /obj/item/plant/herb/cannabis/omega/spawnable,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aNR" = (
 /obj/ladder{
@@ -5896,7 +5896,7 @@
 /area/drone/assembly)
 "aOz" = (
 /obj/map/light/secretblue,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aOA" = (
 /turf/floor/setpieces/gauntlet{
@@ -5933,11 +5933,11 @@
 	dir = 8;
 	pixel_x = -12
 	},
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aOH" = (
 /obj/decal/skeleton,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aOI" = (
 /obj/map/light/secretblue,
@@ -6746,12 +6746,12 @@
 /area/afterlife/bar)
 "aRP" = (
 /obj/disposalpipe/segment/horizontal,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aRQ" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/map/light/secretblue,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aRR" = (
 /obj/machinery/vending/cola/red,
@@ -7024,7 +7024,7 @@
 /area/afterlife/bar)
 "aSR" = (
 /obj/disposalpipe/segment/vertical,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aSU" = (
 /obj/stool/bed,
@@ -7248,7 +7248,7 @@
 /area/upper_arctic/exterior/surface)
 "aTG" = (
 /obj/item/plant/herb/cannabis/white/spawnable,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aTH" = (
 /obj/machinery/bot/skullbot/gold,
@@ -7767,7 +7767,7 @@
 /obj/decal/fakeobjects/pipe/heat{
 	dir = 6
 	},
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aVi" = (
 /obj/machinery/vending/clothing,
@@ -8614,7 +8614,7 @@
 /area/owlery/staffhall)
 "aYi" = (
 /obj/decal/fakeobjects/pipe/heat,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "aYj" = (
 /obj/decal/fakeobjects{
@@ -19970,11 +19970,11 @@
 	dir = 10
 	},
 /obj/map/light/secretblue,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "bJh" = (
 /obj/critter/domestic_bee/zombee,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "bJi" = (
 /obj/decal/icefloor,
@@ -20261,7 +20261,7 @@
 "bKb" = (
 /obj/disposalpipe/segment/vertical,
 /obj/decal/fakeobjects/pipe/heat,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "bKc" = (
 /obj/grille/catwalk{
@@ -47567,7 +47567,7 @@
 /obj/disposalpipe/segment/vertical,
 /obj/machinery/light,
 /obj/decal/fakeobjects/pipe/heat,
-/turf/space/fluid/noexplosion,
+/turf/space/fluid/ocean/noexplosion,
 /area/afterlife/bar)
 "dFJ" = (
 /obj/decal/nothing{
@@ -53218,6 +53218,7 @@
 /area/lower_arctic/mining)
 "oju" = (
 /obj/decal/fakeobjects{
+	name = "meat island";
 	icon = 'icons/coolisland.dmi';
 	icon_state = "coolisland";
 	layer = 0.5;
@@ -53228,6 +53229,7 @@
 	name = "lobby_leftside"
 	},
 /obj/decal/fakeobjects{
+	name = "coolstation";
 	icon = 'icons/coolisland.dmi';
 	icon_state = "coollogo";
 	layer = 0.5;
@@ -53235,6 +53237,7 @@
 	level = 1
 	},
 /obj/decal/fakeobjects/waves{
+	name = "bile ocean";
 	icon = 'icons/coolisland.dmi';
 	icon_state = "bile";
 	layer = 0.5;

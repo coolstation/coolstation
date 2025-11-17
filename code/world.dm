@@ -12,7 +12,7 @@
 
 
 #ifdef UNDERWATER_MAP
-	turf = /turf/space/fluid
+	turf = /turf/space/fluid/ocean
 #else
 	turf = /turf/space
 #endif

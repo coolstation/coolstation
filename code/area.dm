@@ -4341,7 +4341,7 @@ Don't try and do this in the editor nerd. ~Warc
 	sound_fx_1 = 'sound/ambience/station/Station_VocalNoise1.ogg'
 	var/initial_structure_value = 0
 #ifdef MOVING_SUB_MAP
-	filler_turf = "/turf/space/fluid/manta"
+	filler_turf = "/turf/space/fluid/ocean/manta"
 
 	New()
 		..()
