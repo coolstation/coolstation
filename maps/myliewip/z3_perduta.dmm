@@ -282,6 +282,16 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "AI Cooling Hookups";
+	dir = 1;
+	name = "AI Coolant Hookup APC";
+	pixel_y = 24
+	},
 /turf/floor/plating,
 /area/station/atmos/hookups/ai)
 "ex" = (
@@ -33021,7 +33031,7 @@ BX
 BX
 BX
 BX
-Ls
+BX
 BX
 BX
 BX
