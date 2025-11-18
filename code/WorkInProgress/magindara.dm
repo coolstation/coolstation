@@ -113,7 +113,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		. = ..()
 		if(prob(4))
 			new /obj/random_item_spawner/junk/one(src)
-		if(prob(1) && prob(3))
+		if(prob(1) && prob(1)) // about 7-9 of them in the sea aside from the herd
 			new /mob/living/critter/magindaran_horse/ai_controlled(src)
 
 /obj/overlay/magindara_fog
@@ -338,6 +338,9 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	else
 		boutput(user, "<span class='notice'>The [src] beeps, but nothing seems to happen.</span>")
 
+/obj/landmark/herd_animal
+	name = LANDMARK_HERD_ANIMAL_SPAWN
+
 /mob/living/critter/magindaran_horse
 	name = "horse"
 	desc = "A common horse, frequently harvested for neck meat on Magindara."
@@ -415,9 +418,14 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	get_ranged_protection()
 		return max(1 + src.blubber_armor / 8, ..())
 
+	disposing()
+		qdel(src.myhead)
+		src.myhead = null
+		. = ..()
+
 	ai_controlled
 		is_npc = 1
-		ai_type = /datum/aiHolder/wanderer
+		ai_type = /datum/aiHolder/horse_herd
 
 		New()
 			..()
@@ -459,3 +467,10 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		var/turf/myhorse_turf = get_turf(src.myhorse)
 		epicenter_down = locate(epicenter_down.x, epicenter_down.y, myhorse_turf.z)
 		return src.myhorse.ex_act(severity, last_touched, epicenter_down, turf_safe)
+
+/datum/aiHolder/horse_herd
+	New()
+		. = ..()
+		var/datum/aiTask/timed/wander/W =  get_instance(/datum/aiTask/timed/wander, list(src))
+		W.transition_task = W
+		default_task = W

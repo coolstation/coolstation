@@ -1066,6 +1066,10 @@ var/global/list/mapNames = list(
 		for(var/turf/space/magindara/pitfall_turf)
 			pitfall_turf.initialise_component()
 			LAGCHECK(LAG_HIGH)
+		var/turf/herd_turf = pick_landmark(LANDMARK_HERD_ANIMAL_SPAWN, locate(150,150,3))
+		for(var/turf/space/fluid/magindara/ocean_floor_turf in range(9, herd_turf))
+			if(prob(7))
+				new /mob/living/critter/magindaran_horse/ai_controlled(ocean_floor_turf)
 
 
 /datum/map_settings/noyade
