@@ -432,6 +432,16 @@
 /obj/item/tank/emergency_oxygen,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "Medbay Lobby";
+	dir = 8;
+	name = "Medbay Lobby APC";
+	pixel_x = -24
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "bb" = (
@@ -697,8 +707,10 @@
 /turf/floor/plating/random,
 /area/station/maintenance/southwest)
 "bL" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/red,
+/obj/vehicle/segway{
+	name = "The Lawbringer";
+	dir = 1
+	},
 /turf/floor/red/redblackchecker,
 /area/station/security/hos)
 "bM" = (
@@ -2321,7 +2333,6 @@
 /area/station/quartermaster/cargobay)
 "fC" = (
 /obj/machinery/door/airlock/glass,
-/obj/access_spawn/hydro,
 /turf/floor/cautionblack,
 /area/station/hydroponics/lobby)
 "fD" = (
@@ -9262,6 +9273,11 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment/mail/bent/north,
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "vG" = (
@@ -16600,6 +16616,8 @@
 "MI" = (
 /obj/disposalpipe/segment/morgue/bent/west,
 /obj/landmark/gps_waypoint,
+/obj/item/clothing/suit/bedsheet/red,
+/obj/stool/bed,
 /turf/floor/red/redblackchecker,
 /area/station/security/hos)
 "MJ" = (
@@ -17471,6 +17489,15 @@
 	},
 /turf/floor/black,
 /area/station/bridge)
+"Ph" = (
+/obj/disposalpipe/segment/vertical,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/north)
 "Pi" = (
 /obj/machinery/atmospherics/pipe/vent/south,
 /turf/floor/engine,
@@ -18572,10 +18599,7 @@
 /area/station/security/brig/genpop)
 "RQ" = (
 /obj/disposalpipe/segment/horizontal,
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir"
-	},
+/obj/lattice,
 /turf/space/magindara,
 /area/station/hallway/primary/southwest)
 "RR" = (
@@ -19631,11 +19655,8 @@
 /turf/floor/black,
 /area/station/janitor/office)
 "Uj" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir"
-	},
 /obj/disposalpipe/segment/sewage/horizontal,
+/obj/lattice,
 /turf/space/magindara,
 /area/station/hallway/primary/southwest)
 "Uk" = (
@@ -22299,7 +22320,7 @@ SO
 SO
 SO
 SO
-SO
+cJ
 "}
 (2,1,1) = {"
 SO
@@ -53549,7 +53570,7 @@ oF
 Lo
 SO
 SO
-cJ
+SO
 SO
 SO
 VN
@@ -61688,7 +61709,7 @@ ft
 yc
 Iv
 TD
-da
+Ph
 VP
 da
 da
