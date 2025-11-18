@@ -359,10 +359,9 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	can_lie = FALSE
 	use_stunned_icon = FALSE // for now
 	layer = MOB_LAYER + 0.12
-	base_walk_delay = 4
-	base_move_delay = 3
-	var/out_of_water_movedelay = 5
-	var/blubber_armor = 4
+	base_walk_delay = 8
+	base_move_delay = 7
+	var/out_of_water_movedelay = 8
 	var/obj/magindaran_horsehead/myhead = null
 
 	New()
@@ -409,15 +408,6 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		if (T && !(T.turf_flags & FLUID_MOVE))
 			. += src.out_of_water_movedelay
 
-	get_head_armor_modifier()
-		return max(src.blubber_armor, ..())
-
-	get_chest_armor_modifier()
-		return max(src.blubber_armor, ..())
-
-	get_ranged_protection()
-		return max(1 + src.blubber_armor / 8, ..())
-
 	disposing()
 		qdel(src.myhead)
 		src.myhead = null
@@ -457,10 +447,14 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	attackby(obj/item/I, mob/user)
 		. = src.myhorse.attackby(I, user)
 		user.lastattacked = src.myhorse
+		user.next_click = world.time + max(I.click_delay,I.combat_click_delay)
 
 	attack_hand(mob/user, params, location, control)
 		. = src.myhorse.attack_hand(user, params, location, control)
-		user.lastattacked = src.myhorse
+		if(user.lastattacked == src.myhorse)
+			user.next_click = world.time + max(user.click_delay,user.combat_click_delay)
+		else
+			user.next_click = world.time + user.click_delay
 
 	ex_act(severity, last_touched, epicenter, turf_safe)
 		var/turf/epicenter_down = epicenter

@@ -546,7 +546,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	teleport_blocked = 2
 	force_fullbright = 0
 	expandable = 0
-	ambient_light = rgb(79, 164, 184)
+	ambient_light = rgb(218, 235, 215)
 	// filler_turf = "/turf/floor/setpieces/gauntlet"
 	is_atmos_simulated = FALSE
 
@@ -2666,28 +2666,25 @@ ABSTRACT_TYPE(/area/station/com_dish)
 /area/station/com_dish
 	name = "Communications Dish"
 	icon_state = "yellow"
+#ifndef MAGINDARA_MAP
 	requires_power = FALSE
+#endif
 
-/area/station/com_dish/comdish
-	name = "Communications Dish"
-	icon_state = "yellow"
 #if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
 	force_fullbright = 1 // ????
 #endif
 
+/area/station/com_dish/comdish
+	name = "Communications Dish"
+	icon_state = "yellow"
+
 /area/station/com_dish/auxdish
 	name = "Auxilary Communications Dish"
 	icon_state = "yellow"
-#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
-	force_fullbright = 1
-#endif
 
 /area/station/com_dish/research_outpost
 	name = "Research Outpost Communications Dish"
 	icon_state = "yellow"
-#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
-	force_fullbright = 1
-#endif
 
 // engine and engineering and engineering adjacent
 

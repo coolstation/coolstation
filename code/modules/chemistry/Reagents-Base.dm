@@ -860,8 +860,8 @@ datum
 					holder?.add_reagent("ice", prev_vol, null, (T0C - 1))
 					if(holder)
 						holder.del_reagent(id)
-				else if (exposed_temperature > T0C && exposed_temperature <= T0C + 100 )
-					name = "water"
+				else if (exposed_temperature > T0C && exposed_temperature <= T0C + 100)
+					name = initial(name)
 					description = initial(description)
 				else if (exposed_temperature > (T0C + 100) )
 					if (!istype(holder,/datum/reagents/fluid_group))

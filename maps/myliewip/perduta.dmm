@@ -49,14 +49,11 @@
 /turf/wall/auto/rivet,
 /area/station/hallway/primary/west)
 "ai" = (
-/obj/lattice{
-	dir = 6;
-	icon_state = "lattice-dir"
-	},
 /obj/railing/cool{
 	dir = 8
 	},
 /obj/grille/catwalk,
+/obj/lattice,
 /turf/space/magindara,
 /area/station/catwalk/simulated)
 "aj" = (
@@ -239,6 +236,9 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/landmark/start{
+	name = "Staff Assistant"
 	},
 /turf/floor/plating/random,
 /area/station/quartermaster/refinery)
@@ -686,6 +686,9 @@
 /turf/space/magindara,
 /area/magindara)
 "bG" = (
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/industrial,
 /area/station/maintenance/southwest)
 "bH" = (
@@ -2709,7 +2712,6 @@
 /area/station/maintenance/northwest)
 "go" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/machinery/light/fluorescent/warm/very,
 /turf/floor/darkblueblack{
 	dir = 1
 	},
@@ -3283,6 +3285,14 @@
 	},
 /turf/floor/riveted,
 /area/station/hallway/primary/east)
+"hF" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/magindara)
 "hG" = (
 /obj/machinery/disposal{
 	color = "#AAFFAA";
@@ -3813,6 +3823,9 @@
 "iS" = (
 /obj/random_item_spawner/tools/one_or_zero,
 /obj/random_item_spawner/junk/one_or_zero,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "iT" = (
@@ -5923,17 +5936,6 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/space/magindara,
 /area/station/catwalk/simulated)
-"nP" = (
-/obj/railing/cool{
-	dir = 8
-	},
-/obj/grille/catwalk,
-/obj/lattice{
-	dir = 6;
-	icon_state = "lattice-dir"
-	},
-/turf/space/magindara,
-/area/station/catwalk/simulated)
 "nQ" = (
 /obj/machinery/rkit,
 /turf/floor/industrial,
@@ -7072,9 +7074,6 @@
 "qp" = (
 /obj/storage/closet/emergency,
 /obj/item/firework,
-/obj/landmark/start{
-	name = "Staff Assistant"
-	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
 "qq" = (
@@ -7387,22 +7386,18 @@
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
 "qY" = (
+/obj/disposalpipe/segment/mail/vertical,
 /obj/lattice{
-	dir = 10;
-	icon_state = "lattice-dir-b"
+	icon_state = "lattice-dir"
 	},
-/obj/disposalpipe/segment/mail/bent/south,
 /turf/space/magindara,
 /area/magindara)
 "qZ" = (
-/obj/lattice{
-	dir = 6;
-	icon_state = "lattice-dir"
-	},
 /obj/grille/catwalk,
 /obj/railing/cool{
 	dir = 8
 	},
+/obj/lattice,
 /turf/space/magindara,
 /area/station/catwalk/simulated)
 "ra" = (
@@ -9381,6 +9376,12 @@
 /obj/disposalpipe/segment/food/vertical,
 /turf/floor/plating,
 /area/station/hydroponics/bay)
+"vU" = (
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/south)
 "vV" = (
 /turf/floor/industrial,
 /area/station/hallway/primary/west)
@@ -11334,6 +11335,21 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/space/magindara,
 /area/magindara)
+"AA" = (
+/obj/machinery/light/fluorescent/warm/very,
+/turf/floor/black,
+/area/station/crew_quarters/hop)
+"AB" = (
+/obj/grille/catwalk,
+/obj/railing/cool{
+	dir = 8
+	},
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/turf/space/magindara,
+/area/station/catwalk/simulated)
 "AC" = (
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/cable{
@@ -12077,6 +12093,9 @@
 /area/station/crew_quarters/kitchen)
 "Cl" = (
 /obj/random_item_spawner/snacks/one_or_zero,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "Cm" = (
@@ -13243,6 +13262,9 @@
 	icon_state = "1-4"
 	},
 /obj/random_item_spawner/junk/one_or_zero,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/riveted,
 /area/station/crew_quarters/barber_shop)
 "ER" = (
@@ -13682,6 +13704,14 @@
 	},
 /turf/space/magindara,
 /area/station/com_dish/comdish)
+"FS" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/obj/disposalpipe/segment/mail/bent/south,
+/turf/space/magindara,
+/area/magindara)
 "FT" = (
 /obj/machinery/space_heater,
 /obj/disposalpipe/segment/vertical,
@@ -15271,6 +15301,11 @@
 	dir = 4
 	},
 /area/station/security/equipment)
+"JN" = (
+/obj/disposalpipe/segment/sewage/bent/east,
+/obj/lattice,
+/turf/space/magindara,
+/area/magindara)
 "JO" = (
 /obj/grille/catwalk/elevator{
 	dir = 10
@@ -15416,11 +15451,6 @@
 	},
 /turf/floor/riveted,
 /area/station/science/artifact)
-"Kh" = (
-/obj/lattice,
-/obj/disposalpipe/segment/mail/bent/north,
-/turf/space/magindara,
-/area/magindara)
 "Ki" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/cable{
@@ -15960,6 +15990,9 @@
 	pixel_y = -24
 	},
 /obj/random_item_spawner/snacks/one_or_zero,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
 "Lk" = (
@@ -17295,6 +17328,9 @@
 /area/station/quartermaster/cargobay)
 "OB" = (
 /obj/machinery/vending/meat,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
 "OC" = (
@@ -17452,6 +17488,9 @@
 /area/station/crew_quarters/bar)
 "Pa" = (
 /obj/machinery/light/small/red,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/central)
 "Pb" = (
@@ -19340,6 +19379,14 @@
 	},
 /turf/floor/riveted,
 /area/station/hallway/primary/east)
+"Tw" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir"
+	},
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/space/magindara,
+/area/magindara)
 "Tx" = (
 /obj/machinery/power/apc{
 	areastring = "Medbay Restroom";
@@ -20033,14 +20080,6 @@
 /obj/disposalpipe/segment/sewage/vertical,
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
-"Vd" = (
-/obj/lattice{
-	dir = 10;
-	icon_state = "lattice-dir-b"
-	},
-/obj/disposalpipe/segment/bent/south,
-/turf/space/magindara,
-/area/magindara)
 "Ve" = (
 /obj/railing/cool,
 /turf/floor/stairs/dark/wide{
@@ -21090,7 +21129,7 @@
 /area/station/hallway/primary/southeast)
 "XK" = (
 /obj/machinery/computer3/generic/personal{
-	pixel_y = 9
+	pixel_y = 5
 	},
 /obj/table/reinforced/industrial/auto,
 /obj/cable,
@@ -50251,6 +50290,11 @@ nL
 SO
 SO
 SO
+Ot
+SO
+SO
+SO
+Ot
 SO
 SO
 SO
@@ -50259,18 +50303,13 @@ SO
 SO
 SO
 SO
+Ot
 SO
 SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Ot
 SO
 SO
 SO
@@ -50550,6 +50589,15 @@ nL
 CN
 vb
 nL
+TV
+VL
+VL
+wi
+VL
+VL
+VL
+wi
+sp
 SO
 SO
 SO
@@ -50557,22 +50605,13 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+OX
+VL
+VL
+VL
+VL
+VL
+OX
 SO
 SO
 SO
@@ -50861,6 +50900,20 @@ jC
 jC
 cB
 cB
+TV
+VL
+sp
+SO
+Ot
+SO
+Uh
+zO
+SO
+SO
+SO
+SO
+SO
+gl
 SO
 SO
 SO
@@ -50872,24 +50925,10 @@ SO
 SO
 SO
 SO
+Ot
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Ot
 SO
 SO
 SO
@@ -51165,18 +51204,18 @@ zh
 cB
 cB
 LW
-nP
+ai
 HJ
 ai
 PQ
-PQ
+AB
 qZ
 FW
 SO
 SO
 SO
 SO
-SO
+gl
 SO
 SO
 SO
@@ -51188,10 +51227,10 @@ SO
 SO
 SO
 Uh
-TV
+wi
 VL
 VL
-TV
+wi
 VL
 VL
 sp
@@ -51478,7 +51517,7 @@ VL
 VL
 OX
 VL
-Zm
+JN
 YZ
 YZ
 YZ
@@ -52407,7 +52446,7 @@ yd
 Bt
 gl
 SO
-SO
+Ot
 SO
 SO
 SO
@@ -52707,10 +52746,10 @@ pe
 Ss
 gJ
 Me
-FN
-SO
-SO
-SO
+wi
+VL
+OX
+Gn
 SO
 SO
 SO
@@ -53011,7 +53050,7 @@ bG
 Wt
 gl
 SO
-SO
+gl
 SO
 SO
 SO
@@ -53311,10 +53350,10 @@ pe
 Yx
 bI
 Me
-FN
-SO
-SO
-SO
+wi
+VL
+OX
+Gn
 SO
 SO
 SO
@@ -53615,7 +53654,7 @@ zt
 Bt
 gl
 SO
-SO
+ex
 SO
 SO
 SO
@@ -56261,7 +56300,7 @@ SO
 SO
 SO
 SO
-SO
+Ot
 SO
 CI
 SO
@@ -56562,10 +56601,10 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-CI
+rP
+OX
+VL
+hF
 SO
 SO
 Ut
@@ -56865,7 +56904,7 @@ SO
 SO
 SO
 SO
-SO
+gl
 SO
 CI
 SO
@@ -57167,7 +57206,7 @@ SO
 SO
 SO
 SO
-SO
+gl
 SO
 CI
 SO
@@ -57469,7 +57508,7 @@ SO
 SO
 SO
 SO
-SO
+gl
 SO
 CI
 SO
@@ -57771,7 +57810,7 @@ SO
 SO
 SO
 SO
-SO
+gl
 SO
 kI
 FZ
@@ -58073,7 +58112,7 @@ SO
 SO
 SO
 SO
-Uh
+Ut
 eN
 eN
 eN
@@ -58441,7 +58480,7 @@ eL
 eL
 sE
 OL
-Yh
+vU
 Xu
 SO
 gl
@@ -59583,8 +59622,8 @@ SO
 SO
 SO
 SO
-qY
-Kh
+Tw
+AJ
 eN
 AP
 if
@@ -59885,8 +59924,8 @@ SO
 SO
 SO
 SO
-SO
 fr
+SO
 eN
 eN
 eN
@@ -60187,7 +60226,7 @@ SO
 SO
 SO
 SO
-SO
+FS
 qY
 Dn
 RF
@@ -60489,7 +60528,7 @@ SO
 SO
 SO
 SO
-SO
+Rh
 SO
 SO
 SO
@@ -60791,7 +60830,7 @@ SO
 SO
 SO
 SO
-SO
+Rh
 SO
 SO
 SO
@@ -61093,11 +61132,11 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-Vd
+Ut
+VL
+VL
+VL
+Lz
 fH
 ft
 CQ
@@ -61395,7 +61434,7 @@ SO
 SO
 SO
 SO
-SO
+Rh
 SO
 SO
 SO
@@ -61697,12 +61736,12 @@ SO
 SO
 SO
 SO
+Rh
 SO
 SO
 SO
-SO
-SO
-Vd
+Uh
+Lz
 IJ
 SO
 ft
@@ -61999,11 +62038,11 @@ Uh
 VL
 VL
 VL
-sp
+FN
 SO
 SO
-SO
-SO
+Uh
+LE
 SO
 OQ
 VL
@@ -62303,8 +62342,8 @@ Pr
 Pr
 HZ
 VL
-sp
-SO
+VL
+zO
 SO
 SO
 CI
@@ -62606,8 +62645,8 @@ Qz
 HZ
 HZ
 HZ
+wi
 sp
-SO
 SO
 Ap
 FZ
@@ -62909,7 +62948,7 @@ HZ
 bT
 HZ
 HZ
-sp
+zO
 SO
 CI
 SO
@@ -65377,7 +65416,7 @@ CY
 sz
 Ut
 VL
-VL
+OX
 VL
 FN
 NN
@@ -65679,7 +65718,7 @@ en
 Nz
 Rh
 SO
-SO
+gl
 SO
 gl
 NN
@@ -65981,7 +66020,7 @@ OS
 Nz
 FN
 SO
-SO
+gl
 SO
 Ut
 NN
@@ -66283,7 +66322,7 @@ OS
 Nz
 Rh
 SO
-SO
+gl
 SO
 gl
 zs
@@ -66585,7 +66624,7 @@ OS
 Nz
 Rh
 SO
-SO
+gl
 SO
 gl
 uN
@@ -66887,7 +66926,7 @@ ZS
 NJ
 FN
 SO
-SO
+gl
 SO
 Ut
 uN
@@ -67189,7 +67228,7 @@ ar
 pv
 Ut
 VL
-VL
+OX
 VL
 FN
 uN
@@ -69918,8 +69957,8 @@ dq
 WI
 kN
 oX
-FN
-SO
+wi
+Gn
 SO
 SO
 SO
@@ -70758,7 +70797,7 @@ gN
 yI
 MX
 go
-ua
+AA
 ua
 pl
 pl
@@ -71061,7 +71100,7 @@ Ao
 Vi
 SZ
 ua
-SO
+ua
 SO
 SO
 TP
@@ -71356,16 +71395,16 @@ SO
 SO
 SO
 SO
-SO
+Ak
 ua
 ua
 Eu
 PR
 ua
 ua
+AJ
 VL
-VL
-VL
+TV
 AJ
 TP
 kh
@@ -71660,14 +71699,14 @@ SO
 SO
 SO
 SO
+Rh
+SO
+SO
+Rh
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
+Rh
 SO
 TP
 mq
@@ -71730,8 +71769,8 @@ Sc
 CB
 kN
 oX
-FN
-SO
+wi
+Gn
 SO
 SO
 SO
@@ -71961,16 +72000,16 @@ SO
 SO
 SO
 SO
+rP
+OX
+VL
+VL
+OX
+Gn
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Ut
+VL
 TP
 TP
 TP
@@ -72271,10 +72310,10 @@ SO
 SO
 SO
 SO
+Rh
 SO
 SO
-SO
-Ak
+Rh
 TP
 rH
 Yp
@@ -72573,10 +72612,10 @@ SO
 SO
 SO
 SO
+Rh
 SO
 SO
-SO
-SO
+Rh
 TP
 Yp
 Yp
@@ -72635,7 +72674,7 @@ uf
 Ho
 Yi
 Yi
-SO
+LE
 SO
 SO
 SO
@@ -72874,11 +72913,11 @@ SO
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
+rP
+OX
+VL
+VL
+wi
 TP
 WU
 Yp
@@ -73180,7 +73219,7 @@ SO
 SO
 SO
 SO
-SO
+Rh
 TP
 Yp
 Yp
@@ -73189,15 +73228,15 @@ Fu
 TP
 VL
 AJ
-VL
+wi
 VL
 AJ
 VL
-LE
+OX
 SO
 SO
 SO
-SO
+Rh
 SO
 Cz
 Cz
@@ -73482,7 +73521,7 @@ SO
 SO
 SO
 SO
-SO
+Rh
 TP
 pl
 pl
@@ -73491,17 +73530,17 @@ pl
 TP
 SO
 SO
+gl
 SO
 SO
 SO
+gl
 SO
 SO
 SO
+Rh
 SO
-SO
-SO
-SO
-SO
+Rh
 SO
 SO
 Zq
@@ -73784,28 +73823,28 @@ SO
 SO
 SO
 SO
-SO
+Ak
 TP
 AJ
 VL
 VL
 AJ
 TP
+VL
+VL
+OX
+VL
+VL
+VL
+LE
 SO
 SO
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+Ak
+VL
+OX
+VL
+VL
 Zq
 VO
 hW
@@ -74105,7 +74144,7 @@ SO
 SO
 SO
 SO
-SO
+Rh
 SO
 SO
 MW
@@ -74407,13 +74446,13 @@ SO
 SO
 SO
 SO
+Rh
 SO
 SO
+Rh
 SO
 SO
-SO
-SO
-SO
+Rh
 SO
 SO
 qX
@@ -74433,7 +74472,7 @@ VL
 AJ
 VL
 VL
-AJ
+wi
 VL
 VL
 AJ
@@ -74709,24 +74748,24 @@ SO
 SO
 SO
 SO
+Ak
+VL
+VL
+AJ
+VL
+VL
+AJ
+VL
+VL
+LE
 SO
+ex
 SO
+ex
 SO
+ex
 SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
-SO
+ex
 SO
 SO
 SO
@@ -74735,7 +74774,7 @@ SO
 SO
 SO
 SO
-SO
+ex
 SO
 SO
 SO
