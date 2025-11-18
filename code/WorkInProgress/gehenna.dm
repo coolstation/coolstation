@@ -270,8 +270,21 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
-		SPAWN_DBG(1 DECI SECOND)
+		//more attempted shuttle movement lagspike reduction
+		//We don't want the spawn to happen on shuttle movement so that enabling the lights actually gets queued
+		//instead of skipping it until after RL is resumed
+		if (RL_Suspended)
 			light?.enable()
+		else //Normal circumstances
+			SPAWN_DBG(1 DECI SECOND)
+				light?.enable()
+
+	//Turns out that moving shuttles back and forth on desert was slowly stacking but not removing lights, oops!
+	Del()
+		if (src.light)
+			qdel(src.light)
+			src.light = null
+		..()
 
 	tunnel_surface
 		name = "bored tunnel floor"
