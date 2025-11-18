@@ -113,14 +113,14 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		for( var/sound/s in playing )
 			s.status |= SOUND_UPDATE
 			var/list/vol = sound_playing[ s.channel ]
-			s.volume = vol[1] * volume * volumes[ vol[2] ] * 100
+			s.volume = vol[1] * volume * volumes[ vol[2] ]
 			src << s
 		src.chatOutput.adjustVolumeRaw( volume * getRealVolume(VOLUME_CHANNEL_ADMIN) )
 	else
 		for( var/sound/s in playing )
 			if( sound_playing[s.channel][2] == channel )
 				s.status |= SOUND_UPDATE
-				s.volume = sound_playing[s.channel][1] * volume * volumes[1] * 100
+				s.volume = sound_playing[s.channel][1] * volume * volumes[1]
 				src << s
 
 	if( channel == VOLUME_CHANNEL_ADMIN )
@@ -625,6 +625,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		//in any other case, this won't play anything and stop any currently playing z-loop
 	#endif
 
+	var/stored_vol = zloopvol
 	zloopvol *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
 
 	if (zloopvol != 0) //lets us cancel loop sounds by passing 0
@@ -642,7 +643,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		S.status |= SOUND_UPDATE
 	if (soundmute)
 		S.status |= SOUND_MUTE
-	sound_playing[ S.channel ][1] = S.volume
+	sound_playing[ S.channel ][1] = stored_vol
 	sound_playing[ S.channel ][2] = VOLUME_CHANNEL_AMBIENT
 	/* mylie wuz here - unsure of this bit, rewrote this slightly
 	if (zloopvol != 0)
