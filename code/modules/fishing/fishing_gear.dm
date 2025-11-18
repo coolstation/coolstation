@@ -335,7 +335,7 @@ TYPEINFO(/obj/item/syndie_fishing_rod)
 		src.lure.set_loc(get_turf(src.lure))
 		src.lure.owner = null
 		src.lure.throw_at(src, 15, 2)
-		SPAWN(0.2 SECONDS)
+		SPAWN_DBG(0.2 SECONDS)
 			if (src.lure)
 				if (src.lure.owner)
 					src.lure.owner.throw_at(src, 2, 2)
