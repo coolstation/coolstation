@@ -28,6 +28,9 @@
 #elif defined(MAP_OVERRIDE_TRUNKMAP)
 
 
+#elif defined(MAP_OVERRIDE_COOKIE)
+
+
 #elif defined(MAP_OVERRIDE_CHIRON)
 
 
@@ -45,7 +48,6 @@
 #define SCIENCE_PATHO_MAP 1
 
 #elif defined(MAP_OVERRIDE_HORIZON)
-
 
 #elif defined(MAP_OVERRIDE_ATLAS)
 

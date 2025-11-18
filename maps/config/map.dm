@@ -97,6 +97,10 @@
 #elif defined(MAP_OVERRIDE_SPIRIT)
 #include "spirit.dm"
 
+#elif defined(MAP_OVERRIDE_COOKIE)
+#include "cookie.dm"
+
+
 //Entry below is the "default" map
 #else
 #include "standard.dm"
