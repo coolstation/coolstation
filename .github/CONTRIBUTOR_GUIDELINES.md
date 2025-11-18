@@ -1,4 +1,4 @@
-# Goonstation Contributor Guidelines
+# Coolstation Contributor Guidelines (Adapted from Goonstation guidelines)
 
 [ToC]
 
@@ -26,11 +26,11 @@ Aside from the actual changes to the repo that you make, opening a PR has some r
 
 ### What if I change my mind about my contributions being published?
 
-The license Goonstation is licensed under, [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/3.0/), is irrevocable. The specific legalese is:
+The license Coolstation is licensed under, [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/3.0/), is irrevocable. The specific legalese is:
 
 > Once something has been published under a CC license, licensees may continue using it according to the license terms for the duration of applicable copyright and similar rights. As a licensor, you may stop distributing under the CC license at any time, but anyone who has access to a copy of the material may continue to redistribute it under the CC license terms.
 
-To simplify it a bit, this means: If your code/sprites/maps/assets are released (e.g. publish it on GitHub in a repo or make a PR) that version of the code is **forever licensed** if someone obtains a copy of it. <u>You cannot ask us nor anyone else to stop using your contributions.</u> This should be considered before publishing your work on GitHub if you're concerned about your legal rights.
+There was a huge spiel here from Goonstation about "you cannot ask us nor anyone else to stop using your contributions". It's true, but it was really fucking pedantic. If you ask nicely about something you no longer want to have contributed or whatevs, we'll probably take your work out of our codebase and source a replacement. However, we legally cannot stop people from redistributing your work, or making a fork without our removal of the work. Et cetera.
 
 ### What if I don't like the way someone uses my published contributions?
 

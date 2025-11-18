@@ -1,4 +1,4 @@
-# Goonstation Development Guide
+# Coolstation Development Guide (Adapted from Goonstation guidelines)
 
 [ToC]
 
@@ -36,7 +36,7 @@ Now, go back to VS Code and relaunch it. Under the version control sidebar (look
 
 If that's not there, you can press `Ctrl+Shift+P` to open the command palette, then type `Git: Clone`, and then press enter. 
 
-Now, paste the URL of the repository you created in the last step. It should look like this: `https://github.com/YOURNAME/goonstation`. Then, select a folder to keep your local repository. *The process of downloading might take a while.*
+Now, paste the URL of the repository you created in the last step. It should look like this: `https://github.com/YOURNAME/coolstation`. Then, select a folder to keep your local repository. *The process of downloading might take a while.*
 
 Once it's downloaded, open the folder in VS Code. You now have your own local copy of the code!
 
@@ -48,7 +48,7 @@ Click the Extensions button on the left bar or press `Ctrl+Shift+X`. It looks li
 
 :::warning
 If this does not work, search for the following extensions:
- - Goonstation Extension Pack - Extension pack with all the extensions we recommend using.
+ - Coolstation Extension Pack - Extension pack with all the extensions we recommend using.
  - GitHub Pull Requests - Lets you make a pull request directly from the editor for the purposes of this tutorial.
 :::
 
@@ -64,27 +64,15 @@ For the ESLint extension, you may need to select a Node environment (e.g. if you
 
 If that happens, click `Select Node Path` in it, then `Use NODE_PATH value defined via setting ./tgui/.yarn/sdks` in the dropdown that appears.
 
-If you navigate to a `.js` or `.tsx` file (e.g. `tgui/packages/tgui/components/Section.tsx`) the word `ESLINT` should appear in the bottom right of your window, along the bar at the bottom. Simply click it and choose `Allow` in the popup to let it loose on your Goonstation files.
+If you navigate to a `.js` or `.tsx` file (e.g. `tgui/packages/tgui/components/Section.tsx`) the word `ESLINT` should appear in the bottom right of your window, along the bar at the bottom. Simply click it and choose `Allow` in the popup to let it loose on your Coolstation files.
 
-Now, let's connect the main goonstation repository to your client.
+Now, let's connect the main coolstation repository to your client.
 
 ### Step 5: Remote Control :satellite_antenna:
 
-We need to add the main Goonstation repository as a remote now. :satellite:
+We need to add the main Coolstation repository as a remote now. :satellite:
 
-To do this, open the command palette and type `Git: Add Remote`. It'll prompt you for a name, which should be `upstream`. Then, put https://github.com/coolstation/coolstation as the URL. Now, you'll have the main Goonstation repository as a remote named upstream: This will let you easily send your pull requests there later.
-
-You're just about done with that! Just one last thing you need to manually do.
-
-### Step 6: Fixing Up :wrench: 
-
-:::info
-If you're a Goonstation developer, run `git submodule update --init` instead of this step.
-:::
-
-++**This step is required.**++ You'll need to create a file named `__secret.dme` in the `+secret` subdirectory. **It should be blank and have no contents.** If you can't figure out how to make a empty file, use [this](https://www.dropbox.com/s/asvkccrk2fqkh14/__secret.dme).
-
-That's it! Your local codebase is all set up to contribute now.
+To do this, open the command palette and type `Git: Add Remote`. It'll prompt you for a name, which should be `upstream`. Then, put https://github.com/coolstation/coolstation as the URL. Now, you'll have the main Coolstation repository as a remote named upstream: This will let you easily send your pull requests there later.
 
 ## Making Changes :lower_left_fountain_pen: 
 
@@ -103,7 +91,7 @@ For this guide, I'll be creating a new hat, so I'll name my branch `hat-landia`.
 
 **Remember, never commit changes to your master branch!** You can work on any branch as much as you want, as long as you **commit** the changes to the proper branch.
 
-Go wild! Make your code changes! This is a guide on how to contribute, not *what* to contribute. So, I won't tell you how to code, make sprites, or map changes. If you need help, try asking in the `#imcoder`, `#imspriter`, or the `#immapper` [Discord](https://discord.gg/zd8t6pY) channels respectively.
+Go wild! Make your code changes! This is a guide on how to contribute, not *what* to contribute. So, I won't tell you how to code, make sprites, or map changes.
 
 ### Step 2: Change It Up :twisted_rightwards_arrows: 
 
@@ -141,9 +129,9 @@ If you are on a version of BYOND different from the one specified in buildByond.
 Alternative solution is to press `ctrl+shift+B` and then select the build task by hitting enter. This one does not automatically make you an administrator in-game so you will need to edit the config/admins.txt file by adding a `yourckey - Host` line there. Just make sure you don't commit this file later!
 
 :::info
-If an error popup with an error message of "Could not find the task 'dm: build - coolstation.dme'." shows up, one possible cause is that a VS Code Workspace is confusing things. If this is the case, close your current workspace (`File` -> `Close Workspace`) then use the `Open Folder` option to select the `goonstation` folder and try to build again.
+If an error popup with an error message of "Could not find the task 'dm: build - coolstation.dme'." shows up, one possible cause is that a VS Code Workspace is confusing things. If this is the case, close your current workspace (`File` -> `Close Workspace`) then use the `Open Folder` option to select the `coolstation` folder and try to build again.
 
-You can use a VS Code Workspace, but should do via Open Folder to select the `goonstation` folder then `File` -> `Save Workspace As...` rather than `Add Folder to Workspace`.
+You can use a VS Code Workspace, but should do via Open Folder to select the `coolstation` folder then `File` -> `Save Workspace As...` rather than `Add Folder to Workspace`.
 :::
 
 ![](https://i.imgur.com/mXSjfC2.png)
@@ -183,7 +171,7 @@ There you go! You have successfully made a commit to your branch. This is still 
 Now, to get these changes onto GitHub, press ![](https://i.imgur.com/3Ptpbgt.png) or push normally for a prompt. This will push the commit you made to the origin on GitHub. You need an internet connection to do this, *obviously*.
 
 VS Code will ask you what remote you want to push to. Click origin.
-*Origin refers to your fork of the Goonstation repo. Upstream refers to the **actual** master Goonstation repo. You want to make the changes to **your fork**, so always pick origin.*
+*Origin refers to your fork of the Coolstation repo. Upstream refers to the **actual** master Coolstation repo. You want to make the changes to **your fork**, so always pick origin.*
 
 If you go to your fork on the GitHub website and go to your code, you'll see that your changes have been made! Make sure you're checking out the right branch.
 
@@ -300,7 +288,7 @@ A good way to avoid merge conflicts in your PRs is to do this whole process befo
 
 **Git:** The version control system we are using. It lets many people synchronize their versions of a codebase, review and merge each others' changes.
 
-**Repo:** Short for Repository. Contains all the Goonstation code, assets, commits, and other info. This is what you see at https://github.com/coolstation/coolstation.
+**Repo:** Short for Repository. Contains all the Coolstation code, assets, commits, and other info. This is what you see at https://github.com/coolstation/coolstation.
 
 **Fork:** A copy of the repo that belongs to you. It is not synced with the main repo, so you can make changes to it without affecting the main repo, and vice versa.
 
@@ -312,15 +300,15 @@ A good way to avoid merge conflicts in your PRs is to do this whole process befo
 
 **Diff:** Short for Difference. The difference in a repo before and after a commit is made. It shows you each change line-by-line.
 
-**PR:**  Short for Pull Request. This a request you make to the Goonstation repo to merge changes from one of your branches into the master branch on Goonstation.
+**PR:**  Short for Pull Request. This a request you make to the Coolstation repo to merge changes from one of your branches into the master branch on Coolstation.
 
 **Merge:** When a branch is merged into a repo, all of the commits on that branch are applied to the repo. For example your feature branch will likely get merged into upstream.
 
 **Merge Conflict:** When two branches made different changes to the same part of the code since they split off they can't be merged automatically. This is called a merge conflict and someone (likely you) needs to decide how to join these changes and resolve it manually.
 
-**Origin:** In this guide, this refers to your fork of the goonstation repo.
+**Origin:** In this guide, this refers to your fork of the coolstation repo.
 
-**Upstream:** In this guide, this refers to the master Goonstation repo at https://github.com/coolstation/coolstation
+**Upstream:** In this guide, this refers to the master Coolstation repo at https://github.com/coolstation/coolstation
 
 **Staged files:** Files marked to get commited.
 
@@ -338,7 +326,7 @@ One of the tabs in VS Code usually has its name written in italics; that means t
 
 **Shift+F12** shows you all uses of the thing you have your cursor over.
 
-The above features might stop being accurate if you are doing a lot of changes, to refresh how VS Code sees the environment click the "goonstation" button in the bar at the bottom of the window.
+The above features might stop being accurate if you are doing a lot of changes, to refresh how VS Code sees the environment click the "coolstation" button in the bar at the bottom of the window.
 
 ![](https://i.imgur.com/Lhs7EHK.png)
 
@@ -352,7 +340,7 @@ Press **Ctrl+P** and start typing the name of a file you want to open, then hit 
 
 Sometimes it might be useful to type in git commands directly. To do that press **ctrl + \`** to open PowerShell in VS Code. (Or **ctrl + shift + \`** to make a new PowerShell window.) Though this might depend on your operating system and default shell configuration.
 
-Cloning your repository: `git clone https://github.com/YOURNAME/goonstation`
+Cloning your repository: `git clone https://github.com/YOURNAME/coolstation`
 
 Creating a branch: `git checkout -b my-feature-branch`
 
@@ -378,14 +366,14 @@ git checkout my-feature-branch
 git rebase master
 ```
 
-*[repo]: Repository - contains all Goonstation code and etc.
+*[repo]: Repository - contains all Coolstation code and etc.
 *[fork]: Your personal copy of the repo.
 *[remote]: A repo that is not your local one.
 *[commit]: A change to the repo that is submitted by someone.
 *[diff]: Difference before and after a commit is made.
 *[PR]: Pull Request - The changes you request to the upstream.
-*[origin]: Your fork of the Goonstation repo
-*[upstream]: The master Goonstation repo at https://github.com/coolstation/coolstation
+*[origin]: Your fork of the Coolstation repo
+*[upstream]: The master Coolstation repo at https://github.com/coolstation/coolstation
 
 ### Credits :clapper: 
 

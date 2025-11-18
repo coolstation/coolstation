@@ -92,5 +92,4 @@ So, you want to contribute sprite art to Goonstation. Great! This set of guideli
 
 # Meta :left_speech_bubble: 
 * Do not be precious about your work. Be open to criticism and change both from other developers and players. 
-* Most untrained people can visually identify when something looks wrong or bad, it's your responsibility as the artist to parse that criticism and find a solution. 
-* If you'd like more feedback on your sprites or pointers on spriting, check out the #imspriter channel on the [Goonstation discord.](https://discord.gg/zd8t6pY) 
+* Most untrained people can visually identify when something looks wrong or bad, it's your responsibility as the artist to parse that criticism and find a solution.

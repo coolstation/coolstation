@@ -10,7 +10,6 @@ If these features do not work in the current codebase then we will help you find
 - **All areas** on station should have either an APC or be completely wired. APCs should be able to charge if the appropriate SMES unit(s) are set to output.
 - **Pipes** (disposals, mail, sewer, brig, and morgue/crematorium, if present) should be present, functional, and error-free.
   - You should almost definitely use a mail packet configurator (`/obj/disposalpipe/segment/configurator`). This sets up the mail system!
-- **All areas** on station should have either an APC or be completely wired. APCs should be able to charge if the appropriate SMES unit(s) are set to output.
 - **Networked equipment** should be functional. Especially: communications consoles/dishes, telescience teleporter, and thus mainframe.
 - **Working shuttles**, for the escape shuttle, mining and visiting traders. If you use a cargo shuttle, the same applies!
 - **Navigation beacons** should be laid under the floor to provide both patrol routes for bots and a network for them to navigate.
