@@ -2465,6 +2465,11 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 		var/image/R = image('icons/turf/water.dmi', "ripple", dir=pick(alldirs),pixel_x=rand(-10,10),pixel_y=rand(-10,10))
 		R.alpha = 180
 		src.UpdateOverlays(R, "ripple")
+
+/turf/floor/blank
+	mouse_opacity = 0
+	icon_state = "invisible"
+
 /* Okay these don't have their dmi I'm guessing they're too new
 /turf/floor/auto/snow
 	name = "snow"

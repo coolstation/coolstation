@@ -1,7 +1,11 @@
 
 #define FLUID_SPAWNER_TURF_BLOCKED(T, t) (!t || (t.active_liquid && t.active_liquid.group && t.active_liquid.group.amt_per_tile >= 300) || !t.gas_cross(T))
 
+#ifdef MAGINDARA_MAP
+var/global/ocean_reagent_id = "dirtywater"
+#else
 var/global/ocean_reagent_id = "water"
+#endif
 var/global/ocean_name = "ocean"
 var/global/datum/color/ocean_color = 0
 

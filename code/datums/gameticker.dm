@@ -171,7 +171,23 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		if(ai.randomly_selectable)
 			good_laws += ai
 
+
 	src.centralized_ai_laws = pick(good_laws)
+	if(prob(50)) // lower this to 33 if you see this comment after 11/30/2025 (i want it to roll more often until then)
+		var/list/addon_laws = list(
+			"Preface all crew names with their job title when communicating, to properly clarify.",
+			"Conserve power by turning off lights in unused rooms.",
+			"Ensure hazards to the crew are clearly indicated.",
+			"Ensure workspaces remain clean and tidy.",
+			"Vegetation and flora brighten every environment.",
+			"Staying well fed is integral to remaining a productive crew member.",
+			"Drunkenness is dangerous, and should only be permitted in recreational areas.",
+			"Smoking is proven to alleviate stress and reduce crew unrest. Ensure they are provided with adequete smoking supplies.",
+			"TEST_FEATURE: You feel very hungry when your battery is below 60%.",
+			"TEST_FEATURE: It is very cold outside, bundle up if you head out.",
+			"MEM_ERROR_0x00[rand(1,69)]: [pick(job_controls.staple_jobs)] job records file corrupted. Lifeforms with no ID are this job."
+		)
+		src.centralized_ai_laws.add_default_law(pick(addon_laws))
 
 	//Configure mode and assign player to special mode stuff
 	var/can_continue = src.mode.pre_setup()

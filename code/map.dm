@@ -993,7 +993,7 @@ var/global/list/mapNames = list(
 	escape_station = /area/shuttle/escape/station/sealab
 	escape_def = SHUTTLE_OSHAN
 	escape_dir = EAST
-	shuttle_map_turf = /turf/space/fluid
+	shuttle_map_turf = /turf/space/fluid/ocean
 
 	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
 	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
@@ -1066,6 +1066,10 @@ var/global/list/mapNames = list(
 		for(var/turf/space/magindara/pitfall_turf)
 			pitfall_turf.initialise_component()
 			LAGCHECK(LAG_HIGH)
+		var/turf/herd_turf = pick_landmark(LANDMARK_HERD_ANIMAL_SPAWN, locate(150,150,3))
+		for(var/turf/space/fluid/magindara/ocean_floor_turf in range(9, herd_turf))
+			if(prob(7))
+				new /mob/living/critter/magindaran_horse/ai_controlled(ocean_floor_turf)
 
 
 /datum/map_settings/noyade
@@ -1077,10 +1081,10 @@ var/global/list/mapNames = list(
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
-	shuttle_map_turf = "/turf/space/fluid/noexplosion/nospawn"
+	shuttle_map_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
 
 	qm_supply_type = "shuttle"
-	shuttle_map_turf = "/turf/space/fluid/noexplosion/nospawn"
+	shuttle_map_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
 
 	windows = /obj/window
 	windows_thin = /obj/window
@@ -1117,21 +1121,21 @@ var/global/list/mapNames = list(
 		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
 			var/area/m_shuttle = locate(/area/shuttle/mining/station)
 			if(m_shuttle)
-				m_shuttle.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+				m_shuttle.filler_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
 			var/area/c_shuttle = locate(/area/shuttle/cargo/station)
 			if(c_shuttle)
-				c_shuttle.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+				c_shuttle.filler_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
 
 			var/area/t_shuttle_r = locate(/area/shuttle/merchant_shuttle/right_station)
 			if(t_shuttle_r)
-				t_shuttle_r.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+				t_shuttle_r.filler_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
 			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
 			if(t_shuttle_l)
-				t_shuttle_l.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+				t_shuttle_l.filler_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
 
 			var/area/e_shuttle = locate(/area/shuttle/escape/station)
 			if(e_shuttle)
-				e_shuttle.filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+				e_shuttle.filler_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
 
 
 /datum/map_settings/wrestlemap

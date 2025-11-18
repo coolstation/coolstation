@@ -1880,8 +1880,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 
 	on_blowthefuckup(strength) //always blow hole!
 		..(strength)
-		if (istype(src.loc,/turf/space/fluid))
-			var/turf/space/fluid/T = src.loc
+		if (istype(src.loc,/turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = src.loc
 			T.blow_hole()
 
 /obj/effects/explosion/tiny_baby
