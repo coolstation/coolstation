@@ -462,6 +462,9 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		epicenter_down = locate(epicenter_down.x, epicenter_down.y, myhorse_turf.z)
 		return src.myhorse.ex_act(severity, last_touched, epicenter_down, turf_safe)
 
+// todo: they need to wander as a herd, approximately
+// they should congregate nearish the station, and if someone feeds one,
+// the tile they were fed at should be considered a high priority tile
 /datum/aiHolder/horse_herd
 	New()
 		. = ..()
