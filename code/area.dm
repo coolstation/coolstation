@@ -237,6 +237,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				//non-space area that's insulated but adjacent to /area/space (window, wall)
 				//non-space area that's insulated but not adjacent (deep in station)
 				M.client.playAmbienceZ(M.z, insideness)
+				#elif defined(MAGINDARA_MAP)
+				M.client.playAmbienceZ(M.z, 1)
 				#endif
 
 				#undef AMBIENCE_ENTER_PROB

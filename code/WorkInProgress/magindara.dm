@@ -1,4 +1,6 @@
 var/list/obj/overlay/magindara_fog/magindara_global_fog
+var/global/magindara_surface_loop = 'sound/ambience/loop/magindarawind.ogg' //Z1
+var/global/magindara_surface_loop_volume = 80
 
 /turf/space/magindara
 	name = "ocean below"
@@ -185,6 +187,13 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	icon_state = "pink"
 	name = "\proper Magindaran sea"
 	is_construction_allowed = TRUE
+	requires_power = TRUE
+
+/area/magindara/seafloor
+	icon_state = "pink"
+	name = "\proper Magindaran sea floor"
+	is_construction_allowed = TRUE
+	requires_power = FALSE // i want this to be true later, once i figure out lights on the outside of the hull
 
 /area/station/catwalk/simulated //todo: make this an abstract type later
 	icon_state = "yellow"
