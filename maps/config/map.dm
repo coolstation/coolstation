@@ -16,7 +16,7 @@
 #elif defined(MAP_OVERRIDE_CLARION)
 #include "clarion.dm"
 
-#elif define(MAP_OVERRIDE_ALTBOX)
+#elif defined(MAP_OVERRIDE_ALTBOX)
 #include "altbox.dm"
 
 #elif defined(MAP_OVERRIDE_BOBMAP)
