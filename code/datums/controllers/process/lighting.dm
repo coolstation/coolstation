@@ -1,6 +1,26 @@
 
-/// List of items that want to be deleted
+/// Lights with pending recalculations
 var/datum/circular_queue/light_update_queue = new /datum/circular_queue(500)
+
+/*
+	To explain these queues, picture the following:
+	You're moving a vehicle from one side of a gehenna map to the other arriving over desert and leaving desert.
+
+	Removing desert deletes a lot of lights, and spawning desert makes a lot of lights.
+	Meanwhile, floor <-> wall changes requires RL_SetOpacity() calls which involves iterating over every light in a radius.
+	So to avoid as many recalculations as possible, we want to do the opacity changes when there's the fewest lights around.
+
+	Trick is, for the departing side of the equation that's *before* the newly spawned lights are enabled,
+	while on the arriving side that's after all the freshly deleted lights are disabled.
+
+	Now that's a hypothetical as of time of writing, but the same problem affects the Gehenna <-> Space mining shuttle.
+*/
+
+/// Atoms with pending recalculations, processed before light_update_queue
+//var/datum/circular_queue/RL_atom_update_queue_early = new /datum/circular_queue(250) //RL_OPACITY_TODO
+/// Atoms with pending recalculations, processed after light_update_queue
+//var/datum/circular_queue/RL_atom_update_queue_late = new /datum/circular_queue(250) //RL_OPACITY_TODO
+
 
 /// Controls the LIGHTS
 datum/controller/process/lighting
@@ -36,10 +56,23 @@ datum/controller/process/lighting
 
 	doWork()
 		count = 0
-		var/datum/light/L = 0
+		//var/atom/A = 0
 
-		if (!light_update_queue.cur_size)
+		if (!(/*RL_atom_update_queue_early.cur_size + */light_update_queue.cur_size/* + RL_atom_update_queue_late.cur_size*/))
 			chunk_count = min_chunk_size
+
+		/*while(RL_atom_update_queue_early.cur_size) //RL_OPACITY_TODO
+
+			A = RL_atom_update_queue_early.dequeue()
+			if (A)
+				A.RL_SetOpacity(0, queued_run = TRUE) //The first argument is wrong but should not get used with queued_run set
+				count++
+
+			if (APPROX_TICK_USE > LIGHTING_MAX_TICKUSAGE && count >= chunk_count)
+				chunk_count = min(max_chunk_size, chunk_count + chunk_count_increase_rate*2)
+				return*/
+
+		var/datum/light/L = 0
 
 		while(light_update_queue.cur_size)
 
@@ -76,9 +109,22 @@ datum/controller/process/lighting
 
 			if (APPROX_TICK_USE > LIGHTING_MAX_TICKUSAGE && count >= chunk_count)
 				chunk_count = min(max_chunk_size, chunk_count + chunk_count_increase_rate*2)
+				break//return//previously break before adding the second queue
+
+		//reusing A
+
+		/*while(RL_atom_update_queue_late.cur_size) //RL_OPACITY_TODO
+
+			A = RL_atom_update_queue_late.dequeue()
+			if (A)
+				A.RL_SetOpacity(0, queued_run = TRUE) //The first argument is wrong but should not get used with queued_run set
+				count++
+
+			if (APPROX_TICK_USE > LIGHTING_MAX_TICKUSAGE && count >= chunk_count)
+				chunk_count = min(max_chunk_size, chunk_count + chunk_count_increase_rate*2)
 				break
 
-		chunk_count = max(min_chunk_size, chunk_count - chunk_count_increase_rate)
+		chunk_count = max(min_chunk_size, chunk_count - chunk_count_increase_rate)*/
 
 	/*
 	proc/lag_machine() //for testing the game in a laggy state
