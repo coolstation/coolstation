@@ -360,6 +360,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	health_burn = 45
 	pull_w_class = W_CLASS_BULKY
 	takes_brain = FALSE
+	custom_gib_handler = /proc/gibs
 	pet_text = list("slaps", "smacks", "whaps", "pets")
 	ideal_blood_volume = 200
 	blood_id = "oil"

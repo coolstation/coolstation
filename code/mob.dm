@@ -36,7 +36,7 @@
 
 	var/obj/item/device/energy_shield/energy_shield = null
 
-	var/custom_gib_handler = null
+	var/custom_gib_handler = /proc/gibs
 	var/obj/decal/cleanable/custom_vomit_type = /obj/decal/cleanable/vomit
 
 	var/list/mob/dead/target_observer/observers = list()
