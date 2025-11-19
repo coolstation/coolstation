@@ -359,6 +359,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	health_brute = 45
 	health_burn = 45
 	pull_w_class = W_CLASS_BULKY
+	p_class = 2.5
 	takes_brain = FALSE
 	custom_gib_handler = /proc/gibs
 	pet_text = list("slaps", "smacks", "whaps", "pets")
@@ -369,9 +370,9 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	can_lie = FALSE
 	use_stunned_icon = FALSE // for now
 	layer = MOB_LAYER + 0.12
-	base_walk_delay = 8
-	base_move_delay = 7
-	var/out_of_water_movedelay = 8
+	base_move_delay = 12
+	base_walk_delay = 15
+	var/out_of_water_movedelay = 5
 	var/obj/magindaran_horsehead/myhead = null
 
 	New()
