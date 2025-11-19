@@ -1,6 +1,8 @@
 
-/// List of items that want to be deleted
+/// Lights with pending recalculations
 var/datum/circular_queue/light_update_queue = new /datum/circular_queue(500)
+/// Atoms with pending recalculations (only RL_SetOpacity atm)
+var/datum/circular_queue/RL_atom_update_queue = new /datum/circular_queue(500)
 
 /// Controls the LIGHTS
 datum/controller/process/lighting
@@ -38,7 +40,7 @@ datum/controller/process/lighting
 		count = 0
 		var/datum/light/L = 0
 
-		if (!light_update_queue.cur_size)
+		if (!(light_update_queue.cur_size + RL_atom_update_queue.cur_size))
 			chunk_count = min_chunk_size
 
 		while(light_update_queue.cur_size)
@@ -72,6 +74,20 @@ datum/controller/process/lighting
 
 				L.dirty_flags = 0
 
+				count++
+
+			if (APPROX_TICK_USE > LIGHTING_MAX_TICKUSAGE && count >= chunk_count)
+				chunk_count = min(max_chunk_size, chunk_count + chunk_count_increase_rate*2)
+				return//previously break before adding the second queue
+
+		//N.B. not sure if it's better to tackle the light queue or the opacity queue first.
+		var/atom/A = 0
+
+		while(light_update_queue.cur_size)
+
+			A = RL_atom_update_queue.dequeue()
+			if (A)
+				A.RL_SetOpacity(0, queued_run = TRUE) //The first argument is wrong but should not get used with queued_run set
 				count++
 
 			if (APPROX_TICK_USE > LIGHTING_MAX_TICKUSAGE && count >= chunk_count)
