@@ -720,7 +720,7 @@
 /obj/machinery/door/poddoor/blast/single{
 	id = "combustionexhaust1"
 	},
-/turf/floor/engine,
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "bN" = (
 /obj/disposalpipe/segment/sewage/horizontal,
@@ -901,9 +901,9 @@
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "cl" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/disposalpipe/segment/produce/horizontal,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "cm" = (
@@ -1608,13 +1608,13 @@
 /turf/floor/plating/random,
 /area/station/maintenance/central)
 "dV" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/northeast,
 /obj/cable{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "dW" = (
@@ -2128,12 +2128,12 @@
 /turf/floor/riveted,
 /area/station/hallway/primary/southwest)
 "fc" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/power/generatorTemp,
 /obj/cable/blue{
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "fd" = (
@@ -2141,8 +2141,8 @@
 /turf/floor/industrial,
 /area/station/hallway/primary/southeast)
 "fe" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "ff" = (
@@ -2655,7 +2655,8 @@
 /turf/floor/sanitary/blue,
 /area/station/medical/medbay/cloner)
 "gj" = (
-/turf/floor/engine,
+/obj/machinery/atmospherics/pipe/vent/east,
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "gk" = (
 /obj/cable{
@@ -2716,10 +2717,13 @@
 	dir = 1
 	},
 /area/station/crew_quarters/hop)
-"gq" = (
-/obj/overlay/magindara_skylight/weather,
-/obj/machinery/atmospherics/binary/passive_gate,
-/turf/floor/industrial,
+"gp" = (
+/obj/machinery/atmospherics/unary/outlet_injector{
+	dir = 8;
+	icon_state = "on";
+	on = 1
+	},
+/turf/floor/airless/engine/glow/blue,
 /area/station/engine/thermo)
 "gr" = (
 /obj/cable{
@@ -2790,8 +2794,8 @@
 /turf/floor/riveted,
 /area/station/hallway/primary/northeast)
 "gz" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northwest,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "gA" = (
@@ -3657,7 +3661,7 @@
 /area/station/science/research_director)
 "iz" = (
 /obj/machinery/atmospherics/pipe/simple/junction/south,
-/turf/floor/engine,
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "iA" = (
 /obj/storage/cart/trash,
@@ -3829,8 +3833,8 @@
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "iT" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "iU" = (
@@ -4240,13 +4244,13 @@
 /turf/floor/riveted,
 /area/station/hallway/primary/west)
 "jY" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/power/terminal,
 /obj/cable/blue,
 /obj/cable/blue{
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "jZ" = (
@@ -5562,8 +5566,8 @@
 /turf/floor/industrial,
 /area/station/maintenance/north)
 "mU" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/binary/circulatorTemp/right,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "mV" = (
@@ -7147,6 +7151,7 @@
 	dir = 4
 	},
 /obj/railing/cool,
+/obj/machinery/portable_atmospherics/canister/toxins,
 /obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
@@ -8712,13 +8717,13 @@
 /turf/floor/black,
 /area/station/crew_quarters/hop)
 "uo" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "up" = (
@@ -9367,8 +9372,8 @@
 	dir = 4
 	},
 /obj/railing/cool,
+/obj/machinery/atmospherics/portables_connector/north,
 /obj/overlay/magindara_skylight/weather,
-/obj/machinery/atmospherics/pipe/simple/insulated/fuel/northwest,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "vT" = (
@@ -9445,7 +9450,7 @@
 /area/station/medical/medbay/cloner)
 "wc" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southwest,
-/turf/floor/engine,
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "wd" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon14,
@@ -10709,9 +10714,9 @@
 /turf/floor/black,
 /area/station/janitor/office)
 "zf" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/railing/cool,
 /obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "zg" = (
@@ -10794,8 +10799,8 @@
 /obj/railing/cool{
 	dir = 1
 	},
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/southwest,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "zt" = (
@@ -10999,7 +11004,7 @@
 /obj/machinery/door/poddoor/blast/single{
 	id = "combustionexhaust2"
 	},
-/turf/floor/engine,
+/turf/floor/airless/engine/glow/blue,
 /area/station/engine/thermo)
 "zS" = (
 /turf/floor/riveted,
@@ -11225,7 +11230,6 @@
 /turf/floor/white,
 /area/station/medical/staff)
 "An" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/lightning_rod{
 	state = 2;
 	anchored = 1
@@ -11234,6 +11238,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Ao" = (
@@ -11293,7 +11298,7 @@
 /area/station/hallway/primary/west)
 "Av" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
-/turf/floor/engine,
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "Aw" = (
 /obj/machinery/door/window/northright,
@@ -11643,14 +11648,14 @@
 /obj/disposaloutlet/small{
 	dir = 4
 	},
-/turf/floor/engine,
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "Bi" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/railing/cool{
 	dir = 8
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Bj" = (
@@ -11718,8 +11723,8 @@
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "Bq" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Br" = (
@@ -12008,8 +12013,8 @@
 /turf/floor/industrial,
 /area/station/security/armory)
 "Cb" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southwest,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Cc" = (
@@ -12406,7 +12411,7 @@
 /area/station/medical/medbay/treatment)
 "CV" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
-/turf/floor/engine,
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "CW" = (
 /obj/disposalpipe/segment/bent/south,
@@ -12571,7 +12576,7 @@
 "Dp" = (
 /obj/wingrille_spawn/reinforced_crystal,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
-/turf/floor/plating/random,
+/turf/floor/airless/engine/glow/blue,
 /area/station/engine/thermo)
 "Dq" = (
 /turf/floor/grey,
@@ -12917,8 +12922,8 @@
 /turf/space/magindara,
 /area/station/catwalk/simulated)
 "Eg" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Eh" = (
@@ -13092,13 +13097,13 @@
 /turf/space/magindara,
 /area/magindara)
 "EA" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/railing/cool,
 /obj/cable{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "EB" = (
@@ -13183,7 +13188,6 @@
 /turf/floor/grass,
 /area/station/medical/research)
 "EL" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/disposalpipe/trunk/produce{
 	dir = 4
 	},
@@ -13198,6 +13202,7 @@
 /obj/railing/cool{
 	dir = 8
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "EM" = (
@@ -13392,6 +13397,9 @@
 /obj/random_item_spawner/tools_w_igloves/one_or_zero,
 /turf/floor/industrial,
 /area/station/hallway/primary/northeast)
+"Fg" = (
+/turf/floor/airless/engine/glow/blue,
+/area/station/engine/thermo)
 "Fh" = (
 /obj/cable{
 	d1 = 1;
@@ -13966,8 +13974,8 @@
 /area/station/hallway/primary/southwest)
 "GA" = (
 /obj/railing/cool,
+/obj/machinery/atmospherics/pipe/simple/overfloor/horizontal,
 /obj/overlay/magindara_skylight/weather,
-/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "GB" = (
@@ -14135,7 +14143,7 @@
 /area/station/crew_quarters/clown)
 "GW" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/northwest,
-/turf/floor/engine,
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "GX" = (
 /obj/lattice{
@@ -14506,6 +14514,15 @@
 	},
 /turf/floor/riveted,
 /area/station/hallway/primary/west)
+"HT" = (
+/obj/machinery/atmospherics/binary/volume_pump{
+	dir = 4;
+	on = 1;
+	transfer_rate = 1000
+	},
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "HU" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/wall/false_wall,
@@ -14775,11 +14792,11 @@
 /turf/floor/riveted,
 /area/station/hallway/primary/west)
 "IB" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /obj/railing/cool{
 	dir = 8
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "IC" = (
@@ -14858,6 +14875,10 @@
 /obj/disposalpipe/segment/bent/north,
 /turf/space/magindara,
 /area/magindara)
+"IK" = (
+/obj/machinery/atmospherics/pipe/simple/horizontal,
+/turf/wall/r_wall,
+/area/station/engine/thermo)
 "IL" = (
 /obj/cable{
 	d1 = 4;
@@ -15281,10 +15302,12 @@
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
 "JK" = (
-/obj/overlay/magindara_skylight/weather,
-/obj/machinery/atmospherics/valve/horizontal{
-	dir = 2
+/obj/machinery/atmospherics/binary/volume_pump{
+	dir = 1;
+	on = 1;
+	transfer_rate = 1000
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "JL" = (
@@ -15359,8 +15382,8 @@
 /area/station/crew_quarters/ce)
 "JV" = (
 /obj/railing/cool,
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/portables_connector/east,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "JW" = (
@@ -16200,8 +16223,8 @@
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
 "LG" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/binary/circulatorTemp,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "LH" = (
@@ -16578,11 +16601,11 @@
 /obj/railing/cool{
 	dir = 1
 	},
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/southeast,
 /obj/railing/cool{
 	dir = 8
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "MA" = (
@@ -16727,8 +16750,8 @@
 /turf/floor/grey,
 /area/station/crew_quarters/captain)
 "MS" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/tank/nitrogen/east,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "MT" = (
@@ -16886,8 +16909,8 @@
 /turf/space/magindara,
 /area/station/catwalk/simulated)
 "Np" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/landmark/gps_waypoint,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Nq" = (
@@ -16932,8 +16955,8 @@
 /turf/floor/plating,
 /area/station/engine/elect)
 "Nw" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/northwest,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Nx" = (
@@ -17072,8 +17095,8 @@
 /obj/railing/cool{
 	dir = 1
 	},
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "NO" = (
@@ -17112,6 +17135,12 @@
 	dir = 1
 	},
 /area/station/science/chemistry)
+"NU" = (
+/obj/railing/cool,
+/obj/machinery/atmospherics/portables_connector/west,
+/obj/overlay/magindara_skylight/weather,
+/turf/floor/industrial,
+/area/station/engine/thermo)
 "NV" = (
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/cable{
@@ -17538,8 +17567,11 @@
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "Pi" = (
-/obj/machinery/atmospherics/pipe/vent/south,
-/turf/floor/engine,
+/obj/machinery/atmospherics/unary/outlet_injector{
+	on = 1;
+	icon_state = "on"
+	},
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "Pj" = (
 /obj/window/reinforced/north,
@@ -17592,8 +17624,8 @@
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
 "Pp" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/manifold/overfloor/east,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Pq" = (
@@ -17851,10 +17883,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/north)
-"PU" = (
-/obj/wingrille_spawn/reinforced_crystal,
-/turf/floor/engine,
-/area/station/engine/thermo)
 "PV" = (
 /obj/disposalpipe/segment/mail/bent/east,
 /turf/floor/riveted,
@@ -17991,19 +18019,17 @@
 /turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "Qo" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/cable{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Qp" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /obj/overlay/magindara_skylight/weather,
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 1
-	},
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Qq" = (
@@ -18159,13 +18185,13 @@
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
 "QN" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,
 /obj/cable/blue{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "QO" = (
@@ -18414,12 +18440,13 @@
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "Rn" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/cable/blue{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/item/device/light/zippo,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Ro" = (
@@ -18464,8 +18491,8 @@
 /turf/wall/auto/rivet,
 /area/station/hydroponics/bay)
 "Rw" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Rx" = (
@@ -18869,8 +18896,8 @@
 /turf/floor/riveted,
 /area/station/hallway/primary/central)
 "Sq" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/tank/nitrogen,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Sr" = (
@@ -19115,7 +19142,7 @@
 /area/station/hallway/primary/southwest)
 "ST" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
-/turf/floor/engine,
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "SU" = (
 /obj/disposalpipe/segment/horizontal,
@@ -19251,7 +19278,6 @@
 /turf/floor/plating/random,
 /area/station/security/detectives_office)
 "Ti" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/power/smes{
 	charge = 2e+006;
 	chargelevel = 15000;
@@ -19262,15 +19288,17 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Tj" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/cable/blue{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/item/cigpacket/greasy,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Tk" = (
@@ -19495,7 +19523,7 @@
 /area/magindara)
 "TJ" = (
 /obj/wingrille_spawn/reinforced_crystal,
-/turf/floor/plating/random,
+/turf/floor/airless/engine/glow/blue,
 /area/station/engine/thermo)
 "TK" = (
 /obj/random_item_spawner/junk/one_or_zero,
@@ -19557,7 +19585,7 @@
 "TR" = (
 /obj/wingrille_spawn/reinforced_crystal,
 /obj/disposalpipe/segment/produce/horizontal,
-/turf/floor/plating/random,
+/turf/floor/airless/engine/glow/blue,
 /area/station/engine/thermo)
 "TS" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -19864,8 +19892,8 @@
 /turf/floor/white/checker,
 /area/station/medical/medbay/treatment)
 "UD" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "UE" = (
@@ -20284,7 +20312,7 @@
 /area/station/catwalk/simulated)
 "VD" = (
 /obj/machinery/atmospherics/pipe/simple/junction/north,
-/turf/floor/engine,
+/turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
 "VE" = (
 /obj/disposalpipe/segment/bent/east,
@@ -20799,7 +20827,7 @@
 "WX" = (
 /obj/wingrille_spawn/reinforced_crystal,
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/vertical,
-/turf/floor/plating/random,
+/turf/floor/airless/engine/glow/blue,
 /area/station/engine/thermo)
 "WY" = (
 /obj/grille/catwalk/cross{
@@ -21257,6 +21285,7 @@
 /area/station/security/detectives_office)
 "XY" = (
 /obj/table/reinforced/industrial/auto,
+/obj/item/device/analyzer/atmospheric/upgraded,
 /turf/floor/riveted,
 /area/station/crew_quarters/ce)
 "XZ" = (
@@ -21689,10 +21718,10 @@
 /turf/floor/riveted,
 /area/station/hallway/primary/northwest)
 "Ze" = (
-/obj/overlay/magindara_skylight/weather,
 /obj/machinery/atmospherics/unary/cold_sink/freezer/north{
 	dir = 8
 	},
+/obj/overlay/magindara_skylight/weather,
 /turf/floor/industrial,
 /area/station/engine/thermo)
 "Zf" = (
@@ -63912,7 +63941,7 @@ gl
 Mz
 Bi
 IB
-gq
+fe
 LG
 fe
 uo
@@ -64820,9 +64849,9 @@ Eg
 Ze
 Np
 EL
-Eg
+HT
 Tj
-Bq
+HT
 zf
 gl
 SO
@@ -65729,7 +65758,7 @@ Bh
 VD
 Dp
 Nw
-GA
+NU
 gl
 SO
 SO
@@ -66631,8 +66660,8 @@ uN
 WM
 bM
 WM
-PU
-WM
+TJ
+IK
 WM
 Pl
 gl
@@ -66931,10 +66960,10 @@ SO
 Ut
 uN
 TJ
-gj
-gj
-gj
-gj
+Fg
+Fg
+Fg
+gp
 TJ
 Xi
 gl
@@ -67234,7 +67263,7 @@ FN
 uN
 WM
 WM
-PU
+TJ
 WM
 zR
 WM
