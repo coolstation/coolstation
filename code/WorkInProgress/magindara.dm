@@ -449,6 +449,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	event_handler_flags = Z_ANCHORED | USE_FLUID_ENTER
 	plane = PLANE_SPACE
 	var/mob/living/critter/magindaran_horse/myhorse = null
+	var/bullet_hit_rate = 30
 
 	New(turf/newLoc, var/mob/living/critter/magindaran_horse/horse = null)
 		. = ..()
@@ -472,12 +473,38 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		epicenter_down = locate(epicenter_down.x, epicenter_down.y, myhorse_turf.z)
 		return src.myhorse.ex_act(severity, last_touched, epicenter_down, turf_safe)
 
+	CanPass(atom/movable/mover)
+		if(istype(mover, /obj/projectile/P))
+			return prob(src.bullet_hit_rate)
+		. = ..()
+
+
+	bullet_act(obj/projectile/P)
+		. = ..()
+		return src.myhorse
+
 // todo: they need to wander as a herd, approximately
 // they should congregate nearish the station, and if someone feeds one,
 // the tile they were fed at should be considered a high priority tile
 /datum/aiHolder/horse_herd
 	New()
 		. = ..()
-		var/datum/aiTask/timed/wander/W =  get_instance(/datum/aiTask/timed/wander, list(src))
+		var/datum/aiTask/timed/wander_sometimes/W =  get_instance(/datum/aiTask/timed/wander_sometimes, list(src))
 		W.transition_task = W
 		default_task = W
+
+/datum/aiTask/timed/wander_sometimes
+	name = "occasionally wandering"
+	minimum_task_ticks = 15
+	maximum_task_ticks = 20
+	var/wander_chance = 15
+
+/datum/aiTask/timed/wander_sometimes/evaluate()
+	. = 1
+
+/datum/aiTask/timed/wander_sometimes/on_tick()
+	. = ..()
+	if(prob(src.wander_chance))
+		holder.owner.move_dir = pick(alldirs)
+		holder.owner.process_move()
+	holder.stop_move()
