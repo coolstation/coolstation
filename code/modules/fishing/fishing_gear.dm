@@ -156,16 +156,14 @@
 		user.visible_message("[user] flips off the [src].", "You turn off the [src].")
 		qdel(src)
 
-TYPEINFO(/obj/item/syndie_fishing_rod)
-	mats = list("MET-3"=15, "WOOD"=5)
-
 /obj/item/syndie_fishing_rod
-	name = "\improper Glaucus fishing rod"
-	desc = "A high grade tactical fishing rod, completely impractical for reeling in bass."
+	name = "\improper Libre Mercado fishing rod"
+	desc = "A high grade 3D printed fishing rod, completely impractical for reeling in bass."
 	icon = 'icons/obj/items/fishing_gear.dmi'
 	icon_state = "syndie_fishing_rod-inactive"
 	inhand_image_icon = 'icons/mob/inhand/hand_fishing.dmi'
 	item_state = "syndie_fishing_rod-inactive"
+	mats = list("MET-3"=15, "WOOD"=5)
 	hit_type = DAMAGE_STAB
 	flags = FPRINT | TABLEPASS | USEDELAY
 	w_class = W_CLASS_NORMAL
@@ -189,7 +187,7 @@ TYPEINFO(/obj/item/syndie_fishing_rod)
 	var/line_length = 8
 	/// true if the rod is currently ""fishing"", false if it isnt
 	var/is_fishing = FALSE
-	hint = "The Glaucus starts with 7 damage on a melee reel, but stores up 3 onetime bonus damage on each ranged reel. If this reaches <b>25 damage</b>, or 6 ranged reels before a melee reel, the target will be stunned when damaged."
+	hint = "The Libre Mercado starts with 7 damage on a melee reel, but stores up 3 onetime bonus damage on each ranged reel. If this reaches <b>25 damage</b>, or 6 ranged reels before a melee reel, the target will be stunned when damaged."
 
 	New()
 		..()
