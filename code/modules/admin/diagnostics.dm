@@ -1242,6 +1242,23 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.overlays = list(src.makeText(max_singulo_radius, RESET_ALPHA | RESET_COLOR))
 
 
+	RL_lights
+		name = "RL Lights"
+		help = "Highlights tiles on which RobustLight2 lights are places.<br>First number is the amount of lights, the second is the largest radius."
+
+		GetInfo(turf/theTurf, image/debugoverlay/img)
+			if (theTurf.turf_persistent.RL_Lights)
+				img.app.alpha = 120
+				img.app.color = "#999999"
+				var/max_radius = 0
+				for (var/datum/light/L as anything in theTurf.turf_persistent.RL_Lights)
+					max_radius = max(max_radius, L.radius)
+				img.app.overlays = list(src.makeText("[length(theTurf.turf_persistent.RL_Lights)] lights\n[max_radius]"))
+			else
+				img.app.alpha = 0
+
+
+
 /client/var/list/infoOverlayImages
 /client/var/datum/infooverlay/activeOverlay
 

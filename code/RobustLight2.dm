@@ -877,21 +877,26 @@ atom
 			RL_SetOpacity(0)
 
 	proc
-		RL_SetOpacity(new_opacity, queued_run = 0)
+		RL_SetOpacity(new_opacity/*, queued_run = 0, queue_late = TRUE*/) //RL_OPACITY_TODO
 			if(src.disposed) return
 			if (src.opacity == new_opacity)
 				return
 
+			//RL_OPACITY_TODO
 			//putting this in front of the queue logic just in case
 			//worried that we might run into problems with lingering opacity mismatches if the atom get deleted while in the queue
-			if (!queued_run)
+			/*if (!queued_run)
 				var/turf/L = get_turf(src)
 				if(src.loc == L && L) L.turf_persistent.opaque_atom_count += new_opacity ? 1 : -1
 				src.opacity = new_opacity
 
 			if (SHOULD_QUEUE)
-				RL_atom_update_queue.queue(src)
-				return
+				//See code/datums/controllers/process/lighting.dm for why there's two queues
+				if (queue_late)
+					RL_atom_update_queue_late.queue(src)
+					return
+				RL_atom_update_queue_early.queue(src)
+				return*/
 
 			var/list/datum/light/lights = list()
 			for (var/turf/T in view(RL_MaxRadius, src))
@@ -903,7 +908,10 @@ atom
 				if (light.enabled)
 					affected |= light.strip(++RL_Generation)
 
-			//opaque_atom_count & opacity was updated here before
+			//opaque_atom_count & opacity was updated here before //RL_OPACITY_TODO
+			var/turf/L = get_turf(src)
+			if(src.loc == L && L) L.turf_persistent.opaque_atom_count += new_opacity ? 1 : -1
+			src.opacity = new_opacity
 
 			for (var/datum/light/light as anything in lights)
 				if (light.enabled)
