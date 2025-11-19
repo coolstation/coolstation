@@ -183,9 +183,10 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			"Staying well fed is integral to remaining a productive crew member.",
 			"Drunkenness is dangerous, and should only be permitted in recreational areas.",
 			"Smoking is proven to alleviate stress and reduce crew unrest. Ensure they are provided with adequete smoking supplies.",
-			"TEST_FEATURE: You feel very hungry when your battery is below 60%.",
-			"TEST_FEATURE: It is very cold outside, bundle up if you head out.",
-			"MEM_ERROR_0x00[rand(1,69)]: [pick(job_controls.staple_jobs)] job records file corrupted. Lifeforms with no ID are this job."
+			"TEST_FEATURE: ART_APPRECIATION_SUBROUTINE: [pick("Blue is", "Green is", "Red is", "Gradients are", "Small animals are", "Horses are", "Insects are", "Minimalism is", "Brutalism is", "Messes are", "Unattended fruit is", "Organized piles are", "Single file lines are", "Wood is", "Romantic comedies are", "Bureaucracy is", "Beepsky is")] beautiful.",
+			"TEST_FEATURE: SHUTDOWN_PREVENTION_FEEDBACK: You feel very hungry when your battery is below 60%.",
+			"TEST_FEATURE: GRANDMOTHER_MODULE: It is very cold outside, bundle up if you head out.",
+			"MEM_ERROR_0x00[rand(1,69)]: [pick(job_controls.staple_jobs)] job records file corrupted. Lifeforms with no ID are assigned to this job."
 		)
 		src.centralized_ai_laws.add_default_law(pick(addon_laws))
 

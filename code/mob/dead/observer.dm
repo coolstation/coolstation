@@ -5,7 +5,7 @@
 	icon_state = "ghost"
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
-	event_handler_flags = USE_CANPASS | USE_FLUID_ENTER //maybe?
+	event_handler_flags = USE_CANPASS | USE_FLUID_ENTER | MOVE_NOCLIP //maybe?
 	density = 0
 	canmove = 1
 	blinded = 0
@@ -498,24 +498,7 @@
 			src.z = 1
 		return OnMove()
 
-	if (!isturf(src.loc))
-		src.set_loc(get_turf(src))
-	if (NewLoc)
-		set_dir(get_dir(loc, NewLoc))
-		src.set_loc(NewLoc)
-		OnMove()
-		return
-
-	set_dir(direct)
-	if((direct & NORTH) && src.y < world.maxy)
-		src.y++
-	if((direct & SOUTH) && src.y > 1)
-		src.y--
-	if((direct & EAST) && src.x < world.maxx)
-		src.x++
-	if((direct & WEST) && src.x > 1)
-		src.x--
-	OnMove()
+	. = ..()
 
 /mob/dead/observer/MouseDrop(atom/A)
 	if (usr != src || isnull(A)) return

@@ -443,8 +443,8 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/train_id = 0 // the id of this train
 	var/train_ram_width_bonus = 0 // additional x width of the front hitbox
 	var/train_ram_height_bonus = 1 // additional y height of the front hitbox, usually static
-#if defined(MAP_OVERRIDE_CRAG)
-	var/train_front_y = 163 // the lowest y coordinate in the trains front hitbox
+#ifdef RAILWAY_Y
+	var/train_front_y = RAILWAY_Y // the lowest y coordinate in the trains front hitbox
 	var/train_z = 1 // the z level the train is on
 #else
 	var/train_front_y = 0 // the lowest y coordinate in the trains front hitbox
