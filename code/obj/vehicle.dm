@@ -241,6 +241,14 @@ ABSTRACT_TYPE(/obj/vehicle)
 	mats = 8
 	var/weeoo_in_progress = 0
 	var/icon_weeoo_state = 2
+	var/cell_type = /obj/item/ammo/power_cell/med_power // Type of cell to spawn by default.
+	var/is_active = TRUE
+	var/rechargable = TRUE
+	var/charge_time = 0
+	var/active_time
+	var/recharge_time
+	var/can_swap_cell = 1
+
 	soundproofing = 0
 	throw_dropped_items_overboard = 1
 	var/datum/light/light
@@ -252,6 +260,24 @@ ABSTRACT_TYPE(/obj/vehicle)
 	light = new /datum/light/point
 	light.set_brightness(0.7)
 	light.attach(src)
+	processing_items |= src
+	var/cell = null
+	if(cell_type)
+		cell = new cell_type
+		AddComponent(/datum/component/cell_holder, cell, TRUE, INFINITY, can_swap_cell)
+
+///	examine()
+///		. = ..()
+///		var/ret = list()
+///		if (!(SEND_SIGNAL(src, COMSIG_CELL_CHECK_CHARGE, ret) & CELL_RETURNED_LIST))
+///			. += "<span class='alert'>No power cell installed.</span>"
+///		else
+///			. += "The [src.name] is turned [src.is_active ? "on" : "off"]. There are [ret["charge"]]/[ret["max_charge"]] PUs left!"
+///
+
+/obj/vehicle/segway/Move()
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_CELL_USE, 15)
 
 /obj/vehicle/segway/proc/weeoo()
 	if (weeoo_in_progress)
