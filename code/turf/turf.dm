@@ -776,6 +776,17 @@
 				W.update_icon()
 	return wall
 
+/turf/proc/ReplaceWithConcrete()
+	var/wall = ReplaceWith("Concrete")
+	if (map_settings)
+		if (map_settings.auto_walls)
+			for (var/turf/wall/auto/W in orange(1))
+				W.update_icon()
+		if (map_settings.auto_windows)
+			for (var/obj/window/auto/W in orange(1))
+				W.update_icon()
+	return wall
+
 /turf/proc/ReplaceWithRWall()
 	var/wall = ReplaceWith("RWall")
 	if (map_settings)

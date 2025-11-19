@@ -38,6 +38,57 @@
 	generate_worldgen()
 		src.update_icon()
 
+/obj/grille/attackby(obj/item/W as obj, mob/user as mob)
+
+	if (istype(W, /obj/item/sheet))
+		if (!istype(src.loc, /turf/floor/))
+			boutput(user, "<span class='alert'>You can't build a false wall there.</span>")
+			return
+
+		var/obj/item/sheet/S = W
+		var/turf/floor/T = src.loc
+
+		var/FloorIcon = T.icon
+		var/FloorState = T.icon_state
+		var/FloorIntact = T.intact
+		var/FloorBurnt = T.burnt
+		var/FloorName = T.name
+		var/oldmat = src.material
+
+		var/target_type = S.reinforcement ? /turf/wall/false_wall/reinforced : /turf/wall/false_wall
+
+		T.ReplaceWithConcrete()
+		var/atom/A = src.loc
+		if(oldmat)
+			A.setMaterial(oldmat)
+		else
+			var/datum/material/M = getMaterial("steel")
+			A.setMaterial(M)
+
+		var/turf/wall/false_wall/FW = A
+		FW.inherit_area()
+
+		FW.setFloorUnderlay(FloorIcon, FloorState, FloorIntact, 0, FloorBurnt, FloorName)
+		FW.known_by += user
+		S.change_stack_amount(-1)
+		boutput(user, "You finish building the false wall.")
+		logTheThing("station", user, null, "builds a False Wall in [user.loc.loc] ([showCoords(user.x, user.y, user.z)])")
+		qdel(src)
+		return
+
+	else if (isscrewingtool(W))
+		var/obj/item/sheet/S = new /obj/item/sheet(src.loc)
+		if(src.material)
+			S.setMaterial(src.material)
+		else
+			var/datum/material/M = getMaterial("steel")
+			S.setMaterial(M)
+		playsound(src.loc, "sound/items/Screwdriver.ogg", 75, 1)
+		qdel(src)
+		return
+	else
+		return ..()
+
 	disposing()
 		var/list/neighbors = null
 		if (src.auto && src.anchored && map_setting)
