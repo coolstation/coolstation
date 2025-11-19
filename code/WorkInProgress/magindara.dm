@@ -474,7 +474,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		return src.myhorse.ex_act(severity, last_touched, epicenter_down, turf_safe)
 
 	CanPass(atom/movable/mover)
-		if(istype(mover, /obj/projectile/P))
+		if(istype(mover, /obj/projectile))
 			return prob(src.bullet_hit_rate)
 		. = ..()
 
