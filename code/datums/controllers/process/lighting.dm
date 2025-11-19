@@ -83,7 +83,7 @@ datum/controller/process/lighting
 		//N.B. not sure if it's better to tackle the light queue or the opacity queue first.
 		var/atom/A = 0
 
-		while(light_update_queue.cur_size)
+		while(RL_atom_update_queue.cur_size)
 
 			A = RL_atom_update_queue.dequeue()
 			if (A)
