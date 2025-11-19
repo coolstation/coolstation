@@ -253,7 +253,7 @@ TYPEINFO(/obj/item/syndie_fishing_rod)
 		src.reset_lure()
 		if (!ON_COOLDOWN(user, "syndie_fishing_delay", src.usage_cooldown))
 			if (src.lure.owner && isliving(src.lure.owner))
-				logTheThing(LOG_COMBAT, user, "at [log_loc(src)] reels in a Syndicate Fishing Rod hooked in [src.lure.owner]")
+				logTheThing("combat", user, "at [log_loc(src)] reels in a Syndicate Fishing Rod hooked in [src.lure.owner]")
 				if (!actions.hasAction(user,"fishing_for_fools"))
 					actions.start(new /datum/action/bar/syndie_fishing(user, src.lure.owner, src, src.lure), user)
 				if (!ON_COOLDOWN(user, "syndie_fishing_yank", src.yank_cooldown))
@@ -262,7 +262,7 @@ TYPEINFO(/obj/item/syndie_fishing_rod)
 			else if (src.lure.loc == src)
 				if (target == loc)
 					return
-				logTheThing(LOG_COMBAT, user, "casts a Syndicate Fishing Rod out at [log_loc(src)]")
+				logTheThing("combat", user, "casts a Syndicate Fishing Rod out at [log_loc(src)]")
 				playsound(user, 'sound/items/fishing_rod_cast.ogg', 50, 1)
 				src.is_fishing = TRUE
 				src.update_icon()
@@ -274,7 +274,7 @@ TYPEINFO(/obj/item/syndie_fishing_rod)
 			else
 				src.pull_in_lure(user)
 
-	update_icon()
+	proc/update_icon()
 		//state for fishing
 		if (src.is_fishing)
 			src.icon_state = "syndie_fishing_rod-active"
@@ -305,7 +305,7 @@ TYPEINFO(/obj/item/syndie_fishing_rod)
 
 	// reels in, returns whether damage was dealt
 	proc/reel_in(mob/target, mob/user, damage_on_reel = 7)
-		target.setStatusMin("staggered", 4 SECONDS)
+		target.changeStatus("staggered", min(4 SECONDS, 5 SECONDS - target.getStatusDuration("staggered")))
 		if(BOUNDS_DIST(target, user) == 0)
 			if (issilicon(target))
 				user.visible_message("<span class='alert'><b>[user] tears some scrap out of [target] with \the [src.name]!</b></span>")
@@ -406,13 +406,13 @@ TYPEINFO(/obj/item/syndie_fishing_rod)
 				return TRUE
 			if (do_weaken)
 				M.changeStatus("weakened", 5 SECONDS)
-				M.TakeDamage(M.hand == LEFT_HAND ? "l_arm": "r_arm", 15, 0, 0, DAMAGE_STAB)
+				M.TakeDamage(M.hand == 1 ? "l_arm": "r_arm", 15, 0, 0, DAMAGE_STAB)
 			M.force_laydown_standup()
 
 			src.owner = M
 			src.set_loc(M)
 			M.visible_message("<span class='alert'><b>[M] gets snagged by a fishing lure!</b></span>")
-			logTheThing(LOG_COMBAT, M, "is caught by a barbed fishing lure at [log_loc(src)]")
+			logTheThing("combat", M, "is caught by a barbed fishing lure at [log_loc(src)]")
 			M.emote("scream")
 			take_bleeding_damage(M, null, 10, DAMAGE_STAB)
 			M.UpdateDamageIcon()
@@ -471,7 +471,6 @@ TYPEINFO(/obj/item/syndie_fishing_rod)
 
 		src.duration = max(0.1 SECONDS, rod.syndie_fishing_speed)
 		playsound(src.user, 'sound/items/fishing_rod_cast.ogg', 50, 1)
-		APPLY_ATOM_PROPERTY(src.target, PROP_MOB_CANTSPRINT, src)
 		APPLY_MOVEMENT_MODIFIER(src.target, /datum/movement_modifier/syndie_fishing, src)
 		src.user.visible_message("[src.user] sets the hook!")
 		src.rod.is_fishing = TRUE
@@ -498,6 +497,5 @@ TYPEINFO(/obj/item/syndie_fishing_rod)
 		if (src.lure.owner)
 			src.lure.set_loc(get_turf(src.lure.loc))
 			src.lure.owner = null
-		REMOVE_ATOM_PROPERTY(src.target, PROP_MOB_CANTSPRINT, src)
 		REMOVE_MOVEMENT_MODIFIER(src.target, /datum/movement_modifier/syndie_fishing, src)
 
