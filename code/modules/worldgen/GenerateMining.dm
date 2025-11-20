@@ -256,7 +256,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				var/turf/T = locate(x,y,z_level)
 				if(istype(T, /turf/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
 				//Clobber only the things that are in safe-to-clobber areas. Since we crop the borders off of x and y we don't need to do DISTEDGE anymore.
-				if(map[x][y]/* && !ISDISTEDGE(T, 3) */&& T.loc && ((T.loc.type == /area/gehenna/underground) || istype(T.loc , /area/allowGenerate)) )
+				if(map[x][y]/* && !ISDISTEDGE(T, 3) */&& T.loc && istype(T.loc, /area/allowGenerate))
 					var/turf/wall/asteroid/N = T.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 					generated.Add(N)
 				LAGCHECK(LAG_REALTIME)
