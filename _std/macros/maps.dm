@@ -15,7 +15,7 @@
 #define in_centcom_shuttle(x) (in_centcom(x) && istype(x, /area/shuttle)) //more useful for calculating end of round
 
 /// areas where we will skip searching for shit like APCs and that do not have innate power
-#define area_space_nopower(x) (x.type == /area/space || x.type == /area/allowGenerate || x.type == /area/allowGenerate/trench)
+#define area_space_nopower(x) (x.type == /area/space || istype(x, /area/allowGenerate))
 
 //I've been putting this in enough places that I might as well macrofy it
 ///if worldgen_hold is on, add ourself to the next worldgen generation. Otherwise do the worldgen immediately
