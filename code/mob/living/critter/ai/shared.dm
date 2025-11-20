@@ -66,13 +66,11 @@
 	. = 1 // it'd require every other task returning very small values for this to get selected
 
 /datum/aiTask/timed/wander/on_tick()
+	. = ..()
 	// thanks zewaka for reminding me the previous implementation of this is BYOND NATIVE
 	// thanks byond forums for letting me know that the byond native implentation FUCKING SUCKS
 	holder.owner.move_dir = pick(alldirs)
 	holder.owner.process_move()
-
-/datum/aiTask/timed/wander/on_tick()
-	. = ..()
 	holder.stop_move()
 
 /datum/aiTask/timed/wander/f

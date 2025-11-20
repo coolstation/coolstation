@@ -587,6 +587,7 @@
 				new_turf = new /turf/floor/plating/gehenna(src, src.turf_persistent)
 			else
 				new_turf = new /turf/space/gehenna/desert(src, src.turf_persistent)
+				new_type = /turf/space/gehenna/desert //sneaking this for opacity check later
 		if ("Ocean")
 			new_turf = new /turf/space/fluid/ocean(src, src.turf_persistent)
 		if ("Floor")
@@ -639,7 +640,7 @@
 	//example of failure : fire destorying a wall, the fire goes away, the area BEHIND the wall that used to be blocked gets strip()ped and now it leaves a blue glow (negative fire color)
 	if (new_turf.opacity != old_opacity)
 		new_turf.opacity = old_opacity
-		new_turf.RL_SetOpacity(!new_turf.opacity)
+		new_turf.RL_SetOpacity(!new_turf.opacity/*, queue_late = !(new_type == /turf/space/gehenna/desert)*/) //only wall -> desert changes should go early //RL_OPACITY_TODO
 
 
 	if (handle_air)

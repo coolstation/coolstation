@@ -19,3 +19,7 @@
 #define MINE_MAP_PRESENTS_TOUGH (1<<8)
 /// turf is coloured empty on the mining map
 #define MINE_MAP_PRESENTS_EMPTY (1<<9)
+
+/// Does additional checks when lowering the "checkingyaddayadda" values on a turf, and messages coders if it falls below 0.
+/// This should not be on for a live production server, but it's actually not as heavy as you'd think it is.
+#define TURF_CHECKING_VALUES_DEBUG
