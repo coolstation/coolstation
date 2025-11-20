@@ -286,9 +286,10 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				// the cellular caves!
 
 				if(cellular_holes[clamp(floor(cell_index), 1, cellular_holes_length)] == GEHENNA_MINING_HOLE_KEY)
-					if(!istype(T, /turf/wall/asteroid/gehenna/tough/z3) || prob(80))
+					if(!istype(T, /turf/wall/asteroid/gehenna/tough/z3) || prob(60))
 						T.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
-						continue
+					else if(prob(70))
+						T = T.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 				generated.Add(T)
 				LAGCHECK(LAG_REALTIME)
 
