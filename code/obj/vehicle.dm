@@ -232,7 +232,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 /obj/vehicle/segway
 	name = "\improper Space Segway"
 	icon_state = "segway"
-	hint = "Dragging the segway charges it!"
+	hint = "You can remove the battery cover with a screwdriver."
 	event_handler_flags = USE_FLUID_ENTER | STAIR_ANIM
 	var/icon_base = "segway"
 	var/icon_rider_state = 1
@@ -243,8 +243,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	var/icon_weeoo_state = 2
 	var/obj/item/cell/cell
 	var/open = 0 //Cell hatch
-	var/lastbeep = null // For logging at what charge value the battery indicator last beeped
-	var/bat_warning = 200 // Charge threshold at which the battery warning starts
+	var/bat_warning = 10 // battery percentage at which warning plays
 	var/playing = FALSE //movement sound cooldown
 	var/bumpin = FALSE //Same as playing but for the bump animation
 
@@ -253,6 +252,11 @@ ABSTRACT_TYPE(/obj/vehicle)
 	var/datum/light/light
 	ability_buttons_to_initialize = list(/obj/ability_button/weeoo)
 	var/obj/item/joustingTool = null // When jousting will be reference to lance being used
+
+
+/obj/vehicle/segway/examine() //we need to update the battery indicator every time its examined
+	desc = "Now you too can look like a complete tool in space!	The battery indicator reads [floor((cell.charge / cell.maxcharge) * 100)]% remaining."
+	. = ..()
 
 /obj/vehicle/segway/disposing() //deletes ur cell cutely
 	if(cell)
@@ -271,8 +275,6 @@ ABSTRACT_TYPE(/obj/vehicle)
 	light = new /datum/light/point
 	light.set_brightness(0.7)
 	cell = new /obj/item/cell/dan(src) //puts the shitty dan cell in on new
-	desc = "Now you too can look like a complete tool in space!	The battery indicator reads [floor((cell.charge / cell.maxcharge) * 100)]% remaining."
-	lastbeep = bat_warning
 
 /obj/vehicle/segway/attackby(var/obj/item/I, var/mob/user) //cell addition
 	if(istype(I,/obj/item/cell) && open && !cell) //If the player is holding a cell and slaps it on the segway, check if cover is closed, puts the cell in if its not
@@ -282,7 +284,6 @@ ABSTRACT_TYPE(/obj/vehicle)
 		cell = C
 		playsound(src, "sound/machines/click.ogg", 50, 1)
 		src.visible_message("[user] inserts the [cell.name] into the [src]", "<span class='notice'>You insert the [cell.name] into the [src]</span>")
-		lastbeep = bat_warning //reset the low power indicator
 
 	else if (isscrewingtool(I)) //It wasn't a cell? if it was a screwdriver, open or close the cover
 		open = !open
@@ -301,7 +302,6 @@ ABSTRACT_TYPE(/obj/vehicle)
 		src.visible_message("[user] removes the [cell.name] from the [src]", "<span class='notice'>You remove the [cell.name] from the [src]</span>")
 		src.cell = null
 		playsound(src, "sound/machines/click.ogg", 50, 1)
-		lastbeep = bat_warning
 
 	else if(!cell)
 		src.visible_message("<span class='notice'>You notice the cell slot is empty, its cover is open and unscrewed</span>")
@@ -313,19 +313,16 @@ ABSTRACT_TYPE(/obj/vehicle)
 	. = ..()
 	if(!cell)
 		return
-	if(!src.rider)
-		cell.give(0.2) //If pulled, add 0.2% charge, shitty circuit design lets power back into the battery from the wheels or something lol
-	else
-		cell.use(0.5)
+	if(src.rider)
+		cell.use(0.3)
 
 		drive_sound() //motor sounds have to be handled by a proc or diagonal movements play too many sounds
 		if(cell.charge < 1)
 			src.stop()
 			return
-		if(cell.charge < bat_warning && cell.charge <= lastbeep - (cell.charge * 0.1) || !lastbeep) //If charge is less than the warning theshold and hits the next scheduled beep (last beep charge), beeps get scheduled sooner relative to how depleted the batteries are
+		if(floor((cell.charge / cell.maxcharge) * 100) < bat_warning && ((cell.charge / cell.maxcharge) * 100) % 5 == 0)// This is just a placeholder that only kinda works, the final will trigger once every charge percentage divisible by 5, needs more supporting code
 			playsound(src, "sound/machines/phones/ringtones/ringtone1_short_01.ogg", 50, 0)
-			src.rider.show_message("<span class='notice'>The [src.name] displays a low battery warning.</span>")
-			lastbeep = cell.charge
+			src.rider.show_message("<span class='notice'>The [src.name] displays a low battery warning, [floor((cell.charge / cell.maxcharge) * 100)]% remains.</span>")
 
 
 /obj/vehicle/segway/relaymove()
@@ -429,7 +426,6 @@ ABSTRACT_TYPE(/obj/vehicle)
 		return
 	if(world.timeofday - AM.last_bumped <= 100)
 		return
-	src.stop()
 	update()
 	..()
 	in_bump = 1
