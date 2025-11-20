@@ -647,6 +647,9 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 	if(map_currently_very_dusty)
 		makeMiningLevelGehenna()
 		hotspot_controller.generate_map(GEH_ZLEVEL, "desert")
+		// remove temporary areas in gehenna caves
+		for (var/turf/T in get_area_turfs(/area/allowGenerate/caves))
+			new /area/gehenna/underground(T)
 
 	hotspot_controller.generate_map(AST_ZLEVEL, map_currently_underwater ? "trench" : "space")
 
