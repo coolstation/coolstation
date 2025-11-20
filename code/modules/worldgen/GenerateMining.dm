@@ -3,11 +3,12 @@
 #define YES_BORDER 1
 #define BORDER_PREBAKED 2
 
-#define GEHENNA_MINING_CELL_CHANCE "26"
-#define GEHENNA_MINING_CELL_SMOOTHING "3"
+#define GEHENNA_MINING_CELL_CHANCE "27"
+#define GEHENNA_MINING_CELL_SMOOTHING "4"
 #define GEHENNA_MINING_CELL_BIRTH_ABOVE "3"
 #define GEHENNA_MINING_CELL_DEATH_BELOW "3"
 #define GEHENNA_MINING_HOLE_KEY "1"
+#define GEHENNA_MINING_CELL_SHEAR_CHANCE 55
 
 var/list/miningModifiers = list()
 var/list/miningModifiersUsed = list()//Assoc list, type:times used
@@ -257,23 +258,38 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			map = mapnew
 
 		//Generate a map of holes aka caves to generate via cellular automata
-		var/cell_index = 0
+		//the lower this is (1 is no stretch), the more the caves are stretched vertically
+		var/cell_y_stretch = rand() * 0.15 + 0.3
+		//the percentage chance of skipping forward one spot
+		var/cell_y_bonus = 0
+		var/cell_y_shear_tendency = 1
+		//these values are all cellular automata rules
 		var/cellular_holes = rustg_cnoise_generate(GEHENNA_MINING_CELL_CHANCE, GEHENNA_MINING_CELL_SMOOTHING, GEHENNA_MINING_CELL_BIRTH_ABOVE, GEHENNA_MINING_CELL_DEATH_BELOW, "[endx - startx + 1]", "[endy - starty + 1]")
+		var/cellular_holes_length = length(cellular_holes)
 		//Actually convert the map we've ended up with into turf changes
+		var/cell_index_true = 0
 		for(var/x in startx to endx)
+			// put the cell map where it would be without y-stretch or shear
+			if(prob(GEHENNA_MINING_CELL_SHEAR_CHANCE))
+				cell_y_bonus += cell_y_shear_tendency
+			else if(prob(10))
+				cell_y_bonus -= cell_y_shear_tendency
+			var/cell_index = cell_index_true + cell_y_bonus
+			//cell_y_stretch += pick(-0.01, 0.01)
 			for(var/y in starty to endy)
-				cell_index++
+				cell_index_true++
+				cell_index += cell_y_stretch// + prob(cell_y_bonus_prob)
 				var/turf/T = locate(x,y,z_level)
-				// get outta the station
-				if(!istype(T.loc, /area/allowGenerate))
+				// get outta the station and already empty parts
+				if(!T.density || !istype(T.loc, /area/allowGenerate))
 					continue
 				// the cellular caves!
-				if(cellular_holes[cell_index] == GEHENNA_MINING_HOLE_KEY)
-					T.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
-				// do not fill in any existing crevices, leaves the player more room.
-				else if(map[x][y] && T.density)
-					var/turf/wall/asteroid/N = T.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
-					generated.Add(N)
+
+				if(cellular_holes[clamp(floor(cell_index), 1, cellular_holes_length)] == GEHENNA_MINING_HOLE_KEY)
+					if(!istype(T, /turf/wall/asteroid/gehenna/tough/z3) || prob(80))
+						T.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
+						continue
+				generated.Add(T)
 				LAGCHECK(LAG_REALTIME)
 
 /*
@@ -826,4 +842,4 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 #undef GEHENNA_MINING_CELL_BIRTH_ABOVE
 #undef GEHENNA_MINING_CELL_DEATH_BELOW
 #undef GEHENNA_MINING_HOLE_KEY
-
+#undef GEHENNA_MINING_CELL_SHEAR_CHANCE
