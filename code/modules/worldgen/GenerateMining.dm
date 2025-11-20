@@ -3,6 +3,12 @@
 #define YES_BORDER 1
 #define BORDER_PREBAKED 2
 
+#define GEHENNA_MINING_CELL_CHANCE "26"
+#define GEHENNA_MINING_CELL_SMOOTHING "3"
+#define GEHENNA_MINING_CELL_BIRTH_ABOVE "3"
+#define GEHENNA_MINING_CELL_DEATH_BELOW "3"
+#define GEHENNA_MINING_HOLE_KEY "1"
+
 var/list/miningModifiers = list()
 var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
@@ -250,18 +256,27 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 					LAGCHECK(LAG_REALTIME)
 			map = mapnew
 
+		//Generate a map of holes aka caves to generate via cellular automata
+		var/cell_index = 0
+		var/cellular_holes = rustg_cnoise_generate(GEHENNA_MINING_CELL_CHANCE, GEHENNA_MINING_CELL_SMOOTHING, GEHENNA_MINING_CELL_BIRTH_ABOVE, GEHENNA_MINING_CELL_DEATH_BELOW, "[endx - startx + 1]", "[endy - starty + 1]")
 		//Actually convert the map we've ended up with into turf changes
-		for(var/x=startx,x<=endx,x++)
-			for(var/y=starty,y<=endy,y++)
+		for(var/x in startx to endx)
+			for(var/y in starty to endy)
+				cell_index++
 				var/turf/T = locate(x,y,z_level)
-				if(istype(T, /turf/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
-				//Clobber only the things that are in safe-to-clobber areas. Since we crop the borders off of x and y we don't need to do DISTEDGE anymore.
-				if(map[x][y]/* && !ISDISTEDGE(T, 3) */&& T.loc && istype(T.loc, /area/allowGenerate))
+				// get outta the station
+				if(!istype(T.loc, /area/allowGenerate))
+					continue
+				// the cellular caves!
+				if(cellular_holes[cell_index] == GEHENNA_MINING_HOLE_KEY)
+					T.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
+				// do not fill in any existing crevices, leaves the player more room.
+				else if(map[x][y] && T.density)
 					var/turf/wall/asteroid/N = T.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 					generated.Add(N)
 				LAGCHECK(LAG_REALTIME)
 
-
+/*
 		var/list/used = list()
 		for(var/s=0, s<20, s++)
 			var/turf/TU = pick(generated - used)
@@ -282,6 +297,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 					if(!istype(T, /turf/wall/asteroid)) continue
 					var/turf/wall/asteroid/ast = T
 					ast.destroy_asteroid(0)
+*/
 
 		//For the next bit, you might want to turn on DEBUG_ORE_GENERATION in sea_hotspot_controls.dm so you can see what ore generation looks like at scale
 
@@ -803,3 +819,11 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			event_success_percentages[an_event] = round((events[an_event]/(events[an_event] + event_misses[an_event]))*100, 0.1)
 		else
 			event_success_percentages[an_event] = 100
+
+
+#undef GEHENNA_MINING_CELL_CHANCE
+#undef GEHENNA_MINING_CELL_SMOOTHING
+#undef GEHENNA_MINING_CELL_BIRTH_ABOVE
+#undef GEHENNA_MINING_CELL_DEATH_BELOW
+#undef GEHENNA_MINING_HOLE_KEY
+
