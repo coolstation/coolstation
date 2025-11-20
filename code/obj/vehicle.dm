@@ -231,8 +231,8 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/vehicle/segway
 	name = "\improper Space Segway"
-	desc = "Now you too can look like a complete tool in space!"
 	icon_state = "segway"
+	hint = "Dragging the segway charges it!"
 	event_handler_flags = USE_FLUID_ENTER | STAIR_ANIM
 	var/icon_base = "segway"
 	var/icon_rider_state = 1
@@ -241,13 +241,12 @@ ABSTRACT_TYPE(/obj/vehicle)
 	mats = 8
 	var/weeoo_in_progress = 0
 	var/icon_weeoo_state = 2
-	var/cell_type = /obj/item/ammo/power_cell/med_power // Type of cell to spawn by default.
-	var/is_active = TRUE
-	var/rechargable = TRUE
-	var/charge_time = 0
-	var/active_time
-	var/recharge_time
-	var/can_swap_cell = 1
+	var/obj/item/cell/cell
+	var/open = 0 //Cell hatch
+	var/lastbeep = null // For logging at what charge value the battery indicator last beeped
+	var/bat_warning = 200 // Charge threshold at which the battery warning starts
+	var/playing = FALSE //movement sound cooldown
+	var/bumpin = FALSE //Same as playing but for the bump animation
 
 	soundproofing = 0
 	throw_dropped_items_overboard = 1
@@ -255,29 +254,108 @@ ABSTRACT_TYPE(/obj/vehicle)
 	ability_buttons_to_initialize = list(/obj/ability_button/weeoo)
 	var/obj/item/joustingTool = null // When jousting will be reference to lance being used
 
+/obj/vehicle/segway/disposing() //deletes ur cell cutely
+	if(cell)
+		qdel(src.cell)
+		src.cell = null
+	. = ..()
+
+/obj/vehicle/segway/eject_other_stuff()
+	for(var/atom/movable/AM in src)
+		if(AM != src.cell)
+			AM.set_loc(src.loc)
+
+
 /obj/vehicle/segway/New()
 	..()
 	light = new /datum/light/point
 	light.set_brightness(0.7)
-	light.attach(src)
-	processing_items |= src
-	var/cell = null
-	if(cell_type)
-		cell = new cell_type
-		AddComponent(/datum/component/cell_holder, cell, TRUE, INFINITY, can_swap_cell)
+	cell = new /obj/item/cell/dan(src) //puts the shitty dan cell in on new
+	desc = "Now you too can look like a complete tool in space!	The battery indicator reads [floor((cell.charge / cell.maxcharge) * 100)]% remaining."
+	lastbeep = bat_warning
 
-///	examine()
-///		. = ..()
-///		var/ret = list()
-///		if (!(SEND_SIGNAL(src, COMSIG_CELL_CHECK_CHARGE, ret) & CELL_RETURNED_LIST))
-///			. += "<span class='alert'>No power cell installed.</span>"
-///		else
-///			. += "The [src.name] is turned [src.is_active ? "on" : "off"]. There are [ret["charge"]]/[ret["max_charge"]] PUs left!"
-///
+/obj/vehicle/segway/attackby(var/obj/item/I, var/mob/user) //cell addition
+	if(istype(I,/obj/item/cell) && open && !cell) //If the player is holding a cell and slaps it on the segway, check if cover is closed, puts the cell in if its not
+		var/obj/item/cell/C = I
+		usr.drop_item()
+		C.set_loc(src) // puts the cell physically inside the segway
+		cell = C
+		playsound(src, "sound/machines/click.ogg", 50, 1)
+		src.visible_message("[user] inserts the [cell.name] into the [src]", "<span class='notice'>You insert the [cell.name] into the [src]</span>")
+		lastbeep = bat_warning //reset the low power indicator
+
+	else if (isscrewingtool(I)) //It wasn't a cell? if it was a screwdriver, open or close the cover
+		open = !open
+		if(open)
+			src.visible_message("[user] opens the cell cover of [src]", "<span class='notice'>You open [src]'s cell cover.</span>")
+			playsound(src.loc, "sound/items/screwdriver.ogg", 30, 0.1, 0, 0.8)
+		else
+			src.visible_message("[user] closes the cell cover of [src]", "<span class='notice'>You close [src]'s cell cover.</span>")
+			playsound(src.loc, "sound/items/screwdriver.ogg", 30, 0.1, 0, 0.8)
+		return
+	..()
+	return
+/obj/vehicle/segway/attack_hand(var/mob/user) //cell removal
+	if(open && cell)
+		user.put_in_hand_or_drop(src.cell)
+		src.visible_message("[user] removes the [cell.name] from the [src]", "<span class='notice'>You remove the [cell.name] from the [src]</span>")
+		src.cell = null
+		playsound(src, "sound/machines/click.ogg", 50, 1)
+		lastbeep = bat_warning
+
+	else if(!cell)
+		src.visible_message("<span class='notice'>You notice the cell slot is empty, its cover is open and unscrewed</span>")
+	else
+		src.visible_message("<span class='notice'>You fail to open the cell cover, it is screwed shut</span>")
+
 
 /obj/vehicle/segway/Move()
 	. = ..()
-	SEND_SIGNAL(src, COMSIG_CELL_USE, 15)
+	if(!cell)
+		return
+	if(!src.rider)
+		cell.give(0.2) //If pulled, add 0.2% charge, shitty circuit design lets power back into the battery from the wheels or something lol
+	else
+		cell.use(0.5)
+
+		drive_sound() //motor sounds have to be handled by a proc or diagonal movements play too many sounds
+		if(cell.charge < 1)
+			src.stop()
+			return
+		if(cell.charge < bat_warning && cell.charge <= lastbeep - (cell.charge * 0.1) || !lastbeep) //If charge is less than the warning theshold and hits the next scheduled beep (last beep charge), beeps get scheduled sooner relative to how depleted the batteries are
+			playsound(src, "sound/machines/phones/ringtones/ringtone1_short_01.ogg", 50, 0)
+			src.rider.show_message("<span class='notice'>The [src.name] displays a low battery warning.</span>")
+			lastbeep = cell.charge
+
+
+/obj/vehicle/segway/relaymove()
+	if(!cell || cell.charge < 1)
+		src.rider.show_message("<span class='notice'>The [src.name] doesn't respond.</span>")
+		src.stop()
+		return
+	. = ..()
+
+/obj/vehicle/segway/proc/drive_sound() //this just makes the sound have a cooldown so diagonals dont play 2x the sounds
+	if(playing == FALSE)
+		playsound(src, "sound/machines/motor_whir.ogg", 20, 0)
+		playing = TRUE
+		SPAWN_DBG(0.1 SECOND)
+			playing = FALSE
+			return
+	else
+		return
+
+/obj/vehicle/segway/proc/segway_bump_animation()
+	if(bumpin == FALSE)
+		bump_twitch(src)
+		playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 10, 1)
+		bumpin = TRUE
+		SPAWN_DBG(0.7 SECONDS)
+			bumpin = FALSE
+			return
+	else
+		return
+
 
 /obj/vehicle/segway/proc/weeoo()
 	if (weeoo_in_progress)
@@ -343,13 +421,15 @@ ABSTRACT_TYPE(/obj/vehicle)
 		src.underlays = null
 
 /obj/vehicle/segway/Bump(atom/AM as mob|obj|turf)
+	src.stop()
+	segway_bump_animation()
 	if(in_bump)
 		return
 	if(AM == rider || !rider)
 		return
 	if(world.timeofday - AM.last_bumped <= 100)
 		return
-	walk(src, 0)
+	src.stop()
 	update()
 	..()
 	in_bump = 1
@@ -1795,6 +1875,8 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	clowncar
 		name = "Stop The Car"
 		mydelay = 2 SECONDS
+	segway
+		name = "Stop the segway"
 
 /obj/ability_button/togglespook
 	name = "Toggle Spook"

@@ -34,6 +34,22 @@
 			APC.cell = null
 		..()
 
+/obj/item/cell/dan
+	name = "NiCad Dan's economy cell"
+	desc = "The first and last foray of Discount Dan's into the energy sector, probably for good reason..."
+	icon_state = "dancell"
+	hint = "why the fuck does it smell like that?"
+	specialicon = 1
+	charge = 750
+#ifdef POWER_IS_CRAPPY
+	charge = 5
+	maxcharge = 200
+#else
+	charge = 600
+	maxcharge = 750
+#endif
+
+
 /obj/item/cell/supercell
 #ifdef POWER_IS_CRAPPY
 	maxcharge = 7500
