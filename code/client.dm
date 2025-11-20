@@ -1386,8 +1386,8 @@ var/global/curr_day = null
 
 /client/proc/set_view_size(var/x, var/y)
 	//These maximum values make for a near-fullscreen game view at 32x32 tile size, 1920x1080 monitor resolution.
-	x = min(59,x)
-	y = min(30,y)
+	x = min(67,x)
+	y = min(67,y)
 
 	x = max(15,x)
 	y = max(15,y)
