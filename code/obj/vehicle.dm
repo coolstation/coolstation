@@ -274,6 +274,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	..()
 	light = new /datum/light/point
 	light.set_brightness(0.7)
+	light.attach(src)
 	cell = new /obj/item/cell/dan(src) //puts the shitty dan cell in on new
 
 /obj/vehicle/segway/attackby(var/obj/item/I, var/mob/user) //cell addition
