@@ -1158,7 +1158,7 @@ proc/debug_map_apc_count(delim,zlim)
 			birth_limit = clamp(birth_limit, 3, 8)
 			death_limit = input(C.mob, "Number of neighboring cells is lower than this amount, a cell dies (3-8).", "Death Limit") as null|num
 			if (isnull(death_limit)) death_limit = initial(death_limit)
-			death_limit = clamp(birth_limit, 3, 8)
+			death_limit = clamp(death_limit, 3, 8)
 			maxx = world.maxx
 			noise_cache = rustg_cnoise_generate("[src.percentage]", "[src.smoothing_iterations]", "[src.birth_limit]", "[src.death_limit]", "[maxx]", "[world.maxy]")
 			boutput(C, "rustg_cnoise_generate(\"[src.percentage]\", \"[src.smoothing_iterations]\", \"[src.birth_limit]\", \"[src.death_limit]\", \"[maxx]\", \"[world.maxy]\")")
@@ -1166,7 +1166,7 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(turf/theTurf, image/debugoverlay/img)
 			. = ..()
 			if (!length(noise_cache)) return
-			var/val = text2num(noise_cache[theTurf.x * src.maxx + theTurf.y])
+			var/val = text2num(noise_cache[(theTurf.x - 1) * src.maxx + theTurf.y])
 			img.app.color = rgb((val*255), 0, (255-val*255))
 			if(!isnull(val))
 				img.app.overlays = list(src.makeText(round(val*100)/100, RESET_ALPHA))
