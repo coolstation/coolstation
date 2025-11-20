@@ -575,7 +575,7 @@
 			if ("scream")
 				return 2
 		return ..()
-/*
+
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
@@ -585,7 +585,7 @@
 		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.limb = new /datum/limb
 		HH.can_hold_items = 0
-*/
+
 	New()
 		..()
 		abilityHolder.addAbility(/datum/targetable/critter/slam)
