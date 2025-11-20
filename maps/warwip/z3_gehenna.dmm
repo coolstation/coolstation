@@ -8884,7 +8884,7 @@
 "fdF" = (
 /obj/structure/woodwall,
 /turf/floor/plating/gehenna,
-/area/gehenna/underground)
+/area/allowGenerate/caves)
 "fdL" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
@@ -13556,7 +13556,7 @@
 /area/station/medical/cdc)
 "hTf" = (
 /turf/wall/asteroid/gehenna/tough/z3,
-/area/gehenna/underground)
+/area/allowGenerate/caves)
 "hTi" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -18492,7 +18492,7 @@
 	desc = "looks densely packed... if you know what i mean";
 	name = "fuckable sulferous rock"
 	},
-/area/gehenna/underground)
+/area/allowGenerate/caves)
 "kFY" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/disposalpipe/trunk{
@@ -20765,10 +20765,7 @@
 /turf/wall,
 /area/station/medical/medbooth)
 "lVP" = (
-/obj/machinery/dispenser{
-	o2tanks = 10;
-	pltanks = 10
-	},
+/obj/machinery/dispenser,
 /turf/floor,
 /area/station/science/storage)
 "lVS" = (
@@ -22570,8 +22567,7 @@
 	},
 /obj/machinery/ignition_switch{
 	id = "tox_ignition1";
-	pixel_x = 25;
-	pixel_y = 0
+	pixel_x = 25
 	},
 /turf/floor/black,
 /area/station/science/lab)
@@ -27778,8 +27774,7 @@
 "qlI" = (
 /obj/machinery/ignition_switch{
 	id = "tox_ignition1";
-	pixel_x = 25;
-	pixel_y = 0
+	pixel_x = 25
 	},
 /turf/floor/black,
 /area/station/science/lab)
@@ -28926,8 +28921,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /turf/floor/black,
 /area/station/science/chemistry)
@@ -30575,7 +30569,6 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/computer/atmosphere/pumpcontrol{
-	dir = 2;
 	frequency = 1229;
 	name = "Punp control computer"
 	},
@@ -30730,7 +30723,7 @@
 /area/station/engine/inner)
 "sej" = (
 /turf/floor/plating/gehenna,
-/area/gehenna/underground)
+/area/allowGenerate/caves)
 "seq" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -33012,7 +33005,7 @@
 /area/station/crew_quarters/quartersA)
 "twZ" = (
 /turf/wall/asteroid/gehenna/z3,
-/area/gehenna/underground)
+/area/allowGenerate/caves)
 "txE" = (
 /obj/machinery/conveyor/south{
 	name = "garbo belt";
@@ -33707,8 +33700,7 @@
 /obj/grille/catwalk/jen,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /obj/storage/secure/closet/research/uniform,
 /turf/floor/plating,
@@ -39348,8 +39340,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /turf/floor/black,
 /area/station/science/lab)

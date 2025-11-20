@@ -259,8 +259,6 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				if(map[x][y]/* && !ISDISTEDGE(T, 3) */&& T.loc && ((T.loc.type == /area/gehenna/underground) || istype(T.loc , /area/allowGenerate)) )
 					var/turf/wall/asteroid/N = T.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 					generated.Add(N)
-				if(T.loc.type == /area/gehenna/underground || istype(T.loc, /area/allowGenerate))
-					new/area/allowGenerate/caves(T)
 				LAGCHECK(LAG_REALTIME)
 
 
@@ -572,6 +570,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 	game_start_countdown?.update_status("Setting up mining level...\nGenerating terrain... again...")
 	miningZ = D.generate(miningZ, generate_borders = BORDER_PREBAKED)
 	var/area/desertarea = get_area_by_type(/area/gehenna/underground)
+	if(!desertarea)
+		desertarea = new /area/gehenna/underground(locate(1,1,miningZ))
 
 	// remove temporary areas
 	for (var/turf/T in get_area_turfs(/area/noGenerate))
@@ -647,9 +647,6 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 	if(map_currently_very_dusty)
 		makeMiningLevelGehenna()
 		hotspot_controller.generate_map(GEH_ZLEVEL, "desert")
-		// remove temporary areas in gehenna caves
-		for (var/turf/T in get_area_turfs(/area/allowGenerate/caves))
-			new /area/gehenna/underground(T)
 
 	hotspot_controller.generate_map(AST_ZLEVEL, map_currently_underwater ? "trench" : "space")
 
