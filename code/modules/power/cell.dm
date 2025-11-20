@@ -35,7 +35,7 @@
 		..()
 
 /obj/item/cell/dan
-	name = "NiCad Dan's economy cell"
+	name = "NiCad Dan's Economy Cell"
 	desc = "The first and last foray of Discount Dan's into the energy sector, probably for good reason..."
 	icon_state = "dancell"
 	hint = "why the fuck does it smell like that?"
