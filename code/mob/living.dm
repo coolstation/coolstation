@@ -2394,7 +2394,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /// the higher the returned value, the better the target is. assume that the target is valid.
 /mob/living/proc/ai_rate_target(mob/M)
-	return 1
+	return !isdead(M)
 
 /mob/living/proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
 	remove_lifeprocess(/datum/lifeprocess/blood)
