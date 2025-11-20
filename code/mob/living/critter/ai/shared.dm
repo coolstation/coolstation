@@ -259,7 +259,8 @@
 /datum/aiHolder/violent/New()
 	..()
 	default_task = get_instance(/datum/aiTask/concurrent/violence, list(src))
-	src.tick()
+	if(current_state == GAME_STATE_PLAYING)
+		src.tick()
 
 /datum/aiTask/concurrent/violence
 	name = "violence"
