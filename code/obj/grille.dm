@@ -92,6 +92,7 @@
 		connects_to_turf = null
 		connects_to_turf = null
 		flags = FPRINT | CONDUCT | USEDELAY | MINERAL_MAGNET_SAFE
+		event_handler_flags = USE_FLUID_ENTER
 
 		New()
 			..()

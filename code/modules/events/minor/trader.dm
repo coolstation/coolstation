@@ -67,6 +67,9 @@
 				// DO NOT EVER EVER EVER QDEL A TURF
 				// NOT EVEN IF THERE'S A FIRE
 
+		RL_Suspend() //overkill, maybe? these shuttles aren't that big
+		worldgen_hold = TRUE
+
 		for (var/turf/P in start_location)
 			if (istype(P, centcom_turf))
 				P.ReplaceWith(map_turf, FALSE, TRUE, FALSE, TRUE)
@@ -74,6 +77,9 @@
 		end_location.color = null
 
 		start_location.move_contents_to(end_location, centcom_turf)
+
+		worldgen_hold = FALSE
+		RL_Resume()
 
 		SPAWN_DBG(rand(3000,6000))
 			command_alert("The merchant shuttle is preparing to undock, please stand clear.", "Merchant Departure Alert")
@@ -91,11 +97,17 @@
 				// for (var/obj/O in T)
 					// get_hiding_jerk(O)
 
+			RL_Suspend()
+			worldgen_hold = TRUE
+
 			for (var/turf/O in end_location)
 				if (istype(O, map_turf))
 					O.ReplaceWith(centcom_turf, FALSE, TRUE, FALSE, TRUE)
 
 			end_location.move_contents_to(start_location, map_turf)
+
+			worldgen_hold = FALSE
+			RL_Resume()
 
 			#ifdef UNDERWATER_MAP
 			start_location.color = OCEAN_COLOR

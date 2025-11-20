@@ -839,6 +839,16 @@ proc/debug_map_apc_count(delim,zlim)
 		is_ok(atom/A)
 			return !istype(A, /obj/item)
 
+	blocked_dirs
+		name = "blocked dirs"
+		help = "Displays dir flags of blocked turf exits"
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			if (theTurf.turf_persistent.blocked_dirs)
+				img.app.overlays = list(src.makeText(theTurf.turf_persistent.blocked_dirs))
+				img.app.color = "#0000ff"
+			else
+				img.app.alpha = 0
+
 	blood_owner
 		name = "blood owner"
 		help = {"Shows the real name of the last person to bleed on a thing on a turf. If multiple people the tile is red and you need to hover over it to see a list."}
@@ -880,44 +890,45 @@ proc/debug_map_apc_count(delim,zlim)
 		proc/is_ok(atom/A)
 			return TRUE
 
+	blood_owner/no_items
+		name = "blood owner - no items"
+		is_ok(atom/A)
+			return !istype(A, /obj/item)
+
 	checkingcanpass
 		name = "checkingcanpass"
-		help = "Green = yes."
+		help = "Green = Positive value. Red = Broken negative value"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.turf_persistent.checkingcanpass ? "#0f0" : "#f00"
-
+			if(theTurf.turf_persistent.checkingcanpass)
+				img.app.color = theTurf.turf_persistent.checkingcanpass > 0 ? "#0f0" : "#f00"
+			else
+				img.app.alpha = 0
 	checkingexit
 		name = "checkingexit"
-		help = "Green = yes."
+		help = "Green = Positive value. Red = Broken negative value"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.turf_persistent.checkingexit ? "#0f0" : "#f00"
+			if(theTurf.turf_persistent.checkingexit)
+				img.app.color = theTurf.turf_persistent.checkingexit > 0 ? "#0f0" : "#f00"
+			else
+				img.app.alpha = 0
 
 	checkinghasentered
 		name = "checkinghasentered"
-		help = "Green = yes."
+		help = "Green = Positive value. Red = Broken negative value"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.turf_persistent.checkinghasentered ? "#0f0" : "#f00"
-
-	blocked_dirs
-		name = "blocked dirs"
-		help = "Displays dir flags of blocked turf exits"
-		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			if (theTurf.turf_persistent.blocked_dirs)
-				img.app.overlays = list(src.makeText(theTurf.turf_persistent.blocked_dirs))
-				img.app.color = "#0000ff"
+			if(theTurf.turf_persistent.checkinghasentered)
+				img.app.color = theTurf.turf_persistent.checkinghasentered > 0 ? "#0f0" : "#f00"
 			else
 				img.app.alpha = 0
 
 	checkinghasproximity
 		name = "checkinghasproximity"
-		help = "Green = yes."
+		help = "Green = Positive value. Red = Broken negative value"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.checkinghasproximity ? "#0f0" : "#f00"
-
-	blood_owner/no_items
-		name = "blood owner - no items"
-		is_ok(atom/A)
-			return !istype(A, /obj/item)
+			if(theTurf.checkinghasproximity)
+				img.app.color = theTurf.checkinghasproximity > 0 ? "#0f0" : "#f00"
+			else
+				img.app.alpha = 0
 
 	temperature
 		name = "temperature"
@@ -1240,6 +1251,23 @@ proc/debug_map_apc_count(delim,zlim)
 			img.app.alpha = 120
 			img.app.color = "#9944ff"
 			img.app.overlays = list(src.makeText(max_singulo_radius, RESET_ALPHA | RESET_COLOR))
+
+
+	RL_lights
+		name = "RL Lights"
+		help = "Highlights tiles on which RobustLight2 lights are places.<br>First number is the amount of lights, the second is the largest radius."
+
+		GetInfo(turf/theTurf, image/debugoverlay/img)
+			if (theTurf.turf_persistent.RL_Lights)
+				img.app.alpha = 120
+				img.app.color = "#999999"
+				var/max_radius = 0
+				for (var/datum/light/L as anything in theTurf.turf_persistent.RL_Lights)
+					max_radius = max(max_radius, L.radius)
+				img.app.overlays = list(src.makeText("[length(theTurf.turf_persistent.RL_Lights)] lights\n[max_radius]"))
+			else
+				img.app.alpha = 0
+
 
 
 /client/var/list/infoOverlayImages

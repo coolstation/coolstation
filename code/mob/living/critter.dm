@@ -1056,7 +1056,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 	full_heal()
 		..()
 		icon_state = icon_state_alive ? icon_state_alive : initial(icon_state)
-		density = initial(density)
+		set_density(initial(density))
 		src.can_implant = initial(src.can_implant)
 
 	does_it_metabolize()
