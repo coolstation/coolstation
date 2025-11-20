@@ -67,7 +67,10 @@
 /turf/floor,
 /area/noGenerate)
 "n" = (
-/mob/living/critter/robotic/gunbot,
+/mob/living/critter/robotic/gunbot{
+	ai_type = "/datum/aiHolder/violent";
+	dir = 4
+	},
 /turf/floor,
 /area/noGenerate)
 "o" = (
@@ -97,10 +100,6 @@
 	icon_state = "fblue1"
 	},
 /area/noGenerate)
-"u" = (
-/mob/living/critter/spider/med,
-/turf/floor/plating/gehenna,
-/area/noGenerate)
 "v" = (
 /obj/item/raw_material/shard/glass,
 /turf/floor/carpet{
@@ -120,10 +119,6 @@
 "x" = (
 /obj/stool/chair/green,
 /turf/floor,
-/area/noGenerate)
-"y" = (
-/mob/living/critter/spider,
-/turf/floor/plating/gehenna,
 /area/noGenerate)
 "z" = (
 /obj/wingrille_spawn/auto,
@@ -309,8 +304,8 @@ P
 P
 P
 M
-y
-u
+k
+k
 P
 P
 P

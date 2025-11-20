@@ -15,7 +15,9 @@
 /turf/floor/plating/gehenna,
 /area/noGenerate)
 "o" = (
-/mob/living/critter/spider/baby,
+/mob/living/critter/spider/baby{
+	ai_type = "/datum/aiHolder/wanderer"
+	},
 /turf/floor/plating/gehenna,
 /area/noGenerate)
 "q" = (
@@ -30,18 +32,27 @@
 /turf/variableTurf/wall,
 /area/noGenerate)
 "u" = (
-/mob/living/critter/spider/med,
+/mob/living/critter/spider/med{
+	ai_type = "/datum/aiHolder/wanderer"
+	},
 /turf/floor/plating/gehenna,
 /area/noGenerate)
 "v" = (
 /turf/variableTurf/wall,
 /area/noGenerate)
 "Q" = (
-/mob/living/critter/spider/spacerachnid,
+/mob/living/critter/spider/spacerachnid{
+	ai_type = "/datum/aiHolder/violent";
+	venom1 = "toxin";
+	venom2 = "histamine"
+	},
 /turf/floor/plating/gehenna,
 /area/noGenerate)
 "T" = (
-/mob/living/critter/spider,
+/mob/living/critter/spider{
+	ai_type = "/datum/aiHolder/violent";
+	venom1 = "toxin"
+	},
 /turf/floor/plating/gehenna,
 /area/noGenerate)
 "U" = (
@@ -86,7 +97,7 @@ a
 "}
 (4,1,1) = {"
 q
-U
+v
 U
 v
 t
@@ -110,7 +121,7 @@ a
 "}
 (6,1,1) = {"
 a
-u
+U
 U
 U
 l
@@ -124,11 +135,11 @@ q
 a
 U
 U
-U
+v
 U
 o
 U
-U
+v
 T
 q
 "}
@@ -136,11 +147,11 @@ q
 a
 a
 v
-o
+v
 U
 U
 U
-U
+v
 a
 a
 "}
