@@ -552,75 +552,75 @@
 			src.set_loc(NewLoc)
 	else
 		. = ..()
+		if (A != src.loc &&  !src.skip_loc_change_updates)
+			if(A?.z == src.z)
+				src.last_move = get_dir(A, src.loc)
+				if (length(src.attached_objs))
+					for (var/atom/movable/M as anything in attached_objs)
+						M.set_loc(src.loc)
+				actions.interrupt(src, INTERRUPT_MOVE)
+				#ifdef COMSIG_MOVABLE_MOVED
+				SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, A, direct)
+				#endif
+				//note : move is still called when we are steping into a wall. sometimes these are unnecesssary i think
+
+			if (isturf(A) && old_locs && length(old_locs))
+				for(var/turf/covered_turf in old_locs)
+					if(!(src.pass_unstable & PRESERVE_CACHE))
+						covered_turf.pass_unstable -= src.pass_unstable
+						covered_turf.passability_cache = null
+					#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+					if(src.pass_unstable)
+						covered_turf.pass_unstable_debug -= src
+					#endif
+					if (src.event_handler_flags & USE_CHECKEXIT)
+						covered_turf.turf_persistent.checkingexit--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.turf_persistent.checkingexit < 0)
+							message_coders("DEBUG: checkingexit value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
+					if (src.event_handler_flags & USE_CANPASS || src.density)
+						covered_turf.turf_persistent.checkingcanpass--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.turf_persistent.checkingcanpass < 0)
+							message_coders("DEBUG: checkingcanpass value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
+					if (src.event_handler_flags & USE_HASENTERED)
+						covered_turf.turf_persistent.checkinghasentered--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.turf_persistent.checkinghasentered < 0)
+							message_coders("DEBUG: checkinghasentered value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
+					if (src.event_handler_flags & USE_PROXIMITY)
+						covered_turf.checkinghasproximity--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.checkinghasproximity < 0)
+							message_coders("DEBUG: checkinghasproximity value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
+
+			if (isturf(src.loc))
+				last_turf = src.loc
+				for(var/turf/covered_turf as anything in src.locs)
+					if (src.event_handler_flags & USE_CHECKEXIT)
+						covered_turf.turf_persistent.checkingexit++
+					if (src.event_handler_flags & USE_CANPASS || src.density)
+						covered_turf.turf_persistent.checkingcanpass++
+					if (src.event_handler_flags & USE_HASENTERED)
+						covered_turf.turf_persistent.checkinghasentered++
+					if (src.event_handler_flags & USE_PROXIMITY)
+						covered_turf.checkinghasproximity++
+					if(!(src.pass_unstable & PRESERVE_CACHE))
+						covered_turf.pass_unstable += src.pass_unstable
+						covered_turf.passability_cache = null
+					#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+					if(src.pass_unstable)
+						covered_turf.pass_unstable_debug += src
+					#endif
+			else
+				last_turf = 0
+
 	src.move_speed = TIME - src.l_move_time
 	src.l_move_time = TIME
-	if (A != src.loc &&  !src.skip_loc_change_updates)
-		if(A?.z == src.z)
-			src.last_move = get_dir(A, src.loc)
-			if (length(src.attached_objs))
-				for (var/atom/movable/M as anything in attached_objs)
-					M.set_loc(src.loc)
-			actions.interrupt(src, INTERRUPT_MOVE)
-			#ifdef COMSIG_MOVABLE_MOVED
-			SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, A, direct)
-			#endif
-			//note : move is still called when we are steping into a wall. sometimes these are unnecesssary i think
-
-		if (isturf(A) && old_locs && length(old_locs))
-			for(var/turf/covered_turf in old_locs)
-				if(!(src.pass_unstable & PRESERVE_CACHE))
-					covered_turf.pass_unstable -= src.pass_unstable
-					covered_turf.passability_cache = null
-				#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
-				if(src.pass_unstable)
-					covered_turf.pass_unstable_debug -= src
-				#endif
-				if (src.event_handler_flags & USE_CHECKEXIT)
-					covered_turf.turf_persistent.checkingexit--
-					#ifdef TURF_CHECKING_VALUES_DEBUG
-					if(covered_turf.turf_persistent.checkingexit < 0)
-						message_coders("DEBUG: checkingexit value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
-					#endif
-				if (src.event_handler_flags & USE_CANPASS || src.density)
-					covered_turf.turf_persistent.checkingcanpass--
-					#ifdef TURF_CHECKING_VALUES_DEBUG
-					if(covered_turf.turf_persistent.checkingcanpass < 0)
-						message_coders("DEBUG: checkingcanpass value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
-					#endif
-				if (src.event_handler_flags & USE_HASENTERED)
-					covered_turf.turf_persistent.checkinghasentered--
-					#ifdef TURF_CHECKING_VALUES_DEBUG
-					if(covered_turf.turf_persistent.checkinghasentered < 0)
-						message_coders("DEBUG: checkinghasentered value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
-					#endif
-				if (src.event_handler_flags & USE_PROXIMITY)
-					covered_turf.checkinghasproximity--
-					#ifdef TURF_CHECKING_VALUES_DEBUG
-					if(covered_turf.checkinghasproximity < 0)
-						message_coders("DEBUG: checkinghasproximity value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
-					#endif
-
-		if (isturf(src.loc))
-			last_turf = src.loc
-			for(var/turf/covered_turf as anything in src.locs)
-				if (src.event_handler_flags & USE_CHECKEXIT)
-					covered_turf.turf_persistent.checkingexit++
-				if (src.event_handler_flags & USE_CANPASS || src.density)
-					covered_turf.turf_persistent.checkingcanpass++
-				if (src.event_handler_flags & USE_HASENTERED)
-					covered_turf.turf_persistent.checkinghasentered++
-				if (src.event_handler_flags & USE_PROXIMITY)
-					covered_turf.checkinghasproximity++
-				if(!(src.pass_unstable & PRESERVE_CACHE))
-					covered_turf.pass_unstable += src.pass_unstable
-					covered_turf.passability_cache = null
-#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
-				if(src.pass_unstable)
-					covered_turf.pass_unstable_debug += src
-#endif
-		else
-			last_turf = 0
-
 	if (!ignore_simple_light_updates)
 		if(src.medium_lights)
 			update_medium_light_visibility()
