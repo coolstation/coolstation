@@ -776,7 +776,6 @@
 				W.update_icon()
 	return wall
 
-
 /turf/proc/ReplaceWithRWall()
 	var/wall = ReplaceWith("RWall")
 	if (map_settings)
