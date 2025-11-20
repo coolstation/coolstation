@@ -18,12 +18,23 @@
 /mob/living/critter/spider/baby,
 /turf/floor/plating/gehenna,
 /area/noGenerate)
+"q" = (
+/obj/decal/cleanable/cobwebFloor,
+/turf/variableTurf/wall,
+/area/allowGenerate)
 "r" = (
 /turf/space,
 /area/allowGenerate)
+"t" = (
+/obj/decal/cleanable/cobwebFloor,
+/turf/variableTurf/wall,
+/area/noGenerate)
 "u" = (
 /mob/living/critter/spider/med,
 /turf/floor/plating/gehenna,
+/area/noGenerate)
+"v" = (
+/turf/variableTurf/wall,
 /area/noGenerate)
 "Q" = (
 /mob/living/critter/spider/spacerachnid,
@@ -42,8 +53,8 @@ r
 r
 a
 a
-a
-a
+q
+q
 a
 a
 r
@@ -51,9 +62,9 @@ r
 "}
 (2,1,1) = {"
 r
+q
 a
-a
-U
+t
 u
 U
 l
@@ -65,8 +76,8 @@ r
 a
 a
 o
-U
-U
+v
+v
 U
 U
 U
@@ -74,12 +85,12 @@ a
 a
 "}
 (4,1,1) = {"
-a
+q
 U
 U
-U
-U
-U
+v
+t
+v
 Q
 U
 o
@@ -91,7 +102,7 @@ U
 U
 n
 U
-U
+v
 U
 U
 l
@@ -107,7 +118,7 @@ g
 U
 U
 U
-a
+q
 "}
 (7,1,1) = {"
 a
@@ -119,12 +130,12 @@ o
 U
 U
 T
-a
+q
 "}
 (8,1,1) = {"
 a
 a
-U
+v
 o
 U
 U
@@ -136,13 +147,13 @@ a
 (9,1,1) = {"
 r
 a
-a
+q
 U
 U
 u
 U
 a
-a
+q
 r
 "}
 (10,1,1) = {"
@@ -152,7 +163,7 @@ a
 a
 a
 a
-a
+q
 a
 r
 r

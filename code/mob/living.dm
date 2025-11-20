@@ -153,6 +153,8 @@
 
 	if(src.ai_type)
 		src.is_npc = TRUE
+		if(istext(src.ai_type))
+			src.ai_type = text2path(src.ai_type)
 		src.ai = new ai_type(src)
 
 	SPAWN_DBG(0)
