@@ -273,8 +273,13 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 
 /obj/decal/fakeobjects/waves
 	New()
-		..()
+		. = ..()
 		animate_wave(src)
+
+/obj/decal/fakeobjects/bumble
+	New()
+		. = ..()
+		animate_bumble(src)
 
 /obj/decal/fakeobjects/robot
 	name = "Inactive Robot"

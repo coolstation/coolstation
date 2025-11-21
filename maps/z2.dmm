@@ -9479,6 +9479,12 @@
 /obj/decal/stalagmite,
 /turf/floor/dirt,
 /area/catacombs)
+"bAG" = (
+/obj/naval_mine/rusted{
+	plane = -101
+	},
+/turf/floor/blank,
+/area/titlescreen)
 "bBk" = (
 /obj/graveyard/loose_rock,
 /turf/floor/dirt,
@@ -32990,20 +32996,6 @@
 	},
 /turf/floor/sanitary/white,
 /area/upper_arctic/fita/bathroom)
-"dlT" = (
-/obj/naval_mine{
-	icon = 'icons/obj/atmospherics/atmos.dmi';
-	icon_state = "green";
-	name = "strange canister";
-	plane = -101
-	},
-/obj/stomachacid{
-	desc = "it's stomach acid, sheesh.";
-	name = "not piss";
-	pixel_y = -1
-	},
-/turf/floor/blank,
-/area/titlescreen)
 "dlU" = (
 /turf/floor{
 	icon_state = "diamondtile-simple"
@@ -36711,6 +36703,20 @@
 	icon_state = "green2"
 	},
 /area/wizard_station)
+"eRS" = (
+/obj/decal/fakeobjects{
+	icon = 'icons/coolisland.dmi';
+	icon_state = "vin";
+	layer = 500;
+	plane = -10;
+	level = 1;
+	mouse_opacity = 0
+	},
+/turf/floor/setpieces/bloodfloor{
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
+	},
+/area/meat_derelict/guts)
 "eRT" = (
 /obj/decal/garland,
 /turf/wall/arctic/abyss/ice,
@@ -36955,6 +36961,16 @@
 /mob/living/critter/small_animal/floateye,
 /turf/wall/void,
 /area/crunch)
+"flI" = (
+/obj/decal/fakeobjects/bumble{
+	name = "strange canister";
+	icon_state = "green";
+	icon = 'icons/obj/atmospherics/atmos.dmi';
+	desc = "What the hell is this?"
+	},
+/obj/indestructible/invisible_block,
+/turf/floor/blank,
+/area/titlescreen)
 "fnS" = (
 /obj/window{
 	desc = "A window.  For a museum exhibit.";
@@ -36971,11 +36987,11 @@
 /turf/floor/green,
 /area/owlery/owllock)
 "fty" = (
-/obj/naval_mine{
-	icon = 'icons/obj/atmospherics/atmos.dmi';
-	icon_state = "green";
+/obj/decal/fakeobjects/bumble{
 	name = "strange canister";
-	plane = -101
+	icon_state = "green";
+	icon = 'icons/obj/atmospherics/atmos.dmi';
+	desc = "What the hell is this?"
 	},
 /turf/floor/blank,
 /area/titlescreen)
@@ -37250,24 +37266,6 @@
 /obj/stagebutton/colosseum,
 /turf/wall/virtual/reinforced,
 /area/gauntlet/viewing)
-"gil" = (
-/obj/stomachacid{
-	desc = "it's stomach acid, sheesh.";
-	name = "not piss";
-	pixel_y = -1
-	},
-/obj/naval_mine{
-	icon = 'icons/obj/atmospherics/atmos.dmi';
-	icon_state = "green";
-	name = "strange canister";
-	plane = -101
-	},
-/obj/stomachacid{
-	desc = "it's stomach acid, sheesh.";
-	name = "not piss"
-	},
-/turf/floor/blank,
-/area/titlescreen)
 "gkp" = (
 /turf/wall/auto/concrete/window/porthole,
 /area/upper_arctic/fita/hall)
@@ -37528,7 +37526,8 @@
 /area/afterlife/heaven)
 "gKx" = (
 /obj/machinery/portable_atmospherics/canister/farts/filled{
-	name = "strange canister"
+	name = "strange canister";
+	desc = "What the hell is this?"
 	},
 /turf/floor/blank,
 /area/titlescreen)
@@ -40718,13 +40717,13 @@
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
 "nUy" = (
-/obj/naval_mine{
+/obj/indestructible/invisible_block,
+/obj/decal/fakeobjects/bumble{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "ball";
-	name = "rubber duck";
-	plane = -101
+	name = "beach ball";
+	desc = "An old beach ball drifting in the acid."
 	},
-/obj/indestructible/invisible_block,
 /turf/floor/blank,
 /area/titlescreen)
 "nUK" = (
@@ -41299,6 +41298,19 @@
 	},
 /turf/floor/concrete,
 /area/lower_arctic/mining)
+"pdj" = (
+/obj/indestructible/invisible_block,
+/obj/decal/fakeobjects/waves{
+	icon = 'icons/obj/large/64x64.dmi';
+	icon_state = "bile";
+	layer = 29;
+	plane = -99;
+	level = 1;
+	pixel_y = -4;
+	pixel_x = -15
+	},
+/turf/floor/blank,
+/area/titlescreen)
 "pdC" = (
 /obj/landmark/chess{
 	name = "b_pawn"
@@ -41667,14 +41679,6 @@
 	icon_state = "bile";
 	layer = 0.5;
 	plane = -112;
-	level = 1;
-	mouse_opacity = 0
-	},
-/obj/decal/fakeobjects{
-	icon = 'icons/coolisland.dmi';
-	icon_state = "vin";
-	layer = 500;
-	plane = -10;
 	level = 1;
 	mouse_opacity = 0
 	},
@@ -42637,7 +42641,8 @@
 "sig" = (
 /obj/decal/stage_edge/dojo,
 /obj/machinery/portable_atmospherics/canister/farts/filled{
-	name = "strange canister"
+	name = "strange canister";
+	desc = "What the hell is this?"
 	},
 /turf/floor/blank,
 /area/titlescreen)
@@ -43112,10 +43117,12 @@
 /turf/floor/cave,
 /area/crater/cave)
 "tbI" = (
-/obj/naval_mine/rusted{
-	plane = -101
+/obj/decal/fakeobjects/bumble{
+	name = "rubber duck";
+	icon_state = "rubber_duck";
+	icon = 'icons/obj/items/items.dmi';
+	desc = "Homie is chilling."
 	},
-/obj/indestructible/invisible_block,
 /turf/floor/blank,
 /area/titlescreen)
 "tct" = (
@@ -44867,18 +44874,6 @@
 /obj/stool/bench/auto,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
-"wWI" = (
-/obj/decal/fakeobjects/waves{
-	icon = 'icons/obj/large/64x64.dmi';
-	icon_state = "bile";
-	layer = 29;
-	plane = -99;
-	level = 1;
-	pixel_y = -4;
-	pixel_x = -15
-	},
-/turf/wall/auto/virtual,
-/area/titlescreen)
 "wXq" = (
 /obj/table/virtual{
 	icon_state = "tabledir"
@@ -45474,15 +45469,6 @@
 	icon_state = "fullblack"
 	},
 /area/sim/chess)
-"ydw" = (
-/obj/naval_mine{
-	icon = 'icons/obj/items/items.dmi';
-	icon_state = "rubber_duck";
-	name = "rubber duck";
-	plane = -101
-	},
-/turf/floor/blank,
-/area/titlescreen)
 "ydK" = (
 /obj/machinery/light/runway_light/delay3,
 /turf/floor/engine/glow,
@@ -126428,7 +126414,7 @@ vww
 aaa
 bYN
 bZs
-bZs
+eRS
 gGM
 dxv
 dwC
@@ -129779,7 +129765,7 @@ poM
 poM
 poM
 poM
-fty
+bAG
 fHA
 poM
 poM
@@ -130078,11 +130064,11 @@ poM
 poM
 fty
 fHA
-poM
 wys
 wys
 wys
-poM
+wys
+wys
 poM
 poM
 fty
@@ -130378,14 +130364,14 @@ ajg
 poM
 poM
 poM
-poM
 wys
 wys
 poM
 poM
 poM
-wys
-fty
+poM
+poM
+flI
 fHA
 poM
 poM
@@ -130678,17 +130664,17 @@ cim
 aaa
 ajg
 poM
+fty
+pdj
 poM
-poM
-wys
 poM
 poM
 poM
 qYv
 fCr
 poM
-wys
 poM
+wys
 poM
 poM
 poM
@@ -130980,8 +130966,8 @@ cim
 aaa
 ajg
 poM
-fty
-ooq
+wys
+poM
 poM
 poM
 gXY
@@ -130989,9 +130975,9 @@ poM
 poM
 poM
 jUm
+poM
+poM
 wys
-poM
-poM
 poM
 poM
 ajg
@@ -131292,8 +131278,8 @@ bsN
 wJw
 poM
 poM
-wys
 poM
+wys
 poM
 poM
 ajg
@@ -131583,8 +131569,8 @@ ciw
 cim
 aaa
 ajg
-poM
 wys
+poM
 poM
 daW
 rHm
@@ -131594,9 +131580,9 @@ poM
 jHp
 lGf
 xcW
+poM
+poM
 wys
-poM
-poM
 poM
 ajg
 "}
@@ -131885,8 +131871,8 @@ ogj
 cim
 aaa
 ajg
-ydw
-ooq
+wys
+poM
 poM
 jUm
 poM
@@ -131897,8 +131883,8 @@ hrg
 poM
 poM
 poM
-wys
 poM
+wys
 poM
 ajg
 "}
@@ -132187,8 +132173,8 @@ clM
 cim
 aaa
 ajg
-poM
 wys
+poM
 poM
 wCN
 xZJ
@@ -132199,8 +132185,8 @@ qgO
 poM
 poM
 poM
-wys
 poM
+wys
 poM
 ajg
 "}
@@ -132501,8 +132487,8 @@ wnu
 jxX
 dlu
 poM
-wys
 poM
+wys
 poM
 ajg
 "}
@@ -132803,8 +132789,8 @@ poM
 xRe
 poM
 poM
-wys
 poM
+wys
 poM
 ajg
 "}
@@ -133105,8 +133091,8 @@ poM
 poM
 poM
 poM
-wys
 poM
+wys
 poM
 ajg
 "}
@@ -133407,8 +133393,8 @@ poM
 poM
 ylK
 poM
-wys
 poM
+wys
 poM
 ajg
 "}
@@ -133709,8 +133695,8 @@ wCN
 jxX
 iYc
 poM
-wys
 poM
+wys
 poM
 ajg
 "}
@@ -134011,8 +133997,8 @@ hoh
 gKx
 poM
 daW
-wys
 poM
+wys
 poM
 ajg
 "}
@@ -134301,8 +134287,8 @@ cvi
 cim
 aaa
 ajg
-poM
 wys
+poM
 poM
 jSl
 poM
@@ -134313,8 +134299,8 @@ jHp
 lGf
 poM
 poM
-wys
 poM
+wys
 poM
 ajg
 "}
@@ -134603,8 +134589,8 @@ ogj
 cim
 aaa
 ajg
-poM
 wys
+poM
 poM
 poM
 bsN
@@ -134614,8 +134600,8 @@ poM
 roR
 poM
 poM
-wys
 poM
+wys
 poM
 poM
 ajg
@@ -134906,8 +134892,8 @@ cim
 aaa
 ajg
 poM
-dlT
-ooq
+wys
+poM
 poM
 qYv
 poM
@@ -134915,8 +134901,8 @@ poM
 poM
 poM
 poM
-wys
 poM
+wys
 poM
 jLU
 rHX
@@ -135208,16 +135194,16 @@ cim
 aaa
 ajg
 poM
-poM
-poM
+bAG
+pdj
 wys
 poM
 poM
 poM
 poM
 tbI
-ooq
-poM
+fHA
+wys
 poM
 poM
 poM
@@ -135517,13 +135503,13 @@ nUy
 ooq
 wys
 wys
+wys
+wys
 poM
 poM
 poM
-fty
+bAG
 fHA
-poM
-poM
 ajg
 "}
 (299,1,1) = {"
@@ -135825,8 +135811,8 @@ poM
 poM
 poM
 poM
-gil
-wWI
+poM
+ajg
 "}
 (300,1,1) = {"
 aaa
