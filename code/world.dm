@@ -50,9 +50,9 @@ var/global/map_currently_very_dusty = 0
 #endif
 
 #ifdef ABOVEWATER_MAP
-var/global/map_currently_abovewater = 1
+var/global/map_currently_above_magindara = 1
 #else
-var/global/map_currently_abovewater = 0
+var/global/map_currently_above_magindara = 0
 #endif
 
 //should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff

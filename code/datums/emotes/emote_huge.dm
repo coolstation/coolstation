@@ -232,7 +232,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						message = "<B>[user]</B> lets out a tiny flaming fart!"
 						fireflash_s(T,0,user.reagents.composite_combust_temp)
 
-				if (T.turf_flags & CAN_BE_SPACE_SAMPLE)
+				if (T.turf_flags & IS_SPACE)
 					if (accident)
 						if (HAS_ATOM_PROPERTY(user, PROP_SPACEFARTS))
 							user.throw_at(get_edge_cheap(T, user.dir), 30, 1)

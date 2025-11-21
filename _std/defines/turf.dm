@@ -6,7 +6,7 @@
 /// lol idk this kind of sucks, but i guess i can avoid some type checks in atmos processing
 #define IS_TYPE_SIMULATED (1<<2)
 /// can atmos use this tile as a space sample?
-#define CAN_BE_SPACE_SAMPLE (1<<3)
+#define IS_SPACE (1<<3)
 /// fluid move gear suffers no penalty on these turfs
 #define FLUID_MOVE (1<<4)
 /// space move gear suffers no penalty on these turfs

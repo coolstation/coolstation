@@ -410,7 +410,7 @@
 				if (istype(T, /turf/floor) && ammo >= 3)
 					playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 					if(after_time(20))
-						T:ReplaceWithWall()
+						T:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 						ammo -= 3
 					return
@@ -419,7 +419,7 @@
 				for(var/obj/structure/girder/G in get_step(ship.loc, ship.dir))
 					var/turf/T = get_turf(G.loc)
 					qdel(G)
-					T:ReplaceWithWall()
+					T:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 					playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 					break
 				return
@@ -438,7 +438,7 @@
 					playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 					if(after_time(50))
 						ammo -= 5
-						T:ReplaceWithWall()
+						T:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 
 					return
@@ -863,9 +863,8 @@
 		if(istype(A, /turf/floor))
 			var/turf/T = A
 			if(prob(50))
-				T.ReplaceWithLattice()
-			else
-				T.ReplaceWithSpace()
+				new /obj/lattice(T)
+			T.ReplaceWithSpace()
 	if(ismob(A))
 		var/mob/M = A
 		boutput(ship.pilot, "<span class='alert'><B>You crash into [M]!</B></span>")
