@@ -319,7 +319,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		var/list/x_stretch_locations = list()
 		//Generates some stretch locations
 		for(var/i in 0 to (GEHENNA_MINING_X_STRETCHES - 1))
-			x_stretch_locations |= ceil(rand(0, (endx - startx + 1) / GEHENNA_MINING_X_STRETCHES) + (endy - starty + 1) * i / GEHENNA_MINING_X_STRETCHES)
+			x_stretch_locations += 1 + ceil(rand(0, (endx - startx + 1) / GEHENNA_MINING_X_STRETCHES) + (endy - starty + 1) * i / GEHENNA_MINING_X_STRETCHES)
 		var/cell_x_sum
 		for(var/x in startx to endx)
 			if(prob(GEHENNA_MINING_Y_SHEAR_CHANCE))
@@ -349,6 +349,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				// check if the current location is past (in case we skipped it due to being in the station) the lowest x_stretch location,
 				// and if it is, stretch, maybe decrease all positions, and start checking for the next one
 				if(y >= x_stretch_locations[x_stretch_index])
+					x_stretch_locations[x_stretch_index] += rand(-1,1)
 					x_stretch_index = min(x_stretch_index + 1, GEHENNA_MINING_X_STRETCHES)
 					cell_index += (endy - starty + 1)
 
