@@ -3029,6 +3029,12 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/maintenance/disposal/sewage)
+"jF" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/cautionblack/side{
+	dir = 6
+	},
+/area/station/mining/lobby)
 "jH" = (
 /turf/floor/cautionblack/side,
 /area/station/mining/lobby)
@@ -3938,6 +3944,9 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"mJ" = (
+/turf/wall/asteroid/gehenna/z3,
+/area/station/mining/lobby)
 "mK" = (
 /obj/machinery/light/fluorescent,
 /obj/machinery/atmospherics/unary/vent_pump/north,
@@ -4277,6 +4286,10 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"nT" = (
+/obj/machinery/portable_reclaimer,
+/turf/floor/plating,
+/area/station/mining/tunnel)
 "nU" = (
 /obj/machinery/door/poddoor/blast{
 	id = "command_emergency";
@@ -4385,6 +4398,9 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"on" = (
+/turf/wall/asteroid/gehenna/tough/z3,
+/area/station/mining/tunnel)
 "oo" = (
 /obj/decal/cleanable/rust/jen,
 /turf/floor/black/grime,
@@ -6048,6 +6064,11 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"ud" = (
+/obj/table/reinforced/industrial/auto,
+/obj/decal/mining_display/gehenna,
+/turf/floor,
+/area/station/mining/lobby)
 "ue" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -6642,13 +6663,7 @@
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "wg" = (
-/obj/machinery/portable_reclaimer,
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 9;
-	name = "autoname - SS13";
-	tag = ""
-	},
+/obj/decal/cleanable/dirt/random,
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "wh" = (
@@ -6769,6 +6784,9 @@
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
 	})
+"wC" = (
+/turf/wall,
+/area/station/mining/tunnel)
 "wD" = (
 /turf/floor/grey,
 /area/station/bridge)
@@ -7563,6 +7581,11 @@
 /area/station/crew_quarters/info{
 	name = "Net Cafe"
 	})
+"zg" = (
+/turf/floor/cautionblack/side{
+	dir = 5
+	},
+/area/station/mining/lobby)
 "zi" = (
 /obj/landmark/spawner{
 	name = "monkeyspawn_stirstir"
@@ -8103,6 +8126,12 @@
 "AT" = (
 /turf/floor/sand,
 /area/station/security/brig/north_side)
+"AU" = (
+/obj/rack,
+/obj/item/mining_tools/pick,
+/obj/machinery/light/fluorescent/harsh,
+/turf/floor/plating,
+/area/station/mining/tunnel)
 "AV" = (
 /obj/disposalpipe/segment/bent{
 	dir = 8
@@ -8169,6 +8198,12 @@
 	},
 /turf/wall/gehenna,
 /area/gehenna/underground)
+"Be" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/cautionblack/side{
+	dir = 4
+	},
+/area/station/mining/lobby)
 "Bf" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -9902,12 +9937,6 @@
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
-"GN" = (
-/obj/machinery/light/fluorescent/harsh,
-/obj/rack,
-/obj/item/mining_tools/pick,
-/turf/floor/plating,
-/area/station/mining/tunnel)
 "GP" = (
 /obj/machinery/shower{
 	dir = 4
@@ -10211,11 +10240,6 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/carpet/blue,
 /area/station/bridge/captain)
-"HJ" = (
-/obj/machinery/light/fluorescent/harsh,
-/obj/machinery/portable_reclaimer,
-/turf/floor/cautionblack,
-/area/station/mining/lobby)
 "HK" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -10789,6 +10813,11 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/crew_quarters/fitness)
+"Jv" = (
+/obj/machinery/light/small/floor/harsh/very,
+/obj/table/reinforced/industrial/auto,
+/turf/floor,
+/area/station/mining/lobby)
 "Jz" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/darkblue,
@@ -12041,6 +12070,9 @@
 	},
 /turf/floor/grey/side,
 /area/station/medical/cdc)
+"Ob" = (
+/turf/wall/asteroid/gehenna/tough/z3,
+/area/station/mining/lobby)
 "Oc" = (
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/floor/plating,
@@ -12867,6 +12899,15 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/darkblue,
 /area/station/bridge)
+"QH" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor/cautionblack,
+/area/station/mining/lobby)
 "QI" = (
 /turf/floor/cautionblack/side{
 	dir = 4
@@ -13888,6 +13929,9 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/wall,
 /area/station/janitor/office)
+"Uu" = (
+/turf/wall,
+/area/noGenerate)
 "Uv" = (
 /obj/disposalpipe/segment/bent{
 	dir = 8
@@ -14597,6 +14641,11 @@
 	},
 /turf/floor/carpet/blue,
 /area/station/bridge/captain)
+"WN" = (
+/turf/floor/cautionblack/side{
+	dir = 1
+	},
+/area/station/mining/lobby)
 "WO" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -15065,6 +15114,10 @@
 	},
 /turf/floor/darkblue,
 /area/station/bridge)
+"YC" = (
+/obj/table/reinforced/industrial/auto,
+/turf/floor,
+/area/station/mining/lobby)
 "YD" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
@@ -73906,7 +73959,7 @@ ie
 vq
 Pz
 Lf
-QI
+Be
 QI
 Ci
 mO
@@ -74211,12 +74264,12 @@ Pz
 Pz
 Pz
 wg
-HJ
-jP
-kU
-kU
-kU
-kU
+ZZ
+QB
+QB
+QB
+dm
+mJ
 uL
 uL
 uL
@@ -74511,14 +74564,14 @@ hD
 GF
 CB
 CB
-gH
-jP
-jP
-jP
-kU
-kU
-kU
-kU
+CB
+Pz
+WN
+YC
+YC
+ud
+jH
+Ob
 kU
 uL
 uL
@@ -74808,19 +74861,19 @@ DQ
 kU
 kU
 kU
-jP
+wC
 Pq
 CB
 CB
 CB
-GN
-jP
-uL
-uL
-uL
-kU
-kU
-kU
+CB
+QH
+WN
+YC
+Jv
+YC
+jH
+Ob
 kU
 kU
 uL
@@ -75110,20 +75163,20 @@ DQ
 DQ
 kU
 kU
-kU
-kU
+wC
+nT
 OW
 OW
 OW
+AU
+jP
+WN
+YC
+YC
+YC
+jH
+jP
 kU
-kU
-kU
-uL
-uL
-uL
-kU
-kU
-DQ
 kU
 kU
 uL
@@ -75412,21 +75465,21 @@ HB
 DQ
 kU
 kU
-kU
-kU
+wC
+nT
 OW
 OW
 OW
+gH
+jP
+zg
+Be
+QI
+QI
+jF
+jP
 kU
 kU
-kU
-kU
-uL
-uL
-uL
-kU
-DQ
-DQ
 kU
 DQ
 DQ
@@ -75720,15 +75773,15 @@ OW
 OW
 OW
 kU
+jP
+jP
+jP
+MX
+MX
+MX
+jP
+Uu
 kU
-kU
-kU
-kU
-uL
-uL
-HB
-DQ
-DQ
 DQ
 DQ
 DQ
@@ -76025,12 +76078,12 @@ kU
 kU
 kU
 kU
-kU
-kU
+OW
+OW
+OW
 uL
-HB
-HB
-DQ
+uL
+kU
 DQ
 DQ
 DQ
@@ -76327,11 +76380,11 @@ kU
 kU
 kU
 kU
-kU
-DQ
-DQ
+OW
+OW
+OW
 HB
-HB
+uL
 DQ
 DQ
 DQ
@@ -76629,9 +76682,9 @@ OW
 OW
 OW
 OW
-DQ
-DQ
-DQ
+OW
+OW
+OW
 HB
 HB
 HB
@@ -76932,8 +76985,8 @@ OW
 OW
 OW
 OW
-DQ
-DQ
+OW
+OW
 DQ
 HB
 HB
@@ -77234,8 +77287,8 @@ OW
 OW
 OW
 OW
-DQ
-DQ
+OW
+on
 DQ
 DQ
 HB
