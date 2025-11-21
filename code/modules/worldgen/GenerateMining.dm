@@ -349,7 +349,6 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				// check if the current location is past (in case we skipped it due to being in the station) the lowest x_stretch location,
 				// and if it is, stretch, maybe decrease all positions, and start checking for the next one
 				if(y >= x_stretch_locations[x_stretch_index])
-					x_stretch_locations[x_stretch_index] += rand(-1,1)
 					x_stretch_index = min(x_stretch_index + 1, GEHENNA_MINING_X_STRETCHES)
 					cell_index += (endy - starty + 1)
 
