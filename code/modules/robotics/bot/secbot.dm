@@ -628,8 +628,10 @@
 			if(SECBOT_IDLE)
 				src.doing_something = 0
 				look_for_perp()	// see if any criminals are in range
+				#ifndef IM_TESTING_BASIC_MOB_FUNCTIONALITY
 				if(auto_patrol)	// still idle, and set to patrol
 					mode = SECBOT_START_PATROL	// switch to patrol mode
+				#endif
 
 			/// No guard orders, engaging target, seeking to arrest them
 			if(SECBOT_AGGRO, SECBOT_GUARD_AGGRO)
