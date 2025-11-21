@@ -169,6 +169,7 @@ var/global/datum/transit_controller/transit_controls
 	has_material = FALSE //this is a big hole, the big hole is made of steel? yeah right buddy!!!
 	var/fall_landmark = LANDMARK_FALL_DEBUG
 	var/datum/light/point/emergency_light
+	var/has_lights = TRUE
 	var/autoset_direction = TRUE
 
 	New()
@@ -290,6 +291,30 @@ var/global/datum/transit_controller/transit_controls
 
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five
 	target_z = 5
+
+/turf/floor/specialroom/elevator_shaft/coord_varedit
+	name = "terrifying pit"
+	has_lights = FALSE
+	var/coord_offset_x = 0
+	var/coord_offset_y = -1
+	var/target_z = 0
+	var/brute_damage = 20
+	var/hang_time = 0.3 SECONDS
+	var/fall_time = 1.2 SECONDS
+	var/depth_scale = 0.3
+
+	initialise_component()
+		if(!src.target_z)
+			src.target_z = src.z
+		src.AddComponent(/datum/component/pitfall/target_coordinates,\
+			BruteDamageMax = src.brute_damage,\
+			HangTime = src.hang_time,\
+			FallTime = src.fall_time,\
+			DepthScale = src.depth_scale,\
+			OffsetX = src.coord_offset_x,\
+			OffsetY = src.coord_offset_y,\
+			TargetZ = src.target_z,\
+			LandingRange = 0)
 
 ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 /datum/transit_vehicle/elevator
