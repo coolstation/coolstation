@@ -5743,6 +5743,15 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor,
 /area/station/engine/elect)
+"pi" = (
+/obj/decal/beaten_edge_thin,
+/turf/space/gehenna/desert/corner{
+	dir = 9
+	},
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
+	})
 "pj" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/grille/catwalk/jen,
@@ -10910,6 +10919,15 @@
 	icon_state = "quart";
 	mail_tag = "Cargo Bay";
 	name = "Cargo Bay"
+	})
+"CW" = (
+/obj/decal/beaten_edge_thin{
+	dir = 1
+	},
+/turf/space/gehenna/desert,
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
 	})
 "CX" = (
 /obj/cable{
@@ -16989,6 +17007,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/west)
+"Tp" = (
+/obj/decal/beaten_edge_thin,
+/turf/space/gehenna/desert,
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
+	})
 "Tq" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/machinery/light/fluorescent/ceiling,
@@ -67365,7 +67390,7 @@ Rj
 Rj
 Rj
 Rj
-Rj
+CW
 cT
 jt
 an
@@ -67667,7 +67692,7 @@ hJ
 Rj
 Rj
 Rj
-Rj
+CW
 cT
 AY
 an
@@ -67969,9 +67994,9 @@ AY
 AY
 AY
 AY
-Rj
+CW
 cT
-Rj
+Tp
 pl
 KP
 KP
@@ -68271,7 +68296,7 @@ xC
 xC
 Gs
 AY
-Rj
+CW
 cT
 Rj
 nx
@@ -68573,7 +68598,7 @@ xC
 xC
 Gs
 AY
-Rj
+CW
 cT
 AY
 an
@@ -68877,7 +68902,7 @@ Gs
 AY
 Rj
 cT
-nx
+pi
 fD
 Mt
 AM

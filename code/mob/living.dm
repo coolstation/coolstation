@@ -153,6 +153,8 @@
 
 	if(src.ai_type)
 		src.is_npc = TRUE
+		if(istext(src.ai_type))
+			src.ai_type = text2path(src.ai_type)
 		src.ai = new ai_type(src)
 
 	SPAWN_DBG(0)
@@ -509,7 +511,7 @@
 			return
 
 		if (src.in_point_mode || (src.client && src.client.check_key(KEY_POINT)))
-			src.point(target)
+			src.point_at(target, text2num(params["icon-x"]), text2num(params["icon-y"]))
 			if (src.in_point_mode)
 				src.toggle_point_mode()
 			return
@@ -639,7 +641,7 @@
 	src.in_point_mode = !(src.in_point_mode)
 	src.update_cursor()
 
-/mob/living/point_at(var/atom/target)
+/mob/living/point_at(var/atom/target, var/pixel_x, var/pixel_y)
 	if (!isturf(src.loc) || !isalive(src) || src.restrained())
 		return
 
@@ -661,8 +663,7 @@
 			src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
 		else
 			src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
-
-	make_point(get_turf(target), pixel_x=target.pixel_x, pixel_y=target.pixel_y, color=src.bioHolder.mobAppearance.customization_first_color)
+	make_point(target, pixel_x=pixel_x, pixel_y=pixel_y, color=src.bioHolder.mobAppearance.customization_first_color)
 
 
 /mob/living/proc/set_burning(var/new_value)

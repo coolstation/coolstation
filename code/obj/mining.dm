@@ -2508,3 +2508,38 @@ var/global/list/cargopads = list()
 
 	ex_act(severity)
 		return
+
+/obj/decal/mining_display
+	name = "asteroid belt map"
+	icon = 'icons/obj/large/96x96.dmi'
+	icon_state = "mining_map"
+	anchored = ANCHORED
+	var/zlevel = AST_ZLEVEL
+	layer = OBJ_LAYER - 0.45
+	bound_x = 96
+	bound_y = 96
+	pixel_point = TRUE
+
+	New()
+		. = ..()
+		STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen()
+		. = ..()
+		if(hotspot_controller && hotspot_controller.map["[src.zlevel]"])
+			var/image/map_overlay = image(hotspot_controller.map["[src.zlevel]"], layer = src.layer - 0.01)
+			map_overlay.transform = matrix(0.125, MATRIX_SCALE)
+			map_overlay.pixel_x = -252
+			map_overlay.pixel_y = -252
+			src.UpdateOverlays(map_overlay, "map_overlay")
+
+	examine(mob/user)
+		if (user.client && hotspot_controller)
+			hotspot_controller.show_map(user.client, src.zlevel)
+			return list()
+		else
+			return ..()
+
+/obj/decal/mining_display/gehenna
+	name = "local cave map"
+	zlevel = GEH_ZLEVEL
