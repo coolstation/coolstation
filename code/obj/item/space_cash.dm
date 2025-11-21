@@ -147,22 +147,32 @@
 				attack_twitch(L)
 				return TRUE
 
+	throw_begin(atom/target, params)
+		if(!params)
+			params = list()
+
+		if(params["scatter_cash"] == -1)
+			return params
+		else
+			params["scatter_cash"] = 1
+			return params
+
 	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
 		. = ..()
-		var/old_money = src.amount //this is what we start with, old sport
-		var/turf/T1 = get_turf(src)
+		if(thr.params && thr.params["scatter_cash"] == TRUE)
+			var/old_money = src.amount //this is what we start with, old sport
+			var/turf/T1 = get_turf(src)
 
-		for(var/i in 1 to 8)
-			if(src.amount <= 1)
-				break
-			var/obj/item/spacecash/young_money = new()
-			young_money.setup(src.loc, min(ceil(old_money / 8), src.amount))
-			change_stack_amount(-young_money.amount)
+			for(var/i in 1 to 8)
+				if(src.amount <= 1)
+					break
+				var/obj/item/spacecash/young_money = new()
+				young_money.setup(src.loc, min(ceil(old_money / 8), src.amount))
+				change_stack_amount(-young_money.amount)
 
-			var/turf/T2 = locate(T1.x + rand(-1, 1), T1.y + rand(-1, 1), T1.z)
-			if(T2)
-				young_money.throw_at(T2, young_money.throw_range, young_money.throw_speed)
-
+				var/turf/T2 = locate(T1.x + rand(-2, 2), T1.y + rand(-2, 2), T1.z)
+				if(T2)
+					young_money.throw_at(T2, young_money.throw_range, young_money.throw_speed, params = list("scatter_cash" = -1, "icon-x" = rand(2, 30), "icon-y" = rand(2, 30)))
 
 //	attack_self(mob/user as mob)
 //		user.visible_message("fart")
