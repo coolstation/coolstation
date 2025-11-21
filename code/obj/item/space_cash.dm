@@ -147,19 +147,9 @@
 				attack_twitch(L)
 				return TRUE
 
-	throw_begin(atom/target, params)
-		if(!params)
-			params = list()
-
-		if(params["scatter_cash"] == -1)
-			return params
-		else
-			params["scatter_cash"] = 1
-			return params
-
 	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
 		. = ..()
-		if(thr.params && thr.params["scatter_cash"] == TRUE)
+		if(thr.params && !thr.params["dont_scatter_cash"])
 			var/old_money = src.amount //this is what we start with, old sport
 			var/max_splits = rand(8, 20)
 			var/turf/T1 = get_turf(src)
@@ -173,7 +163,7 @@
 
 				var/turf/T2 = locate(T1.x + rand(-2, 2), T1.y + rand(-2, 2), T1.z)
 				if(T2)
-					young_money.throw_at(T2, young_money.throw_range, young_money.throw_speed, params = list("scatter_cash" = -1, "icon-x" = rand(2, 30), "icon-y" = rand(2, 30)))
+					young_money.throw_at(T2, young_money.throw_range, young_money.throw_speed, params = list("dont_scatter_cash" = TRUE, "icon-x" = rand(2, 30), "icon-y" = rand(2, 30)))
 
 //	attack_self(mob/user as mob)
 //		user.visible_message("fart")
