@@ -8,7 +8,8 @@
 #define GEHENNA_MINING_CELL_BIRTH_ABOVE "3" // cavegen automata rule of life
 #define GEHENNA_MINING_CELL_DEATH_BELOW "3" // cavegen automata rule of death
 #define GEHENNA_MINING_HOLE_KEY "1" // "1" means living cells become holes, "0" for dead ones
-#define GEHENNA_MINING_Y_SHEAR_CHANCE 60 // probability of shearing the y on each x, run again if it succeeds
+#define GEHENNA_MINING_Y_SHEAR_CHANCE 60 // probability of shearing the y on each x
+#define GEHENNA_MINING_X_STRETCHES 30 // how many x stretches are done across the entire y height
 
 var/list/miningModifiers = list()
 var/list/miningModifiersUsed = list()//Assoc list, type:times used
@@ -259,26 +260,32 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 		//Generate a map of holes aka caves to generate via cellular automata
 		//the lower this is (1 is no stretch), the more the caves are stretched
-		var/cell_y_stretch = rand() * 0.15 + 0.3 // vertical stretch
-		var/cell_x_stretch = rand() * 0.15 + 0.4 // horizontal stretch
+		var/cell_y_stretch = rand() * 0.15 + 0.4 // vertical stretch
+		var/cell_x_stretch = rand() * 0.15 + 0.7 // horizontal stretch
 		//how many spaces we are skipping forward
 		var/cell_bonus = 0
 		//these values are all cellular automata rules
 		var/cellular_holes = rustg_cnoise_generate(GEHENNA_MINING_CELL_CHANCE, GEHENNA_MINING_CELL_SMOOTHING, GEHENNA_MINING_CELL_BIRTH_ABOVE, GEHENNA_MINING_CELL_DEATH_BELOW, "[endx - startx + 1]", "[endy - starty + 1]")
 		var/cellular_holes_length = length(cellular_holes)
 		//Actually convert the map we've ended up with into turf changes
-		var/cell_x_sum = 0
+		var/list/x_stretch_locations = list()
+		//Generates some stretch locations
+		for(var/i in 0 to (GEHENNA_MINING_X_STRETCHES - 1))
+			x_stretch_locations |= ceil(rand(0, (endx - startx + 1) / GEHENNA_MINING_X_STRETCHES) + (endy - starty + 1) * i / GEHENNA_MINING_X_STRETCHES)
+		var/cell_x_sum
 		for(var/x in startx to endx)
 			if(prob(GEHENNA_MINING_Y_SHEAR_CHANCE))
 				cell_bonus += 1 + prob(GEHENNA_MINING_Y_SHEAR_CHANCE)
 			else if(prob(10))
 				cell_bonus--
+
 			// start over on the cell index, but include the y shear bonus
 			var/cell_index = cell_bonus
-			cell_x_sum += (cell_x_stretch) + rand() * 0.05
+			cell_x_sum = (cell_x_stretch) + rand() * 0.05
 			if(cell_x_sum >= 1)
 				cell_x_sum--
-				cell_bonus += endy - starty + 1
+				cell_bonus += endx - startx + 1
+			var/x_stretch_index = 1
 			for(var/y in starty to endy)
 				// indexing
 				cell_index += cell_y_stretch
@@ -290,6 +297,13 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 				if(!T.density || !istype(T.loc, /area/allowGenerate))
 					continue
 
+				// check if the current location is past (in case we skipped it due to being in the station) the lowest x_stretch location,
+				// and if it is, stretch, maybe decrease all positions, and start checking for the next one
+				if(y >= x_stretch_locations[x_stretch_index])
+					x_stretch_locations[x_stretch_index] += rand(-1,1)
+					x_stretch_index = min(x_stretch_index + 1, GEHENNA_MINING_X_STRETCHES)
+					cell_index += (endy - starty + 1)
+
 				// create cave holes and weaken tough rocks that linger
 				if(cellular_holes[ceil(1 + ((cell_index + cellular_holes_length) % cellular_holes_length))] == GEHENNA_MINING_HOLE_KEY)
 					if(!istype(T, /turf/wall/asteroid/gehenna/tough/z3) || prob(60))
@@ -300,7 +314,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 					else if(prob(70))
 						T = T.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
 
-				// add whatever we
+				// add whatever rock we have
 				generated.Add(T)
 				LAGCHECK(LAG_REALTIME)
 
@@ -344,6 +358,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 		//Seeds gem/artifact/crate/rock modifiers. Note that without specifying an amount of events the proc will randomly do between 1 and 6 each time
 		//(meaning if i is still 40 on the line below, that's anywhere from 40-240 events)
+		// its 50 now, and with 40+ samples its not gonna roll anything too high or low. expect 175ish.
 		for(var/i=0, i<50, i++)
 			Turfspawn_Asteroid_SeedEvents(generated, level_stats = our_stats)
 
@@ -855,3 +870,4 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 #undef GEHENNA_MINING_CELL_DEATH_BELOW
 #undef GEHENNA_MINING_HOLE_KEY
 #undef GEHENNA_MINING_Y_SHEAR_CHANCE
+#undef GEHENNA_MINING_X_STRETCHES
