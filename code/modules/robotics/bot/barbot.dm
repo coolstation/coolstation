@@ -1,4 +1,4 @@
-// Barbuddy [my beloved] -- currently used in the Space Casino prefab
+// Barbuddy [my beloved] -- currently used in the Space Casino prefab and the juicer cloughb
 
 #define BARBUDDY_MOVE_SPEED 7
 /obj/machinery/bot/barbuddy
@@ -88,7 +88,7 @@
 				glasses++
 			if (glasses < 1)
 				src.targets += T
-
+	#ifndef IM_TESTING_BASIC_MOB_FUNCTIONALITY
 	process()
 		// Nothing to do. Let's find something to do.
 		if (!length(targets))
@@ -128,6 +128,7 @@
 			if (!length(src.path))
 				KillPathAndGiveUp(1)
 				return
+	#endif
 
 	KillPathAndGiveUp(var/give_up)
 		. = ..()
