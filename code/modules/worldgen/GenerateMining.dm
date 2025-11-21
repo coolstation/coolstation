@@ -3,12 +3,14 @@
 #define YES_BORDER 1
 #define BORDER_PREBAKED 2
 
-#define GEHENNA_MINING_CELL_CHANCE "27"
-#define GEHENNA_MINING_CELL_SMOOTHING "4"
-#define GEHENNA_MINING_CELL_BIRTH_ABOVE "3"
-#define GEHENNA_MINING_CELL_DEATH_BELOW "3"
-#define GEHENNA_MINING_HOLE_KEY "1"
-#define GEHENNA_MINING_CELL_SHEAR_CHANCE 55
+#define GEHENNA_MINING_CELL_CHANCE "27" // chance of a turf being considered alive at the start of cavegen automata
+#define GEHENNA_MINING_CELL_SMOOTHING "4" // cavegen automata life generations
+#define GEHENNA_MINING_CELL_BIRTH_ABOVE "3" // cavegen automata rule of life
+#define GEHENNA_MINING_CELL_DEATH_BELOW "3" // cavegen automata rule of death
+#define GEHENNA_MINING_HOLE_KEY "1" // "1" means living cells become holes, "0" for dead ones
+#define GEHENNA_MINING_Y_SHEAR_CHANCE 75 // probability of shearing the y on each x
+#define GEHENNA_MINING_X_STRETCHES 12 // how many x stretches are done across the entire y height
+#define GEHENNA_MINING_X_STRETCH_DECREASE_PROB 7 // the chance that doing an x stretch lowers future x stretches
 
 var/list/miningModifiers = list()
 var/list/miningModifiersUsed = list()//Assoc list, type:times used
@@ -260,36 +262,57 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		//Generate a map of holes aka caves to generate via cellular automata
 		//the lower this is (1 is no stretch), the more the caves are stretched vertically
 		var/cell_y_stretch = rand() * 0.15 + 0.3
-		//the percentage chance of skipping forward one spot
-		var/cell_y_bonus = 0
-		var/cell_y_shear_tendency = 1
+		//how many spaces we are skipping forward
+		var/cell_bonus = 0
 		//these values are all cellular automata rules
 		var/cellular_holes = rustg_cnoise_generate(GEHENNA_MINING_CELL_CHANCE, GEHENNA_MINING_CELL_SMOOTHING, GEHENNA_MINING_CELL_BIRTH_ABOVE, GEHENNA_MINING_CELL_DEATH_BELOW, "[endx - startx + 1]", "[endy - starty + 1]")
 		var/cellular_holes_length = length(cellular_holes)
 		//Actually convert the map we've ended up with into turf changes
 		var/cell_index_true = 0
+		var/list/x_stretch_locations = list()
+		//Generates some stretch locations
+		for(var/i in 1 to GEHENNA_MINING_X_STRETCHES)
+			x_stretch_locations |= ceil(rand(0, 20) + (endy - starty + 1) * i / GEHENNA_MINING_X_STRETCHES)
 		for(var/x in startx to endx)
-			// put the cell map where it would be without y-stretch or shear
-			if(prob(GEHENNA_MINING_CELL_SHEAR_CHANCE))
-				cell_y_bonus += cell_y_shear_tendency
+			if(prob(GEHENNA_MINING_Y_SHEAR_CHANCE))
+				cell_bonus++
 			else if(prob(10))
-				cell_y_bonus -= cell_y_shear_tendency
-			var/cell_index = cell_index_true + cell_y_bonus
-			//cell_y_stretch += pick(-0.01, 0.01)
+				cell_bonus--
+			// put the cell map where it would be without stretches, but include the y shear bonus
+			var/cell_index = cell_index_true + cell_bonus
+			var/x_stretch_index = 1
 			for(var/y in starty to endy)
+				// indexing
 				cell_index_true++
-				cell_index += cell_y_stretch// + prob(cell_y_bonus_prob)
+				cell_index += cell_y_stretch
+
+				// find the turf
 				var/turf/T = locate(x,y,z_level)
+
 				// get outta the station and already empty parts
 				if(!T.density || !istype(T.loc, /area/allowGenerate))
 					continue
-				// the cellular caves!
 
-				if(cellular_holes[clamp(floor(cell_index), 1, cellular_holes_length)] == GEHENNA_MINING_HOLE_KEY)
+				// check if the current location is past (in case we skipped it due to being in the station) the lowest x_stretch location,
+				// and if it is, stretch, maybe decrease all positions, and start checking for the next one
+				if(y >= x_stretch_locations[x_stretch_index])
+					if(prob(GEHENNA_MINING_X_STRETCH_DECREASE_PROB))
+						for(var/j in 1 to length(x_stretch_locations))
+							x_stretch_locations[j] -= 1
+					x_stretch_index = min(x_stretch_index + 1, GEHENNA_MINING_X_STRETCHES)
+					cell_index -= (endy - starty + 1)
+
+				// create cave holes and weaken tough rocks that linger
+				if(cellular_holes[ceil(1 + ((cell_index + cellular_holes_length) % cellular_holes_length))] == GEHENNA_MINING_HOLE_KEY)
 					if(!istype(T, /turf/wall/asteroid/gehenna/tough/z3) || prob(60))
 						T.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
+						// we dont wanna add it to generated if its a cave now
+						LAGCHECK(LAG_REALTIME)
+						continue
 					else if(prob(70))
 						T = T.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
+
+				// add whatever we
 				generated.Add(T)
 				LAGCHECK(LAG_REALTIME)
 
@@ -843,4 +866,6 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 #undef GEHENNA_MINING_CELL_BIRTH_ABOVE
 #undef GEHENNA_MINING_CELL_DEATH_BELOW
 #undef GEHENNA_MINING_HOLE_KEY
-#undef GEHENNA_MINING_CELL_SHEAR_CHANCE
+#undef GEHENNA_MINING_Y_SHEAR_CHANCE
+#undef GEHENNA_MINING_X_STRETCHES
+#undef GEHENNA_MINING_X_STRETCH_DECREASE_PROB
