@@ -160,11 +160,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
-/turf/floor/plating/gehenna/
+/turf/floor/plating/gehenna
 	name = "sand"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"
 	step_material = "step_outdoors"
+	burnt = UNBURNABLE_TURF
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
 	allows_vehicles = 1
