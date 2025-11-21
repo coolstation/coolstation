@@ -149,7 +149,7 @@
 
 	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
 		. = ..()
-		if(thr.params && !thr.params["dont_scatter_cash"])
+		if(src.amount > 1 && thr.params && !thr.params["dont_scatter_cash"])
 			var/old_money = src.amount //this is what we start with, old sport
 			var/max_splits = rand(8, 20)
 			var/turf/T1 = get_turf(src)
