@@ -136,7 +136,8 @@ datum/controller/air_system
 		//Warning: Do not call this, add the group to air_master.groups_to_rebuild instead
 
 	proc/update_space_sample()
-		if (!space_sample || !(space_sample.turf_flags & CAN_BE_SPACE_SAMPLE))
+		// SCARY FUCKIN WHILE - if the game is freezing, please yell at mylie
+		while (!space_sample || !(space_sample.turf_flags & CAN_BE_SPACE_SAMPLE))
 			space_sample = locate(/turf/space)
 		return space_sample
 
