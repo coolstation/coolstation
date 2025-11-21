@@ -73,7 +73,7 @@ var/global/datum/color/ocean_color = 0
 
 				t = get_step(T,dir)
 
-				if (t.turf_flags & CAN_BE_SPACE_SAMPLE)
+				if (t.turf_flags & IS_SPACE)
 					adjacent_space += 1
 					continue
 

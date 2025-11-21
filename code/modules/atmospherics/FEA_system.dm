@@ -89,10 +89,10 @@ datum/controller/air_system
 	var/is_busy = FALSE
 	var/datum/controller/process/air_system/parent_controller = null
 
-	var/turf/space/space_sample = 0 //instead of repeatedly using locate() to find space, we should just cache a space tile ok
+	var/datum/gas_mixture/space_sample //instead of repeatedly using locate() to find space, we should just cache a space tile ok
+	var/space_sample_heat_capacity = SPACE_SAMPLE_HEAT_CAPACITY_BASE
 
 	proc/setup(datum/controller/process/air_system/controller)
-		update_space_sample()
 		//Call this at the start to setup air groups geometry
 		//Warning: Very processor intensive but only must be done once per round
 
@@ -135,14 +135,12 @@ datum/controller/air_system
 		//Used by process_rebuild_select_groups()
 		//Warning: Do not call this, add the group to air_master.groups_to_rebuild instead
 
-	proc/update_space_sample()
-		// SCARY FUCKIN WHILE - if the game is freezing, please yell at mylie
-		while (!space_sample || !(space_sample.turf_flags & CAN_BE_SPACE_SAMPLE))
-			space_sample = locate(/turf/space)
-		return space_sample
-
 	setup(datum/controller/process/air_system/controller)
 		parent_controller = controller
+
+		space_sample = new
+		space_sample.zero()
+		space_sample.temperature = TCMB
 
 		#if SKIP_FEA_SETUP == 1
 		return
@@ -184,7 +182,7 @@ datum/controller/air_system
 							else
 								LAZYLISTINIT(possible_borders)
 								possible_borders |= test
-						else if(T.turf_flags & CAN_BE_SPACE_SAMPLE)
+						else if(T.turf_flags & IS_SPACE)
 							LAZYLISTINIT(possible_space_borders)
 							possible_space_borders |= test
 #ifdef DEPRESSURIZE_THROW_AT_SPACE_REQUIRED

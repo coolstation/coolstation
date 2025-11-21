@@ -506,7 +506,7 @@
 
 	var/datum/gas_mixture/oldair = null //Set if old turf is simulated and has air on it.
 	var/datum/air_group/oldparent = null //Ditto.
-	var/zero_new_turf_air = (turf_flags & CAN_BE_SPACE_SAMPLE)
+	var/zero_new_turf_air = (turf_flags & IS_SPACE)
 
 	//For unsimulated static air tiles such as ice moon surface.
 	var/temp_old = null
@@ -769,7 +769,7 @@
 	var/static/image/starlight
 
 	flags = ALWAYS_SOLID_FLUID
-	turf_flags = CAN_BE_SPACE_SAMPLE | MINE_MAP_PRESENTS_EMPTY
+	turf_flags = IS_SPACE | MINE_MAP_PRESENTS_EMPTY
 	event_handler_flags = IMMUNE_SINGULARITY
 	dense
 		icon_state = "dplaceholder"
