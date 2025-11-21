@@ -382,8 +382,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		for(var/turf/wall/asteroid/T as anything in generated)
 			var/datum/ore/picked_ore
 			// common ores near caves
-			if(prob(40 * mapnew[T.x][T.y]))
-				picked_ore = prob(20) ? pick(mining_controls.ore_types_uncommon) : pick(mining_controls.ore_types_common)
+			if(prob(25 * mapnew[T.x][T.y]))
+				picked_ore = prob(20) ? (prob(20) ? pick(mining_controls.ore_types_rare) : pick(mining_controls.ore_types_uncommon)) : pick(mining_controls.ore_types_common)
 			// rare ones in the walls!
 			else if(mapnew[T.x][T.y] < 0.1 && prob(4))
 				picked_ore = pick(ore_types_nonevent)
