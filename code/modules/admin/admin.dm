@@ -4937,7 +4937,7 @@ var/global/noir = 0
 			return null
 	else
 		var/safe_matches = matches - list(/database, /client, /icon, /sound, /savefile)
-		chosen = input(usr, "Select an atom type", "Matches for pattern", null) in safe_matches
+		chosen = input(usr, "Select an atom type", "Matches for pattern", null) as null|anything in safe_matches
 		if(!chosen) // experimental de-TGUIing - warc
 			return null
 
