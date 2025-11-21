@@ -1602,7 +1602,7 @@ DEFINE_FLOORS(techfloor/green,
 			src.ReplaceWithSpace()
 
 		if(OLD_EX_SEVERITY_2)
-			switch(pick(1,2;75,3))
+			switch(pick(1,75;2,3))
 				if (1)
 					if(prob(33))
 						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
@@ -1611,7 +1611,8 @@ DEFINE_FLOORS(techfloor/green,
 							I.setMaterial(src.material)
 						else
 							I.setMaterial(getMaterial("steel"))
-					src.ReplaceWithLattice()
+					new /obj/lattice(src)
+					src.ReplaceWithSpace()
 				if(2)
 					src.ReplaceWithSpace()
 				if(3)
@@ -1862,7 +1863,8 @@ DEFINE_FLOORS(techfloor/green,
 				if (C:amount >= 2)
 					boutput(user, "<span class='notice'>Reinforcing the floor...</span>")
 					if(do_after(user, 3 SECONDS))
-						ReplaceWithEngineFloor()
+						DELETE_LATTICES_IN(src)
+						ReplaceWith(/turf/floor/engine)
 
 						if (C)
 							C.change_stack_amount(-2)
@@ -2179,7 +2181,6 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 		desc = "It seems to be humming slightly. Huh."
 		luminosity = 2
 		icon_state = "bluewall_glow"
-		can_replace_with_stuff = 1
 
 		attackby(obj/item/W as obj, mob/user as mob)
 			if (istype(W, /obj/item/device/key))

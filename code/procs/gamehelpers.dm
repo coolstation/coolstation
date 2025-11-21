@@ -679,7 +679,7 @@ var/obj/item/dummy/click_dummy = new
 		if(turftoleave)
 			S.ReplaceWith(turftoleave, keep_old_material = 0, force=1)
 		else
-			S.ReplaceWithSpaceForce()
+			S.ReplaceWithSpace()
 
 
 

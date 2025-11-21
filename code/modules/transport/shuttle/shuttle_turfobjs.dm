@@ -63,9 +63,8 @@
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				if(prob(50))
-					src.ReplaceWithSpace()
-				else
-					src.ReplaceWithLattice()
+					new /obj/lattice(src)
+				src.ReplaceWithSpace()
 
 			if(OLD_EX_SEVERITY_2)
 				if(prob(80))
