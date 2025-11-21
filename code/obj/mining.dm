@@ -2518,6 +2518,7 @@ var/global/list/cargopads = list()
 	layer = OBJ_LAYER - 0.45
 	bound_x = 96
 	bound_y = 96
+	pixel_point = TRUE
 
 	New()
 		. = ..()

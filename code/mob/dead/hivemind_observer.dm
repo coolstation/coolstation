@@ -83,7 +83,7 @@
 		var/matrix/M = matrix()
 		M.Translate((hivemind_owner.owner.x - target_turf.x)*32 - pixel_x, (hivemind_owner.owner.y - target_turf.y)*32 - pixel_y)
 		point.transform = M
-		animate(point, transform=null, time=2)
+		animate(point, transform=null, time=1)
 		SPAWN_DBG(time)
 			for (var/client/viewer in viewers)
 				viewer.images -= point
