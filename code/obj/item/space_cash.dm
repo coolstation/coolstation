@@ -161,13 +161,14 @@
 		. = ..()
 		if(thr.params && thr.params["scatter_cash"] == TRUE)
 			var/old_money = src.amount //this is what we start with, old sport
+			var/max_splits = rand(8, 20)
 			var/turf/T1 = get_turf(src)
 
-			for(var/i in 1 to 8)
+			for(var/i in 1 to max_splits)
 				if(src.amount <= 1)
 					break
 				var/obj/item/spacecash/young_money = new()
-				young_money.setup(src.loc, min(ceil(old_money / 8), src.amount))
+				young_money.setup(src.loc, min(ceil(old_money / max_splits), src.amount))
 				change_stack_amount(-young_money.amount)
 
 				var/turf/T2 = locate(T1.x + rand(-2, 2), T1.y + rand(-2, 2), T1.z)
