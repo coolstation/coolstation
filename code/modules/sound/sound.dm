@@ -692,6 +692,10 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			sound('sound/ambience/station/Station_StructuralCreaking.ogg'),
 			sound('sound/ambience/station/Station_MechanicalHissing.ogg'))
 
+/var/global/list/ambience_space = list(sound('sound/ambience/spooky/Space_Mysterious.ogg'),
+		sound('sound/ambience/spooky/Space_Mystic.ogg'),
+		sound('sound/ambience/spooky/Space_Signals.ogg'))
+
 /var/global/list/ambience_submarine = list(sound('sound/ambience/station/underwater/sub_ambi.ogg'),
 		sound('sound/ambience/station/underwater/sub_ambi1.ogg'),
 		sound('sound/ambience/station/underwater/sub_ambi2.ogg'),

@@ -470,6 +470,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			//if ("AI Satellite Core") sound_fx_1 = pick('sound/ambience/station/Station_SpookyAtmosphere1.ogg','sound/ambience/station/Station_SpookyAtmosphere2.ogg') // same as above
 			if ("The Blind Pig") sound_fx_1 = pick('sound/ambience/spooky/TheBlindPig.ogg','sound/ambience/spooky/TheBlindPig2.ogg')
 			if ("M. Fortuna's House of Fortune") sound_fx_1 = 'sound/ambience/spooky/MFortuna.ogg'
+			if ("Space", "Shipyard", "North Solar Array", "South Solar Array", "West Solar Array", "East Solar Array") sound_fx_1 = pick(ambience_space)
 			else
 				sound_fx_1 = pick(ambience_general)
 
@@ -505,6 +506,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	//these are the defaults but just in case someone messes with those
 	is_atmos_simulated = FALSE
 	is_construction_allowed = TRUE
+#ifdef UNDERWATER_MAP
+	name = "Ocean"
+#endif
 
 /area/space/solariumjoke
 	sound_loop_1 = 'sound/machines/lavamoon_plantalarm.ogg'
@@ -2540,7 +2544,7 @@ ABSTRACT_TYPE(/area/station/crew_quarters)
 	name = "Shipyard"
 	icon_state = "fart"
 	requires_power = FALSE //it's almost entirely exterior bits
-// some radio jazz
+
 
 ABSTRACT_TYPE(/area/station/crew_quarters/radio)
 /area/station/crew_quarters/radio
@@ -2681,7 +2685,7 @@ ABSTRACT_TYPE(/area/station/com_dish)
 	icon_state = "yellow"
 
 /area/station/com_dish/auxdish
-	name = "Auxilary Communications Dish"
+	name = "Auxilary Communications Dish" //there's so many mispelled auxiliaries around
 	icon_state = "yellow"
 
 /area/station/com_dish/research_outpost
