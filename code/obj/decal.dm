@@ -198,7 +198,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 		var/matrix/M = matrix()
 		M.Translate((pointer.x - target_turf.x)*32 - pixel_x, (pointer.y - target_turf.y)*32 - pixel_y)
 		point.transform = M
-		animate(point, transform=null, time=2)
+		animate(point, transform=null, time=1)
 	SPAWN_DBG(time)
 		if(target_turf)
 			target_turf.vis_contents -= point
