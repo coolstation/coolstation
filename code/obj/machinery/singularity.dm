@@ -116,8 +116,6 @@ proc/singularity_containment_check(turf/center)
 	event_handler_flags = IMMUNE_SINGULARITY | USE_HASENTERED
 	deconstruct_flags = DECON_WELDER | DECON_MULTITOOL
 
-	pixel_point = TRUE
-
 	var/maxboom = 0
 	var/has_moved
 	var/active = 0 //determines if the singularity is contained

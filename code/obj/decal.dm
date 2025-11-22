@@ -186,12 +186,8 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	// note that `target` can also be a turf, but byond sux and I can't declare the var as atom because areas don't have vis_contents
 	if(QDELETED(target)) return
 	var/obj/decal/point/point = new
-	if (!target.pixel_point)
-		pixel_x = target.pixel_x
-		pixel_y = target.pixel_y
-	else
-		pixel_x -= 16 - target.pixel_x
-		pixel_y -= 16 - target.pixel_y
+	pixel_x -= 16 - target.pixel_x
+	pixel_y -= 16 - target.pixel_y
 	point.pixel_x = pixel_x
 	point.pixel_y = pixel_y
 	point.color = color
@@ -202,7 +198,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 		var/matrix/M = matrix()
 		M.Translate((pointer.x - target_turf.x)*32 - pixel_x, (pointer.y - target_turf.y)*32 - pixel_y)
 		point.transform = M
-		animate(point, transform=null, time=1)
+		animate(point, transform=null, time=2)
 	SPAWN_DBG(time)
 		if(target_turf)
 			target_turf.vis_contents -= point

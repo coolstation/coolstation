@@ -62,12 +62,8 @@
 	proc/make_hive_point(atom/movable/target, var/pixel_x, var/pixel_y, color="#ffffff", time=2 SECONDS)
 		var/turf/target_turf = get_turf(target)
 		var/image/point = image(point_img, loc = target_turf, layer = EFFECTS_LAYER_1)
-		if (!target.pixel_point)
-			pixel_x = target.pixel_x
-			pixel_y = target.pixel_y
-		else
-			pixel_x -= 16 - target.pixel_x
-			pixel_y -= 16 - target.pixel_y
+		pixel_x -= 16 - target.pixel_x
+		pixel_y -= 16 - target.pixel_y
 		point.pixel_x = pixel_x
 		point.pixel_y = pixel_y
 		point.color = color
@@ -83,7 +79,7 @@
 		var/matrix/M = matrix()
 		M.Translate((hivemind_owner.owner.x - target_turf.x)*32 - pixel_x, (hivemind_owner.owner.y - target_turf.y)*32 - pixel_y)
 		point.transform = M
-		animate(point, transform=null, time=1)
+		animate(point, transform=null, time=2)
 		SPAWN_DBG(time)
 			for (var/client/viewer in viewers)
 				viewer.images -= point
