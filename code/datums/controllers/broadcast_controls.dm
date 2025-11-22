@@ -19,7 +19,7 @@
 	set_loops - how often you want this to loop, leave on 0 to not change, -1 loops infinitely and any other negative number IDK
 	process_immediately - runs the broadcast process immediately, which might give slightly funky timing (it's probably fine though) but sends out a message at once.
 */
-/datum/broadcast_controller/proc/broadcast_start(datum/directed_broadcast/broadcast, reset_to_start = TRUE, set_loops = 0, process_immediately = FALSE)
+/datum/broadcast_controller/proc/broadcast_start(datum/directed_broadcast/broadcast, reset_to_start = TRUE, override_channels, set_loops = 0,  process_immediately = FALSE)
 	if (!istype(broadcast))
 		for_by_tcl(candidate, /datum/directed_broadcast) //see if we can find it by ID instead
 			if (candidate.id == broadcast)
@@ -27,14 +27,19 @@
 				break
 		if (!istype(broadcast)) return //can't find a valid broadcast
 
-	if (broadcast.loops_remaining == 0) return //don't start a spent broadcast
-	if (!islist(broadcast.broadcast_channels)) return
-
 	//optional settings
 	if (set_loops)
 		broadcast.loops_remaining = set_loops
+
+	if (broadcast.loops_remaining == 0) return //don't start a spent broadcast
+	if (!islist(broadcast.broadcast_channels)) return
+
 	if (reset_to_start)
 		broadcast.index = 0 //OOB technically but gets incremented before reading
+
+	//Mostly for getting things that can go on multiple channels and only playing it on one of them
+	if (override_channels)
+		broadcast.broadcast_channels = override_channels
 
 	//priority sorting
 	var/max_cooldown = 0
@@ -74,4 +79,4 @@
 	for (var/a_channel as anything in broadcast.broadcast_channels)
 		if ((broadcast in active_broadcasts[a_channel]))
 			active_broadcasts[a_channel] -= broadcast
-	//SEND_SIGNAL(broadcast, COMSIG_BROADCAST_STOPPED)
+			SEND_SIGNAL(src, COMSIG_BROADCAST_STOPPED, broadcast, a_channel, length(active_broadcasts[a_channel]))
