@@ -36966,7 +36966,8 @@
 	name = "strange canister";
 	icon_state = "green";
 	icon = 'icons/obj/atmospherics/atmos.dmi';
-	desc = "What the hell is this?"
+	desc = "What the hell is this?";
+	plane = -101
 	},
 /obj/indestructible/invisible_block,
 /turf/floor/blank,
@@ -36991,7 +36992,8 @@
 	name = "strange canister";
 	icon_state = "green";
 	icon = 'icons/obj/atmospherics/atmos.dmi';
-	desc = "What the hell is this?"
+	desc = "What the hell is this?";
+	plane = -101
 	},
 /turf/floor/blank,
 /area/titlescreen)
@@ -40717,13 +40719,14 @@
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
 "nUy" = (
-/obj/indestructible/invisible_block,
 /obj/decal/fakeobjects/bumble{
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "ball";
 	name = "beach ball";
-	desc = "An old beach ball drifting in the acid."
+	desc = "An old beach ball drifting in the acid.";
+	plane = -101
 	},
+/obj/indestructible/invisible_block,
 /turf/floor/blank,
 /area/titlescreen)
 "nUK" = (
@@ -43121,7 +43124,8 @@
 	name = "rubber duck";
 	icon_state = "rubber_duck";
 	icon = 'icons/obj/items/items.dmi';
-	desc = "Homie is chilling."
+	desc = "Homie is chilling.";
+	plane = -101
 	},
 /turf/floor/blank,
 /area/titlescreen)
