@@ -36703,20 +36703,6 @@
 	icon_state = "green2"
 	},
 /area/wizard_station)
-"eRS" = (
-/obj/decal/fakeobjects{
-	icon = 'icons/coolisland.dmi';
-	icon_state = "vin";
-	layer = 500;
-	plane = -10;
-	level = 1;
-	mouse_opacity = 0
-	},
-/turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_2";
-	name = "Fleshy Floor"
-	},
-/area/meat_derelict/guts)
 "eRT" = (
 /obj/decal/garland,
 /turf/wall/arctic/abyss/ice,
@@ -41675,6 +41661,14 @@
 	icon_state = "bile";
 	layer = 0.5;
 	plane = -112;
+	level = 1;
+	mouse_opacity = 0
+	},
+/obj/decal/fakeobjects{
+	icon = 'icons/coolisland.dmi';
+	icon_state = "vin";
+	layer = 500;
+	plane = -10;
 	level = 1;
 	mouse_opacity = 0
 	},
@@ -126411,7 +126405,7 @@ vww
 aaa
 bYN
 bZs
-eRS
+bZs
 gGM
 dxv
 dwC
