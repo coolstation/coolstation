@@ -23,7 +23,8 @@
 					src.throw_impact(A, thr)
 					. = TRUE
 
-/atom/movable/proc/throw_begin(atom/target)
+/atom/movable/proc/throw_begin(atom/target, var/list/params)
+	return params
 
 // when an atom gets hit by a thrown object, returns the sound to play
 /atom/proc/hitby(atom/movable/AM, datum/thrown_thing/thr=null)
@@ -92,7 +93,7 @@
 
 	src.last_throw_x = src.x
 	src.last_throw_y = src.y
-	src.throw_begin(target)
+	params = src.throw_begin(target, params)
 
 	src.throwforce += bonus_throwforce
 
