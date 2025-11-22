@@ -224,7 +224,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				//7 is 75%
 				//9 is 80%
 				//20 is 95% and is a special case to just mute the sound without stopping it
-				if(M.loc.loc.type == /area/gehenna || M.loc.loc.type == /area/shuttle)
+				if(M.loc.loc.type == /area/gehenna || istype(M.loc.loc, /area/shuttle))
 					insideness = 1
 
 				else if(M.loc.loc.type != /area/space) //bleh
