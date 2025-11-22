@@ -3095,7 +3095,7 @@
 /turf/floor/carpet/purple,
 /area/station/crew_quarters/radio/lab)
 "ih" = (
-/turf/space/gehenna/desert,
+/turf/space/gehenna/desert/no_spikes,
 /area/shuttle/merchant_shuttle/right_station/cogmap)
 "ii" = (
 /obj/disposalpipe/segment,
@@ -8655,7 +8655,7 @@
 /turf/floor/airbridge/classic/white,
 /area/station/crew_quarters/radio/lab)
 "wP" = (
-/turf/space/gehenna/desert,
+/turf/space/gehenna/desert/no_spikes,
 /area/shuttle/mining/station)
 "wQ" = (
 /obj/machinery/door/airlock/gannets/medical/alt,
@@ -9377,6 +9377,9 @@
 /obj/machinery/light/fluorescent/ceiling,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
+"yL" = (
+/turf/space/gehenna/desert/no_spikes,
+/area/shuttle/escape/station/cogmap2)
 "yM" = (
 /obj/machinery/light/lamp/bright{
 	pixel_x = 3;
@@ -11344,7 +11347,7 @@
 /turf/wall,
 /area/station/quartermaster/cargooffice)
 "Eg" = (
-/turf/space/gehenna/desert,
+/turf/space/gehenna/desert/no_spikes,
 /area/shuttle/merchant_shuttle/left_station/cogmap)
 "Eh" = (
 /obj/storage/secure/closet/logistics/cargo,
@@ -11989,6 +11992,12 @@
 "FQ" = (
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quartersC)
+"FR" = (
+/turf/space/gehenna/desert/no_spikes,
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
+	})
 "FS" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -14139,7 +14148,7 @@
 /turf/floor/plating,
 /area/station/maintenance/central)
 "LD" = (
-/turf/space/gehenna/desert,
+/turf/space/gehenna/desert/no_spikes,
 /area/shuttle/cargo/station)
 "LE" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -57734,10 +57743,10 @@ Rj
 nx
 lk
 hJ
-Rj
-Rj
-Rj
-Rj
+FR
+FR
+FR
+FR
 nx
 fD
 cT
@@ -58036,10 +58045,10 @@ bC
 an
 QX
 dt
-qR
-qR
-qR
-qR
+yL
+yL
+yL
+yL
 la
 lA
 nm
@@ -58337,12 +58346,12 @@ Rj
 nx
 fD
 dt
-qR
-qR
-qR
-qR
-qR
-qR
+yL
+yL
+yL
+yL
+yL
+yL
 gf
 nm
 is
@@ -58638,12 +58647,12 @@ Rj
 Rj
 an
 QX
-qR
-qR
-qR
-qR
-qR
-qR
+yL
+yL
+yL
+yL
+yL
+yL
 kK
 Yc
 nm
@@ -58940,10 +58949,10 @@ Rj
 Rj
 an
 jF
-qR
-qR
-qR
-qR
+yL
+yL
+yL
+yL
 kK
 Yc
 nm
@@ -59243,8 +59252,8 @@ hJ
 an
 fm
 hR
-qR
-qR
+yL
+yL
 kK
 Yc
 QX
@@ -59847,12 +59856,12 @@ jt
 cg
 an
 QX
-qR
-qR
-qR
-qR
-qR
-qR
+yL
+yL
+yL
+yL
+yL
+yL
 gf
 nm
 cu
@@ -60149,16 +60158,16 @@ Rj
 Rj
 an
 jF
-qR
-qR
-qR
-qR
-qR
-qR
+yL
+yL
+yL
+yL
+yL
+yL
 iM
 kL
 jt
-Rj
+FR
 Rj
 XD
 Zv
@@ -60448,19 +60457,19 @@ AY
 Rj
 Rj
 Rj
-Rj
+FR
 pl
 dt
+yL
+yL
+yL
+yL
+yL
+yL
 qR
 qR
-qR
-qR
-qR
-qR
-qR
-qR
-Rj
-Rj
+FR
+FR
 Rj
 XD
 zH
@@ -60750,19 +60759,19 @@ AY
 Rj
 Rj
 Rj
-Rj
-Rj
+FR
+FR
+qR
+yL
+yL
+yL
+yL
+yL
+yL
 qR
 qR
-qR
-qR
-qR
-qR
-qR
-qR
-qR
-Rj
-Rj
+FR
+FR
 Rj
 XD
 zH
@@ -61052,19 +61061,19 @@ AY
 Rj
 Rj
 Rj
-Rj
-Rj
+FR
+FR
+qR
+yL
+yL
+yL
+yL
+yL
+yL
 qR
 qR
-qR
-qR
-qR
-qR
-qR
-qR
-qR
-Rj
-Rj
+FR
+FR
 Rj
 XD
 zH
@@ -61354,15 +61363,15 @@ AY
 Rj
 Rj
 Rj
-Rj
-Rj
+FR
+FR
 qR
-qR
-qR
+yL
+yL
 kK
 eD
 hR
-qR
+yL
 qR
 lK
 hJ
@@ -61657,14 +61666,14 @@ Rj
 Rj
 Rj
 do
-Rj
+FR
 qR
-qR
+yL
 kK
 Yc
 nm
 jF
-qR
+yL
 qR
 gf
 cu
@@ -61961,7 +61970,7 @@ Rj
 Rj
 nx
 fq
-qR
+yL
 gf
 nm
 QX
@@ -62263,7 +62272,7 @@ Rj
 Rj
 an
 jF
-qR
+yL
 iM
 kL
 dt
@@ -62566,10 +62575,10 @@ Rj
 pl
 is
 hR
-qR
-qR
-qR
-qR
+yL
+yL
+yL
+yL
 kK
 Yc
 cT
@@ -62869,9 +62878,9 @@ Rj
 Yw
 fm
 hR
-qR
-qR
-qR
+yL
+yL
+yL
 gf
 nm
 Gy
@@ -63172,7 +63181,7 @@ pl
 Yw
 fm
 hR
-qR
+yL
 kK
 Yc
 Gy
@@ -76475,8 +76484,8 @@ Cl
 tS
 YQ
 Xu
-Cl
-Cl
+MD
+MD
 tS
 YQ
 Xu
@@ -76777,9 +76786,9 @@ Cl
 Cl
 Cl
 oC
-Cl
-Cl
-Cl
+MD
+MD
+MD
 hi
 Cl
 Cl
@@ -77080,7 +77089,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+MD
 Cl
 Cl
 Cl
@@ -80083,9 +80092,9 @@ FE
 tS
 YQ
 Xu
-Cl
-Cl
-Cl
+MD
+MD
+MD
 tS
 YQ
 Xu
@@ -80384,9 +80393,9 @@ Cl
 Cl
 Cl
 hi
-Cl
-Cl
-Cl
+MD
+MD
+MD
 Cl
 Cl
 oC
