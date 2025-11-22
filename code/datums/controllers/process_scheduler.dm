@@ -340,4 +340,5 @@ var/global/datum/controller/processScheduler/processScheduler
 			alreadyCreatedList.Remove(process)
 		process.disable()
 		processes.Remove(process)
-		process.kill()
+		SPAWN_DBG(3 SECONDS)
+			process.kill()
