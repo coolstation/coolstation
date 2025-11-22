@@ -150,7 +150,7 @@ var/datum/train_controller/train_spotter
 			conductor.movement_delay = new_speed
 	if (href_list["honk"])
 		var/datum/train_conductor/conductor = locate(href_list["honk"]) in src.conductors
-		if(istype(conductor))
+		if(istype(conductor) && !ON_COOLDOWN(global, "TRAIN_HORN", 0.5 SECONDS))
 			conductor.sound_horn()
 	if (href_list["delete"])
 		// unwind & delete the train
@@ -501,8 +501,6 @@ ABSTRACT_TYPE(/datum/train_preset)
 /datum/train_conductor/proc/sound_horn()
 	if(!src.horn_sound || !src.train_z || !src.train_front_y)
 		return
-	if(ON_COOLDOWN(global, "TRAIN_HORN", 0.5 SECONDS))
-		return
 	playsound(locate(clamp(src.train_front_x, src.train_unload_x, src.train_not_yet_loaded_x), src.train_front_y, src.train_z), pick(src.horn_sound), 50, 1, 15)
 
 /datum/train_conductor/proc/train_loop()
@@ -518,7 +516,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 
 	// Ramp speed down to a stop at exactly src.stopping (or maybe a tile sooner), needs a pretty curve but for now i just wanna stop at the right spot
 	if(src.stopping)
-		src.movement_delay = min(src.original_speed + (6 - src.original_speed) / src.stop_distance, 6)
+		src.movement_delay = min(src.original_speed + (6.5 - src.original_speed) * (src.stop_distance / src.train_front_x - src.stopping), 6)
 		if(src.train_front_x == src.stopping) // we are HERE!
 			src.movement_delay = 7
 			src.active = FALSE
