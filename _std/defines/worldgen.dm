@@ -38,3 +38,11 @@
 #define AST_ZLEVEL 5
 /// Zlevel for gehenna mines?
 #define GEH_ZLEVEL 3
+
+
+// the various reasons for a worldgen_hold go here, if the bitfield is empty after removing one, initialize_worldgen should run
+// this exists to avoid weird shit like a shuttle movement happening while you load a map via dmm_suite leading to stalled worldgen
+#define WORLDGEN_HOLD_WORLD_INIT (1<<0)
+#define WORLDGEN_HOLD_DMM_READER (1<<1)
+#define WORLDGEN_HOLD_SHUTTLE_MOVEMENT (1<<2)
+#define WORLDGEN_HOLD_MINING_MAGNET (1<<3)

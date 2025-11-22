@@ -420,7 +420,7 @@
 			if (!target)
 				return
 
-			worldgen_hold = TRUE
+			worldgen_hold |= WORLDGEN_HOLD_MINING_MAGNET
 
 			if (!wall_bits.len)
 				wall_bits = target.generate_walls()
@@ -473,9 +473,14 @@
 					M.invisibility = 1
 				active = 0
 				boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
+				worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+				if(!worldgen_hold)
+					initialize_worldgen()
 				return
 
-			initialize_worldgen()
+			worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+			if(!worldgen_hold)
+				initialize_worldgen()
 
 			sleep(sleep_time)
 			if (malfunctioning && prob(20))
@@ -656,7 +661,7 @@
 					mining_apc.zapStuff()
 
 	proc/pull_new_source(var/selectable_encounter_id = null)
-		worldgen_hold = TRUE
+		worldgen_hold |= WORLDGEN_HOLD_MINING_MAGNET
 
 		for (var/obj/forcefield/mining/M in mining_controls.magnet_shields)
 			M.opacity = 1
@@ -714,8 +719,14 @@
 				M.invisibility = 1
 			active = 0
 			boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
+			worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+			if(!worldgen_hold)
+				initialize_worldgen()
 			return
-		initialize_worldgen()
+
+		worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+		if(!worldgen_hold)
+			initialize_worldgen()
 
 		sleep(sleep_time)
 		if (malfunctioning && prob(20))
