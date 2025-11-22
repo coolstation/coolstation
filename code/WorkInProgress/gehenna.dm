@@ -24,7 +24,7 @@
 #define GEHENNA_SKY_R 0.5*(sin(GEHENNA_TIME)+1)
 #define GEHENNA_SKY_G 0.3*(sin(GEHENNA_TIME )+1)
 #define GEHENNA_SKY_B 0.4*(sin(GEHENNA_TIME - 45 )+1)
-#define GEHENNA_SKY_BRIGHT 0.5*(sin(GEHENNA_TIME)+0.8) + 0.25
+#define GEHENNA_SKY_BRIGHT 0.7*(sin(GEHENNA_TIME)+0.8) + 0.25
 
 
 var/global/gehenna_time = GEHENNA_TIME
@@ -202,7 +202,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
 	var/datum/light/point/light = null
-	var/light_atten_con = -0.02
+	var/light_atten_con = -0.08
 	var/light_r = GEHENNA_SKY_R
 	var/light_g = GEHENNA_SKY_G
 	var/light_b = GEHENNA_SKY_B
