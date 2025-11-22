@@ -243,7 +243,7 @@ var/list/datum/contextAction/globalContextActions = null
 				longitude_dir = R1.group[1]
 				targetx = R1.group[2]
 				if (R1.group[2] == "")
-					targetx = 0
+					targetx = "+0"
 
 			var/regex/R2 = regex("(NORTH|SOUTH)((\\-|\\+)\\d+|)")
 			R2.Find(T.screen_loc)
@@ -251,13 +251,13 @@ var/list/datum/contextAction/globalContextActions = null
 				lattitude_dir = R2.group[1]
 				targety = R2.group[2]
 				if (R2.group[2] == "")
-					targety = 0
+					targety = "+0"
 
 			//hack for screen_loc in the form of things like "NORTH-0,5"
 			//screen_loc string handling is fucked up
-			if (isnull(targetx) && !isnull(targety))
+			if (isnull(targetx) && isnull(longitude_dir))
 				targetx = (!isnull(text2num(backup[1])) ? backup[1] : backup[2])
-			else if (!isnull(targetx) && isnull(targety))
+			else if (isnull(targety) && isnull(lattitude_dir))
 				targety = (!isnull(text2num(backup[1])) ? backup[1] : backup[2])
 		else
 			return 0

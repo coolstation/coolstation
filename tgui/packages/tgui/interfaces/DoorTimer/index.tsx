@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Knob, LabeledControls, LabeledList, Section, Stack, TimeDisplay } from '../../components';
+import { Button, Knob, LabeledControls, Section, Stack, TimeDisplay } from '../../components';
 import { formatTime } from '../../format';
 import { Window } from '../../layouts';
 import { DoorTimerData } from './type';

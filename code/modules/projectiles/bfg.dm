@@ -3,7 +3,7 @@
 	name = "BFG shot"
 	icon_state = "bfg"
 	power = 400
-	cost = 100
+	cost = 40
 	sname = "plasma blast"
 	shot_sound = null
 	shot_number = 1
@@ -11,7 +11,8 @@
 	color_red = 0
 	color_green = 0.9
 	color_blue = 0.2
-
+	max_range = 100
+	dissipation_rate = 0
 
 	on_hit(atom/hit)
 		if (!master) return
@@ -23,7 +24,4 @@
 		SPAWN_DBG(1.6 SECONDS)
 			qdel(explosion)
 		playsound(master, "sound/weapons/DSRXPLOD.ogg", 75)
-//		explosion(master, get_turf(master), 2, 3, 4, 5, lagreducer = 1)
-		for(var/mob/M in range(master, 4))
-			M.ex_act(max(1, min(get_dist(M, master), 3)))
 		return

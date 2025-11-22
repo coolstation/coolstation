@@ -37,7 +37,7 @@
 						return
 				if(make_inherent)
 					src.add_stam_mod_max("wrestler", 50)
-					APPLY_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "wrestler", 5)
+					APPLY_ATOM_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "wrestler", 5)
 					src.max_health += 50
 					health_update_queue |= src
 				C.abilityHolder.addAbility("/datum/targetable/wrestler/kick[fake_wrestler ? "/fake" : ""]")
@@ -90,7 +90,7 @@
 				if (make_inherent == 1)
 					A5.is_inherent = 1
 					src.add_stam_mod_max("wrestler", 50)
-					APPLY_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "wrestler", 5)
+					APPLY_ATOM_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "wrestler", 5)
 					src.max_health += 50
 					health_update_queue |= src
 
@@ -109,10 +109,6 @@
 			return
 		if (!spell.holder)
 			return
-		if (owner.holder.owner) //how even
-			if (!isturf(owner.holder.owner.loc))
-				boutput(owner.holder.owner, "<span class='alert'>You can't use this ability here.</span>")
-				return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
 			usr.update_cursor()
@@ -157,6 +153,7 @@
 	last_cast = 0
 	pointCost = 0
 	preferred_holder_type = /datum/abilityHolder/wrestler
+	turf_check = TRUE
 	var/when_stunned = 0 // 0: Never | 1: Ignore mob.stunned and mob.weakened | 2: Ignore all incapacitation vars
 	var/not_when_handcuffed = 0
 	var/fake = 0
@@ -269,7 +266,7 @@
 
 		var/CD = src.cooldown
 		var/ST_mod_max = M.get_stam_mod_max()
-		var/ST_mod_regen = GET_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS)
+		var/ST_mod_regen = GET_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS)
 
 		// Balanced for 200/12 and 200/13 drugs (e.g. epinephrine or meth), so stamina regeneration
 		// buffs are prioritized over total stamina modifiers.

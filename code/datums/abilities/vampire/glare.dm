@@ -5,11 +5,13 @@
 	targeted = 1
 	target_nodamage_check = 1
 	max_range = 2
+	ai_range = 2
 	cooldown = 600
 	pointCost = 0
 	when_stunned = 1
 	not_when_handcuffed = 0
 	sticky = 1
+	attack_mobs = TRUE
 
 	cast(mob/target)
 		if (!holder)

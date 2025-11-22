@@ -14,10 +14,11 @@
 /obj/cryotron
 	name = "industrial cryogenic sleep unit"
 	desc = "The terminus of a large underfloor cryogenic storage complex."
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	icon = 'icons/obj/large/64x96.dmi'
 	icon_state = "cryotron_up"
+	pass_unstable = FALSE
 	bound_width = 96
 	bound_x = -32
 	bound_height = 64
@@ -148,7 +149,6 @@
 				L.hibernating = 1
 				if (L.client)
 					L.addOverlayComposition(/datum/overlayComposition/blinded)
-					L.updateOverlaysClient(L.client)
 				for (var/obj/machinery/computer/announcement/A as anything in machine_registry[MACHINES_ANNOUNCEMENTS])
 					if (!A.status && A.announces_arrivals)
 						A.announce_departure(L)
@@ -163,7 +163,6 @@
 		L.hibernating = 1
 		if (L.client)
 			L.addOverlayComposition(/datum/overlayComposition/blinded)
-			L.updateOverlaysClient(L.client)
 		for (var/obj/machinery/computer/announcement/A as anything in machine_registry[MACHINES_ANNOUNCEMENTS])
 			if (!A.status && A.announces_arrivals)
 				A.announce_departure(L)

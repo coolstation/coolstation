@@ -11,7 +11,8 @@
 	var/has_werewolves = 1
 	var/has_blobs = 1
 
-	var/list/traitor_types = list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_VAMPIRE, ROLE_SPY_THIEF, ROLE_WEREWOLF)
+	//2025-2-4: bumped the chances for traitors so we hopefully see em more
+	var/list/traitor_types = list(ROLE_TRAITOR, ROLE_TRAITOR, ROLE_CHANGELING, ROLE_VAMPIRE, ROLE_SPY_THIEF, ROLE_WEREWOLF)
 
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)

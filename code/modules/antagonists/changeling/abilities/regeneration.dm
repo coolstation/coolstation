@@ -6,7 +6,7 @@
 	cooldown = 450
 	targeted = 0
 	target_anything = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 
 	incapacitationCheck()
 		return 0
@@ -28,12 +28,9 @@
 		if(!H.in_fakedeath)
 			boutput(holder.owner, __blue("Repairing our wounds."))
 			logTheThing("combat", holder.owner, null, "enters regenerative stasis as a changeling [log_loc(holder.owner)].")
-			var/list/implants = list()
-			for (var/obj/item/implant/I in holder.owner) //Still preserving implants
-				implants += I
 
 			H.in_fakedeath = 1
-			APPLY_MOB_PROPERTY(C, PROP_CANTMOVE, src.type)
+			APPLY_ATOM_PROPERTY(C, PROP_CANTMOVE, src.type)
 
 			C.lying = 1
 			C.canmove = 0
@@ -41,35 +38,9 @@
 
 			C.emote("deathgasp")
 
-			SPAWN_DBG(cooldown)
-				changeling_super_heal_step(C, 100, 100) //get those limbs back i didn't lay here for 45 seconds to be hopping around on one leg dang it
-				if (C && !isdead(C))
-					C.HealDamage("All", 1000, 1000)
-					C.take_brain_damage(-INFINITY)
-					C.take_toxin_damage(-INFINITY)
-					C.take_oxygen_deprivation(-INFINITY)
-					C.delStatus("paralysis")
-					C.delStatus("stunned")
-					C.delStatus("weakened")
-					C.delStatus("radiation")
-					C.health = 100
-					C.reagents.clear_reagents()
-					C.lying = 0
-					C.canmove = 1
-					boutput(C, "<span class='notice'>We have regenerated.</span>")
-					logTheThing("combat", C, null, "[C] finishes regenerative statis as a changeling [log_loc(C)].")
-					C.visible_message(__red("<B>[C] appears to wake from the dead, having healed all wounds.</span>"))
-					for(var/obj/item/implant/I in implants)
-						if (istype(I, /obj/item/implant/projectile))
-							boutput(C, "<span class='alert'>\an [I] falls out of your abdomen.</span>")
-							I.on_remove(C)
-							C.implant.Remove(I)
-							I.set_loc(C.loc)
-							continue
+			//src.type passed along so we can remove that mob property up above in the status effect ending.
+			C.setStatus("regenerative_stasis", src.cooldown, src.type)
 
-				C.set_clothing_icon_dirty()
-				H.in_fakedeath = 0
-				REMOVE_MOB_PROPERTY(C, PROP_CANTMOVE, src.type)
 		return 0
 
 /proc/changeling_super_heal_step(var/mob/living/carbon/human/healed, var/limb_regen_prob = 25, var/eye_regen_prob = 25, var/mult = 1, var/changer = 1)
@@ -85,8 +56,8 @@
 			C.HealDamage("All", 10 * mult, 1 * mult)
 			C.take_toxin_damage(-10 * mult)
 			C.take_oxygen_deprivation(-10 * mult)
-			if (C.blood_volume < 500)
-				C.blood_volume += 10 * mult
+			if (C.organHolder && C.organHolder.spleen && C.reagents.total_volume < C.ideal_blood_volume)
+				C.reagents.add_reagent(C.organHolder.spleen.blood_id, C.ideal_blood_volume * 10 * BLOOD_SCALAR * mult, temp_new = C.base_body_temp)
 				//changelings can get this somehow and it stops speed regen ever turning off otherwise
 			boutput(C, "<span class='notice'>You feel your flesh knitting back together.</span>")
 			for(var/obj/item/implant/I in implants)
@@ -158,7 +129,7 @@
 	pointCost = 10
 	targeted = 0
 	target_anything = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 	dont_lock_holder = 1
 	ignore_holder_lock = 1
 

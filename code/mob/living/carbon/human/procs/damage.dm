@@ -14,7 +14,7 @@
 	var/armor_value_bullet = 1
 
 	if (!(client && client.hellbanned))
-		armor_value_bullet = get_ranged_protection()
+		armor_value_bullet = max(get_ranged_protection(), 0.01)
 	var/target_organ = pick("left_lung", "right_lung", "left_kidney", "right_kidney", "liver", "stomach", "intestines", "spleen", "pancreas", "appendix", "tail")
 	if (P.proj_data) //Wire: Fix for: Cannot read null.damage_type
 		switch(P.proj_data.damage_type)
@@ -53,12 +53,8 @@
 									src.organHolder.damage_organ(0, (damage/armor_value_bullet)*2, 0, target_organ)
 							//implanted.implanted(src, null, min(20, max(0, floor(damage / 10) ) ))
 			if (D_PIERCING)
-				if (armor_value_bullet > 1)
-					if (src.organHolder && prob(50))
-						src.organHolder.damage_organ(damage/max(armor_value_bullet/3), 0, 0, target_organ)
-				else
-					if (src.organHolder && prob(50))
-						src.organHolder.damage_organ(damage/1, 0, 0, target_organ)
+				if (src.organHolder && prob(50))
+					src.organHolder.damage_organ(damage/max( armor_value_bullet / 3, min(1, armor_value_bullet)), 0, 0, target_organ)
 
 				if (P.implanted)
 					if (istext(P.implanted))
@@ -127,7 +123,7 @@
 	return 1
 
 
-/mob/living/carbon/human/ex_act(severity, lasttouched, epicenter)
+/mob/living/carbon/human/ex_act(severity, lasttouched, epicenter, turf_safe = FALSE)
 	..() // Logs.
 	if (src.nodamage) return
 	// there used to be mining radiation check here which increases severity by one
@@ -190,10 +186,11 @@
 		if (-INFINITY to 0) //blocked
 			boutput(src, "<span class='alert'><b>You are shielded from the blast!</b></span>")
 			return
-		if (6 to INFINITY) //gib
-			SPAWN_DBG(1 DECI SECOND)
-				src.gib(1)
-			return
+		if (6 to INFINITY) //gib unless turf safe - that one only gibs corpses
+			if(!turf_safe)
+				SPAWN_DBG(1 DECI SECOND)
+					src.gib(1)
+				return
 	src.apply_sonic_stun(0, 0, 0, 0, 0, floor(severity*7), floor(severity*7), severity*40)
 
 	if (prob(b_loss) && !shielded && !reduction)

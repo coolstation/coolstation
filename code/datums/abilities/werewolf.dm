@@ -167,8 +167,8 @@
 				HH.spread_blood_clothes(HH)
 				M.spread_blood_hands(HH)
 
-				var/obj/decal/cleanable/blood/gibs/G = null // For forensics.
-				G = make_cleanable(/obj/decal/cleanable/blood/gibs,HH.loc)
+				var/obj/decal/cleanable/tracked_reagents/blood/gibs/G = null // For forensics.
+				G = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,HH.loc)
 				if (HH.bioHolder && HH.bioHolder.Uid && HH.bioHolder.bloodType)
 					G.blood_DNA = HH.bioHolder.Uid
 					G.blood_type = HH.bioHolder.bloodType
@@ -204,9 +204,7 @@
 				else if (HH.mind && HH.mind.assigned_role == "Clown")
 					boutput(M, __blue("That tasted funny, huh."))
 					M.unlock_medal("That tasted funny", 1)
-#ifdef DATALOGGER
 					game_stats.Increment("clownabuse")
-#endif
 				else
 					boutput(M, __blue("That tasted good!"))
 					M.unlock_medal("Space Ham", 1) //new way to acquire
@@ -247,8 +245,8 @@
 				if (prob(40))
 					HH.spread_blood_clothes(HH)
 					M.spread_blood_hands(HH)
-					var/obj/decal/cleanable/blood/gibs/G = null // For forensics.
-					G = make_cleanable(/obj/decal/cleanable/blood/gibs, HH.loc)
+					var/obj/decal/cleanable/tracked_reagents/blood/gibs/G = null // For forensics.
+					G = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, HH.loc)
 					if (HH.bioHolder && HH.bioHolder.Uid && HH.bioHolder.bloodType)
 						G.blood_DNA = HH.bioHolder.Uid
 						G.blood_type = HH.bioHolder.bloodType
@@ -346,9 +344,6 @@
 			return
 		if (!spell.holder)
 			return
-		if (!isturf(owner.holder.owner.loc))
-			boutput(owner.holder.owner, "<span class='alert'>You can't use this ability here.</span>")
-			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
 			usr.update_cursor()
@@ -375,7 +370,7 @@
 	New()
 		..()
 		awaken_time = rand(5, 10)*100
-		src.tainted_saliva_reservoir = new/datum/reagents(500)
+		src.tainted_saliva_reservoir = new/datum/reagents(100)
 
 	onAbilityStat() // In the 'Werewolf' tab.
 		..()
@@ -403,6 +398,7 @@
 	last_cast = 0
 	pointCost = 0
 	preferred_holder_type = /datum/abilityHolder/werewolf
+	turf_check = TRUE
 	var/when_stunned = 0 // 0: Never | 1: Ignore mob.stunned and mob.weakened | 2: Ignore all incapacitation vars
 	var/not_when_handcuffed = 0
 	var/werewolf_only = 0

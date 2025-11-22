@@ -47,8 +47,8 @@ export class NumberInput extends Component {
       if (editing) {
         return;
       }
-      document.body.style['pointer-events'] = 'none';
       this.ref = e.target;
+      document.body.style['pointer-events'] = 'none';
       this.setState({
         dragging: false,
         origin: e.screenY,
@@ -167,9 +167,7 @@ export class NumberInput extends Component {
     }
     // IE8: Use an "unselectable" prop because "user-select" doesn't work.
     const renderContentElement = value => (
-      <div
-        className="NumberInput__content"
-        unselectable={Byond.IS_LTE_IE8}>
+      <div className="NumberInput__content">
         {value + (unit ? ' ' + unit : '')}
       </div>
     );

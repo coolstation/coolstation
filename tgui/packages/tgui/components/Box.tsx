@@ -5,7 +5,7 @@
  */
 
 import { BooleanLike, classes, pureComponentHooks } from 'common/react';
-import { createVNode, InfernoNode } from 'inferno';
+import { createVNode, InfernoNode, SFC } from 'inferno';
 import { ChildFlags, VNodeFlags } from 'inferno-vnode-flags';
 import { CSS_COLORS } from '../constants';
 
@@ -64,16 +64,9 @@ export interface BoxProps {
  */
 export const unit = (value: unknown): string | undefined => {
   if (typeof value === 'string') {
-    // Transparently convert pixels into rem units
-    if (value.endsWith('px') && !Byond.IS_LTE_IE8) {
-      return parseFloat(value) / 12 + 'rem';
-    }
     return value;
   }
   if (typeof value === 'number') {
-    if (Byond.IS_LTE_IE8) {
-      return value * 12 + 'px';
-    }
     return value + 'rem';
   }
 };
@@ -93,9 +86,7 @@ export const halfUnit = (value: unknown): string | undefined => {
 const isColorCode = (str: unknown) => !isColorClass(str);
 
 const isColorClass = (str: unknown): boolean => {
-  if (typeof str === 'string') {
-    return CSS_COLORS.includes(str);
-  }
+  return typeof str === "string" && CSS_COLORS.includes(str);
 };
 
 const mapRawPropTo = attrName => (style, value) => {
@@ -217,11 +208,6 @@ export const computeBoxProps = (props: BoxProps) => {
     if (propName === 'style') {
       continue;
     }
-    // IE8: onclick workaround
-    if (Byond.IS_LTE_IE8 && propName === 'onClick') {
-      computedProps.onclick = props[propName];
-      continue;
-    }
     const propValue = props[propName];
     const mapPropToStyle = styleMapperByPropName[propName];
     if (mapPropToStyle) {
@@ -258,7 +244,7 @@ export const computeBoxClassName = (props: BoxProps) => {
   ]);
 };
 
-export const Box = (props: BoxProps) => {
+export const Box: SFC<BoxProps> = (props: BoxProps) => {
   const {
     as = 'div',
     className,
@@ -280,7 +266,8 @@ export const Box = (props: BoxProps) => {
     computedClassName,
     children,
     ChildFlags.UnknownChildren,
-    computedProps);
+    computedProps,
+    undefined);
 };
 
 Box.defaultHooks = pureComponentHooks;

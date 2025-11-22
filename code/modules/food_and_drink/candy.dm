@@ -261,7 +261,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/food/snacks/candy/jellybean)
 						src.trueflavor = pick(all_functional_reagent_ids)
 					else
 						src.trueflavor = "sugar"
-					src.reagents.add_reagent(src.flavor, 50)
+					src.reagents.add_reagent(src.trueflavor, 50)
 
 				src.food_color = src.reagents.get_master_color()
 				src.icon += src.food_color // apparently this is a thing you can do?  neat!

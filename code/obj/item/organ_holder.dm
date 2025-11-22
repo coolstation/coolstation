@@ -17,9 +17,9 @@
 	var/obj/item/organ/kidney/left_kidney = null
 	var/obj/item/organ/kidney/right_kidney = null
 	var/obj/item/organ/liver = null
-	var/obj/item/organ/spleen = null
+	var/obj/item/organ/spleen/spleen = null
 	var/obj/item/organ/pancreas = null
-	var/obj/item/organ/stomach = null
+	var/obj/item/organ/stomach/stomach = null
 	var/obj/item/organ/intestines = null
 	var/obj/item/organ/appendix = null
 	var/obj/item/organ/tail = null
@@ -167,8 +167,8 @@
 			if ("spleen")
 				if (ishuman(donor))
 					var/mob/living/carbon/human/H = donor
-					H.blood_volume -= 2 * mult
-			if ("left_kidney")					//I'm lazy... Not making this better right now -kyle
+					H.reagents.remove_reagent(H.blood_id, H.ideal_blood_volume * 2 * BLOOD_SCALAR * mult)
+			if ("left_kidney") //I'm lazy... Not making this better right now -kyle
 				if (!get_working_kidney_amt())
 					donor.take_toxin_damage(2, 1)
 			if ("right_kidney")
@@ -336,6 +336,7 @@
 		if (!src.spleen)
 			src.spleen = new /obj/item/organ/spleen(src.donor, src)
 			organ_list["spleen"] = spleen
+			src.spleen.blood_id = src.donor.blood_id
 		if (!src.pancreas)
 			src.pancreas = new /obj/item/organ/pancreas(src.donor, src)
 			organ_list["pancreas"] = pancreas
@@ -557,7 +558,7 @@
 				var/obj/item/organ/heart/myHeart = src.heart
 				//Commented this out for some reason I forget. I'm sure I'll remember what it is one day. -kyle
 				// if (src.heart.robotic)
-				// 	REMOVE_MOB_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart")
+				// 	REMOVE_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart")
 				// 	src.donor.remove_stam_mod_max("heart")
 				myHeart.set_loc(location)
 				myHeart.on_removal()
@@ -926,10 +927,10 @@
 						src.donor.contract_disease(/datum/ailment/malady/flatline,null,null,1)
 					//Like above, I commented this out for a reason I cannot remember. might just be because I changed how that stamina modifier works, I dunno.
 					// if (newHeart.emagged)
-					// 	APPLY_MOB_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 20)
+					// 	APPLY_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 20)
 					// 	src.donor.add_stam_mod_max("heart", 100)
 					// else
-					// 	APPLY_MOB_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 10)
+					// 	APPLY_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 10)
 					// 	src.donor.add_stam_mod_max("heart", 50)
 				newHeart.op_stage = op_stage
 				src.heart = newHeart
@@ -1149,9 +1150,9 @@
 		switch (working_lungs)
 			if (0)
 				if (working_lungs != lungs_changed)
-					REMOVE_MOB_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "single_lung_removal")
+					REMOVE_ATOM_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "single_lung_removal")
 					donor.remove_stam_mod_max("single_lung_removal")
-					APPLY_MOB_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "double_lung_removal", -6)
+					APPLY_ATOM_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "double_lung_removal", -6)
 					donor.add_stam_mod_max("double_lung_removal", -150)
 					lungs_changed = 0
 
@@ -1159,9 +1160,9 @@
 				donor.losebreath+=rand(1,5) * mult
 			if (1)
 				if (working_lungs != lungs_changed)
-					REMOVE_MOB_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "double_lung_removal")
+					REMOVE_ATOM_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "double_lung_removal")
 					donor.remove_stam_mod_max("double_lung_removal")
-					APPLY_MOB_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "single_lung_removal", -3)
+					APPLY_ATOM_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "single_lung_removal", -3)
 					donor.add_stam_mod_max("single_lung_removal", -75)
 					lungs_changed = 1
 
@@ -1170,9 +1171,9 @@
 					donor.losebreath+=(1 * mult)
 			if (2)
 				if (working_lungs != lungs_changed)
-					REMOVE_MOB_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "single_lung_removal")
+					REMOVE_ATOM_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "single_lung_removal")
 					donor.remove_stam_mod_max("single_lung_removal")
-					REMOVE_MOB_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "double_lung_removal")
+					REMOVE_ATOM_PROPERTY(donor, PROP_STAMINA_REGEN_BONUS, "double_lung_removal")
 					donor.remove_stam_mod_max("double_lung_removal")
 					lungs_changed = 2
 
@@ -1287,6 +1288,7 @@
 
 
 // HI IT'S ME CIRR AGAIN COMMANDEERING CODE
+/*
 /datum/organHolder/critter/flock
 
 	create_organs(var/obj/item/organ/brain/custom_brain_type)
@@ -1298,6 +1300,7 @@
 			SPAWN_DBG(2 SECONDS) // god damn i wish i didn't need to have these spawns here, it's gross, i'm sorry, i'm really sorry
 				if (src.heart && src.donor)
 					src.heart.name = initial(src.heart.name)
+*/
 
 /*===============================*/
 /*---------- Abilities ----------*/
@@ -1314,8 +1317,6 @@
 		if (!istype(spell))
 			return
 		if (!spell.holder)
-			return
-		if (!isturf(usr.loc))
 			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr:targeting_ability = null
@@ -1336,6 +1337,7 @@
 	cooldown = 0
 	last_cast = 0
 	preferred_holder_type = /datum/abilityHolder/organ
+	turf_check = TRUE
 	var/disabled = 0
 	var/toggled = 0
 	var/is_on = 0   // used if a toggle ability
@@ -1494,15 +1496,15 @@
 		else
 			linked_organ.take_damage(30, 30) //not safe
 		boutput(holder.owner, "<span class='notice'>You overclock your cyberkidney[islist(linked_organ) ? "s" : ""] to rapidly purge chemicals from your body.</span>")
-		APPLY_MOB_PROPERTY(holder.owner, PROP_CHEM_PURGE, src, power)
-		holder.owner.urine += power // -.-
+		APPLY_ATOM_PROPERTY(holder.owner, PROP_CHEM_PURGE, src, power)
+		holder.owner.urine += power * 4
 		SPAWN_DBG(15 SECONDS)
 			if(holder?.owner)
-				REMOVE_MOB_PROPERTY(holder.owner, PROP_CHEM_PURGE, src)
+				REMOVE_ATOM_PROPERTY(holder.owner, PROP_CHEM_PURGE, src)
 
 	proc/cancel_purge()
 		if(holder?.owner)
-			REMOVE_MOB_PROPERTY(holder.owner, PROP_CHEM_PURGE, src)
+			REMOVE_ATOM_PROPERTY(holder.owner, PROP_CHEM_PURGE, src)
 
 /datum/targetable/organAbility/liverdetox
 	name = "\"Detox\" Toggle"
@@ -1531,6 +1533,7 @@
 		else
 			src.icon_state = "[initial(src.icon_state)]_cd"
 
+/*
 /datum/targetable/organAbility/quickdigest
 	name = "Rapid Digestion"
 	desc = "Force your cyberintestines to rapidly process the contents of your stomach. This can't be healthy."
@@ -1552,7 +1555,7 @@
 			else
 				boutput(L, "<span class='alert'>Your intestines crunch painfully in your gut. Maybe they would work better with some food to process.</span>")
 				linked_organ.take_damage(30) //owwww
-
+*/
 
 /datum/targetable/organAbility/projectilevomit
 	name = "Projectile Vomiting"
@@ -1568,7 +1571,7 @@
 
 		if(istype(holder.owner, /mob/living))
 			var/mob/living/L = holder.owner
-			if (L.stomach_process && length(L.stomach_process))
+			if (L.organHolder && L.organHolder.stomach && length(L.organHolder.stomach.contents))
 				L.visible_message("<span class='alert'>[L] convulses and vomits right at [target]!</span>", "<span class='alert'>You upchuck some of your cyberstomach contents at [target]!</span>")
 				SPAWN_DBG(0)
 					for (var/i in 1 to 3)
@@ -1576,7 +1579,7 @@
 						O.throw_at(target, 8, 3, bonus_throwforce=5)
 						linked_organ.take_damage(3)
 						sleep(0.1 SECONDS)
-						if(linked_organ.broken || !length(L.stomach_process))
+						if(linked_organ.broken || !length(linked_organ.contents))
 							break
 			else
 				boutput(L, "<span class='alert'>You try to vomit, but your cyberstomach has nothing left inside!</span>")
@@ -1608,9 +1611,9 @@
 		for(var/obj/item/organ/lung/cyber/L in linked_organ)
 			L.overloading = is_on
 		if(is_on)
-			APPLY_MOB_PROPERTY(holder.owner, PROP_REBREATHING, "cyberlungs")
+			APPLY_ATOM_PROPERTY(holder.owner, PROP_REBREATHING, "cyberlungs")
 		else
-			REMOVE_MOB_PROPERTY(holder.owner, PROP_REBREATHING, "cyberlungs")
+			REMOVE_ATOM_PROPERTY(holder.owner, PROP_REBREATHING, "cyberlungs")
 
 		if(is_on)
 			src.icon_state = initial(src.icon_state)

@@ -142,19 +142,32 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	name = "gunsmithing anvil"
 	desc = "hit it with a gun 'till the gun falls apart lmao"
 	var/obj/item/gun_parts/part = null
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
+	pass_unstable = FALSE
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "anvil"
 	w_class = W_CLASS_BULKY
+	throw_spin = FALSE
 
 	portable
 		density = 0
-		anchored = 0
+		pass_unstable = PRESERVE_CACHE
+		anchored = UNANCHORED
 		w_class = W_CLASS_SMALL
 		contraband = 1
 		name = "portable gunsmithing anvil"
 		desc = "what!! that's so unbalanced!!"
+
+		throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+			. = ..()
+			if(src.event_handler_flags & IS_PITFALLING && isliving(hit_atom))
+				var/mob/living/L = hit_atom
+				L.changeStatus("staggered", 5 SECONDS)
+				L.show_message("<span class='alert'>YOWCH! You're lucky it wasn't a solid anvil!</span>")
+				random_brute_damage(L, 15)
+				playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 70, 1)
+				playsound(L, "sound/misc/laughter/laughtrack3.ogg", 50, 0, 3)
 
 	attackby(obj/item/W as obj, mob/user as mob, params)
 		if(!istype(W,/obj/item/gun/modular/) || prob(60))
@@ -162,6 +175,10 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 			..()
 			return
 		var/obj/item/gun/modular/new_gun = W
+		if(new_gun.glued)
+			playsound(src.loc, "sound/impact_sounds/Wood_Hit_1.ogg", 70, 1)
+			..()
+			return
 		if(!new_gun.built)
 			new_gun.ClearAllOverlays(1)
 			boutput(user, "<span class='notice'>You smash the pieces of the gun into place!</span>")
@@ -184,9 +201,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 			if(new_gun.stock)
 				src.part = new_gun.stock.remove_part_from_gun()
 				src.part.set_loc(src.loc)
-			if(new_gun.magazine)
-				src.part = new_gun.magazine.remove_part_from_gun()
-				src.part.set_loc(src.loc)
 			if(new_gun.accessory)
 				src.part = new_gun.accessory.remove_part_from_gun()
 				src.part.set_loc(src.loc)
@@ -195,9 +209,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 				src.part.set_loc(src.loc)
 			src.part = null
 			new_gun.reset_gun() // back to inits
-			new_gun.buildTooltipContent()
-			new_gun.built = 0
-			new_gun.ClearAllOverlays(1) // clear the part overlays but keep cache? idk if thats better or worse.
 
 
 
@@ -253,8 +264,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 			src.barrel = new_gun.barrel.remove_part_from_gun()
 		if(new_gun.stock)
 			src.stock = new_gun.stock.remove_part_from_gun()
-		if(new_gun.magazine)
-			src.magazine = new_gun.magazine.remove_part_from_gun()
 		if(new_gun.accessory)
 			src.accessory = new_gun.accessory.remove_part_from_gun()
 
@@ -268,8 +277,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 		//add parts to gun // this is gonna runtime you dipshit
 		gun.barrel = src.barrel
 		gun.stock = src.stock
-		gun.magazine = src.magazine
-		gun.accessory = src.accessory
 
 		//dispense gun
 		gun.build_gun()
@@ -279,7 +286,6 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 		gun = null
 		barrel.contents = null
 		stock.contents = null
-		magazine.contents = null
 		accessory = null
 
 /obj/machinery/vending/gun_safe

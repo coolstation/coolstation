@@ -9,10 +9,12 @@ datum
 		harmful/
 			name = "dangerous stuff"
 			viscosity = 0.16
+			taste = "like a bug report"
 
 		harmful/simple_damage_toxin
 			name = "toxin precursor"
 			id = "simple_damage_toxin"
+			taste = "bad"
 			var/damage_factor = 1
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -33,10 +35,13 @@ datum
 				fluid_b = 32
 				transparency = 120
 				penetrates_skin = 1
+				evaporates_cleanly = TRUE
+				taste = "tasteless"
 
 		harmful/simple_damage_burn
 			name = "irritant precursor"
 			id = "simple_damage_burn"
+			taste = "spicy"
 			var/damage_factor = 1
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -58,6 +63,8 @@ datum
 			transparency = 20
 			blob_damage = 1
 			value = 3 // 1c + 1c + 1c
+			evaporates_cleanly = TRUE
+			taste = "sour"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -152,6 +159,8 @@ datum
 			transparency = 64
 			reagent_state = LIQUID
 			blob_damage = 0.2
+			evaporates_cleanly = TRUE
+			taste = "sour"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -191,6 +200,7 @@ datum
 			fluid_b = 255
 			transparency = 50
 			var/damage_counter = 0
+			taste = "tasteless"
 /*
 			pooled()
 				..()
@@ -217,6 +227,7 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 50
+			taste = "cheesy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -239,6 +250,7 @@ datum
 			fluid_b = 160
 			transparency = 80
 			depletion_rate = 0.05
+			taste = "bitter"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -253,15 +265,16 @@ datum
 			fluid_r = 0
 			fluid_b = 180
 			fluid_g = 25
-			transparency = 10
 			description = "A highly toxic chemical with some uses as a building block for other things."
 			reagent_state = LIQUID
-			transparency = 0
+			transparency = 15
 			depletion_rate = 0.1
 			penetrates_skin = 1
 			blob_damage = 5
 			value = 7 // 3 2 1 heat
+			evaporates_cleanly = TRUE
 			var/counter = 1
+			taste = "bitter"
 /*
 			pooled()
 				..()
@@ -298,6 +311,54 @@ datum
 				return
 
 
+		harmful/tetrodotoxin
+			name = "tetrodotoxin"
+			id = "tetrodotoxin"
+			description = "An extremely dangerous neurotoxin which paralyses the respiratory system, most commonly found in incorrectly prepared pufferfish."
+			reagent_state = LIQUID
+			fluid_r = 255
+			fluid_g = 180
+			fluid_b = 240
+			transparency = 30
+			depletion_rate = 0.1
+			penetrates_skin = 1
+			touch_modifier = 0.25
+			var/counter = 1
+			taste = "fishy"
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M) M = holder.my_atom
+
+				switch(src.counter+= (mult))
+					if (10 to 25) // Small signs of trouble
+						if (prob(18))
+							M.change_misstep_chance(15 * mult)
+							M.stuttering = max(M.stuttering, 10)
+						if (probmult(13))
+							boutput(M, "<span class='notice'><b>You feel a [pick("sudden palpitation", "numbness", "tingling")] in your chest.</b>")
+							M.stuttering = max(M.stuttering, 10)
+						if (probmult(13))
+							M.emote(pick("twitch","drool","tremble"))
+							M.change_eye_blurry(2, 2)
+					if (25 to 45) // Effects ramp up, breathlessness, early paralysis signs and heartache
+						M.change_eye_blurry(5, 5)
+						M.stuttering = max(M.stuttering, 5)
+						M.setStatus("slowed", max(M.getStatusDuration("slowed"), 10 SECONDS))
+						if (prob(30))
+							M.losebreath = max(5, M.losebreath + (5 * mult))
+						if (prob(20))
+							boutput(M, "<span class='alert'><b>Your [pick("senses go numb", "head spins", "body feels stiff")].</b>")
+							M.change_misstep_chance(15 * mult)
+					if (45 to INFINITY) // Heart effects kick in
+						M.setStatus("slowed", max(M.getStatusDuration("slowed"), 40 SECONDS))
+						M.change_eye_blurry(15, 15)
+						M.losebreath = max(5, M.losebreath + (5 * mult))
+						if(isliving(M))
+							var/mob/living/L = M
+							L.contract_disease(/datum/ailment/malady/flatline, null, null, 1)
+				..()
+				return
+
 		harmful/curare
 			name = "curare"
 			id = "curare"
@@ -310,6 +371,7 @@ datum
 			depletion_rate = 0.1
 			var/counter = 1
 			penetrates_skin = 1
+			taste = "tasteless"
 
 			pooled()
 				..()
@@ -354,6 +416,8 @@ datum
 			transparency = 20
 			penetrates_skin = 1
 			value = 4 // 1 1 1 heat
+			evaporates_cleanly = TRUE
+			taste = "like science"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -377,6 +441,8 @@ datum
 			transparency = 20
 			penetrates_skin = 1
 			value = 4
+			evaporates_cleanly = TRUE
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -396,6 +462,7 @@ datum
 			fluid_b = 240
 			transparency = 215
 			depletion_rate = 0.2
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -431,17 +498,18 @@ datum
 			fluid_g = 16
 			fluid_b = 192
 			transparency = 255
+			taste = "like medicine"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_initropidril", 33)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_initropidril", 33)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_initropidril")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_initropidril")
 				return
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
@@ -474,6 +542,7 @@ datum
 			fluid_b = 5
 			transparency = 255
 			depletion_rate = 0.1 //per 3 sec
+			taste = "old"
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -535,6 +604,7 @@ datum
 			fluid_b = 5
 			transparency = 255
 			depletion_rate = 0.2
+			taste = "funny"
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -581,7 +651,7 @@ datum
 
 								if (H.organHolder.heart.robotic)
 									B = new/obj/critter/domestic_bee/buddy(H.loc)
-									REMOVE_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "heart")
+									REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, "heart")
 									H.remove_stam_mod_max("heart")
 
 								else
@@ -615,6 +685,7 @@ datum
 			fluid_b = 255
 			transparency = 255
 			depletion_rate = 0.2
+			taste = "fancy"
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -675,7 +746,7 @@ datum
 								B.update_icon()
 
 								playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-								bleed(H, 500, 5) // you'll be gibbed in a moment you don't need it anyway
+								bleed(H, 500, violent = TRUE) // you'll be gibbed in a moment you don't need it anyway
 								H.visible_message("<span class='alert'><B>A huge bee bursts out of [H]! OH FUCK!</B></span>")
 								qdel(H.organHolder.heart)
 								H.gib()
@@ -696,6 +767,7 @@ datum
 			fluid_b = 200
 			transparency = 255
 			var/remove_buff = 0
+			taste = "bland"
 /*
 			pooled()
 				..()
@@ -739,8 +811,51 @@ datum
 			reaction_blob(var/obj/blob/B, var/volume)
 				if (B.type == /obj/blob)
 					var/obj/blob/lipid/L = new /obj/blob/lipid(B.loc)
-					L.setOvermind(B.overmind)
+					L.setHolder(B.blob_holder)
 					qdel(B)
+
+		harmful/hemotoxin
+			name = "hemotoxin"
+			id = "hemotoxin"
+			description = "A dangerous compound that disolves blood cells and causes massive bleeding."
+			reagent_state = LIQUID
+			fluid_r = 210
+			fluid_g = 180
+			fluid_b = 25
+			transparency = 100
+			depletion_rate = 0.2
+			taste = "bland"
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M) M = holder.my_atom
+				random_brute_damage(M, mult)
+
+				if (isliving(M))
+					var/mob/living/H = M
+					H.reagents.remove_reagent(H.blood_id, 3 * mult)
+				if (probmult(6))
+					M.visible_message(pick("<span class='alert'><B>[M]</B>'s [pick("eyes", "arms", "legs")] bleed!",\
+											"<span class='alert'><B>[M]</B> bleeds [pick("profusely", "like crazy")]!",\
+											"<span class='alert'><B>[M]</B>'s [pick("chest", "face", "whole body")] bleeds!"))
+					playsound(M, 'sound/impact_sounds/Slimy_Splat_1.ogg', 30, TRUE) //some bloody effects
+					make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter,M.loc)
+				else if (probmult(20))
+					make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter,M.loc) //some extra bloody effects
+				if (probmult(10))
+					M.make_jittery(50)
+					M.setStatus("slowed", max(M.getStatusDuration("slowed"), 5 SECONDS))
+					boutput(M, "<span class='alert'><b>Your body hurts so much.</b>")
+					if (!isdead(M))
+						M.emote(pick("cry", "tremble", "scream"))
+				if (probmult(10))
+					M.change_eye_blurry(6, 6)
+					M.setStatus("slowed", max(M.getStatusDuration("slowed"), 5 SECONDS))
+					boutput(M, "<span class='alert'><b>Everything starts hurting.</b>")
+					if (!isdead(M))
+						M.emote(pick("shake", "tremble", "shudder"))
+
+				..()
+				return
 
 		harmful/itching
 			name = "itching powder"
@@ -753,6 +868,7 @@ datum
 			transparency = 100
 			depletion_rate = 0.3
 			penetrates_skin = 1
+			taste = "spicy"
 
 			on_mob_life(var/mob/M, var/mult = 1) // commence the tickling
 				if (!M) M = holder.my_atom
@@ -791,6 +907,8 @@ datum
 			transparency = 40
 			dispersal = 1
 			blob_damage = 4
+			evaporates_cleanly = TRUE
+			taste = "sour"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -912,6 +1030,7 @@ datum
 			depletion_rate = 0.2
 			var/counter = 1
 			var/remove_buff = 0
+			taste = "tingly"
 /*
 			pooled()
 				..()
@@ -967,6 +1086,7 @@ datum
 			depletion_rate = 0.1
 			penetrates_skin = 1
 			blob_damage = 3
+			taste = "metallic"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -990,6 +1110,7 @@ datum
 			depletion_rate = 0.7
 			var/counter = 1
 			var/remove_buff = 0
+			taste = "bad"
 /*
 			pooled()
 				..()
@@ -1043,8 +1164,10 @@ datum
 			transparency = 20
 			depletion_rate = 0.8
 			penetrates_skin = 1
+			contraband = 3
 			var/counter = 1
 			var/remove_buff = 0
+			taste = "bad"
 /*
 			pooled()
 				..()
@@ -1093,6 +1216,7 @@ datum
 			var/counter = 1
 			var/remove_buff = 0
 			blob_damage = 2
+			taste = "old"
 /*
 			pooled()
 				..()
@@ -1143,6 +1267,7 @@ datum
 			fluid_g = 25
 			transparency = 20
 			blob_damage = 1
+			taste = "toxic"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1163,6 +1288,7 @@ datum
 			fluid_b = 240
 			transparency = 200
 			depletion_rate = 0.2
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1205,6 +1331,7 @@ datum
 			var/fainted = 0
 			blob_damage = 1
 			value = 4 // 3c + heat
+			taste = "like water"
 /*
 			pooled()
 				..()
@@ -1242,6 +1369,67 @@ datum
 				..(M, mult)
 				return
 
+		harmful/vertigo
+			name = "vertigo"
+			id = "vertigo"
+			description = "A debilitating compound that affects muscular function, causing dizzyness and ataxia, purified from neurotoxin."
+			reagent_state = LIQUID
+			fluid_r = 140
+			fluid_g = 145
+			fluid_b = 135
+			depletion_rate = 0.2
+			var/counter = 1
+			taste = "tingly"
+
+			on_mob_life(var/mob/M, var/mult = 1)
+				if (!M) M = holder.my_atom
+				if (!counter) counter = 1
+				switch(counter += (1 * mult))
+					if (1 to 5)
+						return //evil evil evil make them think it's neurotoxin
+					if (5 to 10)
+						M.make_dizzy(1 * mult)
+						M.change_misstep_chance(10 * mult)
+						if (probmult(20)) M.emote("drool")
+					if (10 to 18)
+						M.setStatus("drowsy", 8 SECONDS)
+						M.make_dizzy(1 * mult)
+						M.change_misstep_chance(15 * mult)
+						if (probmult(35)) M.emote("drool")
+					if (18 to INFINITY) // This is the point at which neuro would have KO'd you
+						M.setStatus("drowsy", 8 SECONDS)
+						M.make_dizzy(1 * mult)
+						M.change_eye_blurry(6, 6)
+						M.stuttering += rand(3,6) * mult
+						M.change_misstep_chance(20 * mult)
+						if(M.hasStatus("paralysis"))
+							..()                      //will not cause emotes and puking if you are already downed by capulettium
+							return					  //for preserving the death diguise
+						if(probmult(15))
+							if(!M.hasStatus("slowed"))
+								M.setStatus("slowed", 2 SECONDS)
+							boutput(M, pick("<span class='alert'>You feel extremely dizzy!</span>",\
+											"<span class='alert'>You feel like everything is spinning!</span>",\
+											"<span class='alert'>Your [pick("arms", "legs")] quiver!</span>",\
+											"<span class='alert'>Your feel a numbness through your [pick("hands", "fingers")]..</span>",\
+											"<span class='alert'>Your vision [pick("gets all blurry", "goes fuzzy")]!</span>",\
+											"<span class='alert'>You feel very sick!</span>"))
+							if(prob(10)) //no need for probmult in here as it's already behind a probmult statement
+								M.vomit() //so dizzy you puke
+								M.visible_message("<span class='alert'>[M] pukes all over [himself_or_herself(M)].</span>",\
+													"<span class='alert'>You puke all over yourself!</span>")
+						else if(probmult(9))
+							boutput(M, pick("<span class='alert'>You feel like the words are getting caught up in your mouth!</span>",\
+											"<span class='alert'>You can't utter a single word!</span>",\
+											"<span class='alert'>Your [pick("face","chest")] feels numb...</span>",\
+											"<span class='alert'>You can't feel your [pick("mouth","tongue","throat")]!</span>"))
+							M.losebreath += (5)
+							M.emote(pick("gasp", "choke"))
+						else if (probmult(40)) M.emote(pick("twitch", "tremble", "drool", "drool", "twitch_v"))
+				M.jitteriness = max(M.jitteriness-30,0)
+				..(M, mult)
+				return
+
 		harmful/mutagen // COGWERKS CHEM REVISION PROJECT. magic chemical, fine as is
 			name = "unstable mutagen"
 			id = "mutagen"
@@ -1254,6 +1442,7 @@ datum
 			depletion_rate = 0.3
 			blob_damage = 1
 			value = 3 // 1 1 1
+			taste = "contrived"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -1290,6 +1479,7 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 255
+			taste = "chunky"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -1323,6 +1513,7 @@ datum
 			fluid_g = 172
 			fluid_b = 147
 			transparency = 150
+			taste = "hairy"
 
 		harmful/omega_mutagen/werewolf_serum_fake2
 			name = "Werewolf Serum Precursor Beta"
@@ -1333,6 +1524,7 @@ datum
 			fluid_g = 172
 			fluid_b = 100
 			transparency = 200
+			taste = "hairy"
 
 		harmful/fake_initropidril
 			name = "initropidril"
@@ -1343,6 +1535,7 @@ datum
 			fluid_g = 16
 			fluid_b = 192
 			transparency = 220
+			taste = "like medicine"
 
 		harmful/wolfsbane
 			name = "Aconitum"
@@ -1353,6 +1546,7 @@ datum
 			fluid_b = 116
 			fluid_g = 198
 			transparency = 20
+			taste = "plain"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1379,6 +1573,7 @@ datum
 			fluid_g = 200
 			fluid_b = 30
 			transparency = 255
+			taste = "chunky"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 
@@ -1405,6 +1600,7 @@ datum
 			transparency = 160
 			addiction_prob = 10
 			overdose = 10
+			taste = "like juice"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (prob(5))
@@ -1431,6 +1627,7 @@ datum
 			transparency = 60
 			depletion_rate = 0.2
 			overdose = 40
+			taste = "like medicine"
 
 			on_mob_life(var/mob/M, var/mult = 1) // allergies suck fyi
 				if (!M) M = holder.my_atom
@@ -1523,6 +1720,7 @@ datum
 			overdose = 25
 			var/counter = 1
 			blob_damage = 5
+			taste = "like water"
 /*
 			pooled()
 				..()
@@ -1594,6 +1792,7 @@ datum
 			transparency = 255
 			depletion_rate = 0.9 //10u should complete the transformation reliably with this, I'm not trusting floats enough to put this at 1 exactly
 			pathogen_nutrition = list("dna_mutagen")
+			taste = "boring"
 
 			var/tmp/progress_timer = 1
 /*
@@ -1651,6 +1850,7 @@ datum
 			fluid_b = 69
 			transparency = 255
 			depletion_rate = 0.1
+			taste = "strange"
 			var/spooksounds = list('sound/effects/ghost.ogg' = 80,'sound/effects/ghost2.ogg' = 20,'sound/effects/ghostbreath.ogg' = 60, \
 					'sound/effects/ghostlaugh.ogg' = 40,'sound/effects/ghostvoice.ogg' = 90)
 
@@ -1760,7 +1960,7 @@ datum
 					//POWER UP!!
 				if (t7 && data >= t7)
 					t6 = 0
-					APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, src.id, 100) //Buff
+					APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, src.id, 100) //Buff
 					H.show_text("You feel very buff!", "red")
 
 				if (t8 && data >= t8)
@@ -1822,7 +2022,7 @@ datum
 					H.ai_calm_down = initial(H.ai_calm_down)
 					H.ai_suicidal = 0
 					if (data >= 30)
-						REMOVE_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, src.id) //Not so buff
+						REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, src.id) //Not so buff
 						logTheThing("combat", H, null, "has their AI disabled by [src.id]")
 						H.show_text("It's okay... it's okay... breathe... calm... it's okay...", "blue")
 				..()
@@ -1856,7 +2056,7 @@ datum
 					if(25)
 						H.remove_stam_mod_max(src.id)
 						H.add_stam_mod_max(src.id, -50)
-						APPLY_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, src.id, -2)
+						APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, src.id, -2)
 					if(26 to 35)
 						if(prob(30)) do_stuff(2, H, mult)
 					if(36 to INFINITY)
@@ -1870,7 +2070,7 @@ datum
 				var/mob/living/carbon/human/H = holder.my_atom
 				if (!istype(H)) return
 				H.remove_stam_mod_max(src.id)
-				REMOVE_MOB_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, src.id)
+				REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, src.id)
 
 
 			proc/do_stuff(var/severity, var/mob/living/carbon/human/H, var/mult = 1)
@@ -1943,5 +2143,4 @@ datum
 						H.visible_message("<span class='alert'>[H] [damage > 3 ? "vomits" : "coughs up"] blood!</span>", "<span class='alert'>You [damage > 3 ? "vomit" : "cough up"] blood!</span>")
 						playsound(H.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 						H.TakeDamage(zone="All", brute=damage)
-						bleed(H, damage * 2 * mult, 3)
-
+						bleed(H, damage * 2 * mult)

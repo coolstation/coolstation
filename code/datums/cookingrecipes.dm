@@ -143,14 +143,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/heartburger
 	category = "Burgers"
-
+/*
 /datum/cookingrecipe/oven/flockburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/organ/brain/flockdrone
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/flockburger
 	category = "Burgers"
-
+*/
 /datum/cookingrecipe/oven/brainburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/organ/brain
@@ -286,7 +286,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 
 /datum/cookingrecipe/oven/spaghetti_t
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
-	item2 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
+	item2 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/sauce
 	category = "Pasta"
@@ -305,9 +305,17 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/meatball
 	category = "Pasta"
 
+/datum/cookingrecipe/oven/spaghetti_tw
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
+	item2 = /obj/item/reagent_containers/food/snacks/meatball
+	item3 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
+	cookbonus = 16
+	output = /obj/item/reagent_containers/food/snacks/spaghetti/theworks
+	category = "Pasta"
+
 /datum/cookingrecipe/oven/lasagna
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/pasta/sheet
-	item2 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
+	item2 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/lasagna
@@ -315,7 +323,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 
 /datum/cookingrecipe/oven/spaghetti_pg
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
-	item2 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
+	item2 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	item3 = /obj/item/reagent_containers/food/snacks/pizza
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/pizzaghetti
@@ -600,7 +608,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	item1 = /obj/item/reagent_containers/food/snacks/meatball
 	item2 = /obj/item/reagent_containers/food/snacks/breadloaf
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
-	item4 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
+	item4 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meatball
 	category = "Sandwiches"
@@ -609,7 +617,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	item1 = /obj/item/reagent_containers/food/snacks/meatball
 	item2 = /obj/item/baguette
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
-	item4 = /obj/item/reagent_containers/food/snacks/condiment/ketchup
+	item4 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meatball
 	category = "Sandwiches"
@@ -820,8 +828,8 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 
 		return customSandwich
 
-/datum/cookingrecipe/oven/pizza
-	item1 = /obj/item/reagent_containers/food/snacks/ingredient/pizza3
+/datum/cookingrecipe/oven/pizza_custom
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/pizza_base
 	cookbonus = 18
 	output = null
 	category = "Pizzas"
@@ -830,26 +838,8 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 		if (!ourCooker)
 			return null
 
-		var/obj/item/reagent_containers/food/snacks/pizza/customPizza = new /obj/item/reagent_containers/food/snacks/pizza (ourCooker)
-
-		for (var/obj/item/reagent_containers/food/snacks/ingredient/pizza3/P in ourCooker)
-			var/toppingstext = null
-			if(P.toppingstext)
-				toppingstext = P.toppingstext
-				customPizza.name = "[toppingstext] pizza"
-				customPizza.desc = "A pizza with [toppingstext] toppings. Looks pretty [pick("good","dang good","delicious","scrumptious","heavenly","alright")]."
-			else
-				customPizza.name = "pizza"
-				customPizza.desc = 	"A plain cheese and tomato pizza. Looks pretty alright."
-			customPizza.overlays += P.overlays
-			customPizza.num = P.num
-			customPizza.topping = P.topping
-			customPizza.topping_colors = P.topping_colors
-			customPizza.heal_amt = P.heal_amt
-			P.reagents.trans_to(customPizza, P.reagents.total_volume)
-			customPizza.food_effects += P.food_effects
-
-		return customPizza
+		for (var/obj/item/reagent_containers/food/snacks/ingredient/pizza_base/P in ourCooker)
+			return P.bake_pizza()
 
 /datum/cookingrecipe/oven/cheesetoast
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -1193,8 +1183,8 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	output = /obj/item/reagent_containers/food/snacks/bakedpotato
 
 /datum/cookingrecipe/oven/hotdog
-	item1 = /obj/item/reagent_containers/food/snacks/meatball
-	amt1 = 2
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meatpaste
+	amt1 = 1
 	cookbonus = 6
 	output = /obj/item/reagent_containers/food/snacks/hotdog
 
@@ -1747,6 +1737,8 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 
 /datum/cookingrecipe/oven/meatloaf
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meatpaste
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/egg
+	item3 = /obj/item/reagent_containers/food/snacks/breadloaf
 	cookbonus = 8
 	output = /obj/item/reagent_containers/food/snacks/meatloaf
 
@@ -1863,6 +1855,12 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	item4 = /obj/item/reagent_containers/food/snacks/plant/garlic
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/risotto
+
+/datum/cookingrecipe/oven/cheesewheel
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
+	amt1 = 4
+	cookbonus = 14
+	output = /obj/item/reagent_containers/food/snacks/cheesewheel
 
 // Recipe for zongzi is a WIP; we're gonna need rice balls or something
 

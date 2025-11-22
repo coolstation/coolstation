@@ -48,32 +48,48 @@ proc/build_syndi_buylist_cache()
 	desc = "FOSS-Licensed hand-crafted open-source flashbulbs, only works with Open-Source Laser Guns!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
+/*
 /datum/syndicate_buylist/weapon/pistolrounds
 	name = "Ammo: Italian Pistol Rounds"
 	item = /obj/item/stackable_ammo/pistol/italian/ten
 	cost = 1
 	desc = "Ten rounds of chump-poppers, in case you run out."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+*/
 
 /datum/syndicate_buylist/weapon/pistolrounds
 	name = "Ammo: Italian Pistol Rounds (AP)"
-	item = /obj/item/stackable_ammo/pistol/italian/AP/five
+	item = /obj/item/stackable_ammo/pistol/italian/AP/ten
 	cost = 1
-	desc = "Five rounds of vest-shredders, in case you run out."
+	desc = "Ten rounds of vest-shredders, in case you run out."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/buckshot
 	name = "Ammo: Juicer Shotgun Buckshot"
-	item = /obj/item/stackable_ammo/scatter/juicer/ten
+	item = /obj/item/stackable_ammo/shotgun/juicer/ten
 	cost = 2
 	desc = "This shit is actually banned by the Geneva Convention. Luckily, those dorks have no jurisdiction here."
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
+/datum/syndicate_buylist/weapon/gunse_ammo_fab
+	name = "Gun Part: Ammunition Extruder"
+	item = /obj/item/gun_parts/accessory/ammofab
+	cost = 2
+	desc = "An illegal accessory for your modular gun that can fabricate and load a low quality pellet every 10 to 12 seconds."
+	blockedmode = list(/datum/game_mode/revolution)
+
 /datum/syndicate_buylist/weapon/radbow
 	name = "Ammo: Rad Poison Crossbow Bolts"
 	item = /obj/item/stackable_ammo/pistol/radbow/ten
-	cost = 3
+	cost = 2
 	desc = "Ten highly lethal flechettes that deal large amounts of radiation poisoning. Can be fired from any modular gun. Popular with the NT pistol."
+	blockedmode = list(/datum/game_mode/revolution)
+
+/datum/syndicate_buylist/weapon/pistol
+	name = "Gun: NT Modular Pistol"
+	item = /obj/item/storage/box/pistol
+	cost = 3
+	desc = "A fairly basic single action pistol. Standard issue, so it won't attract attention."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/weapon/pistol
@@ -85,8 +101,8 @@ proc/build_syndi_buylist_cache()
 
 /datum/syndicate_buylist/weapon/shotgun
 	name = "Gun: Modular Shotgun"
-	item = /obj/item/storage/box/shotgun
-	cost = 5
+	item = /obj/item/storage/box/shotgun/juicer
+	cost = 6
 	desc = "Not exactly stealthy, but it'll certainly make an impression."
 	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
@@ -124,6 +140,13 @@ proc/build_syndi_buylist_cache()
 	item = /obj/item/storage/tactical_grenade_pouch
 	cost = 2
 	desc = "A pouch of assorted special-ops grenades."
+	blockedmode = list(/datum/game_mode/revolution)
+
+/datum/syndicate_buylist/utility/turbopunkskates
+	name = "Turbopunk Skates"
+	item = /obj/item/clothing/shoes/turbopunk
+	cost = 2
+	desc = "These rollerskates include super-lubricated bearings, perform combat slides just like ACTION MOVIE."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/utility/voicechanger
@@ -208,9 +231,9 @@ proc/build_syndi_buylist_cache()
 
 /datum/syndicate_buylist/weapon/derringer
 	name = "Gun: Derringer"
-	item = /obj/item/gun/kinetic/derringer
+	item = /obj/item/gun/modular/italian/revolver/derringer/preloaded
 	cost = 2
-	desc = "A small pistol that can be hidden inside worn clothes and retrieved using the wink emote. Comes with two shots and does extreme damage at close range."
+	desc = "A tiny revolver loaded wtih three shots of Italian rimfire, incredibly lethal at incredibly short ranges. This gun is small enough to be stashed in worn clothes and retrieved with the wink emote."
 	blockedmode = list(/datum/game_mode/revolution)
 
 /datum/syndicate_buylist/utility/stealthstorage
@@ -562,7 +585,7 @@ This is basically useless for anyone but miners.
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/minibible
-	name = "Miniature Bible"
+	name = "Miniature Bib"
 	item = /obj/item/storage/bible/mini
 	cost = 1
 	desc = "We understand it can be difficult to carry out some of our missions. Here is some spiritual counsel in a small package."
@@ -712,7 +735,7 @@ This is basically useless for anyone but miners.
 	item = /obj/item/gun/reagent/syringe
 	cost = 3
 	desc = "This stainless-steel, revolving wonder fires needles. Perfect for today's telehealth-oriented Syndicate doctor! Loaded by transferring reagents to the gun's internal reservoir."
-	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender")
+	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender", "Chemist")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 
@@ -739,7 +762,7 @@ This is basically useless for anyone but miners.
 	item = /obj/item/reagent_containers/glass/bottle/poison
 	cost = 1
 	desc = "A bottle of poison. Which poison? Who knows."
-	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender")
+	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender", "Chemist")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/poisonbundle
@@ -747,7 +770,7 @@ This is basically useless for anyone but miners.
 	item = /obj/item/storage/box/poison
 	cost = 7
 	desc = "A box filled with seven random poison bottles."
-	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender")
+	job = list("Medical Doctor", "Medical Director", "Research Director", "Scientist", "Bartender", "Chemist")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 
@@ -823,7 +846,7 @@ This is basically useless for anyone but miners.
 	desc = "A box of shot glasses that hold WAAAY more that normal. Cheat at drinking games!"
 	job = list("Bartender")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
-
+/*
 /datum/syndicate_buylist/traitor/vuvuzelagun
 	name = "Vuvuzela Gun"
 	item = /obj/item/gun/energy/vuvuzela_gun
@@ -831,7 +854,7 @@ This is basically useless for anyone but miners.
 	desc = "<b>BZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</b>"
 	job = list("Assistant","Technical Assistant","Medical Assistant","Staff Assistant", "Clown")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
-
+*/
 /datum/syndicate_buylist/traitor/moustache_grenade
 	name = "Moustache Grenade"
 	item = /obj/item/old_grenade/moustache
@@ -855,14 +878,6 @@ This is basically useless for anyone but miners.
 	desc = "Tired of destroying your own face with acid reactions? Want to make the janitor feel incompetent? This kit gets you started with three grenades. Just add beakers and screw! Now holds LARGE beakers."
 	job = list("Chemist","Scientist","Research Director")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
-
-/datum/syndicate_buylist/traitor/ammo_38AP // 2 TC for 1 speedloader was very poor value compared to other guns and traitor items in general (Convair880).
-	name = ".38 AP ammo box"
-	item = /obj/item/storage/box/ammo38AP
-	cost = 0 //2
-	desc = "Armor-piercing ammo for a .38 Special revolver (not included)."
-	job = list("Detective")
-	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution, /datum/game_mode/spy_theft)
 
 /datum/syndicate_buylist/traitor/traitorthermalscanner
 	name = "Advanced Optical Thermal Scanner"
@@ -907,7 +922,15 @@ This is basically useless for anyone but miners.
 	job = list("Staff Assistant","Test Subject","Geneticist","Pathologist")
 	blockedmode = list(/datum/game_mode/revolution)
 
+/datum/syndicate_buylist/traitor/gunse_ammo_fab_malware
+	name = "Gun Part: Malware Cartridge Extruder"
+	item = /obj/item/gun_parts/accessory/ammofab/malware
+	cost = 6
+	desc = "An illegal accessory for your modular gun that can fabricate and load an experimental rifle round every 10 to 12 seconds."
+	job = list("Research Director", "Scientist", "Mechanic")
+	blockedmode = list(/datum/game_mode/revolution)
 
+/*
 /datum/syndicate_buylist/traitor/buddy_ammofab
 	name = "Guardbuddy Ammo Replicator"
 	item = /obj/item/device/guardbot_module/ammofab
@@ -916,6 +939,7 @@ This is basically useless for anyone but miners.
 	desc = "A device that allows PR-6S Guardbuddy units to use their internal charge to replenish kinetic ammunition."
 	job = list("Research Director")
 	blockedmode = list(/datum/game_mode/revolution)
+*/
 
 /datum/syndicate_buylist/utility/wiretap
 	name = "Wiretap Radio Upgrade"
@@ -944,14 +968,14 @@ This is basically useless for anyone but miners.
 	cost = 2
 	desc = "An ornamental dagger for stabbing people with."
 	blockedmode = list(/datum/game_mode/spy)
-
+/*
 /datum/syndicate_buylist/surplus/advanced_laser
 	name = "Laser Rifle"
 	item = /obj/item/gun/energy/laser_gun/pred
 	cost = 6
 	desc = "An experimental laser design with a self-charging cerenkite battery."
 	blockedmode = list(/datum/game_mode/spy_theft ,/datum/game_mode/spy, /datum/game_mode/revolution)
-
+*/
 /datum/syndicate_buylist/surplus/breachingT
 	name = "Thermite Breaching Charge"
 	item = /obj/item/breaching_charge/thermite
@@ -973,12 +997,14 @@ This is basically useless for anyone but miners.
 	desc = "A signal flaregun for emergency use. Or for setting jerks on fire"
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/spy)
 
+/*
 /datum/syndicate_buylist/surplus/rifle
 	name = "Old Hunting Rifle"
 	item = /obj/item/gun/kinetic/hunting_rifle
 	cost = 7
 	desc = "An old hunting rifle, comes with only four bullets. Use them wisely."
 	blockedmode = list(/datum/game_mode/spy_theft, /datum/game_mode/spy, /datum/game_mode/revolution)
+*/
 
 /datum/syndicate_buylist/surplus/bananagrenades
 	name = "Banana Grenades"
@@ -1131,6 +1157,7 @@ This is basically useless for anyone but miners.
 	desc = "Maybe paint a really insulting picture of your foe? To be honest, we have no idea what is even in these or where they came from, a huge crate of them just showed up at our warehouse around a month ago. We're sure it's something very handy, though!"
 	job = list("Chaplain")
 	vr_allowed = 0
+	not_in_crates = 1
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/chemicompiler
@@ -1139,7 +1166,7 @@ This is basically useless for anyone but miners.
 	cost = 0 //5
 	not_in_crates = 1
 	desc = "A handheld version of the Chemicompiler machine in Chemistry."
-	job = list("Research Director", "Scientist")
+	job = list("Research Director", "Scientist", "Chemist")
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/spy_theft, /datum/game_mode/revolution)
 
 /datum/syndicate_buylist/traitor/lawndarts
@@ -1167,7 +1194,7 @@ This is basically useless for anyone but miners.
 /datum/syndicate_buylist/traitor/bowling
 	name = "Bowling Kit"
 	item = /obj/item/storage/bowling
-	cost = 0 //7
+	cost = 7
 	desc = "Comes with several bowling balls and a suit. You won't be able to pluck up the courage to throw them very hard without wearing the suit!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
 
@@ -1177,6 +1204,14 @@ This is basically useless for anyone but miners.
 	cost = 0 //7
 	desc = "This kit contains everything you need to become a great football player! Wearing all of the equipment inside will grant you the ability to rush down and tackle foes. You'll also make amazing throws!"
 	blockedmode = list(/datum/game_mode/spy, /datum/game_mode/revolution)
+
+/datum/syndicate_buylist/traitor/fishing_rod
+	name = "Barbed Fishing Rod"
+	item = /obj/item/syndie_fishing_rod
+	cost = 6
+	desc = "A Juicer-endorsed fishing rod for big game fishing. Bait the hologram lure by hitting it with an item, then maim foes with a barbed hook that causes more damage the longer they fight back."
+	blockedmode = list(/datum/game_mode/revolution)
+
 /*
 /datum/syndicate_buylist/traitor/safari
 	name = "Safari Kit"

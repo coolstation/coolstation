@@ -16,10 +16,13 @@ macro "base_macro"
 		name = "CTRL+B"
 		command = "say \"*burp\""
 		is-disabled = true
+	elem "clap"
+		name = "CTRL+C"
+		command = "say \"*clap\""
+		is-disabled = true
 	elem "ooc"
 		name = "ALT+C"
-		command = ".force_keyup ALT+C\nooc"
-		is-disabled = true
+		command = ".winset \"command=.init_ooc;oocwindow.is-visible=true;oocwindow.input.focus=true\""
 	elem "dance"
 		name = "CTRL+D"
 		command = "say \"*dance\""
@@ -42,8 +45,7 @@ macro "base_macro"
 		is-disabled = true
 	elem "looc"
 		name = "ALT+L"
-		command = ".force_keyup ALT+L\nlooc"
-		is-disabled = true
+		command = ".winset \"command=.init_looc;loocwindow.is-visible=true;loocwindow.input.focus=true\""
 	elem "laugh"
 		name = "CTRL+L"
 		command = "say \"*laugh\""
@@ -74,10 +76,6 @@ macro "base_macro"
 	elem
 		name = "CTRL+T"
 		command = "asay"
-	elem
-		name = "ALT+W"
-		command = ".force_keyup ALT+W\nwhisper"
-		is-disabled = true
 	elem "wink"
 		name = "CTRL+W"
 		command = "say \"*wink\""
@@ -125,6 +123,18 @@ macro "base_macro"
 	elem "startsay"
 		name = "T"
 		command = ".winset \"command=\".start_typing say\";command=.init_say;saywindow.is-visible=true;saywindow.input.focus=true\""
+	elem "whisper"
+		name = "ALT+W"
+		command = ".winset \"command=\".start_typing whisper\";command=.init_whisper;whisperwindow.is-visible=true;whisperwindow.input.focus=true\""
+	elem "radiosay"
+		name = ";"
+		command = ".winset \"command=\".start_typing say\";command=.init_radiosay;radiosaywindow.is-visible=true;radiosaywindow.input.focus=true\""
+	elem "radiochannelsay"
+		name = "Y"
+		command = ".winset \"command=\".start_typing radiochannelsay\";command=.init_radiochannelsay;radiochannelsaywindow_macro_returnup.is-disabled=true\""
+	elem "radiolastsay"
+		name = "\["
+		command = ".winset \"command=\".start_typing radiochannelsay\";command=.init_radiochannelsay;radiochannelsaywindow.is-visible=true;radiochannelsaywindow.input.focus=true\""
 	elem
 		name = "Any"
 		command = ".keydown [[*]]"
@@ -319,12 +329,19 @@ menu "menu"
 		can-check = true
 		saved-params = "is-checked"
 	elem "dark_mode"
-		name = "&Dark mode"
+		name = "&Cools tation Broun"
 		command = "sync-dark-mode"
-		category = "&Window"
+		category = "&Skins"
 		can-check = true
 		saved-params = "is-checked"
 		is-checked = true
+	elem "charcoal_mode"
+		name = "&Charcoal"
+		command = "sync-charcoal-mode"
+		category = "&Skins"
+		can-check = true
+		saved-params = "is-checked"
+		is-checked = false
 	elem "hide_status_bar"
 		name = "&Hide status bar"
 		command = ".winset \"hide_status_bar.is-checked=true?mainwindow.statusbar=false:mainwindow.statusbar=true\""
@@ -352,6 +369,13 @@ menu "menu"
 	elem "set_tint"
 		name = "&View Tint"
 		command = "apply-view-tint"
+		category = "&Effects"
+		is-checked = true
+		can-check = true
+		saved-params = "is-checked"
+	elem "toggle_camera_recoil"
+		name = "&Camera Recoil"
+		command = "toggle-camera-recoil"
 		category = "&Effects"
 		is-checked = true
 		can-check = true
@@ -1865,3 +1889,25 @@ window "winJobRewards"
 		cells = 1x1
 		current-cell = 1,1
 		highlight-color = #80ffff
+
+window "sillytexts"
+	elem "sillytexts"
+		type = MAIN
+		pos = 281,0
+		size = 720x480
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "ANCIENT JEDI TEXTS"
+		statusbar = false
+		can-resize = true
+	elem "texto"
+		type = BROWSER
+		pos = 0,0
+		size = 720x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #6f7961
+		saved-params = ""
+		is-visible = true

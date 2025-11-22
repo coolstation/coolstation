@@ -14,9 +14,10 @@ var/global/list/queue_stat_list = list()
 #endif
 
 // dumb, bad
-var/list/extra_resources = list('code/pressstart2p.ttf', 'ibmvga9.ttf', 'xfont.ttf')
+var/list/extra_resources = list('code/pressstart2p.ttf', 'ibmvga9.ttf', 'xfont.ttf', 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf')
 // Press Start 2P - 6px
 // PxPlus IBM VGA9 - 12px
+// Not Jam Mono Clean - 16px
 
 
 // -------------------- GLOBAL VARS --------------------
@@ -30,8 +31,6 @@ var/global
 	vpn_blacklist_enabled = TRUE
 
 	datum/datacore/data_core = null
-
-	turf/buzztile = null
 
 	atom/movable/screen/renderSourceHolder
 	obj/overlay/zamujasa/round_start_countdown/game_start_countdown	// Countdown clock for round start
@@ -51,6 +50,7 @@ var/global
 	list/processing_fluid_turfs = list()
 	list/warping_mobs = list()
 	datum/hotspot_controller/hotspot_controller = new
+	datum/storm_controller/storm_controller = new
 		//items that ask to be called every cycle
 
 	list/muted_keys = list()
@@ -58,14 +58,14 @@ var/global
 	server_start_time = 0
 	round_time_check = 0			// set to world.timeofday when round starts, then used to calculate round time
 	defer_powernet_rebuild = 0		// true if net rebuild will be called manually after an event
-	machines_may_use_wired_power = 0
+	machines_may_use_wired_power = TRUE // fuck it, we ball? - mylie
 	regex/url_regex = null
 	force_random_names = 0			// for the pre-roundstart thing
 	force_random_looks = 0			// same as above
 
 	// disables the "you can't respawn with the same character or slot" checks for admins
 	// verbs like respawn-as-self will bypass this entirely.
-	admins_can_reuse_characters = 0
+	admins_can_reuse_characters = 1
 
 	list/default_mob_static_icons = list() // new mobs grab copies of these for themselves, or if their chosen type doesn't exist in the list, they generate their own and add it
 	list/mob_static_icons = list() // these are the images that are actually seen by ghostdrones instead of whatever mob
@@ -94,6 +94,8 @@ var/global
 	list/random_pod_codes = list() // if /obj/random_pod_spawner exists on the map, this will be filled with refs to the pods they make, and people joining up will have a chance to start with the unlock code in their memory
 
 	list/spacePushList = list()
+	/// Every location with a unique name for the jump verb
+	list/unique_areas_with_turfs = list()
 	/// All the accessible areas on the station in one convenient place
 	list/station_areas = list()
 	/// The station_areas list is up to date. If something changes an area, make sure to set this to 0
@@ -270,7 +272,7 @@ var/global
 	game_end_delayed = 0
 	game_end_delayer = null
 	ooc_allowed = 1
-	looc_allowed = 0
+	looc_allowed = 1
 	dooc_allowed = 1
 	player_capa = 0
 	player_cap = 55
@@ -288,7 +290,7 @@ var/global
 	suicide_allowed = 1
 	dna_ident = 1
 	abandon_allowed = 1
-	enable_fastpath = 0 // space fastpath default value
+	enable_fastpath = 1 // space fastpath default value
 	enter_allowed = 1
 	johnbus_location = 1
 	johnbus_destination = 0
@@ -312,11 +314,18 @@ var/global
 	signal_loss = 0
 	fart_attack = 0
 	blowout = 0
+	sandstorm = 0
 	farty_party = 0
 	deep_farting = 0
-	no_emote_cooldowns = 0
+
+#ifdef APRIL_FOOLS
+	ghost_invisibility = INVIS_NONE
+	no_emote_cooldowns = 1
+#else
 	// Default ghost invisibility. Set when the game is over
 	ghost_invisibility = INVIS_GHOST
+	no_emote_cooldowns = 0
+#endif
 
 
 	datum/titlecard/lobby_titlecard
@@ -393,9 +402,18 @@ var/global
 
 	halloween_mode = 0
 
-	literal_disarm = 0
-
 #ifdef RP_MODE
+#define SIMS_MODE
+#endif
+
+#ifdef APRIL_FOOLS
+#define SIMS_MODE
+	literal_disarm = 1
+#else
+	literal_disarm = 0
+#endif
+
+#ifdef SIMS_MODE // idk if theres a smarter way to do this
 	global_sims_mode = 1 // SET THIS TO 0 TO DISABLE SIMS MODE
 #else
 	global_sims_mode = 0 // SET THIS TO 0 TO DISABLE SIMS MODE
@@ -408,10 +426,10 @@ var/global
 	//airlockWireColorToIndex takes a number representing the wire color, e.g. the orange wire is always 1, the dark red wire is always 2, etc. It returns the index for whatever that wire does.
 	//airlockIndexToWireColor does the opposite thing - it takes the index for what the wire does, for example AIRLOCK_WIRE_IDSCAN is 1, AIRLOCK_WIRE_POWER1 is 2, etc. It returns the wire color number.
 	//airlockWireColorToFlag takes the wire color number and returns the flag for it (1, 2, 4, 8, 16, etc)
-	list/airlockWireColorToFlag = RandomAirlockWires()
-	list/airlockIndexToFlag
-	list/airlockIndexToWireColor
-	list/airlockWireColorToIndex
+	list/airlockWireColorToFlag = list()// = RandomAirlockWires()
+	list/airlockIndexToFlag = list()
+	list/airlockIndexToWireColor = list()
+	list/airlockWireColorToIndex = list()
 	list/APCWireColorToFlag = RandomAPCWires()
 	list/APCIndexToFlag
 	list/APCIndexToWireColor
@@ -533,6 +551,46 @@ var/global
 
 	syndicate_currency = "[pick("Flooz","Beenz","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals","Telecrystals")]"
 
+	whatcha_see_is_whatcha_get = TRUE
+
+/proc/updateAreaLists()
+	//Admin jump list
+	for (var/area/A in get_areas_with_turfs(/area))
+		if(!A.name)
+			continue
+		if(!length(A.name))
+			continue
+		unique_areas_with_turfs[A.name] += list(A)
+	unique_areas_with_turfs = sortList(unique_areas_with_turfs)
+
+	//Battle royale list
+	var/list/L = list()
+	var/list/areas = concrete_typesof(/area/station)
+	for(var/A in areas)
+		var/area/station/instance = locate(A)
+		for(var/turf/T in instance)
+			if(!isfloor(T) && is_blocked_turf(T) && istype(T,/area/sim/test_area) && T.z == 1)
+				continue
+			L[instance.name] = instance
+	station_areas = L
+
+	area_list_is_up_to_date = 1
+
+//returns a list of all areas on a station
+proc/get_accessible_station_areas()
+	if(station_areas && area_list_is_up_to_date) // In case someone makes a new area
+		return station_areas
+
+	updateAreaLists()
+	return station_areas
+
+//returns all useable areas for admin jump as an associative list of lists
+/proc/getUniqueAreas()
+	if(length(unique_areas_with_turfs) && area_list_is_up_to_date)
+		return unique_areas_with_turfs
+
+	updateAreaLists()
+	return unique_areas_with_turfs
 
 /proc/addGlobalRenderSource(var/image/I, var/key)
 	if(I && length(key) && !globalRenderSources[key])
@@ -545,6 +603,7 @@ var/global
 	return
 
 /proc/removeGlobalRenderSource(var/key)
+	set background = 1
 	if(length(key) && globalRenderSources[key])
 		globalRenderSources[key].loc = null
 		removeGlobalImage("[key]-renderSourceImage")

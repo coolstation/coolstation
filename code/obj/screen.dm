@@ -35,18 +35,49 @@
 	icon = 'icons/ui/screen1.dmi'
 	icon_state = "help"
 
+/atom/movable/screen/intent_sel/clicked(list/params)
+	var/icon_x = text2num(params["icon-x"])
+	var/icon_y = text2num(params["icon-y"])
+
+	var/mob/user = usr
+	if (!istype(usr))
+		return
+
+	if (icon_y > 16)
+		if (icon_x > 16) //Upper Right
+			user.a_intent = INTENT_DISARM
+			src.icon_state = "disarm"
+			if(literal_disarm && ishuman(user))
+				var/mob/living/carbon/human/H = user
+				H.limbs.l_arm.sever()
+				H.limbs.r_arm.sever()
+		else //Upper Left
+			user.a_intent = INTENT_HELP
+			src.icon_state = "help"
+
+	else
+		if (icon_x > 16) //Lower Right
+			user.a_intent = INTENT_HARM
+			src.icon_state = "harm"
+		else //Lower Left
+			user.a_intent = INTENT_GRAB
+			src.icon_state = "grab"
+
+	boutput(user, "<span class='hint'>Your intent is now set to '[user.a_intent]'.</span>")
+
+
+#ifdef USE_STAMINA_DISORIENT
 /atom/movable/screen/stamina_background
 	name = "stamina"
 	icon = 'icons/ui/screen1.dmi'
 	icon_state = "stamina"
 
-
 /mob/living/proc/update_stamina_desc(var/newDesc)
 	.= 0
 
 /mob/living/carbon/human/update_stamina_desc(var/newDesc)
-//	if (src.hud && src.hud.stamina)
-//		src.hud.stamina.desc = newDesc
+	if (src.hud && src.hud.stamina)
+		src.hud.stamina.desc = newDesc
 
 /mob/living/critter/update_stamina_desc(var/newDesc)
 	if (src.hud && src.hud.stamina)
@@ -73,7 +104,7 @@
 					src.icon = hud_style
 
 	proc/getDesc(var/mob/living/C)
-		return "[C.stamina] / [C.stamina_max] Stamina. Regeneration rate : [(C.stamina_regen + GET_MOB_PROPERTY(C, PROP_STAMINA_REGEN_BONUS))]"
+		return "[C.stamina] / [C.stamina_max] Stamina. Regeneration rate : [(C.stamina_regen + GET_ATOM_PROPERTY(C, PROP_STAMINA_REGEN_BONUS))]"
 
 	proc/update_value(var/mob/living/C)
 		if(C.stamina == last_val) return //No need to change anything
@@ -118,37 +149,8 @@
 		if (usr.client.tooltipHolder)
 			usr.client.tooltipHolder.hideHover()
 
-/atom/movable/screen/intent_sel/clicked(list/params)
-	var/icon_x = text2num(params["icon-x"])
-	var/icon_y = text2num(params["icon-y"])
-
-	var/mob/user = usr
-	if (!istype(usr))
-		return
-
-	if (icon_y > 16)
-		if (icon_x > 16) //Upper Right
-			user.a_intent = INTENT_DISARM
-			src.icon_state = "disarm"
-			if(literal_disarm && ishuman(user))
-				var/mob/living/carbon/human/H = user
-				H.limbs.l_arm.sever()
-				H.limbs.r_arm.sever()
-		else //Upper Left
-			user.a_intent = INTENT_HELP
-			src.icon_state = "help"
-
-	else
-		if (icon_x > 16) //Lower Right
-			user.a_intent = INTENT_HARM
-			src.icon_state = "harm"
-		else //Lower Left
-			user.a_intent = INTENT_GRAB
-			src.icon_state = "grab"
-
-	boutput(user, "<span class='hint'>Your intent is now set to '[user.a_intent]'.</span>")
-
 /atom/movable/screen/clicked(list/params)
 	switch(src.name)
 		if("stamina")
 			out(usr, src.desc)
+#endif

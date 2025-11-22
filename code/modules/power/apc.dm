@@ -3,8 +3,10 @@
 #define APC_WIRE_MAIN_POWER2 3
 #define APC_WIRE_AI_CONTROL 4
 
+/*
 var/zapLimiter = 0
-#define APC_ZAP_LIMIT_PER_5 2
+#define APC_ZAP_LIMIT_PER_5 4
+*/
 
 // the Area Power Controller (APC), formerly Power Distribution Unit (PDU)
 // one per area, needs wire conection to power network
@@ -19,8 +21,9 @@ var/zapLimiter = 0
 
 /obj/machinery/power/apc
 	name = "area power controller"
+	hint = "These supply the area with power, and contain a power cell inside."
 	icon_state = "apc0-map"
-	anchored = 1
+	anchored = ANCHORED
 	plane = PLANE_NOSHADOW_ABOVE
 	req_access = list(access_engineering_power)
 	object_flags = CAN_REPROGRAM_ACCESS
@@ -32,7 +35,11 @@ var/zapLimiter = 0
 	var/autoname_on_spawn = 0 // Area.name
 	var/obj/item/cell/cell
 	var/start_charge = 90				// initial cell charge %
-	var/cell_type = 2500				// 0=no cell, 1=regular, 2=high-cap (x5) <- old, now it's just 0=no cell, otherwise dictate cellcapacity by changing this value. 1 used to be 1000, 2 was 2500
+#ifdef POWER_IS_CRAPPY
+	var/cell_type = 1250
+#else
+	var/cell_type = 2500 // 0=no cell, 1=regular, 2=high-cap (x5) <- old, now it's just 0=no cell, otherwise dictate cellcapacity by changing this value. 1 used to be 1000, 2 was 2500
+#endif
 	var/opened = 0
 	var/circuit_disabled = 0
 	var/shorted = 0
@@ -210,20 +217,33 @@ var/zapLimiter = 0
 						netexcess = max(netexcess, S.terminal.powernet.netexcess)
 	return netexcess
 
-/obj/machinery/power/apc/proc/zapStuff() // COGWERKS NOTE: disabling calls to this proc for now, it is ruining the live servers
+ // COGWERKS NOTE: disabling calls to this proc for now, it is ruining the live servers
+ // MYLIE NOTE: this proc is really funny, time to zap people again
+/obj/machinery/power/apc/proc/zapStuff(var/zap_amt)
 	var/atom/target = null
 	var/atom/last = src
 
 	var/list/starts = new/list()
-	for(var/mob/living/M in oview(5, src))
+	for(var/mob/living/M in oview(2, src)) // mylie - 5 range, now you just need to dodge the APCs!
 		if(M.invisibility) continue
 		starts.Add(M)
 
-	if(!starts.len) return 0
+	if(!starts.len)
+		if(prob(66)) // combined with the *3 in the logarithmic prob for doing this at all, we are 3x more likely to strike PEOPLE if we can
+			return 0
+		var/turf/T = locate(src.x + rand(-6,6), src.y + rand(-6,6), src.z)
+		if(!T)
+			return 0
+		var/mob/living/M = locate() in T
+		if(M)
+			arcFlash(last, M, zap_amt)
+			return 1
+		arcFlashTurf(last, T, zap_amt)
+		return 1
 
 	target = pick(starts)
 
-	arcFlash(last, target, 500000)
+	arcFlash(last, target, zap_amt)
 
 	return 1
 
@@ -254,6 +274,7 @@ var/zapLimiter = 0
 		UpdateOverlays(isWireColorCut(APC_WIRE_MAIN_POWER2) ? I_wirewhite : null, "wirewhite", 0, 1)
 		UpdateOverlays(isWireColorCut(APC_WIRE_AI_CONTROL) ? I_wireyellow : null, "wireyellow", 0, 1)
 
+
 		return
 	else
 		icon_state = "apc0"
@@ -266,6 +287,24 @@ var/zapLimiter = 0
 		var/image/I_equp = SafeGetOverlayImage("equipment", 'icons/obj/machines/power.dmi', "apco0-[equipment]")
 		var/image/I_envi = SafeGetOverlayImage("environment", 'icons/obj/machines/power.dmi', "apco2-[environ]")
 
+		I_lock.blend_mode = BLEND_OVERLAY
+		I_lock.plane = PLANE_SELFILLUM
+
+		I_chrg.blend_mode = BLEND_OVERLAY
+		I_chrg.plane = PLANE_SELFILLUM
+
+		I_brke.blend_mode = BLEND_OVERLAY
+		I_brke.plane = PLANE_SELFILLUM
+
+		I_lite.blend_mode = BLEND_OVERLAY
+		I_lite.plane = PLANE_SELFILLUM
+
+		I_equp.blend_mode = BLEND_OVERLAY
+		I_equp.plane = PLANE_SELFILLUM
+
+		I_envi.blend_mode = BLEND_OVERLAY
+		I_envi.plane = PLANE_SELFILLUM
+
 		UpdateOverlays(I_lock, "lock", 0, 1)
 		UpdateOverlays(I_chrg, "charge", 0, 1)
 		UpdateOverlays(I_brke, "breaker", 0, 1)
@@ -274,6 +313,7 @@ var/zapLimiter = 0
 			UpdateOverlays(I_lite, "lighting", 0, 1)
 			UpdateOverlays(I_equp, "equipment", 0, 1)
 			UpdateOverlays(I_envi, "environment", 0, 1)
+
 
 /obj/machinery/power/apc/emp_act()
 	..()
@@ -368,6 +408,8 @@ var/zapLimiter = 0
 								src.terminal = new /obj/machinery/power/terminal(src.loc)
 							src.terminal.master = src
 							src.terminal.set_dir(initial(src.dir))
+
+					malfunction_resolve() //freebie, they did unfuck the whole thing so it probably fixed whatever was wrong before the APC blew up.
 
 					status &= ~BROKEN //Clear broken flag
 					icon_state = initial(src.icon_state)
@@ -1192,12 +1234,14 @@ var/zapLimiter = 0
 	if(terminal?.powernet)
 		perapc = terminal.powernet.perapc
 
-	if(zapLimiter < APC_ZAP_LIMIT_PER_5 && prob(6) && !shorted && avail() > 3000000)
-		SPAWN_DBG(0)
-			if(zapStuff())
-				zapLimiter += 1
-				sleep(5 SECONDS)
-				zapLimiter -= 1
+		if(/*zapLimiter < APC_ZAP_LIMIT_PER_5 && */!shorted && perapc >= 40 KILO WATTS && prob((log(perapc) - 8) * 2) && !ON_COOLDOWN(src, "zap_a_fool", rand(30 DECI SECONDS, 80 DECI SECONDS)))
+			var/zap_amt = perapc * 0.85
+			SPAWN_DBG(0)
+				if(zapStuff(zap_amt))
+					terminal.powernet.newload += zap_amt
+					/*zapLimiter += 1
+					sleep(5 SECONDS)
+					zapLimiter -= 1*/
 
 	if(cell && !shorted)
 
@@ -1357,7 +1401,23 @@ var/zapLimiter = 0
 	..()
 
 /obj/machinery/power/apc/malfunction_hint()
-	return "Open the maintenance hatch and replace the APC's wiring."
+	//You can already examine APCs to get the next step, but we'll have a more formally worded repeat here
+	if(status & BROKEN)
+		switch(repair_status)
+			if(0)
+				return "<br>First, unscrew and disconnect the control board.</br>"
+			if(1)
+				return "<br>Next, replace the autotransformer's wiring.</br>"
+			if(2)
+				return "<br>Next, tune the autotransformer using a wrench.</br>"
+			if(3)
+				return "<br>Next, reset the control board with a multitool.</br>"
+			if(4)
+				return "<br>Finally, reconnect the control board with a screwdriver.</br>"
+
+	if (src in random_events.maintenance_event.unmaintained_machines)
+		return "Open the maintenance hatch and replace the APC's wiring."
+	return FALSE
 
 // damage and destruction acts
 
@@ -1578,14 +1638,11 @@ var/zapLimiter = 0
 
 MAKE_DIRECTION_SUBTYPES(/obj/machinery/power/apc/autoname, 24)
 
-/obj/apc_helper //we really need a map helper path at this rate
+/obj/map/apc_helper //we really need a map helper path at this rate <- guess what there is binch
 	icon = 'icons/map-editing/mapeditor.dmi'
-	invisibility = 101
-	anchored = TRUE
-	density = FALSE
 	layer = EFFECTS_LAYER_4 // above all stuff
 
-/obj/apc_helper/New()
+/obj/map/apc_helper/New()
 	. = ..()
 	var/obj/machinery/power/apc/apc = locate() in loc
 	if(isnull(apc))
@@ -1595,18 +1652,18 @@ MAKE_DIRECTION_SUBTYPES(/obj/machinery/power/apc/autoname, 24)
 	act_on(apc)
 	qdel(src)
 
-/obj/apc_helper/proc/act_on(obj/machinery/power/apc/apc)
+/obj/map/apc_helper/proc/act_on(obj/machinery/power/apc/apc)
 	return
 
-/obj/apc_helper/nopoweralert
+/obj/map/apc_helper/nopoweralert
 	icon_state = "nopoweralert"
 
-/obj/apc_helper/nopoweralert/act_on(obj/machinery/power/apc/apc)
+/obj/map/apc_helper/nopoweralert/act_on(obj/machinery/power/apc/apc)
 	apc.noalerts = TRUE
 
-/obj/apc_helper/noaicontrol
+/obj/map/apc_helper/noaicontrol
 	icon_state = "noaicontrol"
 
-/obj/apc_helper/noaicontrol/act_on(obj/machinery/power/apc/apc)
+/obj/map/apc_helper/noaicontrol/act_on(obj/machinery/power/apc/apc)
 	apc.noalerts = TRUE
 	apc.aidisabled = TRUE

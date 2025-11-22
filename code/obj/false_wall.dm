@@ -2,7 +2,7 @@
 	name = "wall"
 	icon = 'icons/obj/doors/Doorf.dmi'
 	icon_state = "door1"
-	blocks_air = 0
+	gas_impermeable = 0
 	var/operating = null
 	var/visible = 1
 	var/floorname
@@ -30,7 +30,7 @@
 		..()
 		//Hide the wires or whatever THE FUCK
 		src.levelupdate()
-		src.blocks_air = 1
+		src.gas_impermeable = 1
 		src.layer = src.layer - 0.1
 		SPAWN_DBG(0)
 			src.find_icon_state()
@@ -162,7 +162,7 @@
 			//we want to return 1 without waiting for the animation to finish - the textual cue seems sloppy if it waits
 			//actually do the opening things
 			src.set_density(0)
-			src.blocks_air = 0
+			src.gas_impermeable = 0
 			src.pathable = 1
 			src.update_air_properties()
 			src.RL_SetOpacity(0)
@@ -181,7 +181,7 @@
 		src.name = "wall"
 		animate(src, time = delay, pixel_x = 0, easing = BACK_EASING)
 		src.set_density(1)
-		src.blocks_air = 1
+		src.gas_impermeable = 1
 		src.pathable = 0
 		src.update_air_properties()
 		if (src.visible)
@@ -200,7 +200,7 @@
 			return
 
 		var/turf/wall_path = ispath(map_settings.walls) ? map_settings.walls : /turf/wall/auto
-		var/turf/r_wall_path = ispath(map_settings.rwalls) ? map_settings.rwalls : /turf/wall/auto/reinforced
+		var/turf/wall/r_wall_path = ispath(map_settings.rwalls) ? map_settings.rwalls : /turf/wall/auto/reinforced
 		src.icon = initial(wall_path.icon)
 		if (src.can_be_auto)
 			var/dirs = 0
@@ -239,7 +239,7 @@
 		animate(src, time = delay, pixel_x = 0, easing = BACK_EASING)
 		src.icon_state = "door1"
 		src.set_density(1)
-		src.blocks_air = 1
+		src.gas_impermeable = 1
 		src.pathable = 0
 		src.update_air_properties()
 		if (src.visible)
@@ -248,9 +248,9 @@
 		src.setIntact(TRUE)
 		update_nearby_tiles()
 		if(src.was_rwall)
-			src.ReplaceWithRWall()
+			src.ReplaceWithUpdateWalls(map_settings ? map_settings.rwalls : /turf/wall/r_wall)
 		else
-			src.ReplaceWithWall()
+			src.ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 		return 1
 
 /turf/wall/false_wall/hive

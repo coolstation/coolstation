@@ -10,9 +10,9 @@ import { Stack, Icon } from '../../components';
 import { SortDirection } from './constant';
 
 interface HeaderProps {
-  children: InfernoNode,
-  onSortClick?: () => any,
-  sortDirection?: SortDirection,
+  readonly children: InfernoNode,
+  readonly onSortClick?: () => any,
+  readonly sortDirection?: SortDirection,
 }
 
 export const Header = (props: HeaderProps) => {

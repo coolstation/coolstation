@@ -33,6 +33,24 @@
 		..()
 		if (icon_state == "tplaceholder") icon_state = (channel_open ? "near_blank" : "[rand(1,25)]" )
 
+/turf/space/shuttle_transit/deadly
+	#ifdef IN_MAP_EDITOR
+	icon_state = "tplaceholder_red"
+	#endif
+	New()
+		..()
+		#ifdef DESERT_MAP
+		src.AddComponent(/datum/component/pitfall/planetary_splat,\
+			BruteDamageMax = 1050,\
+			HangTime = 0 SECONDS,\
+			FallTime = 0.1 SECONDS)
+		#endif
+
+	Entered(atom/movable/A)
+		if (ishuman(A) || issilicon(A))
+			game_stats.Increment("workplacesafety") //Please keep your arms and legs inside the shuttle at all times.
+		..()
+
 /turf/floor/shuttle_noprotections
 	name = "shuttle floor"
 	icon_state = "floord"
@@ -45,9 +63,8 @@
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				if(prob(50))
-					src.ReplaceWithSpace()
-				else
-					src.ReplaceWithLattice()
+					new /obj/lattice(src)
+				src.ReplaceWithSpace()
 
 			if(OLD_EX_SEVERITY_2)
 				if(prob(80))
@@ -68,7 +85,7 @@
 	var/icon_style = "wall"
 	opacity = 0
 	density = 1
-	blocks_air = 1
+	gas_impermeable = 1
 	pathable = 0
 
 	New()
@@ -117,7 +134,7 @@
 	/////////////////////////////////////////////////////////////////OBJECTS
 
 /obj/indestructible/
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 	attackby()
 	attack_hand()
@@ -213,7 +230,7 @@
 	var/icon_style = "wall"
 	opacity = 1
 	density = 1
-	blocks_air = 1
+	gas_impermeable = 1
 	pathable = 0
 
 	New()

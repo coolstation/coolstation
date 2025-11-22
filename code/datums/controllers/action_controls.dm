@@ -103,6 +103,10 @@ var/datum/action_controller/actions
 
 	proc/onStart()				   //Called when the action begins
 		state = ACTIONSTATE_RUNNING
+		if((src.interrupt_flags & INTERRUPT_MOVE) && isliving(src.owner))
+			var/mob/living/L = src.owner
+			if(L.ai)
+				OVERRIDE_COOLDOWN(L, "ACTION_BLOCKING_AI_MOVEMENT", max(GET_COOLDOWN(L, "ACTION_BLOCKING_AI_MOVEMENT"), src.duration + 0.8 SECONDS))
 		return
 
 	proc/onRestart()			   //Called when the action restarts (for example: automenders)
@@ -480,8 +484,7 @@ var/datum/action_controller/actions
 			CRASH("icon state set for action bar, but no icon was set")
 		if (end_message)
 			src.end_message = end_message
-		if (interrupt_flags)
-			src.interrupt_flags = interrupt_flags
+		src.interrupt_flags = interrupt_flags
 		//generate a id
 		if (src.proc_path)
 			src.id = "[src.proc_path]"
@@ -736,10 +739,12 @@ var/datum/action_controller/actions
 		owner << border.img
 
 	onDelete()
-		bar.icon = 'icons/ui/actions.dmi'
-		border.icon = 'icons/ui/actions.dmi'
-		del(bar.img)
-		del(border.img)
+		if(bar)
+			bar.icon = 'icons/ui/actions.dmi'
+			del(bar.img)
+		if(border)
+			border.icon = 'icons/ui/actions.dmi'
+			del(border.img)
 		..()
 
 /datum/action/bar/private/icon //Only visible to the owner and has a little icon on the bar.
@@ -1190,7 +1195,7 @@ var/datum/action_controller/actions
 
 /obj/actions //These objects are mostly used for the attached_objs var on mobs to attach progressbars to mobs.
 	icon = 'icons/ui/actions.dmi'
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	layer = 5
@@ -1451,6 +1456,50 @@ var/datum/action_controller/actions
 		if(owner && target)
 			mop.clean(target, owner)
 
+
+/datum/action/bar/icon/syringe
+	duration = 1 SECONDS
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ATTACKED
+	var/mob/mob_owner
+	var/mob/target
+	var/obj/item/reagent_containers/syringe/S
+
+	New(var/mob/target, var/item, var/icon, var/icon_state)
+		..()
+		src.target = target
+		if (istype(item, /obj/item/reagent_containers/syringe))
+			S = item
+		else
+			logTheThing("debug", src, null, "/datum/action/bar/icon/syringe called with invalid type [item].")
+		src.icon = icon
+		src.icon_state = icon_state
+
+
+	onStart()
+		if (!ismob(owner))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		src.mob_owner = owner
+
+		if(BOUNDS_DIST(owner, target) > 0 || !target || !owner || mob_owner.equipped() != S)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		..()
+
+	onUpdate()
+		..()
+		if(BOUNDS_DIST(owner, target) > 0 || !target || !owner || mob_owner.equipped() != S)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+	onEnd()
+		..()
+		if(BOUNDS_DIST(owner, target) > 0 || !target || !owner || mob_owner.equipped() != S)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+		if (!isnull(S))
+			S.syringe_action(owner, target)
 
 /datum/action/bar/private/spy_steal //Used when a spy tries to steal a large object
 	duration = 30

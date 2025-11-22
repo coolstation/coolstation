@@ -6,7 +6,7 @@
 	name = "foam"
 	icon_state = "foam"
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = OBJ_LAYER + 0.9
 	plane = PLANE_NOSHADOW_BELOW
@@ -69,7 +69,14 @@
 	update_icon()
 	if(metal)
 		if(istype(loc, /turf/space))
-			loc:ReplaceWithMetalFoam(metal)
+			var/turf/floor/metalfoam/floor = loc:ReplaceWith(/turf/floor/metalfoam)
+			if(floor.icon_old)
+				floor.icon_state = floor.icon_old
+			floor.metal = metal
+			floor.update_icon()
+
+			DELETE_LATTICES_IN(floor)
+
 	SPAWN_DBG(3 + metal*3)
 		process()
 	SPAWN_DBG(12 SECONDS)
@@ -190,7 +197,7 @@
 
 			M.show_text("You slip on the foam!", "red")
 
-/obj/effects/foam/CanPass(atom/movable/mover, turf/target)
-	if (src.metal && !mover)
-		return 0 // completely opaque to air
-	return 1
+
+/obj/effects/foam/gas_cross(turf/target)
+	if(src.metal)
+		return 0 //opaque to air

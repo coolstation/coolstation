@@ -88,7 +88,7 @@
 				if (T.canpass())
 					createForcefieldObject(xa, ya);
 
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.active = 1
 
 		// update_nearby_tiles()

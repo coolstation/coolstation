@@ -31,15 +31,25 @@
 
 //power multiplier when *not* using the appropriate barrel type on a modular gun. Unfocused beam, shit gas efficiency, whatever.
 #define PROJ_PENALTY_BARREL 0.25
-#define STANDARD_BARREL_LEN 20 // is 20 centimetres good? bad? idk! but that's what 1.0 damage modifier is.
 
 //This determines the base spread for guns missing the critical parts, and therefore the default barrel/grip stabilisation as well.
 #define BARREL_PENALTY 20
 #define GRIP_PENALTY 10
 
-//modular gun shit
+//modular gun factions
+// these go on the gun aka receiver
 #define GUN_NANO 				(1<<0)
 #define GUN_FOSS 				(1<<1)
 #define GUN_JUICE 				(1<<2)
 #define GUN_SOVIET 				(1<<3)
 #define GUN_ITALIAN 			(1<<4)
+#define GUN_RODEO				(1<<5)
+// these go on the parts, and correlate to what gun aka receivers they can match with
+#define GUN_NANO_FRIENDLY		GUN_NANO
+#define GUN_FOSS_FRIENDLY		GUN_FOSS
+#define GUN_JUICE_FRIENDLY		GUN_NANO | GUN_JUICE | GUN_SOVIET | GUN_ITALIAN | GUN_RODEO
+#define GUN_SOVIET_FRIENDLY		GUN_SOVIET | GUN_ITALIAN
+#define GUN_ITALIAN_FRIENDLY	GUN_JUICE | GUN_SOVIET | GUN_ITALIAN | GUN_RODEO
+#define GUN_RODEO_FRIENDLY		GUN_NANO | GUN_JUICE | GUN_ITALIAN | GUN_RODEO
+// maybe this should be defined as a max-int, but whateva
+#define GUN_ALL					GUN_NANO | GUN_FOSS | GUN_JUICE | GUN_SOVIET | GUN_ITALIAN | GUN_RODEO

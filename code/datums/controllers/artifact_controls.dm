@@ -182,7 +182,9 @@ var/datum/artifact_controller/artifact_controls
 			src.log_me(usr, null, "spawns", 0)
 
 		else if (href_list["Spawntype"])
-			spawner_type = input("What type of artifact?","Artifact Controls") as null|anything in list("ancient","martian","wizard","eldritch","precursor")//,"bee","void","lattice","feather")
+			spawner_type = input("What type of artifact?","Artifact Controls") as null|anything in list("ancient","martian","wizard","eldritch","precursor", "random")//,"bee","void","lattice","feather")
+			if (spawner_type == "random")
+				spawner_type = null
 
 		else if (href_list["Spawncine"])
 			spawner_cine = !spawner_cine

@@ -2,12 +2,17 @@
 	name = "timer"
 	icon_state = "timer0"
 	item_state = "electronic"
-	var/timing = 0.0
+	var/timing = FALSE
 	var/time = null
 	var/last_tick = 0
 	var/const/max_time = 600
-	var/const/min_time = 0
+	var/min_time = 0
 	var/const/min_detonator_time = 90
+	var/ui_name = "Timing Unit"
+	//Prevents you from doing anything with the timer while it's armed, including disarming.
+	var/lock_once_timer_set = FALSE
+	//Prevents you from doing anything with the timer directly, generally when it's a canbomb detonator.
+	var/lock_manual_adjustment = FALSE
 	flags = FPRINT | TABLEPASS| CONDUCT
 	w_class = W_CLASS_SMALL
 	m_amt = 100
@@ -103,18 +108,17 @@
 	if (user.stat || user.restrained() || user.lying)
 		return
 
-	if ((src in user) || (src.master && (src.master in user)) || (get_dist(src, user) <= 1 && istype(src.loc, /turf)) || src.is_detonator_trigger())
+	if ((src in user) || (src.master && (src.master in user)) || (get_dist(src, user) <= 1))
 		if (!src.master)
 			src.add_dialog(user)
 		else
 			src.master.add_dialog(user)
 		var/second = src.time % 60
 		var/minute = (src.time - second) / 60
-		var/detonator_trigger = src.is_detonator_trigger()
 		var/timing_links = (src.timing ? text("<A href='byond://?src=\ref[];time=0'>Timing</A>", src) : text("<A href='byond://?src=\ref[];time=1'>Not Timing</A>", src))
 		var/timing_text = (src.timing ? "Timing - controls locked" : "Not timing - controls unlocked")
-		var/dat = text("<TT><B>Timing Unit</B><br>[] []:[]<br><A href='byond://?src=\ref[];tp=-30'>-</A> <A href='byond://?src=\ref[];tp=-1'>-</A> <A href='byond://?src=\ref[];tp=1'>+</A> <A href='byond://?src=\ref[];tp=30'>+</A><br></TT>", detonator_trigger ? timing_text : timing_links, minute, second, src, src, src, src)
-		dat += "<BR><BR><A href='byond://?src=\ref[src];close=1'>Close</A>"
+		var/dat = text("<TT><B>[]</B><br>[] []:[]<br><A href='byond://?src=\ref[];tp=-30'>-30s</A> <A href='byond://?src=\ref[];tp=-1'>-1s</A> <A href='byond://?src=\ref[];tp=set'>set time</A> <A href='byond://?src=\ref[];tp=1'>+1s</A> <A href='byond://?src=\ref[];tp=30'>+30s</A><br></TT>", src.ui_name, (src.lock_manual_adjustment || (src.lock_once_timer_set && src.timing)) ? timing_text : timing_links, minute, add_zero(second, 2), src, src, src, src, src)
+		dat += "<BR>[(src.lock_once_timer_set && !src.timing) ? "<b>Warning: controls lock once timer is activated.</b>" : ""]<BR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 		user.Browse(dat, "window=timer")
 		onclose(user, "timer")
 	else
@@ -126,22 +130,14 @@
 
 	return
 
-/obj/item/device/timer/proc/is_detonator_trigger()
-	if (src.master)
-		if (istype(src.master, /obj/item/assembly/detonator/) && src.master.master)
-			if (istype(src.master.master, /obj/machinery/portable_atmospherics/canister/) && in_interact_range(src.master.master, usr))
-				return 1
-	return 0
-
 /obj/item/device/timer/proc/set_time(var/new_time as num)
-	var/min_time = src.is_detonator_trigger() ? src.min_detonator_time : src.min_time
 	src.time = clamp(new_time, min_time, src.max_time)
 
 /obj/item/device/timer/Topic(href, href_list)
 	..()
 	if (usr.stat || usr.restrained() || usr.lying)
 		return
-	var/can_use_detonator = src.is_detonator_trigger() && !src.timing
+	var/can_use_detonator = (src.lock_manual_adjustment || src.lock_once_timer_set) && !src.timing
 	if (can_use_detonator || (src in usr) || (src.master && (src.master in usr)) || in_interact_range(src, usr) && istype(src.loc, /turf))
 		if (!src.master)
 			src.add_dialog(usr)
@@ -168,11 +164,19 @@
 				logTheThing("bombing", usr, null, "[timing ? "initiated" : "defused"] a timer on a [src.master.name] at [log_loc(src.master)].")
 
 		if (href_list["tp"])
-			var/tp = text2num(href_list["tp"])
-			src.time += tp
-			src.time = min(max(round(src.time), src.min_time), src.max_time)
-			if (can_use_detonator && src.time < src.min_detonator_time)
-				src.time = src.min_detonator_time
+			var/tp
+			//set absolute time
+			if (href_list["tp"] == "set")
+				tp = input(usr, "Enter a time (seconds)", "Set [ui_name]", src.time) as num|null
+				if (isnull(tp))
+					return
+				if (src.lock_once_timer_set && src.timing) //async from input holding us up
+					return
+				set_time(tp)
+			//add or remove time
+			else
+				tp = text2num(href_list["tp"])
+				set_time(src.time += tp)
 
 		if (href_list["close"])
 			usr.Browse(null, "window=timer")

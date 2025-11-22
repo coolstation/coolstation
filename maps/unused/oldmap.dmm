@@ -2,24 +2,8 @@
 "aa" = (
 /turf/space,
 /area/space)
-"ab" = (
-/turf/space,
-/turf/shuttle/wall{
-	tag = "icon-diagonalWall (WEST)";
-	icon_state = "diagonalWall";
-	dir = 8
-	},
-/area/shuttle/arrival/station)
 "ac" = (
 /turf/shuttle/wall,
-/area/shuttle/arrival/station)
-"ad" = (
-/turf/space,
-/turf/shuttle/wall{
-	tag = "icon-diagonalWall (NORTH)";
-	icon_state = "diagonalWall";
-	dir = 1
-	},
 /area/shuttle/arrival/station)
 "ae" = (
 /turf/shuttle/wall{
@@ -8360,23 +8344,9 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/floor,
 /area/atmos)
-"tf" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/syndicate_station)
 "tg" = (
 /turf/shuttle/wall{
 	icon_state = "wall3"
-	},
-/area/syndicate_station)
-"th" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "diagonalWall3"
 	},
 /area/syndicate_station)
 "ti" = (
@@ -9032,18 +9002,6 @@
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/floor,
 /area/atmos)
-"uD" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 6;
-	icon_state = "intact-f";
-	initialize_directions = 6;
-	layer = 3
-	},
-/turf/space,
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3"
-	},
-/area/syndicate_station)
 "uE" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4;
@@ -9083,13 +9041,6 @@
 	},
 /turf/shuttle/wall{
 	icon_state = "wall3"
-	},
-/area/syndicate_station)
-"uI" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "diagonalWall3"
 	},
 /area/syndicate_station)
 "uJ" = (
@@ -9665,14 +9616,6 @@
 	icon_state = "floor4"
 	},
 /area/syndicate_station)
-"wd" = (
-/obj/machinery/atmospherics/pipe/simple,
-/turf/space,
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "diagonalWall3"
-	},
-/area/syndicate_station)
 "we" = (
 /obj/grille,
 /obj/item/hand_tele,
@@ -9686,11 +9629,6 @@
 /obj/grille,
 /obj/item/tank/oxygen,
 /turf/floor/plating/airless,
-/area/maintenance/maintcentral)
-"wh" = (
-/obj/grille,
-/turf/floor/plating/airless,
-/turf/floor/plating/damaged2,
 /area/maintenance/maintcentral)
 "wi" = (
 /obj/table{
@@ -10281,12 +10219,6 @@
 	},
 /turf/space,
 /area/space)
-"xj" = (
-/turf/space,
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3"
-	},
-/area/syndicate_station)
 "xk" = (
 /obj/machinery/shuttle/engine/propulsion,
 /turf/space,
@@ -10300,18 +10232,6 @@
 	},
 /turf/space,
 /area/space)
-"xm" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 6;
-	icon_state = "intact-f";
-	layer = 3
-	},
-/turf/space,
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
-	},
-/area/wizard_station)
 "xn" = (
 /obj/machinery/atmospherics/pipe/simple{
 	dir = 4;
@@ -10336,13 +10256,6 @@
 "xp" = (
 /turf/shuttle/wall{
 	icon_state = "wall3"
-	},
-/area/wizard_station)
-"xq" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 1;
-	icon_state = "diagonalWall3"
 	},
 /area/wizard_station)
 "xr" = (
@@ -10402,13 +10315,6 @@
 /obj/crate,
 /turf/floor/shuttle{
 	icon_state = "floor5"
-	},
-/area/wizard_station)
-"xy" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 8;
-	icon_state = "diagonalWall3"
 	},
 /area/wizard_station)
 "xz" = (
@@ -10601,23 +10507,10 @@
 	icon_state = "floor5"
 	},
 /area/wizard_station)
-"xR" = (
-/turf/space,
-/turf/shuttle/wall{
-	icon_state = "diagonalWall3"
-	},
-/area/wizard_station)
 "xS" = (
 /obj/stool/chair,
 /turf/floor/shuttle{
 	icon_state = "floor5"
-	},
-/area/wizard_station)
-"xT" = (
-/turf/space,
-/turf/shuttle/wall{
-	dir = 4;
-	icon_state = "diagonalWall3"
 	},
 /area/wizard_station)
 "xU" = (
@@ -10649,22 +10542,9 @@
 	icon_state = "floor5"
 	},
 /area/wizard_station)
-"xX" = (
-/turf/space,
+"xZ" = (
 /turf/shuttle/wall{
-	dir = 4;
-	icon_state = "diagonalWall3"
-	},
-/area/space)
-"xY" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 5;
-	icon_state = "intact-f";
-	initialize_directions = 5;
-	layer = 3
-	},
-/turf/space,
-/turf/shuttle/wall{
+	dir = 1;
 	icon_state = "diagonalWall3"
 	},
 /area/wizard_station)
@@ -12899,18 +12779,6 @@
 /area/space_diner)
 "DA" = (
 /obj/decal/oven,
-/turf/floor/specialroom/bar,
-/area/space_diner)
-"DB" = (
-/obj/secure_closet/fridge{
-	icon_state = "fridge";
-	locked = 0
-	},
-/obj/decal/cleanable/blood/gibs/body{
-	tag = "icon-gib2";
-	icon_state = "gib2"
-	},
-/obj/item/reagent_containers/food/snacks/ingredient/gcheese,
 /turf/floor/specialroom/bar,
 /area/space_diner)
 "DC" = (
@@ -16095,10 +15963,6 @@
 /obj/closet/emcloset,
 /turf/floor,
 /area/zeta)
-"JJ" = (
-/turf/floor,
-/area/russian/radiation,
-/area/zeta)
 "JK" = (
 /turf/wall,
 /area/artifact)
@@ -18034,40 +17898,6 @@
 "Nl" = (
 /turf/space,
 /area/fuck/main)
-"Nm" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	icon_state = "nw1"
-	},
-/area/fuck/main)
-"Nn" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "north1"
-	},
-/area/fuck/main)
-"No" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "ne1"
-	},
-/area/fuck/main)
-"Np" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "nw1"
-	},
-/area/fuck/main)
-"Nq" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	icon_state = "north1"
-	},
-/area/fuck/main)
 "Nr" = (
 /turf/wall/asteroid{
 	icon_state = "north1"
@@ -18078,12 +17908,6 @@
 	icon_state = "on1"
 	},
 /area/space)
-"Nt" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "inw1"
-	},
-/area/fuck/main)
 "Nu" = (
 /obj/landmark/mining{
 	icon_state = "mining2";
@@ -18094,18 +17918,6 @@
 /area/fuck/main)
 "Nv" = (
 /turf/wall/asteroid,
-/area/fuck/main)
-"Nw" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "east1"
-	},
-/area/fuck/main)
-"Nx" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "ine1"
-	},
 /area/fuck/main)
 "Ny" = (
 /turf/wall/asteroid{
@@ -18426,12 +18238,6 @@
 	icon_state = "sw1"
 	},
 /area/fuck/main)
-"Oq" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "isw1"
-	},
-/area/fuck/main)
 "Or" = (
 /obj/landmark/mining{
 	icon_state = "mining3";
@@ -18638,24 +18444,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"OO" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "west1"
-	},
-/area/fuck/main)
-"OP" = (
-/turf/floor/plating/airless/asteroid,
-/turf/wall/asteroid{
-	icon_state = "north1"
-	},
-/area/fuck/main)
-"OQ" = (
-/turf/floor/plating/airless/asteroid,
-/turf/wall/asteroid{
-	icon_state = "ne1"
-	},
-/area/fuck/main)
 "OR" = (
 /obj/lattice,
 /turf/floor/plating/airless/asteroid,
@@ -18741,12 +18529,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"Pb" = (
-/turf/floor/plating/airless/asteroid,
-/turf/wall/asteroid{
-	icon_state = "se1"
-	},
-/area/fuck/main)
 "Pc" = (
 /obj/cable{
 	icon_state = "0-4";
@@ -19008,12 +18790,6 @@
 	},
 /turf/floor/plating,
 /area/engine/miningoutpost)
-"Pz" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "sw1"
-	},
-/area/fuck/main)
 "PA" = (
 /obj/grille,
 /obj/window/reinforced,
@@ -19094,12 +18870,6 @@
 /obj/window/reinforced,
 /turf/floor/plating,
 /area/engine/miningoutpost)
-"PI" = (
-/turf/floor/plating/airless/asteroid,
-/turf/wall/asteroid{
-	icon_state = "east1"
-	},
-/area/fuck/main)
 "PJ" = (
 /obj/crate{
 	desc = "Storage for space GPSes.";
@@ -19278,14 +19048,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"Qe" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	icon_state = "west1"
-	},
-/area/fuck/main)
 "Qf" = (
 /obj/grille,
 /obj/window/reinforced,
@@ -19388,18 +19150,6 @@
 /obj/secure_closet/engineering_mining,
 /turf/floor,
 /area/engine/miningoutpost)
-"Qq" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "ise1"
-	},
-/area/fuck/main)
-"Qr" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "se1"
-	},
-/area/fuck/main)
 "Qs" = (
 /obj/landmark/mining{
 	icon_state = "mining2";
@@ -19530,12 +19280,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"QI" = (
-/turf/floor/plating/airless/asteroid,
-/turf/wall/asteroid{
-	icon_state = "ise1"
-	},
-/area/fuck/main)
 "QJ" = (
 /obj/decal/fakeobjects/shuttlethruster{
 	dir = 4
@@ -19559,12 +19303,6 @@
 	},
 /turf/floor/plating,
 /area/engine/miningoutpost)
-"QN" = (
-/turf/space,
-/turf/wall/asteroid{
-	icon_state = "south1"
-	},
-/area/fuck/main)
 "QO" = (
 /obj/table{
 	icon_state = "tabledir";
@@ -19584,14 +19322,6 @@
 	},
 /turf/floor/plating,
 /area/engine/miningoutpost)
-"QR" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	icon_state = "ise1"
-	},
-/area/fuck/main)
 "QS" = (
 /turf/shuttle/wall{
 	icon_state = "wall_space"
@@ -19610,12 +19340,6 @@
 "QV" = (
 /turf/floor/plating,
 /area/engine/miningoutpost)
-"QW" = (
-/turf/floor/plating/airless/asteroid,
-/turf/wall/asteroid{
-	icon_state = "ine1"
-	},
-/area/fuck/main)
 "QX" = (
 /obj/landmark/mining{
 	icon_state = "mining2";
@@ -19686,12 +19410,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"Rf" = (
-/turf/floor/plating/airless,
-/turf/wall/asteroid{
-	icon_state = "oe1"
-	},
-/area/fuck/main)
 "Rg" = (
 /obj/landmark/mining{
 	icon_state = "mining3";
@@ -19700,12 +19418,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"Rh" = (
-/turf/floor/plating/airless,
-/turf/wall/asteroid{
-	icon_state = "nw1"
-	},
-/area/fuck/main)
 "Ri" = (
 /obj/landmark/mining{
 	name = "CoVe2";
@@ -19718,18 +19430,6 @@
 	},
 /turf/wall/asteroid,
 /area/space)
-"Rj" = (
-/turf/floor/plating/airless,
-/turf/wall/asteroid{
-	icon_state = "ne1"
-	},
-/area/fuck/main)
-"Rk" = (
-/turf/floor/plating/airless,
-/turf/wall/asteroid{
-	icon_state = "inw1"
-	},
-/area/fuck/main)
 "Rl" = (
 /obj/landmark/mining{
 	icon_state = "mining3";
@@ -19785,14 +19485,6 @@
 /obj/rack,
 /obj/item/disk/data/floppy/read_only/communications,
 /turf/floor/plating,
-/area/fuck/main)
-"Rs" = (
-/turf/space{
-	icon_state = "aplaceholder"
-	},
-/turf/wall/asteroid{
-	icon_state = "east1"
-	},
 /area/fuck/main)
 "Rt" = (
 /obj/landmark/mining{
@@ -21146,12 +20838,116 @@
 	icon_state = "sw1"
 	},
 /area/space)
+"Up" = (
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"UJ" = (
+/obj/secure_closet/fridge{
+	icon_state = "fridge";
+	locked = 0
+	},
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body{
+	tag = "icon-gib2";
+	icon_state = "gib2"
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/gcheese,
+/turf/floor/specialroom/bar,
+/area/space_diner)
+"UN" = (
+/turf/shuttle/wall{
+	tag = "icon-diagonalWall (NORTH)";
+	icon_state = "diagonalWall";
+	dir = 1
+	},
+/area/shuttle/arrival/station)
+"UO" = (
+/obj/machinery/atmospherics/pipe/simple,
+/turf/shuttle/wall{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"Ve" = (
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
+"Vo" = (
+/turf/shuttle/wall{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"Vz" = (
+/turf/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"VL" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 6;
+	icon_state = "intact-f";
+	layer = 3
+	},
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
+"Wn" = (
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
 "Wp" = (
 /obj/displaycase{
 	displayed = new /obj/item/captaingun
 	},
 /turf/floor,
 /area/crew_quarters/captain)
+"Wq" = (
+/obj/grille,
+/turf/floor/plating/damaged2,
+/area/maintenance/maintcentral)
+"WC" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 6;
+	icon_state = "intact-f";
+	initialize_directions = 6;
+	layer = 3
+	},
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/syndicate_station)
+"Xf" = (
+/turf/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
+"Xk" = (
+/turf/shuttle/wall{
+	tag = "icon-diagonalWall (WEST)";
+	icon_state = "diagonalWall";
+	dir = 8
+	},
+/area/shuttle/arrival/station)
+"Yf" = (
+/obj/machinery/atmospherics/pipe/simple{
+	dir = 5;
+	icon_state = "intact-f";
+	initialize_directions = 5;
+	layer = 3
+	},
+/turf/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
 "Yk" = (
 /obj/table{
 	icon_state = "tabledir";
@@ -21163,6 +20959,18 @@
 /obj/item/camera,
 /turf/floor,
 /area/crew_quarters/captain)
+"Zu" = (
+/turf/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
+"ZR" = (
+/turf/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/wizard_station)
 
 (1,1,1) = {"
 aa
@@ -22970,11 +22778,11 @@ aa
 aa
 aa
 aa
-xy
+Xf
 xp
 xG
 xp
-xR
+Ve
 aa
 aa
 aa
@@ -23271,7 +23079,7 @@ aa
 aa
 aa
 aa
-xm
+VL
 xs
 xs
 xA
@@ -23281,7 +23089,7 @@ xu
 xB
 xs
 xs
-xY
+Yf
 aa
 aa
 aa
@@ -24183,7 +23991,7 @@ aa
 aa
 aa
 aa
-xq
+xZ
 xp
 xp
 xp
@@ -24193,7 +24001,7 @@ xO
 xp
 xp
 xp
-xT
+ZR
 aa
 aa
 aa
@@ -24336,7 +24144,7 @@ aa
 aa
 aa
 aa
-xq
+xZ
 xp
 xt
 xt
@@ -24344,7 +24152,7 @@ xt
 xt
 xt
 xp
-xX
+Zu
 aa
 aa
 aa
@@ -24793,13 +24601,13 @@ aa
 aa
 aa
 cL
-xq
+xZ
 xp
 xp
 xp
 xp
 xp
-xT
+ZR
 aa
 aa
 aa
@@ -30541,7 +30349,7 @@ qR
 qR
 uS
 pn
-wh
+Wq
 pn
 aa
 aa
@@ -34123,7 +33931,7 @@ aa
 aa
 aa
 aa
-ab
+Xk
 ac
 ac
 ac
@@ -34274,7 +34082,7 @@ aa
 aa
 aa
 aa
-ab
+Xk
 ae
 af
 af
@@ -34730,7 +34538,7 @@ aa
 aa
 aa
 aa
-ad
+UN
 ah
 af
 ak
@@ -34883,7 +34691,7 @@ aa
 aa
 aa
 aa
-ad
+UN
 ac
 ac
 ac
@@ -40424,7 +40232,7 @@ aa
 aa
 aa
 aa
-tf
+Up
 tg
 tg
 tg
@@ -40432,7 +40240,7 @@ tg
 tg
 wY
 wt
-xj
+Wn
 aa
 aa
 aa
@@ -40570,7 +40378,7 @@ aa
 aa
 aa
 aa
-tf
+Up
 tg
 tg
 tg
@@ -41019,11 +40827,11 @@ aa
 aa
 aa
 aa
-tf
+Up
 tg
 tg
 tg
-uD
+WC
 uU
 uY
 vJ
@@ -41040,7 +40848,7 @@ wO
 vJ
 xc
 uE
-uI
+Vz
 aa
 aa
 aa
@@ -41343,7 +41151,7 @@ wL
 tg
 tg
 uE
-xj
+Wn
 aa
 aa
 aa
@@ -41951,7 +41759,7 @@ wM
 uE
 tg
 uE
-uI
+Vz
 aa
 aa
 aa
@@ -42235,11 +42043,11 @@ aa
 aa
 aa
 aa
-th
+Vo
 tg
 tg
 tg
-uI
+Vz
 aa
 aa
 vL
@@ -42256,7 +42064,7 @@ wU
 tg
 tg
 uE
-xj
+Wn
 aa
 aa
 aa
@@ -42548,7 +42356,7 @@ aa
 aa
 aa
 vM
-wd
+UO
 vJ
 vJ
 wt
@@ -42856,7 +42664,7 @@ aa
 aa
 aa
 aa
-th
+Vo
 tg
 tg
 tg
@@ -42864,7 +42672,7 @@ tg
 tg
 uH
 xc
-uI
+Vz
 aa
 aa
 aa
@@ -71003,7 +70811,7 @@ Ds
 Dy
 DA
 DA
-DB
+UJ
 Db
 Db
 Db
@@ -93185,7 +92993,7 @@ GI
 EM
 Jj
 Jy
-JJ
+EM
 Fo
 aa
 aa
@@ -120911,9 +120719,9 @@ aa
 aa
 aa
 aa
-Np
-OO
-Pz
+NB
+Og
+Op
 aa
 aa
 aa
@@ -121062,15 +120870,15 @@ aa
 aa
 aa
 aa
-Np
-Nt
+NB
+NN
 Nu
-Oq
-OO
-OO
-Qe
-OO
-Pz
+Om
+Og
+Og
+Og
+Og
+Op
 aa
 aa
 aa
@@ -121211,10 +121019,10 @@ aa
 aa
 aa
 aa
-Np
-OO
-OO
-Nt
+NB
+Og
+Og
+NN
 Nv
 Nu
 Nu
@@ -121222,20 +121030,20 @@ Nu
 Nv
 Nv
 Nv
-Oq
-OO
-Qe
-OO
-Pz
+Om
+Og
+Og
+Og
+Op
 aa
 aa
 aa
 aa
-Np
-OO
-OO
-OO
-Pz
+NB
+Og
+Og
+Og
+Op
 eH
 aa
 cL
@@ -121362,8 +121170,8 @@ Om
 Op
 aa
 aa
-Np
-Nt
+NB
+NN
 Nv
 NO
 Nv
@@ -121378,12 +121186,12 @@ Nv
 Nv
 Nv
 Nv
-Oq
-OO
-OO
-OO
-OO
-Nt
+Om
+Og
+Og
+Og
+Og
+NN
 Nv
 Nv
 Nv
@@ -121512,8 +121320,8 @@ Nv
 NW
 Nv
 Ol
-Np
-Nt
+NB
+NN
 Nv
 Nv
 Nv
@@ -121663,8 +121471,8 @@ Nv
 NW
 NW
 Nv
-Oq
-Nt
+Om
+NN
 Nv
 Nv
 Nv
@@ -121961,7 +121769,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 Nv
 Nv
@@ -122113,7 +121921,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 NO
 Nv
@@ -122265,7 +122073,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 Nv
 Nv
@@ -122299,7 +122107,7 @@ NP
 Nv
 Nv
 Nv
-Qq
+Ok
 NS
 NS
 Oo
@@ -122417,7 +122225,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 Nv
 Nv
@@ -122431,17 +122239,17 @@ Nv
 Nv
 Nv
 Nv
-Pb
+Oo
 Ou
-OQ
-PI
-PI
-PI
-PI
-PI
-PI
-QI
-Pb
+NC
+NS
+NS
+NS
+NS
+NS
+NS
+Ok
+Oo
 Ou
 Nv
 NP
@@ -122451,7 +122259,7 @@ Nv
 Nv
 Nv
 Nv
-QN
+Ol
 aa
 aa
 aa
@@ -122569,7 +122377,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 Nv
 Nv
@@ -122595,7 +122403,7 @@ Qu
 QJ
 QJ
 QS
-QW
+NY
 Nv
 Nv
 Nv
@@ -122603,7 +122411,7 @@ Nv
 Nv
 Nv
 Nv
-QN
+Ol
 aa
 aa
 aa
@@ -122721,7 +122529,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 Nv
 Nv
@@ -122755,7 +122563,7 @@ Nv
 Nv
 Nv
 Nv
-QN
+Ol
 aa
 aa
 aa
@@ -122872,8 +122680,8 @@ aa
 aa
 aa
 aa
-Np
-Nt
+NB
+NN
 Nv
 Nv
 Nv
@@ -122907,7 +122715,7 @@ Nv
 Nv
 Nv
 Nv
-QN
+Ol
 aa
 aa
 aa
@@ -123024,7 +122832,7 @@ aa
 aa
 aa
 aa
-Nt
+NN
 Nv
 Nv
 Nv
@@ -123059,7 +122867,7 @@ Nv
 Nv
 Nv
 Nv
-QN
+Ol
 aa
 NB
 Op
@@ -123175,7 +122983,7 @@ aa
 aa
 aa
 aa
-Nm
+NB
 Nu
 Nv
 Nv
@@ -123188,7 +122996,7 @@ Nv
 Nv
 Nv
 Ou
-OP
+Nr
 Nv
 Nv
 Ou
@@ -123211,7 +123019,7 @@ Nv
 Nv
 Nv
 Nv
-Oq
+Om
 Og
 NO
 Om
@@ -123327,7 +123135,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nu
 Nu
 Nv
@@ -123340,8 +123148,8 @@ Nv
 Nv
 Nv
 Ou
-OQ
-Pb
+NC
+Oo
 Ou
 OR
 Ow
@@ -123479,7 +123287,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 Nv
 Nv
@@ -123631,8 +123439,8 @@ aa
 aa
 aa
 aa
-No
-Nw
+NC
+NS
 Nv
 Nv
 NP
@@ -123784,7 +123592,7 @@ aa
 aa
 aa
 aa
-Np
+NB
 Nv
 Nv
 Nv
@@ -123935,8 +123743,8 @@ aa
 aa
 aa
 aa
-Np
-Nt
+NB
+NN
 Nv
 Nv
 Nv
@@ -124087,7 +123895,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 Nv
 Nv
@@ -124118,9 +123926,9 @@ Pt
 PR
 Rb
 OR
-Rf
+Os
 Ow
-Rj
+NC
 Nv
 NQ
 NQ
@@ -124239,7 +124047,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 Nv
 Nv
@@ -124391,8 +124199,8 @@ aa
 aa
 aa
 aa
-No
-Nx
+NC
+NY
 Nv
 Nv
 Nv
@@ -124423,8 +124231,8 @@ PR
 Rb
 OR
 Ow
-Rh
-Rk
+NB
+NN
 Nv
 Nv
 Nv
@@ -124544,7 +124352,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 Nv
 Nv
@@ -124695,8 +124503,8 @@ aa
 aa
 aa
 aa
-Np
-Nt
+NB
+NN
 Nv
 Nv
 Nv
@@ -124847,7 +124655,7 @@ aa
 aa
 aa
 aa
-Nq
+Nr
 Nv
 Nv
 Nv
@@ -124999,7 +124807,7 @@ aa
 aa
 aa
 aa
-Nn
+Nr
 Nv
 Nv
 Nv
@@ -125193,7 +125001,7 @@ Nv
 Nv
 Nv
 Nv
-Qq
+Ok
 NY
 NQ
 Ok
@@ -125344,8 +125152,8 @@ NP
 Nv
 Nv
 Nv
-Qq
-Qr
+Ok
+Oo
 NC
 NS
 Oo
@@ -125495,8 +125303,8 @@ Nv
 Nv
 Nv
 Nv
-Qq
-Qr
+Ok
+Oo
 aa
 aa
 aa
@@ -125607,8 +125415,8 @@ aa
 aa
 aa
 aa
-No
-Nx
+NC
+NY
 Nv
 Nv
 Nv
@@ -125646,8 +125454,8 @@ Nv
 Nv
 Nv
 Nv
-Qq
-Qr
+Ok
+Oo
 aa
 aa
 aa
@@ -125760,8 +125568,8 @@ aa
 aa
 aa
 aa
-No
-Nx
+NC
+NY
 Nv
 Nv
 Nv
@@ -125792,13 +125600,13 @@ Nv
 Nv
 Nv
 NO
-Qq
-Nw
-Nw
-Rs
-Nw
-Nw
-Qr
+Ok
+NS
+NS
+NS
+NS
+NS
+Oo
 aa
 aa
 aa
@@ -126377,9 +126185,9 @@ NJ
 Nv
 Or
 NP
-Nt
-Nw
-Nx
+NN
+NS
+NY
 Nv
 Nv
 Nv
@@ -126531,8 +126339,8 @@ Nv
 NP
 Ol
 aa
-No
-Nx
+NC
+NY
 Nv
 Nu
 Nv
@@ -126548,7 +126356,7 @@ Nv
 Nv
 Nv
 Nv
-Qq
+Ok
 NS
 NS
 Oo
@@ -126684,7 +126492,7 @@ NP
 Om
 Op
 aa
-Nn
+Nr
 Nv
 Nu
 Nv
@@ -126700,7 +126508,7 @@ Nv
 Nv
 Nv
 Nv
-QN
+Ol
 Nk
 aa
 aa
@@ -126836,7 +126644,7 @@ NP
 NP
 Ol
 aa
-Nn
+Nr
 Nv
 Nu
 Nu
@@ -126851,8 +126659,8 @@ Nv
 Nv
 Nv
 Nv
-Qq
-Qr
+Ok
+Oo
 aa
 aa
 aa
@@ -126988,8 +126796,8 @@ Nv
 Or
 Ol
 aa
-No
-Nx
+NC
+NY
 Nv
 Nv
 Nv
@@ -127001,9 +126809,9 @@ Nv
 Nv
 Nv
 Nv
-QR
-Nw
-Qr
+Ok
+NS
+Oo
 aa
 aa
 aa
@@ -127141,8 +126949,8 @@ NP
 Ol
 aa
 aa
-No
-Nx
+NC
+NY
 Nv
 Nv
 Nv
@@ -127152,8 +126960,8 @@ Ou
 Nv
 Nv
 Nv
-Qq
-Qr
+Ok
+Oo
 aa
 aa
 aa
@@ -127294,8 +127102,8 @@ Ol
 aa
 aa
 aa
-No
-Nx
+NC
+NY
 Nv
 Nv
 Nv
@@ -127304,7 +127112,7 @@ Nv
 Nv
 Nv
 Nv
-QN
+Ol
 aa
 aa
 Nk
@@ -127447,16 +127255,16 @@ aa
 aa
 aa
 aa
-No
-Nw
-Nw
-Nx
+NC
+NS
+NS
+NY
 Nv
 Nv
-Qq
-Nw
-Qq
-Qr
+Ok
+NS
+Ok
+Oo
 aa
 aa
 aa
@@ -127602,10 +127410,10 @@ aa
 Nk
 aa
 aa
-No
-Nw
-Nw
-Qr
+NC
+NS
+NS
+Oo
 Nk
 aa
 aa

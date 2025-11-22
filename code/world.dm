@@ -10,13 +10,12 @@
 /world
 	mob = /mob/new_player
 
-	#ifdef MOVING_SUB_MAP //Defined in the map-specific .dm configuration file.
-	turf = /turf/space/fluid/manta
-	#elif defined(UNDERWATER_MAP)
-	turf = /turf/space/fluid
-	#else
+
+#ifdef UNDERWATER_MAP
+	turf = /turf/space/fluid/ocean
+#else
 	turf = /turf/space
-	#endif
+#endif
 
 	area = /area/space
 
@@ -36,6 +35,8 @@
 
 //The DESERT_MAP one does the same ok:)
 
+//Take a wild guess what the ABOVEWATER_MAP one does
+
 #ifdef UNDERWATER_MAP
 var/global/map_currently_underwater = 1
 #else
@@ -46,6 +47,12 @@ var/global/map_currently_underwater = 0
 var/global/map_currently_very_dusty = 1
 #else
 var/global/map_currently_very_dusty = 0
+#endif
+
+#ifdef ABOVEWATER_MAP
+var/global/map_currently_above_magindara = 1
+#else
+var/global/map_currently_above_magindara = 0
 #endif
 
 //should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff
@@ -71,9 +78,35 @@ var/global/map_previously_abandoned = 1
 var/global/map_previously_abandoned = 0
 #endif
 
+//if the availability of specific chemical containers is determined by map placement and not printing or recycling new ones
+#ifdef NO_EASY_BEAKERS
+var/global/map_scarce_beakers = 1
+#else
+var/global/map_scarce_beakers = 0
+#endif
+
+//should certain types of power generation be worse, and should power storage have less capacity
+#ifdef POWER_IS_CRAPPY
+var/global/map_crappy_power = 1
+#else
+var/global/map_crappy_power = 0
+#endif
+
 #ifdef TWITCH_BOT_ALLOWED
 var/global/mob/twitch_mob = 0
 #endif
+
+/proc/fill_list_with_lists(list/target, target_len)
+	var/old_len = length(target)
+	if(old_len < target_len)
+		target.len = target_len
+		for(var/i in old_len+1 to target_len)
+			target[i] = list()
+
+/world/proc/rebuild_area_turfs(z) // dont call this
+	for(var/turf/turf as anything in block(locate(1,1,z), locate(world.maxx,world.maxy,z)))
+		var/area/turf_area = turf.loc
+		turf_area.turfs += turf
 
 /world/proc/load_mode()
 #ifdef OVERRIDDEN_MODE
@@ -195,26 +228,6 @@ var/global/mob/twitch_mob = 0
 			bypassCapCkeys += line
 			logDiary("WHITELIST: [line]")
 
-// dsingh for faster create panel loads
-/world/proc/precache_create_txt()
-	set background = 1
-	if (!create_mob_html)
-		var/mobjs = null
-		mobjs = jointext(typesof(/mob), ";")
-		create_mob_html = grabResource("html/admin/create_object.html")
-		create_mob_html = replacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
-
-	if (!create_object_html)
-		var/objectjs = null
-		objectjs = jointext(typesof(/obj), ";")
-		create_object_html = grabResource("html/admin/create_object.html")
-		create_object_html = replacetext(create_object_html, "null /* object types */", "\"[objectjs]\"")
-
-	if (!create_turf_html)
-		var/turfjs = null
-		turfjs = jointext(typesof(/turf), ";")
-		create_turf_html = grabResource("html/admin/create_object.html")
-		create_turf_html = replacetext(create_turf_html, "null /* object types */", "\"[turfjs]\"")
 
 var/f_color_selector_handler/F_Color_Selector
 
@@ -283,6 +296,8 @@ var/f_color_selector_handler/F_Color_Selector
 		world.log << ""
 #endif
 
+		radio_controller = new /datum/controller/radio()
+
 		Z_LOG_DEBUG("Preload", "Loading config...")
 		config = new /datum/configuration()
 		config.load("config/config.txt")
@@ -330,8 +345,6 @@ var/f_color_selector_handler/F_Color_Selector
 		Z_LOG_DEBUG("Preload", "Starting controllers")
 		Z_LOG_DEBUG("Preload", "  radio")
 
-		radio_controller = new /datum/controller/radio()
-
 		Z_LOG_DEBUG("Preload", "  data_core")
 		data_core = new /datum/datacore()
 		// Must go after data_core
@@ -357,6 +370,8 @@ var/f_color_selector_handler/F_Color_Selector
 		artifact_controls = new /datum/artifact_controller()
 		Z_LOG_DEBUG("Preload", "  mining_controls")
 		mining_controls = new /datum/mining_controller()
+		Z_LOG_DEBUG("Preload", "  transit_controls")
+		transit_controls = new /datum/transit_controller()
 		Z_LOG_DEBUG("Preload", "  broadcast_controls")
 		broadcast_controls = new /datum/broadcast_controller()
 		Z_LOG_DEBUG("Preload", "  score_tracker")
@@ -369,6 +384,8 @@ var/f_color_selector_handler/F_Color_Selector
 		ghost_notifier = new /datum/ghost_notification_controller()
 		Z_LOG_DEBUG("Preload", "  respawn_controller")
 		respawn_controller = new /datum/respawn_controls()
+		Z_LOG_DEBUG("Preload", "  train_spotter")
+		train_spotter = new /datum/train_controller()
 
 		Z_LOG_DEBUG("Preload", "hydro_controls set_up")
 		hydro_controls.set_up()
@@ -482,9 +499,7 @@ var/f_color_selector_handler/F_Color_Selector
 	changelog = new /datum/changelog()
 	admin_changelog = new /datum/admin_changelog()
 
-#ifdef DATALOGGER
 	game_stats = new
-#endif
 
 	if (config)
 		Z_LOG_DEBUG("World/New", "Loading config...")
@@ -547,7 +562,6 @@ var/f_color_selector_handler/F_Color_Selector
 		if (config.server_name != null && config.server_suffix && world.port > 0)
 			config.server_name += " #[serverKey]"
 
-		precache_create_txt()
 
 	Z_LOG_DEBUG("World/Init", "Loading mode...")
 	src.load_mode()
@@ -564,12 +578,17 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Mining setup...")
 	mining_controls.setup_mining_landmarks()
 
+	Z_LOG_DEBUG("World/Init", "Creating initial area turf lists")
+	for(var/z = 1 to world.maxz)
+		rebuild_area_turfs(z)
+
 	createRenderSourceHolder()
 
 	// Set this stupid shit up here because byond's object tree output can't
 	// cope with a list initializer that contains "[constant]" keys
 	headset_channel_lookup = list(
 		"[R_FREQ_RESEARCH]" = "Research",
+		"[R_FREQ_INTERCOM_AI]" = "AI Intercom", // For the AI's radio channel picker
 		"[R_FREQ_MEDICAL]" = "Medical",
 		"[R_FREQ_ENGINEERING]" = "Engineering",
 		"[R_FREQ_LOGISTICS]" = "Logistics",
@@ -627,10 +646,6 @@ var/f_color_selector_handler/F_Color_Selector
 		bust_lights()
 		master_mode = "disaster" // heh pt. 2
 
-	UPDATE_TITLE_STATUS("Lighting up 🚬")
-	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
-	RL_Start()
-
 	//SpyStructures and caches live here
 	UPDATE_TITLE_STATUS("Updating cache 💰")
 	Z_LOG_DEBUG("World/Init", "Building various caches...")
@@ -681,14 +696,19 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Transferring manuf. icons to clients...")
 	sendItemIconsToAll()
 
+	UPDATE_TITLE_STATUS("Reticulating splines")
+	Z_LOG_DEBUG("World/Init", "Initializing worldgen...")
+	initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
+
+	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
+	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
+	RL_Start()
+
 	UPDATE_TITLE_STATUS("Starting processes")
 	Z_LOG_DEBUG("World/Init", "Setting up process scheduler...")
 	processScheduler.setup()
 
-	UPDATE_TITLE_STATUS("Reticulating splines")
-	Z_LOG_DEBUG("World/Init", "Initializing worldgen...")
-	initialize_worldgen()
-
+	UPDATE_TITLE_STATUS("Initializing map")
 	Z_LOG_DEBUG("World/Init", "Running map-specific initialization...")
 	map_settings.init()
 
@@ -700,11 +720,6 @@ var/f_color_selector_handler/F_Color_Selector
 	boutput(world, "we good 2 go")
 	current_state = GAME_STATE_PREGAME
 	Z_LOG_DEBUG("World/Init", "Now in pre-game state.")
-
-#ifdef MOVING_SUB_MAP
-	Z_LOG_DEBUG("World/Init", "Making Manta start moving...")
-	mantaSetMove(moving=1, doShake=0)
-#endif
 
 	//Please delete this once broadcasting code has been proven to work and integrated into shit
 	Z_LOG_DEBUG("World/Init", "Setting up a test transmission...")
@@ -800,7 +815,11 @@ var/f_color_selector_handler/F_Color_Selector
 			var/name = details["name"]
 			text2file("\[[timestamp]\] [file],[line]: [name]", "errors.log")
 #ifndef PREFAB_CHECKING
-	var/apc_error_str = debug_map_apc_count("\n", zlim=Z_LEVEL_STATION)
+	#ifdef Z3_IS_A_STATION_LEVEL
+	var/apc_error_str = debug_map_apc_count("\n", zlim=list(Z_LEVEL_STATION, Z_LEVEL_DEBRIS))
+	#else
+	var/apc_error_str = debug_map_apc_count("\n", zlim=list(Z_LEVEL_STATION))
+	#endif
 	if (!is_blank_string(apc_error_str))
 		text2file(apc_error_str, "errors.log")
 #endif
@@ -808,14 +827,13 @@ var/f_color_selector_handler/F_Color_Selector
 #endif
 	var/newround = 'sound/misc/NewRound.ogg'
 	if (prob(40))
-		newround = pick('sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/NewRound7.ogg', 'sound/misc/NewRound8.ogg', 'sound/misc/NewRound9.ogg', 'sound/misc/TimeForANewRound.ogg')
+		newround = pick('sound/misc/NewRound0.ogg','sound/misc/NewRound1.ogg','sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/NewRound7.ogg', 'sound/misc/NewRound8.ogg', 'sound/misc/NewRound9.ogg', 'sound/misc/NewRound1.ogg', 'sound/misc/TimeForANewRound.ogg')
 
 	SPAWN_DBG(world.tick_lag)
 		for (var/client/C)
 			if (C.mob)
 				C.mob << sound(newround)
 
-#ifdef DATALOGGER
 	SPAWN_DBG(world.tick_lag*2)
 		var/playercount = 0
 		var/admincount = 0
@@ -827,7 +845,6 @@ var/f_color_selector_handler/F_Color_Selector
 		game_stats.SetValue("players", playercount)
 		game_stats.SetValue("admins", admincount)
 		//game_stats.WriteToFile("data/game_stats.txt")
-#endif
 
 	sleep(7 SECONDS) // wait for sound to play
 	if(config.update_check_enabled)
@@ -860,15 +877,15 @@ var/f_color_selector_handler/F_Color_Selector
 /world/proc/update_status()
 	Z_LOG_DEBUG("World/Status", "Updating status")
 
-	//we start off with an animated bee gif because, well, this is who we are.
-	var/s = "<img src=\"https://coolstation.space/cool_assets/meatvendor.gif\"/>"
+	var/s = "<b>"
 
 	if (config?.server_name)
-		s += "<b><a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
+		s += "<a href=\"https://coolstation.space\">[config.server_name]</a></b> &#8212; "
 	else
-		s += "<b>SERVER NAME HERE</b> &#8212; "
+		s += "SERVER NAME HERE</b> &#8212; "
 
-	s += "The hotdog SS13 experience.&#8212; (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "The [pick("hotdog","acab","vintage","jenkem","burnout")] SS13 experience. Now 516! (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "[pick("Goon's <b>only</b> active downstream!","Italian: <b>[pick("as hell","kinda","not really","yes","no","very")]</b>","Style: [pick("Action","<b>ACTION</b>")] [pick("Roleplay","<b>ROLEPLAY</b>")]","Style: [pick("Roleplay","<b>ROLEPLAY</b>")] [pick("Action","<b>ACTION</b>")]","Smells: <b>[pick("Great","Bad")]</b>!","<br>Mouthfeel: <b>[pick("crunchy","chewy","moist","wet")]</b>","No ERP! 18+ Only!")]<br>"
 
 	if (map_settings)
 		var/map_name = istext(map_settings.display_name) ? "[map_settings.display_name]" : "[map_settings.name]"
@@ -886,10 +903,10 @@ var/f_color_selector_handler/F_Color_Selector
 			features += "Mode: <b>[master_mode]</b>"
 
 	if (!enter_allowed)
-		features += "closed"
+		features += "Closed"
 
 	if (abandon_allowed)
-		features += "respawn allowed"
+		features += "Respawn Allowed"
 
 #if ASS_JAM
 	features += "Ass Jam"
@@ -1685,7 +1702,32 @@ var/f_color_selector_handler/F_Color_Selector
 					ircmsg["msg"] = "Removed the restart delay."
 
 					SPAWN_DBG(1 DECI SECOND)
-						ircbot.event("roundend")
+						// A round-end report is needed!
+						var/clownabuse = game_stats.GetStat("clownabuse")
+						var/list/roundend_score = list(
+							"map" = getMapNameFromID(map_setting),
+							"survival" = score_tracker.score_crew_survival_rate,
+							"sec_scr"  = score_tracker.final_score_sec,
+							"eng_scr"  = score_tracker.final_score_eng,
+							"civ_scr"  = score_tracker.final_score_civ,
+							"res_scr"  = score_tracker.final_score_res,
+							"grade"	 = score_tracker.grade,
+							"m_damaged" = score_tracker.most_damaged_escapee,
+							"r_escaped" = score_tracker.richest_escapee,
+							"r_total"  = score_tracker.richest_total,
+							"beepsky"  = score_tracker.beepsky_alive,
+							"farts"    = fartcount,
+							"wead"     = weadegrowne,
+							"doinks"   = doinkssparked,
+							"clowns"   = clownabuse
+							)
+						/* todo:
+						,
+							"food_finished" = game_stats.GetStat("food_finished"),
+							"mining_ores_mined" = game_stats.GetStat("mining_ores_mined"),
+							"mining_turfs_cleared" = game_stats.GetStat("mining_turfs_cleared")
+						*/
+						ircbot.event("roundend", roundend_score)
 						Reboot_server()
 
 					return ircbot.response(ircmsg)
@@ -1793,7 +1835,7 @@ var/opt_inactive = null
 	disable_auxtools_debugger()
 	. = ..()
 
-///returns (world.view - adjument) but also works for turning "21x15" into "20x14" and so on
+///returns (world.view + adjument) but also works for turning "21x15" into "20x14" and so on
 /proc/world_view_adjusted(adjustment)
 	if (isnum(world.view))
 		return world.view + adjustment

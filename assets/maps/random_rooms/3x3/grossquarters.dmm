@@ -8,7 +8,7 @@
 /obj/stool/bed,
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/vomit,
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "drip3"
 	},
 /obj/item/clothing/suit/bedsheet/random,
@@ -50,10 +50,10 @@
 /area/dmm_suite/clear_area)
 "X" = (
 /obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "bloodhit3"
 	},
-/obj/decal/cleanable/blood{
+/obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "drip1a"
 	},
 /turf/floor/carpet/grime,

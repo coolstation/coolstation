@@ -20,6 +20,7 @@
 	// Vars passed to initialize proc (and saved for later)
 	var/inline_assets
 	var/fancy
+	var/visible
 
 /**
  * public
@@ -210,6 +211,7 @@
 		log_tgui(client,
 			context = "[id]/close (suspending)",
 			window = src)
+		visible = FALSE
 		status = TGUI_WINDOW_READY
 		send_message("suspend")
 		return
@@ -217,6 +219,7 @@
 		context = "[id]/close",
 		window = src)
 	release_lock()
+	visible = FALSE
 	status = TGUI_WINDOW_CLOSED
 	message_queue = null
 	// Do not close the window to give user some time
@@ -329,6 +332,9 @@
 			return
 	// If not locked, handle these message types
 	switch(type)
+		if("visible")
+			visible = TRUE
+			SEND_SIGNAL(src, COMSIG_UI_VISIBLE, client)
 		if("ping")
 			send_message("pingReply", payload)
 		if("suspend")

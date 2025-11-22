@@ -206,7 +206,7 @@ proc/Create_Tommyname()
 			playsound(hit.loc, 'sound/voice/tommy_hey-everybody.ogg', 50, 1)
 
 ///////////////////////////////////////Tommy Gun
-
+/*
 /obj/item/gun/energy/tommy_gun
 	name = "Tommy Gun"
 	icon = 'icons/obj/items/gun.dmi'
@@ -235,7 +235,7 @@ proc/Create_Tommyname()
 		if(SEND_SIGNAL(src, COMSIG_CELL_CHECK_CHARGE) & CELL_SUFFICIENT_CHARGE)
 			src.icon_state = "tommygun[(SEND_SIGNAL(src, COMSIG_CELL_CHECK_CHARGE) & CELL_SUFFICIENT_CHARGE) ? "" : "-empty"]"
 			return
-
+*/
 ///////////////////////////////////////Analysis datum for the spectrometer
 
 /datum/spectro_analysis
@@ -308,7 +308,7 @@ proc/Create_Tommyname()
 	desc = "warning"
 	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x2"
-	anchored = 1
+	anchored = ANCHORED
 	invisibility = 101
 	event_handler_flags = USE_HASENTERED
 

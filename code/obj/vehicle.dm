@@ -233,6 +233,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	name = "\improper Space Segway"
 	desc = "Now you too can look like a complete tool in space!"
 	icon_state = "segway"
+	event_handler_flags = USE_FLUID_ENTER | STAIR_ANIM
 	var/icon_base = "segway"
 	var/icon_rider_state = 1
 	var/image/image_under = null
@@ -645,7 +646,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 			reagents.add_reagent("cryostylane", 1000)
 			return
 		else if(bigshoe)
-			reagents.add_reagent("ketchup", 1000) //closest we got to red sauce right now?
+			reagents.add_reagent("tomato_sauce", 1000) //now we got da sause
 			return
 		else
 			reagents.add_reagent("cleaner", 1000)
@@ -2288,7 +2289,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	name = "forklift"
 	desc = "A vehicle used to transport crates."
 	icon_state = "forklift"
-	anchored = 1
+	anchored = ANCHORED
 	mats = 12
 	var/list/helditems = list()	//Items being held by the forklift
 	var/helditems_maximum = 3
@@ -2353,6 +2354,8 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	var/mob/M = usr
 	M.set_loc(src)
 	src.rider = M
+	var/mob/guy = src.rider
+	guy.override_movement_controller = src.movement_controller
 	boutput(usr, "You get into [src].")
 	src.update_overlays()
 	if (rider.client)
@@ -2391,6 +2394,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 		return
 
 	var/mob/living/rider = src.rider
+	rider.override_movement_controller = null
 	..(ejectall = 0)
 
 	boutput(rider, "You get out of [src].")
@@ -2405,9 +2409,6 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 		M.set_loc(src.loc)
 
 	src.update_overlays()
-
-/obj/vehicle/forklift/get_movement_controller(mob/user)
-	return movement_controller
 
 //We, unfortunately, can't use the base relaymove here because the forklift has some
 // special behaviors with overlays and underlays that produce weird behaviors
@@ -2490,6 +2491,8 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 			boutput(user, "<span class='notice'>You help [A] onto [src]!</span>")
 		A.set_loc(src)
 		src.rider = A
+		var/mob/guy = src.rider
+		guy.override_movement_controller = src.movement_controller
 		src.update_overlays()
 		if (rider.client)
 			handle_button_addition()

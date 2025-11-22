@@ -110,7 +110,7 @@ $(document).ready(function() {
 			$('<li>', {'class': 'loading well', text: 'Loading...'})
 		);
 
-		window.location = '?action=getRuntimeData';
+		window.location = 'byond://?action=getRuntimeData';
 	});
 
 	//Show details view
@@ -158,5 +158,5 @@ $(document).ready(function() {
 	* INIT
 	***********************/
 
-	window.location = '?action=getRuntimeData';
+	window.location = 'byond://?action=getRuntimeData';
 });

@@ -357,6 +357,15 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 /datum/supply_packs/nanotrasen/emergency
 	category = "Emergency"
 
+	plunger
+		name = "Emergency Plunger"
+		desc = "An emergency plunger for when you can't find the one NT provided."
+		contents = "x1 Plunger"
+		contains = list(/obj/item/clothing/head/plunger)
+		cost = 750
+		containertype = /obj/storage/crate/biohazard
+		containername = "Emergency Plunger"
+
 	meteor
 		name = "Meteor Shield System"
 		desc = "It'll do in a pinch but your ship should really have it's own shields."
@@ -430,7 +439,7 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/emergency)
 		name = "Anti-Singularity Pack"
 		desc = "Everything that the crew needs to take down a rogue singularity."
 		contents = "1x Singularity Busting Thingy, 5x Singularity Busting Thingy Bullets, 1x Instruction Pamphlet"
-		contains = list(/obj/item/paper/antisingularity,/obj/item/ammo/bullets/antisingularity = 5,/obj/item/gun/kinetic/antisingularity)
+		contains = list(/obj/item/paper/antisingularity,/obj/item/stackable_ammo/antisingularity = 5,/obj/item/gun/modular/singularity_buster/built)
 		cost = 10000
 		containertype = /obj/storage/crate/classcrate/qm
 		containername = "Anti-Singularity Supply Pack"
@@ -461,16 +470,15 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 		access = access_securitylockers
 
 	upgrade
-		name = "Weapons Crate - Experimental Security Equipment (Cardlocked \[Security Equipment])"
-		desc = "Some alternate history magic plastic guns and grenades that fell out of some kind of portal into our warehouse. Get them while supplies last."
-		contents = "1x Clock 180, x1 Elite Security Helmet, x1 Lethal Grenade Kit, 1x Experimental Grenade Kit"
-		contains = list(/obj/item/gun/kinetic/clock_188/boomerang,
-						/obj/item/storage/box/QM_grenadekit_security,
+		name = "Weapons Crate - Experimental Grenades (Cardlocked \[Security Equipment])"
+		desc = "Some grenades that fell out of some kind of portal into our warehouse. Get them while supplies last."
+		contents = "x1 Elite Security Helmet, x1 Lethal Grenade Kit, 1x Experimental Grenade Kit"
+		contains = list(/obj/item/storage/box/QM_grenadekit_security,
 						/obj/item/storage/box/QM_grenadekit_experimentalweapons,
 						/obj/item/clothing/head/helmet/hardhat/security/improved)
-		cost = 12000
+		cost = 9000
 		containertype = /obj/storage/secure/crate/weapon
-		containername = "Weapons Crate - Experimental Security Equipment (Cardlocked \[Security Equipment])"
+		containername = "Weapons Crate - Experimental Grenades (Cardlocked \[Security Equipment])"
 		access = access_securitylockers
 		hidden = 1
 
@@ -483,17 +491,6 @@ ABSTRACT_TYPE(/datum/supply_packs/nanotrasen/security)
 		cost = 1000
 		containertype = /obj/storage/secure/crate/weapon
 		containername = "Security Containment Crate - Security Equipment (Cardlocked \[Security Equipment])"
-		access = access_securitylockers
-		hidden = 1
-
-	weapons2
-		name = "Weapons Crate - Phasers (Cardlocked \[Security Equipment])"
-		desc = "Some future space guns that fell out of some kind of portal into our warehouse. Get them while supplies last."
-		contents = "x2 Phaser Gun"
-		contains = list(/obj/item/gun/energy/phaser_gun = 2)
-		cost = 5000
-		containertype = /obj/storage/secure/crate/weapon
-		containername = "Weapons Crate - Phasers (Cardlocked \[Security Equipment])"
 		access = access_securitylockers
 		hidden = 1
 
@@ -685,6 +682,16 @@ ABSTRACT_TYPE(/datum/supply_packs/engineering)
 		cost = 1000
 		containertype = /obj/storage/crate/packing
 		containername = "Reclaimed Reclaimer"
+
+	janitoolbelts
+		name = "Janitor Belt Crate"
+		desc = "Belts for the janitors and some cleaner to go along with it"
+		contents = "2x Janitor Belts, 2x Cleaner Spray Bottle"
+		contains = list(/obj/item/storage/belt/utility/janitor = 2,
+						/obj/item/spraybottle/cleaner = 2)
+		cost = 750
+		containertype = /obj/storage/crate/packing
+		containername = "Janitor Belt Crate"
 
 	eva
 		name = "EVA Equipment Crate"
@@ -975,6 +982,20 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 		containertype = /obj/storage/crate/freezer
 		containername = "Meat, Eggs & Dairy Crate"
 
+	freshfish
+		name = "'Fresh' Frozen Fish"
+		desc = "Assorted not so fresh fish for the kitchen."
+		contents = "x15 Assorted Frozen Fish"
+		contains = list(/obj/item/fish/salmon = 4,
+						/obj/item/fish/bass = 4,
+						/obj/item/fish/carp = 5,
+						/obj/item/fish/pufferfish = 2,
+						/obj/item/raw_material/ice = 5)
+		cost = 1000
+		containertype = /obj/storage/crate/freezer
+		containername = "Frozen Fish Crate"
+
+
 	dryfoods
 		name = "Dry Goods Crate"
 		desc = "Dry goods like flour, sugar, pasta and oatmeal as bases for the kitchen."
@@ -999,6 +1020,7 @@ ABSTRACT_TYPE(/datum/supply_packs/grocery)
 						/obj/item/reagent_containers/food/snacks/condiment/custard,
 						/obj/item/reagent_containers/food/snacks/condiment/hotsauce = 3,
 						/obj/item/reagent_containers/food/snacks/condiment/ketchup = 4,
+						/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce = 2,
 						/obj/item/reagent_containers/food/snacks/condiment/mayo = 4,
 						/obj/item/reagent_containers/food/snacks/condiment/syrup = 3,
 						/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter = 3,
@@ -1081,7 +1103,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		name = "Replacement Mulebot"
 		desc = "For bolstering logistics delivery capacity, or if you joyrode the last one into space and lost it."
 		contents = "x1 Mulebot"
-		contains = list("/obj/machinery/bot/mulebot")
+		contains = list(/obj/machinery/bot/mulebot)
 		cost = 750
 		containertype = /obj/storage/crate
 		containername = "Replacement Mulebot Crate"
@@ -1142,7 +1164,7 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 
 	teg
 		name = "Thermoelectric Generator Kit"
-		desc = "A three-part kit for constructing your very own megawatt-output peltier device."
+		desc = "A three-part kit for constructing your very own megawatt-output peltier device. Furnaces sold seperately."
 		contents = "Thermoelectric Generator, Hot Gas Circulator, Cold Gas Circulator, Instructions (no charge)"
 		contains = list(/obj/item/electronics/frame/teg,
 					/obj/item/electronics/frame/hot_circ,
@@ -1154,6 +1176,16 @@ ABSTRACT_TYPE(/datum/supply_packs/heavy_equipment)
 		containername = "Thermoelectric Generator Kit (Cardlocked \[Engineering])"
 		access = access_engineering
 		//hidden = 1 // doesnt actually work yet - warc
+	teg_furnaces
+		name = "Thermoelectric Furnace Pack"
+		desc = "A set of three atmospheric furnaces for heating megawatt-class peltier devices."
+		contents = "3x Thermoelectric Furnace Frame"
+		contains = list(/obj/item/electronics/frame/teg_furnace,
+					/obj/item/electronics/frame/teg_furnace,
+					/obj/item/electronics/frame/teg_furnace)
+		cost = 5000
+		containertype = /obj/storage/crate
+		containername = "Thermoelectric Furnace Pack"
 
 //Vending machine servicing
 //Kyle2143 originally

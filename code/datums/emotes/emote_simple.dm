@@ -108,8 +108,15 @@
 	var/pronoun_proc = null //I want you to make the one you use explicit >:(
 
 	clap
+		group = "emote_clap"
 		emote_string = "claps"
 		emote_fail = "struggles to move"
+		enact(mob/user, voluntary, param)
+			if (!user.restrained())
+				playsound(user.loc, "sound/impact_sounds/Slap.ogg", 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+				if(prob(5))
+					user.TakeDamage(pick("l_arm", "r_arm"), rand(1,3), damage_type = DAMAGE_BLUNT)
+			. = ..()
 	salute
 		emote_string = "salutes"
 		emote_fail = "struggles to move"
@@ -274,14 +281,14 @@
 	cackle
 		emote_string = "cackles"
 
-/datum/emote/play_laugh/enact(mob/living/carbon/human/user, voluntary = 0, param)
-	if (!istype(user)) //sound_list_laugh
-		return
+/datum/emote/play_laugh/enact(mob/user, voluntary = 0, param)
 	if (!ismuzzled(user))
-		if (user.sound_list_laugh && length(user.sound_list_laugh))
-			playsound(user.loc, pick(user.sound_list_laugh), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
-		if (user.traitHolder && user.traitHolder.hasTrait("scienceteam"))
-			return list("[user] [emote_string] nervously.", "<I>[emote_string] worriedly</I>", MESSAGE_AUDIBLE)
+		if (ishuman(user)) //sound_list_laugh is human specific
+			var/mob/living/carbon/human/H = user
+			if (H.sound_list_laugh && length(H.sound_list_laugh))
+				playsound(H.loc, pick(H.sound_list_laugh), 80, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			if (H.traitHolder && H.traitHolder.hasTrait("scienceteam"))
+				return list("[H] [emote_string] nervously.", "<I>[emote_string] worriedly</I>", MESSAGE_AUDIBLE)
 		return list("[user] [emote_string].", emote_string, MESSAGE_AUDIBLE)
 	return	list("<B>[user]</B> tries to make a noise.", "<I>tries to make a noise</I>", MESSAGE_VISIBLE)
 
@@ -316,6 +323,16 @@
 	cry
 		enact(mob/user, voluntary = 0, param) //fuck you for having non-matching strings you piece of shit
 			if (!ismuzzled(user))
+				var/corner = FALSE
+				for (var/direction as anything in cardinal)
+					var/turf/T1 = get_step(user, direction)
+					if (!(T1.CanPass(user, T1)))
+						var/turf/T2 = get_step(user, turn(direction,90))
+						if (!(T2.CanPass(user, T2)))
+							corner = TRUE
+							break
+				if (corner)
+					return list("<B>[user]</B> cries in the corner.", "<I>cries in the corner</I>", MESSAGE_AUDIBLE)
 				return list("<B>[user]</B> cries.", "<I>cries</I>", MESSAGE_AUDIBLE)
 			else
 				return list("<B>[user]</B> makes an odd noise. A tear runs down [his_or_her(user)] face.", "<I>makes an odd noise</I>", MESSAGE_AUDIBLE)
@@ -407,7 +424,7 @@
 	user.show_text("To use emotes, simply enter 'me (emote)' in the input bar. Certain emotes can be targeted at other characters - to do this, enter 'me (emote) (name of character)' without the brackets.")
 	user.show_text("For a list of all emotes, use 'me list'. For a list of basic emotes, use 'me listbasic'. For a list of emotes that can be targeted, use 'me listtarget'.")
 
-//Emotes differ per mob type, so
+//These fucking suck and we need a better system, but for the moment I'm just copy pasting this shit :V
 /datum/emote/listtarget/human
 /datum/emote/listtarget/human/enact(mob/user, voluntary = 0, param)
 	user.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, flipoff, doubleflip, shakefist, handshake, daps, slap, boggle, highfive, fingerguns")
@@ -421,4 +438,32 @@
 	nosepick, flex, facepalm, panic, snap, airquote, twitch, twitch_v, faint, deathgasp, signal, wink, collapse, trip, dance, scream, \
 	burp, fart, monologue, contemplate, custom")
 
+/datum/emote/listall/cyborg
+/datum/emote/listall/cyborg/enact(mob/user, voluntary = 0, param)
+	user.show_text("Basic emotes:")
+	user.show_text("clap, flap, aflap, twitch, twitch_s, scream, sigh, laugh, chuckle, giggle, chortle, guffaw, cackle, birdwell, fart, flip, custom, customv, customh")
+	user.show_text("Targetable emotes:")
+	user.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, point")
 
+/datum/emote/listall/AI
+/datum/emote/listall/AI/enact(mob/user, voluntary = 0, param)
+	user.show_text("Basic emotes:")
+	user.show_text("twitch, twitch_s, scream, birdwell, fart, flip, custom, customv, customh")
+	user.show_text("Targetable emotes:")
+	user.show_text("salute, bow, wave, glare, stare, look, leer, nod, point")
+
+/datum/emote/listbasic/cyborg
+/datum/emote/listbasic/cyborg/enact(mob/user, voluntary = 0, param)
+	user.show_text("clap, flap, aflap, twitch, twitch_s, scream, sigh, laugh, chuckle, giggle, chortle, guffaw, cackle, birdwell, fart, flip, custom, customv, customh")
+
+/datum/emote/listtarget/cyborg
+/datum/emote/listtarget/cyborg/enact(mob/user, voluntary = 0, param)
+	user.show_text("salute, bow, hug, wave, glare, stare, look, leer, nod, point")
+
+/datum/emote/listbasic/AI
+/datum/emote/listbasic/AI/enact(mob/user, voluntary = 0, param)
+	user.show_text("twitch, twitch_s, scream, birdwell, fart, flip, custom, customv, customh")
+
+/datum/emote/listtarget/AI
+/datum/emote/listtarget/AI/enact(mob/user, voluntary = 0, param)
+	user.show_text("salute, bow, wave, glare, stare, look, leer, nod, point")

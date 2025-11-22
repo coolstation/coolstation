@@ -1,6 +1,6 @@
 /obj/hud
 	name = "hud"
-	anchored = 1
+	anchored = ANCHORED
 	var/mob/mymob = null
 	var/list/adding = null
 	var/list/other = null

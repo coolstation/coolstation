@@ -161,7 +161,7 @@
 		burning = 15 * flash_power
 	else
 		animation_duration = 30
-		weakened = (8 + src.stun_mod) * flash_power
+		weakened = (2 + src.stun_mod) * flash_power
 		eye_damage = src.eye_damage_mod + rand(0, (1 * flash_power))
 
 	// We're flashing somebody directly, hence the 100% chance to disrupt cloaking device at the end.
@@ -201,6 +201,11 @@
 	return
 
 /obj/item/device/flash/attack_self(mob/user as mob)
+	var/eye_blurry
+	var/eye_damage
+	eye_blurry = src.eye_damage_mod + rand(2, 4)
+	eye_damage = src.eye_damage_mod + rand(1, 3)
+
 	if(isghostcritter(user)) return
 	src.add_fingerprint(user)
 
@@ -257,7 +262,7 @@
 			var/dist = get_dist(get_turf(src),M)
 			dist = min(dist,4)
 			dist = max(dist,1)
-			M.apply_flash(20, weak = 2, uncloak_prob = 100, stamina_damage = (35 / dist), disorient_time = 3)
+			M.apply_flash(20, weak = 0, uncloak_prob = 100, stamina_damage = (35 / dist), disorient_time = 1,misstep = 5,eyes_blurry = eye_blurry,eyes_damage=eye_damage)
 
 
 	// Handle bulb wear.
@@ -311,7 +316,7 @@
 
 /obj/item/device/flash/proc/process_burnout(mob/user as mob)
 	tooltip_rebuild = 1
-	if (prob(max(0,((use-5)*10) + burn_mod)))
+	if (prob(max(0,((use-2)*10) + burn_mod)))
 		status = 0
 		boutput(user, "<span class='alert'><b>The bulb has burnt out!</b></span>")
 		set_icon_state("flash3")

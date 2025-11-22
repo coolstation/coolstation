@@ -19,7 +19,7 @@
 	icon = 'icons/obj/machines/weapon_rack.dmi'
 	icon_state = "swordstand1"
 	var/amount = 1
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	object_flags = CAN_REPROGRAM_ACCESS
 	var/stand_type = "katanastand"
@@ -55,7 +55,7 @@
 */
 
 	//RANGED WEAPONS//
-
+/*
 	taser_rack
 		name = "taser rack"
 		desc = "A storage rack that fits 4 taser guns. Efficient!"
@@ -124,6 +124,7 @@
 
 		recharger
 			recharges_contents = 1
+*/
 
 	New()
 		..()

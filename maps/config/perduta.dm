@@ -1,0 +1,8 @@
+#include "..\myliewip\perduta.dmm"
+#include "..\z2.dmm"
+#include "..\myliewip\z3_perduta.dmm"
+#include "z4.dm"
+#include "..\z5.dmm"
+#include "nudebris.dm"
+#include "..\z3.dmm"
+#define MAP_MODE "standard"

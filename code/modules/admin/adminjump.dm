@@ -21,6 +21,7 @@
 	else
 		alert("Admin jumping disabled")
 
+
 /client/proc/jumptoturf(var/turf/T in world)
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set name = "Jump To Turf"

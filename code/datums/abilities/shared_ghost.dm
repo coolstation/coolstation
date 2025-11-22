@@ -1,5 +1,5 @@
 //Abilities that are shared by most if not all ethereal things
-//(observers, wraiths, AEyes would but they don't use a damn abilityholder, preferably blobs at some point but they got their own ability implementation)
+//(observers, wraiths, blob overminds, AEyes would but they don't use a damn abilityholder)
 //I'm as disappointed as you are
 
 //being under ghost_observer is probably fine right?

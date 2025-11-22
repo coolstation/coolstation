@@ -5,11 +5,11 @@
 	icon_state = "ghost"
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
-	event_handler_flags = USE_CANPASS | IMMUNE_MANTA_PUSH | USE_FLUID_ENTER //maybe?
+	event_handler_flags = USE_CANPASS | USE_FLUID_ENTER | MOVE_NOCLIP //maybe?
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1	//  don't get pushed around
+	anchored = ANCHORED	//  don't get pushed around
 	var/mob/corpse = null	//	observer mode
 	var/observe_round = 0
 	var/health_shown = 0
@@ -56,7 +56,7 @@
 /mob/dead/observer/click(atom/target, params, location, control)
 
 	if (src.in_point_mode || (src.client && src.client.check_key(KEY_POINT)))
-		src.point(target)
+		src.point_at(target, text2num(params["icon-x"]), text2num(params["icon-y"]))
 		if (src.in_point_mode)
 			src.toggle_point_mode()
 		return
@@ -65,7 +65,8 @@
 /mob/dead/observer/Login()
 	..()
 	if(src.client)
-		src.updateOverlaysClient(src.client)
+		removeOverlaysClient(src.client)
+		addOverlaysClient(src.client, src)
 		src.updateButtons()
 	// ok so in logout we set your ghost to 101 invisibility.
 	// in login we set it back to whatever it was. so you keep your ghost.
@@ -73,10 +74,10 @@
 	// heres a thought: maybe ghostize() could look for your ghost or smth
 	// and put you in it instead of just making a new one.
 	// idk this codebase is an eldritch horror and i dont wanna try rn
-	REMOVE_MOB_PROPERTY(src, PROP_INVISIBILITY, "clientless")
+	REMOVE_ATOM_PROPERTY(src, PROP_INVISIBILITY, "clientless")
 
 
-/mob/dead/observer/point_at(var/atom/target)
+/mob/dead/observer/point_at(atom/target, var/pixel_x, var/pixel_y)
 	if (!isturf(src.loc))
 		return
 
@@ -90,7 +91,7 @@
 	if(prob(20))
 		point_invisibility = 0
 #endif
-	make_point(get_turf(target), pixel_x=target.pixel_x, pixel_y=target.pixel_y, color="#5c00e6", invisibility=point_invisibility)
+	make_point(target, pixel_x=pixel_x, pixel_y=pixel_y, color="#5c00e6", invisibility=point_invisibility, pointer=src)
 
 
 #define GHOST_LUM	1		// ghost luminosity
@@ -144,7 +145,7 @@
 
 
 //#ifdef HALLOWEEN
-/mob/dead/observer/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/mob/dead/observer/CanPass(atom/movable/mover, turf/target)
 	if (src.icon_state != "doubleghost" && istype(mover, /obj/projectile))
 		var/obj/projectile/proj = mover
 		if (proj.proj_data?.hits_ghosts)
@@ -197,8 +198,6 @@
 	if (..(parent))
 		return 1
 	if (src.client && src.client.holder) //ov1
-		// overlays
-		//src.updateOverlaysClient(src.client)
 		src.antagonist_overlay_refresh(0, 0) // Observer Life() only runs for admin ghosts (Convair880).
 
 #ifdef TWITCH_BOT_ALLOWED
@@ -222,8 +221,8 @@
 
 /mob/dead/observer/New(mob/corpse)
 	. = ..()
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, ghost_invisibility)
-	APPLY_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, ghost_invisibility)
+	APPLY_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
 	src.sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	src.see_invisible = 16
 	src.see_in_dark = SEE_DARK_FULL
@@ -485,7 +484,7 @@
 		// but that's way too much effort to fix and i do not feel like debugging
 		// 2000 different "use after free" issues.
 		// so. your ghost doesnt go away. it just, uh. it takes a break for a while.
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_ALWAYS)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_ALWAYS)
 	return
 
 /mob/dead/observer/Move(NewLoc, direct)
@@ -499,24 +498,7 @@
 			src.z = 1
 		return OnMove()
 
-	if (!isturf(src.loc))
-		src.set_loc(get_turf(src))
-	if (NewLoc)
-		set_dir(get_dir(loc, NewLoc))
-		src.set_loc(NewLoc)
-		OnMove()
-		return
-
-	set_dir(direct)
-	if((direct & NORTH) && src.y < world.maxy)
-		src.y++
-	if((direct & SOUTH) && src.y > 1)
-		src.y--
-	if((direct & EAST) && src.x < world.maxx)
-		src.x++
-	if((direct & WEST) && src.x > 1)
-		src.x--
-	OnMove()
+	. = ..()
 
 /mob/dead/observer/MouseDrop(atom/A)
 	if (usr != src || isnull(A)) return
@@ -861,10 +843,7 @@
 	if (isghostrestrictedz(newobs.z) && !restricted_z_allowed(newobs, get_turf(newobs)) && !(src.client && src.client.holder))
 		newobs.set_loc(pick_landmark(LANDMARK_OBSERVER, locate(150, 150, 1)))
 
-/mob/dead/observer/verb/ghostjump(x as num, y as num, z as num)
-	set name = ".ghostjump"
-	set hidden = TRUE
-
+/mob/dead/observer/ghostjump(x as num, y as num, z as num)
 	var/turf/T = locate(x, y, z)
 	src.set_loc(T)
 

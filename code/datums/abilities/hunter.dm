@@ -60,7 +60,6 @@
 		M.equip_if_possible(new /obj/item/storage/backpack(M), slot_back)
 		M.equip_if_possible(new /obj/item/cloaking_device(M), slot_r_store)
 		M.equip_if_possible(new /obj/item/knife/butcher/predspear(M), slot_l_hand)
-		M.equip_if_possible(new /obj/item/gun/energy/laser_gun/pred(M), slot_r_hand)
 
 		M.set_face_icon_dirty()
 		M.set_body_icon_dirty()
@@ -231,9 +230,6 @@
 			return
 		if (!spell.holder)
 			return
-		if (!isturf(owner.holder.owner.loc))
-			boutput(owner.holder.owner, "<span class='alert'>You can't use this ability here.</span>")
-			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
 			usr.update_cursor()
@@ -263,6 +259,7 @@
 	last_cast = 0
 	pointCost = 0
 	preferred_holder_type = /datum/abilityHolder/hunter
+	turf_check = TRUE
 	var/when_stunned = 0 // 0: Never | 1: Ignore mob.stunned and mob.weakened | 2: Ignore all incapacitation vars
 	var/not_when_handcuffed = 0
 	var/hunter_only = 0

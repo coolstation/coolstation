@@ -22,7 +22,7 @@
 	icon_state = "chassis"
 	opacity = 0
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/obj/machinery/mining_magnet/linked_magnet = null
 
 	New()
@@ -154,7 +154,7 @@
 	var/turf/magnetic_center
 	alpha = 128
 	flags = TECHNICAL_ATOM
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 	small
 		width = 7
@@ -345,7 +345,7 @@
 	icon_state = "magnet"
 	opacity = 0
 	density = 0 // collision is dealt with by the chassis
-	anchored = 1
+	anchored = ANCHORED
 	var/obj/machinery/magnet_chassis/linked_chassis = null
 	var/health = 100
 	var/attract_time = 300
@@ -420,6 +420,8 @@
 			if (!target)
 				return
 
+			worldgen_hold = TRUE
+
 			if (!wall_bits.len)
 				wall_bits = target.generate_walls()
 
@@ -472,6 +474,8 @@
 				active = 0
 				boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
 				return
+
+			initialize_worldgen()
 
 			sleep(sleep_time)
 			if (malfunctioning && prob(20))
@@ -652,6 +656,8 @@
 					mining_apc.zapStuff()
 
 	proc/pull_new_source(var/selectable_encounter_id = null)
+		worldgen_hold = TRUE
+
 		for (var/obj/forcefield/mining/M in mining_controls.magnet_shields)
 			M.opacity = 1
 			M.set_density(1)
@@ -709,6 +715,7 @@
 			active = 0
 			boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
 			return
+		initialize_worldgen()
 
 		sleep(sleep_time)
 		if (malfunctioning && prob(20))
@@ -1125,7 +1132,8 @@
 	New(var/loc)
 		src.icon_state = pick("ast1","ast2","ast3")
 		..()
-		worldgenCandidates += src
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
 		if(current_state <= GAME_STATE_PREGAME)
 			src.build_icon()
 
@@ -1150,7 +1158,7 @@
 		if(prob(power))
 			src.damage_asteroid(7)
 
-	dismantle_wall()
+	dismantle_wall(var/devastated = 0, var/keep_material = 1)
 		return src.destroy_asteroid()
 
 	get_desc(dist)
@@ -1383,6 +1391,8 @@
 						MAT.quality = src.quality
 
 				MAT.name = getOreQualityName(MAT.quality) + " [MAT.name]"
+				game_stats.Increment("mining_ores_mined")
+		game_stats.Increment("mining_turfs_cleared") //empty asteroid turfs also count
 		if(!icon_old)
 			icon_old = icon_state
 
@@ -1491,11 +1501,15 @@
 		icon_state = "astfloor" + "[sprite_variation]"
 		coloration_overlay = image(src.icon,"color_overlay")
 		coloration_overlay.blend_mode = 4
-		update_icon()
-		worldgenCandidates += src
+
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation] += src
+		else
+			update_icon()
 
 	generate_worldgen()
 		. = ..()
+		update_icon()
 		src.space_overlays()
 
 	ex_act(severity)
@@ -1527,12 +1541,11 @@
 		if (fullbright)
 			src.overlays += /image/fullbright //Fixes perma-darkness
 		#endif
-		SPAWN_DBG(0)
-			if (istype(src)) //Wire note: just roll with this ok
-				for (var/turf/wall/asteroid/A in orange(src,1))
-					src.apply_edge_overlay(get_dir(src, A))
-				for (var/turf/space/A in orange(src,1))
-					src.apply_edge_overlay(get_dir(src, A))
+		if (istype(src)) //Wire note: just roll with this ok
+			for (var/turf/wall/asteroid/A in orange(src,1))
+				src.apply_edge_overlay(get_dir(src, A))
+			for (var/turf/space/A in orange(src,1))
+				src.apply_edge_overlay(get_dir(src, A))
 
 	proc/apply_edge_overlay(var/thedir) //For overlays ON THE FLOOR TILE
 		var/image/dig_overlay = image('icons/turf/asteroid.dmi', "edge[thedir]")
@@ -1934,8 +1947,10 @@ obj/item/clothing/gloves/concussive
 		for (var/turf/wall/asteroid/A in range(src.expl_flash,src))
 			if(get_dist(src,A) <= src.expl_heavy)
 				A.damage_asteroid(4)
+				continue
 			if(get_dist(src,A) <= src.expl_light)
 				A.damage_asteroid(3)
+				continue
 			if(get_dist(src,A) <= src.expl_flash)
 				A.damage_asteroid(2)
 
@@ -2177,7 +2192,7 @@ obj/item/clothing/gloves/concussive
 	icon_state = "gravgen-off"
 	density = 1
 	opacity = 0
-	anchored = 0
+	anchored = UNANCHORED
 	processing_tier = PROCESSING_HALF //~0.8Hz
 	var/active = 0
 	var/cell = null
@@ -2208,12 +2223,12 @@ obj/item/clothing/gloves/concussive
 				if (!src.active)
 					user.visible_message("[user] powers up [src].", "You power up [src].")
 					src.active = 1
-					src.anchored = 1
+					src.anchored = ANCHORED
 					icon_state = "gravgen-on"
 				else
 					user.visible_message("[user] shuts down [src].", "You shut down [src].")
 					src.active = 0
-					src.anchored = 0
+					src.anchored = UNANCHORED
 					icon_state = "gravgen-off"
 			else
 				user.visible_message("[user] stares at [src] in confusion!", "You're not sure what that did.")
@@ -2234,14 +2249,14 @@ obj/item/clothing/gloves/concussive
 			if (!src.cell)
 				src.visible_message("<span class='alert'>[src] instantly shuts itself down.</span>")
 				src.active = 0
-				src.anchored = 0
+				src.anchored = UNANCHORED
 				icon_state = "gravgen-off"
 				return
 			var/obj/item/cell/PCEL = src.cell
 			if (PCEL.charge <= 0)
 				src.visible_message("<span class='alert'>[src] runs out of power and shuts down.</span>")
 				src.active = 0
-				src.anchored = 0
+				src.anchored = UNANCHORED
 				icon_state = "gravgen-off"
 				return
 			PCEL.charge -= 5
@@ -2310,7 +2325,7 @@ var/global/list/cargopads = list()
 	desc = "Used to receive objects transported by a cargo transporter."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cargopad"
-	anchored = 1
+	anchored = ANCHORED
 	plane = PLANE_FLOOR
 	mats = 10 //I don't see the harm in re-adding this. -ZeWaka
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_CROWBAR | DECON_WELDER | DECON_MULTITOOL
@@ -2394,10 +2409,11 @@ var/global/list/cargopads = list()
 	inventory_counter_enabled = 1
 
 	borg
-		New()
+		//this satchel wasn't added to the module so it'd just get lost in wherever the hell
+		/*New()
 			..()
 			var/obj/item/satchel/mining/large/S = new /obj/item/satchel/mining/large(src)
-			satchel = S
+			satchel = S*/
 
 	//attack_self can just dump on the floor as usual for all I care, but let me unload the dang satchel directly thanks
 	attack_hand(mob/user)
@@ -2423,7 +2439,8 @@ var/global/list/cargopads = list()
 			inventory_counter.update_number(satchel.curitems)
 			if (old_satchel)
 				user.visible_message("[user] swaps [src]'s [old_satchel.name] for [S].", "You swap [src]'s' [old_satchel] for [S].")
-				user.put_in_hand_or_drop(old_satchel)
+				if (!issilicon(user))
+					user.put_in_hand_or_drop(old_satchel)
 			else
 				user.visible_message("[user] inserts [S] into [src].", "You insert [S] into [src].")
 		else
@@ -2491,3 +2508,37 @@ var/global/list/cargopads = list()
 
 	ex_act(severity)
 		return
+
+/obj/decal/mining_display
+	name = "asteroid belt map"
+	icon = 'icons/obj/large/96x96.dmi'
+	icon_state = "mining_map"
+	anchored = ANCHORED
+	var/zlevel = AST_ZLEVEL
+	layer = OBJ_LAYER - 0.05
+	bound_x = 96
+	bound_y = 96
+
+	New()
+		. = ..()
+		STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen()
+		. = ..()
+		if(hotspot_controller && hotspot_controller.map["[src.zlevel]"])
+			var/image/map_overlay = image(hotspot_controller.map["[src.zlevel]"], layer = src.layer - 0.01)
+			map_overlay.transform = matrix(0.125, MATRIX_SCALE)
+			map_overlay.pixel_x = -252
+			map_overlay.pixel_y = -252
+			src.UpdateOverlays(map_overlay, "map_overlay")
+
+	examine(mob/user)
+		if (user.client && hotspot_controller)
+			hotspot_controller.show_map(user.client, src.zlevel)
+			return list()
+		else
+			return ..()
+
+/obj/decal/mining_display/gehenna
+	name = "local cave map"
+	zlevel = GEH_ZLEVEL

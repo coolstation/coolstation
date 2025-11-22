@@ -1,6 +1,7 @@
 /obj/item/extinguisher
 
 	name = "fire extinguisher"
+	hint = "refill by clicking on a rolling firefoam tank."
 	icon = 'icons/obj/items/items.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "fire_extinguisher0"
@@ -70,6 +71,20 @@
 		return
 	..()
 */
+
+/obj/item/extinguisher/shatter_chemically(var/projectiles = FALSE) //needs sound probably definitely for sure
+	for(var/mob/M in AIviewers(src))
+		boutput(M, SPAN_ALERT("The <B>[src.name]</B> breaks open!"))
+	if(projectiles)
+		var/datum/projectile/special/spreader/uniform_burst/circle/circle = new /datum/projectile/special/spreader/uniform_burst/circle/(get_turf(src))
+		circle.shot_sound = null //no grenade sound ty
+		circle.spread_projectile_type = /datum/projectile/bullet/shrapnel
+		circle.pellet_shot_volume = 0
+		circle.pellets_to_fire = 10
+		shoot_projectile_ST_pixel_spread(get_turf(src), circle, get_step(src, NORTH))
+	src.reagents.reaction(get_turf(src), TOUCH, src.reagents.total_volume)
+	qdel(src)
+	return TRUE
 
 /obj/item/extinguisher/pixelaction(atom/target, params, mob/user, reach)
 	..()
@@ -167,7 +182,8 @@
 				var/turf/my_target = pick(the_targets)
 				W.spray_at(my_target, R, try_connect_fluid = 1)
 
-		if (istype(user.loc, /turf/space))
+		var/turf/my_turf = get_turf(src)
+		if (my_turf.throw_unlimited)
 			user.inertia_dir = get_dir(target, user)
 			step(user, user.inertia_dir)
 		else if( user.buckled && !user.buckled.anchored )

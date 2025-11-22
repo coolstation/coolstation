@@ -524,6 +524,7 @@
 		//addTrigger(triggersExp, new /datum/materialProc/molitz_exp())
 		return ..()
 
+/*
 	beta
 		mat_id = "molitz_b"
 		name = "molitz beta"
@@ -535,6 +536,7 @@
 			//removeTrigger(triggersTemp, /datum/materialProc/molitz_temp) // no need to remove molitz_on_hit, all it
 			//addTrigger(triggersTemp, new /datum/materialProc/molitz_temp/agent_b()) // does is call molitz_temp
 			return
+*/
 
 /datum/material/crystal/claretine
 	mat_id = "claretine"

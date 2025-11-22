@@ -1619,6 +1619,8 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 		JOB_XP(surgeon, "Clown", 1)
 		surgeon.changeStatus("weakened", 4 SECONDS)
 		random_burn_damage(surgeon, damage)
+		if(surgeon.reagents)
+			open_flame_reaction(surgeon.reagents)
 		return 1
 
 	src.add_fingerprint(surgeon)
@@ -1639,6 +1641,8 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 			return 0
 
 		random_burn_damage(patient, damage)
+		if(patient.reagents)
+			open_flame_reaction(patient.reagents)
 
 		if (quick_surgery)
 			patient.tri_message("<span class='notice'><b>[surgeon]</b> cauterizes the incision on [patient == surgeon ? "[his_or_her(patient)]" : "[patient]'s"] neck closed with [src].</span>",\
@@ -1680,6 +1684,8 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 			return 0
 
 		random_burn_damage(patient, damage)
+		if(patient.reagents)
+			open_flame_reaction(patient.reagents)
 
 		if (quick_surgery)
 			patient.tri_message("<span class='notice'><b>[surgeon]</b> cauterizes the incision on [patient == surgeon ? "[his_or_her(patient)]" : "[patient]'s"] butt closed with [src].</span>",\
@@ -1721,6 +1727,8 @@ var/global/list/chestitem_whitelist = list(/obj/item/gnomechompski, /obj/item/gn
 			return 1
 
 		random_burn_damage(patient, damage)
+		if(patient.reagents)
+			open_flame_reaction(patient.reagents)
 
 		if (quick_surgery)
 			patient.tri_message("<span class='notice'><b>[surgeon]</b> cauterizes [patient == surgeon ? "[his_or_her(patient)]" : "[patient]'s"] wounds closed with [src].</span>",\

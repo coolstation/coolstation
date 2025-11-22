@@ -52,7 +52,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	return 1
 
 /datum/fishing_spot/sea
-	fishing_atom_type = /turf/space/fluid
+	fishing_atom_type = /turf/space/fluid/ocean
 	fish_available = list(/obj/item/fish/carp = 40,\
 	/obj/item/fish/bass = 30,\
 	/obj/item/fish/salmon = 20,\
@@ -68,8 +68,6 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 /datum/fishing_spot/sea/watertanks
 	fishing_atom_type = /obj/reagent_dispensers/watertank
 
-/datum/fishing_spot/sea/deeptrench
-	fishing_atom_type = /turf/floor/polarispit
 
 /datum/fishing_spot/test
 	fishing_atom_type = /turf/floor/ancient

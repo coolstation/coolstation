@@ -3,7 +3,7 @@
 	desc = "Is that a space heater? That doesn't look safe at all!"
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "shittygrill_off"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	flags = NOSPLASH
 	mats = 20
@@ -206,7 +206,7 @@
 
 			src.cooktime++
 
-		if (src.cooktime < 60)
+		if (src.cooktime <= 60)
 			if (src.cooktime == 30)
 				playsound(src.loc, "sound/machines/ding.ogg", 50, 1)
 				src.visible_message("<span class='notice'>[src] emits a delicious smell!</span>")

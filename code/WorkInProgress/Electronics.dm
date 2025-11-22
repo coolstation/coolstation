@@ -10,6 +10,7 @@
 	pressure_resistance = 10
 	item_state = "electronic"
 	flags = FPRINT | TABLEPASS | CONDUCT
+	value = 25 //base commodity price
 
 /obj/item/electronics/New()
 	..()
@@ -23,6 +24,7 @@
 /obj/item/electronics/battery
 	name = "battery"
 	icon_state = "batt1"
+	value = 30
 
 /obj/item/electronics/battery/New()
 	src.icon_state = pick("batt1", "batt2", "batt3")
@@ -32,6 +34,7 @@
 /obj/item/electronics/board
 	name = "board"
 	icon_state = "board1"
+	value = 50
 
 /obj/item/electronics/board/New()
 	src.icon_state = pick("board1", "board2", "board3")
@@ -41,6 +44,7 @@
 /obj/item/electronics/fuse
 	name = "fuse"
 	icon_state = "fuse1"
+	value = 10
 
 /obj/item/electronics/fuse/New()
 	src.icon_state = pick("fuse1", "fuse2", "fuse3")
@@ -50,6 +54,7 @@
 /obj/item/electronics/switc
 	name = "switch"
 	icon_state = "switch1"
+	value = 10
 
 /obj/item/electronics/switc/New()
 	src.icon_state = pick("switch1", "switch2", "switch3")
@@ -59,6 +64,7 @@
 /obj/item/electronics/keypad
 	name = "keypad"
 	icon_state = "keypad1"
+	value = 30
 /obj/item/electronics/keypad/New()
 	src.icon_state = pick("keypad1", "keypad2", "keypad3")
 	randompix()
@@ -67,6 +73,7 @@
 /obj/item/electronics/screen
 	name = "screen"
 	icon_state = "screen1"
+	value = 40
 /obj/item/electronics/screen/New()
 	src.icon_state = pick("screen1", "screen2", "screen3")
 	randompix()
@@ -75,6 +82,7 @@
 /obj/item/electronics/capacitor
 	name = "capacitor"
 	icon_state = "capacitor1"
+	value = 10
 /obj/item/electronics/capacitor/New()
 	src.icon_state = pick("capacitor1", "capacitor2", "capacitor3")
 	randompix()
@@ -83,6 +91,7 @@
 /obj/item/electronics/buzzer
 	name = "buzzer"
 	icon_state = "buzzer"
+	value = 10
 /obj/item/electronics/buzzer/New()
 	randompix()
 	..()
@@ -90,6 +99,7 @@
 /obj/item/electronics/resistor
 	name = "resistor"
 	icon_state = "resistor1"
+	value = 10
 /obj/item/electronics/resistor/New()
 	src.icon_state = pick("resistor1", "resistor2")
 	randompix()
@@ -98,6 +108,7 @@
 /obj/item/electronics/bulb
 	name = "bulb"
 	icon_state = "bulb1"
+	value = 15
 /obj/item/electronics/bulb/New()
 	src.icon_state = pick("bulb1", "bulb2")
 	randompix()
@@ -106,6 +117,7 @@
 /obj/item/electronics/relay
 	name = "relay"
 	icon_state = "relay1"
+	value = 20
 /obj/item/electronics/bulb/New()
 	src.icon_state = pick("relay1", "relay2")
 	randompix()
@@ -114,6 +126,7 @@
 /obj/item/electronics/frame
 	name = "frame"
 	icon_state = "frame"
+	value = 60
 	var/store_type = null
 	var/secured = 0
 	var/viewstat = 0
@@ -376,6 +389,7 @@
 	throwforce = 5
 	w_class = W_CLASS_SMALL
 	pressure_resistance = 40
+	value = 35
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 		if (!isobj(target))
@@ -399,7 +413,7 @@
 /obj/item/electronics/scanner
 	name = "device analyzer"
 	icon_state = "deviceana"
-	desc = "Used for scanning certain items for use with the ruckingenur kit."
+	desc = "Used for diagnosing problems with station equipment and making backup scans. These scans can then be used with the ruckingenur kit to produce schematics for replacing equipment."
 	force = 2
 	hit_type = DAMAGE_BLUNT
 	throwforce = 5
@@ -407,11 +421,24 @@
 	pressure_resistance = 50
 	var/list/scanned = list()
 	var/viewstat = 0
+	value = 150
 
 	syndicate
 		is_syndicate = 1
 
 /obj/item/electronics/scanner/afterattack(var/obj/O, mob/user as mob)
+	//Maintenance arrears
+	//
+	if (istype(O, /obj/machinery))
+		var/obj/machinery/M = O
+		var/malf_hint = M.malfunction_hint()
+		if (malf_hint)
+			animate_scanning(O, "#FF6633")
+			user.visible_message("<b>[user]</b> has scanned the [O].")
+			boutput(user, "<br><span class='alert'>Maintenance analysis: <b>[M] is not functioning properly.</span></b>")
+			src.audible_message("<span class='notice'>NanoTrasen maintenance guide advises: <i>[malf_hint]</i></span>")
+			return
+
 	if(istype(O,/obj/machinery/rkit) || istype(O, /obj/item/electronics/frame))
 		return
 	if(istype(O,/obj/))
@@ -440,15 +467,15 @@
 	desc = "Used for reverse engineering certain items."
 	icon = 'icons/obj/electronics.dmi'
 	icon_state = "rkit"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	//var/datum/electronics/electronics_items/link = null
 	req_access = list(access_captain, access_head_of_personnel, access_maxsec, access_engineering_chief, access_quartermaster)
+	value = 30000
 
 	var/processing = 0
 	var/net_id = null
 	var/frequency = FREQ_RUCK
-	var/datum/radio_frequency/radio_connection
 	var/no_print_spam = 1 // In relation to world.time.
 	var/olde = 0
 	var/datum/mechanic_controller/ruck_controls
@@ -458,27 +485,33 @@
 	var/list/known_rucks = null
 	var/boot_time = null
 	var/data_initialized = FALSE
-	var/datum/radio_frequency/pda = null
 
 /obj/machinery/rkit/New()
 	. = ..()
 	known_rucks = new
 	ruck_controls = new
-	pda = radio_controller.return_frequency("[FREQ_PDA]")
+	MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 	if(isnull(mechanic_controls)) mechanic_controls = ruck_controls //For objective tracking and admin
-	if(radio_controller)
-		radio_connection = radio_controller.add_object(src, "[frequency]")
 	if(!src.net_id)
 		src.net_id = generate_net_id(src)
 		ruck_controls.rkit_addresses += src.net_id
 		host_ruck = src.net_id
 
+	src.AddComponent( \
+		/datum/component/packet_connected/radio, \
+		"ruck", \
+		src.frequency, \
+		src.net_id, \
+		"receive_signal", \
+		FALSE, \
+		"TRANSRKIT", \
+		FALSE \
+	)
+
 /obj/machinery/rkit/disposing()
 	if (src.net_id == host_ruck) send_sync(1) //Everyone needs to find a new master
 	SPAWN_DBG(0.8 SECONDS) //Wait for the sync to send
-		radio_controller?.remove_object(src, "[frequency]")
-		radio_connection = null
 		if (src.net_id)
 			ruck_controls.rkit_addresses -= src.net_id
 		..()
@@ -502,14 +535,13 @@
 		host_ruck = src.net_id //We're the host until someone else proves they are
 		var/datum/signal/newsignal = get_free_signal()
 		newsignal.source = src
-		newsignal.transmission_method = TRANSMISSION_RADIO
 		if(!dispose)
 			newsignal.data["command"] = "SYNC"
 		else
 			newsignal.data["command"] = "DROP"
-		newsignal.data["address_1"] = "TRANSRKIT"
+		newsignal.data["address_tag"] = "TRANSRKIT"
 		newsignal.data["sender"] = src.net_id
-		radio_connection.post_signal(src, newsignal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 /obj/machinery/rkit/proc/upload_blueprint(var/datum/electronics/scanned_item/O, var/target, var/internal)
 	SPAWN_DBG(0.5 SECONDS) //This proc sends responses so there must be a delay
@@ -519,28 +551,27 @@
 		scanFile.scannedMats = O.mats
 		var/datum/signal/newsignal = get_free_signal()
 		newsignal.source = src
-		newsignal.transmission_method = TRANSMISSION_RADIO
 		if(!internal)
 			newsignal.data["command"] = "NEW"
 		else
 			newsignal.data["command"] = "UPLOAD"
+		newsignal.data["address_tag"] = target
 		newsignal.data["address_1"] = target
 		newsignal.data["sender"] = src.net_id
 		newsignal.data_file = scanFile
-		radio_connection.post_signal(src, newsignal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 /obj/machinery/rkit/proc/pda_message(var/target, var/message)
 	SPAWN_DBG(0.5 SECONDS) //response proc
 		var/datum/signal/newsignal = get_free_signal()
 		newsignal.source = src
-		newsignal.transmission_method = TRANSMISSION_RADIO
 		newsignal.data["command"] = "text_message"
 		newsignal.data["sender_name"] = "RKIT-MAILBOT"
 		newsignal.data["message"] = message
 		if (target) newsignal.data["address_1"] = target
 		newsignal.data["group"] = list(MGO_MECHANIC, MGA_RKIT)
 		newsignal.data["sender"] = src.net_id
-		pda.post_signal(src, newsignal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal, null, "pda")
 
 /obj/machinery/rkit/proc/transfer_database(target)
 	//If we have a database of items, and we're the host, and we see a new ruck
@@ -552,12 +583,11 @@
 	SPAWN_DBG(0.5 SECONDS)
 		var/datum/signal/newsignal = get_free_signal()
 		newsignal.source = src
-		newsignal.transmission_method = TRANSMISSION_RADIO
 		newsignal.data["command"] = "UPLOAD"
 		newsignal.data["address_1"] = target
 		newsignal.data["sender"] = src.net_id
 		newsignal.data_file = rkitFile
-		radio_connection.post_signal(src, newsignal)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal, null, "ruck")
 	known_rucks |= target
 
 //Run this if there's a file and return
@@ -578,11 +608,10 @@
 		SPAWN_DBG(0.5 SECONDS)
 			var/datum/signal/newsignal = get_free_signal()
 			newsignal.source = src
-			newsignal.transmission_method = TRANSMISSION_RADIO
 			newsignal.data["command"] = "SYNCREPLY"
-			newsignal.data["address_1"] = "TRANSRKIT"
+			newsignal.data["address_tag"] = "TRANSRKIT"
 			newsignal.data["sender"] = src.net_id
-			radio_connection.post_signal(src, newsignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal, null, "ruck")
 		if(world.time - boot_time <= 3 SECONDS)
 			for (var/datum/electronics/scanned_item/O in originalData.scanned_items)
 				ruck_controls.scan_in(O.name, O.item_type, O.mats, O.locked) //Copy the database on digest so we never waste the effort
@@ -629,7 +658,7 @@
 	var/command = signal.data["command"]
 
 	//LOCK can come in encrypted
-	if(signal.data["address_1"] == "TRANSRKIT" && signal.data["acc_code"] == netpass_heads && !isnull(signal.data["DATA"]) && !isnull(signal.data["LOCK"]))
+	if(signal.data["address_tag"] == "TRANSRKIT" && signal.data["acc_code"] == netpass_heads && !isnull(signal.data["DATA"]) && !isnull(signal.data["LOCK"]))
 		var/targetitem = signal.data["DATA"]
 		var/targetlock = signal.data["LOCK"]
 		if (istext(targetlock))
@@ -650,18 +679,17 @@
 								//Any replies in receive signal need a delay
 			var/datum/signal/newsignal = get_free_signal()
 			newsignal.source = src
-			newsignal.transmission_method = TRANSMISSION_RADIO
 			newsignal.data["command"] = "ping_reply"
 			newsignal.data["device"] = "NET_RKANALZYER"
 			newsignal.data["netid"] = src.net_id
 			newsignal.data["address_1"] = target
 			newsignal.data["sender"] = src.net_id
-			radio_connection.post_signal(src, newsignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal, null, "ruck")
 
 		return
 
 	//Signals that take TRANSRKIT or the net_id
-	if (signal.data["address_1"] == "TRANSRKIT" || signal.data["address_1"] == src.net_id)
+	if (signal.data["address_tag"] == "TRANSRKIT" || signal.data["address_1"] == src.net_id)
 		if (!isnull(signal.data_file))
 			process_upload(signal)
 			return
@@ -670,7 +698,7 @@
 		return
 
 	//Signals that take TRANSRKIT
-	if(signal.data["address_1"] == "TRANSRKIT")
+	if(signal.data["address_tag"] == "TRANSRKIT")
 
 		if(command == "SYNCREPLY" && target)
 			if (target > host_ruck) //pick the highest net_id
@@ -697,11 +725,10 @@
 			SPAWN_DBG(0.5 SECONDS)
 				var/datum/signal/newsignal = get_free_signal()
 				newsignal.source = src
-				newsignal.transmission_method = TRANSMISSION_RADIO
 				newsignal.data["command"] = "SYNCREPLY"
-				newsignal.data["address_1"] = "TRANSRKIT"
+				newsignal.data["address_tag"] = "TRANSRKIT"
 				newsignal.data["sender"] = src.net_id
-				radio_connection.post_signal(src, newsignal)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal, null, "ruck")
 
 			return
 	//And anything down here runs if addressed by only net_id
@@ -822,14 +849,14 @@
 					updateDialog()
 					var/datum/signal/newsignal = get_free_signal()
 					newsignal.source = src
-					newsignal.transmission_method = TRANSMISSION_RADIO
-					newsignal.data["address_1"] = "TRANSRKIT"
+					newsignal.data["address_tag"] = "TRANSRKIT"
 					newsignal.data["acc_code"] = netpass_heads
 					newsignal.data["LOCK"] = O.locked
 					newsignal.data["DATA"] = O.name
 					newsignal.data["sender"] = src.net_id
 					newsignal.encryption = "ERR_12845_NT_SECURE_PACKET:"
-					radio_connection.post_signal(src, newsignal)
+					newsignal.encryption_obfuscation = 85
+					SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal, null, "ruck")
 
 	else
 		usr.Browse(null, "window=rkit")
@@ -849,6 +876,7 @@
 	hit_type = DAMAGE_CUT
 	tool_flags = TOOL_SAWING
 	w_class = W_CLASS_NORMAL
+	value = 150
 
 	proc/finish_decon(atom/target,mob/user)
 		if (!isobj(target))
@@ -1018,3 +1046,4 @@
 	hit_type = DAMAGE_BLUNT
 	tool_flags = 0
 	w_class = W_CLASS_NORMAL
+	value = -9999 //bug

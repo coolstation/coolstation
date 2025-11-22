@@ -34,7 +34,9 @@
 		if (user.find_in_hand(src))
 			boutput(user,"<span class='notice'><b>You unwrap [src].</b></span>")
 			var/obj/item/reagent_containers/food/snacks/popsicle/P = new /obj/item/reagent_containers/food/snacks/popsicle(src.loc)
+			user.u_equip(src)
 			user.put_in_hand_or_drop(P)
+			user.put_in_hand_or_drop(new /obj/item/popsicle/empty_wrapper())
 			if(prob(8))
 				P.melt(user)
 			qdel(src)
@@ -120,8 +122,17 @@
 		boutput(user,"<span class='notice'><b>[src] has already melted! Damn!</b></span>")
 		src.reagents.reaction(get_turf(src))
 		user.u_equip(src)
-		src.set_loc(get_turf(user))
+		//src.set_loc(get_turf(user)) why do this
 		qdel(src)
 		var/obj/item/stick/S = new
 		user.put_in_hand_or_drop(S)
+		return
+
+/obj/item/popsicle/empty_wrapper
+	name = "popsicle wrapper"
+	desc = "A wrapper bereft of popsicle, now worthless."
+	icon = 'icons/obj/foodNdrink/food_popsicles.dmi'
+	icon_state = "trashwrapper"
+
+	attack_self(var/mob/user)
 		return

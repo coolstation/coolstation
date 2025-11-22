@@ -136,3 +136,15 @@
 	desc = "A box of generic unbranded popsicles."
 	icon_state = "popsiclebox"
 	spawn_contents = list(/obj/item/popsicle = 7)
+
+/obj/item/storage/box/food_dye_box
+	name = "dye box"
+	desc = "A small box of food dyes cooked up in a Juicer laboratory."
+	icon_state = "dyebox"
+	w_class = W_CLASS_SMALL
+	slots = 5
+	max_wclass = W_CLASS_TINY
+	spawn_contents = list(/obj/item/reagent_containers/glass/food_dye/red = 1,\
+		/obj/item/reagent_containers/glass/food_dye/green = 1,\
+		/obj/item/reagent_containers/glass/food_dye/blue = 1)
+

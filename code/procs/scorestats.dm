@@ -343,7 +343,7 @@ var/datum/score_tracker/score_tracker
 					command_pets_escaped += pet
 		*/
 
-		if (length(by_type[/obj/machinery/bot/secbot/beepsky]))
+		if (length(by_type[/mob/living/critter/robotic/bot/securitron/beepsky]))
 			beepsky_alive = 1
 
 		return
@@ -439,21 +439,19 @@ var/datum/score_tracker/score_tracker
 
 		//if (acula_blood) 			. += "<B>Dr. Acula Blood Total:</B> [acula_blood]p<BR>"
 		. += "<B>Officer Beepsky:</B> [beepsky_alive ? "Survived" : "Ate Shit"] This Round<BR>"
-		//. += "<B>Ores Mined:</B> dunno yet but soon ok<BR>"
+		. += "<B>Ores Mined:</B> [game_stats.GetStat("mining_ores_mined")] from [game_stats.GetStat("mining_turfs_cleared")] tiles.<BR>"
 		//. += "<B>Things Sold:</B> dunno yet but soon ok<BR>"
 		//. += "<B>Food Produced:</B> dunno yet but soon ok<BR>"
-		//. += "<B>Food Eaten:</B> dunno yet but soon ok<BR>"
+		. += "<B>Food Eaten:</B> [game_stats.GetStat("food_finished")]<BR>"
 		. += "<B>Farts Blasted:</B> [fartcount]<BR>"
 		. += "<B>Weades Growne:</B> [weadegrowne]<BR>"
 		. += "<B>Doinks Sparked:</B> [doinkssparked]<BR>"
-		. += "<B>Time To Cloner Destruction:</B> dunno yet but soon ok<BR>"
-#ifdef DATALOGGER
+		. += "<B>Time To Cloner Destruction:</B> [score_tracker.cloner_broken_timestamp ? "[dstohms(score_tracker.cloner_broken_timestamp)]" : "Never even happened."]<BR>"
 		. += "<B>Shots Fired:</B> [game_stats.GetStat("gunfire")]<BR>"
 		. += "<B>Health and Safety violations:</B> [game_stats.GetStat("workplacesafety")]<BR>"
 		. += "<B>Number of times a clown was abused:</B> [game_stats.GetStat("clownabuse")]<BR>"
 		. += "<B><I><span style='color:green;'>im gay :)</B></I> [game_stats.GetStat("gayirl")]</span><BR>"
 		. += "<BR><B>COOL FACT:</B> all the [pick("space bees","ferrets","clowns","juicers","robots","fish","cats","rocks","paisanos")] are gay<BR>"
-#endif
 		return jointext(., "")
 
 

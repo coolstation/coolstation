@@ -10,6 +10,7 @@
 	icon_state = "floor"
 	thermal_conductivity = 0.040
 	heat_capacity = 225000
+	pass_unstable = FALSE
 
 	turf_flags = IS_TYPE_SIMULATED | MOB_SLIP | MOB_STEP
 
@@ -21,6 +22,7 @@
 	//Stuff for the floor & wall planner undo mode that initial() doesn't resolve.
 	var/roundstart_icon_state
 	var/roundstart_dir
+	allows_vehicles = 0
 
 	New()
 		..()
@@ -313,6 +315,27 @@
 /turf/floor/darkblue/checker/other
 	icon_state = "blue-dblue2"
 
+/turf/floor/darkblue/side
+	icon_state = "dblue"
+
+/turf/floor/darkblue/corner
+	icon_state = "dbluecorner"
+
+/turf/floor/darkblue/checker
+	icon_state = "dbluechecker"
+
+/turf/floor/darkblueblack
+	icon_state = "dblueblack"
+
+/turf/floor/darkblueblack/corner
+	icon_state = "dblueblackcorner"
+
+/turf/floor/darkbluewhite
+	icon_state = "dbluewhite"
+
+/turf/floor/darkbluewhite/corner
+	icon_state = "dbluewhitecorner"
+
 /////////////////////////////////////////
 
 /turf/floor/bluegreen
@@ -323,6 +346,23 @@
 
 /turf/floor/bluegreen/corner
 	icon_state = "blugreencorner"
+
+/////////////////////////////////////////
+
+/turf/floor/cautionblack
+	icon_state = "fullcaution"
+
+/turf/floor/cautionblack/side
+	icon_state = "caution"
+
+/turf/floor/cautionwhite/side
+	icon_state = "cautionwhite"
+
+/turf/floor/cautionblack/corner
+	icon_state = "cautioncorner"
+
+/turf/floor/cautionwhite/corner
+	icon_state = "cautionwhitecorner"
 
 /////////////////////////////////////////
 
@@ -392,6 +432,21 @@
 /turf/floor/darkpurple/side
 	icon_state = "dpurple"
 
+/turf/floor/darkpurple/checker
+	icon_state = "dpurplechecker"
+
+/turf/floor/darkpurpleblack
+	icon_state = "dpurpleblack"
+
+/turf/floor/darkpurpleblack/corner
+	icon_state = "dpurpleblackcorner"
+
+/turf/floor/darkpurplewhite
+	icon_state = "dpurplewhite"
+
+/turf/floor/darkpurplewhite/corner
+	icon_state = "dpurplewhitecorner"
+
 /////////////////////////////////////////
 
 /turf/floor/yellow
@@ -415,6 +470,12 @@
 /turf/floor/yellowblack/corner
 	icon_state = "yellowblackcorner"
 
+/turf/floor/yellowwhite
+	icon_state = "yellowwhite"
+
+/turf/floor/yellowwhite/corner
+	icon_state = "yellowwhitecorner"
+
 /////////////////////////////////////////
 
 /turf/floor/orange
@@ -426,21 +487,57 @@
 /turf/floor/orange/corner
 	icon_state = "orangecorner"
 
+/turf/floor/orange/checker
+	icon_state = "orangechecker"
 
 /turf/floor/orangeblack
-	icon_state = "fullcaution"
+	icon_state = "orangeblack"
 
-/turf/floor/orangeblack/side
-	icon_state = "caution"
-
-/turf/floor/orangeblack/side/white
-	icon_state = "cautionwhite"
+/turf/floor/orangewhite
+	icon_state = "orangewhite"
 
 /turf/floor/orangeblack/corner
-	icon_state = "cautioncorner"
+	icon_state = "orangeblackcorner"
 
-/turf/floor/orangeblack/corner/white
-	icon_state = "cautionwhitecorner"
+/turf/floor/orangewhite/corner
+	icon_state = "orangewhitecorner"
+
+/////////////////////////////////////////
+
+//IT'S NOT ORANGE OKAY??
+
+/turf/floor/tangerine
+	icon_state = "fulltangerine"
+
+/turf/floor/tangerine/side
+	icon_state = "tangerine"
+
+/turf/floor/tangerine/corner
+	icon_state = "tangerinecorner"
+
+/turf/floor/tangerineblack
+	icon_state = "tangerineblack"
+
+/turf/floor/tangerinewhite
+	icon_state = "tangerinewhite"
+
+/turf/floor/tangerineblack/corner
+	icon_state = "tangerineblackcorner"
+
+/turf/floor/tangerinewhite/corner
+	icon_state = "tangerinewhitecorner"
+
+/turf/floor/tangerinewhite/checker
+	icon_state = "tangerinechecker"
+
+	other
+		dir = 4
+
+/turf/floor/tangerineblack/checker
+	icon_state = "tangerineblackchecker"
+
+	other
+		dir = 4
 
 /////////////////////////////////////////
 
@@ -592,6 +689,16 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "office_carpet2"
 
+/turf/floor/carpet/arcade/filthy
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "arcade_carpet_filthy"
+	permadirty = 1
+	var/static/image/blacklight_image = image('icons/turf/floors.dmi',"arcade_carpet_glow")
+
+	New()
+		..()
+		src.AddComponent(/datum/component/blacklight_visible, src.blacklight_image)
+
 DEFINE_FLOORS(carpet/regalcarpet,
 	name = "regal carpet";\
 	icon = 'icons/turf/floors.dmi';\
@@ -734,6 +841,10 @@ DEFINE_FLOORS(marble/border_wb,
 	icon_state = "freezerfloor3"
 	clean = 1
 
+/turf/floor/specialroom/fireblu
+	icon_state = "fireblu"
+	clean = TRUE //Can't have ants on my fireblu
+
 /turf/floor/specialroom/medbay
 	icon_state = "medbay"
 	clean = 1 //but not for long
@@ -753,6 +864,17 @@ DEFINE_FLOORS(marble/border_wb,
 
 /turf/floor/escape/corner
 	icon_state = "escapecorner"
+
+/////////////////////////////////////////
+
+/turf/floor/planter
+	icon_state = "PlanterCenter"
+
+/turf/floor/planter/edges
+	icon_state = "PlanterEdges"
+
+/turf/floor/planter/strips
+	icon_state = "PlanterStrips"
 
 /////////////////////////////////////////
 
@@ -955,15 +1077,41 @@ DEFINE_FLOORS(marble/border_wb,
 	name = "stairs"
 	icon_state = "Stairs_alone"
 
-	Entered(atom/A as mob|obj)
-		if (istype(A, /obj/stool/chair/comfy/wheelchair))
-			var/obj/stool/chair/comfy/wheelchair/W = A
-			if (!W.lying && prob(40))
-				if (W.stool_user && W.stool_user.m_intent == "walk")
-					return ..()
-				else
-					W.fall_over(src)
+	Entered(atom/movable/AM as mob|obj, atom/oldLoc)
+		if(AM.event_handler_flags & STAIR_ANIM && !AM.throwing)
+			if(AM.dir & src.dir)
+				animate_stairs(AM)
+				if (istype(AM, /obj/stool/chair))
+					var/obj/stool/chair/W = AM
+					if (W.stool_user && W.stool_user.m_intent == "walk")
+						return ..()
+					else
+						var/turf/target = get_edge_target_turf(W, src.dir)
+						W.fall_over(src)
+						W.throw_at(target, 1, 0.2, end_throw_callback = list(src, PROC_REF(i_warned_you_about)))
+			else
+				animate_stairs(AM)
+				if (istype(AM, /obj/stool/chair))
+					var/obj/stool/chair/W = AM
+					if(W.stool_user)
+						if(prob(W.stool_user.m_intent == "walk" ? 80 : 99))
+							if(prob(20))
+								W.stool_user.changeStatus("weakened", 1 SECONDS)
+							SPAWN_DBG(rand(1,2))
+								step(W, src.dir)
+					else if(prob(70))
+						SPAWN_DBG(rand(1,2))
+							var/turf/floor/stairs/stairs = get_turf(W)
+							if(istype(stairs))
+								step(W, stairs.dir)
 		..()
+
+	proc/i_warned_you_about(var/datum/thrown_thing/thr)
+		if(istype(get_turf(thr.thing), /turf/floor/stairs))
+			animate_stairs(thr.thing)
+			thr.range++
+			thr.speed += 0.1
+			return TRUE
 
 /turf/floor/stairs/wide
 	icon_state = "Stairs_wide"
@@ -1028,7 +1176,13 @@ DEFINE_FLOORS(marble/border_wb,
 	icon_state = "dark_stairs"
 
 /turf/floor/stairs/dark/wide
-	icon_state = "dark_stairs2"
+	icon_state = "dark_stairs_wide"
+
+/turf/floor/stairs/dark/wide2
+	icon_state = "dark_stairs_wide2"
+
+/turf/floor/stairs/dark/middle
+	icon_state = "dark_stairs_middle"
 
 /////////////////////////////////////////
 
@@ -1157,6 +1311,7 @@ DEFINE_FLOORS(snowrough/border,
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
+	burnt = UNBURNABLE_TURF
 	permadirty = 1 //sand gets everywhere
 
 	New()
@@ -1170,13 +1325,15 @@ DEFINE_FLOORS(snowrough/border,
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
 	allows_vehicles = 1
+	burnt = UNBURNABLE_TURF
 	permadirty = 1
 
-/turf/floor/industrial
-	icon_state = "diamondtile"
+/turf/floor/riveted
+	icon_state = "riveted"
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
 	allows_vehicles = 1
+	burnt = UNBURNABLE_TURF
 	permadirty = 1
 
 /////////////////////////////////////////
@@ -1378,11 +1535,11 @@ DEFINE_FLOORS(techfloor/green,
 		plate_mat = getMaterial("blob")
 		. = ..()
 
-	proc/setOvermind(var/mob/living/intangible/blob_overmind/O)
+	proc/setHolder(var/datum/abilityHolder/blob/AH)
 		if (!material)
 			setMaterial(getMaterial("blob"))
-		material.color = O.color
-		color = O.color
+		material.color = AH.color
+		color = AH.color
 
 	attackby(var/obj/item/W, var/mob/user)
 		if (isweldingtool(W))
@@ -1427,21 +1584,15 @@ DEFINE_FLOORS(techfloor/green,
 	else
 		boutput(user, "Your attack bounces off the foamed metal floor.")
 
-/turf/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/floor/CanPass(atom/movable/mover, turf/target)
 	if (!src.allows_vehicles && (istype(mover, /obj/machinery/vehicle) && !istype(mover,/obj/machinery/vehicle/tank)))
 		if (!( locate(/obj/machinery/mass_driver, src) ))
 			return 0
 	return ..()
 
-/turf/shuttle/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/shuttle/CanPass(atom/movable/mover, turf/target)
 	if (!src.allows_vehicles && (istype(mover, /obj/machinery/vehicle) && !istype(mover,/obj/machinery/vehicle/tank)))
 		return 0
-	return ..()
-
-/turf/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (!src.allows_vehicles && (istype(mover, /obj/machinery/vehicle) && !istype(mover,/obj/machinery/vehicle/tank)))
-		if (!( locate(/obj/machinery/mass_driver, src) ))
-			return 0
 	return ..()
 
 /turf/floor/burn_down()
@@ -1454,7 +1605,7 @@ DEFINE_FLOORS(techfloor/green,
 			src.ReplaceWithSpace()
 
 		if(OLD_EX_SEVERITY_2)
-			switch(pick(1,2;75,3))
+			switch(pick(1,75;2,3))
 				if (1)
 					if(prob(33))
 						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
@@ -1463,7 +1614,8 @@ DEFINE_FLOORS(techfloor/green,
 							I.setMaterial(src.material)
 						else
 							I.setMaterial(getMaterial("steel"))
-					src.ReplaceWithLattice()
+					new /obj/lattice(src)
+					src.ReplaceWithSpace()
 				if(2)
 					src.ReplaceWithSpace()
 				if(3)
@@ -1538,7 +1690,7 @@ DEFINE_FLOORS(techfloor/green,
 	src.icon_state = "plating"
 	setIntact(FALSE)
 	broken = 0
-	burnt = 0
+	burnt = initial(burnt)
 	if(plate_mat)
 		src.setMaterial((plate_mat))
 	else
@@ -1589,7 +1741,7 @@ DEFINE_FLOORS(techfloor/green,
 	if(intact) return
 	setIntact(TRUE)
 	broken = 0
-	burnt = 0
+	burnt = initial(burnt)
 	icon = initial(icon)
 	if(icon_old)
 		icon_state = icon_old
@@ -1660,6 +1812,16 @@ DEFINE_FLOORS(techfloor/green,
 	to_plating()
 	playsound(src, "sound/items/Crowbar.ogg", 80, 1)
 
+/turf/floor/levelupdate()
+	..()
+	if (!src.intact && src.turf_persistent.hidden_contents)
+		for(var/atom/movable/AM as anything in src.turf_persistent.hidden_contents)
+			AM.set_loc(src)
+			SEND_SIGNAL(AM, COMSIG_MOVABLE_FLOOR_REVEALED, src)
+		qdel(src.turf_persistent.hidden_contents) //it's an obj, see the definition for crime justification
+		src.turf_persistent.hidden_contents = null
+
+
 /turf/floor/attackby(obj/item/C as obj, mob/user as mob, params)
 
 	if (!C || !user)
@@ -1704,7 +1866,8 @@ DEFINE_FLOORS(techfloor/green,
 				if (C:amount >= 2)
 					boutput(user, "<span class='notice'>Reinforcing the floor...</span>")
 					if(do_after(user, 3 SECONDS))
-						ReplaceWithEngineFloor()
+						DELETE_LATTICES_IN(src)
+						ReplaceWith(/turf/floor/engine)
 
 						if (C)
 							C.change_stack_amount(-2)
@@ -1878,6 +2041,12 @@ DEFINE_FLOORS(techfloor/green,
 	else
 		return attack_hand(user)
 
+
+/turf/floor/proc/hide_inside(atom/movable/AM)
+	if (!src.turf_persistent.hidden_contents)
+		src.turf_persistent.hidden_contents = new(src)
+	AM.set_loc(src.turf_persistent.hidden_contents)
+
 /turf/floor/MouseDrop_T(atom/A, mob/user as mob)
 	..(A,user)
 	if(istype(A,/turf/floor))
@@ -1888,6 +2057,35 @@ DEFINE_FLOORS(techfloor/green,
 				var/obj/item/cable_coil/C = I
 				if((get_dist(user,F)<2) && (get_dist(user,src)<2))
 					C.move_callback(user, F, src)
+
+/turf/floor/restore_tile()
+	..()
+	for (var/obj/item/item in src.contents)
+		if (item.w_class <= W_CLASS_TINY && !item.anchored) //I wonder if this will cause problems
+			src.hide_inside(item)
+
+///CRIME
+/obj/effects/hidden_contents_holder
+	name = ""
+	desc = ""
+	icon = null
+	anchored = ANCHORED_TECHNICAL
+	invisibility = INVIS_ALWAYS
+	alpha = 0
+
+	set_loc(newloc)
+		if (!isnull(newloc))
+			return
+		. = ..()
+
+	relaymove(atom/movable/user, direction)
+		. = ..()
+		var/turf/floor/F = get_turf(src)
+		if(istype(F) && F.intact)
+			F.setIntact(FALSE)
+			F.levelupdate()
+			new /obj/item/tile/steel(F)
+			F.icon_state = "[F.burnt ? "panelscorched" : "plating"]"
 
 ////////////////////////////////////////////ADVENTURE SIMULATED FLOORS////////////////////////
 DEFINE_FLOORS_SIMMED_UNSIMMED(racing,
@@ -1910,6 +2108,9 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 	icon = 'icons/misc/worlds.dmi'
 	fullbright = 0
 	material = null
+
+	bunker_grille
+		name = "placeholder bunker grille"
 
 	bloodwall
 		name = "bloody wall"
@@ -1983,7 +2184,6 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 		desc = "It seems to be humming slightly. Huh."
 		luminosity = 2
 		icon_state = "bluewall_glow"
-		can_replace_with_stuff = 1
 
 		attackby(obj/item/W as obj, mob/user as mob)
 			if (istype(W, /obj/item/device/key))
@@ -2022,35 +2222,6 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 	icon_state = "gauntwall"
 // --------------------------------------------
 
-/turf/proc/fall_to(var/turf/T, var/atom/movable/A)
-	var/safe = FALSE
-	if(istype(A, /obj/overlay/tile_effect)) //Ok enough light falling places. Fak.
-		return
-	if (isturf(T))
-		visible_message("<span class='alert'>[A] falls into [src]!</span>")
-		if (ismob(A))
-			var/mob/M = A
-			if(!M.stat && ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(H.gender == MALE) playsound(H.loc, "sound/voice/screams/male_scream.ogg", 100, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
-				else playsound(H.loc, "sound/voice/screams/female_scream.ogg", 100, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
-				if(H.shoes && (H.shoes.c_flags & SAFE_FALL))
-					safe = TRUE
-				if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
-					safe = TRUE
-				if (H.back && (H.back.c_flags & IS_JETPACK))
-					safe = TRUE
-
-			if(safe)
-				visible_message("<span class='notice'>[A] lands gently on the ground.</span>")
-			else
-				random_brute_damage(M, 50)
-				M.changeStatus("paralysis", 7 SECONDS)
-				SPAWN_DBG(0)
-					playsound(M.loc, pick('sound/impact_sounds/Slimy_Splat_1.ogg', 'sound/impact_sounds/Flesh_Break_1.ogg'), 75, 1)
-		A.set_loc(T)
-		return
-
 /turf/floor/setpieces
 	icon = 'icons/misc/worlds.dmi'
 	fullbright = 0
@@ -2060,39 +2231,27 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 		name = "broken staircase"
 		desc = "You can't see the bottom."
 		icon_state = "black"
-		var/target_landmark = LANDMARK_FALL_ANCIENT
+		var/falltarget = LANDMARK_FALL_ANCIENT
 
-		Entered(atom/A as mob|obj)
-			if (isobserver(A) || (istype(A, /obj/critter) && A:flying))
-				return ..()
-
-			var/turf/T = pick_landmark(target_landmark)
-			if(T)
-				fall_to(T, A)
-				return
-			else ..()
+		New()
+			. = ..()
+			src.AddComponent(/datum/component/pitfall/target_landmark,\
+				BruteDamageMax = 50,\
+				HangTime = 0 SECONDS,\
+				TargetLandmark = src.falltarget)
 
 		shaft
 			name = "Elevator Shaft"
-			target_landmark = LANDMARK_FALL_BIO_ELE
+			falltarget = LANDMARK_FALL_BIO_ELE
 
 			Entered(atom/A as mob|obj)
 				if (istype(A, /mob) && !istype(A, /mob/dead))
 					bioele_accident()
-				return ..()
+				..()
 
 		hole_xy
 			name = "deep pit"
-			target_landmark = LANDMARK_FALL_DEBUG
-			Entered(atom/A as mob|obj)
-				if (isobserver(A) || (istype(A, /obj/critter) && A:flying))
-					return ..()
-
-				if(warptarget)
-					fall_to(warptarget, A)
-					return
-				else ..()
-
+			falltarget = LANDMARK_FALL_DEBUG
 
 	bloodfloor
 		name = "bloody floor"
@@ -2119,15 +2278,12 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 			desc = "You can't see the bottom."
 			icon_state = "deeps"
 
-			Entered(atom/A as mob|obj)
-				if (istype(A, /obj/overlay/tile_effect) || istype(A, /mob/dead) || istype(A, /mob/wraith) || istype(A, /mob/living/intangible))
-					return ..()
-
-				var/turf/T = pick_landmark(LANDMARK_FALL_DEEP)
-				if(T)
-					fall_to(T, A)
-					return
-				else ..()
+			New()
+				. = ..()
+				src.AddComponent(/datum/component/pitfall/target_landmark,\
+					BruteDamageMax = 50,\
+					HangTime = 0 SECONDS,\
+					TargetLandmark = LANDMARK_FALL_DEEP)
 
 	hivefloor
 		name = "hive floor"
@@ -2313,6 +2469,11 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 		var/image/R = image('icons/turf/water.dmi', "ripple", dir=pick(alldirs),pixel_x=rand(-10,10),pixel_y=rand(-10,10))
 		R.alpha = 180
 		src.UpdateOverlays(R, "ripple")
+
+/turf/floor/blank
+	mouse_opacity = 0
+	icon_state = "invisible"
+
 /* Okay these don't have their dmi I'm guessing they're too new
 /turf/floor/auto/snow
 	name = "snow"

@@ -16,9 +16,10 @@
 	desc = "A pneumatic waste disposal unit."
 	icon = 'icons/obj/machines/disposal.dmi'
 	icon_state = "disposal"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
-	flags = NOSPLASH | TGUI_INTERACTIVE
+	pass_unstable = FALSE
+	flags = FPRINT | FLUID_SUBMERGE | NOSPLASH | TGUI_INTERACTIVE
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = DISPOSAL_CHUTE_CHARGING	// item mode 0=off 1=charging 2=charged
 	var/flush = 0	// true if flush handle is pulled
@@ -29,6 +30,7 @@
 	var/light_style = "disposal" // for the lights and stuff
 	var/image/handle_image = null
 	var/destination_tag = null
+	var/image/glow
 	mats = 20			// whats the point of letting people build trunk pipes if they cant build new disposals?
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_SCREWDRIVER
 	power_usage = 100
@@ -348,6 +350,8 @@
 			var/image/I = GetOverlayImage("content_light")
 			if (!I)
 				I = image(src.icon, "[light_style]-full")
+				I.plane = BLEND_OVERLAY
+				I.layer = PLANE_SELFILLUM
 			UpdateOverlays(I, "content_light")
 		else
 			UpdateOverlays(null, "content_light", 0, 1)
@@ -356,18 +360,20 @@
 		var/image/I = GetOverlayImage("status")
 		if (!I)
 			I = image(src.icon, "[light_style]-charge")
-		switch (mode)
-			if (DISPOSAL_CHUTE_CHARGING)
-				I.icon_state = "[light_style]-charge"
-			if (DISPOSAL_CHUTE_CHARGED)
-				I.icon_state = "[light_style]-ready"
-			if (DISPOSAL_CHUTE_NOTRUNK)
-				I.icon_state = "disposal-notrunk" //common overlay
-			if (DISPOSAL_CHUTE_NOTAG)
-				I.icon_state = "mail-notag" //mail only, but works on all
-			else
-				I = null
-
+		if (I)
+			I.plane = BLEND_OVERLAY
+			I.layer = PLANE_SELFILLUM
+			switch (mode)
+				if (DISPOSAL_CHUTE_CHARGING)
+					I.icon_state = "[light_style]-charge"
+				if (DISPOSAL_CHUTE_CHARGED)
+					I.icon_state = "[light_style]-ready"
+				if (DISPOSAL_CHUTE_NOTRUNK)
+					I.icon_state = "disposal-notrunk" //common overlay
+				if (DISPOSAL_CHUTE_NOTAG)
+					I.icon_state = "mail-notag" //mail only, but works on all
+				else
+					I = null
 		UpdateOverlays(I, "status", 0, 1)
 		/*
 		if(mode == 1)
@@ -493,7 +499,7 @@
 		src.flush()
 		playsound(src.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1)
 		if (user) //ZeWaka: Fix for null.loc
-			make_cleanable( /obj/decal/cleanable/blood,user.loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,user.loc)
 			health_update_queue |= user
 		SPAWN_DBG(50 SECONDS)
 			if (user && !isdead(user))
@@ -590,27 +596,19 @@
 
 	var/net_id = null
 	var/frequency = FREQ_PDA
-	var/datum/radio_frequency/radio_connection
 
 	New()
 		..()
-		SPAWN_DBG(0.8 SECONDS)
-			if(radio_controller)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
-			if(!src.net_id)
-				src.net_id = generate_net_id(src)
-
-	disposing()
-		radio_controller.remove_object(src, "[frequency]")
-		..()
+		if(!src.net_id)
+			src.net_id = generate_net_id(src)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
 
 	expel(var/obj/disposalholder/H)
 		..(H)
 
-		if (message && mailgroup && radio_connection)
+		if (message && mailgroup)
 			var/datum/signal/newsignal = get_free_signal()
 			newsignal.source = src
-			newsignal.transmission_method = TRANSMISSION_RADIO
 			newsignal.data["command"] = "text_message"
 			newsignal.data["sender_name"] = "CHUTE-MAILBOT"
 			newsignal.data["message"] = "[message]"
@@ -618,7 +616,7 @@
 			newsignal.data["group"] = list(mailgroup, MGA_MAIL)
 			newsignal.data["sender"] = src.net_id
 
-			radio_connection.post_signal(src, newsignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 /obj/machinery/disposal/cart_port
 	name = "disposal cart port"

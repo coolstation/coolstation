@@ -1,4 +1,5 @@
 // Cleaned up the ancient code that used to be here (Convair880).
+ABSTRACT_TYPE(/obj/item/mine) //To be safe I guess
 /obj/item/mine
 	name = "land mine (parent)"
 	desc = "You shouldn't be able to see this!"
@@ -23,13 +24,20 @@
 		if (!src.our_timer || !istype(src.our_timer))
 			src.our_timer = new /obj/item/device/timer(src)
 			src.our_timer.master = src
-
+			src.our_timer.ui_name = "Mine Timer"
+			src.our_timer.lock_once_timer_set = TRUE
 		return
 
 	examine()
 		. = ..()
 		if (!src.suppress_flavourtext)
 			. += "It appears to be [src.armed == 1 ? "armed" : "disarmed"]."
+
+	disposing()
+		//These haven't been cleaning up their timers for probably a decade :)
+		qdel(our_timer)
+		our_timer = null
+		..()
 
 	attack_hand(mob/user as mob)
 		src.add_fingerprint(user)
@@ -265,6 +273,35 @@
 			return
 
 		explosion(src, src.loc, 0, 1, 2, 3)
+		return
+
+/obj/item/mine/plasmafire
+	name = "incendiary plasma land mine"
+	desc = "An anti-personnel mine equipped with an incendiary plasma payload."
+	icon_state = "mine_incendiary" //needs its own sprite
+	//both in moles
+	var/payload_plasma = 25
+	var/payload_farts = 10
+
+	armed
+		armed = 1
+
+	custom_stuff(var/atom/M)
+		if (!src || !istype(src))
+			return
+
+		if (!issimulatedturf(src.loc))
+			return
+
+		var/datum/gas_mixture/plasma = new()
+		plasma.temperature = T20C + 15
+		plasma.toxins = payload_plasma
+		plasma.farts = payload_farts
+
+		src.loc.assume_air(plasma)
+
+		fireflash_sm(get_turf(src), 1, 3000, 500)
+		playsound(src.loc, 'sound/effects/bamf.ogg', 50, 1)
 		return
 
 /obj/item/mine/gibs

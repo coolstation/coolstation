@@ -104,3 +104,9 @@
 	purple
 		name = "comfy purple couch"
 		icon_state = "chair_couch-purple"
+	lblue
+		name = "comfy light blue couch"
+		icon_state = "comfy_couch-lblue"
+	orange
+		name = "comfy orange couch"
+		icon_state = "comfy_couch-orange"

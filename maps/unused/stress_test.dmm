@@ -1604,7 +1604,7 @@
 	},
 /area/space)
 "ds" = (
-/obj/machinery/atmospherics/pipe/tank/oxygen_agent_b,
+/obj/machinery/atmospherics/pipe/tank/toxins,
 /turf/floor,
 /area/space)
 "dt" = (
@@ -1668,13 +1668,6 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 9;
 	initialize_directions = 9
-	},
-/turf/floor,
-/area/space)
-"dB" = (
-/obj/machinery/atmospherics/pipe/tank/oxygen_agent_b{
-	dir = 1;
-	initialize_directions = 1
 	},
 /turf/floor,
 /area/space)
@@ -10376,7 +10369,7 @@ cZ
 ad
 ds
 bV
-dB
+dO
 ad
 bH
 dO
@@ -10678,7 +10671,7 @@ ci
 dm
 dj
 bU
-dB
+dO
 ad
 bH
 dO
@@ -15510,7 +15503,7 @@ ci
 cz
 dj
 bV
-dB
+dO
 ad
 ad
 ad
@@ -15812,7 +15805,7 @@ cf
 ad
 ds
 bU
-dB
+dO
 ad
 ad
 ad

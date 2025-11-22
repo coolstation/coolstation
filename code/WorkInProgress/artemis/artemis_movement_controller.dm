@@ -14,11 +14,11 @@
 		var/mob/user = ship.my_pilot
 
 		if (is_incapacitated(user))
-			return
+			return 0
 
 		if(ship.control_lock)
 			user.show_message("<span class='alert'>The controls are locked!</span>")
-			return
+			return 0
 
 		if (ship.engine_check()) // ENGINE CHECK HERE LATER
 
@@ -149,10 +149,10 @@
 		var/mob/user = ship.my_pilot
 		var/obj/artemis/manta/M = ship
 		if(!istype(M))
-			return
+			return 0
 
 		if (is_incapacitated(user))
-			return
+			return 0
 
 		if (M.engine_check()) // ENGINE CHECK TO BE EXPANDED LATER
 

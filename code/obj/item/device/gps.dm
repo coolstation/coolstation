@@ -16,7 +16,6 @@
 	mats = 2
 	var/frequency = FREQ_GPS
 	var/net_id
-	var/datum/radio_frequency/radio_control
 
 	proc/get_z_info(var/turf/T)
 		. =  "Landmark: Unknown"
@@ -53,13 +52,13 @@
 		src.add_dialog(user)
 		var/HTML = {"<style type="text/css">
 		.desc {
-			background: #21272C;
+			background: #1c211e;
 			width: calc(100% - 5px);
 			padding: 2px;
 		}
 		.buttons a {
 			display: inline-flex;
-			background: #58B4DC;
+			background: #6d6617;
 			width: calc(50% - 7px);
 			text-transform: uppercase;
 			text-decoration: none;
@@ -73,14 +72,14 @@
 			width: calc(100% - 7px);
 		}
 		.buttons a:hover {
-			background: #6BC7E8;
+			background: #9a8469;
 		}
 		.buttons.gps a {
 			display: block;
 			width: calc(100% - 7px);
   			text-transform: none;
-			border-top: 1px solid #58B4DC;
-			background: #21272C;
+			border-top: 1px solid #3b3122;
+			background: #1c211e;
 			padding: 3px;
 			margin: 0 0 1px 0;
 			font-size: 11px;
@@ -90,7 +89,7 @@
 			background: #2C2121;
 		}
 		.gps.group {
-			background: #58B4DC;
+			background: #3b3122;
 			margin: 0;
 			font-size: 12px;
 		}
@@ -210,9 +209,8 @@
 		..()
 		serial = rand(4201,7999)
 		START_TRACKING
-		if (radio_controller)
-			src.net_id = generate_net_id(src)
-			radio_control = radio_controller.add_object(src, "[frequency]")
+		src.net_id = generate_net_id(src)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
 	get_desc(dist, mob/user)
 		. = "<br>Its serial code is [src.serial]-[identifier]."
@@ -260,10 +258,11 @@
 		reply.source = src
 		reply.data["sender"] = src.net_id
 		reply.data["identifier"] = "[src.serial]-[src.identifier]"
-		reply.data["coords"] = "[T.x],[T.y]"
+		reply.data["x"] = "[T.x]"
+		reply.data["y"] = "[T.y]"
 		reply.data["location"] = "[src.get_z_info(T)]"
 		reply.data["distress_alert"] = "[distressAlert]"
-		radio_control.post_signal(src, reply)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, reply)
 
 	process()
 		if(!active || !tracking_target)
@@ -281,8 +280,6 @@
 
 	disposing()
 		STOP_TRACKING
-		if (radio_controller)
-			radio_controller.remove_object(src, "[src.frequency]")
 		..()
 
 	receive_signal(datum/signal/signal)
@@ -323,12 +320,13 @@
 				if ("status")
 					var/turf/T = get_turf(src)
 					reply.data["identifier"] = "[src.serial]-[src.identifier]"
-					reply.data["coords"] = "[T.x],[T.y]"
+					reply.data["x"] = "[T.x]"
+					reply.data["y"] = "[T.y]"
 					reply.data["location"] = "[src.get_z_info(T)]"
 					reply.data["distress"] = "[src.distress]"
 				else
 					return //COMMAND NOT RECOGNIZED
-			radio_control.post_signal(src, reply)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, reply)
 
 		else if (lowertext(signal.data["address_1"]) == "ping" && src.allowtrack)
 			var/datum/signal/pingsignal = get_free_signal()
@@ -339,6 +337,5 @@
 			pingsignal.data["command"] = "ping_reply"
 			pingsignal.data["data"] = "[src.serial]-[src.identifier]"
 			pingsignal.data["distress"] = "[src.distress]"
-			pingsignal.transmission_method = TRANSMISSION_RADIO
 
-			radio_control.post_signal(src, pingsignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, pingsignal)

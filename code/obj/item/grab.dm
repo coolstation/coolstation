@@ -9,7 +9,7 @@
 	icon_state = "reinforce"
 	name = "grab"
 	w_class = W_CLASS_HUGE
-	anchored = 1
+	anchored = ANCHORED
 	var/break_prob = 45
 	var/assailant_stam_drain = 30
 	var/affecting_stam_drain = 20
@@ -60,6 +60,11 @@
 					assailant.hand = !assailant.hand
 
 		if(affecting)
+			if (affecting.beingBaned)
+				affecting.beingBaned = FALSE
+			if (!affecting.lying)
+				affecting.transform = null
+
 			if (state >= GRAB_NECK)
 				if (assailant)
 					affecting.layer = assailant.layer
@@ -85,7 +90,6 @@
 			if (affecting.grabbed_by)
 				affecting.grabbed_by -= src
 			affecting = null
-
 		UnregisterSignal(assailant, COMSIG_ATOM_HITBY_PROJ)
 		assailant = null
 		..()
@@ -102,7 +106,7 @@
 		..()
 		dropped += 1
 		if(src.assailant)
-			REMOVE_MOB_PROPERTY(src.assailant, PROP_CANTMOVE, src)
+			REMOVE_ATOM_PROPERTY(src.assailant, PROP_CANTMOVE, src)
 			qdel(src)
 
 	process(var/mult = 1)
@@ -117,6 +121,7 @@
 			//if(H) H.remove_stamina(STAMINA_REGEN * 0.5 * mult)
 			src.affecting.set_density(0)
 
+
 		if (src.state == GRAB_KILL)
 			src.affecting.losebreath++
 			//if (src.affecting.paralysis < 2)
@@ -129,6 +134,7 @@
 			I.process_grab(mult)
 
 		update_icon()
+
 
 	attack(atom/target, mob/user)
 		if (check())
@@ -155,38 +161,43 @@
 			else
 				if(prob(33)) H.losebreath += (0.2 * mult)
 
-	proc/set_affected_loc()
-		if (!isturf(src.assailant.loc))
-			return
+	proc/set_affected_loc(var/pullTo = TRUE)
+		if(pullTo)
+			if (!isturf(src.assailant.loc))
+				return
 
-		actions.interrupt(src.affecting, INTERRUPT_ALWAYS)
+			actions.interrupt(src.affecting, INTERRUPT_ALWAYS)
 
-		var/pxo = 0
-		var/pyo = 0
-		switch(src.assailant.dir)
-			if (EAST)
-				pxo = 8
-			if (WEST)
-				pxo = -8
-			if (NORTH)
-				pxo = 5
-				pyo = 2
-			if (SOUTH)
-				pxo = -5
-				pyo = -1
+			var/pxo = 0
+			var/pyo = 0
+			switch(src.assailant.dir)
+				if (EAST)
+					pxo = 8
+				if (WEST)
+					pxo = -8
+				if (NORTH)
+					pxo = 5
+					pyo = 2
+				if (SOUTH)
+					pxo = -5
+					pyo = -1
 
-		if (src.assailant.l_hand == src && pyo != 0) //change pixel position based on which hand the assailant are grabbing with
-			pxo *= -1
-
-		src.assailant.pixel_x = 0
-		src.assailant.pixel_y = 0
-		if (!src.affecting.lying)
+			if (src.assailant.l_hand == src && pyo != 0) //change pixel position 5based on which hand the assailant are grabbing with
+				pxo *= -1
+			if(src.affecting.beingBaned)
+				pyo += 10
+				pxo = 0
+			src.assailant.pixel_x = 0
+			src.assailant.pixel_y = 0
 			src.affecting.pixel_x = src.assailant.pixel_x + pxo
 			src.affecting.pixel_y = src.assailant.pixel_y + pyo
-		src.affecting.set_loc(src.assailant.loc)
-		src.affecting.layer = src.assailant.layer + (src.assailant.dir == NORTH ? -0.1 : 0.1)
-		src.affecting.set_dir(src.assailant.dir)
-		src.affecting.set_density(0)
+			src.affecting.set_loc(src.assailant.loc)
+
+			src.affecting.layer = src.assailant.layer + (src.assailant.dir == NORTH ? -0.1 : 0.1)
+			src.affecting.set_dir(src.assailant.dir)
+
+			src.affecting.set_density(0)
+
 
 	attack_self(mob/user)
 		if (!user)
@@ -265,7 +276,7 @@
 				for (var/mob/O in AIviewers(src.assailant, null))
 					O.show_message("<span class='alert'>[src.assailant] has tightened [his_or_her(assailant)] grip on [src.affecting]'s neck!</span>", 1)
 		src.state = GRAB_KILL
-		REMOVE_MOB_PROPERTY(src.assailant, PROP_CANTMOVE, src)
+		REMOVE_ATOM_PROPERTY(src.assailant, PROP_CANTMOVE, src)
 		src.assailant.lastattacked = src.affecting
 		src.affecting.lastattacker = src.assailant
 		src.affecting.lastattackertime = world.time
@@ -307,7 +318,7 @@
 
 		if (ishuman(src.assailant))
 			var/mob/living/carbon/human/H = src.assailant
-			APPLY_MOB_PROPERTY(H, PROP_CANTMOVE, src)
+			APPLY_ATOM_PROPERTY(H, PROP_CANTMOVE, src)
 			H.update_canmove()
 
 		if (isliving(src.affecting))
@@ -330,7 +341,7 @@
 				qdel(src)
 				return 1
 
-		if(!isturf(assailant.loc) || (!isturf(affecting.loc) || assailant.loc != affecting.loc && get_dist(assailant, affecting) > 1) )
+		if(!isturf(assailant.loc) || (!isturf(affecting.loc) || (assailant.loc != affecting.loc && (GET_DIST(assailant, affecting) > 1) || affecting.event_handler_flags & IS_PITFALLING)))
 			qdel(src)
 			return 1
 
@@ -704,7 +715,7 @@
 
 		if (affecting && assailant && isitem(src.loc))
 			var/obj/item/gun/G = src.loc
-			G.shoot_point_blank(src.affecting,src.assailant,1) //don't shoot an offhand gun
+			G.Shoot(get_turf(affecting), get_turf(assailant), assailant, point_blank_target = affecting)
 
 		qdel(src)
 
@@ -802,7 +813,7 @@
 	handle_throw(var/mob/living/user,var/atom/target)
 		if (isturf(user.loc) && target)
 			var/turf/T = user.loc
-			if (!(T.turf_flags & CAN_BE_SPACE_SAMPLE) && !(user.lying) && can_act(user))
+			if (!(T.turf_flags & IS_SPACE) && !(user.lying) && can_act(user))
 				user.changeStatus("weakened", max(user.movement_delay()*2, 0.5 SECONDS))
 				user.force_laydown_standup()
 
@@ -851,7 +862,7 @@
 
 	New()
 		..()
-		src.create_reagents(10)
+		src.create_reagents(30)
 
 	disposing()
 		..()
@@ -860,9 +871,8 @@
 
 	process_grab(var/mult = 1)
 		..()
-		if (src.chokehold && src.reagents && src.reagents.total_volume > 0 && chokehold.state == GRAB_KILL && iscarbon(src.chokehold.affecting))
-			src.reagents.reaction(chokehold.affecting, INGEST, 0.5 * mult)
-			src.reagents.trans_to(chokehold.affecting, 0.5 * mult)
+		if (src.chokehold && src.reagents && src.reagents.total_volume > 0 && chokehold.state >= GRAB_AGGRESSIVE && iscarbon(src.chokehold.affecting))
+			src.reagents.trans_to(chokehold.affecting, 2 * mult)
 
 	is_open_container()
 		.= 1

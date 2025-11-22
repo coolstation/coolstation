@@ -122,7 +122,7 @@
 	makeCorporeal()
 		if (!src.density)
 			src.set_density(1)
-			REMOVE_MOB_PROPERTY(src, PROP_INVISIBILITY, src)
+			REMOVE_ATOM_PROPERTY(src, PROP_INVISIBILITY, src)
 			src.icon_state = "poltergeist-corp"
 			src.see_invisible = 0
 			src.visible_message(pick("<span class='alert'>A horrible apparition fades into view!</span>", "<span class='alert'>A pool of shadow forms!</span>"), pick("<span class='alert'>A shell of ectoplasm forms around you!</span>", "<span class='alert'>You manifest!</span>"))
@@ -132,7 +132,7 @@
 		if (src.density)
 			src.visible_message(pick("<span class='alert'>[src] vanishes!</span>", "<span class='alert'>The poltergeist dissolves into shadow!</span>"), pick("<span class='notice'>The ectoplasm around you dissipates!</span>", "<span class='notice'>You fade into the aether!</span>"))
 			src.set_density(0)
-			APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
+			APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
 			src.icon_state = "poltergeist"
 			src.see_invisible = 16
 		update_body()
@@ -228,33 +228,17 @@
 
 //switch to poltergeist after testing
 /mob/wraith/poltergeist/set_loc(atom/new_loc, new_pixel_x = 0, new_pixel_y = 0)
-	if (use_movement_controller && isobj(src.loc) && src.loc:get_movement_controller())
-		use_movement_controller = null
-
-	if(istype(src.loc, /obj/machinery/vehicle/) && src.loc != new_loc)
-		var/obj/machinery/vehicle/V = src.loc
-		V.eject(src)
-
 	. = ..(new_loc)
-	src.loc_pixel_x = new_pixel_x
-	src.loc_pixel_y = new_pixel_y
-	src.update_camera()
 
 	//wraith shit
 	if (iswraith(src.loc))	//&& src.loc == src.master
-		use_movement_controller = src.loc
+		var/mob/wraith/W = src.loc
+		src.override_movement_controller = W.movement_controller
 		//Remove this shit after testing --kyle
 		src.following_master = 1
 	else
-		use_movement_controller = null
+		override_movement_controller = null
 		src.following_master = 0
-
-
-	if (isobj(src.loc))
-		if(src.loc:get_movement_controller())
-			use_movement_controller = src.loc
-
-	walk(src,0) //cancel any walk movements
 
 /////////////////abilities////////////////////////
 

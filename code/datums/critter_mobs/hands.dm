@@ -1,6 +1,3 @@
-/obj/item/parts/dummy
-	name = "dummyholder"
-
 /datum/handHolder 								// pun
 	var/name = "left hand"						// designation of the hand - purely for show
 	var/suffix = "-L"							// used for inhand icons
@@ -11,8 +8,7 @@
 	var/obj/item/item							// the item held in the hand
 	var/icon/icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 	var/icon_state = "handn"					// the icon state of the hand UI background
-	var/atom/movable/screen/hud/screenObj				// ease of life
-	var/limb_name = "left arm"					// name for the dummy holder
+	var/atom/movable/screen/hud/screenObj		// ease of life
 	var/datum/limb/limb							// if not null, the special limb to use when attack_handing
 	var/can_hold_items = 1						// self-explanatory
 	var/can_attack = 1							// also
@@ -20,8 +16,6 @@
 	var/image/obscurer
 	var/cooldown_overlay = 0
 	var/mob/holder = null
-
-	var/obj/item/parts/limbholder				// technically a dummy, do not set.
 
 	New()
 		..()
@@ -35,20 +29,8 @@
 		if(limb)
 			limb.dispose()
 			limb = null
-		if(limbholder)
-			limbholder.dispose()
-			limbholder = null
 		holder = null
 		..()
-
-	proc/spawn_dummy_holder()
-		if (!limb)
-			return
-		limbholder = new /obj/item/parts/dummy
-		limb.holder = limbholder
-		limb.holder.name = limb_name
-		limb.holder.limb_data = limb
-		limb.holder.holder = holder
 
 	proc/set_cooldown_overlay()
 		if (!limb || !screenObj || cooldown_overlay)

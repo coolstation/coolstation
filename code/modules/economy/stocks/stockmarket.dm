@@ -54,12 +54,12 @@
 		var/list/w = splittext(name, " ")
 		if (length(w) >= 2)
 			var/d = ""
-			for (var/i = 1; i <= min(5, w.len), i++)
+			for (var/i = 1, i <= min(5, w.len), i++)
 				d += uppertext(ascii2text(text2ascii(w[i], 1)))
 			return d
 		else
 			var/d = uppertext(ascii2text(text2ascii(name, 1)))
-			for (var/i = 2; i <= length(name); i++)
+			for (var/i = 2, i <= length(name), i++)
 				if (prob(100 / i))
 					d += uppertext(ascii2text(text2ascii(name, i)))
 			return d

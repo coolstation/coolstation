@@ -4,6 +4,9 @@
 #elif defined(UNDERWATER_PREFAB_RUNTIME_CHECKING)
 #include "blank_underwater.dm"
 
+#elif defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
+#include "gottagofast.dm"
+
 #elif defined(MAP_OVERRIDE_CONSTRUCTION)
 #include "construction.dm"
 
@@ -12,6 +15,9 @@
 
 #elif defined(MAP_OVERRIDE_CLARION)
 #include "clarion.dm"
+
+#elif defined(MAP_OVERRIDE_ALTBOX)
+#include "altbox.dm"
 
 #elif defined(MAP_OVERRIDE_BOBMAP)
 #include "bobmap.dm"
@@ -43,14 +49,14 @@
 #elif defined(MAP_OVERRIDE_OSHAN)
 #include "oshan.dm"
 
+#elif defined(MAP_OVERRIDE_NOYADE)
+#include "noyade.dm"
+
 #elif defined(MAP_OVERRIDE_HORIZON)
 #include "horizon.dm"
 
 #elif defined(MAP_OVERRIDE_ATLAS)
 #include "atlas.dm"
-
-#elif defined(MAP_OVERRIDE_MANTA)
-#include "manta.dm"
 
 #elif defined(MAP_OVERRIDE_KONDARU)
 #include "kondaru.dm"
@@ -79,14 +85,17 @@
 #elif defined(MAP_OVERRIDE_BAYOUBEND)
 #include "bayoubend.dm"
 
+#elif defined(MAP_OVERRIDE_PERDUTA)
+#include "perduta.dm"
+
+#elif defined(MAP_OVERRIDE_SAXUM)
+#include "saxum.dm"
+
 #elif defined(MAP_OVERRIDE_WRESTLEMAP)
 #include "wrestlemap.dm"
 
 #elif defined(MAP_OVERRIDE_POD_WARS)
 #include "pod_wars.dm"
-
-#elif defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
-#include "gottagofast.dm"
 
 #elif defined(MAP_OVERRIDE_SPIRIT)
 #include "spirit.dm"
@@ -96,6 +105,6 @@
 #include "standard.dm"
 #endif
 
-#if FOOTBALL_MODE && !defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
+#if defined(FOOTBALL_MODE) && !defined(GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW)
 #include "..\zamujasa\football2.dmm"
 #endif

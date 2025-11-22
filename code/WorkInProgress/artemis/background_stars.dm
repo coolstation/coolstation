@@ -172,7 +172,7 @@ var/global/matrix/GLOBAL_ANIMATION_MATRIX = matrix()
 		var/obj/background_star/S = null
 		for(var/i=0,i<num_stars,i++)
 			S = new/obj/background_star()
-			S.loc = get_turf(src)
+			S.set_loc(get_turf(src))
 			S.ships_id =  src.ship_id
 		..()
 

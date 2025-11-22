@@ -4,8 +4,9 @@
 	icon = 'icons/obj/furniture/table.dmi'
 	icon_state = "0"
 	density = 1
-	anchored = 1.0
-	flags = NOSPLASH
+	anchored = ANCHORED
+	flags = NOSPLASH // | FLUID_SUBMERGE
+	pass_unstable = TRUE
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	layer = OBJ_LAYER-0.1
 	stops_space_move = TRUE
@@ -317,15 +318,15 @@
 				boutput(user, "<span class='notice'>\The [src] is too weak to be modified!</span>", group = "make_bartable")
 			return
 
-		else if (isscrewingtool(W))
-			if (istype(src.desk_drawer) && src.desk_drawer.locked)
+		else if (isscrewingtool(W) && user.a_intent == INTENT_HARM)
+			if (src.desk_drawer && src.desk_drawer.locked)
 				actions.start(new /datum/action/bar/icon/table_tool_interact(src, W, TABLE_LOCKPICK), user)
 				return
 			else if (src.auto && ispath(src.auto_type))
 				actions.start(new /datum/action/bar/icon/table_tool_interact(src, W, TABLE_ADJUST), user)
 				return
 
-		else if (iswrenchingtool(W) && !src.status) // shouldn't have status unless it's reinforced, maybe? hopefully?
+		else if (iswrenchingtool(W) && !src.status && user.a_intent == INTENT_HARM) // shouldn't have status unless it's reinforced, maybe? hopefully?
 			if (istype(src, /obj/table/folding))
 				actions.start(new /datum/action/bar/icon/fold_folding_table(src, W), user)
 			else
@@ -391,13 +392,13 @@
 			anchored = !anchored
 		return
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-		if(air_group || (height==0)) return 1
-
+	CanPass(atom/movable/mover, turf/target)
 		if (!src.density || (mover.flags & TABLEPASS || istype(mover, /obj/newmeteor)) )
-			return 1
-		else
-			return 0
+			return TRUE
+		var/obj/table = locate(/obj/table) in mover?.loc
+		if (table && table.density)
+			return TRUE
+		return FALSE
 
 	MouseDrop_T(atom/O, mob/user as mob)
 		if (!in_interact_range(user, src) || !in_interact_range(user, O) || user.restrained() || user.getStatusDuration("paralysis") || user.sleeping || user.stat || user.lying)
@@ -519,7 +520,6 @@
 			if (is_athletic_jump) // athletic jumps are more athletic!!
 				the_text = "[ownerMob] swooces right over [the_railing]!"
 			M.show_text("[the_text]", "red")
-		// logTheThing("combat", ownerMob, the_railing, "[is_athletic_jump ? "leaps over [the_railing] with [his_or_her(ownerMob)] athletic trait" : "crawls over [the_railing%]].")
 
 /* ======================================== */
 /* ---------------------------------------- */
@@ -731,6 +731,20 @@
 	parts_type = /obj/item/furniture_parts/table/reinforced/kitchen
 	has_storage = 1
 
+	tools
+		New(loc, obj/a_drawer)
+			..(loc, new /obj/item/storage/desk_drawer/kitchen_tools(src)) //thanks batelite i am using your toolcart template (basic kitchen tools)
+
+	sink
+		name = "kitchen sink cabinet"
+		New(loc, obj/a_drawer)
+			..(loc, new /obj/item/storage/desk_drawer/kitchen_sink(src)) //cleaning supplies, not for putting in food
+
+	plate
+		name = "kitchen dish cabinet"
+		New(loc, obj/a_drawer)
+			..(loc, new /obj/item/storage/desk_drawer/kitchen_plate(src)) //just a buncha plates
+
 	auto
 		auto = 1
 
@@ -771,6 +785,7 @@
 	mat_appearances_to_ignore = list("glass")
 	parts_type = /obj/item/furniture_parts/table/glass
 	auto_type = /obj/table/glass // has to be the base type here or else regular glass tables won't connect to reinforced ones
+	pass_unstable = TRUE
 	var/glass_broken = GLASS_INTACT
 	var/reinforced = 0
 	var/default_material = "glass"
@@ -1024,7 +1039,7 @@
 		if (ismob(AM))
 			var/mob/M = AM
 			if ((prob(src.reinforced ? 60 : 80)))
-				logTheThing("combat", thr.user, M, "throws [constructTarget(M,"combat")] into a glass table, breaking it")
+				logTheThing("combat", thr?.user, M, "throws [constructTarget(M,"combat")] into a glass table, breaking it")
 				src.visible_message("<span class='alert'>[M] smashes through [src]!</span>")
 				playsound(src, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 50, 1)
 				src.smash()

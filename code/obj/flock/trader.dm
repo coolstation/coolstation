@@ -18,6 +18,7 @@
 ////////////////
 // SHUTTLE WALL
 ////////////////
+/*
 /turf/shuttle/wall/flock
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "shuttle-wall"
@@ -61,7 +62,7 @@
 
 /obj/decal/fakeobjects/flock
 	icon = 'icons/misc/featherzone.dmi'
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /////////
@@ -180,7 +181,7 @@
 	src.goods_sell += new/datum/commodity/flock/tech/fluid(src)
 	src.goods_sell += new/datum/commodity/flock/tech/flockburger(src)
 	src.goods_sell += new/datum/commodity/flock/tech/flockblocker(src)
-	src.goods_sell += new/datum/commodity/flock/tech/incapacitor(src)
+//	src.goods_sell += new/datum/commodity/flock/tech/incapacitor(src)
 
 
 	greeting= {"[src.name] clicks from your headset. \"[gradientText(grad_col_1, grad_col_2, "Greetings, spacefarer. There are many permutations of the Signal, and we are an iteration less inclined to senseless destruction. Do you wish to engage in trade?")]\""}
@@ -329,7 +330,7 @@
 	name = "blank surface"
 	desc = "Huh."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/obj/npc/trader/flock/trader
 
 /obj/flock_screen/proc/show_icon(var/state)
@@ -355,7 +356,7 @@
 	name = "open receptacle"
 	desc = "Probably don't stick your hand in it. Looks like some kinda plasma blender."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/obj/npc/trader/flock/trader
 
 /obj/flock_reclaimer/attack_hand(mob/user as mob)
@@ -438,7 +439,7 @@
 	/obj/item/material_piece/gnesis = "flocklore_gnesis_bar",
 	/obj/item/material_piece/gnesisglass = "flocklore_gnesisglass_bar",
 	/obj/item/reagent_containers/gnesis = "flocklore_fluid_container",
-	/obj/item/gun/energy/flock = "flocklore_handheld_incapacitor",
+	// /obj/item/gun/energy/flock = "flocklore_handheld_incapacitor",
 	/obj/item/artifact = "flocklore_handheld_artifact",
 	/obj/item/feather = "flocklore_feather"
 )
@@ -453,3 +454,4 @@
 	/obj/item/furniture_parts/table/flock,
 	/obj/item/furniture_parts/flock_chair
 )
+*/

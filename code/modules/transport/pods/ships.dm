@@ -6,7 +6,7 @@
 	capacity = 4
 	health = 140
 	maxhealth = 140
-	anchored = 0
+	anchored = UNANCHORED
 //////////Recon
 /obj/machinery/vehicle/recon
 	name = "Reconaissance Ship 7X-"
@@ -89,6 +89,7 @@
 	desc = "A little solo vehicle for scouting and exploration work."
 	icon_state = "miniputt"
 	capacity = 1
+	event_handler_flags = USE_FLUID_ENTER | Z_ANCHORED
 	var/armor_score_multiplier = 0.5
 	health = 125
 	maxhealth = 125
@@ -388,7 +389,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 	var/cable_amt = null
 	var/vehicle_name = null
 	var/vehicle_type = null
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/item/putt/frame_box
@@ -796,6 +797,7 @@ ABSTRACT_TYPE(/obj/structure/vehicleframe)
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "pod_civ"
 	uses_weapon_overlays = 1
+	event_handler_flags = USE_FLUID_ENTER | Z_ANCHORED
 	var/armor_score_multiplier = 0.2
 	capacity = 2
 	weapon_class = 1
@@ -1267,6 +1269,7 @@ ABSTRACT_TYPE(/obj/item/podarmor)
 	icon = 'icons/obj/electronics.dmi'
 	icon_state = "dbox"
 	overlay_state = "skin3"
+	value = 50000
 	vehicle_types = list("/obj/structure/vehicleframe/puttframe" = /obj/machinery/vehicle/miniputt/black,
 		"/obj/structure/vehicleframe/podframe" = /obj/machinery/vehicle/pod_smooth/black,
 		"/obj/structure/vehicleframe/subframe" = /obj/machinery/vehicle/tank/minisub/black)
@@ -1277,6 +1280,7 @@ ABSTRACT_TYPE(/obj/item/podarmor)
 	icon = 'icons/obj/electronics.dmi'
 	icon_state = "dbox"
 	overlay_state = "skin2"
+	value = 25000
 	vehicle_types = list("/obj/structure/vehicleframe/puttframe" = /obj/machinery/vehicle/miniputt/syndiputt,
 		"/obj/structure/vehicleframe/podframe" = /obj/machinery/vehicle/pod_smooth/syndicate,
 		"/obj/structure/vehicleframe/subframe" = /obj/machinery/vehicle/tank/minisub/syndisub)
@@ -1287,6 +1291,7 @@ ABSTRACT_TYPE(/obj/item/podarmor)
 	icon = 'icons/obj/electronics.dmi'
 	icon_state = "dbox"
 	overlay_state = "skin3"
+	value = 32500
 	vehicle_types = list("/obj/structure/vehicleframe/puttframe" = /obj/machinery/vehicle/miniputt/indyputt,
 		"/obj/structure/vehicleframe/podframe" = /obj/machinery/vehicle/pod_smooth/industrial,
 		"/obj/structure/vehicleframe/subframe" = /obj/machinery/vehicle/tank/minisub/industrial)
@@ -1349,38 +1354,47 @@ ABSTRACT_TYPE(/obj/item/podarmor)
 /obj/item/pod/paintjob/tronthing
 	name = "Pod Paint Job Kit (HighTech)"
 	pod_skin = "pod_skinAc"
+	value = 10000
 
 /obj/item/pod/paintjob/flames
 	name = "Pod Paint Job Kit (Flames)"
 	pod_skin = "pod_skinW"
+	value = 9000
 
 /obj/item/pod/paintjob/flames_p
 	name = "Pod Paint Job Kit (Purple Flames)"
 	pod_skin = "pod_skinPF"
+	value = 9000
 
 /obj/item/pod/paintjob/flames_b
 	name = "Pod Paint Job Kit (Blue Flames)"
 	pod_skin = "pod_skinBF"
+	value = 9000
 
 /obj/item/pod/paintjob/stripe_r
 	name = "Pod Paint Job Kit (Red Racing Stripes)"
 	pod_skin = "pod_skinR"
+	value = 5000
 
 /obj/item/pod/paintjob/stripe_b
 	name = "Pod Paint Job Kit (Blue Racing Stripes)"
 	pod_skin = "pod_skinB"
+	value = 5000
 
 /obj/item/pod/paintjob/stripe_g
 	name = "Pod Paint Job Kit (Green Racing Stripes)"
 	pod_skin = "pod_skinG"
+	value = 5000
 
 /obj/item/pod/paintjob/rainbow
 	name = "Pod Paint Job Kit (Rainbow)"
 	pod_skin = "pod_skinFAB"
+	value = 8000
 
 /obj/item/pod/paintjob/owl
 	name = "Pod Paint Job Kit (Owl)"
 	pod_skin = "pod_skinOWL"
+	value = 10000
 
 ///// Shitty escape pod that flies by itself for a bit then explodes.
 /obj/machinery/vehicle/escape_pod
@@ -1408,7 +1422,7 @@ ABSTRACT_TYPE(/obj/item/podarmor)
 	proc/escape()
 		if(!launched)
 			launched = 1
-			anchored = 0
+			anchored = UNANCHORED
 			var/opened_door = 0
 			var/turf_in_front = get_step(src,src.dir)
 			for(var/obj/machinery/door/poddoor/D in turf_in_front)

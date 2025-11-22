@@ -16,12 +16,15 @@
 // 350 twilight.s
 // 370 just beautiful. oh. wow. lovely. Oh it's 10 again.
 #define WASTELAND_MIN_TEMP 250
-#define WASTELAND_MAX_TEMP 350
-#define GEHENNA_CO2 5*(sin(GEHENNA_TIME - 90)+ 1)
+#define WASTELAND_MAX_TEMP 375
+#define GEHENNA_CO2 10*(sin(GEHENNA_TIME - 90)+ 1)
 #define GEHENNA_O2 MOLES_O2STANDARD * (sin(GEHENNA_TIME - 60)+2)
 #define GEHENNA_N2 MOLES_O2STANDARD *0.5*(sin(GEHENNA_TIME + 90)+2)
 #define GEHENNA_TEMP WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
-
+#define GEHENNA_SKY_R 0.5*(sin(GEHENNA_TIME)+1)
+#define GEHENNA_SKY_G 0.3*(sin(GEHENNA_TIME )+1)
+#define GEHENNA_SKY_B 0.4*(sin(GEHENNA_TIME - 45 )+1)
+#define GEHENNA_SKY_BRIGHT 0.5*(sin(GEHENNA_TIME)+0.8) + 0.25
 
 
 var/global/gehenna_time = GEHENNA_TIME
@@ -48,7 +51,36 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	throw_unlimited = 0
 	color = "#ffffff"
 	special_volume_override = -1
+	turf_flags = MINE_MAP_PRESENTS_EMPTY
 
+	Entered(atom/movable/O)
+		..()
+		if(istype(src.loc,/area/gehenna))
+			var/area/A = src.loc
+			if(A.sandstorm)
+				if(prob(A.sandstormIntensity) && !istype(O.dir, A.blowOrigin)) //yeah this is a bad fix, sue me
+					step(O,A.blowOrigin)
+		//if(istype(O, /mob/living))
+			//RegisterSignal(O, COMSIG_MOVABLE_MOVED, PROC_REF(footprints))
+	/*
+	Exited(atom/movable/O)
+		if(istype(O,/mob/living))
+			UnregisterSignal(O, COMSIG_MOVABLE_MOVED)
+
+	proc/footprints(mob/living/M, oldLoc, direct)
+		var/obj/decal/cleanable/imprint/I
+		I = locate(/obj/decal/cleanable/imprint) in src
+		if(!I)
+			I = make_cleanable(/obj/decal/cleanable/imprint, src)
+		var/list/states = M.get_step_image_states()
+		if (states[1] || states[2])
+			if(states[1])
+				I.create_overlay(states[1], "#564c38", direct, 'icons/obj/decals/blood.dmi') //gimme gimme
+			if(states[2])
+				I.create_overlay(states[2], "#564c38", direct, 'icons/obj/decals/blood.dmi') //awawa
+		else
+			I.create_overlay("smear2", "#564c38", direct, 'icons/obj/decals/blood.dmi')
+	*/
 
 /turf/wall/asteroid/gehenna
 	fullbright = 0
@@ -128,11 +160,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
-/turf/floor/plating/gehenna/
+/turf/floor/plating/gehenna
 	name = "sand"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"
 	step_material = "step_outdoors"
+	burnt = UNBURNABLE_TURF
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
 	allows_vehicles = 1
@@ -156,6 +189,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 
 /turf/space/gehenna/desert
 	pathable = 1 // HARNER GO ACROSS THE SAND YOU OAF
+	pass_unstable = FALSE // WHAT THE OOZE SAID
 	name = "barren wasteland"
 	desc = "Looks really dry out there."
 	icon = 'icons/turf/floors.dmi'
@@ -168,79 +202,212 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
 	var/datum/light/point/light = null
-	var/light_r = 0.5*(sin(GEHENNA_TIME)+1)
-	var/light_g = 0.3*(sin(GEHENNA_TIME )+1)
-	var/light_b = 0.4*(sin(GEHENNA_TIME - 45 )+1)
-	var/light_brightness = 0.6*(sin(GEHENNA_TIME)+0.8) + 0.3
+	var/light_atten_con = -0.02
+	var/light_r = GEHENNA_SKY_R
+	var/light_g = GEHENNA_SKY_G
+	var/light_b = GEHENNA_SKY_B
+	var/light_brightness = GEHENNA_SKY_BRIGHT
 	var/light_height = 3
 	var/generateLight = 1
 	var/stone_color
+	var/static/list/image/rocks
+	var/rock_mult = 85
+	var/x_drift = 1
+	var/y_drift = 1
+	var/perlin_zoom = 80
+	var/icon_suffix = null
+	var/doublesize = TRUE
+	var/big_rock_chance = 2
 
 	New()
 		..()
-		if (generateLight)
-			src.make_light() /*
-			generateLight = 0
-			if (z != 3) //nono z3
-				for (var/dir in alldirs)
-					var/turf/T = get_step(src,dir)
-					if (istype(T, /turf/simulated))
-						generateLight = 1
-						src.make_light()
-						break */
-		if(icon_state == "gehenna_beat" || icon_state == "gehenna")
-			src.dir = pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 
+		if(src.doublesize)
+			icon_state += "_[x % 2][y % 2]"
+		var/seed = global.server_start_time + src.z * 42069
+		var/x_input = (src.x + rand(-src.x_drift,src.x_drift)) / src.perlin_zoom
+		var/y_input = (src.y + rand(-src.y_drift,src.y_drift)) / src.perlin_zoom
+		var/rock_chance = text2num(rustg_noise_get_at_coordinates("[seed]", "[x_input]", "[y_input]"))
+		rock_chance = 3.8*((rock_chance - 0.5)**2) + 0.05
+		var/g = floor(rock_chance * 55 + 200)
+		var/b = floor(rock_chance * 125 + 130)
+		src.color = rgb(255,g,b)
+		src.stone_color = src.color
+		if (current_state <= GAME_STATE_PREGAME) //please stop generating giant spikes of rock when a floor blows up
+			if(src.rock_mult)
+				if(!src.rocks)
+					src.create_rocks()
+				if(prob(floor(src.rock_mult * rock_chance)))
+					UpdateOverlays(pick(src.rocks), "rock_overlay")
+				if(prob(big_rock_chance * (1.2 - rock_chance))) // ouuugh i hate mapgen
+					SPAWN_DBG(0.5)
+						var/create_rock = TRUE
+						for(var/obj/decal/cragrock/rock in range(5, src))
+							create_rock = FALSE
+							break
+						if(create_rock)
+							var/obj/decal/cragrock/rock = new(src)
+							rock.color = src.color
+
+		if (generateLight)
+			STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen() //this is a trick to stop sand turfs from runtiming if they're immediately replaced with something else
+		..()
+		src.make_light()
+
+	proc/create_rocks()
+		rocks = list()
+		for(var/i in 1 to 18)
+			var/image/rock = image('icons/turf/gehenna_overlays.dmi',"rock[i]", layer = TURF_LAYER)
+			rock.plane = PLANE_NOSHADOW_BELOW
+			rocks += rock
 
 	make_light()
 		if (!light)
 			light = new
 			light.attach(src)
+		light.set_atten_con(light_atten_con)
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
-		SPAWN_DBG(0.1)
-			light.enable()
+		//more attempted shuttle movement lagspike reduction
+		//We don't want the spawn to happen on shuttle movement so that enabling the lights actually gets queued
+		//instead of skipping it until after RL is resumed
+		if (RL_Suspended)
+			light?.enable()
+		else //Normal circumstances
+			SPAWN_DBG(1 DECI SECOND)
+				light?.enable()
 
+	//Turns out that moving shuttles back and forth on desert was slowly stacking but not removing lights, oops!
+	Del()
+		if (src.light)
+			qdel(src.light)
+			src.light = null
+		..()
 
+	tunnel_surface
+		name = "bored tunnel floor"
+		desc = "Industry must flourish."
+		icon = 'icons/turf/floors.dmi'
+		icon_state = "concrete"
+		rock_mult = 0
+		generateLight = 0
+		big_rock_chance = 0
+		doublesize = FALSE
+
+		railroad
+			name = "railroad"
+			icon_state = "railroad_concrete"
+
+	no_spikes
+		big_rock_chance = 0
+
+		no_rocks
+			rock_mult = 0
 
 	plating
 		name = "sand-covered plating"
 		desc = "The desert slowly creeps upon everything we build."
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "gehenna_tile"
+		rock_mult = 30
+		doublesize = FALSE
+		big_rock_chance = 0
 
 		thermal
 			name = "sand-covered solar plating"
-			desc = "absorbs the sun's rays, gets real hot."
+			desc = "Absorbs the sun's rays, gets real hot."
 			temperature = WASTELAND_MIN_TEMP + ((0.5*sin(GEHENNA_TIME-45)+0.5)*(1.5*WASTELAND_MAX_TEMP - WASTELAND_MIN_TEMP))
+			rock_mult = 0
+			big_rock_chance = 0
 
 		podbay
 			icon_state = "gehenna_plating"
+			rock_mult = 0
 
 	path
 		name = "beaten earth"
-		desc = "this soil has been beaten flat by years of foot traffic."
+		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
 		icon_state = "gehenna_edge"
+#else
+		icon_state = "gehenna"
+#endif
+		rock_mult = 20
+		doublesize = TRUE
+		big_rock_chance = 0
+		var/static/list/image/beaten_sand
+
+		New()
+			if(!src.beaten_sand)
+				src.create_beaten_sand()
+			UpdateOverlays(src.beaten_sand["[dir]"], "beaten_sand_overlay")
+			..()
+
+		proc/create_beaten_sand()
+			beaten_sand = list()
+			for(var/i in alldirs)
+				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_edge", dir = i)
 
 	corner
 		name = "beaten earth"
-		desc = "this soil has been beaten flat by years of foot traffic."
+		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
 		icon_state = "gehenna_corner"
+#else
+		icon_state = "gehenna"
+#endif
+		rock_mult = 20
+		doublesize = TRUE
+		big_rock_chance = 0
+		var/static/list/image/beaten_sand
+
+		New()
+			if(!src.beaten_sand)
+				src.create_beaten_sand()
+			UpdateOverlays(src.beaten_sand["[dir]"], "beaten_sand_overlay")
+			..()
+
+		proc/create_beaten_sand()
+			beaten_sand = list()
+			for(var/i in alldirs)
+				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_corner", dir = i)
 
 	beaten
 		name = "beaten earth"
-		desc = "this soil has been beaten flat by years of foot traffic."
+		desc = "This soil has been beaten flat by years of foot traffic."
 		icon = 'icons/turf/floors.dmi'
+#ifdef IN_MAP_EDITOR
 		icon_state = "gehenna_beat"
+#else
+		icon_state = "gehenna"
+#endif
+		rock_mult = 20
+		doublesize = TRUE
+		big_rock_chance = 0
+		var/static/image/beaten_sand
 
+		New()
+			if(!src.beaten_sand)
+				src.create_beaten_sand()
+			UpdateOverlays(src.beaten_sand["[pick(cardinal)]"], "beaten_sand_overlay")
+			..()
+
+		proc/create_beaten_sand()
+			beaten_sand = list()
+			for(var/i in cardinal)
+				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_center", dir = i)
 
 /area/gehenna
 	requires_power = 0
 	icon_state = "dither_b"
 	name = "the gehennan desert"
+	is_construction_allowed = TRUE
+
 
 /area/gehenna/south // just in case i need a separate area for stuff
 	requires_power = 0
@@ -413,17 +580,17 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	desc = "A warning display with an internal Gehennan clock. It's off, which means it has nothing to warn you about."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "warning-unpowered"
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		..()
-		if(GEHENNA_CO2>=8 && GEHENNA_TEMP >= 335)
+		if(GEHENNA_CO2>=9 && GEHENNA_TEMP >= 335)
 			src.icon_state = "warning-combined"
 			src.desc = desc = "A warning display with an internal Gehennan clock. It's extremely hazardous outside."
 		else
-			if(GEHENNA_CO2 >= 8)
+			if(GEHENNA_CO2 >= 9)
 				src.icon_state = "warning-internals"
-				src.desc = desc = "A warning display with an internal Gehennan clock. The outside currently contains dangerous concentrations of sleepytime gas."
+				src.desc = desc = "A warning display with an internal Gehennan clock. The outside currently contains dangerous concentrations of thirdhand smoke."
 			if(GEHENNA_TEMP >= 335)
 				src.icon_state = "warning-hot"
 				src.desc = desc = "A warning display with an internal Gehennan clock. It's gonna be a scorcher!"

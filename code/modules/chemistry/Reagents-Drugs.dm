@@ -6,6 +6,7 @@ datum
 	reagent
 		drug/
 			name = "some drug"
+			taste = "like drugs"
 
 		drug/bathsalts
 			name = "bath salts"
@@ -22,19 +23,61 @@ datum
 			depletion_rate = 0.6
 			energy_value = 1
 			hunger_value = -0.1
-			bladder_value = -0.1
+			kidney_multiplier = 1.4
 			thirst_value = -0.05
+			contraband = 8
+			taste = "salty"
+			var/static/list/halluc_attackers = list(
+				new /image('icons/mob/critter.dmi',"death") = list("death","the bell guy","GO METS!"),
+				new /image('icons/mob/critter.dmi', "cluwnespider_queen") = list("your mother","fat fuck","horrible green crab"),
+				new /image('icons/mob/genetics.dmi', "psyche") = list("stranger","why why why"),
+				new /image('icons/mob/human.dmi', "husk") = list("mom","dad","burn please burn"),
+				new /image('icons/mob/human.dmi', "fire3") = list("no no NO","????","best friends!!!"),
+				new /image('icons/mob/human.dmi', "eaten") = list("grampa","the thing you refuse to remember you did"),
+				new /image('icons/mob/human.dmi', "decomp3") = list("yourself","me","us","mom","dad"),
+			)
+			var/static/list/halluc_overrides = list(
+				new /image('icons/mob/critter.dmi',"death"),
+				new /image('icons/mob/human.dmi', "husk"),
+				new /image('icons/mob/human.dmi', "fire3"),
+				new /image('icons/mob/human.dmi', "eaten"),
+				new /image('icons/mob/critter.dmi',"brullbar"),
+			)
+			var/static/list/halluc_sounds = list(
+				'sound/vox/poo-vox.ogg',
+				new /datum/hallucinated_sound("clownstep", min_count = 10, max_count = 20, delay = 0.1 SECONDS),
+				new /datum/hallucinated_sound('sound/machines/airlock_bolted.ogg', volume = 50, min_count = 2, max_count = 5, delay = 0.2 SECONDS),
+				'sound/voice/creepyshriek.ogg',
+				new /datum/hallucinated_sound('sound/musical_instruments/Bell_Huge_1.ogg', min_count = 2, max_count = 4, delay = 1.2 SECONDS),
+				'sound/machines/airlock_deny.ogg',
+				'sound/machines/airlock_pry.ogg',
+				'sound/musical_instruments/Bikehorn_1.ogg',
+				'sound/misc/talk/radio.ogg',
+				'sound/misc/talk/radio_ai.ogg',
+				'sound/weapons/DSRXPLOD.ogg',
+				'sound/weapons/flintlock.ogg',
+				new /datum/hallucinated_sound('sound/machines/airlock_bolted.ogg', pitch = 0.4),
+				'sound/items/hypo.ogg',
+				'sound/voice/cluwnelaugh1.ogg',
+				'sound/voice/cluwnelaugh2.ogg',
+				'sound/voice/cluwnelaugh3.ogg',
+				'sound/items/geiger/geiger-3-2.ogg',
+				'sound/items/geiger/geiger-5-3.ogg',
+				'sound/machines/ArtifactEld1.ogg',
+				'sound/machines/ArtifactEld2.ogg',
+				'sound/effects/heartbeat.ogg',
+			)
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts", 3)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts", 3)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts")
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1) // commence bad times
@@ -59,51 +102,26 @@ datum
 				M.druggy = max(M.druggy, 15)
 				if(check < 20)
 					M.change_misstep_chance(10 * mult)
+
+					var/image/imagekey = pick(halluc_attackers)
+					M.AddComponent(/datum/component/hallucination/fake_attack, timeout=15, image_list=list(imagekey), name_list=halluc_attackers[imagekey], attacker_prob=rand(30,50), max_attackers=rand(1,2))
 				// a really shitty form of traitor stimulants - you'll be tough to take down but nearly uncontrollable anyways and you won't heal the way stims do
 
+				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.halluc_sounds, sound_prob=25)
+				M.AddComponent(/datum/component/hallucination/random_image_override, timeout=10, image_list=halluc_overrides, target_list=list(/mob/living/carbon/human), range=7, image_prob=30, image_time=20, override=TRUE)
 
 				if(check < 8)
 					M.reagents.add_reagent(pick("methamphetamine", "crank", "neurotoxin"), rand(1,5))
 					M.visible_message("<span class='alert'><b>[M.name]</b> scratches at something under their skin!</span>")
 					random_brute_damage(M, 5 * mult)
 				else if (check < 16)
-					switch(rand(1,2))
-						if(1)
-							if(prob(20))
-								fake_attackEx(M, 'icons/mob/critter.dmi', "death", "death")
-								boutput(M, "<span class='alert'><b>OH GOD LOOK OUT!!!</b>!</span>")
-								M.emote("scream")
-								M.playsound_local(M.loc, 'sound/musical_instruments/Bell_Huge_1.ogg', 50, 1)
-							else if(prob(50))
-								fake_attackEx(M, 'icons/mob/critter.dmi', "mimicface", "smiling thing")
-								boutput(M, "<span class='alert'><b>The smiling thing</b> laughs!</span>")
-								M.playsound_local(M.loc, pick("sound/voice/cluwnelaugh1.ogg", "sound/voice/cluwnelaugh2.ogg", "sound/voice/cluwnelaugh3.ogg"), 35, 1)
-							else
-								M.playsound_local(M.loc, pick('sound/machines/ArtifactEld1.ogg', 'sound/machines/ArtifactEld2.ogg'), 50, 1)
-								boutput(M, "<span class='alert'><b>You hear something strange behind you...</b></span>")
-								var/ants = rand(1,3)
-								for(var/i = 0, i < ants, i++)
-									fake_attackEx(M, 'icons/mob/genetics.dmi', "psyche", "stranger")
-						if(2)
-							var/halluc_state = null
-							var/halluc_name = null
-							switch(rand(1,5))
-								if(1)
-									halluc_state = "husk"
-									halluc_name = pick("dad", "mom")
-								if(2)
-									halluc_state = "fire3"
-									halluc_name = pick("vision of your future", "dad", "mom")
-								if(3)
-									halluc_state = "eaten"
-									halluc_name = pick("???", "bad bad BAD")
-								if(4)
-									halluc_state = "decomp3"
-									halluc_name = pick("result of your poor life decisions", "grampa")
-								if(5)
-									halluc_state = "fire2"
-									halluc_name = pick("mom", "dad", "why are they burning WHY")
-							fake_attackEx(M, 'icons/mob/human.dmi', halluc_state, halluc_name)
+					if(prob(20))
+						boutput(M, "<span class='alert'><b>OH GOD LOOK OUT!!!</b>!</span>")
+						M.emote("scream")
+					else if(prob(50))
+						boutput(M, "<span class='alert'><b>The smiling thing</b> laughs!</span>")
+					else
+						boutput(M, "<span class='alert'><b>You hear something strange behind you...</b></span>")
 				else if(check < 24)
 					boutput(M, "<span class='alert'><b>They're coming for you!</b></span>")
 				else if(check < 28)
@@ -183,11 +201,13 @@ datum
 			addiction_min = 5
 			value = 2 // 1 1  :I
 			viscosity = 0.4
-			bladder_value = -0.03
+			kidney_multiplier = 0.9
 			hunger_value = -0.04
 			hygiene_value = -0.5
 			thirst_value = -0.04
 			energy_value = -0.04
+			contraband = 2
+			taste = "extremely disgusting"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -212,13 +232,16 @@ datum
 			overdose = 20
 			value = 20 // 10 2 1 3 1 heat explosion :v
 			energy_value = 1.5
-			bladder_value = -0.1
+			kidney_multiplier = 0.9
 			hunger_value = -0.05
 			thirst_value = -0.05
 			stun_resist = 60
+			contraband = 6
+			taste = "cheap"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
+				M.make_jittery(3 * mult)
 				if(probmult(15)) M.emote(pick("twitch", "twitch_s", "grumble", "laugh"))
 				if(prob(8))
 					boutput(M, "<span class='notice'><b>You feel great!</b></span>")
@@ -230,7 +253,6 @@ datum
 				if(prob(4))
 					boutput(M, "<span class='alert'><b>You feel kinda awful!</b></span>")
 					M.take_toxin_damage(1 * mult)
-					M.make_jittery(30 * mult)
 					M.emote(pick("groan", "moan"))
 				..()
 				return
@@ -285,46 +307,113 @@ datum
 			transparency = 20
 			value = 6 // 4 2
 			thirst_value = -0.03
+			contraband = 4
+			taste = "slightly bitter"
+			var/static/list/halluc_sounds = list(
+				"punch",
+				'sound/vox/poo-vox.ogg',
+				new /datum/hallucinated_sound("clownstep", min_count = 1, max_count = 6, delay = 0.4 SECONDS),
+				'sound/weapons/armbomb.ogg',
+				new /datum/hallucinated_sound('sound/weapons/Gunshot.ogg', min_count = 1, max_count = 3, delay = 0.4 SECONDS),
+				new /datum/hallucinated_sound('sound/impact_sounds/Energy_Hit_3.ogg', min_count = 2, max_count = 4, delay = COMBAT_CLICK_DELAY),
+				new /datum/hallucinated_sound('sound/machines/airlock_bolted.ogg', volume = 50, min_count = 2, max_count = 5, delay = 0.2 SECONDS),
+				new /datum/hallucinated_sound('sound/machines/airlock_bolted.ogg', volume = 20),
+				new /datum/hallucinated_sound('sound/impact_sounds/Metal_Hit_1.ogg', min_count = 1, max_count = 3, delay = COMBAT_CLICK_DELAY),
+				'sound/machines/airlock_swoosh_temp.ogg',
+				'sound/machines/airlock_deny.ogg',
+				'sound/machines/airlock_pry.ogg',
+				new /datum/hallucinated_sound('sound/weapons/flash.ogg', min_count = 1, max_count = 3, delay = COMBAT_CLICK_DELAY),
+				'sound/musical_instruments/Bikehorn_1.ogg',
+				'sound/misc/talk/radio.ogg',
+				'sound/misc/talk/radio2.ogg',
+				'sound/misc/talk/radio_ai.ogg',
+				'sound/weapons/laser_f.ogg',
+				new /datum/hallucinated_sound('sound/machines/click.ogg', min_count = 1, max_count = 4, delay = 0.4 SECONDS), //silenced pistol sound
+				new /datum/hallucinated_sound('sound/effects/glare.ogg', pitch = 0.8), //vamp glare is pitched down for... reasons
+				'sound/effects/poff.ogg',
+				'sound/items/hypo.ogg',
+				'sound/items/sticker.ogg',
+			)
+			var/static/list/speech_sounds = list(
+				'sound/misc/talk/speak_1.ogg',
+				'sound/misc/talk/speak_3.ogg',
+				'sound/misc/talk/cow.ogg',
+				'sound/misc/talk/roach.ogg',
+				'sound/misc/talk/lizard.ogg',
+				'sound/misc/talk/skelly.ogg',
+			)
+			var/static/list/voice_names = list(
+				"The voice in your head",
+				"Someone right behind you",
+				"???",
+				"A whisper in the vents",
+				"The universe itself",
+			)
+			var/static/list/monkey_images = list(
+				new /image('icons/mob/monkey.dmi', "monkey_hallucination"),
+				new /image('icons/mob/monkey.dmi', "fire3"),
+				new /image('icons/mob/monkey.dmi', "skeleton"),
+				new /image('icons/mob/monkey.dmi', "seamonkey"),
+			)
+			var/static/list/critter_image_list = list(
+				//new /image('icons/mob/hallucinations.dmi', "spider"),
+				new /image('icons/mob/hallucinations.dmi', "dragon"),
+				new /image('icons/mob/hallucinations.dmi', "pig"),
+				new /image('icons/mob/hallucinations.dmi', "slime"),
+				new /image('icons/mob/monkey.dmi', "monkey_hallucination"),
+				new /image('icons/mob/monkey.dmi', "fire3"),
+				new /image('icons/mob/monkey.dmi', "skeleton"),
+				new /image('icons/mob/monkey.dmi', "seamonkey"),
+				new /image('icons/mob/critter.dmi', "spacebee"),
+				new /image('icons/mob/critter.dmi', "eyespider"),
+				new /image('icons/mob/critter.dmi', "skeleton"),
+				new /image('icons/mob/critter.dmi', "fly"),
+			)
+			var/static/list/monkey_names = strings("names/monkey.txt")
+			var/static/list/halluc_images = list(
+				new /image(icon = 'icons/obj/scrap.dmi', icon_state = "Crusher_1"),
+				new /image(icon = 'icons/misc/mechanicsExpansion.dmi', icon_state = "comp_flush"),
+				new /image(icon = 'icons/obj/foodNdrink/food_produce.dmi', icon_state = "banana-peel"),
+				new /image(icon = 'icons/obj/items/weapons.dmi', icon_state = "mine_radiation_armed"),
+				new /image(icon = 'icons/obj/decals/urine.dmi', icon_state = "floor1"),
+				new /image(icon = 'icons/obj/decals/cleanables.dmi', icon_state = "messnoodle2meatball"),
+				new /image(icon = 'icons/obj/foodNdrink/kitchen.dmi', icon_state = "cleaver")
+			)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
+				//pretty colors
+				//M.AddComponent(/datum/component/hallucination/trippy_colors, timeout=10)
 				M.druggy = max(M.druggy, 15)
-				// TODO. Write awesome hallucination algorithm!
-//				if(M.canmove) step(M, pick(cardinal))
-//				if(prob(7)) M.emote(pick("twitch","drool","moan","giggle"))
-				if(probmult(6))
-					switch(rand(1,2))
-						if(1)
-							if(prob(50))
-								fake_attack(M)
-							else
-								var/monkeys = rand(1,3)
-								for(var/i = 0, i < monkeys, i++)
-									fake_attackEx(M, 'icons/mob/monkey.dmi', "monkey_hallucination", pick_string_autokey("names/monkey.txt"))
-						if(2)
-							var/halluc_state = null
-							var/halluc_name = null
-							switch(rand(1,5))
-								if(1)
-									halluc_state = "pig"
-									halluc_name = pick("pig", "DAT FUKKEN PIG")
-								if(2)
-									halluc_state = "spider"
-									halluc_name = pick("giant black widow", "queen bitch spider", "OH FUCK A SPIDER")
-								if(3)
-									halluc_state = "dragon"
-									halluc_name = pick("dragon", "Lord Cinderbottom", "SOME FUKKEN LIZARD THAT BREATHES FIRE")
-								if(4)
-									halluc_state = "slime"
-									halluc_name = pick("red slime", "\proper some gooey thing", "\improper ANGRY CRIMSON POO")
-								if(5)
-									halluc_state = "shambler"
-									halluc_name = pick("shambler", "strange creature", "OH GOD WHAT THE FUCK IS THAT THING?")
-							fake_attackEx(M, 'icons/mob/hallucinations.dmi', halluc_state, halluc_name)
-				if(probmult(9))
-					M.playsound_local(M.loc, pick("explosion", "punch", 'sound/vox/poo-vox.ogg', "clownstep", 'sound/weapons/armbomb.ogg', 'sound/weapons/Gunshot.ogg'), 50, 1)
-				if(probmult(8))
-					boutput(M, "<b>You hear a voice in your head... <i>[phrase_log.random_phrase("say")]</i></b>")
+
+				if(probmult(25)) //get attacked
+					if(prob(50)) //monkey mode
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=monkey_images, name_list=monkey_names, attacker_prob=15, max_attackers=3)
+					else
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=null, name_list=null, attacker_prob=80, max_attackers=1)
+
+				//THE VOICES GET LOUDER
+				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.halluc_sounds, sound_prob=10)
+
+				//TRUST NOTHING
+				M.AddComponent(/datum/component/hallucination/random_image_override,\
+					timeout=15,\
+					image_list=halluc_images,\
+					target_list=list(/turf/floor),\
+					range=7,\
+					image_prob=20,\
+					image_time=30,\
+					override=FALSE,\
+					visible_creation = FALSE,\
+					pixel_variance = 6\
+				)
+
+				if(probmult(8)) //display a random chat message
+					M.playsound_local(M.loc, pick(src.speech_sounds, 100, 1))
+					boutput(M, "<b>[pick(src.voice_names)]</b> says, \"[phrase_log.random_phrase("say")]\"")
+
+				//turn someone into a critter
+				M.AddComponent(/datum/component/hallucination/random_image_override, timeout=10, image_list=critter_image_list, target_list=list(/mob/living/carbon/human), range=6, image_prob=25, image_time=20, override=TRUE)
 				..()
 				return
 
@@ -333,6 +422,13 @@ datum
 				if(method == INGEST)
 					boutput(M, "<span class='alert'><font face='[pick("Arial", "Georgia", "Impact", "Mucida Console", "Symbol", "Tahoma", "Times New Roman", "Verdana")]' size='[rand(3,6)]'>Holy shit, you start tripping balls!</font></span>")
 				return
+
+			on_remove()
+				. = ..()
+				if (ismob(holder.my_atom))
+					var/mob/M = holder.my_atom
+					if (M.client)
+						animate(M.client, color = null, time = 2 SECONDS, easing = SINE_EASING) // gotta come down sometime
 
 		drug/lsd_bee
 			name = "lsbee"
@@ -346,30 +442,24 @@ datum
 			transparency = 100
 			value = 5
 			thirst_value = -0.03
+			contraband = 4.2
+			taste = "slightly bee-ter"
+			var/static/list/bee_halluc = list(
+				new /image('icons/mob/bee.dmi',"zombee-wings") = list("zombee", "undead bee", "BZZZZZZZZ"),
+				new /image('icons/mob/bee.dmi',"syndiebee-wings") = list("syndiebee", "evil bee", "syndicate assassin bee", "IT HAS A GUN"),
+				new /image('icons/mob/bee.dmi',"bigbee-angry") = list("very angry bee", "extremely angry bee", "GIANT FRICKEN BEE"),
+				new /image('icons/mob/bee.dmi',"lichbee-wings") = list("evil bee", "demon bee", "YOU CAN'T BZZZZ FOREVER"),
+				new /image('icons/mob/bee.dmi',"voorbees-wings") = list("killer bee", "murder bee", "bad news bee", "RUN"),
+			)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				M.druggy = max(M.druggy, 5)
-				if (probmult(10))
-					var/hstate = null
-					var/hname = null
-					switch(rand(1,5))
-						if(1)
-							hstate = "zombee-wings"
-							hname = pick("zombee", "undead bee", "BZZZZZZZZ")
-						if(2)
-							hstate = "syndiebee-wings"
-							hname = pick("syndiebee", "evil bee", "syndicate assassin bee", "IT HAS A GUN")
-						if(3)
-							hstate = "bigbee-angry"
-							hname = pick("very angry bee", "extremely angry bee", "GIANT FRICKEN BEE")
-						if(4)
-							hstate = "lichbee-wings"
-							hname = pick("evil bee", "demon bee", "YOU CAN'T BZZZZ FOREVER")
-						if(5)
-							hstate = "voorbees-wings"
-							hname = pick("killer bee", "murder bee", "bad news bee", "RUN")
-					fake_attackEx(M, 'icons/mob/bee.dmi', hstate, hname)
+				var/image/imagekey = pick(bee_halluc)
+				if(probmult(33))
+					var/list/attackers = M.GetComponents(/datum/component/hallucination/fake_attack)
+					if(length(attackers) < 5)
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=5, image_list=list(imagekey), name_list=bee_halluc[imagekey], attacker_prob=10)
 				if (probmult(12))
 					M.visible_message(pick("<b>[M]</b> makes a buzzing sound.", "<b>[M]</b> buzzes."),pick("BZZZZZZZZZZZZZZZ", "<span class='alert'><b>THE BUZZING GETS LOUDER</b></span>", "<span class='alert'><b>THE BUZZING WON'T STOP</b></span>"))
 				if (probmult(15))
@@ -401,6 +491,7 @@ datum
 			viscosity = 0.2
 			thirst_value = -0.03
 			minimum_reaction_temperature = T0C+400
+			taste = "illegal"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				var/myvol = volume
@@ -432,6 +523,8 @@ datum
 			viscosity = 0.4
 			hunger_value = -0.04
 			thirst_value = -0.04
+			contraband = 1
+			taste = "tangy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -471,6 +564,7 @@ datum
 			viscosity = 0.4
 			hunger_value = -0.04
 			thirst_value = 0.03
+			taste = "tangy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -510,17 +604,18 @@ datum
 			value = 3
 			thirst_value = -0.07
 			stun_resist = 8
+			taste = "bitter"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine", 1)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine", 1)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -579,17 +674,19 @@ datum
 			addiction_prob = 100
 			overdose = 70
 			stun_resist = 11
+			contraband = 2
+			taste = "too bitter"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine2", 3)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine2", 3)
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine2")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_nicotine2")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -683,6 +780,8 @@ datum
 			value = 3
 			viscosity = 0.1
 			thirst_value = -0.3
+			contraband = 4
+			taste = "weird"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -732,16 +831,31 @@ datum
 			overdose = 20
 			hunger_value = -0.1
 			thirst_value = -0.09
+			contraband = 7
+			var/fake_health = 40
+			taste = "sketchy"
+
+			on_remove()
+				src.fake_health = 40
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil")
+				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				M.jitteriness -= 40
-				if(prob(25)) M.take_brain_damage(1 * mult)
-				if(probmult(15)) M.emote(pick("smile", "grin", "yawn", "laugh", "drool"))
+				src.fake_health += mult
+				if(prob(25))
+					M.take_brain_damage(1 * mult)
+					src.fake_health += 3 * mult
+				if(probmult(15))
+					M.emote(pick("smile", "grin", "yawn", "laugh", "drool"))
 				if(prob(10))
 					boutput(M, "<span class='notice'><b>You feel pretty chill.</b></span>")
 					M.bodytemperature -= 1 * mult
 					M.emote("smile")
+					src.fake_health += 3 * mult
 				if(prob(5))
 					boutput(M, "<span class='alert'><b>You feel too chill!</b></span>")
 					M.emote(pick("yawn", "drool"))
@@ -752,11 +866,13 @@ datum
 				if(prob(2))
 					boutput(M, "<span class='alert'><b>Your skin feels all rough and dry.</b></span>")
 					random_brute_damage(M, 2 * mult)
+				APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil", src.fake_health)
 				..()
 				return
 
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				var/effect = ..(severity, M)
+				src.fake_health += severity * 4
 				if (severity == 1)
 					if (effect <= 2)
 						M.visible_message("<span class='alert'><b>[M.name]</b> looks dazed!</span>")
@@ -800,6 +916,13 @@ datum
 			transparency = 20
 			viscosity = 0.14
 			thirst_value = -0.1
+			contraband = 2
+			taste = "like catnip"
+			var/static/list/cat_halluc = list(
+				new /image('icons/mob/critter.dmi',"cat-ghost") = list("ghost cat"),
+				new /image('icons/mob/critter.dmi', "cat1-wild") = list("wild cat"),
+			)
+			var/static/list/cat_sounds = list('sound/voice/animal/cat.ogg', 'sound/voice/animal/cat_hiss.ogg')
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -809,21 +932,14 @@ datum
 					playsound(M.loc, "sound/voice/animal/cat_hiss.ogg", 50, 1)
 				if(probmult(9))
 					M.visible_message("<span class='notice'><b>[M.name]</b> meows! What the fuck?</span>")
-					playsound(M.loc, "sound/voice/animal/cat.ogg", 50, 1)
-				if(probmult(7))
-					switch(rand(1,2))
-						if(1)
-							var/ghostcats = rand(1,3)
-							for(var/i = 0, i < ghostcats, i++)
-								fake_attackEx(M, 'icons/mob/critter.dmi', "cat-ghost", "ghost cat")
-								M.playsound_local(M.loc, pick('sound/voice/animal/cat.ogg', 'sound/voice/animal/cat_hiss.ogg'), 50, 1)
-						if(2)
-							var/wildcats = rand(1,3)
-							for(var/i = 0, i < wildcats, i++)
-								fake_attackEx(M, 'icons/mob/critter.dmi', "cat1-wild", "wild cat")
-								M.playsound_local(M.loc, pick('sound/voice/animal/cat.ogg', 'sound/voice/animal/cat_hiss.ogg'), 50, 1)
-				if(probmult(20))
-					M.playsound_local(M.loc, pick('sound/voice/animal/cat.ogg', 'sound/voice/animal/cat_hiss.ogg'), 50, 1)
+					playsound(M.loc, 'sound/voice/animal/cat.ogg', 50, 1)
+
+				var/image/imagekey = pick(cat_halluc)
+				if(probmult(40)) //get attacked
+					var/list/attackers = M.GetComponents(/datum/component/hallucination/fake_attack)
+					if(length(attackers) < 2)
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(imagekey), name_list=cat_halluc[imagekey], attacker_prob=7, max_attackers=1)
+				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.cat_sounds, sound_prob=20)
 				..()
 				return
 
@@ -845,6 +961,13 @@ datum
 			transparency = 20
 			viscosity = 0.14
 			thirst_value = -0.1
+			contraband = 2
+			taste = "like batnip"
+			var/static/list/bat_halluc = list(
+				new /image('icons/mob/critter.dmi',"bat-dance") = list("ghost bat"),
+				new /image('icons/mob/critter.dmi', "scarybat-dance") = list("wild bat"),
+			)
+			var/static/list/bat_sounds = list('sound/voice/animal/batsqueak.ogg')
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -855,20 +978,13 @@ datum
 				if(probmult(9))
 					M.visible_message("<span class='notice'><b>[M.name]</b> squeaks! What the fuck?</span>")
 					playsound(M.loc, "sound/voice/animal/batsqueak.ogg", 40, 1, 2)
-				if(probmult(7))
-					switch(rand(1,2))
-						if(1)
-							var/bats = rand(1,3)
-							for(var/i = 0, i < bats, i++)
-								fake_attackEx(M, 'icons/mob/critter.dmi', "bat-dance", "ghost bat")
-								M.playsound_local(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
-						if(2)
-							var/scarybats = rand(1,3)
-							for(var/i = 0, i < scarybats, i++)
-								fake_attackEx(M, 'icons/mob/critter.dmi', "scarybat-dance", "wild bat")
-								M.playsound_local(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
-				if(probmult(20))
-					M.playsound_local(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
+
+				var/image/imagekey = pick(bat_halluc)
+				if(probmult(40)) //get attacked
+					var/list/attackers = M.GetComponents(/datum/component/hallucination/fake_attack)
+					if(length(attackers) < 2)
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(imagekey), name_list=bat_halluc[imagekey], attacker_prob=7, max_attackers=1)
+				M.AddComponent(/datum/component/hallucination/random_sound, timeout=10, sound_list=src.bat_sounds, sound_prob=20)
 				..()
 				return
 
@@ -894,15 +1010,18 @@ datum
 			depletion_rate = 0.2
 			value = 39 // 13c * 3  :v
 			energy_value = 3
-			bladder_value = -0.1
+			kidney_multiplier = 3
 			hunger_value = -0.3
 			thirst_value = -0.2
+			contraband = 18
+			taste = "like meth, like meth, and like meth"
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth")
-					M.remove_stun_resist_mod("triplemeth")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth")
+					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "triplemeth")
+					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "triplemeth")
 
 				if(hascall(holder.my_atom,"removeOverlayComposition"))
 					holder.my_atom:removeOverlayComposition(/datum/overlayComposition/triplemeth)
@@ -913,14 +1032,15 @@ datum
 				if(!M) M = holder.my_atom
 
 				if(holder.has_reagent("methamphetamine")) return ..() //Since is created by a meth overdose, dont react while meth is in their system.
-				M.add_stun_resist_mod("triplemeth", 98)
-				APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth", 100)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "triplemeth", 98)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "triplemeth", 98)
+				APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth", 100)
 
 				if(hascall(holder.my_atom,"addOverlayComposition"))
 					holder.my_atom:addOverlayComposition(/datum/overlayComposition/triplemeth)
 
 				if(probmult(50)) M.emote(pick("twitch","blink_r","shiver"))
-				M.make_jittery(5)
+				M.make_jittery(25 * mult)
 				M.make_dizzy(5 * mult)
 				M.change_misstep_chance(15 * mult)
 				M.take_brain_damage(1 * mult)
@@ -954,7 +1074,7 @@ datum
 						M.hand = !M.hand
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'><b>[M.name]</b> falls to the floor and flails uncontrollably!</span>")
-						M.make_jittery(10)
+						M.make_jittery(30)
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 10 SECONDS * mult))
 					else if (effect <= 7)
 						M.emote("laugh")
@@ -974,24 +1094,30 @@ datum
 			depletion_rate = 0.6
 			value = 13 // 9c + 1c + 1c + 1c + heat
 			energy_value = 1.5
-			bladder_value = -0.09
+			kidney_multiplier = 0.8
 			hunger_value = -0.09
 			thirst_value = -0.09
 			stun_resist = 50
+			contraband = 6
+			taste = "like meth"
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine", 3)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine", 3)
 				if (ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/energydrink, src.type)
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth")
+					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "triplemeth")
+					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "triplemeth")
+
 				..()
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine")
 				if(holder && ismob(holder.my_atom))
 					holder.del_reagent("triplemeth")
 				if (ismob(holder?.my_atom))
@@ -1002,7 +1128,7 @@ datum
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
 				if(probmult(5)) M.emote(pick("twitch","blink_r","shiver"))
-				M.make_jittery(5)
+				M.make_jittery((M.jitteriness < 350 ? 20 : 8) * mult)
 				M.drowsyness = max(M.drowsyness-10, 0)
 				if(M.sleeping) M.sleeping = 0
 				if(prob(50))
@@ -1039,7 +1165,7 @@ datum
 						M.hand = !M.hand
 					else if (effect <= 4)
 						M.visible_message("<span class='alert'><b>[M.name]</b> falls to the floor and flails uncontrollably!</span>")
-						M.make_jittery(10)
+						M.make_jittery(25)
 						M.setStatus("weakened", max(M.getStatusDuration("weakened"), 2 SECONDS * mult))
 					else if (effect <= 7)
 						M.emote("laugh")
@@ -1054,6 +1180,8 @@ datum
 			fluid_b = 63
 			transparency = 100
 			depletion_rate = 0.3
+			contraband = 13
+			taste = "unpleasant"
 
 			on_mob_life(var/mob/M, var/mult = 1) // commence bad times
 				if(!M) M = holder.my_atom
@@ -1076,8 +1204,7 @@ datum
 						src.breathefire(M)
 					if(check < 5)
 						var/bats = rand(2,3)
-						for(var/i = 0, i < bats, i++)
-						fake_attackEx(M, 'icons/misc/AzungarAdventure.dmi', "hellbat", "hellbat")
+						M.AddComponent(/datum/component/hallucination/fake_attack, timeout=10, image_list=list(new /image('icons/misc/AzungarAdventure.dmi', "hellbat")), name_list=list("hellbat"), attacker_prob=100, max_attackers=bats)
 						boutput(M, "<span class='alert'><b>A hellbat begins to chase you</b>!</span>")
 						M.emote("scream")
 					if(check < 20)

@@ -42,7 +42,7 @@ export const NoContainer: ReagentContainer = {
 };
 
 interface ReagentInfoProps extends BoxProps {
-  container: ReagentContainer;
+  readonly container: ReagentContainer;
 }
 
 interface ReagentGraphProps extends ReagentInfoProps {}

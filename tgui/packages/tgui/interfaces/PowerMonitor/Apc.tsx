@@ -103,7 +103,7 @@ export const PowerMonitorApcTableHeader = (_props, context) => {
 };
 
 type PowerMonitorApcTableRowsProps = {
-  search: string;
+  readonly search: string;
 };
 
 export const PowerMonitorApcTableRows = (props: PowerMonitorApcTableRowsProps, context) => {
@@ -120,8 +120,8 @@ export const PowerMonitorApcTableRows = (props: PowerMonitorApcTableRowsProps, c
 };
 
 type PowerMonitorApcTableRowProps = {
-  apc: PowerMonitorApcItemData;
-  search: string;
+  readonly apc: PowerMonitorApcItemData;
+  readonly search: string;
 };
 
 const PowerMonitorApcTableRow = (props: PowerMonitorApcTableRowProps, context) => {
@@ -164,7 +164,7 @@ const PowerMonitorApcTableRow = (props: PowerMonitorApcTableRowProps, context) =
 };
 
 type ApcStateProps = {
-  state: number;
+  readonly state: number;
 };
 
 const ApcState = ({ state }: ApcStateProps) => {

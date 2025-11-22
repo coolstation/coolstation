@@ -13,6 +13,7 @@
 	power_used = 0
 	system = "Engine"
 	icon_state = "engine-1"
+	value = 3250
 
 	activate()
 		..()
@@ -169,6 +170,7 @@
 	warprecharge = 150 //Interval it takes for warp to be ready again
 	speedmod = 1
 	icon_state = "engine-2"
+	value = 15000
 
 /obj/item/shipcomponent/engine/hermes
 	name = "Hermes 3.0 Engine"
@@ -178,6 +180,7 @@
 	warprecharge = 300
 	speedmod = 3
 	icon_state = "engine-3"
+	value = 5500
 
 /obj/item/shipcomponent/engine/zero
 	name = "Warp-0 Engine"
@@ -187,3 +190,4 @@
 	warprecharge = -1 //This disables the ability to create wormholes completely.
 	speedmod = 2
 	icon_state = "engine-4"
+	value = 2000 //novelty antique

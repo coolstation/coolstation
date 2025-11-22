@@ -129,6 +129,8 @@ proc/default_frequency_color(freq)
 			return RADIOC_ENGINEERING
 		if(R_FREQ_INTERCOM_CARGO)
 			return RADIOC_LOGISTICS
+		if(R_FREQ_LOGISTICS)
+			return RADIOC_LOGISTICS
 		if(R_FREQ_INTERCOM_CATERING)
 			return RADIOC_CIVILIAN
 		if(R_FREQ_INTERCOM_AI)

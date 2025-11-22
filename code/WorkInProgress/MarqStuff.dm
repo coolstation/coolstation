@@ -119,7 +119,7 @@
 	icon_state = "hld0"
 	opacity = 1
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	examine()
 		. = ..()
@@ -206,7 +206,7 @@
 /obj/steel_beams
 	name = "steel beams"
 	desc = "A bunch of unfortunately placed, tightly packed steel beams. You cannot get a meaningful glimpse of what's on the other side."
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 1
 	icon = 'icons/obj/stationobjs.dmi'
@@ -227,7 +227,7 @@
 /obj/faint_shimmer
 	name = "faint shimmer"
 	desc = "Huh."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	invisibility = 2
 	blend_mode = 4
@@ -444,7 +444,7 @@
 			return 1
 		else
 			var/obj/item/I = target
-			if (istype(I) && I.is_open_container() == 1 && I.reagents)
+			if (istype(I) && I.is_open_container() && I.reagents)
 				if (reagents.total_volume == reagents.maximum_volume)
 					boutput(user, "<span class='alert'>[src] is already coated in the maximum amount of reagents it can hold.</span>")
 				else if (!I.reagents.total_volume)
@@ -669,11 +669,9 @@
 		else
 			..()
 
-	#ifdef DATALOGGER
 			game_stats.Increment("violence")
 			if(target.mind && target.mind.assigned_role == "Clown")
 				game_stats.Increment("clownabuse")
-	#endif
 			return
 
 	/*

@@ -46,4 +46,8 @@
 
 	var/opaque_atom_count = 0
 
+	///Things that are hidden "in" this turf that are revealed when it is pried up.
+	///Kept in a hidden object on the turf so that `get_turf` works as normal. Yes this is crime, fight me I have a possum.
+	var/obj/effects/hidden_contents_holder/hidden_contents = null
+
 	//.turf_persistent.

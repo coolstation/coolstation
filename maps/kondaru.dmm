@@ -17,10 +17,6 @@
 	},
 /turf/space,
 /area/space)
-"aae" = (
-/turf/space,
-/turf/floor/airless/plating/damaged2,
-/area/space)
 "aaf" = (
 /obj/lattice,
 /turf/space,
@@ -49,13 +45,6 @@
 "aak" = (
 /obj/decal/poster/wallsign/space,
 /turf/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/space)
-"aal" = (
-/turf/floor/airless,
-/turf/shuttle/wall{
-	dir = 6;
 	icon_state = "wall3"
 	},
 /area/space)
@@ -161,13 +150,6 @@
 	},
 /turf/space,
 /area/space)
-"aaz" = (
-/turf/floor/airless,
-/turf/shuttle/wall{
-	dir = 6;
-	icon_state = "diagonalWall3"
-	},
-/area/space)
 "aaA" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -202,22 +184,6 @@
 	},
 /turf/space,
 /area/space)
-"aaH" = (
-/obj/grille/catwalk{
-	dir = 4
-	},
-/obj/machinery/light/small,
-/turf/floor/airless/plating/catwalk{
-	dir = 4
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 4
-	},
-/area/station/hangar/main)
-"aaI" = (
-/turf/space,
-/turf/floor/plating,
-/area/station/maintenance/northeast)
 "aaJ" = (
 /obj/grille/catwalk{
 	dir = 4
@@ -292,15 +258,6 @@
 	dir = 4
 	},
 /area/space)
-"aaR" = (
-/obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "1-6"
-	},
-/turf/space,
-/turf/floor/plating,
-/area/station/maintenance/east)
 "aaS" = (
 /obj/grille/catwalk,
 /turf/floor/airless/plating/catwalk,
@@ -312,18 +269,6 @@
 	},
 /turf/space,
 /area/space)
-"aaU" = (
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/solar/west,
-/turf/floor/airless{
-	icon_state = "solarbase";
-	name = "solar paneling"
-	},
-/turf/space,
-/area/station/solar/west)
 "aaV" = (
 /obj/grille/catwalk{
 	dir = 9
@@ -364,22 +309,6 @@
 	icon_state = "catwalk_cross"
 	},
 /area/space)
-"aba" = (
-/obj/grille/catwalk{
-	dir = 4
-	},
-/obj/landmark/magnet_shield,
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 4;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/turf/space,
-/turf/floor/airless/plating/catwalk{
-	dir = 4
-	},
-/area/mining/magnet)
 "abb" = (
 /obj/lattice{
 	dir = 1;
@@ -388,10 +317,6 @@
 /obj/machinery/light/runway_light,
 /turf/space,
 /area/space)
-"abe" = (
-/turf/space,
-/turf/space,
-/area/mining/magnet)
 "abf" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 10
@@ -408,61 +333,9 @@
 	dir = 6
 	},
 /area/space)
-"abh" = (
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/turf/space,
-/area/space)
 "abi" = (
 /turf/wall/asteroid/dark,
 /area/station/garden/owlery)
-"abj" = (
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/solar_control/west{
-	dir = 4
-	},
-/turf/space,
-/turf/floor/plating,
-/area/station/maintenance/solar/west)
-"abk" = (
-/obj/grille/catwalk{
-	dir = 9;
-	icon_state = "catwalk_cross"
-	},
-/obj/landmark/magnet_shield,
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 1;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 4;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 9;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/obj/securearea{
-	desc = "A warning sign. I guess this area is dangerous.";
-	icon_state = "magwarning2";
-	name = "ACTIVE MAGNET AREA"
-	},
-/turf/space,
-/turf/floor/airless/plating/catwalk{
-	dir = 9
-	},
-/area/mining/magnet)
 "abl" = (
 /obj/grille/catwalk{
 	dir = 4
@@ -475,30 +348,6 @@
 "abm" = (
 /turf/floor/plating/airless/asteroid/dark,
 /area/station/garden/owlery)
-"abn" = (
-/obj/lattice{
-	dir = 10;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/turf/space,
-/area/space)
-"abo" = (
-/obj/grille/catwalk{
-	dir = 4
-	},
-/obj/landmark/magnet_shield,
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 8;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/turf/space,
-/turf/floor/airless/plating/catwalk{
-	dir = 4
-	},
-/area/mining/magnet)
 "abp" = (
 /obj/cable{
 	d1 = 4;
@@ -6913,7 +6762,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour14;desc=In most circumstances, this public news station has no dedicated staff assigned. If you're looking for something to do on your time off, try journalism!";
 	freq = 1443;
-	location = "tour13";
+	beacon_id = "tour13";
 	name = "tour 13 - news"
 	},
 /obj/decal/tile_edge/floorguide/science{
@@ -6979,7 +6828,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour15;desc=The Engineering department's power division is located here. In the event they're not good at their jobs, the Pod Bay is directly opposite.";
 	freq = 1443;
-	location = "tour14";
+	beacon_id = "tour14";
 	name = "tour 14 - north"
 	},
 /turf/floor,
@@ -8631,7 +8480,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour16;desc=The station chapel is outfitted with a confessional booth and crematorium facilities. Just that. Definitely nothing else.";
 	freq = 1443;
-	location = "tour15";
+	beacon_id = "tour15";
 	name = "tour 15 - chapel"
 	},
 /turf/floor,
@@ -10094,7 +9943,7 @@
 	dir = 6
 	},
 /obj/machinery/portable_atmospherics/pump,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/coldloop)
@@ -10133,7 +9982,7 @@
 	on = 1;
 	transfer_rate = 1000
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/coldloop)
@@ -10368,7 +10217,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour13;desc=I'll be honest with you, I don't remember what this is. I think this used to be a poker club. Somebody else lives here now, though.";
 	freq = 1443;
-	location = "tour12";
+	beacon_id = "tour12";
 	name = "tour 12 - detective"
 	},
 /turf/floor/red/side{
@@ -10404,7 +10253,7 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/hotloop)
@@ -10418,7 +10267,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/hotloop)
@@ -10497,7 +10346,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold{
 	dir = 9
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/coldloop)
@@ -10519,7 +10368,7 @@
 /obj/machinery/atmospherics/unary/cold_sink/freezer{
 	dir = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/coldloop)
@@ -10776,7 +10625,7 @@
 	dir = 4;
 	pixel_x = -20
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/hotloop)
@@ -10808,7 +10657,7 @@
 /obj/stool/chair/office/yellow{
 	dir = 1
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/hotloop)
@@ -10914,7 +10763,7 @@
 /obj/machinery/atmospherics/pipe/tank{
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/coldloop)
@@ -11282,7 +11131,7 @@
 /obj/item/device/radio/intercom/engineering{
 	dir = 4
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/hotloop)
@@ -11314,7 +11163,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/hotloop)
@@ -11420,7 +11269,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/coldloop)
@@ -11640,7 +11489,7 @@
 /obj/item/storage/firstaid/toxin,
 /obj/item/device/analyzer/atmospheric,
 /obj/item/wrench,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/hotloop)
@@ -11668,7 +11517,7 @@
 	on = 1;
 	transfer_rate = 1000
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/hotloop)
@@ -11750,7 +11599,7 @@
 	dir = 1;
 	level = 2
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/coldloop)
@@ -11769,7 +11618,7 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/coldloop)
@@ -12102,7 +11951,7 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/hotloop)
@@ -12131,7 +11980,7 @@
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 5
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/hotloop)
@@ -12197,7 +12046,7 @@
 /area/station/engine/core)
 "aGt" = (
 /obj/machinery/atmospherics/valve,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/engine/coldloop)
@@ -12222,7 +12071,7 @@
 	on = 1;
 	target_pressure = 2000
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/coldloop)
@@ -12530,7 +12379,7 @@
 	dir = 4;
 	name = "Auxiliary Purge"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/hotloop)
@@ -13629,12 +13478,12 @@
 /obj/item/device/transfer_valve,
 /obj/item/device/transfer_valve,
 /obj/machinery/light_switch/west,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/hotloop)
 "aKv" = (
 /obj/machinery/atmospherics/portables_connector/north,
 /obj/machinery/light,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/hotloop)
 "aKw" = (
 /obj/cable{
@@ -13643,11 +13492,11 @@
 	icon_state = "2-9"
 	},
 /obj/machinery/atmospherics/pipe/simple/insulated,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/hotloop)
 "aKx" = (
 /obj/machinery/atmospherics/portables_connector/north,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/engine/hotloop)
 "aKy" = (
 /obj/wingrille_spawn/auto/crystal,
@@ -14164,15 +14013,6 @@
 	},
 /turf/floor/carpet/red/standard/edge/ne,
 /area/station/maintenance/west)
-"aMv" = (
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13"
-	},
-/turf/space,
-/turf/floor/black,
-/area/station/turret_protected/Zeta)
 "aMw" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/disposalpipe/segment/vertical,
@@ -14238,12 +14078,6 @@
 	},
 /turf/floor/black/grime,
 /area/station/maintenance/inner/east)
-"aMJ" = (
-/obj/table/wood/auto,
-/obj/machinery/computer3/luggable,
-/turf/space,
-/turf/floor/carpet/red/fancy/edge/se,
-/area/station/crew_quarters/quarters_north)
 "aMK" = (
 /obj/decal/poster/wallsign/hazard_exheat,
 /turf/wall/auto/reinforced/supernorn,
@@ -15114,7 +14948,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/magnet)
@@ -16250,8 +16084,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/stairs/dark/wide{
-	dir = 10
+/turf/floor/stairs/dark/wide2{
+	dir = 1
 	},
 /area/station/turret_protected/ai)
 "aSW" = (
@@ -16402,15 +16236,6 @@
 	},
 /turf/wall/auto/reinforced/supernorn,
 /area/station/ai_monitored/armory)
-"aTv" = (
-/obj/item/raw_material/shard/glass,
-/turf/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/turf/floor/airless/plating{
-	icon_state = "platingdmg2"
-	},
-/area/research_outpost/indigo_rye)
 "aTw" = (
 /obj/table/auto,
 /obj/machinery/microscope,
@@ -18308,7 +18133,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour17;desc=If doing a lap around the station isn't hitting the spot, make sure to try out the gymnasium facilities. On my left, there's also a mechanics' workshop and the rest of Engineering.";
 	freq = 1443;
-	location = "tour16";
+	beacon_id = "tour16";
 	name = "tour 16 - gym"
 	},
 /obj/machinery/light/emergency{
@@ -19512,7 +19337,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour12;desc=In the event of a hull breach or other loss of atmosphere, please proceed to this location or any of the blue emergency cabinets dispersed among the station.";
 	freq = 1443;
-	location = "tour11";
+	beacon_id = "tour11";
 	name = "tour 11 - eva"
 	},
 /turf/floor/black/side{
@@ -20140,11 +19965,6 @@
 "bfg" = (
 /turf/space,
 /area/station/mining/refinery)
-"bfj" = (
-/obj/lattice,
-/turf/space,
-/turf/space,
-/area/space)
 "bfk" = (
 /obj/table/reinforced/auto,
 /obj/access_spawn/security,
@@ -20737,7 +20557,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour11;desc=This is the station's medical bay. In the event of major injury, please report directly to this location as rapidly as possible for treatment.";
 	freq = 1443;
-	location = "tour10";
+	beacon_id = "tour10";
 	name = "tour 10 - medical"
 	},
 /turf/floor/carpet/blue/fancy/edge/north,
@@ -22355,7 +22175,7 @@
 /obj/disposalpipe/segment/vertical,
 /obj/access_spawn/mining,
 /obj/firedoor_spawn,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/mining/refinery)
 "bmA" = (
 /obj/machinery/r_door_control/podbay/mining,
@@ -22816,7 +22636,7 @@
 	tag = ""
 	},
 /obj/machinery/light_switch/west,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/refinery)
@@ -23277,7 +23097,7 @@
 /area/station/hallway/primary/south)
 "bpk" = (
 /obj/storage/closet/welding_supply,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/refinery)
@@ -23609,7 +23429,7 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/item/shipcomponent/secondary_system/orescoop,
 /obj/item/shipcomponent/communications/mining,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/refinery)
@@ -23635,7 +23455,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/refinery)
@@ -23965,7 +23785,7 @@
 /obj/item/shipcomponent/secondary_system/cargo{
 	pixel_x = 5
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/refinery)
@@ -23973,7 +23793,7 @@
 /turf/floor/caution/west,
 /area/station/mining/refinery)
 "brM" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/refinery)
@@ -23995,7 +23815,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/mining/staff_room)
@@ -24364,7 +24184,7 @@
 /obj/machinery/light_switch/east{
 	pixel_y = 11
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/refinery)
@@ -25021,13 +24841,6 @@
 /obj/firedoor_spawn,
 /turf/floor,
 /area/station/mining/staff_room)
-"bvI" = (
-/obj/submachine/chicken_incubator,
-/obj/item/reagent_containers/food/snacks/ingredient/egg{
-	rand_pos = 0
-	},
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "bvJ" = (
 /obj/machinery/atmospherics/pipe/simple/junction/west,
 /obj/machinery/light/small,
@@ -25333,13 +25146,13 @@
 /obj/decal/xmas_lights/ephemeral{
 	pixel_y = 32
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/mining/staff_room)
 "bwS" = (
 /obj/storage/secure/closet/logistics/mining,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/mining/staff_room)
@@ -25353,7 +25166,7 @@
 /obj/decal/xmas_lights/ephemeral{
 	pixel_y = 32
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/mining/staff_room)
@@ -25464,7 +25277,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour3;desc=In the event of minor to moderate injuries, you can stop by this convenient booth instead of going all the way to Medbay.";
 	freq = 1443;
-	location = "tour2";
+	beacon_id = "tour2";
 	name = "tour 2 - medbooth"
 	},
 /turf/floor/blue/side{
@@ -25673,7 +25486,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour10;desc=Somebody's probably going to make a mess. Don't worry - the janitor's here to help! Disclaimer: This unit does not condone or encourage creation of messes.";
 	freq = 1443;
-	location = "tour9";
+	beacon_id = "tour9";
 	name = "tour 9 - janitorial"
 	},
 /turf/floor,
@@ -25724,7 +25537,7 @@
 /area/station/mining/refinery)
 "byb" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/staff_room)
@@ -25750,7 +25563,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/staff_room)
@@ -26114,7 +25927,7 @@
 /turf/floor,
 /area/station/mining/staff_room)
 "bzk" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/staff_room)
@@ -26402,7 +26215,7 @@
 	dir = 1;
 	name = "autoname - SS13"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/station/mining/staff_room)
@@ -26421,16 +26234,16 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/mining/staff_room)
 "bAm" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/mining/staff_room)
 "bAn" = (
 /obj/stool/chair/yellow,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/mining/staff_room)
 "bAt" = (
 /turf/floor/dirt,
@@ -26618,7 +26431,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/staff_room)
@@ -26998,7 +26811,7 @@
 	},
 /obj/table/auto,
 /obj/machinery/cell_charger,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/hallway/primary/south)
@@ -27007,7 +26820,7 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/primary/south)
@@ -27015,7 +26828,7 @@
 /obj/disposalpipe/segment/brig{
 	dir = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/primary/south)
@@ -27023,7 +26836,7 @@
 /obj/disposalpipe/segment/brig{
 	dir = 8
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/hallway/primary/south)
@@ -27212,14 +27025,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/east)
-"bCR" = (
-/obj/table/wood/auto,
-/obj/displaycase{
-	displayed = new /obj/item/captaingun;
-	pixel_y = 6
-	},
-/turf/floor/carpet/arcade,
-/area/station/bridge/captain)
 "bCT" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/door/airlock/pyro/glass/command{
@@ -27456,7 +27261,7 @@
 /obj/machinery/ai_status_display{
 	pixel_y = 28
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/hallway/primary/south)
@@ -27469,7 +27274,7 @@
 /obj/disposalpipe/segment/brig{
 	dir = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/primary/south)
@@ -27478,7 +27283,7 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/vertical,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/primary/south)
@@ -27487,7 +27292,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/hallway/primary/south)
@@ -27538,7 +27343,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour6;desc=In the event you have committed an infraction, this room across from Security's main desk will help you get back on track. Make sure to ask for secure reimbursement of your effects!";
 	freq = 1443;
-	location = "tour5";
+	beacon_id = "tour5";
 	name = "tour 5 - security"
 	},
 /obj/disposalpipe/segment/vertical,
@@ -27865,7 +27670,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour7;desc=This station features a centrally-located mining magnet, permitting miners to easily interact with departments such as the Quartermaster's office to my right.";
 	freq = 1443;
-	location = "tour6";
+	beacon_id = "tour6";
 	name = "tour 6 - resource"
 	},
 /turf/floor,
@@ -28242,22 +28047,22 @@
 /area/station/hallway/primary/south)
 "bFr" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/orangeblack/corner,
+/turf/floor/cautionblack/corner,
 /area/station/hallway/primary/south)
 "bFs" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hallway/primary/south)
 "bFt" = (
 /obj/disposalpipe/switch_junction/right/west{
 	name = "undeliverable mail junction"
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hallway/primary/south)
 "bFu" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/disposalpipe/segment/vertical,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hallway/primary/south)
 "bFv" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -28267,26 +28072,26 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hallway/primary/south)
 "bFw" = (
 /obj/machinery/light,
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hallway/primary/south)
 "bFx" = (
 /obj/disposalpipe/switch_junction/right/west{
 	mail_tag = "QM";
 	name = "QM mail junction"
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hallway/primary/south)
 "bFy" = (
 /obj/disposalpipe/switch_junction/left/west{
 	mail_tag = "mining";
 	name = "mining mail junction"
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hallway/primary/south)
 "bFz" = (
 /obj/rack,
@@ -28309,7 +28114,7 @@
 "bFB" = (
 /obj/disposalpipe/segment/mail/bent/west,
 /obj/machinery/light,
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 8
 	},
 /area/station/hallway/primary/south)
@@ -28602,7 +28407,7 @@
 /obj/machinery/door/airlock/pyro/glass,
 /obj/disposalpipe/segment/mail/vertical,
 /obj/decal/garland/ephemeral,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/storage/warehouse)
 "bGu" = (
 /obj/wingrille_spawn/auto,
@@ -29157,7 +28962,7 @@
 	pixel_y = 20
 	},
 /obj/machinery/light_switch/north,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/storage/warehouse)
@@ -29168,16 +28973,16 @@
 	layer = 9.1;
 	pixel_y = 21
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/storage/warehouse)
 "bHN" = (
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/storage/warehouse)
 "bHO" = (
 /obj/stool/chair/yellow,
 /obj/disposalpipe/segment/vertical,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/storage/warehouse)
 "bHQ" = (
 /obj/machinery/computer/supplycomp,
@@ -29189,7 +28994,7 @@
 /obj/decal/xmas_lights/ephemeral{
 	pixel_y = 32
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/quartermaster/office)
@@ -29207,13 +29012,13 @@
 	dir = 1;
 	pixel_y = 16
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/quartermaster/office)
 "bHS" = (
 /obj/shrub,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/quartermaster/office)
@@ -29245,7 +29050,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/quartermaster/office)
@@ -29257,7 +29062,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/quartermaster/office)
@@ -29276,7 +29081,7 @@
 /obj/decal/xmas_lights/ephemeral{
 	pixel_y = 32
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 5
 	},
 /area/station/quartermaster/office)
@@ -29730,7 +29535,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour8;desc=They say magic is just science that isn't understood. For the staff assistants in the crowd, this is the wizard's den! Please maintain a safe distance.";
 	freq = 1443;
-	location = "tour7";
+	beacon_id = "tour7";
 	name = "tour 7 - science"
 	},
 /turf/floor,
@@ -29838,22 +29643,22 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/storage/warehouse)
 "bJn" = (
 /obj/disposalpipe/segment/horizontal,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/storage/warehouse)
 "bJo" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/horizontal,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/storage/warehouse)
 "bJp" = (
 /obj/disposalpipe/segment/bent/west,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/storage/warehouse)
 "bJq" = (
 /obj/machinery/drainage,
@@ -29909,7 +29714,7 @@
 	icon_state = "2-8"
 	},
 /obj/decal/garland/ephemeral,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/hallway/primary/south)
 "bJv" = (
 /obj/cable{
@@ -29957,7 +29762,7 @@
 	},
 /obj/cable,
 /obj/machinery/power/data_terminal,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -29997,7 +29802,7 @@
 	icon_state = "1-4"
 	},
 /obj/access_spawn/cargo,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bJG" = (
 /obj/machinery/door/airlock/pyro/external,
@@ -30386,29 +30191,29 @@
 /area/station/storage/warehouse)
 "bKH" = (
 /obj/disposalpipe/segment/vertical,
-/turf/floor/orangeblack/corner,
+/turf/floor/cautionblack/corner,
 /area/station/storage/warehouse)
 "bKI" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 6
 	},
 /area/station/storage/warehouse)
 "bKJ" = (
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/storage/warehouse)
 "bKK" = (
 /obj/machinery/conveyor{
 	id = "kondaru_qmio"
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/storage/warehouse)
 "bKL" = (
 /obj/shrub{
 	icon = 'icons/obj/stationobjs.dmi';
 	icon_state = "plant"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/storage/warehouse)
 "bKM" = (
 /obj/table/reinforced/auto,
@@ -30421,7 +30226,7 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/quartermaster/office)
@@ -30448,7 +30253,7 @@
 "bKR" = (
 /obj/machinery/light_switch/east,
 /obj/storage/secure/closet/logistics/cargo,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -30864,7 +30669,7 @@
 	pixel_x = 12
 	},
 /obj/disposalpipe/segment/vertical,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/storage/warehouse)
@@ -30882,14 +30687,14 @@
 /obj/plasticflaps{
 	layer = 3.1
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bLV" = (
 /obj/table/reinforced/auto,
 /obj/machinery/computer/security/wooden_tv/small{
 	pixel_y = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/quartermaster/office)
@@ -30918,7 +30723,7 @@
 	pixel_y = 1
 	},
 /obj/storage/secure/closet/logistics/cargo,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -31063,7 +30868,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour1;desc=Greetings, unfrozen crew member or other participant! I am the Mitigative After-Rest Crew Orientation unit, or Marco for short, and I'm here to show you around. Let's go!";
 	freq = 1443;
-	location = "tour0";
+	beacon_id = "tour0";
 	name = "tour beacon - start"
 	},
 /obj/decal/tile_edge/floorguide/arrow_e{
@@ -31322,7 +31127,7 @@
 	tag = ""
 	},
 /obj/machinery/light_switch/east,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/storage/warehouse)
@@ -31343,7 +31148,7 @@
 	layer = 9.1;
 	pixel_y = 21
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 9
 	},
 /area/station/quartermaster/office)
@@ -31352,7 +31157,7 @@
 	id = "kondaru_qmio"
 	},
 /obj/disposalpipe/segment/mail/vertical,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/quartermaster/office)
@@ -31365,14 +31170,14 @@
 /obj/decal/xmas_lights/ephemeral{
 	pixel_y = 32
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/quartermaster/office)
 "bMZ" = (
 /obj/machinery/disposal/mail/autoname/qm,
 /obj/disposalpipe/trunk/mail/east,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/quartermaster/office)
@@ -31386,7 +31191,7 @@
 	name = "creased printout";
 	pixel_y = 16
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/quartermaster/office)
@@ -31408,7 +31213,7 @@
 	layer = 9.1;
 	pixel_x = 10
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -31505,7 +31310,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour18;desc=Oh, before I forget. Head out the shower room's back door and hang a left, and look for the wood doors. Don't tell anyone I told you.";
 	freq = 1443;
-	location = "tour17";
+	beacon_id = "tour17";
 	name = "tour 17 - east"
 	},
 /turf/floor,
@@ -32002,12 +31807,12 @@
 /area/station/storage/warehouse)
 "bOB" = (
 /obj/disposalpipe/segment/vertical,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/storage/warehouse)
 "bOD" = (
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/quartermaster/office)
@@ -32061,7 +31866,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/autoname/east,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -32431,13 +32236,13 @@
 /area/station/storage/warehouse)
 "bPS" = (
 /obj/disposalpipe/segment/bent/north,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/storage/warehouse)
 "bPT" = (
 /obj/disposalpipe/segment/horizontal,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/quartermaster/office)
@@ -32456,7 +32261,7 @@
 /area/station/quartermaster/office)
 "bPW" = (
 /obj/submachine/cargopad/qm,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bPX" = (
 /obj/decal/tile_edge/line/yellow{
@@ -32486,7 +32291,7 @@
 	dir = 4;
 	pixel_x = 10
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -32834,7 +32639,7 @@
 	dir = 4;
 	pixel_x = 12
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/storage/warehouse)
@@ -32847,7 +32652,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/quartermaster/office)
@@ -33348,7 +33153,7 @@
 	pixel_x = -2;
 	pixel_y = 14
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/station/quartermaster/office)
@@ -33359,7 +33164,7 @@
 /obj/item/wrapping_paper,
 /obj/item/wirecutters,
 /obj/machinery/light/emergency,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/quartermaster/office)
 "bSP" = (
 /obj/machinery/disposal,
@@ -33369,25 +33174,25 @@
 	dir = 1;
 	name = "autoname - SS13"
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/quartermaster/office)
 "bSQ" = (
 /obj/machinery/manufacturer/qm,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/quartermaster/office)
 "bSR" = (
 /obj/disposaloutlet/north{
 	name = "undeliverable mail outlet"
 	},
 /obj/disposalpipe/trunk/mail/north,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/quartermaster/office)
 "bSS" = (
 /obj/machinery/computer/supplycomp,
 /obj/machinery/light,
 /obj/cable,
 /obj/machinery/power/data_terminal,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/quartermaster/office)
 "bSU" = (
 /turf/floor/caution/westeast,
@@ -33410,7 +33215,7 @@
 	dir = 8
 	},
 /obj/access_spawn/cargo,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -34523,7 +34328,7 @@
 	},
 /obj/firedoor_spawn,
 /obj/access_spawn/cargo,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "bXc" = (
 /obj/cable{
@@ -35133,7 +34938,7 @@
 	dir = 8;
 	pixel_x = 20
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/quartermaster/office)
@@ -36563,7 +36368,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour9;desc=If you're looking to get your shark on, look no further. The station stock floor is on my right, and trade vessels dock here on the regular.";
 	freq = 1443;
-	location = "tour8";
+	beacon_id = "tour8";
 	name = "tour 8 - mercantile"
 	},
 /turf/floor{
@@ -38058,14 +37863,6 @@
 /obj/decal/cleanable/robot_debris,
 /turf/floor/plating/airless/asteroid/dark,
 /area/research_outpost/indigo_rye)
-"ciO" = (
-/turf/floor/plating{
-	icon_state = "platingdmg1"
-	},
-/turf/floor/airless/plating{
-	icon_state = "platingdmg2"
-	},
-/area/research_outpost/indigo_rye)
 "ciP" = (
 /obj/table/reinforced/auto,
 /obj/access_spawn/security,
@@ -38149,11 +37946,6 @@
 /area/research_outpost/indigo_rye)
 "cjb" = (
 /obj/item/device/igniter,
-/turf/floor/engine/vacuum,
-/area/research_outpost/indigo_rye)
-"cjc" = (
-/obj/decal/cleanable/blood/splatter,
-/obj/item/device/reagentscanner,
 /turf/floor/engine/vacuum,
 /area/research_outpost/indigo_rye)
 "cjd" = (
@@ -38388,7 +38180,7 @@
 	req_access_txt = "24";
 	start_charge = 0
 	},
-/obj/apc_helper/nopoweralert,
+/obj/map/apc_helper/nopoweralert,
 /turf/floor/caution/east,
 /area/research_outpost/indigo_rye)
 "cjI" = (
@@ -39126,7 +38918,7 @@
 /obj/machinery/power/apc/autoname/south{
 	cell_type = 5000
 	},
-/obj/apc_helper/noaicontrol,
+/obj/map/apc_helper/noaicontrol,
 /turf/floor/plating,
 /area/listeningpost)
 "clz" = (
@@ -39255,7 +39047,7 @@
 	name = "defaced NanoTrasen poster";
 	pixel_y = 28
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "clN" = (
 /obj/machinery/light/small{
@@ -39263,7 +39055,7 @@
 	},
 /obj/machinery/bot/medbot/no_camera,
 /obj/noticeboard,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "clO" = (
 /obj/cable{
@@ -39271,7 +39063,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "clP" = (
 /obj/machinery/vending/alcohol,
@@ -39308,7 +39100,7 @@
 /area/listeningpost)
 "clU" = (
 /obj/stool/chair/comfy,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "clV" = (
 /obj/machinery/light/small{
@@ -39368,14 +39160,14 @@
 /obj/table/wood/auto,
 /obj/item/storage/firstaid/regular,
 /obj/item/bandage,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "cmg" = (
 /obj/table/wood/auto,
 /obj/item/reagent_containers/food/drinks/bottle/tequila,
 /obj/item/card_group/plain,
 /obj/item/spacecash/hundred,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "cmh" = (
 /obj/cable{
@@ -39386,7 +39178,7 @@
 /obj/stool/chair/comfy{
 	dir = 8
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "cmi" = (
 /obj/submachine/ATM{
@@ -39402,14 +39194,14 @@
 "cml" = (
 /obj/table/wood/auto,
 /obj/machinery/recharger,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "cmm" = (
 /obj/table/wood/auto,
 /obj/item/clothing/suit/wcoat,
 /obj/item/matchbook,
 /obj/item/pen/marker/red,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "cmn" = (
 /obj/cable{
@@ -39425,7 +39217,7 @@
 /obj/stool/chair/comfy{
 	dir = 8
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "cmo" = (
 /obj/cable{
@@ -39504,7 +39296,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/light/small,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "cmy" = (
 /obj/cable{
@@ -39512,13 +39304,13 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "cmz" = (
 /obj/cable{
 	icon_state = "1-8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/listeningpost)
 "cmA" = (
 /obj/machinery/light/small{
@@ -40081,7 +39873,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/quartermaster/office)
@@ -40110,7 +39902,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/quartermaster/office)
@@ -40374,7 +40166,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/mining/staff_room)
 "coF" = (
 /obj/wingrille_spawn/auto,
@@ -40400,7 +40192,7 @@
 	icon_state = "1-8"
 	},
 /obj/decal/garland/ephemeral,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/mining/staff_room)
 "coH" = (
 /obj/wingrille_spawn/auto,
@@ -40426,7 +40218,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/mining/staff_room)
 "coJ" = (
 /obj/wingrille_spawn/auto,
@@ -40506,7 +40298,7 @@
 /obj/table/reinforced/auto,
 /obj/item/shipcomponent/mainweapon/rockdrills,
 /obj/item/shipcomponent/mainweapon/rockdrills,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/refinery)
@@ -40915,14 +40707,6 @@
 	},
 /turf/floor/plating,
 /area/station/storage/eva)
-"cqx" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/turf/space,
-/area/space)
 "cqF" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/storage/closet/port_a_sci,
@@ -41318,7 +41102,7 @@
 	pixel_y = 1
 	},
 /obj/machinery/processor,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/magnet)
@@ -41450,7 +41234,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/magnet)
@@ -42359,7 +42143,7 @@
 /area/station/engine/engineering)
 "dJh" = (
 /obj/machinery/ore_cloud_storage_container,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/mining/magnet)
 "dJy" = (
 /obj/machinery/door/airlock/pyro/glass{
@@ -42370,7 +42154,7 @@
 /turf/floor,
 /area/station/hydroponics/bay)
 "dJA" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/mining/magnet)
@@ -42398,7 +42182,7 @@
 	dir = 8
 	},
 /obj/access_spawn/mining,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/magnet)
@@ -42664,7 +42448,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/magnet)
@@ -42845,6 +42629,39 @@
 	dir = 8
 	},
 /area/station/hallway/secondary/exit)
+"efC" = (
+/obj/grille/catwalk{
+	dir = 10;
+	icon_state = "catwalk_cross"
+	},
+/obj/landmark/magnet_shield,
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	dir = 1;
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	dir = 8;
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	dir = 10;
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/obj/securearea{
+	desc = "A warning sign. I guess this area is dangerous.";
+	icon_state = "magwarning2";
+	name = "ACTIVE MAGNET AREA"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 10
+	},
+/area/mining/magnet)
 "egj" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -42919,7 +42736,7 @@
 	layer = 9.1;
 	pixel_x = -10
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/magnet)
@@ -42962,14 +42779,6 @@
 	},
 /turf/floor/wood/two,
 /area/station/crew_quarters/cafeteria)
-"eoR" = (
-/obj/lattice{
-	dir = 8;
-	icon_state = "lattice-dir"
-	},
-/turf/space,
-/turf/space,
-/area/space)
 "eoV" = (
 /obj/machinery/door/airlock/pyro/glass/engineering{
 	dir = 4;
@@ -42989,7 +42798,7 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/mining/magnet)
 "epu" = (
 /obj/machinery/atmospherics/valve{
@@ -43443,7 +43252,7 @@
 	pixel_x = 10
 	},
 /obj/machinery/portable_reclaimer,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/magnet)
@@ -43956,6 +43765,11 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/sw)
+"fpC" = (
+/obj/table/wood/auto,
+/obj/machinery/computer3/luggable,
+/turf/floor/carpet/red/fancy/edge/se,
+/area/station/crew_quarters/quarters_north)
 "fpD" = (
 /obj/table/auto,
 /obj/random_item_spawner/tableware,
@@ -44106,6 +43920,11 @@
 	},
 /turf/floor/carpet/red/fancy/edge/east,
 /area/station/security/hos)
+"fyh" = (
+/turf/floor/airless/plating{
+	icon_state = "platingdmg2"
+	},
+/area/research_outpost/indigo_rye)
 "fyL" = (
 /obj/machinery/door/airlock/pyro/external{
 	dir = 4
@@ -44292,7 +44111,7 @@
 	})
 "fIi" = (
 /obj/machinery/power/apc/autoname/west,
-/obj/apc_helper/noaicontrol,
+/obj/map/apc_helper/noaicontrol,
 /obj/cable{
 	d2 = 4;
 	icon_state = "0-4"
@@ -44313,7 +44132,7 @@
 /obj/machinery/light/emergency,
 /obj/machinery/power/apc/autoname/west,
 /obj/cable,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/station/mining/magnet)
@@ -44353,7 +44172,7 @@
 /obj/item/clothing/head/helmet/space/engineer,
 /obj/item/device/gps,
 /obj/item/storage/belt/mining,
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/mining/magnet)
@@ -44410,32 +44229,6 @@
 	},
 /turf/space,
 /area/station/com_dish/comdish)
-"fNF" = (
-/obj/railing/orange/reinforced{
-	dir = 4
-	},
-/obj/machinery/disposal/mail/small{
-	dir = 1;
-	mail_tag = "ranch";
-	mailgroup = "botany";
-	name = "Ranch";
-	pixel_y = 32
-	},
-/obj/disposalpipe/trunk/mail/south,
-/obj/table/reinforced/auto,
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag{
-	rand_pos = 1
-	},
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag{
-	rand_pos = 1
-	},
-/obj/item/reagent_containers/food/snacks/chicken_feed_bag{
-	rand_pos = 1
-	},
-/turf/floor/grasstodirt{
-	dir = 4
-	},
-/area/station/ranch)
 "fNQ" = (
 /obj/machinery/door/airlock/pyro/maintenance{
 	name = "Routing Depot"
@@ -44949,6 +44742,12 @@
 /obj/wingrille_spawn/auto/crystal,
 /turf/floor/circuit/vintage,
 /area/station/crewquarters/cryotron)
+"goc" = (
+/obj/item/reagent_containers/food/snacks/ingredient/egg{
+	rand_pos = 0
+	},
+/turf/floor/grass/leafy,
+/area/station/ranch)
 "gow" = (
 /obj/machinery/computer/barcode{
 	destinations = list("Catering","Disposal","Engineering","Export","Medbay","Mining","Pod Bay","Research","Security","QM");
@@ -44958,7 +44757,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/magnet)
@@ -45319,7 +45118,7 @@
 /obj/machinery/computer/security/wooden_tv/small{
 	pixel_y = 8
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 8
 	},
 /area/station/mining/magnet)
@@ -45614,14 +45413,14 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/mining/magnet)
 "gVs" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/decal/tile_edge/floorguide/qm,
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/hallway/primary/south)
 "gVI" = (
 /obj/landmark/gps_waypoint,
@@ -45738,7 +45537,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour20;desc=Thank you for joining me on this tour! You should now be acclimatized to the station. If you're still feeling a bit lost, look for the Bartender or Head of Personnel.";
 	freq = 1443;
-	location = "tour19";
+	beacon_id = "tour19";
 	name = "tour 19 - conclusion"
 	},
 /obj/decal/tile_edge/floorguide/botany{
@@ -46872,6 +46671,14 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"ivw" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/solar/west,
+/turf/space,
+/area/station/solar/west)
 "iwq" = (
 /obj/machinery/space_heater,
 /turf/floor/plating,
@@ -47010,7 +46817,7 @@
 /obj/decal/xmas_lights/ephemeral{
 	pixel_y = 32
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/primary/south)
@@ -47031,40 +46838,6 @@
 /obj/machinery/door/airlock/pyro/external,
 /turf/floor/plating,
 /area/station/maintenance/southeast)
-"iFH" = (
-/obj/grille/catwalk{
-	dir = 10;
-	icon_state = "catwalk_cross"
-	},
-/obj/landmark/magnet_shield,
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 1;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 8;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 10;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/obj/securearea{
-	desc = "A warning sign. I guess this area is dangerous.";
-	icon_state = "magwarning2";
-	name = "ACTIVE MAGNET AREA"
-	},
-/turf/space,
-/turf/floor/airless/plating/catwalk{
-	dir = 10
-	},
-/area/mining/magnet)
 "iGa" = (
 /obj/table/auto,
 /obj/item/storage/box/syringes,
@@ -47101,7 +46874,7 @@
 	},
 /area/station/hydroponics/bay)
 "iHF" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/mining/magnet)
@@ -47199,7 +46972,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour5;desc=Our state-of-the-art hydroponics department is equipped with over a dozen cultivation units. If you'd like to try your hand at gardening, job changes may be available at the courtroom to my right.";
 	freq = 1443;
-	location = "tour4";
+	beacon_id = "tour4";
 	name = "tour 4 - south"
 	},
 /turf/floor,
@@ -48031,6 +47804,14 @@
 /obj/machinery/hydro_growlamp,
 /turf/floor/grass,
 /area/station/hydroponics/bay)
+"jJe" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "1-6"
+	},
+/turf/floor/plating,
+/area/station/maintenance/east)
 "jJP" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/green/side{
@@ -48131,7 +47912,7 @@
 /obj/table/reinforced/auto,
 /obj/machinery/recharger,
 /obj/item/cargotele,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/magnet)
@@ -48143,7 +47924,7 @@
 /obj/decal/xmas_lights/ephemeral{
 	pixel_y = 32
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/magnet)
@@ -48189,6 +47970,11 @@
 	},
 /turf/floor/plating,
 /area/station/security/beepsky)
+"jSO" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
+/obj/item/device/reagentscanner,
+/turf/floor/engine/vacuum,
+/area/research_outpost/indigo_rye)
 "jSP" = (
 /obj/plasticflaps,
 /obj/machinery/cargo_router/kd_cater_flap,
@@ -48348,7 +48134,7 @@
 	on = 1;
 	transfer_rate = 1000
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/engine/coldloop)
@@ -48506,7 +48292,7 @@
 	layer = 9.1;
 	pixel_y = 21
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/magnet)
@@ -48612,7 +48398,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/mining/magnet)
@@ -49155,7 +48941,7 @@
 	name = "Crate Retrieval Driver";
 	pixel_y = -19
 	},
-/turf/floor/orangeblack/side,
+/turf/floor/cautionblack/side,
 /area/station/quartermaster/office)
 "kTo" = (
 /obj/machinery/atmospherics/pipe/manifold{
@@ -50428,6 +50214,9 @@
 	},
 /turf/floor,
 /area/station/storage/emergency)
+"mlk" = (
+/turf/floor/airless/plating/damaged2,
+/area/space)
 "mlG" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -51006,7 +50795,7 @@
 /obj/decal/tile_edge/floorguide/mining{
 	dir = 8
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/primary/south)
@@ -52004,7 +51793,7 @@
 	dir = 1;
 	pixel_y = 16
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/hallway/primary/south)
@@ -52012,7 +51801,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/ce)
 "nSM" = (
 /obj/wingrille_spawn/auto,
@@ -52398,7 +52187,7 @@
 /obj/item/device/matanalyzer{
 	rand_pos = 0
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/magnet)
@@ -52467,18 +52256,6 @@
 	},
 /turf/floor/grey/blackgrime/other,
 /area/station/storage/tech)
-"oox" = (
-/obj/railing/orange/reinforced{
-	dir = 8
-	},
-/obj/submachine/chicken_feed_grinder,
-/obj/item/reagent_containers/food/snacks/plant/corn{
-	doants = 0
-	},
-/turf/floor/grasstodirt{
-	dir = 8
-	},
-/area/station/ranch)
 "ooE" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -52630,7 +52407,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour";
 	freq = 1443;
-	location = "tour20";
+	beacon_id = "tour20";
 	name = "tour beacon - home"
 	},
 /obj/machinery/power/data_terminal,
@@ -52650,6 +52427,13 @@
 	},
 /turf/floor/grey,
 /area/station/crew_quarters/catering)
+"oxI" = (
+/obj/item/reagent_containers/food/snacks/ingredient/egg{
+	rand_pos = 0
+	},
+/obj/machinery/camera/ranch,
+/turf/floor/grass/leafy,
+/area/station/ranch)
 "oyG" = (
 /obj/item/clothing/glasses/blindfold,
 /turf/floor/engine/vacuum,
@@ -52721,8 +52505,14 @@
 	dir = 1
 	},
 /area/station/hallway/primary/east)
+"oET" = (
+/turf/shuttle/wall{
+	dir = 6;
+	icon_state = "diagonalWall3"
+	},
+/area/space)
 "oFt" = (
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 8
 	},
 /area/station/mining/magnet)
@@ -52828,6 +52618,12 @@
 	},
 /turf/wall/auto/reinforced/supernorn,
 /area/station/security/main)
+"oMg" = (
+/turf/shuttle/wall{
+	dir = 6;
+	icon_state = "wall3"
+	},
+/area/space)
 "oNK" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/disposalpipe/junction/right/north,
@@ -53170,8 +52966,8 @@
 /obj/rack,
 /obj/item/ammo/bullets/smoke,
 /obj/item/ammo/bullets/smoke,
-/obj/item/gun/kinetic/riot40mm,
-/obj/item/gun/kinetic/riot40mm,
+/obj/item/gun/modular/italian/launcher/basic,
+/obj/item/gun/modular/italian/launcher/basic,
 /obj/item/crowbar,
 /turf/floor/redblack{
 	dir = 4
@@ -53394,7 +53190,7 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/crew_quarters/ce)
 "pvj" = (
 /obj/cable{
@@ -54273,7 +54069,7 @@
 /obj/decal/xmas_lights/ephemeral{
 	pixel_y = 32
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/mining/staff_room)
@@ -54873,7 +54669,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour2;desc=Whether you've been in a long sleep or on a long trip, the on-station bar and cafeteria is sure to get you up and running again. Try the arcade, too!";
 	freq = 1443;
-	location = "tour1";
+	beacon_id = "tour1";
 	name = "tour 1 - bar"
 	},
 /turf/floor/specialroom/bar,
@@ -55092,7 +54888,7 @@
 	pixel_y = 8
 	},
 /obj/machinery/light,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 6
 	},
 /area/station/mining/staff_room)
@@ -55150,7 +54946,7 @@
 /obj/mug_rack{
 	pixel_x = -26
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 8
 	},
 /area/station/mining/magnet)
@@ -55377,14 +55173,23 @@
 	},
 /turf/floor/plating,
 /area/station/medical/medbay/lobby)
+"rzv" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/solar_control/west{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/station/maintenance/solar/west)
 "rAa" = (
 /obj/table/reinforced/auto,
-/obj/item/gun/kinetic/riot40mm{
+/obj/item/gun/modular/italian/launcher/basic{
 	pixel_y = 10
 	},
 /obj/item/ammo/bullets/smoke,
 /obj/item/ammo/bullets/smoke,
-/obj/item/gun/kinetic/riot40mm,
+/obj/item/gun/modular/italian/launcher/basic,
 /turf/floor/engine,
 /area/station/ai_monitored/armory)
 "rAg" = (
@@ -55671,7 +55476,7 @@
 	pixel_x = 10
 	},
 /obj/machinery/manufacturer/mining,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/magnet)
@@ -56076,6 +55881,14 @@
 /obj/machinery/light_switch/east,
 /turf/floor/blue/checker,
 /area/station/crew_quarters/pool)
+"ssv" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13"
+	},
+/turf/floor/black,
+/area/station/turret_protected/Zeta)
 "ssQ" = (
 /obj/cable{
 	d1 = 4;
@@ -56330,6 +56143,12 @@
 	},
 /turf/floor,
 /area/station/hallway/secondary/exit)
+"sId" = (
+/obj/item/raw_material/shard/glass,
+/turf/floor/airless/plating{
+	icon_state = "platingdmg2"
+	},
+/area/research_outpost/indigo_rye)
 "sIi" = (
 /obj/disposalpipe/segment/vertical,
 /obj/cable{
@@ -56617,7 +56436,7 @@
 	},
 /obj/firedoor_spawn,
 /obj/access_spawn/mining,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/mining/magnet)
 "sUo" = (
 /obj/machinery/disposal,
@@ -57152,6 +56971,39 @@
 	},
 /turf/floor/airless/grey,
 /area/station/maintenance/west)
+"trg" = (
+/obj/grille/catwalk{
+	dir = 9;
+	icon_state = "catwalk_cross"
+	},
+/obj/landmark/magnet_shield,
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	dir = 1;
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	dir = 4;
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	dir = 9;
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/obj/securearea{
+	desc = "A warning sign. I guess this area is dangerous.";
+	icon_state = "magwarning2";
+	name = "ACTIVE MAGNET AREA"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 9
+	},
+/area/mining/magnet)
 "trB" = (
 /obj/disposalpipe/segment/brig{
 	dir = 1
@@ -57303,6 +57155,15 @@
 	icon_state = "catwalk_cross"
 	},
 /area/station/mining/magnet)
+"tAa" = (
+/obj/grille/catwalk{
+	dir = 4
+	},
+/obj/machinery/light/small,
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
+/area/station/hangar/main)
 "tBq" = (
 /obj/disposalpipe/segment/brig{
 	dir = 8
@@ -57452,14 +57313,6 @@
 	},
 /turf/floor,
 /area/station/quartermaster/cargobay)
-"tGO" = (
-/obj/submachine/chicken_incubator,
-/obj/item/reagent_containers/food/snacks/ingredient/egg{
-	rand_pos = 0
-	},
-/obj/machinery/camera/ranch,
-/turf/floor/grass/leafy,
-/area/station/ranch)
 "tHm" = (
 /obj/machinery/power/apc/autoname/east,
 /obj/cable{
@@ -57605,7 +57458,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/magnet)
@@ -58571,6 +58424,14 @@
 "uLg" = (
 /turf/floor/engine,
 /area/station/quartermaster/cargobay)
+"uLt" = (
+/obj/table/wood/auto,
+/obj/displaycase{
+	displayed = new/obj/item/captaingun;
+	pixel_y = 6
+	},
+/turf/floor/carpet/arcade,
+/area/station/bridge/captain)
 "uMr" = (
 /obj/table/reinforced/auto,
 /obj/machinery/light,
@@ -58881,6 +58742,17 @@
 /area/station/medical/research{
 	name = "Genetic Research"
 	})
+"vfp" = (
+/obj/railing/orange/reinforced{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/snacks/plant/corn{
+	doants = 0
+	},
+/turf/floor/grasstodirt{
+	dir = 8
+	},
+/area/station/ranch)
 "vgI" = (
 /obj/cable{
 	d1 = 1;
@@ -59852,6 +59724,23 @@
 	},
 /turf/floor/plating,
 /area/station/turret_protected/ai_upload)
+"wij" = (
+/obj/railing/orange/reinforced{
+	dir = 4
+	},
+/obj/machinery/disposal/mail/small{
+	dir = 1;
+	mail_tag = "ranch";
+	mailgroup = "botany";
+	name = "Ranch";
+	pixel_y = 32
+	},
+/obj/disposalpipe/trunk/mail/south,
+/obj/table/reinforced/auto,
+/turf/floor/grasstodirt{
+	dir = 4
+	},
+/area/station/ranch)
 "wio" = (
 /obj/wingrille_spawn/auto,
 /obj/cable{
@@ -59948,7 +59837,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 1
 	},
 /area/station/mining/magnet)
@@ -60064,7 +59953,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/floor/orangeblack/corner,
+/turf/floor/cautionblack/corner,
 /area/station/mining/magnet)
 "wuc" = (
 /obj/machinery/light/small{
@@ -60111,7 +60000,7 @@
 /obj/item/clothing/head/helmet/space/engineer,
 /obj/item/device/gps,
 /obj/item/storage/belt/mining,
-/turf/floor/orangeblack/corner{
+/turf/floor/cautionblack/corner{
 	dir = 4
 	},
 /area/station/mining/magnet)
@@ -60448,7 +60337,7 @@
 /obj/machinery/light,
 /obj/machinery/recharger,
 /obj/machinery/light_switch/west,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 10
 	},
 /area/station/mining/magnet)
@@ -60646,7 +60535,7 @@
 /turf/floor/red,
 /area/station/hangar/sec)
 "wVa" = (
-/turf/floor/orangeblack/corner,
+/turf/floor/cautionblack/corner,
 /area/station/mining/magnet)
 "wVb" = (
 /obj/rack,
@@ -60659,7 +60548,7 @@
 /obj/machinery/phone/wall{
 	pixel_y = 32
 	},
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 1
 	},
 /area/station/mining/magnet)
@@ -60847,7 +60736,7 @@
 	tag = ""
 	},
 /obj/machinery/manufacturer/mining,
-/turf/floor/orangeblack/side{
+/turf/floor/cautionblack/side{
 	dir = 4
 	},
 /area/station/mining/magnet)
@@ -61128,7 +61017,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour19;desc=This section of the station contains crew quarters and the evacuation wing. In the event the emergency shuttle is called, please proceed down this corridor in an orderly fashion.";
 	freq = 1443;
-	location = "tour18";
+	beacon_id = "tour18";
 	name = "tour 18 - crew"
 	},
 /turf/floor,
@@ -61164,7 +61053,7 @@
 /obj/firedoor_spawn,
 /obj/access_spawn/cargo,
 /obj/disposalpipe/segment/horizontal,
-/turf/floor/orangeblack,
+/turf/floor/cautionblack,
 /area/station/quartermaster/office)
 "xvH" = (
 /obj/machinery/vending/janitor,
@@ -61986,7 +61875,7 @@
 /obj/machinery/navbeacon{
 	codes_txt = "tour;next_tour=tour4;desc=On my right through the double doors is the station's headquarters. When waiting in the area, please use the provided seating.";
 	freq = 1443;
-	location = "tour3";
+	beacon_id = "tour3";
 	name = "tour 3 - command"
 	},
 /obj/decal/tile_edge/floorguide/qm{
@@ -69305,7 +69194,7 @@ aaa
 aaa
 ciE
 ciE
-ciO
+fyh
 ciK
 ciU
 ciL
@@ -71117,7 +71006,7 @@ ciC
 ciH
 ciG
 ciH
-aTv
+sId
 ciS
 ciZ
 cjb
@@ -71422,7 +71311,7 @@ ciH
 ciQ
 ciT
 bXj
-cjc
+jSO
 ciL
 ciL
 ciL
@@ -90343,7 +90232,7 @@ aaa
 aaa
 aaa
 aaa
-aaU
+ivw
 aKa
 aKa
 aKa
@@ -90362,7 +90251,7 @@ aKa
 aKa
 aKa
 aKa
-aaU
+ivw
 aaa
 aaa
 aaa
@@ -91872,7 +91761,7 @@ aKa
 aKa
 aKa
 aKa
-aaU
+ivw
 aaa
 aaa
 aaa
@@ -94282,7 +94171,7 @@ aaf
 abZ
 aUT
 aWh
-abj
+rzv
 bax
 aZh
 beR
@@ -102391,7 +102280,7 @@ aay
 ack
 adi
 ack
-aaH
+tAa
 aeK
 afH
 afI
@@ -105449,20 +105338,20 @@ cRL
 vHU
 ftA
 aaf
-abh
-abh
-bfj
-abh
-abh
-abh
-bfj
-abh
-abh
-abh
-bfj
-abh
-abh
-abn
+aad
+aad
+aaf
+aad
+aad
+aad
+aaf
+aad
+aad
+aad
+aaf
+aad
+aad
+acO
 aaa
 bgm
 bfg
@@ -105750,7 +105639,7 @@ auL
 aMK
 abf
 aOK
-abn
+acO
 aaa
 aaa
 aci
@@ -105764,7 +105653,7 @@ aaa
 aci
 aaa
 aaa
-cqx
+aci
 aaa
 bgm
 bfg
@@ -106052,7 +105941,7 @@ aLI
 azW
 aad
 ceD
-abn
+acO
 aaa
 acb
 aaf
@@ -106066,7 +105955,7 @@ acb
 aaf
 afw
 aaa
-eoR
+ach
 cpu
 bgl
 tmy
@@ -106354,7 +106243,7 @@ aLJ
 aML
 aaa
 ach
-abk
+trg
 aPC
 aPC
 aPC
@@ -106368,7 +106257,7 @@ aPC
 aPC
 aPC
 aPC
-iFH
+efC
 aaa
 bgm
 bfg
@@ -106656,7 +106545,7 @@ aLI
 aML
 aaa
 ach
-aba
+aea
 aQJ
 aQJ
 aQJ
@@ -106670,7 +106559,7 @@ aQJ
 aQJ
 aQJ
 aQJ
-abo
+aeV
 aaa
 bgm
 bfg
@@ -106958,7 +106847,7 @@ aLJ
 azW
 aay
 aaf
-aba
+aea
 aQJ
 aQJ
 aQJ
@@ -106972,7 +106861,7 @@ aQJ
 aQJ
 aQJ
 aQJ
-abo
+aeV
 ree
 gxN
 ree
@@ -107260,7 +107149,7 @@ aLK
 auL
 nRo
 aaf
-aba
+aea
 aQJ
 aQJ
 aQJ
@@ -107274,7 +107163,7 @@ aQJ
 aQJ
 aQJ
 aQJ
-abo
+aeV
 ree
 gxN
 ree
@@ -107562,7 +107451,7 @@ aaX
 aaY
 abg
 aaf
-aba
+aea
 aQJ
 aQJ
 aQJ
@@ -107576,7 +107465,7 @@ aQJ
 aQJ
 aQJ
 aQJ
-abo
+aeV
 ree
 gxN
 ree
@@ -107864,7 +107753,7 @@ aaf
 aMN
 aad
 aaf
-aba
+aea
 aQJ
 aQJ
 aQJ
@@ -107878,7 +107767,7 @@ aQJ
 aQJ
 aQJ
 aQJ
-abo
+aeV
 tOE
 fXT
 tOE
@@ -108166,7 +108055,7 @@ acO
 aBj
 aaa
 aaO
-aba
+aea
 aQJ
 aQJ
 aQJ
@@ -108180,7 +108069,7 @@ aQJ
 aQJ
 aQJ
 aQJ
-abo
+aeV
 oUa
 ury
 tWL
@@ -108468,7 +108357,7 @@ acO
 aaa
 aaa
 acb
-aba
+aea
 aQJ
 aQJ
 aQJ
@@ -108482,7 +108371,7 @@ aQJ
 aQJ
 aQJ
 aQJ
-abo
+aeV
 qoc
 mLb
 juf
@@ -108770,7 +108659,7 @@ aaf
 aay
 aay
 aaf
-aba
+aea
 aQJ
 aQJ
 aQJ
@@ -108784,7 +108673,7 @@ aQJ
 aQJ
 aQJ
 aQJ
-abo
+aeV
 iuC
 mLb
 tOE
@@ -109072,7 +108961,7 @@ aaf
 aad
 aad
 aaf
-aba
+aea
 aQJ
 aQJ
 aQJ
@@ -109086,7 +108975,7 @@ aQJ
 aQJ
 aQJ
 aQJ
-abo
+aeV
 tzN
 ury
 tWL
@@ -109374,7 +109263,7 @@ acO
 aaa
 aaa
 ach
-aba
+aea
 aQJ
 aQJ
 aQJ
@@ -109388,7 +109277,7 @@ aQJ
 aQJ
 aQJ
 aQJ
-abo
+aeV
 juf
 xQB
 juf
@@ -109676,21 +109565,21 @@ acO
 aaa
 aaa
 ach
-aba
-abe
-abe
-abe
-abe
-abe
-abe
-abe
-abe
-abe
-abe
-abe
-abe
-abe
-abo
+aea
+aQJ
+aQJ
+aQJ
+aQJ
+aQJ
+aQJ
+aQJ
+aQJ
+aQJ
+aQJ
+aQJ
+aQJ
+aQJ
+aeV
 ree
 gxN
 ree
@@ -110914,7 +110803,7 @@ brW
 bWw
 buI
 fJL
-bvI
+goc
 aup
 iul
 buI
@@ -112124,7 +112013,7 @@ buI
 syA
 byl
 yjN
-oox
+vfp
 tah
 xmr
 bDA
@@ -112724,7 +112613,7 @@ bqG
 dZr
 bYu
 buI
-fNF
+wij
 crf
 qax
 kAt
@@ -113630,7 +113519,7 @@ bpu
 bqJ
 bQo
 buI
-tGO
+oxI
 etm
 aup
 ltn
@@ -122927,7 +122816,7 @@ aaa
 aaa
 aaa
 adL
-aaI
+auA
 agI
 age
 age
@@ -123599,7 +123488,7 @@ qFo
 bwi
 bxy
 byG
-bCR
+uLt
 vDJ
 bBJ
 bxm
@@ -126878,7 +126767,7 @@ aVB
 lUL
 lUL
 lUL
-aaR
+jJe
 bkp
 bmf
 bpw
@@ -127237,7 +127126,7 @@ xLG
 bHl
 bSk
 fbA
-aMv
+ssv
 grA
 bHl
 bHl
@@ -128863,7 +128752,7 @@ aaa
 aaa
 aaa
 aaf
-aae
+mlk
 aai
 aaa
 aaa
@@ -129466,9 +129355,9 @@ aaa
 aaa
 aaa
 aag
-aal
+oMg
 aar
-aaz
+oET
 aaD
 aaa
 aaa
@@ -130812,7 +130701,7 @@ bty
 aIS
 oqi
 aQe
-aMJ
+fpC
 aIS
 aOu
 aQe
@@ -130971,7 +130860,7 @@ aaa
 aaa
 aaa
 aaa
-aae
+mlk
 aaa
 aaa
 aaa

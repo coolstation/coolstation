@@ -28,6 +28,10 @@
 	},
 /turf/floor/plating,
 /area/dmm_suite/clear_area)
+"cu" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/plating/random,
+/area/dmm_suite/clear_area)
 "cw" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -161,12 +165,20 @@
 	},
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
+"oG" = (
+/obj/random_item_spawner/mask/one_or_zero,
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
 "pt" = (
 /obj/window/cubicle{
 	dir = 2;
 	name = "divider wall"
 	},
 /turf/floor/grime,
+/area/dmm_suite/clear_area)
+"pv" = (
+/obj/random_item_spawner/hat/one_or_zero,
+/turf/floor/engine,
 /area/dmm_suite/clear_area)
 "pE" = (
 /obj/lattice{
@@ -249,7 +261,7 @@
 /turf/variableTurf/random_ship_wall,
 /area/dmm_suite/clear_area)
 "xv" = (
-/obj/landmark/random_ship_room/cargo5x3,
+/obj/random_item_spawner/junk/one,
 /turf/floor/engine,
 /area/dmm_suite/clear_area)
 "yc" = (
@@ -406,6 +418,10 @@
 "Oh" = (
 /turf/floor/engine,
 /area/dmm_suite/clear_area)
+"Pb" = (
+/obj/random_item_spawner/med_kit/one_or_zero,
+/turf/floor/plating,
+/area/dmm_suite/clear_area)
 "Pr" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -483,6 +499,10 @@
 	},
 /turf/floor/plating,
 /area/dmm_suite/clear_area)
+"VR" = (
+/obj/random_item_spawner/shoe,
+/turf/floor/engine,
+/area/dmm_suite/clear_area)
 "WJ" = (
 /obj/wingrille_spawn/reinforced/classic,
 /turf/floor/plating/random,
@@ -507,6 +527,10 @@
 /obj/table/reinforced/auto,
 /obj/item/folder,
 /turf/floor/grime,
+/area/dmm_suite/clear_area)
+"YX" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/engine,
 /area/dmm_suite/clear_area)
 "Zt" = (
 /obj/lattice/grey{
@@ -644,7 +668,7 @@ nb
 RD
 Oh
 Oh
-Oh
+YX
 RD
 nb
 nb
@@ -669,7 +693,7 @@ nb
 "}
 (6,1,1) = {"
 RD
-Oh
+xv
 Oh
 Oh
 RD
@@ -697,8 +721,8 @@ nb
 (7,1,1) = {"
 RD
 Oh
-Oh
-Oh
+YX
+oG
 RD
 nb
 nb
@@ -723,15 +747,15 @@ nb
 "}
 (8,1,1) = {"
 RD
+VR
 Oh
-Oh
-Oh
+YX
 RD
 nb
 nb
 Yd
 cw
-Ni
+cu
 aM
 cS
 yz
@@ -785,7 +809,7 @@ nb
 nb
 Yd
 Rp
-Ni
+cu
 vn
 Qw
 yz
@@ -860,9 +884,9 @@ nb
 nb
 nb
 RD
-No
-Oh
-xv
+Pb
+YX
+YX
 RD
 nb
 nb
@@ -887,8 +911,8 @@ nb
 nb
 nb
 RD
-Oh
-Oh
+YX
+xv
 Oh
 RD
 nb
@@ -914,8 +938,8 @@ nb
 nb
 nb
 RD
-Oh
-Oh
+YX
+xv
 No
 RD
 nb
@@ -968,7 +992,7 @@ nb
 nb
 nb
 RD
-Oh
+xv
 Oh
 Oh
 RD
@@ -1144,13 +1168,13 @@ nb
 nb
 nb
 Me
-No
+HX
 Oh
 Oh
 Oh
+YX
 Oh
-Oh
-No
+HX
 Dq
 "}
 (24,1,1) = {"
@@ -1171,12 +1195,12 @@ nb
 nb
 nb
 Ls
+HX
+Oh
+YX
+Oh
 No
-Oh
-Oh
-Oh
-No
-Oh
+YX
 No
 ho
 "}
@@ -1199,11 +1223,11 @@ RD
 yz
 mx
 No
-Oh
+YX
 No
 Oh
 Oh
-Oh
+YX
 No
 ve
 "}
@@ -1220,9 +1244,9 @@ pE
 HX
 No
 Oh
-Oh
-Oh
-Oh
+xv
+YX
+YX
 HX
 rB
 yz
@@ -1245,7 +1269,7 @@ No
 yz
 BB
 HX
-Oh
+YX
 Oh
 Oh
 Oh
@@ -1272,11 +1296,11 @@ ve
 IO
 op
 HX
+xv
 Oh
+YX
 Oh
-Oh
-Oh
-Oh
+pv
 HX
 ve
 nb

@@ -114,6 +114,7 @@ export const recallWindowGeometry = async (options = {}) => {
     window.screen.availWidth,
     window.screen.availHeight,
   ];
+  window.document.body.style['zoom'] = `${100 / window.devicePixelRatio}%`;
   // Set window size
   if (size) {
     // Constraint size to not exceed available screen area.
@@ -180,8 +181,8 @@ export const dragStartHandler = event => {
   logger.log('drag start');
   dragging = true;
   dragPointOffset = [
-    window.screenLeft - event.screenX,
-    window.screenTop - event.screenY,
+    (window.screenLeft - event.screenX) * window.devicePixelRatio,
+    (window.screenTop - event.screenY) * window.devicePixelRatio,
   ];
   document.addEventListener('mousemove', dragMoveHandler);
   document.addEventListener('mouseup', dragEndHandler);
@@ -203,7 +204,7 @@ const dragMoveHandler = event => {
   }
   event.preventDefault();
   setWindowPosition(vecAdd(
-    [event.screenX, event.screenY],
+    [event.screenX * window.devicePixelRatio, event.screenY * window.devicePixelRatio],
     dragPointOffset));
 };
 
@@ -212,8 +213,8 @@ export const resizeStartHandler = (x, y) => event => {
   logger.log('resize start', resizeMatrix);
   resizing = true;
   dragPointOffset = [
-    window.screenLeft - event.screenX,
-    window.screenTop - event.screenY,
+    (window.screenLeft - event.screenX) * window.devicePixelRatio,
+    (window.screenTop - event.screenY) * window.devicePixelRatio,
   ];
   initialSize = [
     window.innerWidth,

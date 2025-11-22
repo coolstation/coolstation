@@ -332,7 +332,7 @@
 					src.invisibility = 0
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"
@@ -377,7 +377,7 @@
 		else
 			..()
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if (istype(mover, /obj/projectile))
 			var/obj/projectile/proj = mover
 			if (istype(proj.proj_data, /datum/projectile/energy_bolt_antighost))
@@ -414,7 +414,7 @@
 		return
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -626,7 +626,7 @@
 		return
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		var/mob/living/Cc
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (C.ckey == null) continue //do not attack non-threats ie. NPC monkeys and AFK players
@@ -709,7 +709,7 @@
 		sword_damage_max = 0
 		sword_damage_min = 0
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -838,7 +838,7 @@
 	generic = 0
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -904,9 +904,9 @@
 				return
 
 	ai_think()
-		if(!locate(/obj/decal/cleanable/blood) in src.loc)
+		if(!locate(/obj/decal/cleanable/tracked_reagents/blood) in src.loc)
 			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1, -1)
-			make_cleanable( /obj/decal/cleanable/blood,loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,loc)
 		return ..()
 
 /obj/critter/blobman
@@ -1019,7 +1019,7 @@
 			return
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in range(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -1079,7 +1079,7 @@
 			qdel(src)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return
@@ -1158,7 +1158,7 @@
 	aggressive = 1
 	defensive = 0 //should avoid any kind of reaction/charging at
 	notwitch = 1
-	anchored = 1
+	anchored = ANCHORED
 	opensdoors = OBJ_CRITTER_OPENS_DOORS_PUBLIC
 	density = 1
 	var/boredom_countdown = 0
@@ -1175,7 +1175,7 @@
 
 	//find friend
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return
@@ -1315,7 +1315,7 @@
 			qdel(src)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return
@@ -1495,7 +1495,7 @@
 			world << colouring
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		var/mob/living/Cc
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (C.ckey == null) continue //do not attack non-threats ie. NPC monkeys and AFK players
@@ -1544,8 +1544,67 @@
 			else
 				src.visible_message("[src] slithers around happily!")
 
-	CanPass(atom/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/mover, turf/target)
 		if (istype(mover, /obj/projectile))
 			return prob(50)
 		else
 			return ..()
+
+// A generic enemy for var editing gimmicks
+/obj/critter/generic_enemy
+	name = "killer tomato"
+	icon_state = "ktomato"
+	density = 1
+	aggressive = 1
+	defensive = 0
+	wanderer = 1
+	opensdoors = OBJ_CRITTER_OPENS_DOORS_ANY
+	atkcarbon = 1
+	atksilicon = 1
+	atk_brute_amt = 4
+	crit_brute_amt = 6
+	generic = 0
+	var/attack_sound = "sound/voice/MEraaargh.ogg"
+	var/idle_sound = "sound/voice/MEhunger.ogg"
+
+	ai_think()
+		..()
+		if (prob(10))
+			playsound(src.loc, idle_sound, 50, 1)
+
+	seek_target()
+		src.anchored = 0
+		for (var/mob/living/C in hearers(src.seekrange,src))
+			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
+			if (iscarbon(C) && !src.atkcarbon) continue
+			if (issilicon(C) && !src.atksilicon) continue
+			if (C.health < 0) continue
+			if (C in src.friends) continue
+			if (C.name == src.attacker) src.attack = 1
+			if (iscarbon(C) && src.atkcarbon) src.attack = 1
+			if (issilicon(C) && src.atksilicon) src.attack = 1
+
+			if (src.attack)
+				src.target = C
+				src.oldtarget_name = C.name
+				src.visible_message("<span class='combat'><b>[src]</b> charges at [C:name]!</span>")
+				playsound(src.loc, attack_sound, 50, 1)
+				src.task = "chasing"
+				break
+			else
+				continue
+
+	ChaseAttack(mob/M)
+		..()
+		if (prob(20)) M.changeStatus("stunned", 2 SECONDS)
+		random_brute_damage(M, rand(4,6),1)
+
+	CritterAttack(mob/M)
+		..()
+
+	CritterDeath()
+		..()
+		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
+		make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,src.loc)
+		qdel (src)
+

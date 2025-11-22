@@ -801,4 +801,5 @@
 		if (!istext(message))
 			return ""
 		message = replacetext(message, "i think", "methinks") //If anyone knows how to fix the case sensitivity for this please
+		message = replacetext(message, "meme", "image macro")
 		return message

@@ -80,7 +80,7 @@
 		if(!stay_awake)
 			sleeping = 15
 			enabled = 0
-	if(!istype(owner.loc, /turf/space/fluid) || owner.z != 1) // fuck finding hotspots when we're in an aquarium or some other zlevel
+	if(!istype(owner.loc, /turf/space/fluid/ocean) || owner.z != 1) // fuck finding hotspots when we're in an aquarium or some other zlevel
 		step_rand(owner, 0)
 		return
 	..()

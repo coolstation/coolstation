@@ -224,6 +224,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Miscellaneous"
 
+/*
 /datum/manufacture/stunrounds
 	name = ".38 Stunner Rounds"
 	item_paths = list("MET-1","CON-1", "CRY-1")
@@ -250,15 +251,17 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 30 SECONDS
 	create = 1
 	category = "Resource"
+*/
 
-/datum/manufacture/bullet_smoke
-	name = "40mm Smoke Grenade"
+/datum/manufacture/fog_grenade
+	name = "Fog Grenade"
 	item_paths = list("MET-2","CON-1")
 	item_amounts = list(30,25)
-	item_outputs = list(/obj/item/ammo/bullets/smoke)
+	item_outputs = list(/obj/item/chem_grenade/fog)
 	time = 35 SECONDS
 	create = 1
 	category = "Resource"
+
 
 /datum/manufacture/extinguisher
 	name = "Fire Extinguisher"
@@ -530,15 +533,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 		S.amount = 2
 		S.inventory_counter.update_number(S.amount)
 
-/datum/manufacture/atmos_can
-	name = "Portable Gas Canister"
-	item_paths = list("MET-2")
-	item_amounts = list(3)
-	item_outputs = list(/obj/machinery/portable_atmospherics/canister)
-	time = 10 SECONDS
-	create = 1
-	category = "Machinery"
-
 /datum/manufacture/fluidcanister
 	name = "Fluid Canister"
 	item_paths = list("MET-2")
@@ -548,10 +542,62 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
+/datum/manufacture/chemicalcan
+	name = "Chemical Canister"
+	item_paths = list("MET-2")
+	item_amounts = list(10)
+	item_outputs = list(/obj/item/reagent_containers/food/drinks/chemicalcan)
+	time = 10 SECONDS
+	create = 1
+	category = "Machinery"
+
+/datum/manufacture/tripod
+	name = "Tripod"
+	item_paths = list("MET-1")
+	item_names = list("Metal")
+	item_amounts = list(10)
+	item_outputs = list(/obj/item/tripod)
+	time = 15 SECONDS
+	create = 1
+	category = "Machinery"
+
+/datum/manufacture/tripod_bulb
+	name = "Tripod Light Bulb"
+	item_paths = list("CRY-1","CON-1")
+	item_amounts = list(5,2)
+	item_outputs = list(/obj/item/tripod_bulb/light)
+	time = 5 SECONDS
+	create = 1
+	category = "Resource"
+
 //// cogwerks - gas extraction stuff
 
-/datum/manufacture/air_can/large
-	name = "High-Volume Air Canister"
+/datum/manufacture/atmos_can
+	name = "Portable Gas Canister"
+	item_paths = list("MET-2")
+	item_amounts = list(3)
+	item_outputs = list(/obj/machinery/portable_atmospherics/canister)
+	time = 10 SECONDS
+	create = 1
+	category = "Machinery"
+
+/datum/manufacture/gas_extract
+	New()
+		..()
+		src.name = initial(src.name) + " Canister"
+
+/datum/manufacture/gas_extract/proc/toggle_refill()
+	src.name = initial(src.name) + " Refill"
+	src.item_amounts.Cut(1,2)
+	src.item_paths -= "MET-2"
+
+/datum/manufacture/gas_extract/proc/toggle_canister()
+	src.name = initial(src.name) + " Canister"
+	src.item_paths.Insert(1,"MET-2")
+	src.item_amounts.Insert(1, 3)
+
+/datum/manufacture/gas_extract/air_can/large
+	name = "High-Volume Air"
 	item_paths = list("MET-2","molitz","viscerite")
 	item_amounts = list(3,10,30)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/air/large)
@@ -559,8 +605,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/co2_can
-	name = "CO2 Canister"
+/datum/manufacture/gas_extract/co2_can
+	name = "CO2"
 	item_paths = list("MET-2","char")
 	item_amounts = list(3,10)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/carbon_dioxide)
@@ -568,8 +614,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/o2_can
-	name = "O2 Canister"
+/datum/manufacture/gas_extract/o2_can
+	name = "O2"
 	item_paths = list("MET-2","molitz")
 	item_amounts = list(3,10)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/oxygen)
@@ -577,8 +623,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/plasma_can
-	name = "Plasma Canister"
+/datum/manufacture/gas_extract/plasma_can
+	name = "Plasma"
 	item_paths = list("MET-2","plasmastone")
 	item_amounts = list(3,10)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/toxins)
@@ -586,17 +632,19 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/agent_b_can
-	name = "Agent B Canister"
+/*
+/datum/manufacture/gas_extract/agent_b_can
+	name = "Agent B"
 	item_paths = list("MET-2","molitz_b")
 	item_amounts = list(3,15)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
 	time = 100 SECONDS
 	create = 1
 	category = "Machinery"
+*/
 
-/datum/manufacture/n2_can
-	name = "N2 Canister"
+/datum/manufacture/gas_extract/n2_can
+	name = "N2"
 	item_paths = list("MET-2","viscerite")
 	item_amounts = list(3,10)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/nitrogen)
@@ -604,8 +652,8 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Machinery"
 
-/datum/manufacture/n2o_can
-	name = "N2O Canister"
+/datum/manufacture/gas_extract/n2o_can
+	name = "N2O"
 	item_paths = list("MET-2","koshmarite")
 	item_amounts = list(3,10)
 	item_outputs = list(/obj/machinery/portable_atmospherics/canister/sleeping_agent)
@@ -920,6 +968,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Clothing"
 
+/datum/manufacture/white_cane
+	name = "White Cane"
+	item_paths = list("MET-1","FAB-1")
+	item_amounts = list(4,1)
+	item_outputs = list(/obj/item/white_cane)
+	time = 4 SECONDS
+	create = 1
+	category = "Clothing"
+
 /datum/manufacture/glasses
 	name = "Prescription Glasses"
 	item_paths = list("MET-1","CRY-1")
@@ -962,6 +1019,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	item_amounts = list(3)
 	item_outputs = list(/obj/item/body_bag)
 	time = 15 SECONDS
+	create = 1
+	category = "Tool"
+
+/datum/manufacture/rag
+	name = "Rag"
+	item_paths = list("FAB-1")
+	item_amounts = list(2)
+	item_outputs = list(/obj/item/material_piece/cloth/rag)
+	time = 5 SECONDS
 	create = 1
 	category = "Tool"
 
@@ -1427,7 +1493,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	name = "Security Drone"
 	item_paths = list("MET-2","CON-2","POW-1")
 	item_amounts = list(30,20,20)
-	item_outputs = list(/obj/machinery/bot/secbot)
+	item_outputs = list(/mob/living/critter/robotic/bot/securitron)
 	time = 120 SECONDS
 	create = 1
 	category = "Machinery"
@@ -2970,17 +3036,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Miscellaneous"
 
-/******************** GUNS *******************/
-
-/datum/manufacture/alastor
-	name = "Alastor pattern laser rifle"
-	item_paths = list("DEN-1","MET-3","CON-1","CRY-1")
-	item_amounts = list(1,10,20,20)
-	item_outputs = list(/obj/item/gun/energy/alastor)
-	time = 30 SECONDS
-	create = 1
-	category = "Tool"
-
 /************ INTERDICTOR STUFF ************/
 
 /datum/manufacture/interdictor_frame
@@ -3020,6 +3075,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Weapon"
 
+/*
 /datum/manufacture/saa	//
 	name = "Colt SAA"
 	item_paths = list("MET-2")
@@ -3069,7 +3125,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 7 SECONDS
 	create = 1
 	category = "ammo"
-
 /datum/manufacture/riot_launcher	//
 	name = "Riot Launcher"
 	item_paths = list("MET-1")
@@ -3102,7 +3157,6 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 10 SECONDS
 	create = 1
 	category = "ammo"
-
 /datum/manufacture/sniper	//
 	name = "Sniper"
 	item_paths = list("DEN-1","MET-3","CON-1","CRY-1")
@@ -3151,6 +3205,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 7 SECONDS
 	create = 1
 	category = "Ammo"
+*/
 /datum/manufacture/plank	//
 	name = "Plank/Barricade"
 	item_paths = list("MET-1")

@@ -11,6 +11,10 @@
 		src.material.triggerTemp(src, exposed_temperature)
 	if (reagents)
 		reagents.temperature_reagents(exposed_temperature, exposed_volume, 350, 300, 1)
+	if (src.active_liquid && src.active_liquid.group)
+		open_flame_reaction(src.active_liquid.group.reagents)
+	if (src.active_airborne_liquid && src.active_airborne_liquid.group)
+		open_flame_reaction(src.active_airborne_liquid.group.reagents, TRUE)
 	if(!ON_COOLDOWN(src, "hotspot_expose_to_atoms__1", 1 SECOND) || !ON_COOLDOWN(src, "hotspot_expose_to_atoms__2", 1 SECOND) || !ON_COOLDOWN(src, "hotspot_expose_to_atoms__3", 1 SECOND) || !ON_COOLDOWN(src, "hotspot_expose_to_atoms__4", 1 SECOND) || !ON_COOLDOWN(src, "hotspot_expose_to_atoms__5", 1 SECOND))
 		if (electric) //mbc : i'm putting electric zaps on here because eleczaps ALWAYS happen alongside hotspot expose and i dont want to loop all atoms twice
 			for (var/atom/item in src) //I hate having to add this here too but too many things use hotspot_expose. This might cause lag on large fires.
@@ -20,8 +24,8 @@
 		else
 			for(var/atom/item in src) //I hate having to add this here too but too many things use hotspot_expose. This might cause lag on large fires.
 				item.temperature_expose(null, exposed_temperature, exposed_volume)
-
-
+				if(item.reagents && item.is_open_container())
+					open_flame_reaction(item.reagents)
 
 /turf/hotspot_expose(exposed_temperature, exposed_volume, set_own_hotspot, electric = 0)
 	. = ..()
@@ -75,7 +79,7 @@
 
 /obj/hotspot
 	mouse_opacity = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
 
@@ -93,7 +97,7 @@
 	var/temperature = FIRE_MINIMUM_TEMPERATURE_TO_EXIST
 	var/just_spawned = 1
 	var/bypassing = 0
-	var/catalyst_active = FALSE
+	var/cleanup_active = TRUE
 
 	New()
 		..()
@@ -107,7 +111,8 @@
 	disposing()
 		STOP_TRACKING
 		light.disable(queued_run = 1)
-		if (loc)
+		qdel(light)
+		if (cleanup_active && loc)
 			loc:active_hotspot = null
 		..()
 /*
@@ -202,6 +207,7 @@
 
 			src.volume = affected.fuel_burnt*FIRE_GROWTH_RATE
 
+/*
 			//Inhibit hotspot use as turf heats up to resolve abuse of hotspots unless catalyst is present...
 			//Scale volume at 40% of HOTSPOT_MAX_TEMPERATURE to allow for hotspot icon to transition to 2nd state
 			if(src.temperature > ( HOTSPOT_MAX_NOCAT_TEMPERATURE * 0.4 ))
@@ -212,6 +218,7 @@
 					max_temp = HOTSPOT_MAX_CAT_TEMPERATURE
 				var/temperature_scaled_volume = clamp((src.temperature * CELL_VOLUME /  max_temp), 1, CELL_VOLUME)
 				src.volume = max(src.volume, temperature_scaled_volume)
+*/
 
 			location.assume_air(affected)
 
@@ -234,14 +241,17 @@
 
 		var/turf/floor/location = loc
 		if (!istype(location) || (locate(/obj/fire_foam) in location))
+			src.dispose()
 			qdel(src)
 			return 0
 
 		if ((temperature < FIRE_MINIMUM_TEMPERATURE_TO_EXIST) || (volume <= 1))
+			src.dispose()
 			qdel(src)
 			return 0
 
 		if (!location.air || location.air.toxins < 0.5 || location.air.oxygen < 0.5)
+			src.dispose()
 			qdel(src)
 			return 0
 
@@ -250,7 +260,6 @@
 
 		perform_exposure()
 
-		if (catalyst_active) catalyst_active = FALSE
 		if (location.wet) location.wet = 0
 
 		if (bypassing)

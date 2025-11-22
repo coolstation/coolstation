@@ -27,6 +27,14 @@
 		setProperty("heatprot", 5)
 		setProperty("meleeprot_head", 2)
 
+	get_desc() //Contentious? But may be necessary for newbs
+		..()
+		if (vchange)
+			hint = "Use wirecutters to remove [src]'s voice changer."
+		else
+			hint = null
+
+
 /obj/item/clothing/mask/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/voice_changer))
 		if (src.see_face)
@@ -189,6 +197,7 @@
 	icon_state = "voicechanger"
 	is_syndicate = 1
 	mats = 6
+	hint = "Insert into a face-concealing mask. Remove from the mask with wirecutters."
 
 /obj/item/clothing/mask/monkey_translator
 	name = "vocal translator"
@@ -281,16 +290,16 @@
 		return 0
 	attack_self(mob/user)
 		. = ..()
-		if(icon_state == "clown")
+		if(icon_state != "clown_hairless")
 			icon_state = "clown_hairless"
 			item_state = "clown_hat_hairless"
 			src.add_fingerprint(user)
-			boutput (user, __red("you chance the style of the [src]."))
+			boutput (user, __red("you change the style of the [src]."))
 		else
-			icon_state = "clown"
-			item_state = "clown_hat"
+			icon_state = "[initial(icon_state)]"
+			item_state = "[initial(item_state)]"
 			src.add_fingerprint(user)
-			boutput (user, __red("you chance the style of the [src]."))
+			boutput (user, __red("you change the style of the [src]."))
 
 /obj/item/clothing/mask/gas/syndie_clown
 	name = "clown wig and mask"
@@ -476,13 +485,6 @@
 			if (P.font_color)
 				boutput(user, "<span class='notice'>You scribble on the mask until it's filled in.</span>")
 				src.color = P.font_color
-
-/obj/item/clothing/mask/melons
-	name = "flimsy 'George Melons' mask"
-	desc = "Haven't seen that fellow in a while."
-	icon_state = "melons"
-	item_state = "melons"
-	see_face = 0.0
 
 /obj/item/clothing/mask/wrestling
 	name = "wrestling mask"

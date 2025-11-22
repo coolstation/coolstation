@@ -13,6 +13,8 @@
 
 	var/omni_mode = "prying"
 
+	hint = "Use in hand to cycle modes."
+
 	New()
 		..()
 		src.change_mode(omni_mode)

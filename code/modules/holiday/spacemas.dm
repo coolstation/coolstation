@@ -175,7 +175,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 
 		src.invisibility = 100
 		var/obj/overlay/Ov = new/obj/overlay(T)
-		Ov.anchored = 1
+		Ov.anchored = ANCHORED
 		Ov.name = "Explosion"
 		Ov.layer = NOLIGHT_EFFECTS_LAYER_BASE
 		Ov.pixel_x = -92
@@ -395,7 +395,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in view(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -436,7 +436,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 	desc = "O Spacemas tree, O Spacemas tree, Much p-"
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "xmastree_2020"
-	anchored = 1
+	anchored = ANCHORED
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	pixel_x = -64
 	plane = PLANE_DEFAULT + 2
@@ -582,7 +582,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 	icon = 'icons/misc/xmas.dmi'
 	icon_state = "garland"
 	layer = 5
-	anchored = 1
+	anchored = ANCHORED
 
 	ephemeral //Disappears except on xmas
 #ifndef XMAS
@@ -596,7 +596,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 	icon = 'icons/misc/xmas.dmi'
 	icon_state = "tinsel-silver"
 	layer = 5
-	anchored = 1
+	anchored = ANCHORED
 
 	ephemeral //Disappears except on xmas
 #ifndef XMAS
@@ -610,7 +610,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 	icon = 'icons/misc/xmas.dmi'
 	icon_state = "wreath"
 	layer = 5
-	anchored = 1
+	anchored = ANCHORED
 
 	ephemeral //Disappears except on xmas
 #ifndef XMAS
@@ -624,18 +624,24 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 	icon = 'icons/misc/xmas.dmi'
 	icon_state = "mistletoe"
 	layer = 9
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/decal/xmas_lights
 	name = "spacemas lights"
 	icon = 'icons/misc/xmas.dmi'
 	icon_state = "lights1"
 	layer = 5
-	anchored = 1
+	anchored = ANCHORED
 	var/datum/light/light
 
 	New()
 		..()
+		var/image/lights = image(src.icon, src, "[src.icon_state]_g")
+		lights.plane = PLANE_LIGHTING
+		lights.layer = LIGHTING_LAYER_BASE
+		lights.blend_mode = BLEND_ADD
+		UpdateOverlays(lights, "lights")
+
 		light = new /datum/light/point
 		light.set_color(0.20, 0.60, 0.90)
 		light.set_brightness(0.3)
@@ -650,10 +656,16 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 		if (!pattern)
 			src.icon_state = "lights0"
 			light.disable()
+			UpdateOverlays(null, "lights")
 			return
 		if (isnum(pattern) && pattern > 0)
 			src.icon_state = "lights[pattern]"
 			light.enable()
+			var/image/lights = image(src.icon, src, "[src.icon_state]_g")
+			lights.plane = PLANE_LIGHTING
+			lights.layer = LIGHTING_LAYER_BASE
+			lights.blend_mode = BLEND_ADD
+			UpdateOverlays(lights, "lights")
 			return
 
 	proc/change_light_pattern()
@@ -1208,7 +1220,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 	desc = "The most festive kind of sock!"
 	icon = 'icons/misc/xmas.dmi'
 	icon_state = "stocking_red"
-	anchored = 1
+	anchored = ANCHORED
 	var/list/giftees = list()
 	var/list/gift_paths = null//list()
 	var/list/questionable_gift_paths = null//list()

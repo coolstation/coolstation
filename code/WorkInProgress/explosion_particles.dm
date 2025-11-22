@@ -3,7 +3,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "explosion_particle"
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	mouse_opacity = 0
 
 /obj/effects/expl_particles/New()
@@ -37,7 +37,7 @@
 	icon = 'icons/effects/224x224.dmi'
 	icon_state = "superexpl"
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	mouse_opacity = 0
 	pixel_x = -96
 	pixel_y = -96

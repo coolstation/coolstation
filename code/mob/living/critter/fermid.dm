@@ -36,14 +36,13 @@
   speechverb_stammer = "click-clacks"
   density = 1
   can_throw = 1
-  can_grab = 1
-  can_disarm = 1
   hand_count = 3
-  reagent_capacity = 100
+  ideal_blood_volume = 100
   add_abilities = list(/datum/targetable/critter/bite, /datum/targetable/critter/sting/fermid, /datum/targetable/critter/slam)
-  var/unified_health = 25
-  var/firevuln = 0.1
-  var/brutevuln = 1
+  health_brute = 25
+  health_brute_vuln = 1
+  health_burn = 25
+  health_burn_vuln = 0.6
   var/limb_path = /datum/limb/small_critter/fermid
   var/mouth_path = /datum/limb/mouth/small/fermid
 
@@ -54,28 +53,22 @@
   HH.icon = 'icons/ui/hud_human.dmi'
   HH.icon_state = "handl"
   HH.name = "left feet"
-  HH.limb_name = "foot"
+  HH.limb.name = "foot"
 
   HH = hands[2]
   HH.limb = new src.limb_path
   HH.icon = 'icons/ui/hud_human.dmi'
   HH.icon_state = "handr"
   HH.name = "right feet"
-  HH.limb_name = "foot"
+  HH.limb.name = "foot"
 
   HH = hands[3]
   HH.limb = new src.mouth_path
   HH.icon = 'icons/ui/critter_ui.dmi'
   HH.icon_state = "mouth"
   HH.name = "mouth"
-  HH.limb_name = "mandibles"
+  HH.limb.name = "mandibles"
   HH.can_hold_items = 0
-
-/mob/living/critter/fermid/setup_healths()
-  add_hh_flesh(unified_health, brutevuln)
-  add_hh_flesh_burn(unified_health, firevuln)
-  add_health_holder(/datum/healthHolder/toxin)
-  add_health_holder(/datum/healthHolder/brain)
 
 /mob/living/critter/fermid/specific_emotes(var/act, var/param = null, var/voluntary = 0)
   switch (act)

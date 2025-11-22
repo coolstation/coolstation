@@ -313,6 +313,7 @@
 				if (I)
 					// this doesnt unequip the original item because that'd cause all the items to drop if you swapped your jumpsuit, I expect this to cause problems though
 					// ^-- You don't say.
+					if (I == master.handcuffs) return
 					#define autoequip_slot(slot, var_name) if (master.can_equip(I, master.slot) && !istype(I.loc, /obj/item/parts) && !(master.var_name && master.var_name.cant_self_remove)) { master.u_equip(I); var/obj/item/C = master.var_name; if (C) { /*master.u_equip(C);*/ C.unequipped(master); master.var_name = null; if(!master.put_in_hand(C)){master.drop_from_slot(C, get_turf(C))} } master.force_equip(I, master.slot); return }
 					autoequip_slot(slot_shoes, shoes)
 					autoequip_slot(slot_gloves, gloves)
@@ -372,6 +373,7 @@
 			if ("equip")
 				var/obj/item/I = master.equipped()
 				if (I)
+					if (I == master.handcuffs) return
 					#define autoequip_slot(slot, var_name) if (master.can_equip(I, master.slot) && !(master.var_name && master.var_name.cant_self_remove)) { master.u_equip(I); var/obj/item/C = master.var_name; if (C) { /*master.u_equip(C);*/ C.unequipped(master); master.var_name = null; if(!master.put_in_hand(C)){master.drop_from_slot(C, get_turf(C))} } master.force_equip(I, master.slot); return }
 					autoequip_slot(slot_shoes, shoes)
 					autoequip_slot(slot_gloves, gloves)
@@ -479,6 +481,9 @@
 					out(master, "Seems like you've died. Bummer.")
 					return
 				var/health_state = ((master.health - master.fakeloss) / master.max_health) * 100
+				var/fake_health_max = GET_ATOM_PROPERTY(src.master, PROP_FAKEHEALTH_MAX)
+				if(fake_health_max)
+					health_state = max(health_state, fake_health_max)
 				var/class
 				switch(health_state)
 					if(100 to INFINITY)
@@ -1001,6 +1006,9 @@
 				return
 
 		var/health_state = ((master.health - master.fakeloss) / (master.max_health != 0 ? master.max_health : 1)) * 100
+		var/fake_health_max = GET_ATOM_PROPERTY(src.master, PROP_FAKEHEALTH_MAX)
+		if(fake_health_max)
+			health_state = max(health_state, fake_health_max)
 		switch(health_state)
 			if(100 to INFINITY)
 				stage = 0 // green with green marker

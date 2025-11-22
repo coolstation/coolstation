@@ -88,8 +88,8 @@
 
 	if (src.shoes)
 		. += "<br><span class='[src.shoes.blood_DNA ? "alert" : "notice"]'>[src.name] has [bicon(src.shoes)] [src.shoes.blood_DNA ? "bloody " : null][src.shoes.name] on [t_his] feet.</span>"
-	else if (islist(src.tracked_blood))
-		. += "<br><span class='alert'>[src.name] has bloody feet!</span>"
+	else if (src.tracked_reagents.total_volume)
+		. += "<br><span class='alert'>[src.name] has messy feet!</span>"
 
 	if (src.back)
 		. += "<br><span class='[src.back.blood_DNA ? "alert" : "notice"]'>[src.name] has [bicon(src.back)] [src.back.blood_DNA ? "a bloody [src.back.name]" : "\an [src.back.name]"] on [t_his] back.</span>"

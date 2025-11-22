@@ -7,7 +7,12 @@
 /datum/component/foldable/keep_name
 	change_name = 0
 
-/datum/component/foldable/Initialize()
+TYPEINFO(/datum/component/foldable)
+	initialization_args = list(
+		ARG_INFO("briefcase_path", "type", "Path of item that will be folded up into", /obj/item/objBriefcase)
+	)
+
+/datum/component/foldable/Initialize(var/briefcase_path = /obj/item/objBriefcase)
 	if(!istype(parent, /atom/movable))
 		return COMPONENT_INCOMPATIBLE
 

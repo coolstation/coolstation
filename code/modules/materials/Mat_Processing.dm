@@ -4,7 +4,7 @@
 	desc = "Turns raw materials, and objects containing materials, into processed pieces."
 	icon = 'icons/obj/crafting.dmi'
 	icon_state = "fab3-on"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = FLOOR_EQUIP_LAYER1
 	mats = 20
@@ -219,8 +219,10 @@
 			src.output_location = over_object
 			boutput(usr, "<span class='notice'>You set the processor to output to [over_object]!</span>")
 
-		else
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
+		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
 		return
 
@@ -317,7 +319,7 @@
 	name = "Portable material processor"
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "reclaimer"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 
 	custom_suicide = 1
@@ -335,7 +337,7 @@
 	desc = "A huge furnace-like machine used to combine materials."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smelter0"
-	anchored = 1
+	anchored = ANCHORED
 	bound_height = 96
 	bound_width = 96
 	density = 1
@@ -514,7 +516,7 @@
 	desc = "A small furnace-like machine used to melt and combine metals or minerals."
 	icon = 'icons/obj/crafting.dmi'
 	icon_state = "portsmelter0"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	layer = FLOOR_EQUIP_LAYER1
 	var/list/components = list()
@@ -537,7 +539,7 @@
 	desc = "A huge furnace-like machine used to melt and combine metals or minerals."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smelter0"
-	anchored = 1
+	anchored = ANCHORED
 	bound_height = 96
 	bound_width = 96
 	density = 1
@@ -719,24 +721,21 @@
 	w_class = W_CLASS_SMALL
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-		if(get_dist(src, target) <= world.view)
-			animate_scanning(target, "#597B6D")
-			var/atom/W = target
-			if(!W.material)
-				boutput(user, "<span class='alert'>No significant material found in \the [target].</span>")
-			else
-				boutput(user, "<span class='notice'><u>[capitalize(W.material.name)]</u></span>")
-				boutput(user, "<span class='notice'>[W.material.desc]</span>")
-
-				if(W.material.properties.len)
-					boutput(user, "<span class='notice'><u>The material is:</u></span>")
-					for(var/datum/material_property/X in W.material.properties)
-						var/value = W.material.properties[X] //Why use getProperty you have the damn property
-						boutput(user, "<span class='notice'>• [X.getAdjective(value)] ([value])</span>")
-				else
-					boutput(user, "<span class='notice'><u>The material is completely unremarkable.</u></span>")
+		if (!istype(target)) return
+		animate_scanning(target, "#597B6D")
+		if(!target.material)
+			boutput(user, "<span class='alert'>No significant material found in \the [target].</span>")
 		else
-			boutput(user, "<span class='alert'>[target] is too far away.</span>")
+			boutput(user, "<span class='notice'><u>[capitalize(target.material.name)]</u></span>")
+			boutput(user, "<span class='notice'>[target.material.desc]</span>")
+
+			if(length(target.material.properties))
+				boutput(user, "<span class='notice'><u>The material is:</u></span>")
+				for(var/datum/material_property/X in target.material.properties)
+					var/value = target.material.properties[X] //Why use getProperty you have the damn property
+					boutput(user, "<span class='notice'>• [X.getAdjective(value)] ([value])</span>")
+			else
+				boutput(user, "<span class='notice'><u>The material is completely unremarkable.</u></span>")
 		return
 
 /obj/item/slag_shovel

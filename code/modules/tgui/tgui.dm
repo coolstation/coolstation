@@ -81,8 +81,7 @@
 		window.initialize(
 			fancy = user.client.preferences.tgui_fancy,
 			inline_assets = list(
-				get_assets(/datum/asset/basic/tgui_common),
-				get_assets(/datum/asset/group/base_tgui)
+				get_assets(/datum/asset/group/base_tgui),
 			))
 	else
 		window.send_message("ping")
@@ -211,7 +210,7 @@
 			"observer" = isobserver(user),
 		),
 	)
-	var/data = custom_data || with_data && src_object.ui_data(user)
+	var/data = custom_data || with_data && src_object.ui_data(user, src)
 	if(data)
 		json_data["data"] = data
 	var/static_data = with_static_data && src_object.ui_static_data(user)

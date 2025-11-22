@@ -1412,36 +1412,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
-"dm" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/decal/cleanable/dirt,
-/obj/decal/cleanable/blood/drip/high,
-/turf/floor/plating,
-/area/station/maintenance/central)
-"dn" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/decal/cleanable/blood/tracks{
-	dir = 4;
-	icon_state = "tracks"
-	},
-/turf/floor/plating,
-/area/station/maintenance/central)
-"do" = (
-/obj/disposalpipe/junction{
-	dir = 8;
-	icon_state = "pipe-j1"
-	},
-/obj/creepy_sound_trigger,
-/obj/decal/cleanable/blood/tracks{
-	dir = 4;
-	icon_state = "tracks"
-	},
-/turf/floor/plating,
-/area/station/maintenance/central)
 "dp" = (
 /obj/disposalpipe/segment{
 	dir = 8;
@@ -5757,6 +5727,39 @@
 /obj/item/clothing/glasses/healthgoggles,
 /turf/floor/white,
 /area/station/medical/medbay)
+"lY" = (
+/obj/grille/catwalk{
+	dir = 6;
+	icon_state = "catwalk_cross"
+	},
+/obj/landmark/magnet_shield,
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	dir = 8;
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	dir = 6;
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/obj/securearea{
+	desc = "A warning sign. I guess this area is dangerous.";
+	icon_state = "magwarning2";
+	name = "ACTIVE MAGNET AREA"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 6;
+	layer = 2
+	},
+/area/mining/magnet)
 "lZ" = (
 /obj/machinery/vending/port_a_nanomed,
 /turf/floor/white,
@@ -6650,22 +6653,6 @@
 /obj/item/sheet/steel/fullstack,
 /turf/floor/red,
 /area/station/storage/warehouse)
-"nW" = (
-/obj/grille/catwalk,
-/obj/landmark/magnet_shield,
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/turf/floor/airless/plating/catwalk,
-/turf/floor/airless/plating/catwalk,
-/area/mining/magnet)
 "nX" = (
 /obj/item/rcd_ammo/big,
 /turf/floor/red,
@@ -6870,139 +6857,6 @@
 /obj/storage/closet/wardrobe/yellow,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/lounge)
-"ot" = (
-/obj/grille/catwalk{
-	dir = 4
-	},
-/obj/landmark/magnet_shield,
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 8;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 4;
-	intact = 0
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 4;
-	intact = 0
-	},
-/area/mining/magnet)
-"ou" = (
-/obj/grille/catwalk{
-	dir = 6;
-	icon_state = "catwalk_cross"
-	},
-/obj/landmark/magnet_shield,
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 8;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/obj/securearea{
-	desc = "A warning that demarcates where the magnetic area begins.";
-	dir = 6;
-	icon_state = "magwarning";
-	name = "Magnet Area Boundary"
-	},
-/obj/securearea{
-	desc = "A warning sign. I guess this area is dangerous.";
-	icon_state = "magwarning2";
-	name = "ACTIVE MAGNET AREA"
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 6;
-	layer = 2
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 6;
-	layer = 2
-	},
-/area/mining/magnet)
-"ov" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4;
-	icon_state = "intact"
-	},
-/obj/grille/catwalk{
-	dir = 10;
-	icon_state = "catwalk_cross"
-	},
-/obj/machinery/magnet_chassis{
-	bound_width = 64;
-	dir = 1;
-	icon_state = "chassis";
-	pixel_x = 16
-	},
-/obj/machinery/mining_magnet{
-	bound_width = 64;
-	dir = 1;
-	icon_state = "magnet";
-	pixel_x = 16
-	},
-/turf/space,
-/turf/floor/airless/plating/catwalk{
-	dir = 10;
-	layer = 2
-	},
-/area/station/engine/coldloop)
-"ow" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4;
-	icon_state = "intact"
-	},
-/obj/grille/catwalk{
-	dir = 6
-	},
-/turf/space,
-/turf/floor/airless/plating/catwalk{
-	dir = 2;
-	icon_state = "catwalk_cross";
-	layer = 2
-	},
-/area/station/engine/coldloop)
-"ox" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4;
-	icon_state = "intact"
-	},
-/obj/grille/catwalk{
-	dir = 6;
-	icon_state = "catwalk_cross"
-	},
-/turf/space,
-/turf/floor/airless/plating/catwalk{
-	dir = 6;
-	layer = 2
-	},
-/area/station/engine/coldloop)
-"oy" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4;
-	icon_state = "intact"
-	},
-/obj/grille/catwalk{
-	dir = 6;
-	icon_state = "catwalk_cross"
-	},
-/obj/machinery/computer/magnet{
-	dir = 4;
-	icon_state = "mmagnet"
-	},
-/turf/space,
-/turf/floor/airless/plating/catwalk{
-	dir = 6;
-	layer = 2
-	},
-/area/station/engine/coldloop)
 "oz" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -7073,6 +6927,14 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay)
+"qc" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/decal/cleanable/dirt,
+/obj/decal/cleanable/tracked_reagents/blood/drip/high,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "qo" = (
 /obj/storage/secure/closet/security/forensics,
 /obj/item/reagent_containers/glass/bottle/formaldehyde,
@@ -7096,6 +6958,35 @@
 	},
 /turf/floor/specialroom/freezer,
 /area/station/security/main)
+"rW" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4;
+	icon_state = "intact"
+	},
+/obj/grille/catwalk{
+	dir = 6
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 2;
+	icon_state = "catwalk_cross";
+	layer = 2
+	},
+/area/station/engine/coldloop)
+"th" = (
+/obj/grille/catwalk,
+/obj/landmark/magnet_shield,
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/obj/securearea{
+	desc = "A warning that demarcates where the magnetic area begins.";
+	icon_state = "magwarning";
+	name = "Magnet Area Boundary"
+	},
+/turf/floor/airless/plating/catwalk,
+/area/mining/magnet)
 "uG" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -7142,6 +7033,46 @@
 /obj/item/reagent_containers/food/snacks/cake/chocolate/gateau,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
+"Kr" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4;
+	icon_state = "tracks"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
+"NI" = (
+/obj/disposalpipe/junction{
+	dir = 8;
+	icon_state = "pipe-j1"
+	},
+/obj/creepy_sound_trigger,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4;
+	icon_state = "tracks"
+	},
+/turf/floor/plating,
+/area/station/maintenance/central)
+"PI" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4;
+	icon_state = "intact"
+	},
+/obj/grille/catwalk{
+	dir = 6;
+	icon_state = "catwalk_cross"
+	},
+/obj/machinery/computer/magnet{
+	dir = 4;
+	icon_state = "mmagnet"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 6;
+	layer = 2
+	},
+/area/station/engine/coldloop)
 "Ri" = (
 /obj/machinery/recharger/wall/sticky{
 	dir = 1
@@ -7153,6 +7084,46 @@
 /obj/item/card_box/plain,
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/kitchen)
+"VF" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4;
+	icon_state = "intact"
+	},
+/obj/grille/catwalk{
+	dir = 10;
+	icon_state = "catwalk_cross"
+	},
+/obj/machinery/magnet_chassis{
+	bound_width = 64;
+	dir = 1;
+	icon_state = "chassis";
+	pixel_x = 16
+	},
+/obj/machinery/mining_magnet{
+	bound_width = 64;
+	dir = 1;
+	icon_state = "magnet";
+	pixel_x = 16
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 10;
+	layer = 2
+	},
+/area/station/engine/coldloop)
+"Xr" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4;
+	icon_state = "intact"
+	},
+/obj/grille/catwalk{
+	dir = 6;
+	icon_state = "catwalk_cross"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 6;
+	layer = 2
+	},
+/area/station/engine/coldloop)
 
 (1,1,1) = {"
 aa
@@ -50491,7 +50462,7 @@ fo
 fo
 fo
 ik
-ov
+VF
 jn
 dk
 cO
@@ -50793,7 +50764,7 @@ fo
 fo
 fo
 ik
-ow
+rW
 jn
 jJ
 nq
@@ -51095,7 +51066,7 @@ fo
 fo
 fo
 ik
-ox
+Xr
 jn
 dl
 cO
@@ -51385,7 +51356,7 @@ gb
 gb
 ad
 cO
-dm
+qc
 ad
 en
 eO
@@ -51396,8 +51367,8 @@ fo
 fo
 fo
 fo
-ot
-oy
+ik
+PI
 jn
 dl
 cO
@@ -51687,7 +51658,7 @@ ao
 ao
 bY
 cO
-dn
+Kr
 ad
 en
 eO
@@ -51698,7 +51669,7 @@ fo
 fo
 fo
 fo
-ot
+ik
 en
 ad
 dl
@@ -51989,7 +51960,7 @@ kC
 kC
 kC
 hM
-dn
+Kr
 ad
 en
 eP
@@ -51999,8 +51970,8 @@ fp
 fp
 fp
 fp
-nW
-ou
+th
+lY
 en
 ad
 jK
@@ -52291,7 +52262,7 @@ at
 at
 at
 cN
-do
+NI
 ad
 eo
 eQ

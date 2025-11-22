@@ -19,7 +19,7 @@
 	brainloss_stumble = 1
 	autoclose = 1
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
-	object_flags = CAN_REPROGRAM_ACCESS
+	object_flags = CAN_REPROGRAM_ACCESS | BOTS_DIRBLOCK
 	hitsound = 'sound/impact_sounds/Glass_Hit_1.ogg'
 	knocksound = 'sound/impact_sounds/Glass_Hit_1.ogg'
 
@@ -112,7 +112,7 @@
 		close()
 		return 1
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if (istype(mover, /obj/projectile))
 			var/obj/projectile/P = mover
 			if (P.proj_data.window_pass)
@@ -129,6 +129,12 @@
 			return !density
 		else
 			return 1
+
+	gas_cross(turf/target)
+		if(get_dir(loc, target) == dir)
+			return !density
+		else
+			return TRUE
 
 	CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 		if (istype(mover, /obj/projectile))

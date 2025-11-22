@@ -41,7 +41,7 @@
 		dummy.mouse_opacity = 0
 		dummy.name = null
 		dummy.set_density(0)
-		dummy.anchored = 1
+		dummy.anchored = ANCHORED
 		dummy.opacity = 0
 		dummy.icon = null
 		dummy.overlays += charger
@@ -52,6 +52,11 @@
 		animate(dummy, alpha=0, time=3)
 		SPAWN_DBG(0.3 SECONDS)
 			qdel(dummy)
+
+	on_pre_hit(atom/hit, angle, obj/projectile/O)
+		. = ..()
+		if(hit == O.special_data["charger"])
+			return TRUE
 
 	on_hit(atom/hit, angle, var/obj/projectile/O)
 		O.special_data["valid_loc"] = get_turf(hit)
@@ -107,6 +112,8 @@
 	cooldown = 100
 	targeted = 1
 	target_anything = 1
+	ai_range = 10
+	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
 
@@ -118,11 +125,7 @@
 			return 1
 		var/mob/M = holder.owner
 		var/turf/S = get_turf(M)
-		var/obj/projectile/O = initialize_projectile_ST(S, proj, T)
-		if (!O)
-			return 1
-		if (!O.was_setup)
-			O.setup()
+		var/obj/projectile/O = initialize_projectile_pixel_spread(S, proj, T)
 		O.special_data["owner"] = src
 		O.launch()
 		return 0

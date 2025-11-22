@@ -71,10 +71,13 @@ GAUNTLET CARDS
 	uses_multiple_icon_states = 1
 	item_state = "card-id"
 	desc = "A standardized NanoTrasen microchipped identification card that contains data that is scanned when attempting to access various doors and computers."
+	hint = "This can be put into your PDA."
 	flags = FPRINT | TABLEPASS
 	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 0.4 SECONDS
 	wear_layer = MOB_BELT_LAYER
+	///What goes in between one's name and their position when it comes out of the ID computer
+	var/generic_name = "ID card"
 	var/list/access = list()
 	var/registered = null
 	var/registered_id = null
@@ -210,6 +213,7 @@ GAUNTLET CARDS
 	assignment = "Dabber"
 	desc = "This card authorizes the person wearing it to perform sick dabs."
 	keep_icon = TRUE
+	generic_name = "dabbing license"
 	var/dab_count = 0
 	var/dabbed_on_count = 0
 	var/arm_count = 0
@@ -236,7 +240,7 @@ GAUNTLET CARDS
 		boutput(user, "<span class='alert'>[src] explodes.</span>")
 		user.transforming = 1
 		var/obj/overlay/O = new/obj/overlay(get_turf(user))
-		O.anchored = 1
+		O.anchored = ANCHORED
 		O.name = "Explosion"
 		O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 		O.pixel_x = -92
@@ -338,6 +342,7 @@ GAUNTLET CARDS
 	icon_state = "id"
 	item_state = "card-id"
 	desc = "A temporary NanoTrasen Identification Card. Its access will be revoked once it expires."
+	generic_name = "temporary ID card"
 	var/duration = 60 //seconds
 	var/starting_access = list()
 	var/timer = 0 //if 1, description shows time remaining
@@ -445,6 +450,7 @@ GAUNTLET CARDS
 
 /obj/item/card/id/juicer
 	name = "clout card"
+	generic_name = "clout card"
 	icon_state = "juicer"
 	access = list(access_juicer)
 
@@ -476,12 +482,14 @@ GAUNTLET CARDS
 /obj/item/card/id/juicer/john
 	name = "John Bill's clout card"
 	icon_state = "juicer"
+	registered = "John Bill"
 	access = list(access_juicer, access_juicer_fraud, access_juicer_grease)
 
 /obj/item/card/id/soviet
 	name = "identification pass"
 	icon_state = "soviet_gen"
 	access = list(access_soviet_public, access_soviet_private)
+	generic_name = "ID pass"
 
 	miner
 		name = "mining identification pass"

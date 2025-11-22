@@ -93,7 +93,7 @@
 			return FALSE
 
 		if (next_move > world.time)
-			return next_move - world.time
+			return 0
 
 		velocity_magnitude = 0
 		if (user && user == owner.pilot && !user.getStatusDuration("stunned") && !user.getStatusDuration("weakened") && !user.getStatusDuration("paralysis") && !isdead(user))

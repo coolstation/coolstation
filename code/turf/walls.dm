@@ -9,9 +9,9 @@
 #endif
 	opacity = 1
 	density = 1
-	blocks_air = 1
+	gas_impermeable = 1
 	pathable = 1
-	flags = ALWAYS_SOLID_FLUID
+	flags = ALWAYS_SOLID_FLUID | IS_PERSPECTIVE_FLUID
 	text = "<font color=#aaa>#"
 
 	var/health = 100
@@ -36,10 +36,10 @@
 	ReplaceWithFloor()
 		. = ..()
 		if (map_currently_underwater)
-			var/turf/space/fluid/n = get_step(src,NORTH)
-			var/turf/space/fluid/s = get_step(src,SOUTH)
-			var/turf/space/fluid/e = get_step(src,EAST)
-			var/turf/space/fluid/w = get_step(src,WEST)
+			var/turf/space/fluid/ocean/n = get_step(src,NORTH)
+			var/turf/space/fluid/ocean/s = get_step(src,SOUTH)
+			var/turf/space/fluid/ocean/e = get_step(src,EAST)
+			var/turf/space/fluid/ocean/w = get_step(src,WEST)
 			if(istype(n))
 				n.tilenotify(src)
 			if(istype(s))
@@ -313,7 +313,7 @@
 
 	boutput(user, "<span class='notice'>You hit the [src.name] but nothing happens!</span>")
 	playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 25, 1)
-	interact_particle(user,src)
+	interact_particle(user,src,TRUE)
 	return
 
 //shitty little thing because we can't use a generic actionbar for wall murder atm
@@ -382,6 +382,10 @@
 		actions.start(new /datum/action/bar/wall_decon_crud(src, W), user)
 		/*SETUP_GENERIC_ACTIONBAR(user, src, 10 SECONDS, /turf/wall/proc/weld_action,\
 			list(W, user), W.icon, W.icon_state, "[user] finishes disassembling the outer wall plating.", null)*/
+
+	else if (istype(W, /obj/item/breaching_hammer/sledgehammer))
+		src.weld_action(W, user)
+		return
 
 //Spooky halloween key
 	else if(istype(W,/obj/item/device/key/haunted))

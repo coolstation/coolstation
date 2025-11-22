@@ -25,7 +25,7 @@
 
 	src.update_lying()
 
-	// If he's wearing magnetic boots anchored = 1, otherwise anchored = 0
+	// If he's wearing magnetic boots anchored = ANCHORED, otherwise anchored = UNANCHORED
 	reset_anchored(src)
 	// Automatically drop anything in store / id / belt if you're not wearing a uniform.
 	if (!src.w_uniform)
@@ -171,9 +171,10 @@
 	// Also no barefoot poo overlays but that would go here
 
 	// same as above but for shoes/bare feet
-	if (islist(src.tracked_blood) && !src.shoes)
+	if (src.tracked_reagents.total_volume && !src.shoes)
 
 		blood_image.layer = MOB_CLOTHING_LAYER+0.1
+		blood_image.color = src.tracked_reagents.get_average_rgb()
 		if (src.limbs && src.limbs.l_leg && src.limbs.l_leg.accepts_normal_human_overlays)
 			blood_image.icon_state = "left_shoeblood_c"
 			UpdateOverlays(blood_image, "bloody_feet_l")
@@ -647,9 +648,9 @@
 
 	// TODO: move to cloaker activation / deactivation
 	if (shielded == 2)
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "cloak", INVIS_CLOAK)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "cloak", INVIS_CLOAK)
 	else
-		REMOVE_MOB_PROPERTY(src, PROP_INVISIBILITY, "cloak")
+		REMOVE_ATOM_PROPERTY(src, PROP_INVISIBILITY, "cloak")
 
 	if (shielded)
 		UpdateOverlays(shield_image, "shield")
@@ -944,7 +945,7 @@ var/list/update_body_limbs = list("r_arm" = "stump_arm_right", "l_arm" = "stump_
 				src.body_standing.overlays += human_image
 				human_image.color = chest_color_before
 
-				human_image.icon_state = "groin_[gender_t]"
+				human_image.icon_state = "groin_[gender_t][src.organHolder?.butt ? "" : "_buttless"]"
 				src.body_standing.overlays += human_image
 
 				// all this shit goes on the torso anyway

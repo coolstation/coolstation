@@ -29,5 +29,5 @@
 				H.visible_message("<span class='alert'>[H] magically farts the spell away!</span>")
 				playsound(H, 'sound/vox/poo.ogg', 25, 1)
 				continue
-			ass_explosion(H, 1, 30)
+			ass_explosion(H, 1, 3)
 // See bigfart.dm for the ass_explosion() proc. The third value represents the probability of limb loss in percent.

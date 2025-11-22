@@ -66,7 +66,7 @@
 		is_atmos_simulated = 1 //gotta light that POO
 	sheezius
 		ckey = "sheezius"
-		name = "Claire's Office of Claire"
+		name = "Claire's Orifice of Claire"
 	schwick
 		ckey = "schwickyschwag"
 		name = "Schwick's Normal Bear Closet"
@@ -76,7 +76,22 @@
 	tamber
 		ckey = "tamber"
 		name = "Office of Tamber"
+	lupi
+		ckey = "awildlupi"
+		name = "the fart side"
+	wackalope
+		ckey = "wackalope"
+		name = "ITS A LIGHTNING ROD OK"
+	mylie
+		ckey = "myliedaniels"
+		name = "Mylie's Office"
+	cyan
+		ckey = "sothanforax"
+		name = "Cyan's Shithole"
+		is_construction_allowed = TRUE //Its a server closet, you didn't expect this?
+	gnash
+		ckey = "fancyshmancynecromancy"
+		name = "The Gnarly Gnash"
+	faye
+		ckey = "enfaeutchie"
 
-	zamujasa
-		ckey = "zamujasa"
-		name = "Office of Zamujasa"

@@ -34,13 +34,15 @@
 
 		if (src.robotic)
 			if (src.emagged)
-				APPLY_MOB_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 15)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 15)
 				src.donor.add_stam_mod_max("heart", 90)
-				src.donor.add_stun_resist_mod("heart", 30)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST, "heart", 30)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST_MAX, "heart", 30)
 			else
-				APPLY_MOB_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 5)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart", 5)
 				src.donor.add_stam_mod_max("heart", 40)
-				src.donor.add_stun_resist_mod("heart", 15)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST, "heart", 15)
+				APPLY_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST_MAX, "heart", 15)
 
 		if (src.donor)
 			for (var/datum/ailment_data/disease in src.donor.ailments)
@@ -63,9 +65,10 @@
 			src.blood_id = src.donor.blood_id //keep our owner's blood (for mutantraces etc)
 
 			if (src.robotic)
-				REMOVE_MOB_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart")
+				REMOVE_ATOM_PROPERTY(src.donor, PROP_STAMINA_REGEN_BONUS, "heart")
 				src.donor.remove_stam_mod_max("heart")
-				src.donor.remove_stun_resist_mod("heart")
+				REMOVE_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST, "heart")
+				REMOVE_ATOM_PROPERTY(src.donor, PROP_STUN_RESIST_MAX, "heart")
 
 			var/datum/ailment_data/malady/HD = donor.find_ailment_by_type(/datum/ailment/malady/heartdisease)
 			if (HD)
@@ -87,7 +90,7 @@
 
 		if (success)
 			if (!isdead(H))
-				JOB_XP(user, "Medical Doctor", src.health > 0 ? transplant_XP*2 : transplant_XP)
+				JOB_XP_DEPT(user, "Medical Doctor", "medical", src.health > 0 ? transplant_XP*2 : transplant_XP)
 			return 1
 		else
 			return 0
@@ -115,56 +118,12 @@
 	made_from = "pharosium"
 	transplant_XP = 7
 
+	New()
+		. = ..()
+		src.reagents.add_reagent("oil", 25)
+
 	emp_act()
 		..()
 		if (src.broken)
 			boutput(donor, "<span class='alert'><B>Your cyberheart malfunctions and shuts down!</B></span>")
 			donor.contract_disease(/datum/ailment/malady/flatline,null,null,1)
-
-/obj/item/organ/heart/flock
-	name = "pulsing octahedron"
-	desc = "It beats ceaselessly to a peculiar rhythm. Like it's trying to tap out a distress signal."
-	icon_state = "flockdrone_heart"
-	item_state = "flockdrone_heart"
-	body_image = "heart_flock"
-	created_decal = /obj/decal/cleanable/flockdrone_debris/fluid
-	made_from = "gnesis"
-	var/resources = 0 // reagents for humans go in heart, resources for flockdrone go in heart, now, not the brain
-	var/flockjuice_limit = 20 // pump flockjuice into the human host forever, but only a small bit
-	var/min_blood_amount = 450
-	blood_id = "flockdrone_fluid"
-
-	on_transplant(var/mob/M as mob)
-		..()
-		if (ishuman(M))
-			M:blood_color = "#4d736d"
-			// there is no undo for this. wear the stain of your weird alien blood, pal
-	//was do_process
-	on_life()
-		var/mob/living/M = src.holder.donor
-		if(!M || !ishuman(M)) // flockdrones shouldn't have these problems
-			return
-		var/mob/living/carbon/human/H = M
-		// handle flockjuice addition and capping
-		if(H.reagents)
-			var/datum/reagents/R = H.reagents
-			var/flockjuice = R.get_reagent_amount("flockdrone_fluid")
-			if(flockjuice <= 0)
-				R.add_reagent("flockdrone_fluid", 10)
-			if(flockjuice > flockjuice_limit)
-				R.remove_reagent("flockdrone_fluid", flockjuice - flockjuice_limit)
-			// handle blood synthesis
-			if(H.blood_volume < min_blood_amount)
-				// consume flockjuice, convert into blood
-				var/converted_amt = min(flockjuice, min_blood_amount - H.blood_volume)
-				R.remove_reagent("flockdrone_fluid", converted_amt)
-				H.blood_volume += converted_amt
-
-/obj/item/organ/heart/flock/special_desc(dist, mob/user)
-	if(isflock(user))
-		return {"<span class='flocksay'><span class='bold'>###=-</span> Ident confirmed, data packet received.
-		<br><span class='bold'>ID:</span> Resource repository
-		<br><span class='bold'>Resources:</span> [src.resources]
-		<br><span class='bold'>###=-</span></span>"}
-	else
-		return null // give the standard description

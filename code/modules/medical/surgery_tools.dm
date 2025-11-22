@@ -173,6 +173,15 @@ CONTAINS:
 	icon = 'icons/effects/VR.dmi'
 	icon_state = "saw"
 
+/obj/item/circular_saw/grody
+	name = "nasty old bonesaw"
+	icon_state = "saw_grody"
+	desc = "A rusty old bonesaw, caked in blood. You're liable to give someone sepsis if you try using this old thing."
+
+	attack(mob/living/carbon/M as mob, mob/user as mob)
+		src.reagents.add_reagent("MRSA", src.reagents.maximum_volume - src.reagents.total_volume)
+		return ..()
+
 /* =========================================================== */
 /* -------------------- Enucleation Spoon -------------------- */
 /* =========================================================== */
@@ -331,26 +340,19 @@ CONTAINS:
 				surgery_limb.surgery(src)
 			return
 
-	attackby(obj/item/W, mob/user)
-		..()
+	afterattack(atom/target, mob/user, reach, params)
+		if (istype(target, /obj/item/gun_exploder))
+			user.show_text("You smash out part of [src] to make a receiver. This looks pretty unsafe!")
+			user.u_equip(src)
+			var/turf/T = get_turf(src)
+			playsound(T, "sound/items/Deconstruct.ogg", 50, 1)
+			qdel(src)
+			var/obj/item/gun/modular/zip/base/new_gun = new(T)
+			user.put_in_hand_or_drop(new_gun)
+		else
+			. = ..()
 
-		if (istype(W,/obj/item/pipebomb/frame))
-			var/obj/item/pipebomb/frame/F = W
-			if (F.state < 2)
-				user.show_text("This might work better if [F] was hollowed out.")
-			else if (F.state == 2)
-				user.show_text("You combine [F] and [src]. This looks pretty unsafe!")
-				user.u_equip(F)
-				user.u_equip(src)
-				var/turf/T = get_turf(src)
-				playsound(T, "sound/items/Deconstruct.ogg", 50, 1)
-				new/obj/item/gun/kinetic/zipgun(T)
-				qdel(F)
-				qdel(src)
 
-			else
-				user.show_text("You can't seem to combine these two items this way.")
-		return
 
 
 // a mostly decorative thing from z2 areas I want to add to office closets
@@ -413,8 +415,11 @@ CONTAINS:
 		if (!isliving(M) || issilicon(M))
 			return ..()
 		if (src.defibrillate(M, user, src.emagged, src.makeshift, src.cell))
-			JOB_XP(user, "Medical Doctor", 5)
+			JOB_XP_DEPT(user, "Medical Doctor", "medical", 5)
 			src.charged = 0
+			if(istype(src.loc, /obj/machinery/atmospherics/unary/cryo_cell))
+				var/obj/machinery/atmospherics/unary/cryo_cell/cryo = src.loc
+				cryo.shock_icon()
 			set_icon_state("[src.icon_base]-shock")
 			SPAWN_DBG(1 SECOND)
 				set_icon_state("[src.icon_base]-off")
@@ -433,6 +438,9 @@ CONTAINS:
 			return 0
 		playsound(src.loc, "sound/impact_sounds/Energy_Hit_3.ogg", 75, 1, pitch = 0.92)
 		src.charged = 0
+		if(istype(src.loc, /obj/machinery/atmospherics/unary/cryo_cell))
+			var/obj/machinery/atmospherics/unary/cryo_cell/cryo = src.loc
+			cryo.shock_icon()
 		set_icon_state("[src.icon_base]-shock")
 		SPAWN_DBG(1 SECOND)
 			set_icon_state("[src.icon_base]-off")
@@ -486,8 +494,9 @@ CONTAINS:
 			shockcure = 1
 			break
 
-	user.visible_message("<span class='alert'><b>[user]</b> places the electrodes of [src] onto [user == patient ? "[his_or_her(user)] own" : "[patient]'s"] [suiciding ? "eyes" : "chest"]!</span>",\
-	"<span class='alert'>You place the electrodes of [src] onto [user == patient ? "your own" : "[patient]'s"] [suiciding ? "eyes" : "chest"]!</span>")
+	if(!istype(src.loc, /obj/machinery/atmospherics/unary/cryo_cell))
+		user.visible_message("<span class='alert'><b>[user]</b> places the electrodes of [src] onto [user == patient ? "[his_or_her(user)] own" : "[patient]'s"] [suiciding ? "eyes" : "chest"]!</span>",\
+		"<span class='alert'>You place the electrodes of [src] onto [user == patient ? "your own" : "[patient]'s"] [suiciding ? "eyes" : "chest"]!</span>")
 
 	if (emagged || (patient.health < 0 && !faulty) || (shockcure && !faulty) || (faulty && prob(25 + suiciding)) || (suiciding && prob(44)))
 
@@ -627,6 +636,14 @@ CONTAINS:
 		src.cell = newcell
 		newcell.set_loc(src)
 
+	attackby(obj/item/W, mob/user, params)
+		if(istool(W, TOOL_CUTTING))
+			boutput(user, "You cut the cables off the cell.")
+			user.put_in_hand_or_drop(src.cell)
+			qdel(src)
+		else return ..()
+
+
 
 
 
@@ -649,7 +666,7 @@ CONTAINS:
 	icon = 'icons/obj/machines/compact_machines.dmi'
 	desc = "Used to resuscitate critical patients."
 	icon_state = "defib1"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mats = 25
 	var/obj/item/robodefibrillator/mounted/defib = null
@@ -946,7 +963,7 @@ CONTAINS:
 			if (zone && surgery_status)
 				target.visible_message("<span class='success'>[owner] [vrb]es the surgical incisions on [owner == target ? his_or_her(owner) : "[target]'s"] [zone_sel2name[zone]] closed with [tool].</span>",
 				"<span class='success'>[owner == target ? "You [vrb]e" : "[owner] [vrb]es"] the surgical incisions on your [zone_sel2name[zone]] closed with [tool].</span>")
-				JOB_XP(ownerMob, "Medical Doctor", 5)
+				JOB_XP_DEPT(ownerMob, "Medical Doctor","medical", 5)
 				if (target.organHolder)
 					if (zone == "chest")
 						if (target.organHolder.heart)
@@ -969,7 +986,7 @@ CONTAINS:
 				target.visible_message("<span class='success'>[owner] [vrb]es [owner == target ? "[his_or_her(owner)]" : "[target]'s"] wounds closed with [tool].</span>",\
 				"<span class='success'>[owner == target ? "You [vrb]e" : "[owner] [vrb]es"] your wounds closed with [tool].</span>")
 				repair_bleeding_damage(target, 100, repair_amount)
-				JOB_XP(ownerMob, "Medical Doctor", 5)
+				JOB_XP_DEPT(ownerMob, "Medical Doctor","medical", 5)
 				if (brute_heal || burn_heal)
 					target.HealDamage("All", brute_heal, burn_heal)
 
@@ -1154,6 +1171,122 @@ CONTAINS:
 		for(var/atom/movable/AM in src)
 			AM.set_loc(src.loc)
 		..()
+
+	deployed
+		var/list/spawn_contents = list()
+		icon_state = "bodybag-closed1"
+		w_class = W_CLASS_BULKY
+
+		New()
+			..()
+			SPAWN_DBG(1 DECI SECOND)
+				src.make_my_stuff()
+
+		proc/make_my_stuff() // copying from large_storage_parent.dm
+			. = 1
+			if (!islist(src.spawn_contents))
+				return 0
+
+			for (var/thing in src.spawn_contents)
+				var/amt = 1
+				if (!ispath(thing))
+					continue
+				if (isnum(spawn_contents[thing])) //Instead of duplicate entries in the list, let's make them associative
+					amt = abs(spawn_contents[thing])
+				do new thing(src)	//Two lines! I TOLD YOU I COULD DO IT!!!
+				while (--amt > 0)
+
+		corpse
+			spawn_contents = list(/mob/living/carbon/human/normal/corpse)
+
+			morgue
+				spawn_contents = list(/mob/living/carbon/human/normal/corpse/morgue_patient)
+
+			clown
+				var/opened = FALSE
+				spawn_contents = list(/mob/living/carbon/human/normal/corpse/clown)
+				open()
+					..()
+
+					if(!opened)
+						opened = TRUE
+						var/obj/item/pie = new /obj/item/reagent_containers/food/snacks/pie/cream(src.loc)
+						var/mob/M = locate(/mob/living) in view(2)
+						if(M)
+							pie.throw_at(M, 3, 2)  // one last prank
+
+			martian
+				spawn_contents = list(/mob/living/carbon/human/normal/corpse/unique/martian, /obj/item/raw_material/martian = 2)
+
+			miner
+				spawn_contents = list(/mob/living/carbon/human/normal/corpse/unique/miner_accident, /obj/item/material_piece/copper)
+				var/opened = FALSE
+				open()
+					..()
+
+					if(!opened)
+						opened = TRUE
+						var/obj/item/satchel/mining/M = new(src.loc)
+						var/gems = rand(1,5)
+						while(gems > 0)
+							gems--
+							var/obj/item/raw_material/gemstone/gem = new()
+							M.add_thing(gem)
+
+			fancy
+				spawn_contents = list(/mob/living/carbon/human/normal/corpse/unique/fancy)
+				var/opened = FALSE
+				open()
+					..()
+
+					if(!opened)
+						var/obj/item/material_piece/B = new(src.loc) //going to make this a processed material piece to try and avoid matsci
+						B.setMaterial(getMaterial("silver"))
+						B.icon = 'icons/obj/items/items.dmi'
+						B.icon_state = "bracelet"
+						B.name = "silver bracelet"
+						B.desc = "A tarnished bit of silver that may still be useful as scrap."
+						B.layer = 3.1
+
+		bone
+			spawn_contents = list(/obj/item/skull/classic, /obj/item/material_piece/bone = 2)
+
+		cloth
+			spawn_contents = list(/obj/decal/skeleton/unanchored, /obj/item/material_piece/cloth/cottonfabric/randomcolor = 3)
+
+		spidersilk
+			spawn_contents = list(/obj/critter/nicespider, /obj/item/material_piece/cloth/spidersilk = 2)
+
+		bohrum
+			spawn_contents = list(/obj/decal/cleanable/ash = 2)
+			var/opened = FALSE
+			open()
+				..()
+
+				if(!opened)
+					opened = TRUE
+					var/obj/item/material_piece/hip = new(src.loc) //going to make this a processed material piece to try and avoid matsci
+					hip.setMaterial(getMaterial("bohrum"))
+					hip.icon_state = "scrap4"
+					hip.name = "bohrum hip implant"
+					hip.desc = "It looks like you still might be able to use the metal in this."
+					hip.layer = 3.1
+
+		blood // might be a way to make this support any fluid?
+			var/opened = FALSE
+			open()
+				..()
+
+				if(!opened)
+					opened = TRUE
+					var/datum/effects/system/steam_spread/steam = new()
+					steam.set_up(8, 0, get_turf(src), "#ff0000") // would need to figure out how to get the reagent color
+					steam.attach(src)
+					steam.start()
+					var/turf/T = get_turf(src.loc)
+					T.fluid_react_single("blood", 150)
+					src.visible_message("<span class='alert'>[src] gushes a torrent of blood from every seam!</span>")
+					playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
 
 	proc/update_icon()
 		if (src.open && src.open_image)
@@ -1625,4 +1758,4 @@ CONTAINS:
 		New()
 			. = ..()
 			SPAWN_DBG(1 DECI SECOND) //sync with the organs spawn
-				make_cleanable(/obj/decal/cleanable/blood/gibs, src.loc)
+				make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, src.loc)

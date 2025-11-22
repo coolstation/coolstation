@@ -2,6 +2,7 @@
 /obj/item/device/radio/headset
 	name = "Radio Headset"
 	icon = 'icons/obj/clothing/item_ears.dmi'
+	hint = "If you can't hear anything, press C while the headset is inhand to make sure the speaker is on."
 	wear_image_icon = 'icons/mob/ears.dmi'
 	icon_state = "headset"
 	inhand_image_icon = 'icons/mob/inhand/hand_headgear.dmi'
@@ -97,6 +98,7 @@
 		"h" = R_FREQ_COMMAND,
 		"g" = R_FREQ_SECURITY,
 		"e" = R_FREQ_ENGINEERING,
+		"l" = R_FREQ_LOGISTICS,
 		"r" = R_FREQ_RESEARCH,
 		"m" = R_FREQ_MEDICAL,
 		"c" = R_FREQ_CIVILIAN,
@@ -105,6 +107,7 @@
 		"h" = RADIOCL_COMMAND,
 		"g" = RADIOCL_SECURITY,
 		"e" = RADIOCL_ENGINEERING,
+		"l" = RADIOCL_LOGISTICS,
 		"r" = RADIOCL_RESEARCH,
 		"m" = RADIOCL_MEDICAL,
 		"c" = RADIOCL_CIVILIAN,
@@ -118,6 +121,7 @@
 		"h" = R_FREQ_COMMAND,
 		"g" = R_FREQ_SECURITY,
 		"e" = R_FREQ_ENGINEERING,
+		"l" = R_FREQ_LOGISTICS,
 		"r" = R_FREQ_RESEARCH,
 		"m" = R_FREQ_MEDICAL,
 		"c" = R_FREQ_CIVILIAN,
@@ -126,6 +130,7 @@
 		"h" = RADIOCL_COMMAND,
 		"g" = RADIOCL_SECURITY,
 		"e" = RADIOCL_ENGINEERING,
+		"l" = RADIOCL_LOGISTICS,
 		"r" = RADIOCL_RESEARCH,
 		"m" = RADIOCL_MEDICAL,
 		"c" = RADIOCL_CIVILIAN,
@@ -149,6 +154,7 @@
 	secure_frequencies = list(
 		"h" = R_FREQ_COMMAND,
 		"e" = R_FREQ_ENGINEERING,
+		"l" = R_FREQ_LOGISTICS,
 		"r" = R_FREQ_RESEARCH,
 		"m" = R_FREQ_MEDICAL,
 		"c" = R_FREQ_CIVILIAN,
@@ -157,6 +163,7 @@
 		"h" = RADIOCL_COMMAND,
 		"g" = RADIOCL_SECURITY,
 		"e" = RADIOCL_ENGINEERING,
+		"l" = RADIOCL_LOGISTICS,
 		"r" = RADIOCL_RESEARCH,
 		"m" = RADIOCL_MEDICAL,
 		"c" = RADIOCL_CIVILIAN,

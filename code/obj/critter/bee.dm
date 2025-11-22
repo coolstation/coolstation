@@ -565,12 +565,11 @@
 	proc/puke_honey()
 		var/turf/honeyTurf = get_turf(src)
 		var/obj/item/reagent_containers/food/snacks/pizza/floor_pizza = locate() in honeyTurf
-		var/obj/item/reagent_containers/food/snacks/ingredient/honey/honey
+		var/obj/item/reagent_containers/food/snacks/honey
 		if (istype(floor_pizza))
-			honey = new /obj/item/reagent_containers/food/snacks/pizza(honeyTurf)
+			honey = floor_pizza
 			src.visible_message("<b>[src]</b> regurgitates a blob of honey directly onto [floor_pizza]![prob(10) ? " This is a thing that makes sense." : null]")
 			honey.name = replacetext(floor_pizza.name, "pizza", "beezza")
-			qdel(floor_pizza)
 
 		else
 			honey = new /obj/item/reagent_containers/food/snacks/ingredient/honey(honeyTurf)
@@ -618,7 +617,7 @@
 		else
 			return ..()
 
-	CanPass(atom/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/mover, turf/target)
 		if (istype(mover, /obj/projectile))
 			return prob(50)
 		else
@@ -1564,6 +1563,9 @@
 	var/hatched = 0
 	var/larva_type = null
 	rand_pos = 8
+	value = 75
+
+	hint = "Use in hand to hatch. Use a pen beforehand to give the bee a custom name."
 
 	var/tmp/blog = "egg blog|"
 
@@ -1612,7 +1614,7 @@
 
 	proc/hatch(var/mob/user, var/turf/T)
 		src.set_loc(T)
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.layer = initial(src.layer)
 		var/hatch_wiggle_counter = rand(3,8)
 		while (hatch_wiggle_counter-- > 0)
@@ -1701,7 +1703,7 @@
 				return
 
 			user.visible_message("[user] primes [src] and puts it down.", "You twist [src], priming it to hatch, then place it on the ground.")
-			src.anchored = 1
+			src.anchored = ANCHORED
 			src.layer = initial(src.layer)
 			user.u_equip(src)
 			src.set_loc(get_turf(user))
@@ -1823,6 +1825,7 @@
 	heal_amt = 1
 	doants = 0
 	initial_volume = 50
+	value = 50
 
 	New()
 		..()

@@ -6,7 +6,7 @@
 	targeted = 0
 	target_anything = 0
 	pointCost = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 	var/list/potential_r_arms = list("/obj/item/parts/human_parts/arm/right/claw", "/obj/item/parts/human_parts/arm/right/abomination")
 	var/list/potential_l_arms = list("/obj/item/parts/human_parts/arm/left/claw","/obj/item/parts/human_parts/arm/left/abomination")
 

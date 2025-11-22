@@ -44,3 +44,7 @@
 // same as above but bypassing the job check. Use this to give Security Officers lots of Clown XP
 
 #define JOB_XP_FORCE(TRG, JOB, XP) if(ismob(TRG) && TRG:key) award_xp_and_archive(TRG:key, JOB, XP)
+
+// This one checks department instead of job. Use for things like medical XP.
+
+#define JOB_XP_DEPT(TRG, JOB, DEPT, XP) if(ismob(TRG) && TRG:department == DEPT && TRG:key) award_xp_and_archive(TRG:key, JOB, XP)

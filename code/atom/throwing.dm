@@ -19,7 +19,7 @@
 				src.throw_impact(A, thr)
 				. = TRUE
 			if(isobj(A))
-				if(!A.CanPass(src, src.loc, 1.5))
+				if(!A.CanPass(src, src.loc))
 					src.throw_impact(A, thr)
 					. = TRUE
 
@@ -34,18 +34,26 @@
 		src.pixel_x = text2num(params["icon-x"]) - 16
 		src.pixel_y = text2num(params["icon-y"]) - 16
 
+/obj/item/throw_end(list/params, turf/thrown_from)
+	if(src.throwing & THROW_SPACED)
+		src.pixel_x = rand(-14, 14)
+		src.pixel_y = rand(-14, 14)
+	else
+		..()
+
 /atom/movable/proc/throw_impact(atom/hit_atom, datum/thrown_thing/thr=null)
 	var/area/AR = get_area(hit_atom)
 	if(AR?.sanctuary)
 		return
 
 	src.material?.triggerOnAttack(src, src, hit_atom)
-	hit_atom.material?.triggerOnHit(hit_atom, src, null, 2)
-	for(var/atom/A in hit_atom)
-		A.material?.triggerOnAttacked(A, src, hit_atom, src)
 
 	if(!hit_atom)
 		return
+
+	hit_atom.material?.triggerOnHit(hit_atom, src, null, 2)
+	for(var/atom/A in hit_atom)
+		A.material?.triggerOnAttacked(A, src, hit_atom, src)
 
 	reagents?.physical_shock(20)
 	if(SEND_SIGNAL(hit_atom, COMSIG_ATOM_HITBY_THROWN, src, thr))
@@ -69,7 +77,7 @@
 	..()
 
 /atom/movable/proc/throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 	if(!throwing_controller) return
 	if(!target) return
@@ -136,3 +144,6 @@
 	throwing_controller.start()
 
 	return thr
+
+/atom/movable/proc/pre_thrown(atom/target, list/params)
+	return FALSE

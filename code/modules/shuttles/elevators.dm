@@ -31,15 +31,11 @@ ABSTRACT_TYPE(/area/transit_vehicle/elevator/__id);\
 /area/transit_vehicle/elevator/__id/top;\
 /area/transit_vehicle/elevator/__id/top/name = _areaname;\
 /area/transit_vehicle/elevator/__id/top/icon_state = _area_sprite;\
-/area/transit_vehicle/elevator/__id/top/filler_turf = "/turf/floor/specialroom/elevator_shaft/"+#__id+"";\
+/area/transit_vehicle/elevator/__id/top/filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down";\
 /area/transit_vehicle/elevator/__id/bot;\
 /area/transit_vehicle/elevator/__id/bot/name = _areaname;\
 /area/transit_vehicle/elevator/__id/bot/icon_state = _area_sprite;\
 /area/transit_vehicle/elevator/__id/bot/filler_turf = "/turf/floor/plating";\
-/turf/floor/specialroom/elevator_shaft/__id;\
-/turf/floor/specialroom/elevator_shaft/__id/fall_landmark = ""+#__id+"fall";\
-/obj/landmark/elevator_fall/__id;\
-/obj/landmark/elevator_fall/__id/name =""+#__id+"fall"
 //I'm not sure if the double underscore in __id ended up necessary but too much effort to change
 
 //Example usage
@@ -158,6 +154,39 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	target_area = /area/transit_vehicle/elevator/ntfc_bot
 	current_occupant = "ntfc_elevator"
 
+/datum/transit_stop/elevator/robo_top
+	stop_id 	= "robo_top"
+	name		= "Cyborg Descent Chute"
+	target_area = /area/transit_vehicle/elevator/robo_top
+	current_occupant = "robo_elevator"
+
+/datum/transit_stop/elevator/robo_bot
+	stop_id 	= "robo_bot"
+	name		= "Cyborg Ascent Chute"
+	target_area = /area/transit_vehicle/elevator/robo_bot
+
+/datum/transit_stop/elevator/hydro_top
+	stop_id = "hydro_top"
+	name = "Botany Lobby"
+	target_area = /area/transit_vehicle/elevator/hydro_top
+	current_occupant = "hydro_elevator"
+
+/datum/transit_stop/elevator/hydro_bot
+	stop_id = "hydro_bot"
+	name = "Hydroponics Bay"
+	target_area = /area/transit_vehicle/elevator/hydro_bot
+
+/datum/transit_stop/elevator/jani_top
+	stop_id = "jani_top"
+	name = "Janitor"
+	target_area = /area/transit_vehicle/elevator/jani_top
+
+/datum/transit_stop/elevator/jani_bot
+	stop_id = "jani_bot"
+	name = "The Sea Sponge"
+	target_area = /area/transit_vehicle/elevator/jani_bot
+	current_occupant = "jani_elevator"
+
 /*
 /datum/transit_stop/elevator/
 	stop_id 	= ""
@@ -215,6 +244,18 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /datum/transit_vehicle/elevator/ntfc
 	vehicle_id = "ntfc_elevator"
 	stop_ids = list("ntfc_top","ntfc_mid","ntfc_bot")
+
+/datum/transit_vehicle/elevator/robo
+	vehicle_id = "robo_elevator"
+	stop_ids = list("robo_top","robo_bot")
+
+/datum/transit_vehicle/elevator/hydro
+	vehicle_id = "hydro_elevator"
+	stop_ids = list("hydro_top","hydro_bot")
+
+/datum/transit_vehicle/elevator/jani
+	vehicle_id = "jani_elevator"
+	stop_ids = list("jani_top", "jani_bot")
 
 // computers
 
@@ -303,6 +344,21 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	stop_top_id = "qmdum_top"
 	stop_bottom_id = "qmdum_bot"
 
+/obj/machinery/button/elevator/robo
+	vehicle_id = "robo_elevator"
+	stop_top_id = "robo_top"
+	stop_bottom_id = "robo_bot"
+
+/obj/machinery/button/elevator/hydro
+	vehicle_id = "hydro_elevator"
+	stop_top_id = "hydro_top"
+	stop_bottom_id = "hydro_bot"
+
+/obj/machinery/button/elevator/jani
+	vehicle_id = "jani_elevator"
+	stop_top_id = "jani_top"
+	stop_bottom_id = "jani_bot"
+
       //|\\
      // | \\
     //  |  \\
@@ -332,7 +388,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/qm_top
 	name = "Quartermaster's Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/qm"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/qm_bot
 	name = "Quartermaster's Elevator"
@@ -342,7 +398,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/med_top
 	name = "Hospital Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/med"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/med_bot
 	name = "Hospital Elevator"
@@ -352,7 +408,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/eng_top
 	name = "Engineering Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/eng"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/eng_bot
 	name = "Engineering Elevator"
@@ -362,7 +418,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/com_top
 	name = "Command Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/com"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/com_bot
 	name = "Command Elevator"
@@ -372,7 +428,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/sec_top
 	name = "Security Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/sec"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/sec_bot
 	name = "Security Elevator"
@@ -382,7 +438,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/dum_top
 	name = "Dumbwaiter"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/dum"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/dum_bot
 	name = "Dumbwaiter"
@@ -392,7 +448,7 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/qmdum_top
 	name = "Cargo Dumbwaiter"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/qmdum"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
 
 /area/transit_vehicle/elevator/qmdum_bot
 	name = "Cargo Dumbwaiter"
@@ -414,20 +470,36 @@ _________ _______  _______  _        _______ __________________   _______ ______
 	icon_state = "shuttle2"
 	filler_turf = "/turf/floor/plating"
 
-/turf/floor/specialroom/elevator_shaft/qm
-	fall_landmark = LANDMARK_FALL_QM
-/turf/floor/specialroom/elevator_shaft/med
-	fall_landmark = LANDMARK_FALL_MED
-/turf/floor/specialroom/elevator_shaft/eng
-	fall_landmark = LANDMARK_FALL_ENG
-/turf/floor/specialroom/elevator_shaft/com
-	fall_landmark = LANDMARK_FALL_COM
-/turf/floor/specialroom/elevator_shaft/sec
-	fall_landmark = LANDMARK_FALL_SEC
-/turf/floor/specialroom/elevator_shaft/dum
-	fall_landmark = LANDMARK_FALL_DUM
-/turf/floor/specialroom/elevator_shaft/qmdum
-	fall_landmark = LANDMARK_FALL_QMDUM
+/area/transit_vehicle/elevator/robo_top
+	name = "Robotics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+
+/area/transit_vehicle/elevator/robo_bot
+	name = "Robotics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/cautionblack"
+
+/area/transit_vehicle/elevator/hydro_top
+	name = "Hydroponics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+
+/area/transit_vehicle/elevator/hydro_bot
+	name = "Hydroponics Elevator"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/plating"
+
+/area/transit_vehicle/elevator/jani_top
+	name = "Sanitation Center"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+
+/area/transit_vehicle/elevator/jani_bot
+	name = "Sanitation Center"
+	icon_state = "shuttle2"
+	filler_turf = "/turf/floor/plating"
+
 /turf/floor/specialroom/elevator_shaft/ntfcm
 	fall_landmark = LANDMARK_FALL_NTFC
 /turf/floor/specialroom/elevator_shaft/ntfc

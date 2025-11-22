@@ -1,18 +1,20 @@
 /mob/dead
+	density = FALSE
 	stat = 2
-	event_handler_flags = USE_CANPASS | IMMUNE_MANTA_PUSH
+	event_handler_flags = USE_CANPASS
+	pass_unstable = PRESERVE_CACHE
 
 // dead
 
 /mob/dead/New()
 	..()
-	APPLY_MOB_PROPERTY(src, PROP_ATOM_FLOATING, src)
+	APPLY_ATOM_PROPERTY(src, PROP_ATOM_FLOATING, src)
 
 // No log entries for unaffected mobs (Convair880).
 /mob/dead/ex_act(severity)
 	return
 
-/mob/dead/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/mob/dead/CanPass(atom/movable/mover, turf/target)
 	return 1
 
 /mob/dead/say_understands()
@@ -32,10 +34,15 @@
 			var/obj/ladder/L = target
 			L.climb(src)
 			return
+		if (isturf(target) && !ON_COOLDOWN(src, "GHOST_PITFALL_SEARCHING", 2 SECONDS))
+			var/datum/component/pitfall/pit = target.GetComponent(/datum/component/pitfall)
+			if(pit)
+				src.set_loc(pit.get_turf_to_fall(src))
+
 		src.examine_verb(target)
 
 /mob/dead/process_move(keys)
-	if(keys && src.move_dir && !src.use_movement_controller && !istype(src.loc, /turf)) //Pop observers and Follow-Thingers out!!
+	if(keys && src.move_dir && !src.override_movement_controller && !istype(src.loc, /turf)) //Pop observers and Follow-Thingers out!!
 		var/mob/dead/O = src
 		O.set_loc(get_turf(src))
 	. = ..()
@@ -101,10 +108,8 @@
 						break
 					else
 						M.show_text("<i>You feel \an [fluff] [pick("draft", "wind", "breeze", "chill", "pall")]...</i>")
-#ifdef DATALOGGER
 						if (M.mind && M.mind.assigned_role == "Clown")
 							game_stats.Increment("clownabuse")
-#endif
 						break
 				if (!fart_on_other)
 					message = "<B>[src]</B> lets out \an [fluff] fart!"

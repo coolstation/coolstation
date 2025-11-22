@@ -408,25 +408,6 @@
 			newObj.set_loc(getOutputLocation(owner))
 		return
 
-/datum/matfab_recipe/tripod
-	name = "Tripod"
-	desc = "A tripod."
-	category = "Components"
-
-	New()
-		required_parts.Add(new/datum/matfab_part/metal {part_name = "Tripod"; required_amount = 1} ())
-		..()
-
-	build(amount, var/obj/machinery/nanofab/owner)
-		for(var/i=0, i<amount, i++)
-			var/obj/item/tripod/newObj = new()
-			var/obj/item/source = getObjectByPartName("Tripod")
-			if(source?.material)
-				newObj.setMaterial(source.material)
-
-			newObj.set_loc(getOutputLocation(owner))
-		return
-
 /datum/matfab_recipe/aplates
 	name = "Armor plates"
 	desc = "Armor plates used in various objects."
@@ -552,35 +533,6 @@
 			newObj.set_loc(getOutputLocation(owner))
 		return
 
-/datum/matfab_recipe/flashlight
-	name = "Flashlight"
-	desc = "A simple flashlight. Light color is affected by lens color."
-	category = "Lights"
-
-	New()
-		required_parts.Add(new/datum/matfab_part/metal {part_name = "Casing"; required_amount = 1} ())
-		required_parts.Add(new/datum/matfab_part/lens {part_name = "Lens"; required_amount = 1} ())
-		..()
-
-	build(amount, var/obj/machinery/nanofab/owner)
-		for(var/i=0, i<amount, i++)
-			var/obj/item/lensObj = getObjectByPartName("Lens")
-			var/obj/item/casingObj = getObjectByPartName("Casing")
-			var/obj/item/device/light/flashlight/newObj
-			if(lensObj?.material)
-				var/R = GetRedPart(lensObj.material.color) / 255
-				var/G = GetGreenPart(lensObj.material.color) / 255
-				var/B = GetBluePart(lensObj.material.color) / 255
-				newObj = new(null, R, G, B)
-			else
-				newObj = new
-			if(casingObj?.material)
-				newObj.setMaterial(casingObj.material)
-				newObj.desc = newObj.desc + " It has a [lensObj.material.name] lens."
-
-			newObj.set_loc(getOutputLocation(owner))
-		return
-
 /datum/matfab_recipe/lighttube
 	name = "Light tube"
 	desc = "A replacement light tube. Lens color affects light color."
@@ -629,29 +581,6 @@
 				newObj.color_g = GetGreenPart(lensObj.material.color) / 255
 				newObj.color_b = GetBluePart(lensObj.material.color) / 255
 
-
-			newObj.set_loc(getOutputLocation(owner))
-		return
-
-/datum/matfab_recipe/tripodbulb
-	name = "Tripod bulb"
-	desc = "a replacement tripod light bulb. Lens color affects light color."
-	category = "Lights"
-
-	New()
-		required_parts.Add(new/datum/matfab_part/metal {part_name = "Casing"; required_amount = 1} ())
-		required_parts.Add(new/datum/matfab_part/lens {part_name = "Lens"; required_amount = 1} ())
-		..()
-
-	build(amount, var/obj/machinery/nanofab/owner)
-		for(var/i=0, i<amount*1, i++)
-			var/obj/item/tripod_bulb/light/newObj = new()
-			var/obj/item/lensObj = getObjectByPartName("Lens")
-			var/obj/item/casingObj = getObjectByPartName("Casing")
-			if(casingObj?.material && lensObj?.material)
-				newObj.setMaterial(lensObj.material)
-				newObj.desc = newObj.desc + " Its made from [lensObj.material.name]."
-				newObj.light.set_color(GetRedPart(lensObj.material.color) / 255, GetGreenPart(lensObj.material.color) / 255, GetBluePart(lensObj.material.color) / 255)
 
 			newObj.set_loc(getOutputLocation(owner))
 		return

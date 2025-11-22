@@ -24,7 +24,7 @@
 	icon_state = "wall1"
 	opacity = 1
 	density = 1
-	blocks_air = 1
+	gas_impermeable = 1
 	thermal_conductivity = 0.05
 	heat_capacity = 0
 
@@ -52,7 +52,7 @@
 	if (!location) return
 
 	var/obj/decal/cleanable/machine_debris/gib = null
-	var/obj/decal/cleanable/blood/gibs/gib2 = null
+	var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib2 = null
 
 	// NORTH
 	gib = make_cleanable( /obj/decal/cleanable/machine_debris,location)
@@ -62,12 +62,12 @@
 	LAGCHECK(LAG_LOW)
 
 	// SOUTH
-	gib2 = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
+	gib2 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
 	if (prob(25))
 		gib2.icon_state = "gibdown1"
 	gib2.streak_cleanable(SOUTH)
 	LAGCHECK(LAG_LOW)
 
 	// RANDOM
-	gib2 = make_cleanable( /obj/decal/cleanable/blood/gibs,location)
+	gib2 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
 	gib2.streak_cleanable(cardinal)

@@ -54,7 +54,7 @@
 	process_move(mob/owner, keys)
 		// stub
 		if (owner.stat || !istype(master))
-			return next_move - world.time
+			return 0
 
 		if(next_move > world.time) return next_move - world.time
 		var/move_dir = 0

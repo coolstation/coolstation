@@ -79,8 +79,9 @@
 	var/repair_desc = ""
 	var/variant_b_active = FALSE
 	var/warning_active = FALSE
+	layer = 3
 
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 1
 
 	var/datum/pump_ui/ui
@@ -545,7 +546,12 @@ datum/pump_ui/circulator_ui
 
 	get_atom()
 		return our_circ
-
+/obj/item/electronics/frame/teg_furnace
+	name = "thermoelectric furnace frame"
+	store_type = /obj/machinery/power/furnace/thermo
+	viewstat = 2
+	secured = 2
+	icon_state = "dbox"
 /obj/item/electronics/frame/teg
 	name = "thermoelectric generator frame"
 	store_type = /obj/machinery/power/generatorTemp
@@ -558,8 +564,9 @@ datum/pump_ui/circulator_ui
 	desc = "A high efficiency thermoelectric generator."
 	icon = 'icons/obj/machines/new_grey_teg.dmi'
 	icon_state = "teg"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
+
 	//var/lightsbusted = 0
 
 	var/obj/machinery/atmospherics/binary/circulatorTemp/circ1
@@ -675,15 +682,9 @@ datum/pump_ui/circulator_ui
 		light.attach(src)
 
 		SPAWN_DBG(0.5 SECONDS)
-			src.circ1 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,WEST)
-			src.circ2 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,EAST)
-			if(!src.circ1 || !src.circ2)
-				src.status |= BROKEN
 
-			src.circ1?.generator = src
-			src.circ1?.side = LEFT_CIRCULATOR
-			src.circ2?.generator = src
-			src.circ2?.side = RIGHT_CIRCULATOR
+			check_circs()
+
 			src.transformation_mngr.generator = src
 
 			//furnaces
@@ -696,6 +697,19 @@ datum/pump_ui/circulator_ui
 				semiconductor = new(src)
 
 			updateicon()
+
+	proc/check_circs()
+		src.circ1 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,WEST)
+		src.circ2 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,EAST)
+		if(!src.circ1 || !src.circ2)
+			src.status |= BROKEN
+		else
+			src.status &= ~BROKEN
+
+		src.circ1?.generator = src
+		src.circ1?.side = LEFT_CIRCULATOR
+		src.circ2?.generator = src
+		src.circ2?.side = RIGHT_CIRCULATOR
 
 	disposing()
 		src.circ1?.generator = null
@@ -802,6 +816,7 @@ datum/pump_ui/circulator_ui
 
 	process(mult)
 		if(!src.circ1 || !src.circ2)
+			check_circs()
 			return
 
 		var/datum/gas_mixture/hot_air = src.circ1.return_transfer_air()
@@ -1418,7 +1433,7 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	name = "Furnace"
 	desc = "Generates Heat for the thermoelectric generator."
 	icon_state = "furnace_thermal" //shit edit but better than nothing
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 20
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
@@ -1525,7 +1540,6 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	var/last_change = 0
 	var/message_delay = 1 MINUTE
 
-	var/datum/radio_frequency/radio_connection
 
 	New()
 		. = ..()
@@ -1583,6 +1597,10 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 
 		src.updateUsrDialog()
 
+	proc/set_frequency(new_frequency)
+		get_radio_connection_by_id(src, frequency).update_frequency(new_frequency)
+		frequency = new_frequency
+
 	proc/return_text()
 		var/pump_html = ""
 		//var/count = 1
@@ -1632,18 +1650,16 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 
 		if(href_list["toggle"])
 			src.add_fingerprint(usr)
-			if(!radio_connection)
-				return 0
 			var/datum/signal/signal = get_free_signal()
 			signal.transmission_method = 1 //radio
 			signal.source = src
 			signal.data["tag"] = href_list["toggle"]
 			signal.data["command"] = "power_toggle"
-			radio_connection.post_signal(src, signal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
 		if(href_list["setoutput"])
 			src.add_fingerprint(usr)
-			if(!radio_connection || !href_list["target"])
+			if(!href_list["target"])
 				return 0
 
 			var/new_target = 0
@@ -1668,26 +1684,28 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 			signal.data["tag"] = href_list["target"]
 			signal.data["command"] = "set_output_pressure"
 			signal.data["parameter"] = new_target
-			radio_connection.post_signal(src, signal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
 		if(href_list["refresh"])
 			src.add_fingerprint(usr)
-			if(!radio_connection)
-				return 0
 			var/datum/signal/signal = get_free_signal()
 			signal.transmission_method = 1 //radio
 			signal.source = src
 			signal.data["command"] = "broadcast_status"
-			radio_connection.post_signal(src, signal)
-	proc
-		set_frequency(new_frequency)
-			radio_controller.remove_object(src, "[frequency]")
-			frequency = new_frequency
-			radio_connection = radio_controller.add_object(src, "[frequency]")
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
 	initialize()
 		..()
-		set_frequency(frequency)
+		src.AddComponent( \
+			/datum/component/packet_connected/radio, \
+			null, \
+			frequency, \
+			null, \
+			"receive_signal", \
+			FALSE, \
+			"pumpcontrol", \
+			FALSE \
+		)
 
 #undef PUMP_POWERLEVEL_1
 #undef PUMP_POWERLEVEL_2

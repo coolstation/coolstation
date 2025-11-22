@@ -3,6 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 // it's just an ice cube, but stronger and it looks different
 // and eats people, i guess, too
+/*
 /obj/icecube/flockdrone
 	name = "weird energy cage"
 	desc = "You can see the person inside being rapidly taken apart by fibrous mechanisms. You ought to do something about that."
@@ -172,4 +173,4 @@
 	else
 		return null // give the standard description
 
-
+*/

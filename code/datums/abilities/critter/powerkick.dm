@@ -8,6 +8,8 @@
 	targeted = 1
 	target_anything = 1
 	icon_state = "power_kick"
+	ai_range = 1
+	attack_mobs = TRUE
 
 	cast(atom/target)
 		if (..())

@@ -2,7 +2,7 @@
 	name = "computer"
 	icon = 'icons/obj/machines/computer.dmi'
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	power_usage = 250
 	var/datum/light/light
 	var/light_r = 1
@@ -62,7 +62,7 @@
 					C.set_loc(src.loc)
 				A.set_dir(src.dir)
 				A.circuit = M
-				A.anchored = 1
+				A.anchored = ANCHORED
 				src.special_deconstruct(A)
 				qdel(src)
 		else

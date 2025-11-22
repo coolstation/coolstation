@@ -4,7 +4,7 @@
 	icon_state = "egg"
 	layer = MOB_LAYER
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	var/health = 25
 

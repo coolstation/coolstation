@@ -42,7 +42,7 @@
 	var/health = 3
 	var/can_flip_bust = 0 // Can the trapped mob damage this container by flipping?
 	var/obj/item/card/id/scan = null
-	var/datum/data/record/account = null
+	var/datum/db_record/account = null
 	var/last_relaymove_time
 	var/is_short = 0 // can you not stand in it?  ie, crates?
 	var/open_fail_prob = 50
@@ -60,6 +60,9 @@
 
 	var/grab_stuff_on_spawn = TRUE
 
+	///Controls items that are 'inside' the crate, even when it's open. These will be dragged around with the crate until removed.
+	var/datum/vis_storage_controller/vis_controller
+
 	New()
 		..()
 		START_TRACKING
@@ -75,6 +78,9 @@
 						A.set_loc(src)
 
 	disposing()
+		if(src.vis_controller)
+			qdel(src.vis_controller)
+			src.vis_controller = null
 		STOP_TRACKING
 		..()
 
@@ -104,6 +110,14 @@
 			src.UpdateOverlays(weld_image, "welded")
 		else
 			src.UpdateOverlays(null, "welded")
+
+	proc/locker_sound() //I COULDNT THINK OF A BETTER WAY TO DO THIS BUT ITS FUCKING ANNOYING THE OLD WAY
+		if (src.secure)
+			if (src.locked && !src.open)
+				playsound(src,"sound/machines/bweep.ogg",50,0,0,0.7)
+				return
+			else
+				playsound(src,"sound/machines/bweep.ogg",50)
 
 	emp_act()
 		if (!src.open && length(src.contents))
@@ -245,6 +259,7 @@
 					src.locked = !( src.locked )
 					user.visible_message("<span class='notice'>The locker has been [src.locked ? null : "un"]locked by [user].</span>")
 					src.update_icon()
+					locker_sound() //redd was here
 					if (!src.registered)
 						src.registered = I.registered
 						src.name = "[I.registered]'s [src.name]"
@@ -257,6 +272,7 @@
 					src.locked = !src.locked
 					user.visible_message("<span class='notice'>[src] has been [src.locked ? null : "un"]locked by [user].</span>")
 					src.update_icon()
+					locker_sound() //redd was here
 					for (var/mob/M in src.contents)
 						src.log_me(user, M, src.locked ? "locks" : "unlocks")
 					return
@@ -428,10 +444,8 @@
 	alter_health()
 		. = get_turf(src)
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		. = open
-		if (air_group || (height==0))
-			return 1
 		if (src.is_short)
 			return 0
 
@@ -470,7 +484,7 @@
 			return 0
 		if (istype(A, /obj/decal/skeleton)) // uuuuuuugh
 			return 1
-		if (isobj(A) && ((A.density && !istype(A, /obj/critter)) || A:anchored || A == src || istype(A, /obj/decal) || istype(A, /atom/movable/screen) || istype(A, /obj/storage)))
+		if (isobj(A) && ((A.density && !istype(A, /obj/critter)) || A:anchored || A:cannot_be_stored || A == src || istype(A, /obj/decal) || istype(A, /atom/movable/screen) || istype(A, /obj/storage)))
 			return 0
 
 	var/obj/storage/entangled
@@ -492,14 +506,11 @@
 			for(var/atom/movable/AM in entangled)
 				AM.set_loc(src.open ? src.loc : src)
 
-		if (user)
-			src.dump_contents(user)
-		else
-			src.dump_contents()
+		src.dump_contents(user)
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
-		playsound(src.loc, src.open_sound, 15, 1, -3)
+		playsound(src.loc, src.open_sound, 50, 1, -3)
 		return 1
 
 	proc/close(var/entangleLogic)
@@ -522,7 +533,7 @@
 		for (var/obj/O in get_turf(src))
 			if (src.is_acceptable_content(O))
 				O.set_loc(src)
-
+		vis_controller?.hide()
 		for (var/mob/M in get_turf(src))
 			if (M.anchored || M.buckled)
 				continue
@@ -558,7 +569,7 @@
 			entangled.open(1)
 
 		src.update_icon()
-		playsound(src.loc, src.close_sound, 15, 1, -3)
+		playsound(src.loc, src.close_sound, 50, 1, -3)
 		return 1
 
 	proc/recalcPClass()
@@ -604,6 +615,8 @@
 			var/start_px = -11
 			var/items = 1
 			for (var/obj/item/I in contents) //Wanna skip mobs, wanna skip non-items
+				if ((I in vis_controller?.vis_items))
+					continue
 				if (items > 8)
 					I.pixel_y = min(0,pixel_y) //try to keep the bottom of the cart sprite free, clicking stuffed crates is a goddamn pain
 				else
@@ -616,11 +629,13 @@
 				items++
 
 		var/newloc = get_turf(src)
+		vis_controller?.show()
 		for (var/obj/O in src)
 			if (delete_and_damage)
 				qdel(O)
 				continue
-			O.set_loc(newloc)
+			if (!(O in vis_controller?.vis_items))
+				O.set_loc(newloc)
 			if(istype(O,/obj/item/mousetrap))
 				var/obj/item/mousetrap/our_trap = O
 				if(our_trap.armed && user)
@@ -685,7 +700,7 @@
 				if (found)
 					playsound(src.loc, 'sound/impact_sounds/Slimy_Splat_1.ogg', 75, 1)
 					M.show_text("<b>OH JESUS CHRIST</b>", "red")
-					bleed(M, 500, 5)
+					bleed(M, 500, violent = TRUE)
 					src.log_me(usr && ismob(usr) ? usr : null, M, "uses trash compactor")
 					var/mob/living/carbon/cube/meat/W = M.make_cube(/mob/living/carbon/cube/meat, rand(10,15), get_turf(src))
 					if (src.crunches_deliciously)
@@ -820,17 +835,15 @@
 	var/icon_redlight = "redlight"
 	var/icon_sparks = "sparks"
 	var/always_display_locks = 0
-	var/datum/radio_frequency/radio_control = 1431
+	var/radio_control = FREQ_SECURE_STORAGE
 	var/net_id
 
 	New()
 		..()
-		SPAWN_DBG(1 SECOND)
-			if (isnum(src.radio_control) && radio_controller)
-				radio_control = max(1000, min(round(radio_control), 1500))
-				src.net_id = generate_net_id(src)
-				radio_controller.add_object(src, "[src.radio_control]")
-				src.radio_control = radio_controller.return_frequency("[src.radio_control]")
+		if (isnum(src.radio_control))
+			radio_control = max(1000, min(round(radio_control), 1500))
+			src.net_id = generate_net_id(src)
+			MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, radio_control)
 
 	update_icon()
 		..()
@@ -839,11 +852,18 @@
 
 		if(!src.open || always_display_locks)
 			if (src.emagged)
-				src.UpdateOverlays(image(src.icon, src.icon_sparks), "sparks")
+				var/image/sparks = image(src.icon, src.icon_sparks)
+				sparks.plane = PLANE_SELFILLUM
+				src.UpdateOverlays(sparks, "sparks")
+				src.UpdateOverlays(null, "light")
 			else if (src.locked)
-				src.UpdateOverlays(image(src.icon, src.icon_redlight), "light")
+				var/image/redlight = image(src.icon, src.icon_redlight)
+				redlight.plane = PLANE_SELFILLUM
+				src.UpdateOverlays(redlight, "light")
 			else
-				src.UpdateOverlays(image(src.icon, src.icon_greenlight), "light")
+				var/image/greenlight = image(src.icon, src.icon_greenlight)
+				greenlight.plane = PLANE_SELFILLUM
+				src.UpdateOverlays(greenlight, "light")
 		else
 			src.UpdateOverlays(null, "sparks")
 			src.UpdateOverlays(null, "light")
@@ -859,7 +879,6 @@
 		if (signal.data["address_1"] == src.net_id)
 			var/datum/signal/reply = get_free_signal()
 			reply.source = src
-			reply.transmission_method = TRANSMISSION_RADIO
 			reply.data["sender"] = src.net_id
 			reply.data["address_1"] = sender
 			switch (lowertext(signal.data["command"]))
@@ -909,18 +928,17 @@
 				else
 					return //COMMAND NOT RECOGNIZED
 			SPAWN_DBG(0.5 SECONDS)
-				src.radio_control.post_signal(src, reply, 2)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, reply, 2)
 
 		else if (signal.data["address_1"] == "ping")
 			var/datum/signal/reply = get_free_signal()
 			reply.source = src
-			reply.transmission_method = TRANSMISSION_RADIO
 			reply.data["address_1"] = sender
 			reply.data["command"] = "ping_reply"
 			reply.data["device"] = "WNET_SECLOCKER"
 			reply.data["netid"] = src.net_id
 			SPAWN_DBG(0.5 SECONDS)
-				src.radio_control.post_signal(src, reply, 2)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, reply, 2)
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if (!src.emagged) // secure crates checked for being locked/welded but so long as you aren't telling the thing to open I don't see why that was needed

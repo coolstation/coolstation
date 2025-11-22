@@ -7,8 +7,8 @@
 	cooldown = 150
 	targeted = 1
 	target_anything = 1
-
-	var/datum/projectile/slam/proj = new
+	ai_range = 1
+	attack_mobs = TRUE
 
 	cast(atom/target)
 		if (..())
@@ -22,7 +22,7 @@
 				return 1
 		if (target == holder.owner)
 			return 1
-		if (get_dist(holder.owner, target) > 1)
+		if (GET_DIST(holder.owner, target) > 1)
 			boutput(holder.owner, __red("That is too far away to tackle."))
 			return 1
 		playsound(target, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)

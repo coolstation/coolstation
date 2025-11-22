@@ -1,22 +1,182 @@
-"a" = (/obj/item/decoration/ashtray,/obj/decal/cleanable/dirt,/turf/floor/yellow/side,/area/dmm_suite/clear_area)
-"c" = (/obj/item/cigbutt{pixel_x = -6; pixel_y = -11},/turf/floor/grime,/area/dmm_suite/clear_area)
-"d" = (/obj/storage/secure/closet/fridge,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/ingredient/sugar,/obj/item/reagent_containers/food/snacks/ingredient/sugar,/obj/item/reagent_containers/food/snacks/ingredient/sugar,/obj/decal/cleanable/generic,/obj/decal/cleanable/dirt,/turf/floor/yellow/side{dir = 1},/area/dmm_suite/clear_area)
-"e" = (/obj/submachine/chef_sink{dir = 4},/obj/decal/poster/wallsign/chsc{pixel_x = -31; pixel_y = 17},/turf/floor/grime,/area/dmm_suite/clear_area)
-"h" = (/obj/table/auto,/obj/machinery/glass_recycler{pixel_y = 2},/obj/decal/cleanable/dirt,/turf/floor/yellow/side{dir = 1},/area/dmm_suite/clear_area)
-"i" = (/turf/floor/grime,/area/dmm_suite/clear_area)
-"m" = (/obj/storage/secure/closet/fridge,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,/obj/item/reagent_containers/food/snacks/ingredient/sugar,/obj/item/reagent_containers/food/snacks/ingredient/sugar,/obj/item/reagent_containers/food/snacks/ingredient/sugar,/obj/decal/cleanable/dirt,/turf/floor/yellow/side{dir = 1},/area/dmm_suite/clear_area)
-"q" = (/obj/decal/cleanable/dirt,/turf/floor/yellow/side,/area/dmm_suite/clear_area)
-"v" = (/turf/floor/plating,/area/dmm_suite/clear_area)
-"x" = (/obj/item/cigbutt{pixel_x = 6; pixel_y = 7},/obj/item/cigbutt{pixel_x = -3; pixel_y = -4},/obj/item/cigbutt{pixel_y = -9},/obj/item/cigbutt{pixel_x = -8},/obj/item/cigbutt{pixel_x = -9; pixel_y = 7},/turf/floor/grime,/area/dmm_suite/clear_area)
-"y" = (/obj/stool,/obj/decal/cleanable/paper,/obj/item/cigbutt,/obj/item/cigbutt{pixel_x = 13; pixel_y = 11},/turf/floor/grime,/area/dmm_suite/clear_area)
-"D" = (/obj/table/auto,/obj/item/storage/box/glassbox{pixel_x = -3; pixel_y = 9},/obj/item/storage/box/glassbox{pixel_x = 14; pixel_y = 9},/obj/item/storage/box/glassbox{pixel_x = 12},/obj/item/storage/box/glassbox{pixel_x = -4},/obj/decal/cleanable/dirt,/turf/floor/yellow/side{dir = 1},/area/dmm_suite/clear_area)
-"M" = (/obj/machinery/cashreg,/obj/decal/cleanable/dirt,/turf/floor/yellow/side,/area/dmm_suite/clear_area)
-"V" = (/obj/table/auto,/obj/item/reagent_containers/food/drinks/juicer{pixel_y = 7},/obj/decal/cleanable/fungus,/obj/decal/cleanable/dirt,/turf/floor/yellow/side{dir = 1},/area/dmm_suite/clear_area)
-"Y" = (/obj/submachine/ice_cream_dispenser,/turf/floor/grime,/area/dmm_suite/clear_area)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/item/decoration/ashtray,
+/obj/decal/cleanable/dirt,
+/turf/floor/yellow/side,
+/area/dmm_suite/clear_area)
+"c" = (
+/obj/item/cigbutt{
+	pixel_x = -6;
+	pixel_y = -11
+	},
+/turf/floor/grime,
+/area/dmm_suite/clear_area)
+"d" = (
+/obj/storage/secure/closet/fridge,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/ingredient/sugar,
+/obj/item/reagent_containers/food/snacks/ingredient/sugar,
+/obj/item/reagent_containers/food/snacks/ingredient/sugar,
+/obj/decal/cleanable/generic,
+/obj/decal/cleanable/dirt,
+/turf/floor/yellow/side{
+	dir = 1
+	},
+/area/dmm_suite/clear_area)
+"e" = (
+/obj/submachine/chef_sink{
+	dir = 4
+	},
+/obj/decal/poster/wallsign/chsc{
+	pixel_x = -31;
+	pixel_y = 17
+	},
+/turf/floor/grime,
+/area/dmm_suite/clear_area)
+"h" = (
+/obj/table/auto,
+/obj/machinery/glass_recycler{
+	pixel_y = 2
+	},
+/obj/decal/cleanable/dirt,
+/turf/floor/yellow/side{
+	dir = 1
+	},
+/area/dmm_suite/clear_area)
+"i" = (
+/turf/floor/grime,
+/area/dmm_suite/clear_area)
+"m" = (
+/obj/storage/secure/closet/fridge,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/plant/lemon/spawnable,
+/obj/item/reagent_containers/food/snacks/ingredient/sugar,
+/obj/item/reagent_containers/food/snacks/ingredient/sugar,
+/obj/item/reagent_containers/food/snacks/ingredient/sugar,
+/obj/decal/cleanable/dirt,
+/turf/floor/yellow/side{
+	dir = 1
+	},
+/area/dmm_suite/clear_area)
+"q" = (
+/obj/decal/cleanable/dirt,
+/turf/floor/yellow/side,
+/area/dmm_suite/clear_area)
+"v" = (
+/turf/floor/plating,
+/area/dmm_suite/clear_area)
+"x" = (
+/obj/item/cigbutt{
+	pixel_x = 6;
+	pixel_y = 7
+	},
+/obj/item/cigbutt{
+	pixel_x = -3;
+	pixel_y = -4
+	},
+/obj/item/cigbutt{
+	pixel_y = -9
+	},
+/obj/item/cigbutt{
+	pixel_x = -8
+	},
+/obj/item/cigbutt{
+	pixel_x = -9;
+	pixel_y = 7
+	},
+/turf/floor/grime,
+/area/dmm_suite/clear_area)
+"y" = (
+/obj/stool,
+/obj/decal/cleanable/paper,
+/obj/item/cigbutt,
+/obj/item/cigbutt{
+	pixel_x = 13;
+	pixel_y = 11
+	},
+/turf/floor/grime,
+/area/dmm_suite/clear_area)
+"D" = (
+/obj/table/auto,
+/obj/item/storage/box/glassbox{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/obj/item/storage/box/glassbox{
+	pixel_x = 14;
+	pixel_y = 9
+	},
+/obj/item/storage/box/glassbox{
+	pixel_x = 12
+	},
+/obj/item/storage/box/glassbox{
+	pixel_x = -4
+	},
+/obj/decal/cleanable/dirt,
+/turf/floor/yellow/side{
+	dir = 1
+	},
+/area/dmm_suite/clear_area)
+"M" = (
+/obj/machinery/cashreg,
+/obj/decal/cleanable/dirt,
+/turf/floor/yellow/side,
+/area/dmm_suite/clear_area)
+"V" = (
+/obj/table/auto,
+/obj/item/reagent_containers/food/drinks/juicer{
+	pixel_y = 7
+	},
+/obj/decal/cleanable/fungus,
+/obj/decal/cleanable/dirt,
+/turf/floor/yellow/side{
+	dir = 1
+	},
+/area/dmm_suite/clear_area)
+"Y" = (
+/obj/submachine/ice_cream_dispenser,
+/turf/floor/grime,
+/area/dmm_suite/clear_area)
 
 (1,1,1) = {"
-hdDVm
-eciii
-yxiYi
-aqMvi
+h
+e
+y
+a
+"}
+(2,1,1) = {"
+d
+c
+x
+q
+"}
+(3,1,1) = {"
+D
+i
+i
+M
+"}
+(4,1,1) = {"
+V
+i
+Y
+v
+"}
+(5,1,1) = {"
+m
+i
+i
+i
 "}

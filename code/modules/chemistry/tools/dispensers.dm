@@ -9,13 +9,17 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
+	pass_unstable = FALSE
 	flags = FPRINT | FLUID_SUBMERGE
 	pressure_resistance = 2*ONE_ATMOSPHERE
 	p_class = 1.5
 
 	var/amount_per_transfer_from_this = 10
 	var/capacity
+
+	///inheritance for these is kinda a mess, all the reagent carts are separated but then water coolers are a subtype of the water carts????????
+	var/can_break = FALSE //so fuck it
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/cargotele))
@@ -31,27 +35,23 @@
 		if (dist <= 2 && reagents)
 			. += "<br><span class='notice'>[reagents.get_description(user,RC_SCALE)]</span>"
 
-	proc/smash()
+	proc/smash(die = TRUE)
 		var/turf/T = get_turf(src)
-		T.fluid_react(src.reagents, min(src.reagents.total_volume,10000))
-		src.reagents.clear_reagents()
-		qdel(src)
+		if(T)
+			T.fluid_react(src.reagents, min(src.reagents.total_volume,10000))
+		if (die || src.reagents.maximum_volume == 0 || can_break == FALSE)
+			qdel(src)
+		src.icon_state = "[initial(src.icon_state)]-busted"
+		if(!QDELETED(src))
+			src.reagents.clear_reagents()
+			src.reagents.maximum_volume = 0
+
+
 
 	ex_act(severity)
-		switch(severity)
-			if (OLD_EX_SEVERITY_1)
-				smash()
-				return
-			if (OLD_EX_SEVERITY_2)
-				if (prob(50))
-					smash()
-					return
-			if (OLD_EX_SEVERITY_3)
-				if (prob(5))
-					smash()
-					return
-			else
-		return
+		//welding tanks explode at a bit over 10 power, and I'd like them to break but not disappear when that happens.
+		if (prob(12*severity - 20)) //at least ~2 power to start breaking, guaranteed break at 10
+			smash(prob(10*severity - 200)) //0% chance to disappear outright at 10 power, guaranteed at 20
 
 	blob_act(var/power)
 		if (prob(25))
@@ -84,7 +84,7 @@
 	icon_state = "spaceants"
 	layer = MOB_LAYER
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	amount_per_transfer_from_this = 5
 
 	New()
@@ -124,7 +124,7 @@
 	icon_state = "spaceants"
 	layer = MOB_LAYER
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	amount_per_transfer_from_this = 5
 	color = "#160505"
 
@@ -160,6 +160,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "foamtank"
 	amount_per_transfer_from_this = 25
+	can_break = TRUE
 
 	New()
 		..()
@@ -171,7 +172,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 25
-	capacity = 1000
+	capacity = 4000 //a thousand? for a cart this size? Even 4k is lowballing it but whatever.
+	can_break = TRUE
 
 	New()
 		..()
@@ -182,7 +184,7 @@
 	desc = "A specialised high-pressure water tank for holding large amounts of water."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertankbig"
-	anchored = 0
+	anchored = UNANCHORED
 	amount_per_transfer_from_this = 25
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -190,11 +192,11 @@
 			if(!src.anchored)
 				user.visible_message("<b>[user]</b> secures the [src] to the floor!")
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-				src.anchored = 1
+				src.anchored = ANCHORED
 			else
 				user.visible_message("<b>[user]</b> unbolts the [src] from the floor!")
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-				src.anchored = 0
+				src.anchored = UNANCHORED
 			return
 
 	New()
@@ -205,11 +207,13 @@
 /obj/reagent_dispensers/watertank/fountain
 	name = "water cooler"
 	desc = "A popular gathering place for NanoTrasen's finest bureaucrats and pencil-pushers."
+	hint = "click with a wrench to steal the water tank."
 	icon_state = "coolerbase"
-	anchored = 1
+	anchored = ANCHORED
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_CROWBAR
 	mats = 8
 	capacity = 500
+	can_break = FALSE
 
 	var/has_tank = 1
 
@@ -281,7 +285,7 @@
 				user.show_text("You start unscrewing [src] from the floor.", "blue", group = "[user]-(un)fasten_watercooler")
 				if (do_after(user, 3 SECONDS))
 					user.show_text("You unscrew [src] from the floor.", "blue", group = "[user]-(un)fasten_watercooler")
-					src.anchored = 0
+					src.anchored = UNANCHORED
 					return
 			else
 				var/turf/T = get_turf(src)
@@ -293,7 +297,7 @@
 					user.show_text("You start securing [src] to [T].", "blue", group = "[user]-(un)fasten_watercooler")
 					if (do_after(user, 3 SECONDS))
 						user.show_text("You secure [src] to [T].", "blue", group = "[user]-(un)fasten_watercooler")
-						src.anchored = 1
+						src.anchored = ANCHORED
 						return
 		..()
 
@@ -343,6 +347,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 25
+	can_break = TRUE
 
 	New()
 		..()
@@ -372,12 +377,25 @@
 			for (var/i = 0, i < 3, i++)
 				reagents.temperature_reagents(power*500, power*400, 1000, 1000, 1)
 
+	shatter_chemically(var/projectiles = FALSE) //needs sound probably definitely for sure
+		visible_message(SPAN_ALERT("The <B>[src.name]</B> breaks open!"), SPAN_ALERT("You hear a loud bang!"))
+		if(projectiles)
+			var/datum/projectile/special/spreader/uniform_burst/circle/circle = new /datum/projectile/special/spreader/uniform_burst/circle/(get_turf(src))
+			circle.shot_sound = null //no grenade sound ty
+			circle.spread_projectile_type = /datum/projectile/bullet/shrapnel
+			circle.pellet_shot_volume = 0
+			circle.pellets_to_fire = 12
+			shoot_projectile_ST_pixel_spread(get_turf(src), circle, get_step(src, NORTH))
+		//src.smash(FALSE) These spawn an explosion on self already
+		return TRUE
+
 /obj/reagent_dispensers/heliumtank
 	name = "heliumtank"
 	desc = "A tank of helium."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "heliumtank"
 	amount_per_transfer_from_this = 25
+	can_break = TRUE
 
 	New()
 		..()
@@ -399,7 +417,7 @@
 	desc = "A device that mulches up unwanted produce into usable fertiliser."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "compost"
-	anchored = 0
+	anchored = UNANCHORED
 	amount_per_transfer_from_this = 30
 	event_handler_flags = NO_MOUSEDROP_QOL
 	New()
@@ -414,31 +432,36 @@
 		return
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if(istool(W, TOOL_SCREWING | TOOL_WRENCHING))
-			if(!src.anchored)
-				user.visible_message("<b>[user]</b> secures the [src] to the floor!")
-				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-				src.anchored = 1
-			else
-				user.visible_message("<b>[user]</b> unbolts the [src] from the floor!")
-				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-				src.anchored = 0
-			return
-		var/load = 1
-		if (istype(W,/obj/item/reagent_containers/food/snacks/plant/)) src.reagents.add_reagent("poo", 20)
-		else if (istype(W,/obj/item/reagent_containers/food/snacks/mushroom/)) src.reagents.add_reagent("poo", 25)
-		else if (istype(W,/obj/item/seed/)) src.reagents.add_reagent("poo", 2)
-		else if (istype(W,/obj/item/plant/)) src.reagents.add_reagent("poo", 15)
-		else load = 0
+		if (istype(W, /obj/item/grab))
+			var/obj/item/grab/grab = W
+			var/mob/target = grab.affecting
+			src.try_compost_body(user,target)
+		else
+			if(istool(W, TOOL_SCREWING | TOOL_WRENCHING))
+				if(!src.anchored)
+					user.visible_message("<b>[user]</b> secures the [src] to the floor!")
+					playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
+					src.anchored = ANCHORED
+				else
+					user.visible_message("<b>[user]</b> unbolts the [src] from the floor!")
+					playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
+					src.anchored = UNANCHORED
+				return
+			var/load = 1
+			if (istype(W,/obj/item/reagent_containers/food/snacks/plant/)) src.reagents.add_reagent("poo", 20)
+			else if (istype(W,/obj/item/reagent_containers/food/snacks/mushroom/)) src.reagents.add_reagent("poo", 25)
+			else if (istype(W,/obj/item/seed/)) src.reagents.add_reagent("poo", 2)
+			else if (istype(W,/obj/item/plant/)) src.reagents.add_reagent("poo", 15)
+			else load = 0
 
-		if(load)
-			boutput(user, "<span class='notice'>[src] mulches up [W].</span>")
-			playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 30, 1)
-			user.u_equip(W)
-			W.dropped()
-			qdel( W )
-			return
-		else ..()
+			if(load)
+				boutput(user, "<span class='notice'>[src] mulches up [W].</span>")
+				playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 30, 1)
+				user.u_equip(W)
+				W.dropped()
+				qdel( W )
+				return
+			else ..()
 
 	MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
 		if (!isliving(user))
@@ -450,6 +473,8 @@
 		if (get_dist(O,src) > 1 || get_dist(O,user) > 1)
 			boutput(user, "<span class='alert'>[O] is too far away to load into [src]!</span>")
 			return
+		if (isliving(O))
+			src.try_compost_body(user,O)
 		if (istype(O, /obj/item/reagent_containers/food/snacks/plant/) || istype(O, /obj/item/reagent_containers/food/snacks/mushroom/) || istype(O, /obj/item/seed/) || istype(O, /obj/item/plant/))
 			user.visible_message("<span class='notice'>[user] begins quickly stuffing [O] into [src]!</span>")
 			var/itemtype = O.type
@@ -473,6 +498,39 @@
 				sleep(0.3 SECONDS)
 			boutput(user, "<span class='notice'>You finish stuffing [O] into [src]!</span>")
 		else ..()
+
+	proc/try_compost_body(var/mob/user,var/mob/living/target)
+		if (src.reagents.total_volume >= src.reagents.maximum_volume)
+			boutput(user, "<span class='alert'>[src] is full!</span>")
+			return
+		if(!isdead(target))
+			user.visible_message("<span class='alert'>[target] won't compost very well when they're still alive and kicking!</span>")
+			return
+		if(target?.buckled || target?.anchored)
+			user.visible_message("<span class='alert'>[target] is stuck to something and can't be shoved into [src]!</span>")
+			return
+		user.visible_message("<span class='alert'>[user] starts to shove [target] into [src]!</span>")
+		logTheThing("combat", user, target, "attempted to force [constructTarget(target,"combat")] into a compost tank at [log_loc(src)].")
+		SETUP_GENERIC_ACTIONBAR(user, src, 6 SECONDS, /obj/reagent_dispensers/compostbin/proc/compost_body, list(user, target), src.icon, src.icon_state,\
+			"<span class='alert'>[user] finishes stuffing [target]'s corpse into [src]!</span>", INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION)
+		return
+
+	proc/compost_body(var/mob/user,var/mob/living/target)
+		if(!target || !user)
+			return
+		src.add_fingerprint(target)
+		src.add_blood(target)
+		target.set_loc(src)
+		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1, 13) // hilariously easy to hear someone being shoveled into a compost tank
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			H.reagents.trans_to(src, H.reagents.total_volume * 0.4)
+			src.reagents.add_reagent("poo", floor((rand() + 0.1) * H.reagents.total_volume))
+		else
+			src.reagents.add_reagent("poo", 75)
+		if (target.mind)
+			target.ghostize()
+		qdel(target)
 
 /obj/reagent_dispensers/still
 	name = "still"

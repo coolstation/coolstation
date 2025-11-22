@@ -7,10 +7,13 @@
 	target_nodamage_check = 0
 	target_selection_check = 0
 	max_range = 1
+	ai_range = 1
 	cooldown = 300
 	pointCost = 0
 	when_stunned = 0
 	not_when_handcuffed = 1
+	attack_mobs = TRUE
+
 	//throw mostly stolen from macho man. Doesn't spin as fast and doesn't deal with grabs, it's just a targetable ability.
 	cast(mob/target)
 		if (!holder)

@@ -1,19 +1,28 @@
 /obj/machinery/power/furnace
 	name = "Furnace"
-	desc = "An inefficient method of powering the station. Generates 5000 units of power while active."
+	desc = "An inefficient method of powering the station."
 	icon_state = "furnace"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/active = 0
 	var/last_active = 0
 	var/fuel = 0
 	var/last_fuel_state = 0
 	var/maxfuel = 1000
+	#ifdef POWER_IS_CRAPPY
+	var/genrate = 1000
+	#else
 	var/genrate = 5000
+	#endif
 	var/stoked = 0 // engine ungrump
 	mats = 20
 	event_handler_flags = NO_MOUSEDROP_QOL | USE_FLUID_ENTER
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
+
+	get_desc()
+		..()
+
+		. += " Generates [genrate] units of power while active."
 
 	process()
 		if(status & BROKEN) return

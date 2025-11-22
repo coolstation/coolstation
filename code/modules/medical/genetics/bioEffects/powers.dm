@@ -331,6 +331,7 @@
 			owner.changeStatus("weakened", 5 SECONDS)
 			container.visible_message("<span class='alert'><b>[owner.loc]</b> emits a loud thump and rattles a bit.</span>")
 			playsound(owner.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 50, 1)
+			owner.take_brain_damage(prob(50))
 			SPAWN_DBG(0)
 				var/wiggle = 6
 				while(wiggle > 0)
@@ -390,6 +391,7 @@
 			owner.changeStatus("weakened", 5 SECONDS)
 			container.visible_message("<span class='alert'><b>[owner.loc]</b> emits a loud thump and rattles a bit.</span>")
 			playsound(owner.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 50, 1)
+			owner.take_brain_damage(prob(50))
 			SPAWN_DBG(0)
 				var/wiggle = 6
 				while(wiggle > 0)
@@ -1519,7 +1521,7 @@
 	name = ""
 	desc = ""
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	mouse_opacity = 0
 	icon = null
 	icon_state = null
@@ -1830,10 +1832,10 @@
 
 		var/mob/living/L = owner
 		if (which_way == 1)
-			APPLY_MOB_PROPERTY(src.owner, PROP_INVISIBILITY, src, INVIS_INFRA)
+			APPLY_ATOM_PROPERTY(src.owner, PROP_INVISIBILITY, src, INVIS_INFRA)
 			L.UpdateOverlays(overlay_image, id)
 		else
-			REMOVE_MOB_PROPERTY(src.owner, PROP_INVISIBILITY, src)
+			REMOVE_ATOM_PROPERTY(src.owner, PROP_INVISIBILITY, src)
 			L.UpdateOverlays(null, id)
 
 	OnAdd()
@@ -1923,7 +1925,7 @@
 		if (isliving(owner))
 			var/mob/living/L = owner
 			L.UpdateOverlays(null, id)
-			REMOVE_MOB_PROPERTY(src.owner, PROP_INVISIBILITY, src)
+			REMOVE_ATOM_PROPERTY(src.owner, PROP_INVISIBILITY, src)
 		if (src.active)
 			src.UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_MOB_ATTACKED_PRE))
 		return
@@ -1935,14 +1937,14 @@
 			var/mob/living/L = owner
 			if (TIME - last_moved >= 3 SECONDS && can_act(owner))
 				L.UpdateOverlays(overlay_image, id)
-				APPLY_MOB_PROPERTY(src.owner, PROP_INVISIBILITY, src, INVIS_INFRA)
+				APPLY_ATOM_PROPERTY(src.owner, PROP_INVISIBILITY, src, INVIS_INFRA)
 
 	proc/decloak()
 		if(isliving(owner))
 			var/mob/living/L = owner
 			last_moved = TIME
 			L.UpdateOverlays(null, id)
-			REMOVE_MOB_PROPERTY(src.owner, PROP_INVISIBILITY, src)
+			REMOVE_ATOM_PROPERTY(src.owner, PROP_INVISIBILITY, src)
 
 /datum/targetable/geneticsAbility/chameleon
 	name = "Chameleon"

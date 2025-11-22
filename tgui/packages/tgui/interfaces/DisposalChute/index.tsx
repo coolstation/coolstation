@@ -142,8 +142,8 @@ export const DisposalChute = (_props, context) => {
 };
 
 interface DestinationSearchProps {
-  destinations: string[],
-  destinationTag: string,
+  readonly destinations: string[],
+  readonly destinationTag: string,
 }
 
 const DestinationSearch = (props: DestinationSearchProps, context) => {

@@ -75,6 +75,16 @@ export const CharacterTab = (_props, context) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
+      <Section title="JSON">
+        <LabeledList>
+          <LabeledList.Item label="Import">
+            <Button onClick={() => act('json-import')}>Import JSON</Button>
+          </LabeledList.Item>
+          <LabeledList.Item label="Export">
+            <Button onClick={() => act('json-export')}>Export JSON</Button>
+          </LabeledList.Item>
+        </LabeledList>
+      </Section>
     </>
   );
 };

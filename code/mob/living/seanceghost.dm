@@ -7,9 +7,9 @@
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1
+	anchored = ANCHORED
 	alpha = 180
-	event_handler_flags = IMMUNE_MANTA_PUSH
+	pass_unstable = PRESERVE_CACHE
 	var/obj/machinery/playerzoldorf/homebooth
 	var/mob/originalmob
 
@@ -37,7 +37,7 @@
 	click(atom/target)
 		src.examine_verb(target)
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		return 1
 
 	say_understands(var/other)
@@ -129,7 +129,7 @@
 	death(gibbed)
 		if(originalmob)
 			if (src.client)
-				src.removeOverlaysClient(src.client)
+				removeOverlaysClient(src.client)
 				client.mob = originalmob
 
 			if (src.mind)

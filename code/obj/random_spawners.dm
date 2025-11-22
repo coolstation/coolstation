@@ -4,8 +4,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "itemspawn"
 	density = 0
-	anchored = 1.0
-	invisibility = 101
+	anchored = ANCHORED
+	invisibility = 100
 	layer = 99
 	var/amt2spawn = 0
 	var/min_amt2spawn = 0
@@ -789,7 +789,7 @@
 	/obj/item/casing/small,
 	/obj/item/cigbutt,
 	/obj/item/clothing/head/paper_hat,
-	/obj/item/clothing/mask/gas,
+	/obj/item/clothing/mask/breath,
 	/obj/item/clothing/mask/medical,
 	/obj/item/clothing/mask/surgical,
 	/obj/item/clothing/shoes/blue,
@@ -805,6 +805,8 @@
 	/obj/item/mining_tool,
 	/obj/item/mousetrap,
 	/obj/item/mousetrap/armed,
+	/obj/item/paper/folded/ball,
+	/obj/item/paper/folded/plane,
 	/obj/item/paper,
 	/obj/item/plank,
 	/obj/item/plate,
@@ -812,6 +814,7 @@
 	/obj/item/pen/crayon/random,
 	/obj/item/raw_material/shard/glass,
 	/obj/item/reagent_containers/food/drinks/paper_cup,
+	/obj/item/reagent_containers/syringe,
 	/obj/item/rods/steel,
 	/obj/item/rubberduck,
 	/obj/item/scissors,
@@ -823,26 +826,42 @@
 	/obj/item/spacecash/random/small,
 	/obj/item/stamp,
 	/obj/item/stick,
-	/obj/item/tile/steel)
+	/obj/item/tile/steel,
+	/obj/random_item_spawner/snacks/one_or_zero)
 
-	rare_items2spawn = list(/obj/item/bluntwrap,
+	rare_items2spawn = list(/obj/item/bananapeel,
+	/obj/item/bluntwrap,
+	/obj/item/casing/grenade,
 	/obj/item/cell,
+	/obj/item/chem_grenade,
+	/obj/item/clothing/mask/gas/emergency,
 	/obj/item/crowbar,
+	/obj/item/device/light/flashlight,
+	/obj/item/device/light/glowstick,
 	/obj/item/electronics/scanner,
 	/obj/item/electronics/soldering,
+	/obj/item/firework,
+	/obj/item/grenade_fuse,
+	/obj/item/hammer,
 	/obj/item/light_parts,
 	/obj/item/light_parts/bulb,
 	/obj/item/light_parts/floor,
+	/obj/item/reagent_containers/balloon,
+	/obj/item/reagent_containers/pill/cyberpunk,
 	/obj/item/screwdriver,
 	/obj/item/spraybottle,
+	/obj/item/spray_paint,
+	/obj/item/sponge/starwipe,
 	/obj/item/spongecaps,
-	/obj/item/storage/toolbox/mechanical,
-	/obj/item/storage/toolbox/electrical,
+	/obj/item/staple_gun/red,
+//	/obj/item/storage/toolbox/mechanical,
+//	/obj/item/storage/toolbox/electrical,
 	/obj/item/storage/toolbox/emergency,
 	/obj/item/tank/air,
 	/obj/item/tank/emergency_oxygen,
 	/obj/item/weldingtool,
-	/obj/item/wrench)
+	/obj/item/wrench,
+	/obj/random_item_spawner/snacks/two)
 
 	one
 		amt2spawn = 1
@@ -936,8 +955,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "podspawn"
 	density = 0
-	anchored = 1.0
-	invisibility = 101
+	anchored = ANCHORED
+	invisibility = 100
 	layer = 99
 	var/obj/machinery/vehicle/pod2spawn = null
 
@@ -1440,7 +1459,6 @@
 						/obj/item/clothing/mask/mmyers,
 						/obj/item/clothing/mask/mime,
 						/obj/item/clothing/mask/moustache,
-						/obj/item/clothing/mask/melons,
 						/obj/item/clothing/mask/wrestling,
 						/obj/item/clothing/mask/wrestling/black,
 						/obj/item/clothing/mask/wrestling/green,
@@ -1489,6 +1507,30 @@
 	lots
 		min_amt2spawn = 5
 		max_amt2spawn = 7
+
+/obj/random_item_spawner/pizza
+	name = "random pizza spawner"
+	icon_state = "rand_pizza"
+	min_amt2spawn = 2
+	max_amt2spawn = 2
+	rare_chance = 1
+	items2spawn = list(/obj/item/reagent_containers/food/snacks/pizza/cargo/cheese,
+						/obj/item/reagent_containers/food/snacks/pizza/cargo/pepperoni,
+						/obj/item/reagent_containers/food/snacks/pizza/cargo/mushroom)
+	rare_items2spawn = list(/obj/item/reagent_containers/food/drinks/bottle/soda/softsoft_pizza)
+
+/obj/random_item_spawner/cola
+	name = "random cola spawner"
+	icon_state = "rand_pizza"
+	min_amt2spawn = 2
+	max_amt2spawn = 2
+	rare_chance = 2
+	items2spawn = list(/obj/item/reagent_containers/food/drinks/cola,
+						/obj/item/reagent_containers/food/drinks/cola/random,
+						/obj/item/reagent_containers/food/drinks/peach,
+						/obj/item/reagent_containers/food/drinks/bottle/soda/orange,
+						/obj/item/reagent_containers/food/drinks/bottle/soda/grones)
+	rare_items2spawn = list(/obj/item/reagent_containers/food/drinks/bottle/soda/softsoft_pizza)
 
 /obj/random_item_spawner/hat
 	name = "random hat spawner"
@@ -1607,6 +1649,7 @@
 						/obj/item/clothing/shoes/flippers,
 						/obj/item/clothing/shoes/fuzzy,
 						/obj/item/clothing/shoes/gogo,
+						/obj/item/clothing/shoes/turbopunk,
 						/obj/item/clothing/shoes/heels,
 						/obj/item/clothing/shoes/macho,
 						/obj/item/clothing/shoes/mj_shoes,
@@ -1675,7 +1718,8 @@
 						/obj/item/furniture_parts/table/regal,
 						/obj/item/furniture_parts/table/clothred,
 						/obj/item/furniture_parts/table/checkercloth,
-						/obj/item/furniture_parts/table/flock)
+//						/obj/item/furniture_parts/table/flock
+						)
 	items2spawn = list(/obj/item/furniture_parts/IVstand,
 						/obj/item/furniture_parts/surgery_tray,
 						/obj/item/furniture_parts/table/desk,
@@ -1755,7 +1799,7 @@
 	amt2spawn = 1
 	items2spawn = null
 	New()
-		items2spawn = concrete_typesof(/obj/item/gun/kinetic) - /obj/item/gun/kinetic/meowitzer //No, just no
+		items2spawn = concrete_typesof(/obj/item/gun/kinetic)// - /obj/item/gun/kinetic/meowitzer //No, just no
 		. = ..()
 
 /obj/random_item_spawner/ai_experimental //used to spawn 'experimental' AI law modules
@@ -1854,7 +1898,7 @@
 	New()
 		. = ..()
 		SPAWN_DBG(1 DECI SECOND) //sync with the organs spawn
-			make_cleanable(/obj/decal/cleanable/blood/gibs, src.loc)
+			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, src.loc)
 
 	one_to_three
 		min_amt2spawn = 1
@@ -1865,8 +1909,7 @@
 	amt2spawn = 1
 	rare_chance = 5
 	rare_items2spawn = list(/obj/machinery/portable_atmospherics/canister/farts/filled,
-						/obj/machinery/portable_atmospherics/canister/sleeping_agent,
-						/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
+						/obj/machinery/portable_atmospherics/canister/sleeping_agent)
 	items2spawn = list(/obj/machinery/portable_atmospherics/canister/nitrogen,
 						/obj/machinery/portable_atmospherics/canister/oxygen,
 						/obj/machinery/portable_atmospherics/canister/toxins,

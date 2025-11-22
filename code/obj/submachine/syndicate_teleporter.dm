@@ -8,7 +8,7 @@
 	icon_state = "pad0"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	var/recharging =0
 	var/id = "shuttle" //The main location of the teleporter
 	var/recharge = 20 //A short recharge time between teleports
@@ -84,7 +84,7 @@
 	icon_state = "locator"
 	item_state = "electronic"
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	w_class = W_CLASS_SMALL
 
 	attack_self(mob/user as mob)
@@ -98,7 +98,7 @@
 	icon_state = "doorctrl0"
 	desc = "A remote control switch for the syndicate teleporter."
 	var/id = "shuttle"
-	anchored = 1.0
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
 	plane = PLANE_NOSHADOW_ABOVE
 

@@ -225,6 +225,11 @@
 		src.pixel_x += rand(-3,3)
 		src.pixel_y += rand(-3,3)
 
+	attackby(obj/item/W as obj, mob/user as mob)
+		//WE CAN MAKE FUCKING HOTDOGS --redd
+		if (istype(W, /obj/item/reagent_containers/food/snacks/hotdog))
+			return W.attackby(src, user)
+
 /obj/item/reagent_containers/food/snacks/breadslice/toastslice
 	name = "slice of toast"
 	desc = "Crispy cooked bread."
@@ -417,7 +422,7 @@
 	heal_amt = 4
 	food_color = "#ffe87a"
 	initial_volume = 20
-	initial_reagents = list("water_holy"=20)
+	initial_reagents = list("garlic"=20)
 	food_effects = list("food_tox","food_hp_up_big","food_bad_breath")
 
 /obj/item/reagent_containers/food/snacks/garlicbread_ch
@@ -429,7 +434,7 @@
 	heal_amt = 4
 	food_color = "#ffe87a"
 	initial_volume = 20
-	initial_reagents = list("water_holy"=10,"cheese"=10)
+	initial_reagents = list("garlic"=10,"cheese"=10)
 	food_effects = list("food_tox","food_hp_up_big","food_bad_breath","food_energized")
 
 /obj/item/reagent_containers/food/snacks/fairybread

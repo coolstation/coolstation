@@ -151,7 +151,7 @@
 				owner.visible_message("<span class='alert'>[owner.name] vomits blood!</span>")
 				playsound(owner.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 				random_brute_damage(owner, rand(5,8))
-				bleed(owner, rand(5,8), 5)
+				bleed(owner, rand(5,8), violent = TRUE)
 
 			if (istype(owner.loc, /obj/machinery/atmospherics/unary/cryo_cell))
 				if (owner.bodytemperature < owner.base_body_temp - 80 && (owner.max_health - owner.health < 10))

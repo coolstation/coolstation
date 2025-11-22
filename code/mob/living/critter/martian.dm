@@ -14,14 +14,15 @@
 	blood_id = "iron" // alchemy - mars = iron
 	hand_count = 1
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
-	can_help = 1
 	speechverb_say = "screeches"
 	speechverb_exclaim = "screeches"
 	speechverb_ask = "screeches"
 	speechverb_gasp = "screeches"
 	speechverb_stammer = "screeches"
+	health_brute = 35
+	health_brute_vuln = 0.5
+	health_burn = 35
+	health_burn_vuln = 1
 	var/leader = 0
 
 	understands_language(var/langname)
@@ -39,11 +40,8 @@
 		HH.name = "tentacles"
 
 	setup_healths()
-		add_hh_flesh(35, 0.5)
-		add_hh_flesh_burn(35, 1)
-		add_health_holder(/datum/healthHolder/toxin)
-		//add_health_holder(/datum/healthHolder/suffocation) // this is broken as hell
-		var/datum/healthHolder/Brain = add_health_holder(/datum/healthHolder/brain)
+		..()
+		var/datum/healthHolder/Brain = get_health_holder("brain")
 		Brain.maximum_value = 0
 		Brain.value = 0
 		Brain.minimum_value = -250
@@ -118,13 +116,13 @@
 			var/datum/handHolder/HH = hands[1]
 			HH.icon = 'icons/ui/hud_human.dmi'
 			HH.icon_state = "handl"
-			HH.limb_name = "left tentacles"
+			HH.limb.name = "left tentacles"
 
 			HH = hands[2]
 			HH.name = "right tentacles"
 			HH.suffix = "-R"
 			HH.icon_state = "handr"
-			HH.limb_name = "right tentacles"
+			HH.limb.name = "right tentacles"
 
 	soldier
 		name = "martian soldier"
@@ -138,11 +136,11 @@
 			..()
 
 			var/datum/handHolder/HH = hands[2]
-			HH.limb = new /datum/limb/hitscan
+			HH.limb = new /datum/limb/hitscan(src)
 			HH.name = "Martian Psychokinetic Blaster"
 			HH.icon = 'icons/ui/critter_ui.dmi'
 			HH.icon_state = "hand_martian"
-			HH.limb_name = "Martian Psychokinetic Blaster"
+			HH.limb.name = "Martian Psychokinetic Blaster"
 			HH.can_hold_items = 0
 			HH.can_attack = 0
 			HH.can_range_attack = 1
@@ -151,7 +149,7 @@
 			HH.name = "right tentacles"
 			HH.suffix = "-R"
 			HH.icon_state = "handr"
-			HH.limb_name = "right tentacles"
+			HH.limb.name = "right tentacles"
 
 	mutant
 		name = "martian mutant"
@@ -249,6 +247,10 @@ proc/martian_speak(var/mob/speaker, var/message as text, var/speak_as_admin=0)
 	icon_state = "martianI"
 	icon_state_dead = "martianI-dead"
 	hand_count = 2
+	health_brute = 50
+	health_brute_vuln = 0.5
+	health_burn = 50
+	health_burn_vuln = 1
 
 	setup_equipment_slots()
 		equipment += new /datum/equipmentHolder/ears(src)
@@ -260,24 +262,13 @@ proc/martian_speak(var/mob/speaker, var/message as text, var/speak_as_admin=0)
 		var/datum/handHolder/HH = hands[1]
 		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handl"
-		HH.limb_name = "left tentacles"
+		HH.limb.name = "left tentacles"
 
 		HH = hands[2]
 		HH.name = "right tentacles"
 		HH.suffix = "-R"
 		HH.icon_state = "handr"
-		HH.limb_name = "right tentacles"
-
-	setup_healths()
-		add_hh_flesh(50, 0.5)
-		add_hh_flesh_burn(50, 1)
-		add_health_holder(/datum/healthHolder/toxin)
-		var/datum/healthHolder/Brain = add_health_holder(/datum/healthHolder/brain)
-		Brain.maximum_value = 0
-		Brain.value = 0
-		Brain.minimum_value = -250
-		Brain.depletion_threshold = -100
-		Brain.last_value = 0
+		HH.limb.name = "right tentacles"
 
 	New()
 		..()

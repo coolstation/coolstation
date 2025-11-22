@@ -76,16 +76,16 @@
 
 	var/buoy_count = 3
 
-	var/datum/movement_controller/artemis/controller
+	var/datum/movement_controller/artemis/movement_controller
 	var/controller_type = null
 
 	New()
 		..()
 		if(controller_type)
 			var/path = text2path("/datum/movement_controller/artemis/[controller_type]")
-			controller = new path(src)
+			movement_controller = new path(src)
 		else
-			controller = new(src)
+			movement_controller = new(src)
 		SubscribeToProcess()
 		src.background_ship_datum = new/datum/galactic_object/ship()
 		background_ship_datum.body_icon = src.icon
@@ -127,9 +127,6 @@
 	proc/UnsubscribeProcess()
 		if (src in processing_items)
 			processing_items.Remove(src)
-
-	get_movement_controller()
-		return controller
 
 	proc/link_landmark()
 		for(var/obj/landmark/ship_marker/L in world)

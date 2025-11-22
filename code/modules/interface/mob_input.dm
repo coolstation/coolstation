@@ -193,10 +193,9 @@
 		src.client.applied_keybind_styles = list() //Reset currently applied styles
 		build_keybind_styles(src.client)
 		apply_custom_keybinds(src.client)
-		if (src.use_movement_controller)
-			var/datum/movement_controller/controller = src.use_movement_controller.get_movement_controller()
-			if (controller)
-				controller.modify_keymap(src.client)
+		var/datum/movement_controller/controller = src.override_movement_controller
+		if (controller)
+			controller.modify_keymap(src.client)
 
 //I couldn't think of a better way to do this than give it it's own proc,
 //but probably just as well since AFAIK there's no way to specify what you're targeting on a turf like a rat can.

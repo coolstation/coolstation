@@ -4,21 +4,55 @@
 
 html, body {margin: 0; padding: 0; height: 100%; position: relative;}
 body {
-	background-color: #ff00e4;
+	background-color: transparent;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 12px;
 	line-height: 1.4;
 	color: #fcfcfc;
+	overflow: hidden;
 }
 table {
 	width: 100%;
 	border-collapse: separate;
 	border-spacing: 0;
 	padding: 0;
-	*border-collapse: expression('separate', cellSpacing = '0px');
+	border-collapse: expression('separate', cellSpacing = '0px');
 }
 
-a {color: #58B4DC;}
+a {
+    color: #01B8AA;
+    font-weight: bold;
+    transition: color 0.1s ease;
+	text-decoration: none;
+}
+
+a:hover {
+    color: #015c55;
+}
+::-webkit-scrollbar {
+	background: #2A2624;
+	width: 14px;
+}
+::-webkit-scrollbar-track {
+    border-style: outset;
+    border-left-color: #9a8469;
+    border-right-color: #9a8469;
+    background: #2A2624;
+}
+
+::-webkit-scrollbar-thumb {
+    border-style: outset;
+    background: #dad8b6;
+    border-left-color: #9a8469;
+    border-bottom-color: #9a8469;
+}
+
+:focus-visible {
+	outline: 1px solid black;
+	border-radius: 0px;
+	border-style: solid;
+	border-width: 1px;
+  }
 
 /* TITLEBAR START */
 #titlebar {
@@ -27,65 +61,58 @@ a {color: #58B4DC;}
 	right: 0;
 	bottom: 0;
 	left: 0;
-	height: 40px;
-	background: #21272c;
-	border-top: 3px solid #21272c;
-	border-left: 3px solid #21272c;
-	border-right: 3px solid #21272c;
-}
-#titlebar .corner {
-	position: absolute;
-	top: -3px; /* #titlebar border-top width */
-}
-#titlebar .corner.tl {
-	left: -3px; /* #titlebar border-left width */
-	width: 23px;
-	height: 23px;
-	background: url({{resource("images/chui/themes/default/tl.gif")}});
-}
-#titlebar .corner.tr {
-	right: -3px; /* #titlebar border-right width */
-	width: 6px;
-	height: 6px;
-	background: url({{resource("images/chui/themes/default/tr.gif")}});
+	background: #363636;
+	border-top: 3px solid #9a8469;
+	border-left: 3px solid #9a8469;
+	border-right: 3px solid #9a8469;
+	border-bottom: 1px solid #161616;
+	border-style: solid;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 #titlebar h1 {
-	margin: 0;
-	padding: 12px 75px 0 20px; /* right: width of .actions plus padding */
-	color: #fcfcfc;
-	font-size: 14px;
-	text-transform: uppercase;
+	color: #dad8b6;
+	font-size: 12px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 #titlebar a {
 	display: block;
 	position: absolute;
 	text-decoration: none;
-	color: white;
+	color: #C5C5C5;
 	width: 35px;
-	height: 40px;
-	line-height: 40px;
-	font-size: 14px;
-  text-align: center;
+	height: 26px;
+	line-height: 28px;
+	font-size: 16px;
+  	text-align: center;
+
+
 }
+/*
 #titlebar .min {
-	top: 0;
-  right: 41px;
-  line-height: 42px;
+	top: -1px;
+	right: 26px;
+	font-size: 15px;
+	color: #C5C5C5;
 }
+*/
 #titlebar .close {
-	top: 0;
-  right: 6px;
-  font-size: 15px;
+	color: #dad8b6;
+	top: -2px;
+	right: 6px;
+	font-size: 15px;
 }
 #titlebar a:hover {
-	color: #58B4DC;
+	color: #d42626;
 }
 /* TITLEBAR END */
 
 /* CONTENT AREA START */
 #cornerWrap {
 	position: absolute;
-	top: 43px; /* #titlebar height (plus titlebar vertical borders) */
+	top: 28px; /* #titlebar height (plus titlebar vertical borders) */
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -94,27 +121,19 @@ a {color: #58B4DC;}
 	position: absolute;
 	z-index: 999;
 	top: 0;
-	left: 20px;
 	width: 27px;
 	height: 3px;
-	background: url({{resource("images/chui/themes/default/borderSlants.png")}}) no-repeat;
+	background-repeat: no-repeat;
 }
 #cornerWrap .corner {
 	position: absolute;
 	z-index: 999;
 	bottom: 0;
 }
-#cornerWrap .corner.bl {
-	left: 0;
-	width: 6px;
-	height: 6px;
-	background: url({{resource("images/chui/themes/default/bl.gif")}});
-}
+
 #cornerWrap .corner.br {
-	right: 0;
 	width: 24px;
-	height: 24px;
-	background: url({{resource("images/chui/themes/default/br.gif")}});
+	height: 30px;
 }
 #content {
 	position: absolute;
@@ -123,16 +142,23 @@ a {color: #58B4DC;}
 	bottom: 0;
 	left: 0;
 	word-wrap: break-word;
-	overflow: hidden;
-	border-top: 3px solid #58B4DC;
-	border-left: 3px solid #21272c;
-	border-right: 3px solid #21272c;
-	border-bottom: 3px solid #21272c;
-	background: #3e464e url({{resource("images/chui/themes/default/scanLine.png")}});
+	border-top: 3px solid #9a8469;
+	border-left: 3px solid #9a8469;
+	border-right: 3px solid #9a8469;
+	border-bottom: 3px solid #322716;
+	background: #79664f;
+	border-style: solid;
+	box-shadow: rgba(93, 79, 50, 0.096) 0px -30px 60px -12px inset, rgba(0, 0, 0, 0.205) 0px 18px 36px -18px inset;
 }
-#content .innerContent { /* also has: .nano-content */
-	padding: 15px 15px 15px 15px;
-	background: url({{resource("images/chui/themes/default/topShadow.png")}}) repeat-x;
+#content .innerContent { /* also has: .not-nano-content */
+	padding: 10px 10px 10px 10px; background-repeat: repeat-x;
+}
+
+.contentFlex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: -13px;
 }
 /* CONTENT AREA END */
 
@@ -210,44 +236,44 @@ a {color: #58B4DC;}
 /* RESIZE AREAS END */
 
 /* CUSTOM SCROLLBARS START */
-.nano > .nano-content {
+.not-nano > .not-nano-content {
   position      : absolute;
-  overflow-y	: scroll;
+  overflow-y	: auto;
+  overflow-x    : hidden;
   top           : 0;
   right         : 0;
   bottom        : 0;
   left          : 0;
 }
-.nano > .nano-content:focus {
+.not-nano > .not-nano-content:focus {
   outline: thin dotted;
 }
-.nano > .nano-content::-webkit-scrollbar {
-  display: none;
-}
-.has-scrollbar > .nano-content::-webkit-scrollbar {
-  display: block;
-}
-.nano > .nano-pane {
-  background : #21272c;
+
+.not-nano > .not-nano-pane {
+  background : #2A2624;
   position   : absolute;
-  width      : 10px;
+  width      : 14px;
   right      : 0;
   top        : 0;
-  bottom     : 17px; /* #resizeArea height + padding */
-  visibility : hidden\9; /* Target only IE7 and IE8 with this hack */
+  bottom     : 0px;
   opacity    : 0.75;
   -webkit-transition    : .2s;
   -moz-transition       : .2s;
   -o-transition         : .2s;
   transition            : .2s;
 }
-.nano > .nano-pane > .nano-slider {
-  background: #58B4DC;
+.not-nano > .not-nano-pane > .not-nano-slider {
+  background: #dad8b6;
   position              : relative;
   margin                : 0;
+  border-style: solid;
+  border-left-color: #9a8469;
+  border-bottom-color: #9a8469;
+  box-shadow: rgba(26, 22, 17, 0.1) 0px 0px 16px;
 }
-.nano:hover > .nano-pane, .nano-pane.active, .nano-pane.flashed {
-  visibility : visible\9; /* Target only IE7 and IE8 with this hack */
+
+
+.not-nano:hover > .not-nano-pane, .not-nano-pane.active, .not-nano-pane.flashed {
   opacity    : 1;
 }
 /* CUSTOM SCROLLBARS END */
@@ -257,212 +283,105 @@ a {color: #58B4DC;}
 **************************/
 
 .well {
-	background-color: #21272c;
-	border-top: 1px solid #131619;
-	border-left: 1px solid #181c20;
-	border-right: 1px solid #363b40;
-	border-bottom: 1px solid #4a4f53;
+	background-color: #322716;
+	border-top: 1px solid #322716;
+	border-left: 1px solid #322716;
+	border-right: 1px solid #9a8469;
+	border-bottom: 1px solid #dad8b6;
 	padding: 10px;
 }
 
 /* Buttons are complicated */
+
 .button {
+	border: 0.125em solid transparent;
+	border-radius: 0.125em;
+	background-color: #01010100;
+	box-shadow: 0.0625em 0.0625em 0.0625em #00000000;
+	width: 4em;
+  }
+  .button-inside {
+	--background-color: #f05a22;
+	--background-color-active: #ee5529;
+	--light-shadow-color: #ffb147;
+	--dark-shadow-color: #d72d12;
+	--text-color: #fff;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	display: inline-block;
 	position: relative;
-	height: 22px;
-	padding: 0 15px;
-	margin: 8px 2px 8px 0;
-	line-height: 21px; /* height of self + 1 - difference between .button:before and .button:after heights */
-	background: #788492;
-	text-align: center;
-	font-size: 11px;
-	font-weight: bold;
-	text-transform: uppercase;
-	text-decoration: none;
-	color: #fff;
-	border: 0;
-	border-left: 1px solid #909da7;
-	border-right: 1px solid #909da7;
-	overflow: visible;
-	cursor: pointer;
-	box-sizing: border-box;
-	outline: none;
-}
-.button[disabled] {
-	opacity: 0.5;
-}
-.button:focus {
-	border-color: transparent;
-}
-.button:active {
-	border-left-color: #788492;
-	border-right-color: #788492;
-}
-/* Right vertical shadow */
-.button:before {
-	content: " ";
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	right: -3px; /* minus width of self - .button border-right width */
-	width: 2px;
-	background: #252a2f;
-}
-.button:active:before {
-	top: -8px; /* height of .button .top + .button border-top width */
-	background: #4f555c;
-}
-.button:after {
-
-}
-/* Left vertical shadow (active only) */
-.button:active:after {
-	content: " ";
-	position: absolute;
-	top: 0;
-	bottom: -5px; /* height of .button .bottom */
-	left: -1px;
-	width: 2px;
-	background: #171b1f;
-}
-/* Top area */
-.button .top {
-	position: absolute;
-	height: 7px;
-	top: -8px; /* minus height of self - border-top width of self */
-	left: 7px; /* width of .button .top:before - .button border-left width */
-	right: -1px; /* .button border-right width */
-	background: #788492;
-	border-top: 1px solid #909da7;
-	border-right: 1px solid #909da7;
-}
-.button:active .top {
-	border-top-color: #788492;
-	border-right-color: #788492;
-}
-/* Top left corner */
-.button .top:before {
-	content: " ";
-	position: absolute;
-	top: -1px;
-	left: -8px; /* width of self */
-	width: 8px;
-	height: 8px;
-	background: url({{resource("images/chui/themes/default/buttons/btn-contrast-tl.gif")}}) no-repeat left top;
-}
-.button:active .top:before {
-	background-image: url({{resource("images/chui/themes/default/buttons/btn-contrast-active-tl.gif")}});
-}
-/* Top horiz shadow (active only) */
-.button:active .top:after {
-	content: " ";
-	position: absolute;
-	top: -1px;
-	left: 0;
-	right: -1px;
-	height: 2px;
-	background: #171b1f;
-}
-/* Bottom area */
-.button .bottom {
-	position: absolute;
-	height: 5px;
-	bottom: -5px; /* height of self */
-	left: -1px; /* .button border-left width */
-	right: 5px; /* width of .button .bottom:after width - (.button width + .button:before width) */
-	background: #788492;
-	border-bottom: 1px solid #909da7;
-	border-left: 1px solid #909da7;
-}
-.button:hover .bottom, .button:active .bottom {
-	height: 4px;
-	border-bottom: 2px solid #58B4DC;
-}
-.button:active .bottom {
-	border-left-color: #788492;
-}
-/* Bottom horiz shadow */
-.button .bottom:before {
-	content: " ";
-	position: absolute;
-	bottom: -3px; /* minus height of self -  .button .bottom border-bottom width */
-	left: 5px;
-	right: 0;
-	height: 2px;
-	background: #252a2f;
-}
-.button:hover .bottom:before {
-	bottom: -4px;
-}
-.button:active .bottom:before {
-	bottom: -4px;
-	left: -1px;
-	background: #4f555c;
-}
-/* Bottom right corner */
-.button .bottom:after {
-	content: " ";
-	position: absolute;
-	bottom: -3px; /* minus height of .button .bottom:before height -  .button .bottom border-bottom width */
-	right: -8px; /* minus width of self */
-	width: 8px;
-	height: 8px;
-	background: url({{resource("images/chui/themes/default/buttons/btn-contrast-br.gif")}}) no-repeat left top;
-}
-.button:hover .bottom:after {
-	bottom: -4px;
-	background-image: url({{resource("images/chui/themes/default/buttons/btn-contrast-hover-br.gif")}});
-}
-.button:active .bottom:after {
-	bottom: -4px;
-	background-image: url({{resource("images/chui/themes/default/buttons/btn-contrast-active-br.gif")}});
-}
-
-
-/* Alt button styles */
-
-.small.button {
-	padding: 0 5px;
-	height: 12px;
-	line-height: 11px;
-	font-size: 10px;
-}
-.medium.button {
-	height: 12px;
-	line-height: 11px;
-}
-.full.button {
-	display: block;
+	border-radius: 0.5625em;
+	padding: 0.625em 0.75em 0.4375em;
 	width: 100%;
-}
+	background-color: var(--background-color);
+	background-size: 80px 80px;
+	box-shadow: inset 0.0625em 0.0625em 0.0625em var(--light-shadow-color),
+	  inset -0.0625em -0.0625em 0.0625em var(--dark-shadow-color),
+	  0.125em 0.125em 0.25em #0000006b;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--text-color);
+	transition-property: transform, background-color, box-shadow;
+	transition-duration: 0.2s;
+	transition-timing-function: cubic-bezier(0.25, 0.5, 0.5, 1);
+  }
+  .button:active .button-inside {
+	transform: scale(0.98);
+	background-color: var(--background-color-active);
+	box-shadow: inset 0 0 0.25em #000,
+	  inset 0.0625em 0.0625em 0.0625em transparent,
+	  inset -0.0625em -0.0625em 0.0625em transparent,
+	  0.125em 0.125em 0.25em transparent;
+  }
+  .button-inside.dark-gray {
+	--background-color: #353535;
+	--background-color-active: #313030;
+	--light-shadow-color: #a7a7a7;
+	--dark-shadow-color: #1c1c1c;
+  }
+  .button-inside.white {
+	--background-color: #cfcbca;
+	--background-color-active: #b9b5b3;
+	--light-shadow-color: #fafafa;
+	--dark-shadow-color: #646464;
+	--text-color: #010101;
+  }
+  .button-inside.light-gray {
+	--background-color: #bcbcbc;
+	--background-color-active: #b1adad;
+	--light-shadow-color: #f7f7f7;
+	--dark-shadow-color: #646464;
+  }
+  .button-inside.gray {
+	--background-color: #676767;
+	--background-color-active: #575454;
+	--light-shadow-color: #b8b7b5;
+	--dark-shadow-color: #383838;
+  }
+
 
 
 /* Button color schemes */
 
 /* Dark
-BG: #21272c
-Border: #3f4b54
-Highlight: #58B4DC
+BG: #21272c //Replacement #2A2624
+Border: #9a8469 //Replacment #6d6617
+Highlight: #58B4DC // Replacement ##6d6617
 Text: #fff
 */
 .dark.button,
 .dark.button .top,
-.dark.button .bottom {background-color: #21272c;}
+.dark.button .bottom {background-color: #2A2624;}
 .dark.button:active,
-.dark.button:active .top {border-color: #21272c;}
-.dark.button:active .bottom {border-left-color: #21272c;}
+.dark.button:active .top {border-color: #2A2624;}
+.dark.button:active .bottom {border-left-color: #2A2624;}
 .dark.button,
 .dark.button .top,
-.dark.button .bottom {border-color: #3f4b54;}
+.dark.button .bottom {border-color: #6d6617;}
 
 .dark.button:hover .bottom,
-.dark.button:active .bottom {border-bottom-color: #58B4DC;}
+.dark.button:active .bottom {border-bottom-color: #363636;}
 
-.dark.button .top:before {background-image: url({{resource("images/chui/themes/default/buttons/btn-standard-tl.gif")}});}
-.dark.button:active .top:before {background-image: url({{resource("images/chui/themes/default/buttons/btn-standard-active-tl.gif")}});}
-.dark.button .bottom:after {background-image: url({{resource("images/chui/themes/default/buttons/btn-standard-br.gif")}});}
-.dark.button:hover .bottom:after {background-image: url({{resource("images/chui/themes/default/buttons/btn-standard-hover-br.gif")}});}
-.dark.button:active .bottom:after {background-image: url({{resource("images/chui/themes/default/buttons/btn-standard-active-br.gif")}});}
 
 
 /*************************
@@ -489,7 +408,7 @@ Text: #fff
 
 .matcomptext{width: 100%;text-align: center;margin: 0;padding: 0;font-weight:normal;color:#000000;letter-spacing:0pt;word-spacing:1pt;font-size:12px;font-family:arial, helvetica, sans-serif;line-height:1;}
 
-#manubody {background:url(images/bluebg.png{{resource("images/bluebg.png")}}) top left no-repeat; background-attachment:fixed; width: 100%; height: 100%; text-align: center; margin:0; padding:15px; padding-right:0px;}
+/*#manubody {background:url(images/bluebg.png{{resource("images/bluebg.png")}}) top left no-repeat; background-attachment:fixed; width: 100%; height: 100%; text-align: center; margin:0; padding:15px; padding-right:0px;}*/
 #manudiv {border:none 0px; width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden;}
 div.manuborder{background-color: #0b5091; border:solid 3px #0053ED; border-radius: 15px; width:50%; padding: 3px; margin: 0 auto; font-family: "Arial", sans-serif; color: white; text-align: center; display: block;}
 a.manulink {border:none 0px; font-family: "Arial", sans-serif; color: white; text-align: center; display: block;}
@@ -518,7 +437,7 @@ a.manulink:active {border:none 0px; font-family: "Arial", sans-serif; color: whi
 /* Clearfix */
 .cf:before, .cf:after { content: " "; display: table;}
 .cf:after {clear: both;}
-.cf {*zoom: 1;}
+.cf {zoom: 1;}
 
 .tight {
 	padding: 0px;

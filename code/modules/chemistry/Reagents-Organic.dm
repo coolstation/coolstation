@@ -52,7 +52,7 @@ ABSTRACT_TYPE(/datum/reagent/organic)
 		name = "bitumen"
 		id = "bitumen"
 		description = "A dark, viscous oil rich in sulfur."
-		taste = "brimstone"
+		taste = "like brimstone"
 		transparency = 250
 		fluid_r = 5
 		fluid_g = 0
@@ -80,8 +80,8 @@ ABSTRACT_TYPE(/datum/reagent/organic)
 		name = "ethylene"
 		id = "ethylene"
 		description = "A colorless flammable gas."
-		taste = "sweet, musky"
-		transparency = 5
+		taste = "sweet and musky"
+		transparency = 15
 		fluid_r = 255
 		fluid_g = 255
 		fluid_b = 255

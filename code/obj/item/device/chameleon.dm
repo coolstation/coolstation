@@ -2,7 +2,7 @@
 	name = ""
 	desc = ""
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	soundproofing = -1
 	var/can_move = 1
 	var/obj/item/device/chameleon/master = null

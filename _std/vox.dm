@@ -29,16 +29,16 @@
 
 // Used in some sort of Mad-Libs thing
 #define FLAG 0
-#define FX 1
-#define NOUN 2
-#define ADJECTIVE 4
-#define VERB 8
-#define ADVERB 16
-#define PREPOSITION 32
-#define CONJUNCTION 64
-#define INTERJECTION 128
-#define NUMBER 256
-#define LETTER 512
+#define FX (1<<0)
+#define NOUN (1<<1)
+#define ADJECTIVE (1<<2)
+#define VERB (1<<3)
+#define ADVERB (1<<4)
+#define PREPOSITION (1<<5)
+#define CONJUNCTION (1<<6)
+#define INTERJECTION (1<<7)
+#define NUMBER (1<<8)
+#define LETTER (1<<9)
 
 #define WORD NOUN | ADJECTIVE | VERB | ADVERB
 

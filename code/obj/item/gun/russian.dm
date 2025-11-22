@@ -28,8 +28,10 @@
 	attack_self(mob/user as mob)
 		reload_gun(user)
 
-
 	attack(mob/M as mob, mob/user as mob)
+		fire_gun(user)
+
+	shoot(var/target,var/start,var/mob/user,var/POX,var/POY,var/is_dual_wield)
 		fire_gun(user)
 
 	proc/fire_gun(mob/user as mob)

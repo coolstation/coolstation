@@ -7,7 +7,7 @@
 	name = null
 	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "light1"
-	anchored = 1.0
+	anchored = ANCHORED
 	plane = PLANE_NOSHADOW_ABOVE
 	text = ""
 	var/on = 1

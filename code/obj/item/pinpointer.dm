@@ -240,16 +240,27 @@
 		arrow = image('icons/obj/items/pinpointers.dmi', icon_state = "")
 
 	afterattack(atom/A as mob|obj|turf|area, mob/user as mob)
-		if(!active && istype(A, /obj/decal/cleanable/blood))
-			var/obj/decal/cleanable/blood/B = A
-			if(B.dry > 0) //Fresh blood is -1
-				boutput(user, "<span class='alert'>Targeted blood is too dry to be useful!</span>")
-				return
-			for(var/mob/living/carbon/human/H in mobs)
-				if(B.blood_DNA == H.bioHolder.Uid)
-					target = H
-					blood_timer = TIME + (B.dry==-1?8 MINUTES:4 MINUTES)
-					break
+		if(!active)
+			if(istype(A, /obj/decal/cleanable/tracked_reagents/dynamic))
+				var/obj/decal/cleanable/tracked_reagents/blood/B = A
+				if(B.dry > 0) //Fresh blood is -1
+					boutput(user, "<span class='alert'>Targeted blood is too dry to be useful!</span>")
+					return
+				for(var/mob/living/carbon/human/H in mobs)
+					if(B.blood_DNA == H.bioHolder.Uid)
+						target = H
+						blood_timer = TIME + (B.dry==-1?8 MINUTES:4 MINUTES)
+						break
+			if(istype(A, /obj/fluid))
+				var/obj/fluid/B = A
+				if(!B.blood_DNA)
+					boutput(user, "<span class='alert'>Targeted fluid has no useful DNA!</span>")
+					return
+				for(var/mob/living/carbon/human/H in mobs)
+					if(B.blood_DNA == H.bioHolder.Uid)
+						target = H
+						blood_timer = TIME + (12 MINUTES)
+
 			active = 1
 			work()
 			user.visible_message("<span class='notice'><b>[user]</b> scans [A] with [src]!</span>",\

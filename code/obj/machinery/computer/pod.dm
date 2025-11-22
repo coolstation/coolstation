@@ -93,12 +93,12 @@
 			if (t == src.connected.power)
 				temp += text("[] ", t)
 			else
-				temp += text("<A href = '?src=\ref[];power=[]'>[]</A> ", src, t, t)
+				temp += text("<A href = 'byond://?src=\ref[];power=[]'>[]</A> ", src, t, t)
 			//Foreach goto(172)
-		dat += text("<HR><br>Power Level: []<BR><br><A href = '?src=\ref[];alarm=1'>Firing Sequence</A><BR><br><A href = '?src=\ref[];drive=1'>Test Fire Driver</A><BR><br><A href = '?src=\ref[];door=1'>Toggle Outer Door</A><BR>", temp, src, src, src)
+		dat += text("<HR><br>Power Level: []<BR><br><A href = 'byond://?src=\ref[];alarm=1'>Firing Sequence</A><BR><br><A href = 'byond://?src=\ref[];drive=1'>Test Fire Driver</A><BR><br><A href = 'byond://?src=\ref[];door=1'>Toggle Outer Door</A><BR>", temp, src, src, src)
 	//*****RM from 40.93.3S
 	else
-		dat += text("<BR><br><A href = '?src=\ref[];door=1'>Toggle Outer Door</A><BR>", src)
+		dat += text("<BR><br><A href = 'byond://?src=\ref[];door=1'>Toggle Outer Door</A><BR>", src)
 	//*****
 	dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer_\ref[src]'>Close</A></TT></BODY></HTML>")
 	if(istype(src, /obj/machinery/computer/pod/old/swf))
@@ -107,7 +107,7 @@
 		dat += "<BR><BR><BR><A href='byond://?src=\ref[src];spell_teleport=1'>Teleport</A><BR>"
 		//else
 			//dat += "<BR><BR><BR>RECHARGING TELEPORT<BR><DD>Please stand by...</DD>"
-		dat += text("<BR><BR><A href = '?src=\ref[];door=1'>Toggle Outer Door</A><BR>", src)
+		dat += text("<BR><BR><A href = 'byond://?src=\ref[];door=1'>Toggle Outer Door</A><BR>", src)
 		dat += text("<BR><BR><A href='byond://?action=mach_close&window=computer_\ref[src]'>Close</A></TT></BODY></HTML>")
 	user.Browse(dat, "window=computer_\ref[src];size=400x500")
 	onclose(user, "computer_\ref[src]")

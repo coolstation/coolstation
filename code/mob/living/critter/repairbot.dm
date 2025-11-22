@@ -10,8 +10,6 @@
 	voice_name = "synthesized voice"
 	hand_count = 1
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 0
 	blood_id = "oil"
 	speechverb_say = "beeps"
 	speechverb_gasp = "chirps"
@@ -19,6 +17,13 @@
 	speechverb_exclaim = "beeps"
 	speechverb_ask = "beeps"
 	metabolizes = 0
+	robotic = TRUE
+	takes_tox = FALSE
+	takes_brain = FALSE
+	health_brute = 30
+	health_brute_vuln = 1
+	health_burn = 30
+	health_burn_vuln = 1
 
 	understands_language(var/langname)
 		if (langname == say_language || langname == "silicon" || langname == "binary" || langname == "english")
@@ -62,15 +67,11 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/arcflash
+		HH.limb = new /datum/limb/arcflash(src)
 		HH.name = "Electric Intruder Countermeasure"
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handzap"
-		HH.limb_name = "Electric Intruder Countermeasure"
+		HH.limb.name = "Electric Intruder Countermeasure"
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
-
-	setup_healths()
-		add_hh_robot(30, 1)
-		add_hh_robot_burn(30, 1)

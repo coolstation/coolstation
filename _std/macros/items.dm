@@ -11,6 +11,7 @@
 #define iswrenchingtool(x) (istool(x, TOOL_WRENCHING))
 #define ischoppingtool(x) (istool(x, TOOL_CHOPPING))
 #define isweldingtool(x) (istool(x, TOOL_WELDING))
+#define isopenflametool(x) (istool(x, TOOL_OPENFLAME))
 
 /// Returns true if the given x is a grab (obj/item/grab)
 #define isgrab(x) (istype(x, /obj/item/grab/))

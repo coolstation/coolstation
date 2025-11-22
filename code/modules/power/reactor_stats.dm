@@ -9,7 +9,7 @@
 	icon_state = "reactor_stats"
 	desc = "A powerful supercomputer used to model the generator and provide corresponding statistical analysis"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 
 	var/list/chamber_turfs[] = new/list()
 	var/list/meters[] = new/list()
@@ -519,16 +519,16 @@
 				ret["thermal_energy"] = THERMAL_ENERGY(G)
 				ret["moles"] = TOTAL_MOLES(G)
 
+/*
 				if(length(G.trace_gases))
 					for(var/datum/gas/T as anything in G.trace_gases)
 						if(istype(T, /datum/gas/sleeping_agent))
 							ret["n2o"] = T.moles
 						else if(istype(T, /datum/gas/oxygen_agent_b))
 							ret["o2_b"] = T.moles
-						else if(istype(T, /datum/gas/volatile_fuel))
-							ret["fuel"] = T.moles
 						else
 							ret["rad"] = T.moles
+*/
 
 			else
 				if(G?.ARCHIVED(oxygen)) ret["o2"] = G.ARCHIVED(oxygen)
@@ -544,16 +544,16 @@
 					ret["thermal_energy"] = THERMAL_ENERGY(G)
 					ret["moles"] = TOTAL_MOLES(G)
 
+/*
 				if(G && length(G.trace_gases))
 					for(var/datum/gas/T as anything in G.trace_gases)
 						if(istype(T, /datum/gas/sleeping_agent))
 							ret["n2o"] = T.ARCHIVED(moles)
 						else if(istype(T, /datum/gas/oxygen_agent_b))
 							ret["o2_b"] = T.ARCHIVED(moles)
-						else if(istype(T, /datum/gas/volatile_fuel))
-							ret["fuel"] = T.ARCHIVED(moles)
 						else
 							ret["rad"] = T.ARCHIVED(moles)
+*/
 
 			return ret
 
@@ -798,11 +798,11 @@
 			m2.setText(" | ")
 
 			a1.setText("reactor")
-			a1.setHref("?src=\ref[src];nav_h=1'")
+			a1.setHref("byond://?src=\ref[src];nav_h=1'")
 			a2.setText("combustion chamber")
-			a2.setHref("?src=\ref[src];nav_h=2'")
+			a2.setHref("byond://?src=\ref[src];nav_h=2'")
 			a3.setText("gas loops")
-			a3.setHref("?src=\ref[src];nav_h=3'")
+			a3.setHref("byond://?src=\ref[src];nav_h=3'")
 
 			switch(curpage)
 				if(1) a1.setAttribute("class", "nav_active")
@@ -831,18 +831,18 @@
 
             	<div style="display:inline-block;float:left">[status]</div>
             	<div style="display:inline-block;float:right">
-            	<a href="?src=\ref[src];avg_reset=1">RESET AVG    </a>"}
+            	<a href="byond://?src=\ref[src];avg_reset=1">RESET AVG    </a>"}
 
 			if(refresh)
-				ret += {"<a href="?src=\ref[src];refresh_toggle=1"><span class="online">REFRESH ON</span></a>"}
+				ret += {"<a href="byond://?src=\ref[src];refresh_toggle=1"><span class="online">REFRESH ON</span></a>"}
 			else
-				ret += {"<a href="?src=\ref[src];refresh_toggle=1"><span class="offline">REFRESH OFF</span></a>"}
+				ret += {"<a href="byond://?src=\ref[src];refresh_toggle=1"><span class="offline">REFRESH OFF</span></a>"}
 
 
 			if(power)
-				ret += {" - <a href="?src=\ref[src];power_toggle=1"><span class="online">POWER ON</span></a>"}
+				ret += {" - <a href="byond://?src=\ref[src];power_toggle=1"><span class="online">POWER ON</span></a>"}
 			else
-				ret += {" - <a href="?src=\ref[src];power_toggle=1"><span class="offline">POWER OFF</span></a>"}
+				ret += {" - <a href="byond://?src=\ref[src];power_toggle=1"><span class="offline">POWER OFF</span></a>"}
 
 			ret += {"</div></div>"}
 

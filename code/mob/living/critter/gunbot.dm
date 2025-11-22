@@ -1,4 +1,4 @@
-/mob/living/critter/gunbot
+/mob/living/critter/robotic/gunbot
 	name = "robot"
 	real_name = "robot"
 	desc = "A Security Robot, something seems a bit off."
@@ -8,14 +8,17 @@
 	custom_gib_handler = /proc/robogibs
 	hand_count = 3
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 0
 	blood_id = "oil"
 	speechverb_say = "states"
 	speechverb_gasp = "states"
 	speechverb_stammer = "states"
 	speechverb_exclaim = "declares"
 	speechverb_ask = "queries"
+	robotic = TRUE
+	health_brute = 60
+	health_brute_vuln = 1
+	health_burn = 60
+	health_burn_vuln = 1
 	metabolizes = 0
 
 	death(var/gibbed)
@@ -49,35 +52,31 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/gun/arm38
+		HH.limb = new /datum/limb/gun/arm38(src)
 		HH.name = ".38 Anti-Personnel Arm"
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "hand38"
-		HH.limb_name = ".38 Anti-Personnel Arm"
+		HH.limb.name = ".38 Anti-Personnel Arm"
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
 
 		HH = hands[2]
-		HH.limb = new /datum/limb/gun/abg
+		HH.limb = new /datum/limb/gun/abg(src)
 		HH.name = "ABG Riot Suppression Appendage"
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handabg"
-		HH.limb_name = "ABG Riot Suppression Appendage"
+		HH.limb.name = "ABG Riot Suppression Appendage"
 		HH.can_hold_items = 0
 		HH.can_attack = 0
 		HH.can_range_attack = 1
 
 		HH = hands[3]
-		HH.limb = new /datum/limb/small_critter/strong
+		HH.limb = new /datum/limb/small_critter/strong(src)
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handn"
 		HH.name = "gunbothand"
-		HH.limb_name = "gunbot hands"
-
-	setup_healths()
-		add_hh_robot(75, 1)
-		add_hh_robot_burn(50, 1)
+		HH.limb.name = "gunbot hands"
 
 	get_melee_protection(zone, damage_type)
 		return 6

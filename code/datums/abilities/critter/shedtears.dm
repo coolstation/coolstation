@@ -5,6 +5,8 @@
   cooldown = 150
   start_on_cooldown = 0
   icon_state = "tears"
+  ai_range = 2
+  attack_mobs = TRUE
 
 /datum/targetable/critter/shedtears/cast(atom/target)
   if (..())

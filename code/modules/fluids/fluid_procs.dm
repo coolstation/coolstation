@@ -4,22 +4,6 @@
 
 /turf/var/tmp/obj/fluid/active_liquid
 
-//this is messy!
-//this is for turf/space/fluid oceans. Using this in place of turf/canpass() because this one can account for shitt like windows and tables.
-/turf/proc/ocean_canpass()
-	if( density )
-		return 0
-	for( var/A in contents )
-		var/atom/thing = A
-		if (!A)
-			continue
-		if(IS_SOLID_TO_FLUID(thing) && thing.density)
-			return 0 // && !istype(thing,/obj/grille) && !istype(thing,/obj/table) && !istype(thing,/obj/structure/girder)) return 0
-	return 1
-
-turf/floor/plating/airless/ocean_canpass()
-	.= 0
-
 /turf/selftilenotify()
 	if (src.active_liquid && src.active_liquid.group && !canpass())
 		src.active_liquid.group.displace(src.active_liquid)
@@ -215,22 +199,22 @@ turf/floor/plating/airless/ocean_canpass()
 	//if possible_cleanable has a value, handle exclusively this decal. don't search thru the turf.
 	if (possible_cleanable)
 		if (possible_cleanable.qdeled || possible_cleanable.pooled) return
-		if (istype(possible_cleanable, /obj/decal/cleanable/blood/dynamic))
-			var/obj/decal/cleanable/blood/dynamic/blood = possible_cleanable
-			var/blood_dna = blood.blood_DNA
-			var/blood_type = blood.blood_type
-			var/is_tracks = istype(possible_cleanable,/obj/decal/cleanable/blood/dynamic/tracks)
-			if (blood.reagents && blood.reagents.total_volume >= 13 || src.active_liquid || grab_any_amount)
-				if (blood.reagents)
-					var/datum/reagents/R = new(blood.reagents.maximum_volume) //Store reagents, delete cleanable, and then fluid react. prevents recursion
-					blood.reagents.copy_to(R)
-					var/blood_volume = blood.reagents.total_volume
-					blood.clean_forensic()
+		if (istype(possible_cleanable, /obj/decal/cleanable/tracked_reagents))
+			var/obj/decal/cleanable/tracked_reagents/reagent_spill = possible_cleanable
+			var/blood_dna = reagent_spill.blood_DNA
+			var/blood_type = reagent_spill.blood_type
+			var/is_tracks = istype(possible_cleanable,/obj/decal/cleanable/tracked_reagents/dynamic/tracks)
+			if (reagent_spill.reagents && reagent_spill.reagents.total_volume >= 13 || src.active_liquid || grab_any_amount)
+				if (reagent_spill.reagents)
+					var/datum/reagents/R = new(reagent_spill.reagents.maximum_volume) //Store reagents, delete cleanable, and then fluid react. prevents recursion
+					reagent_spill.reagents.copy_to(R)
+					var/blood_volume = reagent_spill.reagents.total_volume
+					reagent_spill.clean_forensic()
 					src.fluid_react(R,is_tracks ? 0 : blood_volume)
 				else
-					var/reagent = blood.sample_reagent
-					var/amt = blood.reagents.total_volume
-					blood.clean_forensic()
+					var/reagent = reagent_spill.sample_reagent
+					var/amt = reagent_spill.reagents.total_volume
+					reagent_spill.clean_forensic()
 					src.fluid_react_single(reagent,is_tracks ? 0 : amt)
 
 				if (src.active_liquid)
@@ -245,7 +229,7 @@ turf/floor/plating/airless/ocean_canpass()
 		if (C.qdeled || C.pooled) continue
 		if (C.dry) continue //this was commented out but i figure why not get crusty with it and see what happens
 		if (C.sampled) continue //beware recursion
-		if (istype(C,/obj/decal/cleanable/blood/dynamic)) continue // handled above
+		if (istype(C,/obj/decal/cleanable/tracked_reagents/dynamic)) continue // handled above
 		if (!C.can_fluid_absorb) continue
 		cleanables += C
 

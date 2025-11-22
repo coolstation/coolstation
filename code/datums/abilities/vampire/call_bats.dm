@@ -14,24 +14,34 @@
 	icon_state = "frostbats"
 	targeted = 0
 	target_nodamage_check = 0
-	max_range = 0
+	ai_range = 5
 	cooldown = 600
 	pointCost = 0//150
 	when_stunned = 0
 	not_when_handcuffed = 0
 	unlock_message = "You have gained Call Frost Bats, a protection spell."
+	attack_mobs = TRUE
+
 	var/datum/projectile/special/homing/orbiter/spiritbat/P = new
 
+	var/datum/abilityHolder/vampire/vamp_holder
+
+	onAttach(datum/abilityHolder/H)
+		. = ..()
+		src.vamp_holder = H
+
+	disposing()
+		src.vamp_holder = null
+		..()
+
 	flip_callback()
-		var/datum/abilityHolder/vampire/H = holder
-		H.launch_bat_orbiters()
+		src.vamp_holder.launch_bat_orbiters()
 
 	cast(mob/target)
 		if (!holder)
 			return 1
 
 		var/mob/living/M = holder.owner
-		var/datum/abilityHolder/vampire/H = holder
 
 		if (!M)
 			return 1
@@ -41,7 +51,7 @@
 			//play sound pls
 			//either here or in projectile launch
 
-			H.bat_orbiters = list()
+			vamp_holder.bat_orbiters = list()
 
 			var/create = 4
 			var/turf/shoot_at = get_step(M,pick(alldirs))
@@ -51,7 +61,7 @@
 				if (proj && !proj.disposed)
 					proj.targets = list(M)
 
-					H.bat_orbiters += proj
+					vamp_holder.bat_orbiters += proj
 
 					proj.launch()
 					proj.special_data["orbit_angle"] = floor(i)/create * 360
@@ -62,58 +72,10 @@
 			boutput(M, __red("The bats did not respond to your call!"))
 			return 1 // No cooldown here, though.
 
-		if (src.pointCost && istype(H))
-			H.blood_tracking_output(src.pointCost)
+		if (src.pointCost && istype(vamp_holder))
+			vamp_holder.blood_tracking_output(src.pointCost)
 
 		playsound(M.loc, 'sound/effects/gust.ogg', 60, 1)
 
-		logTheThing("combat", M, null, "uses call bats at [log_loc(M)].")
-		return 0
-
-
-
-//OLD
-/datum/targetable/vampire/call_bats_old
-	name = "Call bats"
-	desc = "Calls a swarm of bats to attack your foes."
-	icon_state = "batsum"
-	targeted = 0
-	target_nodamage_check = 0
-	max_range = 0
-	cooldown = 1200
-	pointCost = 150
-	when_stunned = 0
-	not_when_handcuffed = 1
-	unlock_message = "You have gained call bats, which summons bats to fight for you."
-
-	cast(mob/target)
-		if (!holder)
-			return 1
-
-		var/mob/living/M = holder.owner
-		var/datum/abilityHolder/vampire/H = holder
-
-		if (!M)
-			return 1
-
-		if (M.wear_mask && istype(M.wear_mask, /obj/item/clothing/mask/muzzle))
-			boutput(M, __red("How do you expect this to work? You're muzzled!"))
-			M.visible_message("<span class='alert'><b>[M]</b> makes a loud noise.</span>")
-			if (istype(H)) H.blood_tracking_output(src.pointCost)
-			return 0 // Cooldown because spam is bad.
-
-		var/turf/T = get_turf(M)
-		if (T && isturf(T))
-			M.say("BATT PHAR")
-			new /obj/critter/bat/buff(T)
-			new /obj/critter/bat/buff(T)
-			new /obj/critter/bat/buff(T)
-			for (var/obj/critter/bat/buff/B in range(M, 1))
-				B.friends += M
-		else
-			boutput(M, __red("The bats did not respond to your call!"))
-			return 1 // No cooldown here, though.
-
-		if (istype(H)) H.blood_tracking_output(src.pointCost)
 		logTheThing("combat", M, null, "uses call bats at [log_loc(M)].")
 		return 0

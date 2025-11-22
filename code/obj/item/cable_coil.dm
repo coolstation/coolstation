@@ -175,7 +175,7 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 	var/obj/ability_button/cable_toggle/button = locate() in ability_buttons
 	button?.icon_state = src.currently_laying ? "cable-on" : "cable-off"
 
-obj/item/cable_coil/dropped(mob/user)
+/obj/item/cable_coil/dropped(mob/user)
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 	currently_laying = FALSE
 	..()

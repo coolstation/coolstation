@@ -4,6 +4,8 @@
 // FLOCK DATUM
 /////////////////////////////
 // used to manage and share information between members of a flock/nest
+
+/*
 /var/list/flocks = list()
 /datum/flock
 	var/name
@@ -541,3 +543,4 @@
 		T = locate(ox + x, oy + y, z)
 
 
+*/

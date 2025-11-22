@@ -759,6 +759,7 @@ ABSTRACT_TYPE(/datum/figure_info/patreon)
 	icon = 'icons/obj/items/figures.dmi'
 	icon_state = "machine1"
 	icon_panel = "machine-panel"
+	has_glow = FALSE
 	var/sound_vend = 'sound/machines/capsulebuy.ogg'
 	var/image/capsule_image = null
 

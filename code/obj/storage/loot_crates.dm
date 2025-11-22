@@ -153,8 +153,6 @@
 							/obj/item/raw_material/claretine,/obj/item/raw_material/cerenkite)
 							item_amounts += 40
 						if(6)
-							items += /obj/item/radio_tape/advertisement/cargonia
-							item_amounts += 1
 							items += /obj/item/clothing/under/rank/cargo
 							item_amounts += 1
 							items += /obj/decal/skeleton
@@ -192,10 +190,10 @@
 					picker = rand(1,10)
 					switch(picker)
 						if(1)
-							items += pick(/obj/item/gun/energy/teleport,/obj/item/gun/energy/laser_gun/pred)
+							items += pick(/obj/item/gun/modular/juicer/blunder,/obj/item/gun/modular/juicer/long, /obj/item/gun/modular/juicer/ribbed)
 							item_amounts += 1
 						if(2 to 6)
-							items += /obj/item/gun/energy/phaser_gun
+							items += /obj/item/shipcomponent/mainweapon/disruptor
 							item_amounts += 1
 							items += /obj/item/storage/firstaid/crit
 							item_amounts += 1
@@ -661,7 +659,7 @@
 			if (istype(I,/obj/critter/cat/))
 				continue // absolutely fucking not >=I
 			if (iscritter(I)) //minced bees :)
-				var/obj/decal/cleanable/blood/gibs/whoops = make_cleanable(/obj/decal/cleanable/blood/gibs,holder)
+				var/obj/decal/cleanable/tracked_reagents/blood/gibs/whoops = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,holder)
 				whoops.name = "[pick("minced", "blended", "ground", "finely diced")] [I.name]"
 			else
 				new /obj/item/scrap(holder)

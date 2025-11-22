@@ -182,6 +182,15 @@
 		name = "pink jumpsuit"
 		icon_state = "pink"
 		item_state = "pink"
+
+	random
+		New()
+			..()
+			name = "jumpsuit" // not gonna go through making sure the name is 'proper'
+			var/color = pick("black","grey","white","darkred","red","lightred","orange","brown","lightbrown","yellow","yellowgreen","lightgreen","green","aqua","lightblue","blue","darkblue","purple","lightpurple","magenta","pink")
+			icon_state = color
+			item_state = color
+
 //PRIDE
 /obj/item/clothing/under/pride
 	name = "LGBT pride jumpsuit"
@@ -671,8 +680,8 @@
 /obj/item/clothing/under/misc/hydroponics
 	name = "senior botanist's jumpsuit"
 	desc = "Anyone wearing this has probably grown a LOT of weed in their time."
-	icon_state = "hydro"
-	item_state = "hydro"
+	icon_state = "hydro" //this was not renamed
+	item_state = "hydro-senior" //but this was, oh well
 
 /obj/item/clothing/under/misc/mail
 	name = "mailcarrier's jumpsuit"
@@ -1045,6 +1054,14 @@
 	icon_state = "shirt_n_pant-w_tie-bl"
 	item_state = "shirt_n_pant-w_tie-bl"
 
+/obj/item/clothing/under/shirt_pants_w/captain
+	name = "navy shirt and pants"
+	desc = "A crisp fit, reserved for the captain."
+	icon_state = "shirt_n_pant-cap"
+	item_state = "shirt_n_pant-cap"
+
+
+
 // Suits
 
 /obj/item/clothing/under/suit
@@ -1083,6 +1100,7 @@
 		icon_state = "suitP-dress"
 		item_state = "suitP-dress"
 
+
 /obj/item/clothing/under/suit/captain
 	name = "\improper Captain's suit"
 	desc = "A green suit and yellow necktie. Exemplifies authority."
@@ -1100,6 +1118,7 @@
 	dress/blue
 		icon_state = "suit-capB-dress"
 		item_state = "suit-capB-dress"
+
 
 /obj/item/clothing/under/suit/hop
 	name = "\improper Head of Personnel's suit"

@@ -2,11 +2,11 @@
 #define COMBAT_CLICK_DELAY 10
 
 //attack message flags
-#define SUPPRESS_BASE_MESSAGE 1
-#define SUPPRESS_SOUND 2
-#define SUPPRESS_VISIBLE_MESSAGES 4
-#define SUPPRESS_SHOWN_MESSAGES 8
-#define SUPPRESS_LOGS 16
+#define SUPPRESS_BASE_MESSAGE (1<<0)
+#define SUPPRESS_SOUND (1<<1)
+#define SUPPRESS_VISIBLE_MESSAGES (1<<2)
+#define SUPPRESS_SHOWN_MESSAGES (1<<3)
+#define SUPPRESS_LOGS (1<<4)
 
 // used by limbs which make a special kind of melee attack happen
 #define SUPPRESS_MELEE_LIMB 15

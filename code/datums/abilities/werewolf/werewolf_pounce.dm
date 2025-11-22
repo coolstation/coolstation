@@ -6,12 +6,14 @@
 	target_nodamage_check = 1
 	target_anything = 1
 	max_range = 10
+	ai_range = 8
 	cooldown = 100
 	pointCost = 0
 	when_stunned = 0
 	not_when_handcuffed = 1
 	werewolf_only = 1
 	restricted_area_check = 2
+	attack_mobs = TRUE
 
 	cast(turf/target)
 		if (!holder)
@@ -58,6 +60,7 @@
 			M.setStatus("weakened", 5 SECONDS)
 			container.visible_message("<span class='alert'><b>[M.loc]</b> emits a loud thump and rattles a bit.</span>")
 			playsound(M.loc, "sound/effects/bang.ogg", 50, 1)
+			M.take_brain_damage(prob(50))
 			var/wiggle = 6
 			while(wiggle > 0)
 				wiggle--

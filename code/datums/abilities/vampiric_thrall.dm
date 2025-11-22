@@ -44,9 +44,6 @@
 				boutput(usr, "<span class='notice'>Please press a number to bind this ability to...</span>")
 				return
 
-		if (!isturf(owner.holder.owner.loc))
-			boutput(owner.holder.owner, "<span class='alert'>You can't use this spell here.</span>")
-			return
 		if (spell.targeted && usr.targeting_ability == owner)
 			usr.targeting_ability = null
 			usr.update_cursor()
@@ -82,7 +79,7 @@
 
 				if (last_blood_points != V.blood_points)
 					last_blood_points = V.blood_points
-					src.updateText(0, src.x_occupied, src.y_occupied)
+					src.updateText()
 
 
 	onAbilityStat() // In the 'Vampire' tab.
@@ -107,6 +104,7 @@
 	last_cast = 0
 	pointCost = 0
 	preferred_holder_type = /datum/abilityHolder/vampiric_thrall
+	turf_check = TRUE
 	var/when_stunned = 1 // 0: Never | 1: Ignore mob.stunned and mob.weakened | 2: Ignore all incapacitation vars
 	var/not_when_handcuffed = 0
 	var/unlock_message = null

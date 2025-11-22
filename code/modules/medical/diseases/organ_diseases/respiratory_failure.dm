@@ -3,7 +3,7 @@
 	name = "Respiratory Failure"
 	scantype = "Medical Emergency"
 	max_stages = 3
-	spread = "The patient's respiratory is starting to fail"
+	spread = "The patient's respiratory system is starting to fail"
 	cure = "Oxygen-healing drugs or surgery"
 	reagentcure = list("organ_drug1")
 	recureprob = 10
@@ -30,7 +30,7 @@
 		H.cure_disease(D)
 		return
 
-	//so you only need to remove the one lung to cure the disease. 
+	//so you only need to remove the one lung to cure the disease.
 	if ((failing_organ == "l" && !H.organHolder.left_lung) || (failing_organ == "r" && !H.organHolder.right_lung))
 		H.cure_disease(D)
 		return
@@ -44,7 +44,11 @@
 		//handle roborespiratory failuer. should do some stuff I guess
 		// else if (H.organHolder.respiratory && H.organHolder.respiratory.robotic && !H.organHolder.heart.health > 0)
 	if (prob(D.stage * 30))
-		H.organHolder.damage_organs(0, 0, D.stage, 50, list("left_lung", "right_lung"))
+		H.organHolder.damage_organs(0, 0, D.stage, list("left_lung", "right_lung"), )
+		if(!ON_COOLDOWN(affected_mob, "respiratory_disease_cough", rand(20, 30) SECONDS))
+			SPAWN_DBG(rand(2, 30))
+				if(!QDELETED(affected_mob))
+					affected_mob.emote("cough", FALSE)
 	switch (D.stage)
 		if (1)
 			if (prob(1) && prob(10))
@@ -68,8 +72,8 @@
 			if (prob(5)) H.emote(pick("faint", "collapse", "groan"))
 		if (3)
 			if (prob(8)) H.emote(pick("twitch", "gasp"))
-				
-			if (prob(20)) 
+
+			if (prob(20))
 				H.emote(pick("twitch", "gasp"))
 				boutput(H, "<span class='alert'>You can hardly breathe due to the pain!</span>")
 

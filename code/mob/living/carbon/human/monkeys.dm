@@ -236,11 +236,11 @@
 		if (src.name == "monkey" || !src.name)
 			randomize_look(src, 1, 1, 1, 0, 1, 0)
 			src.gender = src.bioHolder?.mobAppearance.gender
-		switch(src.gender)
+		switch(src.gender) // they/them is default, btw
 			if("male")
-				src.bioHolder?.mobAppearance?.pronouns = get_singleton(/datum/pronouns/heHim)
+				src.bioHolder?.mobAppearance.pronouns = get_singleton(/datum/pronouns/heHim)
 			if("female")
-				src.bioHolder?.mobAppearance?.pronouns = get_singleton(/datum/pronouns/sheHer)
+				src.bioHolder?.mobAppearance.pronouns = get_singleton(/datum/pronouns/sheHer)
 		. = ..()
 
 	ai_action()
@@ -655,7 +655,7 @@
 			src.equip_new_if_possible(head, slot_head)
 			var/weap = pick(/obj/item/saw/active, /obj/item/extinguisher, /obj/item/ratstick, /obj/item/razor_blade, /obj/item/bat, /obj/item/kitchen/utensil/knife/cleaver, /obj/item/nunchucks, /obj/item/tinyhammer, /obj/item/storage/toolbox/mechanical/empty, /obj/item/kitchen/rollingpin)
 			src.put_in_hand_or_drop(new weap)
-		APPLY_MOB_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "angry_monkey", 5)
+		APPLY_ATOM_PROPERTY(src, PROP_STAMINA_REGEN_BONUS, "angry_monkey", 5)
 		src.add_stam_mod_max("angry_monkey", 100)
 
 	get_disorient_protection()
@@ -707,7 +707,7 @@
 		..()
 		SPAWN_DBG(1 SECOND)
 			src.equip_new_if_possible(/obj/item/clothing/glasses/sunglasses, slot_glasses)
-			src.equip_new_if_possible(/obj/item/gun/kinetic/detectiverevolver, slot_l_hand)
+			src.equip_new_if_possible(/obj/item/gun/modular/italian/revolver/basic, slot_l_hand)
 			src.equip_new_if_possible(/obj/item/clothing/under, slot_w_uniform)
 
 /mob/living/carbon/human/npc/monkey/sea/rich

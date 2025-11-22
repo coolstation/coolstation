@@ -40,7 +40,7 @@
 						boutput(user, "No exposed cable here to attach to.")
 						return
 					else
-						anchored = 1
+						anchored = ANCHORED
 						mode = 1
 						boutput(user, "You attach the device to the cable.")
 						for(var/mob/M in AIviewers(user))
@@ -51,7 +51,7 @@
 					boutput(user, "Device must be placed over an exposed cable to attach to it.")
 					return
 			else
-				anchored = 0
+				anchored = UNANCHORED
 				mode = 0
 				boutput(user, "You detach	the device from the cable.")
 				for(var/mob/M in AIviewers(user))

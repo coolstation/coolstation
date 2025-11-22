@@ -304,7 +304,6 @@
 			return
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src.host
-		signal.transmission_method = TRANSMISSION_RADIO
 		signal.data["address_1"] = "00000000"
 		signal.data["command"] = "text_message"
 		signal.data["sender_name"] = src.host.owner
@@ -322,3 +321,34 @@
 		var/obj/item/device/pda_module/alert/J = the_item
 		if (J.host)
 			J.send_alert()
+
+//It's like you have a car on your belt
+/obj/item/device/pda_module/cigarette_lighter //Functionality is in eject_pen on pda2 cause how many modules are going to care about ejecting from the pen slot
+	name = "cigarette lighter module"
+	desc = "A PDA module that lights your cigarette when you remove it from your device, or through a port on the back if you've already got something in there. It's the future!."
+	icon_state = "pdamod_lighter"
+	/*var/lit = FALSE
+
+	install()
+		..()
+		lit = TRUE
+		for (var/obj/ability_button/pda_tray_toggle/B in src.ability_buttons)
+			B.icon_state = "cig_on"
+
+	uninstall()
+		..()
+		lit = FALSE
+		for (var/obj/ability_button/pda_tray_toggle/B in src.ability_buttons)
+			B.icon_state = "cig_off"
+
+/obj/ability_button/pda_lighter_toggle
+	name = "Toggle PDA cigarette lighter"
+	icon_state = "cig_off"
+
+	execute_ability()
+		var/obj/item/device/pda_module/cigarette_lighter/J = the_item
+		J.lit = !J.lit
+		if (J.lit)
+			icon_state = "cig_on"
+		else
+			icon_state = "cig_off"*/

@@ -210,8 +210,8 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 <h1>Cool's tation 13 <a href="#license"><img alt="Creative Commons CC-BY-NC-SA License" src="[resource("images/changelog/88x31.png")]" /></a></h1>
 
 <ul class="links cf">
-    <li>Official Wiki<br><strong><a target="_blank" href="https://wiki.coolstation.space/wiki/Main_Page">https://wiki.coolstation.space/wiki/Main_Page</a></strong><span></span></li>
-    <li>Official Forums<br><strong><a target="_blank" href="https://forum.coolstation.space/index.php">https://forum.coolstation.space/index.php</a></strong></li>
+    <li>Official Wiki<br><strong><a target="_blank" href="https://wiki.coolstation.space">https://wiki.coolstation.space</a></strong><span></span></li>
+    <li>Official Forums<br><strong><a target="_blank" href="https://forum.coolstation.space">https://forum.coolstation.space</a></strong></li>
 </ul>"}
 
 #if ASS_JAM
@@ -221,19 +221,21 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 #endif
 	html += changelog_parse(file2text("strings/changelog.txt"), "Changelog")
 	html += {"
-<h3>GoonStation 13 Development Team</h3>
+<h3>Coolstation 13 Development Team</h3>
 <p class="team">
-    <strong>Host:</strong> Wire (#1, #2, Wiki, Forums, & more)<br>
+    <strong>Host:</strong> Warc (Also ReginaldHJ and Tamber)<br>
 
-    <strong>Coders:</strong> stuntwaffle, Showtime, Pantaloons, Nannek, Keelin, Exadv1, hobnob, 0staf, sniperchance, AngriestIBM, BrianOBlivion, I Said No, Harmar, Dropsy, ProcitizenSA, Pacra, LLJK-Mosheninkov, JackMassacre, Jewel, Dr. Singh, Infinite Monkeys, Cogwerks, Aphtonites, Wire, BurntCornMuffin, Tobba, Haine, Marquesas, SpyGuy, Conor12, Daeren, Somepotato, MyBlueCorners, ZeWaka, Gannets, Kremlin, Flourish, Mordent, Cirrial, Grayshift, Firebarrage, Kyle, Azungar, Warcrimes, HydroFloric, Zamujasa, Gerhazo, Readster, pali6, Tarmunora, & UrsulaMejor.
+    <strong>Coders:</strong> lotta people (fill in asap)
 		<br>
-    <strong>Spriters:</strong> Supernorn, Haruhi, Stuntwaffle, Pantaloons, Rho, SynthOrange, I Said No, Cogwerks, Aphtonites, Hempuli, Gannets, Haine, SLthePyro, Sundance, Azungar, Flaborized, Erinexx, and a bunch of awesome people from the forums!
+    <strong>Spriters:</strong> even more lotta people plus non-staff (thank you all)
+		<br>
+	not sure this even shows up in the window but anyway
 </p>
 
 <p id="license" class="lic">
     <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" name="license"><img alt="Creative Commons CC-BY-NC-SA License" src="[resource("images/changelog/88x31.png")]" /></a><br/>
 
     <em>
-    	Except where otherwise noted, Goonstation 13 is licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Noncommercial-Share Alike 3.0 License</a>.
+    	Except where otherwise noted, Coolstation 13 is licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Noncommercial-Share Alike 3.0 License</a>.
     </em>
 </p>"}

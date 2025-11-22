@@ -385,11 +385,12 @@
 				if (G.type == /area/colosseum)
 					colosseum = G
 					break
+			if (!colosseum) return //unit teeeests
 			var/minx = 300
 			var/miny = 300
 			var/maxx = 0
 			var/maxy = 0
-			for (var/turf/T in colosseum)
+			for (var/turf/T in colosseum.turfs)
 				if (!T.density)
 					spawnturfs += T
 					if (T.x < minx)
@@ -476,7 +477,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 	src.debug_variables(colosseum_controller)
 
-/turf/floor/setpieces/gauntlet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/turf/floor/setpieces/gauntlet/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover, /obj/machinery/colosseum_putt))
 		return 0
 	return ..()
@@ -487,7 +488,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 	icon_state = "gauntfloorPod"
 	event_handler_flags = USE_CANPASS
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if (istype(mover, /obj/machinery/colosseum_putt))
 			return 1
 		return ..()
@@ -762,7 +763,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 		shotgun
 			name = "Ballistic"
-			myProj = /datum/projectile/bullet/shot_heavy
+			myProj = /datum/projectile/special/spreader/buckshot_burst/juicer/scrap
 			ammo = 40
 			abstract = 0
 			icon = 'icons/obj/items/gun.dmi'
@@ -770,7 +771,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 		aex
 			name = "Ballistic (explosive)"
-			myProj = /datum/projectile/bullet/slug_boom
+			myProj = /datum/projectile/bullet/slug/boom
 			ammo = 20
 			abstract = 0
 			icon = 'icons/obj/colosseum.dmi'
@@ -856,7 +857,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 				for (var/turf/T in orange(2, C))
 					if (get_dist(T, Q) == 2)
 						var/obj/overlay/Wall = new(T)
-						Wall.anchored = 1
+						Wall.anchored = ANCHORED
 						Wall.set_density(1)
 						Wall.opacity = 0
 						Wall.icon = 'icons/effects/effects.dmi'
@@ -924,7 +925,7 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 
 			hunting_rifle
 				name = "30.06 Shots"
-				myProj = /datum/projectile/bullet/rifle_heavy
+				myProj = /datum/projectile/bullet/rifle/juicer
 				ammo = 6
 				abstract = 0
 				icon = 'icons/obj/items/gun.dmi'
@@ -953,14 +954,14 @@ var/global/datum/arena/colosseumController/colosseum_controller = new()
 		boutput(usr, "<span class='hint'>Press Insert (or Q in WASD mode) to stop the ship.</span>")
 		boutput(usr, "<span class='hint'>Click the ship to get out.</span>")
 
-#define INDICATOR_PRIMARY 1
-#define INDICATOR_SECONDARY 2
-#define INDICATOR_HEALTH 4
-#define INDICATOR_ARMOR 8
-#define INDICATOR_FIRERES 16
-#define INDICATOR_SHIELDGEN 32
-#define INDICATOR_SHOTCOUNT 64
-#define INDICATOR_SHOTDAMAGE 128
+#define INDICATOR_PRIMARY (1<<0)
+#define INDICATOR_SECONDARY (1<<1)
+#define INDICATOR_HEALTH (1<<2)
+#define INDICATOR_ARMOR (1<<3)
+#define INDICATOR_FIRERES (1<<4)
+#define INDICATOR_SHIELDGEN (1<<5)
+#define INDICATOR_SHOTCOUNT (1<<6)
+#define INDICATOR_SHOTDAMAGE (1<<7)
 #define INDICATOR_ALL 255
 
 #define OVERLAY_SHIELD 1
@@ -978,7 +979,7 @@ proc/get_colosseum_message(var/name, var/message)
 	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "miniputt"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/owner = null
 	var/mob/living/carbon/human/piloting = null
 	var/flying = 0
@@ -1057,9 +1058,6 @@ proc/get_colosseum_message(var/name, var/message)
 		radio = new(src)
 
 		movement_controller = new(src)
-
-	get_movement_controller()
-		return movement_controller
 
 	proc/on_damage()
 		next_shield_regen = ticker.round_elapsed_ticks + 50
@@ -1708,7 +1706,7 @@ proc/get_colosseum_message(var/name, var/message)
 	icon = 'icons/effects/VR.dmi'
 	icon_state = "intercom"
 	desc = "A special virtual radio that immediately distributes messages to all virtual hearers."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 
@@ -1739,7 +1737,7 @@ proc/get_colosseum_message(var/name, var/message)
 /obj/colosseum_mine
 	name = "Mine"
 	desc = "You should probably not ram this."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	icon = 'icons/obj/colosseum.dmi'

@@ -4,7 +4,7 @@
 	icon_state = "neutinj"
 
 	name = "neutron injector"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	var/obj/item/rod/insertedRod = null

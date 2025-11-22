@@ -1,14 +1,18 @@
 
-#define FLUID_SPAWNER_TURF_BLOCKED(t) (!t || (t.active_liquid && t.active_liquid.group && t.active_liquid.group.amt_per_tile >= 300) || !t.ocean_canpass())
+#define FLUID_SPAWNER_TURF_BLOCKED(T, t) (!t || (t.active_liquid && t.active_liquid.group && t.active_liquid.group.amt_per_tile >= 300) || !t.gas_cross(T))
 
+#ifdef MAGINDARA_MAP
+var/global/ocean_reagent_id = "dirtywater"
+#else
 var/global/ocean_reagent_id = "water"
+#endif
 var/global/ocean_name = "ocean"
 var/global/datum/color/ocean_color = 0
 
 /// Processes fluid turfs
 /datum/controller/process/fluid_turfs
 	var/tmp/list/processing_fluid_turfs
-	var/add_reagent_amount = 500
+	var/add_reagent_amount = 2500
 	var/do_light_gen = 1
 
 	proc/handle_light_generating_turfs(lagcheck_at = LAG_REALTIME)
@@ -69,11 +73,11 @@ var/global/datum/color/ocean_color = 0
 
 				t = get_step(T,dir)
 
-				if (t.turf_flags & CAN_BE_SPACE_SAMPLE)
+				if (t.turf_flags & IS_SPACE)
 					adjacent_space += 1
 					continue
 
-				if (FLUID_SPAWNER_TURF_BLOCKED(t))
+				if (FLUID_SPAWNER_TURF_BLOCKED(T, t))
 					adjacent_block += 1
 					continue
 

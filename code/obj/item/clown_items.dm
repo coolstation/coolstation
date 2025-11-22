@@ -29,11 +29,13 @@ VUVUZELA
 	..()
 
 /obj/item/bananapeel/HasEntered(AM as mob|obj)
-	if(istype(src.loc, /turf/space))
-		return
 	if (iscarbon(AM))
+		var/turf/T = get_turf(src)
+		if(istype_exact(T, /turf/space)) // i hate space pathing
+			return
 		var/mob/M =	AM
 		if (M.slip(ignore_actual_delay = 1))
+			M.lastgasp()
 			boutput(M, "<span class='notice'>You slipped on the banana peel!</span>")
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
@@ -48,8 +50,7 @@ VUVUZELA
 				M.changeStatus("weakened", 5 SECONDS)
 				JOB_XP(M, "Clown", 2)
 			else
-				if (prob(20))
-					JOB_XP(last_touched, "Clown", 1)
+				JOB_XP(last_touched, "Clown", 1)
 
 /obj/item/canned_laughter
 	name = "Canned laughter"

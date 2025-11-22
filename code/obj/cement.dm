@@ -2,7 +2,7 @@
 	name = "wet concrete"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "concrete_wet"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = OBJ_LAYER + 0.9
 	event_handler_flags = USE_CANPASS
@@ -11,6 +11,7 @@
 	_max_health = initial_health
 	var/c_quality = 0
 	var/created_time = 0
+	gas_impermeable = TRUE
 
 	New()
 		..()
@@ -27,7 +28,7 @@
 		processing_items -= src
 		..()
 
-	CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
+	CanPass(atom/movable/mover, turf/target)
 		if(istype(mover, /mob))
 			var/mob/M = mover
 			M.setStatus(statusId = "slowed", duration = 0.5 SECONDS, optional = 4)
@@ -48,7 +49,7 @@
 	icon_state = "concrete"
 	density = 1
 	opacity = 0 	// changed in New()
-	anchored = 1
+	anchored = ANCHORED
 	name = "concrete wall"
 	desc = "A heavy duty wall made of concrete! This thing is gonna take some manual labour to get through..."
 	flags = FPRINT | CONDUCT | USEDELAY
@@ -63,8 +64,10 @@
 		flick("concrete_drying", src)
 
 		if(istype(loc, /turf/space))
-			loc:ReplaceWithConcreteFloor()
-
+			var/turf/floor/floor = loc:ReplaceWith(/turf/floor/concrete)
+			if(floor.icon_old)
+				floor.icon_state = floor.icon_old
+			DELETE_LATTICES_IN(floor)
 		update_nearby_tiles(1)
 		SPAWN_DBG(0.1 SECONDS)
 			RL_SetOpacity(1)

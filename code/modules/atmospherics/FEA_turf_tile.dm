@@ -50,6 +50,10 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 	var/tmp/dist_to_space = null
 
+#ifdef DEPRESSURIZE_THROW_AT_SPACE_REQUIRED
+	var/tmp/turf/space/nearest_space = null
+#endif
+
 	var/tmp
 		datum/gas_mixture/air
 
@@ -86,10 +90,10 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 				active_hotspot = null
 		if(being_superconductive)
 			air_master.active_super_conductivity.Remove(src)
-		if(blocks_air)
+		if(gas_impermeable)
 			for(var/direction in cardinal)
 				var/turf/tile = get_step(src,direction)
-				if(air_master && istype(tile) && !tile.blocks_air)
+				if(air_master && istype(tile) && !tile.gas_impermeable)
 					air_master.tiles_to_update |= tile
 		qdel(air)
 		if (gas_icon_overlay)
@@ -97,17 +101,34 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			gas_icon_overlay = null
 		air = null
 		parent = null
+#ifdef DEPRESSURIZE_THROW_TO_SPACE
+		nearest_space = null
+#endif
 		..()
 
 /turf/proc/instantiate_air()
-	if(!blocks_air)
+	if(!gas_impermeable)
 		air = new()
 
+		#ifdef MAGINDARA_MAP
+		if(src.z == 1 && src.oxygen == MOLES_O2STANDARD && src.temperature == T20C)
+			air.oxygen = MOLES_O2MAGINDARA
+			air.nitrogen = MOLES_N2MAGINDARA
+			air.carbon_dioxide = MOLES_CO2MAGINDARA
+			air.temperature = MAGINDARA_TEMP
+		else
+			#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
+			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
+			#undef _TRANSFER_GAS_TO_AIR
+
+			air.temperature = temperature
+		#else
 		#define _TRANSFER_GAS_TO_AIR(GAS, ...) air.GAS = GAS;
 		APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
 		#undef _TRANSFER_GAS_TO_AIR
 
 		air.temperature = temperature
+		#endif
 
 		if(air_master)
 			air_master.tiles_to_update |= src
@@ -233,11 +254,25 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		//  we can't pool the object returned by return_air. Bad news, man.
 		var/datum/gas_mixture/GM = new()
 
+		#ifdef MAGINDARA_MAP
+		if(src.z == 1 && src.oxygen == MOLES_O2STANDARD && src.temperature == T20C)
+			GM.oxygen = MOLES_O2MAGINDARA
+			GM.nitrogen = MOLES_N2MAGINDARA
+			GM.carbon_dioxide = MOLES_CO2MAGINDARA
+			GM.temperature = MAGINDARA_TEMP
+		else
+			#define _TRANSFER_GAS_TO_AIR(GAS, ...) GM.GAS = GAS;
+			APPLY_TO_GASES(_TRANSFER_GAS_TO_AIR)
+			#undef _TRANSFER_GAS_TO_AIR
+
+			GM.temperature = temperature
+		#else
 		#define _TRANSFER_GAS_TO_GM(GAS, ...) GM.GAS = GAS;
 		APPLY_TO_GASES(_TRANSFER_GAS_TO_GM)
 		#undef _TRANSFER_GAS_TO_GM
 
 		GM.temperature = temperature
+		#endif
 
 		return GM
 
@@ -257,8 +292,11 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 				if(air.check_tile_graphic())
 					update_visuals(air)
 
+			for(var/direction in cardinal)
+				LAGCHECK(LAG_REALTIME)
+				if(gas_cross(get_step(src,direction)))
+					air_check_directions |= direction
 		return removed
-
 	else
 		var/datum/gas_mixture/GM = new()
 		var/sum = BASE_GASES_TOTAL_MOLES(src)
@@ -276,7 +314,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 	for(var/direction in cardinal)
 		LAGCHECK(LAG_REALTIME)
-		if(CanPass(null, get_step(src,direction), 0, 0))
+		if(gas_cross(get_step(src,direction)))
 			air_check_directions |= direction
 
 	if(parent)
@@ -296,7 +334,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 				if(!istype(T) || (T.parent!=parent))
 
 					//See what kind of border it is
-					if(istype(T,/turf/space) && !istype(T,/turf/space/fluid))
+					if(istype_exact(T,/turf/space) && src.gas_cross(T) && T.gas_cross(src))
 						if(parent.space_borders)
 							parent.space_borders |= src
 						else
@@ -304,7 +342,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 						length_space_border++
 						group_border |= direction
 
-					else if(issimulatedturf(T))
+					else if(issimulatedturf(T) && src.gas_cross(T) && T.gas_cross(src))
 						if(parent.borders)
 							parent.borders |= src
 						else
@@ -375,11 +413,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		air_master.active_singletons -= src //not active if not processing!
 		return
 
-
-	if(src.air.react() & CATALYST_ACTIVE)
-		src.active_hotspot?.catalyst_active = TRUE
-	else
-		src.active_hotspot?.catalyst_active = FALSE
+	// this is very important
+	src.air.react()
 
 	if(src.active_hotspot && possible_fire_spreads)
 		src.active_hotspot.process(possible_fire_spreads)
@@ -400,7 +435,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 /turf/proc/super_conduct()
 	var/conductivity_directions = 0
-	if(blocks_air)
+	if(gas_impermeable)
 		//Does not participate in air exchange, so will conduct heat across all four borders at this time
 		conductivity_directions = NORTH|SOUTH|EAST|WEST
 #ifdef ATMOS_ARCHIVING
@@ -574,63 +609,60 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	var/turf/west = get_step(src,WEST)
 
 	if(need_rebuild)
-		if(istype(src)) //Rebuild/update nearby group geometry
+		if(issimulatedturf(src)) //Rebuild/update nearby group geometry
 			if(src.parent)
 				air_master.groups_to_rebuild |= src.parent
 			else
 				air_master.tiles_to_update |= src
 
-		if(istype(north))
+		if(issimulatedturf(north))
 			north.tilenotify(src)
 			if(north.parent)
 				air_master.groups_to_rebuild |= north.parent
 			else
 				air_master.tiles_to_update |= north
-		if(istype(south))
+		if(issimulatedturf(south))
 			south.tilenotify(src)
 			if(south.parent)
 				air_master.groups_to_rebuild |= south.parent
 			else
 				air_master.tiles_to_update |= south
-		if(istype(east))
+		if(issimulatedturf(east))
 			east.tilenotify(src)
 			if(east.parent)
 				air_master.groups_to_rebuild |= east.parent
 			else
 				air_master.tiles_to_update |= east
-		if(istype(west))
+		if(issimulatedturf(west))
 			west.tilenotify(src)
 			if(west.parent)
 				air_master.groups_to_rebuild |= west.parent
 			else
 				air_master.tiles_to_update |= west
 	else
-		if(istype(src)) air_master.tiles_to_update |= src
-		if(istype(north))
+		if(issimulatedturf(src))
+			air_master.tiles_to_update |= src
+		if(issimulatedturf(north))
 			north.tilenotify(src)
 			air_master.tiles_to_update |= north
-		if(istype(south))
+		if(issimulatedturf(south))
 			south.tilenotify(src)
 			air_master.tiles_to_update |= south
-		if(istype(east))
+		if(issimulatedturf(east))
 			east.tilenotify(src)
 			air_master.tiles_to_update |= east
-		if(istype(west))
+		if(issimulatedturf(west))
 			west.tilenotify(src)
 			air_master.tiles_to_update |= west
 
-	if (map_currently_underwater)
-		var/turf/space/fluid/n = get_step(src,NORTH)
-		var/turf/space/fluid/s = get_step(src,SOUTH)
-		var/turf/space/fluid/e = get_step(src,EAST)
-		var/turf/space/fluid/w = get_step(src,WEST)
-		if(istype(n))
-			n.tilenotify(src)
-		if(istype(s))
-			s.tilenotify(src)
-		if(istype(e))
-			e.tilenotify(src)
-		if(istype(w))
-			w.tilenotify(src)
+	if (map_currently_underwater || map_currently_above_magindara)
+		if(istype(north, /turf/space/fluid))
+			north.tilenotify(src)
+		if(istype(south, /turf/space/fluid))
+			south.tilenotify(src)
+		if(istype(east, /turf/space/fluid))
+			east.tilenotify(src)
+		if(istype(west, /turf/space/fluid))
+			west.tilenotify(src)
 
 	return 1

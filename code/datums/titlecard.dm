@@ -61,8 +61,8 @@
 
 	//a few assorted titlescreens (TODO: expand and make selectable)
 	dev //starfield
-		image_url = "images/titlecards/coolstation_dev_alt.gif"
-		video_url = "images/titlecards/coolstation_dev.mp4"
+
+		video_url = "images/titlecards/coolstation_dev_alt.mp4"
 		is_video = TRUE
 
 	classic //signpost
@@ -179,7 +179,7 @@
 						color:#fff;
 						text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
 						font:1.2em 'PxPlus IBM VGA9';
-						-webkit-text-stroke:0.083em black;
+						-webkit-text-stroke:0.3px black;
 					}
 					a{
 						text-decoration:none;
@@ -303,7 +303,7 @@
 						color:#fff;
 						text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
 						font:1em 'PxPlus IBM VGA9';
-						-webkit-text-stroke:0.083em black;
+						-webkit-text-stroke:0.3px black;
 					}
 					a{
 						text-decoration:none;
@@ -399,7 +399,7 @@
 	desc = "The title card for it, at least."
 	plane = PLANE_OVERLAY_EFFECTS
 	pixel_x = -96
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 	ex_act(severity)
 		return

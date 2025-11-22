@@ -8,6 +8,8 @@
 	targeted = 1
 	target_anything = 1
 	icon_state = "gnaw"
+	ai_range = 1
+	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
 
@@ -44,8 +46,7 @@
 				MT.dna_to_absorb -= absorbed
 
 				if (ishuman(MT))
-					if (MT:blood_volume > 5)
-						MT:blood_volume -= 5
+					MT.reagents.remove_any(5)
 
 				if (MT.dna_to_absorb <= 0)
 					logTheThing("combat", holder.owner, MT, "drains [constructTarget(MT,"combat")] of all DNA as a handspider [log_loc(holder.owner)].")

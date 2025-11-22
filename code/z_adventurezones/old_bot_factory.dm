@@ -8,50 +8,65 @@
 	icon_state = "factory_arm_sleep"
 	var/input_stage = 1 //What stage of buddy frame we operate on.
 	var/input_model = 4 //Model of buddy we can build.
+	event_handler_flags = USE_PROXIMITY
+
+	New()
+		..()
+		UnsubscribeProcess() //no longer machine loop based, the conveyors are too fast for these to keep up
 
 	proc/drop_item()
 		return
 
-	process()
+	HasProximity(atom/movable/AM)
 		if (status & NOPOWER)
 			return
+		if (AM.x != src.x) //proximity also allows diagonals but that looks funky here.
+			return
+		if (!istype(AM, /obj/item/guardbot_frame))
+			return
 
-		var/obj/item/guardbot_frame/frame = locate() in get_step(src,src.dir)
-		if (istype(frame, /obj/item/guardbot_frame))
-			if (frame.buddy_model != input_model || frame.stage != input_stage)
-				return
+		var/obj/item/guardbot_frame/frame = AM
+		if (frame.buddy_model != input_model || frame.stage != input_stage)
+			return
 
-			switch (input_stage)
-				if (1)
-					var/obj/item/cell/cell_to_add = locate() in range(src, 1)
-					if (istype(cell_to_add))
-						frame.Attackby(cell_to_add, src)
-						if (frame.stage > 1)
-							src.visible_message("[src] inserts [cell_to_add] into [frame].")
-							flick("factory_arm_active",src)
+		switch (input_stage)
+			if (1)
+				var/obj/item/cell/cell_to_add = locate() in range(src, 1)
+				if (istype(cell_to_add))
+					frame.Attackby(cell_to_add, src)
+					if (frame.stage > 1)
+						src.visible_message("[src] inserts [cell_to_add] into [frame].")
+						flick("factory_arm_active",src)
 
-				if (2)
-					var/obj/item/device/guardbot_tool/tool_to_add = locate() in range(src, 1)
-					if (!frame.created_module && istype(tool_to_add))
-						frame.Attackby(tool_to_add, src)
-						if (frame.created_module)
-							src.visible_message("[src] attaches [tool_to_add] into [frame].")
-							flick("factory_arm_active",src)
-					else
-						var/obj/item/guardbot_core/core = locate() in range(src, 1)
-						if (istype(core))
-							frame.Attackby(core, src)
-							if (frame.stage == 3)
-								src.visible_message("[src] attaches [core] into [frame].")
-								flick("factory_arm_active",src)
+			if (2)
+				/*var/obj/item/device/guardbot_tool/tool_to_add = locate() in range(src, 1)
+				if (!frame.created_module && istype(tool_to_add))
+					frame.Attackby(tool_to_add, src)
+					if (frame.created_module)
+						src.visible_message("[src] attaches [tool_to_add] into [frame].")
+						flick("factory_arm_active",src)
+				else*/
+				var/obj/item/guardbot_core/core = locate() in range(src, 1)
+				if (istype(core))
+					frame.Attackby(core, src)
+					if (frame.stage == 3)
+						src.visible_message("[src] attaches [core] into [frame].")
+						flick("factory_arm_active",src)
 
-				if (3)
+			if (3)
+				var/obj/item/device/guardbot_tool/tool_to_add = locate() in range(src, 1)
+				if (!frame.created_module && istype(tool_to_add))
+					frame.Attackby(tool_to_add, src)
+					if (frame.created_module)
+						src.visible_message("[src] attaches [tool_to_add] into [frame].")
+						flick("factory_arm_active",src)
+				else
 					var/obj/item/parts/robot_parts/arm/arm = locate() in range(src,1)
 					if (istype(arm))
 						frame.Attackby(arm,src)
 						flick("factory_arm_active",src)
-			//todo
-			return
+		//todo
+		return
 
 	power_change()
 		if(powered())

@@ -15,7 +15,7 @@
 	item_state = "IV"
 	w_class = W_CLASS_TINY
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK | OPENCONTAINER
-	rc_flags = RC_VISIBLE | RC_FULLNESS | RC_SPECTRO
+	rc_flags = RC_VISIBLE | RC_FULLNESS | RC_SPECTRO | RC_INV_COUNT_AMT
 	amount_per_transfer_from_this = 5
 	initial_volume = 250//100
 	var/image/fluid_image = null
@@ -102,7 +102,7 @@
 					return
 				// Vampires can't use this trick to inflate their blood count, because they can't get more than ~30% of it back.
 				// Also ignore that second container of blood entirely if it's a vampire (Convair880).
-				if ((isvampire(H) && (H.get_vampire_blood() <= 0)) || (!isvampire(H) && !H.blood_volume))
+				if ((isvampire(H) && (H.get_vampire_blood() <= 0)) || (!isvampire(H) && !H.reagents.total_volume))
 					user.show_text("[H] doesn't have anything left to give!", "red")
 					return
 
@@ -173,7 +173,7 @@
 				return
 			// Vampires can't use this trick to inflate their blood count, because they can't get more than ~30% of it back.
 			// Also ignore that second container of blood entirely if it's a vampire (Convair880).
-			if ((isvampire(src.patient) && (src.patient.get_vampire_blood() <= 0)) || (!isvampire(src.patient) && !src.patient.reagents.total_volume && !src.patient.blood_volume))
+			if ((isvampire(src.patient) && (src.patient.get_vampire_blood() <= 0)) || (!isvampire(src.patient) && !src.patient.reagents.total_volume))
 				src.patient.visible_message("<span class='alert'>[src] can't seem to draw anything more out of [src.patient]!</span>",\
 				"<span class='alert'>Your veins feel utterly empty!</span>")
 				src.stop_transfusion()
@@ -219,7 +219,7 @@
 	desc = "A metal pole that you can hang IV bags on, which is useful since we aren't animals that go leaving our sanitized medical equipment all over the ground or anything!"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "IVstand"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 0
 	var/image/fluid_image = null
 	var/image/bag_image = null
@@ -231,6 +231,10 @@
 		if (src.IV)
 			var/list/examine_list = src.IV.examine()
 			return examine_list.Join("\n")
+		if (paired_obj)
+			hint = "Click-drag onto a person to insert or remove IV. To detach, click-drag [src] to a floor or the furniture it's attached to."
+		else
+			hint = "Click-drag onto a person to insert or remove IV. Click-drag onto chairs, beds and operating tables to attach [src]."
 
 	proc/update_icon()
 		if (!src.IV)
@@ -289,20 +293,23 @@
 		else
 			return ..()
 
-	MouseDrop(atom/over_object as mob|obj)
-		var/atom/movable/A = over_object
-		if (usr && !usr.restrained() && !usr.stat && in_interact_range(src, usr) && in_interact_range(over_object, usr) && istype(A))
+	MouseDrop(over_object, src_location, over_location)
+		if (usr && !usr.restrained() && !usr.stat && in_interact_range(src, usr) && in_interact_range(over_object, usr))
 			if (src.IV && ishuman(over_object))
 				src.IV.attack(over_object, usr)
 				return
 			else if (src.IV && over_object == src)
 				src.IV.attack_self(usr)
 				return
+			else if (isturf(over_object)) //detaching these was so unintuitive, I didn't know you could?
+				if (src.detach_from())
+					src.visible_message("[usr] detaches [src] from [over_object].")
+					return ..()
 			else if (istype(over_object, /obj/stool/bed) || istype(over_object, /obj/stool/chair) || istype(over_object, /obj/machinery/optable))
-				if (A == src.paired_obj && src.detach_from())
+				if (over_object == src.paired_obj && src.detach_from())
 					src.visible_message("[usr] detaches [src] from [over_object].")
 					return
-				else if (src.attach_to(A))
+				else if (src.attach_to(over_object))
 					src.visible_message("[usr] attaches [src] to [over_object].")
 					return
 			else

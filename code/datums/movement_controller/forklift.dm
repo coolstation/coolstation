@@ -41,7 +41,7 @@
 		if(!src.move_dir)
 			return 0
 		if(TIME < src.next_move)
-			return src.next_move - TIME
+			return 0
 		var/delay = src.move_delay
 		src.master.set_dir(src.move_dir)
 		var/turf/T = src.master.loc

@@ -12,7 +12,7 @@
 	var/strength = 10 //How weakened targets are when flashed.
 	var/base_state = "mflash"
 	var/datum/light/light
-	anchored = 1
+	anchored = ANCHORED
 
 	// Please keep synchronizied with these lists for easy map changes:
 	// /obj/storage/secure/closet/brig/automatic (secure_closets.dm)
@@ -168,7 +168,7 @@
 	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
 	icon_state = "pflash1"
 	strength = 8
-	anchored = 0
+	anchored = UNANCHORED
 	base_state = "pflash"
 	density = 1
 	event_handler_flags = USE_PROXIMITY | USE_FLUID_ENTER

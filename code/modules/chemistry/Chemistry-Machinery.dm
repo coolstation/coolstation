@@ -12,7 +12,7 @@
 /obj/machinery/chem_heater
 	name = "Reagent Heater/Cooler"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "heater"
 	flags = NOSPLASH
@@ -282,6 +282,9 @@
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the Reagent Heater/Cooler to output to [over_object]!</span>")
 
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
+
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
 		return
@@ -292,7 +295,7 @@
 /obj/machinery/chem_master
 	name = "CheMaster 3000"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	flags = NOSPLASH
@@ -661,6 +664,9 @@
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the CheMaster 3000 to output to [over_object]!</span>")
 
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
+
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
 		return
@@ -672,7 +678,7 @@ datum/chemicompiler_core/stationaryCore
 	name = "ChemiCompiler CCS1001"
 	desc = "This device looks very difficult to use."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "chemicompiler_st_off"
 	mats = 15
@@ -772,7 +778,7 @@ datum/chemicompiler_core/stationaryCore
 	name = "fractional still"
 	desc = "A towering piece of industrial equipment. It reeks of hydrocarbons."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	power_usage = 500
 	var/active = 0
 	var/overall_temp = T20C

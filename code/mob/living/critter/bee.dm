@@ -113,21 +113,21 @@
 		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handl"
 		HH.name = "left feet"
-		HH.limb_name = "foot"
+		HH.limb.name = "foot"
 
 		HH = hands[2]
 		HH.limb = new src.limb_path
 		HH.icon = 'icons/ui/hud_human.dmi'
 		HH.icon_state = "handr"
 		HH.name = "right feet"
-		HH.limb_name = "foot"
+		HH.limb.name = "foot"
 
 		HH = hands[3]
 		HH.limb = new src.mouth_path
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "mouth"
 		HH.name = "mouth"
-		HH.limb_name = "mandibles"
+		HH.limb.name = "mandibles"
 		HH.can_hold_items = 0
 
 	Life(datum/controller/process/mobs/parent)
@@ -259,14 +259,12 @@
 	proc/puke_honey()
 		var/turf/honeyTurf = get_turf(src)
 		var/obj/item/reagent_containers/food/snacks/pizza/floor_pizza = locate() in honeyTurf
-		var/obj/item/reagent_containers/food/snacks/ingredient/honey/honey
+		var/obj/item/reagent_containers/food/snacks/honey
 		if (istype(floor_pizza))
-			honey = new /obj/item/reagent_containers/food/snacks/pizza(honeyTurf)
+			honey = floor_pizza
 			src.visible_message("<b>[src]</b> regurgitates a blob of honey directly onto [floor_pizza]![prob(10) ? " This is a thing that makes sense." : null]",\
 			"You regurgitate a blob of honey directly onto [floor_pizza]!")
 			honey.name = replacetext(floor_pizza.name, "pizza", "beezza")
-			qdel(floor_pizza)
-
 		else
 			honey = new /obj/item/reagent_containers/food/snacks/ingredient/honey(honeyTurf)
 			src.visible_message("<b>[src]</b> regurgitates a blob of honey![prob(10) ? " Gross!" : null]",\

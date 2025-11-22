@@ -109,10 +109,10 @@
 	var/easing = LINEAR_EASING
 
 /obj/jumpsuit_maker_experiment
-	name = "jumpsuit making thing"
-	desc = "this is an admin thing ok just ignore it"
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "holo_console1"
+	name = "Custom Jumpsuit Manufacturer"
+	desc = "The label on the front reads FOR TESTING PURPOSES ONLY"
+	icon = 'icons/obj/machines/manufacturer.dmi'
+	icon_state = "fab-jumpsuit"
 	var/list/components = list("full_jumpsuit", "full_overalls", "full_jersey", "full_swimsuit", "full_clown",
 	"top_jacket", "top_jacket_heavy", "top_vest", "top_suit", "top_shirt", "top_sleeves", "top_zipper",
 	"bottom_pants",  "bottom_belt", "bottom_shorts", "bottom_clownpants",
@@ -121,6 +121,7 @@
 	var/list/current_pieces = list()
 	var/list/current_colors = list()
 	var/list/current_alphas = list()
+	density = 1
 
 	attack_hand(var/mob/user as mob)
 		var/dat = "<B>[src.name]</B><HR>"

@@ -4,8 +4,6 @@
 			return
 		if (!owner.holder)
 			return
-		if (!isturf(usr.loc))
-			return
 		..()
 
 /datum/abilityHolder/critter
@@ -25,6 +23,7 @@
 	icon_state = "template"  // TODO.
 	cooldown = 0
 	last_cast = 0
+	turf_check = TRUE
 	var/disabled = 0
 	var/toggled = 0
 	var/is_on = 0   // used if a toggle ability

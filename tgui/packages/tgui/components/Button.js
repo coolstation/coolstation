@@ -27,7 +27,6 @@ export const Button = props => {
     selected,
     tooltip,
     tooltipPosition,
-    tooltipOverrideLong,
     ellipsis,
     compact,
     circular,
@@ -46,9 +45,12 @@ export const Button = props => {
       + `'onClick' instead and read: `
       + `https://infernojs.org/docs/guides/event-handling`);
   }
-  // IE8: Use a lowercase "onclick" because synthetic events are fucked.
-  // IE8: Use an "unselectable" prop because "user-select" doesn't work.
-  return (
+  rest.onClick = e => {
+    if (!disabled && onClick) {
+      onClick(e);
+    }
+  };
+  let buttonContent = (
     <Box
       className={classes([
         'Button',
@@ -65,13 +67,11 @@ export const Button = props => {
         className,
       ])}
       tabIndex={!disabled && '0'}
-      unselectable={Byond.IS_LTE_IE8}
-      onClick={e => {
-        if (!disabled && onClick) {
-          onClick(e);
+      onKeyUp={e => {
+        if (props.captureKeys === false) {
+          return;
         }
-      }}
-      onKeyDown={e => {
+
         const keyCode = window.event ? e.which : e.keyCode;
         // Simulate a click when pressing space or enter.
         if (keyCode === KEY_SPACE || keyCode === KEY_ENTER) {
@@ -96,14 +96,18 @@ export const Button = props => {
       )}
       {content}
       {children}
-      {tooltip && (
-        <Tooltip
-          content={tooltip}
-          overrideLong={tooltipOverrideLong}
-          position={tooltipPosition} />
-      )}
     </Box>
   );
+
+  if (tooltip) {
+    buttonContent = (
+      <Tooltip content={tooltip} position={tooltipPosition}>
+        {buttonContent}
+      </Tooltip>
+    );
+  }
+
+  return buttonContent;
 };
 
 Button.defaultHooks = pureComponentHooks;
@@ -224,14 +228,13 @@ export class ButtonInput extends Component {
       iconSpin,
       tooltip,
       tooltipPosition,
-      tooltipOverrideLong,
       color = 'default',
       placeholder,
       maxLength,
       ...rest
     } = this.props;
 
-    return (
+    let buttonContent = (
       <Box
         className={classes([
           'Button',
@@ -271,15 +274,21 @@ export class ButtonInput extends Component {
             }
           }}
         />
-        {tooltip && (
-          <Tooltip
-            content={tooltip}
-            overrideLong={tooltipOverrideLong}
-            position={tooltipPosition}
-          />
-        )}
       </Box>
     );
+
+    if (tooltip) {
+      buttonContent = (
+        <Tooltip
+          content={tooltip}
+          position={tooltipPosition}
+        >
+          {buttonContent}
+        </Tooltip>
+      );
+    }
+
+    return buttonContent;
   }
 }
 
@@ -297,3 +306,4 @@ export const ButtonColor = (props) => {
 };
 
 Button.Color = ButtonColor;
+

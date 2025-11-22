@@ -45,15 +45,11 @@
 
 	function polyfill(target, name, method, descriptor) {
 		if (!target[name]) {
-			try {
-				Object.defineProperty(target, name, assign({ value: method }, descriptor));
-			} catch (error) {
-				// failing gracefully to account for IE8 erroring when attempting to use defineProperty on non-DOM object
-			}
+			Object.defineProperty(target, name, assign({ value: method }, descriptor));
 			// follow-up check, attach directly if still not present (likely due to IE8's lack of Object.defineProperty for non-DOM objects)
-			if (!target[name]) {
-				target[name] = method;
-			}
+			//if (!target[name]) {
+			//	target[name] = method;
+			//}
 		}
 	}
 

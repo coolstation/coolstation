@@ -186,6 +186,7 @@
 		boutput(M, "<b class='alert'>The [src.name] punches you in [pick(list("your tongue", "your cheek", "the roof of your mouth", "your uvula", "the teeth"))]!</b>" )
 
 	on_finish(mob/eater)
+		..()
 		boutput(eater, "<b class='alert'>The last of the [src.name] flips you off as it slides down your gullet.</b>" ) //Don't ask me how you'd ever know this
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type, allow_anchored, bonus_throwforce, end_throw_callback)
@@ -404,7 +405,7 @@
 
 	heal(var/mob/M)
 		if(prob(20))
-			var/obj/decal/cleanable/blood/gibs/gib = make_cleanable(/obj/decal/cleanable/blood/gibs, get_turf(src) )
+			var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, get_turf(src) )
 			gib.streak_cleanable(M.dir)
 			boutput(M, "<span class='alert'>You drip some meat on the floor</span>")
 			M.visible_message("<span class='alert'>[M] drips some meat on the floor!</span>")

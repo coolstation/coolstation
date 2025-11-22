@@ -35,7 +35,9 @@
 			air_contents.temperature = combined_energy/combined_heat_capacity
 			// Maxwell's demon shovelling frantically
 			//env.temperature += abs(air_contents.temperature - old_temperature)/current_heat_capacity
-			env.temperature += abs(air_contents.temperature - old_temperature)/HEAT_CAPACITY(env) //evenly spreads across the airgroup
+			var/heat_capacity = HEAT_CAPACITY(env)
+			if(heat_capacity)
+				env.temperature += abs(air_contents.temperature - old_temperature)/heat_capacity //evenly spreads across the airgroup
 
 		//todo: have current temperature affected. require power to bring down current temperature again
 

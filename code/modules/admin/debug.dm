@@ -1,5 +1,10 @@
 var/global/debug_messages = 0
 
+#define ARG_INFO_NAME 1
+#define ARG_INFO_TYPE 2
+#define ARG_INFO_DESC 3
+#define ARG_INFO_DEFAULT 4
+
 /client/proc/debug_messages()
 	set desc = "Toggle debug messages."
 	set name = "HDM" // debug ur haines
@@ -297,6 +302,8 @@ var/global/debug_messages = 0
 		return
 
 	var/list/listargs = get_proccall_arglist()
+	if (isnull(listargs))
+		return
 
 	var/list/name_list
 
@@ -346,27 +353,28 @@ var/global/debug_messages = 0
 	boutput(usr, "<span class='notice'>Proc returned: [pretty_returnval]</span>")
 	return
 
-/proc/get_proccall_arglist()
-	var/argnum = input("Number of arguments:","Number", 0) as null|num
+/proc/get_proccall_arglist(list/arginfo = null)
+	var/argnum = arginfo ? length(arginfo) : input("Number of arguments:","Number", 0) as null|num
 	var/list/listargs = list()
-	if (!argnum)
+	if (argnum == 0)
 		return listargs
-	for (var/i=0, i<argnum, i++)
-		var/class = input("Type of Argument #[i]","Variable Type", null) as null|anything in list("text","num","type","json","ref","reference","mob reference","reference atom at current turf","icon","color","file","the turf of which you are on top of right now")
+	if (isnull(argnum))
+		return null
+	for (var/i = 1 , i <= argnum, i++)
+		var/class = input(arginfo ? arginfo[i][ARG_INFO_DESC] + ":" : "Type of Argument #[i]", arginfo ? "Argument #[i]: " + arginfo[i][ARG_INFO_NAME] : "Variable Type", arginfo ? arginfo[i][ARG_INFO_TYPE] : null)\
+		 as null|anything in list("text","num","type","json","ref","reference","mob reference","reference atom at current turf","icon","color","file","the turf of which you are on top of right now")
 		if(!class)
 			break
 		switch(class)
-			if ("cancel")
-				break
 			if ("text")
-				listargs += input("Enter new text:","Text",null) as null|text
+				listargs += input("Enter new text:","Text", (arginfo?[i][ARG_INFO_TYPE] == class && length(arginfo[i])>=ARG_INFO_DEFAULT) ? arginfo[i][ARG_INFO_DEFAULT] : null) as null|text
 
 			if ("num")
-				listargs += input("Enter new number:","Num", 0) as null|num
+				listargs += input("Enter new number:","Num", (arginfo?[i][ARG_INFO_TYPE] == class && length(arginfo[i])>=ARG_INFO_DEFAULT) ? arginfo[i][ARG_INFO_DEFAULT] : 0) as null|num
 
 			if ("type")
 				boutput(usr, "<span class='notice'>Type part of the path of the type.</span>")
-				var/typename = input("Part of type path.", "Part of type path.", "/obj") as null|text
+				var/typename = input("Part of type path.", "Part of type path.", (arginfo?[i][ARG_INFO_TYPE] == class && length(arginfo[i])>=ARG_INFO_DEFAULT) ? arginfo[i][ARG_INFO_DEFAULT] : "/obj") as null|text
 				if (typename)
 					var/match = get_one_match(typename, /datum, use_concrete_types = FALSE, only_admin_spawnable = FALSE)
 					if (match)
@@ -408,7 +416,7 @@ var/global/debug_messages = 0
 				listargs += input("Pick icon:","Icon", null) as null|icon
 
 			if ("color")
-				listargs += input("Pick color:","Color") as null|color
+				listargs += input("Pick color:","Color",  (arginfo?[i][ARG_INFO_TYPE] == class && length(arginfo[i])>=ARG_INFO_DEFAULT) ? arginfo[i][ARG_INFO_DEFAULT] : null) as null|color
 
 			if ("turf by coordinates")
 				var/x = input("X coordinate", "Set to turf at \[_, ?, ?\]", 1) as null|num
@@ -1182,7 +1190,7 @@ proc/display_camera_paths()
 	for(var/i=0, i<amount, i++)
 		. += rand_deci(-range,range,0,9)
 
-
+/*
 /client/proc/test_mass_flock_convert()
 	set name = "Test Mass Flock Convert"
 	set desc = "Don't fucking use this EVER"
@@ -1206,7 +1214,7 @@ var/datum/flock/testflock
 
 	var/chui/window/flockpanel/panel = testflock.panel
 	panel.Subscribe(usr.client)
-
+*/
 /client/proc/clear_string_cache()
 	set name = "Clear String Cache"
 	set desc = "Invalidates/clears the string cache to allow for files to be reloaded."
@@ -1248,6 +1256,27 @@ var/datum/flock/testflock
 			src.init_admin()
 			boutput(src, "<B><I>Your adminnery has returned.</I></B>")
 
+
+/client/proc/save_body_persist()
+	set name = "save body savefile2"
+	set desc = "Save your current mob to the experimental savefile2 system."
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	admin_only
+
+	if(src.mob && src.mob.bioHolder)
+		if(ishuman(src.mob))
+			var/id = input(src,"Enter save ID(write this down!)","savefile2 save","default")
+			src.preferences.body_save(src,id)
+			logTheThing("admin", src, null, "[src.ckey] saved [id] as savefile2.","admin")
+
+/client/proc/load_body_persist()
+	set name = "load body savefile2"
+	set desc = "loads the savefile2 id into your prefs. Run respawn_as_self after this."
+	SET_ADMIN_CAT(ADMIN_CAT_SELF)
+	admin_only
+	var/id = input(src,"Enter save ID","savefile2 load","default")
+	src.preferences.body_load(src,id)
+	logTheThing("admin", src, null, "[src.ckey] loaded [id] savefile2.","admin")
 
 /var/datum/debugthing/thething
 
@@ -1340,7 +1369,9 @@ var/datum/flock/testflock
 	if(!comptype)
 		return
 
-	var/list/listargs = get_proccall_arglist()
+	var/typeinfo/datum/component/TI = get_type_typeinfo(comptype)
+
+	var/list/listargs = get_proccall_arglist(TI.initialization_args)
 
 	var/returnval = target._AddComponent(list(comptype) + listargs)
 
@@ -1359,3 +1390,26 @@ var/datum/flock/testflock
 		else
 			open_the_channel()
 		boutput(src, "<B><I>The Channel is now [channel_open ? "open" : "closed"].</I></B>")
+
+/client/proc/enable_webview_devtools()
+	set name = "WebView2 Devtools (Self)"
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	admin_only
+
+	winset(src, null, "browser-options=devtools,find")
+	boutput(src, "<B>WebView2 Devtools enabled, right click a window to inspect it.</B>")
+
+/client/proc/grant_webview_devtools()
+	set name = "Webview2 Devtools (Grant)"
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	admin_only
+
+	var/mob/mob_to_grant_devtools = input("Select mob:","Mob", null) as null|mob in world
+
+	winset(mob_to_grant_devtools, null, "browser-options=devtools,find")
+	boutput(mob_to_grant_devtools, "<B>WebView2 Devtools enabled, right click a window to inspect it.</B>")
+
+#undef ARG_INFO_NAME
+#undef ARG_INFO_TYPE
+#undef ARG_INFO_DESC
+#undef ARG_INFO_DEFAULT

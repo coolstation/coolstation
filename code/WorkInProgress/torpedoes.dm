@@ -87,11 +87,10 @@
 /obj/torpedo_targeter
 	name = ""
 	desc = ""
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = 10
 	alpha = 200
-	event_handler_flags = IMMUNE_MANTA_PUSH
 
 	var/image/trgImage = null
 	var/obj/machinery/torpedo_console/master = null
@@ -108,7 +107,7 @@
 	name = "torpedo console"
 	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "periscope"
-	anchored = 1.0
+	anchored = ANCHORED
 	appearance_flags = TILE_BOUND
 	density = 1.0
 	var/datum/movement_controller/torpedo_control/movement_controller
@@ -124,9 +123,6 @@
 		movement_controller = new(src)
 		targeter = new(src.loc, src)
 		return ..()
-
-	get_movement_controller()
-		return movement_controller
 
 	attack_hand(mob/user as mob)
 		if(src.controller && src.controller.loc != src)
@@ -146,6 +142,7 @@
 		if(tube)
 			inUse = 1
 			user.set_loc(src)
+			user.override_movement_controller = src.movement_controller
 			user.pixel_y = -8
 			boutput(user, "<span class='hint'><b>Press Q or E to exit targeting.</b></span>")
 			vis_contents += user
@@ -186,6 +183,7 @@
 			if(controller.client && targeter)
 				controller.client.images -= targeter.trgImage
 				controller.client.eye = controller
+			controller.override_movement_controller = null
 			controller = null
 			inUse = 0
 		return
@@ -199,7 +197,7 @@
 	name = "torpedo button"
 	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "light1"
-	anchored = 1.0
+	anchored = ANCHORED
 	var/id = "torp1"
 	var/list/cachedTubes = list()
 
@@ -220,7 +218,7 @@
 	icon = 'icons/obj/large/32x96.dmi'
 	icon_state = "base"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	layer = 2
 
 	var/icon_state_tube = "mantagun_left"
@@ -356,7 +354,7 @@
 	icon_state = "tray"
 	dir = NORTH
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	pixel_y = 0
 	layer = 2.1
 	var/obj/machinery/torpedo_tube/parent = null
@@ -566,10 +564,10 @@
 	dir = NORTH
 	icon_state = "missilenotray"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	throw_spin = 0
 	layer = 5
-	event_handler_flags = USE_FLUID_ENTER | IMMUNE_MANTA_PUSH
+	event_handler_flags = USE_FLUID_ENTER
 
 	var/lockdir = null
 

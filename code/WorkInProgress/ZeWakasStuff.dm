@@ -104,7 +104,7 @@
 	desc = "A sharp cliff face formed by rocks"
 	icon = 'icons/turf/adventure_gannets.dmi'
 	icon_state = "cave-wall"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 1
 
@@ -146,7 +146,7 @@
 	atksilicon = 1
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if ((C.name == src.oldtarget_name) && (world.time < src.last_found + 100)) continue
 			if (iscarbon(C) && !src.atkcarbon) continue
@@ -213,15 +213,12 @@
 	fullbright = 0
 	pathable = 0
 
-	Entered(atom/A as mob|obj) //stolen from ice moon abyss code
-		if (isobserver(A))
-			return ..()
-
-		var/turf/T = pick_landmark(LANDMARK_FALL_GREEK)
-		if(T)
-			fall_to(T, A)
-			return
-		else ..()
+	New()
+		. = ..()
+		src.AddComponent(/datum/component/pitfall/target_landmark,\
+			BruteDamageMax = 50,\
+			HangTime = 0 SECONDS,\
+			TargetLandmark = LANDMARK_FALL_GREEK)
 
 // Misc Stuff
 

@@ -9,15 +9,15 @@ import { classes } from 'common/react';
 import { Input, Placeholder, Stack } from '../../components';
 
 interface ListSearchProps {
-  autoFocus?: boolean,
-  className?: string,
-  currentSearch: string,
-  noResultsPlaceholder?: string,
-  onSearch: (value: string) => void,
-  onSelect: (value: string) => void,
-  options: string[],
-  searchPlaceholder?: string,
-  selectedOption: string,
+  readonly autoFocus?: boolean,
+  readonly className?: string,
+  readonly currentSearch: string,
+  readonly noResultsPlaceholder?: string,
+  readonly onSearch: (value: string) => void,
+  readonly onSelect: (value: string) => void,
+  readonly options: string[],
+  readonly searchPlaceholder?: string,
+  readonly selectedOption: string,
 }
 
 export const ListSearch = (props: ListSearchProps) => {

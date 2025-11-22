@@ -6,12 +6,22 @@ proc/pick_landmark(name, default=null)
 		return default
 	return pick(landmarks[name])
 
+/// please do not use except for live testing and admin shenanigans
+proc/add_landmark(var/turf/T, var/name, var/data = null)
+	if(!istype(T) || !name)
+		return FALSE
+	if(!(name in landmarks))
+		landmarks[name] = list()
+	landmarks[name][T] = data
+	return TRUE
+
 /obj/landmark
 	name = "landmark"
 	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x2"
-	anchored = 1
-	invisibility = 101
+	pass_unstable = FALSE
+	anchored = ANCHORED_TECHNICAL
+	invisibility = 100
 	var/deleted_on_start = TRUE
 	var/add_to_landmarks = TRUE
 	var/data = null // data to associatively save with the landmark
@@ -62,6 +72,20 @@ var/global/list/job_start_locations = list()
 /obj/landmark/start/latejoin
 	name = LANDMARK_LATEJOIN
 	add_to_landmarks = TRUE
+
+	//Woop woop dynamic arrivals shuttle requires we actually move the latejoin landmarks
+/obj/landmark/start/latejoin/dynamic_shuttle
+	deleted_on_start = FALSE
+
+	set_loc(newloc)
+		if (current_state >= GAME_STATE_PLAYING && !disposed)
+			landmarks[name] -= src.loc
+			job_start_locations[src.name] -= src.loc
+			..()
+			landmarks[name] += src.loc
+			job_start_locations[src.name] += src.loc
+			qdel(src) //you can die now :)
+		else ..()
 
 /obj/landmark/cruiser_entrance
 	name = LANDMARK_CRUISER_ENTRANCE
@@ -133,6 +157,10 @@ var/global/list/job_start_locations = list()
 		name = "missile latejoin spawn marker (north)"
 		dir = NORTH
 
+	south
+		name = "missile latejoin spawn marker (not north)"
+		dir = SOUTH
+
 /obj/landmark/ass_arena_spawn
 	name = LANDMARK_ASS_ARENA_SPAWN
 	icon_state = "x"
@@ -177,7 +205,6 @@ var/global/list/job_start_locations = list()
 	var/spawnchance = 100
 	var/static/list/name_to_type = list(
 		"spare" = /obj/item/card/id/captains_spare,
-		#ifndef IM_TESTING_FUCKING_BASIC_MOB_FUNCTIONALITY
 		"juicer_gene" = /mob/living/carbon/human/geneticist,
 		"shitty_bill" = /mob/living/carbon/human/biker,
 		"john_bill" = /mob/living/carbon/human/john,
@@ -204,7 +231,6 @@ var/global/list/job_start_locations = list()
 		"seamonkeyspawn_lab" = /mob/living/carbon/human/npc/monkey/sea/lab,
 		"waiter" = /mob/living/carbon/human/waiter,
 		"monkeyspawn_inside" = /mob/living/carbon/human/npc/monkey
-		#endif
 	)
 
 	New()
@@ -222,12 +248,15 @@ var/global/list/job_start_locations = list()
 	proc/spawn_the_thing()
 		if(isnull(src.type_to_spawn))
 			src.type_to_spawn = name_to_type[src.name]
+		#ifdef IM_TESTING_BASIC_MOB_FUNCTIONALITY
+		if (ispath(type_to_spawn, /mob)) //ganon voice:
+			qdel(src)
+			return
+		#endif
 		if(!isnull(src.type_to_spawn))
 			new type_to_spawn(src.loc)
-		#ifndef IM_TESTING_FUCKING_BASIC_MOB_FUNCTIONALITY
 		else
 			CRASH("Spawner [src] at [src.x] [src.y] [src.z] had no type.")
-		#endif
 		qdel(src)
 
 /obj/landmark/spawner/inside
@@ -339,20 +368,25 @@ var/global/list/job_start_locations = list()
 	icon_state = "landmark"
 	color = "#ff0000"
 
+	arrivals_preload
+		name = LANDMARK_SHUTTLE_ARRIVALS_PRELOAD
+		color = "#ff00FF"
+
+	arrivals
+		name = LANDMARK_SHUTTLE_ARRIVALS
+
 	cog1
-		name = LANDMARK_SHUTTLE_COG1
+		name = LANDMARK_SHUTTLE_ESCAPE_COG1
 	cog2
-		name = LANDMARK_SHUTTLE_COG2
+		name = LANDMARK_SHUTTLE_ESCAPE_COG2
 	sealab
-		name = LANDMARK_SHUTTLE_SEALAB
-	manta
-		name = LANDMARK_SHUTTLE_MANTA
+		name = LANDMARK_SHUTTLE_ESCAPE_SEALAB
 	donut2
-		name = LANDMARK_SHUTTLE_DONUT2
+		name = LANDMARK_SHUTTLE_ESCAPE_DONUT2
 	donut3
-		name = LANDMARK_SHUTTLE_DONUT3
+		name = LANDMARK_SHUTTLE_ESCAPE_DONUT3
 	destiny
-		name = LANDMARK_SHUTTLE_DESTINY
+		name = LANDMARK_SHUTTLE_ESCAPE_DESTINY
 
 /obj/landmark/drain_exit
 	name = LANDMARK_DRAIN_EXIT

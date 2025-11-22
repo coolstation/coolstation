@@ -13,6 +13,7 @@
 // - Nukeop Commander's Sword
 // - Bloodthirsty Blade
 // - Fragile Sword
+// - Gang Machete
 
 
 /// Cyalume saber/esword, famed traitor item
@@ -490,6 +491,7 @@
 
 	New()
 		..()
+		//setItemSpecial(/datum/item_special/jab)
 		BLOCK_SETUP(BLOCK_KNIFE)
 
 /obj/item/dagger/throw_impact(atom/A, datum/thrown_thing/thr)
@@ -534,6 +536,7 @@
 	throwforce = 20
 	stamina_cost = 5
 	c_flags = EQUIPPED_WHILE_HELD
+
 
 	setupProperties()
 		..()
@@ -627,6 +630,53 @@
 		src.setItemSpecial(/datum/item_special/nunchucks)
 		BLOCK_SETUP(BLOCK_ROPE)
 
+// white cane for blind folks
+// this might be the wrong file for it but wtv
+// TODO: Someone who's tuned into combat check the damage values
+// [mylie note: done!]
+/obj/item/white_cane
+	name = "white cane"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "white_cane"
+	item_state = "white_cane"
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	force = 4
+	var/two_handed_force = 9
+	throwforce = 6
+	hit_type = DAMAGE_BLUNT
+	w_class = W_CLASS_NORMAL
+	flags = FPRINT | TABLEPASS | SUPPRESSATTACK // should we have tablepass? not sure what it does [mylie note: it makes it fly over tables if throwed]
+	c_flags = EQUIPPED_WHILE_HELD // important for use as an accessibility tool (or knock-off quarterstaff?)
+	desc = "Useful for finding your way around, and also for hitting people."
+	hint = "Increases vision radius when held."
+
+	dropped(mob/user)
+		..()
+		setTwoHanded(FALSE)
+		src.force = initial(src.force)
+
+	attack_self(mob/user)
+		..()
+		setTwoHanded(!src.two_handed)
+		if (src.two_handed)
+			src.force = src.two_handed_force
+		else
+			src.force = initial(src.force)
+
+	attack(mob/M as mob, mob/user as mob)
+		if (user.a_intent == INTENT_HELP)
+			user.visible_message("<span class='alert'>[user] prods [M] with [src]!</span>")
+			user.examine_verb(M)
+			return
+		return ..()
+
+	afterattack(atom/target, mob/user, reach, params)
+		if (user.a_intent == INTENT_HELP)
+			user.examine_verb(target)
+		else
+			user.visible_message("<span class='combat'><B>[user] hits [target] with [src]!</B></span>")
+		return ..()
+
 /obj/item/quarterstaff
 	name = "quarterstaff"
 	icon = 'icons/obj/items/weapons.dmi'
@@ -710,6 +760,7 @@
 
 /obj/item/knife/butcher/New()
 	..()
+	src.AddComponent(/datum/component/bloodflick)
 	BLOCK_SETUP(BLOCK_KNIFE)
 
 /obj/item/knife/butcher/throw_impact(atom/A, datum/thrown_thing/thr)
@@ -858,7 +909,7 @@
 	icon_state = "fireaxe"
 	item_state = "fireaxe"
 	flags = FPRINT | CONDUCT | TABLEPASS | USEDELAY | ONBELT
-	tool_flags = TOOL_CUTTING | TOOL_CHOPPING //TOOL_CHOPPING flagged items to 4 times as much damage to doors.
+	tool_flags = TOOL_CUTTING | TOOL_CHOPPING //TOOL_CHOPPING flagged items do 5 times as much damage to doors.
 	hit_type = DAMAGE_CUT
 	click_delay = 10
 	two_handed = 0
@@ -926,11 +977,11 @@
 	icon_state = "baseballbat"
 	item_state = "baseballbat"
 	hit_type = DAMAGE_BLUNT
-	force = 12
+	force = 10
 	throwforce = 7
 	stamina_damage = 24
 	stamina_cost = 30
-	stamina_crit_chance = 15
+	stamina_crit_chance = 30
 	mats = list("wood" = 8)
 
 
@@ -938,7 +989,7 @@
 
 	New()
 		..()
-		src.setItemSpecial(/datum/item_special/swipe)
+		src.setItemSpecial(/datum/item_special/swipe/baseball)
 		src.AddComponent(/datum/component/holdertargeting/baseball_bat_reflect)
 		BLOCK_SETUP(BLOCK_ROD)
 
@@ -1016,16 +1067,17 @@
 	var/obj/itemspecialeffect/katana_dash/end/end
 	var/delimb_prob = 100
 
-	New()
-		..()
-		start = new/obj/itemspecialeffect/katana_dash/start(src)
-		mid1 = new/obj/itemspecialeffect/katana_dash/mid(src)
-		mid2 = new/obj/itemspecialeffect/katana_dash/mid(src)
-		end = new/obj/itemspecialeffect/katana_dash/end(src)
-		src.setItemSpecial(/datum/item_special/katana_dash)
-		BLOCK_SETUP(BLOCK_SWORD)
+/obj/item/katana/New()
+	start = new/obj/itemspecialeffect/katana_dash/start(src)
+	mid1 = new/obj/itemspecialeffect/katana_dash/mid(src)
+	mid2 = new/obj/itemspecialeffect/katana_dash/mid(src)
+	end = new/obj/itemspecialeffect/katana_dash/end(src)
+	src.setItemSpecial(/datum/item_special/katana_dash)
+	BLOCK_SETUP(BLOCK_SWORD)
+	src.AddComponent(/datum/component/bloodflick)
+	..()
 
-/obj/item/katana/attack(mob/target as mob, mob/user as mob, def_zone, is_special = 0)
+/obj/item/katana/attack(mob/target, mob/user, def_zone, is_special = 0)
 	if(!ishuman(target)) //only humans can currently be dismembered
 		return ..()
 	var/zoney = user.zone_sel.selecting
@@ -1073,8 +1125,8 @@
 	if (target != user && ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if (H.find_type_in_hand(/obj/item/katana, "right") || H.find_type_in_hand(/obj/item/katana, "left"))
-			var/obj/itemspecialeffect/clash/C = new()
-			playsound(target, pick("sound/effects/sword_clash1.ogg","sound/effects/sword_clash2.ogg","sound/effects/sword_clash3.ogg"), 70, 0, 0)
+			var/obj/itemspecialeffect/clash/C = new /obj/itemspecialeffect/clash
+			playsound(target, pick('sound/effects/sword_clash1.ogg','sound/effects/sword_clash2.ogg','sound/effects/sword_clash3.ogg'), 70, 0, 0)
 			C.setup(H.loc)
 			var/matrix/m = matrix()
 			m.Turn(rand(0,360))
@@ -1084,11 +1136,12 @@
 			C.pixel_x = 32*(user.x - target.x)*0.5
 			C.pixel_y = 32*(user.y - target.y)*0.5
 			animate(C,transform=m1,time=8)
-			H.remove_stamina(60)
+			if(prob(12))
+				H.changeStatus("weakened", 3 SECONDS)
 			if (ishuman(user))
 				var/mob/living/carbon/human/U = user
-				U.remove_stamina(20)
-
+				if(prob(6))
+					U.changeStatus("weakened", 3 SECONDS)
 			return 1
 	return 0
 
@@ -1470,7 +1523,7 @@ obj/item/whetstone
 	hit_type = DAMAGE_CUT | DAMAGE_STAB
 	tool_flags = TOOL_CUTTING | TOOL_CHOPPING
 	object_flags = NO_ARM_ATTACH
-	contraband = 5
+	contraband = 8
 	w_class = W_CLASS_BULKY
 	force = 25
 	throwforce = 25
@@ -1487,6 +1540,7 @@ obj/item/whetstone
 
 	New()
 		..()
+		src.AddComponent(/datum/component/bloodflick)
 		src.setItemSpecial(/datum/item_special/swipe)
 		AddComponent(/datum/component/itemblock/saberblock)
 		BLOCK_SETUP(BLOCK_SWORD)
@@ -1538,20 +1592,135 @@ obj/item/whetstone
 	name = "airlock breaching sledgehammer"
 	desc = "A heavy metal hammer designed to crumple space station airlocks."
 	icon = 'icons/obj/items/weapons.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	wear_image_icon = 'icons/mob/back.dmi'
 	icon_state = "breaching_sledgehammer"
 	item_state = "breaching_sledgehammer"
-	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	wear_image = "breaching_sledgehammer"
 
 	tool_flags = TOOL_CHOPPING //to chop through doors
 	hit_type = DAMAGE_BLUNT
 	w_class = W_CLASS_NORMAL
-	two_handed = 1
-	click_delay = 30
+	flags = FPRINT | TABLEPASS | ONBACK
 
-	force = 30 //this number is multiplied by 4 when attacking doors.
+	two_handed = 1
+	click_delay = 3 SECONDS
+
+	force = 30 //this number is multiplied by 5 when attacking doors.
 	stamina_damage = 60
 	stamina_cost = 30
 
 	New()
 		..()
 		BLOCK_SETUP(BLOCK_ROD)
+		src.setItemSpecial(/datum/item_special/heavy_swing)
+
+/obj/item/breaching_hammer/sledgehammer
+	name = "sledgehammer"
+	desc = "A super heavy metal hammer perfect for smacking walls and people you don't like."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "sledgehammer"
+	item_state = "sledgehammer"
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+
+	w_class = W_CLASS_BULKY
+	c_flags = EQUIPPED_WHILE_HELD
+
+	force = 45
+
+	setupProperties()
+		..()
+		setProperty("carried_movespeed", 1.2)
+
+/obj/item/machete
+	name = "rusty machete"
+	desc = "An old machete, clearly showing signs of wear and tear due to its age."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "machete"
+	item_state = "machete"
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	hit_type = DAMAGE_CUT
+	flags = USEDELAY | FPRINT
+	force = 20
+	click_delay = 16 DECI SECONDS //unbalanced blade
+	throwforce = 6
+	throw_speed = 1
+	throw_range = 5
+	contraband = 4
+	w_class = W_CLASS_NORMAL
+	tool_flags = TOOL_CUTTING
+	hitsound = 'sound/impact_sounds/Blade_Small_Bloody.ogg'
+	pickup_sfx = "sound/items/blade_pull.ogg"
+
+	New()
+		..()
+		src.AddComponent(/datum/component/bloodflick)
+		src.setItemSpecial(/datum/item_special/massacre)
+
+/obj/item/switchblade
+	name = "switchblade"
+	desc = "Spring-loaded and therefore completely illegal in Space England."
+	inhand_image_icon = 'icons/mob/inhand/hand_food.dmi'
+	item_state = ""
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "switchblade-idle"
+	hit_type = DAMAGE_BLUNT
+	force = 3
+	throwforce = 7
+	stamina_damage = 5
+	stamina_cost = 1
+	event_handler_flags = USE_GRAB_CHOKE
+	special_grab = /obj/item/grab
+	stamina_crit_chance = 5
+	var/active = FALSE
+	w_class = W_CLASS_SMALL
+
+	New()
+		src.AddComponent(/datum/component/bloodflick)
+		..()
+
+	attack_self(mob/user)
+		toggle_active(user)
+		return ..()
+
+	proc/toggle_active(mob/user)
+		if (!active)
+			hitsound = 'sound/impact_sounds/Blade_Small_Bloody.ogg'
+			user.visible_message("<span class='combat bold'>[user] flips \the [src] open!</span>")
+			w_class = W_CLASS_NORMAL
+			active = TRUE
+			tool_flags = TOOL_CUTTING
+			item_state = "knife"
+			//src.setItemSpecial(/datum/item_special/simple/bloodystab)
+			icon_state = "switchblade-open"
+			hit_type = DAMAGE_CUT
+			force = 10
+			stamina_crit_chance = 33
+			playsound(user, 'sound/items/blade_pull.ogg', 60, TRUE)
+		else if (!chokehold)
+			hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
+			user.visible_message("<span class='combat bold'>[user] folds \the [src].</span>")
+			w_class = W_CLASS_SMALL
+			active = FALSE
+			item_state = ""
+			tool_flags = 0
+			//src.setItemSpecial(/datum/item_special/simple)
+			icon_state = "switchblade-close"
+			hit_type = DAMAGE_BLUNT
+			stamina_crit_chance = 5
+			force = 3
+			playsound(user, 'sound/machines/heater_off.ogg', 40, TRUE)
+		user.update_inhands()
+		tooltip_rebuild = TRUE
+
+	afterattack(obj/O as obj, mob/user as mob)
+		if (O.loc == user && istype(O, /obj/item/clothing))
+			if (active)
+				toggle_active(user)
+			icon_state = "switchblade-idle"
+			boutput(user, "<span class='hint'>You hide the [src] inside \the [O]. (Use the snap emote while wearing the clothing item to retrieve it.)</span>")
+			user.u_equip(src)
+			src.set_loc(O)
+			src.dropped(user)
+		else
+			..()

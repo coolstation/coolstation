@@ -5,6 +5,7 @@
   * @param es set this to true if your item's plural ends in "es"
   * @return the plural suffix based on numbers
   */
+
 /proc/s_es(var/number as num, var/es = 0)
 	if (isnull(number))
 		return
@@ -15,6 +16,16 @@
 			return "es"
 		else
 			return "s"
+
+
+/proc/isThisShitEvenJson(var/string) //Returns a boolean on whether or not something is JSON. BIG FUCKING WARNING NOTE: DOESN'T WORK IF ARRAYS ARE ON THE START OR END!!!!
+	if(!istext(string)) //because i'm lazy and i don't need it and probably nobody ever will
+		return 0 //no!!!
+	string = trim(string)
+	if(copytext(string, 1, 2) == "{" && copytext(string, length(string), length(string) +1) == "}")
+		return 1 //yeah I think so
+	return 0 //get outta here pal
+
 
 /**
   * Returns true if the char you feed it is uppercase.
@@ -86,15 +97,25 @@ var/global/obj/flashDummy
 /proc/getFlashDummy()
 	if (!flashDummy)
 		flashDummy = new /obj(null)
+		flashDummy.event_handler_flags |= Z_ANCHORED
 		flashDummy.set_density(0)
 		flashDummy.opacity = 0
-		flashDummy.anchored = 1
+		flashDummy.anchored = ANCHORED_TECHNICAL
 		flashDummy.mouse_opacity = 0
 	return flashDummy
 
 /proc/arcFlashTurf(var/atom/from, var/turf/target, var/wattage, var/volume = 30)
+	var/turf/target_r = target
 	var/obj/O = getFlashDummy()
-	O.set_loc(target)
+	for (var/obj/lightning_rod/rod in by_type[/obj/lightning_rod])
+		if(rod.attached && GET_DIST(rod, target) <= 8)
+			var/turf/T = get_turf(rod)
+			var/turf/T2 = locate(T.x, T.y + 2, T.z)
+			target_r = T2 ? T2 : T
+			target = rod
+			rod.struck(wattage)
+			break
+	O.set_loc(target_r)
 	playsound(target, "sound/effects/elec_bigzap.ogg", volume, 1)
 
 	var/list/affected = DrawLine(from, O, /obj/line_obj/elec ,'icons/obj/projectiles.dmi',"WholeLghtn",1,1,"HalfStartLghtn","HalfEndLghtn",OBJ_LAYER,1,PreloadedIcon='icons/effects/LghtLine.dmi')
@@ -122,9 +143,17 @@ var/global/obj/flashDummy
 
 /proc/arcFlash(var/atom/from, var/atom/target, var/wattage)
 	var/target_r = target
-	if (isturf(target))
+	for (var/obj/lightning_rod/rod in by_type[/obj/lightning_rod])
+		if(rod.attached && GET_DIST(rod, target) <= 8)
+			var/turf/T = get_turf(rod)
+			var/turf/T2 = locate(T.x, T.y + 2, T.z)
+			target_r = T2 ? T2 : T
+			target = rod
+			rod.struck(wattage)
+			break
+	if (isturf(target_r))
 		var/obj/O = getFlashDummy()
-		O.set_loc(target)
+		O.set_loc(target_r)
 		target_r = O
 
 	playsound(target, "sound/effects/elec_bigzap.ogg", 30, 1)
@@ -206,6 +235,14 @@ proc/get_angle(atom/a, atom/b)
 		curr = get_step(curr, direction)
 	return curr
 */
+
+
+/proc/get_bureau_name()
+	var/list/resource = list("Space Dolphin","Urine","Plasma","Paper","Tree","Human","Robot","AI","Asteroid","Ice","Lamp", "Bone", "Lotion", "Tissue", "Toilet Paper","Alien","Pants","Phasmid","Candy","Colored Pencil","Fish","Beer","Refrigerator","Furniture","Rat") //literally just throw whatever random shit you can think of
+	var/list/fields = list("Pest Control","Paperwork","HR","Rationing","Frontier Census","Middle Management","[pick(resource)] Conservation","[pick(resource)] Management","Cooperation","Integration","Alignment","Documentation","Time Management","[pick(resource)] Eradication")
+	var/list/titles = list("Head of [pick(fields)]","[pick(fields)] Specialist","[pick(fields)] Director","[pick(fields)] Officer")
+	return(pick(titles))
+
 
 /proc/movable_area_check(var/atom/A)
 	if(!A.loc) return 0
@@ -456,6 +493,9 @@ proc/get_angle(atom/a, atom/b)
 		message = copytext(message, 4)
 	else if (dd_hasprefix(message, ":"))
 		prefix = copytext(message, 1, 3)
+		message = copytext(message, 3)
+	else if (dd_hasprefix(message, ";;"))
+		prefix = ";"
 		message = copytext(message, 3)
 	else if (dd_hasprefix(message, ";"))
 		prefix = ";"
@@ -1447,7 +1487,7 @@ proc/get_adjacent_floor(atom/W, mob/user, px, py)
 	else if(ghostjump)
 		text += "<a href='byond://winset?command=.ghostjump [x] [y] [z]' title='Jump to Coords'>[x],[y],[z]</a>"
 	else
-		text += "<a href='?src=[holder ? "\ref[holder]" : "%admin_ref%"];action=jumptocoords;target=[x],[y],[z]' title='Jump to Coords'>[x],[y],[z]</a>"
+		text += "<a href='byond://?src=[holder ? "\ref[holder]" : "%admin_ref%"];action=jumptocoords;target=[x],[y],[z]' title='Jump to Coords'>[x],[y],[z]</a>"
 	return text
 
 // hi I'm haine -throws more crap onto the pile-
@@ -1715,8 +1755,8 @@ var/list/english_num = list("0" = "zero", "1" = "one", "2" = "two", "3" = "three
 	if (!istype(A) || !istype(B))
 		return
 	if (A.anchored || B.anchored)
-		A.anchored = 1
-		B.anchored = 1
+		A.anchored = ANCHORED
+		B.anchored = ANCHORED
 
 	if (!islist(A.attached_objs))
 		A.attached_objs = list()
@@ -2166,7 +2206,7 @@ var/global/list/allowed_restricted_z_areas
 
 	if (M && isblob(M))
 		var/mob/living/intangible/blob_overmind/B = M
-		if (B.tutorial)
+		if (B.blob_holder.tutorial)
 			return TRUE
 
 	var/area/A
@@ -2395,8 +2435,10 @@ proc/illiterateGarbleText(var/message)
 /**
   * Returns given text replaced by nonsense but its based off of a modifier + flock's garblyness
   */
+/*
 proc/flockBasedGarbleText(var/message, var/modifier, var/datum/flock/f = null)
 	if(f?.snooping) . = radioGarbleText(message, f.snoop_clarity + modifier)
+*/
 
 /**
   * Returns the time in seconds since a given timestamp
@@ -2505,11 +2547,11 @@ proc/check_whitelist(var/atom/TA, var/list/whitelist, var/mob/user as mob, var/c
 
 /**
 	* Linear interpolation
-	*/
+	*
 /proc/lerp(var/a, var/b, var/t)
 		return a * (1 - t) + b * t
 
-/**
+
 	* Returns the passed decisecond-format time in the form of a text string
 	*/
 proc/time_to_text(var/time)
@@ -2627,3 +2669,8 @@ proc/message_ghosts(var/message, show_wraith = FALSE)
 		// Otherwise, output to ghosts
 		if (isdead(M) || iswraith(M) || isghostdrone(M) || isVRghost(M) || inafterlifebar(M))
 			boutput(M, rendered)
+
+/proc/recoil_camera(mob/M, dir, strength=1, spread=3)
+	if(!M || !M.client || !M.client.recoil_controller)
+		return
+	M.client.recoil_controller.recoil_camera(dir,strength,spread)

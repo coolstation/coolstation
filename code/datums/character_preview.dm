@@ -22,7 +22,7 @@ datum/character_preview
 	var/mob/living/carbon/human/preview_mob
 	var/obj/overlay/background = null
 
-	New(client/viewer, window_id, control_id = null)
+	New(client/viewer, window_id, control_id = null, datum/tgui_window/tgui_owner = null)
 		. = ..()
 		START_TRACKING
 
@@ -40,23 +40,39 @@ datum/character_preview
 				"size" = "128,128",
 			)))
 
+		if(tgui_owner && !tgui_owner.visible)
+			RegisterSignal(tgui_owner, COMSIG_UI_VISIBLE, PROC_REF(tgui_display))
+		else
+			src.post_visible()
+
+	proc/tgui_display(datum/tgui_window/tgui_owner)
+		src.post_visible()
+		src.add_background()
+		UnregisterSignal(tgui_owner, COMSIG_UI_VISIBLE)
+
+	proc/post_visible()
+
 		src.handler = new
-		src.handler.plane = 0
+		src.handler.plane = PLANE_BLACKNESS
 		src.handler.mouse_opacity = 0
 		src.handler.screen_loc = "[src.preview_id]:1,1"
-		src.viewer?.screen += src.handler
 
-		var/mob/living/carbon/human/H = new(src.get_mob_spawn_loc())
-		mobs -= H
-		src.preview_mob = H
-		H.screen_loc = "[src.preview_id];1,1"
-		src.handler.vis_contents += H
-		src.viewer?.screen += H
+		src.preview_mob = new(src.get_mob_spawn_loc())
+		mobs -= src.preview_mob
+		src.preview_mob.screen_loc = "[src.preview_id];1,1"
+		src.handler.vis_contents += src.preview_mob
 
-		if(isturf(H.loc))
-			do_gimmick_mob_spawning_stuff(H)
+		src.viewer.screen += src.handler
+		src.viewer.screen += src.preview_mob
+
+		if(isturf(src.preview_mob.loc))
+			do_gimmick_mob_spawning_stuff(src.preview_mob)
+
+		SEND_SIGNAL(src, COMSIG_UIMAP_LOADED, viewer)
 
 	proc/add_background(color)
+		if(!src.handler)
+			return
 		if(isnull(src.background))
 			src.background = new()
 		if (color)
@@ -123,6 +139,8 @@ datum/character_preview
 
 	/// Sets the appearance, mutant race, and facing direction of the human mob.
 	proc/update_appearance(datum/appearanceHolder/AH, datum/mutantrace/MR = null, direction = SOUTH, name = "human")
+		if(!src.handler)
+			return
 		src.preview_mob.dir = direction
 		src.preview_mob.set_mutantrace(null)
 		src.preview_mob.bioHolder.mobAppearance.CopyOther(AH)

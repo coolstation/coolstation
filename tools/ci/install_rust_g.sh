@@ -3,6 +3,6 @@ set -euo pipefail
 
 source buildByond.conf
 
-wget -O ./librust_g.so "https://github.com/tgstation/rust-g/releases/download/$RUST_G_VERSION/librust_g.so"
-chmod +x ./librust_g.so
-ldd ./librust_g.so
+cp /home/runner/work/coolstation/coolstation/tools/ci/librust_g.so ${BYOND_SYSTEM}/bin/librust_g.so
+chmod +x ${BYOND_SYSTEM}/bin/librust_g.so
+ldd ${BYOND_SYSTEM}/bin/librust_g.so

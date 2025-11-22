@@ -26,6 +26,13 @@ datum
 		var/max_addiction_severity = "HIGH" // HIGH = barfing, stuns, etc, LOW = twitching, getting tired
 		var/dispersal = 4 // The range at which this disperses from a grenade. Should be lower for heavier particles (and powerful stuff).
 		var/volatility = 0 // Volatility determines effectiveness in pipebomb. This is 0 for a bad additive, otherwise a positive number which linerally affects explosive power.
+		var/flammable_influence = FALSE  // Determines if the chemical can burn at all
+		var/combusts_on_fire_contact = FALSE // Determines if the chemical burns when in direct contact with fire
+		var/combusts_on_gaseous_fire_contact = FALSE // Determines if the chemical burns when in direct contact with fire while aerosolized
+		var/burn_speed = 0 // Speed at which a chem burns
+		var/burn_energy = 0 // The energy a chemical releases when burnt, in Joules per unit
+		var/burn_volatility = 0 // How violently it burns
+		var/burn_temperature = 0 // Temperature at which a chem burns
 		var/reacting = 0 // fuck off chemist spam
 		var/overdose = 0 // if reagents are at or above this in a mob, it's an overdose - if double this, it's a major overdose
 		var/depletion_rate = 0.4 // this much goes away per tick
@@ -36,7 +43,7 @@ datum
 		var/thirst_value = 0
 		var/hunger_value = 0
 		var/hygiene_value = 0
-		var/bladder_value = 0
+		var/kidney_multiplier = 0
 		var/energy_value = 0
 		var/blob_damage = 0 // If this is a poison, it may be useful for poisoning the blob.
 		var/viscosity = 0 // determines interactions in fluids. 0 for least viscous, 1 for most viscous. use decimals!
@@ -51,6 +58,12 @@ datum
 		var/random_chem_blacklisted = 0 // will not appear in random chem sources oddcigs/artifacts/etc
 		var/boiling_point = T0C + 100
 		var/can_crack = 0 // used by organic chems
+		var/contraband = 0 // bastards hate this shit
+		var/evaporates_cleanly = FALSE // vanishes on evaporation
+
+		//	Increases the weight of the reagent in the color calculation
+		//	A multiplier of 2 makes the color as if the reagent's volume was twice as much
+		var/color_multiplier = 1
 
 		New()
 			..()
@@ -75,17 +88,17 @@ datum
 */
 
 		proc/on_add()
-			if (stun_resist > 0)
-				if (ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					M.add_stun_resist_mod("reagent_[src.id]", stun_resist)
+			if (stun_resist > 0 && ismob(holder?.my_atom))
+				var/mob/M = holder.my_atom
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_[src.id]", stun_resist)
+				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_[src.id]", stun_resist)
 			return
 
 		proc/on_remove()
-			if (stun_resist > 0)
-				if (ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					M.remove_stun_resist_mod("reagent_[src.id]")
+			if (stun_resist > 0 && ismob(holder?.my_atom))
+				var/mob/M = holder.my_atom
+				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_[src.id]")
+				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_[src.id]")
 			return
 
 		proc/on_copy(var/datum/reagent/new_reagent)
@@ -104,6 +117,9 @@ datum
 			return
 
 		proc/reaction_temperature(exposed_temperature, exposed_volume) //By default we do nothing.
+			return
+
+		proc/do_burn(var/reacting_volume)
 			return
 
 		//reaction_mob, reaction_obj reaction_turf and reaction_blob all return 1 by default. Children procs should override return value with 0.
@@ -209,6 +225,8 @@ datum
 			if (!holder)
 				holder = M.reagents
 			var/deplRate = depletion_rate
+			deplRate = deplRate * mult
+
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if (H.traitHolder.hasTrait("slowmetabolism"))
@@ -216,19 +234,36 @@ datum
 				if (H.organHolder)
 					if (!H.organHolder.liver || H.organHolder.liver.broken)	//if no liver or liver is dead, deplete slower
 						deplRate /= 2
-					if (H.organHolder.get_working_kidney_amt() == 0)	//same with kidneys
-						deplRate /= 2
+					var/kidneys = !!H.organHolder.left_kidney + !!H.organHolder.right_kidney
+					switch(kidneys)
+						if(0)
+							deplRate /= 2
+						if(1)
+							if(H.organHolder.left_kidney)
+								H.organHolder.left_kidney.to_process += src.kidney_multiplier * deplRate
+								if(H.organHolder.left_kidney.broken || H.organHolder.left_kidney.get_damage() > H.organHolder.left_kidney.FAIL_DAMAGE)
+									deplRate /= 2
+							else
+								H.organHolder.right_kidney.to_process += src.kidney_multiplier * deplRate
+								if(H.organHolder.right_kidney.broken || H.organHolder.right_kidney.get_damage() > H.organHolder.right_kidney.FAIL_DAMAGE)
+									deplRate /= 2
+						else
+							H.organHolder.left_kidney.to_process += src.kidney_multiplier * deplRate * 0.5
+							H.organHolder.right_kidney.to_process += src.kidney_multiplier * deplRate * 0.5
+							if (!H.organHolder.get_working_kidney_amt())	//same with kidneys
+								deplRate /= 2
 
 				if (H.sims)
 					if (src.thirst_value)
 						H.sims.affectMotive("Thirst", thirst_value)
 					if (src.hunger_value)
 						H.sims.affectMotive("Hunger", hunger_value)
-					if (src.bladder_value)
-						H.sims.affectMotive("Bladder", bladder_value)
 					if (src.energy_value)
 						H.sims.affectMotive("Energy", energy_value)
-			deplRate = deplRate * mult
+			else
+				if(src.kidney_multiplier)
+					M.urine += src.kidney_multiplier * deplRate * 0.5
+
 			if (addiction_prob)
 				src.handle_addiction(M, deplRate)
 
@@ -272,8 +307,6 @@ datum
 			if (effect <= 8)
 				M.take_toxin_damage(severity * mult)
 			return effect
-
-
 
 		proc/handle_addiction(var/mob/M, var/rate)
 			//DEBUG_MESSAGE("[src.id].handle_addiction([M],[rate])")

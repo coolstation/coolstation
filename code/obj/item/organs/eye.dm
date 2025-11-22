@@ -8,7 +8,7 @@
 	desc = "Here's lookin' at you! Er, maybe not so much, anymore."
 	organ_holder_location = "head"
 	icon_state = "eye"
-	var/change_iris = 1
+	var/change_iris = TRUE
 	var/color_r = 1 // same as glasses/helmets/masks/etc, used for vision color modifications, see human/handle_regular_hud_updates()
 	var/color_g = 1
 	var/color_b = 1
@@ -105,6 +105,7 @@
 	icon_state = "eye-synth"
 	item_state = "plant"
 	synthetic = 1
+	change_iris = FALSE
 
 /obj/item/organ/eye/cyber
 	name = "cybereye"
@@ -113,6 +114,7 @@
 	icon_state = "eye-cyber"
 	item_state = "heart_robo1"
 	robotic = 1
+	change_iris = FALSE
 	created_decal = /obj/decal/cleanable/oil
 	edible = 0
 	mats = 6
@@ -136,11 +138,16 @@
 	color_r = 0.95 // darken a little
 	color_g = 0.95
 	color_b = 0.975 // kinda blue
-	change_iris = 0
 
-	setupProperties()
-		..()
-		setProperty("disorient_resist_eye", 100)
+	on_transplant(mob/M)
+		. = ..()
+		APPLY_ATOM_PROPERTY(M, PROP_DISORIENT_RESIST_EYE, src, 100)
+		APPLY_ATOM_PROPERTY(M, PROP_DISORIENT_RESIST_EYE_MAX, src, 100)
+
+	on_removal()
+		REMOVE_ATOM_PROPERTY(donor, PROP_DISORIENT_RESIST_EYE, src)
+		REMOVE_ATOM_PROPERTY(donor, PROP_DISORIENT_RESIST_EYE_MAX, src)
+		. = ..()
 
 /obj/item/organ/eye/cyber/sechud
 	name = "\improper Security HUD cybereye"
@@ -152,7 +159,6 @@
 	color_r = 0.975 // darken a little, kinda red
 	color_g = 0.95
 	color_b = 0.95
-	change_iris = 0
 
 	process()
 		if (src.broken)
@@ -181,14 +187,14 @@
 	color_r = 1
 	color_g = 0.9 // red tint
 	color_b = 0.9
-	change_iris = 0
+
 
 	on_transplant(mob/M)
 		. = ..()
-		APPLY_MOB_PROPERTY(M, PROP_THERMALVISION, src)
+		APPLY_ATOM_PROPERTY(M, PROP_THERMALVISION, src)
 
 	on_removal()
-		REMOVE_MOB_PROPERTY(donor, PROP_THERMALVISION, src)
+		REMOVE_ATOM_PROPERTY(donor, PROP_THERMALVISION, src)
 		. = ..()
 
 /obj/item/organ/eye/cyber/meson
@@ -201,7 +207,6 @@
 	color_r = 0.925
 	color_g = 1
 	color_b = 0.9
-	change_iris = 0
 	organ_abilities = list(/datum/targetable/organAbility/meson)
 	var/on = 1
 	var/mob/living/carbon/human/assigned = null
@@ -214,11 +219,11 @@
 			src.assigned = M
 			if (src.on)
 				src.assigned.vision.set_scan(1)
-				APPLY_MOB_PROPERTY(M, PROP_MESONVISION, src)
+				APPLY_ATOM_PROPERTY(M, PROP_MESONVISION, src)
 
 	on_removal()
 		..()
-		REMOVE_MOB_PROPERTY(donor, PROP_MESONVISION, src)
+		REMOVE_ATOM_PROPERTY(donor, PROP_MESONVISION, src)
 		if (istype(assigned.glasses, /obj/item/clothing/glasses/visor))
 			return
 		else
@@ -229,10 +234,10 @@
 		playsound(assigned, "sound/items/mesonactivate.ogg", 30, 1)
 		if (src.on)
 			assigned.vision.set_scan(1)
-			APPLY_MOB_PROPERTY(donor, PROP_MESONVISION, src)
+			APPLY_ATOM_PROPERTY(donor, PROP_MESONVISION, src)
 		else
 			assigned.vision.set_scan(0)
-			REMOVE_MOB_PROPERTY(donor, PROP_MESONVISION, src)
+			REMOVE_ATOM_PROPERTY(donor, PROP_MESONVISION, src)
 
 /obj/item/organ/eye/cyber/spectro
 	name = "spectroscopic imager cybereye"
@@ -244,14 +249,14 @@
 	color_r = 1 // pink tint?
 	color_g = 0.9
 	color_b = 0.95
-	change_iris = 0
+
 
 	on_transplant(mob/M)
 		. = ..()
-		APPLY_MOB_PROPERTY(M, PROP_SPECTRO, src)
+		APPLY_ATOM_PROPERTY(M, PROP_SPECTRO, src)
 
 	on_removal()
-		REMOVE_MOB_PROPERTY(donor, PROP_SPECTRO, src)
+		REMOVE_ATOM_PROPERTY(donor, PROP_SPECTRO, src)
 		. = ..()
 
 /obj/item/organ/eye/cyber/prodoc
@@ -264,7 +269,6 @@
 	color_r = 0.925
 	color_g = 1
 	color_b = 0.925
-	change_iris = 0
 
 	// stolen from original prodocs
 	process()
@@ -296,14 +300,13 @@
 	color_r = 0.925
 	color_g = 1
 	color_b = 0.925
-	change_iris = 0
 
 	on_transplant(mob/M)
 		. = ..()
-		APPLY_MOB_PROPERTY(M, PROP_GHOSTVISION, src)
+		APPLY_ATOM_PROPERTY(M, PROP_GHOSTVISION, src)
 
 	on_removal()
-		REMOVE_MOB_PROPERTY(donor, PROP_GHOSTVISION, src)
+		REMOVE_ATOM_PROPERTY(donor, PROP_GHOSTVISION, src)
 		. = ..()
 
 /obj/item/organ/eye/cyber/camera
@@ -316,7 +319,6 @@
 	var/camera_tag = "Eye Cam"
 	var/camera_network = "Zeta"
 	made_from = "pharosium"
-	change_iris = 0
 
 	New()
 		..()
@@ -339,14 +341,13 @@
 	color_r = 0.7
 	color_g = 1
 	color_b = 0.7
-	change_iris = 0
 
 	on_transplant(mob/M)
 		. = ..()
-		APPLY_MOB_PROPERTY(M, PROP_NIGHTVISION, src)
+		APPLY_ATOM_PROPERTY(M, PROP_NIGHTVISION, src)
 
 	on_removal()
-		REMOVE_MOB_PROPERTY(donor, PROP_NIGHTVISION, src)
+		REMOVE_ATOM_PROPERTY(donor, PROP_NIGHTVISION, src)
 		. = ..()
 
 /obj/item/organ/eye/cyber/laser
@@ -359,7 +360,6 @@
 	color_r = 1
 	color_g = 0.85
 	color_b = 0.85
-	change_iris = 0
 	organ_abilities = list(/datum/targetable/organAbility/eyebeam)
 	var/eye_proj_override = null
 
@@ -419,7 +419,7 @@ obj/item/organ/eye/skeleton
 	icon_state = "eye-bone"
 	made_from = "bone" //duh
 	blood_reagent = "calcium"
-	change_iris = 0
+	change_iris = FALSE
 
 /obj/item/organ/eye/cow
 	name = "cow eye"

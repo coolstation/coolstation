@@ -81,7 +81,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs)
 		qdel(src.organs[t])
 		src.organs[t] = null
@@ -99,7 +99,7 @@
 	O.canmove = 0
 	O.name = src.name
 	O.real_name = src.real_name
-	O.anchored = 1
+	O.anchored = ANCHORED
 	O.aiRestorePowerRoutine = 0
 	O.lastKnownIP = src.client.address
 
@@ -217,7 +217,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs) qdel(src.organs[text("[t]")])
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot/(src.loc,null,1)
@@ -273,7 +273,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs)
 		qdel(src.organs[t])
 //	var/atom/movable/overlay/animation = new /atom/movable/overlay( src.loc )
@@ -306,7 +306,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs)
 		qdel(src.organs[t])
 //	var/atom/movable/overlay/animation = new /atom/movable/overlay( src.loc )
@@ -339,7 +339,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs)
 		qdel(src.organs[text("[t]")])
 
@@ -522,7 +522,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/t in src.organs) qdel(src.organs[text("[t]")])
 
 	var/mob/living/critter/mechmonstrosity/suffering/O = new /mob/living/critter/mechmonstrosity/suffering/(src.loc,null,1)
@@ -616,7 +616,7 @@ var/list/antag_respawn_critter_types =  list(/mob/living/critter/small_animal/fl
 		min_time_passed = second_time_around
 	var/time_elapsed = (world.timeofday + ((world.timeofday < mind.last_death_time) ? 864000 : 0)) - mind.last_death_time // Offset the time of day in case of midnight rollover
 	var/time_left = min_time_passed - time_elapsed
-	if(time_left > 0)
+	if(time_left > 0 && !isadmin(src))
 		var/time_left_message = ""
 		var/minutes = floor(time_left / 600)
 		var/seconds = floor((time_left - (minutes * 600))/10)
@@ -865,7 +865,7 @@ var/respawn_arena_enabled = 0
 // FLOCKMIND
 ///////////////////
 // flockdrones are critters, just critterize someone
-
+/*
 /mob/proc/flockerize(var/datum/flock/flock) // this will not host your web apps for you
 	if (src.mind || src.client)
 		if(flock == null)
@@ -942,3 +942,4 @@ var/respawn_arena_enabled = 0
 		boutput(O, "<span class='notice'>You are part of the <span class='bold'>[flock.name]</span> flock.</span>")
 		return O
 	return null
+*/

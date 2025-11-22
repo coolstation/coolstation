@@ -30,8 +30,8 @@ export const SavesTab = (_props, context) => {
 };
 
 type CloudSaveProps = {
-  name: string,
-  index: number
+  readonly name: string,
+  readonly index: number
 }
 
 const Cloudsave = ({ name, index }: CloudSaveProps, context: any) => {

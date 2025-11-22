@@ -51,6 +51,10 @@ MATERIAL
 	var/datum/material/reinforcement = null
 	rand_pos = 8
 	inventory_counter_enabled = 1
+	value = 7 //for now. 7 is about what the base commodity market calls for. adding this value in as-is while i start to migrate commodity pricing over to a multiplier-and-offset model rather than a strict price for all that goes up and down.
+	// TODO: holy fuck we've never touched sheet in hand construction since ever, maybe we should reconsider?
+	//also re: construction but 1 mauxite/molitz per sheet is a really long throwback. changing out the economy makes me feel like these full sheets are more... an 8x8 sheet.
+	//this also relegates them to walls specifically, ideally with a cart to make it easier. we'd want to make constructing objects out of metal not come from fukken... origami'ing a sheet of metal bigger than you are into a chair somehow. fabricators or stampers or whatever, buddy!!!!
 
 	New()
 		..()
@@ -339,7 +343,7 @@ MATERIAL
 					a_amount = rodsinput * 2
 					a_cost = rodsinput
 					a_icon = 'icons/obj/items/metal.dmi'
-					a_icon_state = "rods"
+					a_icon_state = "rods_1"
 					a_name = "rods"
 					duration_alt = 1.7 SECONDS
 
@@ -353,7 +357,7 @@ MATERIAL
 					a_amount = tileinput * 4
 					a_cost = tileinput
 					a_icon = 'icons/obj/items/metal.dmi'
-					a_icon_state = "tile"
+					a_icon_state = "tile_1"
 					a_name = "floor tiles"
 					duration_alt = 2 SECONDS
 
@@ -850,7 +854,7 @@ MATERIAL
 	desc = "A human head impaled on a spike, dim-eyed, grinning faintly, blood blackening between the teeth."
 	icon = 'icons/obj/items/metal.dmi'
 	icon_state = "head_spike"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	var/list/heads = list()
 	var/head_offset = 0 //so the ones at the botton don't teleport upwards when a head is removed
@@ -989,7 +993,7 @@ MATERIAL
 			head.set_loc(src)
 			heads += head
 			src.update()
-			make_cleanable( /obj/decal/cleanable/blood,user.loc)
+			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,user.loc)
 			playsound(src.loc, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
 		SPAWN_DBG(50 SECONDS)
@@ -1100,7 +1104,7 @@ MATERIAL
 				if (istype(T, /turf/floor))
 					// If it's still a floor, attempt to place or replace the floor tile
 					var/turf/floor/F = T
-					F.attackby(src, user)
+					F.Attackby(src, user)
 					tooltip_rebuild = 1
 
 		src.add_fingerprint(user)
@@ -1154,12 +1158,13 @@ MATERIAL
 				W.icon_old = "floor"
 			W.to_plating()
 
-		if(ismob(usr) && !istype(src.material, /datum/material/metal/steel))
-			logTheThing("station", usr, null, "constructs a floor (<b>Material:</b>: [src.material && src.material.name ? "[src.material.name]" : "*UNKNOWN*"]) at [log_loc(S)].")
-		if(src.material)
-			W.setMaterial(src.material)
-		src.change_stack_amount(-1)
-		return TRUE
+			if(ismob(usr) && !istype(src.material, /datum/material/metal/steel))
+				logTheThing("station", usr, null, "constructs a floor (<b>Material:</b>: [src.material && src.material.name ? "[src.material.name]" : "*UNKNOWN*"]) at [log_loc(S)].")
+			if(src.material)
+				W.setMaterial(src.material)
+			src.change_stack_amount(-1)
+			return TRUE
+		return FALSE
 #endif
 
 /obj/item/tile/steel

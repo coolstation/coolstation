@@ -5,7 +5,7 @@
 	cooldown = 0
 	targeted = 0
 	target_anything = 0
-	can_use_in_container = 1
+	turf_check = FALSE
 
 	incapacitationCheck()
 		return 0

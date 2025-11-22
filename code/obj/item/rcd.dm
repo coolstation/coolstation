@@ -41,7 +41,7 @@ Broken RCD + Effects
 	item_state = "rcd" //oops
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	var/matter = 0
 	var/max_matter = 50
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
@@ -245,7 +245,7 @@ Broken RCD + Effects
 
 				if (istype(A, /turf/floor))
 					if (do_thing(user, A, "building a wall", matter_create_wall, time_create_wall))
-						var/turf/wall/T = A:ReplaceWithWall()
+						var/turf/wall/T = A:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 						T.inherit_area()
 						T.setMaterial(getMaterial(material_name))
 						log_construction(user, "builds a wall ([T])")
@@ -255,7 +255,7 @@ Broken RCD + Effects
 					if (istype(A, /turf/wall/r_wall) || istype(A, /turf/wall/auto/reinforced) || istype(A, /turf/wall/auto/shuttle))
 						return	// You can't go reinforcing stuff that's already reinforced you dope.
 					if (do_thing(user, A, "reinforcing the wall", matter_reinforce_wall, time_reinforce_wall))
-						var/turf/wall/T = A:ReplaceWithRWall()
+						var/turf/wall/T = A:ReplaceWithUpdateWalls(map_settings ? map_settings.rwalls : /turf/wall/r_wall)
 						T.inherit_area()
 						T.setMaterial(getMaterial(material_name))
 						log_construction(user, "reinforces a wall ([T])")
@@ -267,9 +267,9 @@ Broken RCD + Effects
 
 						var/turf/wall/T
 						if (istype(A, /obj/structure/girder/reinforced))
-							T = wallTurf:ReplaceWithRWall()
+							T = wallTurf:ReplaceWithUpdateWalls(map_settings ? map_settings.rwalls : /turf/wall/r_wall)
 						else
-							T = wallTurf:ReplaceWithWall()
+							T = wallTurf:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 
 						T.setMaterial(getMaterial(material_name))
 
@@ -290,7 +290,7 @@ Broken RCD + Effects
 					return
 				if (istype(A, /turf/wall/r_wall) || istype(A, /turf/wall/auto/reinforced))
 					if (do_thing(user, A, "removing the reinforcement from \the [A]", matter_unreinforce_wall, time_unreinforce_wall))
-						var/turf/wall/T = A:ReplaceWithWall()
+						var/turf/wall/T = A:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 						T.setMaterial(getMaterial(material_name))
 						log_construction(user, "deconstructs a reinforced wall into a normal wall ([T])")
 						return
@@ -860,7 +860,7 @@ Broken RCD + Effects
 	item_state = "rcdammo"
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	m_amt = 30000
 	g_amt = 15000
 	var/matter = 10
@@ -897,7 +897,7 @@ Broken RCD + Effects
 	icon_state = "rcd"
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
 	force = 10.0
 	throwforce = 10.0
@@ -973,7 +973,7 @@ Broken RCD + Effects
 				playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 
 				for (var/turf/T in orange(1,user))
-					T.ReplaceWithWall()
+					T.ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 
 
 				boutput(user, "<span class='alert'>\the [src] shorts out!</span>")
@@ -1001,7 +1001,7 @@ Broken RCD + Effects
 
 /obj/effects/void_break
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	var/lifespan = 4
 	var/rangeout = 0
 

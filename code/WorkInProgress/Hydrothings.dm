@@ -349,7 +349,7 @@
 	icon = 'icons/obj/vehicles/ship.dmi'
 	icon_state = "escape"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/item/reagent_containers/food/snacks/ingredient/egg/critter/owl/madness
 	critter_type = /obj/critter/madnessowl
@@ -581,7 +581,7 @@
 	name = "Informational Plaque"
 	icon = 'icons/obj/decals/wallsigns.dmi'
 	icon_state = "rip"
-	anchored = 1.0
+	anchored = ANCHORED
 	opacity = 0
 	density = 0
 
@@ -590,7 +590,7 @@
 	name = "Informational Plaque"
 	icon = 'icons/obj/decals/wallsigns.dmi'
 	icon_state = "rip"
-	anchored = 1.0
+	anchored = ANCHORED
 	opacity = 0
 	density = 0
 
@@ -599,7 +599,7 @@
 	name = "Informational Plaque"
 	icon = 'icons/obj/decals/wallsigns.dmi'
 	icon_state = "rip"
-	anchored = 1.0
+	anchored = ANCHORED
 	opacity = 0
 	density = 0
 
@@ -617,7 +617,7 @@
 	icon_state = "mapwall_r"
 	density = 1
 	opacity = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	attackby(var/obj/item/W, var/mob/user)
 		if (istype(W, /obj/item/device/key/owl))
@@ -723,7 +723,7 @@
 	icon = 'icons/mob/bird.dmi'
 	icon_state = "smallowl"
 	event_handler_flags = USE_PROXIMITY | USE_FLUID_ENTER
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	last_flash = 0
 	flash_prob = 80
@@ -895,7 +895,7 @@ obj/critter/madnessowl/gun
 	desc = "WATCH OUT IT HAS A GUN!"
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (!src.alive) break
 			if (C.health < 0) continue
@@ -967,6 +967,7 @@ obj/critter/madnessowl/switchblade
 				src.attacking = 0
 		return
 
+/*
 /obj/critter/gunbot/drone/hootening //If anyone wants to take a crack at it, this guy was originally supposed to start doing melee after half HP but fuck critter code.
 	name = "The Hootening"
 	desc = "Wait you recognize them from somewhere, oh shit wait they have a gun!"
@@ -1003,7 +1004,7 @@ obj/critter/madnessowl/switchblade
 		..()
 		name = "The Hootening"
 		return
-
+*/
 
 /// ALTERNATE HOOTENING ATTEMPT
 
@@ -1040,7 +1041,7 @@ obj/critter/madnessowl/switchblade
 			new /obj/item/plutonium_core/hootonium_core (src.loc)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return
@@ -1189,7 +1190,7 @@ obj/critter/madnessowl/switchblade
 					sleep(1.5 SECONDS)
 					src.visible_message("<span class='alert'><B>[src]</B> ravenously eats the mangled brain remnants out of the decapitated head!</span>")
 					playsound(src.loc, "sound/voice/animal/hoot.ogg", 80, 1)
-					make_cleanable( /obj/decal/cleanable/blood,src.loc)
+					make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,src.loc)
 					src.target = null
 				else
 					src.visible_message("<span class='alert'><B>[src]</B> pounds on [BORG.name]'s head furiously!</span>")
@@ -1272,7 +1273,7 @@ obj/critter/madnessowl/switchblade
 				random_brute_damage(target, 10,1)
 				take_bleeding_damage(target, null, 5, DAMAGE_CUT, 0, get_turf(target))
 				if(prob(33)) // don't make quite so much mess
-					bleed(target, 5, 5, get_step(src.loc, pick(alldirs)), 1)
+					bleed(target, 5, get_step(src.loc, pick(alldirs)), violent = TRUE)
 				sleep(0.4 SECONDS)
 				src.frenzied--
 			src.frenzied = 0
@@ -1477,9 +1478,9 @@ var/list/owlery_sounds = list('sound/voice/animal/hoot.ogg','sound/ambience/owlz
 		/////////////////////////////////////////////////////////
 		//// sell list //////////////////////////////////////////
 		/////////////////////////////////////////////////////////
-		src.goods_sell += new /datum/commodity/airzooka(src)
-		src.goods_sell += new /datum/commodity/airbag(src)
-		src.goods_sell += new /datum/commodity/dangerbag(src)
+		//src.goods_sell += new /datum/commodity/airzooka(src)
+		//src.goods_sell += new /datum/commodity/airbag(src)
+		//src.goods_sell += new /datum/commodity/dangerbag(src)
 		src.goods_sell += new /datum/commodity/hat/dailyspecial/greg
 		src.goods_sell += new /datum/commodity/crayons/greg
 		src.goods_sell += new /datum/commodity/drugs/poppies/greg

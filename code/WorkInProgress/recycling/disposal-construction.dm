@@ -6,7 +6,7 @@
 	desc = "A huge pipe segment used for constructing disposal systems."
 	icon = 'icons/obj/machines/disposal.dmi'
 	icon_state = "conpipe-s"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 0
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	m_amt = 1850
@@ -146,12 +146,12 @@
 
 		if (iswrenchingtool(I))
 			if(anchored)
-				anchored = 0
+				anchored = UNANCHORED
 				level = 2
 				set_density(1)
 				boutput(user, "You detach the pipe from the underfloor.")
 			else
-				anchored = 1
+				anchored = ANCHORED
 				level = 1
 				set_density(0)
 				boutput(user, "You attach the pipe to the underfloor.")
@@ -210,7 +210,7 @@
 	icon = 'icons/obj/machines/manufacturer.dmi'
 	icon_state = "fab"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	mats = 16
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_WIRECUTTERS
 
@@ -259,9 +259,9 @@
 	return
 
 /obj/machinery/disposal_pipedispenser/mobile
-	name = "Disposal Pipe Dispenser Cart"
+	name = "disposal pipe dispenser cart"
 	desc = "A tool for removing some of the tedium from pipe-laying."
-	anchored = 0
+	anchored = UNANCHORED
 	icon_state = "fab-mobile"
 	mats = 16
 	var/laying_pipe = 0
@@ -281,6 +281,7 @@
 			else if(src.removing_pipe)
 				if(!new_loc.intact)
 					for(var/obj/disposalpipe/pipe in old_loc)
+						if (istype(pipe, /obj/disposalpipe/loafer)) continue //I guess
 						qdel(pipe)
 			prev_dir = direction // might want to actually do this even when old_loc == loc but idk, it sucks with attempted diagonal movement
 

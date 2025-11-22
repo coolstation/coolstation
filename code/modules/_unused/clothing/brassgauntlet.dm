@@ -237,7 +237,7 @@
 
 						M.visible_message("<span class='alert'><B>[M] vomits out their [O]. [pick("Holy shit!", "Holy fuck!", "What the hell!", "What the fuck!", "Jesus Christ!", "Yikes!", "Oof...")]</B></span>")
 					else if(prob(20))
-						make_cleanable( /obj/decal/cleanable/blood/gibs,T)
+						make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,T)
 					else
 						make_cleanable( /obj/decal/cleanable/vomit,T) //Oh geez the janitor will not be happy
 		..()

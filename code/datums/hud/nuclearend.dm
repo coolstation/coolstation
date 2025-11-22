@@ -1,3 +1,4 @@
+//superceded by having the nuke gamemode co-opt /datum/hud/roundend - saves us from problems with overlapping text
 datum/hud/nuclear
 	click_check = 0
 	var/atom/movable/screen/countdown

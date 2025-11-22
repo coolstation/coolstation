@@ -23,10 +23,10 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 
 		var/turf/T = locate(adjustX, adjustY, target.z)
 
-		for(var/x=0, x<prefabSizeX; x++)
-			for(var/y=0, y<prefabSizeY; y++)
+		for(var/x=0, x<prefabSizeX, x++)
+			for(var/y=0, y<prefabSizeY, y++)
 				var/turf/L = locate(T.x+x, T.y+y, T.z)
-				if(L?.loc && ((L.loc.type != /area/space) && !istype(L.loc , /area/allowGenerate) && !istype(L.loc, /area/gehenna/underground))) // istype(L.loc, /area/noGenerate)
+				if(L?.loc && ((L.loc.type != /area/space) && !istype(L.loc , /area/allowGenerate)))
 					return 0
 
 		var/loaded = file2text(prefabPath)
@@ -220,18 +220,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabSizeX = 8
 		prefabSizeY = 8
 
-#ifdef SUBMARINE_MAP
-	mantahole
-		required = 1
-		underwater = 1
-		maxNum = 1
-		probability = 100
-		prefabPath = "assets/maps/prefabs/prefab_water_mantahole.dmm"
-		prefabSizeX = 10
-		prefabSizeY = 10
-#endif
-
-#if defined(MAP_OVERRIDE_OSHAN)
+#if defined(UNDERWATER_MAP)
 	elevator
 		required = 1
 		underwater = 1
@@ -248,14 +237,6 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_water_robotfactory.dmm"
 		prefabSizeX = 20
 		prefabSizeY = 28
-
-	racetrack
-		underwater = 1
-		maxNum = 1
-		probability = 10
-		prefabPath = "assets/maps/prefabs/prefab_water_racetrack.dmm"
-		prefabSizeX = 24
-		prefabSizeY = 25
 
 	zoo
 		underwater = 1
@@ -400,7 +381,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_water_beesanctuary.dmm"
 		prefabSizeX = 34
 		prefabSizeY = 19
-
+/*
 	danktrench //the marijuana trench
 		underwater = 1
 		maxNum = 1
@@ -408,11 +389,12 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_water_danktrench.dmm"
 		prefabSizeX = 16
 		prefabSizeY = 9
-
+*/
 	grill //test post do not bonk
 		maxNum = 1
+		required = 1
 		prefabPath = "assets/maps/prefabs/prefab_grill.dmm"
-		probability = 30
+		probability = 100
 		prefabSizeX = 10
 		prefabSizeY = 10
 
@@ -425,22 +407,12 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabSizeY = 21
 
 
-#if defined(MAP_OVERRIDE_OSHAN)
+#if defined(UNDERWATER_MAP)
 	sea_miner
 		underwater = 1
 		maxNum = 1
 		probability = 35
 		prefabPath = "assets/maps/prefabs/prefab_water_miner.dmm"
-		prefabSizeX = 21
-		prefabSizeY = 15
-#endif
-
-#if defined(MAP_OVERRIDE_MANTA)
-	sea_miner
-		underwater = 1
-		maxNum = 1
-		required = 1
-		prefabPath = "assets/maps/prefabs/prefab_water_miner_manta.dmm"
 		prefabSizeX = 21
 		prefabSizeY = 15
 #endif

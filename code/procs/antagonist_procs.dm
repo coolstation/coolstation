@@ -281,12 +281,12 @@
 	synd_mob.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(synd_mob), synd_mob.slot_glasses)
 	//synd_mob.equip_if_possible(new /obj/item/requisition_token/syndicate(synd_mob), synd_mob.slot_r_store)
 	synd_mob.equip_if_possible(new /obj/item/tank/emergency_oxygen(synd_mob), synd_mob.slot_l_store)
-/*
+
+	//return of uplink
 	var/obj/item/uplink/syndicate/U = new /obj/item/uplink/syndicate/alternate(synd_mob)
 	if (synd_mob.mind && istype(synd_mob.mind))
 		U.setup(synd_mob.mind)
 	synd_mob.equip_if_possible(U, synd_mob.slot_r_store)
-*/
 
 	var/obj/item/card/id/syndicate/I = new /obj/item/card/id/syndicate(synd_mob) // for whatever reason, this is neccessary
 	if(leader)

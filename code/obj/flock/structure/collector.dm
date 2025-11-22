@@ -1,4 +1,5 @@
 /// # Collector structure
+/*
 /obj/flock_structure/collector
 	name = "Some weird lookin' pulsing thing"
 	desc = "Seems to be pulsing."
@@ -70,5 +71,4 @@
 	for(var/turf/floor/feather/flocktile as anything in connectedto)
 		flocktile.connected = 1
 		flocktile.on() //make it glo
-
-
+*/

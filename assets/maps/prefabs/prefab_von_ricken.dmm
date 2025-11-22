@@ -18,7 +18,7 @@
 "bq" = (
 /obj/decal/poster/wallsign/stencil/left/r,
 /obj/decal/poster/wallsign/stencil/right/i,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/von_ricken)
 "bu" = (
 /obj/cable{
@@ -43,7 +43,7 @@
 	icon_state = "0-2"
 	},
 /obj/cable,
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 5;
 	pixel_y = 4
 	},
@@ -127,7 +127,7 @@
 	icon_state = "4-8"
 	},
 /obj/decal/cleanable/dirt/jen,
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -157,7 +157,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/decal/cleanable/blood/gibs{
+/obj/decal/cleanable/tracked_reagents/blood/gibs{
 	dir = 4;
 	icon_state = "gib4"
 	},
@@ -235,7 +235,7 @@
 /area/noGenerate)
 "gQ" = (
 /obj/decal/poster/wallsign/poster_borg,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/von_ricken)
 "gX" = (
 /turf/wall/auto/jen,
@@ -272,7 +272,7 @@
 /turf/floor/plating,
 /area/prefab/von_ricken)
 "jm" = (
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/von_ricken)
 "jI" = (
 /obj/decal/mule/beacon/no_auto_dropoff_spawn,
@@ -401,7 +401,7 @@
 /obj/machinery/r_door_control{
 	id = "Von Ricken"
 	},
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/von_ricken)
 "oR" = (
 /obj/table/reinforced/industrial/auto,
@@ -446,7 +446,6 @@
 /turf/floor/specialroom/medbay,
 /area/prefab/von_ricken)
 "pQ" = (
-/obj/machinery/power/apc/autoname_east,
 /obj/cable,
 /obj/cable{
 	icon_state = "0-10"
@@ -486,7 +485,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 8;
 	pixel_y = 4
 	},
@@ -572,7 +571,7 @@
 /area/noGenerate)
 "vj" = (
 /obj/decal/poster/wallsign/stencil/left/n,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/von_ricken)
 "vs" = (
 /obj/table/reinforced/industrial/auto,
@@ -678,7 +677,7 @@
 "yJ" = (
 /obj/decal/poster/wallsign/stencil/left/v,
 /obj/decal/poster/wallsign/stencil/right/o,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/von_ricken)
 "yL" = (
 /obj/table/reinforced/industrial/auto,
@@ -690,7 +689,7 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/decal/cleanable/blood,
+/obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/wood,
 /area/prefab/von_ricken)
 "zm" = (
@@ -830,14 +829,14 @@
 /obj/cable{
 	icon_state = "0-4"
 	},
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 10;
 	pixel_y = 4
 	},
 /turf/floor/plating,
 /area/prefab/von_ricken)
 "Cy" = (
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 10;
 	pixel_y = 4
 	},
@@ -849,7 +848,7 @@
 /turf/floor/airless/neutral,
 /area/prefab/von_ricken)
 "CI" = (
-/obj/decal/cleanable/blood/gibs,
+/obj/decal/cleanable/tracked_reagents/blood/gibs,
 /turf/floor/carpet/red/fancy/narrow/sw,
 /area/prefab/von_ricken)
 "CP" = (
@@ -940,7 +939,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	pixel_y = 5
 	},
 /obj/machinery/door/unpowered/wood/pyro{
@@ -1020,7 +1019,7 @@
 "IR" = (
 /obj/decal/poster/wallsign/stencil/left/e,
 /obj/decal/poster/wallsign/stencil/right/n,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/von_ricken)
 "Ja" = (
 /obj/cable{
@@ -1080,7 +1079,7 @@
 "KA" = (
 /obj/decal/poster/wallsign/stencil/left/c,
 /obj/decal/poster/wallsign/stencil/right/k,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/von_ricken)
 "KC" = (
 /obj/cable{
@@ -1116,7 +1115,7 @@
 /area/prefab/von_ricken)
 "LI" = (
 /obj/item/storage/secure/ssafe/vonrickenstorage,
-/turf/wall/auto/reinforced/supernorn,
+/turf/wall/auto/reinforced,
 /area/prefab/von_ricken)
 "LL" = (
 /obj/decal/tile_edge/stripe/big{
@@ -1220,7 +1219,7 @@
 /turf/floor/airless/neutral,
 /area/prefab/von_ricken)
 "PI" = (
-/obj/decal/cleanable/blood/gibs{
+/obj/decal/cleanable/tracked_reagents/blood/gibs{
 	icon_state = "gibmid3"
 	},
 /turf/floor/black,
@@ -1500,7 +1499,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 5;
 	pixel_y = 4
 	},
@@ -1536,7 +1535,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	pixel_y = 4
 	},
 /turf/floor/carpet/red/fancy/narrow/east,
@@ -1595,7 +1594,7 @@
 	dir = 8;
 	name = "Operating Room"
 	},
-/obj/decal/cleanable/blood/tracks{
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 8;
 	pixel_y = 4
 	},

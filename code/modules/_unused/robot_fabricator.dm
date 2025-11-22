@@ -4,7 +4,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "fab-idle"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/metal_amount = 0
 	var/operating = 0
 	var/obj/item/parts/robot_parts/being_built = null

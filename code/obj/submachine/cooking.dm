@@ -3,7 +3,7 @@
 	desc = "A water-filled unit intended for cookery purposes."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "sink"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 12
 	deconstruct_flags = DECON_WRENCH | DECON_WELDER
@@ -30,6 +30,9 @@
 				W.reagents.add_reagent("water", fill)
 				user.show_text("You fill [W] with water.", "blue")
 				playsound(src.loc, "sound/misc/pourdrink.ogg", 100, 1)
+			if (istype(W, /obj/item/reagent_containers/food/drinks/))
+				var/obj/item/reagent_containers/food/drinks/d = W
+				d.drank_from = null
 		else if (istype(W, /obj/item/mop)) // dude whatever
 			var/fill = W.reagents.maximum_volume
 			if (fill == W.reagents.total_volume)
@@ -85,7 +88,7 @@
 	desc = "A machine designed to dispense space ice cream."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "ice_creamer0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 18
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
@@ -243,7 +246,7 @@
 	desc = "A machine designed to dispense Rito's Italian Ice."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "ice_creamer0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 18
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
@@ -648,7 +651,7 @@ input:checked + div { display: block; }
 	desc = "A multi-cooking unit featuring a hob, grill, oven and more."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "oven_off"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 18
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
@@ -657,10 +660,10 @@ input:checked + div { display: block; }
 	var/working = 0
 	var/time = 5
 	var/heat = "Low"
-	var/list/recipes = null
+	var/static/list/recipes = null
 	//var/allowed = list(/obj/item/reagent_containers/food/, /obj/item/parts/robot_parts/head, /obj/item/clothing/head/butt, /obj/item/organ/brain/obj/item)
 	var/allowed = list(/obj/item)
-	var/tmp/recipe_html = null
+	var/static/recipe_html = null
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if (!emagged)
@@ -795,12 +798,13 @@ table#cooktime a#start {
 	//        oven checks through the recipe list will make it pick the simple recipe and finish the cooking proc
 	//        before it even gets to the more complex recipe, wasting the ingredients that would have gone to the
 	//        more complicated one and pissing off the chef by giving something different than what he wanted!
-		build_oven_recipes()
-		src.recipes = oven_recipes
 		if (!src.recipes)
 			src.recipes = list()
+			build_oven_recipes()
+			src.recipes = oven_recipes
 
-		src.recipe_html = create_oven_recipe_html(src)
+		if(!src.recipe_html)
+			src.recipe_html = create_oven_recipe_html(src)
 
 	Topic(href, href_list)
 		if ((get_dist(src, usr) > 1 && (!issilicon(usr) && !isAI(usr))) || !isliving(usr) || iswraith(usr) || isintangible(usr))
@@ -921,7 +925,7 @@ table#cooktime a#start {
 						F.quality = recipebonus - cook_amt
 						if (istype(F, /obj/item/reagent_containers/food/snacks))
 							F.heal_amt = 0
-					if (src.emagged)
+					if (src.emagged && istype(F)) //sometimes we make not food, like lipstick or baguettes
 						F.from_emagged_oven = 1
 					if (derivename)
 						var/foodname = F.name
@@ -1077,7 +1081,7 @@ table#cooktime a#start {
 	desc = "Refines various food substances into different forms."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "processor-off"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 18
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
@@ -1144,7 +1148,7 @@ table#cooktime a#start {
 					new/obj/item/reagent_containers/food/snacks/ingredient/rice(src.loc)
 					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/plant/tomato)
-					new/obj/item/reagent_containers/food/snacks/condiment/ketchup(src.loc)
+					new/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce(src.loc)
 					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/plant/peanuts)
 					new/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter(src.loc)
@@ -1311,14 +1315,18 @@ var/list/mixer_recipes = list()
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "blender"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 15
+	flags = FPRINT | FLUID_SUBMERGE | TABLEPASS
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
 	object_flags = CAN_BE_LIFTED
 	var/list/recipes = null
 	var/list/to_remove = list()
 	var/allowed = list(/obj/item/reagent_containers/food/, /obj/item/parts/robot_parts/head, /obj/item/clothing/head/butt, /obj/item/organ/brain)
 	var/working = 0
+	throw_speed = 2
+	throw_range = 7
+	throwforce = 12
 
 	New()
 		..()
@@ -1343,6 +1351,25 @@ var/list/mixer_recipes = list()
 
 		src.update_icon()
 		return
+
+	throw_end(list/params, turf/thrown_from)
+		. = ..()
+		playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1)
+
+	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+		..()
+		if(ismob(hit_atom))
+			var/mob/living/L = hit_atom
+			L.changeStatus("weakened", 1 SECOND)
+			L.force_laydown_standup()
+
+	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
+		..()
+		if(ismob(usr))
+			var/mob/living/L = usr
+			L.changeStatus("weakened", 1.5 SECONDS)
+			L.force_laydown_standup()
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		var/amount = length(src.contents)

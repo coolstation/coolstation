@@ -188,7 +188,7 @@
 ///obj/attackby(var/obj/item/I as obj, mob/user as mob)
 //	attack_particle(user,src)
 //	..()
-/proc/attack_particle(var/mob/M, var/atom/target)
+/proc/attack_particle(var/mob/M, var/atom/target, var/hidden = FALSE)
 	if (!M || !target || !M.attack_particle) return
 	var/diff_x = target.x - M.x
 	var/diff_y = target.y - M.y
@@ -210,7 +210,13 @@
 		M.attack_particle.icon_state = "[M.a_intent]"
 
 	M.attack_particle.alpha = 180
-	M.attack_particle.loc = M.loc
+	M.attack_particle.set_loc(M.loc)
+	var/image/fake
+	if(hidden)
+		fake = image(M.attack_particle.icon,M.attack_particle,M.attack_particle.icon_state)
+		M.attack_particle.icon = 'icons/mob/mob.dmi'
+		M.attack_particle.icon_state = "blank"
+		M << fake
 	M.attack_particle.pixel_x = 0
 	M.attack_particle.pixel_y = 0
 
@@ -230,10 +236,11 @@
 	SPAWN_DBG(0.5 SECONDS)
 		//animate(M.attack_particle, alpha = 0, time = 2, flags = ANIMATION_PARALLEL)
 		M.attack_particle?.alpha = 0
+		qdel(fake)
 
 /mob/var/last_interact_particle = 0
 
-/proc/interact_particle(var/mob/M, var/atom/target)
+/proc/interact_particle(var/mob/M, var/atom/movable/target, var/turf = FALSE)
 	if (!M || !target) return
 	if (world.time <= M.last_interact_particle + M.combat_click_delay) return
 	var/diff_x = target.x - M.x
@@ -254,7 +261,7 @@
 		M.attack_particle.icon_state = "interact"
 
 		M.attack_particle.alpha = 180
-		M.attack_particle.loc = M.loc
+		M.attack_particle.set_loc(M.loc)
 		M.attack_particle.pixel_x = 0
 		M.attack_particle.pixel_y = 0
 
@@ -270,7 +277,10 @@
 		//animate(transform = t_size, time = 6, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
 
 		animate(M.attack_particle, transform = t_size, time = 6, easing = BOUNCE_EASING)
-		animate(pixel_x = (diff_x*32) + target.pixel_x, pixel_y = (diff_y*32)  + target.pixel_y, time = 2, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
+		if(turf)
+			animate(pixel_x = (diff_x*32) + target.pixel_x, pixel_y = (diff_y*32) + target.pixel_y, time = 2, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
+		else
+			animate(pixel_x = (diff_x*32) + target.pixel_x + (target.bound_width * 0.5 - 16), pixel_y = (diff_y*32) + target.pixel_y + (target.bound_height * 0.5 - 16), time = 2, easing = BOUNCE_EASING,  flags = ANIMATION_PARALLEL)
 		sleep(0.5 SECONDS)
 		//animate(M.attack_particle, alpha = 0, time = 2, flags = ANIMATION_PARALLEL)
 		M.attack_particle.alpha = 0
@@ -300,7 +310,7 @@
 			M.attack_particle.icon_state = "[M.a_intent]"
 
 		M.attack_particle.alpha = 200
-		M.attack_particle.loc = thing.loc
+		M.attack_particle.set_loc(thing.loc)
 		M.attack_particle.pixel_x = I.pixel_x + (diff_x*32)
 		M.attack_particle.pixel_y = I.pixel_y + (diff_y*32)
 
@@ -337,7 +347,7 @@
 		M.attack_particle.icon_state = "pull"
 
 		M.attack_particle.alpha = 200
-		M.attack_particle.loc = M.loc
+		M.attack_particle.set_loc(M.loc)
 		M.attack_particle.pixel_x = I.pixel_x + (diff_x*32)
 		M.attack_particle.pixel_y = I.pixel_y + (diff_y*32)
 
@@ -375,7 +385,7 @@
 		M.attack_particle.icon_state = "unpull"
 
 		M.attack_particle.alpha = 200
-		M.attack_particle.loc = M.loc
+		M.attack_particle.set_loc(M.loc)
 		M.attack_particle.pixel_x = M.get_hand_pixel_x()
 		M.attack_particle.pixel_y = M.get_hand_pixel_y()
 
@@ -400,7 +410,7 @@
 	M.attack_particle.icon_state = "block"
 
 	M.attack_particle.alpha = 255
-	M.attack_particle.loc = M.loc
+	M.attack_particle.set_loc(M.loc)
 	M.attack_particle.pixel_x = 0
 	M.attack_particle.pixel_y = 0
 
@@ -431,7 +441,7 @@
 	M.attack_particle.icon_state = state_string
 
 	M.attack_particle.alpha = 255
-	M.attack_particle.loc = M.loc
+	M.attack_particle.set_loc(M.loc)
 	M.attack_particle.pixel_x = 0
 	M.attack_particle.pixel_y = 0
 
@@ -467,7 +477,11 @@ var/global/list/default_muzzle_flash_colors = list(
 
 proc/muzzle_flash_attack_particle(var/mob/M, var/turf/origin, var/turf/target, var/muzzle_anim, var/muzzle_light_color=null, var/offset=25)
 	if (!M || !origin || !target || !muzzle_anim) return
-	var/firing_angle = get_angle(origin, target)
+	var/firing_angle
+	if(origin == target)
+		firing_angle = dir_to_angle(M.dir)
+	else
+		firing_angle = get_angle(origin, target)
 	muzzle_flash_any(M, firing_angle, muzzle_anim, muzzle_light_color, offset)
 
 proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var/muzzle_light_color, var/offset=25)
@@ -505,9 +519,9 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 /proc/sprint_particle(var/mob/M, var/turf/T = null)
 	if (!M || !M.sprint_particle) return
 	if (T)
-		M.sprint_particle.loc = T
+		M.sprint_particle.set_loc(T)
 	else
-		M.sprint_particle.loc = M.loc
+		M.sprint_particle.set_loc(M.loc)
 
 	M.sprint_particle.set_dir(null)
 	if (M.sprint_particle.icon_state == "sprint_cloud")
@@ -517,14 +531,14 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 
 	SPAWN_DBG(0.6 SECONDS)
 		if (M.sprint_particle.loc == T)
-			M.sprint_particle.loc = null
+			M.sprint_particle.set_loc(null)
 
 /proc/sprint_particle_small(var/mob/M, var/turf/T = null, var/direct = null)
 	if (!M || !M.sprint_particle) return
 	if (T)
-		M.sprint_particle.loc = T
+		M.sprint_particle.set_loc(T)
 	else
-		M.sprint_particle.loc = M.loc
+		M.sprint_particle.set_loc(M.loc)
 
 	M.sprint_particle.set_dir(direct)
 	if (M.sprint_particle.icon_state == "sprint_cloud_small")
@@ -533,14 +547,14 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 
 	SPAWN_DBG(0.4 SECONDS)
 		if (M.sprint_particle?.loc == T)
-			M.sprint_particle.loc = null
+			M.sprint_particle.set_loc(null)
 
 /proc/sprint_particle_tiny(var/mob/M, var/turf/T = null, var/direct = null)
 	if (!M || !M.sprint_particle) return
 	if (T)
-		M.sprint_particle.loc = T
+		M.sprint_particle.set_loc(T)
 	else
-		M.sprint_particle.loc = M.loc
+		M.sprint_particle.set_loc(M.loc)
 
 	M.sprint_particle.set_dir(direct)
 	if (M.sprint_particle.icon_state == "sprint_cloud_tiny")
@@ -549,7 +563,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 
 	SPAWN_DBG(0.3 SECONDS)
 		if (M.sprint_particle.loc == T)
-			M.sprint_particle.loc = null
+			M.sprint_particle.set_loc(null)
 
 /proc/attack_twitch(var/atom/A)
 	if (!istype(A) || istype(A, /mob/living/object))
@@ -1067,11 +1081,30 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 /proc/animate_shockwave(var/atom/A)
 	if (!istype(A))
 		return
-	var/punchstr = rand(10, 20)
+	var/punchstr = rand(10, 20) * pick(-1, 1)
 	var/original_y = A.pixel_y
-	animate(A, transform = matrix(punchstr, MATRIX_ROTATE), pixel_y = 16, time = 2, color = "#eeeeee", easing = BOUNCE_EASING)
-	animate(transform = matrix(-punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 2, color = "#ffffff", easing = BOUNCE_EASING)
-	animate(transform = null, time = 3, easing = BOUNCE_EASING)
+	var/matrix/original_matrix = A.transform
+	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = 16, time = 2, color = "#eeeeee", easing = ELASTIC_EASING)
+	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 2, color = "#ffffff", easing = ELASTIC_EASING)
+	animate(transform = original_matrix, time = 3, easing = BOUNCE_EASING)
+	return
+
+/proc/animate_stairs(var/atom/A)
+	if (!istype(A))
+		return
+	var/punchstr = rand(13, 18) * pick(-1, 1)
+	var/original_y = A.pixel_y
+	var/matrix/original_matrix = A.transform
+	playsound(A.loc, "sound/impact_sounds/stair_hit.ogg", 25, 1, extrarange = -23)
+	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = original_y + 8, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = original_y + 2, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = original_y + 6, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = original_y + 4, time = 1, easing = BOUNCE_EASING)
+	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
+	animate(transform = original_matrix, time = 3, easing = BOUNCE_EASING)
 	return
 
 /proc/animate_glitchy_fuckup1(var/atom/A)
@@ -1224,13 +1257,13 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	var/was_anchored = A.anchored
 	var/oldlayer = A.layer
 	A.layer = EFFECTS_LAYER + 1
-	A.anchored = 1
+	A.anchored = ANCHORED
 	A.alpha = 0
 	A.pixel_y = 176
 	lightbeam.alpha = 0
 	if (ismob(A))
 		var/mob/M = A
-		APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, M.type)
+		APPLY_ATOM_PROPERTY(M, PROP_CANTMOVE, M.type)
 	playsound(A.loc,"sound/voice/heavenly3.ogg",50,0)
 	animate(lightbeam, alpha=255, time=45)
 	animate(A,alpha=255,time=45)
@@ -1244,7 +1277,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	qdel(lightbeam)
 	if (ismob(A))
 		var/mob/M = A
-		REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, M.type)
+		REMOVE_ATOM_PROPERTY(M, PROP_CANTMOVE, M.type)
 
 /obj/heavenly_light
 	icon = 'icons/obj/large/32x192.dmi'
@@ -1267,7 +1300,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	A.density = FALSE
 	if (ismob(A))
 		var/mob/M = A
-		APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, M.type)
+		APPLY_ATOM_PROPERTY(M, PROP_CANTMOVE, M.type)
 	if (play_sound)
 		playsound(center,"sound/effects/darkspawn.ogg",50,0)
 	SPAWN_DBG(5 SECONDS)
@@ -1291,7 +1324,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 		A.density = original_density
 		if (ismob(A))
 			var/mob/M = A
-			REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, M.type)
+			REMOVE_ATOM_PROPERTY(M, PROP_CANTMOVE, M.type)
 		for (var/turf/T in block(TA, TB))
 			animate(T, transform = null, pixel_x = 0, pixel_y = 0, 7.5 SECONDS, easing = SINE_EASING)
 		sleep(7.5 SECONDS)
@@ -1511,13 +1544,13 @@ var/global/icon/scanline_icon = icon('icons/effects/scanning.dmi', "scanline")
 		animate(f, offset=f:offset, time=0, loop=-1, flags=ANIMATION_PARALLEL)
 		animate(offset=f:offset-1, time=rand()*20+10)
 
-/proc/animate_ripple(atom/A, ripples=1)
+/proc/animate_ripple(atom/A, ripples=1, intensity=1, falloff = 1)
 	if (!istype(A))
 		return
 	var/filter,size
 	for(var/i=1, i<=ripples, ++i)
-		size=rand()*2.5+1
-		A.filters += filter(type="ripple", x=0, y=0, size=size, repeat=rand()*2.5+1, radius=0)
+		size=rand()*2.5*intensity+1
+		A.filters += filter(type="ripple", x=0, y=0, size=size, repeat=rand()*2.5+1, radius=0, falloff=falloff)
 		filter = A.filters[A.filters.len]
 		animate(filter, size=size, time=0, loop=-1, radius=0, flags=ANIMATION_PARALLEL)
 		animate(size=0, radius=rand()*10+10, time=rand()*20+10)
@@ -1543,3 +1576,33 @@ var/global/icon/scanline_icon = icon('icons/effects/scanning.dmi', "scanline")
 	SPAWN_DBG(0)
 		animate(A, transform = M, time = timing, loop = -1, easing = LINEAR_EASING)
 		animate(transform = MD, time = timing, loop = -1, easing = LINEAR_EASING)
+
+//Weeee!
+/proc/animate_fall(var/atom/movable/AM, var/time = 2 SECONDS, var/min_scale = 0.3)
+	var/matrix/shrink = matrix()
+	var/matrix/M = matrix(AM.transform)
+	shrink.Scale(min_scale,min_scale * 0.9)
+	var/y_shift = ceil((AM.bound_height / 32) * (1 - (min_scale * 0.9)) * 12) // trying 12 pixels down for now
+	SPAWN_DBG(0)
+		animate(AM, transform = shrink, time = time, pixel_y = AM.pixel_y - y_shift, easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)
+		animate(transform = M, pixel_y = AM.pixel_y + y_shift)
+
+//!eeee...
+/proc/animate_rise_bottom(var/atom/movable/AM, var/time = 2.8 SECONDS, var/max_scale = 1.3, y_raise = 96, fadeout = 128)
+	var/matrix/grow = matrix()
+	var/matrix/M = matrix(AM.transform)
+	grow.Scale(max_scale,max_scale * 0.9)
+	var/previous_alpha = AM.alpha
+	SPAWN_DBG(0)
+		animate(AM, transform = grow, time = time, pixel_y = AM.pixel_y + y_raise, alpha = max(AM.alpha - fadeout, 0), easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)
+		animate(transform = M, pixel_y = AM.pixel_y - y_raise, alpha = previous_alpha)
+
+//...eeeeW
+/proc/animate_rise_top(var/atom/movable/AM, var/time = 1.2 SECONDS, var/min_scale = 0.3)
+	var/matrix/shrink = matrix()
+	var/matrix/M = matrix(AM.transform)
+	shrink.Scale(min_scale,min_scale * 0.9)
+	var/y_shift = ceil((AM.bound_height / 32) * (1 - (min_scale * 0.9)) * 12) // trying 12 pixels down for now
+	SPAWN_DBG(0)
+		animate(AM, transform = shrink, pixel_y = AM.pixel_y - y_shift)
+		animate(transform = M, time = time, pixel_y = AM.pixel_y + y_shift, easing = LINEAR_EASING, flags = ANIMATION_PARALLEL)

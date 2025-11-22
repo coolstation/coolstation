@@ -9,6 +9,9 @@
 	target_anything = 1
 	target_in_inventory = 1
 	sticky = 1
+	max_range = 1
+	ai_range = 1
+	attack_mobs = TRUE
 
 	cast(atom/target)
 		if (..())
@@ -75,6 +78,21 @@
 		venom_id = "capulettium"
 		inject_amount = 20
 
+	pento
+		name = "Pentobarbital Sting"
+		desc = "That'll shut 'em up."
+		icon_state = "stingneuro"
+		inject_amount = 18 //was 20
+		venom_id = "pentobarbital"
+
+	bio
+		name = "Mutagenic Sting"
+		desc = "That'll mix 'em up."
+		icon_state = "stingbio"
+		inject_amount = 5
+		venom_id = "mutagen"
+
+
 	lsd
 		name = "Hallucinogenic Sting"
 		desc = "Transfer some LSD into your target."
@@ -90,6 +108,7 @@
 		inject_amount = 30
 		pointCost = 4
 		var/datum/targetable/changeling/dna_target_select/targeting = null
+		attack_mobs = FALSE
 
 		New()
 			..()
@@ -103,7 +122,7 @@
 		cast(atom/target)
 			if (..())
 				return 1
-			if (target.is_open_container() == 1 || istype(target,/obj/item/reagent_containers/food) || istype(target,/obj/item/reagent_containers/patch))
+			if (target.is_open_container() || istype(target,/obj/item/reagent_containers/food) || istype(target,/obj/item/reagent_containers/patch))
 				if (target.reagents.total_volume >= target.reagents.maximum_volume)
 					return 0
 				var/max_amount = min(15,target.reagents.maximum_volume - target.reagents.total_volume)

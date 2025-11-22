@@ -50,8 +50,8 @@ export const WeaponVendor = (_props, context) => {
 };
 
 type StockCategoryProps = {
-  category: string;
-  filterAvailable: boolean;
+  readonly category: string;
+  readonly filterAvailable: boolean;
 };
 
 const StockCategory = (props: StockCategoryProps, context) => {
@@ -81,7 +81,7 @@ const StockCategory = (props: StockCategoryProps, context) => {
 };
 
 type StockProps = {
-  stock: WeaponVendorStockData;
+  readonly stock: WeaponVendorStockData;
 };
 
 const Stock = ({ stock }: StockProps, context) => {

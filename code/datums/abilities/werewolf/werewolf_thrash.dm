@@ -4,12 +4,15 @@
 	icon_state = "thrash"
 	targeted = 0
 	target_nodamage_check = 0
-	max_range = 0
+	max_range = 2
+	ai_range = 4
 	cooldown = 400
 	pointCost = 0
 	when_stunned = 2
 	not_when_handcuffed = 1
 	werewolf_only = 1
+	attack_mobs = TRUE
+
 	cast(mob/target)
 		if (!holder)
 			return 1

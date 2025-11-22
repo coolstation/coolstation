@@ -560,7 +560,7 @@ var/sound/iomoon_alarm_sound = null
 	desc = "A strange beast resembling a crab boulder.  Not to be confused with a rock lobster."
 	icon_state = "lavacrab"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	health = 30
 	aggressive = 1
 	defensive = 1
@@ -886,7 +886,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 #define STATE_RECHARGING 2
 
 /obj/iomoon_boss
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	ex_act(severity)
@@ -1227,7 +1227,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 						base.icon_state = "powercore_base_off"
 
 					var/obj/overlay/O = new/obj/overlay( src.loc )
-					O.anchored = 1
+					O.anchored = ANCHORED
 					O.name = "Explosion"
 					O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 					O.pixel_x = -92
@@ -1295,7 +1295,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	base
 		name = "huge contraption"
 		desc = "An enormous artifact of some sort. You feel uncomfortable just being near it."
-		anchored = 1
+		anchored = ANCHORED
 		density = 0
 		icon = 'icons/effects/160x160.dmi'
 		icon_state = "powercore_base"
@@ -1328,8 +1328,9 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	desc = "An ultra-high-capacity superconducting magnetic energy storage (SMES) unit."
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "tallsmes0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
+	pass_unstable = FALSE
 
 	New()
 		..()
@@ -1355,12 +1356,6 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			id = "[x][y]"
 		..() //moved this to the bottom to avoid repeating code here
 
-	#ifdef Z3_IS_A_STATION_LEVEL
-	attack_ai(mob/user) //Assuming for the moment that there's only autoladders on Gehenna
-		if (isAIeye(user))
-			climb(user)
-	#endif
-
 
 
 /obj/ladder
@@ -1368,7 +1363,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	desc = "A series of parallel bars designed to allow for controlled change of elevation. You know, by climbing it. You climb it. I bet you could even haul a crate along with you, you champ."
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "ladder-round" // also available: ladder-square
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/id = null
 	var/broken = FALSE
@@ -1416,16 +1411,15 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 				schmuck.show_text("You fall down the ladder!", "red")
 				schmuck.changeStatus("weakened", 3 SECONDS)
 				AM.set_loc(get_turf(otherLadder))
-				#ifdef DATALOGGER
 				game_stats.Increment("workplacesafety")
-				#endif
 
+	attack_ai(mob/user)
+		if (!istype(user, /mob/living/silicon/ai)) //even with the chicken feet AIs don't have enough limbs to try
+			attack_hand(user)
 
 
 	attack_hand(mob/user as mob)
 		if (src.broken || src.blocked) return
-		if (user.stat || user.getStatusDuration("weakened") || get_dist(user, src) > 1)
-			return
 		src.climb(user)
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -1444,6 +1438,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 
 	proc/climb(mob/user as mob)
+		src.tag = "ladder_[id][src.icon_state == "ladder_wall" ? 0 : 1]" //not sure whats going on here but stuff in prefabs sometimes lacks an ID at spawn time, let's Re-Check them so you cant get yourself stranded.
 		var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
 		if (!istype(otherLadder))
 			boutput(user, "You try to climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder, but seriously fail! Perhaps there's nowhere to go?")
@@ -1452,7 +1447,8 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			user.set_loc(get_turf(otherLadder))
 			return
 			//boutput(user, "You climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder.")
-		actions.start(new /datum/action/bar/icon/ladder_climb(user, src, otherLadder), user)
+		if (user.can_climb_ladder(silent = FALSE))
+			actions.start(new /datum/action/bar/icon/ladder_climb(user, src, otherLadder), user)
 		//user.set_loc(get_turf(otherLadder))
 
 
@@ -1512,6 +1508,9 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 
 	onEnd()
 		..()
+		if (!pizzaghetti.can_climb_ladder(silent = TRUE))
+			interrupt(INTERRUPT_ALWAYS)
+			return
 		pizzaghetti.set_loc(get_turf(robust_penis))
 		//How you're getting a mop bucket or a crate up a ladder I'll never know, but it'd be good if you could.
 		if (pizzaghetti.pulling)
@@ -1538,7 +1537,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "ancientwall2"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 1
 	var/active = 0
 	var/opened = 0
@@ -1704,7 +1703,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	desc = "A slightly elevated floor panel.  It matches the \"creepy ancient shit\" aesthetic pretty well."
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "ancient_floorpanel0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/pads_required = 1 //Number of total active pads required to open a door, not including this one.  If 0, all pads must be INACTIVE instead.
 	var/pads_active = 0
@@ -1873,7 +1872,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	desc = "This is clearly some sort of lock in need of a key.  Obviously."
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "lock-blue"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/locktype = 0 //0: blue, 1: red
 	var/active = 0
@@ -1937,7 +1936,7 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 	desc = "Some manner of strange panel, built of a strange and foreboding metal."
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "ancient_button0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/timer = 0 //Seconds to toggle back off after activation.  Zero to just act as a toggle.
 	var/active = 0

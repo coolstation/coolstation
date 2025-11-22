@@ -113,20 +113,20 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		for( var/sound/s in playing )
 			s.status |= SOUND_UPDATE
 			var/list/vol = sound_playing[ s.channel ]
-			s.volume = vol[1] * volume * volumes[ vol[2] ] * 100
+			s.volume = vol[1] * volume * volumes[ vol[2] ]
 			src << s
 		src.chatOutput.adjustVolumeRaw( volume * getRealVolume(VOLUME_CHANNEL_ADMIN) )
 	else
 		for( var/sound/s in playing )
 			if( sound_playing[s.channel][2] == channel )
 				s.status |= SOUND_UPDATE
-				s.volume = sound_playing[s.channel][1] * volume * volumes[1] * 100
+				s.volume = sound_playing[s.channel][1] * volume * volumes[1]
 				src << s
 
 	if( channel == VOLUME_CHANNEL_ADMIN )
 		src.chatOutput.adjustVolumeRaw( getMasterVolume() * volume )
 
-/proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE)
+/proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE, atom = src)
 	// don't play if over the per-tick sound limit
 	if (!limiter || !limiter.canISpawn(/sound))
 		return
@@ -584,7 +584,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 //fuck it this does one thing: take a z-level's overarching ambience and plays it to the specific z-loop channel, reused for every z level's loop
 //takes a current z and "insideness" of the area for audio reduction. handles volume in here
 //this is almost exclusively for gehenna colony's benefit but any other planet-side maps like it will probably find it useful
-/client/proc/playAmbienceZ(var/Z, var/insideness)
+//magindara now uses it!
+/client/proc/playAmbienceZ(var/Z, var/insideness = 0)
 	var/soundfile = null
 	var/zloopvol = 0
 	var/soundupdate = 0
@@ -612,8 +613,20 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			soundfile = gehenna_underground_loop //for now it's the same wind but really quiet (cave sounds might be appropriate)
 			zloopvol = gehenna_underground_loop_vol / reduction //very quiet wind sounds now, sorta quiet cave sounds with dripping and etc. later
 		//in any other case, this won't play anything and stop any currently playing z-loop
+	#elif defined(MAGINDARA_MAP)
+	var/reduction = insideness ? (insideness * 0.5) + 0.5 : 1
+	switch(Z)
+		if(1)
+			soundfile = magindara_surface_loop //surface wind
+			zloopvol = magindara_surface_loop_volume / reduction //reduced by how "inside" we are
+		/*
+		if(3)
+		*/
+		//in any other case, this won't play anything and stop any currently playing z-loop
 	#endif
-	//removed #else so that it will just pass null to the ambient channel and stop (and also shut the linter up)
+
+	var/stored_vol = zloopvol
+	zloopvol *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
 
 	if (zloopvol != 0) //lets us cancel loop sounds by passing 0
 		if ((src.last_zloop == soundfile) && (src.last_zvol == zloopvol)) //if the volume and loop are the same
@@ -630,14 +643,15 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		S.status |= SOUND_UPDATE
 	if (soundmute)
 		S.status |= SOUND_MUTE
-	sound_playing[ S.channel ][1] = S.volume
+	sound_playing[ S.channel ][1] = stored_vol
 	sound_playing[ S.channel ][2] = VOLUME_CHANNEL_AMBIENT
-	S.volume *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
+	/* mylie wuz here - unsure of this bit, rewrote this slightly
 	if (zloopvol != 0)
 		S.volume *= max(1,(zloopvol / 100)) // warc: post-loudening for loud-requiring places
 		//the 'early return if quiet' that was here might interfere with variable z-level loop volumes
+	*/
 	src << S
-	src.last_zvol = zloopvol //store in mob's client
+	src.last_zvol = S.volume //store in mob's client
 	src.last_zloop = soundfile
 
 /// pool of precached sounds
@@ -723,6 +737,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 
 
 //talksounds
+//spaceradio adapted from file by BenScripps under CC-BY-SA-3.0 and Wikimedia Commons https://en.wikipedia.org/wiki/File:Quindar_tones.ogg
 /var/global/list/sounds_speak = list(	\
 		"1" = sound('sound/misc/talk/speak_1.ogg'),	"1!" = sound('sound/misc/talk/speak_1_exclaim.ogg'),"1?" = sound('sound/misc/talk/speak_1_ask.ogg'),\
 		"2" = sound('sound/misc/talk/speak_2.ogg'),	"2!" = sound('sound/misc/talk/speak_2_exclaim.ogg'),"2?" = sound('sound/misc/talk/speak_2_ask.ogg'),\
@@ -731,13 +746,16 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
  		"bloop" = sound('sound/misc/talk/buwoo.ogg'),	"bloop!" = sound('sound/misc/talk/buwoo_exclaim.ogg'),	"bloop?" = sound('sound/misc/talk/buwoo_ask.ogg'), \
 		"fert" = sound('sound/misc/talk/fert.ogg'),	"fert!" = sound('sound/misc/talk/fert_exclaim.ogg'),	"fert?" = sound('sound/misc/talk/fert_ask.ogg'), \
 		"cat" = sound('sound/misc/talk/cat.ogg'),	"cat!" = sound('sound/misc/talk/cat_exclaim.ogg'),"cat?" = sound('sound/misc/talk/cat_exclaim.ogg'), \
+		"bird" = sound('sound/misc/talk/pigeon_coo.ogg'), "bird!" = sound('sound/misc/talk/pigeon_exclaim.ogg'),"bird?" = sound('sound/misc/talk/pigeon_ask.ogg'), \
  		"lizard" = sound('sound/misc/talk/lizard.ogg'),	"lizard!" = sound('sound/misc/talk/lizard_exclaim.ogg'),"lizard?" = sound('sound/misc/talk/lizard_ask.ogg'), \
  		"skelly" = sound('sound/misc/talk/skelly.ogg'),	"skelly!" = sound('sound/misc/talk/skelly_exclaim.ogg'),"skelly?" = sound('sound/misc/talk/skelly_ask.ogg'), \
 		"blub" = sound('sound/misc/talk/blub.ogg'),	"blub!" = sound('sound/misc/talk/blub_exclaim.ogg'),"blub?" = sound('sound/misc/talk/blub_ask.ogg'), \
-		"cow" = sound('sound/misc/talk/cow.ogg'),	"cow!" = sound('sound/misc/talk/cow_exclaim.ogg'),"cow?" = sound('sound/misc/talk/cow_ask.ogg'), \
 		"roach" = sound('sound/misc/talk/roach.ogg'),	"roach!" = sound('sound/misc/talk/roach_exclaim.ogg'),"roach?" = sound('sound/misc/talk/roach_ask.ogg'), \
- 		"radio" = sound('sound/misc/talk/radio.ogg')\
+ 		"radio" = sound('sound/misc/talk/radio.ogg'), \
+
+		"spaceradio" = sound('sound/misc/talk/radio_quin.ogg') \
  		)
+
 
 
 /**

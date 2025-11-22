@@ -52,7 +52,7 @@
 	desc = ""
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "oldai_mem-0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = EFFECTS_LAYER_UNDER_1
 	pixel_x = -32
@@ -119,7 +119,7 @@
 	desc = "Huh? You've never seen this type of computer before. Not even in any history books."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "oldai_01"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = EFFECTS_LAYER_UNDER_1
 	pixel_x = -32
@@ -321,11 +321,17 @@
 	name = "Satellite 29A"
 	icon_state = "AIt"
 	sound_environment = EAX_HALLWAY
+	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
+	requires_power = TRUE
 
 /area/derelict_ai_sat/core
 	name = "AI Satellite Core"
 	icon_state = "ai_chamber"
 	sound_environment = EAX_GENERIC
+	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
+	requires_power = TRUE
 
 /area/derelict_ai_sat/solar
 	name = "Satelllite 29A Solar Array"
@@ -333,6 +339,9 @@
 	requires_power = 0
 	luminosity = 1
 	force_fullbright = 1
+	is_atmos_simulated = TRUE
+	is_construction_allowed = TRUE
+	requires_power = FALSE
 
 /obj/machinery/power/solar_control/derelict_ai_sat
 	id = "derelict_ai_sat"

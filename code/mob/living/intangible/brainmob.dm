@@ -20,11 +20,9 @@
 
 		logTheThing("diary", src, null, ": [message]", "say")
 
-	#ifdef DATALOGGER
 		// Jewel's attempted fix for: null.ScanText()
 		if (game_stats)
 			game_stats.ScanText(message)
-	#endif
 
 		if (src.client && src.client.ismuted())
 			boutput(src, "You are currently muted and may not speak.")

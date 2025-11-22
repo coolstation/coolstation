@@ -51,7 +51,8 @@
 /datum/manufacture/bedsheet_nb,\
 /datum/manufacture/bedsheet_pan,\
 /datum/manufacture/bedsheet_poly,\
-/datum/manufacture/bedsheet_trans
+/datum/manufacture/bedsheet_trans,\
+/datum/manufacture/white_cane
 
 /obj/machinery/manufacturer
 	name = "Manufacturing Unit"
@@ -60,7 +61,7 @@
 	icon_state = "fab"
 	var/icon_base = null
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 20
 	req_access = list(access_heads)
 	event_handler_flags = NO_MOUSEDROP_QOL
@@ -120,10 +121,13 @@
 	var/obj/item/card/id/scan = null
 	var/temp = null
 	var/frequency = FREQ_PDA
-	var/datum/radio_frequency/transmit_connection = null
 	var/net_id = null
 
 	var/datum/action/action_bar = null
+	//We'll probably have to handle having multiple appendices the moment there's more than one type, but not now. uwu
+	var/obj/machinery/manufacturer_attachment/appendix = null
+
+
 
 #define WIRE_EXTEND 1
 #define WIRE_POWER 2
@@ -135,7 +139,7 @@
 		..()
 		var/area/area = get_area(src)
 		src.area_name = area?.name
-		src.transmit_connection = radio_controller.add_object(src,"[frequency]")
+		MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
 		src.net_id = generate_net_id(src)
 
 		if (istype(manuf_controls,/datum/manufacturing_controller))
@@ -156,6 +160,8 @@
 	disposing()
 		STOP_TRACKING
 		manuf_controls.manufacturing_units -= src
+		src.appendix?.belongs_to = null
+		src.appendix = null
 		src.work_display = null
 		src.activity_display = null
 		src.panel_sprite = null
@@ -176,8 +182,6 @@
 		src.sound_beginwork = null
 		src.sound_damaged = null
 		src.sound_destroyed = null
-		radio_controller.remove_object(src,"[frequency]")
-		src.transmit_connection = null
 
 		for (var/obj/O in src.contents)
 			O.set_loc(src.loc)
@@ -310,141 +314,12 @@
 				if (src.manuf_zap(user, 33))
 					return
 
+		//Main screen
 		src.add_dialog(user)
 
-		var/HTML = {"
-		<title>[src.name]</title>
-		<style type='text/css'>
+		PC_LOAD(manufacturer, mainscreen)
 
-			/* will probaby break chui, dont care */
-			body { background: #222; color: white; font-family: Tahoma, sans-serif; }
-			a { color: #88f; }
-
-			.l { text-align: left; } .r { text-align: right; } .c { text-align: center; }
-			.buttonlink { background: #66c; min-width: 1.1em; height: 1.2em; padding: 0.2em 0.2em; margin-bottom: 2px; border-radius: 4px; font-size: 90%; color: white; text-decoration: none; display: inline-block; vertical-align: middle; }
-			thead { background: #555555; }
-
-			table {
-				border-collapse: collapse;
-				width: 100%;
-				}
-			td, th { padding: 0.2em; 0.5em; }
-			.outline td, .outline th {
-				border: 1px solid #666;
-			}
-
-			img, a img {
-				border: 0;
-				}
-
-			#info {
-				position: absolute;
-				right: 0.5em;
-				top: 0;
-				width: 25%;
-				padding: 0.5em;
-				}
-
-			#products {
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 73%;
-				padding: 0.25em;
-			}
-
-			.queue, .product {
-				position: relative;
-				display: inline-block;
-				width: 12em;
-				padding: 0.25em 0.5em;
-				border-radius: 5px;
-				margin: 0.5em;
-				background: #555;
-				box-shadow: 3px 3px 0 2px #000;
-				}
-
-			.queue {
-				vertical-align: middle;
-				clear: both;
-				}
-			.queue .icon {
-				float: left;
-				margin: 0.2em;
-				}
-			.product {
-				vertical-align: top;
-				text-align: center;
-				}
-			.product .time {
-				position: absolute;
-				bottom: 0.3em;
-				right: 0.3em;
-				}
-			.product .mats {
-				position: absolute;
-				bottom: 0.3em;
-				left: 0.3em;
-				}
-			.product .icon {
-				display: block;
-				height: 64px;
-				width: 64px;
-				margin: 0.2em auto 0.5em auto;
-				-ms-interpolation-mode: nearest-neighbor; /* pixels go cronch */
-				}
-			.product.disabled {
-				background: #333;
-				color: #aaa;
-			}
-			.required {
-				display: none;
-				}
-
-			.product:hover {
-				cursor: pointer;
-				background: #666;
-			}
-			.product:hover .required {
-				display: block;
-				position: absolute;
-				left: 0;
-				right: 0;
-				}
-			.product .delete {
-				color: #c44;
-				background: #222;
-				padding: 0.25em 0.5em;
-				border-radius: 10px;
-				}
-			.required div {
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				background: #333;
-				border: 1px solid #888888;
-				padding: 0.25em 0.5em;
-				margin: 0.25em 0.5em;
-				font-size: 80%;
-				text-align: left;
-				border-radius: 5px;
-				}
-			.mat-missing {
-				color: #f66;
-			}
-		</style>
-		<script type="text/javascript">
-			function product(ref) {
-				window.location = "?src=\ref[src];disp=" + ref;
-			}
-
-			function delete_product(ref) {
-				window.location = "?src=\ref[src];delete=1;disp=" + ref;
-			}
-		</script>
-		"}
-
+		mainscreen.tags["title"] += src.name
 
 		var/list/dat = list()
 		var/delete_allowed = src.allowed(usr)
@@ -492,10 +367,6 @@
 			user.Browse(dat, "window=manufact;size=750x500")
 			onclose(user, "manufact")
 			return
-
-
-		dat += "<div id='products'>"
-
 
 
 		// Get the list of stuff we can print ...
@@ -547,7 +418,7 @@
 				<span class='mat[mats_used[A.item_paths[i]] ? "" : "-missing"]'>[A.item_amounts[i]] [mat_name]</span>
 				"}
 
-			dat += {"
+			mainscreen.tags["products"] += {"
 		<div class='product[can_be_made ? "" : " disabled"]' onclick='product("\ref[A]");'>
 			<strong>[A.name]</strong>
 			<div class='required'><div>[material_text.Join("<br>")]</div></div>
@@ -558,39 +429,35 @@
 		</div>"}
 
 
-		dat += "</div><div id='info'>"
-		dat += build_material_list(user)
+		mainscreen.tags["mat-list"] += build_material_list(user)
 		//Search
-		dat += " <A href='byond://?src=\ref[src];search=1'>(Search: \"[istext(src.search) ? html_encode(src.search) : "----"]\")</A><BR>"
-		//Filter
-		dat += " <A href='byond://?src=\ref[src];category=1'>(Filter: \"[istext(src.category) ? html_encode(src.category) : "----"]\")</A>"
+		mainscreen.tags["search"] += istext(src.search) ? html_encode(src.search) : "----"
+		mainscreen.tags["search-category"] += istext(src.category) ? html_encode(src.category) : "----"
 		// This is not re-formatted yet just b/c i don't wanna mess with it
-		dat +="<HR><B>Scanned Card:</B> <A href='byond://?src=\ref[src];card=1'>([src.scan])</A><BR>"
+		mainscreen.tags["scan"] = src.scan
 		if(scan)
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
 			if (account)
-				dat+="<B>Current Funds</B>: [account.fields["current_money"]] Credits<br>"
+				dat+="<B>Current Funds</B>: [account["current_money"]] Credits<br>"
 		dat+= src.temp
 		dat += "<HR><B>Ores Available for Purchase:</B><br><small>"
 		for_by_tcl(S, /obj/machinery/ore_cloud_storage_container)
 			if(S.broken)
 				continue
-			dat += "<B>[S.name] at [get_area(S)]:</B><br>"
+			mainscreen.tags["ore-list"] += "<B>[S.name] at [get_area(S)]:</B><br>"
 			var/list/ores = S.ores
 			for(var/ore in ores)
 				var/datum/ore_cloud_data/OCD = ores[ore]
 				if(!OCD.for_sale || !OCD.amount)
 					continue
 				var/taxes = round(max(rockbox_globals.rockbox_client_fee_min,abs(OCD.price*rockbox_globals.rockbox_client_fee_pct/100)),0.01) //transaction taxes for the station budget
-				dat += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='byond://?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
+				mainscreen.tags["ore-list"] += "[ore]: [OCD.amount] ($[OCD.price+taxes+(!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0)]/ore) (<A href='byond://?src=\ref[src];purchase=1;storage=\ref[S];ore=[ore]'>Purchase</A>)<br>"
 
-		dat += "</small><HR>"
+		mainscreen.tags["control-panel"] += build_control_panel(user)
 
-		dat += build_control_panel(user)
-
-
-		user.Browse(HTML + dat.Join(), "window=manufact;size=1111x600")
+		PC_RENDER(mainscreen)
+		PC_BROWSE(mainscreen)
 		onclose(user, "manufact")
 
 		interact_particle(user,src)
@@ -854,8 +721,8 @@
 				if (src.scan.registered_id in FrozenAccounts)
 					boutput(usr, "<span class='alert'>Your account cannot currently be liquidated due to active borrows.</span>")
 					return
-				var/datum/data/record/account = null
-				account = FindBankAccountById(src.scan.registered_id)
+				var/datum/db_record/account = null
+				account = FindBankAccountByName(src.scan.registered)
 				if (account)
 					var/quantity = 1
 					quantity = max(0, input("How many units do you want to purchase?", "Ore Purchase", null, null) as num)
@@ -867,23 +734,19 @@
 						var/sum_taxes = round(taxes * quantity)
 						var/rockbox_fees = (!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0) * quantity
 						var/total = subtotal + sum_taxes + rockbox_fees
-						if(account.fields["current_money"] >= total)
-							account.fields["current_money"] -= total
+						if(account["current_money"] >= total)
+							account["current_money"] -= total
 							storage.eject_ores(ore, get_output_location(), quantity, transmit=1, user=usr)
 
 							 // This next bit is stolen from PTL Code
-							var/list/accounts = list()
-							for(var/datum/data/record/t in data_core.bank)
-								if(t.fields["job"] == "Chief Engineer")
-									accounts += t
-									accounts += t //fuck it x2
-								else if(t.fields["job"] == "Miner")
-									accounts += t
+							var/list/accounts = \
+								data_core.bank.find_records("job", "Chief Engineer") + \
+								data_core.bank.find_records("job", "Chief Engineer") + \
+								data_core.bank.find_records("job", "Engineer")
 
 
 							var/datum/signal/minerSignal = get_free_signal()
 							minerSignal.source = src
-							minerSignal.transmission_method = TRANSMISSION_RADIO
 							//any non-divisible amounts go to the shipping budget
 							var/leftovers = 0
 							if(accounts.len)
@@ -891,14 +754,14 @@
 								var/divisible_amount = subtotal - leftovers
 								if(divisible_amount)
 									var/amount_per_account = divisible_amount/length(accounts)
-									for(var/datum/data/record/t in accounts)
-										t.fields["current_money"] += amount_per_account
+									for(var/datum/db_record/t as anything in accounts)
+										t["current_money"] += amount_per_account
 									minerSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="ROCKBOX&trade;-MAILBOT",  "group"=list(MGO_MINING, MGA_SALES), "sender"=src.net_id, "message"="Notification: [amount_per_account] credits earned from Rockbox&trade; sale, deposited to your account.")
 							else
 								leftovers = subtotal
 								minerSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="ROCKBOX&trade;-MAILBOT",  "group"=list(MGO_MINING, MGA_SALES), "sender"=src.net_id, "message"="Notification: [leftovers + sum_taxes] credits earned from Rockbox&trade; sale, deposited to the shipping budget.")
 							wagesystem.shipping_budget += (leftovers + sum_taxes)
-							transmit_connection.post_signal(src, minerSignal)
+							SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, minerSignal)
 
 							src.temp = {"Enjoy your purchase!<BR>"}
 						else
@@ -1012,7 +875,7 @@
 				user.visible_message("<span class='notice'>[user] loads [C] into the [src].</span>", "<span class='notice'>You load [C] into the [src].</span>")
 				src.load_item(C,user)
 			else
-				if (status & MALFUNC)
+				if (src in random_events.maintenance_event.unmaintained_machines)
 					if (W.amount >= 4)
 						W.change_stack_amount(-4)
 						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
@@ -1141,8 +1004,8 @@
 		if (istype(I, /obj/item/card/id))
 			var/obj/item/card/id/ID = I
 			boutput(usr, "<span class='notice'>You swipe the ID card in the card reader.</span>")
-			var/datum/data/record/account = null
-			account = FindBankAccountById(ID.registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(ID.registered)
 			if(account)
 				var/enterpin = input(usr, "Please enter your PIN number.", "Card Reader", 0) as null|num
 				if (enterpin == ID.pin)
@@ -1194,6 +1057,9 @@
 		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the manufacturer to output to [over_object]!</span>")
+
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
@@ -1712,7 +1578,7 @@
 			var/datum/material/mat = getMaterial(mat_id)
 			dat += {"
 		<tr>
-			<td><a href='byond://?src=\ref[src];eject=[mat_id]' class='buttonlink'>&#9167;</a> [mat]</td>
+			<td style = 'text-transform: capitalize;'><a href='byond://?src=\ref[src];eject=[mat_id]' class='buttonlink'>&#9167;</a> [mat]</td>
 			<td class='r'>[src.resource_amounts[mat_id]]</td>
 		</tr>
 			"}
@@ -1808,14 +1674,14 @@
 			if (queue_num == 1)
 				// if (istype(A,/datum/manufacture/) && src.speed != 0 && timeleft != 0)
 				// 	time_number = round(src.timeleft / src.speed)
-				pause_link = (src.mode == "working" ? "<a href='byond://?src=\ref[src];pause=1' class='buttonlink'>&#9208; Pause</a>" : "<a href='byond://?src=\ref[src];continue=1' class='buttonlink'>&#57914; Resume</a>") + "<br>"
+				pause_link = (src.mode == "working" ? "<a href='byond://?src=\ref[src];pause=1' class='queuelinks'>&#9208; Pause</a>" : "<a href='byond://?src=\ref[src];continue=1' class='queuelinks'>Resume</a>") + "<br>"
 			else
 				pause_link = ""
 
 			time_number = A.time && src.speed ? round(A.time / src.speed / 10, 0.1) : "??"
 
 			if (src.mode != "working" || queue_num != 1)
-				remove_link = "<a href='byond://?src=\ref[src];removefromQ=[queue_num]' class='buttonlink'>&#128465; Remove</a>"
+				remove_link = "<a href='byond://?src=\ref[src];removefromQ=[queue_num]' class='queuelinks'>&#128465; Remove</a>"
 			else
 				// shut up
 				remove_link = "&#8987; Working..."
@@ -1960,7 +1826,9 @@
 			return src.loc
 
 /obj/machinery/manufacturer/malfunction_hint()
-	return "Open the maintenance hatch and replace the manufacturer's wiring."
+	if (src in random_events.maintenance_event.unmaintained_machines)
+		return "Open the maintenance hatch and replace the manufacturer's wiring."
+	return FALSE
 
 // Blueprints
 
@@ -2053,14 +1921,6 @@
 	desc = "Seems like theres traces of charcoal on the paper. Huh."
 	blueprint = /datum/manufacture/thrusters
 
-/******************** Alastor Pattern Thruster Blueprints *******************/
-/obj/item/paper/manufacturer_blueprint/alastor
-	icon = 'icons/obj/items/writing.dmi'
-	icon_state = "blueprint"
-	desc = "Seems like theres traces of charcoal on the paper. Huh."
-	blueprint = /datum/manufacture/alastor
-
-
 /******************** Spatial Interdictor *******************/
 
 /obj/item/paper/manufacturer_blueprint/interdictor_frame
@@ -2129,16 +1989,20 @@
 		/datum/manufacture/shoes,
 		/datum/manufacture/breathmask,
 		/datum/manufacture/fluidcanister,
+		/datum/manufacture/rag,
+#ifndef NO_EASY_BEAKERS
+		/datum/manufacture/chemicalcan,
+#endif
 		/datum/manufacture/patch)
-	hidden = list(/datum/manufacture/RCDammo,
-		/datum/manufacture/RCDammomedium,
-		/datum/manufacture/RCDammolarge,
+	hidden = list(//datum/manufacture/RCDammo,
+		//datum/manufacture/RCDammomedium,
+		//datum/manufacture/RCDammolarge,
 		/datum/manufacture/bottle,
 		/datum/manufacture/vuvuzela,
 		/datum/manufacture/harmonica,
 		/datum/manufacture/bikehorn,
 		//datum/manufacture/bullet_22,
-		//datum/manufacture/bullet_smoke,
+		//datum/manufacture/fog_grenade,
 		/datum/manufacture/stapler)
 
 /obj/machinery/manufacturer/glasswares
@@ -2295,6 +2159,7 @@
 		/datum/manufacture/glasses,
 		/datum/manufacture/visor,
 		/datum/manufacture/deafhs,
+		/datum/manufacture/white_cane,
 		/datum/manufacture/hypospray,
 		/datum/manufacture/patch,
 		/datum/manufacture/mender,
@@ -2427,7 +2292,9 @@
 		/datum/manufacture/engine2,
 		/datum/manufacture/engine3,
 		/datum/manufacture/pod/lock,
-		/datum/manufacture/beaconkit
+		/datum/manufacture/beaconkit,
+		/datum/manufacture/tripod,
+		/datum/manufacture/tripod_bulb
 	)
 
 /obj/machinery/manufacturer/uniform // add more stuff to this as needed, but it should be for regular uniforms the HoP might hand out, not tons of gimmicks. -cogwerks
@@ -2453,13 +2320,107 @@
 	icon_base = "atmos"
 	accept_blueprints = 0
 	available = list(
-	/datum/manufacture/atmos_can,
-	/datum/manufacture/air_can/large,
-	/datum/manufacture/o2_can,
-	/datum/manufacture/co2_can,
-	/datum/manufacture/n2_can,
-	/datum/manufacture/plasma_can,
-	/datum/manufacture/agent_b_can)
+	/datum/manufacture/atmos_can)
+
+	var/refill = FALSE
+
+	New()
+		..()
+		//Due to our refill shenanigans these have to be instantiated per extractor
+		available += new /datum/manufacture/gas_extract/air_can/large()
+		available += new /datum/manufacture/gas_extract/o2_can()
+		available += new /datum/manufacture/gas_extract/co2_can()
+		available += new /datum/manufacture/gas_extract/n2_can()
+		available += new /datum/manufacture/gas_extract/plasma_can()
+		//available += new /datum/manufacture/gas_extract/agent_b_can()
+
+	//override to allow the thing to refill canisters :)
+	check_enough_materials(datum/manufacture/M)
+		if (src.refill)
+			var/obj/machinery/manufacturer_attachment/canister_port/port = src.appendix
+			if (!istype(port))
+				adjust_recipes(FALSE)
+			else if (!istype(port.attached_can))
+				adjust_recipes(FALSE)
+		return ..()
+
+
+	//crimes ahead
+	dispense_product(var/product,var/datum/manufacture/M)
+		if (refill) //LOAD 'ER UP
+			var/obj/machinery/manufacturer_attachment/canister_port/port = src.appendix
+			var/obj/machinery/portable_atmospherics/canister/target_can = port.attached_can
+			if (!istype(target_can))
+				CRASH("Gas extractor set to refill a non-existent can. What the fuck?")
+			if (!istype(M, /datum/manufacture/atmos_can)) //would be empty anyway
+
+				if (ispath(M.item_outputs[1], /obj/machinery/portable_atmospherics/canister))
+					var/type_of_gas = M.item_outputs[1]
+					var/obj/machinery/portable_atmospherics/canister/initial_trick = M.item_outputs[1]
+					var/fill_factor = initial(initial_trick.filled)
+					var/volume_factor = initial(initial_trick.volume)
+
+					//this is reversed from canister.dm. It also sucks but uhh it'll do
+					//I should probably have just chucked this in a proc on the manufacture datums or something.
+					//but the goal is they dump in as much gas as the equivalent canister starts with
+					var/prev_moles = TOTAL_MOLES(target_can.air_contents)
+					var/prev_temp = target_can.air_contents.temperature
+					var/added_temp = (type_of_gas == /obj/machinery/portable_atmospherics/canister/nitrogen ? 80 : T20C)
+					var/added_moles = (target_can.maximum_pressure*fill_factor)*volume_factor/(R_IDEAL_GAS_EQUATION*added_temp)
+
+					switch(type_of_gas)
+						if(/obj/machinery/portable_atmospherics/canister/toxins)
+
+							target_can.air_contents.toxins 	+= added_moles
+
+						if(/obj/machinery/portable_atmospherics/canister/oxygen)
+							target_can.air_contents.oxygen 	+= added_moles
+
+						if(/obj/machinery/portable_atmospherics/canister/sleeping_agent)
+							var/datum/gas/sleeping_agent/trace_gas = target_can.air_contents.get_or_add_trace_gas_by_type(/datum/gas/sleeping_agent)
+							trace_gas.moles += added_moles
+
+/*
+						if(/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
+							var/datum/gas/oxygen_agent_b/trace_gas = target_can.air_contents.get_or_add_trace_gas_by_type(/datum/gas/oxygen_agent_b)
+							trace_gas.moles += added_moles
+*/
+
+						if(/obj/machinery/portable_atmospherics/canister/nitrogen)
+							target_can.air_contents.nitrogen += added_moles
+
+						if(/obj/machinery/portable_atmospherics/canister/carbon_dioxide)
+							target_can.air_contents.carbon_dioxide 	+= added_moles
+
+						if(/obj/machinery/portable_atmospherics/canister/air/large)
+							added_moles = 0 //inefficient but it works for all the others so
+							var/newO2 = (O2STANDARD*target_can.maximum_pressure*fill_factor)*volume_factor/(R_IDEAL_GAS_EQUATION*T20C)
+							var/newN2 = (N2STANDARD*target_can.maximum_pressure*fill_factor)*volume_factor/(R_IDEAL_GAS_EQUATION*T20C)
+							added_moles += newO2
+							added_moles += newN2
+							target_can.air_contents.oxygen 			+= newO2
+							target_can.air_contents.nitrogen 		+= newN2
+
+					//average out temperatures
+					//this should probably account for specific heat but that's something for another day. I just don't want it to add hot gas to hot gas
+					target_can.air_contents.temperature = (prev_moles/(prev_moles + added_moles))*prev_temp + (added_moles/(prev_moles + added_moles))*added_temp
+
+					target_can.update_icon()
+					playsound(src.loc, 'sound/machines/hiss.ogg', 50, 1)
+					return
+		..()
+
+/obj/machinery/manufacturer/gas/proc/adjust_recipes(now_refill = TRUE)
+	if (src.refill == now_refill)
+		return
+	src.refill = now_refill
+	if (src.refill)
+		for(var/datum/manufacture/gas_extract/GE in src.available)
+			GE.toggle_refill()
+	else
+		for(var/datum/manufacture/gas_extract/GE in src.available)
+			GE.toggle_canister()
+	src.updateUsrDialog()
 
 // a blank manufacturer for mechanics
 
@@ -2591,9 +2552,9 @@
 	/datum/manufacture/scalpel,
 	/datum/manufacture/flashlight,
 	/datum/manufacture/armor_vest,
-	/datum/manufacture/bullet_22,
+//	/datum/manufacture/bullet_22,
 	/datum/manufacture/harmonica,
-	/datum/manufacture/riot_shotgun,
+/*	datum/manufacture/riot_shotgun,
 	/datum/manufacture/riot_shotgun_ammo,
 	/datum/manufacture/clock,
 	/datum/manufacture/clock_ammo,
@@ -2607,7 +2568,7 @@
 	/datum/manufacture/tac_shotgun,
 	/datum/manufacture/tac_shotgun_ammo,
 	/datum/manufacture/gyrojet,
-	/datum/manufacture/gyrojet_ammo,
+	/datum/manufacture/gyrojet_ammo,*/
 	/datum/manufacture/plank,
 	/datum/manufacture/brute_kit,
 	/datum/manufacture/burn_kit,
@@ -2689,3 +2650,86 @@
 			var/datum/manufacture/I = new P
 			if (I && length(I.item_outputs) && I.item_outputs[1])
 				getItemIcon(I.item_outputs[1])
+
+//shit that bolts on to a manufacturer :)
+ABSTRACT_TYPE(/obj/machinery/manufacturer_attachment)
+/obj/machinery/manufacturer_attachment
+	name = "manufacturer appendix"
+	desc = "Just like the human one, this thing might just bork and take the rest of the machine down with it!"
+	icon = 'icons/obj/machines/manufacturer.dmi'
+	var/obj/machinery/manufacturer/belongs_to
+
+	New()
+		..()
+		UnsubscribeProcess()
+		SPAWN_DBG(0)
+			belongs_to = locate() in get_step(src, src.dir)
+			if (belongs_to)
+				belongs_to.appendix = src
+
+	disposing()
+		var/obj/machinery/manufacturer/gas/G = belongs_to
+		if (istype(G))
+			G.refill = FALSE
+		src.belongs_to?.appendix = null
+		src.belongs_to = null
+		..()
+
+
+/obj/machinery/manufacturer_attachment/canister_port
+	name = "gas extractor canister port"
+	desc = "Attach an empty canister to this port to have the gas extractor it's attached to (re)fill it."
+	icon_state = "attach_canister"
+	var/obj/machinery/portable_atmospherics/canister/attached_can
+	plane = PLANE_NOSHADOW_BELOW
+
+	New()
+		..()
+
+		switch(src.dir)
+			if (NORTH)
+				//For the most part we can just scoot over the port to make it look attached to the manufacturer,
+				//but because the port is on the lower edge of the sprite and we'd need at least 5px of displacement up to overlap the machine convincingly,
+				//which would pull the port halfway into the canister that's meant to be on top of it.
+				var/image/I = image(src.icon, "attach_canister-B", layer = FLOAT_LAYER)
+				I.plane = PLANE_DEFAULT
+				I.pixel_y = 32
+				UpdateOverlays(I, "extra bit")
+			if (SOUTH)
+				pixel_y = -6
+			if (EAST)
+				pixel_x = 4
+			if (WEST)
+				pixel_x = -4
+
+	attackby(obj/item/I, mob/user)
+		if (iswrenchingtool(I))
+			if (attached_can)
+				detach_can()
+			else
+				attached_can = locate(/obj/machinery/portable_atmospherics/canister) in src.loc
+				attach_can()
+		..()
+
+	disposing()
+		detach_can()
+		..()
+
+/obj/machinery/manufacturer_attachment/canister_port/proc/attach_can()
+	if (attached_can)
+		attached_can.UpdateOverlays(image(attached_can.icon, icon_state = "shitty_connector_placeholder"), "connecty_grip")
+		attached_can.anchored = ANCHORED
+		src.RegisterSignal(attached_can, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_SET_LOC, COMSIG_PARENT_PRE_DISPOSING), PROC_REF(detach_can))
+		var/obj/machinery/manufacturer/gas/G = belongs_to
+		if (istype(G))
+			G.adjust_recipes(TRUE)
+
+/obj/machinery/manufacturer_attachment/canister_port/proc/detach_can()
+	if (attached_can)
+		attached_can.anchored = UNANCHORED
+		src.UnregisterSignal(attached_can, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_SET_LOC, COMSIG_PARENT_PRE_DISPOSING))
+		attached_can.UpdateOverlays(null, "connecty_grip")
+		attached_can = null
+		var/obj/machinery/manufacturer/gas/G = belongs_to
+		if (istype(G))
+			G.adjust_recipes(FALSE)

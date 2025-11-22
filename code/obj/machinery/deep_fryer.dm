@@ -6,7 +6,7 @@ var/list/fryer_recipes
 	desc = "An industrial deep fryer.  A big hit at state fairs!"
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "fryer0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	flags = NOSPLASH | OPENCONTAINER
 	machinery_flags = REQ_PHYSICAL_ACCESS
@@ -100,9 +100,7 @@ var/list/fryer_recipes
 		src.fryitem = W
 		src.icon_state = "fryer1"
 		if(fucked_up_now_kid)
-			#ifdef DATALOGGER
 			game_stats.Increment("workplacesafety")
-			#endif
 			var/turf/T = get_turf(src)
 			src.visible_message("<span class='alert'>[src] erupts into a disaster of hot oil!</span>")
 			fireflash(T, 2)
@@ -182,7 +180,7 @@ var/list/fryer_recipes
 
 		src.reagents.trans_to(src.fryitem, 2)
 
-		if (src.cooktime < 60)
+		if (src.cooktime <= 60)
 
 			if (src.cooktime >= 30 && src.cooktime_prev < 30)
 				playsound(src.loc, "sound/machines/ding.ogg", 50, 1)

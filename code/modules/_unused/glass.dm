@@ -126,7 +126,7 @@ SHARDS
 					if(src.material) W.setMaterial(src.material)
 					logTheThing("station", user, null, "builds a Reinforced Crystal Window in [user.loc.loc] ([showCoords(user.x, user.y, user.z)])")
 
-				W.anchored = 0
+				W.anchored = UNANCHORED
 				W.state = 0
 				W.set_dir(2)
 				W.ini_dir = 2
@@ -159,7 +159,7 @@ SHARDS
 
 				W.set_dir(SOUTHWEST)
 				W.ini_dir = SOUTHWEST
-				W.anchored = 0
+				W.anchored = UNANCHORED
 				W.state = 0
 			else
 		if (src.amount <= 0)

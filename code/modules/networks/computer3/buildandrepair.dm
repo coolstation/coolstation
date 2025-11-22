@@ -13,7 +13,7 @@
 
 /obj/computer3frame
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	name = "Computer-frame"
 	icon = 'icons/obj/machines/computer_frame.dmi'
 	icon_state = "0"
@@ -203,7 +203,7 @@
 		if(0)
 			if(user.equipped(P) && iswrenchingtool(P))
 				boutput(user, "<span class='notice'>You wrench the frame into place.</span>")
-				src.anchored = 1
+				src.anchored = ANCHORED
 				src.state = 1
 			if(user.equipped(P) && isweldingtool(P))
 				boutput(user, "<span class='notice'>You deconstruct the frame.</span>")
@@ -218,7 +218,7 @@
 		if(1)
 			if(user.equipped(P) && iswrenchingtool(P))
 				boutput(user, "<span class='notice'>You unfasten the frame.</span>")
-				src.anchored = 0
+				src.anchored = UNANCHORED
 				src.state = 0
 		if(2)
 			if(user.equipped(P) && istype(P, /obj/item/cable_coil))
