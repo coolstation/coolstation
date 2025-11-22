@@ -1,3 +1,4 @@
+#define TRAIN_STOP_SPEED_SQUARED 2.7778
 /* ----------- THE TRAIN EVENT, MAKES TRAINS COME BY ----------- */
 
 /datum/random_event/minor/train
@@ -24,10 +25,6 @@
 #endif
 
 		conductor.movement_delay = (12 + rand(-5,5)) / 10
-		if(prob(5))
-			conductor.movement_delay *= 3
-		else if(prob(3))
-			conductor.movement_delay /= 3
 
 		conductor.cars += /obj/traincar/NT_engine
 
@@ -115,7 +112,7 @@ var/datum/train_controller/train_spotter
 				conductor.starting()
 			else
 				conductor.active = TRUE
-			conductor.train_loop()
+				conductor.train_loop()
 	if (href_list["stop"])
 		var/datum/train_conductor/conductor = locate(href_list["stop"]) in src.conductors
 		if(istype(conductor))
@@ -132,8 +129,10 @@ var/datum/train_controller/train_spotter
 						qdel(car)
 					conductor.cars.Cut()
 					conductor.cars.Add(preset.cars)
+					conductor.stop_distance = null
 				if(preset.movement_delay)
 					conductor.movement_delay = preset.movement_delay
+					conductor.stop_distance = null
 				if(preset.x)
 					conductor.train_front_x = preset.x
 				if(preset.y)
@@ -148,6 +147,7 @@ var/datum/train_controller/train_spotter
 				new_speed = 0.5
 
 			conductor.movement_delay = new_speed
+			conductor.stop_distance = null
 	if (href_list["honk"])
 		var/datum/train_conductor/conductor = locate(href_list["honk"]) in src.conductors
 		if(istype(conductor) && !ON_COOLDOWN(global, "TRAIN_HORN", 0.5 SECONDS))
@@ -195,14 +195,13 @@ ABSTRACT_TYPE(/obj/train_landmark)
 // Landmark to place where you want a train to stop at
 /obj/train_landmark/stop
 	name = "trainstop"
-	var/stopping_distance = 15 // how far before this spot the train starts stopping.
 	var/stopped_time = 15 SECONDS // how long we stay stopped for, if 0 its indefinite
 
 /obj/train_landmark/stop/generate_worldgen()
 	var/turf/T = get_turf(src)
 	if(!train_spotter.stop_points["[T.z]"])
 		train_spotter.stop_points["[T.z]"] = list()
-	train_spotter.stop_points["[T.z]"]["[T.x + src.stopping_distance]x[T.y]y"] = list("stop_at" = T.x, "active" = src.active, "stopped_time" = src.stopped_time)
+	train_spotter.stop_points["[T.z]"]["[T.x]x[T.y]y"] = list("active" = src.active, "stopped_time" = src.stopped_time)
 	qdel(src)
 
 // Landmark to place everywhere you want the train to automatically sound its horn
@@ -464,7 +463,9 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/starting
 	var/stopping
 	var/stop_distance
+	var/brake_deceleration
 	var/original_speed
+	var/stopped_time
 
 /datum/train_conductor/New()
 	. = ..()
@@ -487,7 +488,6 @@ ABSTRACT_TYPE(/datum/train_preset)
 // Arg: x_coord where you will stop
 /datum/train_conductor/proc/stopping(var/x_coord)
 	src.stopping = x_coord
-	src.stop_distance = abs(src.train_front_x - x_coord)
 	src.starting = FALSE
 	src.original_speed = src.movement_delay
 
@@ -498,6 +498,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 	src.starting = TRUE
 	src.stopping = null
 	src.active = TRUE
+	src.stopped_time = null
 	src.train_loop()
 
 // choo choo
@@ -517,20 +518,30 @@ ABSTRACT_TYPE(/datum/train_preset)
 	if(!src.train_z || !src.active) // refuse to process trains that havent been put on a z level
 		return
 
-	// Ramp speed down to a stop at exactly src.stopping, needs a pretty curve but for now i just wanna stop at the right spot
+	// high school physics dont fail me now
+	if(!src.stop_distance)
+		// super cheaty physics! they put stronger brakes on faster trains, i guess
+		src.brake_deceleration = 1.5 / sqrt(src.movement_delay) - min(length(src.cars), 8) * 0.02
+		src.stop_distance = ceil((((10 / src.movement_delay) ** 2) - TRAIN_STOP_SPEED_SQUARED) / (2 * brake_deceleration))
+
+	// Ramp speed down to a stop at exactly src.stopping, trying to reach movement_delay = 6 precisely there
 	if(src.stopping)
 		if(src.train_front_x == src.stopping) // we are HERE!
 			src.movement_delay = 6
 			src.active = FALSE
 			src.stopping = null
+			if(src.stopped_time)
+				SPAWN_DBG(src.stopped_time)
+					src.starting()
 			return
-		src.movement_delay += (4 - src.original_speed) * src.stop_distance * (0.2 + 0.8 / max(length(src.cars) / 2, 4)) / (0.8 + 0.2 * (src.train_front_x - src.stopping))
+		// high school physics please work
+		src.movement_delay = 10 / max((10 / src.movement_delay) - (src.brake_deceleration * (src.movement_delay / 10)), 1.667)
 		// TODO?: Add brake squeal SFX?
 		// maybe even sparks if stopping 'fast enough'?
 
 	// Ramp speed up to normal
 	if(src.starting)
-		src.movement_delay -= (src.movement_delay / max(length(src.cars), 15)) // takes longer to get going
+		src.movement_delay = 10 / max((10 / src.movement_delay) + (src.brake_deceleration / 3 * (src.movement_delay / 10)), 1.667)
 		if(src.movement_delay <= src.original_speed)
 			src.movement_delay = src.original_speed
 			src.starting = FALSE // Done ramping
@@ -635,14 +646,12 @@ ABSTRACT_TYPE(/datum/train_preset)
 
 	// thats enough ramming, time for the movement
 	src.train_front_x--
-	// check for stop points
-	if(train_spotter.stop_points["[src.train_z]"])
-		var/list/stop_point = train_spotter.stop_points["[src.train_z]"]["[src.train_front_x]x[src.train_front_y]y"]
+	// check for stop points, but uh... if we cant stop at it in time (from map edge to it), it does just blow past it.
+	if(!src.stopping && train_spotter.stop_points["[src.train_z]"])
+		var/list/stop_point = train_spotter.stop_points["[src.train_z]"]["[src.train_front_x - src.stop_distance]x[src.train_front_y]y"]
 		if(stop_point && stop_point["active"])
-			src.stopping(stop_point["stop_at"])
-			if(stop_point["stopped_time"])
-				SPAWN_DBG(stop_point["stopped_time"])
-					src.starting()
+			src.stopped_time = stop_point["stopped_time"]
+			src.stopping(src.train_front_x - src.stop_distance)
 	if(train_spotter.whistle_points["[src.train_z]"])
 		var/list/whistle_point = train_spotter.whistle_points["[src.train_z]"]["[src.train_front_x]x[src.train_front_y]y"]
 		if(whistle_point && whistle_point["active"])
@@ -652,7 +661,6 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/glide_size = (32 / src.movement_delay) * world.tick_lag
 	var/current_x = max(src.train_front_x, src.train_unload_x + src.unloading_tiles)
 	var/i = 1
-	var/rumble_y = rand(-1, 1)
 	for(var/car_or_typepath in src.cars)
 		if(current_x > src.train_not_yet_loaded_x)
 			break
@@ -664,7 +672,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 				car.set_loc(locate(current_x, src.train_front_y, src.train_z))
 				car.glide_size = glide_size
 				current_x += car.traincar_length
-				animate(car, pixel_y = rumble_y + rand(-1, 1), time = movement_delay / 3, easing = LINEAR_EASING)
+				animate(car, pixel_y = pick(10; -1, 100; 0, 10; 1), time = movement_delay / 3, easing = LINEAR_EASING)
 			else if(car.loaded)
 				src.unloading_tiles = current_x - src.train_unload_x + car.traincar_length
 				current_x += car.traincar_length
@@ -686,3 +694,5 @@ ABSTRACT_TYPE(/datum/train_preset)
 /area/centcom/train_depot
 	name = "NTFC Train Depot"
 	icon_state = "yellow"
+
+#undef TRAIN_STOP_SPEED_SQUARED
