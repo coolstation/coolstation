@@ -1996,8 +1996,9 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		kind_of_cleanable = "ROBOT"
 	else if(istype(src, /obj/decal/cleanable/martian_viscera))
 		kind_of_cleanable = "MARTIAN"
+/*
 	else if(istype(src, /obj/decal/cleanable/flockdrone_debris))
-		kind_of_cleanable = "FLOCK"
+		kind_of_cleanable = "FLOCK"*/
 	else
 		kind_of_cleanable = "BLOOD"
 	SPAWN_DBG(0)
@@ -2028,8 +2029,9 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 							b.color = "#0b1f8f"
 						else if (prob(10))
 							elecflash(src)
+/*
 					if("FLOCK")
-						make_cleanable( /obj/decal/cleanable/flockdrone_debris/fluid,src.loc)
+						make_cleanable( /obj/decal/cleanable/flockdrone_debris/fluid,src.loc)*/
 					if("MACHINE", "ROBOT")
 						if (prob(40))
 							make_cleanable(/obj/decal/cleanable/oil/streak,src.loc)

@@ -12689,6 +12689,15 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /turf/floor/plating,
 /area/station/maintenance/west)
+"HK" = (
+/obj/railway/rusty,
+/obj/decoration/railbed,
+/obj/train_landmark/whistle_board,
+/turf/space/gehenna/desert/no_spikes,
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
+	})
 "HL" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -13570,6 +13579,12 @@
 	mail_tag = "Hydroponics";
 	name = "Hydroponics"
 	})
+"JY" = (
+/obj/railway/rusty,
+/obj/decoration/railbed,
+/obj/train_landmark/whistle_board,
+/turf/space/gehenna/desert/no_spikes,
+/area/gehenna)
 "JZ" = (
 /obj/machinery/light_switch/west,
 /turf/floor/stairs,
@@ -16609,15 +16624,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/southwest,
 /turf/floor/shuttlebay,
 /area/station/engine/storage)
-"Sk" = (
-/obj/railway/rusty,
-/obj/decoration/railbed,
-/obj/landmark/train/whistle_board,
-/turf/space/gehenna/desert/no_spikes,
-/area/gehenna{
-	icon_state = "dither_r";
-	name = "the courtyard"
-	})
 "Sl" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -68309,7 +68315,7 @@ nx
 lk
 hJ
 XD
-Sk
+Zv
 Rj
 AY
 Io
@@ -71027,7 +71033,7 @@ kS
 AY
 Rj
 XD
-Zv
+HK
 Rj
 AY
 ar
@@ -77067,7 +77073,7 @@ vR
 Cl
 Cl
 Fn
-CQ
+JY
 Cl
 Cl
 Cl

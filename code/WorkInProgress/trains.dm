@@ -26,16 +26,16 @@
 		conductor.movement_delay = (12 + rand(-5,5)) / 10
 		if(prob(5))
 			conductor.movement_delay *= 3
-		else if(prob(5))
+		else if(prob(3))
 			conductor.movement_delay /= 3
 
 		conductor.cars += /obj/traincar/NT_engine
 
-		var/car_length = rand(20,40)
+		var/car_length = rand(30,50)
 		for(var/i in 1 to car_length)
-			conductor.cars += pick(/obj/traincar/NT_shipping,
-						/obj/traincar/NT_hopper,
-						/obj/traincar/NT_tanker)
+			conductor.cars += pick(100; /obj/traincar/NT_shipping,
+						50; /obj/traincar/NT_hopper,
+						50; /obj/traincar/NT_tanker)
 
 		SPAWN_DBG(delay_time)
 			if(QDELETED(conductor))
@@ -43,39 +43,6 @@
 			conductor.train_z = Z_LEVEL_STATION
 			conductor.active = TRUE
 			conductor.train_loop()
-
-
-// Landmark to place everywhere you want the train to automatically sound its horn
-/obj/landmark/train/whistle_board
-	deleted_on_start = FALSE
-	add_to_landmarks = FALSE
-
-/obj/landmark/train/whistle_board/Crossed(atom/movable/O)
-	var/obj/traincar/NT_engine/loco = O
-	if(istype(loco))
-		loco.sound_horn()
-
-
-// Landmark to place where you want the train to stop
-// Defaults to being 5 X away from the intended stopping point.
-// (That is, you put this 5 tiles *in front* of where you want the train to stop.)
-/obj/landmark/train/stop
-	name = "trainstop"
-	deleted_on_start = FALSE
-	var/active = FALSE // do we stop da trane?
-	var/distance_to_signal = 5
-
-/obj/landmark/train/stop/Crossed(atom/movable/O)
-	if(!src.active)
-		return
-
-	var/obj/traincar/NT_engine/loco = O
-	if(istype(loco))
-		for(var/datum/train_conductor/C in train_spotter.conductors)
-			if(loco in C.cars)
-				C.stopping(src.x - src.distance_to_signal) // this will only work for WESTbound trains
-				return
-
 
 /* ----------- THE TRAIN SPOTTER, FOR CONTROLLING TRAINS ----------- */
 
@@ -85,6 +52,12 @@ var/datum/train_controller/train_spotter
 	var/list/datum/train_conductor/conductors = list()
 	var/next_id = 1
 	var/list/datum/train_preset/presets = list()
+	// this thing is weird.
+	// an active stop point that wants to stop in 12 tiles and end up at 250, 150, 4 would be put in the z 4 list, and look like:
+	// formatted as ("4" = list("250x150y" = list("x" = 250, "y" = 150, "active" = TRUE, "distance" = 12)))
+	var/list/stop_points = list()
+	// pretty much same
+	var/list/whistle_points = list()
 	var/list/cooldowns
 
 /datum/train_controller/New()
@@ -178,9 +151,7 @@ var/datum/train_controller/train_spotter
 	if (href_list["honk"])
 		var/datum/train_conductor/conductor = locate(href_list["honk"]) in src.conductors
 		if(istype(conductor))
-			var/obj/traincar/NT_engine/loco = locate(/obj/traincar/NT_engine) in conductor.cars
-			if(istype(loco))
-				loco.sound_horn()
+			conductor.sound_horn()
 	if (href_list["delete"])
 		// unwind & delete the train
 		var/datum/train_conductor/conductor = locate(href_list["delete"]) in src.conductors
@@ -203,6 +174,47 @@ var/datum/train_controller/train_spotter
 		the_fckr.train_loop()
 
 	src.config()
+
+/* ----------- THE TRAIN LANDMARKS, FOR MAPPING ------------ */
+
+//Self-deleting mapper objects, notably not a normal landmark
+ABSTRACT_TYPE(/obj/train_landmark)
+/obj/train_landmark
+	name = "abstract train landmark"
+	icon = 'icons/ui/screen1.dmi'
+	icon_state = "x"
+	pass_unstable = FALSE
+	anchored = ANCHORED_TECHNICAL
+	invisibility = 100
+	var/active = TRUE //does it do anything by default
+
+/obj/train_landmark/New()
+	. = ..()
+	STANDARD_WORLDGEN_HOLD
+
+// Landmark to place where you want a train to stop at
+/obj/train_landmark/stop
+	name = "trainstop"
+	var/stopping_distance = 15 // how far before this spot the train starts stopping.
+	var/stop_time = 15 SECONDS // how long we stay stopped for, if 0 its indefinite
+
+/obj/train_landmark/stop/generate_worldgen()
+	var/turf/T = get_turf(src)
+	if(!train_spotter.stop_points["[T.z]"])
+		train_spotter.stop_points["[T.z]"] = list()
+	train_spotter.stop_points["[T.z]"]["[T.x]x[T.y]y"] = list("x" = T.x, "y" = T.y, "active" = src.active, "distance" = src.stopping_distance, "stop_time" = src.stop_time)
+	qdel(src)
+
+// Landmark to place everywhere you want the train to automatically sound its horn
+/obj/train_landmark/whistle_board
+	name = "trainwhistle"
+
+/obj/train_landmark/whistle_board/generate_worldgen()
+	var/turf/T = get_turf(src)
+	if(!train_spotter.whistle_points["[T.z]"])
+		train_spotter.whistle_points["[T.z]"] = list()
+	train_spotter.whistle_points["[T.z]"]["[T.x]x[T.y]y"] = list("x" = T.x, "y" = T.y, "active" = src.active)
+	qdel(src)
 
 /* ----------- THE TRAIN PRESETS, FOR FUN STUFFS ----------- */
 
@@ -267,8 +279,6 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/traincar_length = 8
 	var/loaded = FALSE // used to allow cars to sit in the trainyard safely
 	var/datum/train_conductor/my_conductor
-	var/list/horn_sound
-	var/last_honk = 0
 
 	var/dull_color_1 = "#FFFFFF"
 	var/dull_color_2 = "#FFFFFF"
@@ -315,20 +325,10 @@ ABSTRACT_TYPE(/datum/train_preset)
 			L.changeStatus("weakened", 3 SECONDS / src.my_conductor.movement_delay)
 			L.force_laydown_standup()
 
-/obj/traincar/proc/sound_horn()
-	if(!src.horn_sound)
-		return
-	if(src.last_honk > (world.timeofday + 5 SECONDS)) // 5 second cooldown should be enough?
-		return
-	src.last_honk = world.timeofday
-	playsound(src.loc, pick(src.horn_sound), 50, 1, 15)
-
-
 // THE ENGINE
 /obj/traincar/NT_engine
 	name = "engine"
 	icon_state = "engine_flatbody"
-	horn_sound = list('sound/effects/train/horn1.ogg','sound/effects/train/horn2.ogg', 'sound/effects/train/horn3.ogg')
 
 /obj/traincar/NT_engine/build_colors()
 	src.dull_color_1 = rand(200, 230)
@@ -459,8 +459,11 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/train_not_yet_loaded_x = 285 // the x coordinate to start loading at
 	var/unloading_tiles = 0 // how many tiles are currently "missing" between the unload x and the forwardmost loaded car
 
+	var/horn_sound = list('sound/effects/train/horn1.ogg','sound/effects/train/horn2.ogg', 'sound/effects/train/horn3.ogg')
+
 	var/starting
 	var/stopping
+	var/stop_distance
 	var/original_speed
 
 /datum/train_conductor/New()
@@ -481,11 +484,10 @@ ABSTRACT_TYPE(/datum/train_preset)
 	src.train_front_x = src.train_not_yet_loaded_x
 
 // Slow the train gradually
-// Arg: distance you want to stop in. e.g. if this is called by a
-//      landmark, how far away from your target location is that landmark)
-
-/datum/train_conductor/proc/stopping(var/distance)
-	src.stopping = distance
+// Arg: x_coord where you will stop
+/datum/train_conductor/proc/stopping(var/x_coord)
+	src.stopping = x_coord
+	src.stop_distance = abs(src.train_front_x - x_coord)
 	src.starting = FALSE
 	src.original_speed = src.movement_delay
 
@@ -495,6 +497,14 @@ ABSTRACT_TYPE(/datum/train_preset)
 	src.stopping = null
 	src.active = TRUE
 
+// choo choo
+/datum/train_conductor/proc/sound_horn()
+	if(!src.horn_sound || !src.train_z || !src.train_front_y)
+		return
+	if(ON_COOLDOWN(global, "TRAIN_HORN", 0.5 SECONDS))
+		return
+	playsound(locate(clamp(src.train_front_x, src.train_unload_x, src.train_not_yet_loaded_x), src.train_front_y, src.train_z), pick(src.horn_sound), 50, 1, 15)
+
 /datum/train_conductor/proc/train_loop()
 	if(QDELETED(src)) // ah hell nah
 		return
@@ -503,15 +513,16 @@ ABSTRACT_TYPE(/datum/train_preset)
 		qdel(src)
 		return
 
-	if(!src.train_z || !src.active || src.movement_delay < 0.01) // refuse to process trains that havent been put on a z level
+	if(!src.train_z || !src.active || ((!src.starting || src.stopping) && src.movement_delay < 0.01)) // refuse to process trains that havent been put on a z level
 		return
 
-	// Ramp speed down to a stop at approximately (src.stopping)
+	// Ramp speed down to a stop at exactly src.stopping (or maybe a tile sooner), needs a pretty curve but for now i just wanna stop at the right spot
 	if(src.stopping)
-		src.movement_delay += src.movement_delay / (clamp((abs(src.stopping - src.train_front_x)), 0, 7) + (min(length(src.cars), 8) / 2))
-		if(src.movement_delay > 6) // Slow enough that we're effectively stopped?
-			src.movement_delay = 6
+		src.movement_delay = min(src.original_speed + (6 - src.original_speed) / src.stop_distance, 6)
+		if(src.train_front_x == src.stopping) // we are HERE!
+			src.movement_delay = 7
 			src.active = FALSE
+			src.stopping = null
 			return
 		// TODO?: Add brake squeal SFX?
 		// maybe even sparks if stopping 'fast enough'?
@@ -623,6 +634,18 @@ ABSTRACT_TYPE(/datum/train_preset)
 
 	// thats enough ramming, time for the movement
 	src.train_front_x--
+	// check for stop points
+	if(train_spotter.stop_points["[src.train_z]"])
+		var/list/stop_point = train_spotter.stop_points["[src.train_z]"]["[src.train_front_x]x[src.train_front_y]y"]
+		if(stop_point && stop_point["active"] && stop_point["x"] == (src.train_front_x - stop_point["distance"]) && stop_point["y"] >= src.train_front_y && stop_point["y"] <= (src.train_front_y + src.train_ram_height_bonus))
+			src.stopping(stop_point["x"])
+			if(stop_point["stop_time"])
+				SPAWN_DBG(stop_point["stop_time"])
+					src.starting()
+	if(train_spotter.whistle_points["[src.train_z]"])
+		var/list/whistle_point = train_spotter.whistle_points["[src.train_z]"]["[src.train_front_x]x[src.train_front_y]y"]
+		if(whistle_point && whistle_point["active"] && whistle_point["x"] == src.train_front_x && whistle_point["y"] >= src.train_front_y && whistle_point["y"] <= (src.train_front_y + src.train_ram_height_bonus))
+			src.sound_horn()
 	if(src.unloading_tiles > 0)
 		src.unloading_tiles--
 	var/glide_size = (32 / src.movement_delay) * world.tick_lag
