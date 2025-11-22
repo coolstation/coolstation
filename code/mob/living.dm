@@ -155,7 +155,7 @@
 		src.is_npc = TRUE
 		if(istext(src.ai_type))
 			src.ai_type = text2path(src.ai_type)
-		src.ai = new ai_type(src)
+		src.ai = new src.ai_type(src)
 
 	SPAWN_DBG(0)
 		src.get_static_image()

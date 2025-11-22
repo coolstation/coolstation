@@ -332,3 +332,12 @@ var/global/datum/controller/processScheduler/processScheduler
 	if (hasProcess(processName))
 		var/datum/controller/process/process = nameToProcessMap[processName]
 		usr.client.debug_variables(process)
+
+/datum/controller/processScheduler/proc/removeProcess(var/processName as text)
+	if (hasProcess(processName))
+		var/datum/controller/process/process = nameToProcessMap[processName]
+		if(process in alreadyCreatedList)
+			alreadyCreatedList.Remove(process)
+		process.disable()
+		processes.Remove(process)
+		process.kill()

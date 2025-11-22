@@ -1,5 +1,5 @@
 
-/// handles mobcritters
+/// handles mob ai
 datum/controller/process/mob_ai
 	setup()
 		name = "Mob AI"
@@ -45,4 +45,34 @@ datum/controller/process/mob_ai
 							M.abilityHolder.next_update = 1 SECOND
 						else
 							M.abilityHolder.next_update = 10 SECONDS
+				scheck()
+
+/// handles mob ai in the title screen before the game
+datum/controller/process/mob_ai/pregame
+	setup()
+		name = "Pregame Mob Processing"
+
+	doWork()
+		var/do_life = !(ticks % 20)
+		for(var/X in ai_mobs)
+			var/mob/M = X
+
+			last_object = X
+
+			if (!M || !(M.mob_flags & PREGAME_AI_MOB))
+				continue
+
+			// only the pregame ai mobs can tick, and we need to ALSO tick Life at the right intervals for them.
+			// yes, this means that mobs with no ai on the title screen will NOT tick Life before the game starts
+
+			var/mob/living/L = X
+			if(do_life && isliving(L))
+				L.Life(src)
+
+			var/ticknum = M.ai_tick_schedule + ticks
+			if((M.mob_flags & HEAVYWEIGHT_AI_MOB || (ticknum % 5) == 0))
+				if(isliving(L) && L.is_npc && M.ai)
+					M.ai.tick()
+				else
+					M.mob_flags &= ~PREGAME_AI_MOB
 				scheck()

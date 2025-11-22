@@ -87,6 +87,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 				//latecomers should be handled by client.dm in the sound section
 
 				pregameHTML = null // clear the pregame html
+				if(!processScheduler.isRunning)
+					processScheduler.start() // start the processSchedular with only the 3 preloaded processes - pregame mobs require this, and tgui seems to respond well to it
 				for(var/client/C)
 					try
 						C<< browse("", "window=pregameBrowser")
@@ -347,7 +349,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 				command_alert("Reports indicate that the engine on-board [station_name()] has not yet been started. Setting up the engine is strongly recommended, or else stationwide power failures may occur.", "Power Grid Warning")
 			break
 
-	processScheduler.start()
+	processScheduler.removeProcess("Pregame Mob Processing")
+	if(!processScheduler.isRunning) // someone started the server within 60 seconds of launch
+		processScheduler.start()
 
 	if (total_clients() >= OVERLOAD_PLAYERCOUNT)
 		world.tick_lag = OVERLOADED_WORLD_TICKLAG
