@@ -548,9 +548,12 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	teleport_blocked = 2
 	force_fullbright = 0
 	expandable = 0
-	ambient_light = rgb(218, 235, 215)
 	// filler_turf = "/turf/floor/setpieces/gauntlet"
 	is_atmos_simulated = FALSE
+
+/area/titlescreen/coolisland
+	name = "Paisano Island"
+	ambient_light = rgb(218, 235, 215)
 
 /area/cavetiny
 	name = "Caves"

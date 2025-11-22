@@ -249,12 +249,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 							var/obj/decal/cragrock/rock = new(src)
 							rock.color = src.color
 
-		if (generateLight)
 			STANDARD_WORLDGEN_HOLD
 
 	generate_worldgen() //this is a trick to stop sand turfs from runtiming if they're immediately replaced with something else
 		..()
-		src.make_light()
+		if (generateLight)
+			src.make_light()
 
 	proc/create_rocks()
 		rocks = list()
@@ -344,8 +344,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		New()
 			if(!src.beaten_sand)
 				src.create_beaten_sand()
+			STANDARD_WORLDGEN_HOLD
+			. = ..()
+
+		generate_worldgen()
+			. = ..()
 			UpdateOverlays(src.beaten_sand["[dir]"], "beaten_sand_overlay")
-			..()
 
 		proc/create_beaten_sand()
 			beaten_sand = list()
@@ -369,8 +373,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		New()
 			if(!src.beaten_sand)
 				src.create_beaten_sand()
+			STANDARD_WORLDGEN_HOLD
+			. = ..()
+
+		generate_worldgen()
+			. = ..()
 			UpdateOverlays(src.beaten_sand["[dir]"], "beaten_sand_overlay")
-			..()
 
 		proc/create_beaten_sand()
 			beaten_sand = list()
@@ -394,8 +402,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		New()
 			if(!src.beaten_sand)
 				src.create_beaten_sand()
+			STANDARD_WORLDGEN_HOLD
+			. = ..()
+
+		generate_worldgen()
+			. = ..()
 			UpdateOverlays(src.beaten_sand["[pick(cardinal)]"], "beaten_sand_overlay")
-			..()
 
 		proc/create_beaten_sand()
 			beaten_sand = list()
