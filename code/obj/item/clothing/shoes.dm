@@ -381,6 +381,15 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	AddComponent(/datum/component/wearertargeting/tripsalot, list(SLOT_SHOES))
 	AddComponent(/datum/component/wearertargeting/crayonwalk, list(SLOT_SHOES))
 
+/obj/item/clothing/shoes/moffers
+	name = "moffers"
+	desc = "No moths were harmed in the making of these slippers."
+	icon_state = "moffers"
+	step_sound = "step_moff"
+	compatible_species = list("human", "cow")
+	step_lots = 1
+	step_priority = 999
+
 /obj/item/clothing/shoes/flippers
 	name = "flippers"
 	desc = "A pair of rubber flippers that improves swimming ability when worn."

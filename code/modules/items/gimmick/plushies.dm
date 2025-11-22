@@ -188,6 +188,15 @@
 	name = "brullbar plush toy"
 	icon_state = "brullbar"
 
+/obj/item/toy/plush/small/moth
+	name = "moth plushie"
+	desc = "A plushie depicting an adorable mothperson. It's a huggable bug!"
+	icon_state = "moffplush"
+
+/obj/item/toy/plush/small/moth/attack_self(mob/user as mob)
+		playsound(user, "sound/voice/moth/scream_moth.ogg", 50, 1)
+		src.audible_message("<span class='emote'>[src] screams!</span>")
+
 /obj/item/toy/plush/small/bunny
 	name = "bunny plush toy"
 	icon_state = "bunny"
