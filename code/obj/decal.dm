@@ -194,7 +194,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	point.invisibility = invisibility
 	var/turf/target_turf = get_turf(target)
 	target_turf.vis_contents += point
-	if(pointer) // check so that you can't shoot points across the station
+	if(pointer)
 		var/matrix/M = matrix()
 		M.Translate((pointer.x - target_turf.x)*32 - pixel_x, (pointer.y - target_turf.y)*32 - pixel_y)
 		point.transform = M
