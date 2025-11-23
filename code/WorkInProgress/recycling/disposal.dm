@@ -2015,19 +2015,19 @@
 				game_stats.Increment("workplacesafety")
 
 				var/obj/disposalholder/D = new (src)
-				D.set_loc(src)
 
-				AM.set_loc(D)
+				SPAWN_DBG(0)
+					AM.set_loc(D)
 
-				//flush time
-				if(ishuman(AM))
-					var/mob/living/carbon/human/H = AM
-					H.unlock_medal("Gay Luigi?", 1)
+					//flush time
+					if(ishuman(AM))
+						var/mob/living/carbon/human/H = AM
+						H.unlock_medal("Gay Luigi?", 1)
 
-				//D.start() wants a disposal unit
-				D.active = 1
-				D.set_dir(DOWN)
-				D.process()
+					//D.start() wants a disposal unit
+					D.active = 1
+					D.set_dir(DOWN)
+					D.process()
 
 
 
