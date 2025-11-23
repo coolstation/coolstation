@@ -1584,7 +1584,7 @@ obj/decoration/ceilingfan
 	mouse_opacity = 0
 	bound_height = 64
 	plane = PLANE_FLOOR
-	layer = TURF_OVERLAY_LAYER - 0.01
+	layer = TURF_OVERLAY_LAYER
 
 	//Grabs turf color set in gehenna.dm for sand
 	New()
