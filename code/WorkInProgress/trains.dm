@@ -49,8 +49,8 @@ var/datum/train_controller/train_spotter
 	var/list/datum/train_conductor/conductors = list()
 	var/next_id = 1
 	var/list/datum/train_preset/presets = list()
-	// an active stop point that wants to stop in 12 tiles and end up at 250, 150, 4 would be put in the z 4 list, and look like:
-	// ("4" = list("262x150y" = list("stop_at" = 250, "active" = TRUE)))
+	// an active stop point that wants to stop for 21 seconds at 250, 150, 4 would be put in the z 4 list, and look like:
+	// ("4" = list("250x150y" = list("stopped_for" = 210, "active" = TRUE)))
 	var/list/stop_points = list()
 	// an inactive whistle point at 69, 40, 3 would be put in the z 3 list, and look like:
 	// ("3" = list("69x40y" = list("active" = FALSE)))
@@ -511,7 +511,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 	if(!src.stop_distance)
 		// super cheaty physics! they put stronger brakes on faster trains, i guess
 		src.brake_deceleration = 1.5 / sqrt(src.movement_delay) - min(length(src.cars), 8) * 0.02
-		src.stop_distance = ceil((((10 / src.movement_delay) ** 2) - TRAIN_STOP_SPEED_SQUARED) / (2 * brake_deceleration))
+		src.stop_distance = ceil((((10 / src.movement_delay) ** 2) - TRAIN_STOP_SPEED_SQUARED) / (2 * src.brake_deceleration))
 
 	// Ramp speed down to a stop at exactly src.stopping, trying to reach movement_delay = 6 precisely there
 	if(src.stopping)
@@ -638,10 +638,10 @@ ABSTRACT_TYPE(/datum/train_preset)
 	src.train_front_x--
 	// check for stop points, but uh... if we cant stop at it in time (from map edge to it), it does just blow past it.
 	if(!src.stopping && train_spotter.stop_points["[src.train_z]"])
-		var/list/stop_point = train_spotter.stop_points["[src.train_z]"]["[src.train_front_x - src.stop_distance]x[src.train_front_y]y"]
+		var/list/stop_point = train_spotter.stop_points["[src.train_z]"]["[src.train_front_x - src.stop_distance - 1]x[src.train_front_y]y"]
 		if(stop_point && stop_point["active"])
 			src.stopped_time = stop_point["stopped_time"]
-			src.stopping(src.train_front_x - src.stop_distance)
+			src.stopping(src.train_front_x - src.stop_distance - 1)
 	if(train_spotter.whistle_points["[src.train_z]"])
 		var/list/whistle_point = train_spotter.whistle_points["[src.train_z]"]["[src.train_front_x]x[src.train_front_y]y"]
 		if(whistle_point && whistle_point["active"])

@@ -1177,6 +1177,7 @@ datum
 			value = 4 // 2 1 1
 			hygiene_value = 3
 			taste = "sharp and unpleasant"
+			evaporates_cleanly = TRUE
 
 			reaction_obj(var/obj/O, var/volume)
 				if (!isnull(O))

@@ -54,10 +54,10 @@
 	proc/spray()
 		src.last_spray = world.time
 		if (src?.default_reagent)
-			src.reagents.add_reagent(default_reagent,120)
+			src.reagents.add_reagent(default_reagent,60)
 			//also add some water for ~wet floor~ immersion
 			if (src.add_water)
-				src.reagents.add_reagent("water",40)
+				src.reagents.add_reagent("water",100)
 
 		if (src?.reagents.total_volume) //We still have reagents after, I dunno, a potassium reaction
 
@@ -89,7 +89,7 @@
 				if(T2.gas_cross(T3))
 					sprayed_turfs |= T3
 
-			var/spray_per_turf = floor(200 / length(sprayed_turfs))
+			var/spray_per_turf = floor(160 / length(sprayed_turfs))
 			for(var/turf/sprayed_turf as anything in sprayed_turfs)
 				for (var/atom/A in sprayed_turf.contents) // View and oview are unreliable as heck, apparently?
 					if ( A == src ) continue
@@ -108,7 +108,7 @@
 		SPAWN_DBG(5 SECONDS)
 			if (src?.reagents?.total_volume)
 				src.reagents.del_reagent(default_reagent)
-				src.reagents.remove_any(40)
+				src.reagents.remove_any(105)
 
 		src.use_power(50)
 		return
