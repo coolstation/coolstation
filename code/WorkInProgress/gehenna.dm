@@ -249,7 +249,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 							var/obj/decal/cragrock/rock = new(src)
 							rock.color = src.color
 
-			STANDARD_WORLDGEN_HOLD
+		STANDARD_WORLDGEN_HOLD
 
 	generate_worldgen() //this is a trick to stop sand turfs from runtiming if they're immediately replaced with something else
 		..()
