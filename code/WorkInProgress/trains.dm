@@ -117,6 +117,7 @@ var/datum/train_controller/train_spotter
 		var/datum/train_conductor/conductor = locate(href_list["stop"]) in src.conductors
 		if(istype(conductor))
 			conductor.active = FALSE
+			conductor.stopped_time = null
 	if (href_list["loadpreset"])
 		var/datum/train_conductor/conductor = locate(href_list["loadpreset"]) in src.conductors
 		if(istype(conductor))
@@ -532,7 +533,8 @@ ABSTRACT_TYPE(/datum/train_preset)
 			src.stopping = null
 			if(src.stopped_time)
 				SPAWN_DBG(src.stopped_time)
-					src.starting()
+					if(src.stopped_time)
+						src.starting()
 			return
 		// high school physics please work
 		src.movement_delay = 10 / max((10 / src.movement_delay) - (src.brake_deceleration * (src.movement_delay / 10)), 1.667)
