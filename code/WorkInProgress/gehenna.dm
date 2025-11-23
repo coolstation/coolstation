@@ -259,8 +259,8 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	proc/create_rocks()
 		rocks = list()
 		for(var/i in 1 to 18)
-			var/image/rock = image('icons/turf/gehenna_overlays.dmi',"rock[i]", layer = TURF_LAYER)
-			rock.plane = PLANE_NOSHADOW_BELOW
+			var/image/rock = image('icons/turf/gehenna_overlays.dmi',"rock[i]", layer = TURF_OVERLAY_LAYER)
+			rock.plane = PLANE_FLOOR
 			rocks += rock
 
 	make_light()
@@ -344,7 +344,6 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		New()
 			if(!src.beaten_sand)
 				src.create_beaten_sand()
-			STANDARD_WORLDGEN_HOLD
 			. = ..()
 
 		generate_worldgen()
@@ -354,7 +353,9 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		proc/create_beaten_sand()
 			beaten_sand = list()
 			for(var/i in alldirs)
-				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_edge", dir = i)
+				var/image/sand = image('icons/turf/gehenna_overlays.dmi',"beaten_edge", dir = i, layer = TURF_OVERLAY_LAYER)
+				sand.plane = PLANE_FLOOR
+				beaten_sand["[i]"] = sand
 
 	corner
 		name = "beaten earth"
@@ -373,7 +374,6 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		New()
 			if(!src.beaten_sand)
 				src.create_beaten_sand()
-			STANDARD_WORLDGEN_HOLD
 			. = ..()
 
 		generate_worldgen()
@@ -383,7 +383,9 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		proc/create_beaten_sand()
 			beaten_sand = list()
 			for(var/i in alldirs)
-				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_corner", dir = i)
+				var/image/sand = image('icons/turf/gehenna_overlays.dmi',"beaten_corner", dir = i, layer = TURF_OVERLAY_LAYER)
+				sand.plane = PLANE_FLOOR
+				beaten_sand["[i]"] = sand
 
 	beaten
 		name = "beaten earth"
@@ -402,7 +404,6 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		New()
 			if(!src.beaten_sand)
 				src.create_beaten_sand()
-			STANDARD_WORLDGEN_HOLD
 			. = ..()
 
 		generate_worldgen()
@@ -412,7 +413,9 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		proc/create_beaten_sand()
 			beaten_sand = list()
 			for(var/i in cardinal)
-				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_center", dir = i)
+				var/image/sand = image('icons/turf/gehenna_overlays.dmi',"beaten_center", dir = i, layer = TURF_OVERLAY_LAYER)
+				sand.plane = PLANE_FLOOR
+				beaten_sand["[i]"] = sand
 
 /area/gehenna
 	requires_power = 0

@@ -612,15 +612,15 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	anchored = ANCHORED
 
 /obj/decal/landing_gear_prints_gehenna
-	name = null
+	name = "landing gear prints"
 	desc = null
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "landing_gear_gehenna"
 	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
-	plane = PLANE_NOSHADOW_BELOW
-	layer = TURF_LAYER - 0.1
+	plane = PLANE_FLOOR
+	layer = TURF_OVERLAY_LAYER
 
 	//Grabs turf color set in gehenna.dm for sand
 	New()
@@ -633,15 +633,15 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 		src.color = T.color
 
 /obj/decal/beaten_edge_thin
-	name = null
+	name = "sandy edge"
 	desc = null
 	icon = 'icons/turf/gehenna_overlays.dmi'
 	icon_state = "beaten_edge_thin"
 	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
-	plane = PLANE_NOSHADOW_BELOW
-	layer = TURF_LAYER - 0.1
+	plane = PLANE_FLOOR
+	layer = TURF_OVERLAY_LAYER
 
 	//Grabs turf color set in gehenna.dm for sand
 	New()
@@ -730,4 +730,5 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	icon_state = "myliemural"
 	bound_height = 160
 	bound_width = 128
-	plane = PLANE_NOSHADOW_BELOW
+	plane = PLANE_FLOOR
+	layer = TURF_OVERLAY_LAYER
