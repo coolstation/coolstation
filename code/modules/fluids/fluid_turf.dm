@@ -355,7 +355,7 @@
 					var/turf/space/fluid/ocean/warp_z5/hole = locate(x, y, 1)
 					if(istype(hole))
 						var/datum/component/pitfall/target_coordinates/getcomp = hole.GetComponent(/datum/component/pitfall/target_coordinates)
-						getcomp.TargetList = list(src)
+						getcomp.Target = src
 						src.linked_hole = hole
 						src.add_simple_light("trenchhole", list(120, 120, 120, 120))
 						break

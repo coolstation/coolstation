@@ -474,8 +474,8 @@
 		if (istype(target,/turf/space/fluid/ocean/warp_z5/realwarp))
 			var/turf/space/fluid/ocean/warp_z5/realwarp/hole = target
 			var/datum/component/pitfall/target_coordinates/targetzcomp = hole.GetComponent(/datum/component/pitfall/target_coordinates)
-			targetzcomp.update_targets()
-			deploy_ladder(hole, pick(targetzcomp.TargetList), user)
+			targetzcomp.update_target()
+			deploy_ladder(hole, targetzcomp.Target, user)
 
 		else if (istype(target,/turf/space/fluid/ocean/warp_z5))
 			var/turf/space/fluid/ocean/warp_z5/hole = target

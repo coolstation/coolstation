@@ -39,10 +39,7 @@ var/global/magindara_surface_loop_volume = 80
 
 	New()
 		..()
-		if (src.generateLight)
-			src.make_light()
-		if (current_state > GAME_STATE_PREGAME)
-			src.initialise_component()
+		STANDARD_WORLDGEN_HOLD
 		if(!magindara_global_fog)
 			update_magindaran_weather()
 		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
@@ -50,8 +47,18 @@ var/global/magindara_surface_loop_volume = 80
 		if(skylight)
 			qdel(skylight)
 
-	/// Adds the pitfall, handled in a portion of map setup if game isnt setup yet, to prevent freezes
-	proc/initialise_component()
+	generate_worldgen()
+		. = ..()
+		if(src.generateLight)
+			if (!light)
+				light = new
+				light.attach(src)
+			light.set_atten_con(light_atten_con)
+			light.set_brightness(light_brightness)
+			light.set_color(light_r, light_g, light_b)
+			light.set_height(light_height)
+			SPAWN_DBG(1 DECI SECOND)
+				light?.enable()
 		src.AddComponent(/datum/component/pitfall/target_coordinates/nonstation,\
 			BruteDamageMax = 6,\
 			AnchoredAllowed = TRUE,\
@@ -59,17 +66,6 @@ var/global/magindara_surface_loop_volume = 80
 			FallTime = 1.2 SECONDS,\
 			DepthScale = 0.4,\
 			TargetZ = 3)
-
-	make_light()
-		if (!light)
-			light = new
-			light.attach(src)
-		light.set_atten_con(light_atten_con)
-		light.set_brightness(light_brightness)
-		light.set_color(light_r, light_g, light_b)
-		light.set_height(light_height)
-		SPAWN_DBG(1 DECI SECOND)
-			light?.enable()
 
 	ReplaceWith(what, keep_old_material, handle_air, handle_dir, force)
 		. = ..()

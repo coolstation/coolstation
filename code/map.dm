@@ -1062,10 +1062,7 @@ var/global/list/mapNames = list(
 	valid_nuke_targets = list("the medbay" = list(/area/station/medical/staff, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ))
 
 	init()
-		..()
-		for(var/turf/space/magindara/pitfall_turf)
-			pitfall_turf.initialise_component()
-			LAGCHECK(LAG_HIGH)
+		. = ..()
 		var/turf/herd_turf = pick_landmark(LANDMARK_HERD_ANIMAL_SPAWN, locate(150,150,3))
 		for(var/turf/space/fluid/magindara/ocean_floor_turf in range(9, herd_turf))
 			if(prob(7))

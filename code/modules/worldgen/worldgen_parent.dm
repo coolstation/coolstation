@@ -43,7 +43,7 @@ var/global/worldgen_generation = 1
 		//but we advance the generation early so that when U spawns something that itself goes on the backlog, say a wingrille spawner spawning windows and a grille
 		//the windows/grille will end up subscribing to the *next* generation automatically without them having to be told they're spawned in the middle of the whole process
 		worldgen_generation++
-		for(var/atom/U in worldgen_candidates[worldgen_generation - 1]) //it does look a bit silly though
+		for(var/atom/U as anything in worldgen_candidates[worldgen_generation - 1]) //it does look a bit silly though
 			if (U) //may be deleted lol
 				U.generate_worldgen()
 				LAGCHECK(LAG_REALTIME)

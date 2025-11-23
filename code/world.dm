@@ -696,7 +696,7 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Transferring manuf. icons to clients...")
 	sendItemIconsToAll()
 
-	UPDATE_TITLE_STATUS("Reticulating splines")
+	UPDATE_TITLE_STATUS("Initializing worldgen")
 	Z_LOG_DEBUG("World/Init", "Initializing worldgen...")
 	worldgen_hold &= ~WORLDGEN_HOLD_WORLD_INIT
 	if(!worldgen_hold)
