@@ -396,7 +396,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates/nonstation)
 		src.TargetList = list()
 		if(src.LandingRange)
 			for(var/i in 0 to src.LandingRange)
-				for(var/turf/T in block(src.typecasted_parent().x + src.OffsetX - i, src.typecasted_parent().y + src.OffsetY - i, src.typecasted_parent().x + src.OffsetX + i, src.typecasted_parent().y + src.OffsetY + i, src.TargetZ))
+				for(var/turf/T in block(src.typecasted_parent().x + src.OffsetX - i, src.typecasted_parent().y + src.OffsetY - i, src.TargetZ, src.typecasted_parent().x + src.OffsetX + i, src.typecasted_parent().y + src.OffsetY + i, src.TargetZ))
 					if(!T.density && !istype(get_area(T), /area/station))
 						src.TargetList += T
 						return TRUE
