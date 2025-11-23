@@ -422,6 +422,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	icon_state = "dither_b"
 	name = "the gehennan desert"
 	is_construction_allowed = TRUE
+	filler_turf = "/turf/space/gehenna/desert"
 
 
 /area/gehenna/south // just in case i need a separate area for stuff
@@ -560,6 +561,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	luminosity = 0
 	sound_environment = EAX_CAVE
 	is_atmos_simulated = TRUE
+	filler_turf = "/turf/floor/plating/gehenna"
 
 /area/gehenna/underground/staffies_nest
 	name = "the rat's nest"

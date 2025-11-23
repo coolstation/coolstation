@@ -3061,6 +3061,16 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/north)
+"ib" = (
+/obj/decal/beaten_edge_thin{
+	dir = 4;
+	pixel_x = -8
+	},
+/turf/space/gehenna/desert/no_spikes,
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
+	})
 "ic" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/disposalpipe/segment,
@@ -6174,7 +6184,7 @@
 	pixel_x = 8
 	},
 /obj/decoration/train_signal,
-/turf/space/gehenna/desert,
+/turf/space/gehenna/desert/no_spikes,
 /area/gehenna{
 	icon_state = "dither_r";
 	name = "the courtyard"
@@ -11622,7 +11632,7 @@
 	pixel_x = -8
 	},
 /obj/decoration/train_signal,
-/turf/space/gehenna/desert,
+/turf/space/gehenna/desert/no_spikes,
 /area/gehenna{
 	icon_state = "dither_r";
 	name = "the courtyard"
@@ -11782,6 +11792,16 @@
 /obj/decal/cleanable/mess/chips,
 /turf/floor/purple/corner,
 /area/listeningpost)
+"Fm" = (
+/obj/decal/beaten_edge_thin{
+	dir = 8;
+	pixel_x = 8
+	},
+/turf/space/gehenna/desert/no_spikes,
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
+	})
 "Fn" = (
 /obj/railway/rusty,
 /turf/space/gehenna/desert/no_spikes,
@@ -64097,7 +64117,7 @@ Rj
 Rj
 vf
 Zv
-Rj
+FR
 Rj
 Rj
 AY
@@ -64400,7 +64420,7 @@ sj
 vf
 Cd
 qm
-tc
+Fm
 Rj
 AY
 VZ
@@ -65608,7 +65628,7 @@ ks
 XD
 Zv
 ES
-ks
+ib
 Rj
 AY
 VZ
@@ -65909,7 +65929,7 @@ Rj
 Rj
 XD
 Zv
-Rj
+FR
 AY
 AY
 AY
