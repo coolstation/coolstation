@@ -285,6 +285,9 @@
 	pre_thrown()
 		return
 
+	throw_impact()
+		return
+
 /obj/item/spacecash/bag // hufflaw cashbags
 	New(var/atom/loc)
 		..(loc)
