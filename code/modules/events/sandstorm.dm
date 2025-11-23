@@ -1,10 +1,11 @@
+// mylie note: not currently in a useable state. this is laggy as heck and breaks the can_pass values of every turf for 10 to 30 minutes.
+/*
 /datum/random_event/major/sandstorm
 	name = "Sandstorm"
 	required_elapsed_round_time = 30 MINUTES
-// mylie note: not currently in a useable state. this is laggy as heck and breaks the can_pass values of every turf for 10 to 30 minutes.
-//#ifndef DESERT_MAP
+#ifndef DESERT_MAP
 	disabled = TRUE
-//#endif
+#endif
 
 	event_effect()
 		..()
@@ -71,3 +72,4 @@
 				A.sandstorm = FALSE
 				A.blowOrigin = 0
 				A.overlays -= image(icon = 'icons/turf/areas.dmi', icon_state = "dustverlay", layer = EFFECTS_LAYER_BASE)
+*/
