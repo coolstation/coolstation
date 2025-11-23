@@ -74,18 +74,36 @@
 			steam.attach(src)
 			steam.start()
 
-			for (var/atom/A in range(1, get_turf(src))) // View and oview are unreliable as heck, apparently?
-				if ( A == src ) continue
+			// this mess makes showers actually care about gas blocking terrain
+			var/turf/T = get_turf(src)
+			var/list/turf/sprayed_turfs = list(T)
+			for(var/direction in cardinal)
+				var/turf/T2 = get_step(src, direction)
+				if(!T.gas_cross(T2))
+					continue
+				sprayed_turfs |= T2
+				var/turf/T3 = get_step(T2, turn(direction, 90))
+				if(T2.gas_cross(T3))
+					sprayed_turfs |= T3
+				T3 = get_step(T2, turn(direction, -90))
+				if(T2.gas_cross(T3))
+					sprayed_turfs |= T3
 
-				// Added. We don't care about unmodified shower heads, though (Convair880).
-				if (ismob(A))
-					var/mob/M = A
-					if (!isdead(M))
-						if ((!src.reagents.has_reagent("water") && !src.reagents.has_reagent("cleaner")) || ((src.reagents.has_reagent("water") && src.reagents.has_reagent("cleaner")) && src.reagents.reagent_list.len > 2))
-							logTheThing("combat", M, null, "is hit by chemicals [log_reagents(src)] from a shower head at [log_loc(M)].")
+			var/spray_per_turf = floor(200 / length(sprayed_turfs))
+			for(var/turf/sprayed_turf as anything in sprayed_turfs)
+				for (var/atom/A in sprayed_turf.contents) // View and oview are unreliable as heck, apparently?
+					if ( A == src ) continue
 
-				spawn(0)
-					src.reagents.reaction(A, 1, 40) // why the FUCK was this ingest ?? ?? ? ?? ? ?? ? ?? ? ???
+					// Added. We don't care about unmodified shower heads, though (Convair880).
+					if (ismob(A))
+						var/mob/M = A
+						if (!isdead(M))
+							if ((!src.reagents.has_reagent("water") && !src.reagents.has_reagent("cleaner")) || ((src.reagents.has_reagent("water") && src.reagents.has_reagent("cleaner")) && src.reagents.reagent_list.len > 2))
+								logTheThing("combat", M, null, "is hit by chemicals [log_reagents(src)] from a shower head at [log_loc(M)].")
+
+					SPAWN_DBG(0)
+						src.reagents.reaction(A, 1, 40) // why the FUCK was this ingest ?? ?? ? ?? ? ?? ? ?? ? ???
+				sprayed_turf.fluid_react(src.reagents, spray_per_turf)
 
 		SPAWN_DBG(5 SECONDS)
 			if (src?.reagents?.total_volume)

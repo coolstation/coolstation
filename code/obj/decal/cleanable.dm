@@ -1427,10 +1427,10 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	layer = MOB_LAYER-1
 	icon = 'icons/obj/decals/cleanables.dmi'
 	icon_state = "cobweb_floor-c"
-	event_handler_flags = USE_CANPASS
+	event_handler_flags = USE_HASENTERED
 	gross = 1
 
-	Entered(atom/movable/AM)
+	HasEntered(atom/movable/AM)
 		if (ismob(AM))
 			AM.changeStatus("slowed", 0.2 SECONDS)
 			SPAWN_DBG(-1)
