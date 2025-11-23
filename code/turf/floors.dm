@@ -1311,6 +1311,7 @@ DEFINE_FLOORS(snowrough/border,
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
+	burnt = UNBURNABLE_TURF
 	permadirty = 1 //sand gets everywhere
 
 	New()
@@ -1324,6 +1325,7 @@ DEFINE_FLOORS(snowrough/border,
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
 	allows_vehicles = 1
+	burnt = UNBURNABLE_TURF
 	permadirty = 1
 
 /turf/floor/riveted
@@ -1331,6 +1333,7 @@ DEFINE_FLOORS(snowrough/border,
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
 	allows_vehicles = 1
+	burnt = UNBURNABLE_TURF
 	permadirty = 1
 
 /////////////////////////////////////////
@@ -1687,7 +1690,7 @@ DEFINE_FLOORS(techfloor/green,
 	src.icon_state = "plating"
 	setIntact(FALSE)
 	broken = 0
-	burnt = 0
+	burnt = initial(burnt)
 	if(plate_mat)
 		src.setMaterial((plate_mat))
 	else
@@ -1738,7 +1741,7 @@ DEFINE_FLOORS(techfloor/green,
 	if(intact) return
 	setIntact(TRUE)
 	broken = 0
-	burnt = 0
+	burnt = initial(burnt)
 	icon = initial(icon)
 	if(icon_old)
 		icon_state = icon_old

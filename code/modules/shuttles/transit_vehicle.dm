@@ -134,7 +134,7 @@ var/global/datum/transit_controller/transit_controls
 		SPAWN_DBG(0)
 			//Was hoping suspending lighting would make crag shuttles not lagspike. Didn't work, but maybe still computationally cleaner.
 			RL_Suspend()
-			worldgen_hold = TRUE
+			worldgen_hold |= WORLDGEN_HOLD_SHUTTLE_MOVEMENT
 			vehicle.departing(stop)
 			var/area/start_location = locate(current.target_area)
 			var/area/end_location = locate(stop.target_area)
@@ -149,7 +149,9 @@ var/global/datum/transit_controller/transit_controls
 				if (istype(P, filler_turf_start))
 					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)
 			SEND_SIGNAL(src, COMSIG_TRANSIT_VEHICLE_MOVED, vehicle)
-			initialize_worldgen()
+			worldgen_hold &= ~WORLDGEN_HOLD_SHUTTLE_MOVEMENT
+			if(!worldgen_hold)
+				initialize_worldgen()
 			RL_Resume()
 			vehicle.arriving(stop) //This may sleep, intentionally holding up this code
 			vehicle.current_location = stop

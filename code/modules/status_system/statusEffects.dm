@@ -1618,6 +1618,8 @@
 				if(how_miasma > 4)
 					. += " You might get sick."
 				#endif
+
+/*
 /datum/statusEffect/sandy
 	id = "sandy"
 	name = "Sandy"
@@ -1651,6 +1653,7 @@
 						S.create_overlay(states[2], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //awawa
 				else
 					S.create_overlay("smear2", "#9a865a", direct, 'icons/obj/decals/blood.dmi')
+*/
 
 /datum/statusEffect/dripping_paint
 	id = "marker_painted"

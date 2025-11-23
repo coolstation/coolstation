@@ -12,6 +12,10 @@
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat,
 /turf/floor/setpieces/bloodfloor,
 /area/noGenerate)
+"m" = (
+/obj/crevice/meatland,
+/turf/floor/setpieces/bloodfloor,
+/area/noGenerate)
 "p" = (
 /turf/floor/setpieces/bloodfloor,
 /area/noGenerate)
@@ -31,10 +35,17 @@
 /obj/item/mine/gibs/armed,
 /turf/floor/setpieces/bloodfloor,
 /area/noGenerate)
-"H" = (
-/obj/critter/blobman/meaty_martha,
+"D" = (
+/mob/living/critter/changeling/headspider{
+	ai_type = "/datum/aiHolder/violent";
+	is_npc = 1;
+	icon_state = "meaty_mouth";
+	icon_state_dead = "meaty_mouth";
+	name = "greasy polyp"
+	},
 /turf/floor/setpieces/bloodfloor{
-	icon_state = "bloodfloor_3"
+	icon_state = "bloodfloor_2";
+	name = "Fleshy Floor"
 	},
 /area/noGenerate)
 "I" = (
@@ -122,7 +133,7 @@ a
 v
 C
 X
-X
+D
 p
 v
 a
@@ -131,7 +142,7 @@ a
 (6,1,1) = {"
 a
 a
-H
+v
 X
 W
 p
@@ -145,7 +156,7 @@ a
 I
 p
 Q
-p
+m
 v
 I
 a

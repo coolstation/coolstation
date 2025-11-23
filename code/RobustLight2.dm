@@ -633,14 +633,14 @@ proc
 			RL_UPDATE_LIGHT(T)
 
 	RL_Suspend()
-		RL_Suspended = 1
+		RL_Suspended++
 #ifdef DEBUG_LIGHT_STRIP_APPLY
 		logTheThing("debug", src, null, "<b>Light:</b> Suspended lighting.")
 #endif
 		//TODO
 
 	RL_Resume()
-		RL_Suspended = 0
+		RL_Suspended--
 #ifdef DEBUG_LIGHT_STRIP_APPLY
 		logTheThing("debug", src, null, "<b>Light:</b> Unsuspended lighting.")
 #endif

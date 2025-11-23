@@ -22,16 +22,12 @@
 
 */
 
-
-
-
 // Turfs add themselves to this in their New()
 /var/global/list/list/worldgen_candidates = list(list(),list(),list(),list(),list()) //5 levels is probably plenty
 
-
 // If your whatever needs to wait on adjacent atoms to have finished spawning so it can configure itself properly, use this instead of SPAWN_DBG when possible pls
 /// TRUE when maps, including prefabs, are loaded or significant amounts of terrain are being generated.
-/var/global/worldgen_hold = TRUE
+/var/global/worldgen_hold = WORLDGEN_HOLD_WORLD_INIT
 var/global/worldgen_generation = 1
 
 /proc/initialize_worldgen()

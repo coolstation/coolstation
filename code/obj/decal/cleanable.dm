@@ -40,7 +40,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 
 	flags = NOSPLASH | FPRINT | OPENCONTAINER
 	layer = CLEANABLE_DECAL_LAYER
-	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
+	event_handler_flags = USE_FLUID_ENTER
 
 	plane = PLANE_NOSHADOW_BELOW
 
@@ -297,6 +297,7 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 	sample_reagent = null
 	stain = null
 	can_sample = TRUE
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	var/can_track = 1
 	var/reagents_max = 30
@@ -693,7 +694,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	slippery = 10
 	can_sample = 1
 	sample_reagent = "ketchup"
-
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 /obj/decal/cleanable/pathogen_sweat
 	name = "weirdly colored sweat"
@@ -708,6 +709,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	can_dry = 1
 	can_fluid_absorb = 0
 	gross = 1
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	HasEntered(AM)
 		. = ..()
@@ -726,6 +728,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	can_dry = 1
 	can_fluid_absorb = 0
 	gross = 1
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	HasEntered(AM)
 		. = ..()
@@ -937,6 +940,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	sample_reagent = "water"
 	sample_amt = 5
 	stain = "damp"
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	Crossed(atom/movable/O)
 		if (istype(O, /obj/item/clothing/under/towel))
@@ -962,6 +966,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	sample_reagent = "urine"
 	stain = "piss-soaked"
 	gross = 1
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	Crossed(atom/movable/O)
 		if (istype(O, /obj/item/clothing/under/towel))
@@ -1021,6 +1026,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	sample_verb = "scrape"
 	stain = "puke-coated"
 	gross = 1
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	Dry(var/time = rand(200,500))
 		if (!src.can_dry || src.dry)
@@ -1108,6 +1114,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	sample_verb = "scrape"
 	stain = "green-puke-coated"
 	gross = 1
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	Dry(var/time = rand(200,500))
 		if (!src.can_dry)
@@ -1242,6 +1249,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	slippery = 10
 	can_sample = 1
 	sample_reagent = "juice_tomato"
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 /obj/decal/cleanable/eggsplat
 	name = "smashed egg"
@@ -1253,6 +1261,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	can_sample = 1
 	sample_amt = 5
 	sample_reagent = "egg"
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 /obj/decal/cleanable/eggshell
 	name = "egg shell"
@@ -1304,6 +1313,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	sample_reagent = "slime"
 	stain = "slimy"
 	gross = 1
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	Dry(var/time = rand(100,200))
 		if (!src.can_dry)
@@ -1493,6 +1503,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	icon_state = "goop1"
 	random_icon_states = list("goop1", "goop2", "goop3", "goop4")
 
+/*
 /obj/decal/cleanable/flockdrone_debris
 	name = "weird stringy crystal fibres"
 	desc = "Aw hell it's probably going to ruin your lungs if you breathe those. It's probably space alien asbestos or something. They're all sticky too, eww."
@@ -1514,6 +1525,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	anchored = ANCHORED
 	slippery = 50
 	stain = "teal-stained"
+*/
 
 /obj/decal/cleanable/machine_debris
 	name = "twisted shrapnel"
@@ -1586,6 +1598,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	sample_reagent = "oil"
 	stain = "oily"
 	gross = 1
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 /obj/decal/cleanable/oil/streak
 	random_icon_states = list("streak1", "streak2", "streak3", "streak4", "streak5")
@@ -1602,6 +1615,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	sample_reagent = "juice_orange"
 	stain = "painted"
 	gross = 1
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 /obj/decal/cleanable/imprint
 	name = "footprint"
@@ -1659,6 +1673,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	can_sample = 1
 	sample_reagent = "salt"
 	sample_verb = "scrape"
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 	var/health = 30
 
 	New()
@@ -1867,6 +1882,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	can_dry = 1
 	var/do_bang = 0
 	gross = 1
+	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	HasEntered(AM as mob|obj)
 		if( !src.dry || !(isliving(AM) || isobj(AM)) ) return
@@ -1980,8 +1996,9 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		kind_of_cleanable = "ROBOT"
 	else if(istype(src, /obj/decal/cleanable/martian_viscera))
 		kind_of_cleanable = "MARTIAN"
+/*
 	else if(istype(src, /obj/decal/cleanable/flockdrone_debris))
-		kind_of_cleanable = "FLOCK"
+		kind_of_cleanable = "FLOCK"*/
 	else
 		kind_of_cleanable = "BLOOD"
 	SPAWN_DBG(0)
@@ -2012,8 +2029,9 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 							b.color = "#0b1f8f"
 						else if (prob(10))
 							elecflash(src)
+/*
 					if("FLOCK")
-						make_cleanable( /obj/decal/cleanable/flockdrone_debris/fluid,src.loc)
+						make_cleanable( /obj/decal/cleanable/flockdrone_debris/fluid,src.loc)*/
 					if("MACHINE", "ROBOT")
 						if (prob(40))
 							make_cleanable(/obj/decal/cleanable/oil/streak,src.loc)

@@ -2,9 +2,12 @@
 	var/datum/abilityHolder/changeling/hivemind_owner
 	var/can_exit_hivemind_time = 0
 	var/last_attack = 0
+	var/static/point_img = null
 
 	New()
 		. = ..()
+		if (!point_img)
+			point_img = image('icons/ui/screen1.dmi', icon_state = "arrow")
 		REMOVE_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
 
 	say_understands(var/other)
@@ -33,12 +36,55 @@
 		..()
 
 	click(atom/target, params)
+		if (src.client.check_key(KEY_POINT))
+			point_at(target, text2num(params["icon-x"]), text2num(params["icon-y"]))
+			return
 		if (try_launch_attack(target))
 			return
 		..()
 
 	process_move(keys)
 		return // so we dont eject from the hivemind immediately lol
+
+	update_cursor()
+		..()
+		if (src.client)
+			if (src.client.check_key(KEY_POINT))
+				src.set_cursor('icons/cursors/point.dmi')
+				return
+
+	point_at(atom/target, var/pixel_x, var/pixel_y)
+		if(ON_COOLDOWN(src, "hivemind_member_point", 1 SECOND))
+			return
+		make_hive_point(target, pixel_x, pixel_y, color="#e2a059")
+
+	/// Like make_point, but the point is an image that is only displayed to hivemind members
+	proc/make_hive_point(atom/movable/target, var/pixel_x, var/pixel_y, color="#ffffff", time=2 SECONDS)
+		var/turf/target_turf = get_turf(target)
+		var/image/point = image(point_img, loc = target_turf, layer = EFFECTS_LAYER_1)
+		pixel_x -= 16 - target.pixel_x
+		pixel_y -= 16 - target.pixel_y
+		point.pixel_x = pixel_x
+		point.pixel_y = pixel_y
+		point.color = color
+		point.layer = EFFECTS_LAYER_1
+		point.plane = PLANE_HUD
+		var/list/client/viewers = new
+		for (var/mob/member in (hivemind_owner.hivemind + hivemind_owner.owner))
+			if (!member.client)
+				continue
+			boutput(member, "<span class='game hivesay'><span class='prefix'>HIVEMIND: </span><b>[src]</b> points to [target].</span>")
+			member.client.images += point
+			viewers += member.client
+		var/matrix/M = matrix()
+		M.Translate((hivemind_owner.owner.x - target_turf.x)*32 - pixel_x, (hivemind_owner.owner.y - target_turf.y)*32 - pixel_y)
+		point.transform = M
+		animate(point, transform=null, time=2)
+		SPAWN_DBG(time)
+			for (var/client/viewer in viewers)
+				viewer.images -= point
+			qdel(point)
+		return point
 
 	proc/try_launch_attack(atom/shoot_target)
 		.= 0

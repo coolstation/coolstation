@@ -103,9 +103,7 @@ var/global/magindara_surface_loop_volume = 80
 
 	New()
 		. = ..()
-		if (worldgen_hold)
-			worldgen_candidates[worldgen_generation] += src
-		else generate_worldgen()
+		STANDARD_WORLDGEN_HOLD
 
 	make_light()
 		if(prob(40)) // only a 40% chance, for lag and also a dappled effect

@@ -698,7 +698,9 @@ var/f_color_selector_handler/F_Color_Selector
 
 	UPDATE_TITLE_STATUS("Reticulating splines")
 	Z_LOG_DEBUG("World/Init", "Initializing worldgen...")
-	initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
+	worldgen_hold &= ~WORLDGEN_HOLD_WORLD_INIT
+	if(!worldgen_hold)
+		initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
 
 	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
 	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
