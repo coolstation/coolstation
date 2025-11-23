@@ -52,7 +52,7 @@ var/datum/train_controller/train_spotter
 	// an active stop point that wants to stop in 12 tiles and end up at 250, 150, 4 would be put in the z 4 list, and look like:
 	// ("4" = list("262x150y" = list("stop_at" = 250, "active" = TRUE)))
 	var/list/stop_points = list()
-	// an inactive whistle point at 69, 40, 3 would be put in the z 3 list, and look like:__detect_rust_g()
+	// an inactive whistle point at 69, 40, 3 would be put in the z 3 list, and look like:
 	// ("3" = list("69x40y" = list("active" = FALSE)))
 	var/list/whistle_points = list()
 	var/list/cooldowns
@@ -226,18 +226,6 @@ ABSTRACT_TYPE(/datum/train_preset)
 	var/x = 0
 	var/y = 0
 	var/z = 0
-
-/*
-
-## These are kinda confusing to see in the preset list tbh. ##
-
-/datum/train_preset/fast_af
-	movement_delay = 0.125
-
-/datum/train_preset/slow
-	movement_delay = 3
-
-*/
 
 /datum/train_preset/fast_single_car //yeet
 	movement_delay = 0.125
@@ -549,10 +537,10 @@ ABSTRACT_TYPE(/datum/train_preset)
 			src.starting = FALSE // Done ramping
 
 	// first, time for the crushing
-	for(var/mob/living/L in src.potential_crushes)
+	for(var/mob/living/L as anything in src.potential_crushes)
 		var/turf/T = get_turf(L)
 		if(!T)
-			src.potential_crushes.Cut(L)
+			src.potential_crushes.Remove(L)
 		if(T.z == src.train_z && (max(src.train_front_x, src.train_unload_x)) <= T.x && T.x <= src.train_end_x && src.train_front_y <= T.y && T.y <= (src.train_front_y + src.train_ram_height_bonus))
 			if(L.nodamage || ON_COOLDOWN(L, "trainsquish", rand(1,3)))
 				continue
@@ -600,7 +588,7 @@ ABSTRACT_TYPE(/datum/train_preset)
 				else
 					call(L.custom_gib_handler)(L.loc, viral_list, null, bdna, btype)
 		else // if they aint under the train, stop checking
-			src.potential_crushes.Cut(L)
+			src.potential_crushes.Remove(L)
 
 	// thats enough crushing, now we do the ramming
 	if(src.train_front_x > src.train_unload_x)
