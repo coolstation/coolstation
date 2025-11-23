@@ -5,9 +5,6 @@ var/global/datum/controller/processScheduler/processScheduler
 	// Processes known by the scheduler
 	var/tmp/list/datum/controller/process/processes = new
 
-	// Processes that run after the 60 second mark, but stop when the game starts
-	var/tmp/list/datum/controller/process/pregameProcesses = new
-
 	// Processes that are currently running
 	var/tmp/list/datum/controller/process/running = new
 
@@ -335,42 +332,3 @@ var/global/datum/controller/processScheduler/processScheduler
 	if (hasProcess(processName))
 		var/datum/controller/process/process = nameToProcessMap[processName]
 		usr.client.debug_variables(process)
-
-/datum/controller/processScheduler/proc/addPregameSkipSetup(var/processPath)
-	src.alreadyCreatedPathsList += processPath
-	var/newProcess = new processPath(src)
-	src.pregameProcesses += newProcess
-	return newProcess
-
-// runs before the game starts, when 120 seconds are left on the countdown, then cleans up at round start
-/datum/controller/processScheduler/proc/pregameLoop()
-	SPAWN_DBG(0)
-		while(!isRunning)
-			checkRunningProcesses()
-			for (var/datum/controller/process/p as anything in pregameProcesses)
-				// Don't double-queue, don't queue running processes
-				if (p.disabled || p.running || p.queued || !p.idle)
-					continue
-
-				// If world.timeofday has rolled over, then we need to adjust.
-				if (TimeOfHour < last_start[p])
-					last_start[p] -= 36000
-
-				// If the process should be running by now, go ahead and queue it
-				if (TimeOfHour > last_start[p] + p.schedule_interval)
-					setQueuedProcessState(p)
-			runQueuedProcesses()
-
-			sleep(scheduler_sleep_interval)
-
-		// cleanup the pregame processes
-		for (var/datum/controller/process/p as anything in pregameProcesses)
-			if(p in alreadyCreatedList)
-				alreadyCreatedList.Remove(p)
-			p.disable()
-			processes.Remove(p)
-			pregameProcesses.Remove(p)
-			SPAWN_DBG(3 SECONDS)
-				p.kill()
-
-		pregameProcesses = null

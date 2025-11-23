@@ -87,8 +87,6 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 				//latecomers should be handled by client.dm in the sound section
 
 				pregameHTML = null // clear the pregame html
-				if(!processScheduler.isRunning)
-					processScheduler.pregameLoop() // start the processScheduler ticking for anything we wanna do until the game starts
 				for(var/client/C)
 					try
 						C<< browse("", "window=pregameBrowser")

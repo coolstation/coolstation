@@ -551,13 +551,6 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	// filler_turf = "/turf/floor/setpieces/gauntlet"
 	is_atmos_simulated = FALSE
 
-	Entered(atom/movable/AM, atom/oldloc)
-		. = ..()
-		if(current_state < GAME_STATE_SETTING_UP && isliving(AM))
-			var/mob/living/L = AM
-			// faster to add a flag thatll never be checked than to check if they have ai here
-			L.mob_flags |= PREGAME_AI_MOB
-
 /area/titlescreen/coolisland
 	name = "Paisano Island"
 	ambient_light = rgb(218, 235, 215)
