@@ -1,9 +1,10 @@
 /datum/random_event/major/sandstorm
 	name = "Sandstorm"
 	required_elapsed_round_time = 30 MINUTES
-#ifndef DESERT_MAP
+// mylie note: not currently in a useable state. this is laggy as heck and breaks the can_pass values of every turf for 10 to 30 minutes.
+//#ifndef DESERT_MAP
 	disabled = TRUE
-#endif
+//#endif
 
 	event_effect()
 		..()
