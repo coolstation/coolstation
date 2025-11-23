@@ -51,6 +51,7 @@ datum/controller/process/mob_ai
 datum/controller/process/mob_ai/pregame
 	setup()
 		name = "Pregame Mob Processing"
+		schedule_interval = 0.2 SECONDS
 
 	doWork()
 		var/do_life = !(ticks % 20)

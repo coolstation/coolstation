@@ -604,7 +604,7 @@ var/f_color_selector_handler/F_Color_Selector
 	processSchedulerView = new /datum/processSchedulerView
 	var/datum/controller/process/tgui/tgui_process = processScheduler.addNowSkipSetup(/datum/controller/process/tgui)
 	var/datum/controller/process/ticker/ticker_process = processScheduler.addNowSkipSetup(/datum/controller/process/ticker)
-	var/datum/controller/process/mob_ai/pregame/pregame_mob_process = processScheduler.addNowSkipSetup(/datum/controller/process/mob_ai/pregame)
+	var/datum/controller/process/mob_ai/pregame/pregame_mob_process = processScheduler.addPregameSkipSetup(/datum/controller/process/mob_ai/pregame)
 	tgui_process.setup()
 	ticker_process.setup()
 	pregame_mob_process.setup()
