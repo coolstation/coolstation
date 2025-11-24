@@ -1366,7 +1366,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 
 /mob/living/critter/small_animal/mothroach
 	name = "mothroach"
-	desc = "This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches."
+	desc = "This is the adorable by-product of multiple attempts at genetically mixing space bees with cockroaches."
 	icon_state = "mothroach"
 	icon_state_dead = "mothroach_dead"
 	butcherable = 3
