@@ -371,7 +371,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 						// Hilarious.
 						gain = 500
 						game_stats.Increment("clownabuse")
-						resize()
+						SPAWN_DBG(0)
+							resize()
 					if ("Lawyer")
 						// Satan.
 						gain = 250
@@ -444,26 +445,47 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if(!isnull(check_max_radius) && check_max_radius >= radius)
 			src.maxradius = check_max_radius
 		if(src.radius < src.maxradius)
+			//resizing does cruel and terrible things to the turf_persistent caches
+			//north, including corner
+			var/turf/T = get_turf(src)
+			for(var/turf/T2 in block(T.x, T.y + src.radius * 2 + 1, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2 + 2, T.z))
+				T2.turf_persistent.checkingcanpass++
+				T2.turf_persistent.checkinghasentered++
+			//east, not including corner
+			for(var/turf/T2 in block(T.x + src.radius * 2 + 1, T.y, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2, T.z))
+				T2.turf_persistent.checkingcanpass++
+				T2.turf_persistent.checkinghasentered++
+
 			src.radius++
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
 			src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
 			src.bound_width = src.bound_height = 64 * src.radius + 32
 			src.grav_range = min(src.radius + 3, 5)
+			var/turf/typecast_loc = get_turf(loc)
 			if(isturf(src.loc))
-				var/turf/T = get_turf(src)
 				var/turf/T2 = locate(T.x - 1, T.y - 1, T.z)
 				if(T2)
 					src.set_loc(T2)
 
 	else if (src.energy < godver2)
+		// we shrink first to simply the math
 		src.radius--
+		var/turf/T = get_turf(src)
+		//resizing does cruel and terrible things to the turf_persistent caches, even when shrinking!
+		//north, including corner
+		for(var/turf/T2 in block(T.x, T.y + src.radius * 2 + 1, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2 + 2, T.z))
+			T2.turf_persistent.checkingcanpass--
+			T2.turf_persistent.checkinghasentered--
+		//east, not including corner
+		for(var/turf/T2 in block(T.x + src.radius * 2 + 1, T.y, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2, T.z))
+			T2.turf_persistent.checkingcanpass--
+			T2.turf_persistent.checkinghasentered--
 		src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 		src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
 		src.bound_width = src.bound_height = 64 * src.radius + 32
 		src.grav_range = min(src.radius + 3, 5)
 		if(isturf(src.loc))
-			var/turf/T = get_turf(src)
 			var/turf/T2 = locate(T.x + 1, T.y + 1, T.z)
 			if(T2)
 				src.set_loc(T2)
