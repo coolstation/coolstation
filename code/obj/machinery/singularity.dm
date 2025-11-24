@@ -462,7 +462,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
 			src.bound_width = src.bound_height = 64 * src.radius + 32
 			src.grav_range = min(src.radius + 3, 5)
-			var/turf/typecast_loc = get_turf(loc)
 			if(isturf(src.loc))
 				var/turf/T2 = locate(T.x - 1, T.y - 1, T.z)
 				if(T2)
