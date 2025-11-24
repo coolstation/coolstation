@@ -113,7 +113,7 @@ proc/singularity_containment_check(turf/center)
 	icon_state = "Sing2"
 	anchored = ANCHORED
 	density = 1
-	event_handler_flags = IMMUNE_SINGULARITY | USE_HASENTERED
+	event_handler_flags = IMMUNE_SINGULARITY | USE_HASENTERED | Z_ANCHORED
 	deconstruct_flags = DECON_WELDER | DECON_MULTITOOL
 
 	var/maxboom = 0
@@ -150,10 +150,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if (Ti)
 		src.Dtime = Ti
 	..()
-	for(var/turf/T in src.locs)
-		for(var/atom/movable/AM in T.contents)
-			eat_atom(AM)
-		eat_atom(T)
+	SPAWN_DBG(0)
+		for(var/turf/T in src.locs)
+			for(var/atom/movable/AM in T.contents)
+				eat_atom(AM)
+			eat_atom(T)
 	src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 
 /obj/machinery/the_singularity/disposing()
@@ -310,18 +311,20 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/the_singularity/set_loc(atom/target)
 	. = ..()
 	if(isturf(target))
-		for(var/turf/T in src.locs)
-			for(var/atom/movable/AM in T.contents)
-				eat_atom(AM)
-			eat_atom(T)
+		SPAWN_DBG(0)
+			for(var/turf/T in src.locs)
+				for(var/atom/movable/AM in T.contents)
+					eat_atom(AM)
+				eat_atom(T)
 
 /obj/machinery/the_singularity/Move(atom/target)
 	. = ..()
 	if(isturf(target))
-		for(var/turf/T in src.locs)
-			for(var/atom/movable/AM in T.contents)
-				eat_atom(AM)
-			eat_atom(T)
+		SPAWN_DBG(0)
+			for(var/turf/T in src.locs)
+				for(var/atom/movable/AM in T.contents)
+					eat_atom(AM)
+				eat_atom(T)
 
 /obj/machinery/the_singularity/Bumped(atom/A)
 	if(eat_atom(A))
@@ -337,7 +340,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	. = ..()
 
 /obj/machinery/the_singularity/HasEntered(atom/movable/AM, atom/OldLoc)
-	eat_atom(AM)
+	SPAWN_DBG(0)
+		eat_atom(AM)
 
 /obj/machinery/the_singularity/proc/eat_atom(atom/A)
 	var/gain = 0
@@ -354,7 +358,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	if (isliving(A) && !isintangible(A))//if its a mob
 		var/mob/living/L = A
-		L.set_loc(src.get_center())
+		//L.set_loc(src.get_center())
 		gain = 20
 		if (ishuman(L))
 			var/mob/living/carbon/human/H = A
@@ -394,7 +398,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 		var/obj/O = A
 		O.ex_act(OLD_EX_TOTAL)
-		O.set_loc(src.get_center())
+		//O.set_loc(src.get_center())
 		if (O)
 			qdel(O)
 		gain = 2
@@ -405,7 +409,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if (istype(T, /turf/floor))
 				T.ReplaceWithSpace()
 				gain = 2
-			else
+			else if(!istype(T, /turf/space))
 				T.ReplaceWithFloor()
 		else
 			return TRUE
@@ -576,9 +580,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if (src.active != act)
 			src.active = act
 			if (src.active)
-				event_handler_flags |= IMMUNE_SINGULARITY
+				event_handler_flags |= IMMUNE_SINGULARITY | Z_ANCHORED
 			else
-				event_handler_flags &= ~IMMUNE_SINGULARITY
+				event_handler_flags &= ~(IMMUNE_SINGULARITY | Z_ANCHORED)
 
 /obj/machinery/field_generator/attack_hand(mob/user as mob)
 	if(state == WELDED)
@@ -921,7 +925,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	pass_unstable = TRUE
 	anchored = ANCHORED
 	density = 0
-	event_handler_flags = USE_FLUID_ENTER | IMMUNE_SINGULARITY | USE_CANPASS
+	event_handler_flags = USE_FLUID_ENTER | IMMUNE_SINGULARITY | USE_CANPASS | Z_ANCHORED
 	var/obj/machinery/field_generator/gen_primary
 	var/obj/machinery/field_generator/gen_secondary
 	var/datum/light/light
