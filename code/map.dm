@@ -37,7 +37,8 @@ var/global/list/mapNames = list(
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	//"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
 	"Oshan Laboratory"= list("id" = "OSHAN", 		"settings" = "oshan", 			"playerPickable" = 1),
-	"Perduta Oil Spar" = list("id" = "PERDUTA",	"settings" = "perduta", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
+	"Perduta Oil Spar"= list("id" = "PERDUTA",	"settings" = "perduta", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
+	"Cookie" = 			list("id" = "COOKIE",	"settings" = "cookie", 	"playerPickable" = 1),
 	//"1 pamgoC" = 		list("id" = "PAMGOC", 		"settings" = "pamgoc", 			"playerPickable" = ASS_JAM),
 	//"Kondaru" = 		list("id" = "KONDARU", 		"settings" = "kondaru", 		"playerPickable" = 1,		"MaxPlayersAllowed" = 80),
 	//"Ozymandias" = 	list("id" = "OZYMANDIAS", 	"settings" = "ozymandias", 		"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
@@ -1068,6 +1069,46 @@ var/global/list/mapNames = list(
 			if(prob(7))
 				new /mob/living/critter/magindaran_horse/ai_controlled(ocean_floor_turf)
 
+
+/datum/map_settings/cookie
+	name = "COOKIE"
+	walls = /turf/wall/
+	rwalls = /turf/wall/r_wall/
+	auto_walls = 0
+	job_limits_from_landmarks = TRUE
+	goonhub_map = ""
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+	qm_supply_type = "shuttle"
+
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	escape_centcom = /area/shuttle/escape/centcom/destiny
+	escape_outpost = /area/shuttle/escape/outpost/destiny
+	escape_transit = /area/shuttle/escape/transit/destiny
+	escape_station = /area/shuttle/escape/station/destiny
+	escape_def = SHUTTLE_NORTH
+	escape_dir = NORTH
+
+/*
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+*/
+
+	valid_nuke_targets = list("the bridge" = list(/area/station/bridge))
 
 /datum/map_settings/noyade
 	name = "NOYADE"
