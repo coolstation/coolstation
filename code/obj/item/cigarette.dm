@@ -31,10 +31,7 @@
 	use_bloodoverlay = 0
 
 	setupProperties()
-		..()
-		setProperty("coldprot", 0)
-		setProperty("heatprot", 0)
-		setProperty("meleeprot", 0)
+		return
 
 	New()
 		..()
@@ -1340,3 +1337,20 @@
 
 /obj/item/device/light/zippo/borg
 	infinite_fuel = 1
+
+/* ================================================== */
+/* --------------------- Pipes ---------------------- */
+/* ================================================== */
+
+/obj/item/clothing/mask/pipe
+	name = "pipe"
+	icon = 'icons/obj/items/cigarettes.dmi'
+	wear_image_icon = 'icons/mob/mask.dmi'
+	icon_state = "pipe"
+	uses_multiple_icon_states = 1
+	item_state = "pipe"
+	force = 2
+	hit_type = DAMAGE_BLUNT
+	throw_speed = 1
+	w_class = W_CLASS_TINY
+

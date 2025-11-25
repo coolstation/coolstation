@@ -441,7 +441,7 @@ ABSTRACT_TYPE(/datum/objective/crew/chef)
 		explanation_text += "toppings."
 	check_completion()
 		return completed
-
+#undef PIZZA_OBJ_COUNT
 
 //	engineer
 ABSTRACT_TYPE(/datum/objective/crew/engineer)

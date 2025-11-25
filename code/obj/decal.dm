@@ -693,7 +693,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	var/strike_time = 1 SECOND
 	var/volume = 50
 	var/datum/light/point/light = null
-	var/light_brightness = 1.2
+	var/light_brightness = 2.2
 	var/light_atten_con = -0.03
 	var/light_r = 0.8
 	var/light_g = 0.8
