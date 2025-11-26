@@ -322,6 +322,9 @@
 		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z || src.ticks_since_combat >= src.boredom_ticks || !src.holder.owner.ai_is_valid_target(M))
 			src.queued_target = null
 			src.holder.target = null
+			var/obj/item/grab/G = src.holder.owner.equipped()
+			if(G && istype(G))
+				src.holder.owner.drop_item(G)
 			src.ticks_since_combat = 0
 			if(!src.holder.target && !GET_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown"))
 				src.holder.target = src.get_best_target(get_targets())
