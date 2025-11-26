@@ -199,6 +199,13 @@ mob/living/carbon/human/cluwne/satan/megasatan //someone can totally use this fo
 		W.transition_task = W
 		default_task = W
 
+/datum/aiHolder/wanderers
+	New()
+		. = ..()
+		var/datum/aiTask/timed/wander/s/W =  get_instance(/datum/aiTask/timed/wander/s, list(src))
+		W.transition_task = W
+		default_task = W
+
 /mob/living/carbon/human/fathergraham
 	New()
 		..()
