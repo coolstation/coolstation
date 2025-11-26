@@ -17,8 +17,9 @@
 	var/operating = 0
 	var/operation_time = 10
 	anchored = ANCHORED
-	///Attempt to close 15 seconds after opening, UNLESS interrupt_autoclose is set sometime in that interval
+	///Attempt to close 15 seconds (DEFAULT) after opening, UNLESS interrupt_autoclose is set sometime in that interval, this is configurable in autoclose_time
 	var/autoclose = 0
+	var/autoclose_time = 15 //Time in seconds that door will hold open for if autoclose is enabled
 	var/interrupt_autoclose = 0
 	var/last_used = 0
 	var/cant_emag = 0
@@ -618,7 +619,7 @@
 
 /obj/machinery/door/proc/opened()
 	if(autoclose)
-		sleep(15 SECONDS)
+		sleep(autoclose_time SECONDS)
 		if(interrupt_autoclose)
 			interrupt_autoclose = 0
 		else

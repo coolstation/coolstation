@@ -254,11 +254,11 @@
 /turf/floor/sanitary/white,
 /area/owlery/owleryhall)
 "adm" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 9;
-	icon_state = "cavern_edge3"
+/obj/indestructible/hospitalcavern{
+	icon_state = "iowall_edge1"
 	},
-/area/hospital/underground)
+/turf/floor/setpieces/hospital/cavern,
+/area/hospital)
 "ado" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -329,10 +329,11 @@
 /turf/floor/carpet/grime,
 /area/drone/office)
 "adG" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 9;
-	icon_state = "cavern_detail1"
+/obj/indestructible/hospitalcavern{
+	dir = 1;
+	icon_state = "iowall_edge1"
 	},
+/turf/floor/plating,
 /area/hospital/underground)
 "adJ" = (
 /obj/storage/closet/syndicate,
@@ -482,11 +483,12 @@
 /turf/floor/setpieces/iomoon/crust/arena,
 /area/afterlife/arena)
 "aeJ" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 5;
-	icon_state = "cavern_detail1"
+/obj/indestructible/hospitalcavern{
+	dir = 1;
+	icon_state = "iowall_detail2"
 	},
-/area/hospital/underground)
+/turf/floor/setpieces/hospital/cavern,
+/area/hospital)
 "aeK" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -886,16 +888,11 @@
 	},
 /turf/floor/setpieces/iomoon/crust/arena,
 /area/afterlife/arena)
-"aiL" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 6;
-	icon_state = "cavern_detail1"
-	},
-/area/hospital)
 "aiN" = (
-/turf/wall/setpieces/hospital/cavern{
-	icon_state = "cavern_edge1"
+/obj/indestructible/hospitalcavern{
+	icon_state = "iowall_edge3"
 	},
+/turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "ajf" = (
 /turf/wall/setpieces/hospital{
@@ -932,17 +929,6 @@
 	pixel_y = 8
 	},
 /turf/floor/carpet/office,
-/area/hospital)
-"ajB" = (
-/turf/wall/setpieces/hospital/cavern{
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
-"ajD" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 10;
-	icon_state = "cavern_detail2"
-	},
 /area/hospital)
 "ajS" = (
 /obj/machinery/door/airlock/glass{
@@ -1208,20 +1194,15 @@
 /obj/map/light/dimred,
 /turf/floor/setpieces/iomoon/crust/arena,
 /area/afterlife/arena)
-"ani" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 6;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
 "anj" = (
 /turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "ank" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 10;
-	icon_state = "cavern_edge3"
+/obj/indestructible/hospitalcavern{
+	dir = 1;
+	icon_state = "iowall_edge1"
 	},
+/turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "anv" = (
 /obj/decal/fakeobjects/thrust{
@@ -1687,12 +1668,6 @@
 	id = "hospital1"
 	},
 /turf/floor/plating,
-/area/hospital)
-"ast" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 8;
-	icon_state = "cavern_edge1"
-	},
 /area/hospital)
 "asu" = (
 /turf/floor/bluewhite{
@@ -2237,12 +2212,6 @@
 /obj/item/clothing/suit/straight_jacket,
 /turf/floor/white,
 /area/hospital)
-"ayx" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 1;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital/underground)
 "ayy" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "Probably shouldn't drink the water here.";
@@ -2636,10 +2605,11 @@
 /turf/floor/white,
 /area/hospital)
 "aBG" = (
-/turf/wall/setpieces/hospital/cavern{
+/obj/indestructible/hospitalcavern{
 	dir = 4;
-	icon_state = "cavern_edge2"
+	icon_state = "iowall_edge3"
 	},
+/turf/floor/plating,
 /area/hospital/underground)
 "aBI" = (
 /obj/decal/fakeobjects{
@@ -2809,10 +2779,11 @@
 	},
 /area/hospital)
 "aCu" = (
-/turf/wall/setpieces/hospital/cavern{
+/obj/indestructible/hospitalcavern{
 	dir = 5;
-	icon_state = "cavern_edge2"
+	icon_state = "iowall_edge1"
 	},
+/turf/floor/plating,
 /area/hospital/underground)
 "aCy" = (
 /obj/decal/fakeobjects{
@@ -8363,11 +8334,10 @@
 /turf/floor/carpet/arcade,
 /area/hospital)
 "blm" = (
-/turf/wall/setpieces/hospital/cavern{
-	density = 0;
-	dir = 6;
-	icon_state = "cavern_edge3"
+/obj/indestructible/hospitalcavern{
+	icon_state = "iowall_detail3"
 	},
+/turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "bln" = (
 /obj/decal/mushrooms/type1,
@@ -10579,10 +10549,11 @@
 /turf/floor/white/grime,
 /area/hospital)
 "bJH" = (
-/turf/wall/setpieces/hospital/cavern{
+/obj/indestructible/hospitalcavern{
 	dir = 8;
-	icon_state = "cavern_edge3"
+	icon_state = "iowall_edge3"
 	},
+/turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "bJI" = (
 /obj/stool/chair/comfy/red,
@@ -10819,26 +10790,22 @@
 	name = "mossy dirt"
 	},
 /area/catacombs)
-"bKu" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 9;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
 "bKv" = (
-/turf/wall/setpieces/hospital/cavern{
+/obj/indestructible/hospitalcavern{
 	dir = 1;
-	icon_state = "cavern_edge3"
+	icon_state = "iowall_detail3"
 	},
+/turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "bKw" = (
 /turf/floor/void,
 /area/crunch)
 "bKx" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 9;
-	icon_state = "cavern_detail1"
+/obj/indestructible/hospitalcavern{
+	dir = 10;
+	icon_state = "iowall_edge1"
 	},
+/turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "bKy" = (
 /obj/decal/fakeobjects{
@@ -12773,10 +12740,11 @@
 /turf/floor/white,
 /area/hospital)
 "bQC" = (
-/turf/wall/setpieces/hospital/cavern{
+/obj/indestructible/hospitalcavern{
 	dir = 4;
-	icon_state = "cavern_edge1"
+	icon_state = "iowall_edge3"
 	},
+/turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "bQD" = (
 /obj/decal/fakeobjects{
@@ -13972,10 +13940,11 @@
 /turf/floor/white,
 /area/hospital)
 "bUJ" = (
-/turf/wall/setpieces/hospital/cavern{
+/obj/indestructible/hospitalcavern{
 	dir = 4;
-	icon_state = "cavern_edge2"
+	icon_state = "iowall_edge1"
 	},
+/turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "bUK" = (
 /obj/table,
@@ -17312,10 +17281,11 @@
 /turf/floor/grass/random,
 /area/afterlife/heaven)
 "cgg" = (
-/turf/wall/setpieces/hospital/cavern{
+/obj/indestructible/hospitalcavern{
 	dir = 4;
-	icon_state = "cavern_edge3"
+	icon_state = "iowall_detail1"
 	},
+/turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "cgh" = (
 /obj/decal/floatingtiles{
@@ -17660,12 +17630,6 @@
 /obj/swapAreaLowerLeft,
 /turf/space/no_replace,
 /area/swap)
-"che" = (
-/turf/wall/setpieces/hospital/cavern{
-	dir = 5;
-	icon_state = "cavern_edge3"
-	},
-/area/hospital)
 "chf" = (
 /obj/machinery/light/small/iomoon{
 	dir = 8;
@@ -17921,10 +17885,11 @@
 	name = "Thunderdome Lounge"
 	})
 "chL" = (
-/turf/wall/setpieces/hospital/cavern{
+/obj/indestructible/hospitalcavern{
 	dir = 5;
-	icon_state = "cavern_detail1"
+	icon_state = "iowall_edge1"
 	},
+/turf/floor/setpieces/hospital/cavern,
 /area/hospital)
 "chM" = (
 /obj/machinery/door/airlock/maintenance{
@@ -18082,11 +18047,11 @@
 	},
 /area/sim/racing_entry)
 "cio" = (
-/turf/wall{
+/obj/indestructible/shuttle_corner{
 	dir = 1;
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+	icon_state = "wall_trans"
 	},
+/turf/floor/void/channel,
 /area/adventure/channel)
 "cis" = (
 /obj/decal/fakeobjects{
@@ -19526,9 +19491,12 @@
 	},
 /area/hospital/samostrel)
 "cob" = (
-/turf/wall{
+/obj/indestructible/shuttle_corner{
+	icon_state = "wall_trans"
+	},
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
 "cod" = (
@@ -30477,10 +30445,10 @@
 	},
 /area/owlery/owllock)
 "cXg" = (
-/turf/wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+/obj/indestructible/shuttle_corner{
+	icon_state = "wall_trans"
 	},
+/turf/floor/void/channel,
 /area/adventure/channel)
 "cXh" = (
 /obj/machinery/door_control{
@@ -30524,11 +30492,11 @@
 	},
 /area/hospital/samostrel)
 "cXl" = (
-/turf/wall{
+/obj/indestructible/shuttle_corner{
 	dir = 4;
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+	icon_state = "wall_trans"
 	},
+/turf/floor/void/channel,
 /area/adventure/channel)
 "cXq" = (
 /turf/floor/redblack{
@@ -31655,9 +31623,9 @@
 /area/crunch)
 "daW" = (
 /obj/decal/fakeobjects/palmtree{
-	pixel_y = 20;
 	dir = 8;
-	pixel_x = -20
+	pixel_x = -20;
+	pixel_y = 20
 	},
 /turf/floor/blank,
 /area/titlescreen/coolisland)
@@ -31921,6 +31889,7 @@
 	density = 0;
 	dir = 4;
 	icon = 'icons/obj/doors/sovblastdoor.dmi';
+	icon_base = "bdoorleft";
 	icon_state = "bdoorleft0";
 	id = "samostrel_nuke_outer";
 	opacity = 0
@@ -32179,6 +32148,7 @@
 	density = 0;
 	dir = 4;
 	icon = 'icons/obj/doors/sovblastdoor.dmi';
+	icon_base = "bdoormid";
 	icon_state = "bdoormid0";
 	id = "samostrel_nuke_outer";
 	opacity = 0
@@ -32193,6 +32163,7 @@
 	density = 0;
 	dir = 4;
 	icon = 'icons/obj/doors/sovblastdoor.dmi';
+	icon_base = "bdoorright";
 	icon_state = "bdoorright0";
 	id = "samostrel_nuke_outer";
 	opacity = 0
@@ -32456,11 +32427,11 @@
 /turf/floor/plating,
 /area/hospital/samostrel)
 "djD" = (
-/turf/wall{
+/obj/indestructible/shuttle_corner{
 	dir = 4;
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall3"
+	icon_state = "wall3_trans"
 	},
+/turf/floor/engine/caution/east,
 /area/hospital/samostrel)
 "djE" = (
 /obj/decal/fakeobjects{
@@ -33071,11 +33042,11 @@
 	},
 /area/hospital/samostrel)
 "dmS" = (
-/turf/wall{
+/obj/indestructible/shuttle_corner{
 	dir = 8;
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+	icon_state = "wall_trans"
 	},
+/turf/floor/void/channel,
 /area/adventure/channel)
 "dmU" = (
 /obj/grille/steel,
@@ -33355,10 +33326,13 @@
 /turf/floor,
 /area/hospital/samostrel)
 "dos" = (
-/turf/wall{
+/obj/indestructible/shuttle_corner{
 	dir = 1;
+	icon_state = "wall_trans"
+	},
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
 "dox" = (
@@ -33381,10 +33355,13 @@
 /turf/floor/plating,
 /area/hospital/samostrel)
 "doA" = (
-/turf/wall{
+/obj/indestructible/shuttle_corner{
 	dir = 4;
+	icon_state = "wall_trans"
+	},
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
 "doF" = (
@@ -33421,10 +33398,13 @@
 	},
 /area/hospital/samostrel)
 "doP" = (
-/turf/wall{
+/obj/indestructible/shuttle_corner{
 	dir = 8;
+	icon_state = "wall_trans"
+	},
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+	icon_state = "floor3"
 	},
 /area/hospital/samostrel)
 "doS" = (
@@ -35635,9 +35615,12 @@
 	},
 /area/meat_derelict/soviet)
 "dCq" = (
-/turf/wall{
+/obj/indestructible/shuttle_corner{
+	icon_state = "wall_trans"
+	},
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
 "dCr" = (
@@ -35670,11 +35653,11 @@
 /turf/floor/setpieces/bloodfloor/stomach,
 /area/meat_derelict/guts)
 "dCu" = (
-/turf/wall{
-	dir = 6;
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+/obj/indestructible/shuttle_corner{
+	dir = 1;
+	icon_state = "wall_trans"
 	},
+/turf/floor,
 /area/meat_derelict/soviet)
 "dCv" = (
 /obj/decal/fakeobjects/lightbulb_broken,
@@ -35843,10 +35826,13 @@
 	},
 /area/meat_derelict/soviet)
 "dCV" = (
-/turf/wall{
+/obj/indestructible/shuttle_corner{
 	dir = 8;
+	icon_state = "wall_trans"
+	},
+/turf/floor{
 	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "diagonalWall"
+	icon_state = "floor3"
 	},
 /area/meat_derelict/soviet)
 "dCW" = (
@@ -36949,10 +36935,10 @@
 /area/crunch)
 "flI" = (
 /obj/decal/fakeobjects/bumble{
-	name = "strange canister";
-	icon_state = "green";
-	icon = 'icons/obj/atmospherics/atmos.dmi';
 	desc = "What the hell is this?";
+	icon = 'icons/obj/atmospherics/atmos.dmi';
+	icon_state = "green";
+	name = "strange canister";
 	plane = -101
 	},
 /obj/indestructible/invisible_block,
@@ -36975,10 +36961,10 @@
 /area/owlery/owllock)
 "fty" = (
 /obj/decal/fakeobjects/bumble{
-	name = "strange canister";
-	icon_state = "green";
-	icon = 'icons/obj/atmospherics/atmos.dmi';
 	desc = "What the hell is this?";
+	icon = 'icons/obj/atmospherics/atmos.dmi';
+	icon_state = "green";
+	name = "strange canister";
 	plane = -101
 	},
 /turf/floor/blank,
@@ -37126,10 +37112,10 @@
 	icon = 'icons/obj/large/64x64.dmi';
 	icon_state = "bile";
 	layer = 29;
-	plane = -99;
 	level = 1;
+	pixel_x = -15;
 	pixel_y = -4;
-	pixel_x = -15
+	plane = -99
 	},
 /turf/floor/blank,
 /area/titlescreen/coolisland)
@@ -37382,6 +37368,13 @@
 	},
 /turf/floor/arctic/snow/ice,
 /area/lower_arctic/mining)
+"gwh" = (
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall_trans"
+	},
+/turf/floor,
+/area/hospital/samostrel)
 "gww" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks,
 /obj/machinery/door/poddoor/blast/lunar/tour{
@@ -37514,8 +37507,8 @@
 /area/afterlife/heaven)
 "gKx" = (
 /obj/machinery/portable_atmospherics/canister/farts/filled{
-	name = "strange canister";
-	desc = "What the hell is this?"
+	desc = "What the hell is this?";
+	name = "strange canister"
 	},
 /turf/floor/blank,
 /area/titlescreen/coolisland)
@@ -40706,10 +40699,10 @@
 /area/upper_arctic/fita/mining)
 "nUy" = (
 /obj/decal/fakeobjects/bumble{
+	desc = "An old beach ball drifting in the acid.";
 	icon = 'icons/misc/beach.dmi';
 	icon_state = "ball";
 	name = "beach ball";
-	desc = "An old beach ball drifting in the acid.";
 	plane = -101
 	},
 /obj/indestructible/invisible_block,
@@ -40946,10 +40939,10 @@
 	icon = 'icons/obj/large/64x64.dmi';
 	icon_state = "bile";
 	layer = 29;
-	plane = -99;
 	level = 1;
+	pixel_x = -15;
 	pixel_y = -4;
-	pixel_x = -15
+	plane = -99
 	},
 /obj/indestructible/invisible_block,
 /turf/floor/blank,
@@ -41293,13 +41286,19 @@
 	icon = 'icons/obj/large/64x64.dmi';
 	icon_state = "bile";
 	layer = 29;
-	plane = -99;
 	level = 1;
+	pixel_x = -15;
 	pixel_y = -4;
-	pixel_x = -15
+	plane = -99
 	},
 /turf/floor/blank,
 /area/titlescreen/coolisland)
+"pdm" = (
+/obj/indestructible/shuttle_corner{
+	icon_state = "wall_trans"
+	},
+/turf/floor,
+/area/hospital/samostrel)
 "pdC" = (
 /obj/landmark/chess{
 	name = "b_pawn"
@@ -41644,33 +41643,33 @@
 /area/shuttle/escape/transit/battle_shuttle)
 "pZd" = (
 /obj/decal/fakeobjects{
-	name = "meat island";
 	icon = 'icons/coolisland.dmi';
 	icon_state = "coolisland";
 	layer = 0.5;
-	plane = -112;
 	level = 1;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "meat island";
+	plane = -112
 	},
 /obj/landmark{
 	name = "lobby_leftside"
 	},
 /obj/decal/fakeobjects/waves{
-	name = "bile ocean";
 	icon = 'icons/coolisland.dmi';
 	icon_state = "bile";
 	layer = 0.5;
-	plane = -112;
 	level = 1;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "bile ocean";
+	plane = -112
 	},
 /obj/decal/fakeobjects{
 	icon = 'icons/coolisland.dmi';
 	icon_state = "vin";
 	layer = 500;
-	plane = -10;
 	level = 1;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	plane = -10
 	},
 /turf/floor/blank,
 /area/titlescreen/coolisland)
@@ -42631,8 +42630,8 @@
 "sig" = (
 /obj/decal/stage_edge/dojo,
 /obj/machinery/portable_atmospherics/canister/farts/filled{
-	name = "strange canister";
-	desc = "What the hell is this?"
+	desc = "What the hell is this?";
+	name = "strange canister"
 	},
 /turf/floor/blank,
 /area/titlescreen/coolisland)
@@ -42744,10 +42743,10 @@
 	desc = "Uh oh.";
 	icon = 'icons/mob/human.dmi';
 	icon_state = "husk_l";
-	name = "unknown";
 	layer = 2;
-	pixel_y = 5;
-	pixel_x = 31
+	name = "unknown";
+	pixel_x = 31;
+	pixel_y = 5
 	},
 /turf/floor/blank,
 /area/titlescreen/coolisland)
@@ -43108,10 +43107,10 @@
 /area/crater/cave)
 "tbI" = (
 /obj/decal/fakeobjects/bumble{
-	name = "rubber duck";
-	icon_state = "rubber_duck";
-	icon = 'icons/obj/items/items.dmi';
 	desc = "Homie is chilling.";
+	icon = 'icons/obj/items/items.dmi';
+	icon_state = "rubber_duck";
+	name = "rubber duck";
 	plane = -101
 	},
 /turf/floor/blank,
@@ -43518,6 +43517,13 @@
 	},
 /turf/floor/red,
 /area/owlery/gangzone)
+"udT" = (
+/obj/indestructible/shuttle_corner{
+	dir = 1;
+	icon_state = "wall_trans"
+	},
+/turf/floor,
+/area/hospital/samostrel)
 "udY" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 10
@@ -61975,7 +61981,7 @@ toQ
 dti
 toQ
 cqu
-doP
+gwh
 sna
 dtp
 dtp
@@ -62290,7 +62296,7 @@ cuM
 cXj
 doc
 cuT
-doP
+gwh
 xXO
 doS
 doS
@@ -62894,7 +62900,7 @@ cuM
 dnn
 doe
 dok
-dos
+udT
 xXO
 doA
 toQ
@@ -63793,10 +63799,10 @@ crh
 dtp
 dop
 cuT
-doP
+gwh
 sna
 sna
-cob
+pdm
 doe
 doj
 cuT
@@ -64102,7 +64108,7 @@ sna
 ezs
 dtp
 don
-doP
+gwh
 xXO
 dgc
 toQ
@@ -69975,8 +69981,8 @@ aab
 aab
 aaa
 abp
+bQC
 abp
-aiL
 abp
 abp
 ais
@@ -70277,9 +70283,9 @@ aab
 aab
 aaa
 abp
-aiL
-ani
+blm
 anj
+chL
 ahK
 aAz
 avi
@@ -70579,7 +70585,7 @@ aab
 aab
 aaa
 abp
-aiN
+anj
 anj
 anj
 ass
@@ -70881,7 +70887,7 @@ aab
 aab
 aaa
 abp
-ajB
+blm
 anj
 aqy
 ahK
@@ -71183,10 +71189,10 @@ aab
 aab
 aaa
 abp
-aiN
 anj
 anj
 anj
+chL
 aqH
 adi
 ard
@@ -71485,8 +71491,8 @@ aab
 aab
 aaa
 abp
-ajD
-ank
+bKx
+anj
 anj
 anj
 anj
@@ -71511,8 +71517,8 @@ aiw
 bLK
 ayO
 aiw
-aiL
-aiL
+abp
+abp
 aAz
 bZv
 ayO
@@ -71788,7 +71794,7 @@ aab
 aaa
 abp
 abp
-ajB
+anj
 anj
 anj
 anj
@@ -71821,10 +71827,10 @@ caX
 ccR
 ahK
 aAz
-bUJ
+bQC
 cgg
-ani
-bKv
+bQC
+bQC
 abp
 abp
 abp
@@ -72090,8 +72096,8 @@ aaa
 aaa
 abp
 abp
-ajD
-ank
+bKx
+anj
 anj
 anj
 avl
@@ -72126,7 +72132,7 @@ avl
 anj
 anj
 anj
-che
+anj
 chL
 abp
 abp
@@ -72393,9 +72399,9 @@ abp
 abp
 abp
 abp
-ajD
-ast
-ank
+bJH
+bKx
+anj
 avl
 axg
 anP
@@ -72411,10 +72417,10 @@ bko
 bll
 boe
 aiw
-aiL
-blm
-bKj
 anj
+anj
+bKj
+cgg
 anj
 anj
 anj
@@ -72429,7 +72435,7 @@ anj
 anj
 anj
 anj
-che
+anj
 chL
 abp
 aaa
@@ -72715,9 +72721,9 @@ ayu
 ajf
 blm
 anj
-bKu
-ast
-ank
+anj
+anj
+anj
 anj
 anj
 anj
@@ -72728,11 +72734,11 @@ ayO
 ayO
 avl
 anj
+aeJ
+abp
 anj
 anj
 anj
-anj
-bKv
 abp
 aaa
 vww
@@ -73011,10 +73017,10 @@ abp
 abp
 abp
 abp
-aiL
-blm
+adm
 anj
 anj
+cgg
 anj
 anj
 bKv
@@ -73022,19 +73028,19 @@ ais
 abH
 abH
 aqG
-anj
-avl
-ayO
-ayO
-ayO
-ayO
-avl
-anj
-anj
-anj
-anj
-bKu
 bKx
+avl
+ayO
+ayO
+ayO
+ayO
+avl
+anj
+anj
+cgg
+anj
+anj
+aeJ
 abp
 aaa
 vww
@@ -73319,7 +73325,7 @@ anj
 anj
 anj
 anj
-bKv
+anj
 aiw
 bNu
 bOL
@@ -73331,11 +73337,11 @@ caX
 ccR
 ahK
 aAz
-ast
-ast
-ast
-ast
 bKx
+anj
+anj
+anj
+ank
 abp
 abp
 aaa
@@ -86591,7 +86597,7 @@ aeK
 aet
 acO
 acD
-ayx
+aCu
 ciS
 ciS
 ciS
@@ -86892,7 +86898,7 @@ acd
 aeK
 aet
 auD
-adm
+aet
 adG
 ciS
 ciS
@@ -88105,7 +88111,7 @@ ciS
 ciS
 afh
 aBG
-aeJ
+ciS
 afh
 ciS
 aaa
