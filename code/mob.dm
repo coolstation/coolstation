@@ -1788,7 +1788,7 @@
 		for(var/atom/A in get_our_fluids_here)
 			if(isturf(A))
 				var/turf/T = A
-				T.fluid_react(src.reagents, src.reagents.total_volume, airborne=prob(10))
+				T.fluid_react(src.reagents, src.reagents.total_volume)//, airborne=prob(10))
 				continue
 			if(istype(A, /obj/decal/cleanable)) // expand reagents
 				if(isnull(A.reagents))

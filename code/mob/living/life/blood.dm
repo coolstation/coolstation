@@ -123,7 +123,6 @@
 			if (prob(10))
 				owner.visible_message("<span class='alert'><b>[owner] bursts like a bloody balloon! Holy fucking shit!!</b></span>")
 				var/turf/t = get_turf(owner)
-				t.fluid_react(src.reagents, current_blood_amt)
 				owner.gib(1) // :v
 				return ..()
 
