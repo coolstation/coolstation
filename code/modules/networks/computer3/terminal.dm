@@ -118,7 +118,7 @@ file_save - Save file to local disk."}
 					src.print_text("Alert: Connection required.")
 					return
 				src.ping_wait = 2
-				if (issilicon(usr) || isAI(usr))
+				if (issilicon(usr) || isAI(usr) || isnanites(usr))
 					var/datum/signal/newsig = new
 					newsig.data["registered"] = isAI(usr) ? "AI" : "CYBORG"
 					newsig.data["assignment"] = "AI"
