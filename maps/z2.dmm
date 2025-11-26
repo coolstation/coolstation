@@ -483,12 +483,9 @@
 /turf/floor/setpieces/iomoon/crust/arena,
 /area/afterlife/arena)
 "aeJ" = (
-/obj/indestructible/hospitalcavern{
-	dir = 1;
-	icon_state = "iowall_detail2"
-	},
-/turf/floor/setpieces/hospital/cavern,
-/area/hospital)
+/obj/wingrille_spawn/reinforced/full,
+/turf/floor/plating,
+/area/shuttle/john/owlery)
 "aeK" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -1200,7 +1197,7 @@
 "ank" = (
 /obj/indestructible/hospitalcavern{
 	dir = 1;
-	icon_state = "iowall_edge1"
+	icon_state = "iowall_detail2"
 	},
 /turf/floor/setpieces/hospital/cavern,
 /area/hospital)
@@ -10790,6 +10787,13 @@
 	name = "mossy dirt"
 	},
 /area/catacombs)
+"bKu" = (
+/obj/indestructible/hospitalcavern{
+	dir = 1;
+	icon_state = "iowall_edge1"
+	},
+/turf/floor/setpieces/hospital/cavern,
+/area/hospital)
 "bKv" = (
 /obj/indestructible/hospitalcavern{
 	dir = 1;
@@ -17630,6 +17634,15 @@
 /obj/swapAreaLowerLeft,
 /turf/space/no_replace,
 /area/swap)
+"che" = (
+/obj/racing_powerup_spawner,
+/turf/wall/other{
+	icon = 'icons/misc/racing.dmi';
+	icon_state = "barrier_red";
+	name = "barrier";
+	opacity = 0
+	},
+/area/sim/racing_track)
 "chf" = (
 /obj/machinery/light/small/iomoon{
 	dir = 8;
@@ -46757,8 +46770,8 @@ aNz
 buQ
 caN
 cFc
-cfa
-cfa
+aeJ
+aeJ
 cFc
 cFc
 caT
@@ -49173,8 +49186,8 @@ but
 car
 caS
 cFc
-cfa
-cfa
+aeJ
+aeJ
 cFc
 cFc
 cJB
@@ -72734,7 +72747,7 @@ ayO
 ayO
 avl
 anj
-aeJ
+ank
 abp
 anj
 anj
@@ -73040,7 +73053,7 @@ anj
 cgg
 anj
 anj
-aeJ
+ank
 abp
 aaa
 vww
@@ -73341,7 +73354,7 @@ bKx
 anj
 anj
 anj
-ank
+bKu
 abp
 abp
 aaa
@@ -75966,16 +75979,16 @@ aaa
 aaa
 aaa
 aaa
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 bXs
 bOi
@@ -76267,17 +76280,17 @@ dTQ
 dTQ
 dTQ
 dTQ
-aaa
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
 aaa
 bXs
 bOi
@@ -76569,17 +76582,17 @@ dTQ
 dTQ
 dTQ
 dTQ
-aaa
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
+dTQ
 aaa
 bXs
 bOi
@@ -76871,17 +76884,17 @@ bRh
 bME
 bME
 dTQ
-aaa
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+dTQ
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
 aaa
 bXs
 bOi
@@ -77173,17 +77186,17 @@ bRh
 bNg
 bME
 bME
-aaa
-aaa
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bME
 aaa
 bXs
 bWN
@@ -77475,17 +77488,17 @@ bRh
 bNg
 bNg
 bME
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
 bME
-aaa
-aaa
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
 aaa
 bXs
 bXs
@@ -77779,15 +77792,15 @@ bNg
 bNg
 bME
 bME
-aaa
-aaa
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bME
 aaa
 bXs
 bXs
@@ -78081,15 +78094,15 @@ bNg
 bNg
 bNg
 bME
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
 bME
-aaa
-aaa
-vww
-vww
-vww
-vww
-vww
-vww
 aaa
 bXs
 bXs
@@ -78384,14 +78397,14 @@ bNg
 bNg
 bNg
 bME
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
 bME
-aaa
-vww
-vww
-vww
-vww
-vww
-vww
 aaa
 bXs
 bWO
@@ -78687,13 +78700,13 @@ bRh
 bNg
 bNg
 bME
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
+bME
 aaa
 bXs
 bOi
@@ -78989,12 +79002,12 @@ bQR
 bQR
 dTL
 bME
-bME
-bME
-bME
-bME
-bME
-bME
+bNi
+bNi
+bNi
+bNi
+bNi
+bNi
 bME
 aaa
 bXs
@@ -89829,6 +89842,7 @@ bHH
 bHH
 bHH
 bHH
+bHH
 aaa
 aaa
 aaa
@@ -89836,7 +89850,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
 vww
 vww
 vww
@@ -89869,7 +89882,7 @@ vww
 vww
 vww
 aaa
-bOC
+che
 bXg
 bXg
 bOB
@@ -90132,7 +90145,7 @@ aaa
 aaa
 aaa
 aaa
-vww
+aaa
 vww
 vww
 vww
@@ -90172,7 +90185,7 @@ vww
 vww
 aaa
 bUm
-bUm
+bOB
 bUm
 bUm
 bUm
@@ -90473,7 +90486,7 @@ vww
 vww
 vww
 aaa
-bOB
+bUm
 bOB
 bOB
 chC
@@ -110585,13 +110598,13 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 vww
 vww
 vww
