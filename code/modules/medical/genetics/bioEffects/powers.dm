@@ -2229,7 +2229,43 @@
 						if (thrown_limb)
 							thrown_limb.throwforce = tmp_force
 
-////////////////
+
+/// Comedy Powers /////
+
+
+/datum/targetable/press_x_to_shaun
+	name = "SHAUN"
+	desc = "Call for your son, Shaun."
+	icon = 'icons/ui/misc.dmi'
+	icon_state = "shaunButton"
+	targeted = 0
+	cooldown = 20
+
+	cast()
+		var/shaun = 0
+		pick (
+			prob(30); shaun = 1,
+			prob(30); shaun = 2,
+			prob(20); shaun = 3,
+			prob(20); shaun = 4,
+		)
+		if(shaun == 1)
+			usr.say("SHAUN!")
+			playsound(usr.loc, "sound/misc/funny/Shaun1.ogg", 75, 0, 2)
+		else if(shaun == 2)
+			usr.say("SHAUN!!")
+			playsound(usr.loc, "sound/misc/funny/Shaun2.ogg", 75, 0, 2)
+		else if(shaun == 3)
+			usr.say("SHAAAAAAAAAUN!!!")
+			playsound(usr.loc, "sound/misc/funny/Shaun3.ogg", 75, 0, 2)
+		else if(shaun == 4)
+			usr.say("SHAUN WHERE ARE YOU?!")
+			playsound(usr.loc, "sound/misc/funny/Shaun4.ogg", 75, 0, 2)
+
+
+
+
+/// ////////////////
 // Admin Only //
 ////////////////
 
