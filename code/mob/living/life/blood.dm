@@ -107,8 +107,8 @@
 			current_blood_amt += cho_amt * mult
 		current_blood_amt = round(current_blood_amt, 1)
 
-		var/current_systolic = round((current_blood_amt * 0.24), 1)
-		var/current_diastolic = round((current_blood_amt * 0.16), 1)
+		var/current_systolic = round((current_blood_amt / owner.ideal_blood_volume * 120), 1)
+		var/current_diastolic = round((current_blood_amt / owner.ideal_blood_volume * 80), 1)
 		owner.blood_pressure["systolic"] = current_systolic
 		owner.blood_pressure["diastolic"] = current_diastolic
 		owner.blood_pressure["rendered"] = "[max(rand(current_systolic-5,current_systolic+5), 0)]/[max(rand(current_diastolic-2,current_diastolic+2), 0)]"
