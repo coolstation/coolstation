@@ -182,17 +182,26 @@
 	plane = PLANE_HUD
 	anchored = ANCHORED
 
-proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time=2 SECONDS, invisibility=0)
+proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time=2 SECONDS, invisibility=INVIS_NONE, atom/movable/pointer)
 	// note that `target` can also be a turf, but byond sux and I can't declare the var as atom because areas don't have vis_contents
+	if(QDELETED(target)) return
 	var/obj/decal/point/point = new
+	pixel_x -= 16 - target.pixel_x
+	pixel_y -= 16 - target.pixel_y
 	point.pixel_x = pixel_x
 	point.pixel_y = pixel_y
 	point.color = color
 	point.invisibility = invisibility
-	target.vis_contents += point
+	var/turf/target_turf = get_turf(target)
+	target_turf.vis_contents += point
+	if(pointer)
+		var/matrix/M = matrix()
+		M.Translate((pointer.x - target_turf.x)*32 - pixel_x, (pointer.y - target_turf.y)*32 - pixel_y)
+		point.transform = M
+		animate(point, transform=null, time=1)
 	SPAWN_DBG(time)
-		if(target)
-			target.vis_contents -= point
+		if(target_turf)
+			target_turf.vis_contents -= point
 		qdel(point)
 	return point
 
@@ -273,8 +282,13 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 
 /obj/decal/fakeobjects/waves
 	New()
-		..()
+		. = ..()
 		animate_wave(src)
+
+/obj/decal/fakeobjects/bumble
+	New()
+		. = ..()
+		animate_bumble(src)
 
 /obj/decal/fakeobjects/robot
 	name = "Inactive Robot"
@@ -598,34 +612,44 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	anchored = ANCHORED
 
 /obj/decal/landing_gear_prints_gehenna
-	name = null
+	name = "landing gear prints"
 	desc = null
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "landing_gear_gehenna"
 	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
-	plane = PLANE_NOSHADOW_BELOW
-	layer = TURF_LAYER - 0.1
+	plane = PLANE_FLOOR
+	layer = TURF_OVERLAY_LAYER
+
 	//Grabs turf color set in gehenna.dm for sand
 	New()
 		..()
+		STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen()
+		. = ..()
 		var/turf/T = get_turf(src)
 		src.color = T.color
 
 /obj/decal/beaten_edge_thin
-	name = null
+	name = "sandy edge"
 	desc = null
 	icon = 'icons/turf/gehenna_overlays.dmi'
 	icon_state = "beaten_edge_thin"
 	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
-	plane = PLANE_NOSHADOW_BELOW
-	layer = TURF_LAYER - 0.1
+	plane = PLANE_FLOOR
+	layer = TURF_OVERLAY_LAYER
+
 	//Grabs turf color set in gehenna.dm for sand
 	New()
 		..()
+		STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen()
+		. = ..()
 		var/turf/T = get_turf(src)
 		src.color = T.color
 
@@ -669,7 +693,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	var/strike_time = 1 SECOND
 	var/volume = 50
 	var/datum/light/point/light = null
-	var/light_brightness = 1.2
+	var/light_brightness = 2.2
 	var/light_atten_con = -0.03
 	var/light_r = 0.8
 	var/light_g = 0.8
@@ -706,4 +730,5 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	icon_state = "myliemural"
 	bound_height = 160
 	bound_width = 128
-	plane = PLANE_NOSHADOW_BELOW
+	plane = PLANE_FLOOR
+	layer = TURF_OVERLAY_LAYER

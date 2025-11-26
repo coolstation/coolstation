@@ -153,7 +153,9 @@
 
 	if(src.ai_type)
 		src.is_npc = TRUE
-		src.ai = new ai_type(src)
+		if(istext(src.ai_type))
+			src.ai_type = text2path(src.ai_type)
+		src.ai = new src.ai_type(src)
 
 	SPAWN_DBG(0)
 		src.get_static_image()
@@ -509,7 +511,7 @@
 			return
 
 		if (src.in_point_mode || (src.client && src.client.check_key(KEY_POINT)))
-			src.point(target)
+			src.point_at(target, text2num(params["icon-x"]), text2num(params["icon-y"]))
 			if (src.in_point_mode)
 				src.toggle_point_mode()
 			return
@@ -639,7 +641,7 @@
 	src.in_point_mode = !(src.in_point_mode)
 	src.update_cursor()
 
-/mob/living/point_at(var/atom/target)
+/mob/living/point_at(var/atom/target, var/pixel_x, var/pixel_y)
 	if (!isturf(src.loc) || !isalive(src) || src.restrained())
 		return
 
@@ -661,8 +663,7 @@
 			src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
 		else
 			src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
-
-	make_point(get_turf(target), pixel_x=target.pixel_x, pixel_y=target.pixel_y, color=src.bioHolder.mobAppearance.customization_first_color)
+	make_point(target, pixel_x=pixel_x, pixel_y=pixel_y, color=src.bioHolder.mobAppearance.customization_first_color, pointer = src)
 
 
 /mob/living/proc/set_burning(var/new_value)
@@ -2392,7 +2393,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /// the higher the returned value, the better the target is. assume that the target is valid.
 /mob/living/proc/ai_rate_target(mob/M)
-	return 1
+	return !isdead(M)
 
 /mob/living/proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
 	remove_lifeprocess(/datum/lifeprocess/blood)

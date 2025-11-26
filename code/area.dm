@@ -131,7 +131,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/workplace = 0
 
 	var/list/obj/critter/registered_critters = list()
-	var/list/obj/critter/registered_mob_critters = list()
+	var/list/mob/living/critter/registered_mob_critters = list()
 	var/waking_critters = 0
 
 	// this chunk zone is for Area Ambience
@@ -145,9 +145,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/tmp/played_fx_2 = 0
 	var/sound_group = null
 	var/sound_group_varied = null //crossfade between sounds in group, outside is rain inside is rain on roof etc
-	var/sandstorm = FALSE
-	var/blowOrigin = 0
-	var/sandstormIntensity = 0
+//	var/sandstorm = FALSE
+//	var/blowOrigin = 0
+//	var/sandstormIntensity = 0
 
 	/// default environment for sounds - see sound datum vars documentation for the presets.
 	var/sound_environment = EAX_PADDED_CELL
@@ -224,7 +224,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				//7 is 75%
 				//9 is 80%
 				//20 is 95% and is a special case to just mute the sound without stopping it
-				if(M.loc.loc.type == /area/gehenna)
+				if(M.loc.loc.type == /area/gehenna || istype(M.loc.loc, /area/shuttle))
 					insideness = 1
 
 				else if(M.loc.loc.type != /area/space) //bleh
@@ -237,6 +237,8 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				//non-space area that's insulated but adjacent to /area/space (window, wall)
 				//non-space area that's insulated but not adjacent (deep in station)
 				M.client.playAmbienceZ(M.z, insideness)
+				#elif defined(MAGINDARA_MAP)
+				M.client.playAmbienceZ(M.z, 1)
 				#endif
 
 				#undef AMBIENCE_ENTER_PROB
@@ -546,9 +548,12 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	teleport_blocked = 2
 	force_fullbright = 0
 	expandable = 0
-	ambient_light = rgb(79, 164, 184)
 	// filler_turf = "/turf/floor/setpieces/gauntlet"
 	is_atmos_simulated = FALSE
+
+/area/titlescreen/coolisland
+	name = "Paisano Island"
+	ambient_light = rgb(218, 235, 215)
 
 /area/cavetiny
 	name = "Caves"
@@ -2666,28 +2671,25 @@ ABSTRACT_TYPE(/area/station/com_dish)
 /area/station/com_dish
 	name = "Communications Dish"
 	icon_state = "yellow"
+#ifndef MAGINDARA_MAP
 	requires_power = FALSE
+#endif
 
-/area/station/com_dish/comdish
-	name = "Communications Dish"
-	icon_state = "yellow"
 #if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
 	force_fullbright = 1 // ????
 #endif
 
+/area/station/com_dish/comdish
+	name = "Communications Dish"
+	icon_state = "yellow"
+
 /area/station/com_dish/auxdish
 	name = "Auxilary Communications Dish"
 	icon_state = "yellow"
-#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
-	force_fullbright = 1
-#endif
 
 /area/station/com_dish/research_outpost
 	name = "Research Outpost Communications Dish"
 	icon_state = "yellow"
-#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
-	force_fullbright = 1
-#endif
 
 // engine and engineering and engineering adjacent
 

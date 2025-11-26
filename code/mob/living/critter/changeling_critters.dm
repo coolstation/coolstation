@@ -582,8 +582,8 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.limb = new /datum/limb
+		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.can_hold_items = 0
 
 	New()

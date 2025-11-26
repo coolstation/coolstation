@@ -219,7 +219,7 @@
 	// CORE SPLAT
 	gib = make_cleanable( /obj/decal/cleanable/martian_viscera/fluid,location)
 
-
+/*
 /proc/flockdronegibs(atom/location, var/list/diseases, var/list/ejectables, var/blood_DNA, var/blood_type)
 	if(!location) return
 	// WHO LIKES COPY PASTED CODE? I DO I LOVE IT DELICIOUS YUM YUM
@@ -249,3 +249,4 @@
 
 	// CORE SPLAT
 	gib = make_cleanable( /obj/decal/cleanable/flockdrone_debris/fluid,location)
+*/

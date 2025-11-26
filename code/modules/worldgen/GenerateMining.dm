@@ -3,6 +3,14 @@
 #define YES_BORDER 1
 #define BORDER_PREBAKED 2
 
+#define GEHENNA_MINING_CELL_CHANCE "27" // chance of a turf being considered alive at the start of cavegen automata
+#define GEHENNA_MINING_CELL_SMOOTHING "4" // cavegen automata life generations
+#define GEHENNA_MINING_CELL_BIRTH_ABOVE "3" // cavegen automata rule of life
+#define GEHENNA_MINING_CELL_DEATH_BELOW "3" // cavegen automata rule of death
+#define GEHENNA_MINING_HOLE_KEY "1" // "1" means living cells become holes, "0" for dead ones
+#define GEHENNA_MINING_Y_SHEAR_CHANCE 60 // probability of shearing the y on each x
+#define GEHENNA_MINING_X_STRETCHES 30 // how many x stretches are done across the entire y height
+
 var/list/miningModifiers = list()
 var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
@@ -159,7 +167,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 /datum/mapGenerator/desertCaverns
 	//I don't know why these generators bother with the miningZ var btw, the desert/trench generators didn't do anything with them before starstone generation was added
-	generate(var/list/miningZ, var/z_level = GEH_ZLEVEL, var/generate_borders = YES_BORDER)
+	//now this one doesnt use it at all, so bah!
+	generate(var/list/miningZ = null, var/z_level = GEH_ZLEVEL, var/generate_borders = YES_BORDER)
 		//Set up stat logging
 		var/datum/mining_level_stats/our_stats = new
 		our_stats.z_level = z_level
@@ -172,6 +181,8 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		var/endx = (generate_borders ? world.maxx-(AST_MAPBORDER) : world.maxx)
 		var/endy = (generate_borders ? world.maxy-(AST_MAPBORDER) : world.maxy)
 
+
+/*
 		//Generate a map full of random 1s and 0s, 1s are dense rock and 0s are loose rock
 		var/map[world.maxx][world.maxy]
 		var/list/vertical_slice = list()
@@ -214,12 +225,13 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 
 		/*
 		So how about we inline CAGetSolid into this smoothing bit?
-		The reason for doing this is computer science levels of optimisation bullshit. CAGetSolid checks the 3*3 around a cell and counts 1 in that (OOB are dense)
+		The reason for doing this is computer science levels of optimisation bullshit. CAGetSolid checks the 3*3 around a cell and counts 1s in that (OOB are dense)
 		It has no context of which order it's being called in but since we'd call it with consecutive cells, 6 of 9 cells being evaluated are the same until we reach the end of a row
 		This means that just by doing some manual memory shuffling we save , which should in theory speed up the process considerably.
 		While I'm at it, I'm just gonna ignore OOB checking since in practice this is only ever going to operating within the 3 tile buffer.
 		*/
 		//Feed the map of random noise through a smoothing algorithm a few times, creating a marbled texture by the end
+
 		for(var/i=0, i<5, i++) //5 Passes to smooth it out.
 			var/mapnew[world.maxx][world.maxy]
 			for(var/x=startx,x<=endx,x++)
@@ -249,21 +261,9 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 					mapnew[x][y] = (sum_of_dense >= CAGGETSOLID_MIN_SOLID + ((i==4||i==3) ? CAGGETSOLID_END_FILL : 0 ))
 					LAGCHECK(LAG_REALTIME)
 			map = mapnew
+*/
 
-		//Actually convert the map we've ended up with into turf changes
-		for(var/x=startx,x<=endx,x++)
-			for(var/y=starty,y<=endy,y++)
-				var/turf/T = locate(x,y,z_level)
-				if(istype(T, /turf/floor/plating/gehenna)) continue // do not fill in the existing crevices, leaves the player more room.
-				//Clobber only the things that are in safe-to-clobber areas. Since we crop the borders off of x and y we don't need to do DISTEDGE anymore.
-				if(map[x][y]/* && !ISDISTEDGE(T, 3) */&& T.loc && ((T.loc.type == /area/gehenna/underground) || istype(T.loc , /area/allowGenerate)) )
-					var/turf/wall/asteroid/N = T.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
-					generated.Add(N)
-				if(T.loc.type == /area/gehenna/underground || istype(T.loc, /area/allowGenerate))
-					new/area/allowGenerate/caves(T)
-				LAGCHECK(LAG_REALTIME)
-
-
+/*
 		var/list/used = list()
 		for(var/s=0, s<20, s++)
 			var/turf/TU = pick(generated - used)
@@ -284,7 +284,9 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 					if(!istype(T, /turf/wall/asteroid)) continue
 					var/turf/wall/asteroid/ast = T
 					ast.destroy_asteroid(0)
+*/
 
+/*
 		//For the next bit, you might want to turn on DEBUG_ORE_GENERATION in sea_hotspot_controls.dm so you can see what ore generation looks like at scale
 
 		//This bit seeds random squares of the level with large amounts of ore, densely packed.
@@ -300,10 +302,131 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		for(var/i=0, i<80, i++)
 			Turfspawn_Asteroid_SeedOre(generated, spicy = TRUE, level_stats = our_stats)
 
+*/
+
+		//Generate a map of holes aka caves via cellular automata
+		//a 0 is a solid turf while a 1 is a hole here, useful for ore generation
+		var/map[endx - startx + 1][endy - starty + 1]
+		//the lower this is (1 is no stretch), the more the caves are stretched
+		var/cell_y_stretch = rand() * 0.15 + 0.4 // vertical stretch
+		var/cell_x_stretch = rand() * 0.15 + 0.7 // horizontal stretch
+		//how many spaces we are skipping forward
+		var/cell_bonus = 0
+		//these values are all cellular automata rules
+		var/cellular_holes = rustg_cnoise_generate(GEHENNA_MINING_CELL_CHANCE, GEHENNA_MINING_CELL_SMOOTHING, GEHENNA_MINING_CELL_BIRTH_ABOVE, GEHENNA_MINING_CELL_DEATH_BELOW, "[endx - startx + 1]", "[endy - starty + 1]")
+		var/cellular_holes_length = length(cellular_holes)
+		//convert the map we've ended up with into caves
+		var/list/x_stretch_locations = list()
+		//Generates some stretch locations
+		for(var/i in 0 to (GEHENNA_MINING_X_STRETCHES - 1))
+			x_stretch_locations += 1 + ceil(rand(0, (endx - startx + 1) / GEHENNA_MINING_X_STRETCHES) + (endy - starty + 1) * i / GEHENNA_MINING_X_STRETCHES)
+		var/cell_x_sum
+		for(var/x in startx to endx)
+			if(prob(GEHENNA_MINING_Y_SHEAR_CHANCE))
+				cell_bonus += 1 + prob(GEHENNA_MINING_Y_SHEAR_CHANCE)
+			else if(prob(10))
+				cell_bonus--
+
+			// start over on the cell index, but include the y shear bonus
+			var/cell_index = cell_bonus
+			cell_x_sum = (cell_x_stretch) + rand() * 0.05
+			if(cell_x_sum >= 1)
+				cell_x_sum--
+				cell_bonus += endx - startx + 1
+			var/x_stretch_index = 1
+			for(var/y in starty to endy)
+				// indexing
+				cell_index += cell_y_stretch
+
+				// find the turf
+				var/turf/T = locate(x,y,z_level)
+
+				// get outta the station and already empty parts
+				if(!T.density || !istype(T.loc, /area/allowGenerate))
+					map[x - startx + 1][y - starty + 1] = !T.density
+					continue
+
+				// check if the current location is past (in case we skipped it due to being in the station) the lowest x_stretch location,
+				// and if it is, stretch, maybe decrease all positions, and start checking for the next one
+				if(y >= x_stretch_locations[x_stretch_index])
+					x_stretch_locations[x_stretch_index] += rand(-1,1)
+					x_stretch_index = min(x_stretch_index + 1, GEHENNA_MINING_X_STRETCHES)
+					cell_index += (endy - starty + 1)
+
+				// create cave holes and weaken tough rocks that linger
+				if(cellular_holes[ceil(1 + ((cell_index + cellular_holes_length) % cellular_holes_length))] == GEHENNA_MINING_HOLE_KEY)
+					if(!istype(T, /turf/wall/asteroid/gehenna/tough/z3) || prob(60))
+						T = T.ReplaceWith(/turf/floor/plating/gehenna, FALSE, TRUE, FALSE, TRUE)
+						map[x - startx + 1][y - starty + 1] = 1
+						LAGCHECK(LAG_REALTIME)
+						continue
+					else if(prob(70))
+						T = T.ReplaceWith(/turf/wall/asteroid/gehenna/z3, FALSE, TRUE, FALSE, TRUE)
+
+				// add whatever rock we have
+				generated.Add(T)
+				map[x - startx + 1][y - starty + 1] = 0
+				LAGCHECK(LAG_REALTIME)
+
+		//we adjust the map to give higher ore chance when adjacent to a cave
+		var/mapnew[endx - startx + 1][endy - starty + 1]
+		for(var/i in 1 to 2)
+			for(var/x in 2 to (endx - startx - 1))
+				for(var/y in 2 to (endy - starty - 1))
+					mapnew[x][y] = map[x][y] == 1 ? 1 : ((map[x-1][y] + map[x+1][y] + map[x][y-1] + map[x][y+1]) * 0.175)
+					LAGCHECK(LAG_REALTIME)
+			map = mapnew
+
+		//manual ore generation without using the proc, for speed and also so i can make minor alterations to this variants patterns
+		var/ore_types_nonevent = mining_controls.ore_types_common + mining_controls.ore_types_uncommon + mining_controls.ore_types_rare + mining_controls.ore_types_rare_spicy
+		for(var/turf/wall/asteroid/T as anything in generated)
+			var/datum/ore/picked_ore
+			// common ores near caves
+			if(prob(80 * map[T.x - startx + 1][T.y - starty + 1]))
+				picked_ore = prob(20) ? (prob(20) ? pick(mining_controls.ore_types_rare) : pick(mining_controls.ore_types_uncommon)) : pick(mining_controls.ore_types_common)
+			// rare ones in the walls!
+			else if(map[T.x - startx + 1][T.y - starty + 1] < 0.1 && prob(3))
+				picked_ore = pick(ore_types_nonevent)
+			else
+				LAGCHECK(LAG_REALTIME)
+				continue
+
+			if (our_stats)
+				our_stats.total_ore_ids |= picked_ore.name
+				our_stats.veins[picked_ore.name] += 1
+			var/turf/wall/asteroid/T2 = T
+			var/vein_dir = NORTHWEST
+			for(var/ore_spawns in 1 to rand(picked_ore.tiles_per_rock_min,picked_ore.tiles_per_rock_max) * 2) // gehenna ores are long veins
+				if(istype(T2) && !T2.ore)
+					T2.ore = picked_ore
+					T2.hardness += picked_ore.hardness_mod
+					T2.amount = rand(picked_ore.amount_per_tile_min,picked_ore.amount_per_tile_max)
+					var/image/ore_overlay = image('icons/turf/asteroid.dmi',picked_ore.name)
+					ore_overlay.transform = turn(ore_overlay.transform, pick(0,90,180,-90))
+					ore_overlay.pixel_x += rand(-6,6)
+					ore_overlay.pixel_y += rand(-6,6)
+					T2.overlays += ore_overlay // faster than UpdateOverlays
+					picked_ore.onGenerate(T2)
+					T2.mining_health = picked_ore.mining_health
+					T2.mining_max_health = picked_ore.mining_health
+					if (our_stats)
+						our_stats.ores[picked_ore.name] += 1
+						our_stats.total_generated_ores += 1
+					if(prob(10))
+						vein_dir = turn(vein_dir, pick(50; 45, 100; -45))
+				else
+					our_stats.misses[picked_ore.name] += 1
+					if(prob(20))
+						vein_dir = turn(vein_dir, pick(100; 45, 50; -45))
+				T2 = get_step(T, vein_dir)
+			LAGCHECK(LAG_REALTIME)
+
 		//Seeds gem/artifact/crate/rock modifiers. Note that without specifying an amount of events the proc will randomly do between 1 and 6 each time
 		//(meaning if i is still 40 on the line below, that's anywhere from 40-240 events)
+		// its 50 now, and with 40+ samples its not gonna roll anything too high or low. expect 175ish attempts.
 		for(var/i=0, i<50, i++)
 			Turfspawn_Asteroid_SeedEvents(generated, level_stats = our_stats)
+			LAGCHECK(LAG_REALTIME)
 
 		if(generate_borders == YES_BORDER) //border needed and isn't prebaked
 			var/list/border = list()
@@ -312,14 +435,15 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			border |= (block(locate(world.maxx-(AST_MAPBORDER-1),1,z_level), locate(world.maxx,world.maxy,z_level))) //Right
 			border |= (block(locate(1,world.maxy-(AST_MAPBORDER-1),z_level), locate(world.maxx,world.maxy,z_level))) //Top
 
-			for(var/turf/T in border)
+			for(var/turf/T as anything in border)
 				T.ReplaceWith(/turf/wall/gehenna, FALSE, TRUE, FALSE, TRUE)
 				new/area/cordon/dark(T)
 				LAGCHECK(LAG_REALTIME)
 
 		//Same deal as on asteroidsDistance, try manually seeding some starstones so they're not magnet exclusive (though there's no magnet available on gehenna, right?)
-		for (var/i = 1, i <= 3 ,i++) //3 tries cause odds of success are much better on gehenna, closer to 2/3rds of the map is eligible
-			var/turf/wall/asteroid/TRY = pick(miningZ)
+		var/starstones = 0
+		for (var/i in 1 to 3) // 3 tries, because it should only fail due to ore being present
+			var/turf/wall/asteroid/TRY = pick(generated)
 			if (!istype(TRY))
 				logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] failed - bad turf.")
 				continue
@@ -329,6 +453,9 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			//asteroid and unoccupied!
 			Turfspawn_Asteroid_SeedSpecificOre(list(TRY),"starstone",1, level_stats = our_stats) //This probably makes a coder from 10 years ago cry
 			logTheThing("debug", null, null, "Starstone gen #[i] at [showCoords(TRY.x, TRY.y, TRY.z)] success!")
+			starstones++
+			if(starstones >= 3)
+				break
 
 		//We're done, get some totals up
 		our_stats.calculate_totals()
@@ -540,7 +667,7 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 		return miningZ
 
 /proc/makeMiningLevelGehenna()
-	var/list/miningZ = block(locate(1, 1, GEH_ZLEVEL), locate(world.maxx, world.maxy, GEH_ZLEVEL))
+	//var/list/miningZ = block(locate(1, 1, GEH_ZLEVEL), locate(world.maxx, world.maxy, GEH_ZLEVEL))
 	var/startTime = world.timeofday
 	boutput(world, "<span class='alert'>Generating the OTHER Mining Level ...</span>")
 
@@ -570,8 +697,10 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 	var/datum/mapGenerator/desertCaverns/D = new/datum/mapGenerator/desertCaverns()
 
 	game_start_countdown?.update_status("Setting up mining level...\nGenerating terrain... again...")
-	miningZ = D.generate(miningZ, generate_borders = BORDER_PREBAKED)
+	D.generate(miningZ = null, generate_borders = BORDER_PREBAKED)
 	var/area/desertarea = get_area_by_type(/area/gehenna/underground)
+	if(!desertarea)
+		desertarea = new /area/gehenna/underground(locate(1,1,GEH_ZLEVEL))
 
 	// remove temporary areas
 	for (var/turf/T in get_area_turfs(/area/noGenerate))
@@ -803,3 +932,12 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 			event_success_percentages[an_event] = round((events[an_event]/(events[an_event] + event_misses[an_event]))*100, 0.1)
 		else
 			event_success_percentages[an_event] = 100
+
+
+#undef GEHENNA_MINING_CELL_CHANCE
+#undef GEHENNA_MINING_CELL_SMOOTHING
+#undef GEHENNA_MINING_CELL_BIRTH_ABOVE
+#undef GEHENNA_MINING_CELL_DEATH_BELOW
+#undef GEHENNA_MINING_HOLE_KEY
+#undef GEHENNA_MINING_Y_SHEAR_CHANCE
+#undef GEHENNA_MINING_X_STRETCHES

@@ -3529,10 +3529,10 @@ var/list/lag_list = new/list()
 			target:ReplaceWithFloor()
 			return
 		if(istype(target, /turf/floor))
-			target:ReplaceWithWall()
+			target:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 			return
 		if(istype(target, /turf/wall))
-			target:ReplaceWithRWall()
+			target:ReplaceWithUpdateWalls(map_settings ? map_settings.rwalls : /turf/wall/r_wall)
 			return
 		return
 

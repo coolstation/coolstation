@@ -113,7 +113,7 @@ proc/singularity_containment_check(turf/center)
 	icon_state = "Sing2"
 	anchored = ANCHORED
 	density = 1
-	event_handler_flags = IMMUNE_SINGULARITY | USE_HASENTERED
+	event_handler_flags = IMMUNE_SINGULARITY | USE_HASENTERED | Z_ANCHORED
 	deconstruct_flags = DECON_WELDER | DECON_MULTITOOL
 
 	var/maxboom = 0
@@ -150,10 +150,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if (Ti)
 		src.Dtime = Ti
 	..()
-	for(var/turf/T in src.locs)
-		for(var/atom/movable/AM in T.contents)
-			eat_atom(AM)
-		eat_atom(T)
+	SPAWN_DBG(0)
+		for(var/turf/T in src.locs)
+			for(var/atom/movable/AM in T.contents)
+				eat_atom(AM)
+			eat_atom(T)
 	src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 
 /obj/machinery/the_singularity/disposing()
@@ -310,18 +311,20 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/the_singularity/set_loc(atom/target)
 	. = ..()
 	if(isturf(target))
-		for(var/turf/T in src.locs)
-			for(var/atom/movable/AM in T.contents)
-				eat_atom(AM)
-			eat_atom(T)
+		SPAWN_DBG(0)
+			for(var/turf/T in src.locs)
+				for(var/atom/movable/AM in T.contents)
+					eat_atom(AM)
+				eat_atom(T)
 
 /obj/machinery/the_singularity/Move(atom/target)
 	. = ..()
 	if(isturf(target))
-		for(var/turf/T in src.locs)
-			for(var/atom/movable/AM in T.contents)
-				eat_atom(AM)
-			eat_atom(T)
+		SPAWN_DBG(0)
+			for(var/turf/T in src.locs)
+				for(var/atom/movable/AM in T.contents)
+					eat_atom(AM)
+				eat_atom(T)
 
 /obj/machinery/the_singularity/Bumped(atom/A)
 	if(eat_atom(A))
@@ -337,7 +340,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	. = ..()
 
 /obj/machinery/the_singularity/HasEntered(atom/movable/AM, atom/OldLoc)
-	eat_atom(AM)
+	SPAWN_DBG(0)
+		eat_atom(AM)
 
 /obj/machinery/the_singularity/proc/eat_atom(atom/A)
 	var/gain = 0
@@ -354,7 +358,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	if (isliving(A) && !isintangible(A))//if its a mob
 		var/mob/living/L = A
-		L.set_loc(src.get_center())
+		//L.set_loc(src.get_center())
 		gain = 20
 		if (ishuman(L))
 			var/mob/living/carbon/human/H = A
@@ -367,7 +371,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 						// Hilarious.
 						gain = 500
 						game_stats.Increment("clownabuse")
-						resize()
+						SPAWN_DBG(0)
+							resize()
 					if ("Lawyer")
 						// Satan.
 						gain = 250
@@ -394,7 +399,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 		var/obj/O = A
 		O.ex_act(OLD_EX_TOTAL)
-		O.set_loc(src.get_center())
+		//O.set_loc(src.get_center())
 		if (O)
 			qdel(O)
 		gain = 2
@@ -405,7 +410,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if (istype(T, /turf/floor))
 				T.ReplaceWithSpace()
 				gain = 2
-			else
+			else if(!istype(T, /turf/space))
 				T.ReplaceWithFloor()
 		else
 			return TRUE
@@ -440,6 +445,17 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if(!isnull(check_max_radius) && check_max_radius >= radius)
 			src.maxradius = check_max_radius
 		if(src.radius < src.maxradius)
+			//resizing does cruel and terrible things to the turf_persistent caches
+			//north, including corner
+			var/turf/T = get_turf(src)
+			for(var/turf/T2 in block(T.x, T.y + src.radius * 2 + 1, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2 + 2, T.z))
+				T2.turf_persistent.checkingcanpass++
+				T2.turf_persistent.checkinghasentered++
+			//east, not including corner
+			for(var/turf/T2 in block(T.x + src.radius * 2 + 1, T.y, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2, T.z))
+				T2.turf_persistent.checkingcanpass++
+				T2.turf_persistent.checkinghasentered++
+
 			src.radius++
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
@@ -447,19 +463,28 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			src.bound_width = src.bound_height = 64 * src.radius + 32
 			src.grav_range = min(src.radius + 3, 5)
 			if(isturf(src.loc))
-				var/turf/T = get_turf(src)
 				var/turf/T2 = locate(T.x - 1, T.y - 1, T.z)
 				if(T2)
 					src.set_loc(T2)
 
 	else if (src.energy < godver2)
+		// we shrink first to simply the math
 		src.radius--
+		var/turf/T = get_turf(src)
+		//resizing does cruel and terrible things to the turf_persistent caches, even when shrinking!
+		//north, including corner
+		for(var/turf/T2 in block(T.x, T.y + src.radius * 2 + 1, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2 + 2, T.z))
+			T2.turf_persistent.checkingcanpass--
+			T2.turf_persistent.checkinghasentered--
+		//east, not including corner
+		for(var/turf/T2 in block(T.x + src.radius * 2 + 1, T.y, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2, T.z))
+			T2.turf_persistent.checkingcanpass--
+			T2.turf_persistent.checkinghasentered--
 		src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 		src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
 		src.bound_width = src.bound_height = 64 * src.radius + 32
 		src.grav_range = min(src.radius + 3, 5)
 		if(isturf(src.loc))
-			var/turf/T = get_turf(src)
 			var/turf/T2 = locate(T.x + 1, T.y + 1, T.z)
 			if(T2)
 				src.set_loc(T2)
@@ -517,7 +542,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	for (var/turf/T in orange(radius*EVENT_GROWTH+EVENT_MINIMUM, src.get_center()))
 		if (prob(70))
 			continue
-		if (T && !(T.turf_flags & CAN_BE_SPACE_SAMPLE) && (get_dist(src.get_center(),T) == radius+1 || get_dist(src.get_center(),T) == radius+2)) // I'm very tired and this is the least dumb thing I can make of what was here for now.   This needs to get updated for the variable size singularity at some point
+		if (T && !istype(T, /turf/space) && (get_dist(src.get_center(),T) == radius+1 || get_dist(src.get_center(),T) == radius+2)) // I'm very tired and this is the least dumb thing I can make of what was here for now.   This needs to get updated for the variable size singularity at some point
 			if (T.turf_flags & IS_TYPE_SIMULATED)
 				if (istype(T,/turf/floor) && !istype(T,/turf/floor/plating))
 					var/turf/floor/F = T
@@ -576,9 +601,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		if (src.active != act)
 			src.active = act
 			if (src.active)
-				event_handler_flags |= IMMUNE_SINGULARITY
+				event_handler_flags |= IMMUNE_SINGULARITY | Z_ANCHORED
 			else
-				event_handler_flags &= ~IMMUNE_SINGULARITY
+				event_handler_flags &= ~(IMMUNE_SINGULARITY | Z_ANCHORED)
 
 /obj/machinery/field_generator/attack_hand(mob/user as mob)
 	if(state == WELDED)
@@ -921,7 +946,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	pass_unstable = TRUE
 	anchored = ANCHORED
 	density = 0
-	event_handler_flags = USE_FLUID_ENTER | IMMUNE_SINGULARITY | USE_CANPASS
+	event_handler_flags = USE_FLUID_ENTER | IMMUNE_SINGULARITY | USE_CANPASS | Z_ANCHORED
 	var/obj/machinery/field_generator/gen_primary
 	var/obj/machinery/field_generator/gen_secondary
 	var/datum/light/light

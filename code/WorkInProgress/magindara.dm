@@ -1,4 +1,6 @@
 var/list/obj/overlay/magindara_fog/magindara_global_fog
+var/global/magindara_surface_loop = 'sound/ambience/loop/magindarawind.ogg' //Z1
+var/global/magindara_surface_loop_volume = 80
 
 /turf/space/magindara
 	name = "ocean below"
@@ -27,20 +29,17 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 #endif
 
 	var/datum/light/point/light = null
-	var/light_atten_con = -0.08
+	var/light_atten_con = -0.11
 	var/light_r = 0.55
 	var/light_g = 0.4
 	var/light_b = 0.6
-	var/light_brightness = 0.9
+	var/light_brightness = 1
 	var/light_height = 3
 	var/generateLight = 1
 
 	New()
 		..()
-		if (src.generateLight)
-			src.make_light()
-		if (current_state > GAME_STATE_PREGAME)
-			src.initialise_component()
+		STANDARD_WORLDGEN_HOLD
 		if(!magindara_global_fog)
 			update_magindaran_weather()
 		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
@@ -48,8 +47,18 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 		if(skylight)
 			qdel(skylight)
 
-	/// Adds the pitfall, handled in a portion of map setup if game isnt setup yet, to prevent freezes
-	proc/initialise_component()
+	generate_worldgen()
+		. = ..()
+		if(src.generateLight)
+			if (!light)
+				light = new
+				light.attach(src)
+			light.set_atten_con(light_atten_con)
+			light.set_brightness(light_brightness)
+			light.set_color(light_r, light_g, light_b)
+			light.set_height(light_height)
+			SPAWN_DBG(1 DECI SECOND)
+				light?.enable()
 		src.AddComponent(/datum/component/pitfall/target_coordinates/nonstation,\
 			BruteDamageMax = 6,\
 			AnchoredAllowed = TRUE,\
@@ -57,17 +66,6 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 			FallTime = 1.2 SECONDS,\
 			DepthScale = 0.4,\
 			TargetZ = 3)
-
-	make_light()
-		if (!light)
-			light = new
-			light.attach(src)
-		light.set_atten_con(light_atten_con)
-		light.set_brightness(light_brightness)
-		light.set_color(light_r, light_g, light_b)
-		light.set_height(light_height)
-		SPAWN_DBG(1 DECI SECOND)
-			light?.enable()
 
 	ReplaceWith(what, keep_old_material, handle_air, handle_dir, force)
 		. = ..()
@@ -101,9 +99,7 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 
 	New()
 		. = ..()
-		if (worldgen_hold)
-			worldgen_candidates[worldgen_generation] += src
-		else generate_worldgen()
+		STANDARD_WORLDGEN_HOLD
 
 	make_light()
 		if(prob(40)) // only a 40% chance, for lag and also a dappled effect
@@ -151,11 +147,11 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	desc = "hidden decal to show the light and/or weather of Magindara on any turf"
 	anchored = ANCHORED_TECHNICAL
 	var/datum/light/point/light = null
-	var/light_atten_con = -0.08
+	var/light_atten_con = -0.11
 	var/light_r = 0.55
 	var/light_g = 0.4
 	var/light_b = 0.6
-	var/light_brightness = 0.9
+	var/light_brightness = 1
 	var/light_height = 3
 
 	New()
@@ -185,6 +181,13 @@ var/list/obj/overlay/magindara_fog/magindara_global_fog
 	icon_state = "pink"
 	name = "\proper Magindaran sea"
 	is_construction_allowed = TRUE
+	requires_power = TRUE
+
+/area/magindara/seafloor
+	icon_state = "pink"
+	name = "\proper Magindaran sea floor"
+	is_construction_allowed = TRUE
+	requires_power = FALSE // i want this to be true later, once i figure out lights on the outside of the hull
 
 /area/station/catwalk/simulated //todo: make this an abstract type later
 	icon_state = "yellow"
@@ -350,7 +353,9 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	health_brute = 45
 	health_burn = 45
 	pull_w_class = W_CLASS_BULKY
+	p_class = 2.5
 	takes_brain = FALSE
+	custom_gib_handler = /proc/gibs
 	pet_text = list("slaps", "smacks", "whaps", "pets")
 	ideal_blood_volume = 200
 	blood_id = "oil"
@@ -359,10 +364,9 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	can_lie = FALSE
 	use_stunned_icon = FALSE // for now
 	layer = MOB_LAYER + 0.12
-	base_walk_delay = 4
-	base_move_delay = 3
+	base_move_delay = 12
+	base_walk_delay = 15
 	var/out_of_water_movedelay = 5
-	var/blubber_armor = 4
 	var/obj/magindaran_horsehead/myhead = null
 
 	New()
@@ -409,15 +413,6 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		if (T && !(T.turf_flags & FLUID_MOVE))
 			. += src.out_of_water_movedelay
 
-	get_head_armor_modifier()
-		return max(src.blubber_armor, ..())
-
-	get_chest_armor_modifier()
-		return max(src.blubber_armor, ..())
-
-	get_ranged_protection()
-		return max(1 + src.blubber_armor / 8, ..())
-
 	disposing()
 		qdel(src.myhead)
 		src.myhead = null
@@ -449,6 +444,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	event_handler_flags = Z_ANCHORED | USE_FLUID_ENTER
 	plane = PLANE_SPACE
 	var/mob/living/critter/magindaran_horse/myhorse = null
+	var/bullet_hit_rate = 30
 
 	New(turf/newLoc, var/mob/living/critter/magindaran_horse/horse = null)
 		. = ..()
@@ -457,10 +453,14 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	attackby(obj/item/I, mob/user)
 		. = src.myhorse.attackby(I, user)
 		user.lastattacked = src.myhorse
+		user.next_click = world.time + max(I.click_delay,I.combat_click_delay)
 
 	attack_hand(mob/user, params, location, control)
 		. = src.myhorse.attack_hand(user, params, location, control)
-		user.lastattacked = src.myhorse
+		if(user.lastattacked == src.myhorse)
+			user.next_click = world.time + max(user.click_delay,user.combat_click_delay)
+		else
+			user.next_click = world.time + user.click_delay
 
 	ex_act(severity, last_touched, epicenter, turf_safe)
 		var/turf/epicenter_down = epicenter
@@ -468,9 +468,38 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		epicenter_down = locate(epicenter_down.x, epicenter_down.y, myhorse_turf.z)
 		return src.myhorse.ex_act(severity, last_touched, epicenter_down, turf_safe)
 
+	CanPass(atom/movable/mover)
+		if(istype(mover, /obj/projectile))
+			return prob(src.bullet_hit_rate)
+		. = ..()
+
+
+	bullet_act(obj/projectile/P)
+		. = ..()
+		return src.myhorse
+
+// todo: they need to wander as a herd, approximately
+// they should congregate nearish the station, and if someone feeds one,
+// the tile they were fed at should be considered a high priority tile
 /datum/aiHolder/horse_herd
 	New()
 		. = ..()
-		var/datum/aiTask/timed/wander/W =  get_instance(/datum/aiTask/timed/wander, list(src))
+		var/datum/aiTask/timed/wander_sometimes/W =  get_instance(/datum/aiTask/timed/wander_sometimes, list(src))
 		W.transition_task = W
 		default_task = W
+
+/datum/aiTask/timed/wander_sometimes
+	name = "occasionally wandering"
+	minimum_task_ticks = 15
+	maximum_task_ticks = 20
+	var/wander_chance = 15
+
+/datum/aiTask/timed/wander_sometimes/evaluate()
+	. = 1
+
+/datum/aiTask/timed/wander_sometimes/on_tick()
+	. = ..()
+	if(prob(src.wander_chance))
+		holder.owner.move_dir = pick(alldirs)
+		holder.owner.process_move()
+	holder.stop_move()

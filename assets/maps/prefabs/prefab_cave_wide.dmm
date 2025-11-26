@@ -1,17 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/space,
-/area/space)
+/area/allowGenerate/caves)
 "j" = (
 /turf/variableTurf/wall,
-/area/space)
+/area/noGenerate)
 "s" = (
 /obj/critter/rockworm,
 /turf/floor/sand,
-/area/space)
+/area/noGenerate)
 "y" = (
 /turf/floor/sand,
-/area/space)
+/area/noGenerate)
 
 (1,1,1) = {"
 a
@@ -33,7 +33,7 @@ a
 j
 y
 y
-j
+a
 a
 a
 "}
@@ -45,8 +45,8 @@ j
 y
 y
 y
-y
-j
+a
+a
 a
 "}
 (4,1,1) = {"
@@ -58,7 +58,7 @@ y
 j
 y
 y
-y
+a
 a
 "}
 (5,1,1) = {"
@@ -70,7 +70,7 @@ y
 j
 y
 j
-y
+a
 a
 "}
 (6,1,1) = {"
@@ -82,7 +82,7 @@ j
 s
 y
 j
-y
+a
 a
 "}
 (7,1,1) = {"
@@ -94,7 +94,7 @@ a
 y
 y
 y
-y
+a
 a
 "}
 (8,1,1) = {"
@@ -103,7 +103,7 @@ a
 j
 y
 a
-y
+a
 y
 y
 y
@@ -115,8 +115,8 @@ a
 j
 y
 a
-y
-y
+a
+a
 y
 y
 a
@@ -127,8 +127,8 @@ a
 y
 y
 y
-y
-y
+a
+a
 j
 y
 a
@@ -139,8 +139,8 @@ a
 y
 j
 s
-y
-y
+a
+a
 a
 y
 a
@@ -148,11 +148,11 @@ a
 (12,1,1) = {"
 a
 a
-y
+a
+j
 j
 y
-y
-y
+a
 s
 y
 a
@@ -160,9 +160,9 @@ a
 (13,1,1) = {"
 a
 a
+a
 y
-y
-y
+j
 y
 a
 y
@@ -172,10 +172,10 @@ a
 (14,1,1) = {"
 a
 a
-y
-j
-y
 a
+j
+j
+j
 s
 y
 a
@@ -184,10 +184,10 @@ a
 (15,1,1) = {"
 a
 a
-y
 a
-y
 a
+j
+j
 y
 y
 a
@@ -196,10 +196,10 @@ a
 (16,1,1) = {"
 a
 a
-y
+a
 s
 y
-y
+j
 y
 y
 a
@@ -209,7 +209,7 @@ a
 a
 a
 y
-j
+y
 y
 j
 y
@@ -222,7 +222,7 @@ a
 a
 y
 j
-y
+j
 j
 y
 y
@@ -234,10 +234,10 @@ a
 a
 y
 a
-y
+j
 s
 y
-y
+j
 j
 a
 "}
@@ -247,22 +247,22 @@ j
 y
 j
 y
+y
 j
-y
-y
+j
 j
 a
 "}
 (21,1,1) = {"
 a
 j
-y
-y
-y
 j
 y
 y
 j
+j
+j
+a
 a
 "}
 (22,1,1) = {"
@@ -272,9 +272,9 @@ j
 y
 y
 a
-y
-y
 j
+y
+a
 a
 "}
 (23,1,1) = {"
@@ -283,9 +283,9 @@ a
 a
 y
 y
-y
-y
 j
+j
+a
 a
 a
 "}

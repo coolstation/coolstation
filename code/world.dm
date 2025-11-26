@@ -50,9 +50,9 @@ var/global/map_currently_very_dusty = 0
 #endif
 
 #ifdef ABOVEWATER_MAP
-var/global/map_currently_abovewater = 1
+var/global/map_currently_above_magindara = 1
 #else
-var/global/map_currently_abovewater = 0
+var/global/map_currently_above_magindara = 0
 #endif
 
 //should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff
@@ -696,9 +696,11 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Transferring manuf. icons to clients...")
 	sendItemIconsToAll()
 
-	UPDATE_TITLE_STATUS("Reticulating splines")
+	UPDATE_TITLE_STATUS("Initializing worldgen")
 	Z_LOG_DEBUG("World/Init", "Initializing worldgen...")
-	initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
+	worldgen_hold &= ~WORLDGEN_HOLD_WORLD_INIT
+	if(!worldgen_hold)
+		initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
 
 	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
 	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")

@@ -16,7 +16,7 @@
 	icon_state = "lattice-dir-b"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "aB" = (
 /obj/cable{
 	d1 = 4;
@@ -104,7 +104,6 @@
 /turf/floor/riveted,
 /area/shuttle/arrival/station)
 "bT" = (
-/obj/storage/closet/emergency,
 /obj/cable,
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 1
@@ -282,6 +281,16 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "AI Cooling Hookups";
+	dir = 1;
+	name = "AI Coolant Hookup APC";
+	pixel_y = 24
+	},
 /turf/floor/plating,
 /area/station/atmos/hookups/ai)
 "ex" = (
@@ -290,7 +299,7 @@
 	icon_state = "lattice-dir-b"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "ey" = (
 /obj/grille/catwalk/jen/side{
 	dir = 5
@@ -357,7 +366,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "fo" = (
 /obj/decal/tile_edge/stripe/big,
 /obj/disposalpipe/segment/bent/west,
@@ -376,7 +385,7 @@
 	dir = 1
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "gh" = (
 /obj/ladder{
 	icon_state = "ladder_wall";
@@ -450,7 +459,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "hB" = (
 /obj/cable{
 	d1 = 2;
@@ -614,13 +623,13 @@
 	dir = 1
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "ka" = (
 /obj/machinery/light/small/red{
 	dir = 8
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "kc" = (
 /obj/table/reinforced/industrial/auto,
 /obj/random_item_spawner/tools/one_or_zero,
@@ -659,7 +668,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "kQ" = (
 /obj/cable{
 	d1 = 1;
@@ -680,7 +689,7 @@
 "lz" = (
 /turf/space/fluid/magindara,
 /turf/wall/r_wall,
-/area/magindara)
+/area/magindara/seafloor)
 "lC" = (
 /obj/grille/catwalk/jen/side{
 	dir = 5
@@ -694,7 +703,7 @@
 "lI" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southwest,
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "lK" = (
 /obj/machinery/light/small/red{
 	dir = 1
@@ -768,7 +777,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "na" = (
 /obj/cable{
 	d1 = 2;
@@ -862,7 +871,7 @@
 	icon_state = "4-8"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "oA" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/tank/air{
@@ -968,7 +977,7 @@
 	tag = "icon-lattice-dir-b (NORTHWEST)"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "py" = (
 /obj/disposalpipe/trunk/south,
 /turf/floor/darkpurpleblack/corner,
@@ -990,7 +999,7 @@
 	dir = 4
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "qf" = (
 /obj/grille/catwalk/elevator{
 	dir = 5;
@@ -1039,7 +1048,7 @@
 	dir = 8
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "qT" = (
 /obj/machinery/light/fluorescent/warm/very{
 	dir = 4
@@ -1063,7 +1072,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "rb" = (
 /obj/storage/crate/packing,
 /obj/random_item_spawner/tools/two,
@@ -1107,7 +1116,7 @@
 	icon_state = "lattice-dir-b"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "sa" = (
 /obj/cable{
 	d1 = 1;
@@ -1188,7 +1197,7 @@
 	icon_state = "lattice-dir-b"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "tr" = (
 /obj/machinery/light{
 	dir = 4;
@@ -1255,7 +1264,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "uy" = (
 /obj/grille/catwalk/jen/side{
 	dir = 6
@@ -1465,7 +1474,7 @@
 	icon_state = "0-2"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "wL" = (
 /obj/railing/cool{
 	dir = 1
@@ -1492,10 +1501,10 @@
 	},
 /obj/machinery/light/small/red,
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "xq" = (
 /turf/wall/r_wall,
-/area/magindara)
+/area/magindara/seafloor)
 "xt" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/darkpurple,
@@ -1557,7 +1566,7 @@
 	},
 /obj/machinery/light/small/red,
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "yg" = (
 /obj/storage/closet/emergency,
 /obj/random_item_spawner/med_tool/one_or_zero,
@@ -1762,7 +1771,7 @@
 /area/station/maintenance/sublevel/south)
 "BX" = (
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Cc" = (
 /obj/decal/tile_edge/stripe/corner/big2{
 	dir = 6
@@ -1819,7 +1828,7 @@
 	icon_state = "lattice-dir-b"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "CW" = (
 /obj/machinery/door/airlock/glass/command,
 /obj/access_spawn/heads,
@@ -1854,7 +1863,7 @@
 "Dx" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northwest,
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "DK" = (
 /obj/machinery/power/data_terminal,
 /obj/cable{
@@ -2125,7 +2134,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "HI" = (
 /obj/machinery/light/small/red{
 	dir = 4
@@ -2141,7 +2150,7 @@
 /area/station/maintenance/sublevel/south)
 "HX" = (
 /turf/wall/auto/rivet,
-/area/magindara)
+/area/magindara/seafloor)
 "HY" = (
 /turf/floor/cautionblack,
 /area/station/maintenance/sublevel/south)
@@ -2245,7 +2254,7 @@
 	icon_state = "2-8"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Jj" = (
 /obj/cable{
 	d1 = 1;
@@ -2256,7 +2265,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Jr" = (
 /obj/machinery/conveyor/south{
 	id = "crusherbelt"
@@ -2276,7 +2285,7 @@
 	},
 /obj/cable,
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Jv" = (
 /obj/item/cable_coil/hotpink/cut,
 /obj/cable{
@@ -2331,7 +2340,7 @@
 	name = "autoname - SS13"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Ke" = (
 /obj/storage/closet/janitor,
 /turf/floor/black,
@@ -2353,7 +2362,7 @@
 	icon_state = "1-4"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "KB" = (
 /obj/railing/cool{
 	dir = 8
@@ -2423,7 +2432,7 @@
 "Ls" = (
 /obj/landmark/herd_animal,
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Lz" = (
 /obj/machinery/computer/supplycomp,
 /obj/machinery/power/data_terminal,
@@ -2444,18 +2453,18 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "LJ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Mc" = (
 /obj/lattice{
 	dir = 5;
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Mi" = (
 /obj/decal/cleanable/dirt/random,
 /obj/mopbucket,
@@ -2513,7 +2522,7 @@
 	icon_state = "1-2"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Np" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
 /obj/grille/catwalk/jen/side{
@@ -2543,7 +2552,7 @@
 	dir = 4
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "NN" = (
 /obj/grille/catwalk/elevator{
 	dir = 6;
@@ -2620,7 +2629,7 @@
 	icon_state = "4-8"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "OV" = (
 /obj/cable{
 	d1 = 1;
@@ -2759,7 +2768,7 @@
 	icon_state = "4-8"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "QG" = (
 /obj/machinery/power/data_terminal,
 /obj/cable{
@@ -2893,7 +2902,7 @@
 	icon_state = "2-4"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Ti" = (
 /obj/cable{
 	d1 = 2;
@@ -2913,7 +2922,7 @@
 	dir = 1
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "TD" = (
 /obj/cable{
 	d1 = 1;
@@ -2921,7 +2930,7 @@
 	icon_state = "1-2"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "TF" = (
 /obj/cable{
 	d1 = 1;
@@ -2941,7 +2950,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "TO" = (
 /obj/machinery/vending/paint/broken,
 /obj/cable{
@@ -2960,14 +2969,14 @@
 	icon_state = "2-4"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Uc" = (
 /obj/lattice{
 	dir = 10;
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Uo" = (
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide/east,
 /obj/submachine/GTM{
@@ -2998,7 +3007,7 @@
 	dir = 4
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "UP" = (
 /obj/decal/tile_edge/stripe/big{
 	dir = 4
@@ -3096,7 +3105,7 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "XP" = (
 /turf/floor/darkpurpleblack{
 	dir = 1
@@ -3185,7 +3194,7 @@
 	tag = ""
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "Za" = (
 /obj/table/reinforced/industrial/auto,
 /obj/item/storage/toolbox/emergency,
@@ -3203,6 +3212,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/storage/closet/emergency,
 /turf/floor/darkpurpleblack/corner{
 	dir = 8
 	},
@@ -3224,7 +3234,7 @@
 	dir = 8
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "ZK" = (
 /obj/stool/chair/comfy/shuttle/brown{
 	dir = 4
@@ -3250,11 +3260,11 @@
 	icon_state = "lattice-dir"
 	},
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 "ZX" = (
 /obj/machinery/light/sodium,
 /turf/space/fluid/magindara,
-/area/magindara)
+/area/magindara/seafloor)
 
 (1,1,1) = {"
 BX
@@ -27550,7 +27560,7 @@ BX
 BX
 BX
 BX
-Ls
+BX
 BX
 BX
 BX
@@ -33021,7 +33031,7 @@ BX
 BX
 BX
 BX
-Ls
+BX
 BX
 BX
 BX
@@ -44468,7 +44478,7 @@ BX
 BX
 BX
 BX
-Ls
+BX
 BX
 BX
 BX
@@ -45675,7 +45685,7 @@ hv
 hv
 th
 BX
-BX
+Ls
 BX
 BX
 BX
@@ -54453,7 +54463,7 @@ BX
 BX
 BX
 BX
-Ls
+BX
 BX
 BX
 BX

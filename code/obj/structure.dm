@@ -238,9 +238,9 @@ obj/structure
 				var/turf/wall/WALL
 				var/obj/item/sheet/S = the_tool
 				if (S.reinforcement)
-					WALL = Tsrc.ReplaceWithRWall()
+					WALL = Tsrc.ReplaceWithUpdateWalls(map_settings ? map_settings.rwalls : /turf/wall/r_wall)
 				else
-					WALL = Tsrc.ReplaceWithWall()
+					WALL = Tsrc.ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 				if (the_girder.material)
 					WALL.setMaterial(the_girder.material)
 				else

@@ -55,7 +55,22 @@
 "k" = (
 /turf/floor/plating/gehenna,
 /area/noGenerate)
+"l" = (
+/obj/decal/cleanable/dirt/random,
+/obj/item/raw_material/gemstone{
+	pixel_y = -8;
+	pixel_x = 5
+	},
+/turf/floor,
+/area/noGenerate)
 "m" = (
+/turf/floor,
+/area/noGenerate)
+"n" = (
+/mob/living/critter/robotic/gunbot{
+	ai_type = "/datum/aiHolder/violent";
+	dir = 4
+	},
 /turf/floor,
 /area/noGenerate)
 "o" = (
@@ -85,10 +100,6 @@
 	icon_state = "fblue1"
 	},
 /area/noGenerate)
-"u" = (
-/mob/living/critter/spider/med,
-/turf/floor/plating/gehenna,
-/area/noGenerate)
 "v" = (
 /obj/item/raw_material/shard/glass,
 /turf/floor/carpet{
@@ -108,10 +119,6 @@
 "x" = (
 /obj/stool/chair/green,
 /turf/floor,
-/area/noGenerate)
-"y" = (
-/mob/living/critter/spider,
-/turf/floor/plating/gehenna,
 /area/noGenerate)
 "z" = (
 /obj/wingrille_spawn/auto,
@@ -153,9 +160,6 @@
 	},
 /turf/floor,
 /area/noGenerate)
-"G" = (
-/turf/wall/asteroid/gehenna/tough/z3,
-/area/allowGenerate)
 "H" = (
 /turf/floor/carpet{
 	dir = 1;
@@ -231,9 +235,6 @@
 	icon_state = "fblue2"
 	},
 /area/noGenerate)
-"S" = (
-/turf/floor/plating/gehenna,
-/area/allowGenerate)
 "T" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/green,
@@ -266,12 +267,12 @@ a
 a
 a
 a
-G
-G
-G
-G
-G
-G
+a
+a
+a
+a
+a
+a
 a
 a
 a
@@ -282,7 +283,7 @@ a
 a
 a
 a
-G
+a
 P
 P
 P
@@ -290,7 +291,7 @@ P
 P
 P
 P
-G
+a
 a
 a
 a
@@ -298,25 +299,25 @@ a
 (3,1,1) = {"
 a
 a
-G
+a
 P
 P
 P
 M
-y
-u
+k
+k
 P
 P
 P
-G
+a
 a
 a
 "}
 (4,1,1) = {"
 a
-G
+a
+a
 P
-P
 X
 X
 X
@@ -325,32 +326,32 @@ X
 X
 X
 P
-P
-G
+a
+a
 a
 "}
 (5,1,1) = {"
-G
-P
-P
+a
+a
+a
 P
 X
 m
 E
 m
-m
+n
 m
 X
 P
-P
-G
+a
+a
 a
 "}
 (6,1,1) = {"
-G
-P
-P
-P
+a
+a
+a
+k
 X
 m
 X
@@ -358,15 +359,15 @@ x
 N
 T
 X
-P
-P
-P
+a
+a
+a
 a
 "}
 (7,1,1) = {"
-G
-P
-P
+a
+a
+a
 k
 U
 m
@@ -376,13 +377,13 @@ X
 X
 X
 k
-P
-P
+a
+a
 k
 "}
 (8,1,1) = {"
-G
-k
+a
+a
 k
 B
 X
@@ -393,17 +394,17 @@ b
 r
 z
 k
-P
-P
+a
+a
 k
 "}
 (9,1,1) = {"
-S
-B
+a
+a
 k
 k
 X
-V
+l
 Z
 H
 t
@@ -415,8 +416,8 @@ k
 k
 "}
 (10,1,1) = {"
-S
-k
+a
+a
 k
 B
 X
@@ -432,9 +433,9 @@ k
 k
 "}
 (11,1,1) = {"
-G
-P
-P
+a
+a
+a
 k
 k
 B
@@ -449,10 +450,10 @@ k
 k
 "}
 (12,1,1) = {"
-G
-P
-P
-P
+a
+a
+a
+a
 k
 k
 X
@@ -463,14 +464,14 @@ K
 k
 k
 p
-k
+a
 "}
 (13,1,1) = {"
-G
-P
-P
-P
-k
+a
+a
+a
+a
+a
 B
 X
 c
@@ -480,30 +481,30 @@ A
 k
 k
 k
-k
+a
 "}
 (14,1,1) = {"
 a
-P
-P
-P
+a
+a
+a
+a
 k
-k
 X
 X
 X
 X
 X
 k
-k
+a
 k
 k
 "}
 (15,1,1) = {"
 a
-P
-P
-P
+a
+a
+a
 B
 k
 k
@@ -512,74 +513,74 @@ k
 k
 k
 k
-k
-k
-P
+a
+a
+a
 "}
 (16,1,1) = {"
 a
-G
-P
-P
-P
+a
+a
+a
+a
+k
+k
+a
+a
 k
 k
 k
-k
-k
-k
-k
-k
-k
-P
+a
+a
+a
 "}
 (17,1,1) = {"
 a
-G
-P
-P
-P
+a
+a
+a
+a
+a
+a
+a
 k
 k
 k
 k
-k
-k
-k
-P
-P
-G
+a
+a
+a
 "}
 (18,1,1) = {"
 a
 a
-G
-P
-P
-P
-P
+a
+a
+a
+a
+a
 k
 k
 k
-P
-P
-P
-G
+a
+a
+a
+a
 a
 "}
 (19,1,1) = {"
 a
 a
 a
-G
-G
-P
-P
-P
-P
-P
-P
-P
+a
+a
+a
+a
+a
+a
+a
+a
+a
 a
 a
 a
@@ -590,12 +591,12 @@ a
 a
 a
 a
-G
-G
-G
-G
-G
-G
+a
+a
+a
+a
+a
+a
 a
 a
 a

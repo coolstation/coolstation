@@ -132,7 +132,9 @@ var/global/datum/transit_controller/transit_controls
 		vehicle.in_transit = TRUE
 		logTheThing("station", user, null, "began departure for vehicle [vehicle_id] to [stop_id] at [log_loc(usr)]")
 		SPAWN_DBG(0)
-			worldgen_hold = TRUE
+			//Was hoping suspending lighting would make crag shuttles not lagspike. Didn't work, but maybe still computationally cleaner.
+			RL_Suspend()
+			worldgen_hold |= WORLDGEN_HOLD_SHUTTLE_MOVEMENT
 			vehicle.departing(stop)
 			var/area/start_location = locate(current.target_area)
 			var/area/end_location = locate(stop.target_area)
@@ -147,7 +149,10 @@ var/global/datum/transit_controller/transit_controls
 				if (istype(P, filler_turf_start))
 					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)
 			SEND_SIGNAL(src, COMSIG_TRANSIT_VEHICLE_MOVED, vehicle)
-			initialize_worldgen()
+			worldgen_hold &= ~WORLDGEN_HOLD_SHUTTLE_MOVEMENT
+			if(!worldgen_hold)
+				initialize_worldgen()
+			RL_Resume()
 			vehicle.arriving(stop) //This may sleep, intentionally holding up this code
 			vehicle.current_location = stop
 			current.current_occupant = null
@@ -166,6 +171,7 @@ var/global/datum/transit_controller/transit_controls
 	has_material = FALSE //this is a big hole, the big hole is made of steel? yeah right buddy!!!
 	var/fall_landmark = LANDMARK_FALL_DEBUG
 	var/datum/light/point/emergency_light
+	var/has_lights = TRUE
 	var/autoset_direction = TRUE
 
 	New()
@@ -287,6 +293,30 @@ var/global/datum/transit_controller/transit_controls
 
 /turf/floor/specialroom/elevator_shaft/straight_down/z_five
 	target_z = 5
+
+/turf/floor/specialroom/elevator_shaft/coord_varedit
+	name = "terrifying pit"
+	has_lights = FALSE
+	var/coord_offset_x = 0
+	var/coord_offset_y = -1
+	var/target_z = 0
+	var/brute_damage = 20
+	var/hang_time = 0.3 SECONDS
+	var/fall_time = 1.2 SECONDS
+	var/depth_scale = 0.3
+
+	initialise_component()
+		if(!src.target_z)
+			src.target_z = src.z
+		src.AddComponent(/datum/component/pitfall/target_coordinates,\
+			BruteDamageMax = src.brute_damage,\
+			HangTime = src.hang_time,\
+			FallTime = src.fall_time,\
+			DepthScale = src.depth_scale,\
+			OffsetX = src.coord_offset_x,\
+			OffsetY = src.coord_offset_y,\
+			TargetZ = src.target_z,\
+			LandingRange = 0)
 
 ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 /datum/transit_vehicle/elevator

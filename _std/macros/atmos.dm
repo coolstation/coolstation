@@ -60,6 +60,9 @@
 #define MOLES_CO2MAGINDARA MOLES_CELLSTANDARD*CO2MAGINDARA
 #endif
 
+/// what the space samples heat capacity is by default
+#define SPACE_SAMPLE_HEAT_CAPACITY_BASE 700000
+
 /// Moles in a standard cell after which visible gases are visible
 #define MOLES_GAS_VISIBLE	1
 

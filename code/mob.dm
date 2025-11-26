@@ -36,7 +36,7 @@
 
 	var/obj/item/device/energy_shield/energy_shield = null
 
-	var/custom_gib_handler = null
+	var/custom_gib_handler = /proc/gibs
 	var/obj/decal/cleanable/custom_vomit_type = /obj/decal/cleanable/vomit
 
 	var/list/mob/dead/target_observer/observers = list()
@@ -3092,7 +3092,7 @@
 	set name = "Point"
 	src.point_at(A)
 
-/mob/proc/point_at(var/atom/target) //overriden by living and dead
+/mob/proc/point_at(var/atom/target, var/pixel_x, var/pixel_y) //overriden by living and dead
 	.=0
 
 /mob/verb/pull_verb(atom/movable/A as mob|obj in view(1, get_turf(usr)))

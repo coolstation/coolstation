@@ -51,6 +51,7 @@ mob/new_player
 		new_player_panel()
 		src.set_loc(pick_landmark(LANDMARK_NEW_PLAYER, locate(1,1,1)))
 		src.sight |= SEE_TURFS
+		src.sight |= SEE_THRU
 
 
 		// byond members get a special join message :]

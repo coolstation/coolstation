@@ -2162,7 +2162,8 @@
 	desc = ""
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = ""
-	anchored = ANCHORED
+	anchored = ANCHORED_TECHNICAL
+	event_handler_flags = Z_ANCHORED
 	layer = EFFECTS_LAYER_1
 	pixel_x = -64
 	pixel_y = -64

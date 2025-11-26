@@ -1278,7 +1278,7 @@
 							if (istype(T, /turf/wall) && isconstructionturf(T))
 								T.ex_act(OLD_EX_TOTAL)
 							else
-								T.ReplaceWithSpaceForce()
+								T.ReplaceWithSpace()
 						else
 							T.ex_act(clamp(T_dist-2,1,3))
 							for (var/atom/A in T)
