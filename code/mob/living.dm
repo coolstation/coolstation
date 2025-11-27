@@ -542,7 +542,7 @@
 		if (target == equipped)
 			equipped.attack_self(src, params, location, control)
 			if(equipped.item_function_flags & ATTACK_SELF_DELAY)
-				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
+				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 		else if (params["ctrl"])
 			var/atom/movable/movable = target
 			if (istype(movable))
@@ -564,7 +564,7 @@
 				equipped = src.equipped() //might have changed from successful modify
 			if (reach || (equipped && equipped.special) || (equipped && (equipped.flags & EXTRADELAY))) //Fuck you, magic number prickjerk //MBC : added bit to get weapon_attack->pixelaction to work for itemspecial
 				if (use_delay)
-					src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
+					src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 
 				if (src.invisibility > 0 && (isturf(target) || (target != src && isturf(target.loc)))) // dont want to check for a cloaker every click if we're not invisible
 					SEND_SIGNAL(src, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
