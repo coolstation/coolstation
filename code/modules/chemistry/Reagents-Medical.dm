@@ -906,7 +906,7 @@ datum
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
-					APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, 0.25, "r_haloperidol")
+					APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_haloperidol", 0.25)
 					M.change_misstep_chance(25)
 				return
 

@@ -1346,12 +1346,12 @@ datum
 					if (1 to 4)
 						return // let's not be incredibly obvious about who stung you for changelings
 					if (5 to 10)
-						APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, 0.01 * counter, "r_neurotoxin")
+						APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_neurotoxin", 0.01 * counter)
 						M.make_dizzy(1 * mult)
 						M.change_misstep_chance(10 * mult)
 						if (probmult(20)) M.emote("drool")
 					if (11 to 17)
-						APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, 0.01 * counter, "r_neurotoxin")
+						APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_neurotoxin",  0.01 * counter)
 						M.drowsyness  = max(M.drowsyness, 10)
 						M.make_dizzy(1 * mult)
 						M.change_misstep_chance(20 * mult)
@@ -1393,7 +1393,7 @@ datum
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
-				APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, min(0.3, 0.0025 * counter), "r_vertigo")
+				APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_vertigo", min(0.3, 0.0025 * counter))
 				switch(counter += (1 * mult))
 					if (1 to 5)
 						return //evil evil evil make them think it's neurotoxin
