@@ -131,7 +131,7 @@
 			for (var/mob/M in src.contents)
 				boutput(M, SPAN_COMBAT("[user] punches at you!"))
 			src.last_interacted = world.time
-			user.next_click = world.time + user.combat_click_delay * GET_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SCALING)
+			user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 			attack_twitch(user)
 			hit_twitch(src)
 
@@ -163,7 +163,7 @@
 			boutput(M, SPAN_COMBAT("[user] attacks you with \the [W]!"))
 
 		src.last_interacted = world.time
-		user.next_click = world.time + user.combat_click_delay * GET_ATOM_PROPERTY(user, PROP_COMBAT_CLICK_DELAY_SCALING)
+		user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)
 		attack_twitch(user)
 		hit_twitch(src)
 		. = ..()

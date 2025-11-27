@@ -219,7 +219,6 @@ To remove:
 #define PROP_STUN_RESIST(x) x("stun_resist", APPLY_ATOM_PROPERTY_SUM, REMOVE_ATOM_PROPERTY_SUM)
 #define PROP_STUN_RESIST_MAX(x) x("stun_resist_max", APPLY_ATOM_PROPERTY_MAX, REMOVE_ATOM_PROPERTY_MAX)
 //other stuff
-#define PROP_COMBAT_CLICK_DELAY_SCALING(x) x("click_delay_scaling", APPLY_ATOM_PROPERTY_PRODUCT, REMOVE_ATOM_PROPERTY_PRODUCT)
 #define PROP_METABOLIC_RATE(x) x("chem_metabolism", APPLY_ATOM_PROPERTY_PRODUCT, REMOVE_ATOM_PROPERTY_PRODUCT)
 #define PROP_DIGESTION_EFFICIENCY(x) x("digestion_efficiency", APPLY_ATOM_PROPERTY_PRODUCT, REMOVE_ATOM_PROPERTY_PRODUCT)
 #define PROP_CHEM_PURGE(x) x("chem_purging", APPLY_ATOM_PROPERTY_SUM, REMOVE_ATOM_PROPERTY_SUM)
@@ -232,6 +231,14 @@ To remove:
 #define PROP_PASSIVE_WRESTLE(x) x("wrassler", APPLY_ATOM_PROPERTY_SIMPLE, REMOVE_ATOM_PROPERTY_SIMPLE)
 #define PROP_FAKEHEALTH_MAX(x) x("fake_health", APPLY_ATOM_PROPERTY_MAX, REMOVE_ATOM_PROPERTY_MAX)
 #define PROP_CAN_CONSTRUCT_WITHOUT_HOLDING(x) x("can_build_without_holding", APPLY_ATOM_PROPERTY_SIMPLE, REMOVE_ATOM_PROPERTY_SIMPLE) // mob can bulid furniture without holding them (for borgs)
+
+//speed scalings
+#define PROP_COMBAT_CLICK_DELAY_SLOWDOWN(x) x("click_delay_slowdown", APPLY_ATOM_PROPERTY_MAX, REMOVE_ATOM_PROPERTY_MAX)
+#define PROP_COMBAT_CLICK_DELAY_SPEEDUP(x) x("click_delay_speedup", APPLY_ATOM_PROPERTY_MAX, REMOVE_ATOM_PROPERTY_MAX)
+
+// speed scalings 1 + slowdown - speedup
+#define GET_COMBAT_CLICK_DELAY_SCALE(x) 1 + GET_ATOM_PROPERTY(x, PROP_COMBAT_CLICK_DELAY_SLOWDOWN) - GET_ATOM_PROPERTY(x, PROP_COMBAT_CLICK_DELAY_SPEEDUP)
+
 
 //Look I stole this from goon because swimming needs it
 #define PROP_ATOM_FLOATING(x) x("floating", APPLY_ATOM_PROPERTY_SIMPLE, REMOVE_ATOM_PROPERTY_SIMPLE)
@@ -427,7 +434,6 @@ To remove:
 			if(do_update) { update_macro(target, property, _OLD_VAL); } \
 		} \
 	} while (0)
-
 
 #define APPLY_ATOM_PROPERTY_PRIORITY(target, property, source, do_update, update_macro, value, priority) \
 	do { \

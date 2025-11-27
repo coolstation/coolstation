@@ -102,7 +102,7 @@
 		return
 
 	attack_self(mob/user as mob)
-		if (ON_COOLDOWN(user, "self-patch", user.combat_click_delay * GET_ATOM_PROPERTY(user, PROP_COMBAT_CLICK_DELAY_SCALING)))
+		if (ON_COOLDOWN(user, "self-patch", user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)))
 			return
 
 		if (src.borg == 1 && !issilicon(user))
