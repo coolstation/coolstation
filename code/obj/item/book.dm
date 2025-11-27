@@ -447,6 +447,12 @@ Custom Books
 	icon_state = "book0"
 	file_path = "strings/books/oldwoman.txt"
 
+/obj/item/paper/book/from_file/hosenscheissen
+	name = "die Hosen scheißen"
+	desc = "Seems to be written in Austrian."
+	icon_state = "paper"
+	file_path = "strings/books/die_hosen_scheissen.txt"
+
 /obj/item/paper/book/ratbook
 	name = "chewed and mangled book"
 	desc = "Huh, what is this?"
