@@ -1332,12 +1332,13 @@ datum
 			blob_damage = 1
 			value = 4 // 3c + heat
 			taste = "like water"
-/*
-			pooled()
-				..()
-				counter = 1
-				fainted = 0
-*/
+
+			on_remove()
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					REMOVE_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_neurotoxin")
+				return
+
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
@@ -1345,10 +1346,12 @@ datum
 					if (1 to 4)
 						return // let's not be incredibly obvious about who stung you for changelings
 					if (5 to 10)
+						APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, 0.01 * counter, "r_neurotoxin")
 						M.make_dizzy(1 * mult)
 						M.change_misstep_chance(10 * mult)
 						if (probmult(20)) M.emote("drool")
 					if (11 to 17)
+						APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, 0.01 * counter, "r_neurotoxin")
 						M.drowsyness  = max(M.drowsyness, 10)
 						M.make_dizzy(1 * mult)
 						M.change_misstep_chance(20 * mult)
@@ -1381,9 +1384,16 @@ datum
 			var/counter = 1
 			taste = "tingly"
 
+			on_remove()
+				if(ismob(holder?.my_atom))
+					var/mob/M = holder.my_atom
+					REMOVE_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_vertigo")
+				return
+
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
+				APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, min(0.3, 0.0025 * counter), "r_vertigo")
 				switch(counter += (1 * mult))
 					if (1 to 5)
 						return //evil evil evil make them think it's neurotoxin

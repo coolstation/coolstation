@@ -72,12 +72,14 @@ datum
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts", 3)
+					APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "r_bathsalts", 0.25)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts")
+					REMOVE_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "r_bathsalts")
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1) // commence bad times
