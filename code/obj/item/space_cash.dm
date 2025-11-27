@@ -142,7 +142,7 @@
 					L.set_dir(get_dir(L, target))
 				playsound(L.loc, 'sound/effects/throw.ogg', 20, 1, 0.1)
 
-				L.next_click = world.time + (L.combat_click_delay / 4)
+				L.next_click = world.time + (L.combat_click_delay / 4)  * GET_ATOM_PROPERTY(L, PROP_COMBAT_CLICK_DELAY_SCALING)
 
 				attack_twitch(L)
 				return TRUE

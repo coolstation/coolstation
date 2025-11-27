@@ -119,10 +119,9 @@
 			return ..()
 
 		//special case
-		if (current_blood_amt >= src.ideal_blood_volume * 3)
+		if (current_blood_amt >= owner.ideal_blood_volume * 3)
 			if (prob(10))
 				owner.visible_message("<span class='alert'><b>[owner] bursts like a bloody balloon! Holy fucking shit!!</b></span>")
-				var/turf/t = get_turf(owner)
 				owner.gib(1) // :v
 				return ..()
 

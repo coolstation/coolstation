@@ -194,7 +194,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 		if(ismob(user))
 			var/mob/M = user
 			specialoverride.pixelaction(target,params,M)
-			M.next_click = world.time+M.combat_click_delay
+			M.next_click = world.time + M.combat_click_delay * GET_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SCALING)
 			return 1
 
 

@@ -555,7 +555,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 		if (HH.can_attack)
 			var/obj/item/equipped = src.equipped()
 			if(equipped && src.next_click <= world.time)
-				src.next_click = world.time + max(equipped.click_delay,src.combat_click_delay)
+				src.next_click = world.time + max(equipped.click_delay,src.combat_click_delay) * GET_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SCALING)
 				target.Attackby(equipped, src, params)
 			else
 				L.attack_hand(target, src)
