@@ -107,8 +107,8 @@
 			current_blood_amt += cho_amt * mult
 		current_blood_amt = round(current_blood_amt, 1)
 
-		var/current_systolic = round((current_blood_amt * 0.24), 1)
-		var/current_diastolic = round((current_blood_amt * 0.16), 1)
+		var/current_systolic = round((current_blood_amt / owner.ideal_blood_volume * 120), 1)
+		var/current_diastolic = round((current_blood_amt / owner.ideal_blood_volume * 80), 1)
 		owner.blood_pressure["systolic"] = current_systolic
 		owner.blood_pressure["diastolic"] = current_diastolic
 		owner.blood_pressure["rendered"] = "[max(rand(current_systolic-5,current_systolic+5), 0)]/[max(rand(current_diastolic-2,current_diastolic+2), 0)]"
@@ -119,11 +119,9 @@
 			return ..()
 
 		//special case
-		if (current_blood_amt >= 1500)
+		if (current_blood_amt >= owner.ideal_blood_volume * 3)
 			if (prob(10))
 				owner.visible_message("<span class='alert'><b>[owner] bursts like a bloody balloon! Holy fucking shit!!</b></span>")
-				var/turf/t = get_turf(owner)
-				t.fluid_react_single("blood", current_blood_amt)
 				owner.gib(1) // :v
 				return ..()
 

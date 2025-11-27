@@ -542,7 +542,7 @@
 		if (target == equipped)
 			equipped.attack_self(src, params, location, control)
 			if(equipped.item_function_flags & ATTACK_SELF_DELAY)
-				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
+				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 		else if (params["ctrl"])
 			var/atom/movable/movable = target
 			if (istype(movable))
@@ -564,7 +564,7 @@
 				equipped = src.equipped() //might have changed from successful modify
 			if (reach || (equipped && equipped.special) || (equipped && (equipped.flags & EXTRADELAY))) //Fuck you, magic number prickjerk //MBC : added bit to get weapon_attack->pixelaction to work for itemspecial
 				if (use_delay)
-					src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
+					src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 
 				if (src.invisibility > 0 && (isturf(target) || (target != src && isturf(target.loc)))) // dont want to check for a cloaker every click if we're not invisible
 					SEND_SIGNAL(src, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
@@ -576,14 +576,14 @@
 
 				//If lastattacked was set, this must be a combat action!! Use combat click delay ||  the other condition is whether a special attack was just triggered.
 				if ((lastattacked != null && (src.lastattacked == target || src.lastattacked == equipped || src.lastattacked == src) && use_delay) || (equipped && equipped.special && equipped.special.last_use >= world.time - src.click_delay))
-					src.next_click = world.time + (equipped ? max(equipped.click_delay,src.combat_click_delay) : src.combat_click_delay)
+					src.next_click = world.time + (equipped ? max(equipped.click_delay,src.combat_click_delay) : src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 					src.lastattacked = null
 
 			else if (!equipped)
 				hand_range_attack(target, params, location, control)
 
 				if (lastattacked != null && (src.lastattacked == target || src.lastattacked == equipped || src.lastattacked == src) && use_delay)
-					src.next_click = world.time + src.combat_click_delay
+					src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 					src.lastattacked = null
 
 		//Don't think I need the above, this should work here.
@@ -2110,7 +2110,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			target_dir = src.dir
 		var/slidekick_range = max(1 + min(GET_ATOM_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
 		if (!T.throw_unlimited && target_dir)
-			src.next_click = world.time + src.combat_click_delay
+			src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 			if (!HAS_ATOM_PROPERTY(src, PROP_SLIDEKICK_TURBO))
 				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
 				src.force_laydown_standup()
@@ -2296,7 +2296,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			for(var/obj/item/grab/gunpoint/G in grabbed_by)
 				G.shoot()
 
-		src.next_click = world.time + src.combat_click_delay
+		src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 
 /mob/living/hitby(atom/movable/AM, datum/thrown_thing/thr)
 	. = 'sound/impact_sounds/Generic_Hit_2.ogg'

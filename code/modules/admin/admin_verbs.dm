@@ -345,7 +345,6 @@ var/list/admin_verbs = alist(
 		/client/proc/spawn_survival_shit,
 		///client/proc/addpathogens,
 		///client/proc/generate_poster,
-		/client/proc/idkfa,
 
 		//gibs
 		/client/proc/cmd_admin_gib,

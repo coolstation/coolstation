@@ -85,16 +85,6 @@
 			else
 				holder.owner.say(pick("that sure is swell","oh boy","gee whiz","hot dog","hee hee"))
 
-/datum/aiTask/timed/wander/s
-	name = "wandering slow"
-	minimum_task_ticks = 2
-	maximum_task_ticks = 5
-
-/datum/aiTask/timed/wander/s/on_tick()
-	if(prob(20))
-		holder.owner.move_dir = pick(alldirs)
-		holder.owner.process_move()
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TARGETED TASK
 // a timed task that also relates to a target and the acquisition of said target
@@ -322,6 +312,9 @@
 		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z || src.ticks_since_combat >= src.boredom_ticks || !src.holder.owner.ai_is_valid_target(M))
 			src.queued_target = null
 			src.holder.target = null
+			var/obj/item/grab/G = src.holder.owner.equipped()
+			if(G && istype(G))
+				src.holder.owner.drop_item(G)
 			src.ticks_since_combat = 0
 			if(!src.holder.target && !GET_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown"))
 				src.holder.target = src.get_best_target(get_targets())
@@ -339,7 +332,7 @@
 			return ..()
 
 		if((!src.ability_cooldown || !ON_COOLDOWN(src.holder.owner, "ai_ability_cooldown", src.ability_cooldown)) && src.holder.owner.ability_attack(M))
-			src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
+			src.holder.owner.next_click = world.time + src.holder.owner.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
 			return ..()
 
 		// bit of a shitshow here, but this ensures the ai mobs dont alternate between choking and letting go of people
@@ -353,14 +346,14 @@
 		if(GET_DIST(src.holder.owner, M) <= 1)
 			src.holder.owner.hand_attack(M)
 			src.ticks_since_combat = 0
-			src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
+			src.holder.owner.next_click = world.time + (G ? max(G.click_delay,src.holder.owner.combat_click_delay) : src.holder.owner.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
 			src.queued_target = null
 		else if(istype(owncritter))
 			var/datum/handHolder/HH = owncritter.get_active_hand()
 			if(HH.can_range_attack)
 				src.holder.owner.hand_attack(M)
 				src.ticks_since_combat = 0
-				src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
+				src.holder.owner.next_click = world.time + src.holder.owner.combat_click_delay
 				src.queued_target = null
 			else
 				src.queued_target = M
@@ -380,5 +373,6 @@
 		src.ticks_since_combat = 0
 		SPAWN_DBG(rand(1,2))
 			if(src.queued_target && GET_DIST(src.holder.owner, src.queued_target) <= 1)
+				var/obj/item/equipped = src.holder.owner.equipped()
 				src.holder.owner.hand_attack(src.queued_target)
-				src.holder.owner.next_click = world.time + COMBAT_CLICK_DELAY
+				src.holder.owner.next_click = world.time + (equipped ? max(equipped.click_delay,src.holder.owner.combat_click_delay) : src.holder.owner.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)

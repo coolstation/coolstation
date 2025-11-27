@@ -30,6 +30,7 @@ var/global/list/mapNames = list(
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
 	"La Noyade" = 		list("id" = "NOYADE",		"settings" = "noyade",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
+	"The Goon Station" =list("id" = "ALTBOX",		"settings" = "altbox",			"playerPickable" = 1),
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
@@ -242,6 +243,55 @@ var/global/list/mapNames = list(
 	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
 	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+
+/datum/map_settings/altbox
+	name = "ALTBOX"
+	walls = /turf/wall/
+	rwalls = /turf/wall/r_wall/
+	auto_walls = 0
+	job_limits_from_landmarks = TRUE
+	goonhub_map = "https://wiki.coolstation.space/wiki/Box"
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+	qm_supply_type = "shuttle"
+
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	escape_centcom = /area/shuttle/escape/centcom/donut2
+	escape_outpost = /area/shuttle/escape/outpost/donut2
+	escape_transit = /area/shuttle/escape/transit/donut2
+	escape_station = /area/shuttle/escape/station/donut2
+	escape_def = SHUTTLE_NORTH
+	escape_dir = NORTH
+
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+		"the central research sector hub" = list(/area/station/science/lobby),
+		"the cargo bay" = list(/area/station/quartermaster/cargobay),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
+		"the bar" = list(/area/station/crew_quarters/bar),
+		"the EVA storage" = list(/area/station/ai_monitored/storage/eva),
+		"the robotics lab" = list(/area/station/medical/robotics),
+		"the bridge" = list(/area/station/bridge),
+		"the escape arm" = list(/area/station/hallway/secondary/exit),
+		"the dank ass observatory" = list(/area/station/crew_quarters/observatory),
+		"the chapel" = list(/area/station/chapel/sanctuary))
 
 /datum/map_settings/chunk
 	name = "CHUNK"
