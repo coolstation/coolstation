@@ -1963,10 +1963,6 @@
 	},
 /turf/floor/carpet/grime3,
 /area/station/library)
-"bBM" = (
-/obj/machinery/door/airlock/external,
-/turf/floor/plating/airless/random,
-/area/station/shipyard)
 "bBX" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/cable{
@@ -2190,10 +2186,6 @@
 	dir = 9
 	},
 /area/station/security/main)
-"bHU" = (
-/obj/railing/yellow,
-/turf/floor/plating/airless/random,
-/area/station/shipyard)
 "bIf" = (
 /obj/machinery/light/small,
 /turf/floor/shuttlebay{
@@ -2310,13 +2302,6 @@
 "bLE" = (
 /obj/cable{
 	icon_state = "4-8"
-	},
-/obj/table/auto,
-/obj/item/kitchen/food_box/donut_box{
-	desc = "It appears to be a Martian brand of donuts.";
-	name = "Robust Donuts";
-	pixel_x = -2;
-	pixel_y = 8
 	},
 /turf/floor,
 /area/station/crew_quarters/quarters_west)
@@ -4423,6 +4408,12 @@
 /area/station/maintenance/outer/ne)
 "dqY" = (
 /obj/table/auto,
+/obj/item/kitchen/food_box/donut_box{
+	desc = "It appears to be a Martian brand of donuts.";
+	name = "Robust Donuts";
+	pixel_x = -2;
+	pixel_y = 8
+	},
 /turf/floor,
 /area/station/crew_quarters/quarters_west)
 "dri" = (
@@ -5026,6 +5017,9 @@
 	dir = 1
 	},
 /area/station/bridge)
+"dRi" = (
+/turf/floor/plating/airless/random,
+/area/station/shipyard)
 "dRr" = (
 /obj/lattice,
 /obj/machinery/communications_dish,
@@ -6591,10 +6585,14 @@
 /turf/floor,
 /area/station/security/armory)
 "eYH" = (
-/obj/table/auto,
-/obj/item/game_kit,
 /obj/cable{
 	icon_state = "2-4"
+	},
+/obj/stool/chair{
+	dir = 8
+	},
+/obj/landmark/start{
+	name = "Assistant"
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_west)
@@ -8469,7 +8467,19 @@
 /turf/space,
 /area/station/solar/north)
 "gta" = (
-/obj/shrub,
+/obj/item/decoration/ashtray{
+	pixel_x = 10;
+	pixel_y = 9
+	},
+/obj/item/cigbutt{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/table/auto,
+/obj/item/cigbutt{
+	pixel_x = -1;
+	pixel_y = 8
+	},
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_west)
 "gtq" = (
@@ -8805,9 +8815,6 @@
 	icon_state = "4-8"
 	},
 /obj/table/auto,
-/obj/machinery/phone{
-	pixel_x = 9
-	},
 /obj/item/reagent_containers/food/drinks/bottle/beer{
 	pixel_x = -6;
 	pixel_y = 4
@@ -9604,10 +9611,6 @@
 	dir = 10
 	},
 /area/station/medical/medbay/surgery)
-"hdA" = (
-/obj/grille/catwalk/jen,
-/turf/floor/plating/airless/random,
-/area/station/shipyard)
 "hdL" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/firedoor_spawn,
@@ -11657,6 +11660,11 @@
 	},
 /turf/floor/airless/plating/catwalk,
 /area/station/solar/north)
+"iKs" = (
+/obj/lattice,
+/obj/grille/catwalk/jen,
+/turf/floor/plating/airless/random,
+/area/station/shipyard)
 "iKR" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -11700,10 +11708,6 @@
 	},
 /turf/floor/cautionblack,
 /area/station/quartermaster/cargobay)
-"iLA" = (
-/obj/reagent_dispensers/fueltank,
-/turf/floor/plating/airless/random,
-/area/station/shipyard)
 "iLI" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -12853,6 +12857,10 @@
 	},
 /turf/floor/wood/seven,
 /area/station/library)
+"jIt" = (
+/obj/grille/catwalk/jen,
+/turf/floor/plating/airless/random,
+/area/station/shipyard)
 "jII" = (
 /turf/floor/plating/random,
 /area/station/maintenance/west)
@@ -15299,10 +15307,9 @@
 /turf/floor/industrial,
 /area/station/mining/equipment)
 "luP" = (
-/obj/shrub{
-	dir = 1;
-	icon = 'icons/obj/stationobjs.dmi';
-	icon_state = "plant"
+/obj/table/auto,
+/obj/machinery/phone{
+	pixel_x = 9
 	},
 /turf/floor,
 /area/station/crew_quarters/quarters_west)
@@ -16228,6 +16235,10 @@
 	},
 /turf/floor/plating,
 /area/station/security/main)
+"miE" = (
+/obj/machinery/door/airlock/external,
+/turf/floor/plating/airless/random,
+/area/station/shipyard)
 "mjd" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -16599,6 +16610,10 @@
 	},
 /turf/floor,
 /area/station/science/bot_storage)
+"mwZ" = (
+/obj/railing/yellow,
+/turf/floor/plating/airless/random,
+/area/station/shipyard)
 "mxg" = (
 /obj/landmark/gps_waypoint,
 /obj/disposalpipe/segment,
@@ -17113,9 +17128,6 @@
 	},
 /turf/floor/orange,
 /area/station/science/lab)
-"mTa" = (
-/turf/floor/plating/airless/random,
-/area/station/shipyard)
 "mTB" = (
 /obj/machinery/door/airlock/glass/medical,
 /obj/disposalpipe/segment,
@@ -17711,22 +17723,11 @@
 /turf/floor,
 /area/station/engine/core)
 "nrM" = (
-/obj/table/auto,
-/obj/item/decoration/ashtray{
-	pixel_x = 10;
-	pixel_y = 9
-	},
-/obj/item/cigbutt{
-	pixel_x = -1;
-	pixel_y = 8
-	},
-/obj/item/cigbutt{
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/decoration/clock{
 	pixel_x = -30
 	},
+/obj/table/auto,
+/obj/item/game_kit,
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_west)
 "nsT" = (
@@ -17823,6 +17824,12 @@
 	icon_state = "4-8"
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/stool/chair{
+	dir = 4
+	},
+/obj/landmark/start{
+	name = "Assistant"
+	},
 /turf/floor,
 /area/station/crew_quarters/quarters_west)
 "nyf" = (
@@ -18060,10 +18067,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
-"nJn" = (
-/obj/machinery/computer/shipyard_control,
-/turf/floor/plating/random,
-/area/station/shipyard)
 "nJD" = (
 /obj/cable/yellow{
 	icon_state = "4-8"
@@ -20978,12 +20981,6 @@
 /area/station/medical/medbay)
 "pLt" = (
 /obj/landmark/gps_waypoint,
-/obj/stool/chair{
-	dir = 4
-	},
-/obj/landmark/start{
-	name = "Assistant"
-	},
 /obj/disposalpipe/junction{
 	dir = 8
 	},
@@ -22349,6 +22346,10 @@
 /obj/random_item_spawner/circuitboards/three,
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
+"qHL" = (
+/obj/reagent_dispensers/fueltank,
+/turf/floor/plating/airless/random,
+/area/station/shipyard)
 "qHU" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -23402,7 +23403,6 @@
 /turf/floor/engine,
 /area/station/science/teleporter)
 "rri" = (
-/obj/table/auto,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 10;
@@ -23416,6 +23416,7 @@
 /obj/shitty_radio/shitty_tv{
 	pixel_y = 7
 	},
+/obj/table/auto,
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_west)
 "rrY" = (
@@ -23558,12 +23559,6 @@
 "ruV" = (
 /obj/cable{
 	icon_state = "4-8"
-	},
-/obj/stool/chair{
-	dir = 8
-	},
-/obj/landmark/start{
-	name = "Assistant"
 	},
 /obj/disposalpipe/segment,
 /turf/floor,
@@ -24332,11 +24327,6 @@
 /obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/grey,
 /area/station/medical/robotics)
-"sby" = (
-/obj/lattice,
-/obj/grille/catwalk/jen,
-/turf/floor/plating/airless/random,
-/area/station/shipyard)
 "sbA" = (
 /turf/floor/circuit,
 /area/station/turret_protected/ai_upload)
@@ -24585,10 +24575,6 @@
 /obj/item/pipebomb/bomb,
 /turf/floor/plating/airless/random,
 /area/station/shipyard)
-"slV" = (
-/obj/machinery/light/beacon,
-/turf/floor/plating/airless/random,
-/area/station/shipyard)
 "smm" = (
 /obj/wingrille_spawn/reinforced_crystal,
 /turf/floor/plating,
@@ -24812,6 +24798,11 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
+"sua" = (
+/obj/stool/chair,
+/obj/landmark/start/latejoin,
+/turf/floor/grime,
+/area/station/crew_quarters/quarters_west)
 "sui" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/floor/airless/engine/caution,
@@ -25450,6 +25441,10 @@
 	dir = 4
 	},
 /area/station/janitor/office)
+"sRp" = (
+/obj/machinery/light/beacon,
+/turf/floor/plating/airless/random,
+/area/station/shipyard)
 "sRD" = (
 /obj/disposalpipe/junction{
 	dir = 4;
@@ -30846,6 +30841,10 @@
 /obj/storage/closet/fire,
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
+"wWP" = (
+/obj/machinery/computer/shipyard_control,
+/turf/floor/plating/random,
+/area/station/shipyard)
 "wXL" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
@@ -31242,8 +31241,6 @@
 /turf/floor/plating/random,
 /area/station/maintenance/outer/ne)
 "xog" = (
-/obj/stool/chair,
-/obj/landmark/start/latejoin,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_west)
@@ -62472,7 +62469,7 @@ rHx
 pSY
 hLU
 hyl
-hyl
+sua
 nrM
 gta
 rHx
@@ -68243,8 +68240,8 @@ gdz
 apK
 rtl
 rtl
-mTa
-hdA
+dRi
+jIt
 xLm
 xLm
 xLm
@@ -68260,8 +68257,8 @@ xLm
 xLm
 xLm
 xLm
-mTa
-mTa
+dRi
+dRi
 rtl
 bMk
 bMk
@@ -68543,9 +68540,9 @@ vrk
 seQ
 hyY
 seQ
-mTa
-mTa
-mTa
+dRi
+dRi
+dRi
 dYn
 xLm
 xLm
@@ -68848,7 +68845,7 @@ qyM
 apK
 cqf
 rtl
-mTa
+dRi
 xLm
 xLm
 xLm
@@ -68864,9 +68861,9 @@ xLm
 xLm
 xLm
 xLm
-mTa
+dRi
 seQ
-nJn
+wWP
 gtF
 gtF
 seQ
@@ -69148,8 +69145,8 @@ nNl
 nNl
 nNl
 oeb
-mTa
-mTa
+dRi
+dRi
 rtl
 xLm
 xLm
@@ -69166,7 +69163,7 @@ xLm
 xLm
 xLm
 xLm
-mTa
+dRi
 seQ
 isJ
 gtF
@@ -69450,9 +69447,9 @@ nNl
 nNl
 gRV
 oeb
-mTa
-mTa
-bHU
+dRi
+dRi
+mwZ
 xLm
 xLm
 xLm
@@ -69468,8 +69465,8 @@ xLm
 xLm
 xLm
 xLm
-mTa
-bBM
+dRi
+miE
 gtF
 gtF
 gtF
@@ -69752,9 +69749,9 @@ qyM
 qyM
 qyM
 apK
-mTa
-hdA
-hdA
+dRi
+jIt
+jIt
 xLm
 xLm
 xLm
@@ -70054,9 +70051,9 @@ fBL
 xoa
 ybY
 bMk
-mTa
-mTa
-mTa
+dRi
+dRi
+dRi
 xLm
 xLm
 xLm
@@ -70072,7 +70069,7 @@ xLm
 xLm
 xLm
 xLm
-mTa
+dRi
 seQ
 seQ
 seQ
@@ -70356,9 +70353,9 @@ sqQ
 aML
 tBV
 rtl
-slV
-mTa
-bHU
+sRp
+dRi
+mwZ
 xLm
 xLm
 xLm
@@ -70374,8 +70371,8 @@ xLm
 xLm
 xLm
 xLm
-mTa
-mTa
+dRi
+dRi
 bMk
 bMk
 bMk
@@ -70658,8 +70655,8 @@ aib
 sVL
 tBV
 bMk
-mTa
-mTa
+dRi
+dRi
 rtl
 xLm
 xLm
@@ -70676,8 +70673,8 @@ xLm
 xLm
 xLm
 xLm
-hdA
-mTa
+jIt
+dRi
 rtl
 bMk
 bMk
@@ -70960,9 +70957,9 @@ utv
 aje
 tBV
 bMk
-mTa
-mTa
-hdA
+dRi
+dRi
+jIt
 xLm
 xLm
 xLm
@@ -70978,7 +70975,7 @@ xLm
 xLm
 xLm
 xLm
-mTa
+dRi
 tQS
 seQ
 hkH
@@ -71263,8 +71260,8 @@ kGX
 tBV
 rtl
 rtl
-mTa
-bHU
+dRi
+mwZ
 xLm
 xLm
 xLm
@@ -71280,8 +71277,8 @@ xLm
 xLm
 xLm
 xLm
-mTa
-mTa
+dRi
+dRi
 rtl
 bMk
 bMk
@@ -71564,9 +71561,9 @@ bND
 aTG
 aTG
 kiK
-mTa
-hdA
-mTa
+dRi
+jIt
+dRi
 xLm
 xLm
 xLm
@@ -71582,8 +71579,8 @@ xLm
 xLm
 xLm
 xLm
-mTa
-mTa
+dRi
+dRi
 bMk
 bMk
 bMk
@@ -71866,9 +71863,9 @@ qBn
 efu
 nmd
 pBA
-mTa
-hdA
-mTa
+dRi
+jIt
+dRi
 xLm
 xLm
 xLm
@@ -71884,7 +71881,7 @@ xLm
 xLm
 xLm
 xLm
-mTa
+dRi
 rtl
 rtl
 bMk
@@ -72168,9 +72165,9 @@ aWC
 cGp
 aTG
 bbT
-sby
-mTa
-bHU
+iKs
+dRi
+mwZ
 xLm
 xLm
 xLm
@@ -72186,7 +72183,7 @@ xLm
 xLm
 xLm
 xLm
-mTa
+dRi
 oFu
 seQ
 hkH
@@ -72471,8 +72468,8 @@ exI
 aTG
 lyd
 gtF
-mTa
-mTa
+dRi
+dRi
 xLm
 xLm
 xLm
@@ -72488,8 +72485,8 @@ xLm
 xLm
 xLm
 xLm
-hdA
-mTa
+jIt
+dRi
 rtl
 bMk
 bMk
@@ -72773,8 +72770,8 @@ xrX
 nmd
 rtl
 rtl
-mTa
-hdA
+dRi
+jIt
 xLm
 xLm
 xLm
@@ -72790,8 +72787,8 @@ xLm
 xLm
 xLm
 xLm
-mTa
-mTa
+dRi
+dRi
 bMk
 bMk
 bMk
@@ -73074,9 +73071,9 @@ nmd
 aTG
 aTG
 bMk
-mTa
-mTa
-bHU
+dRi
+dRi
+mwZ
 xLm
 xLm
 xLm
@@ -73092,8 +73089,8 @@ xLm
 xLm
 xLm
 xLm
-mTa
-mTa
+dRi
+dRi
 rtl
 bMk
 bMk
@@ -73394,7 +73391,7 @@ xLm
 xLm
 xLm
 xLm
-mTa
+dRi
 oFu
 seQ
 hkH
@@ -73678,8 +73675,8 @@ rwu
 dwc
 eLe
 bMk
-mTa
-mTa
+dRi
+dRi
 skx
 xLm
 xLm
@@ -73696,8 +73693,8 @@ xLm
 xLm
 xLm
 xLm
-mTa
-hdA
+dRi
+jIt
 rtl
 bMk
 bMk
@@ -73980,8 +73977,8 @@ meh
 wxg
 mZS
 bMk
-mTa
-mTa
+dRi
+dRi
 dYn
 xLm
 xLm
@@ -73998,8 +73995,8 @@ xLm
 xLm
 xLm
 xLm
-mTa
-hdA
+dRi
+jIt
 bMk
 bMk
 bMk
@@ -74283,7 +74280,7 @@ nOe
 mZS
 rtl
 rtl
-mTa
+dRi
 rtl
 xLm
 xLm
@@ -74300,7 +74297,7 @@ xLm
 xLm
 xLm
 xLm
-mTa
+dRi
 rtl
 bMk
 bMk
@@ -74584,25 +74581,25 @@ qQA
 lRV
 eLe
 him
-mTa
-mTa
-mTa
-mTa
+dRi
+dRi
+dRi
+dRi
 xyB
-mTa
+dRi
 uUq
 xyB
-hdA
-mTa
+jIt
+dRi
 xyB
-mTa
+dRi
 uUq
 xyB
-mTa
-mTa
+dRi
+dRi
 xyB
 rtl
-mTa
+dRi
 rtl
 seQ
 cdQ
@@ -74886,12 +74883,12 @@ meh
 sOD
 eLe
 him
-slV
-hdA
-hdA
+sRp
+jIt
+jIt
 hbl
-mTa
-mTa
+dRi
+dRi
 uSP
 sGM
 sGM
@@ -74899,13 +74896,13 @@ sGM
 sGM
 sGM
 uSP
-iLA
-hdA
-hdA
-mTa
-mTa
-mTa
-mTa
+qHL
+jIt
+jIt
+dRi
+dRi
+dRi
+dRi
 eBg
 cdQ
 qrb
@@ -75203,9 +75200,9 @@ pmh
 uSP
 uSP
 nJI
-mTa
-mTa
-mTa
+dRi
+dRi
+dRi
 bRJ
 fUN
 gLW
