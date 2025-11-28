@@ -1257,7 +1257,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	var/was_anchored = A.anchored
 	var/oldlayer = A.layer
 	A.layer = EFFECTS_LAYER + 1
-	A.anchored = 1
+	A.anchored = ANCHORED
 	A.alpha = 0
 	A.pixel_y = 176
 	lightbeam.alpha = 0

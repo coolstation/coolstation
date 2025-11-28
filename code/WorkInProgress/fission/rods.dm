@@ -12,7 +12,7 @@
 	icon = 'icons/obj/machines/nuclear.dmi'
 	icon_state = "Sing2"
 
-	anchored = 0
+	anchored = UNANCHORED
 	density = 0
 
 	lowered = 0
@@ -32,7 +32,7 @@
 /obj/item/rod/fuel
 	name = "fuel rod"
 	desc = "an empty rod"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 0
 
 	icon = 'icons/obj/machines/nuclear.dmi'

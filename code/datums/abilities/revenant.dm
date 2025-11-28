@@ -98,7 +98,7 @@
 
 	proc/ghoulTouch(var/mob/living/carbon/human/poorSob, var/obj/item/affecting)
 		if (poorSob.traitHolder.hasTrait("training_chaplain"))
-			poorSob.visible_message("<span class='alert'>[poorSob]'s faith shields them from [owner]'s ethereal force!", "<span class='notice'>Your faith protects you from [owner]'s ethereal force!</span>")
+			poorSob.visible_message("<span class='alert'>[poorSob]'s faith shields [him_or_her(poorSob)] from [owner]'s ethereal force!", "<span class='notice'>Your faith protects you from [owner]'s ethereal force!</span>")
 			JOB_XP(poorSob, "Chaplain", 2)
 			return
 		else

@@ -15,7 +15,7 @@
 
 	var/canattack = 0
 	blinded = 0
-	anchored = 0
+	anchored = UNANCHORED
 	a_intent = "disarm" // todo: This should probably be selectable. Cyborg style - help/harm.
 	health = 50
 	max_health = 50

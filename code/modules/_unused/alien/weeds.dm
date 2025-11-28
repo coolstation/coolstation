@@ -5,7 +5,7 @@
 	icon_state = "weeds"
 
 	layer = TURF_LAYER
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 	New()

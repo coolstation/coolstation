@@ -10,8 +10,6 @@
 	voice_name = "synthesized voice"
 	hand_count = 1
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 0
 	blood_id = "oil"
 	speechverb_say = "beeps"
 	speechverb_gasp = "chirps"

@@ -410,7 +410,7 @@
 				if (istype(T, /turf/floor) && ammo >= 3)
 					playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 					if(after_time(20))
-						T:ReplaceWithWall()
+						T:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 						ammo -= 3
 					return
@@ -419,7 +419,7 @@
 				for(var/obj/structure/girder/G in get_step(ship.loc, ship.dir))
 					var/turf/T = get_turf(G.loc)
 					qdel(G)
-					T:ReplaceWithWall()
+					T:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 					playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 					break
 				return
@@ -438,7 +438,7 @@
 					playsound(src.loc, "sound/machines/click.ogg", 50, 1)
 					if(after_time(50))
 						ammo -= 5
-						T:ReplaceWithWall()
+						T:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 						playsound(src.loc, "sound/items/Deconstruct.ogg", 50, 1)
 
 					return
@@ -863,9 +863,8 @@
 		if(istype(A, /turf/floor))
 			var/turf/T = A
 			if(prob(50))
-				T.ReplaceWithLattice()
-			else
-				T.ReplaceWithSpace()
+				new /obj/lattice(T)
+			T.ReplaceWithSpace()
 	if(ismob(A))
 		var/mob/M = A
 		boutput(ship.pilot, "<span class='alert'><B>You crash into [M]!</B></span>")
@@ -881,14 +880,14 @@
 		in_bump = 0
 	if(isobj(A))
 		var/obj/O = A
-		if(O.density && O.anchored != 2)
+		if(O.density && O.anchored != ANCHORED_TECHNICAL)
 			boutput(ship.pilot, "<span class='alert'><B>You crash into [O]!</B></span>")
 			boutput(O, "<span class='alert'><B>[ship] crashes into you!</B></span>")
 			var/turf/target = get_edge_target_turf(ship, ship.dir)
 			playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
 			playsound(src, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
 			O.throw_at(target, 4, 2)
-			O.anchored = 0
+			O.anchored = UNANCHORED
 			if (istype(O, /obj/machinery/vehicle))
 				A.meteorhit(src)
 				crashhits -= 3

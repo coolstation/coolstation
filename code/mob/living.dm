@@ -50,7 +50,6 @@
 
 	var/datum/organHolder/organHolder = null //Not all living mobs will use organholder. Instantiate on New() if you want one.
 
-	var/list/stomach_process = list() //digesting foods
 	var/list/skin_process = list() //digesting patches
 
 	var/sound_burp = 'sound/voice/burp.ogg'
@@ -83,6 +82,9 @@
 
 	var/grounded_for_projectiles = FALSE
 
+	/// Currently used only in critter setup. Mylie plans to make this an actual thing.
+	var/hand_count = 0
+
 	var/last_heard_name = null
 	var/last_chat_color = null
 
@@ -100,14 +102,15 @@
 
 	var/metabolizes = 1
 
+	var/uses_blood = TRUE
 	var/can_bleed = 1
 	var/blood_id = null
-	var/blood_volume = 500
+	var/ideal_blood_volume = 500
 	var/blood_pressure = null
 	var/blood_color = DEFAULT_BLOOD_COLOR
 	var/bleeding = 0
 	var/bleeding_internal = 0
-	var/blood_absorption_rate = 1 // amount of blood to absorb from the reagent holder per Life()
+	// var/blood_absorption_rate = 1 // amount of blood to absorb from the reagent holder per Life()
 	var/list/bandaged = list()
 	var/being_staunched = 0 // is someone currently putting pressure on their wounds?
 
@@ -118,7 +121,7 @@
 	var/stamina = STAMINA_MAX
 	var/stamina_max = STAMINA_MAX
 	var/stamina_regen = STAMINA_REGEN
-	var/stamina_crit_chance = STAMINA_CRIT_CHANCE
+//	var/stamina_crit_chance = STAMINA_CRIT_CHANCE
 	var/list/stamina_mods_regen = list()
 	var/list/stamina_mods_max = list()
 
@@ -141,14 +144,18 @@
 	src.vis_contents += src.chat_text
 	tracked_reagents = new /datum/reagents/surface(8)
 	tracked_reagents.my_atom = src
-	if (can_bleed)
+	if (uses_blood)
+		if (blood_id)
+			all_blood_reagents |= blood_id
+		src.create_reagents(src.ideal_blood_volume * 4)
+		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume, temp_new = src.base_body_temp)
 		src.ensure_bp_list()
-	if (blood_id)
-		all_blood_reagents |= blood_id
 
 	if(src.ai_type)
 		src.is_npc = TRUE
-		src.ai = new ai_type(src)
+		if(istext(src.ai_type))
+			src.ai_type = text2path(src.ai_type)
+		src.ai = new src.ai_type(src)
 
 	SPAWN_DBG(0)
 		src.get_static_image()
@@ -175,11 +182,8 @@
 	qdel(tracked_reagents)
 	tracked_reagents = null
 
-	for (var/atom/A as anything in stomach_process)
-		qdel(A)
 	for (var/atom/A as anything in skin_process)
 		qdel(A)
-	stomach_process = null
 	skin_process = null
 
 	for(var/mob/dead/aieye/E in src.contents)
@@ -196,6 +200,8 @@
 /mob/living/death(gibbed)
 	#define VALID_MOB(M) (!isVRghost(M) && !isghostcritter(M) && !inafterlife(M))
 	src.remove_ailments()
+	for (var/obj/item/implant/H in src.implant)
+		H.on_death()
 	if (src.key) statlog_death(src, gibbed)
 	if (src.client && ticker.round_elapsed_ticks >= 12000 && VALID_MOB(src))
 		var/num_players = 0
@@ -505,7 +511,7 @@
 			return
 
 		if (src.in_point_mode || (src.client && src.client.check_key(KEY_POINT)))
-			src.point(target)
+			src.point_at(target, text2num(params["icon-x"]), text2num(params["icon-y"]))
 			if (src.in_point_mode)
 				src.toggle_point_mode()
 			return
@@ -536,7 +542,7 @@
 		if (target == equipped)
 			equipped.attack_self(src, params, location, control)
 			if(equipped.item_function_flags & ATTACK_SELF_DELAY)
-				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
+				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 		else if (params["ctrl"])
 			var/atom/movable/movable = target
 			if (istype(movable))
@@ -558,7 +564,7 @@
 				equipped = src.equipped() //might have changed from successful modify
 			if (reach || (equipped && equipped.special) || (equipped && (equipped.flags & EXTRADELAY))) //Fuck you, magic number prickjerk //MBC : added bit to get weapon_attack->pixelaction to work for itemspecial
 				if (use_delay)
-					src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
+					src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 
 				if (src.invisibility > 0 && (isturf(target) || (target != src && isturf(target.loc)))) // dont want to check for a cloaker every click if we're not invisible
 					SEND_SIGNAL(src, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
@@ -570,14 +576,14 @@
 
 				//If lastattacked was set, this must be a combat action!! Use combat click delay ||  the other condition is whether a special attack was just triggered.
 				if ((lastattacked != null && (src.lastattacked == target || src.lastattacked == equipped || src.lastattacked == src) && use_delay) || (equipped && equipped.special && equipped.special.last_use >= world.time - src.click_delay))
-					src.next_click = world.time + (equipped ? max(equipped.click_delay,src.combat_click_delay) : src.combat_click_delay)
+					src.next_click = world.time + (equipped ? equipped.combat_click_delay : src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 					src.lastattacked = null
 
 			else if (!equipped)
 				hand_range_attack(target, params, location, control)
 
 				if (lastattacked != null && (src.lastattacked == target || src.lastattacked == equipped || src.lastattacked == src) && use_delay)
-					src.next_click = world.time + src.combat_click_delay
+					src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 					src.lastattacked = null
 
 		//Don't think I need the above, this should work here.
@@ -635,7 +641,7 @@
 	src.in_point_mode = !(src.in_point_mode)
 	src.update_cursor()
 
-/mob/living/point_at(var/atom/target)
+/mob/living/point_at(var/atom/target, var/pixel_x, var/pixel_y)
 	if (!isturf(src.loc) || !isalive(src) || src.restrained())
 		return
 
@@ -657,8 +663,7 @@
 			src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
 		else
 			src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
-
-	make_point(get_turf(target), pixel_x=target.pixel_x, pixel_y=target.pixel_y, color=src.bioHolder.mobAppearance.customization_first_color)
+	make_point(target, pixel_x=pixel_x, pixel_y=pixel_y, color=src.bioHolder.mobAppearance.customization_first_color, pointer = src)
 
 
 /mob/living/proc/set_burning(var/new_value)
@@ -712,11 +717,9 @@
 
 	logTheThing("diary", src, null, ": [message]", "say")
 
-#ifdef DATALOGGER
 	// Jewel's attempted fix for: null.ScanText()
 	if (game_stats)
 		game_stats.ScanText(message)
-#endif
 
 	if (src.client && src.client.ismuted())
 		boutput(src, "You are currently muted and may not speak.")
@@ -2080,9 +2083,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				var/atom/targetTurf = get_edge_target_turf(src, get_dir(src, get_step_away(src, origin)))
 				src.throw_at(targetTurf, 200, 4)
 	shock_cyberheart(shock_damage)
-	#ifdef DATALOGGER
 	game_stats.Increment("workplacesafety") //If your cyberheart fucks it as well it counts as 2 violations, which I think is fine :3
-	#endif
 	TakeDamage(zone, 0, shock_damage, 0, DAMAGE_BURN)
 	boutput(src, "<span class='alert'><B>You feel a [wattage > 7500 ? "powerful" : "slight"] shock course through your body!</B></span>")
 	src.unlock_medal("HIGH VOLTAGE", 1)
@@ -2109,7 +2110,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			target_dir = src.dir
 		var/slidekick_range = max(1 + min(GET_ATOM_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
 		if (!T.throw_unlimited && target_dir)
-			src.next_click = world.time + src.combat_click_delay
+			src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 			if (!HAS_ATOM_PROPERTY(src, PROP_SLIDEKICK_TURBO))
 				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
 				src.force_laydown_standup()
@@ -2228,6 +2229,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			qdel(G)
 		if (!I) return
 
+	if (I.pre_thrown(target, params))
+		return
+
 	if (istype(I, /obj/item/lifted_thing))
 		var/obj/item/lifted_thing/LT = I
 		I = LT.our_thing
@@ -2292,7 +2296,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			for(var/obj/item/grab/gunpoint/G in grabbed_by)
 				G.shoot()
 
-		src.next_click = world.time + src.combat_click_delay
+		src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 
 /mob/living/hitby(atom/movable/AM, datum/thrown_thing/thr)
 	. = 'sound/impact_sounds/Generic_Hit_2.ogg'
@@ -2383,8 +2387,13 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				return 1
 	return 0
 
+/// a "valid target" is POSSIBLE to attack - this should return true for anything you want it to defend itself from, as well
 /mob/living/proc/ai_is_valid_target(mob/M)
 	return M != src
+
+/// the higher the returned value, the better the target is. assume that the target is valid.
+/mob/living/proc/ai_rate_target(mob/M)
+	return !isdead(M)
 
 /mob/living/proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
 	remove_lifeprocess(/datum/lifeprocess/blood)
@@ -2397,3 +2406,18 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	remove_lifeprocess(/datum/lifeprocess/sight)
 	remove_lifeprocess(/datum/lifeprocess/skin)
 	remove_lifeprocess(/datum/lifeprocess/statusupdate)
+
+/mob/living/full_heal()
+	..()
+	if (src.uses_blood)
+		src.reagents.clear_reagents()
+		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume, temp_new = src.base_body_temp)
+
+/mob/living/proc/replace_blood_with(var/new_blood)
+	var/blood_replaced = src.reagents.get_reagent_amount(src.blood_id)
+	src.reagents.del_reagent(src.blood_id)
+	src.blood_id = new_blood
+	if(src.organHolder && src.organHolder.spleen)
+		src.organHolder.spleen.blood_id = new_blood
+	all_blood_reagents |= new_blood
+	src.reagents.add_reagent(src.blood_id, blood_replaced, temp_new = src.reagents.total_temperature)

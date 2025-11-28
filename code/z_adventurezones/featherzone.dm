@@ -28,7 +28,7 @@
 	desc = "A pile of metal and glass fibre that seems to have... congealed? Weird. Also gross."
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "drone-long-dead"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/permanentcage
@@ -36,7 +36,7 @@
 	desc = "A permanent cage used for keeping things in one place."
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "cage"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	New()

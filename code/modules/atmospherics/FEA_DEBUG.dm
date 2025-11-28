@@ -427,7 +427,7 @@ turf
 obj/indicator
 	icon = 'icons/air_meter.dmi'
 	var/measure = "temperature"
-	anchored = 1
+	anchored = ANCHORED
 
 	proc/process()
 		icon_state = measurement()

@@ -5,7 +5,7 @@
 /obj/decal/flock_build_wall
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "spawn-wall-loop"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	mouse_opacity = 0
@@ -16,7 +16,7 @@
 /obj/decal/flock_build_floor
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "spawn-floor-loop"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	mouse_opacity = 0

@@ -9,7 +9,7 @@
 	throw_range = 5
 	w_class = W_CLASS_TINY
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	var/broken = 0
 
 	attack_self(mob/user)

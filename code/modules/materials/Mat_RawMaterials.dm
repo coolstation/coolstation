@@ -155,6 +155,7 @@
 		icon_state = "fabric"
 		name = "fabric"
 		desc = "A weave of some kind."
+		hint = "this can be used as a bandage."
 		var/in_use = 0
 
 		attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -388,6 +389,15 @@
 	value = 5000 //holy shit man
 	setup_material()
 		src.setMaterial(getMaterial("kingbrullbarhide"), appearance = 0, setname = 0)
+		..()
+
+/obj/item/material_piece/cloth/mothroachhide
+	name = "mothroach hide"
+	desc = "The hide of a mothroach"
+	icon_state = "mothroachhide"
+	value = 1000 //was it worth it?
+	setup_material()
+		src.setMaterial(getMaterial("mothroachhide"), appearance = 0, setname = 0)
 		..()
 
 /obj/item/material_piece/cloth/carbon

@@ -282,7 +282,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 				return
 
 			user.show_message(src.anchored ? "You start to unweld the turret from the floor." : "You start to weld the turret to the floor.")
-			SETUP_GENERIC_ACTIONBAR(user, src, 3 SECONDS, .proc/toggle_anchored, null, W.icon, W.icon_state, \
+			SETUP_GENERIC_ACTIONBAR(user, src, 3 SECONDS, PROC_REF(toggle_anchored), null, W.icon, W.icon_state, \
 			  src.anchored ? "[user] unwelds the turret from the floor." : "[user] welds the turret to the floor.", \
 			  INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
 			logTheThing("diary", user, "[src.anchored ? "unwelds" : "welds"] the [src] turret [src.anchored ? "from" : "to"] the floor at [log_loc(src)]")
@@ -296,7 +296,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 				return
 
 			user.show_message("You start to repair the turret.")
-			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, .proc/repair, null, W.icon, W.icon_state, \
+			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, PROC_REF(repair), null, W.icon, W.icon_state, \
 			  "[user] repairs some of the turret's damage.", \
 			  INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
 			logTheThing("diary", user, "repairs the [src] turret with a welding tool at [log_loc(user)]")
@@ -317,7 +317,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 			else
 				user.show_message("You begin to disassemble the turret.")
 				playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
-				SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, .proc/spawn_deployer, null, W.icon, W.icon_state, \
+				SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, PROC_REF(spawn_deployer), null, W.icon, W.icon_state, \
 				  "[user] disassembles the turret.", \
 				  INTERRUPT_ACTION | INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACT)
 				logTheThing("diary", user, "undeploys the [src] turret at [log_loc(user)].")
@@ -383,7 +383,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		src.visible_message("<span class='alert'>[src]'s quick deploy system engages, automatically securing it!</span>")
 		playsound(src.loc, "sound/items/Welder2.ogg", 30, 1)
 		set_projectile()
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.active = 1
 		src.icon_state = "[src.icon_tag]_idle"
 
@@ -543,7 +543,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		return istype(C.get_id(), /obj/item/card/id/syndicate) || istype(C, /mob/living/critter/robotic/gunbot) //dumb lazy
 
 /obj/deployable_turret/syndicate/active
-	anchored = 1
+	anchored = ANCHORED
 
 	New(loc)
 		..(src.loc, src.dir)
@@ -572,7 +572,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		. = (access_security in I.access) || (access_heads in I.access)
 
 /obj/deployable_turret/riot/active
-	anchored = 1
+	anchored = ANCHORED
 
 	New(loc)
 		..(src.loc, src.dir)

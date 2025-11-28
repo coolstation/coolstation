@@ -15,7 +15,7 @@
 	machinery_flags = REQ_PHYSICAL_ACCESS
 	var/o2tanks = 10
 	var/pltanks = 10
-	anchored = 1.0
+	anchored = ANCHORED
 	mats = 24
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
 

@@ -6,7 +6,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer_generic"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	var/base_icon_state = "computer_generic"
 	var/temp = "<b>Thinktronic BIOS V2.1</b><br>"
 	var/temp_add = null
@@ -170,7 +170,7 @@
 			manta_computer
 				icon = 'icons/obj/large/32x96.dmi'
 				icon_state = "nuclearcomputer"
-				anchored = 2
+				anchored = ANCHORED_TECHNICAL
 				density = 1
 				bound_height = 96
 				bound_width = 32
@@ -222,6 +222,7 @@
 
 		zeta
 			name = "DWAINE Terminal"
+			hint = "look for a book in the library or computer room to learn how to use this."
 			setup_idscan_path = /obj/item/peripheral/card_scanner
 			setup_starting_peripheral1 = /obj/item/peripheral/network/powernet_card/terminal
 
@@ -722,7 +723,7 @@ function lineEnter (ev)
 			A.mainboard.integrated_floppy = src.setup_has_internal_disk
 
 
-			A.anchored = 1
+			A.anchored = ANCHORED
 			//dispose()
 			src.dispose()
 

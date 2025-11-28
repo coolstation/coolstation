@@ -5,6 +5,7 @@
 /obj/stool/chair
 	name = "chair"
 	desc = "A four-legged metal chair, rigid and slightly uncomfortable. Helpful when you don't want to use your legs at the moment."
+	hint = "press Z or click on yourself while on the grab intent to prepare for a chair dive."
 	icon_state = "chair"
 	var/comfort_value = 3
 	var/buckledIn = 0
@@ -19,12 +20,12 @@
 	var/list/scoot_sounds_original
 	event_handler_flags = STAIR_ANIM | USE_FLUID_ENTER
 	securable = 1
-	anchored = 1
+	anchored = ANCHORED
 	scoot_sounds = list( 'sound/misc/chair/normal/scoot1.ogg', 'sound/misc/chair/normal/scoot2.ogg', 'sound/misc/chair/normal/scoot3.ogg', 'sound/misc/chair/normal/scoot4.ogg', 'sound/misc/chair/normal/scoot5.ogg' )
 	parts_type = null
 
 	moveable
-		anchored = 0
+		anchored = UNANCHORED
 
 	New()
 		if (src.dir == NORTH)
@@ -125,23 +126,21 @@
 			src.p_class = initial(src.p_class) + src.lying // 2 while standing, 3 while lying
 			src.scoot_sounds = src.scoot_sounds_original
 			return
-		if (!ishuman(user)) return
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/human/H = ishuman(user) ? user : null
 		var/mob/living/carbon/human/chump = null
 		for (var/mob/M in src.loc)
-
 			if (ishuman(M))
 				chump = M
 			if (!chump || !chump.on_chair)// == 1)
 				chump = null
-			if (H.on_chair)// == 1)
+			if (H && H.on_chair)// == 1)
 				if (M == user)
 					user.visible_message("<span class='notice'><b>[M]</b> steps off [H.on_chair].</span>", "<span class='notice'>You step off [src].</span>")
 					src.add_fingerprint(user)
 					unbuckle()
 					return
 
-			if ((M.buckled) && (!H.on_chair))
+			else if (M.buckled == src)
 				if (locked)
 					if(user.restrained())
 						return
@@ -247,7 +246,7 @@
 				H.ceilingreach = 1
 				H.lookingup = 1
 				if (src.anchored)
-					to_buckle.anchored = 1
+					to_buckle.anchored = ANCHORED
 				H.on_chair = src
 				to_buckle.buckled = src
 				src.stool_user = to_buckle
@@ -261,7 +260,7 @@
 				user.visible_message("<span class='notice'><b>[to_buckle]</b> is buckled in by [user].</span>", "<span class='notice'>You buckle in [to_buckle].</span>")
 
 			if (src.anchored)
-				to_buckle.anchored = 1
+				to_buckle.anchored = ANCHORED
 			to_buckle.buckled = src
 			src.stool_user = to_buckle
 			to_buckle.set_loc(src.loc)
@@ -431,7 +430,7 @@
 	desc = "It's a chair that has wheels attached to it. Do I really have to explain this to you? Can you not figure this out on your own? Wheelchair. Wheel, chair. Chair that has wheels."
 	icon_state = "wheelchair"
 	arm_icon_state = "arm-wheelchair"
-	anchored = 0
+	anchored = UNANCHORED
 	comfort_value = 3
 	buckle_move_delay = 1
 	p_class = 2
@@ -474,7 +473,7 @@
 	icon_state = "chair_wooden" // this sprite is bad I will fix it at some point
 	comfort_value = 3
 	foldable = 0
-	anchored = 0
+	anchored = UNANCHORED
 	//deconstructable = 0
 	parts_type = /obj/item/furniture_parts/wood_chair
 
@@ -495,7 +494,7 @@
 	icon_state = "office_chair"
 	comfort_value = 4
 	foldable = 0
-	anchored = 0
+	anchored = UNANCHORED
 	buckle_move_delay = 3
 	//deconstructable = 0
 	parts_type = /obj/item/furniture_parts/office_chair
@@ -627,7 +626,7 @@
 	icon_state = "thronegold"
 	arm_icon_state = "thronegold-arm"
 	comfort_value = 7
-	anchored = 0
+	anchored = UNANCHORED
 	deconstructable = 1
 	parts_type = /obj/item/furniture_parts/throne_gold
 
@@ -685,8 +684,8 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 5
 	stamina_damage = 45
-	stamina_cost = 21
-	stamina_crit_chance = 10
+//	stamina_cost = 21
+//	stamina_crit_chance = 10
 	var/c_color = null
 
 	New()
@@ -711,10 +710,10 @@
 		return
 
 /obj/item/chair/folded/attack(atom/target, mob/user as mob)
-	var/oldcrit = src.stamina_crit_chance
-	if(iswrestler(user))
-		src.stamina_crit_chance = 100
+//	var/oldcrit = src.stamina_crit_chance
+//	if(iswrestler(user))
+//		src.stamina_crit_chance = 100
 	if (ishuman(target))
 		playsound(src.loc, pick(sounds_punch), 100, 1)
 	..()
-	src.stamina_crit_chance = oldcrit
+//	src.stamina_crit_chance = oldcrit

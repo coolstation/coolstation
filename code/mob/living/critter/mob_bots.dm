@@ -11,7 +11,6 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	speechverb_stammer = "bleeps"
 	speechverb_exclaim = "boops"
 	speechverb_ask = "bloops"
-	stepsound = "step_plating"
 	robot_talk_understand = TRUE
 	hand_count = 1
 	density = FALSE
@@ -218,7 +217,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			return
 
 		playsound(get_turf(master), "sound/impact_sounds/Liquid_Slosh_2.ogg", 25, 1)
-		master.anchored = 1
+		master.anchored = ANCHORED
 		if(istype(master, /mob/living/critter/robotic/bot))
 			var/mob/living/critter/robotic/bot/bot = master
 			master.icon_state = "[bot.icon_state_base]-c"
@@ -379,13 +378,11 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	hand_count = 1
 	base_move_delay = 3.25
 	base_walk_delay = 4.25
-	can_grab = TRUE
-	can_disarm = TRUE
-	can_help = TRUE
 	metabolizes = FALSE
 	stepsound = null
 	ai_type = /datum/aiHolder/patroller/packet_based/securitron
-	reagent_capacity = 20
+	uses_blood = TRUE // yes :3
+	ideal_blood_volume = 20
 	var/random_name = TRUE
 	var/control_freq = FREQ_BOT_CONTROL
 	var/chase_speed_bonus = 0.3

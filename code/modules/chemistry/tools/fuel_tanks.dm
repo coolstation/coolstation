@@ -17,9 +17,9 @@
 	inventory_counter_enabled = TRUE
 	flags = FPRINT | TABLEPASS | OPENCONTAINER
 	rc_flags = RC_SCALE | RC_SPECTRO | RC_INV_COUNT_AMT
-	initial_volume = 400
+	initial_volume = 4 LITRES
 	can_recycle = FALSE
-	can_chug = 0
+	//can_chug = 0
 	initial_reagents = "fuel"
 
 /obj/item/reagent_containers/food/drinks/fueltank/empty
@@ -45,7 +45,7 @@
 	var/base_icon_state = "chemtank"
 	icon_state = "chemtank-closed"
 	item_state = "chemtank"
-	initial_volume = 1000
+	initial_volume = 10 LITRES
 	flags = OPENCONTAINER
 	w_class = W_CLASS_HUGE
 	incompatible_with_chem_dispensers = 1
@@ -71,7 +71,7 @@
 			L.force_laydown_standup()
 
 	throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 		..()
 		if(ismob(usr))
 			var/mob/living/L = usr

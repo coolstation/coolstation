@@ -31,10 +31,7 @@
 	use_bloodoverlay = 0
 
 	setupProperties()
-		..()
-		setProperty("coldprot", 0)
-		setProperty("heatprot", 0)
-		setProperty("meleeprot", 0)
+		return
 
 	New()
 		..()
@@ -120,7 +117,7 @@
 			if(prob(3))
 				broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/cigarettes, 1, 1)
 
-			hit_type = DAMAGE_BURN
+			//hit_type = DAMAGE_BURN
 
 	proc/put_out(var/mob/user as mob, var/message as text)
 		if (src.on == 1)
@@ -204,11 +201,15 @@
 					src.light(user, "<span class='alert'><b>[user]</b> lights [his_or_her(user)] [src.name] with [M]'s flaming body. That's cold, man. That's real cold.</span>")
 				return
 			else if (src.on == 1)
-				src.put_out(user, "<span class='alert'><b>[user]</b> puts [src] out on [target].</span>")
+				if (user.traitHolder && user.traitHolder.hasTrait("hardcore") && target == user)
+					src.put_out(user, "<span class='alert'>With zero hesitation, <b>[user]</b> puts [src] out on [himself_or_herself(user)] and doesn't even scream. God damn.</span>")
+				else src.put_out(user, "<span class='alert'><b>[user]</b> puts [src] out on [target].</span>")
+
 				if (ishuman(target))
 					var/mob/living/carbon/human/chump = target
 					if (!chump.stat)
-						chump.emote("scream")
+						if (!chump.traitHolder || (chump.traitHolder && !chump.traitHolder.hasTrait("hardcore")))
+							chump.emote("scream")
 				if (src.exploding)
 					trick_explode()
 				return
@@ -250,10 +251,8 @@
 				if (10,11,12,13) message_append = ""
 			user.visible_message("<span class='alert'><B>[user]</B> blows smoke right into <B>[target]</B>'s face![message_append]</span>", group = "[user]_blow_smoke_at_[target]")
 			JOB_XP_FORCE(user,"CIGARETTE",5)
-#ifdef DATALOGGER
 			if (target.mind && target.mind.assigned_role == "Clown")
 				game_stats.Increment("clownabuse")
-#endif
 			var/mob/living/carbon/human/human_target = target
 			if (human_target && rand(1,5) == 1)
 				SPAWN_DBG(0) target.emote("cough")
@@ -542,9 +541,6 @@
 		src.reagents.maximum_volume = 600
 		src.reagents.clear_reagents()
 
-	is_open_container()
-		return 1
-
 /* ================================================= */
 /* -------------------- Packets -------------------- */
 /* ================================================= */
@@ -563,7 +559,7 @@
 	var/package_style = "cigpacket"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigpacket/nicofree
@@ -678,7 +674,7 @@
 	w_class = W_CLASS_TINY
 	throwforce = 1
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	rand_pos = 8
 
 /obj/item/cigarbox
@@ -695,7 +691,7 @@
 	var/package_style = "cigarbox"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigarbox/New()
@@ -759,7 +755,7 @@
 	package_style = "cigarbox"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigarbox/gold/update_icon()
@@ -840,8 +836,8 @@
 	throwforce = 1
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	burn_point = 220
 	burn_output = 900
 	burn_possible = TRUE
@@ -919,8 +915,8 @@
 	throwforce = 1
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	burn_point = 220
 	burn_output = 600
 	burn_possible = TRUE
@@ -1138,8 +1134,8 @@
 	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 0.7 SECONDS
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 5
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 	icon_off = "zippo"
 	icon_on = "zippoon"
 	brightness = 0.4
@@ -1341,3 +1337,20 @@
 
 /obj/item/device/light/zippo/borg
 	infinite_fuel = 1
+
+/* ================================================== */
+/* --------------------- Pipes ---------------------- */
+/* ================================================== */
+
+/obj/item/clothing/mask/pipe
+	name = "pipe"
+	icon = 'icons/obj/items/cigarettes.dmi'
+	wear_image_icon = 'icons/mob/mask.dmi'
+	icon_state = "pipe"
+	uses_multiple_icon_states = 1
+	item_state = "pipe"
+	force = 2
+	hit_type = DAMAGE_BLUNT
+	throw_speed = 1
+	w_class = W_CLASS_TINY
+

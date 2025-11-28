@@ -717,12 +717,14 @@ datum/projectile/snowball
 	impact_range = 4
 
 // THIS IS INTENDED FOR POINTBLANKING.
-/proc/hit_with_projectile(var/S, var/datum/projectile/DATA, var/atom/T)
+/proc/hit_with_projectile(var/S, var/datum/projectile/DATA, var/atom/T, var/forensic_ID)
 	if (!S || !T)
 		return
 	var/times = max(1, DATA.shot_number)
 	for (var/i = 1, i <= times, i++)
 		var/obj/projectile/P = initialize_projectile_ST(S, DATA, T)
+		P.forensic_ID = forensic_ID
+		P.was_pointblank = TRUE
 		if (S == T)
 			P.shooter = null
 			P.mob_shooter = S
@@ -897,10 +899,9 @@ datum/projectile/snowball
 				for (var/mob/M in shooter)
 					M << sound(DATA.shot_sound, volume=DATA.shot_volume)
 /* // warc: this is an innapropriate place for this stat because a LOT of things use projectiles as a parent now!!!!
-#ifdef DATALOGGER
 	if (game_stats && istype(game_stats))
 		game_stats.Increment("gunfire")
-#endif*/
+*/
 	if (DATA.brightness)
 		P.add_simple_light("proj", list(DATA.color_red*255, DATA.color_green*255, DATA.color_blue*255, DATA.brightness * 255))
 

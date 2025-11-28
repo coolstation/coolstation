@@ -2,13 +2,10 @@
 	name = "gnome"
 	desc = "A horrifying sewer-dwelling shapeshifter. The hat and clothes are made of chitin."
 	icon_state = "gnome"
-	can_help = TRUE
-	can_grab = TRUE
-	can_disarm = TRUE
 	can_throw = TRUE
 	flags = TABLEPASS
 	fits_under_table = TRUE
-	reagent_capacity = 100
+	ideal_blood_volume = 100
 	hand_count = 2
 	speechverb_say = "hisses"
 	speechverb_exclaim = "screams"
@@ -87,7 +84,7 @@
 	desc = "A pit most foul, a horrid glimpse into the gnome hive."
 	icon = 'icons/obj/large/64x64.dmi'
 	icon_state = "gnomeholegaping"
-	anchored = ANCHORED_ALWAYS
+	anchored = ANCHORED_TECHNICAL
 	event_handler_flags = USE_FLUID_ENTER | Z_ANCHORED
 	plane = PLANE_FLOOR //They're supposed to be embedded in the floor.
 	layer = TURF_LAYER

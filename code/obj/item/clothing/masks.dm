@@ -27,6 +27,14 @@
 		setProperty("heatprot", 5)
 		setProperty("meleeprot_head", 2)
 
+	get_desc() //Contentious? But may be necessary for newbs
+		..()
+		if (vchange)
+			hint = "Use wirecutters to remove [src]'s voice changer."
+		else
+			hint = null
+
+
 /obj/item/clothing/mask/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/voice_changer))
 		if (src.see_face)
@@ -189,6 +197,7 @@
 	icon_state = "voicechanger"
 	is_syndicate = 1
 	mats = 6
+	hint = "Insert into a face-concealing mask. Remove from the mask with wirecutters."
 
 /obj/item/clothing/mask/monkey_translator
 	name = "vocal translator"

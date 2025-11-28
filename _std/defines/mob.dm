@@ -13,10 +13,10 @@
 #define UNUSED_512 (1<<9)
 #define AT_GUNPOINT (1<<10) 	//quick check for guns holding me at gunpoint
 #define IGNORE_SHIFT_CLICK_MODIFIER (1<<11) //shift+click doesn't retrigger a SHIFT keypress - use for mobs that sprint on shift and not on mobs that use shfit for bolting doors etc
-#define LIGHTWEIGHT_AI_MOB (1<<12)		//not a part of the normal 'mobs' list so it wont show up in searches for observe admin etc, has its own slowed update rate on Life() etc
+#define SHOULD_HAVE_A_TAIL (1<<12) //Would we miss our tail if it comes off?
 #define USR_DIALOG_UPDATES_RANGE (1<<13)	//updateusrdialog will consider this mob as being able to 'attack_ai' and update its ui at range
-#define UNUSED_16384 (1<<14)
-#define SHOULD_HAVE_A_TAIL (1<<15) //Would we miss our tail if it comes off?
+#define UNUSED_16384 (1<<14) // are we an ai mob thats in the title screen
+#define LIGHTWEIGHT_AI_MOB (1<<15) //not a part of the normal 'mobs' list so it wont show up in searches for observe admin etc, has its own slowed update rate on Life() etc
 #define HEAVYWEIGHT_AI_MOB (1<<16) //ai gets ticked every 0.2 seconds instead of the usual 1 seconds - gotta go fast
 
 //mob intent type defines
@@ -64,3 +64,6 @@
 //message type flags for show_message (emote stuff)
 #define MESSAGE_VISIBLE 1
 #define MESSAGE_AUDIBLE 2
+
+//multiplies all blood regen, 0.002 is because humans have 500 units ideally and get 1 unit back usually
+#define BLOOD_SCALAR 0.002

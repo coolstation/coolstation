@@ -81,7 +81,7 @@
 	var/warning_active = FALSE
 	layer = 3
 
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 1
 
 	var/datum/pump_ui/ui
@@ -564,7 +564,7 @@ datum/pump_ui/circulator_ui
 	desc = "A high efficiency thermoelectric generator."
 	icon = 'icons/obj/machines/new_grey_teg.dmi'
 	icon_state = "teg"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	//var/lightsbusted = 0
@@ -1433,7 +1433,7 @@ Present 	Unscrewed  Connected 	Unconnected		Missing
 	name = "Furnace"
 	desc = "Generates Heat for the thermoelectric generator."
 	icon_state = "furnace_thermal" //shit edit but better than nothing
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 20
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER

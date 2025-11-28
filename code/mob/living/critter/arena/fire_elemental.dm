@@ -8,8 +8,6 @@
 	custom_gib_handler = /proc/gibs
 	hand_count = 3
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	blood_id = "phlogiston"
 	burning_suffix = "humanoid"
 	health_brute = 150

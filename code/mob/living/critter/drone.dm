@@ -10,8 +10,6 @@
 	custom_gib_handler = /proc/robogibs
 	hand_count = 1
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 0
 	blood_id = "oil"
 	var/dying = 0
 	speechverb_say = "states"

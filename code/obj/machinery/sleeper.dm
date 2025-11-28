@@ -17,7 +17,7 @@
 	desc = "A device that displays the vital signs of the occupant of the sleeper, and can dispense chemicals."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeperconsole"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 8
 	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE | ON_BORDER
@@ -250,7 +250,7 @@
 	icon_state = "sleeper"//_0"
 	desc = "An enterable machine that analyzes and stabilizes the vital signs of the occupant."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 25
 	deconstruct_flags = DECON_CROWBAR | DECON_WIRECUTTERS | DECON_MULTITOOL
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
@@ -373,9 +373,7 @@
 		H.set_loc(src)
 		src.occupant = H
 		src.update_icon()
-#ifdef DATALOGGER
 		game_stats.Increment("sleeper")
-#endif
 		for (var/obj/O in src)
 			if (O == src.our_console) // don't barf out the internal sleeper console tia
 				continue
@@ -680,7 +678,7 @@
 	name = "Port-A-Medbay"
 	desc = "An emergency transportation device for critically injured patients."
 	icon = 'icons/obj/machines/porters.dmi'
-	anchored = 0
+	anchored = UNANCHORED
 	mats = 30
 	p_class = 1.2
 	var/homeloc = null
@@ -777,7 +775,7 @@
 	desc = "Your usual sleeper, but compact this time. Wow!"
 	icon = 'icons/obj/machines/compact_machines.dmi'
 	icon_state = "compact_sleeper"
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		..()

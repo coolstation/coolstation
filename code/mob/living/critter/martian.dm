@@ -14,9 +14,6 @@
 	blood_id = "iron" // alchemy - mars = iron
 	hand_count = 1
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
-	can_help = 1
 	speechverb_say = "screeches"
 	speechverb_exclaim = "screeches"
 	speechverb_ask = "screeches"

@@ -194,7 +194,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 		if(ismob(user))
 			var/mob/M = user
 			specialoverride.pixelaction(target,params,M)
-			M.next_click = world.time+M.combat_click_delay
+			M.next_click = world.time + M.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(M)
 			return 1
 
 
@@ -476,7 +476,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 			..()
 		for(var/turf/T in range(1, user))
 			for(var/obj/cable/C in T.contents) //Needed because cables have invisibility 101. Making them disappear from most LISTS.
-				netnum = C.get_netnumber()
+				netnum = C.netnum
 				break
 
 		if(get_dist(user, target) > 1 && !user:equipped())

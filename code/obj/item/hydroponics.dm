@@ -39,8 +39,8 @@
 	override_attack_hand = 1
 	can_hold_items = 0
 	stamina_damage = 30
-	stamina_cost = 15
-	stamina_crit_chance = 35
+//	stamina_cost = 15
+//	stamina_crit_chance = 35
 
 	cyborg
 		takes_damage = 0
@@ -210,8 +210,8 @@
 	sawnoise = 'sound/machines/chainsaw_red.ogg'
 	arm_icon = "chainsaw1"
 	stamina_damage = 100
-	stamina_cost = 30
-	stamina_crit_chance = 40
+//	stamina_cost = 30
+//	stamina_crit_chance = 40
 	c_flags = EQUIPPED_WHILE_HELD
 
 
@@ -348,8 +348,8 @@
 	sawnoise = 'sound/machines/chainsaw_red.ogg'
 	arm_icon = "chainsaw1"
 	stamina_damage = 40
-	stamina_cost = 40
-	stamina_crit_chance = 50
+//	stamina_cost = 40
+//	stamina_crit_chance = 50
 
 ////////////////////////////////////// Plant analyzer //////////////////////////////////////
 
@@ -434,8 +434,8 @@
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 10
-	stamina_cost = 10
-	stamina_crit_chance = 30
+//	stamina_cost = 10
+//	stamina_crit_chance = 30
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 

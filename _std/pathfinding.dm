@@ -114,7 +114,7 @@
  * Note that this can only be used inside the [datum/pathfind][pathfind datum] since it uses variables from said datum.
  * If you really want to optimize things, optimize this, cuz this gets called a lot.
  */
-#define CAN_STEP(cur_turf, next) (next && jpsTurfPassable(next, cur_turf, owner, options) && (!(next.turf_flags & CAN_BE_SPACE_SAMPLE) || move_through_space) && (next != avoid))
+#define CAN_STEP(cur_turf, next) (next && jpsTurfPassable(next, cur_turf, owner, options) && (!(next.turf_flags & IS_SPACE) || move_through_space) && (next != avoid))
 /// Another helper macro for JPS, for telling when a node has forced neighbors that need expanding
 #define STEP_NOT_HERE_BUT_THERE(cur_turf, dirA, dirB) ((!CAN_STEP(cur_turf, get_step(cur_turf, dirA)) && CAN_STEP(cur_turf, get_step(cur_turf, dirB))))
 

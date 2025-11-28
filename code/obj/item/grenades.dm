@@ -16,6 +16,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 	var/det_time = 3 SECONDS
 	var/org_det_time = 3 SECONDS
 	var/alt_det_time = 6 SECONDS
+	hint = "Use in hand to arm. You can toggle between two detonation timings with a screwdriver."
 	w_class = W_CLASS_SMALL
 	icon = 'icons/obj/items/grenade.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
@@ -27,8 +28,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 	is_syndicate = 0
 	mats = 6
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	var/sound_armed = null
 	var/icon_state_armed = null
 	var/not_in_mousetraps = 0
@@ -235,7 +236,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 				if (istype(X, /obj))
 					var/area/t = get_area(X)
 					if(t?.sanctuary) continue
-					if (prob(50) && X:anchored != 2)
+					if (prob(50) && X:anchored != ANCHORED_TECHNICAL)
 						step_towards(X,src)
 		qdel(src)
 		return
@@ -304,7 +305,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 			gen.set_active(1)
 			gen.state = 3
 			gen.power = 250
-			gen.anchored = 1
+			gen.anchored = ANCHORED
 			icon_state = "Field_Gen +a"
 		qdel(src)
 
@@ -431,7 +432,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 		if (T)
 			explosion(src, T, -1, -1, -0.25, 1)
 			var/obj/overlay/O = new/obj/overlay(get_turf(T))
-			O.anchored = 1
+			O.anchored = ANCHORED
 			O.name = "Explosion"
 			O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			O.icon = 'icons/effects/64x64.dmi'
@@ -482,7 +483,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 			explosion_new(src, T, 5.0, 2)
 			playsound(T, "sound/weapons/grenade.ogg", 25, 1)
 			var/obj/overlay/O = new/obj/overlay(get_turf(T))
-			O.anchored = 1
+			O.anchored = ANCHORED
 			O.name = "Explosion"
 			O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			O.icon = 'icons/effects/64x64.dmi'
@@ -560,7 +561,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 			pulse.icon = 'icons/effects/effects.dmi'
 			pulse.icon_state = "emppulse"
 			pulse.name = "emp pulse"
-			pulse.anchored = 1
+			pulse.anchored = ANCHORED
 			SPAWN_DBG(2 SECONDS)
 				if (pulse) qdel(pulse)
 
@@ -922,7 +923,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 
 	prearmed
 		armed = 1
-		anchored = 1
+		anchored = ANCHORED
 
 		New()
 			SPAWN_DBG(0)
@@ -1012,7 +1013,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 			..()
 		prearmed
 			armed = 1
-			anchored = 1
+			anchored = ANCHORED
 
 			New()
 				SPAWN_DBG(0)
@@ -1041,7 +1042,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 
 /obj/item/gimmickbomb/owlgib/prearmed
 	armed = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		SPAWN_DBG(0)
@@ -1050,7 +1051,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 
 /obj/item/gimmickbomb/owlclothes/prearmed
 	armed = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	New()
 		SPAWN_DBG(0)
@@ -1069,7 +1070,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	icon_state = "firework"
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1
@@ -1077,8 +1078,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	w_class = W_CLASS_TINY
 	var/det_time = 20
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 5
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 	var/slashed = FALSE // has it been emptied out? if so, better dud!
 	var/primer_burnt = FALSE // avoid priming a firework multiple times, that doesn't make sense!
 	var/primed = FALSE // cutting open lit fireworks is a BAD idea
@@ -1252,8 +1253,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	var/expl_range = 1
 	desc = "A timed device that releases a relatively strong concussive force, strong enough to destroy rock and metal."
 	stamina_damage = 1
-	stamina_cost = 1
-	stamina_crit_chance = 0
+//	stamina_cost = 1
+//	stamina_crit_chance = 0
 
 	attack_hand(var/mob/user)
 		if (src.state)
@@ -1279,7 +1280,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 					src.icon_state = "bcharge2"
 					user.u_equip(src)
 					src.set_loc(get_turf(target))
-					src.anchored = 1
+					src.anchored = ANCHORED
 					src.state = 1
 
 					// Yes, please (Convair880).
@@ -1352,8 +1353,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	expl_flash = 10
 	expl_range = 2
 	stamina_damage = 1
-	stamina_cost = 1
-	stamina_crit_chance = 0
+//	stamina_cost = 1
+//	stamina_crit_chance = 0
 
 /obj/item/breaching_charge/thermite
 	name = "Thermite Breaching Charge"
@@ -1380,7 +1381,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 					src.icon_state = "bcharge2"
 					user.u_equip(src)
 					src.set_loc(get_turf(target))
-					src.anchored = 1
+					src.anchored = ANCHORED
 					src.state = 1
 
 					// Yes, please (Convair880).
@@ -1417,7 +1418,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 				O.name = "Thermite"
 				O.desc = "A searing wall of flames."
 				O.icon = 'icons/effects/fire.dmi'
-				O.anchored = 1
+				O.anchored = ANCHORED
 				O.layer = TURF_EFFECTS_LAYER
 				O.color = "#ff9a3a"
 				var/datum/light/point/light = new
@@ -1879,8 +1880,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 
 	on_blowthefuckup(strength) //always blow hole!
 		..(strength)
-		if (istype(src.loc,/turf/space/fluid))
-			var/turf/space/fluid/T = src.loc
+		if (istype(src.loc,/turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = src.loc
 			T.blow_hole()
 
 /obj/effects/explosion/tiny_baby

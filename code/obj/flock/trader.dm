@@ -62,7 +62,7 @@
 
 /obj/decal/fakeobjects/flock
 	icon = 'icons/misc/featherzone.dmi'
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /////////
@@ -330,7 +330,7 @@
 	name = "blank surface"
 	desc = "Huh."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/obj/npc/trader/flock/trader
 
 /obj/flock_screen/proc/show_icon(var/state)
@@ -356,7 +356,7 @@
 	name = "open receptacle"
 	desc = "Probably don't stick your hand in it. Looks like some kinda plasma blender."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/obj/npc/trader/flock/trader
 
 /obj/flock_reclaimer/attack_hand(mob/user as mob)

@@ -30,7 +30,7 @@
 /obj/machinery/gutter
 	density = 1
 	flags = NOSPLASH
-	anchored = 1
+	anchored = ANCHORED
 
 	name = "gutter"
 	icon = 'bowling.dmi'

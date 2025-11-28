@@ -67,7 +67,7 @@
 		var/atom/movable/overlay/animation = new /atom/movable/overlay( mobloc )
 		animation.name = "water"
 		animation.set_density(0)
-		animation.anchored = 1
+		animation.anchored = ANCHORED
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.icon_state = "liquify"
 		animation.layer = EFFECTS_LAYER_BASE
@@ -105,7 +105,7 @@
 	var/canmove = 1 // can be used to completely stop movement
 	var/movecd = 0 // used in relaymove, so people don't move too quickly
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/dummy/spell_invis/relaymove(var/mob/user, direction, delay)
 	if (!src.canmove || src.movecd)
@@ -248,7 +248,7 @@
 		var/turf/T = get_turf(owner)
 		if (T)
 			var/area/A = get_area(T)
-			if (T.turf_flags & CAN_BE_SPACE_SAMPLE || A.name == "Emergency Shuttle" || A.name == "Space" || A.name == "Ocean")
+			if (T.turf_flags & IS_SPACE || A.name == "Emergency Shuttle" || A.name == "Space" || A.name == "Ocean")
 				src.set_cloaked(0)
 
 			else

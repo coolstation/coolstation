@@ -36,7 +36,7 @@
 
 	var/obj/item/device/energy_shield/energy_shield = null
 
-	var/custom_gib_handler = null
+	var/custom_gib_handler = /proc/gibs
 	var/obj/decal/cleanable/custom_vomit_type = /obj/decal/cleanable/vomit
 
 	var/list/mob/dead/target_observer/observers = list()
@@ -233,6 +233,8 @@
 	var/last_move_dir = null
 
 	var/datum/aiHolder/ai = null
+	/// if set to an a_intent, ai should prioritize that one
+	var/ai_a_intent = null
 	/// used for load balancing mob_ai ticks
 	var/ai_tick_schedule = null
 
@@ -1718,11 +1720,9 @@
 		var/list/virus = src.ailments
 		gibs(src.loc, virus)
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -1788,7 +1788,7 @@
 		for(var/atom/A in get_our_fluids_here)
 			if(isturf(A))
 				var/turf/T = A
-				T.fluid_react(src.reagents, src.reagents.total_volume, airborne=prob(10))
+				T.fluid_react(src.reagents, src.reagents.total_volume)//, airborne=prob(10))
 				continue
 			if(istype(A, /obj/decal/cleanable)) // expand reagents
 				if(isnull(A.reagents))
@@ -1808,11 +1808,9 @@
 
 /mob/proc/elecgib()
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is electric-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -1842,11 +1840,9 @@
 
 /mob/proc/firegib()
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is fire-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -1883,11 +1879,9 @@
 		var/list/virus = src.ailments
 		partygibs(src.loc, virus)
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is party-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -1930,11 +1924,9 @@
 		var/list/virus = src.ailments
 		gibs(src.loc, virus)
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	var/transfer_mind_to_owl = prob(control_chance)
 	logTheThing("combat", src, null, "is owl-gibbed at [log_loc(src)].")
 	src.death(1)
@@ -1981,11 +1973,9 @@
 /mob/proc/vaporize(give_medal, forbid_abberation)
 	if (isobserver(src))
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
 	src.transforming = 1
@@ -2020,11 +2010,9 @@
 
 /mob/proc/implode(give_medal)
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "imploded at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -2053,14 +2041,12 @@
 	SPAWN_DBG(0) //multicluwne
 		duration = clamp(duration, 10, 100)
 
-	#ifdef DATALOGGER
 		game_stats.Increment("violence")
 		game_stats.Increment("clownabuse") // no check necessary, you're a clown by the time it matters. :)
-	#endif
 		logTheThing("combat", src, null, "is taken by the floor cluwne at [log_loc(src)].")
 		src.transforming = 1
 		src.canmove = 0
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.mouse_opacity = 0
 
 		var/mob/living/carbon/human/cluwne/floor/floorcluwne = null
@@ -2122,11 +2108,9 @@
 
 /mob/proc/buttgib(give_medal)
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is butt-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
@@ -2375,26 +2359,30 @@
 
 	jitteriness = min(500, jitteriness + amount)	// store what will be new value
 													// clamped to max 500
-	if (jitteriness > 100 && !is_jittery)
+	if (jitteriness > 75 && !is_jittery)
 		SPAWN_DBG(0)
 			jittery_process()
 
 
 // jittery process - shakes the mob's pixel offset randomly
-// will terminate automatically when dizziness gets <100
+// will terminate automatically when dizziness gets <45
 // jitteriness decrements automatically in the mob's Life() proc.
 /mob/proc/jittery_process()
 	var/old_x = pixel_x
 	var/old_y = pixel_y
 	is_jittery = 1
-	while(jitteriness > 100)
+	while(jitteriness > 45)
 //		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + 1) / 70
 //		pixel_x = amplitude * sin(0.008 * jitteriness * world.time)
 //		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
+		if(jitteriness >= 400 || prob(jitteriness/12))
+			var/amplitude = rand(1, ceil(min(4, jitteriness / 200)))
+			pixel_x = pixel_x + rand(-amplitude, amplitude)
+			pixel_y = pixel_y + rand(-amplitude, amplitude)
+			SPAWN_DBG(0.1 SECONDS)
+				pixel_x = old_x
+				pixel_y = old_y
 
-		var/amplitude = min(4, jitteriness / 100)
-		pixel_x = old_x + rand(-amplitude, amplitude)
-		pixel_y = old_y + rand(-amplitude/3, amplitude/3)
 
 		sleep(0.1 SECONDS)
 	//endwhile - reset the pixel offsets to zero
@@ -2410,7 +2398,7 @@
 	SEND_SIGNAL(src, COMSIG_MOB_THROW_ITEM, target, params)
 
 /mob/throw_impact(atom/hit, datum/thrown_thing/thr)
-	if(!isturf(hit) || hit.density)
+	if(!(src.throwing & THROW_SAFEISH) && (!isturf(hit) || hit.density))
 		if (thr?.get_throw_travelled() <= 410)
 			if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
 				random_brute_damage(src, min((6 + (thr?.get_throw_travelled() / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
@@ -2445,6 +2433,8 @@
 	if (src.hasStatus("handcuffed"))
 		src.handcuffs.destroy_handcuffs(src)
 	src.bodytemperature = src.base_body_temp
+	if (src.reagents)
+		src.reagents.stop_combusting()
 	if (src.stat > 1)
 		setalive(src)
 
@@ -2964,7 +2954,7 @@
 	SPAWN_DBG(0.7 SECONDS) //Length of animation.
 		newbody.set_loc(animation.loc)
 		qdel(animation)
-		newbody.anchored = 1 // Stop running into the lava every half second jeez!
+		newbody.anchored = ANCHORED // Stop running into the lava every half second jeez!
 		sleep(4 SECONDS)
 		reset_anchored(newbody)
 
@@ -2979,7 +2969,7 @@
 		logTheThing("combat", src, null, "is damned to hell from [log_loc(src)].")
 		src.transforming = 1
 		src.canmove = 0
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.mouse_opacity = 0
 
 		var/mob/living/carbon/human/satan/satan = new /mob/living/carbon/human/satan
@@ -3102,7 +3092,7 @@
 	set name = "Point"
 	src.point_at(A)
 
-/mob/proc/point_at(var/atom/target) //overriden by living and dead
+/mob/proc/point_at(var/atom/target, var/pixel_x, var/pixel_y) //overriden by living and dead
 	.=0
 
 /mob/verb/pull_verb(atom/movable/A as mob|obj in view(1, get_turf(usr)))
@@ -3174,7 +3164,7 @@
 	if (src.lying)
 		return CANT_SWIM_LYING
 	var/turf/T = get_turf(src)
-	if (!istype(T, /turf/space/fluid) && T.active_liquid?.last_depth_level < 3)
+	if (!istype(T, /turf/space/fluid/ocean) && T.active_liquid?.last_depth_level < 3)
 		return CANT_SWIM_NO_GODDAMN_WATER
 	src.setStatus("swimming", null)
 	return CAN_SWIM
@@ -3212,16 +3202,16 @@
 				break
 
 	else //Try the old ocean hole system, I don't know if this is used anymore
-		var/turf/space/fluid/trenchfloor = src.loc
+		var/turf/space/fluid/ocean/trenchfloor = src.loc
 		if (!istype(trenchfloor))
 			boutput(src, "<span class='alert'>There's a ceiling above you, go try again outside.</span>", group = "swimtime:)") //don't give me smartassery about walls
 			return
-		for(var/turf/space/fluid/T in range(5,trenchfloor))
+		for(var/turf/space/fluid/ocean/T in range(5,trenchfloor))
 			if(T.linked_hole)
 				actions.start(new/datum/action/bar/private/swim_cross_z(T.linked_hole), src)
 				return
 			else if (istype(get_area(T), /area/trench_landing)) //the trench landing is weird, this is seems to be what sea ladders do?
-				actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/warp_z5/edge])), src)
+				actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/ocean/warp_z5/edge])), src)
 				return
 		boutput(src, "<span class='alert'>There's no nearby way up, shit.</span>", group = "swimtime:)") //RIP
 	return

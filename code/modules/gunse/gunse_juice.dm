@@ -21,6 +21,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/juicer)
 	grip_overlay_x = GRIP_OFFSET_LONG
 	stock_overlay_x = STOCK_OFFSET_LONG
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 	jam_frequency = 15
 	load_time = 0.75 SECONDS //surprisingly not very fiddly, loads fast, clears jams fast. built for sucking
 

@@ -413,12 +413,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		air_master.active_singletons -= src //not active if not processing!
 		return
 
-/*
-	if(src.air.react() & CATALYST_ACTIVE)
-		src.active_hotspot?.catalyst_active = TRUE
-	else
-		src.active_hotspot?.catalyst_active = FALSE
-*/
+	// this is very important
+	src.air.react()
 
 	if(src.active_hotspot && possible_fire_spreads)
 		src.active_hotspot.process(possible_fire_spreads)
@@ -659,7 +655,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			west.tilenotify(src)
 			air_master.tiles_to_update |= west
 
-	if (map_currently_underwater || (map_currently_abovewater && src.z == Z_LEVEL_DEBRIS))
+	if (map_currently_underwater || map_currently_above_magindara)
 		if(istype(north, /turf/space/fluid))
 			north.tilenotify(src)
 		if(istype(south, /turf/space/fluid))

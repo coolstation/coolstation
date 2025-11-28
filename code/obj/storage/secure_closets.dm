@@ -4,6 +4,8 @@
 	soundproofing = 5
 	can_flip_bust = 1
 	p_class = 3
+	open_sound = "sound/impact_sounds/locker_open2.ogg"
+	close_sound = "sound/impact_sounds/lockerclose.ogg"
 
 /obj/storage/secure/closet/personal
 	name = "personal locker"

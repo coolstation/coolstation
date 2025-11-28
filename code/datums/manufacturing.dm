@@ -968,6 +968,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Clothing"
 
+/datum/manufacture/white_cane
+	name = "White Cane"
+	item_paths = list("MET-1","FAB-1")
+	item_amounts = list(4,1)
+	item_outputs = list(/obj/item/white_cane)
+	time = 4 SECONDS
+	create = 1
+	category = "Clothing"
+
 /datum/manufacture/glasses
 	name = "Prescription Glasses"
 	item_paths = list("MET-1","CRY-1")
@@ -1010,6 +1019,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	item_amounts = list(3)
 	item_outputs = list(/obj/item/body_bag)
 	time = 15 SECONDS
+	create = 1
+	category = "Tool"
+
+/datum/manufacture/rag
+	name = "Rag"
+	item_paths = list("FAB-1")
+	item_amounts = list(2)
+	item_outputs = list(/obj/item/material_piece/cloth/rag)
+	time = 5 SECONDS
 	create = 1
 	category = "Tool"
 

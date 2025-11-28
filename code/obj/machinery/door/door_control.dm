@@ -7,7 +7,7 @@
 	var/timer = 0
 	var/cooldown = 0 SECONDS
 	var/inuse = FALSE
-	anchored = 1.0
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
 	plane = PLANE_NOSHADOW_ABOVE
 
@@ -537,7 +537,7 @@
 	var/open = 0 //open or not?
 	var/access_type = 1
 	var/access_type_secondary = null
-	anchored = 1.0
+	anchored = ANCHORED
 	var/datum/light/light
 
 	syndicate

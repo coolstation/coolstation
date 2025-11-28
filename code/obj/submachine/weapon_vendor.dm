@@ -25,7 +25,7 @@
 	desc = "dont see this"
 	density = 1
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	flags = TGUI_INTERACTIVE
 
 	var/sound_token = 'sound/machines/capsulebuy.ogg'

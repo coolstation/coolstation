@@ -63,12 +63,12 @@
 	two_handed = 1
 	throwforce = 4.0
 	throw_range = 4
-	stamina_crit_chance = 2
+//	stamina_crit_chance = 2
 
 	//these combat variables will change depending on the guard
 	force = 6.0
 	stamina_damage = 10
-	stamina_cost = 5.0
+//	stamina_cost = 5.0
 
 	hit_type = DAMAGE_BLUNT
 	flags = FPRINT | TABLEPASS | USEDELAY
@@ -88,25 +88,25 @@
 			if("help")
 				force = 5
 				stamina_damage = 10
-				stamina_cost = 5
+//				stamina_cost = 5
 				item_state = "shinai-light"
 				src.setItemSpecial(/datum/item_special/simple/kendo_light)
 			if("disarm")
 				force = 6
 				stamina_damage = 10
-				stamina_cost = 8
+//				stamina_cost = 8
 				item_state = "shinai-sweep"
 				src.setItemSpecial(/datum/item_special/swipe/kendo_sweep)
 			if("grab")
 				force = 6
 				stamina_damage = 15
-				stamina_cost = 10
+//				stamina_cost = 10
 				item_state = "shinai-thrust"
 				src.setItemSpecial(/datum/item_special/rangestab/kendo_thrust)
 			if("harm")
 				force = 8
 				stamina_damage = 30
-				stamina_cost = 35
+//				stamina_cost = 35
 				item_state = "shinai-heavy"
 				item_state = "shinai-heavy"
 				src.setItemSpecial(/datum/item_special/simple/kendo_heavy)
@@ -122,11 +122,13 @@
 			attacker.do_disorient(0,0,0,0,10,1)
 			return 1
 
+/*
 		else if(defender.hasStatus("blocking"))
 			playsound(defender, "sound/impact_sounds/kendo_block_[pick(1,2)].ogg", 50, 1)
 			if(attacker.equipped())
 				defender.do_disorient((attacker.equipped().stamina_cost*1.5),0,0,0,0,1,null)
 			return 2
+*/
 		return 0
 
 	proc/stat_reset()
@@ -135,7 +137,7 @@
 		else
 			return
 		stamina_damage = 10
-		stamina_cost = 5
+//		stamina_cost = 5
 		item_state = "shinai-light"
 		src.setItemSpecial(/datum/item_special/simple/kendo_light)
 		src.buildTooltipContent()

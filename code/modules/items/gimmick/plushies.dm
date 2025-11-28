@@ -3,7 +3,7 @@
 	desc = "Sure we got our health insurance benefits cut, and yeah we don't get any overtime on holidays, but hey - free to play claw machines!"
 	icon = 'icons/obj/items/plushies.dmi'
 	icon_state = "claw"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = list("MET-1"=5, "CON-1"=5, "CRY-1"=5, "FAB-1"=5)
 	deconstruct_flags = DECON_MULTITOOL | DECON_WRENCH | DECON_CROWBAR
@@ -15,7 +15,8 @@
 	/obj/item/toy/plush/small/possum,\
 	/obj/item/toy/plush/small/brullbar,\
 	/obj/item/toy/plush/small/bunny,\
-	/obj/item/toy/plush/small/penguin)
+	/obj/item/toy/plush/small/penguin,\
+	/obj/item/toy/plush/small/moth)
 	var/list/prizes_rare = list(/obj/item/toy/plush/small/bee/cute,\
 	/obj/item/toy/plush/small/buddy/future,\
 	/obj/item/toy/plush/small/kitten/wizard,\
@@ -187,6 +188,15 @@
 /obj/item/toy/plush/small/brullbar
 	name = "brullbar plush toy"
 	icon_state = "brullbar"
+
+/obj/item/toy/plush/small/moth
+	name = "moth plushie"
+	desc = "A plushie depicting an adorable mothperson. It's a huggable bug!"
+	icon_state = "moffplush"
+
+/obj/item/toy/plush/small/moth/attack_self(mob/user as mob)
+	playsound(user, "sound/voice/moth/scream_moth.ogg", 50, 1)
+	src.audible_message("<span class='emote'>[src] screams!</span>")
 
 /obj/item/toy/plush/small/bunny
 	name = "bunny plush toy"

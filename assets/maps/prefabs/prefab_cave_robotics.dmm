@@ -128,11 +128,6 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/floor/plating/gehenna/plasma,
 /area/noGenerate)
-"mh" = (
-/turf/floor/blueblack{
-	dir = 5
-	},
-/area/noGenerate)
 "nW" = (
 /obj/lattice{
 	icon_state = "lattice-broken"
@@ -173,6 +168,13 @@
 	},
 /turf/floor/plating/gehenna/plasma,
 /area/noGenerate)
+"rc" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-broken"
+	},
+/turf/wall/asteroid/gehenna/tough,
+/area/noGenerate)
 "rC" = (
 /obj/lattice{
 	icon_state = "lattice-broken"
@@ -206,9 +208,6 @@
 	rand_pos = 1
 	},
 /turf/floor/plating/gehenna/plasma,
-/area/noGenerate)
-"tT" = (
-/turf/variableTurf/wall,
 /area/noGenerate)
 "tV" = (
 /obj/lattice{
@@ -303,21 +302,12 @@
 	dir = 1
 	},
 /area/noGenerate)
-"Eb" = (
-/turf/wall/gehenna,
-/area/noGenerate)
 "EH" = (
 /obj/decal/cleanable/robot_debris{
 	icon_state = "gib2"
 	},
 /obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/black,
-/area/noGenerate)
-"ES" = (
-/obj/decal/cleanable/tracked_reagents/blood{
-	icon_state = "smear3"
-	},
-/turf/variableTurf/wall,
 /area/noGenerate)
 "FX" = (
 /obj/lattice,
@@ -340,12 +330,6 @@
 	icon_state = "gib2"
 	},
 /turf/floor/black,
-/area/noGenerate)
-"HE" = (
-/obj/decal/cleanable/tracked_reagents/blood{
-	icon_state = "smear3"
-	},
-/turf/wall/gehenna,
 /area/noGenerate)
 "HF" = (
 /obj/item/tile/steel{
@@ -417,6 +401,14 @@
 	icon_state = "line1"
 	},
 /turf/floor/black,
+/area/noGenerate)
+"Nn" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-broken"
+	},
+/obj/item/cable_coil/cut,
+/turf/wall/asteroid/gehenna/tough,
 /area/noGenerate)
 "Nq" = (
 /obj/decal/cleanable/robot_debris{
@@ -550,7 +542,7 @@
 /turf/floor/black,
 /area/noGenerate)
 "XV" = (
-/turf/floor/plating/gehenna/plasma,
+/turf/space,
 /area/allowGenerate/caves)
 "YO" = (
 /turf/floor/blueblack{
@@ -572,9 +564,9 @@ XV
 TO
 Kf
 Pu
-tT
-tT
-tT
+XV
+XV
+XV
 XV
 XV
 "}
@@ -582,60 +574,60 @@ XV
 XV
 XV
 XV
-tT
+XV
 qq
 KT
 sm
 HF
 Pu
-tT
-tT
+XV
+XV
 XV
 "}
 (3,1,1) = {"
 XV
 XV
-tT
-tT
+XV
+XV
 HF
 Wz
 gH
 Bp
 OO
-tT
-tT
-tT
+XV
+XV
+XV
 "}
 (4,1,1) = {"
 XV
-tT
-tT
-tT
-ES
+XV
+XV
+XV
+Ze
 Ib
 Xh
 jr
 Pw
 Nu
-tT
-tT
+XV
+XV
 "}
 (5,1,1) = {"
-tT
-tT
-tT
-tT
+XV
+XV
+XV
+XV
 Pu
 nW
 EH
 jg
 sm
 oP
-tT
-tT
+XV
+XV
 "}
 (6,1,1) = {"
-tT
+XV
 kH
 dR
 Qv
@@ -645,8 +637,8 @@ UE
 Qy
 eS
 OO
-tT
-tT
+XV
+XV
 "}
 (7,1,1) = {"
 KT
@@ -659,7 +651,7 @@ Ze
 TV
 wK
 HF
-tT
+XV
 XV
 "}
 (8,1,1) = {"
@@ -668,37 +660,37 @@ jg
 KT
 bi
 vX
-Iq
-HE
+Nn
+Ze
 pL
 FX
-tT
-tT
+XV
+XV
 XV
 "}
 (9,1,1) = {"
-tT
+XV
 fc
 tV
 Na
 Nq
 oI
-Eb
+NT
 dx
 Hr
-tT
+XV
 XV
 XV
 "}
 (10,1,1) = {"
-tT
-tT
+XV
+XV
 Bp
 HF
 fv
 jg
-Eb
-HH
+NT
+rc
 rQ
 Pu
 XV
@@ -706,13 +698,13 @@ XV
 "}
 (11,1,1) = {"
 XV
-tT
+XV
 Pu
 bn
 KT
 Xh
 NT
-Eb
+NT
 jg
 Nu
 XV
@@ -720,95 +712,95 @@ XV
 "}
 (12,1,1) = {"
 XV
-tT
-tT
-tT
+XV
+XV
+XV
 nW
 fv
 Iq
-Eb
+NT
 Jp
-tT
-tT
+XV
+XV
 XV
 "}
 (13,1,1) = {"
 XV
-tT
-tT
-tT
-tT
+XV
+XV
+XV
+XV
 oX
 KT
-Eb
+NT
 HF
-tT
-tT
+XV
+XV
 XV
 "}
 (14,1,1) = {"
 XV
-tT
-tT
-tT
-tT
+XV
+XV
+XV
+XV
 bn
 Hr
 NT
 UF
 Pu
-tT
-tT
+XV
+XV
 "}
 (15,1,1) = {"
 XV
 XV
-tT
-tT
-tT
+XV
+XV
+XV
 Pu
 CE
 Mf
 KT
 gr
-tT
-tT
+XV
+XV
 "}
 (16,1,1) = {"
 XV
 XV
-tT
-tT
-tT
-tT
+XV
+XV
+XV
+XV
 KT
 fv
 UB
 KT
-tT
-tT
+XV
+XV
 "}
 (17,1,1) = {"
 XV
 XV
-tT
-tT
-tT
-tT
+XV
+XV
+XV
+XV
 SB
 GR
 cO
 wP
-tT
-tT
+XV
+XV
 "}
 (18,1,1) = {"
 XV
 XV
 XV
-tT
-tT
-tT
+XV
+XV
+XV
 Gh
 fv
 HH
@@ -823,12 +815,12 @@ XV
 XV
 XV
 XV
-mh
+XV
 YO
 YO
 OO
-XV
-XV
+Pu
+Pu
 "}
 (20,1,1) = {"
 XV
@@ -839,8 +831,8 @@ XV
 XV
 XV
 XV
-XV
-XV
-XV
+Pu
+Pu
+Pu
 XV
 "}

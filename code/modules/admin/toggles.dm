@@ -397,8 +397,8 @@ var/global/IP_alerts = 1
 	set desc = "switches between 1x and custom views"
 
 	if(src.view == world.view)
-		var/x = input("Enter view width in tiles: (1 - 59, default 15 (normal) / 21 (widescreen))", "Width", 21)
-		var/y = input("Enter view height in tiles: (1 - 30, default 15)", "Height", 15)
+		var/x = input("Enter view width in tiles: (1 - 67, default 15 (normal) / 21 (widescreen))", "Width", 21)
+		var/y = input("Enter view height in tiles: (1 - 67, default 15)", "Height", 15)
 
 		src.set_view_size(x,y)
 	else

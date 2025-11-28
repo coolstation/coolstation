@@ -51,7 +51,8 @@
 /datum/manufacture/bedsheet_nb,\
 /datum/manufacture/bedsheet_pan,\
 /datum/manufacture/bedsheet_poly,\
-/datum/manufacture/bedsheet_trans
+/datum/manufacture/bedsheet_trans,\
+/datum/manufacture/white_cane
 
 /obj/machinery/manufacturer
 	name = "Manufacturing Unit"
@@ -60,7 +61,7 @@
 	icon_state = "fab"
 	var/icon_base = null
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 20
 	req_access = list(access_heads)
 	event_handler_flags = NO_MOUSEDROP_QOL
@@ -1057,6 +1058,9 @@
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the manufacturer to output to [over_object]!</span>")
 
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
+
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
 		return
@@ -1200,7 +1204,7 @@
 		var/netnum = 0
 		for(var/turf/T in range(1, user))
 			for(var/obj/cable/C in T.contents)
-				netnum = C.get_netnumber()
+				netnum = C.netnum
 				break
 			if (netnum) break
 
@@ -1574,7 +1578,7 @@
 			var/datum/material/mat = getMaterial(mat_id)
 			dat += {"
 		<tr>
-			<td><a href='byond://?src=\ref[src];eject=[mat_id]' class='buttonlink'>&#9167;</a> [mat]</td>
+			<td style = 'text-transform: capitalize;'><a href='byond://?src=\ref[src];eject=[mat_id]' class='buttonlink'>&#9167;</a> [mat]</td>
 			<td class='r'>[src.resource_amounts[mat_id]]</td>
 		</tr>
 			"}
@@ -1985,6 +1989,7 @@
 		/datum/manufacture/shoes,
 		/datum/manufacture/breathmask,
 		/datum/manufacture/fluidcanister,
+		/datum/manufacture/rag,
 #ifndef NO_EASY_BEAKERS
 		/datum/manufacture/chemicalcan,
 #endif
@@ -2154,6 +2159,7 @@
 		/datum/manufacture/glasses,
 		/datum/manufacture/visor,
 		/datum/manufacture/deafhs,
+		/datum/manufacture/white_cane,
 		/datum/manufacture/hypospray,
 		/datum/manufacture/patch,
 		/datum/manufacture/mender,
@@ -2712,7 +2718,7 @@ ABSTRACT_TYPE(/obj/machinery/manufacturer_attachment)
 /obj/machinery/manufacturer_attachment/canister_port/proc/attach_can()
 	if (attached_can)
 		attached_can.UpdateOverlays(image(attached_can.icon, icon_state = "shitty_connector_placeholder"), "connecty_grip")
-		attached_can.anchored = 1
+		attached_can.anchored = ANCHORED
 		src.RegisterSignal(attached_can, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_SET_LOC, COMSIG_PARENT_PRE_DISPOSING), PROC_REF(detach_can))
 		var/obj/machinery/manufacturer/gas/G = belongs_to
 		if (istype(G))
@@ -2720,7 +2726,7 @@ ABSTRACT_TYPE(/obj/machinery/manufacturer_attachment)
 
 /obj/machinery/manufacturer_attachment/canister_port/proc/detach_can()
 	if (attached_can)
-		attached_can.anchored = 0
+		attached_can.anchored = UNANCHORED
 		src.UnregisterSignal(attached_can, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_SET_LOC, COMSIG_PARENT_PRE_DISPOSING))
 		attached_can.UpdateOverlays(null, "connecty_grip")
 		attached_can = null

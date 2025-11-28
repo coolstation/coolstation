@@ -1,5 +1,6 @@
 /obj/mopbucket
 	desc = "Fill it with water, but don't forget a mop!"
+	hint = "click and drag from the water tank to the mop bucket to fill it."
 	name = "mop bucket"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"

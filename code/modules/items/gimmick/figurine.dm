@@ -8,8 +8,8 @@
 	throw_speed = 4
 	throw_range = 7
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	//mat_changename = 0
 	rand_pos = 8
 	//var/patreon_prob = 9

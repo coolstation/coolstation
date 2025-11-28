@@ -512,7 +512,7 @@
 				var/turf/pilotSpawnLocation = null
 
 				#ifdef UNDERWATER_MAP										//This part of the code executes only if the map is a water one.
-				while(!istype(pilotSpawnLocation, /turf/space/fluid))		//Trying to find a valid spawn location.
+				while(!istype(pilotSpawnLocation, /turf/space/fluid/ocean))		//Trying to find a valid spawn location.
 					pilotSpawnLocation = locate(rand(1, world.maxx), rand(1, world.maxy), Z_LEVEL_MINING)
 				if (pilotSpawnLocation)										//Sanity check.
 					src.set_loc(pilotSpawnLocation)
@@ -652,6 +652,8 @@
 		trinket = new picked(src)
 	else if (src.traitHolder && src.traitHolder.hasTrait("conspiracytheorist"))
 		trinket = new/obj/item/clothing/head/tinfoil_hat
+	else if (src.traitHolder && src.traitHolder.hasTrait("emaculate"))
+		trinket = new/obj/item/material_piece/cloth/rag
 	else if (src.traitHolder && src.traitHolder.hasTrait("beestfriend"))
 		if (prob(15))
 			trinket = new/obj/item/reagent_containers/food/snacks/ingredient/egg/bee/buddy(src)

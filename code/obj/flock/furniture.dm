@@ -76,7 +76,7 @@
 	icon_state = "flchair_parts"
 	force = 3
 	stamina_damage = 20
-	stamina_cost = 10
+//	stamina_cost = 10
 	furniture_type = /obj/stool/chair/comfy/flock
 	furniture_name = "thrumming alcove"
 

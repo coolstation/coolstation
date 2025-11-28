@@ -351,9 +351,10 @@
 			src.examine_verb(target) // in theory, usr should be us, this is shit though
 			return
 
-		if (src.in_point_mode)
-			src.point(target)
-			src.toggle_point_mode()
+		if (src.in_point_mode || src.client?.check_key(KEY_POINT))
+			src.point_at(target, text2num(params["icon-x"]), text2num(params["icon-y"]))
+			if (src.in_point_mode)
+				src.toggle_point_mode()
 			return
 
 		if (get_dist(src, target) > 0) // temporary fix for cyborgs turning by clicking
@@ -388,7 +389,7 @@
 			hand_range_attack(target, params)
 
 		if (src.lastattacked == target && use_delay) //If lastattacked was set, this must be a combat action!! Use combat click delay.
-			src.next_click = world.time + (equipped ? max(equipped.click_delay,src.combat_click_delay) : src.combat_click_delay)
+			src.next_click = world.time + (equipped ? equipped.combat_click_delay : src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 			src.lastattacked = null
 
 	Stat()
@@ -859,10 +860,8 @@
 						if (M == src || !M.lying)
 							continue
 						message = "<span class='alert'><B>[src]</B> farts in [M]'s face!</span>"
-#ifdef DATALOGGER
 						if (M.mind && M.mind.assigned_role == "Clown")
 							game_stats.Increment("clownabuse")
-#endif
 						fart_on_other = 1
 						break
 					if (!fart_on_other)
@@ -911,9 +910,7 @@
 						playsound(src, 'sound/vox/fart.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 					else
 						playsound(src, src.sound_fart, 50, 1, channel=VOLUME_CHANNEL_EMOTE)
-#ifdef DATALOGGER
 					game_stats.Increment("farts")
-#endif
 			else
 				src.show_text("Invalid Emote: [act]")
 				return

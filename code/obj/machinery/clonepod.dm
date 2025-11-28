@@ -9,7 +9,7 @@
 #define MAX_FAILED_CLONE_TICKS 200 // vOv
 
 /obj/machinery/clonepod
-	anchored = 1
+	anchored = ANCHORED
 	name = "cloning pod"
 	desc = "An electronically-lockable pod for growing organic tissue."
 	density = 1
@@ -231,9 +231,7 @@
 
 		src.eject_wait = 10 SECONDS
 
-#ifdef DATALOGGER
 		game_stats.Increment("clones")
-#endif
 
 		if (istype(oldholder))
 			oldholder.clone_generation++
@@ -802,7 +800,7 @@
 	proc/look_busy(var/big = 0)
 		if (big)
 			animate_shake(src,5,rand(3,8),rand(3,8))
-			playsound(src.loc, pick(src.sounds_function), 50, 2)
+			playsound(src.loc, pick(src.sounds_function), 40, 2)
 		else
 			animate_shake(src,3,rand(1,4),rand(1,4))
 
@@ -827,7 +825,7 @@
 	desc = "A tank resembling a rather large blender, designed to recover biomatter for use in cloning."
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "grinder0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 10
 	var/list/pods = null // cloning pods we're tied to

@@ -110,7 +110,7 @@
 			return 0
 
 		for (var/obj/cable/C in T)
-			return C.get_netnumber()
+			return C.netnum
 
 		return 0
 

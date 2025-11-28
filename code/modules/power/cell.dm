@@ -25,8 +25,8 @@
 	var/specialicon = 0	// used for autoprocess shit
 	var/unusualCell = 0
 	stamina_damage = 10
-	stamina_cost = 10
-	stamina_crit_chance = 10
+//	stamina_cost = 10
+//	stamina_crit_chance = 10
 
 	disposing()
 		if (istype(src.loc,/obj/machinery/power/apc))

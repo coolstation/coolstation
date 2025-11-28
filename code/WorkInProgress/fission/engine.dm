@@ -13,7 +13,7 @@ ENGINE
 	icon = 'icons/obj/machines/nuclear.dmi'
 	icon_state = "engineoff"
 
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	directwired = 1
@@ -108,7 +108,7 @@ REACTOR
 **********************************************/
 
 /obj/fission
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	invisibility = 101
 
@@ -117,7 +117,7 @@ REACTOR
 	name = "fission reactor"
 	desc = "one of the reactors for a fission engine"
 
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	icon = 'icons/obj/machines/nuclear64x32.dmi'

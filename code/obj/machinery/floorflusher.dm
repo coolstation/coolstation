@@ -6,7 +6,7 @@
 	//icon = 'icons/obj/machines/disposal.dmi'
 	icon = 'icons/obj/machines/delivery.dmi' // new icon
 	icon_state = "floorflush_c"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	flags = NOSPLASH
 	event_handler_flags = USE_HASENTERED

@@ -263,7 +263,7 @@ datum/teg_transformation/vampire
 
 		if(probmult(20))
 			for(var/mob/living/carbon/M in orange(5, teg))
-				if(M.blood_volume >= 0 && !M.traitHolder.hasTrait("training_chaplain"))
+				if(M.reagents.get_reagent_amount(M.blood_id) >= 0 && !M.traitHolder.hasTrait("training_chaplain"))
 					targets += M
 
 		if(length(targets))
@@ -275,7 +275,7 @@ datum/teg_transformation/vampire
 
 			if(target in abilityHolder.thralls)
 				H = target
-				if( abilityHolder.points > 100 && target.blood_volume < 50 && !ON_COOLDOWN(src.teg,"heal", 120 SECONDS) )
+				if( abilityHolder.points > 100 && target.reagents.get_reagent_amount(target.blood_id) < 50 && !ON_COOLDOWN(src.teg,"heal", 120 SECONDS) )
 					enthrall(H)
 			else
 				if(isalive(target))
@@ -374,10 +374,7 @@ datum/teg_transformation/vampire
 				vampire.vamp_blood += bitesize
 				vampire.addPoints(bitesize)
 				vampire.tally_bite(victim,bitesize)
-				if (victim.blood_volume < bitesize)
-					victim.blood_volume = 0
-				else
-					victim.blood_volume -= bitesize
+				victim.reagents.remove_reagent(victim.blood_id, bitesize)
 		else
 			if(P.proj_data.damage_type & (D_KINETIC | D_ENERGY | D_SLASHING))
 				var/damage = P.power*P.proj_data.ks_ratio

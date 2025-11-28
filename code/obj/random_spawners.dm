@@ -4,8 +4,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "itemspawn"
 	density = 0
-	anchored = 1.0
-	invisibility = 101
+	anchored = ANCHORED
+	invisibility = 100
 	layer = 99
 	var/amt2spawn = 0
 	var/min_amt2spawn = 0
@@ -955,8 +955,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "podspawn"
 	density = 0
-	anchored = 1.0
-	invisibility = 101
+	anchored = ANCHORED
+	invisibility = 100
 	layer = 99
 	var/obj/machinery/vehicle/pod2spawn = null
 

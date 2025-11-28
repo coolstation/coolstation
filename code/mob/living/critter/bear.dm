@@ -8,8 +8,6 @@
 	custom_gib_handler = /proc/gibs
 	hand_count = 2
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	blood_id = "methamphetamine"
 	burning_suffix = "humanoid"
 	health_brute = 75
@@ -24,7 +22,7 @@
 		switch (act)
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
-					playsound(src, "sound/voice/MEraaargh.ogg", 70, 1, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, "sound/voice/MEraaargh.ogg", 45, 1, channel=VOLUME_CHANNEL_EMOTE)
 					return "<b><span class='alert'>[src] roars!</span></b>"
 		return null
 

@@ -11,7 +11,7 @@ Pipelines + Other Objects -> Pipe network
 */
 //
 obj/machinery/atmospherics
-	anchored = 1
+	anchored = ANCHORED
 	layer = 2.12
 
 	var/generic_decon_time = 10 SECONDS //default is kinda long cause I figured the larger complex machines wouldn't be grouped together, but lower when appropriate

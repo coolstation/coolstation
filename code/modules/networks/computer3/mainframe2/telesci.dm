@@ -53,7 +53,7 @@ proc/is_teleportation_allowed(var/turf/T)
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pad0"
 	name = "teleport pad"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = FLOOR_EQUIP_LAYER1
 	mats = 16
@@ -611,10 +611,8 @@ proc/is_teleportation_allowed(var/turf/T)
 		INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/networked/telepad, processbadeffect), effect)
 
 	proc/processbadeffect(var/effect)
-		#ifdef DATALOGGER
 		if (!(effect in list("", "minorsummon", "getrandom", "buzz"))) //filter out some ones that won't harm anyone
 			game_stats.Increment("workplacesafety")
-		#endif
 		switch(effect)
 			if("")
 				return
@@ -815,7 +813,7 @@ proc/is_teleportation_allowed(var/turf/T)
 	icon_state = "s_teleport"
 	name = "teleport computer"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	device_tag = "SRV_TERMINAL"
 	timeout = 10
 	mats = 14

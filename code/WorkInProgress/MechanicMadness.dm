@@ -438,7 +438,7 @@
 					boutput(user, "You detach the [src] from the [istype(src.loc,/obj/item/storage/mechanics) ? "housing" : "underfloor"] and deactivate it.")
 					logTheThing("station", user, null, "detaches a <b>[src]</b> from the [istype(src.loc,/obj/item/storage/mechanics) ? "housing" : "underfloor"] and deactivates it at [log_loc(src)].")
 					level = 2
-					anchored = 0
+					anchored = UNANCHORED
 					clear_owner()
 					loosen()
 				if(2) //Level 2 = loose
@@ -456,7 +456,7 @@
 					boutput(user, "You attach the [src] to the [istype(src.loc,/obj/item/storage/mechanics) ? "housing" : "underfloor"] and activate it.")
 					logTheThing("station", user, null, "attaches a <b>[src]</b> to the [istype(src.loc,/obj/item/storage/mechanics) ? "housing" : "underfloor"]  at [log_loc(src)].")
 					level = 1
-					anchored = 1
+					anchored = ANCHORED
 					set_owner(user)
 					secure()
 
@@ -797,7 +797,7 @@
 	desc = "A beam of light that will trigger a device when passed."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ibeam"
-	anchored = 1
+	anchored = ANCHORED
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	var/obj/item/mechanics/triplaser/holder

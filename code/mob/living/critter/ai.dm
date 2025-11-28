@@ -238,7 +238,7 @@ var/list/ai_move_scheduled = list()
 	/// targets is expected (but not required) to be ordered from best to worst - by default view() will do this if score_target() is based on distance
 	proc/get_best_target(list/atom/targets)
 		. = null
-		var/best_score = -INFINITY
+		var/best_score = 0
 		var/list/best_path = null
 		if(length(targets))
 			var/required_goals = null // find all targets

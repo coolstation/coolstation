@@ -95,7 +95,7 @@
 	. = ..(give_medal, include_ejectables)
 
 /mob/living/carbon/proc/poop()
-	if(ON_COOLDOWN(src, "poo", 20 MINUTES))
+	if(ON_COOLDOWN(src, "poo", 30 MINUTES))
 		boutput(src, "You don't feel ready to go.")
 		return
 	SPAWN_DBG(0.1 SECOND)
@@ -238,9 +238,6 @@
 	src.take_toxin_damage(-INFINITY)
 	src.take_oxygen_deprivation(-INFINITY)
 	src.change_misstep_chance(-INFINITY)
-	if (src.reagents)
-		src.reagents.clear_reagents()
-		src.reagents.stop_combusting()
 	..()
 
 /mob/living/carbon/take_brain_damage(var/amount)

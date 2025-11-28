@@ -94,7 +94,7 @@
 	icon_state = "robuddy0"
 	layer = 5.0 //TODO LAYER
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	req_access = list(access_heads)
 	on = 1
 	var/idle = 0 //Sleeping on the job??
@@ -1200,7 +1200,7 @@
 		if((allow_big_explosion && cell && (cell.charge / cell.maxcharge > 0.85) && prob(25)) || istype(src.cell, /obj/item/cell/erebite))
 			src.invisibility = 100
 			var/obj/overlay/Ov = new/obj/overlay(T)
-			Ov.anchored = 1
+			Ov.anchored = ANCHORED
 			Ov.name = "Explosion"
 			Ov.layer = NOLIGHT_EFFECTS_LAYER_BASE
 			Ov.pixel_x = -92
@@ -2571,8 +2571,10 @@
 					if(master.moving || no_patrol)
 						return
 
+					#ifndef IM_TESTING_BASIC_MOB_FUNCTIONALITY
 					if(!master.moving)
 						find_patrol_target()
+					#endif
 				/*
 				Hunt and arrest mode. Like an angry secbot, but cuter and sometimes has a gun
 				Script should go as follows:
@@ -4071,7 +4073,7 @@
 	icon = 'icons/obj/bots/aibots.dmi'
 	icon_state = "robuddycharger0"
 	mats = 8
-	anchored = 1
+	anchored = ANCHORED
 	var/panel_open = 0
 	var/autoeject = 0 //1: Eject fully charged robots automatically. 2: Eject robot when living carbon mob is in view.
 	var/frequency = FREQ_ROBUDDY
@@ -4676,7 +4678,7 @@
 
 		src.invisibility = 100
 		var/obj/overlay/Ov = new/obj/overlay(T)
-		Ov.anchored = 1
+		Ov.anchored = ANCHORED
 		Ov.name = "Explosion"
 		Ov.layer = NOLIGHT_EFFECTS_LAYER_BASE
 		Ov.pixel_x = -92

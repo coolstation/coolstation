@@ -16,7 +16,7 @@
 	desc = "A pneumatic waste disposal unit."
 	icon = 'icons/obj/machines/disposal.dmi'
 	icon_state = "disposal"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	pass_unstable = FALSE
 	flags = FPRINT | FLUID_SUBMERGE | NOSPLASH | TGUI_INTERACTIVE

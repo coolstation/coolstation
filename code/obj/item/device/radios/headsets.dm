@@ -2,6 +2,7 @@
 /obj/item/device/radio/headset
 	name = "Radio Headset"
 	icon = 'icons/obj/clothing/item_ears.dmi'
+	hint = "If you can't hear anything, press C while the headset is inhand to make sure the speaker is on."
 	wear_image_icon = 'icons/mob/ears.dmi'
 	icon_state = "headset"
 	inhand_image_icon = 'icons/mob/inhand/hand_headgear.dmi'
