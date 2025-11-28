@@ -1648,7 +1648,7 @@ var/global/list/mapNames = list(
 	sealab
 		icon_state = "shuttle_escape-sealab"
 	perduta
-		icon_state = "shuttle_escape-dnt3"
+		icon_state = "shuttle_escape-cog1"
 
 /area/shuttle/escape/outpost
 	icon_state = "shuttle_escape"
@@ -1664,7 +1664,7 @@ var/global/list/mapNames = list(
 		icon_state = "shuttle_escape-dest"
 	sealab
 		icon_state = "shuttle_escape-sealab"
-	donut3
+	perduta
 		icon_state = "shuttle_escape-cog1"
 
 /area/shuttle/escape/station

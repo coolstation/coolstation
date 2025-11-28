@@ -37,8 +37,8 @@ CONTAINS:
 	m_amt = 10000
 	g_amt = 5000
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	var/mob/Poisoner = null
 	move_triggered = 1
 
@@ -127,8 +127,8 @@ CONTAINS:
 	m_amt = 20000
 	g_amt = 10000
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	var/mob/Poisoner = null
 	move_triggered = 1
 
@@ -205,8 +205,8 @@ CONTAINS:
 	m_amt = 10000
 	g_amt = 5000
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	var/mob/Poisoner = null
 	move_triggered = 1
 
@@ -265,8 +265,8 @@ CONTAINS:
 	var/datum/projectile/staple = new/datum/projectile/bullet/staple
 	var/ammo = 20
 	stamina_damage = 15
-	stamina_cost = 7
-	stamina_crit_chance = 15
+//	stamina_cost = 7
+//	stamina_crit_chance = 15
 
 	// Every bit of usability helps (Convair880).
 	examine()
@@ -755,8 +755,8 @@ CONTAINS:
 	throw_range = 20
 	m_amt = 5000
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	var/uses = 20
 	var/in_use = 0
 	hide_attack = 2
@@ -830,8 +830,8 @@ CONTAINS:
 	throw_speed = 4
 	throw_range = 20
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	var/uses = 6
 	var/in_use = 0
 	hide_attack = 2
@@ -1029,8 +1029,8 @@ CONTAINS:
 	throw_speed = 4
 	throw_range = 20
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	var/volume = 100 // aaa why did they hold SO MUCH BLOOD??  500 IS THE SAME AS A PERSON WHY DID THEY HAVE A PERSON WORTH OF BLOOD IN THEM
 	var/in_use = 0
 
@@ -1157,8 +1157,8 @@ CONTAINS:
 	throw_speed = 4
 	throw_range = 20
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	var/open = 0
 	var/image/open_image = null
 	var/sound_zipper = 'sound/items/zipper.ogg'
@@ -1403,8 +1403,8 @@ CONTAINS:
 	m_amt = 7000
 	g_amt = 3500
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 15
+//	stamina_cost = 0
+//	stamina_crit_chance = 15
 	hide_attack = 2
 
 	attack(mob/M as mob, mob/user as mob)
@@ -1514,8 +1514,8 @@ CONTAINS:
 	force = 0
 	throwforce = 1
 	stamina_damage = 1
-	stamina_cost = 1
-	stamina_crit_chance = 1
+//	stamina_cost = 1
+//	stamina_crit_chance = 1
 
 	New()
 		..()
@@ -1698,7 +1698,7 @@ CONTAINS:
 	icon_state = "tray_parts"
 	force = 3
 	stamina_damage = 7
-	stamina_cost = 7
+//	stamina_cost = 7
 	furniture_type = /obj/table/surgery_tray
 	furniture_name = "tray"
 	build_duration = 30
@@ -1719,8 +1719,8 @@ CONTAINS:
 	tool_flags = TOOL_SNIPPING
 	force = 8.0
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	w_class = W_CLASS_TINY
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Cut_1.ogg'

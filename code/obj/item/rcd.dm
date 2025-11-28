@@ -54,8 +54,8 @@ Broken RCD + Effects
 
 	mats = list("MET-3"=5, "DEN-3" = 1, "CON-2" = 10, "POW-2" = 3)
 	stamina_damage = 15
-	stamina_cost = 15
-	stamina_crit_chance = 5
+//	stamina_cost = 15
+//	stamina_crit_chance = 5
 	inventory_counter_enabled = 1
 
 	// Borgs/drones can't really use matter units.

@@ -57,8 +57,8 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 	max_stack = 20
 	stack_type = null
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	inventory_counter_enabled = 1
 	var/min_amount = default_min_amount
 	var/max_amount = default_max_amount

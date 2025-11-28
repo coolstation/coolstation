@@ -476,8 +476,8 @@
 	desc = "TEMP"
 	pickup_sfx = "sound/items/blade_pull.ogg"
 	stamina_damage = 15
-	stamina_cost = 15
-	stamina_crit_chance = 50
+//	stamina_cost = 15
+//	stamina_crit_chance = 50
 
 //MOVE TO SMALL_ANIMALS.DM LATER//
 

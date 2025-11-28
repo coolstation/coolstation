@@ -31,7 +31,7 @@
 	var/font_color = "black"
 	var/uses_handwriting = 0
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	rand_pos = 8
 	var/in_use = 0
 	var/color_name = "black"
@@ -806,8 +806,8 @@
 	throw_range = 10
 	desc = "You can put paper on it. Ah, technology!"
 	stamina_damage = 10
-	stamina_cost = 1
-	stamina_crit_chance = 5
+//	stamina_cost = 1
+//	stamina_crit_chance = 5
 
 	New()
 		..()

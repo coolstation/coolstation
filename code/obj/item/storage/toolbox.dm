@@ -23,8 +23,8 @@
 	burn_output = 4800
 	burn_type = 1
 	stamina_damage = 47
-	stamina_cost = 20
-	stamina_crit_chance = 10
+//	stamina_cost = 20
+//	stamina_crit_chance = 10
 
 	New()
 		..()

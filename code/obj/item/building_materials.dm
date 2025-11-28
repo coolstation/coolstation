@@ -46,8 +46,8 @@ MATERIAL
 	w_class = W_CLASS_NORMAL
 	max_stack = 50
 	stamina_damage = 42
-	stamina_cost = 23
-	stamina_crit_chance = 10
+//	stamina_cost = 23
+//	stamina_crit_chance = 10
 	var/datum/material/reinforcement = null
 	rand_pos = 8
 	inventory_counter_enabled = 1
@@ -680,8 +680,8 @@ MATERIAL
 	m_amt = 1875
 	max_stack = 50
 	stamina_damage = 20
-	stamina_cost = 16
-	stamina_crit_chance = 30
+//	stamina_cost = 16
+//	stamina_crit_chance = 30
 	rand_pos = 8
 	inventory_counter_enabled = 1
 	stack_type = /obj/item/rods
@@ -1007,8 +1007,8 @@ MATERIAL
 	throwforce = 5.0
 	max_stack = 80
 	stamina_damage = 25
-	stamina_cost = 15
-	stamina_crit_chance = 15
+//	stamina_cost = 15
+//	stamina_crit_chance = 15
 	tooltip_flags = REBUILD_DIST
 	inventory_counter_enabled = 1
 	stack_type = /obj/item/tile

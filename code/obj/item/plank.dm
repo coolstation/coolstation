@@ -11,8 +11,8 @@
 	health = 50
 
 	stamina_damage = 50
-	stamina_cost = 25
-	stamina_crit_chance = 10
+//	stamina_cost = 25
+//	stamina_crit_chance = 10
 
 	New()
 		..()

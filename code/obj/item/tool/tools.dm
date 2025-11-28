@@ -31,8 +31,8 @@ Handsaw
 	force = 8
 	throwforce = 7
 	stamina_damage = 35
-	stamina_cost = 12
-	stamina_crit_chance = 10
+//	stamina_cost = 12
+//	stamina_crit_chance = 10
 
 	m_amt = 50
 	rand_pos = 8
@@ -88,8 +88,8 @@ Handsaw
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 10
-	stamina_cost = 5
-	stamina_crit_chance = 30
+//	stamina_cost = 5
+//	stamina_crit_chance = 30
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 
@@ -139,8 +139,8 @@ Handsaw
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 	m_amt = 80
 	stamina_damage = 15
-	stamina_cost = 10
-	stamina_crit_chance = 30
+//	stamina_cost = 10
+//	stamina_crit_chance = 30
 	rand_pos = 8
 
 	New()
@@ -199,8 +199,8 @@ Handsaw
 	force = 5
 	throwforce = 7
 	stamina_damage = 40
-	stamina_cost = 14
-	stamina_crit_chance = 15
+//	stamina_cost = 14
+//	stamina_crit_chance = 15
 
 	m_amt = 150
 	rand_pos = 8

@@ -684,8 +684,8 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 5
 	stamina_damage = 45
-	stamina_cost = 21
-	stamina_crit_chance = 10
+//	stamina_cost = 21
+//	stamina_crit_chance = 10
 	var/c_color = null
 
 	New()
@@ -710,10 +710,10 @@
 		return
 
 /obj/item/chair/folded/attack(atom/target, mob/user as mob)
-	var/oldcrit = src.stamina_crit_chance
-	if(iswrestler(user))
-		src.stamina_crit_chance = 100
+//	var/oldcrit = src.stamina_crit_chance
+//	if(iswrestler(user))
+//		src.stamina_crit_chance = 100
 	if (ishuman(target))
 		playsound(src.loc, pick(sounds_punch), 100, 1)
 	..()
-	src.stamina_crit_chance = oldcrit
+//	src.stamina_crit_chance = oldcrit

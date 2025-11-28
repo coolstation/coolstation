@@ -23,8 +23,8 @@ MATERIAL
 	m_amt = 1875
 	max_stack = 50
 	stamina_damage = 10
-	stamina_cost = 15
-	stamina_crit_chance = 25
+//	stamina_cost = 15
+//	stamina_crit_chance = 25
 
 	before_stack(atom/movable/O as obj, mob/user as mob)
 		user.visible_message("<span class='notice'>[user] begins gathering up metal rods!</span>")

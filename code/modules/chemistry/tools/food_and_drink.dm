@@ -1057,8 +1057,8 @@
 			throw_range = 5
 			w_class = W_CLASS_SMALL
 			stamina_damage = 15
-			stamina_cost = 15
-			stamina_crit_chance = 50
+//			stamina_cost = 15
+//			stamina_crit_chance = 50
 			tooltip_rebuild = 1
 
 			if (src.weakness >= rand(2,12))

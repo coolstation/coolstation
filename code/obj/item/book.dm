@@ -23,8 +23,8 @@ Custom Books
 	//
 
 	stamina_damage = 2
-	stamina_cost = 2
-	stamina_crit_chance = 0
+//	stamina_cost = 2
+//	stamina_crit_chance = 0
 
 	attack_self(mob/user)
 		return user.examine_verb(src)
