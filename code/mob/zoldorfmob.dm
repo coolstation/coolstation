@@ -245,14 +245,14 @@
 		switch (lowertext(act))
 			if("flip")
 				if(invisibility)
-					if(src.emote_check(voluntary, 100, 1, 0))
+					if(src.emote_check(voluntary, 100, 1, STAT_DEAD))
 						src.visible_message("<span><b>[src.name]</b> spins in place!</span>")
 						if (prob(50))
 							animate_spin(src, "R", 1, 0)
 						else
 							animate_spin(src, "L", 1, 0)
 				else
-					if(src.emote_check(voluntary, 100, 1, 0))
+					if(src.emote_check(voluntary, 100, 1, STAT_DEAD))
 
 						src.visible_message("<span><b>[src.name]</b> shakes off the ectoplasm!</span>")
 						var/wiggle = 6
@@ -285,7 +285,7 @@
 				src.icon = soulcache
 				src.emoting = 0
 			if("scream")
-				if(src.emote_check(voluntary, 100, 1, 0))
+				if(src.emote_check(voluntary, 100, 1, STAT_DEAD))
 					src.visible_message("<span><b>[src.name]</b> vibrates mid-air...</span>")
 					var/wiggle = 6
 					while(wiggle > 0)
