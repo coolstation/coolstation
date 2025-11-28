@@ -458,6 +458,7 @@
 				var/turf/turf = get_step(master, direction)
 
 				var/obj/itemspecialeffect/simple/S = new specialEffect
+				S.clash_time = min(S.clash_time, master.combat_click_delay * 0.75)
 				if(src.animation_color)
 					S.color = src.animation_color
 				if(directional)
@@ -1155,11 +1156,11 @@
 		cooldown = 0
 		moveDelay = 5
 		moveDelayDuration = 5
-		damageMult = 0.80
+		damageMult = 0.75
 
 		image = "dagger"
 		name = "Slice"
-		desc = "Attack twice in rapid succession."
+		desc = "Two weaker slices in rapid succession."
 
 		var/secondhitdelay = 2
 
@@ -1188,8 +1189,8 @@
 				if (!hit)
 					playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 0, 0.1, 1.4)
 
+				user.next_click += secondhitdelay
 				SPAWN_DBG(secondhitdelay)
-
 					turf = get_step(master, direction)
 					var/obj/itemspecialeffect/simple2/SS = new()
 					SS.setup(turf)
