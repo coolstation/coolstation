@@ -597,6 +597,9 @@
 			boutput(owner, "<span class='alert'>Deconstruction of [the_window] interrupted!</span>")
 		..()
 
+/obj/window/classic
+	icon_state = "classic"
+
 /obj/window/pyro
 	icon_state = "pyro"
 
@@ -608,6 +611,9 @@
 	the_tuff_stuff
 		explosion_resistance = 5
 	//deconstruct_time = 30
+
+/obj/window/reinforced/classic
+	icon_state = "rwindow_classic"
 
 /obj/window/reinforced/pyro
 	icon_state = "rpyro"
@@ -671,6 +677,18 @@
 /obj/window/south
 	dir = SOUTH
 
+/obj/window/classic/north
+	dir = NORTH
+
+/obj/window/classic/east
+	dir = EAST
+
+/obj/window/classic/west
+	dir = WEST
+
+/obj/window/classic/south
+	dir = SOUTH
+
 /obj/window/crystal/north
 	dir = NORTH
 
@@ -694,6 +712,19 @@
 
 /obj/window/crystal/reinforced/south
 	dir = SOUTH
+
+/obj/window/reinforced/classic/north
+	dir = NORTH
+
+/obj/window/reinforced/classic/east
+	dir = EAST
+
+/obj/window/reinforced/classic/west
+	dir = WEST
+
+/obj/window/reinforced/classic/south
+	dir = SOUTH
+
 
 /obj/window/reinforced/north
 	dir = NORTH
@@ -977,6 +1008,8 @@
 	icon = 'icons/obj/window.dmi'
 	icon_state = "R0"
 	mod = "R"
+
+
 /obj/wingrille_spawn
 	name = "window grille spawner"
 	icon = 'icons/obj/window.dmi'
@@ -1022,6 +1055,7 @@
 				var/obj/window/new_win = text2path(src.win_path)
 				new new_win(src.loc)
 
+
 	full
 		icon_state = "wingrille_f"
 		full_win = 1
@@ -1054,12 +1088,18 @@
 			full_win = 1
 
 		classic
+			icon_state = "r-wingrille_f"
 			name = "old style reinforced window grille spawner"
 			grille_path = "/obj/grille/classic"
+			full_win = 1
+			win_path = "/obj/window/reinforced/classic"
 
 	classic
+		icon_state = "wingrille_f"
 		name = "old style reinforced window grille spawner"
 		grille_path = "/obj/grille/classic"
+		full_win = 1
+		win_path = "/obj/window/classic"
 
 
 
