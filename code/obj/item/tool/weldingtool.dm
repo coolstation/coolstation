@@ -36,7 +36,7 @@
 		reagents.add_reagent("fuel", capacity)
 		src.inventory_counter.update_number(get_fuel())
 
-		src.setItemSpecial(/datum/item_special/flame)
+		//src.setItemSpecial(/datum/item_special/flame) meh
 		return
 
 	examine()
