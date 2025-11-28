@@ -559,7 +559,7 @@
 	var/package_style = "cigpacket"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigpacket/nicofree
@@ -674,7 +674,7 @@
 	w_class = W_CLASS_TINY
 	throwforce = 1
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	rand_pos = 8
 
 /obj/item/cigarbox
@@ -691,7 +691,7 @@
 	var/package_style = "cigarbox"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigarbox/New()
@@ -755,7 +755,7 @@
 	package_style = "cigarbox"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigarbox/gold/update_icon()
@@ -836,8 +836,8 @@
 	throwforce = 1
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	burn_point = 220
 	burn_output = 900
 	burn_possible = TRUE
@@ -915,8 +915,8 @@
 	throwforce = 1
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	burn_point = 220
 	burn_output = 600
 	burn_possible = TRUE
@@ -1134,8 +1134,8 @@
 	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 0.7 SECONDS
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 5
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 	icon_off = "zippo"
 	icon_on = "zippoon"
 	brightness = 0.4

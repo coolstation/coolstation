@@ -20,8 +20,8 @@ TRAYS
 	w_class = W_CLASS_NORMAL
 	desc = "A wooden tube, used to roll dough flat in order to make various edible objects. It's pretty sturdy."
 	stamina_damage = 40
-	stamina_cost = 15
-	stamina_crit_chance = 2
+//	stamina_cost = 15
+//	stamina_crit_chance = 2
 
 	New()
 		..()
@@ -34,7 +34,7 @@ TRAYS
 	throwforce = 5.0
 	desc = "A hollowed out tube, to save on weight, used to roll dough flat in order to make various edible objects."
 	stamina_damage = 10
-	stamina_cost = 10
+//	stamina_cost = 10
 
 /obj/item/kitchen/utensil
 	inhand_image_icon = 'icons/mob/inhand/hand_food.dmi'
@@ -45,8 +45,8 @@ TRAYS
 	throw_range = 5
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
 	stamina_damage = 5
-	stamina_cost = 10
-	stamina_crit_chance = 15
+//	stamina_cost = 10
+//	stamina_crit_chance = 15
 	dir = NORTH
 	var/rotatable = 1 //just in case future utensils are added that dont wanna be rotated
 	var/snapped

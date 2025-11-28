@@ -453,7 +453,8 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	attackby(obj/item/I, mob/user)
 		. = src.myhorse.attackby(I, user)
 		user.lastattacked = src.myhorse
-		user.next_click = world.time + max(I.click_delay,user.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(user)
+		user.next_click = world.time + I.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)
+		user.lastattacked = null
 
 	attack_hand(mob/user, params, location, control)
 		. = src.myhorse.attack_hand(user, params, location, control)

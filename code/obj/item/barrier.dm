@@ -13,8 +13,8 @@
 	w_class = W_CLASS_SMALL
 	mats = 8
 	stamina_damage = 40
-	stamina_cost = 10
-	stamina_crit_chance = 0
+//	stamina_cost = 10
+//	stamina_crit_chance = 0
 	hitsound = 0
 
 	can_disarm = 1
@@ -126,8 +126,8 @@
 	throwforce = 6
 	w_class = W_CLASS_SMALL
 	stamina_damage = 30
-	stamina_cost = 10
-	stamina_crit_chance = 0
+//	stamina_cost = 10
+//	stamina_crit_chance = 0
 	hitsound = 0
 
 	setupProperties()

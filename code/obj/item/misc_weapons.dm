@@ -43,14 +43,14 @@
 	contraband = 5
 	desc = "An illegal weapon that, when activated, uses cyalume to create an extremely dangerous saber. Can be concealed when deactivated."
 	stamina_damage = 35 // This gets applied by obj/item/attack, regardless of if the saber is active.
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	var/active_force = 60
 	var/active_stamina_dmg = 40
-	var/active_stamina_cost = 40
+//	var/active_stamina_cost = 40
 	var/inactive_stamina_dmg = 35
 	var/inactive_force = 1
-	var/inactive_stamina_cost = 5
+//	var/inactive_stamina_cost = 5
 	var/state_name = "sword"
 	var/off_w_class = W_CLASS_SMALL
 	var/datum/component/holdertargeting/simple_light/light_c
@@ -233,7 +233,7 @@
 			if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordstart.ogg", 70, 0, 5, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
 			else playsound(U,"sound/weapons/female_cswordturnon.ogg" , 100, 0, 5, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
 		src.force = active_force
-		src.stamina_cost = active_stamina_cost
+//		src.stamina_cost = active_stamina_cost
 		if (src.bladecolor)
 			if (!(src.bladecolor in src.valid_colors))
 				src.bladecolor = null
@@ -253,7 +253,7 @@
 			if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordturnoff.ogg", 70, 0, 5, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
 			else playsound(U,"sound/weapons/female_cswordturnoff.ogg", 100, 0, 5, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
 		src.force = inactive_force
-		src.stamina_cost = inactive_stamina_cost
+//		src.stamina_cost = inactive_stamina_cost
 		src.icon_state = "[state_name]0"
 		src.item_state = "[state_name]0"
 		src.w_class = off_w_class
@@ -485,8 +485,8 @@
 	desc = "Gets the blood to run out juuuuuust right. Looks like this could be nasty when thrown."
 	burn_type = 1
 	stamina_damage = 15
-	stamina_cost = 5
-	stamina_crit_chance = 50
+//	stamina_cost = 5
+//	stamina_crit_chance = 50
 	pickup_sfx = "sound/items/blade_pull.ogg"
 
 	New()
@@ -534,7 +534,7 @@
 	icon_state = "combat_knife"
 	force = 15
 	throwforce = 20
-	stamina_cost = 5
+//	stamina_cost = 5
 	c_flags = EQUIPPED_WHILE_HELD
 
 
@@ -621,8 +621,8 @@
 	desc = "An ancient and questionably effective weapon."
 	burn_type = 0
 	stamina_damage = 45
-	stamina_cost = 20
-	stamina_crit_chance = 60
+//	stamina_cost = 20
+//	stamina_crit_chance = 60
 	// pickup_sfx = "sound/items/blade_pull.ogg"
 
 	New()
@@ -693,8 +693,8 @@
 	c_flags = EQUIPPED_WHILE_HELD
 	desc = "An ancient and effective weapon. It's not just a stick alright!"
 	stamina_damage = 65
-	stamina_cost = 22
-	stamina_crit_chance = 60
+//	stamina_cost = 22
+//	stamina_crit_chance = 60
 	// pickup_sfx = "sound/items/blade_pull.ogg"
 	// can_disarm = 1
 	two_handed = 0
@@ -856,8 +856,8 @@
 	flags = FPRINT | CONDUCT | NOSHIELD | TABLEPASS | USEDELAY
 	tool_flags = TOOL_CUTTING
 	stamina_damage = 50
-	stamina_cost = 45
-	stamina_crit_chance = 5
+//	stamina_cost = 45
+//	stamina_crit_chance = 5
 
 
 	New()
@@ -911,7 +911,7 @@
 	flags = FPRINT | CONDUCT | TABLEPASS | USEDELAY | ONBELT
 	tool_flags = TOOL_CUTTING | TOOL_CHOPPING //TOOL_CHOPPING flagged items do 5 times as much damage to doors.
 	hit_type = DAMAGE_CUT
-	click_delay = 10
+	combat_click_delay = 10
 	two_handed = 0
 
 	w_class = W_CLASS_NORMAL
@@ -920,28 +920,28 @@
 	throw_speed = 2
 	throw_range = 4
 	stamina_damage = 25
-	stamina_cost = 15
-	stamina_crit_chance = 5
+//	stamina_cost = 15
+//	stamina_crit_chance = 5
 
 	proc/set_values()
 		if(two_handed)
-			src.click_delay = COMBAT_CLICK_DELAY * 1.5
+			src.combat_click_delay = COMBAT_CLICK_DELAY * 1.5
 			force = 40
 			throwforce = 25
 			throw_speed = 4
 			throw_range = 8
 			stamina_damage = 45
-			stamina_cost = 25
-			stamina_crit_chance = 10
+//			stamina_cost = 25
+//			stamina_crit_chance = 10
 		else
-			src.click_delay = COMBAT_CLICK_DELAY
+			src.combat_click_delay = COMBAT_CLICK_DELAY
 			force = 20
 			throwforce = 10
 			throw_speed = 2
 			throw_range = 4
 			stamina_damage = 25
-			stamina_cost = 15
-			stamina_crit_chance = 5
+//			stamina_cost = 15
+//			stamina_crit_chance = 5
 		tooltip_rebuild = 1
 		return
 
@@ -980,8 +980,8 @@
 	force = 10
 	throwforce = 7
 	stamina_damage = 24
-	stamina_cost = 30
-	stamina_crit_chance = 30
+//	stamina_cost = 30
+//	stamina_crit_chance = 30
 	mats = list("wood" = 8)
 
 
@@ -1004,8 +1004,8 @@
 	force = 10
 	throwforce = 7
 	stamina_damage = 35
-	stamina_cost = 25
-	stamina_crit_chance = 35
+//	stamina_cost = 25
+//	stamina_crit_chance = 35
 
 	New()
 		..()
@@ -1424,8 +1424,8 @@
 	force = 0
 	throwforce = 5
 	stamina_damage = 25
-	stamina_cost = 25
-	stamina_crit_chance = 15
+//	stamina_cost = 25
+//	stamina_crit_chance = 15
 	two_handed = 1
 	pickup_sfx = "sound/items/blade_pull.ogg"
 
@@ -1466,8 +1466,8 @@ obj/item/fragile_sword
 	force = 60
 	throwforce = 60
 	stamina_damage = 25
-	stamina_cost = 25
-	stamina_crit_chance = 15
+//	stamina_cost = 25
+//	stamina_crit_chance = 15
 	pickup_sfx = "sound/items/blade_pull.ogg"
 
 	var/minimum_force = 5
@@ -1528,8 +1528,8 @@ obj/item/whetstone
 	force = 25
 	throwforce = 25
 	stamina_damage = 25
-	stamina_cost = 20
-	stamina_crit_chance = 15
+//	stamina_cost = 20
+//	stamina_crit_chance = 15
 	pickup_sfx = "sound/weapons/hadar-pickup.ogg"
 	hitsound = 'sound/impact_sounds/Blade_Small_Bloody.ogg'
 	two_handed = 1
@@ -1604,11 +1604,11 @@ obj/item/whetstone
 	flags = FPRINT | TABLEPASS | ONBACK
 
 	two_handed = 1
-	click_delay = 3 SECONDS
+	combat_click_delay = 3 SECONDS
 
 	force = 30 //this number is multiplied by 5 when attacking doors.
 	stamina_damage = 60
-	stamina_cost = 30
+//	stamina_cost = 30
 
 	New()
 		..()
@@ -1642,7 +1642,7 @@ obj/item/whetstone
 	hit_type = DAMAGE_CUT
 	flags = USEDELAY | FPRINT
 	force = 20
-	click_delay = 16 DECI SECONDS //unbalanced blade
+	combat_click_delay = 16 DECI SECONDS //unbalanced blade
 	throwforce = 6
 	throw_speed = 1
 	throw_range = 5
@@ -1668,10 +1668,10 @@ obj/item/whetstone
 	force = 3
 	throwforce = 7
 	stamina_damage = 5
-	stamina_cost = 1
+//	stamina_cost = 1
 	event_handler_flags = USE_GRAB_CHOKE
 	special_grab = /obj/item/grab
-	stamina_crit_chance = 5
+//	stamina_crit_chance = 5
 	var/active = FALSE
 	w_class = W_CLASS_SMALL
 
@@ -1695,7 +1695,7 @@ obj/item/whetstone
 			icon_state = "switchblade-open"
 			hit_type = DAMAGE_CUT
 			force = 10
-			stamina_crit_chance = 33
+//			stamina_crit_chance = 33
 			playsound(user, 'sound/items/blade_pull.ogg', 60, TRUE)
 		else if (!chokehold)
 			hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
@@ -1707,7 +1707,7 @@ obj/item/whetstone
 			//src.setItemSpecial(/datum/item_special/simple)
 			icon_state = "switchblade-close"
 			hit_type = DAMAGE_BLUNT
-			stamina_crit_chance = 5
+//			stamina_crit_chance = 5
 			force = 3
 			playsound(user, 'sound/machines/heater_off.ogg', 40, TRUE)
 		user.update_inhands()

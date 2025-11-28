@@ -525,8 +525,8 @@
 	throw_speed = 3
 	throw_range = 8
 	stamina_damage = 1
-	stamina_cost = 1
-	stamina_crit_chance = 0
+//	stamina_cost = 1
+//	stamina_crit_chance = 0
 	var/active = 0
 
 	attack_self(mob/user as mob)

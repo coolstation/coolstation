@@ -6,7 +6,7 @@
 	item_state = "coin"
 	w_class = W_CLASS_TINY
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	flags = FPRINT | TABLEPASS
 	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 1 SECOND

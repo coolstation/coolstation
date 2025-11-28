@@ -1180,8 +1180,8 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 15
-	stamina_cost = 3
-	stamina_crit_chance = 15
+//	stamina_cost = 3
+//	stamina_crit_chance = 15
 	abilities = list(/obj/ability_button/sailormoon_heal)
 
 /obj/ability_button/sailormoon_heal
@@ -1270,8 +1270,8 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 
 	New()
 		..()
@@ -1586,19 +1586,19 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	force = 7
 	throwforce = 5
 	stamina_damage = 25
-	stamina_cost = 15
-	stamina_crit_chance = 5
+//	stamina_cost = 15
+//	stamina_crit_chance = 5
 	rand_pos = 8
 
 	attack(mob/M as mob, mob/user as mob) // big ol hackery here
 		if (M && isvampire(M))
 			src.force = (src.force * 2)
 			src.stamina_damage = (src.stamina_damage * 2)
-			src.stamina_crit_chance = (src.stamina_crit_chance * 2)
+//			src.stamina_crit_chance = (src.stamina_crit_chance * 2)
 			..(M, user)
 			src.force = (src.force / 2)
 			src.stamina_damage = (src.stamina_damage / 2)
-			src.stamina_crit_chance = (src.stamina_crit_chance / 2)
+//			src.stamina_crit_chance = (src.stamina_crit_chance / 2)
 		else
 			return ..()
 
@@ -1606,11 +1606,11 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 		if (hit_atom && isvampire(hit_atom))
 			src.force = (src.force * 2)
 			src.stamina_damage = (src.stamina_damage * 2)
-			src.stamina_crit_chance = (src.stamina_crit_chance * 2)
+//			src.stamina_crit_chance = (src.stamina_crit_chance * 2)
 			..(hit_atom)
 			src.force = (src.force / 2)
 			src.stamina_damage = (src.stamina_damage / 2)
-			src.stamina_crit_chance = (src.stamina_crit_chance / 2)
+//			src.stamina_crit_chance = (src.stamina_crit_chance / 2)
 		else
 			return ..()
 
@@ -1626,8 +1626,8 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	mats = 50
 	contraband = 1
 	stamina_damage = 40
-	stamina_cost = 23
-	stamina_crit_chance = 10
+//	stamina_cost = 23
+//	stamina_crit_chance = 10
 
 /obj/item/destiny_model
 	name = "NSS Destiny model"

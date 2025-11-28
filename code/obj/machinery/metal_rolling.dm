@@ -109,18 +109,12 @@
 
 		src.visible_message("<span class='alert bold'>[AM] gets pulled into [src]!</span>","<span class='alert'>You hear something crunch!</span>","hot_roller")
 
-		if (istype(AM, /obj/item/material_piece) && AM.material)
-			for(var/obj/item/material_piece/I in src.contents)
-				if (I.material && isSameMaterial(AM.material, I.material))
-					I.change_stack_amount(I.amount)
-					qdel(AM)
-					return
-
-		if (istype(AM, /obj/item/tile) && AM.material)
-			for(var/obj/item/tile/I in src.contents)
-				if (I.material && isSameMaterial(AM.material, I.material))
-					I.change_stack_amount(I.amount)
-					qdel(AM)
+		//stack ores/bars/tiles/sheets/whatever
+		var/obj/item/item_intake = AM
+		if (item_intake.stack_type)
+			for(var/obj/item/I in src.contents)
+				I.stack_item(item_intake) //includes type/material checking
+				if (!item_intake.amount) //we've fully stacked AM away among existing contents, AM has been qdeled in change_stack_amount
 					return
 
 		AM.set_loc(src)
@@ -211,14 +205,22 @@
 		for(var/obj/item/I in src.contents) // this code is TEMPORARY until atoms store their materials as a keyed list
 			if(istype(I,/obj/item/tile) || istype(I, /obj/item/sheet) || istype(I, /obj/item/rods) || istype(I, /obj/item/raw_material/shard) || I.w_class < W_CLASS_NORMAL)
 				I.set_loc(src.loc)
-				I.throw_at(get_edge_cheap(src,turn(src.dir,180)), rand(3,6), 3) // vroom
+				//emagged rollers yeet a lil spicier
+				if (src.emagged)
+					I.throw_at(get_edge_cheap(src,turn(src.dir,180 + pick(-45, 0, 45))), 15, rand(3,6))
+				else
+					I.throw_at(get_edge_cheap(src,turn(src.dir,180)), rand(3,6), 3) // vroom
 				processed_something = TRUE
 				break
 			else if(src.create_sheets(I,1))
 				processed_something = TRUE
 				break
 			I.set_loc(src.loc)
-			I.throw_at(get_edge_cheap(src,turn(src.dir,180)), rand(3,6), 3) // get these weird things out
+			//emagged rollers yeet a lil spicier
+			if (src.emagged)
+				I.throw_at(get_edge_cheap(src,turn(src.dir,180 + pick(-45, 0, 45))), 15, rand(3,6))
+			else
+				I.throw_at(get_edge_cheap(src,turn(src.dir,180)), rand(3,6), 3) // get these weird things out
 			processed_something = TRUE
 			break
 
@@ -239,7 +241,10 @@
 			sheet = new /obj/item/sheet(src.loc)
 			sheet.setMaterial(I.material)
 			sheet.change_stack_amount(9) // can be removed when sheets squished
-			sheet.throw_at(get_edge_cheap(src,turn(src.dir,180)), rand(1,2), 2) // caution advised
+			if (src.emagged)
+				sheet.throw_at(get_edge_cheap(src,turn(src.dir,180 + pick(-45, 0, 45))), 15, rand(3,6))
+			else
+				sheet.throw_at(get_edge_cheap(src,turn(src.dir,180)), rand(1,2), 2) // caution advised
 		I.change_stack_amount(-1 * required)
 		if(!I.amount)
 			qdel(I)

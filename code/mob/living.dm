@@ -121,7 +121,7 @@
 	var/stamina = STAMINA_MAX
 	var/stamina_max = STAMINA_MAX
 	var/stamina_regen = STAMINA_REGEN
-	var/stamina_crit_chance = STAMINA_CRIT_CHANCE
+//	var/stamina_crit_chance = STAMINA_CRIT_CHANCE
 	var/list/stamina_mods_regen = list()
 	var/list/stamina_mods_max = list()
 
@@ -576,7 +576,7 @@
 
 				//If lastattacked was set, this must be a combat action!! Use combat click delay ||  the other condition is whether a special attack was just triggered.
 				if ((lastattacked != null && (src.lastattacked == target || src.lastattacked == equipped || src.lastattacked == src) && use_delay) || (equipped && equipped.special && equipped.special.last_use >= world.time - src.click_delay))
-					src.next_click = world.time + (equipped ? max(equipped.click_delay,src.combat_click_delay) : src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
+					src.next_click = world.time + (equipped ? equipped.combat_click_delay : src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 					src.lastattacked = null
 
 			else if (!equipped)

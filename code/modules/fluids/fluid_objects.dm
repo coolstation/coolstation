@@ -459,8 +459,8 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 9
 	stamina_damage = 30
-	stamina_cost = 20
-	stamina_crit_chance = 6
+//	stamina_cost = 20
+//	stamina_crit_chance = 6
 	var/c_color = null
 	mats = 7
 

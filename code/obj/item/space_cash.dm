@@ -23,8 +23,8 @@
 	max_stack = 1000000
 	stack_type = /obj/item/spacecash // so all cash types can stack iwth each other
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	inventory_counter_enabled = 1
 	var/default_min_amount = 0
 	var/default_max_amount = 0

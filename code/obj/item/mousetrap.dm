@@ -20,8 +20,8 @@
 	var/obj/item/gimmickbomb/butt/buttbomb = null
 	var/mob/armer = null
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 5
+//	stamina_cost = 0
+//	stamina_crit_chance = 5
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	armed

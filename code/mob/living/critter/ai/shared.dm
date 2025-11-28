@@ -346,7 +346,7 @@
 		if(GET_DIST(src.holder.owner, M) <= 1)
 			src.holder.owner.hand_attack(M)
 			src.ticks_since_combat = 0
-			src.holder.owner.next_click = world.time + (G ? max(G.click_delay,src.holder.owner.combat_click_delay) : src.holder.owner.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
+			src.holder.owner.next_click = world.time + (G ? G.combat_click_delay : src.holder.owner.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
 			src.queued_target = null
 		else if(istype(owncritter))
 			var/datum/handHolder/HH = owncritter.get_active_hand()
@@ -375,4 +375,4 @@
 			if(src.queued_target && GET_DIST(src.holder.owner, src.queued_target) <= 1)
 				var/obj/item/equipped = src.holder.owner.equipped()
 				src.holder.owner.hand_attack(src.queued_target)
-				src.holder.owner.next_click = world.time + (equipped ? max(equipped.click_delay,src.holder.owner.combat_click_delay) : src.holder.owner.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
+				src.holder.owner.next_click = world.time + (equipped ? equipped.combat_click_delay : src.holder.owner.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)

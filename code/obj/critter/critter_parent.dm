@@ -298,9 +298,9 @@
 		if(W.hasProperty("frenzy"))
 			SPAWN_DBG(0)
 				var/frenzy = W.getProperty("frenzy")
-				W.click_delay -= frenzy
+				W.combat_click_delay -= frenzy
 				sleep(3 SECONDS)
-				W.click_delay += frenzy
+				W.combat_click_delay += frenzy
 		///////////////////////////
 
 		if (!attack_force)

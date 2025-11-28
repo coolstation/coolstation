@@ -230,8 +230,8 @@ SHARDS
 	g_amt = 3750
 	burn_type = 1
 	stamina_damage = 5
-	stamina_cost = 15
-	stamina_crit_chance = 35
+//	stamina_cost = 15
+//	stamina_crit_chance = 35
 
 /obj/item/shard/Bump()
 

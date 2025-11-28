@@ -28,8 +28,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 	is_syndicate = 0
 	mats = 6
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	var/sound_armed = null
 	var/icon_state_armed = null
 	var/not_in_mousetraps = 0
@@ -1078,8 +1078,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	w_class = W_CLASS_TINY
 	var/det_time = 20
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 5
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 	var/slashed = FALSE // has it been emptied out? if so, better dud!
 	var/primer_burnt = FALSE // avoid priming a firework multiple times, that doesn't make sense!
 	var/primed = FALSE // cutting open lit fireworks is a BAD idea
@@ -1253,8 +1253,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	var/expl_range = 1
 	desc = "A timed device that releases a relatively strong concussive force, strong enough to destroy rock and metal."
 	stamina_damage = 1
-	stamina_cost = 1
-	stamina_crit_chance = 0
+//	stamina_cost = 1
+//	stamina_crit_chance = 0
 
 	attack_hand(var/mob/user)
 		if (src.state)
@@ -1353,8 +1353,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	expl_flash = 10
 	expl_range = 2
 	stamina_damage = 1
-	stamina_cost = 1
-	stamina_crit_chance = 0
+//	stamina_cost = 1
+//	stamina_crit_chance = 0
 
 /obj/item/breaching_charge/thermite
 	name = "Thermite Breaching Charge"

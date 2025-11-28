@@ -20,9 +20,9 @@ their respective object definitions, but for now they are cozy and warm. love u.
  */
 /obj/item/storage/toolbox
 	//warcrimes - rng stuns - toolboxes disorient and stun but won't down
-	rng_stun_rate = 7 //%
-	rng_stun_time = 3 SECONDS
-	rng_stun_diso = 6 SECONDS
+	rng_stun_rate = 8 //%
+	rng_stun_time = 2.5 SECONDS
+	rng_stun_diso = 6.5 SECONDS
 	rng_stun_weak = 0 SECONDS
 
 /obj/item/brick
