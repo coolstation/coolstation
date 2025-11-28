@@ -6,6 +6,7 @@
 	throwforce = 6
 	value = 70 //base commodity price
 	burn_type = 1
+	stack_type = /obj/item/raw_material/
 
 	var/material_name = "Ore" //text to display for this ore in manufacturers
 	var/initial_material_name = null // used to store what the ore is

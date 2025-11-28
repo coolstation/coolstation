@@ -83,7 +83,7 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 		lastTooltipContent = .
 
 	//All the ammo has 3/5/10 variants that need to stack onto the parent type
-	//But then also you get subtypes that shouldn't, so the istype checks the normal version of this pro does don't work (for example, NT mini shot shouldn't stack onto regular NT shot)
+	//But then also you get subtypes that shouldn't, so the istype checks the normal version of this proc does don't work (for example, NT mini shot shouldn't stack onto regular NT shot)
 	//luckily, since all ammo (at time of writing anyway) has stack_type set we can just compare those directly
 	check_valid_stack(obj/item/I)
 		if (src.stack_type)
