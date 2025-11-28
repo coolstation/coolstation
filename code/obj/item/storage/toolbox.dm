@@ -9,7 +9,7 @@
 	item_state = "toolbox-red"
 	flags = FPRINT | TABLEPASS | CONDUCT | NOSPLASH
 	force = 12
-	combat_click_delay = 1.2 SECONDS
+	combat_click_delay = 1.2 * COMBAT_CLICK_DELAY
 	throwforce = 8
 	throw_speed = 1
 	throw_range = 7

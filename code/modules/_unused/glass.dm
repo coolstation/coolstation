@@ -224,8 +224,8 @@ SHARDS
 	icon_state = "large"
 	desc = "Could probably be used as ... a throwing weapon?"
 	w_class = W_CLASS_NORMAL
-	force = 5.0
-	throwforce = 15.0
+	force = 5
+	throwforce = 10
 	item_state = "shard-glass"
 	g_amt = 3750
 	burn_type = 1
@@ -296,8 +296,9 @@ SHARDS
 	icon_state = "clarge"
 	desc = "A shard of Plasma Crystal. Very hard and sharp."
 	w_class = W_CLASS_NORMAL
-	force = 10.0
-	throwforce = 20.0
+	force = 8
+	combat_click_delay = 0.8 * COMBAT_CLICK_DELAY
+	throwforce = 15
 	item_state = "shard-glass"
 	g_amt = 0
 	New()

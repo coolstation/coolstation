@@ -748,7 +748,8 @@
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "knife_b"
 	item_state = "knife_b"
-	force = 5.0
+	force = 5 // most damage done in attack proc bonus, now indicated in hint
+	combat_click_delay = 1.25 * COMBAT_CLICK_DELAY
 	throwforce = 15.0
 	throw_speed = 4
 	throw_range = 8
@@ -757,6 +758,8 @@
 	tool_flags = TOOL_CUTTING
 	hit_type = DAMAGE_STAB
 	var/makemeat = 1
+
+	hint = "Does 25 extra damage to living meat."
 
 /obj/item/knife/butcher/New()
 	..()
@@ -786,7 +789,7 @@
 	if (iscarbon(target))
 		var/mob/living/carbon/C = target
 		if (!isdead(C))
-			random_brute_damage(C, 20,1)//no more AP butcher's knife, jeez
+			random_brute_damage(C, 25, 1)//no more AP butcher's knife, jeez
 			take_bleeding_damage(C, user, 10, DAMAGE_STAB)
 		else
 			if (src.makemeat)
@@ -831,6 +834,7 @@
 	inhand_image_icon = 'icons/mob/inhand/hand_food.dmi'
 	item_state = "knife_b"
 	force = 8.0
+	combat_click_delay = 1.4 SECONDS
 	throwforce = 35.0
 	throw_speed = 6
 	throw_range = 10
@@ -911,34 +915,33 @@
 	flags = FPRINT | CONDUCT | TABLEPASS | USEDELAY | ONBELT
 	tool_flags = TOOL_CUTTING | TOOL_CHOPPING //TOOL_CHOPPING flagged items do 5 times as much damage to doors.
 	hit_type = DAMAGE_CUT
-	combat_click_delay = 10
 	two_handed = 0
 
 	w_class = W_CLASS_NORMAL
+	combat_click_delay = COMBAT_CLICK_DELAY * 1.1
 	force = 20
-	throwforce = 10
-	throw_speed = 2
-	throw_range = 4
+	throwforce = 18 //axe throwing is cool and fun
+	throw_speed = 1
+	throw_range = 6
 	stamina_damage = 25
+
 //	stamina_cost = 15
 //	stamina_crit_chance = 5
 
 	proc/set_values()
 		if(two_handed)
 			src.combat_click_delay = COMBAT_CLICK_DELAY * 1.5
-			force = 40
+			force = 35
 			throwforce = 25
-			throw_speed = 4
-			throw_range = 8
+			throw_range = 12
 			stamina_damage = 45
 //			stamina_cost = 25
 //			stamina_crit_chance = 10
 		else
-			src.combat_click_delay = COMBAT_CLICK_DELAY
+			src.combat_click_delay = COMBAT_CLICK_DELAY * 1.1
 			force = 20
-			throwforce = 10
-			throw_speed = 2
-			throw_range = 4
+			throwforce = 18
+			throw_range = 6
 			stamina_damage = 25
 //			stamina_cost = 15
 //			stamina_crit_chance = 5
@@ -1604,7 +1607,7 @@ obj/item/whetstone
 	flags = FPRINT | TABLEPASS | ONBACK
 
 	two_handed = 1
-	combat_click_delay = 3 SECONDS
+	combat_click_delay = 3 * COMBAT_CLICK_DELAY
 
 	force = 30 //this number is multiplied by 5 when attacking doors.
 	stamina_damage = 60
@@ -1642,7 +1645,7 @@ obj/item/whetstone
 	hit_type = DAMAGE_CUT
 	flags = USEDELAY | FPRINT
 	force = 20
-	combat_click_delay = 16 DECI SECONDS //unbalanced blade
+	combat_click_delay = 1.7 * COMBAT_CLICK_DELAY
 	throwforce = 6
 	throw_speed = 1
 	throw_range = 5
@@ -1694,7 +1697,8 @@ obj/item/whetstone
 			//src.setItemSpecial(/datum/item_special/simple/bloodystab)
 			icon_state = "switchblade-open"
 			hit_type = DAMAGE_CUT
-			force = 10
+			force = 7
+			combat_click_delay = 0.5 * COMBAT_CLICK_DELAY
 //			stamina_crit_chance = 33
 			playsound(user, 'sound/items/blade_pull.ogg', 60, TRUE)
 		else if (!chokehold)
@@ -1709,6 +1713,7 @@ obj/item/whetstone
 			hit_type = DAMAGE_BLUNT
 //			stamina_crit_chance = 5
 			force = 3
+			combat_click_delay = 0.8 * COMBAT_CLICK_DELAY
 			playsound(user, 'sound/machines/heater_off.ogg', 40, TRUE)
 		user.update_inhands()
 		tooltip_rebuild = TRUE

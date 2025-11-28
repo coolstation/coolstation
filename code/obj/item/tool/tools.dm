@@ -85,7 +85,7 @@ Handsaw
 
 	force = 3
 	throwforce = 5
-	combat_click_delay = 0.4 SECONDS
+	combat_click_delay = 0.4 * COMBAT_CLICK_DELAY
 	throw_speed = 3
 	throw_range = 8
 	stamina_damage = 10
@@ -133,8 +133,8 @@ Handsaw
 	tool_flags = TOOL_SNIPPING
 	w_class = W_CLASS_SMALL
 
-	force = 12
-	combat_click_delay = 1.8 SECONDS
+	force = 13
+	combat_click_delay = 1.8 * COMBAT_CLICK_DELAY
 	throw_speed = 2
 	throw_range = 9
 	hit_type = DAMAGE_STAB
