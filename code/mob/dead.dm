@@ -95,7 +95,7 @@
 	switch (lowertext(act))
 
 		if ("fart")
-			if (farting_allowed && src.emote_check(voluntary, 25, 1, 0))
+			if (farting_allowed && src.emote_check(voluntary, 25, 1, STAT_DEAD))
 				var/fluff = pick("spooky", "eerie", "ectoplasmic", "frightening", "terrifying", "ghoulish", "ghostly", "haunting", "morbid")
 				var/fart_on_other = 0
 				for (var/obj/item/storage/bible/B in src.loc)
@@ -124,15 +124,15 @@
 #endif
 
 		if ("scream")
-			if (src.emote_check(voluntary, 25, 1, 0))
+			if (src.emote_check(voluntary, 25, 1, STAT_DEAD))
 				message = "<B>[src]</B> lets out \an [pick("spooky", "eerie", "frightening", "terrifying", "ghoulish", "ghostly", "haunting", "morbid")] [pick("wail", "screech", "shriek")]!"
 
 		if ("laugh")
-			if (src.emote_check(voluntary, 20, 1, 0))
+			if (src.emote_check(voluntary, 20, 1, STAT_DEAD))
 				message = "<B>[src]</B> lets out \an [pick("spooky", "eerie", "frightening", "terrifying", "ghoulish", "ghostly", "haunting", "morbid")] [pick("laugh", "cackle", "chuckle")]!"
 
 		if ("dance")
-			if (src.emote_check(voluntary, 100, 1, 0))
+			if (src.emote_check(voluntary, 100, 1, STAT_DEAD))
 				switch (rand(1, 4))
 					if (1) message = "<B>[src]</B> does the Monster Mash!"
 					if (2) message = "<B>[src]</B> gets spooky with it!"
@@ -157,7 +157,7 @@
 #endif
 
 		if ("flip")
-			if (src.emote_check(voluntary, 100, 1, 0))
+			if (src.emote_check(voluntary, 100, 1, STAT_DEAD))
 				message = "<B>[src]</B> does \an [pick("spooky", "eerie", "frightening", "terrifying", "ghoulish", "ghostly", "haunting", "morbid")] flip!"
 				animate(src) // stop the animation
 				animate_spin(src, prob(50) ? "R" : "L", 1, 0)
@@ -171,7 +171,7 @@
 #endif
 
 		if ("wave","salute","nod")
-			if (src.emote_check(voluntary, 10, 1, 0))
+			if (src.emote_check(voluntary, 10, 1, STAT_DEAD))
 				message = "<B>[src]</B> [act]s."
 
 		else

@@ -3,6 +3,7 @@
 //april fools start
 
 /datum/emote/inhale
+	possible_while = STAT_UNCONSCIOUS
 /datum/emote/inhale/enact(mob/living/user, voluntary = 0, param)
 	if (!istype(user))
 		return
@@ -21,6 +22,7 @@
 	user.show_text("You breathe in.")
 
 /datum/emote/exhale
+	possible_while = STAT_UNCONSCIOUS
 /datum/emote/exhale/enact(mob/living/user, voluntary = 0, param)
 	if (!istype(user))
 		return
@@ -448,6 +450,7 @@
 
 
 /datum/emote/twitch
+	possible_while = STAT_UNCONSCIOUS
 	var/amplitude_x = 2
 	var/amplitude_y = 1
 	emote_string = "twitches"
@@ -457,14 +460,14 @@
 		emote_string = "twitches violently"
 /datum/emote/twitch/enact(mob/user, voluntary = 0, param)
 	. = list("<B>[user]</B> [emote_string].", null, MESSAGE_VISIBLE) //no return because of the sleep()
-	//The below used to be on a SPAWN but that's probably no longer needed
+	//The below used to be on a SPAWN but that's probably no longer needed // pretty sure it is
 	var/old_x = user.pixel_x
 	var/old_y = user.pixel_y
 	user.pixel_x += rand(-amplitude_x,amplitude_x)
 	user.pixel_y += rand(-amplitude_y,amplitude_y)
-	sleep(0.2 SECONDS)
-	user.pixel_x = old_x
-	user.pixel_y = old_y
+	SPAWN_DBG(0.2 SECONDS)
+		user.pixel_x = old_x
+		user.pixel_y = old_y
 
 
 /datum/emote/faint
@@ -474,7 +477,7 @@
 
 
 /datum/emote/deathgasp
-	possible_while_dead = TRUE
+	possible_while = STAT_DEAD
 /datum/emote/deathgasp/return_cooldown(mob/user, voluntary = 0)
 	return (voluntary ? 5 SECONDS : 0 SECONDS) //I *think* this replicates [if (!voluntary || user.emote_check(voluntary,50))]
 /datum/emote/deathgasp/enact(mob/user, voluntary = 0, param)
@@ -570,7 +573,7 @@
 /datum/emote/collapse/enact(mob/user, voluntary = 0, param)
 	if (!user.getStatusDuration("paralysis"))
 		user.changeStatus("paralysis", 3 SECONDS)
-	return list("<B>[user]</B> [emote_string]s!", null, MESSAGE_AUDIBLE) //was audible in the old code but IDK why
+	return list("<B>[user]</B> [emote_string]s!", null, MESSAGE_VISIBLE) //was audible in the old code but IDK why
 
 
 /datum/emote/burp
@@ -661,6 +664,7 @@
 		user.recite_miranda()
 
 /datum/emote/suicide
+	possible_while = STAT_UNCONSCIOUS
 /datum/emote/suicide/enact(mob/user, voluntary = 0, param)
 	user.do_suicide()
 

@@ -37,16 +37,21 @@
 	blink
 		emote_string = "blinks"
 	drool
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "drools"
 	shrug
 		emote_string = "shrugs"
 	tremble
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "trembles"
 	quiver
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "quivers"
 	shiver
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "shivers"
 	shudder
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "shudders"
 	shake
 		emote_string = "shakes"
@@ -237,6 +242,7 @@
 	sniff
 		emote_string = "sniffs"
 	snore
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "snores"
 	whimper
 		emote_string = "whimpers"
@@ -393,6 +399,7 @@
 */
 //maptext differs
 /datum/emote/pale
+	possible_while = STAT_UNCONSCIOUS
 /datum/emote/pale/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> goes pale for a second.", "<I>goes pale...</I>", MESSAGE_VISIBLE)
 
