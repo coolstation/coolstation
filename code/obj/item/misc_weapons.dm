@@ -1713,7 +1713,7 @@ obj/item/whetstone
 			hit_type = DAMAGE_BLUNT
 //			stamina_crit_chance = 5
 			force = 3
-			combat_click_delay = 0.8 * COMBAT_CLICK_DELAY
+			combat_click_delay = COMBAT_CLICK_DELAY
 			playsound(user, 'sound/machines/heater_off.ogg', 40, TRUE)
 		user.update_inhands()
 		tooltip_rebuild = TRUE
