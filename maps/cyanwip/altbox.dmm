@@ -586,8 +586,14 @@
 /turf/floor,
 /area/station/atmos/department)
 "avv" = (
-/obj/bookshelf/long/end_right,
-/turf/wall/wooden,
+/obj/cable/blue,
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer3/generic/amber{
+	desc = "A computer workstation, Someone paid way too much for these.";
+	name = "NetLibrary Terminal";
+	setup_starting_peripheral1 = /obj/item/peripheral/network/powernet_card
+	},
+/turf/floor/wood/five,
 /area/station/library)
 "avw" = (
 /obj/table/reinforced/auto,
@@ -1424,6 +1430,21 @@
 	},
 /obj/disposalpipe/segment/mail{
 	dir = 4
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
+"aWQ" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 8
+	},
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/mail{
+	dir = 4
+	},
+/obj/cable/orange{
+	icon_state = "1-4"
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
@@ -2406,6 +2427,10 @@
 	},
 /turf/floor,
 /area/station/crew_quarters/kitchen/freezer)
+"bLX" = (
+/obj/bookshelf/long/end_left,
+/turf/floor/wood/five,
+/area/station/library)
 "bMa" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -3943,6 +3968,16 @@
 "cKP" = (
 /turf/wall,
 /area/station/maintenance/disposal)
+"cKY" = (
+/obj/cable/blue{
+	icon_state = "4-8"
+	},
+/obj/cable/blue{
+	icon_state = "2-4"
+	},
+/obj/bookshelf/long/end_right,
+/turf/floor/wood/five,
+/area/station/library)
 "cLj" = (
 /obj/disposalpipe/segment/bent{
 	dir = 1
@@ -4098,6 +4133,18 @@
 /obj/wingrille_spawn/reinforced/classic,
 /turf/floor/plating,
 /area/station/medical/medbay)
+"cRW" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/outer/ne)
 "cSO" = (
 /turf/floor/wood/five,
 /area/station/quartermaster/office)
@@ -5115,6 +5162,10 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/cable/blue{
+	icon_state = "2-4"
+	},
+/obj/bookshelf/long/end_left,
 /turf/floor/wood/five,
 /area/station/library)
 "dyn" = (
@@ -7893,7 +7944,6 @@
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "fDe" = (
-/obj/bookshelf/long,
 /turf/wall/wooden,
 /area/station/library)
 "fDT" = (
@@ -9742,6 +9792,15 @@
 /obj/submachine/chef_oven,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
+"gVg" = (
+/obj/cable/yellow,
+/obj/machinery/power/apc{
+	pixel_y = -24;
+	name = "Library APC";
+	areastring = "Library"
+	},
+/turf/floor/plating,
+/area/station/maintenance/outer/ne)
 "gVo" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe{
 	dir = 1
@@ -10034,6 +10093,14 @@
 	},
 /turf/floor/plating,
 /area/station/atmos/department)
+"hgA" = (
+/obj/cable/blue{
+	icon_state = "1-8"
+	},
+/turf/floor/carpet/red/standard/edge{
+	dir = 4
+	},
+/area/station/library)
 "hhm" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -11195,6 +11262,12 @@
 /obj/machinery/drainage,
 /turf/floor/black,
 /area/station/medical/morgue)
+"hXs" = (
+/obj/cable/blue{
+	icon_state = "1-2"
+	},
+/turf/floor/wood/five,
+/area/station/library)
 "hXu" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/cable/orange{
@@ -11941,6 +12014,14 @@
 	},
 /turf/floor/plating,
 /area/station/storage/secure)
+"iBI" = (
+/obj/table/wood/auto,
+/obj/machinery/coffeemaker/generic{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/turf/floor/wood/five,
+/area/station/library)
 "iCr" = (
 /turf/floor/carpet/red/standard/edge/se,
 /area/station/hallway/secondary/entry)
@@ -12006,6 +12087,12 @@
 "iEi" = (
 /turf/floor/circuit,
 /area/station/bridge/locker)
+"iEm" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/floor/wood/five,
+/area/station/library)
 "iEE" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -13662,6 +13749,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/crusher)
+"jTV" = (
+/obj/bookshelf/long/end_right,
+/turf/floor/wood/five,
+/area/station/library)
 "jTW" = (
 /turf/floor/carpet/red/standard/edge,
 /area/station/crew_quarters/bar)
@@ -14654,6 +14745,11 @@
 	dir = 4
 	},
 /area/station/janitor/office)
+"kAK" = (
+/obj/table/wood/auto,
+/obj/machinery/light/lamp/green,
+/turf/floor/wood/five,
+/area/station/library)
 "kBm" = (
 /obj/cable/yellow{
 	icon_state = "4-8"
@@ -16106,6 +16202,15 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/central)
+"lud" = (
+/obj/disposalpipe/segment/mail,
+/obj/cable/blue{
+	icon_state = "4-8"
+	},
+/turf/floor/carpet/red/standard/edge{
+	dir = 8
+	},
+/area/station/library)
 "luj" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 5
@@ -16273,6 +16378,13 @@
 	},
 /turf/floor/plating,
 /area/station/storage/tech)
+"lAs" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/bookshelf/long/end_right,
+/turf/floor/wood/five,
+/area/station/library)
 "lAP" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 8
@@ -17705,6 +17817,9 @@
 "mxG" = (
 /obj/machinery/door/unpowered/wood/lily{
 	dir = 1
+	},
+/obj/cable/blue{
+	icon_state = "1-2"
 	},
 /turf/floor/wood/eight,
 /area/station/library)
@@ -19399,6 +19514,7 @@
 /area/station/maintenance/north)
 "nGF" = (
 /obj/machinery/atmospherics/pipe/vent/north,
+/obj/bookshelf/long/end_right,
 /turf/floor/wood/five,
 /area/station/library)
 "nGT" = (
@@ -21419,6 +21535,13 @@
 /obj/stool,
 /turf/floor/black,
 /area/station/chapel/sanctuary)
+"pfy" = (
+/obj/table/wood/auto,
+/obj/item/paper_bin{
+	pixel_y = 5
+	},
+/turf/floor/wood/eight,
+/area/station/library)
 "pfG" = (
 /obj/grille/catwalk/grey{
 	dir = 8
@@ -22474,6 +22597,10 @@
 	dir = 8
 	},
 /area/station/hallway/primary/central)
+"pPu" = (
+/obj/table/wood/auto,
+/turf/floor/wood/five,
+/area/station/library)
 "pPy" = (
 /obj/machinery/atmospherics/pipe/vent,
 /obj/disposalpipe/segment/mail{
@@ -24451,6 +24578,10 @@
 	dir = 1
 	},
 /area/station/hallway/secondary/entry)
+"rgF" = (
+/obj/bookshelf/long,
+/turf/floor/wood/five,
+/area/station/library)
 "rgI" = (
 /obj/machinery/door/airlock/glass,
 /obj/disposalpipe/segment{
@@ -25300,8 +25431,10 @@
 /turf/floor,
 /area/station/medical/breakroom)
 "rMa" = (
-/obj/bookshelf/long/end_left,
-/turf/wall/wooden,
+/obj/stool/chair/comfy{
+	dir = 4
+	},
+/turf/floor/wood/five,
 /area/station/library)
 "rMl" = (
 /obj/machinery/drainage/big,
@@ -26268,6 +26401,10 @@
 /obj/item/extinguisher,
 /turf/floor/black,
 /area/station/medical/research)
+"srh" = (
+/obj/stool/bench/yellow,
+/turf/floor/wood/five,
+/area/station/library)
 "srY" = (
 /obj/disposalpipe/junction/right/north,
 /turf/floor,
@@ -27403,6 +27540,10 @@
 /obj/cable/orange{
 	icon_state = "1-8"
 	},
+/obj/cable/orange{
+	icon_state = "1-2"
+	},
+/obj/machinery/power/breaker/off,
 /turf/floor/circuit,
 /area/station/bridge/locker)
 "tcd" = (
@@ -29219,6 +29360,14 @@
 	dir = 8
 	},
 /area/station/solar/south)
+"uuR" = (
+/obj/table/wood/auto,
+/obj/item/paper_bin{
+	pixel_y = 5;
+	pixel_x = 3
+	},
+/turf/floor/wood/eight,
+/area/station/library)
 "uvz" = (
 /obj/table/reinforced/auto,
 /turf/floor,
@@ -31615,6 +31764,9 @@
 /obj/cable/blue{
 	icon_state = "4-8"
 	},
+/obj/cable/blue{
+	icon_state = "2-8"
+	},
 /turf/floor/wood/eight,
 /area/station/library)
 "vZV" = (
@@ -32970,7 +33122,10 @@
 /area/station/maintenance/west)
 "wWe" = (
 /obj/table/wood/auto,
-/obj/item/paper_bin,
+/obj/item/paper_bin{
+	pixel_y = 5;
+	pixel_x = -3
+	},
 /turf/floor/wood/eight,
 /area/station/library)
 "wWN" = (
@@ -33325,7 +33480,6 @@
 /turf/wall/r_wall,
 /area/station/engine/engineering/ce)
 "xko" = (
-/obj/bookshelf/long/end_right,
 /obj/machinery/atmospherics/pipe/simple,
 /turf/wall/wooden,
 /area/station/library)
@@ -34055,6 +34209,9 @@
 "xIQ" = (
 /obj/firedoor_spawn,
 /obj/machinery/door/airlock/glass/command,
+/obj/cable/orange{
+	icon_state = "1-2"
+	},
 /turf/floor/black,
 /area/station/bridge/locker)
 "xIR" = (
@@ -34239,6 +34396,9 @@
 /turf/floor/carpet/grime2,
 /area/station/crew_quarters/quartersA)
 "xTM" = (
+/obj/cable/blue{
+	icon_state = "1-2"
+	},
 /turf/floor/carpet/red/standard/edge{
 	dir = 5
 	},
@@ -64208,11 +64368,11 @@ nLD
 bRm
 dJH
 tbN
-htR
-htR
-htR
+enM
+enM
+enM
 xIQ
-xwo
+aWQ
 ptF
 rZe
 ePb
@@ -89876,18 +90036,18 @@ afA
 afA
 afA
 afA
-mUq
-fnJ
+cRW
+gVg
 hFF
 wWe
 kLE
 aRt
-rMa
-tPI
-rMa
+fDe
+bLX
+fDe
 dxy
-rMa
-tPI
+avv
+srh
 tPI
 hFF
 bxO
@@ -90186,10 +90346,10 @@ uCu
 pPy
 xko
 nGF
+fDe
+cKY
 avv
-tPI
-avv
-tPI
+srh
 tPI
 hFF
 lcp
@@ -90489,7 +90649,7 @@ mVP
 ecI
 pbe
 wUc
-lWB
+lud
 lWB
 lWB
 lWB
@@ -90784,14 +90944,14 @@ afA
 afA
 qcI
 hFF
-wWe
+pfy
 alZ
 vZJ
-lFi
+wko
 mxG
-tPI
+hXs
 xTM
-mof
+hgA
 mof
 mof
 mof
@@ -91090,12 +91250,12 @@ lQj
 wko
 uKy
 tVi
-rMa
-tPI
-rMa
-tPI
-rMa
-tPI
+fDe
+bLX
+fDe
+bLX
+fDe
+bLX
 tPI
 tPI
 xPQ
@@ -91388,17 +91548,17 @@ fnJ
 afA
 qcI
 hFF
-wWe
+uuR
 lFi
 cDw
 lFi
-avv
-tPI
 fDe
-tPI
+jTV
 fDe
-tPI
-tPI
+rgF
+fDe
+rgF
+rMa
 rMa
 xPQ
 seB
@@ -91696,12 +91856,12 @@ jlu
 jlu
 jlu
 jlu
-avv
-jwq
-avv
-tPI
-tPI
 fDe
+lAs
+fDe
+jTV
+kAK
+pPu
 xPQ
 seB
 nYw
@@ -92002,8 +92162,8 @@ hFF
 hFF
 hFF
 tPI
-tPI
-fDe
+iBI
+pPu
 xPQ
 seB
 fta
@@ -92304,8 +92464,8 @@ ooD
 oCy
 hFF
 dFc
-tPI
-avv
+iEm
+iEm
 xPQ
 seB
 jKL
