@@ -1952,6 +1952,9 @@
 	pixelaction(atom/target, params, mob/user, reach)
 		if(!isturf(target.loc) && !isturf(target)) return
 		if(!usable(user)) return
+		if(!params["left"] || !master || !get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			return
+		preUse(user)
 		var/direction = get_dir_pixel(user, target, params)
 		var/list/attacked = list()
 
