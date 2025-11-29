@@ -253,6 +253,8 @@
 
 			amber
 				name="DWAINE Terminal"
+				icon_state = "daterm"
+				base_icon_state = "daterm"
 				hint = "look for a book in the library or computer room to learn how to use this."
 				setup_idscan_path = /obj/item/peripheral/card_scanner
 				setup_starting_peripheral1 = /obj/item/peripheral/network/powernet_card/terminal
