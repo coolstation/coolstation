@@ -255,7 +255,7 @@
 				name="DWAINE Terminal"
 				hint = "look for a book in the library or computer room to learn how to use this."
 				setup_idscan_path = /obj/item/peripheral/card_scanner
-				setup_starting_peripheral1 = /obj/item/peripheral/network/powernet_card/terminal1
+				setup_starting_peripheral1 = /obj/item/peripheral/network/powernet_card/terminal
 				setup_font_color = "#E79C01"
 				setup_bg_color = "#1B1E1B"
 				setup_override_color = TRUE
