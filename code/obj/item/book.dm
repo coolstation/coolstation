@@ -23,8 +23,8 @@ Custom Books
 	//
 
 	stamina_damage = 2
-	stamina_cost = 2
-	stamina_crit_chance = 0
+//	stamina_cost = 2
+//	stamina_crit_chance = 0
 
 	attack_self(mob/user)
 		return user.examine_verb(src)
@@ -446,6 +446,12 @@ Custom Books
 	desc = "There are bites taken out of this! What the hell?!"
 	icon_state = "book0"
 	file_path = "strings/books/oldwoman.txt"
+
+/obj/item/paper/book/from_file/hosenscheissen
+	name = "die Hosen scheißen"
+	desc = "Seems to be written in Austrian."
+	icon_state = "paper"
+	file_path = "strings/books/die_hosen_scheissen.txt"
 
 /obj/item/paper/book/ratbook
 	name = "chewed and mangled book"

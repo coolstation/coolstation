@@ -2571,8 +2571,10 @@
 					if(master.moving || no_patrol)
 						return
 
+					#ifndef IM_TESTING_BASIC_MOB_FUNCTIONALITY
 					if(!master.moving)
 						find_patrol_target()
+					#endif
 				/*
 				Hunt and arrest mode. Like an angry secbot, but cuter and sometimes has a gun
 				Script should go as follows:

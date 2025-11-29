@@ -22,8 +22,8 @@
 	m_amt = 30
 	g_amt = 30
 	stamina_damage = 10
-	stamina_cost = 18
-	stamina_crit_chance = 0
+//	stamina_cost = 18
+//	stamina_crit_chance = 0
 	rand_pos = 8
 	inventory_counter_enabled = 1
 	var/capacity = 20
@@ -36,7 +36,7 @@
 		reagents.add_reagent("fuel", capacity)
 		src.inventory_counter.update_number(get_fuel())
 
-		src.setItemSpecial(/datum/item_special/flame)
+		//src.setItemSpecial(/datum/item_special/flame) meh
 		return
 
 	examine()

@@ -134,6 +134,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	// MYLIE TO DO - MOVE TO FOSS PARTS ^
 
 	var/glued = FALSE // if TRUE, gun cant be dismantled
+	var/recoil_mult = 1 // multiplies recoil
 
 	New()
 		..()
@@ -308,7 +309,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 	var/implicit_recoil_strength = projectile.power * projectile.shot_number
 	if(implicit_recoil_strength)
 		implicit_recoil_strength = 5*log(implicit_recoil_strength)
-	recoil += (implicit_recoil_strength + stacked_recoil)
+	recoil += (implicit_recoil_strength * src.recoil_mult + stacked_recoil)
 	recoil = clamp(recoil, 0, recoil_max)
 	recoil_last_shot = TIME
 	if (camera_recoil_enabled)

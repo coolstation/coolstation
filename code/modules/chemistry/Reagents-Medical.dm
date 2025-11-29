@@ -90,16 +90,16 @@ datum
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
-					APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine", 75)
-					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
+					APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine", 75)
+					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, "r_morphine")
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
+				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
-					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine")
-					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
+					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine")
+					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, "r_morphine")
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -156,14 +156,16 @@ datum
 				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
-					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
+					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine")
+					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, "r_morphine")
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
-					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
+					APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine", 75)
+					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, "r_morphine")
 				return
 
 		//knock people out, sure
@@ -904,6 +906,7 @@ datum
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_haloperidol", 0.25)
 					M.change_misstep_chance(25)
 				return
 
@@ -911,6 +914,7 @@ datum
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					REMOVE_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_haloperidol")
 				return
 
 			on_mob_life(var/mob/living/M, var/mult = 1)

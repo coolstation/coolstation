@@ -195,7 +195,7 @@ change the direction of created objects.<br>
 					qdel (O)
 				if (delete_area)
 					new /area(T)
-				T.ReplaceWithSpaceForce()
+				T.ReplaceWithSpace()
 				LAGCHECK(LAG_LOW)
 			A = null
 			usr.client?.images -= marker

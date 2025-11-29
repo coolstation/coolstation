@@ -5939,6 +5939,7 @@
 "dCW" = (
 /obj/disposalpipe/segment/cargo,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/table/reinforced/industrial/auto,
 /turf/floor,
 /area/station/mining/refinery)
 "dDd" = (
@@ -8884,7 +8885,7 @@
 "fdF" = (
 /obj/structure/woodwall,
 /turf/floor/plating/gehenna,
-/area/gehenna/underground)
+/area/allowGenerate/caves)
 "fdL" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
@@ -12014,6 +12015,7 @@
 	},
 /obj/disposalpipe/segment/cargo,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/table/reinforced/industrial/auto,
 /turf/floor,
 /area/station/mining/equipment)
 "gVm" = (
@@ -12452,10 +12454,6 @@
 	},
 /turf/floor,
 /area/station/quartermaster/refinery)
-"hiN" = (
-/obj/disposalpipe/segment/vertical,
-/turf/floor,
-/area/station/mining/refinery)
 "hiW" = (
 /obj/disposalpipe/segment/sewage,
 /obj/decal/cleanable/dirt/random,
@@ -13556,7 +13554,7 @@
 /area/station/medical/cdc)
 "hTf" = (
 /turf/wall/asteroid/gehenna/tough/z3,
-/area/gehenna/underground)
+/area/allowGenerate/caves)
 "hTi" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -17724,9 +17722,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
-"kiR" = (
-/turf/wall/asteroid/gehenna,
-/area/station/turret_protected/AIbasecore1)
 "kiU" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -18492,7 +18487,7 @@
 	desc = "looks densely packed... if you know what i mean";
 	name = "fuckable sulferous rock"
 	},
-/area/gehenna/underground)
+/area/allowGenerate/caves)
 "kFY" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/disposalpipe/trunk{
@@ -18743,6 +18738,10 @@
 	icon_state = "4-10"
 	},
 /obj/disposalpipe/segment/vertical,
+/obj/table/reinforced/industrial/auto,
+/obj/decal/mining_display/gehenna{
+	pixel_y = 4
+	},
 /turf/floor,
 /area/station/mining/equipment)
 "kNi" = (
@@ -18886,6 +18885,7 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mineral,
+/obj/table/reinforced/industrial/auto,
 /turf/floor,
 /area/station/mining/equipment)
 "kPs" = (
@@ -20765,10 +20765,7 @@
 /turf/wall,
 /area/station/medical/medbooth)
 "lVP" = (
-/obj/machinery/dispenser{
-	o2tanks = 10;
-	pltanks = 10
-	},
+/obj/machinery/dispenser,
 /turf/floor,
 /area/station/science/storage)
 "lVS" = (
@@ -22570,8 +22567,7 @@
 	},
 /obj/machinery/ignition_switch{
 	id = "tox_ignition1";
-	pixel_x = 25;
-	pixel_y = 0
+	pixel_x = 25
 	},
 /turf/floor/black,
 /area/station/science/lab)
@@ -23721,6 +23717,11 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"nEE" = (
+/obj/disposalpipe/segment/mineral,
+/obj/table/reinforced/industrial/auto,
+/turf/floor,
+/area/station/mining/refinery)
 "nEK" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -25434,8 +25435,8 @@
 	},
 /area/station/mining/lobby)
 "oJF" = (
-/obj/machinery/light/small/floor,
 /obj/disposalpipe/segment/vertical,
+/obj/table/reinforced/industrial/auto,
 /turf/floor,
 /area/station/mining/refinery)
 "oJW" = (
@@ -27778,8 +27779,7 @@
 "qlI" = (
 /obj/machinery/ignition_switch{
 	id = "tox_ignition1";
-	pixel_x = 25;
-	pixel_y = 0
+	pixel_x = 25
 	},
 /turf/floor/black,
 /area/station/science/lab)
@@ -28926,8 +28926,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /turf/floor/black,
 /area/station/science/chemistry)
@@ -30575,7 +30574,6 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/computer/atmosphere/pumpcontrol{
-	dir = 2;
 	frequency = 1229;
 	name = "Punp control computer"
 	},
@@ -30730,7 +30728,7 @@
 /area/station/engine/inner)
 "sej" = (
 /turf/floor/plating/gehenna,
-/area/gehenna/underground)
+/area/allowGenerate/caves)
 "seq" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -33012,7 +33010,7 @@
 /area/station/crew_quarters/quartersA)
 "twZ" = (
 /turf/wall/asteroid/gehenna/z3,
-/area/gehenna/underground)
+/area/allowGenerate/caves)
 "txE" = (
 /obj/machinery/conveyor/south{
 	name = "garbo belt";
@@ -33707,8 +33705,7 @@
 /obj/grille/catwalk/jen,
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /obj/storage/secure/closet/research/uniform,
 /turf/floor/plating,
@@ -38626,6 +38623,8 @@
 /area/station/crew_quarters/bar)
 "wMm" = (
 /obj/disposalpipe/segment/mineral,
+/obj/table/reinforced/industrial/auto,
+/obj/machinery/light/small/floor/harsh,
 /turf/floor,
 /area/station/mining/refinery)
 "wMz" = (
@@ -39348,8 +39347,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = -26;
-	pixel_y = 0
+	pixel_x = -26
 	},
 /turf/floor/black,
 /area/station/science/lab)
@@ -41035,10 +41033,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/power)
-"ymb" = (
-/obj/machinery/light/small/floor,
-/turf/floor,
-/area/station/mining/refinery)
 
 (1,1,1) = {"
 dWM
@@ -65641,9 +65635,9 @@ cDR
 pAI
 pAI
 pAI
-kiR
+oJk
 pAI
-kiR
+oJk
 tBD
 wcF
 udT
@@ -102746,7 +102740,7 @@ pKw
 pKw
 xCy
 tot
-hiN
+oJF
 oJF
 kMX
 xra
@@ -103048,7 +103042,7 @@ sHs
 kOC
 tCx
 dwz
-wMm
+nEE
 wMm
 kPp
 qap
@@ -103653,7 +103647,7 @@ pro
 pPQ
 cqZ
 qRU
-ymb
+qRU
 nQt
 lZK
 uAt

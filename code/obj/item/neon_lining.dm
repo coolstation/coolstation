@@ -21,8 +21,8 @@
 	throw_range = 5
 	flags = TABLEPASS|EXTRADELAY|FPRINT|CONDUCT|ONBELT
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 10
+//	stamina_cost = 5
+//	stamina_crit_chance = 10
 	rand_pos = 2
 	event_handler_flags = USE_GRAB_CHOKE | USE_FLUID_ENTER
 	special_grab = /obj/item/grab

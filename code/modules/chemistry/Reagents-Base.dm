@@ -860,8 +860,8 @@ datum
 					holder?.add_reagent("ice", prev_vol, null, (T0C - 1))
 					if(holder)
 						holder.del_reagent(id)
-				else if (exposed_temperature > T0C && exposed_temperature <= T0C + 100 )
-					name = "water"
+				else if (exposed_temperature > T0C && exposed_temperature <= T0C + 100)
+					name = initial(name)
 					description = initial(description)
 				else if (exposed_temperature > (T0C + 100) )
 					if (!istype(holder,/datum/reagents/fluid_group))
@@ -920,7 +920,11 @@ datum
 
 			name = "filthy water"
 			id = "dirtywater"
+			#ifdef MAGINDARA_MAP
+			description = "This water is choked with plastic, lead, and oil. It's good for you, maybe."
+			#else
 			description = "This water is choked with ash, dust, and god knows what else."
+			#endif
 			reagent_state = LIQUID
 			fluid_r = 106
 			fluid_b = 117

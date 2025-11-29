@@ -1,5 +1,8 @@
 /datum/random_event/minor/buddy_time
 	name = "Buddy Time"
+	#ifdef IM_TESTING_BASIC_MOB_FUNCTIONALITY
+	disabled = TRUE
+	#endif
 
 	event_effect()
 		..()

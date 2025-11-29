@@ -13,7 +13,7 @@
 	var/isstrange = 0  // Seeds cannot be gene scanned if they're strange seeds.
 	var/generation = 0 // Keeps track of how many times a plant has been bred from the initial seed.
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	rand_pos = 8
 
 	New(var/loc,var/do_color = 1)

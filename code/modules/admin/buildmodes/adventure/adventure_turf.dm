@@ -65,7 +65,7 @@
 					qdel(O)
 				blink(T)
 				new /area(T)
-				T.ReplaceWithSpaceForce()
+				T.ReplaceWithSpace()
 
 			A.overlays -= marker
 			A = null

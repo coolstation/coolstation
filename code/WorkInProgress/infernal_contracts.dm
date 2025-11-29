@@ -259,8 +259,8 @@ proc/is_weak_rollable_contract(type)
 	max_wclass = 3
 	desc = "A diabolical human leather-bound briefcase, capable of holding a number of small objects and tormented souls. All those tormented souls give it a good deal of heft; you could use it as a great improvised bludgeoning weapon."
 	stamina_damage = 80 //buffed from 40
-	stamina_cost = 20 //nerfed from 10
-	stamina_crit_chance = 40 //buffed from 25
+//	stamina_cost = 20 //nerfed from 10
+//	stamina_crit_chance = 40 //buffed from 25
 	spawn_contents = list(/obj/item/paper/soul_selling_kit, /obj/item/storage/box/evil, /obj/item/clothing/under/misc/lawyer/red/demonic)
 	var/merchant = null
 

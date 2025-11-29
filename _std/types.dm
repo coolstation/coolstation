@@ -1,8 +1,8 @@
 #define childrentypesof(x) (typesof(x) - x)
 // consider declaring the base type abstract instead and using concrete_typesof instead of childrentypesof
 
-#define ABSTRACT_TYPE(type) /datum/_is_abstract ## type
-#define IS_ABSTRACT(type) text2path("/datum/_is_abstract[type]")
+#define ABSTRACT_TYPE(type) /_is_abstract ## type
+#define IS_ABSTRACT(type) text2path("/_is_abstract[type]")
 /*
 usage:
 

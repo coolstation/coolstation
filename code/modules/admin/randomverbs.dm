@@ -1159,7 +1159,7 @@
 		else
 			src.view = "15x15"
 			usr.see_in_dark = initial(usr.see_in_dark)
-
+/*
 /client/proc/idkfa()
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set name = "idkfa"
@@ -1249,7 +1249,7 @@
 
 	else
 		backpack_full_of_ammo.set_loc(get_turf(src.mob))
-
+*/
 
 /client/proc/iddt()
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
@@ -2986,7 +2986,7 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 
 				for(var/turf/space/space_turf in block(T1, T2))
 					if (istype(space_turf.loc, /area/shuttle)) continue
-					space_turf.ReplaceWith(/turf/space/fluid/trench)
+					space_turf.ReplaceWith(/turf/space/fluid/ocean/trench)
 
 					if (prob(1))
 						new /obj/item/seashell(space_turf)

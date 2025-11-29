@@ -121,7 +121,7 @@
 	var/stamina = STAMINA_MAX
 	var/stamina_max = STAMINA_MAX
 	var/stamina_regen = STAMINA_REGEN
-	var/stamina_crit_chance = STAMINA_CRIT_CHANCE
+//	var/stamina_crit_chance = STAMINA_CRIT_CHANCE
 	var/list/stamina_mods_regen = list()
 	var/list/stamina_mods_max = list()
 
@@ -153,7 +153,9 @@
 
 	if(src.ai_type)
 		src.is_npc = TRUE
-		src.ai = new ai_type(src)
+		if(istext(src.ai_type))
+			src.ai_type = text2path(src.ai_type)
+		src.ai = new src.ai_type(src)
 
 	SPAWN_DBG(0)
 		src.get_static_image()
@@ -509,7 +511,7 @@
 			return
 
 		if (src.in_point_mode || (src.client && src.client.check_key(KEY_POINT)))
-			src.point(target)
+			src.point_at(target, text2num(params["icon-x"]), text2num(params["icon-y"]))
 			if (src.in_point_mode)
 				src.toggle_point_mode()
 			return
@@ -540,7 +542,7 @@
 		if (target == equipped)
 			equipped.attack_self(src, params, location, control)
 			if(equipped.item_function_flags & ATTACK_SELF_DELAY)
-				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
+				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 		else if (params["ctrl"])
 			var/atom/movable/movable = target
 			if (istype(movable))
@@ -562,7 +564,7 @@
 				equipped = src.equipped() //might have changed from successful modify
 			if (reach || (equipped && equipped.special) || (equipped && (equipped.flags & EXTRADELAY))) //Fuck you, magic number prickjerk //MBC : added bit to get weapon_attack->pixelaction to work for itemspecial
 				if (use_delay)
-					src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
+					src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 
 				if (src.invisibility > 0 && (isturf(target) || (target != src && isturf(target.loc)))) // dont want to check for a cloaker every click if we're not invisible
 					SEND_SIGNAL(src, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
@@ -574,14 +576,14 @@
 
 				//If lastattacked was set, this must be a combat action!! Use combat click delay ||  the other condition is whether a special attack was just triggered.
 				if ((lastattacked != null && (src.lastattacked == target || src.lastattacked == equipped || src.lastattacked == src) && use_delay) || (equipped && equipped.special && equipped.special.last_use >= world.time - src.click_delay))
-					src.next_click = world.time + (equipped ? max(equipped.click_delay,src.combat_click_delay) : src.combat_click_delay)
+					src.next_click = world.time + (equipped ? equipped.combat_click_delay : src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 					src.lastattacked = null
 
 			else if (!equipped)
 				hand_range_attack(target, params, location, control)
 
 				if (lastattacked != null && (src.lastattacked == target || src.lastattacked == equipped || src.lastattacked == src) && use_delay)
-					src.next_click = world.time + src.combat_click_delay
+					src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 					src.lastattacked = null
 
 		//Don't think I need the above, this should work here.
@@ -639,7 +641,7 @@
 	src.in_point_mode = !(src.in_point_mode)
 	src.update_cursor()
 
-/mob/living/point_at(var/atom/target)
+/mob/living/point_at(var/atom/target, var/pixel_x, var/pixel_y)
 	if (!isturf(src.loc) || !isalive(src) || src.restrained())
 		return
 
@@ -661,8 +663,7 @@
 			src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
 		else
 			src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
-
-	make_point(get_turf(target), pixel_x=target.pixel_x, pixel_y=target.pixel_y, color=src.bioHolder.mobAppearance.customization_first_color)
+	make_point(target, pixel_x=pixel_x, pixel_y=pixel_y, color=src.bioHolder.mobAppearance.customization_first_color, pointer = src)
 
 
 /mob/living/proc/set_burning(var/new_value)
@@ -2109,7 +2110,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			target_dir = src.dir
 		var/slidekick_range = max(1 + min(GET_ATOM_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
 		if (!T.throw_unlimited && target_dir)
-			src.next_click = world.time + src.combat_click_delay
+			src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 			if (!HAS_ATOM_PROPERTY(src, PROP_SLIDEKICK_TURBO))
 				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
 				src.force_laydown_standup()
@@ -2295,7 +2296,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			for(var/obj/item/grab/gunpoint/G in grabbed_by)
 				G.shoot()
 
-		src.next_click = world.time + src.combat_click_delay
+		src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 
 /mob/living/hitby(atom/movable/AM, datum/thrown_thing/thr)
 	. = 'sound/impact_sounds/Generic_Hit_2.ogg'
@@ -2392,7 +2393,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /// the higher the returned value, the better the target is. assume that the target is valid.
 /mob/living/proc/ai_rate_target(mob/M)
-	return 1
+	return !isdead(M)
 
 /mob/living/proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
 	remove_lifeprocess(/datum/lifeprocess/blood)

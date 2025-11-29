@@ -54,7 +54,7 @@
 	cooldown = 0
 
 	cast(atom/target)
-		var/turf/destination
+		var/area/destination
 		if (ismob(holder?.owner) && map_settings)
 			if(!emergency_shuttle)
 				destination = locate(map_settings.escape_station)
@@ -71,8 +71,7 @@
 							destination = locate(map_settings.escape_centcom)
 						else
 							destination = locate(map_settings.escape_outpost)
-
-		if(destination)
+		if(destination && length(destination.turfs))
 			holder.owner.set_loc(destination)
 		else(boutput(holder.owner, "someone fucked up lmao call a coder"))
 

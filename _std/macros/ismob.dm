@@ -26,6 +26,7 @@
 #define isintangible(x) istype(x, /mob/living/intangible)
 #define ismobcritter(x) istype(x, /mob/living/critter)
 
+#define isnanites(x) istype(x, /mob/living/critter/admin)
 #define issilicon(x) istype(x, /mob/living/silicon)
 #define isrobot(x) istype(x, /mob/living/silicon/robot)
 #define ishivebot(x) istype(x, /mob/living/silicon/hivebot)

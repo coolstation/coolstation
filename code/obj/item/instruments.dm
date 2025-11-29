@@ -17,8 +17,8 @@
 	throw_range = 15
 	throwforce = 5
 	stamina_damage = 10
-	stamina_cost = 10
-	stamina_crit_chance = 5
+//	stamina_cost = 10
+//	stamina_crit_chance = 5
 	var/next_play = 0
 	var/note_time = 100
 	var/randomized_pitch = 1
@@ -233,8 +233,8 @@
 	var/spam_flag = 0
 	var/list/sounds_sax = list('sound/musical_instruments/sax/sax.ogg', 'sound/musical_instruments/sax/sax2.ogg','sound/musical_instruments/sax/sax3.ogg','sound/musical_instruments/sax/sax4.ogg','sound/musical_instruments/sax/sax5.ogg','sound/musical_instruments/sax/sax6.ogg','sound/musical_instruments/sax/sax7.ogg','sound/musical_instruments/sax/sax8.ogg','sound/musical_instruments/sax/sax9.ogg')
 	stamina_damage = 10
-	stamina_cost = 10
-	stamina_crit_chance = 5
+//	stamina_cost = 10
+//	stamina_crit_chance = 5
 	//module_research = list("audio" = 7, "metals" = 3)
 
 /obj/item/saxophone/attack_self(mob/user as mob)
@@ -355,7 +355,7 @@
 	w_class = W_CLASS_TINY
 	throwforce = 3
 	stamina_damage = 5
-	stamina_cost = 5
+//	stamina_cost = 5
 	sounds_instrument = list('sound/musical_instruments/Bikehorn_1.ogg')
 	desc_verb = list("honks")
 	note_time = 8
@@ -456,7 +456,7 @@
 	force = 1
 	throwforce = 3
 	stamina_damage = 2
-	stamina_cost = 2
+//	stamina_cost = 2
 	note_time = 20
 	sounds_instrument = list('sound/musical_instruments/Harmonica_1.ogg', 'sound/musical_instruments/Harmonica_2.ogg', 'sound/musical_instruments/Harmonica_3.ogg')
 	desc_sound = list("delightful", "chilling", "upbeat")
@@ -473,7 +473,7 @@
 	force = 1
 	throwforce = 3
 	stamina_damage = 2
-	stamina_cost = 2
+//	stamina_cost = 2
 	note_time = 20
 	sounds_instrument = list('sound/items/police_whistle1.ogg', 'sound/items/police_whistle2.ogg')
 	volume = 75
@@ -512,7 +512,7 @@
 	item_state = "vuvuzela"
 	throwforce = 3
 	stamina_damage = 6
-	stamina_cost = 6
+//	stamina_cost = 6
 	sounds_instrument = list('sound/musical_instruments/Vuvuzela_1.ogg')
 	volume = 80
 	pick_random_note = 1

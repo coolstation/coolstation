@@ -1,4 +1,4 @@
-# Goonstation Code Guide
+# Coolstation Code Guide
 
 [ToC]
 

@@ -201,8 +201,8 @@
 
 	New()
 		..()
-		src.create_reagents(10000)
-		reagents.add_reagent("water",10000)
+		src.create_reagents(100 LITRES)
+		reagents.add_reagent("water", 100 LITRES)
 
 /obj/reagent_dispensers/watertank/fountain
 	name = "water cooler"
@@ -212,7 +212,7 @@
 	anchored = ANCHORED
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_CROWBAR
 	mats = 8
-	capacity = 500
+	capacity = 8 LITRES
 	can_break = FALSE
 
 	var/has_tank = 1
@@ -317,7 +317,7 @@
 	piss
 		New()
 			..()
-			src.create_reagents(4000)
+			src.create_reagents(10 LITRES)
 			reagents.add_reagent("urine",400)
 			reagents.add_reagent("water",600)
 			src.update_icon()
@@ -328,7 +328,7 @@
 	juicer
 		New()
 			..()
-			src.create_reagents(4000)
+			src.create_reagents(10 LITRES)
 			reagents.add_reagent(pick("CBD","THC","urine","refried_beans","coffee","methamphetamine"),100)
 			reagents.add_reagent(pick("CBD","THC","urine","refried_beans","coffee","methamphetamine"),100)
 			reagents.add_reagent(pick("CBD","THC","urine","refried_beans","coffee","methamphetamine"),100)

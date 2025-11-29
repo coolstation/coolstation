@@ -1092,7 +1092,7 @@ Returns:
 	item_state = "hammer"
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	two_handed = 1
-	click_delay = 30
+	combat_click_delay = 30
 	force = 50
 
 /obj/item/experimental/melee
@@ -3529,10 +3529,10 @@ var/list/lag_list = new/list()
 			target:ReplaceWithFloor()
 			return
 		if(istype(target, /turf/floor))
-			target:ReplaceWithWall()
+			target:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 			return
 		if(istype(target, /turf/wall))
-			target:ReplaceWithRWall()
+			target:ReplaceWithUpdateWalls(map_settings ? map_settings.rwalls : /turf/wall/r_wall)
 			return
 		return
 
