@@ -1,6 +1,50 @@
 /datum/broadcast_controller
 
-	var/list/list/datum/directed_broadcast/active_broadcasts = list()
+	var/list/list/datum/directed_broadcast/active_broadcasts
+	//broadcast_channels on /datum/directed_broadcast is normally in list form, so we can't use the initial() trick to access that without instantiating
+	var/list/cache_programmes_by_channel
+	var/list/cache_interstitials_by_channel
+	var/list/cache_ads_by_channel
+
+	New()
+		..()
+		active_broadcasts = list()
+		/*cache_programmes_by_channel = list()
+		cache_interstitials_by_channel = list()
+		cache_ads_by_channel = list()*/
+
+
+
+
+/datum/broadcast_controller/proc/populate_cache(list/channels)
+	cache_programmes_by_channel = channels.Copy()
+	cache_interstitials_by_channel = channels.Copy()
+	cache_ads_by_channel = channels.Copy()
+
+	//build channel caches
+	for(var/type1 in concrete_typesof(/datum/directed_broadcast/programme, FALSE))
+		var/datum/directed_broadcast/instance1 = new (type1)
+		for (var/channel1 as anything in instance1.broadcast_channels)
+			if (!(channel1 in cache_programmes_by_channel))
+				continue
+			cache_programmes_by_channel[channel1] += type1
+		qdel(instance1)
+
+	for(var/type2 in concrete_typesof(/datum/directed_broadcast/interstitial, FALSE))
+		var/datum/directed_broadcast/instance2 = new (type2)
+		for (var/channel2 as anything in instance2.broadcast_channels)
+			if (!(channel2 in cache_interstitials_by_channel))
+				continue
+			cache_interstitials_by_channel[channel2] += type2
+		qdel(instance2)
+
+	for(var/type3 in concrete_typesof(/datum/directed_broadcast/ad, FALSE))
+		var/datum/directed_broadcast/instance3 = new (type3)
+		for (var/channel3 as anything in instance3.broadcast_channels)
+			if (!(channel3 in cache_ads_by_channel))
+				continue
+			cache_ads_by_channel[channel3] += type3
+		qdel(instance3)
 
 /datum/broadcast_controller/proc/process()
 	//The idea here is this thing will ping each active broadcast, and the broadcast itself will have a cooldown to check if it actually should

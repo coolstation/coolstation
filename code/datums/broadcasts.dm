@@ -553,11 +553,11 @@ ABSTRACT_TYPE(/datum/directed_broadcast_scheduler)
 		return
 	//General idea: 2-5 ads - programme - interstitial - programme (-> repeating)
 	//Assumption baked into this for queueing to work: all ads and programmes have the same priority
-	var/list/cached_list = concrete_typesof(/datum/directed_broadcast/ad)
+	var/list/cached_list = broadcast_controls.cache_ads_by_channel[channel]
 	var/list/ads = cached_list.Copy()
-	cached_list = concrete_typesof(/datum/directed_broadcast/programme)
+	cached_list = broadcast_controls.cache_programmes_by_channel[channel]
 	var/list/programmes = cached_list.Copy()
-	cached_list = concrete_typesof(/datum/directed_broadcast/interstitial)
+	cached_list = broadcast_controls.cache_interstitials_by_channel[channel]
 	var/list/interstitials = cached_list.Copy()
 
 	for(var/i in 1 to rand(2,3)) //make upper bound 5 or so once we have sufficient distinct ads pls.

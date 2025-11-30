@@ -12,7 +12,10 @@ var/datum/broadcast_controller/broadcast_controls
 		RegisterSignal(broadcast_controls, COMSIG_BROADCAST_STOPPED, PROC_REF(autoschedule))
 		//a little hardcoding
 		var/datum/directed_broadcast_scheduler/generic_stations/scheduler = new
-		autoschedule_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS = scheduler, TR_CAT_RADIO_BROADCAST_RECEIVERS = scheduler)
+		autoschedule_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_RADIO_BROADCAST_RECEIVERS)
+		broadcast_controls.populate_cache(autoschedule_channels)
+		autoschedule_channels[TR_CAT_TEEVEE_BROADCAST_RECEIVERS] = scheduler
+		autoschedule_channels[TR_CAT_RADIO_BROADCAST_RECEIVERS] = scheduler
 		for (var/a_channel as anything in autoschedule_channels)
 			autoschedule(channel = a_channel) //A little bit silly at this stage, but once we have more than one scheduler running ever...
 
