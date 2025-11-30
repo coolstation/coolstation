@@ -71,15 +71,19 @@ datum
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts", 3)
-					APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "r_bathsalts", 0.25)
+					//APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts", 3)
+					APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "r_bathsalts", 0.4)
+					APPLY_ATOM_PROPERTY(M, PROP_CLUTZ, "r_bathsalts", 15)
+					if(M.misstep_chance < 25)
+						M.change_misstep_chance(15)
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts")
+					//REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts")
 					REMOVE_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "r_bathsalts")
+					REMOVE_ATOM_PROPERTY(M, PROP_CLUTZ, "r_bathsalts")
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1) // commence bad times
@@ -1107,9 +1111,7 @@ datum
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine", 3)
-				if (ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/energydrink, src.type)
+					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/energydrink, "r_methamphetamine")
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth")
 					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "triplemeth")
 					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "triplemeth")
@@ -1119,12 +1121,9 @@ datum
 			on_remove()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine")
-				if(holder && ismob(holder.my_atom))
 					holder.del_reagent("triplemeth")
-				if (ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/energydrink, src.type)
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine")
+					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/energydrink, "r_methamphetamine")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
