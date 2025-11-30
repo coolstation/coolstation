@@ -139,15 +139,17 @@ var/global/datum/transit_controller/transit_controls
 			var/area/start_location = locate(current.target_area)
 			var/area/end_location = locate(stop.target_area)
 			var/filler_turf_start = text2path(start_location.filler_turf)
-			var/filler_turf_end = text2path(end_location.filler_turf)
+			//var/filler_turf_end = text2path(end_location.filler_turf)
 			if (!filler_turf_start)
-				filler_turf_start = "space"
+				filler_turf_start = /turf/space
 			//need to figure out how to not hardcode the elevators into this
 			start_location.move_contents_to(end_location, filler_turf_start, ignore_fluid = FALSE, consider_filler_as_empty = (istype(start_location, /area/transit_vehicle/elevator)))
 			//I think this might be kinda superfluous now
+			/*
 			for (var/turf/P in end_location)
 				if (istype(P, filler_turf_start))
 					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)
+			*/
 			SEND_SIGNAL(src, COMSIG_TRANSIT_VEHICLE_MOVED, vehicle)
 			worldgen_hold &= ~WORLDGEN_HOLD_SHUTTLE_MOVEMENT
 			if(!worldgen_hold)

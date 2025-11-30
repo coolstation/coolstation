@@ -676,7 +676,7 @@ var/obj/item/dummy/click_dummy = new
 			if (!move_mobs && istype(AM, /mob/)) continue
 			AM.set_loc(T)
 
-		if(turftoleave)
+		if(turftoleave != /turf/space)
 			S.ReplaceWith(turftoleave, keep_old_material = 0, force=1)
 		else
 			S.ReplaceWithSpace()
