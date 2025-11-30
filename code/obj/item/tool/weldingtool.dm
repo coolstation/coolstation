@@ -36,7 +36,7 @@
 		reagents.add_reagent("fuel", capacity)
 		src.inventory_counter.update_number(get_fuel())
 
-		//src.setItemSpecial(/datum/item_special/flame) meh
+		src.setItemSpecial(/datum/item_special/flame)
 		return
 
 	examine()
@@ -185,7 +185,7 @@
 				src.welding = 0
 				return 0
 			boutput(user, "<span class='notice'>You will now weld when you attack.</span>")
-			src.force = 15
+			src.force = 12
 			hit_type = DAMAGE_BURN
 			src.tool_flags |= TOOL_OPENFLAME
 			set_icon_state("weldingtool-on" + src.icon_state_variant_suffix)

@@ -1277,7 +1277,7 @@
 
 		image = "flame"
 		name = "Flame"
-		desc = "Pop out a flame 1 tile away from you in a direction."
+		desc = "Pop out a flame 2 tiles away from you in a direction."
 
 		var/time = 6 SECONDS
 		var/tiny_time = 1 SECOND
@@ -1298,11 +1298,18 @@
 				if(direction == NORTHEAST || direction == NORTHWEST || direction == SOUTHEAST || direction == SOUTHWEST)
 					direction = (prob(50) ? turn(direction, 45) : turn(direction, -45))
 
-				var/turf/turf = get_step(master, direction)
+				var/turf/prev_turf = get_turf(master)
+				var/turf/turf = get_step(prev_turf, direction)
 
+				if(!turf.gas_cross(prev_turf))
+					return
+
+				prev_turf = turf
 				var/obj/itemspecialeffect/flame/S = new()
 				S.set_dir(direction)
-				turf = get_step(turf,S.dir)
+				turf = get_step(prev_turf,direction)
+				if(!turf.gas_cross(prev_turf))
+					turf = prev_turf
 
 				var/flame_succ = 0
 				if (master)
