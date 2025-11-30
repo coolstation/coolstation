@@ -145,7 +145,6 @@ datum
 			addiction_prob = 1
 			addiction_min = 10
 			depletion_rate = 0.05 // ethanol depletes slower but is formed in smaller quantities
-			overdose = 100 // ethanol poisoning
 			flammable_influence = TRUE
 			combusts_on_gaseous_fire_contact = TRUE
 			burn_speed = 3
@@ -158,6 +157,9 @@ datum
 			target_organs = list("liver")	//heart,  "stomach", "intestines", "left_kidney", "right_kidney"
 			evaporates_cleanly = TRUE
 			taste = "like vodka"
+			overdose = 100 // ethanol poisoning
+			downer = 2
+			downer_overdose = 18
 
 			on_add()
 				if (holder && ismob(holder.my_atom))
@@ -606,12 +608,14 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
-			overdose = 200
 			hunger_value = 0.098
 			thirst_value = -0.098
 			pathogen_nutrition = list("sugar")
 			taste = "sweet"
 			stun_resist = 6
+			overdose = 200
+			upper = 0.5
+			upper_overdose = 19.5
 
 			on_add()
 				if(ismob(holder?.my_atom))

@@ -2154,6 +2154,9 @@ datum
 			thirst_value = 0.75
 			viscosity = 0.4
 			kidney_multiplier = 0.8
+			overdose = 100
+			upper = 1
+			upper_overdose = 4
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				M.drowsyness = max(0,M.drowsyness-5)
@@ -2223,6 +2226,9 @@ datum
 			taste = "weird"
 			hunger_value = 1
 			viscosity = 0.6
+			overdose = 25
+			downer = 1
+			downer_overdose = 4
 
 			reaction_turf(var/turf/T, var/volume)
 				if(volume >= 5 && !(locate(/obj/item/reagent_containers/food/snacks/ingredient/gcheese) in T))
@@ -2302,6 +2308,9 @@ datum
 			kidney_multiplier = 0.1
 			energy_value = 0.3
 			stun_resist = 7
+			overdose = 150
+			upper = 1.5
+			upper_overdose = 7
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -2335,6 +2344,9 @@ datum
 			thirst_value = 1
 			energy_value = 0.6
 			taste = "freshly brewed"
+			overdose = 120
+			upper = 2
+			upper_overdose = 7
 
 		fooddrink/coffee/espresso //the good stuff
 			name = "espresso"
@@ -2345,26 +2357,11 @@ datum
 			fluid_b = 14
 			thirst_value = 0.25
 			energy_value = 0.8
-			var/caffeine_rush = 3
-			var/caffeine_jitters = 10
 			stun_resist = 10
 			taste = "strong and brown"
-
-			on_add()
-				if(ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush", src.caffeine_rush)
-				. = ..()
-
-			on_remove()
-				if(ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "caffeine rush")
-				. = ..()
-
-			on_mob_life(var/mob/M, var/mult = 1)
-				..()
-				M.make_jittery(1)
+			overdose = 50
+			upper = 3
+			upper_overdose = 8
 
 		fooddrink/coffee/espresso/expresso // the stupid stuff
 			name = "expresso"
@@ -2373,6 +2370,9 @@ datum
 			stun_resist = 25
 			var/killer = 0
 			taste = "stupid"
+			overdose = 20
+			upper = 8
+			upper_overdose = 32
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				..()
@@ -2388,12 +2388,13 @@ datum
 			name = "decaf espresso"
 			id = "decafespresso"
 			description = "A decaf espresso contains less caffeine than a regular espresso."
-			caffeine_rush = 2
-			caffeine_jitters = 5
 			addiction_prob = 1
 			addiction_prob2 = 5
 			energy_value = 0
 			taste = "about the same as real coffee"
+			overdose = 150
+			upper = 1.5
+			upper_overdose = 7
 
 		fooddrink/coffee/energydrink
 			name = "energy drink"
@@ -2404,7 +2405,6 @@ datum
 			fluid_g = 255
 			fluid_b = 64
 			transparency = 170
-			overdose = 25
 			addiction_prob = 4
 			addiction_prob2 = 10
 			var/tickcounter = 0
@@ -2413,6 +2413,9 @@ datum
 			energy_value = 1
 			stun_resist = 25
 			taste = "like battery acid"
+			overdose = 25
+			upper = 10
+			upper_overdose = 30
 /*
 			pooled()
 				..()
@@ -3701,6 +3704,8 @@ datum
 			thirst_value = -2
 			kidney_multiplier = 3
 			stun_resist = 100
+			upper = 33
+			upper_overdose = 300
 			taste = "like a cocktail, like a cocktail, and like a cocktail"
 			var/static/list/od_halluc = list(
 				new /image('icons/mob/hallucinations.dmi', "orange") = list("orange"),
@@ -3784,24 +3789,23 @@ datum
 				..(M)
 
 			do_overdose(var/severity = 1, var/mob/M, var/mult = 1)
-				if (severity == 1)
-					M.take_toxin_damage(3 * mult)
-					M.make_dizzy(33 * mult)
+				M.take_toxin_damage(3 * mult)
+				M.make_dizzy(33 * mult)
 
-					M.take_brain_damage(9 * mult)
-					M.emote("scream")
+				M.take_brain_damage(9 * mult)
+				M.emote("scream")
 
 
-					var/image/imagekey = pick(od_halluc)
-					M.AddComponent(/datum/component/hallucination/fake_attack, 10, list(imagekey), od_halluc[imagekey], 25, 5)
-					if(probmult(15)) boutput("<span class='alert'><B>FRUIT IN MY EYES!!!</B></span>")
+				var/image/imagekey = pick(od_halluc)
+				M.AddComponent(/datum/component/hallucination/fake_attack, 10, list(imagekey), od_halluc[imagekey], 25, 5)
+				if(probmult(15)) boutput("<span class='alert'><B>FRUIT IN MY EYES!!!</B></span>")
 
-					if(probmult(25))
-						M.vomit()
-						new /obj/item/reagent_containers/food/snacks/plant/lime(M.loc)
-						new /obj/item/reagent_containers/food/snacks/plant/orange(M.loc)
-						new /obj/item/reagent_containers/food/snacks/plant/lemon(M.loc)
-						M.visible_message("<span class='alert'>[M] pukes out a trifecta of citrus!</span>")
+				if(probmult(25))
+					M.vomit()
+					new /obj/item/reagent_containers/food/snacks/plant/lime(M.loc)
+					new /obj/item/reagent_containers/food/snacks/plant/orange(M.loc)
+					new /obj/item/reagent_containers/food/snacks/plant/lemon(M.loc)
+					M.visible_message("<span class='alert'>[M] pukes out a trifecta of citrus!</span>")
 
 		fooddrink/lemonade
 			name = "lemonade"

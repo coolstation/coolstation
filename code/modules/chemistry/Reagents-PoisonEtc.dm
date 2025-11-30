@@ -201,11 +201,7 @@ datum
 			transparency = 50
 			var/damage_counter = 0
 			taste = "tasteless"
-/*
-			pooled()
-				..()
-				damage_counter = 0
-*/
+
 			on_mob_life(var/mob/M, var/mult = 1)
 
 				if (!M) M = holder.my_atom
@@ -251,6 +247,9 @@ datum
 			transparency = 80
 			depletion_rate = 0.05
 			taste = "bitter"
+			overdose = 15
+			downer = 15
+			downer_overdose = 25
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -275,11 +274,10 @@ datum
 			evaporates_cleanly = TRUE
 			var/counter = 1
 			taste = "bitter"
-/*
-			pooled()
-				..()
-				counter = 1
-*/
+			overdose = 20
+			downer = 5
+			downer_overdose = 10
+
 			on_mob_life(var/mob/M, var/mult = 1) // -cogwerks. previous version
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
@@ -372,6 +370,9 @@ datum
 			var/counter = 1
 			penetrates_skin = 1
 			taste = "tasteless"
+			overdose = 15
+			downer = 6
+			downer_overdose = 14
 
 			pooled()
 				..()
@@ -499,6 +500,9 @@ datum
 			fluid_b = 192
 			transparency = 255
 			taste = "like medicine"
+			overdose = 15
+			upper = 10
+			upper_overdose = 40
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -543,6 +547,9 @@ datum
 			transparency = 255
 			depletion_rate = 0.1 //per 3 sec
 			taste = "old"
+			overdose = 15
+			upper = 10
+			upper_overdose = 30
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -605,6 +612,9 @@ datum
 			transparency = 255
 			depletion_rate = 0.2
 			taste = "funny"
+			overdose = 15
+			upper = 10
+			upper_overdose = 30
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -686,6 +696,9 @@ datum
 			transparency = 255
 			depletion_rate = 0.2
 			taste = "fancy"
+			overdose = 15
+			upper = 10
+			upper_overdose = 90
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1111,6 +1124,9 @@ datum
 			var/counter = 1
 			var/remove_buff = 0
 			taste = "bad"
+			overdose = 50
+			downer = 10
+			downer_overdose = 15
 /*
 			pooled()
 				..()
@@ -1135,7 +1151,7 @@ datum
 				switch(counter+= (1 * mult))
 					if (1)
 						M.emote("drool")
-						M.change_misstep_chance(5 * mult)
+						//M.change_misstep_chance(5 * mult)
 					if (2 to 4)
 						M.drowsyness = max(M.drowsyness, 20)
 					if (5)
@@ -1144,11 +1160,8 @@ datum
 					if (6 to INFINITY)
 						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 5 SECONDS * mult))
 
-				M.jitteriness = max(M.jitteriness-50,0)
-
-				if (prob(10))
-					M.emote("drool")
-					M.take_brain_damage(1 * mult)
+				M.drug_downer += counter
+				//M.jitteriness = max(M.jitteriness-50,0)
 
 				..()
 				return
@@ -1168,6 +1181,9 @@ datum
 			var/counter = 1
 			var/remove_buff = 0
 			taste = "bad"
+			overdose = 25
+			downer = 9
+			downer_overdose = 11
 /*
 			pooled()
 				..()
@@ -1217,12 +1233,10 @@ datum
 			var/remove_buff = 0
 			blob_damage = 2
 			taste = "old"
-/*
-			pooled()
-				..()
-				remove_buff = 0
-				counter = 1
-*/
+			overdose = 15
+			downer = 3
+			downer_overdose = 7
+
 			on_add()
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					remove_buff = holder.my_atom:add_stam_mod_max("r_sulfonal", -10)
@@ -1332,12 +1346,9 @@ datum
 			blob_damage = 1
 			value = 4 // 3c + heat
 			taste = "like water"
-
-			on_remove()
-				if(ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					REMOVE_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_neurotoxin")
-				return
+			overdose = 40
+			downer = 0
+			downer_overdose = 10
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1346,12 +1357,10 @@ datum
 					if (1 to 4)
 						return // let's not be incredibly obvious about who stung you for changelings
 					if (5 to 10)
-						APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_neurotoxin", 0.01 * counter)
 						M.make_dizzy(1 * mult)
 						M.change_misstep_chance(10 * mult)
 						if (probmult(20)) M.emote("drool")
 					if (11 to 17)
-						APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_neurotoxin",  0.01 * counter)
 						M.drowsyness  = max(M.drowsyness, 10)
 						M.make_dizzy(1 * mult)
 						M.change_misstep_chance(20 * mult)
@@ -1362,6 +1371,8 @@ datum
 							fainted = 1
 						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 10 SECONDS * mult))
 						M.drowsyness  = max(M.drowsyness, 20)
+
+				M.drug_downer += counter
 
 				M.jitteriness = max(M.jitteriness-30,0)
 				if (M.get_brain_damage() <= 80)
@@ -1383,17 +1394,13 @@ datum
 			depletion_rate = 0.2
 			var/counter = 1
 			taste = "tingly"
-
-			on_remove()
-				if(ismob(holder?.my_atom))
-					var/mob/M = holder.my_atom
-					REMOVE_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_vertigo")
-				return
+			overdose = 40
+			downer = 10
+			downer_overdose = 15
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
-				APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_vertigo", min(0.3, 0.0025 * counter))
 				switch(counter += (1 * mult))
 					if (1 to 5)
 						return //evil evil evil make them think it's neurotoxin
@@ -1861,6 +1868,9 @@ datum
 			transparency = 255
 			depletion_rate = 0.1
 			taste = "strange"
+			overdose = 30
+			upper = 10
+			upper_overdose = 30
 			var/spooksounds = list('sound/effects/ghost.ogg' = 80,'sound/effects/ghost2.ogg' = 20,'sound/effects/ghostbreath.ogg' = 60, \
 					'sound/effects/ghostlaugh.ogg' = 40,'sound/effects/ghostvoice.ogg' = 90)
 
@@ -2048,6 +2058,9 @@ datum
 			fluid_b = 244
 			transparency = 255
 			depletion_rate = 0.2
+			overdose = 35
+			upper = 8
+			upper_overdose = 42
 
 			on_mob_life(var/mob/M, var/mult = 1)
 
