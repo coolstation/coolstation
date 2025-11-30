@@ -1372,13 +1372,13 @@ datum
 						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 10 SECONDS * mult))
 						M.drowsyness  = max(M.drowsyness, 20)
 
-				M.drug_downer += counter
+				M.drug_downer += min(counter, 20)
 
 				M.jitteriness = max(M.jitteriness-30,0)
 				if (M.get_brain_damage() <= 80)
-					M.take_brain_damage(1 * mult)
+					M.take_brain_damage(0.8 * mult)
 				else
-					if (prob(10)) M.take_brain_damage(1 * mult) // let's slow down a bit after 80
+					if (prob(10)) M.take_brain_damage(0.8 * mult) // let's slow down a bit after 80
 				M.take_toxin_damage(1 * mult)
 				..(M, mult)
 				return
