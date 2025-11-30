@@ -68,7 +68,7 @@ ABSTRACT_TYPE(/obj/tuneable_receiver)
 	if (target_id == src.id || target_id == "ALL")
 		UNSUBSCRIBE_BROADCAST(station)
 		SUBSCRIBE_BROADCAST(new_channel, 1)
-		current_channel = new_channel
+		station = new_channel
 
 /proc/tune_ceiling_speakers(new_channel, target_id = "ALL")
 	for_by_tcl(speaker, /obj/ceiling_speaker)

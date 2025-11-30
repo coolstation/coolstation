@@ -3403,6 +3403,8 @@ var/global/noir = 0
 						valiant_controls?.debug_panel()
 					if("sun_solar") //tired of having to dig the global vars for this fucker
 						src.owner:debug_variables(sun)
+					if("broadcasts")
+						src.owner:debug_variables(broadcast_controls)
 					if("trains")
 						src.owner:debug_variables(train_spotter)
 			else
@@ -4365,6 +4367,7 @@ var/global/noir = 0
 	if (src.level >= LEVEL_ADMIN)
 		dat += {"<hr><div class='optionGroup' style='border-color:#FFB347'><b class='title' style='background:#FFB347'>Coder Tools</b>
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=artifact'>Artifacts</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=broadcasts'>Broadcasting</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=colosseum'>Colosseum</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=radio'>Communications</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=datacore'>Data Core</A> |

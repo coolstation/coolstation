@@ -85,8 +85,10 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 	var/loops_remaining = LOOP_INFINITELY
 	///Delete broadcast datum on end :3
 	var/dispose_on_end = FALSE
-	///If a priority broadcast is playing instead of this one,
+
+	///If a priority broadcast is playing over of this one,
 	///TRUE will advance the message index (so messages will be skipped but timing remains intact) while FALSE will effectively pause the broadcast.
+	///NOTE:
 	var/progress_when_silent = TRUE
 
 	var/default_maptext_colour = "#C2BEEE"
@@ -227,7 +229,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 	id = "Q"
 	loops_remaining = 1
 	priority = 1
-	broadcast_channels = TR_CAT_FINITE_BROADCAST_RECEIVERS
+	//broadcast_channels = TR_CAT_FINITE_BROADCAST_RECEIVERS
 	progress_when_silent = FALSE
 	dispose_on_end = TRUE
 /datum/directed_broadcast/queue_test_series/one
@@ -287,6 +289,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 	group_messages = TRUE
 	//direct children of this can go both on radios and TVs
 	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_BROADCAST_RECEIVERS)
+	dispose_on_end = TRUE // same ad might play on multiple channels at different times, need to be instantiated
 
 	speakers = list("announcer" = list("Announcer", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
 	messages = list(\
@@ -303,18 +306,18 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 	id = "generic_ad_tv"
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
-	speakers = list("announcer" = list("Announcer", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
+	speakers = list("announcer" = list("Voice-over", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
 	messages = list(\
-		list("*static*", 2 SECONDS, null, "test-D"),\
-		list("Remember to spend your money wisely.", 7 SECONDS, "announcer", "cigarettes-A"),\
-		list("Buy more guns. Guns. Gunse. Gunse.", 6 SECONDS, "announcer", "cigarettes-A"),\
-		list("But I have a family to feed!", 6 SECONDS, "consumer", "cigarettes-B"),\
-		list("Gunse. Yours is waiting out there for you.", 10 SECONDS, "announcer", "cigarettes-B"),\
-		list("*static*", 2 SECONDS, null, "test-D"),\
+		list("*static*", 2 SECONDS, null, "asdsdgfa"),\
+		list("Remember to spend your money wisely.", 7 SECONDS, "announcer", "gun"),\
+		list("Buy more guns. Guns. Gunse. Gunse.", 6 SECONDS, "announcer", "gun"),\
+		list("But I have a family to feed!", 6 SECONDS, "consumer", "sadman"),\
+		list("Gunse. Yours is waiting out there for you.", 10 SECONDS, "announcer", "gun"),\
+		list("*static*", 2 SECONDS, null, "udfghxchg"),\
 	)
 
 
-/datum/directed_broadcast/ad/tv_only/cigarettes
+/datum/directed_broadcast/ad/cigarettes
 	id = "cigarette_ad"
 	speakers = list("hank" = list("Thank", "#A2DD77"), "rachelle" = list("Grachelle", "#DDA277"))
 	messages = list(\
@@ -326,7 +329,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 		list("*static*", 2 SECONDS, null, "test-D"),\
 	)
 
-/datum/directed_broadcast/ad/tv_only/hotdogs
+/datum/directed_broadcast/ad/hotdogs
 	id = "hotdog_ad"
 	speakers = list("Frank" = list("Frank", "#d3374c"))
 	messages = list(\
@@ -344,48 +347,62 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 /datum/directed_broadcast/ad/radio_only
 	id = "generic_ad_radio"
 	broadcast_channels = TR_CAT_RADIO_BROADCAST_RECEIVERS
-	speakers = list("announcer" = list("Announcer", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
+	speakers = list("announcer" = list("Voice-over", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
 	messages = list(\
-		list("*static*", 2 SECONDS, null, "test-D"),\
+		list("*static*", 2 SECONDS, null),\
 		list("You know you want it.", 3 SECONDS, "announcer"),\
 		list("You know you need it.", 3 SECONDS, "announcer"),\
 		list("Huh? What?", 2 SECONDS, "consumer"),\
-		list("Products. Available wherever goods are sold.", 10 SECONDS, "announcer", "cigarettes-B"),\
-		list("*static*", 2 SECONDS, null, "test-D"),\
+		list("Products. Available wherever goods are sold.", 10 SECONDS, "announcer"),\
+		list("*static*", 2 SECONDS, null),\
 		)
 
 /datum/directed_broadcast/ad/radio_only/schweewa1
 	id = "schweewa_ad_1"
-	speakers = list("dad" = list("Your actual dad(???)", "#d1320b"))
+	speakers = list("announcer" = list("Voice-over", "#d600d6"), "dad" = list("Your actual dad(???)", "#d1320b"))
 	messages = list(\
 		list("*Greasy jingle*", 2 SECONDS),\
-		list("Schweewa.", 2 SECONDS),\
-		list("We've got fucking food in here.", 5 SECONDS),\
-		list("Come stuff your mouth!", 4 SECONDS),\
-		list("Like a burger or whatever. Buy our shit.", 5 SECONDS),\
-		list("You love to eat at Schweewa.", 5 SECONDS),\
+		list("Schweewa.", 2 SECONDS, "announcer"),\
+		list("We've got fucking food in here.", 5 SECONDS, "announcer"),\
+		list("Come stuff your mouth!", 4 SECONDS, "announcer"),\
+		list("Like a burger or whatever. Buy our shit.", 5 SECONDS, "announcer"),\
+		list("You love to eat at Schweewa.", 5 SECONDS, "announcer"),\
 		list("Don't disappoint me this time.", 5 SECONDS, "dad"),\
 		list("Eat at Schweewa.", 4 SECONDS, "dad"),\
-		list("Schweewa: Found wherever asteroid mining takes place.", 8 SECONDS),\
+		list("Schweewa: Found wherever asteroid mining takes place.", 8 SECONDS, "announcer"),\
 	)
 
 /datum/directed_broadcast/ad/radio_only/schweewa2
 	id = "schweewa_ad_2"
+	speakers = list("announcer" = list("Voice-over", "#d600d6"))
 	messages = list(\
 		list("*Greasy jingle*", 2 SECONDS),\
-		list("Schweewa cares for the community.", 2 SECONDS),\
-		list("Just in 2053 alone we donated over 70 burnt-out deep fryers to children in need!", 10 SECONDS),\
-		list("Every day, our customers find physical and mental support in the bins they eat our food off of.", 10 SECONDS),\
-		list("So come on down and join in.", 5 SECONDS),\
-		list("You might just find the family you were missing inside here!", 7 SECONDS),\
-		list("And if not, there's at least fried chicken.", 6 SECONDS),\
-		list("So, so much fried chicken.", 4 SECONDS),\
-		list("Schweewa: A beacon of hope in the darkness of space.", 8 SECONDS),\
+		list("Schweewa cares for the community.", 5 SECONDS, "announcer"),\
+		list("Just in 2053 alone we donated over 70 burnt-out deep fryers to children in need!", 10 SECONDS, "announcer"),\
+		list("Every day, our customers find physical and mental support in the bins they eat our food off of.", 10 SECONDS, "announcer"),\
+		list("So come on down and join in.", 5 SECONDS, "announcer"),\
+		list("You might just find the family you were missing inside here!", 7 SECONDS, "announcer"),\
+		list("And if not, there's at least fried chicken.", 6 SECONDS, "announcer"),\
+		list("So, so much fried chicken.", 4 SECONDS, "announcer"),\
+		list("Schweewa: A beacon of hope in the darkness of space.", 8 SECONDS, "announcer"),\
+	)
+
+/datum/directed_broadcast/ad/radio_only/dans_noodles //Trying somewhat fast timings with this one cause Dan talks hard and fast. Like Bubs.
+	id = "dans_noodles_ad"
+	speakers = list("announcer" = list("\"Discount Dan\"", "#d600d6"))
+	messages = list(\
+		list("*Peppy music*", 2 SECONDS),\
+		list("Discount Dan's noodle soups!", 3 SECONDS, "announcer"),\
+		list("The warm delight that is nutritionally balanced around your low budget!", 6 SECONDS, "announcer"),\
+		list("And now extra convenient! We break the noodles to splinters before cooking!", 6 SECONDS, "announcer"),\
+		list("That means you get the same great taste with half as much chewing! Buy now!", 6 SECONDS, "announcer"),\
+		list("Discount Dan's noodle soups!", 4 SECONDS, "announcer"),\
 	)
 
 /datum/directed_broadcast/programme
 	priority = DEFAULT_PROGRAMMING_PRIORITY
 	loops_remaining = 1
+	dispose_on_end = TRUE // same programme might play on multiple channels at different times, need to be instantiated
 
 /datum/directed_broadcast/programme/eaglestoryone
 	id = "mysteries_of_the_frontier_one"
@@ -461,6 +478,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast/interstitial)
 	loops_remaining = 1
 	priority = DEFAULT_PROGRAMMING_PRIORITY
 	group_messages = TRUE
+	dispose_on_end = TRUE // same interstitial might play on multiple channels at different times, need to be instantiated. Not that it matters as much here
 
 /datum/directed_broadcast/interstitial/tv
 	id = "tv_int1"
@@ -517,3 +535,66 @@ ABSTRACT_TYPE(/datum/directed_broadcast/interstitial)
 #undef LOOP_INFINITELY
 #undef DEFAULT_BROADCAST_MESSAGE_TIME
 #undef DEFAULT_PROGRAMMING_PRIORITY
+
+ABSTRACT_TYPE(/datum/directed_broadcast_scheduler)
+///Dynamically fills up a channel that's about to run low
+/datum/directed_broadcast_scheduler
+
+/datum/directed_broadcast_scheduler/proc/fill_schedule(channel) //IDK, maybe plug in a general on/off switch here at some point
+	if (!channel)
+		return FALSE
+	return TRUE
+
+///radio/TV, channel agnostic but also samey in structure
+/datum/directed_broadcast_scheduler/generic_stations
+
+/datum/directed_broadcast_scheduler/generic_stations/fill_schedule(channel)
+	if (!..())
+		return
+	//General idea: 2-5 ads - programme - interstitial - programme (-> repeating)
+	//Assumption baked into this for queueing to work: all ads and programmes have the same priority
+	var/list/cached_list = concrete_typesof(/datum/directed_broadcast/ad)
+	var/list/ads = cached_list.Copy()
+	cached_list = concrete_typesof(/datum/directed_broadcast/programme)
+	var/list/programmes = cached_list.Copy()
+	cached_list = concrete_typesof(/datum/directed_broadcast/interstitial)
+	var/list/interstitials = cached_list.Copy()
+
+	for(var/i in 1 to rand(2,3)) //make upper bound 5 or so once we have sufficient distinct ads pls.
+		while(length(ads))
+			var/datum/directed_broadcast/pick = pick(ads)
+			ads -= pick
+			if (channel in initial(pick.broadcast_channels))
+				broadcast_controls.broadcast_start(new pick, override_channels = list(channel))
+				break
+
+	while(length(programmes))
+		var/datum/directed_broadcast/pick2 = pick(programmes)
+		programmes -= pick2
+		if (channel in initial(pick2.broadcast_channels))
+			broadcast_controls.broadcast_start(new pick2, override_channels = list(channel))
+			break
+
+	while(length(interstitials))
+		var/datum/directed_broadcast/pick3 = pick(interstitials)
+		interstitials -= pick3
+		if (channel in initial(pick3.broadcast_channels))
+			broadcast_controls.broadcast_start(new pick3, override_channels = list(channel))
+			break
+
+	while(length(programmes))
+		var/datum/directed_broadcast/pick4 = pick(programmes)
+		programmes -= pick4
+		if (channel in initial(pick4.broadcast_channels))
+			broadcast_controls.broadcast_start(new pick4, override_channels = list(channel))
+			break
+
+	/*
+	proc/filter_trait_hats(var/type)
+	var/obj/item/clothing/head/coolhat = type
+	return !initial(coolhat.blocked_from_petasusaphilic)
+	*/
+	/*
+	if (channel in initial(broadcast.broadcast_channels))
+		broadcast_controls.broadcast_start(new broadcast, TRUE, channel, 1, FALSE)
+	*/

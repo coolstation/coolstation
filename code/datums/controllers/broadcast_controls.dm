@@ -7,9 +7,13 @@
 	for (var/channel as anything in active_broadcasts)
 		//every queued broadcast in that channel
 		var/first = TRUE
+		var/prev_priority = INFINITY
 		for (var/datum/directed_broadcast/broadcast as anything in active_broadcasts[channel])
+			if (broadcast.priority == prev_priority)
+				continue
 			broadcast.process(silent = !first)
 			first = FALSE
+			prev_priority = broadcast.priority
 
 
 ///Start or resume a broadcast
