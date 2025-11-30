@@ -5,7 +5,7 @@
 	desc = "A window."
 	density = 1
 	stops_space_move = 1
-	dir = 5 //full tile
+	dir = NORTHEAST //full tile
 	flags = FPRINT | USEDELAY | ON_BORDER
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
 	object_flags = HAS_DIRECTIONAL_BLOCKING
@@ -67,7 +67,7 @@
 			src.layer = map_settings.window_layer_north
 		else if (src.dir == SOUTH && map_settings.window_layer_south)
 			src.layer = map_settings.window_layer_south
-		else if (src.dir in ordinal && map_settings.window_layer_full)
+		else if ((src.dir in ordinal) && map_settings.window_layer_full)
 			src.layer = map_settings.window_layer_full
 		else
 			src.layer = initial(src.layer)
