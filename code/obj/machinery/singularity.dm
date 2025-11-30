@@ -1318,6 +1318,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	anchored = ANCHORED
 	density = 1
 	directwired = 1
+	mats = 20
 	var/magic = 0
 	var/active = 0
 	var/obj/item/tank/plasma/P = null
@@ -1421,6 +1422,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	anchored = ANCHORED
 	density = 1
 	directwired = 1
+	mats = 30
 	///Supposed to make power just whenever, should work now
 	var/magic = 0
 	var/active = 0
