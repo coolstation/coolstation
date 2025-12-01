@@ -219,6 +219,7 @@
 // use the target from our holder
 /datum/aiTask/endless/move/proc/get_path()
 	if(!src.move_target)
+		src.reset()
 		return
 	src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
 	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner, options = list("do_doorcheck" = TRUE, "move_through_space" = move_through_space))) // no path :C
@@ -232,7 +233,7 @@
 	src.holder.stop_move()
 
 /datum/aiTask/endless/move/on_tick()
-	if(src.found_path)
+	if(src.found_path && src.move_target)
 		if(src.found_path.len > 0)
 			if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
 				// follow the path
