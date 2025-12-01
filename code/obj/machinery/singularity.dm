@@ -799,6 +799,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			return
 
 	if(isweldingtool(W))
+		if(active)
+			boutput(user, "Turn off the field generator first.")
+			return
+
 		if(state != UNWRENCHED)
 			if(!W:try_weld(user, 1, noisy = 2))
 				return
