@@ -257,7 +257,7 @@
 
 /datum/aiTask/endless/move/inherit_target
 
-/datum/aiTask/endless/move/inherit_target/tick()
+/datum/aiTask/endless/move/inherit_target/on_tick()
 	src.move_target = holder.target
 	return ..()
 
