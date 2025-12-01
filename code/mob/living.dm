@@ -2454,7 +2454,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			REMOVE_ATOM_PROPERTY(src, PROP_CLUTZ, "stimulants_clutz")
 
 			if(emote_in_upper && prob(src.drug_upper * 2))
-				src.emote(src.stimulant_emotes)
+				src.emote(pick(src.stimulant_emotes))
 
 			if(src.jitteriness <= 80)
 				src.make_jittery(src.drug_upper)
@@ -2465,7 +2465,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			// intentionally allow clutziness to linger from higher stimulant states
 
 			if(emote_in_upper && prob(src.drug_upper * 2))
-				src.emote(src.stimulant_emotes)
+				src.emote(pick(src.stimulant_emotes))
 
 			if(src.jitteriness <= 200)
 				src.make_jittery(src.drug_upper * 2)
@@ -2482,7 +2482,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			src.stuttering += rand(0,1)
 
 			if(emote_in_upper && prob(src.drug_upper * 2))
-				src.emote(src.stimulant_emotes_high)
+				src.emote(pick(src.stimulant_emotes_high))
 
 			src.make_jittery(src.drug_upper * 1.5)
 			if(src.dizziness <= 250)
@@ -2498,13 +2498,13 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			src.stuttering += rand(0,2)
 
 			if(emote_in_upper && prob(src.drug_upper * 2)) // emotes that are loud and obnoxious
-				src.emote(src.stimulant_emotes_high)
+				src.emote(pick(src.stimulant_emotes_high))
 
 			src.make_dizzy((src.drug_upper + src.drug_downer) * mult)
 			src.make_jittery(0.5 * src.drug_upper * mult)
 			src.change_misstep_chance(0.3 * src.drug_upper * mult)
 
-			if(src.organHolder && prob(src.drug_upper))
+			if(src.organHolder && prob(10))
 				src.organHolder.damage_organs(0, 0, round(0.1 * src.drug_upper * mult, 0.1), list("heart", "left_lung", "right_lung"), 45)
 
 	switch(src.drug_downer)
@@ -2555,7 +2555,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			src.make_jittery(-0.5 * src.drug_downer * mult)
 			src.change_misstep_chance(0.15 * src.drug_downer * mult)
 			if (prob(src.drug_downer) * 2)
-				src.take_brain_damage(1 * mult)
+				src.take_brain_damage(0.5 * mult)
 				if(!emote_in_upper)
 					src.emote(pick(src.sedative_emotes_high))
 
