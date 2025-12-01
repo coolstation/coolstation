@@ -334,7 +334,7 @@ MATERIAL
 					a_amount = rodsinput * 2
 					a_cost = rodsinput
 					a_icon = 'icons/obj/items/metal.dmi'
-					a_icon_state = "rods_1"
+					a_icon_state = "rods_[floor(a_amount/10)]"
 					a_name = "rods"
 					duration_alt = 1.7 SECONDS
 
@@ -348,7 +348,7 @@ MATERIAL
 					a_amount = tileinput * 4
 					a_cost = tileinput
 					a_icon = 'icons/obj/items/metal.dmi'
-					a_icon_state = "tile_1"
+					a_icon_state = "tile_[floor(a_amount/10)]"
 					a_name = "floor tiles"
 					duration_alt = 2 SECONDS
 
@@ -399,7 +399,7 @@ MATERIAL
 					a_type = /obj/stool
 					a_amount = 1
 					a_cost = 1
-					a_icon = 'icons/obj/objects.dmi'
+					a_icon = 'icons/obj/furniture/chairs.dmi'
 					a_icon_state = "stool"
 					a_name = "a stool"
 
@@ -415,7 +415,7 @@ MATERIAL
 					a_type = /obj/stool/chair
 					a_amount = 1
 					a_cost = 1
-					a_icon = 'icons/obj/objects.dmi'
+					a_icon = 'icons/obj/furniture/chairs.dmi'
 					a_icon_state = "chair"
 					a_name = "a chair"
 
@@ -480,7 +480,7 @@ MATERIAL
 					a_type = /obj/stool/bed
 					a_amount = 1
 					a_cost = 2
-					a_icon = 'icons/obj/objects.dmi'
+					a_icon = 'icons/obj/furniture/chairs.dmi'
 					a_icon_state = "bed"
 					a_name = "a bed"
 
