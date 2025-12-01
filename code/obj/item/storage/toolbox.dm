@@ -1,6 +1,6 @@
 
 /* -------------------- Standard Toolboxes -------------------- */
-
+ABSTRACT_TYPE(/obj/item/storage/toolbox)
 /obj/item/storage/toolbox
 	name = "toolbox"
 	icon = 'icons/obj/items/storage.dmi'
@@ -29,9 +29,6 @@
 
 	New()
 		..()
-		if (src.type == /obj/item/storage/toolbox)
-			message_admins("BAD: [src] ([src.type]) spawned at [showCoords(src.x, src.y, src.z)]")
-			qdel(src)
 		BLOCK_SETUP(BLOCK_ROD)
 
 	custom_suicide = 1
