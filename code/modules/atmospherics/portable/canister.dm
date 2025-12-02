@@ -127,10 +127,11 @@
 			environment = loc.return_air()
 
 		var/env_pressure = MIXTURE_PRESSURE(environment)
+		var/int_pressure = MIXTURE_PRESSURE(src.air_contents)
 		var/soundvol = 0
-		if (env_pressure > 0.01	)
-			var/pressure_delta = min(release_pressure - env_pressure, (MIXTURE_PRESSURE(src.air_contents) - env_pressure)/2)
-			soundvol = clamp(10 * pressure_delta / env_pressure, 0.01, 100)
+		if (env_pressure > 0.01 && int_pressure >= env_pressure)
+			var/pressure_delta = min(release_pressure - env_pressure, (int_pressure - env_pressure)/2)
+			soundvol = clamp(25 * (pressure_delta + env_pressure) / env_pressure, 10, 100)
 
 		sound_emitter.update_active_sound_param(volume = soundvol, frequency = (0.8 + 0.0045 * soundvol))
 // end Inorien section
@@ -244,7 +245,6 @@
 				environment.merge(removed)
 			else
 				loc.assume_air(removed)
-
 		src.set_sound_volume()
 
 	overpressure = MIXTURE_PRESSURE(air_contents) / maximum_pressure
