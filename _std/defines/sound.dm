@@ -1,10 +1,22 @@
-//Reserved Area Ambience sound channels
-#define SOUNDCHANNEL_BIGALARM 122 //uh oh
-#define SOUNDCHANNEL_LOOPING_Z 123 //gehenna outdoors wind (for now)
+#define SOUNDCHANNEL_RESERVABLE_MIN		1 // do not reserve any soundchannels lower than this
+#define SOUNDCHANNEL_RESERVABLE_MAX		256 //do not reserve any soundchannels higher than this
+#define SOUNDCHANNEL_CLIENT_MIN			257 //internally used by sound manager
+#define SOUNDCHANNEL_CLIENT_MAX			512 //internally used by sound manager
+#define SOUNDCHANNEL_RANDOM_MIN			513 // for playsound, soon to go away
+#define SOUNDCHANNEL_BYOND_MAX			1024 // this is the highest we CAN go, unless byond dramatically changes
+
+//Reserved sound channels
+#define SOUNDCHANNEL_RESERVED_BIGALARM 1 //area based alarms, typically indicating bosses
+#define SOUNDCHANNEL_RESERVED_LOOPING_Z 2 //looping ambience that plays across an entire z level
 #define SOUNDCHANNEL_LOOPING_1 124
 #define SOUNDCHANNEL_LOOPING_2 125
 #define SOUNDCHANNEL_FX_1 126
 #define SOUNDCHANNEL_FX_2 127
+#define SOUNDCHANNEL_RESERVED_INGAME_RADIO 246
+#define SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN 247
+#define SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MAX 256
+
+#define SOUND_BUCKET_SIZE 15
 
 //sound mute
 #define SOUND_NONE 0

@@ -37,6 +37,8 @@ mob/new_player
 		..()
 
 	Login()
+		src.set_loc(locate(1,1,1))
+
 		..()
 
 		if(!mind)

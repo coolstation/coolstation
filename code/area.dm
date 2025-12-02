@@ -1059,7 +1059,7 @@ ABSTRACT_TYPE(/area/adventure)
 				helldrone_awake_sound.file = 'sound/machines/giantdrone_loop.ogg'
 				helldrone_awake_sound.repeat = 0
 				helldrone_awake_sound.wait = 0
-				helldrone_awake_sound.channel = SOUNDCHANNEL_BIGALARM
+				helldrone_awake_sound.channel = SOUNDCHANNEL_RESERVED_BIGALARM
 				helldrone_awake_sound.volume = 60
 				helldrone_awake_sound.priority = 255
 				helldrone_awake_sound.status = SOUND_UPDATE
@@ -1069,7 +1069,7 @@ ABSTRACT_TYPE(/area/adventure)
 				helldrone_wakeup_sound.file = 'sound/machines/giantdrone_startup.ogg'
 				helldrone_wakeup_sound.repeat = 0
 				helldrone_wakeup_sound.wait = 0
-				helldrone_wakeup_sound.channel = SOUNDCHANNEL_BIGALARM
+				helldrone_wakeup_sound.channel = SOUNDCHANNEL_RESERVED_BIGALARM
 				helldrone_wakeup_sound.volume = 60
 				helldrone_wakeup_sound.priority = 255
 				helldrone_wakeup_sound.status = SOUND_UPDATE

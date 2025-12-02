@@ -106,6 +106,34 @@
 	..()
 	atmos_dmi = image('icons/obj/atmospherics/atmos.dmi')
 	bomb_dmi = image('icons/obj/atmospherics/canisterbomb.dmi')
+	setup_sound()
+
+// credit Inorien from VGStation - TODO CREDIT PER LICENSE
+/obj/machinery/portable_atmospherics/canister/setup_sound()
+	sound_emitter = new(src)
+	if (sound_emitter)
+		var/sound/hiss = sound()
+		hiss.file = "sound/machines/gasleaklow.ogg"
+		hiss.repeat = 1
+		hiss.volume = 100
+		sound_emitter.add(hiss, "gas_hiss")
+
+/obj/machinery/portable_atmospherics/canister/proc/set_sound_volume() // i copied some of this from process(). sorry
+	if(valve_open)
+		var/datum/gas_mixture/environment
+		if(holding)
+			environment = holding.air_contents
+		else
+			environment = loc.return_air()
+
+		var/env_pressure = MIXTURE_PRESSURE(environment)
+		var/soundvol = 0
+		if (env_pressure > 0.01	)
+			var/pressure_delta = min(release_pressure - env_pressure, (MIXTURE_PRESSURE(src.air_contents) - env_pressure)/2)
+			soundvol = clamp(10 * pressure_delta / env_pressure, 0.01, 100)
+
+		sound_emitter.update_active_sound_param(volume = soundvol, frequency = (0.8 + 0.0045 * soundvol))
+// end Inorien section
 
 /obj/machinery/portable_atmospherics/canister/update_icon()
 
@@ -535,10 +563,15 @@
 		logTheThing("station", usr, null, "[valve_open ? "opened [src] into" : "closed [src] from"] the air [log_atmos(src)] at [log_loc(src)].")
 		playsound(src.loc, "sound/effects/valve_creak.ogg", 50, 1)
 		if (src.valve_open)
-			playsound(src.loc, "sound/machines/hiss.ogg", 50, 1)
+			//playsound(src.loc, "sound/machines/hiss.ogg", 50, 1)
 			message_admins("[key_name(usr)] opened [src] into the air at [log_loc(src)]. See station logs for atmos readout.")
 			if (src.det)
 				src.det.leaking()
+	if (!valve_open)
+		sound_emitter.deactivate()
+	else
+		sound_emitter.play("gas_hiss")
+		src.set_sound_volume()
 	return TRUE
 
 /obj/machinery/portable_atmospherics/canister/proc/set_release_pressure(var/pressure as num)
@@ -547,6 +580,7 @@
 
 	playsound(src.loc, "sound/effects/valve_creak.ogg", 20, 1)
 	src.release_pressure = clamp(pressure, PORTABLE_ATMOS_MIN_RELEASE_PRESSURE, PORTABLE_ATMOS_MAX_RELEASE_PRESSURE)
+	src.set_sound_volume()
 	return TRUE
 
 /obj/machinery/portable_atmospherics/canister/proc/det_wires_interact(var/tool, var/which_wire as num, var/mob/user)

@@ -476,8 +476,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	S.falloff = 9999//(world.view + extrarange) / 3.5
 	//world.log << "Playing sound; wv = [world.view] + er = [extrarange] / 3.5 = falloff [S.falloff]"
 	S.wait = 0 //No queue
-	//This is apparently a hack
-	S.channel = rand(200,900)
+	//This is apparently a hack // this is such a hack
+	S.channel = rand(SOUNDCHANNEL_RANDOM_MIN, SOUNDCHANNEL_BYOND_MAX)
 	//eventually let's figure a repeatable way to increment sound channels per client instead of picking at random
 	S.volume = vol
 	S.priority = 5
@@ -637,7 +637,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		//otherwise: start new sound or replace existing
 		//this works great for things like having a different sound on Z1 vs Z3, but if it's the same sound it'll change without restarting
 
-	var/sound/S = sound(soundfile, repeat = 1, wait = 0, volume = zloopvol, channel = SOUNDCHANNEL_LOOPING_Z)
+	var/sound/S = sound(soundfile, repeat = 1, wait = 0, volume = zloopvol, channel = SOUNDCHANNEL_RESERVED_LOOPING_Z)
 	S.priority = 200
 	S.status |= SOUND_STREAM //should be lighter for clients
 	if (soundupdate)

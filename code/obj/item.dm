@@ -1532,6 +1532,9 @@
 		src.inventory_counter.hide_count()
 	if (special_grab || chokehold)
 		drop_grab()
+
+	if (src.sound_emitter)
+		src.sound_emitter.update_source(src)
 	return
 
 /obj/item/proc/pickup(mob/user)
@@ -1548,6 +1551,8 @@
 		src.inventory_counter.show_count()
 	if (src.c_flags & EQUIPPED_WHILE_HELD)
 		src.equipped(user, user.get_slot_from_item(src))
+	if (src.sound_emitter)
+		src.sound_emitter.update_source(user)
 
 /obj/item/proc/intent_switch_trigger(mob/user)
 	return

@@ -1,4 +1,4 @@
-var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
+var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 
 /client/proc/play_sound_real(S as sound, var/vol as num, var/freq as num)
 	if (!config.allow_admin_sounds)
@@ -84,7 +84,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 	music_sound.wait = 0
 	music_sound.repeat = 0
 	music_sound.priority = 254
-	music_sound.channel = 1013 // This probably works?
+	music_sound.channel = SOUNDCHANNEL_RESERVED_INGAME_RADIO
 	music_sound.environment = -1
 	music_sound.echo = -1
 	SPAWN_DBG(0)
@@ -178,7 +178,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 
 	ehjax.send(src, "browseroutput", "stopaudio") //For client-side audio
 
-	var/mute_channel = 1014
+	var/mute_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 	var/sound/stopsound = sound(null,wait = 0,channel=mute_channel)
 	for (var/i = 1 to 10)
 		//DEBUG_MESSAGE("Muting sound channel [stopsound.channel] for [src]")
@@ -197,7 +197,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 	ehjax.send(src, "browseroutput", "stopaudio") //For client-side audio
 
 	src.verbs -= /client/verb/stop_the_radio
-	var/mute_channel = 1013
+	var/mute_channel = SOUNDCHANNEL_RESERVED_INGAME_RADIO
 	var/sound/stopsound = sound(null,wait = 0,channel=mute_channel)
 	//DEBUG_MESSAGE("Muting sound channel [stopsound.channel] for [src]")
 	stopsound.channel = mute_channel
