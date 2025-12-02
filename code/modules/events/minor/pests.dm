@@ -23,6 +23,16 @@
 					new /obj/critter/mouse(pestlandmark)
 					spawnamount -= 1
 					LAGCHECK(LAG_LOW)
+			if (3)
+				while (spawnamount > 0)
+					new /mob/living/critter/small_animal/mothroach(pestlandmark)
+					spawnamount -= 1
+					LAGCHECK(LAG_LOW)
+			if (4)
+				while (spawnamount > 0)
+					new /mob/living/critter/small_animal/slug(pestlandmark)
+					spawnamount -= 1
+					LAGCHECK(LAG_LOW)
 			if (5)
 				while (spawnamount > 0)
 					new /obj/critter/spacebee(pestlandmark)
