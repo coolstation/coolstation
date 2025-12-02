@@ -117,12 +117,12 @@
 
 /datum/sound_listener_context/proc/apply_proxymob_effects(sound/S)
 	. = S
-	if (proxy.ear_deaf)
-		S.volume *= 0.1
+	if (proxy.ear_deaf || proxy.ear_disability)
+		S.volume *= 0.05
 		return
 
 	if (!(S.atom in view(range, proxy)))
-		S.volume *= 0.5
+		S.volume *= 0.7
 
 	var/p_effect = attenuate_for_location(proxy)
 	S.volume *= p_effect
