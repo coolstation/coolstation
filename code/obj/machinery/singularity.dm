@@ -7,11 +7,15 @@ Contains:
 -Collector array & controller
 -Singularity bomb
 */
+
 // I came here with good intentions, I swear, I didn't know what this code was like until I was already waist deep in it
+
+// i came here with bad intentions and i will continue making singulos meaner until the stock market crashes
+
 #define SINGULARITY_TIME TRUE
 #define FIELD_GENERATOR_MAX_LENGTH 11			//defines the maximum dimension possible by a player created field gen.
 #define SINGULO_POWER_RADIUS_EXPONENT 1.25		//radius is put to this exponent for power generation purposes
-#define SINGULO_POWER_MULTIPLIER 1				//all singulo power is multiplied by this
+#define SINGULO_SCALAR 0.25				// easy enough, if this rises, you get more oomph per singulo energy. allows messing with food values without rewriting calcs.
 #define EVENT_GROWTH 3//the rate at which the event proc radius is scaled relative to the radius of the singularity
 #define EVENT_MINIMUM 5//the base value added to the event proc radius, serves as the radius of a 1x1
 //Anchoring states for the emitters, field generators, and singulo jar
@@ -81,7 +85,7 @@ proc/singularity_containment_check(turf/center)
 	if (src.bhole)
 		new /obj/bhole(T, 3000)
 	else
-		new /obj/machinery/the_singularity(T, 600,,max_radius)
+		new /obj/machinery/the_singularity(T, 600 / SINGULO_SCALAR, , max_radius)
 	qdel(src)
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user)
@@ -343,6 +347,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	SPAWN_DBG(0)
 		eat_atom(AM)
 
+/obj/machinery/the_singularity/bullet_act(var/obj/projectile/P)
+	if(!P)
+		return
+	src.energy += P.power * 0.05 / SINGULO_SCALAR
+
 /obj/machinery/the_singularity/proc/eat_atom(atom/A)
 	var/gain = 0
 
@@ -366,16 +375,17 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if (H.unkillable)
 				H.unkillable = 0
 			if (H.mind && H.mind.assigned_role)
+				// Does this count as the weight of a soul?
 				switch (H.mind.assigned_role)
 					if ("Clown")
 						// Hilarious.
-						gain = 500
+						gain = 500 + H.mind.karma
 						game_stats.Increment("clownabuse")
 						SPAWN_DBG(0)
 							resize()
 					if ("Lawyer")
 						// Satan.
-						gain = 250
+						gain = 250 - H.mind.karma
 					if ("Tourist", "Geneticist")
 						// Nerds that are oblivious to dangers
 						gain = 200
@@ -390,7 +400,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 						gain = 20
 					else
 						gain = 50
-
+		for(var/atom/movable/AM in L.contents)
+			src.eat_atom(AM)
 		L.remove()
 
 	else if (isobj(A))
@@ -398,20 +409,29 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			//src.warp = 100
 
 		var/obj/O = A
-		O.ex_act(OLD_EX_TOTAL)
+		//O.ex_act(OLD_EX_TOTAL)
 		//O.set_loc(src.get_center())
-		if (O)
-			qdel(O)
-		gain = 2
+		//if (O)
+		gain = O.w_class
+		if(isitem(O))
+			var/obj/item/I = O
+			if(I.amount > 5)
+				gain = gain * (4 + sqrt(I.amount - 4))
+			else
+				gain = gain * I.amount
+		for(var/atom/movable/AM in O.contents)
+			src.eat_atom(AM)
+		qdel(O)
 
 	else if (isturf(A))
 		var/turf/T = A
 		if (T.turf_flags & IS_TYPE_SIMULATED)
 			if (istype(T, /turf/floor))
 				T.ReplaceWithSpace()
-				gain = 2
+				gain = 10
 			else if(!istype(T, /turf/space))
 				T.ReplaceWithFloor()
+				gain = 40
 		else
 			return TRUE
 
@@ -431,14 +451,13 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else
 		return ..()
 
-/obj/machinery/the_singularity/proc/resize() //also does shrinking as soon as someone else figures out how to get the cocksucking scaling to work
+/obj/machinery/the_singularity/proc/resize() //also does shrinking
 	var/diameter = 2*radius + 1
 	//at least 50d^2 energy to achieve diameter d, picked kinda arbitrarily so the growth is slow and also increasingly more demanding
 	//(though with increased size a singulo will eat more shit fast as well so IDK it's probably still mildly accelerating)
 	//for a 1x1 through 11x11 (uneven diameters only) this comes out to thresholds of 50/450/1250/2450/4050/6050 energy needed
-	//ATM everything that isn't a mob gives 2 energy, so the singulo shouldn't be growing quickly once it's loose
-	var/godver = 50*(diameter+2)*(diameter+2)
-	var/godver2 = 50*diameter*diameter
+	var/godver = (50 / SINGULO_SCALAR) * (diameter+2) * (diameter+2)
+	var/godver2 = (50 / SINGULO_SCALAR) * diameter * diameter
 
 	if (src.energy >= godver) //too small
 		var/check_max_radius = singularity_containment_check(get_center(src))
@@ -694,11 +713,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				src.visible_message("<span class='alert'>The [src.name] shuts down due to lack of power!</span>")
 				icon_state = "Field_Gen_w"
 				src.set_active(0)
-				src.cleanup(1)
-				src.cleanup(2)
-				src.cleanup(4)
-				src.cleanup(8)
 				for(var/dir in cardinal)
+					src.cleanup(cardinal)
 					src.UpdateOverlays(null, "field_start_[dir]")
 					src.UpdateOverlays(null, "field_end_[dir]")
 
@@ -1578,7 +1594,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				//Big singulos are great (exponential scaling), fed singulos are good (linear scaling), and distance is uh...
 				//some other kind of scaling that isnt super harsh. its in the divisor idk bestie.
 				var/dist_to_singu = GET_DIST(singu.get_center(), src)
-				power_s += singu.energy * singu.scaled_radius / (4 + dist_to_singu) * SINGULO_POWER_MULTIPLIER
+				power_s += singu.energy * singu.scaled_radius / (4 + dist_to_singu) * SINGULO_SCALAR
 			//For each possible collector, grab the current moles of plasma in the tank and then delete some plasma
 			//If you don't top up the tank after grabbing it from the dispenser, it will take approximately 46.6 minutes (assuming no lag) at the current
 			//3.2s machine loop for an array to run dry. By that point, the SMES is max charge, so its not actually that dangerous.
