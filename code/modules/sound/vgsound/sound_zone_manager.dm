@@ -194,7 +194,7 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 	var/datum/sound_listener_context/context = receive_client.listener_context
 
 	var/list/current = list()
-	for (var/datum/sound_emitter/E in context.current_channels_by_emitter)
+	for (var/datum/sound_emitter/E in context.audible_emitters)
 		current[E] = TRUE
 	var/list/fresh = list()
 
@@ -205,8 +205,7 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 			if (E.contains(location))
 				fresh[E] = TRUE
 				if (!current[E])
-					if(E.active_sound)
-						context.on_enter_range(E)
+					context.on_enter_range(E)
 				else
 					context.on_sound_update(E)
 

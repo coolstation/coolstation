@@ -13,6 +13,16 @@
 	New()
 		..()
 		UnsubscribeProcess()
+		setup_sound()
+
+	setup_sound()
+		sound_emitter = new(src)
+		if (sound_emitter)
+			var/sound/roll = sound()
+			roll.file = "sound/machines/hot_roller_loop.ogg"
+			roll.repeat = 1
+			roll.volume = 60
+			sound_emitter.add(roll, "rolling")
 
 	emag_act(mob/user)
 		if (!src.emagged)
@@ -62,10 +72,12 @@
 			user.visible_message("<span class='notice'>[user] shuts down the [src].</span>", "<span class='notice'>You slam the brake and shut down [src].</span>")
 			UnsubscribeProcess()
 			icon_state = "hot_roller_off"
+			src.sound_emitter.deactivate()
 		else
 			user.visible_message("<span class='notice'>[user] starts up the [src].</span>", "<span class='notice'>You slap a button and start up [src].</span>")
 			SubscribeToProcess()
 			icon_state = "hot_roller_on"
+			src.sound_emitter.play("rolling")
 
 	Bumped(atom/movable/AM)
 		. = ..()
@@ -160,14 +172,13 @@
 
 		if(status & (NOPOWER|BROKEN))
 			icon_state = "hot_roller_off"
+			src.sound_emitter.deactivate()
 			UnsubscribeProcess()
 			return 0
 
 		use_power(500)
 
-		// when looping sounds works in 516, get back to this
-		//playsound(src.loc, 'sound/machines/hot_roller_loop.ogg', 50, 0, forcechannel = src.sound_loop_channel, repeat = TRUE)
-		playsound(src.loc, 'sound/machines/hot_roller_loop_temp.ogg', 50, 0)
+		//playsound(src.loc, 'sound/machines/hot_roller_loop_temp.ogg', 50, 0)
 
 		var/processed_something = FALSE
 
