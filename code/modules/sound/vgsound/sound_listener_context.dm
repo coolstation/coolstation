@@ -135,7 +135,7 @@
 			return
 		S.environment = SPACED_ENV
 		S.echo = SPACED_ECHO
-		S.volume *= 0.01
+		S.volume *= 0.02
 		return
 	S.environment = EAX_GENERIC
 	S.echo = ECHO_CLOSE
