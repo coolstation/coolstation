@@ -154,6 +154,8 @@
 	UnregisterSignal(E, SIGNAL_SOUND_PUSHED)
 
 /datum/sound_listener_context/proc/start_hearing(datum/sound_emitter/emitter)
+	var/chan = assign_channel(emitter) // assign the channel immediately, even if its silent
+
 	if (emitter.active_sound == null)
 		return // start hearing what?
 
@@ -167,7 +169,6 @@
 
 	apply_proxymob_effects(S, emitter)
 	if(S.volume > TOO_QUIET)
-		var/chan = assign_channel(emitter)
 		if (!chan)
 			CRASH("Sound emitter on [emitter.source] failed to reserve a channel for [src]")
 		S.status &= ~SOUND_UPDATE
