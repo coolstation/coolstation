@@ -245,6 +245,8 @@
 			else
 				loc.assume_air(removed)
 
+		src.set_sound_volume()
+
 	overpressure = MIXTURE_PRESSURE(air_contents) / maximum_pressure
 
 	switch(overpressure) // should the canister blow the hell up?

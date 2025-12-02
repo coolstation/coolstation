@@ -118,7 +118,7 @@
 /datum/sound_listener_context/proc/apply_proxymob_effects(sound/S)
 	. = S
 	if (proxy.ear_deaf || proxy.ear_disability)
-		S.volume *= 0.05
+		S.volume *= 0.01
 		return
 
 	if (!(S.atom in view(range, proxy)))
