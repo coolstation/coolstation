@@ -44,7 +44,7 @@
 	qdel(sound_emitter)
 	return ..()
 
-/atom/proc/setup_sound()
+/atom/movable/proc/setup_sound()
 	return
 
 /mob
@@ -67,9 +67,7 @@
 	var/datum/managed_sound/active_sound = null
 	var/range
 	var/last_hash = null
-
-	// update driven by subsystem via update_active_sound_param
-	var/env_volume_coeff = 1
+	var/spaced = FALSE
 
 	var/datum/sound_zone_manager/szm // not strictly necessary but its here for easy debugging in this early stage
 
@@ -105,7 +103,6 @@
 	if (key && (key in sounds))
 		return
 	s.atom = source
-	s.environment = -1 // byond bug(?) if you set this to anything else, it will permanently set the channel environment to it
 	s.transform = matrix(1, 0, 0, 0, 1, 0) //dont think theres a good reason for this to be anything else
 	sounds[key] = new /datum/managed_sound(s)
 
@@ -218,9 +215,15 @@
 /datum/sound_emitter/proc/update_env_effect()
 	if (active_sound == null)
 		return
-	env_volume_coeff = attenuate_for_location(source)
-	active_sound.volume_mutator = env_volume_coeff
+	var/source_atten = attenuate_for_location(source)
+	if (source_atten <= SPACE_ATTEN_MIN)
+		source_atten = SPACE_ATTEN_MULT
+		src.spaced = TRUE
+	else
+		src.spaced = FALSE
+	active_sound.volume_mutator = source_atten
 
+/*
 /datum/sound_emitter/proc/clients_in_range()
 	var/list/in_range = list()
 	var/turf/t_source = get_turf(source)
@@ -231,6 +234,7 @@
 		if (!receiver)
 			continue //player on some invalid turf, CRASH?
 
-		if((GET_MANHATTAN_DIST(receiver, t_source) <= range)) // coolstation change: we use manhattan dist
+		if((GET_MANHATTAN_DIST(receiver, t_source) <= range))
 			in_range += client
 	return in_range
+*/

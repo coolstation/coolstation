@@ -22,6 +22,7 @@
 			roll.file = "sound/machines/hot_roller_loop.ogg"
 			roll.repeat = 1
 			roll.volume = 60
+			roll.falloff = 2
 			sound_emitter.add(roll, "rolling")
 
 	emag_act(mob/user)

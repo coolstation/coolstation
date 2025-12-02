@@ -115,17 +115,31 @@
 	proxy = P
 	sound_zone_manager.register_listener(src)
 
-/datum/sound_listener_context/proc/apply_proxymob_effects(sound/S)
+/datum/sound_listener_context/proc/apply_proxymob_effects(sound/S, datum/sound_emitter/emitter)
 	. = S
-	if (proxy.ear_deaf || proxy.ear_disability)
-		S.volume *= 0.01
+	if (proxy.ears_protected_from_sound())
+		S.volume *= 0.02
+		S.environment = EAX_DRUGGED
+		S.echo = SPACED_ECHO
 		return
 
 	if (!(S.atom in view(range, proxy)))
 		S.volume *= 0.7
 
-	var/p_effect = attenuate_for_location(proxy)
-	S.volume *= p_effect
+	var/listener_atten = attenuate_for_location(proxy)
+	if(listener_atten <= SPACE_ATTEN_MIN)
+		if(emitter.spaced)
+			S.environment = SPACED_ENV
+			S.echo = SPACED_ECHO
+			S.volume += 0.75
+			return
+		S.environment = SPACED_ENV
+		S.echo = SPACED_ECHO
+		S.volume *= 0.01
+		return
+	S.environment = EAX_GENERIC
+	S.echo = ECHO_CLOSE
+	S.volume *= listener_atten
 
 /datum/sound_listener_context/proc/subscribe_to(datum/sound_emitter/E)
 	RegisterSignal(E, SIGNAL_SOUND_UPDATED, PROC_REF(on_sound_update))
@@ -150,15 +164,15 @@
 	// important note - clearing SOUND_UPDATE means that the sound will play FROM THE BEGINNING.
 	// this system was originally built with short repeating sounds in mind (machine hum, etc) however
 	// if you try to do something longer and more varied like music then this is very noticeable and unwanted.
-	// would best be handled by /datum/managed_sound using sound.len, tracking playback
+	// would best be handled by an expansion of /datum/managed_sound to use sound.len, tracking playback
 	// progress and modifying S.offset to start at the correct point
 	S.status &= ~SOUND_UPDATE
 	S.channel = chan
-	apply_proxymob_effects(S)
+	apply_proxymob_effects(S, emitter)
 	client << S
 
 /datum/sound_listener_context/proc/hear_once(sound/S, datum/sound_emitter/emitter)
-	apply_proxymob_effects(S)
+	apply_proxymob_effects(S, emitter)
 	client << S
 
 /datum/sound_listener_context/proc/stop_hearing(datum/sound_emitter/emitter)
@@ -173,7 +187,7 @@
 	var/sound/S = emitter.active_sound.get()
 	S.status |= SOUND_UPDATE
 	S.channel = chan
-	apply_proxymob_effects(S)
+	apply_proxymob_effects(S, emitter)
 	client << S
 
 /datum/sound_listener_context/proc/on_enter_range(datum/sound_emitter/E)

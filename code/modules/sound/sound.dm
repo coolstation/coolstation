@@ -1,5 +1,3 @@
-#define TOO_QUIET 0.9 //experimentally found to be 0.6 - raised due to lag, I don't care if it's super quiet because there's already shitloads of other sounds playing
-#define SPACE_ATTEN_MIN 0.5
 #define EARLY_RETURN_IF_QUIET(v) if (v < TOO_QUIET) return
 #define EARLY_CONTINUE_IF_QUIET(v) if (v < TOO_QUIET) continue
 //I ripped this rand straight out of generate_sound if you wanna fiddle with the random pitch variance
@@ -31,8 +29,6 @@
 	}\
 } while(false)
 
-#define MAX_SOUND_RANGE 33
-#define MAX_SPACED_RANGE 6 //diff range for when youre in a vaccuum
 #define CLIENT_IGNORES_SOUND(C) (C?.ignore_sound_flags && ((ignore_flag && C.ignore_sound_flags & ignore_flag) || C.ignore_sound_flags & SOUND_ALL))
 
 /// returns 0 to 1 based on air pressure in turf
@@ -200,7 +196,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 				falloffmult = falloff_cache[dist]
 			if (falloffmult == null)
 				scaled_dist = clamp(dist/(MAX_SOUND_RANGE+extrarange),0,1)
-				falloffmult = (1 - ((1.0542 * (0.18**-1.7)) / ((scaled_dist**-1.7) + (0.18**-1.7))))
+				falloffmult = (1 - (19.4518 / ((scaled_dist**-1.7) + (18.4517))))
 				if(extrarange == 0)
 					falloff_cache[dist] = falloffmult
 
@@ -769,11 +765,11 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 /proc/csound(var/name)
 	return soundCache[name]
 
+/*
 sound
 	disposing()
 		//LAGCHECK(LAG_LOW)
 		..()
-/*
 sound
 	disposing()
 		// Haha you cant delete me you fuck
@@ -802,14 +798,10 @@ sound
 		echo = initial(echo)
 */
 
-//hey what if we undefined all this crap too?
-#undef TOO_QUIET
+//hey what if we undefined some of this crap too?
 #undef DO_RANDOM_PITCH
-#undef SPACE_ATTEN_MIN
 #undef EARLY_RETURN_IF_QUIET
 #undef EARLY_CONTINUE_IF_QUIET
 #undef MAX_SOUND_RANGE
 #undef MAX_SPACED_RANGE
 #undef CLIENT_IGNORES_SOUND
-#undef SOURCE_ATTEN
-#undef LISTENER_ATTEN
