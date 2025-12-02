@@ -233,9 +233,8 @@
 								leavescan(WT, 1)
 								new /obj/item/raw_material/scrap_metal(WT)
 								if(prob(50))
-									WT.ReplaceWithLattice()
-								else
-									WT.ReplaceWithSpace()
+									new /obj/lattice(WT)
+								WT.ReplaceWithSpace()
 
 							var/turf/olddist = get_dist(src, src.target)
 							walk_to(src, src.target,1,5)
@@ -855,18 +854,16 @@
 				if(prob(32))
 					new /obj/item/raw_material/scrap_metal(T)
 			if(prob(50))
-				T.ReplaceWithLattice()
-			else
-				T.ReplaceWithSpace()
+				new /obj/lattice(T)
+			T.ReplaceWithSpace()
 		else
 			if(T && prob(90) && !istype(T, /turf/space))
 				new /obj/item/raw_material/scrap_metal(T)
 				if(prob(48))
 					new /obj/item/raw_material/scrap_metal(T)
 				if(prob(32))
-					T.ReplaceWithLattice()
-				else
-					T.ReplaceWithSpace()
+					new /obj/lattice(T)
+				T.ReplaceWithSpace()
 			for (var/obj/S in locate(point_x,point_y,src.z))
 				if(dam_type == 3 && !istype(S, /obj/critter))
 					leavescan(get_turf(S), 1)

@@ -135,7 +135,7 @@
 
 	var/turf/T = src.loc			// hide if turf is not intact
 									// but show if in space
-	if(istype(T, /turf/space) && !istype(T,/turf/space/fluid)) hide(0)
+	if(istype(T, /turf/space)) hide(0)
 	else if(level==1) hide(T.intact)
 
 	//cableimg = image(src.icon, src.loc, src.icon_state)

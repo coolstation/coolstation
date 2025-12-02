@@ -21,6 +21,8 @@
 /// Returns true if x is a reinforced wall
 #define isrwall(x) (istype(x,/turf/wall/r_wall)||istype(x,/turf/wall/auto/reinforced)||istype(x,/turf/wall/false_wall/reinforced))
 
+#define DELETE_LATTICES_IN(x) for (var/obj/lattice/lattice in x) { qdel(lattice) }
+
 /**
 	* Creates typepaths for an unsimulated turf, a simulated turf, an airless simulated turf, and an airless unsimulated turf at compile time.
 	*

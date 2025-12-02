@@ -298,9 +298,9 @@
 		if(W.hasProperty("frenzy"))
 			SPAWN_DBG(0)
 				var/frenzy = W.getProperty("frenzy")
-				W.click_delay -= frenzy
+				W.combat_click_delay -= frenzy
 				sleep(3 SECONDS)
-				W.click_delay += frenzy
+				W.combat_click_delay += frenzy
 		///////////////////////////
 
 		if (!attack_force)
@@ -420,9 +420,10 @@
 		if (istype(M, /obj/machinery/door/))
 			var/obj/machinery/door/D = M
 			D.Bumped(src) // Doesn't call that automatically for some inexplicable reason.
-		else if ((isliving(M)) && (!src.anchored))
+		/*else if ((isliving(M)) && (!src.anchored))
 			src.set_loc(M:loc)
-			src.frustration = 0
+			src.frustration = 0*/
+		..()
 
 	bullet_act(var/obj/projectile/P)
 		var/damage = 0

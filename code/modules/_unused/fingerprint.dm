@@ -9,8 +9,8 @@
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "clipboard0"
 	stamina_damage = 2
-	stamina_cost = 2
-	stamina_crit_chance = 1
+//	stamina_cost = 2
+//	stamina_crit_chance = 1
 
 /obj/item/fcardholder/attack_self(mob/user as mob)
 	var/dat = "<B>Clipboard</B><BR>"

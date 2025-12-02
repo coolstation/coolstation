@@ -1,5 +1,5 @@
 
-/// handles mobcritters
+/// handles mob ai
 datum/controller/process/mob_ai
 	setup()
 		name = "Mob AI"

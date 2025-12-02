@@ -49,6 +49,8 @@
 
 #elif defined(MAP_OVERRIDE_ATLAS)
 
+#elif defined(MAP_OVERRIDE_ALTBOX)
+
 #elif defined(MAP_OVERRIDE_BOBMAP)
 
 #elif defined(MAP_OVERRIDE_BOBMAPMINI)
@@ -62,6 +64,7 @@
 #define DESERT_MAP
 #define Z3_IS_A_STATION_LEVEL //Allows AIs to work (mostly) across upper and lower level
 #define Z3_IS_CAVES
+#define RAILWAY_Y 215
 
 #elif defined(MAP_OVERRIDE_CRAG)
 #define DESERT_MAP
@@ -82,6 +85,8 @@
 #define DESERT_MAP
 #define Z3_IS_A_STATION_LEVEL //Allows AIs to work (mostly) across upper and lower level
 #define Z3_IS_CAVES
+
+#elif defined(MAP_OVERRIDE_COOKIE)
 
 #elif defined(MAP_OVERRIDE_SPIRIT)
 

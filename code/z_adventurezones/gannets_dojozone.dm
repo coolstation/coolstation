@@ -163,8 +163,8 @@ Contents:
 	force = 8
 	throwforce = 5
 	stamina_damage = 24
-	stamina_cost = 45
-	stamina_crit_chance = 10
+//	stamina_cost = 45
+//	stamina_crit_chance = 10
 
 /obj/decal/fakeobjects/unfinished_katana
 

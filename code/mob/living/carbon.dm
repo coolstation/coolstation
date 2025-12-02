@@ -234,7 +234,6 @@
 		..(allow_dead, grunt=customGrunt)
 
 /mob/living/carbon/full_heal()
-	src.remove_ailments()
 	src.take_toxin_damage(-INFINITY)
 	src.take_oxygen_deprivation(-INFINITY)
 	src.change_misstep_chance(-INFINITY)

@@ -1381,8 +1381,8 @@ obj/decoration/ceilingfan
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	item_state = "protopistol"
 	stamina_damage = 0
-	stamina_cost = 4
-	stamina_crit_chance = 0
+//	stamina_cost = 4
+//	stamina_crit_chance = 0
 	throwforce = 0
 
 	attack_hand(mob/user as mob)
@@ -1415,8 +1415,8 @@ obj/decoration/ceilingfan
 	w_class = W_CLASS_SMALL
 	flags = FPRINT | TABLEPASS
 	stamina_damage = 0
-	stamina_cost = 4
-	stamina_crit_chance = 0
+//	stamina_cost = 4
+//	stamina_crit_chance = 0
 	var/list/proj_impacts = list()
 	var/image/proj_image = null
 	var/last_proj_update_time = null
@@ -1583,11 +1583,16 @@ obj/decoration/ceilingfan
 	density = 0
 	mouse_opacity = 0
 	bound_height = 64
-	plane = PLANE_NOSHADOW_BELOW
-	layer = TURF_LAYER - 0.1
+	plane = PLANE_FLOOR
+	layer = TURF_OVERLAY_LAYER
+
 	//Grabs turf color set in gehenna.dm for sand
 	New()
 		..()
+		STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen()
+		. = ..()
 		var/turf/T = get_turf(src)
 		src.color = T.color
 
@@ -1599,9 +1604,9 @@ obj/decoration/ceilingfan
 
 /obj/decoration/railbed/trans
 	icon_state = "railbedtrans"
-	New()
-		..()
-		src.color = null
+
+	generate_worldgen()
+		return
 
 /obj/decoration/railbed/trans/cracked1
 	icon_state = "railbedcracked1trans"

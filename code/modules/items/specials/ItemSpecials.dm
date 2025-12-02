@@ -458,6 +458,7 @@
 				var/turf/turf = get_step(master, direction)
 
 				var/obj/itemspecialeffect/simple/S = new specialEffect
+				S.clash_time = min(S.clash_time, master.combat_click_delay * 0.75)
 				if(src.animation_color)
 					S.color = src.animation_color
 				if(directional)
@@ -721,7 +722,7 @@
 			desc = "An AoE attack with a chance for a home run."
 
 			modify_attack_result(mob/user, mob/target, datum/attackResults/msgs)
-				if (msgs.damage > 0 && prob(master.stamina_crit_chance))
+				if (msgs.damage > 0 && prob(30))
 					var/turf/target_turf = get_edge_target_turf(target, get_dir(user, target))
 					target.throw_at(target_turf, 4, 1, throw_type = THROW_BASEBALL)
 					msgs.played_sound = 'sound/impact_sounds/bat_wood_crit.ogg'
@@ -1155,11 +1156,11 @@
 		cooldown = 0
 		moveDelay = 5
 		moveDelayDuration = 5
-		damageMult = 0.80
+		damageMult = 0.75
 
 		image = "dagger"
 		name = "Slice"
-		desc = "Attack twice in rapid succession."
+		desc = "Two weaker slices in rapid succession."
 
 		var/secondhitdelay = 2
 
@@ -1188,8 +1189,8 @@
 				if (!hit)
 					playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 0, 0.1, 1.4)
 
+				user.next_click += secondhitdelay
 				SPAWN_DBG(secondhitdelay)
-
 					turf = get_step(master, direction)
 					var/obj/itemspecialeffect/simple2/SS = new()
 					SS.setup(turf)
@@ -1276,7 +1277,7 @@
 
 		image = "flame"
 		name = "Flame"
-		desc = "Pop out a flame 1 tile away from you in a direction."
+		desc = "Pop out a flame 2 tiles away from you in a direction."
 
 		var/time = 6 SECONDS
 		var/tiny_time = 1 SECOND
@@ -1297,11 +1298,18 @@
 				if(direction == NORTHEAST || direction == NORTHWEST || direction == SOUTHEAST || direction == SOUTHWEST)
 					direction = (prob(50) ? turn(direction, 45) : turn(direction, -45))
 
-				var/turf/turf = get_step(master, direction)
+				var/turf/prev_turf = get_turf(master)
+				var/turf/turf = get_step(prev_turf, direction)
 
+				if(!turf.gas_cross(prev_turf))
+					return
+
+				prev_turf = turf
 				var/obj/itemspecialeffect/flame/S = new()
 				S.set_dir(direction)
-				turf = get_step(turf,S.dir)
+				turf = get_step(prev_turf,direction)
+				if(!turf.gas_cross(prev_turf))
+					turf = prev_turf
 
 				var/flame_succ = 0
 				if (master)
@@ -1951,6 +1959,9 @@
 	pixelaction(atom/target, params, mob/user, reach)
 		if(!isturf(target.loc) && !isturf(target)) return
 		if(!usable(user)) return
+		if(!params["left"] || !master || !get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			return
+		preUse(user)
 		var/direction = get_dir_pixel(user, target, params)
 		var/list/attacked = list()
 
@@ -2162,7 +2173,8 @@
 	desc = ""
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = ""
-	anchored = ANCHORED
+	anchored = ANCHORED_TECHNICAL
+	event_handler_flags = Z_ANCHORED
 	layer = EFFECTS_LAYER_1
 	pixel_x = -64
 	pixel_y = -64

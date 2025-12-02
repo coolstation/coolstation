@@ -64,8 +64,8 @@ A Flamethrower in various states of assembly
 	contraband = 5 //Heh
 	m_amt = 500
 	stamina_damage = 15
-	stamina_cost = 15
-	stamina_crit_chance = 1
+//	stamina_cost = 15
+//	stamina_crit_chance = 1
 	move_triggered = 1
 	spread_angle = 0
 	shoot_delay = 1 SECOND

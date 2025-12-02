@@ -22,8 +22,8 @@
 	m_amt = 30
 	g_amt = 30
 	stamina_damage = 10
-	stamina_cost = 18
-	stamina_crit_chance = 0
+//	stamina_cost = 18
+//	stamina_crit_chance = 0
 	rand_pos = 8
 	inventory_counter_enabled = 1
 	var/capacity = 20
@@ -185,7 +185,7 @@
 				src.welding = 0
 				return 0
 			boutput(user, "<span class='notice'>You will now weld when you attack.</span>")
-			src.force = 15
+			src.force = 12
 			hit_type = DAMAGE_BURN
 			src.tool_flags |= TOOL_OPENFLAME
 			set_icon_state("weldingtool-on" + src.icon_state_variant_suffix)

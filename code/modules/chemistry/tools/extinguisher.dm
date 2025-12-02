@@ -22,8 +22,8 @@
 	m_amt = 90
 	desc = "A portable container with a spray nozzle that contains specially mixed fire-fighting foam. The safety is removed, the nozzle pointed at the base of the fire, and the trigger squeezed to extinguish fire."
 	stamina_damage = 25
-	stamina_cost = 20
-	stamina_crit_chance = 35
+//	stamina_cost = 20
+//	stamina_crit_chance = 35
 	rand_pos = 8
 	inventory_counter_enabled = 1
 	move_triggered = 1

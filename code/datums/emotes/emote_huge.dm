@@ -14,6 +14,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 
 /datum/emote/fart
 	cooldown = 1 SECOND
+	possible_while = STAT_UNCONSCIOUS
 
 /datum/emote/fart/return_cooldown(mob/user, voluntary = 0)
 	var/tempcooldown = cooldown
@@ -26,9 +27,9 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			tempcooldown = 0.8*tempcooldown
 		if(user.reagents.has_reagent("refried_beans"))
 			tempcooldown = 0.9*tempcooldown
-		return tempcooldown
-	else
-		return cooldown
+	if(user.stat > STAT_ALIVE)
+		tempcooldown = 8*tempcooldown
+	return tempcooldown
 
 /datum/emote/fart/bio
 /datum/emote/fart/bio/enact(mob/living/carbon/human/user, voluntary = 0, param)
@@ -232,7 +233,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						message = "<B>[user]</B> lets out a tiny flaming fart!"
 						fireflash_s(T,0,user.reagents.composite_combust_temp)
 
-				if (T.turf_flags & CAN_BE_SPACE_SAMPLE)
+				if (T.turf_flags & IS_SPACE)
 					if (accident)
 						if (HAS_ATOM_PROPERTY(user, PROP_SPACEFARTS))
 							user.throw_at(get_edge_cheap(T, user.dir), 30, 1)
@@ -346,7 +347,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 
 
 /datum/emote/dance //The one, the only, the champion of all emotes (also boogie)
-	possible_while_dead = TRUE //if you're porting this back to goon remove this line, but I want the corpses to dance
+	possible_while = STAT_DEAD //if you're porting this back to goon remove this line, but I want the corpses to dance
 
 	///In the format of "<B>[user]</B> [dance_texts[n]]"
 	///The order of these is important, since they're expected to go with particular animations

@@ -41,9 +41,8 @@
 	health = 10
 
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
-
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 
 	New()
 		..()

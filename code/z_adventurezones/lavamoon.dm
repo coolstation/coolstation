@@ -1399,19 +1399,21 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 				if (!istype(otherLadder))
 					return
 				src.visible_message("[AM] falls down the ladder.")
-				AM.set_loc(get_turf(otherLadder))
+				SPAWN_DBG(0)
+					AM.set_loc(get_turf(otherLadder))
 		else if(ismob(AM))
 			var/mob/schmuck = AM
 			if ((schmuck.stat || schmuck.getStatusDuration("weakened")) && prob(30))
 				var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
 				if (!istype(otherLadder))
 					return
-				src.visible_message("[AM] falls down the ladder.")
 				random_brute_damage(schmuck, 10)
-				schmuck.show_text("You fall down the ladder!", "red")
 				schmuck.changeStatus("weakened", 3 SECONDS)
-				AM.set_loc(get_turf(otherLadder))
 				game_stats.Increment("workplacesafety")
+				SPAWN_DBG(0)
+					src.visible_message("[AM] falls down the ladder.")
+					AM.set_loc(get_turf(otherLadder))
+					schmuck.show_text("You fall down the ladder!", "red")
 
 	attack_ai(mob/user)
 		if (!istype(user, /mob/living/silicon/ai)) //even with the chicken feet AIs don't have enough limbs to try

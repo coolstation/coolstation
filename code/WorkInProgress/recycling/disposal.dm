@@ -1907,6 +1907,7 @@
 	var/target_z
 	var/id
 	icon_state = "pipe-t"
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
 	north
@@ -1990,7 +1991,6 @@
 	New()
 		..()
 		dpdir = dir
-		src.event_handler_flags |= USE_HASENTERED
 		SPAWN_DBG(1 DECI SECOND)
 			getlinked()
 
@@ -2005,7 +2005,7 @@
 		var/turf/T = get_turf(src)
 		if(T.intact)
 			return // this trunk is not exposed
-		if(ismob(AM))
+		if(isliving(AM))
 			var/mob/schmuck = AM
 			if ((schmuck.stat || schmuck.getStatusDuration("weakened")) && prob(50) || prob(10))
 				src.visible_message("[AM] falls down the pipe trunk.")
@@ -2015,19 +2015,19 @@
 				game_stats.Increment("workplacesafety")
 
 				var/obj/disposalholder/D = new (src)
-				D.set_loc(src)
 
-				AM.set_loc(D)
+				SPAWN_DBG(0)
+					AM.set_loc(D)
 
-				//flush time
-				if(ishuman(AM))
-					var/mob/living/carbon/human/H = AM
-					H.unlock_medal("Gay Luigi?", 1)
+					//flush time
+					if(ishuman(AM))
+						var/mob/living/carbon/human/H = AM
+						H.unlock_medal("Gay Luigi?", 1)
 
-				//D.start() wants a disposal unit
-				D.active = 1
-				D.set_dir(DOWN)
-				D.process()
+					//D.start() wants a disposal unit
+					D.active = 1
+					D.set_dir(DOWN)
+					D.process()
 
 
 

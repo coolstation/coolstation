@@ -78,8 +78,8 @@
 				src.throw_speed = 2
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 33/20
-				src.stamina_cost = STAMINA_ITEM_COST * 25/18
-				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 10/25
+//				src.stamina_cost = STAMINA_ITEM_COST * 25/18
+//				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 10/25
 				src.hit_type = DAMAGE_BLUNT
 				src.hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
 			if ("pulsing")
@@ -93,8 +93,8 @@
 				src.throw_speed = 3
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 5/20
-				src.stamina_cost = STAMINA_ITEM_COST * 5/18
-				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 1/25
+//				src.stamina_cost = STAMINA_ITEM_COST * 5/18
+//				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 1/25
 				src.hit_type = DAMAGE_BLUNT
 				src.hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
 			if ("screwing")
@@ -108,8 +108,8 @@
 				src.throw_speed = 3
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 10/20
-				src.stamina_cost = STAMINA_ITEM_COST * 10/18
-				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
+//				src.stamina_cost = STAMINA_ITEM_COST * 10/18
+//				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
 				src.hit_type = DAMAGE_STAB
 				src.hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 			if ("snipping")
@@ -123,8 +123,8 @@
 				src.throw_speed = 2
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 5/20
-				src.stamina_cost = STAMINA_ITEM_COST * 10/18
-				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
+//				src.stamina_cost = STAMINA_ITEM_COST * 10/18
+//				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
 				src.hit_type = DAMAGE_STAB
 				src.hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 			if ("wrenching")
@@ -138,8 +138,8 @@
 				src.throw_speed = 2
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 25/20
-				src.stamina_cost = STAMINA_ITEM_COST * 20/18
-				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 15/25
+//				src.stamina_cost = STAMINA_ITEM_COST * 20/18
+//				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 15/25
 				src.hit_type = DAMAGE_BLUNT
 				src.hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
 			if ("cutting")
@@ -153,8 +153,8 @@
 				src.throw_speed = 2
 				// taken from wirecutters because I don't know what's going on here
 				src.stamina_damage = STAMINA_ITEM_DMG * 5/20
-				src.stamina_cost = STAMINA_ITEM_COST * 10/18
-				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
+//				src.stamina_cost = STAMINA_ITEM_COST * 10/18
+//				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
 				src.hit_type = DAMAGE_CUT
 				src.hitsound = 'sound/impact_sounds/Flesh_Cut_1.ogg'
 			if("welding")
@@ -166,8 +166,8 @@
 				throw_range = 5
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 30/20
-				src.stamina_cost = STAMINA_ITEM_COST * 30/18
-				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 5/25
+//				src.stamina_cost = STAMINA_ITEM_COST * 30/18
+//				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 5/25
 				src.hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
 				if(get_fuel())
 					set_icon_state("[prefix]-weldingtool-on")

@@ -142,6 +142,12 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 	icon_state = "panelwindow"
 	opacity = 0
 
+/obj/indestructible/hospitalcavern
+	icon = 'icons/misc/worlds.dmi'
+	name = "asteroid"
+	desc = ""
+	icon_state = "cavern1"
+
 /turf/wall/setpieces/hospital/cavern
 	name = "asteroid"
 	desc = ""

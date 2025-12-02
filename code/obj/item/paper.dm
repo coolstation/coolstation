@@ -63,8 +63,8 @@
 	var/offset = 0
 
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 
 	var/sealed = 0 //Can you write on this with a pen?
 	var/list/stamps = null
@@ -1201,7 +1201,7 @@ as it may become compromised.
 	throw_range = 15
 	m_amt = 60
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	rand_pos = 8
 	var/special_mode = null
 	var/is_reassignable = 1

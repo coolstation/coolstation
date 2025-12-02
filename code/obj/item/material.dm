@@ -6,6 +6,7 @@
 	throwforce = 6
 	value = 70 //base commodity price
 	burn_type = 1
+	stack_type = /obj/item/raw_material/
 
 	var/material_name = "Ore" //text to display for this ore in manufacturers
 	var/initial_material_name = null // used to store what the ore is
@@ -612,8 +613,8 @@
 	g_amt = 3750
 	burn_type = 1
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	burn_possible = FALSE
 	value = 5
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER

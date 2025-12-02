@@ -36,7 +36,7 @@
 
 	var/obj/item/device/energy_shield/energy_shield = null
 
-	var/custom_gib_handler = null
+	var/custom_gib_handler = /proc/gibs
 	var/obj/decal/cleanable/custom_vomit_type = /obj/decal/cleanable/vomit
 
 	var/list/mob/dead/target_observer/observers = list()
@@ -239,6 +239,9 @@
 	var/ai_tick_schedule = null
 
 	var/last_pulled_time = 0
+
+	var/drug_upper = 0
+	var/drug_downer = 0
 
 //obj/item/setTwoHanded calls this if the item is inside a mob to enable the mob to handle UI and hand updates as the item changes to or from 2-hand
 /mob/proc/updateTwoHanded(var/obj/item/I, var/twoHanded = 1)
@@ -1788,7 +1791,7 @@
 		for(var/atom/A in get_our_fluids_here)
 			if(isturf(A))
 				var/turf/T = A
-				T.fluid_react(src.reagents, src.reagents.total_volume, airborne=prob(10))
+				T.fluid_react(src.reagents, src.reagents.total_volume)//, airborne=prob(10))
 				continue
 			if(istype(A, /obj/decal/cleanable)) // expand reagents
 				if(isnull(A.reagents))
@@ -2412,8 +2415,10 @@
 
 /mob/proc/full_heal()
 	src.HealDamage("All", 100000, 100000)
+	src.dizziness = 0
 	src.drowsyness = 0
 	src.stuttering = 0
+	src.jitteriness = 0
 	src.losebreath = 0
 	src.delStatus("paralysis")
 	src.delStatus("stunned")
@@ -3092,7 +3097,7 @@
 	set name = "Point"
 	src.point_at(A)
 
-/mob/proc/point_at(var/atom/target) //overriden by living and dead
+/mob/proc/point_at(var/atom/target, var/pixel_x, var/pixel_y) //overriden by living and dead
 	.=0
 
 /mob/verb/pull_verb(atom/movable/A as mob|obj in view(1, get_turf(usr)))
@@ -3164,7 +3169,7 @@
 	if (src.lying)
 		return CANT_SWIM_LYING
 	var/turf/T = get_turf(src)
-	if (!istype(T, /turf/space/fluid) && T.active_liquid?.last_depth_level < 3)
+	if (!istype(T, /turf/space/fluid/ocean) && T.active_liquid?.last_depth_level < 3)
 		return CANT_SWIM_NO_GODDAMN_WATER
 	src.setStatus("swimming", null)
 	return CAN_SWIM
@@ -3202,16 +3207,16 @@
 				break
 
 	else //Try the old ocean hole system, I don't know if this is used anymore
-		var/turf/space/fluid/trenchfloor = src.loc
+		var/turf/space/fluid/ocean/trenchfloor = src.loc
 		if (!istype(trenchfloor))
 			boutput(src, "<span class='alert'>There's a ceiling above you, go try again outside.</span>", group = "swimtime:)") //don't give me smartassery about walls
 			return
-		for(var/turf/space/fluid/T in range(5,trenchfloor))
+		for(var/turf/space/fluid/ocean/T in range(5,trenchfloor))
 			if(T.linked_hole)
 				actions.start(new/datum/action/bar/private/swim_cross_z(T.linked_hole), src)
 				return
 			else if (istype(get_area(T), /area/trench_landing)) //the trench landing is weird, this is seems to be what sea ladders do?
-				actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/warp_z5/edge])), src)
+				actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/ocean/warp_z5/edge])), src)
 				return
 		boutput(src, "<span class='alert'>There's no nearby way up, shit.</span>", group = "swimtime:)") //RIP
 	return
@@ -3301,3 +3306,6 @@
 //Observers bypass this check anyway, but regardless
 /mob/dead/can_climb_ladder(silent = FALSE)
 	return TRUE
+
+/mob/proc/stimulants_and_sedatives()
+	return

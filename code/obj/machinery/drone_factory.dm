@@ -128,6 +128,7 @@ var/global/list/ghostdrone_candidates = list()
 	pass_unstable = TRUE
 	layer = 5 // above mobs hopefully
 	mats = 0
+	event_handler_flags = USE_CANPASS | USE_FLUID_ENTER
 	var/factory_section = 1 // can be 1 to 3
 	var/id = "ghostdrone" // the belts through the factory should be set to the same as the factory pieces so they can control them
 	var/obj/item/ghostdrone_assembly/current_assembly = null
@@ -174,7 +175,7 @@ var/global/list/ghostdrone_candidates = list()
 		if (src.conveyors.len)
 			src.conveyors.len = 0
 
-	Cross(atom/movable/O)
+	CanPass(atom/movable/O)
 		if (!istype(O, /obj/item/ghostdrone_assembly))
 			return ..()
 		if (src.current_assembly) // we're full

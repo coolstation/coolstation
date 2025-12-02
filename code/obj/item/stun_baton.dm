@@ -24,8 +24,8 @@
 	mats = list("MET-3"=10, "CON-2"=10)
 	contraband = 4
 	stamina_damage = 15
-	stamina_cost = 21
-	stamina_crit_chance = 5
+//	stamina_cost = 21
+//	stamina_crit_chance = 5
 	item_function_flags = USE_INTENT_SWITCH_TRIGGER
 
 	var/icon_on = "stunbaton_active"
@@ -415,7 +415,7 @@
 	icon_on = "baton"
 	icon_off = "baton"
 	stamina_damage = 105
-	stamina_cost = 25
+//	stamina_cost = 25
 	cost_normal = 0
 	can_swap_cell = 0
 
@@ -430,9 +430,10 @@
 		victim.changeStatus("weakened", 8 SECONDS)
 		victim.force_laydown_standup()
 		victim.remove_stamina(src.stamina_damage)
+/*
 		if (user && ismob(user) && user.get_stamina() >= STAMINA_MIN_ATTACK)
 			user.remove_stamina(src.stamina_cost)
-
+*/
 
 /obj/item/baton/ntso
 	name = "extendable stun baton"

@@ -114,10 +114,10 @@
 	proc/locker_sound() //I COULDNT THINK OF A BETTER WAY TO DO THIS BUT ITS FUCKING ANNOYING THE OLD WAY
 		if (src.secure)
 			if (src.locked && !src.open)
-				playsound(src,"sound/machines/bweep.ogg",50,0,0,0.7)
+				playsound(src.loc,"sound/machines/bweep.ogg",10,0,-10,0.7)
 				return
 			else
-				playsound(src,"sound/machines/bweep.ogg",50)
+				playsound(src.loc,"sound/machines/bweep.ogg",10,0,-10)
 
 	emp_act()
 		if (!src.open && length(src.contents))

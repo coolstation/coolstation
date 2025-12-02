@@ -1618,6 +1618,8 @@
 				if(how_miasma > 4)
 					. += " You might get sick."
 				#endif
+
+/*
 /datum/statusEffect/sandy
 	id = "sandy"
 	name = "Sandy"
@@ -1651,6 +1653,7 @@
 						S.create_overlay(states[2], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //awawa
 				else
 					S.create_overlay("smear2", "#9a865a", direct, 'icons/obj/decals/blood.dmi')
+*/
 
 /datum/statusEffect/dripping_paint
 	id = "marker_painted"
@@ -1744,7 +1747,7 @@
 		animate(owner, pixel_y = 0)
 		REMOVE_ATOM_PROPERTY(ffs, PROP_ATOM_FLOATING, src)
 		REMOVE_ATOM_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
-		var/turf/space/fluid/warp_z5/trenchhole = owner.loc
+		var/turf/space/fluid/ocean/warp_z5/trenchhole = owner.loc
 		ON_COOLDOWN(owner,"re-swim", 0.5 SECONDS) //Small cooldown so the trench hole doesn't immediately put the mob on swimming again (they plummet instead :D)
 		var/end_z_cross = TRUE
 		if (ishuman(src)) //let jetpack fans go up and down

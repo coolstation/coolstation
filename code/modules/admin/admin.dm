@@ -4933,9 +4933,11 @@ var/global/noir = 0
 	var/chosen
 	if(matches.len == 1)
 		chosen = matches[1]
+		if(chosen in list(/database, /client, /icon, /sound, /savefile))
+			return null
 	else
 		var/safe_matches = matches - list(/database, /client, /icon, /sound, /savefile)
-		chosen = input(usr, "Select an atom type", "Matches for pattern",null) as null|anything in safe_matches
+		chosen = input(usr, "Select an atom type", "Matches for pattern", null) as null|anything in safe_matches
 		if(!chosen) // experimental de-TGUIing - warc
 			return null
 
@@ -4951,7 +4953,7 @@ var/global/noir = 0
 	var/client/client = usr.client
 
 	if (client.holder.level >= LEVEL_PA)
-		var/chosen = get_one_match(object, use_concrete_types = FALSE)
+		var/chosen = get_one_match(object, use_concrete_types = TRUE)
 
 		if (chosen)
 			if (ispath(chosen, /turf))

@@ -420,7 +420,7 @@
 			if (!target)
 				return
 
-			worldgen_hold = TRUE
+			worldgen_hold |= WORLDGEN_HOLD_MINING_MAGNET
 
 			if (!wall_bits.len)
 				wall_bits = target.generate_walls()
@@ -473,9 +473,14 @@
 					M.invisibility = 1
 				active = 0
 				boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
+				worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+				if(!worldgen_hold)
+					initialize_worldgen()
 				return
 
-			initialize_worldgen()
+			worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+			if(!worldgen_hold)
+				initialize_worldgen()
 
 			sleep(sleep_time)
 			if (malfunctioning && prob(20))
@@ -656,7 +661,7 @@
 					mining_apc.zapStuff()
 
 	proc/pull_new_source(var/selectable_encounter_id = null)
-		worldgen_hold = TRUE
+		worldgen_hold |= WORLDGEN_HOLD_MINING_MAGNET
 
 		for (var/obj/forcefield/mining/M in mining_controls.magnet_shields)
 			M.opacity = 1
@@ -714,8 +719,14 @@
 				M.invisibility = 1
 			active = 0
 			boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
+			worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+			if(!worldgen_hold)
+				initialize_worldgen()
 			return
-		initialize_worldgen()
+
+		worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+		if(!worldgen_hold)
+			initialize_worldgen()
 
 		sleep(sleep_time)
 		if (malfunctioning && prob(20))
@@ -2508,3 +2519,37 @@ var/global/list/cargopads = list()
 
 	ex_act(severity)
 		return
+
+/obj/decal/mining_display
+	name = "asteroid belt map"
+	icon = 'icons/obj/large/96x96.dmi'
+	icon_state = "mining_map"
+	anchored = ANCHORED
+	var/zlevel = AST_ZLEVEL
+	layer = OBJ_LAYER - 0.05
+	bound_x = 96
+	bound_y = 96
+
+	New()
+		. = ..()
+		STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen()
+		. = ..()
+		if(hotspot_controller && hotspot_controller.map["[src.zlevel]"])
+			var/image/map_overlay = image(hotspot_controller.map["[src.zlevel]"], layer = src.layer - 0.01)
+			map_overlay.transform = matrix(0.125, MATRIX_SCALE)
+			map_overlay.pixel_x = -252
+			map_overlay.pixel_y = -252
+			src.UpdateOverlays(map_overlay, "map_overlay")
+
+	examine(mob/user)
+		if (user.client && hotspot_controller)
+			hotspot_controller.show_map(user.client, src.zlevel)
+			return list()
+		else
+			return ..()
+
+/obj/decal/mining_display/gehenna
+	name = "local cave map"
+	zlevel = GEH_ZLEVEL

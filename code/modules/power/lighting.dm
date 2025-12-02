@@ -211,6 +211,7 @@
 			A.remove_light(src)
 		if (light)
 			light.dispose()
+			light = null
 		..()
 
 	//auto position these lights so i don't have to mess with dirs in the map editor that's annoying!!!

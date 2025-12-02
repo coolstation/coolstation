@@ -85,21 +85,23 @@ datum
 			var/counter = 1 //Data is conserved...so some jerkbag could inject a monkey with this, wait for data to build up, then extract some instant KO juice.  Dumb.
 			value = 5
 			taste = "like opiates"
+			downer = 5
+			downer_overdose = 10
 
 			on_add()
 				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
-					APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine", 75)
-					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
+					APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine", 75)
+					//APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, "r_morphine")
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
+				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
-					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "morphine")
-					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
+					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine")
+					//REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, "r_morphine")
 				return
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -107,6 +109,7 @@ datum
 				if(!counter) counter = 1
 				//don't do shit if there's naloxone in you
 				if(holder.has_reagent("naloxone"))
+					M.drug_downer -= src.downer
 					..()
 					return
 
@@ -133,6 +136,10 @@ datum
 
 			do_overdose(var/severity, var/mob/living/M, var/mult = 1)
 				if(!M) M = holder.my_atom
+				if(holder.has_reagent("naloxone"))
+					M.drug_downer -= src.downer_overdose
+					..()
+					return
 				if (counter < 35) // OD makes morphine act significantly faster
 					counter = 35
 				..()
@@ -156,14 +163,16 @@ datum
 				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
-					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
+					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine")
+					//REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, "r_morphine")
 				return
 
 			on_remove()
 				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
-					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, src.type)
+					APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine", 75)
+					//APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/morphine, "r_morphine")
 				return
 
 		//knock people out, sure
@@ -191,6 +200,8 @@ datum
 			value = 5
 			evaporates_cleanly = TRUE
 			taste = "aromatic"
+			downer = 5
+			downer_overdose = 10
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -320,6 +331,8 @@ datum
 			addiction_prob = 6
 			overdose = 30
 			value = 7 // Okay there are two recipes, so two different values... I'll just go with the lower one.
+			downer = 3
+			downer_overdose = 2
 			taste = "like medicine"
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
@@ -614,6 +627,8 @@ datum
 			value = 7
 			stun_resist = 31
 			taste = "tangy"
+			downer = 6
+			downer_overdose = 3
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -801,6 +816,8 @@ datum
 			transparency = 40
 			value = 3
 			taste = "smelly"
+			upper = 4
+			upper_overdose = 10
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -899,11 +916,14 @@ datum
 			transparency = 255
 			value = 8 // 2c + 3c + 1c + 1c + 1c
 			taste = "suspicious"
+			downer = 4
+			downer_overdose = 6
 
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_haloperidol", 0.25)
 					M.change_misstep_chance(25)
 				return
 
@@ -911,6 +931,7 @@ datum
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
+					REMOVE_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_haloperidol")
 				return
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
@@ -971,6 +992,8 @@ datum
 			value = 17 // 5c + 5c + 4c + 1c + 1c + 1c
 			stun_resist = 10
 			taste = "bad"
+			upper = 3
+			upper_overdose = 7
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -1294,10 +1317,9 @@ datum
 			var/remove_buff = 0
 			stun_resist = 15
 			taste = "tingly"
-/*
-			pooled()
-				..()
-*/
+			upper = 2
+			upper_overdose = 3
+
 			on_add()
 				if(ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
@@ -1398,6 +1420,8 @@ datum
 			addiction_min = 10
 			value = 10 // 4 3 1 1 1
 			taste = "like medicine"
+			downer = 3
+			downer_overdose = 2
 
 			on_add()
 				if(ismob(holder?.my_atom))
@@ -1569,11 +1593,9 @@ datum
 			var/total_misstep = 0
 			value = 18 // 5 4 5 3 1
 			taste = "bad"
-/*
-			pooled()
-				..()
-				remove_buff = 0
-*/
+			upper = 3
+			upper_overdose = 2
+
 			on_add()
 				if(istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					remove_buff = holder.my_atom:add_stam_mod_max("atropine", -30)
@@ -1706,6 +1728,8 @@ datum
 			value = 4 // 1 1 1 1
 			overdose = 10
 			taste = "dated"
+			downer = 8
+			downer_overdose = 7
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if(!M) M = holder.my_atom

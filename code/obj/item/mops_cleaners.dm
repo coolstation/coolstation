@@ -270,8 +270,8 @@ WET FLOOR SIGN
 	w_class = W_CLASS_NORMAL
 	flags = FPRINT | TABLEPASS
 	stamina_damage = 40
-	stamina_cost = 15
-	stamina_crit_chance = 10
+//	stamina_cost = 15
+//	stamina_crit_chance = 10
 
 /obj/item/mop/orange
 	desc = "The world of janitalia wouldn't be complete without a mop. This one comes in orange!"
@@ -790,8 +790,8 @@ WET FLOOR SIGN
 	w_class = W_CLASS_SMALL
 	flags = FPRINT | TABLEPASS
 	stamina_damage = 15
-	stamina_cost = 4
-	stamina_crit_chance = 10
+//	stamina_cost = 4
+//	stamina_crit_chance = 10
 
 	New()
 		..()
