@@ -479,9 +479,11 @@ ABSTRACT_TYPE(/datum/directed_broadcast/interstitial)
 	priority = DEFAULT_PROGRAMMING_PRIORITY
 	group_messages = TRUE
 	dispose_on_end = TRUE // same interstitial might play on multiple channels at different times, need to be instantiated. Not that it matters as much here
+	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_BROADCAST_RECEIVERS)
 
 /datum/directed_broadcast/interstitial/tv
 	id = "tv_int1"
+	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS)
 
 	messages = list(\
 		list("*Bweoooow*", 1 SECONDS, null, "emergency-B"),\
@@ -506,6 +508,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast/interstitial)
 
 /datum/directed_broadcast/interstitial/radio
 	id = "radio_int1"
+	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS)
 
 	messages = list(\
 		list("*pling*", 1 SECONDS),\
@@ -554,40 +557,36 @@ ABSTRACT_TYPE(/datum/directed_broadcast_scheduler)
 	//General idea: 2-5 ads - programme - interstitial - programme (-> repeating)
 	//Assumption baked into this for queueing to work: all ads and programmes have the same priority
 	var/list/cached_list = broadcast_controls.cache_ads_by_channel[channel]
-	var/list/ads = cached_list.Copy()
+	var/list/ads = (cached_list ? cached_list.Copy() : null)
 	cached_list = broadcast_controls.cache_programmes_by_channel[channel]
-	var/list/programmes = cached_list.Copy()
+	var/list/programmes = (cached_list ? cached_list.Copy() : null)
 	cached_list = broadcast_controls.cache_interstitials_by_channel[channel]
-	var/list/interstitials = cached_list.Copy()
+	var/list/interstitials = (cached_list ? cached_list.Copy() : null)
 
 	for(var/i in 1 to rand(2,3)) //make upper bound 5 or so once we have sufficient distinct ads pls.
 		while(length(ads))
 			var/datum/directed_broadcast/pick = pick(ads)
 			ads -= pick
-			if (channel in initial(pick.broadcast_channels))
-				broadcast_controls.broadcast_start(new pick, override_channels = list(channel))
-				break
+			broadcast_controls.broadcast_start(new pick, override_channels = list(channel))
+			break
 
 	while(length(programmes))
 		var/datum/directed_broadcast/pick2 = pick(programmes)
 		programmes -= pick2
-		if (channel in initial(pick2.broadcast_channels))
-			broadcast_controls.broadcast_start(new pick2, override_channels = list(channel))
-			break
+		broadcast_controls.broadcast_start(new pick2, override_channels = list(channel))
+		break
 
 	while(length(interstitials))
 		var/datum/directed_broadcast/pick3 = pick(interstitials)
 		interstitials -= pick3
-		if (channel in initial(pick3.broadcast_channels))
-			broadcast_controls.broadcast_start(new pick3, override_channels = list(channel))
-			break
+		broadcast_controls.broadcast_start(new pick3, override_channels = list(channel))
+		break
 
 	while(length(programmes))
 		var/datum/directed_broadcast/pick4 = pick(programmes)
 		programmes -= pick4
-		if (channel in initial(pick4.broadcast_channels))
-			broadcast_controls.broadcast_start(new pick4, override_channels = list(channel))
-			break
+		broadcast_controls.broadcast_start(new pick4, override_channels = list(channel))
+		break
 
 	/*
 	proc/filter_trait_hats(var/type)

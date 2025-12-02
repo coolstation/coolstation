@@ -26,7 +26,7 @@ var/datum/broadcast_controller/broadcast_controls
 		for (var/a_channel as anything in autoschedule_channels)
 			autoschedule(channel = a_channel)
 //fill continuously broadcasting channels with crap as they go through
-/datum/controller/process/broadcasting/proc/autoschedule(ended_broadcast = null, channel, programming_buffer = 0)
+/datum/controller/process/broadcasting/proc/autoschedule(controller ,ended_broadcast = null, channel, programming_buffer = 0) //first arg is useless but signals are built that way
 	if (!(channel in autoschedule_channels))
 		return
 	if (programming_buffer >= MINIMUM_BUFFER_SIZE)

@@ -23,27 +23,36 @@
 
 	//build channel caches
 	for(var/type1 in concrete_typesof(/datum/directed_broadcast/programme, FALSE))
-		var/datum/directed_broadcast/instance1 = new (type1)
+		var/datum/directed_broadcast/instance1 = new type1()
 		for (var/channel1 as anything in instance1.broadcast_channels)
 			if (!(channel1 in cache_programmes_by_channel))
 				continue
-			cache_programmes_by_channel[channel1] += type1
+			if (islist(cache_programmes_by_channel[channel1]))
+				cache_programmes_by_channel[channel1] += type1
+			else
+				cache_programmes_by_channel[channel1] = list(type1)
 		qdel(instance1)
 
 	for(var/type2 in concrete_typesof(/datum/directed_broadcast/interstitial, FALSE))
-		var/datum/directed_broadcast/instance2 = new (type2)
+		var/datum/directed_broadcast/instance2 = new type2()
 		for (var/channel2 as anything in instance2.broadcast_channels)
 			if (!(channel2 in cache_interstitials_by_channel))
 				continue
-			cache_interstitials_by_channel[channel2] += type2
+			if (islist(cache_interstitials_by_channel[channel2]))
+				cache_interstitials_by_channel[channel2] += type2
+			else
+				cache_interstitials_by_channel[channel2] = list(type2)
 		qdel(instance2)
 
 	for(var/type3 in concrete_typesof(/datum/directed_broadcast/ad, FALSE))
-		var/datum/directed_broadcast/instance3 = new (type3)
+		var/datum/directed_broadcast/instance3 = new type3()
 		for (var/channel3 as anything in instance3.broadcast_channels)
 			if (!(channel3 in cache_ads_by_channel))
 				continue
-			cache_ads_by_channel[channel3] += type3
+			if (islist(cache_ads_by_channel[channel3]))
+				cache_ads_by_channel[channel3] += type3
+			else
+				cache_ads_by_channel[channel3] = list(type3)
 		qdel(instance3)
 
 /datum/broadcast_controller/proc/process()
