@@ -526,18 +526,19 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	is_atmos_simulated = FALSE
 
 	Entered(atom/movable/O) // TODO: make this better and not copy n pasted from area_that_kills_you_if_you_enter_it
-		..()
 		if (isobserver(O))
 			return
 		if (ismob(O))
 			var/mob/jerk = O
 			if ((jerk.client && jerk.client.flying))
 				return
-			setdead(jerk)
-			jerk.remove()
+			SPAWN_DBG(0)
+				setdead(jerk)
+				jerk.remove()
 		else if (isobj(O) && !istype(O, /obj/overlay/tile_effect))
-			qdel(O)
-		return
+			SPAWN_DBG(0)
+				qdel(O)
+		. = ..()
 
 	dark
 		force_fullbright = 0
@@ -582,11 +583,14 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			var/mob/jerk = O
 			if ((jerk.client && jerk.client.flying))
 				return
-			setdead(jerk)
-			jerk.remove()
+			SPAWN_DBG(0)
+				setdead(jerk)
+				jerk.remove()
 		else if (isobj(O) && !istype(O, /obj/overlay/tile_effect))
-			qdel(O)
+			SPAWN_DBG(0)
+				qdel(O)
 		. = ..()
+
 /area/battle_royale_spawn //People entering VR or exiting VR with stupid exploits are jerks.
 	name = "Battle Royale warp zone"
 	skip_sims = 1
