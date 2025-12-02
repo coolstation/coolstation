@@ -31,7 +31,7 @@
 
 /mob/Login()
 	. = ..()
-	SPAWN_DBG(0)
+	SPAWN_DBG(1 SECOND)
 		if (client.listener_context)
 			// results in sounds restarting when switching mobs... not great, not terrible
 			var/slc = client.listener_context
