@@ -108,7 +108,7 @@
 	bomb_dmi = image('icons/obj/atmospherics/canisterbomb.dmi')
 	setup_sound()
 
-// credit Inorien from VGStation - TODO CREDIT PER LICENSE
+// credit Inorien
 /obj/machinery/portable_atmospherics/canister/setup_sound()
 	sound_emitter = new(src)
 	if (sound_emitter)
@@ -246,6 +246,8 @@
 			else
 				loc.assume_air(removed)
 
+			if(!src.sound_emitter.active_sound)
+				src.sound_emitter.play("gas_hiss")
 			src.set_sound_volume()
 		else
 			src.sound_emitter.deactivate()

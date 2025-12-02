@@ -58,6 +58,16 @@
 	MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, "[alarm_frequency]")
 
 	update_icon()
+	setup_sound()
+
+/obj/machinery/firealarm/setup_sound()
+	sound_emitter = new(src)
+	if (sound_emitter)
+		var/sound/alarm = sound()
+		alarm.file = "sound/machines/firealarm.ogg"
+		alarm.repeat = 1
+		alarm.volume = 60
+		sound_emitter.add(alarm, "alarm")
 
 /obj/machinery/firealarm/proc/update_icon()
 	switch(icon_state)
@@ -164,8 +174,9 @@
 	SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"alertReset")
 	A.firereset()	//Icon state is set to "fire0" in A.firereset()
 
-	if (src.ringlimiter)
-		src.ringlimiter = 0
+	//if (src.ringlimiter)
+	//	src.ringlimiter = 0
+	src.sound_emitter.deactivate()
 
 	update_icon()
 	src.dont_spam = 1	//hey let's try having the fire alarm reset set protection against alarming again
@@ -193,9 +204,12 @@
 	post_alert(1)
 
 	SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"alertTriggered")
+/*
 	if (!src.ringlimiter)
 		src.ringlimiter = 1
 		playsound(src.loc, "sound/machines/firealarm.ogg", 50, 1)
+*/
+	src.sound_emitter.play("alarm")
 
 	update_icon()
 	src.dont_spam = 1
