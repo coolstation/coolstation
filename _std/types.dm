@@ -221,9 +221,11 @@ var/list/list/by_cat = list()
 #define TR_CAT_SOUL_TRACKING_ITEMS "soul_tracking_items"
 #define TR_CAT_CLOWN_DISBELIEF_MOBS "clown_disbelief_mobs"
 #define TR_CAT_SPIDER_FILTER_MOBS "spider_filter_mobs"
-#define TR_CAT_RADIO_BROADCAST_RECEIVERS "radio_receivers" //demo channel
+#define TR_CAT_RADIO_BROADCAST_RECEIVERS "radio_receivers" //default radio channel
+#define TR_CAT_RADIO_ALT_BROADCAST_RECEIVERS "radio2_receivers" //second radio channel
 //#define TR_CAT_FINITE_BROADCAST_RECEIVERS "finite_radio_receivers" //demo channel
-#define TR_CAT_TEEVEE_BROADCAST_RECEIVERS "teevee_broadcast_receivers" //demo channel, but this one gets video blasted at it
+#define TR_CAT_TEEVEE_BROADCAST_RECEIVERS "teevee_receivers" //default television channel
+#define TR_CAT_TEEVEE_ALT_BROADCAST_RECEIVERS "teevee2_receivers" //second television channel
 #define TR_CAT_CEILING_BROADCAST_DEFAULT "ceiling_speakers" //maybe make this the same as the generic radio cat?
 // powernets? processing_items?
 // mobs? ai-mobs?

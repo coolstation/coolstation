@@ -8,6 +8,8 @@ ABSTRACT_TYPE(/obj/tuneable_receiver)
 	var/on = FALSE
 	var/station = TR_CAT_RADIO_BROADCAST_RECEIVERS
 	var/video_dmi = null //Optional:
+	var/list/eligible_stations
+	var/icon_base = null
 
 	icon_state = "transmitter"
 	icon = 'icons/obj/machines/loudspeakers.dmi'
@@ -25,11 +27,74 @@ ABSTRACT_TYPE(/obj/tuneable_receiver)
 			UNSUBSCRIBE_BROADCAST(station)
 		..()
 
+	attack_ai(mob/user)
+		attack_hand(user)
+
+	attack_hand(mob/user, params, location, control)
+		..()
+		if (!can_act(user, TRUE))
+			return
+		src.add_dialog(user)
+		var/HTML = "<html><head><title>[name] Controls</title></head><body>"
+		HTML += "<a href='byond://?src=\ref[src];set_on=1'>Turn [src.on ? "off" : "on"]</a></b><br><hr>"
+		for(var/cat in src.eligible_stations)
+			HTML += "<b>[src.eligible_stations[cat]]: [src.station == cat ? "tuned to" : "<a href='byond://?src=\ref[src];set_channel=[cat]'>tune in</a>"] </b><br>"
+			//Would love to do actual radio buttons here but I don't have any example to work off of for that
+		HTML += "</body></html>"
+
+		user.Browse(HTML,"window=tune_receiver")
+
+
+	Topic(href, href_list)
+		..()
+		if (!can_act(usr, TRUE))
+			return
+
+		if (href_list["set_channel"])
+			if (on)
+				UNSUBSCRIBE_BROADCAST(station)
+				SUBSCRIBE_BROADCAST(href_list["set_channel"], (video_dmi ? video_dmi : 1))
+			station = href_list["set_channel"]
+		if (href_list["set_on"])
+			if (on)
+				UNSUBSCRIBE_BROADCAST(station)
+			else
+				SUBSCRIBE_BROADCAST(station, (video_dmi ? video_dmi : 1))
+			on = !on
+		update_icon()
+		updateDialog()
+
+/obj/tuneable_receiver/proc/update_icon()
+	if (video_dmi)
+		if (on)
+			if (!GetOverlayImage(BROADCAST_VIDEO_KEY))
+				UpdateOverlays(image(video_dmi, "static"),BROADCAST_VIDEO_KEY)
+		else
+			UpdateOverlays(null,BROADCAST_VIDEO_KEY)
+
 /obj/tuneable_receiver/radio
+	name = "neat radio"
+	desc = "Can tune into at least two different stations! Wow!"
+	icon_state = "transmitter"
+	icon = 'icons/obj/machines/loudspeakers.dmi'
+	icon_base = "transmitter"
+	station = TR_CAT_RADIO_BROADCAST_RECEIVERS
+	eligible_stations = list(TR_CAT_RADIO_BROADCAST_RECEIVERS = "Station One", TR_CAT_RADIO_ALT_BROADCAST_RECEIVERS = "Gare Deuxieme") //Yes, warc, you're welcome ;3
+
+	update_icon()
+		icon_state = "[icon_base][on ? "-on" : ""]"
+		..()
+
 
 /obj/tuneable_receiver/teevee
+	name = "spiffy television"
+	desc = "Can tune into at least two different stations! Wow!"
+	icon_state = "POCteevee"
+	icon = 'icons/misc/broadcastsPOC.dmi'
 	video_dmi = 'icons/misc/broadcastsPOC.dmi'
-	//var/icon_base = "POCteevee"
+	station = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+	eligible_stations = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS = "Station One", TR_CAT_TEEVEE_ALT_BROADCAST_RECEIVERS = "Station Two")
+	icon_base = "POCteevee"
 
 /obj/ceiling_speaker
 	name = "ceiling loudspeaker"

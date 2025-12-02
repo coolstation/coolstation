@@ -3,7 +3,6 @@
 
 #define DEFAULT_PROGRAMMING_PRIORITY 2
 
-
 /*
 ABOUT (TECHNICAL):
 directed broadcasts loop messages over a list of atoms, think like a radio broadcast
@@ -288,7 +287,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 	priority = DEFAULT_PROGRAMMING_PRIORITY
 	group_messages = TRUE
 	//direct children of this can go both on radios and TVs
-	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_BROADCAST_RECEIVERS)
+	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_RADIO_ALT_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_ALT_BROADCAST_RECEIVERS)
 	dispose_on_end = TRUE // same ad might play on multiple channels at different times, need to be instantiated
 
 	speakers = list("announcer" = list("Announcer", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
@@ -303,7 +302,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 
 /datum/directed_broadcast/ad/tv_only
 	id = "generic_ad_tv"
-	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_ALT_BROADCAST_RECEIVERS)
 
 	speakers = list("announcer" = list("Voice-over", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
 	messages = list(\
@@ -342,7 +341,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 
 /datum/directed_broadcast/ad/radio_only
 	id = "generic_ad_radio"
-	broadcast_channels = TR_CAT_RADIO_BROADCAST_RECEIVERS
+	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS,  TR_CAT_RADIO_ALT_BROADCAST_RECEIVERS)
 	speakers = list("announcer" = list("Voice-over", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
 	messages = list(\
 		list("*static*", 2 SECONDS, null),\
@@ -398,8 +397,13 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 	priority = DEFAULT_PROGRAMMING_PRIORITY
 	loops_remaining = 1
 	dispose_on_end = TRUE // same programme might play on multiple channels at different times, need to be instantiated
+	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_RADIO_ALT_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_ALT_BROADCAST_RECEIVERS)
 
-/datum/directed_broadcast/programme/eaglestoryone
+ABSTRACT_TYPE(/datum/directed_broadcast/programme/tv_only)
+/datum/directed_broadcast/programme/tv_only
+	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_ALT_BROADCAST_RECEIVERS)
+
+/datum/directed_broadcast/programme/tv_only/eaglestoryone
 	id = "mysteries_of_the_frontier_one"
 	speakers = list("narrator" = list("Narrator", "#A2DD77"), "doctorwhitman" = list("Doctor Whitman", "#DDA277"), "specialistvirgil" = list("Specialist Virgil", "#6969BF"), "able" = list("Able", "#d3374c"))
 	messages = list(\
@@ -421,7 +425,33 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 		list("Join us next cycle for more of Hafgan Heavy Industries's MYSTERIES OF THE FRONTIER!", 15 SECONDS, null, "test-D"),\
 	)
 	group_messages = TRUE
-	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
+
+ABSTRACT_TYPE(/datum/directed_broadcast/programme/radio_only)
+/datum/directed_broadcast/programme/radio_only
+	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS, TR_CAT_RADIO_ALT_BROADCAST_RECEIVERS)
+
+/datum/directed_broadcast/programme/radio_only/sports1
+	id = "sports_1"
+	speakers = list("stank_dreadful" = list("Stank Dreadful", "#5078cc"), "grendel_weshington" = list("Grendel Weshington", "#ab523c"))
+	messages = list(\
+		list("Welcome back to Frontier Sports, the place where we talk about sports on the frontier!", 8 SECONDS, "stank_dreadful", ""),\
+		list("I am of course Stank Dreadful, better known as \"The Dreadstank\".", 6 SECONDS, "stank_dreadful", ""),\
+		list("And with me is the estimable Grendel Weshington.", 5 SECONDS, "stank_dreadful", ""),\
+		list("Damn right.", 2 SECONDS, "grendel_weshington", ""),\
+		list("First up: in Space Hockey the Old New Montgomery Queefers beat the Appelscha 2 Klootzakken 52-31.", 10 SECONDS, "grendel_weshington", ""),\
+		list("\"Beat\" is bringing it lightly. That second half was a complete clowning by the Queefers.", 7 SECONDS, "stank_dreadful", ""),\
+		list("Well yeah, you let the other team get the jump on you during the mid-game shower and suddenly you're down three players.", 12 SECONDS, "grendel_weshington", ""),\
+		list("Rookie mistake, frankly.", 3 SECONDS, "grendel_weshington", ""),\
+		list("Fair enough. The aftercare was exemplary on the Queefers' part though.", 8 SECONDS, "stank_dreadful", ""),\
+		list("Up next: the inaugural Free and Open Source Squash game.", 6 SECONDS, "stank_dreadful", ""),\
+		list("Day twelve and with no end in sight, as a direct commit to the rulebook accidentally makes it impossible to satisfy any of the win conditions.", 10 SECONDS, "stank_dreadful", ""),\
+		list("That aside, the referees are working hard to score the backlog of plays generated so far.", 9 SECONDS, "stank_dreadful", ""),\
+		list("Have they gotten lawyers involved to sort it out yet?", 6 SECONDS, "grendel_weshington", ""),\
+		list("Not yet, but I'll stank you what:", 5 SECONDS, "stank_dreadful", ""),\
+		list("They better fix this shit fast if FOSS is going to be a sports mainstay.", 10 SECONDS, "stank_dreadful", ""),\
+		list("You must admit though, when it works the sport is downright graceful. A delight to the senses.", 10 SECONDS, "grendel_weshington", ""),\
+		list("So am I.", 3 SECONDS, "stank_dreadful", ""),\
+	)
 
 /datum/directed_broadcast/emergency
 	var/station_name
@@ -474,11 +504,11 @@ ABSTRACT_TYPE(/datum/directed_broadcast/interstitial)
 	priority = DEFAULT_PROGRAMMING_PRIORITY
 	group_messages = TRUE
 	dispose_on_end = TRUE // same interstitial might play on multiple channels at different times, need to be instantiated. Not that it matters as much here
-	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_BROADCAST_RECEIVERS)
+	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_RADIO_ALT_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_ALT_BROADCAST_RECEIVERS)
 
 /datum/directed_broadcast/interstitial/tv
 	id = "tv_int1"
-	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS)
+	broadcast_channels = list(TR_CAT_TEEVEE_BROADCAST_RECEIVERS, TR_CAT_TEEVEE_ALT_BROADCAST_RECEIVERS)
 
 	messages = list(\
 		list("*Bweoooow*", 1 SECONDS, null, "emergency-B"),\
@@ -503,7 +533,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast/interstitial)
 
 /datum/directed_broadcast/interstitial/radio
 	id = "radio_int1"
-	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS)
+	broadcast_channels = list(TR_CAT_RADIO_BROADCAST_RECEIVERS,  TR_CAT_RADIO_ALT_BROADCAST_RECEIVERS)
 
 	messages = list(\
 		list("*pling*", 1 SECONDS),\
