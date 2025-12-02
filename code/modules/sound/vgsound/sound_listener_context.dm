@@ -66,13 +66,14 @@
 	current_channels_by_emitter = list()
 	free_channels = list()
 	audible_emitters = list()
-	for (var/i = SOUNDCHANNEL_CLIENT_MIN, i <= SOUNDCHANNEL_CLIENT_MAX, i++)
+	for (var/i in SOUNDCHANNEL_CLIENT_MIN to SOUNDCHANNEL_CLIENT_MAX)
 		free_channels += i
 	range = hearing_range
 	sound_zone_manager.register_listener(src)
 
 /datum/sound_listener_context/disposing()
 	for (var/datum/sound_emitter/E in current_channels_by_emitter)
+		stop_hearing(E)
 		release(E)
 	for (var/datum/sound_emitter/E in audible_emitters)
 		unsubscribe_from(E)
@@ -120,7 +121,7 @@
 		S.echo = SPACED_ECHO
 		return
 
-	if (!(S.atom in view(range, proxy)))
+	if (!(S.atom in view(10, proxy)))
 		S.volume *= 0.7
 
 	var/listener_atten = attenuate_for_location(proxy)
@@ -135,7 +136,7 @@
 		S.volume *= 0.04
 		return
 	S.environment = EAX_GENERIC
-	S.echo = ECHO_CLOSE
+	S.echo = ECHO_AFAR
 	S.volume *= listener_atten
 
 /datum/sound_listener_context/proc/subscribe_to(datum/sound_emitter/E)
@@ -151,7 +152,9 @@
 	UnregisterSignal(E, SIGNAL_SOUND_PUSHED)
 
 /datum/sound_listener_context/proc/start_hearing(datum/sound_emitter/emitter)
-	var/chan = assign_channel(emitter) // assign the channel immediately, even if its silent
+	var/chan = current_channels_by_emitter[emitter] // try to assign the channel immediately, even if its silent
+	if(!chan)
+		chan = assign_channel(emitter)
 
 	if (emitter.active_sound == null)
 		return // start hearing what?

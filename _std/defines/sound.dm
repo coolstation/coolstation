@@ -16,7 +16,7 @@
 #define SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN 247
 #define SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MAX 256
 
-#define SOUND_BUCKET_SIZE 25
+#define SOUND_BUCKET_SIZE 15
 
 //sound mute
 #define SOUND_NONE 0
@@ -83,8 +83,6 @@ var/global/list/audio_channel_name_to_id = list(
 
 #define TOO_QUIET 0.9 //experimentally found to be 0.6 - raised due to lag, I don't care if it's super quiet because there's already shitloads of other sounds playing
 #define SPACE_ATTEN_MIN 0.5
-#define SPACE_ATTEN_MULT 0.75
-
 
 #define MAX_SOUND_RANGE 33
 #define MAX_SPACED_RANGE 6 //diff range for when youre in a vaccuum

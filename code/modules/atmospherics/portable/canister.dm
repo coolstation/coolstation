@@ -577,7 +577,8 @@
 	if (!valve_open)
 		sound_emitter.deactivate()
 	else
-		sound_emitter.play("gas_hiss")
+		if(!src.sound_emitter.active_sound)
+			src.sound_emitter.play("gas_hiss")
 		src.set_sound_volume()
 	return TRUE
 

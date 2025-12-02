@@ -118,10 +118,12 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 			if (E in context.current_channels_by_emitter)
 				if (!E.contains(listener))
 					context.on_exit_range(E)
-				else
-					context.on_sound_update(E)
+				//else
+				//	context.on_sound_update(E)
 			else
 				context.on_enter_range(E)
+
+	SEND_SIGNAL(src, SIGNAL_SOUND_UPDATED)
 
 /datum/sound_zone_manager/proc/register_listener(datum/sound_listener_context/SLC)
 	if (!SLC || !SLC.client || !SLC.proxy)
@@ -206,8 +208,8 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 				fresh[E] = TRUE
 				if (current[E] == null)
 					context.on_enter_range(E)
-				else
-					context.on_sound_update(E)
+				//else
+				//	context.on_sound_update(E)
 
 	for (var/e in current)
 		var/datum/sound_emitter/E = e

@@ -216,7 +216,6 @@
 		return
 	var/source_atten = attenuate_for_location(source)
 	if (source_atten <= SPACE_ATTEN_MIN)
-		source_atten = SPACE_ATTEN_MULT
 		src.spaced = TRUE
 	else
 		src.spaced = FALSE
