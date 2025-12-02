@@ -122,7 +122,7 @@
 		return
 
 	if (!(S.atom in view(range, proxy)))
-		S.volume *= 0
+		S.volume *= 0.5
 
 	var/p_effect = attenuate_for_location(proxy)
 	S.volume *= p_effect
