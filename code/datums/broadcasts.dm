@@ -298,7 +298,6 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 		list("Buying product?", 6 SECONDS, "announcer", "cigarettes-A"),\
 		list("Oh, I'd love to do that! I'll go do that right now!", 8 SECONDS, "consumer", "cigarettes-B"),\
 		list("Products. Available wherever goods are sold.", 10 SECONDS, "announcer", "cigarettes-B"),\
-		list("*static*", 2 SECONDS, null, "test-D"),\
 	)
 
 
@@ -313,7 +312,6 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 		list("Buy more guns. Guns. Gunse. Gunse.", 6 SECONDS, "announcer", "gun"),\
 		list("But I have a family to feed!", 6 SECONDS, "consumer", "sadman"),\
 		list("Gunse. Yours is waiting out there for you.", 10 SECONDS, "announcer", "gun"),\
-		list("*static*", 2 SECONDS, null, "udfghxchg"),\
 	)
 
 
@@ -326,7 +324,6 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 		list("Smoke cigarettes today!", 6 SECONDS, "hank", "cigarettes-A"),\
 		list("Oh, they're so smooth! I love smoking cigarettes!", 8 SECONDS, "rachelle", "cigarettes-B"),\
 		list("Cigarettes- available at your nearest cigarette vending machine.", 10 SECONDS, "hank", "cigarettes-B"),\
-		list("*static*", 2 SECONDS, null, "test-D"),\
 	)
 
 /datum/directed_broadcast/ad/hotdogs
@@ -341,7 +338,6 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 		list("You're not really supposed to do that either but it's whatever.", 7 SECONDS, "Frank", "hotdogs-A"),\
 		list("Come down and get some dogs in you.", 8 SECONDS, "Frank", "hotdogs-B"),\
 		list("Probably safe!", 4 SECONDS, "Frank", "hotdogs-B"),\
-		list("*static*", 2 SECONDS, null, "test-D"),\
 	)
 
 /datum/directed_broadcast/ad/radio_only
@@ -354,7 +350,6 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 		list("You know you need it.", 3 SECONDS, "announcer"),\
 		list("Huh? What?", 2 SECONDS, "consumer"),\
 		list("Products. Available wherever goods are sold.", 10 SECONDS, "announcer"),\
-		list("*static*", 2 SECONDS, null),\
 		)
 
 /datum/directed_broadcast/ad/radio_only/schweewa1
@@ -408,10 +403,10 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 	id = "mysteries_of_the_frontier_one"
 	speakers = list("narrator" = list("Narrator", "#A2DD77"), "doctorwhitman" = list("Doctor Whitman", "#DDA277"), "specialistvirgil" = list("Specialist Virgil", "#6969BF"), "able" = list("Able", "#d3374c"))
 	messages = list(\
-		list("This cycle's MYSTERIES OF THE FRONTIER is brought to you by", 10 SECONDS, "narrator", "test-A"),\
-		list("Hafgan Heavy Industries, for all your construction and demolition needs", 10 SECONDS, "narrator", "test-A"),\
-		list("When we last left off, Doctor Whitman had successfuly isolated the virus haunting Jamsion Labs", 15 SECONDS, "narrator", "test-B"),\
-		list("We now resume our story", 7 SECONDS, "narrator", "test-B"),\
+		list("This cycle's MYSTERIES OF THE FRONTIER is brought to you by:", 10 SECONDS, "narrator", "test-A"),\
+		list("Hafgan Heavy Industries, for all your construction and demolition needs.", 10 SECONDS, "narrator", "test-A"),\
+		list("When we last left off, Doctor Whitman had successfuly isolated the virus haunting Jamsion Labs.", 15 SECONDS, "narrator", "test-B"),\
+		list("We now resume our story:", 7 SECONDS, "narrator", "test-B"),\
 		list("Doctor, what in the heavens is that thing!", 10 SECONDS, "specialistvirgil", "test-C"),\
 		list("This, my dear ithilid friend, is our culprit.", 10 SECONDS, "doctorwhitman", "test-C"),\
 		list("ABLE!", 5 SECONDS, "doctorwhitman", "test-C"),\
@@ -423,7 +418,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 		list("Suddenly...", 5 SECONDS, "narrator", "emergency-B"),\
 		list("*sparking noises*", 5 SECONDS, null, "test-C"),\
 		list("Able, ABLE! Are you alright Able?!", 7 SECONDS, "specialistvirgil", "emergency-A"),\
-		list("Join us next cycle for more of Hafgan Heavy Industries's MYSTERIES OF THE FRONTIER", 15 SECONDS, null, "test-D"),\
+		list("Join us next cycle for more of Hafgan Heavy Industries's MYSTERIES OF THE FRONTIER!", 15 SECONDS, null, "test-D"),\
 	)
 	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
