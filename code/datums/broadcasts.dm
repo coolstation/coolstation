@@ -87,7 +87,7 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 
 	///If a priority broadcast is playing over of this one,
 	///TRUE will advance the message index (so messages will be skipped but timing remains intact) while FALSE will effectively pause the broadcast.
-	///NOTE:
+	///NOTE: broadcasts with the same priority will wait on each other anyway.
 	var/progress_when_silent = TRUE
 
 	var/default_maptext_colour = "#C2BEEE"
