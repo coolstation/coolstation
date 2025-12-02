@@ -53,9 +53,6 @@
 
 	return S
 
-/datum/managed_sound/proc/operator""()
-	return "managed_sound: base_sound file: [base_sound?.file], base_sound atom: [base_sound?.atom], volume_override: [volume_override], volume_mutator: [volume_mutator]"
-
 /proc/copy_sound(sound/copy_from)
 	if (!copy_from)
 		return
@@ -67,4 +64,5 @@
 	new_sound.status = copy_from.status
 	new_sound.transform = copy_from.transform
 	new_sound.volume = copy_from.volume
+	new_sound.falloff = copy_from.falloff
 	return new_sound

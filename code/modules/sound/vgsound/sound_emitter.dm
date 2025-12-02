@@ -132,7 +132,7 @@
 	if (interrupt)
 		deactivate()
 	// reduce volume if emitter is in low pressure
-	S.volume *= attenuate_for_location(source)
+	update_env_effect()
 	if (!S.volume)
 		return
 
@@ -188,11 +188,9 @@
 /datum/sound_emitter/proc/contains(turf/T)
 	if (!T)
 		return FALSE
-	var/turf/S = source.loc
-	if (!isturf(S))
-		S = get_turf(source)
+	var/turf/S = get_turf(source)
 	if (!S)
-		CRASH("Failed to get source turf in in_range")
+		CRASH("Failed to get source turf in contains")
 	var/minX = S.x - range
 	var/maxX = S.x + range
 	var/minY = S.y - range

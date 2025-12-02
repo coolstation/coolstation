@@ -156,9 +156,7 @@
 /datum/sound_listener_context/proc/start_hearing(datum/sound_emitter/emitter)
 	if (emitter.active_sound == null)
 		return // start hearing what?
-	var/chan = assign_channel(emitter)
-	if (!chan)
-		CRASH("Sound emitter on [emitter.source] failed to reserve a channel for [src]")
+
 	var/sound/S = emitter.active_sound.get()
 
 	// important note - clearing SOUND_UPDATE means that the sound will play FROM THE BEGINNING.
@@ -166,14 +164,20 @@
 	// if you try to do something longer and more varied like music then this is very noticeable and unwanted.
 	// would best be handled by an expansion of /datum/managed_sound to use sound.len, tracking playback
 	// progress and modifying S.offset to start at the correct point
-	S.status &= ~SOUND_UPDATE
-	S.channel = chan
+
 	apply_proxymob_effects(S, emitter)
-	client << S
+	if(S.volume > TOO_QUIET)
+		var/chan = assign_channel(emitter)
+		if (!chan)
+			CRASH("Sound emitter on [emitter.source] failed to reserve a channel for [src]")
+		S.status &= ~SOUND_UPDATE
+		S.channel = chan
+		client << S
 
 /datum/sound_listener_context/proc/hear_once(sound/S, datum/sound_emitter/emitter)
 	apply_proxymob_effects(S, emitter)
-	client << S
+	if(S.volume > TOO_QUIET)
+		client << S
 
 /datum/sound_listener_context/proc/stop_hearing(datum/sound_emitter/emitter)
 	release(emitter)
@@ -185,10 +189,11 @@
 	if (!emitter.active_sound)
 		return // emitter isn't playing anything, get out of here
 	var/sound/S = emitter.active_sound.get()
-	S.status |= SOUND_UPDATE
-	S.channel = chan
 	apply_proxymob_effects(S, emitter)
-	client << S
+	if(S.volume > TOO_QUIET)
+		S.status |= SOUND_UPDATE
+		S.channel = chan
+		client << S
 
 /datum/sound_listener_context/proc/on_enter_range(datum/sound_emitter/E)
 	start_hearing(E) // this can throw if channel reservation fails, subscribe after its safe

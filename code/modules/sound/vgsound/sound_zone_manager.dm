@@ -194,7 +194,7 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 	var/datum/sound_listener_context/context = receive_client.listener_context
 
 	var/list/current = list()
-	for (var/datum/sound_emitter/E in context.audible_emitters)
+	for (var/datum/sound_emitter/E in context.current_channels_by_emitter)
 		current[E] = TRUE
 	var/list/fresh = list()
 
