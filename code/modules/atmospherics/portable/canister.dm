@@ -128,7 +128,7 @@
 
 		var/env_pressure = MIXTURE_PRESSURE(environment)
 		var/int_pressure = MIXTURE_PRESSURE(src.air_contents)
-		var/soundvol = 0
+		var/soundvol = 0.01
 		if (env_pressure > 0.01 && int_pressure >= env_pressure)
 			var/pressure_delta = min(release_pressure - env_pressure, (int_pressure - env_pressure)/2)
 			soundvol = clamp(25 * (pressure_delta + env_pressure) / env_pressure, 10, 100)
@@ -245,7 +245,10 @@
 				environment.merge(removed)
 			else
 				loc.assume_air(removed)
-		src.set_sound_volume()
+
+			src.set_sound_volume()
+		else
+			src.sound_emitter.deactivate()
 
 	overpressure = MIXTURE_PRESSURE(air_contents) / maximum_pressure
 
