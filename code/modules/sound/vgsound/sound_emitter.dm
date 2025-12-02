@@ -75,7 +75,8 @@
 //  this causes the reserved channel to be taken from a shared pool, as static objects won't move close
 //  to eachother and won't contend. There is no overlap between the shared and unique pools, so no contention
 //  for example if someone carrying something noisy (mobile -> unique pool) walks close to something in the shared pool.
-/datum/sound_emitter/New(atom/A, var/is_static = FALSE)
+// !!! ^ The above is no longer in use ^ !!!
+/datum/sound_emitter/New(atom/A)
 	..()
 	source = A
 	range = SOUND_BUCKET_SIZE

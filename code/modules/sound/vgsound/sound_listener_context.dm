@@ -37,7 +37,7 @@
 			var/slc = client.listener_context
 			qdel(slc) // dont ask me why its like this. i dont know.
 			client.listener_context = null
-		client.listener_context = new /datum/sound_listener_context(client, src, world.view)
+		client.listener_context = new /datum/sound_listener_context(client, src, SOUND_BUCKET_SIZE)
 
 /*
 /mob/living/silicon/ai/Login()
@@ -46,7 +46,7 @@
 		var/slc = client.listener_context
 		qdel(slc)
 		client.listener_context = null
-	client.listener_context = new /datum/sound_listener_context/ai(client, src, src, world.view)
+	client.listener_context = new /datum/sound_listener_context/ai(client, src, src, SOUND_BUCKET_SIZE)
 	if (eyeobj)
 		client.listener_context.reset_proxy(eyeobj)
 */
