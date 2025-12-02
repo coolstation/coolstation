@@ -204,7 +204,7 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 		for (var/datum/sound_emitter/E in B)
 			if (E.contains(location))
 				fresh[E] = TRUE
-				if (!current[E])
+				if (current[E] == null)
 					context.on_enter_range(E)
 				else
 					context.on_sound_update(E)

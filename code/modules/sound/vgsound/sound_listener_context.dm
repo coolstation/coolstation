@@ -96,7 +96,7 @@
 		current_channels_by_emitter[E] = channel
 		return channel
 
-/datum/sound_listener_context/proc/release(datum/sound_emitter/E)
+/datum/sound_listener_context/proc/stop_hearing(datum/sound_emitter/E)
 	// which channel this client is using for this emitter
 	var/chan = current_channels_by_emitter[E]
 	if (!chan)
@@ -106,9 +106,6 @@
 	nullsound.channel = chan
 	nullsound.status = SOUND_UPDATE | SOUND_MUTE
 	client << nullsound
-
-	current_channels_by_emitter -= E
-	free_channels += chan
 
 /datum/sound_listener_context/proc/reset_proxy(mob/P)
 	sound_zone_manager.unregister_listener(src)
@@ -180,8 +177,10 @@
 	if(S.volume > TOO_QUIET)
 		client << S
 
-/datum/sound_listener_context/proc/stop_hearing(datum/sound_emitter/emitter)
-	release(emitter)
+/datum/sound_listener_context/proc/release(datum/sound_emitter/E)
+	var/chan = current_channels_by_emitter[E]
+	current_channels_by_emitter -= E
+	free_channels += chan
 
 /datum/sound_listener_context/proc/on_sound_update(datum/sound_emitter/emitter)
 	var/chan = current_channels_by_emitter[emitter]
@@ -203,5 +202,6 @@
 
 /datum/sound_listener_context/proc/on_exit_range(datum/sound_emitter/E)
 	stop_hearing(E)
+	release(E)
 	unsubscribe_from(E)
 	audible_emitters -= E
