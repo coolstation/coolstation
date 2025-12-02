@@ -219,6 +219,8 @@
 // use the target from our holder
 /datum/aiTask/endless/move/proc/get_path()
 	if(!src.move_target)
+		src.found_path = null
+		src.next_turf = null
 		return
 	src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
 	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner, options = list("do_doorcheck" = TRUE, "move_through_space" = move_through_space))) // no path :C
@@ -232,7 +234,7 @@
 	src.holder.stop_move()
 
 /datum/aiTask/endless/move/on_tick()
-	if(src.found_path)
+	if(src.found_path && src.move_target)
 		if(src.found_path.len > 0)
 			if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
 				// follow the path
@@ -255,7 +257,7 @@
 
 /datum/aiTask/endless/move/inherit_target
 
-/datum/aiTask/endless/move/inherit_target/tick()
+/datum/aiTask/endless/move/inherit_target/on_tick()
 	src.move_target = holder.target
 	return ..()
 
@@ -289,8 +291,14 @@
 			. |= L
 
 /datum/aiTask/concurrent/violence/tick()
-	if(!src.holder.target && !ON_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown", src.holder.seek_cooldown))
-		src.holder.target = src.get_best_target(get_targets())
+	var/mob/living/L = src.holder.target
+	if(!istype(L) || L.z != src.holder.owner.z || !src.holder.owner.ai_is_valid_target(L))
+		src.holder.target = null
+		var/obj/item/grab/G = src.holder.owner.equipped()
+		if(G && istype(G))
+			src.holder.owner.drop_item(G)
+		if(!GET_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown"))
+			src.holder.target = src.get_best_target(src.get_targets())
 	// when fighting, move to the heavyweight ai ticks
 	if(src.holder.owner.mob_flags & HEAVYWEIGHT_AI_MOB)
 		if(!src.holder.target)
@@ -317,20 +325,17 @@
 	if (!src.holder.owner || HAS_ATOM_PROPERTY(src.holder.owner, PROP_CANTMOVE))
 		return
 
-	if(src.holder.target)
-		var/mob/living/M = src.holder.target
-		if(!istype(M) || isdead(M) || M.z != src.holder.owner.z || src.ticks_since_combat >= src.boredom_ticks || !src.holder.owner.ai_is_valid_target(M))
-			src.queued_target = null
-			src.holder.target = null
-			var/obj/item/grab/G = src.holder.owner.equipped()
-			if(G && istype(G))
-				src.holder.owner.drop_item(G)
-			src.ticks_since_combat = 0
-			if(!src.holder.target && !GET_COOLDOWN(src.holder.owner, "ai_seek_target_cooldown"))
-				src.holder.target = src.get_best_target(get_targets())
-			if(!src.holder.target)
-				return ..()
+	if(!src.holder.target)
+		src.queued_target = null
+		src.ticks_since_combat = 0
+		return ..()
 
+	if(src.holder.target)
+		if(src.ticks_since_combat >= src.boredom_ticks)
+			src.holder.target = null
+			src.queued_target = null
+			src.ticks_since_combat = 0
+		var/mob/living/L = src.holder.target
 		if(src.holder.owner.ai_a_intent)
 			src.holder.owner.a_intent = src.holder.owner.ai_a_intent
 		else
@@ -341,7 +346,7 @@
 		if(src.holder.owner.next_click > world.time)
 			return ..()
 
-		if((!src.ability_cooldown || !ON_COOLDOWN(src.holder.owner, "ai_ability_cooldown", src.ability_cooldown)) && src.holder.owner.ability_attack(M))
+		if((!src.ability_cooldown || !ON_COOLDOWN(src.holder.owner, "ai_ability_cooldown", src.ability_cooldown)) && src.holder.owner.ability_attack(L))
 			src.holder.owner.next_click = world.time + src.holder.owner.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
 			return ..()
 
@@ -352,26 +357,27 @@
 			src.holder.owner.swap_hand()
 			if(src.holder.owner.hand == prev_hand)
 				return ..()
+			src.holder.owner.a_intent = INTENT_HARM // and dont try to choke them in the other hand, either!
 
-		if(GET_DIST(src.holder.owner, M) <= 1)
-			src.holder.owner.hand_attack(M)
+		if(GET_DIST(src.holder.owner, L) <= 1)
+			src.holder.owner.hand_attack(L)
 			src.ticks_since_combat = 0
 			src.holder.owner.next_click = world.time + (G ? G.combat_click_delay : src.holder.owner.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
 			src.queued_target = null
 		else if(istype(owncritter))
 			var/datum/handHolder/HH = owncritter.get_active_hand()
 			if(HH.can_range_attack)
-				src.holder.owner.hand_attack(M)
+				src.holder.owner.hand_attack(L)
 				src.ticks_since_combat = 0
 				src.holder.owner.next_click = world.time + src.holder.owner.combat_click_delay
 				src.queued_target = null
 			else
-				src.queued_target = M
+				src.queued_target = L
 				src.ticks_since_combat++
 		else
-			src.queued_target = M
+			src.queued_target = L
 			src.ticks_since_combat++
-		src.holder.owner.set_dir(get_dir(src.holder.owner, M))
+		src.holder.owner.set_dir(get_dir(src.holder.owner, L))
 
 	if(prob(30)) // may do a more intelligent check later, but this is decent
 		src.holder.owner.swap_hand()

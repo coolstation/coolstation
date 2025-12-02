@@ -454,6 +454,8 @@ Rate: <A href='byond://?src=\ref[src];change_vol=-10'>--</A> <A href='byond://?s
 
 #define MAX_PRESSURE 20 * ONE_ATMOSPHERE
 /obj/machinery/computer/atmosphere/mixercontrol
+	name = "gas mixer control"
+	icon_state = "atmos"
 	var/obj/machinery/atmospherics/mixer/mixerid
 	var/mixer_information
 	req_access = list(access_engineering_engine, access_tox_storage)
@@ -630,10 +632,10 @@ Rate: <A href='byond://?src=\ref[src];change_vol=-10'>--</A> <A href='byond://?s
 		if (href_list["refresh_status"])
 			signal.data["status"] = 1
 
-		updateDialog()
-
 		if (signal)
 			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
+
+		updateDialog()
 #undef MAX_PRESSURE
 
 #undef _GET_SIGNAL_GAS

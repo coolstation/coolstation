@@ -17,21 +17,18 @@ Atmos alert computer
 	circuit_type = /obj/item/circuitboard/atmospherealerts
 	var/alarms = list("Fire"=list(), "Atmosphere"=list())
 	machine_registry_idx = MACHINES_ATMOSALERTS
-
+/* Neither of these have functionality associated with them,
 /obj/machinery/computer/atmosphere/siphonswitch
 	name = "Area Air Control"
 	icon_state = "atmos"
 	var/otherarea
 	var/area/area
 
-/obj/machinery/computer/atmosphere/mixercontrol
-	name = "Gas Mixer Control"
-	icon_state = "atmos"
 
 
 /obj/machinery/computer/atmosphere/siphonswitch/mastersiphonswitch
 	name = "Master Air Control"
-
+*/
 
 //the atmos alerts computer
 /obj/machinery/computer/atmosphere/alerts/attack_hand(mob/user)
