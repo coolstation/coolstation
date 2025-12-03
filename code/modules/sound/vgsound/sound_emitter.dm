@@ -140,7 +140,7 @@
 	SEND_SIGNAL(src, SIGNAL_SOUND_PUSHED, copy_sound(S))
 
 
-/datum/sound_emitter/proc/update_active_sound_param(volume = null, frequency = null)
+/datum/sound_emitter/proc/update_active_sound_param(volume = null, frequency = null, falloff = null)
 	if (active_sound == null)
 		return
 	// update active_sound overrides if given
@@ -148,6 +148,8 @@
 		active_sound.volume_override = volume
 	if (frequency)
 		active_sound.frequency_override = frequency
+	if (falloff)
+		active_sound.falloff_override = falloff
 
 	update_env_effect()
 

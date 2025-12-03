@@ -15,6 +15,7 @@
 	var/sound/base_sound = null
 	var/volume_override = null // mutators apply separately to this - think of this as the source volume itself changing temporarily
 	var/frequency_override = null
+	var/falloff_override = null
 	var/volume_mutator = 1 // 1 means no change (multiply volume by 1)
 
 /datum/managed_sound/New(sound/S)
@@ -48,6 +49,8 @@
 		S.volume = volume_override
 	if (frequency_override)
 		S.frequency = frequency_override
+	if (falloff_override)
+		S.falloff = falloff_override
 
 	S.volume *= volume_mutator
 

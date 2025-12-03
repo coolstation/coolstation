@@ -490,7 +490,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				T2.turf_persistent.checkinghasentered++
 
 			src.radius++
-			src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5)
+			src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5, falloff = 1 + 0.2 * radius)
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
 			src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
@@ -504,7 +504,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else if (src.energy < godver2 && radius > 0)
 		// we shrink first to simply the math
 		src.radius--
-		src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5)
+		src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5, falloff = 1 + 0.2 * radius)
 		var/turf/T = get_turf(src)
 		//resizing does cruel and terrible things to the turf_persistent caches, even when shrinking!
 		//north, including corner
