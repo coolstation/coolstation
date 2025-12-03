@@ -202,7 +202,7 @@
 	return (minX <= T.x && T.x <= maxX && minY <= T.y && T.y <= maxY)
 
 /datum/sound_emitter/proc/contains_bugfix(datum/sound_listener_context/SLC)
-	var/turf/T = get_turf(SLC)
+	var/turf/T = get_turf(SLC.proxy)
 	if (!T)
 		return FALSE
 	var/turf/S = get_turf(source)
@@ -271,7 +271,7 @@
 	return (minX <= T.x && T.x <= maxX && minY <= T.y && T.y <= maxY)
 
 /datum/sound_emitter/big/contains_bugfix(datum/sound_listener_context/SLC)
-	var/turf/T = get_turf(SLC)
+	var/turf/T = get_turf(SLC.proxy)
 	if (!T)
 		return FALSE
 	var/turf/S = whatevs_source.get_center()
