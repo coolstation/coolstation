@@ -228,6 +228,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /obj/machinery/the_singularity/proc/gravity()
 	var/turf/T = src.get_center()
+
+	for(var/atom/movable/AM in orange(src.radius + src.grav_range, T))
+		if(!AM.anchored)
+			step_towards(AM, T)
+/*
 	// the block to the south, including corners
 	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y - src.radius - src.grav_range, T.z, T.x + src.radius + src.grav_range, T.y - src.radius))
 		for (var/atom/movable/AM in T2)
@@ -248,6 +253,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		for (var/atom/movable/AM in T2)
 			if (!AM.anchored)
 				step_towards(AM, src)
+*/
 
 /obj/machinery/the_singularity/proc/move()
 	// if we're inside something (e.g posessed mob) dont move
