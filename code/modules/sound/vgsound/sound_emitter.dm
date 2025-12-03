@@ -68,6 +68,7 @@
 	var/range
 	var/last_hash = null
 	var/spaced = FALSE
+	var/ignore_space = FALSE
 
 	var/datum/sound_zone_manager/szm // not strictly necessary but its here for easy debugging in this early stage
 
@@ -178,9 +179,7 @@
 /datum/sound_emitter/proc/on_source_moved(atom/mover)
 	if (mover != source)
 		CRASH("Called on_source_moved while mover ([mover]) != source ([source])")
-	var/turf/T = source.loc
-	if (!isturf(T))
-		T = get_turf(source)
+	var/turf/T = get_turf(source)
 	if (!T)
 		CRASH("Failed to get source turf")
 	sound_zone_manager.update_emitter(src, T.x, T.y, T.z)
@@ -212,7 +211,7 @@
 	SEND_SIGNAL(src, SIGNAL_SOUND_STARTED)
 
 /datum/sound_emitter/proc/update_env_effect()
-	if (active_sound == null)
+	if (active_sound == null || src.ignore_space)
 		return
 	var/source_atten = attenuate_for_location(source)
 	if (source_atten <= SPACE_ATTEN_MIN)
@@ -221,18 +220,34 @@
 		src.spaced = FALSE
 	active_sound.volume_mutator = source_atten
 
-/*
-/datum/sound_emitter/proc/clients_in_range()
-	var/list/in_range = list()
-	var/turf/t_source = get_turf(source)
-	for (var/client/client in clients)
-		if (!client.listener_context)
-			continue // nowhere to send the sound
-		var/turf/receiver = get_turf(client.listener_context.proxy)
-		if (!receiver)
-			continue //player on some invalid turf, CRASH?
+/*subtype for big stuff that needs to locate its center oh my god pelase make sure it has the get_center proc*/
+/datum/sound_emitter/big
+	var/obj/machinery/the_singularity/whatevs_source
 
-		if((GET_MANHATTAN_DIST(receiver, t_source) <= range))
-			in_range += client
-	return in_range
-*/
+/datum/sound_emitter/big/New(atom/A)
+	. = ..()
+	whatevs_source = source
+
+/datum/sound_emitter/big/update_source(atom/new_source)
+	. = ..()
+	whatevs_source = source
+
+/datum/sound_emitter/big/on_source_moved(atom/mover)
+	if (mover != source)
+		CRASH("Called on_source_moved while mover ([mover]) != source ([source])")
+	var/turf/T = whatevs_source.get_center()
+	if (!T)
+		CRASH("Failed to get source turf")
+	sound_zone_manager.update_emitter(src, T.x, T.y, T.z)
+
+/datum/sound_emitter/big/contains(turf/T)
+	if (!T)
+		return FALSE
+	var/turf/S = whatevs_source.get_center()
+	if (!S)
+		CRASH("Failed to get source turf in contains")
+	var/minX = S.x - range
+	var/maxX = S.x + range
+	var/minY = S.y - range
+	var/maxY = S.y + range
+	return (minX <= T.x && T.x <= maxX && minY <= T.y && T.y <= maxY)

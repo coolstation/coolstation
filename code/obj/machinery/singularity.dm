@@ -150,10 +150,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	src.energy = E
 	src.maxradius = rad
 	src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
+	. = ..()
+	src.setup_sound()
 	event()
 	if (Ti)
 		src.Dtime = Ti
-	..()
 	SPAWN_DBG(0)
 		for(var/turf/T in src.locs)
 			for(var/atom/movable/AM in T.contents)
@@ -164,6 +165,19 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/the_singularity/disposing()
 	STOP_TRACKING
 	. = ..()
+
+/obj/machinery/the_singularity/setup_sound()
+	sound_emitter = new /datum/sound_emitter/big(src)
+	if (sound_emitter)
+		sound_emitter.ignore_space = TRUE
+		var/sound/wibble = sound()
+		wibble.file = "sound/machines/singularity_wibble.ogg"
+		wibble.repeat = 1
+		wibble.falloff = 1.5
+		wibble.volume = 100
+		sound_emitter.add(wibble, "wibble")
+		SPAWN_DBG(0)
+			sound_emitter.play("wibble")
 
 /obj/machinery/the_singularity/process()
 	src.gravity()
@@ -476,6 +490,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				T2.turf_persistent.checkinghasentered++
 
 			src.radius++
+			src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5)
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
 			src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
@@ -486,9 +501,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				if(T2)
 					src.set_loc(T2)
 
-	else if (src.energy < godver2)
+	else if (src.energy < godver2 && radius > 0)
 		// we shrink first to simply the math
 		src.radius--
+		src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5)
 		var/turf/T = get_turf(src)
 		//resizing does cruel and terrible things to the turf_persistent caches, even when shrinking!
 		//north, including corner

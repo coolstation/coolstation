@@ -32,6 +32,8 @@
 /mob/Login()
 	. = ..()
 	SPAWN_DBG(1 SECOND)
+		if(!client)
+			return
 		if (client.listener_context)
 			// results in sounds restarting when switching mobs... not great, not terrible
 			var/slc = client.listener_context
@@ -124,17 +126,19 @@
 	if (!(S.atom in view(10, proxy)))
 		S.volume *= 0.7
 
-	var/listener_atten = attenuate_for_location(proxy)
-	if(listener_atten <= SPACE_ATTEN_MIN)
-		if(emitter.spaced)
+	var/listener_atten = 1
+	if(!emitter.ignore_space)
+		listener_atten = attenuate_for_location(proxy)
+		if(listener_atten <= SPACE_ATTEN_MIN)
+			if(emitter.spaced)
+				S.environment = SPACED_ENV
+				S.echo = SPACED_ECHO
+				S.volume += 0.75
+				return
 			S.environment = SPACED_ENV
 			S.echo = SPACED_ECHO
-			S.volume += 0.75
+			S.volume *= 0.04
 			return
-		S.environment = SPACED_ENV
-		S.echo = SPACED_ECHO
-		S.volume *= 0.04
-		return
 	S.environment = EAX_GENERIC
 	S.echo = ECHO_AFAR
 	S.volume *= listener_atten
