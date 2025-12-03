@@ -170,14 +170,13 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	sound_emitter = new /datum/sound_emitter/big(src)
 	if (sound_emitter)
 		sound_emitter.ignore_space = TRUE
-		var/sound/wibble = sound()
-		wibble.file = "sound/machines/singularity_wibble.ogg"
-		wibble.repeat = 1
-		wibble.falloff = 1.5
-		wibble.volume = 100
-		sound_emitter.add(wibble, "wibble")
+		var/sound/warble = sound()
+		warble.file = "sound/machines/singulowarble.ogg"
+		warble.repeat = 1
+		warble.volume = 100
+		sound_emitter.add(warble, "warble")
 		SPAWN_DBG(0)
-			sound_emitter.play("wibble")
+			sound_emitter.play("warble")
 
 /obj/machinery/the_singularity/process()
 	src.gravity()
@@ -640,6 +639,18 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				event_handler_flags |= IMMUNE_SINGULARITY | Z_ANCHORED
 			else
 				event_handler_flags &= ~(IMMUNE_SINGULARITY | Z_ANCHORED)
+				sound_emitter.deactivate()
+
+/obj/machinery/field_generator/setup_sound()
+	sound_emitter = new /datum/sound_emitter(src)
+	if (sound_emitter)
+		sound_emitter.ignore_space = TRUE
+		var/sound/wibble = sound()
+		wibble.file = "sound/machines/fieldgenwibble.ogg"
+		wibble.repeat = 1
+		wibble.falloff = 2
+		wibble.volume = 50
+		sound_emitter.add(wibble, "wibble")
 
 /obj/machinery/field_generator/attack_hand(mob/user as mob)
 	if(state == WELDED)
@@ -723,6 +734,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		src.set_active(2)
 	src.power = clamp(src.power, 0, src.max_power)
 	if(src.active >= 1)
+		sound_emitter.play("wibble")
 		src.power -= mult
 		//maptext = num2text(power)
 		if(Varpower == 0)
