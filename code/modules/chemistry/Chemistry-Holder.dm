@@ -408,6 +408,8 @@ datum
 
 		//multiplier is used to handle realtime metabolizations over byond time
 		proc/metabolize(var/mob/living/target, var/multiplier = 1)
+			target.drug_upper = 0
+			target.drug_downer = 0
 			if (islist(src.addiction_tally) && length(src.addiction_tally)) // if we got some addictions to process
 				//DEBUG_MESSAGE("metabolize([target]) addiction_tally processing")
 				for (var/rid in src.addiction_tally) // look at each addiction tally

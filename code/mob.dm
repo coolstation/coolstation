@@ -240,6 +240,9 @@
 
 	var/last_pulled_time = 0
 
+	var/drug_upper = 0
+	var/drug_downer = 0
+
 //obj/item/setTwoHanded calls this if the item is inside a mob to enable the mob to handle UI and hand updates as the item changes to or from 2-hand
 /mob/proc/updateTwoHanded(var/obj/item/I, var/twoHanded = 1)
 	return 0 //0=couldnt do it(other hand full etc), 1=worked just fine.
@@ -2412,8 +2415,10 @@
 
 /mob/proc/full_heal()
 	src.HealDamage("All", 100000, 100000)
+	src.dizziness = 0
 	src.drowsyness = 0
 	src.stuttering = 0
+	src.jitteriness = 0
 	src.losebreath = 0
 	src.delStatus("paralysis")
 	src.delStatus("stunned")
@@ -3301,3 +3306,6 @@
 //Observers bypass this check anyway, but regardless
 /mob/dead/can_climb_ladder(silent = FALSE)
 	return TRUE
+
+/mob/proc/stimulants_and_sedatives()
+	return

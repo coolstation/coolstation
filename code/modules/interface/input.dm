@@ -227,10 +227,10 @@ var/list/dirty_keystates = list()
 					src.stathover = t
 					src.stathover_start = get_turf(mob)
 
-		if(prob(10) && user.traitHolder && iscarbon(user) && isturf(object.loc) && user.traitHolder.hasTrait("clutz"))
+		if(prob(GET_ATOM_PROPERTY(src.mob, PROP_CLUTZ)) && isturf(object.loc))
 			var/list/filtered = list()
 			for(var/atom/movable/A in view(1, src.mob))
-				if(A == object || !isturf(A.loc) || !isobj(A) && !ismob(A)) continue
+				if(A == object || !isturf(A.loc) || !ismovable(A)) continue
 				filtered.Add(A)
 			if(filtered.len) object = pick(filtered)
 

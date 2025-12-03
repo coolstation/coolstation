@@ -7942,6 +7942,15 @@
 	icon_state = "floor"
 	},
 /area/station/crew_quarters/cafeteria)
+"uW" = (
+/obj/railway/rusty,
+/obj/decoration/railbed/cracked1,
+/obj/train_landmark/whistle_board,
+/turf/space/gehenna/desert/no_spikes,
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
+	})
 "uX" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -12671,6 +12680,15 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/north)
+"HE" = (
+/obj/railway/rusty,
+/obj/decoration/railbed,
+/obj/train_landmark/stop,
+/turf/space/gehenna/desert/no_spikes,
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
+	})
 "HF" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -14807,6 +14825,17 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/north)
+"No" = (
+/obj/railway/rusty,
+/obj/decoration/railbed,
+/obj/train_landmark/whistle_board,
+/turf/space/gehenna/desert/path{
+	dir = 4
+	},
+/area/gehenna{
+	icon_state = "dither_r";
+	name = "the courtyard"
+	})
 "Np" = (
 /obj/disposalpipe/junction/left/east,
 /turf/floor/white,
@@ -15667,6 +15696,12 @@
 	},
 /turf/floor/carpet/nicebrown,
 /area/station/hydroponics/lobby)
+"PH" = (
+/obj/railway/rusty,
+/obj/decoration/railbed/trans,
+/obj/train_landmark/whistle_board,
+/turf/space/gehenna/desert/tunnel_surface,
+/area/gehenna)
 "PI" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -18553,7 +18588,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
 /obj/table/reinforced/industrial/auto,
-/obj/item/storage/toolbox,
+/obj/item/storage/toolbox/mechanical/empty,
 /turf/floor/plating,
 /area/station/atmos/hookups/west)
 "Xq" = (
@@ -62606,7 +62641,7 @@ jt
 Rj
 Rj
 XD
-uM
+uW
 Rj
 Rj
 Rj
@@ -65324,7 +65359,7 @@ KP
 KP
 KP
 qM
-mK
+No
 KP
 KP
 VZ
@@ -65626,7 +65661,7 @@ ks
 ks
 ks
 XD
-Zv
+HE
 ES
 ib
 Rj
@@ -95826,7 +95861,7 @@ lX
 lX
 YR
 bh
-Wp
+PH
 YR
 lX
 lX

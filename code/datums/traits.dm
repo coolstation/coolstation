@@ -1145,6 +1145,14 @@ obj/trait/pilot
 	points = 2
 	isPositive = 0
 
+	onAdd(var/mob/owner)
+		..()
+		APPLY_ATOM_PROPERTY(owner, PROP_CLUTZ, "trait_clutz", 10)
+
+	onRemove(var/mob/owner)
+		..()
+		REMOVE_ATOM_PROPERTY(owner, PROP_CLUTZ, "trait_clutz")
+
 /obj/trait/leftfeet
 	name = "Two left feet (+1)"
 	cleanName = "Two left feet"

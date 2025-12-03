@@ -33,6 +33,7 @@
 	var/setup_os_string = null
 	var/setup_font_color = "#19A319"
 	var/setup_bg_color = "#1B1E1B"
+	var/setup_override_color = FALSE
 	/// does it have a glow in the dark screen? see computer_screens.dmi
 	var/glow_in_dark_screen = TRUE
 	var/image/screen_image
@@ -44,6 +45,22 @@
 		setup_starting_os = /datum/computer/file/terminal_program/os/main_os
 		setup_idscan_path = /obj/item/peripheral/card_scanner
 		setup_has_internal_disk = 1
+
+		amber
+			name = "Amber Computer"
+			icon_state = "amber"
+			base_icon_state = "amber"
+			setup_frame_type = /obj/computer3frame/desktop
+			setup_font_color = "#E79C01"
+			setup_bg_color = "#1B1E1B"
+			setup_override_color = TRUE
+
+		green
+			name = "Green Computer"
+			setup_frame_type = /obj/computer3frame/desktop
+			setup_font_color = "#19A319"
+			setup_bg_color = "#1B1E1B"
+			setup_override_color = TRUE
 
 		personal
 			name = "Personal Computer"
@@ -197,6 +214,14 @@
 		setup_frame_type = /obj/computer3frame/terminal
 		setup_starting_os = /datum/computer/file/terminal_program/os/terminal_os
 
+		amber
+			name = "Amber Terminal"
+			icon_state = "daterm"
+			base_icon_state = "daterm"
+			setup_font_color = "#E79C01"
+			setup_bg_color = "#1B1E1B"
+			setup_override_color = TRUE
+
 		console_upper
 			icon = 'icons/obj/machines/computerpanel.dmi'
 			icon_state = "dwaine1"
@@ -225,6 +250,17 @@
 			hint = "look for a book in the library or computer room to learn how to use this."
 			setup_idscan_path = /obj/item/peripheral/card_scanner
 			setup_starting_peripheral1 = /obj/item/peripheral/network/powernet_card/terminal
+
+			amber
+				name="DWAINE Terminal"
+				icon_state = "daterm"
+				base_icon_state = "daterm"
+				hint = "look for a book in the library or computer room to learn how to use this."
+				setup_idscan_path = /obj/item/peripheral/card_scanner
+				setup_starting_peripheral1 = /obj/item/peripheral/network/powernet_card/terminal
+				setup_font_color = "#E79C01"
+				setup_bg_color = "#1B1E1B"
+				setup_override_color = TRUE
 
 			console_upper
 				icon = 'icons/obj/machines/computerpanel.dmi'
@@ -329,14 +365,15 @@
 
 		src.post_system()
 
-		switch(rand(1,3))
-			if(1)
-				setup_font_color = "#E79C01"
-			if(2)
-				setup_font_color = "#A5A5FF"
-				setup_bg_color = "#4242E7"
-			if(3)
-				return // this pleases the linter, that's it. That's fucking it.
+		if(setup_override_color == FALSE)
+			switch(rand(1,3))
+				if(1)
+					setup_font_color = "#E79C01"
+				if(2)
+					setup_font_color = "#A5A5FF"
+					setup_bg_color = "#4242E7"
+				if(3)
+					return // this pleases the linter, that's it. That's fucking it.
 	return
 
 /obj/machinery/computer3/attack_hand(mob/user as mob)
