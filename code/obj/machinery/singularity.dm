@@ -340,8 +340,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		current_target = null
 
 /obj/machinery/the_singularity/hitby(atom/movable/AM, datum/thrown_thing/thr)
-	eat_atom(AM)
 	. = ..()
+	SPAWN_DBG(0)
+		eat_atom(AM)
 
 /obj/machinery/the_singularity/HasEntered(atom/movable/AM, atom/OldLoc)
 	SPAWN_DBG(0)
