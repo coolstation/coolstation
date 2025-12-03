@@ -1,6 +1,19 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/window,
+/obj/grille,
+/obj/item/raw_material/shard{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/structure/woodwall,
+/turf/floor/wood/six,
+/area/noGenerate)
+"b" = (
+/obj/grille,
+/obj/item/raw_material/shard{
+	pixel_x = 0;
+	pixel_y = 3
+	},
 /obj/structure/woodwall,
 /turf/floor/wood/six,
 /area/noGenerate)
@@ -29,8 +42,11 @@
 /turf/floor/carpet/purple/fancy/edge/north,
 /area/noGenerate)
 "f" = (
-/obj/table/reinforced/bar/auto,
-/turf/floor/carpet/purple/fancy/edge/se,
+/obj/candle_light{
+	pixel_x = 0;
+	pixel_y = 8
+	},
+/turf/floor/wood/six,
 /area/noGenerate)
 "g" = (
 /obj/decal/cleanable/eggshell{
@@ -47,16 +63,28 @@
 /turf/floor/wood/six,
 /area/noGenerate)
 "i" = (
-/obj/decoration/regallamp,
-/turf/floor/wood/six,
+/obj/table/reinforced/bar/auto,
+/turf/floor/carpet/purple/fancy/edge/sw,
 /area/noGenerate)
 "j" = (
-/obj/storage/secure/closet/fridge/opened,
 /obj/item/reagent_containers/food/snacks/waffles,
 /obj/item/reagent_containers/food/snacks/waffles,
 /obj/item/reagent_containers/food/snacks/waffles,
-/obj/decal/cleanable/cobweb,
 /obj/decal/cleanable/dirt/jen,
+/obj/storage/secure/closet/fridge,
+/obj/decal/cleanable/cobweb,
+/obj/machinery/light/small/auto/warm/very{
+	dir = 1
+	},
+/turf/floor/wood/six,
+/area/noGenerate)
+"k" = (
+/obj/grille,
+/obj/item/raw_material/shard{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/structure/woodwall,
 /turf/floor/wood/six,
 /area/noGenerate)
 "l" = (
@@ -75,9 +103,6 @@
 /obj/item/reagent_containers/food/snacks/ingredient/dough,
 /obj/item/reagent_containers/food/snacks/ingredient/dough,
 /turf/floor/wood/six,
-/area/noGenerate)
-"n" = (
-/turf/floor/wood/two,
 /area/noGenerate)
 "o" = (
 /obj/item/mousetrap/armed{
@@ -112,16 +137,7 @@
 /obj/item/mousetrap/armed{
 	dir = 1
 	},
-/obj/item/spacecash/five,
-/obj/item/spacecash/five{
-	pixel_y = -9;
-	pixel_x = 4
-	},
-/obj/item/spacecash/five{
-	pixel_y = 10;
-	pixel_x = 2
-	},
-/obj/machinery/door/unpowered/wood/lily,
+/obj/machinery/door/unpowered/wood,
 /turf/floor/wood/six,
 /area/noGenerate)
 "p" = (
@@ -144,6 +160,16 @@
 	},
 /turf/floor/carpet/purple/fancy/edge/east,
 /area/noGenerate)
+"r" = (
+/obj/candle_light{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/floor/wood/six{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/area/noGenerate)
 "s" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/clipboard/with_pen,
@@ -152,8 +178,27 @@
 "t" = (
 /turf/floor/wood/six,
 /area/noGenerate)
+"u" = (
+/obj/grille,
+/obj/item/raw_material/shard{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/structure/woodwall,
+/turf/floor/wood/six,
+/area/noGenerate)
+"v" = (
+/obj/grille,
+/obj/item/raw_material/shard{
+	pixel_x = 4;
+	pixel_y = -3
+	},
+/obj/structure/woodwall,
+/turf/floor/wood/six,
+/area/noGenerate)
 "w" = (
 /obj/decal/cleanable/dirt/trail/end,
+/obj/decal/doormat,
 /turf/floor/wood/two,
 /area/noGenerate)
 "x" = (
@@ -193,6 +238,13 @@
 /obj/decal/cleanable/dirt/dirt5,
 /turf/floor/wood/six,
 /area/noGenerate)
+"A" = (
+/obj/candle_light{
+	pixel_x = 0;
+	pixel_y = 4
+	},
+/turf/floor/carpet/purple/fancy/edge/nw,
+/area/noGenerate)
 "B" = (
 /turf/floor/stairs/wood2/wide,
 /area/noGenerate)
@@ -211,10 +263,37 @@
 	},
 /area/noGenerate)
 "F" = (
-/obj/item/record/spacebux,
-/obj/storage/closet/coffin/ornate,
-/obj/critter/spirit,
-/obj/decal/cleanable/dirt/dirt2,
+/obj/table/reinforced/bar/auto,
+/turf/floor/carpet/purple/fancy/edge/se,
+/area/noGenerate)
+"G" = (
+/obj/grille,
+/obj/item/raw_material/shard{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/structure/woodwall,
+/turf/floor/wood/six,
+/area/noGenerate)
+"H" = (
+/turf/floor/wood/two,
+/area/noGenerate)
+"I" = (
+/obj/grille,
+/obj/item/raw_material/shard{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/structure/woodwall,
+/turf/floor/wood/six,
+/area/noGenerate)
+"J" = (
+/obj/grille,
+/obj/item/raw_material/shard{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/structure/woodwall,
 /turf/floor/wood/six,
 /area/noGenerate)
 "K" = (
@@ -250,21 +329,36 @@
 /turf/floor/wood/six,
 /area/noGenerate)
 "P" = (
-/obj/table/reinforced/bar/auto,
-/turf/floor/carpet/purple/fancy/edge/sw,
-/area/noGenerate)
-"Q" = (
-/turf/floor/carpet/purple/fancy/edge/nw,
+/obj/item/record/spacebux,
+/obj/storage/closet/coffin/ornate,
+/obj/decal/cleanable/dirt/dirt2,
+/obj/machinery/light/small/auto/warm/very{
+	dir = 1
+	},
+/obj/critter/magiczombie,
+/turf/floor/wood/six,
 /area/noGenerate)
 "R" = (
 /obj/decal/cleanable/eggsplat,
-/obj/machinery/door/unpowered/wood/lily,
+/obj/machinery/door/unpowered/wood,
+/turf/floor/wood/six,
+/area/noGenerate)
+"S" = (
+/obj/item/raw_material/shard{
+	pixel_x = 2;
+	pixel_y = -4
+	},
+/obj/grille,
 /turf/floor/wood/six,
 /area/noGenerate)
 "T" = (
 /turf/floor/stairs/wood2/middle,
 /area/noGenerate)
 "U" = (
+/obj/decal/woodclutter{
+	pixel_x = 6;
+	pixel_y = 0
+	},
 /turf/floor/carpet/purple/fancy/edge/ne,
 /area/noGenerate)
 "V" = (
@@ -274,6 +368,12 @@
 	pixel_x = 6
 	},
 /obj/decal/cleanable/dirt,
+/turf/floor/wood/six,
+/area/noGenerate)
+"W" = (
+/obj/grille,
+/obj/item/raw_material/shard,
+/obj/structure/woodwall,
 /turf/floor/wood/six,
 /area/noGenerate)
 "X" = (
@@ -291,14 +391,14 @@
 "Z" = (
 /obj/decal/cleanable/dirt/trail,
 /obj/structure/woodwall,
-/obj/machinery/door/unpowered/wood/lily,
+/obj/machinery/door/unpowered/wood,
 /turf/floor/wood/two,
 /area/noGenerate)
 
 (1,1,1) = {"
 D
 D
-a
+u
 a
 D
 D
@@ -315,7 +415,7 @@ h
 o
 O
 c
-a
+I
 "}
 (3,1,1) = {"
 D
@@ -324,15 +424,15 @@ g
 t
 t
 D
-F
+P
 M
-a
+b
 "}
 (4,1,1) = {"
 D
 C
 t
-i
+f
 t
 D
 D
@@ -340,18 +440,18 @@ D
 D
 "}
 (5,1,1) = {"
-a
-Q
+v
+A
 x
-P
+i
 l
 t
 D
-n
+H
 B
 "}
 (6,1,1) = {"
-a
+k
 e
 y
 s
@@ -362,21 +462,21 @@ w
 T
 "}
 (7,1,1) = {"
-a
+S
 U
 q
-f
+F
 p
 t
 D
-n
+H
 E
 "}
 (8,1,1) = {"
 D
 Y
+r
 t
-i
 t
 D
 D
@@ -392,7 +492,7 @@ t
 D
 j
 d
-a
+G
 "}
 (10,1,1) = {"
 D
@@ -403,13 +503,13 @@ t
 R
 t
 t
-a
+W
 "}
 (11,1,1) = {"
 D
 D
-a
-a
+J
+W
 D
 D
 D

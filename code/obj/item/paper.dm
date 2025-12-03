@@ -1581,3 +1581,9 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	name = "WIP, Read me!"
 	desc = "A note from the mapmaker herself! Probably because she was too lazy to do something!"
 	info = "Hi! Cargo and Mining are not implemented yet on account of their unique features which are still under development. If you need something, ask me via and AHELP with f1, and I'll get it to you <3"
+
+/obj/item/paper/torpedonote
+	name = "torpedo note"
+	desc = "A neatly-written post-it note found next to a torpedo."
+	icon_state = "postit-writing"
+	info = "Just give 'er a few solid whacks and she'll know what to do. Trust me, <i>this</i> is how you win at darts B)"

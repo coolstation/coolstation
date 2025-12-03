@@ -585,7 +585,16 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabPath = "assets/maps/prefabs/prefab_cave_waffle.dmm"
 		prefabSizeX = 11
 		prefabSizeY = 9
+
 */
+	cave_wafflegood
+		dusty = 1
+		maxNum = 1
+		probability = 100
+		prefabPath = "assets/maps/prefabs/prefab_cave_wafflegood.dmm"
+		prefabSizeX = 11
+		prefabSizeY = 9
+
 	cave_closet
 		dusty = 1
 		maxNum = 2
@@ -611,19 +620,19 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		prefabSizeY = 14
 		required = TRUE
 
-	/*cave_beartrapped
+	cave_beartrapped
 		dusty = 1
 		maxNum = 1
 		probability = 100
-		prefabPath = "assets/maps/prefabs/mimTEST_prefab_cave_beartrapped.dmm"
+		prefabPath = "assets/maps/prefabs/prefab_cave_beartrapped.dmm"
 		prefabSizeX = 3
 		prefabSizeY = 3
-*/
+
 	cave_construction
 		dusty = 1
 		maxNum = 1
 		probability = 100
-		prefabPath = "assets/maps/prefabs/mimTEST_prefab_cave_construction.dmm"
+		prefabPath = "assets/maps/prefabs/prefab_cave_construction.dmm"
 		prefabSizeX = 6
 		prefabSizeY = 6
 
@@ -631,7 +640,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		dusty = 1
 		maxNum = 1
 		probability = 100
-		prefabPath = "assets/maps/prefabs/mimTEST_prefab_cave_corpsegunslinger.dmm"
+		prefabPath = "assets/maps/prefabs/prefab_cave_corpsegunslinger.dmm"
 		prefabSizeX = 1
 		prefabSizeY = 1
 
@@ -639,7 +648,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		dusty = 1
 		maxNum = 1
 		probability = 100
-		prefabPath = "assets/maps/prefabs/mimTEST_prefab_cave_corpsesnacker.dmm"
+		prefabPath = "assets/maps/prefabs/prefab_cave_corpsesnacker.dmm"
 		prefabSizeX = 2
 		prefabSizeY = 1
 
@@ -647,7 +656,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		dusty = 1
 		maxNum = 1
 		probability = 100
-		prefabPath = "assets/maps/prefabs/mimTEST_prefab_cave_darts.dmm"
+		prefabPath = "assets/maps/prefabs/prefab_cave_darts.dmm"
 		prefabSizeX = 3
 		prefabSizeY = 6
 
@@ -655,7 +664,7 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		dusty = 1
 		maxNum = 1
 		probability = 100
-		prefabPath = "assets/maps/prefabs/mimTEST_prefab_cave_escape.dmm"
+		prefabPath = "assets/maps/prefabs/prefab_cave_escape.dmm"
 		prefabSizeX = 3
 		prefabSizeY = 3
 
@@ -663,14 +672,6 @@ ABSTRACT_TYPE(/datum/generatorPrefab)
 		dusty = 1
 		maxNum = 1
 		probability = 100
-		prefabPath = "assets/maps/prefabs/mimTEST_prefab_cave_organbox.dmm"
-		prefabSizeX = 3
-		prefabSizeY = 3
-
-	cave_waffle
-		dusty = 1
-		maxNum = 1
-		probability = 100
-		prefabPath = "assets/maps/prefabs/mimTEST_prefab_cave_waffle.dmm"
-		prefabSizeX = 11
-		prefabSizeY = 9
+		prefabPath = "assets/maps/prefabs/prefab_cave_organbox.dmm"
+		prefabSizeX = 4
+		prefabSizeY = 6
