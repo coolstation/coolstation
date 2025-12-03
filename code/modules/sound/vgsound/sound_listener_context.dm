@@ -216,5 +216,5 @@
 	audible_emitters -= E
 
 /datum/sound_listener_context/byond_sound_falloff_bug
-	src.rangex = 11
-	src.rangey = 8
+	rangex = 11
+	rangey = 8
