@@ -81,7 +81,7 @@ proc/singularity_containment_check(turf/center)
 		src.visible_message("<span class='notice'>[src] refuses to activate in this place. Odd.</span>")
 		qdel(src)
 
-	playsound(T, 'sound/machines/satcrash.ogg', 100, FALSE, 15, 0.8, flags=SOUND_IGNORE_SPACE)
+//	playsound(T, 'sound/machines/satcrash.ogg', 100, FALSE, 15, 0.8, flags=SOUND_IGNORE_SPACE)
 	if (src.bhole)
 		new /obj/bhole(T, 3000)
 	else
@@ -173,6 +173,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		var/sound/warble = sound()
 		warble.file = "sound/machines/singulowarble.ogg"
 		warble.repeat = 1
+		warble.falloff = 1.5
 		warble.volume = 100
 		sound_emitter.add(warble, "warble")
 		SPAWN_DBG(0)
@@ -490,7 +491,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				T2.turf_persistent.checkinghasentered++
 
 			src.radius++
-			src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5, falloff = 1 + 0.2 * radius)
+			src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5, falloff = 1.5 + 0.2 * radius)
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
 			src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
@@ -504,7 +505,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else if (src.energy < godver2 && radius > 0)
 		// we shrink first to simply the math
 		src.radius--
-		src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5, falloff = 1 + 0.2 * radius)
+		src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5, falloff = 1.5 + 0.2 * radius)
 		var/turf/T = get_turf(src)
 		//resizing does cruel and terrible things to the turf_persistent caches, even when shrinking!
 		//north, including corner
@@ -635,11 +636,14 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	proc/set_active(var/act)
 		if (src.active != act)
 			src.active = act
+			if(src.active > 1)
+				sound_emitter.play("wibble")
+			else
+				sound_emitter.deactivate()
 			if (src.active)
 				event_handler_flags |= IMMUNE_SINGULARITY | Z_ANCHORED
 			else
 				event_handler_flags &= ~(IMMUNE_SINGULARITY | Z_ANCHORED)
-				sound_emitter.deactivate()
 
 /obj/machinery/field_generator/setup_sound()
 	sound_emitter = new /datum/sound_emitter(src)
@@ -648,8 +652,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		var/sound/wibble = sound()
 		wibble.file = "sound/machines/fieldgenwibble.ogg"
 		wibble.repeat = 1
-		wibble.falloff = 2
-		wibble.volume = 50
+		wibble.falloff = 1.25
+		wibble.volume = 25
 		sound_emitter.add(wibble, "wibble")
 
 /obj/machinery/field_generator/attack_hand(mob/user as mob)
@@ -685,6 +689,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/field_generator/New()
 	START_TRACKING
 	..()
+	setup_sound()
 	SPAWN_DBG(0.6 SECONDS)
 		if(!src.link && (state == WELDED))
 			src.get_link()
@@ -734,7 +739,6 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		src.set_active(2)
 	src.power = clamp(src.power, 0, src.max_power)
 	if(src.active >= 1)
-		sound_emitter.play("wibble")
 		src.power -= mult
 		//maptext = num2text(power)
 		if(Varpower == 0)
