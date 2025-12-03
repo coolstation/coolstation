@@ -150,10 +150,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	src.energy = E
 	src.maxradius = rad
 	src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
+	. = ..()
 	event()
 	if (Ti)
 		src.Dtime = Ti
-	..()
 	SPAWN_DBG(0)
 		for(var/turf/T in src.locs)
 			for(var/atom/movable/AM in T.contents)
@@ -486,7 +486,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				if(T2)
 					src.set_loc(T2)
 
-	else if (src.energy < godver2)
+	else if (src.energy < godver2 && radius > 0)
 		// we shrink first to simply the math
 		src.radius--
 		var/turf/T = get_turf(src)
