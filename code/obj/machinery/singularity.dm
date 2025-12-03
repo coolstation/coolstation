@@ -34,7 +34,7 @@ proc/singularity_containment_check(turf/center)
 		var/found_field = FALSE
 		for(var/i in 0 to 19)
 			T = get_step(T, dir)
-			if(locate(/obj/machinery/containment_field) in T)
+			if(locate(/obj/containment_field) in T)
 				min_dist = min(min_dist, i)
 				found_field = TRUE
 				break
@@ -771,7 +771,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		//var/field_dir = get_dir(T2,get_step(T2, NSEW))
 		T = get_step(T, NSEW)
 		//T2 = T
-		var/obj/machinery/containment_field/CF = new /obj/machinery/containment_field(src, G) //(ref to this gen, ref to connected gen)
+		var/obj/containment_field/CF = new /obj/containment_field(src, G) //(ref to this gen, ref to connected gen)
 		CF.set_loc(T)
 		CF.set_dir(NSEW)
 
@@ -858,11 +858,13 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /obj/machinery/field_generator/proc/weld_action(mob/user)
 	if(state == WRENCHED)
+		anchored = ANCHORED_TECHNICAL
 		state = WELDED
 		src.get_link() //Set up a link, now that we're secure!
 		boutput(user, "You weld the field generator to the floor.")
 		icon_state = "Field_Gen_w"
 	else if(state == WELDED)
+		anchored = ANCHORED
 		state = WRENCHED
 		if(src.link) //Clear active link.
 			src.link.master = null
@@ -871,7 +873,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		icon_state = "Field_Gen"
 
 /obj/machinery/field_generator/proc/cleanup(var/NSEW)
-	var/obj/machinery/containment_field/F
+	var/obj/containment_field/F
 	var/obj/machinery/field_generator/G
 	var/turf/T = src.loc
 	//var/turf/T2 = src.loc
@@ -884,7 +886,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	for(var/dist = 0, dist <= FIELD_GENERATOR_MAX_LENGTH, dist += 1) // checks out to 8 tiles away for fields
 		T = get_step(T, NSEW)
 		//T2 = T
-		F = (locate(/obj/machinery/containment_field) in T)
+		F = (locate(/obj/containment_field) in T)
 		if(F)
 			if(F.gen_primary == src || F.gen_secondary == src)
 				qdel(F)
@@ -965,20 +967,20 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /////////////////////////////////////////////// Containment field //////////////////////////////////
 
-/obj/machinery/containment_field
+/obj/containment_field
 	name = "containment field"
 	desc = "An energy field."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "Contain_F"
-	pass_unstable = TRUE
-	anchored = ANCHORED
-	density = 0
+	pass_unstable = FALSE
+	anchored = ANCHORED_TECHNICAL
+	density = TRUE
 	event_handler_flags = USE_FLUID_ENTER | IMMUNE_SINGULARITY | USE_CANPASS | Z_ANCHORED
 	var/obj/machinery/field_generator/gen_primary
 	var/obj/machinery/field_generator/gen_secondary
 	var/datum/light/light
 
-/obj/machinery/containment_field/New(var/obj/machinery/field_generator/A, var/obj/machinery/field_generator/B)
+/obj/containment_field/New(var/obj/machinery/field_generator/A, var/obj/machinery/field_generator/B)
 	src.gen_primary = A
 	src.gen_secondary = B
 	light = new /datum/light/point
@@ -989,32 +991,23 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	..()
 
-/obj/machinery/containment_field/disposing()
+/obj/containment_field/disposing()
 	qdel(light)
 	light = null
 	..()
 
 //we gotta override this anyway, might as well have a bit of fun with it
-/obj/machinery/containment_field/ex_act(severity=0,last_touched=0, epicenter = null)
+/obj/containment_field/ex_act(severity=0,last_touched=0, epicenter = null)
 	//throw explosives at the containment field to speed up the singularity breaking out
 	//I'm not 100% on whether this won't runtime if a generator isn't there, buuuut
 	//(also the generators aren't explosion proof atm so)
 	gen_primary?.power = max(0, round(gen_primary.power - severity))
 	gen_secondary?.power = max(0, round(gen_secondary.power - severity))
 
-/obj/machinery/containment_field/attack_hand(mob/user as mob)
+/obj/containment_field/attack_hand(mob/user as mob)
 	return
 
-/obj/machinery/containment_field/process()
-	if(isnull(gen_primary)||isnull(gen_secondary))
-		qdel(src)
-		return
-
-	if(!(gen_primary.active)||!(gen_secondary.active))
-		qdel(src)
-		return
-
-/obj/machinery/containment_field/proc/shock(mob/user as mob)
+/obj/containment_field/proc/shock(mob/user as mob)
 	if(isnull(gen_primary) || isnull(gen_secondary))
 		qdel(src)
 		return
@@ -1065,15 +1058,17 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		user.elecgib()
 		return
 	else
-		var/throwdir = get_dir(src, get_step_away(src, user)) //was get_step_away(user, src), but that seems backwards
+		//var/throwdir = get_dir(src, get_step_away(src, user)) //was get_step_away(user, src), but that seems backwards
+		/* why do we want a 20% chance to just chainthrow back and forth inside the beam?? maybe a chance to fall in, but. why.
 		if (prob(20))
 			user.set_loc(get_turf(src)) //why?
 			if (prob(50))
 				throwdir = turn(throwdir,90)
 			else
 				throwdir = turn(throwdir,-90)
-		var/atom/target = get_edge_target_turf(user, throwdir)
-		user.throw_at(target, 200, 4) //200 because that's the old map size?
+		*/
+		var/atom/target = get_edge_target_turf(user, get_dir(src, user))
+		user.throw_at(target, 40, 4) //200 because that's the old map size? // now 40, space handles the rest
 		user.audible_message("<span class='alert'>[user.name] was shocked by the [src.name]!</span>", "<span class='alert'>You hear a heavy electrical crack</span>")
 		/*for(var/mob/M in AIviewers(src))
 			if(M == user)	continue
@@ -1083,11 +1078,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	src.gen_secondary.power -= 3
 	return
 
-/obj/machinery/containment_field/CanPass(atom/movable/O as mob|obj, target as turf)
+/obj/containment_field/Bumped(atom/movable/O as mob|obj)
 	if(isliving(O) && prob(80))
 		shock(O)
-	..()
-
+	return ..()
 
 /////////////////////////////////////////// Emitter ///////////////////////////////
 /obj/machinery/emitter
