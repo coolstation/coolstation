@@ -85,6 +85,7 @@
 	if (sound_zone_manager)
 		szm = sound_zone_manager
 	sound_zone_manager.register_emitter(src)
+	RegisterSignal(source, COMSIG_MOVABLE_MOVED, PROC_REF(on_source_moved))
 
 /datum/sound_emitter/disposing()
 	sound_emitter_collection.remove(src)
