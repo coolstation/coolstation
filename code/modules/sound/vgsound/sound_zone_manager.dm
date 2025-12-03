@@ -114,9 +114,12 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 			if (!client || !client.listener_context)
 				CRASH("Found a listener with no client or endpoint client")
 			var/datum/sound_listener_context/context = client.listener_context
+			var/turf/location = get_turf(listener)
 
 			if (E in context.current_channels_by_emitter)
-				if (!E.contains(listener))
+				// swap when we stop supporting versions without the byond sound bug
+				if (!E.contains_bugfix(listener))
+//				if (!E.contains(location))
 					context.on_exit_range(E)
 				//else
 				//	context.on_sound_update(E)
@@ -204,7 +207,9 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 	for (var/H in hashes)
 		var/list/B = emitter_buckets[H]
 		for (var/datum/sound_emitter/E in B)
-			if (E.contains(location))
+			// swap when we stop supporting versions without the byond sound bug
+			if (!E.contains_bugfix(listener))
+//			if (E.contains(location))
 				fresh[E] = TRUE
 				if (current[E] == null)
 					context.on_enter_range(E)

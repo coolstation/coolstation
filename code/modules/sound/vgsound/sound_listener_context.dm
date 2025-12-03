@@ -61,9 +61,10 @@
 	var/list/current_channels_by_emitter = list()
 	var/list/free_channels = list()
 	var/list/audible_emitters = list()
-	var/range = null
+	var/rangex = SOUND_BUCKET_SIZE
+	var/rangey = SOUND_BUCKET_SIZE
 
-/datum/sound_listener_context/New(client/C, mob/P, hearing_range = SOUND_BUCKET_SIZE)
+/datum/sound_listener_context/New(client/C, mob/P)
 	. = ..()
 	client = C
 	proxy = P
@@ -72,7 +73,6 @@
 	audible_emitters = list()
 	for (var/i in SOUNDCHANNEL_CLIENT_MIN to SOUNDCHANNEL_CLIENT_MAX)
 		free_channels += i
-	range = hearing_range
 	sound_zone_manager.register_listener(src)
 
 /datum/sound_listener_context/disposing()
@@ -215,9 +215,6 @@
 	unsubscribe_from(E)
 	audible_emitters -= E
 
-// this exists for byond versions 1653 to 1673, where atom-linked sounds max in volume at certain ranges
-/datum/sound_listener_context/byond_sound_falloff_bug/apply_proxymob_effects(sound/S, datum/sound_emitter/emitter)
-	if (!(S.atom in view(world.view, proxy)))
-		S.volume = 0
-		return S
-	return ..()
+/datum/sound_listener_context/byond_sound_falloff_bug
+	src.rangex = 11
+	src.rangey = 8

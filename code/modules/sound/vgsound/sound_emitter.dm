@@ -65,7 +65,8 @@
 	var/atom/source = null
 	var/list/sounds = list() // list of managed_sound
 	var/datum/managed_sound/active_sound = null
-	var/range
+	var/rangex
+	var/rangey
 	var/last_hash = null
 	var/spaced = FALSE
 	var/ignore_space = FALSE
@@ -80,7 +81,8 @@
 /datum/sound_emitter/New(atom/A)
 	..()
 	source = A
-	range = SOUND_BUCKET_SIZE
+	rangex = SOUND_BUCKET_SIZE
+	rangey = SOUND_BUCKET_SIZE
 	sound_emitter_collection.add(src)
 	if (sound_zone_manager)
 		szm = sound_zone_manager
@@ -193,10 +195,23 @@
 	var/turf/S = get_turf(source)
 	if (!S)
 		CRASH("Failed to get source turf in contains")
-	var/minX = S.x - range
-	var/maxX = S.x + range
-	var/minY = S.y - range
-	var/maxY = S.y + range
+	var/minX = S.x - rangex
+	var/maxX = S.x + rangex
+	var/minY = S.y - rangey
+	var/maxY = S.y + rangey
+	return (minX <= T.x && T.x <= maxX && minY <= T.y && T.y <= maxY)
+
+/datum/sound_emitter/proc/contains_bugfix(datum/sound_listener_context/SLC)
+	var/turf/T = get_turf(SLC)
+	if (!T)
+		return FALSE
+	var/turf/S = get_turf(source)
+	if (!S)
+		CRASH("Failed to get source turf in contains_bugfix")
+	var/minX = S.x - SLC.rangex
+	var/maxX = S.x + SLC.rangex
+	var/minY = S.y - SLC.rangey
+	var/maxY = S.y + SLC.rangey
 	return (minX <= T.x && T.x <= maxX && minY <= T.y && T.y <= maxY)
 
 /*
@@ -249,8 +264,21 @@
 	var/turf/S = whatevs_source.get_center()
 	if (!S)
 		CRASH("Failed to get source turf in contains")
-	var/minX = S.x - range
-	var/maxX = S.x + range
-	var/minY = S.y - range
-	var/maxY = S.y + range
+	var/minX = S.x - rangex
+	var/maxX = S.x + rangex
+	var/minY = S.y - rangey
+	var/maxY = S.y + rangey
+	return (minX <= T.x && T.x <= maxX && minY <= T.y && T.y <= maxY)
+
+/datum/sound_emitter/big/contains_bugfix(datum/sound_listener_context/SLC)
+	var/turf/T = get_turf(SLC)
+	if (!T)
+		return FALSE
+	var/turf/S = whatevs_source.get_center()
+	if (!S)
+		CRASH("Failed to get source turf in contains_bugfix")
+	var/minX = S.x - SLC.rangex
+	var/maxX = S.x + SLC.rangex
+	var/minY = S.y - SLC.rangey
+	var/maxY = S.y + SLC.rangey
 	return (minX <= T.x && T.x <= maxX && minY <= T.y && T.y <= maxY)
