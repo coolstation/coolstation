@@ -39,8 +39,10 @@
 			var/slc = client.listener_context
 			qdel(slc) // dont ask me why its like this. i dont know.
 			client.listener_context = null
-		client.listener_context = new /datum/sound_listener_context(client, src, SOUND_BUCKET_SIZE)
-
+		if(client.byond_build > 1673)
+			client.listener_context = new /datum/sound_listener_context(client, src, SOUND_BUCKET_SIZE)
+		else if(client.byond_build >= 1653)
+			client.listener_context = new /datum/sound_listener_context/byond_sound_falloff_bug(client, src, SOUND_BUCKET_SIZE)
 /*
 /mob/living/silicon/ai/Login()
 	..()
@@ -212,3 +214,10 @@
 	release(E)
 	unsubscribe_from(E)
 	audible_emitters -= E
+
+// this exists for byond versions 1653 to 1673, where atom-linked sounds max in volume at certain ranges
+/datum/sound_listener_context/byond_sound_falloff_bug/apply_proxymob_effects(sound/S, datum/sound_emitter/emitter)
+	if (!(S.atom in view(world.view, proxy)))
+		S.volume = 0
+		return S
+	return ..()
