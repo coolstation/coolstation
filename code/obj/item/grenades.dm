@@ -227,10 +227,6 @@ ABSTRACT_TYPE(/obj/item/old_grenade)
 				qdel(src)
 				return
 			for (var/atom/X in orange(9, T))
-				if (istype(X,/obj/machinery/containment_field))
-					continue
-				if (istype(X,/obj/machinery/field_generator))
-					continue
 				if (istype(X,/turf))
 					continue
 				if (istype(X, /obj))
