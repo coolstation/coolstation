@@ -200,11 +200,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if (prob(20))//Chance for it to run a special event
 		event()
 
-	move()
+	move_it()
 
 	if (src.active)
 		SPAWN_DBG(1.1 SECONDS) // slowing this baby down a little -drsingh
-			move()
+			move_it()
 		var/recapture_prob = clamp(30-(radius**2) , 0, 25)
 		if(prob(recapture_prob))
 			var/check_max_radius = singularity_containment_check(get_center(src))
@@ -255,7 +255,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				step_towards(AM, src)
 */
 
-/obj/machinery/the_singularity/proc/move()
+/obj/machinery/the_singularity/proc/move_it()
 	// if we're inside something (e.g posessed mob) dont move
 	if (!isturf(src.loc))
 		return
@@ -341,7 +341,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 					eat_atom(AM)
 				eat_atom(T)
 
-/obj/machinery/the_singularity/Move(atom/target)
+/obj/machinery/the_singularity/Move(atom/target, direct)
 	. = ..()
 	if(isturf(target))
 		SPAWN_DBG(0)

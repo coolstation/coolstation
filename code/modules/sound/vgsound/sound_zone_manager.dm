@@ -105,7 +105,7 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 
 	// check for new hearers - inverted on_player_move
 	var/hashes = listener_candidate_hashes(newX, newY, newZ)
-	for (var/H  in hashes)
+	for (var/H in hashes)
 		var/list/B = listener_buckets[H]
 		for (var/mob/listener in B)
 			var/client/client = listener.client
@@ -118,7 +118,7 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 
 			if (E in context.current_channels_by_emitter)
 				// swap when we stop supporting versions without the byond sound bug
-				if (!E.contains_bugfix(listener))
+				if (!E.contains_bugfix(context))
 //				if (!E.contains(location))
 					context.on_exit_range(E)
 				//else
