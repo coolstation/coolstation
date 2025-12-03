@@ -2297,6 +2297,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	speechverb_say = "blorps"
 	speechverb_exclaim = "bloops"
 	speechverb_ask = "burbles"
+	ai_type = /datum/aiHolder/wanderers
 	health_brute = 5
 	health_burn = 5
 	flags = TABLEPASS
