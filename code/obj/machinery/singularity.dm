@@ -715,7 +715,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				icon_state = "Field_Gen_w"
 				src.set_active(0)
 				for(var/dir in cardinal)
-					src.cleanup(cardinal)
+					src.cleanup(dir)
 					src.UpdateOverlays(null, "field_start_[dir]")
 					src.UpdateOverlays(null, "field_end_[dir]")
 
