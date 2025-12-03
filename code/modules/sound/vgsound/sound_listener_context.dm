@@ -60,7 +60,6 @@
 	var/mob/proxy = null
 	var/list/current_channels_by_emitter = list()
 	var/list/free_channels = list()
-	var/list/audible_emitters = list()
 	var/rangex = SOUND_BUCKET_SIZE
 	var/rangey = SOUND_BUCKET_SIZE
 
@@ -70,7 +69,6 @@
 	proxy = P
 	current_channels_by_emitter = list()
 	free_channels = list()
-	audible_emitters = list()
 	for (var/i in SOUNDCHANNEL_CLIENT_MIN to SOUNDCHANNEL_CLIENT_MAX)
 		free_channels += i
 	sound_zone_manager.register_listener(src)
@@ -79,9 +77,7 @@
 	for (var/datum/sound_emitter/E in current_channels_by_emitter)
 		stop_hearing(E)
 		release(E)
-	for (var/datum/sound_emitter/E in audible_emitters)
 		unsubscribe_from(E)
-	audible_emitters.Cut()
 	free_channels.Cut()
 	current_channels_by_emitter.Cut()
 	sound_zone_manager.unregister_listener(src)
@@ -207,13 +203,11 @@
 /datum/sound_listener_context/proc/on_enter_range(datum/sound_emitter/E)
 	start_hearing(E) // this can throw if channel reservation fails, subscribe after its safe
 	subscribe_to(E)
-	audible_emitters |= E
 
 /datum/sound_listener_context/proc/on_exit_range(datum/sound_emitter/E)
 	stop_hearing(E)
 	release(E)
 	unsubscribe_from(E)
-	audible_emitters -= E
 
 /datum/sound_listener_context/byond_sound_falloff_bug
 	rangex = 11
