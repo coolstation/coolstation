@@ -353,7 +353,7 @@
 /datum/aiTask/endless/pickup/weapon/score_target(obj/item/target)
 	if(target.w_class > src.max_wclass || target.anchored)
 		return 0
-	return (target.force / target.combat_click_delay) - 0.59 // we dont want anything that does less than 6 dps
+	return (target.force / target.combat_click_delay) - 0.49 // we dont want anything that does less than 5 dps
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LA VIOLENCIA
