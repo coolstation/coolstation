@@ -305,9 +305,14 @@
 				src.max_wclass = active_limb.max_wclass
 
 /datum/aiTask/endless/pickup/on_tick()
+	if(src.holder.owner.restrained() || src.holder.owner.sleeping || src.holder.owner.stat || src.holder.owner.lying)
+		return ..()
 	if(src.target_item && can_reach(src.holder.owner, src.target_item))
 		var/obj/item/equipped = src.holder.owner.equipped()
 		if (!equipped || src.holder.owner.drop_item(equipped))
+			if (isturf(src.target_item.loc))
+				pickup_particle(src.holder.owner,src.target_item)
+				MAKE_PICKUP_SOUND(src.target_item, src.target_item.loc)
 			src.holder.owner.put_in_hand_or_drop(src.target_item)
 			src.target_item = null
 			src.holder.target = null
