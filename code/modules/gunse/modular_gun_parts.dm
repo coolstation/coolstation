@@ -103,11 +103,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	proc/alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
 		return call_alter_projectile
 
-	proc/add_overlay_to_gun(var/obj/item/gun/modular/gun, var/correctly = 0)
+	proc/add_overlay_to_gun(var/obj/item/gun/modular/gun, var/correctly = 0, var/layer_override = 0)
 		var/image/I = image(icon, icon_state)//"[icon_state]-built")
 		if(correctly) //proper assembly?
 			I.pixel_x = overlay_x
 			I.pixel_y = overlay_y
+
 		else // to be tightened
 			if (part_type & GUN_PART_BARREL)
 				I.pixel_x = overlay_x + 3
@@ -118,7 +119,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 			if (part_type & GUN_PART_GRIP)
 				I.pixel_y = overlay_y - 3
 				I.pixel_x = overlay_x - 1
-		I.layer = gun.layer - 0.01
+		if(!layer_override)
+			I.layer = gun.layer - 0.01
+		else
+			I.layer = gun.layer + layer_override
 		gun.UpdateOverlays(I, "[part_type]")
 
 	proc/remove_part_from_gun()
@@ -1286,6 +1290,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	built_focused = "nt_flash-focused"
 
 ABSTRACT_TYPE(/obj/item/gun_parts/accessory/magazine)
+/obj/item/gun_parts/accessory/magazine
+	add_overlay_to_gun(obj/item/gun/modular/gun, correctly)
+
+		. = ..(gun,correctly,0.01)
+
+
 
 /obj/item/gun_parts/accessory/magazine/juicer
 	name = "\improper HOTT SHOTTS MAG"
