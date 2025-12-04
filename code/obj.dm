@@ -561,9 +561,6 @@
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-/obj/proc/alter_health()
-	return 1
-
 /obj/proc/hide(h)
 	return
 

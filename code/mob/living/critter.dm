@@ -1125,7 +1125,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 		return O
 
 	drop_item()
-		..()
+		. = ..()
 		src.update_inhands()
 
 	proc/on_sleep()

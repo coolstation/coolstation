@@ -105,9 +105,6 @@
 		H.vent_gas(loc)
 		qdel(H)
 
-	alter_health()
-		return get_turf(src)
-
 /turf/floor/pin
 	name = "pin"
 	icon = 'bowling.dmi'

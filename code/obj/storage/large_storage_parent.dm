@@ -129,9 +129,6 @@
 					var/obj/item/I = A
 					I.emp_act()
 
-	alter_health()
-		. = get_turf(src)
-
 	relaymove(mob/user as mob)
 		if (is_incapacitated(user))
 			return
@@ -440,9 +437,6 @@
 	attack_ai(mob/user)
 		if (can_reach(user, src) <= 1 && (isrobot(user) || isshell(user)))
 			. = src.Attackhand(user)
-
-	alter_health()
-		. = get_turf(src)
 
 	CanPass(atom/movable/mover, turf/target)
 		. = open

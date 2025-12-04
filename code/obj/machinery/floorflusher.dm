@@ -174,10 +174,6 @@
 		update()
 		return
 
-	// can breath normally in the disposal
-	alter_health()
-		return get_turf(src)
-
 	// attempt to move while inside
 	relaymove(mob/user as mob)
 		if(user.stat || src.flushing)

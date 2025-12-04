@@ -157,7 +157,7 @@
 		else
 			if (istype(mag))
 				actions.stopId("magpickerhold", user)
-			else if (!user.drop_item())
+			else if (!user.drop_item(I) || QDELETED(I))
 				return
 			I.set_loc(src)
 			user.visible_message("[user.name] places \the [I] into \the [src].",\
@@ -191,26 +191,27 @@
 			var/obj/item/I = MO
 
 			if(prob(20)) //It might land!
-				I.set_loc(get_turf(src))
 				if(prob(30)) //It landed cleanly!
-					I.set_loc(src)
+					SPAWN_DBG(0)
+						I.set_loc(src)
 					src.visible_message("<span class='alert'>\The [I] lands cleanly in \the [src]!</span>")
 				else	//Aaaa the tension!
 					src.visible_message("<span class='alert'>\The [I] teeters on the edge of \the [src]!</span>")
 					var/delay = rand(5, 15)
 					SPAWN_DBG(0)
+						I.set_loc(get_turf(src))
 						var/in_x = I.pixel_x
 						for(var/d = 0; d < delay; d++)
 							if(I) I.pixel_x = in_x + rand(-1, 1)
 							sleep(0.1 SECONDS)
 						if(I) I.pixel_x = in_x
-					sleep(delay)
-					if(I && I.loc == src.loc)
-						if(prob(40)) //It goes in!
-							src.visible_message("<span class='alert'>\The [I] slips into \the [src]!</span>")
-							I.set_loc(src)
-						else
-							src.visible_message("<span class='alert'>\The [I] slips off of the edge of \the [src]!</span>")
+						sleep(delay)
+						if(I && I.loc == src.loc)
+							if(prob(40)) //It goes in!
+								src.visible_message("<span class='alert'>\The [I] slips into \the [src]!</span>")
+								I.set_loc(src)
+							else
+								src.visible_message("<span class='alert'>\The [I] slips off of the edge of \the [src]!</span>")
 
 		else if (ishuman(MO))
 			var/mob/living/carbon/human/H = MO
@@ -218,22 +219,18 @@
 			if(prob(30))
 				H.visible_message("<span class='alert'><B>[H] falls into the disposal outlet!</B></span>")
 				logTheThing("combat", H, null, "is thrown into a [src.name] at [log_loc(src)].")
-				H.set_loc(src)
-				if(prob(20))
-					src.visible_message("<span class='alert'><B><I>...accidentally hitting the handle!</I></B></span>")
-					H.show_text("<B><I>...accidentally hitting the handle!</I></B>", "red")
-					flush = 1
-					if (!is_processing)
-						SubscribeToProcess()
-						is_processing = 1
-					update()
+				SPAWN_DBG(0)
+					H.set_loc(src)
+					if(prob(20))
+						src.visible_message("<span class='alert'><B><I>...accidentally hitting the handle!</I></B></span>")
+						H.show_text("<B><I>...accidentally hitting the handle!</I></B>", "red")
+						flush = 1
+						if (!is_processing)
+							SubscribeToProcess()
+							is_processing = 1
+						update()
 		else
 			return ..()
-
-
-	// can breath normally in the disposal
-	alter_health()
-		return get_turf(src)
 
 	// attempt to move while inside
 	relaymove(mob/user as mob)
