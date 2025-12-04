@@ -316,6 +316,7 @@
 		src.target_item = src.get_best_target(src.get_targets())
 	if(src.target_item)
 		src.holder.target = src.target_item
+	return ..()
 
 /datum/aiTask/endless/pickup/get_targets()
 	. = ..()
@@ -326,6 +327,7 @@
 	var/obj/item/equipped = src.holder.owner.equipped()
 	if(equipped)
 		return TRUE
+	return FALSE
 
 /datum/aiTask/endless/pickup/score_target(obj/item/target)
 	if(target.w_class > src.max_wclass || target.anchored)
@@ -341,11 +343,12 @@
 	var/obj/item/equipped = src.holder.owner.equipped()
 	if(equipped && prob(min(equipped.force / equipped.combat_click_delay * 80, 96)))
 		return TRUE
+	return FALSE
 
 /datum/aiTask/endless/pickup/weapon/score_target(obj/item/target)
 	if(target.w_class > src.max_wclass || target.anchored)
 		return 0
-	return (target.force / target.combat_click_delay) - 6.9 // we dont want anything that does less than 7 dps
+	return (target.force / target.combat_click_delay) - 0.59 // we dont want anything that does less than 6 dps
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LA VIOLENCIA
