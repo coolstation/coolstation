@@ -1242,7 +1242,7 @@
 	T.Entered(item)
 
 /mob/proc/drop_item(obj/item/W)
-	.= 0
+	. = 0
 	if (!W) //only pass W if you KNOW that the mob has it
 		W = src.equipped()
 	if (istype(W))
@@ -1272,13 +1272,14 @@
 				W.layer = initial(W.layer)
 
 			u_equip(W)
-			.= 1
+			. = 1
 		else
 			u_equip(W)
-			.= 0
+			. = 0
 		if (origW)
 			origW.holding = null
 			actions.stopId("magpickerhold", src)
+	return
 
 //throw the dropped item
 /mob/proc/drop_item_throw(obj/item/W)
@@ -1313,6 +1314,7 @@
 			return src.r_hand
 
 /mob/living/critter/equipped()
+	RETURN_TYPE(/obj/item)
 	var/datum/handHolder/active_hand = src.get_active_hand()
 	return active_hand.item
 
