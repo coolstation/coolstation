@@ -12,6 +12,9 @@
 
 	//AI Vars
 
+	// mylies replacement for having a ton of booleans
+	var/ai_flags = MOB_AI_PICKUP_WEAPONS
+
 	var/ai_busy = 0
 	var/ai_laststep = 0
 	var/ai_state = 0

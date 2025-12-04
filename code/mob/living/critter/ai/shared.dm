@@ -251,7 +251,7 @@
 		return
 
 /datum/aiTask/endless/move/on_reset()
-	..()
+	. = ..()
 	src.found_path = null
 	src.move_target = null
 	src.next_turf = null
@@ -286,6 +286,68 @@
 	return ..()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ENDLESS PICKUP ITEMS TASK
+
+/datum/aiTask/endless/pickup
+	name = "endlessly picking up items"
+	max_dist = 3
+	score_by_distance_only = TRUE
+	var/obj/item/target_item = null
+	var/acquire_target_chance = 3
+	var/max_wclass = W_CLASS_TINY
+
+/datum/aiTask/endless/pickup/New(parentHolder)
+	. = ..()
+	SPAWN_DBG(3 SECONDS)
+		if(src.holder.owner)
+			var/datum/limb/active_limb = src.holder.owner.equipped_limb()
+			if(active_limb)
+				src.max_wclass = active_limb.max_wclass
+
+/datum/aiTask/endless/pickup/on_tick()
+	if(src.target_item && can_reach(src.holder.owner, src.target_item))
+		var/obj/item/equipped = src.holder.owner.equipped()
+		if (!equipped || src.holder.owner.drop_item(equipped))
+			src.holder.owner.put_in_hand_or_drop(src.target_item)
+			src.target_item = null
+			src.holder.target = null
+			return ..()
+	if(!src.target_item && prob(src.acquire_target_chance) && !src.equipped_validity())
+		src.target_item = src.get_best_target(src.get_targets())
+	if(src.target_item)
+		src.holder.target = src.target_item
+
+/datum/aiTask/endless/pickup/get_targets()
+	. = ..()
+	for(var/obj/item/I in view(get_turf(src.holder.owner), src.max_dist))
+		. |= I
+
+/datum/aiTask/endless/pickup/proc/equipped_validity()
+	var/obj/item/equipped = src.holder.owner.equipped()
+	if(equipped)
+		return TRUE
+
+/datum/aiTask/endless/pickup/score_target(obj/item/target)
+	if(target.w_class > src.max_wclass || target.anchored)
+		return 0
+	return ..()
+
+/datum/aiTask/endless/pickup/weapon
+	name = "endlessly picking up weapons"
+	max_dist = 4
+	score_by_distance_only = FALSE
+
+/datum/aiTask/endless/pickup/weapon/equipped_validity()
+	var/obj/item/equipped = src.holder.owner.equipped()
+	if(equipped && prob(min(equipped.force / equipped.combat_click_delay * 80, 96)))
+		return TRUE
+
+/datum/aiTask/endless/pickup/weapon/score_target(obj/item/target)
+	if(target.w_class > src.max_wclass || target.anchored)
+		return 0
+	return (target.force / target.combat_click_delay)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LA VIOLENCIA
 
 /datum/aiHolder/violent
@@ -306,6 +368,8 @@
 /datum/aiTask/concurrent/violence/New(parentHolder, transTask)
 	..(parentHolder, transTask)
 	add_task(holder.get_instance(/datum/aiTask/endless/violence_subtask, list(holder)))
+	if(src.holder.owner && src.holder.owner.ai_flags & MOB_AI_PICKUP_WEAPONS)
+		add_task(holder.get_instance(/datum/aiTask/endless/pickup/weapon, list(holder)))
 	add_task(holder.get_instance(/datum/aiTask/endless/move/inherit_target, list(holder)))
 
 /datum/aiTask/concurrent/violence/get_targets()
@@ -316,7 +380,10 @@
 
 /datum/aiTask/concurrent/violence/tick()
 	var/mob/living/L = src.holder.target
-	if(!istype(L) || L.z != src.holder.owner.z || !src.holder.owner.ai_is_valid_target(L))
+	if(src.holder.target && !istype(L))
+		// going for weapons and such, and doesnt change heavyweight status so we go for it faster in a fight
+		return ..()
+	if(!src.holder.target || L.z != src.holder.owner.z || !src.holder.owner.ai_is_valid_target(L))
 		src.holder.target = null
 		var/obj/item/grab/G = src.holder.owner.equipped()
 		if(G && istype(G))
@@ -348,6 +415,9 @@
 /datum/aiTask/endless/violence_subtask/on_tick()
 	if (!src.holder.owner || HAS_ATOM_PROPERTY(src.holder.owner, PROP_CANTMOVE))
 		return
+
+	if(!isliving(src.holder.target))
+		return ..()
 
 	if(!src.holder.target || src.ticks_since_combat >= src.boredom_ticks)
 		src.holder.target = null
@@ -386,14 +456,13 @@
 		var/obj/item/grab/equipped = src.holder.owner.equipped()
 		if(istype(equipped))
 			if(equipped.state > GRAB_NECK || prob(5))
-				src.holder.owner.swap_hand()
-				src.holder.owner.a_intent = INTENT_HARM // and dont try to choke them in the other hand, either!
+				dont_swap = FALSE
 			else
 				src.holder.owner.a_intent = INTENT_GRAB // finish the choke!
 				equipped.attack_self(src.holder.owner)
 				dont_swap = TRUE
-		else if (equipped)
-			if(equipped.special && prob(15) || possible_miss != src.holder.target)
+		else if(equipped)
+			if(equipped.special && (prob(15) || possible_miss != src.holder.target))
 				equipped.special.pixelaction(possible_miss,src.special_params,src.holder.owner)
 				if(!dont_swap)
 					dont_swap = prob(90)
@@ -441,13 +510,15 @@
 	. = ..()
 	if(src.queued_target && src.holder.owner.next_click <= world.time && prob(80))
 		SPAWN_DBG(rand(1,2))
+			if(src.holder.owner.next_click > world.time)
+				return
 			var/atom/possible_miss = src.queued_target
 			var/mob/M = src.queued_target
 			if(prob(10) && istype(M))
 				possible_miss = M.prev_loc
 			else if(prob(10))
 				possible_miss = src.queued_target.loc
-			if(src.queued_target && can_reach(src.holder.owner, possible_miss))
+			if(possible_miss && can_reach(src.holder.owner, possible_miss))
 				var/obj/item/grab/equipped = src.holder.owner.equipped()
 				if(equipped && istype(equipped))
 					if(equipped.state > GRAB_NECK || prob(5))
