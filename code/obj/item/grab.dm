@@ -1,5 +1,5 @@
 //MBC NOTE : we entirely skip over grab level 1. it is not needed but also i am afraid to remove it entirely right now.
-/obj/item/grab //TODO : pool grabs
+/obj/item/grab
 	flags = SUPPRESSATTACK
 	var/mob/living/assailant
 	var/mob/living/affecting
