@@ -2138,9 +2138,9 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 		if(misstep_angle)
 			misstep_angle = min(misstep_angle,90)
-			var/move_angle = dir2angle(move_dir)
+			var/move_angle = dir2angle(target_dir)
 			move_angle += pick(-misstep_angle,misstep_angle)
-			move_dir = angle2dir(move_angle)
+			target_dir = angle2dir(move_angle)
 		// yea
 
 		var/slidekick_range = max(1 + min(GET_ATOM_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
