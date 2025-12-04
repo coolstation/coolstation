@@ -293,7 +293,7 @@
 	max_dist = 3
 	score_by_distance_only = TRUE
 	var/obj/item/target_item = null
-	var/acquire_target_chance = 3
+	var/acquire_target_chance = 10
 	var/max_wclass = W_CLASS_TINY
 
 /datum/aiTask/endless/pickup/New(parentHolder)
