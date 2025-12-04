@@ -131,11 +131,11 @@
 			if(emitter.spaced)
 				S.environment = SPACED_ENV
 				S.echo = SPACED_ECHO
-				S.volume += 0.75
+				S.volume += 65
 				return
 			S.environment = SPACED_ENV
 			S.echo = SPACED_ECHO
-			S.volume *= 0.04
+			S.volume *= 0.3
 			return
 	S.environment = EAX_GENERIC
 	S.echo = ECHO_AFAR

@@ -654,7 +654,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/field_generator/setup_sound()
 	sound_emitter = new /datum/sound_emitter(src)
 	if (sound_emitter)
-		sound_emitter.ignore_space = TRUE
+		//sound_emitter.ignore_space = TRUE
 		var/sound/wibble = sound()
 		wibble.file = "sound/machines/fieldgenwibble.ogg"
 		wibble.repeat = 1
