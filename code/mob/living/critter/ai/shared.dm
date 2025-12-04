@@ -345,7 +345,7 @@
 /datum/aiTask/endless/pickup/weapon/score_target(obj/item/target)
 	if(target.w_class > src.max_wclass || target.anchored)
 		return 0
-	return (target.force / target.combat_click_delay)
+	return (target.force / target.combat_click_delay) - 6.9 // we dont want anything that does less than 7 dps
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LA VIOLENCIA
@@ -467,7 +467,7 @@
 				if(!dont_swap)
 					dont_swap = prob(90)
 			else
-				src.holder.owner.weapon_attack(possible_miss, equipped)
+				src.holder.owner.weapon_attack(possible_miss, equipped, TRUE)
 				if(!dont_swap)
 					dont_swap = prob(min(equipped.force / equipped.combat_click_delay * 80, 96)) // 80% chance to stay on weapon if it does 10 dps, 96% at 12+
 		else if(prob(15) || possible_miss != src.holder.target)
@@ -531,7 +531,7 @@
 					if(equipped.special && prob(15) || possible_miss != src.holder.target)
 						equipped.special.pixelaction(possible_miss,src.special_params,src.holder.owner)
 					else
-						src.holder.owner.weapon_attack(possible_miss, equipped)
+						src.holder.owner.weapon_attack(possible_miss, equipped, TRUE)
 				else if(prob(20))
 					var/mob/living/critter/owncritter = src.holder.owner
 					var/datum/limb/active_limb
