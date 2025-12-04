@@ -5374,6 +5374,7 @@ var/global/noir = 0
 
 /client/Move(NewLoc, direct)
 	if(usr.client.flying)
+		var/prevloc = usr.loc
 		if(!isturf(usr.loc))
 			usr.set_loc(get_turf(usr))
 
@@ -5392,6 +5393,7 @@ var/global/noir = 0
 			usr.x--
 
 		src.mob.set_dir(direct)
+		SEND_SIGNAL(src.mob, COMSIG_MOVABLE_MOVED, prevloc, direct)
 	else
 		..()
 
