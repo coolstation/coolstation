@@ -157,7 +157,7 @@
 		else
 			if (istype(mag))
 				actions.stopId("magpickerhold", user)
-			else if (!user.drop_item())
+			else if (!user.drop_item(I) || QDELETED(I))
 				return
 			I.set_loc(src)
 			user.visible_message("[user.name] places \the [I] into \the [src].",\
