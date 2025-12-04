@@ -1914,6 +1914,11 @@
 	blueprint = /datum/manufacture/mechanics/ai_status_display
 
 
+/******************** Communications Dish Blueprints *******************/
+
+/obj/item/paper/manufacturer_blueprint/communications_dish
+	blueprint = /datum/manufacture/mechanics/communications_dish
+
 /******************** Alastor Pattern Thruster Blueprints *******************/
 /obj/item/paper/manufacturer_blueprint/thrusters
 	icon = 'icons/obj/items/writing.dmi'
