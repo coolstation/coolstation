@@ -76,6 +76,22 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 		emitter_buckets[h] = list()
 	emitter_buckets[h] |= E
 
+	var/hashes = listener_candidate_hashes(X, Y, Z)
+	for (var/H in hashes)
+		var/list/B = listener_buckets[H]
+		for (var/mob/listener in B)
+			var/client/client = listener.client
+			//if (!client) // e.g. AI eye has no client, endpoint must be overridden
+			//	client = listener.sound_endpoint.client
+			if (!client || !client.listener_context)
+				CRASH("Found a listener with no client or endpoint client")
+			var/datum/sound_listener_context/context = client.listener_context
+			//var/turf/location = get_turf(listener)
+
+			// swap when we stop supporting versions without the byond sound bug
+			if (E.contains_bugfix(context))
+				context.on_enter_range(E)
+
 /datum/sound_zone_manager/proc/unregister_emitter(datum/sound_emitter/E)
 	var/h = E.last_hash
 	if (!h)
@@ -124,7 +140,9 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 				//else
 				//	context.on_sound_update(E)
 			else
-				context.on_enter_range(E)
+				// swap when we stop supporting versions without the byond sound bug
+				if (E.contains_bugfix(context))
+					context.on_enter_range(E)
 
 	SEND_SIGNAL(src, SIGNAL_SOUND_UPDATED)
 
