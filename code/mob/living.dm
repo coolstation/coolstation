@@ -2126,6 +2126,23 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		var/did_any_dive_hit = FALSE
 		if(!target_dir)
 			target_dir = src.dir
+
+		// copied from input.dm with doubled chances
+		var/misstep_angle = 0
+		if (src.traitHolder && prob(10) && src.traitHolder.hasTrait("leftfeet"))
+			misstep_angle += 45
+		if (prob(DISORIENT_MISSTEP_CHANCE * 2) && src.getStatusDuration("disorient"))
+			misstep_angle += 45
+		if (prob(src.misstep_chance * 2))
+			misstep_angle += rand(0,src.misstep_chance*1.5)
+
+		if(misstep_angle)
+			misstep_angle = min(misstep_angle,90)
+			var/move_angle = dir2angle(move_dir)
+			move_angle += pick(-misstep_angle,misstep_angle)
+			move_dir = angle2dir(move_angle)
+		// yea
+
 		var/slidekick_range = max(1 + min(GET_ATOM_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
 		if (!T.throw_unlimited && target_dir)
 			src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
