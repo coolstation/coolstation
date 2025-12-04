@@ -132,26 +132,47 @@
 	src.holder.stop_move()
 
 /datum/aiTask/succeedable/move/on_tick()
-	if(src.found_path)
-		if(src.found_path.len > 0)
-			// follow the path
-			if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
-				if(src.found_path.len >= 2)
-					src.next_turf = src.found_path[1]
-					var/i = 2
-					var/dir_line = get_dir(src.found_path[1],src.found_path[2])
-					while(get_dir(src.next_turf, src.found_path[i]) == dir_line)
-						src.next_turf = src.found_path[i]
-						i++
-						if(i > length(src.found_path))
-							break
-					src.found_path.Cut(1, i)
-				else
-					src.next_turf = get_turf(src.found_path[1])
-					src.found_path.Cut()
-			holder.move_to(src.next_turf, 0)
-			return
-	get_path()
+	if(!src.found_path)
+		get_path()
+	if(src.found_path.len > 0)
+		// follow the path
+		if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
+			if(src.found_path.len >= 2)
+				src.next_turf = src.found_path[1]
+				var/i = 2
+				var/dir_line = get_dir(src.found_path[1],src.found_path[2])
+				while(get_dir(src.next_turf, src.found_path[i]) == dir_line)
+					src.next_turf = src.found_path[i]
+					i++
+					if(i > length(src.found_path))
+						break
+				src.found_path.Cut(1, i)
+			else
+				src.next_turf = get_turf(src.found_path[1])
+				src.found_path.Cut()
+		holder.move_to(src.next_turf, 0)
+		return
+
+/datum/aiTask/succeedable/move/on_move()
+	. = ..()
+	if(src.found_path.len > 0)
+		// follow the path
+		if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
+			if(src.found_path.len >= 2)
+				src.next_turf = src.found_path[1]
+				var/i = 2
+				var/dir_line = get_dir(src.found_path[1],src.found_path[2])
+				while(get_dir(src.next_turf, src.found_path[i]) == dir_line)
+					src.next_turf = src.found_path[i]
+					i++
+					if(i > length(src.found_path))
+						break
+				src.found_path.Cut(1, i)
+			else
+				src.next_turf = get_turf(src.found_path[1])
+				src.found_path.Cut()
+		holder.move_to(src.next_turf, 0)
+		return
 
 /datum/aiTask/succeedable/move/succeeded()
 	if(src.move_target)
@@ -221,6 +242,9 @@
 	if(!src.move_target)
 		src.found_path = null
 		src.next_turf = null
+		src.holder.move_target = null
+		ai_move_scheduled -= src.holder
+		src.holder.owner.move_dir = 0
 		return
 	src.found_path = get_path_to(holder.owner, src.move_target, max_distance=src.max_path_dist, mintargetdist=distance_from_target, move_through_space=move_through_space, do_doorcheck = TRUE)
 	if(!src.found_path || !jpsTurfPassable(src.found_path[1], get_turf(src.holder.owner), src.holder.owner, options = list("do_doorcheck" = TRUE, "move_through_space" = move_through_space))) // no path :C
@@ -286,7 +310,7 @@
 
 /datum/aiTask/concurrent/violence/get_targets()
 	. = ..()
-	for(var/mob/living/L in oview(src.holder.owner, src.max_dist))
+	for(var/mob/living/L in view(src.holder.owner, src.max_dist))
 		if(src.holder.owner.ai_is_valid_target(L))
 			. |= L
 
@@ -319,76 +343,145 @@
 	var/ability_cooldown = 4 SECONDS
 	var/mob/living/queued_target = null
 	var/ticks_since_combat = 0
+	var/static/list/special_params = list("left" = TRUE, "ai" = TRUE)
 
 /datum/aiTask/endless/violence_subtask/on_tick()
-	var/mob/living/critter/owncritter = src.holder.owner
 	if (!src.holder.owner || HAS_ATOM_PROPERTY(src.holder.owner, PROP_CANTMOVE))
 		return
 
-	if(!src.holder.target)
+	if(!src.holder.target || src.ticks_since_combat >= src.boredom_ticks)
+		src.holder.target = null
 		src.queued_target = null
 		src.ticks_since_combat = 0
 		return ..()
 
-	if(src.holder.target)
-		if(src.ticks_since_combat >= src.boredom_ticks)
-			src.holder.target = null
-			src.queued_target = null
-			src.ticks_since_combat = 0
-		var/mob/living/L = src.holder.target
-		if(src.holder.owner.ai_a_intent)
-			src.holder.owner.a_intent = src.holder.owner.ai_a_intent
-		else
-			src.holder.owner.a_intent = prob(80) ? INTENT_HARM : pick(INTENT_DISARM, INTENT_GRAB)
+	if(src.holder.owner.ai_a_intent)
+		src.holder.owner.a_intent = src.holder.owner.ai_a_intent
+	else
+		src.holder.owner.a_intent = pick(75; INTENT_HARM, 20; INTENT_DISARM, 5; INTENT_GRAB)
 
-		owncritter.hud.update_intent() // this works even on humans. hate it though.
+	var/dont_swap = prob(60)
 
-		if(src.holder.owner.next_click > world.time)
-			return ..()
+	var/mob/living/critter/owncritter = src.holder.owner
+	owncritter.hud.update_intent() // this works even on humans, due to both huds having this proc. hate it though.
 
-		if((!src.ability_cooldown || !ON_COOLDOWN(src.holder.owner, "ai_ability_cooldown", src.ability_cooldown)) && src.holder.owner.ability_attack(L))
-			src.holder.owner.next_click = world.time + src.holder.owner.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
-			return ..()
+	if(src.holder.owner.next_click > world.time)
+		return ..()
 
-		// bit of a shitshow here, but this ensures the ai mobs dont alternate between choking and letting go of people
-		var/obj/item/grab/G = src.holder.owner.equipped()
-		if(G && istype(G) && G.state > GRAB_NECK)
-			var/prev_hand = src.holder.owner.hand
-			src.holder.owner.swap_hand()
-			if(src.holder.owner.hand == prev_hand)
-				return ..()
-			src.holder.owner.a_intent = INTENT_HARM // and dont try to choke them in the other hand, either!
+	if((!src.ability_cooldown || !ON_COOLDOWN(src.holder.owner, "ai_ability_cooldown", src.ability_cooldown)) && src.holder.owner.ability_attack(src.holder.target))
+		src.holder.owner.next_click = world.time + src.holder.owner.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
+		return ..()
 
-		if(GET_DIST(src.holder.owner, L) <= 1)
-			src.holder.owner.hand_attack(L)
-			src.ticks_since_combat = 0
-			src.holder.owner.next_click = world.time + (G ? G.combat_click_delay : src.holder.owner.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
-			src.queued_target = null
-		else if(istype(owncritter))
-			var/datum/handHolder/HH = owncritter.get_active_hand()
-			if(HH.can_range_attack)
-				src.holder.owner.hand_attack(L)
-				src.ticks_since_combat = 0
-				src.holder.owner.next_click = world.time + src.holder.owner.combat_click_delay
-				src.queued_target = null
+	// fake misclicks
+	var/atom/possible_miss = src.holder.target
+	var/mob/M = src.holder.target
+	if(prob(10) && istype(M))
+		possible_miss = M.prev_loc
+	else if(prob(10))
+		possible_miss = src.holder.target.loc
+
+	if(can_reach(src.holder.owner, possible_miss))
+		src.holder.owner.set_dir(get_dir(src.holder.owner, src.holder.target))
+		// bit of a shitshow here, but this ensures the ai mobs dont alternate between choking and letting go of people and doubles as getting the equipped item
+		var/obj/item/grab/equipped = src.holder.owner.equipped()
+		if(istype(equipped))
+			if(equipped.state > GRAB_NECK || prob(5))
+				src.holder.owner.swap_hand()
+				src.holder.owner.a_intent = INTENT_HARM // and dont try to choke them in the other hand, either!
 			else
-				src.queued_target = L
-				src.ticks_since_combat++
+				src.holder.owner.a_intent = INTENT_GRAB // finish the choke!
+				equipped.attack_self(src.holder.owner)
+				dont_swap = TRUE
+		else if (equipped)
+			if(equipped.special && prob(15) || possible_miss != src.holder.target)
+				equipped.special.pixelaction(possible_miss,src.special_params,src.holder.owner)
+				if(!dont_swap)
+					dont_swap = prob(90)
+			else
+				src.holder.owner.weapon_attack(possible_miss, equipped)
+				if(!dont_swap)
+					dont_swap = prob(min(equipped.force / equipped.combat_click_delay * 80, 96)) // 80% chance to stay on weapon if it does 10 dps, 96% at 12+
+		else if(prob(15) || possible_miss != src.holder.target)
+			var/datum/limb/active_limb = src.holder.owner.equipped_limb()
+			if(active_limb)
+				if(src.holder.owner.a_intent == INTENT_HARM && active_limb.harm_special)
+					active_limb.harm_special.pixelaction(possible_miss,src.special_params,src.holder.owner)
+				else if(src.holder.owner.a_intent == INTENT_DISARM && active_limb.disarm_special)
+					active_limb.disarm_special.pixelaction(possible_miss,src.special_params,src.holder.owner)
+				else
+					src.holder.owner.hand_attack(possible_miss)
+			else
+				src.holder.owner.hand_attack(possible_miss)
 		else
-			src.queued_target = L
+			src.holder.owner.hand_attack(possible_miss)
+		src.ticks_since_combat = 0
+		src.holder.owner.next_click = world.time + (equipped ? equipped.combat_click_delay : src.holder.owner.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
+		src.holder.owner.lastattacked = null
+		src.queued_target = null
+	else if(istype(owncritter))
+		var/datum/handHolder/HH = owncritter.get_active_hand()
+		if(HH.can_range_attack)
+			src.holder.owner.hand_attack(possible_miss)
+			src.ticks_since_combat = 0
+			src.holder.owner.next_click = world.time + src.holder.owner.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
+			src.queued_target = null
+		else
+			src.queued_target = possible_miss
 			src.ticks_since_combat++
-		src.holder.owner.set_dir(get_dir(src.holder.owner, L))
+	else
+		src.queued_target = possible_miss
+		src.ticks_since_combat++
 
-	if(prob(30)) // may do a more intelligent check later, but this is decent
+	if(!dont_swap)
 		src.holder.owner.swap_hand()
 
 	..()
 
 /datum/aiTask/endless/violence_subtask/on_move()
-	if(src.queued_target && src.holder.owner.next_click <= world.time && GET_DIST(src.holder.owner, src.queued_target) <= 1 && prob(80))
-		src.ticks_since_combat = 0
+	. = ..()
+	if(src.queued_target && src.holder.owner.next_click <= world.time && prob(80))
 		SPAWN_DBG(rand(1,2))
-			if(src.queued_target && GET_DIST(src.holder.owner, src.queued_target) <= 1)
-				var/obj/item/equipped = src.holder.owner.equipped()
-				src.holder.owner.hand_attack(src.queued_target)
+			var/atom/possible_miss = src.queued_target
+			var/mob/M = src.queued_target
+			if(prob(10) && istype(M))
+				possible_miss = M.prev_loc
+			else if(prob(10))
+				possible_miss = src.queued_target.loc
+			if(src.queued_target && can_reach(src.holder.owner, possible_miss))
+				var/obj/item/grab/equipped = src.holder.owner.equipped()
+				if(equipped && istype(equipped))
+					if(equipped.state > GRAB_NECK || prob(5))
+						src.holder.owner.swap_hand()
+						src.holder.owner.a_intent = INTENT_HARM // and dont try to choke them in the other hand, either!
+					else
+						src.holder.owner.a_intent = INTENT_GRAB // finish the choke!
+						equipped.attack_self(src.holder.owner)
+				else if (equipped)
+					if(equipped.special && prob(15) || possible_miss != src.holder.target)
+						equipped.special.pixelaction(possible_miss,src.special_params,src.holder.owner)
+					else
+						src.holder.owner.weapon_attack(possible_miss, equipped)
+				else if(prob(20))
+					var/mob/living/critter/owncritter = src.holder.owner
+					var/datum/limb/active_limb
+					if(istype(owncritter))
+						var/datum/handHolder/HH = owncritter.get_active_hand()
+						active_limb = HH.limb
+					else if(ishuman(src.holder.owner))
+						var/mob/living/carbon/human/H = src.holder.owner
+						active_limb = H.hand ? H.limbs.l_arm : H.limbs.r_arm
+					if(active_limb)
+						if(src.holder.owner.a_intent == INTENT_HARM && active_limb.harm_special)
+							active_limb.harm_special.pixelaction(possible_miss,src.special_params,src.holder.owner)
+						else if(src.holder.owner.a_intent == INTENT_DISARM && active_limb.disarm_special)
+							active_limb.disarm_special.pixelaction(possible_miss,src.special_params,src.holder.owner)
+						else
+							src.holder.owner.hand_attack(possible_miss)
+					else
+						src.holder.owner.hand_attack(possible_miss)
+				else
+					src.holder.owner.hand_attack(possible_miss)
+				src.ticks_since_combat = 0
 				src.holder.owner.next_click = world.time + (equipped ? equipped.combat_click_delay : src.holder.owner.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
+				src.holder.owner.lastattacked = null
+				src.queued_target = null

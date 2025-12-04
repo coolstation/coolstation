@@ -2249,10 +2249,12 @@
 #endif
 	)
 
+/*
 	hidden = list(/datum/manufacture/RCD,
 	/datum/manufacture/RCDammo,
 	/datum/manufacture/RCDammomedium,
 	/datum/manufacture/RCDammolarge)
+*/
 
 /obj/machinery/manufacturer/hangar
 	name = "Ship Component Fabricator"
@@ -2475,7 +2477,7 @@
 	free_resource_amt = 5
 	free_resources = list(/obj/item/material_piece/steel)
 	accept_blueprints = 0
-	available = list(/datum/manufacture/crate,	//hey if you update these please remember to add it to /hop_and_uniform's list too
+	available = list(/datum/manufacture/crate,
 	/datum/manufacture/packingcrate,
 	/datum/manufacture/pizzabox,
 	/datum/manufacture/wooden,
@@ -2527,12 +2529,14 @@
 	/datum/manufacture/atmos_module/vent,
 	/datum/manufacture/atmos_module/vent_pump,
 	/datum/manufacture/atmos_module/vent_scrubber,
-	/datum/manufacture/atmos_module/volume_pump,
+	/datum/manufacture/atmos_module/volume_pump)
+/*	,
 	/datum/manufacture/RCDammo,
 	/datum/manufacture/RCDammomedium)
 
 	hidden = list(/datum/manufacture/RCDammolarge,
 	/datum/manufacture/RCD)
+*/
 
 /obj/machinery/manufacturer/zombie_survival
 	name = "Uber-Extreme Survival Manufacturer"
