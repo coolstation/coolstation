@@ -752,7 +752,8 @@
 	desc = "A computer workstation, Someone paid way too much for these.";
 	name = "NetLibrary Terminal";
 	setup_starting_peripheral1 = /obj/item/peripheral/network/powernet_card;
-	setup_starting_program = /datum/computer/file/terminal_program/email
+	setup_starting_program = /datum/computer/file/terminal_program/email;
+	setup_drive_type = /obj/item/disk/data/fixed_disk/techcomputer3
 	},
 /turf/floor/wood/five,
 /area/station/library)
@@ -12352,7 +12353,8 @@
 	desc = "A computer workstation, Someone paid way too much for these.";
 	name = "NetLibrary Terminal";
 	setup_starting_peripheral1 = /obj/item/peripheral/network/powernet_card;
-	setup_starting_program = null/datum/computer/file/terminal_program/email
+	setup_starting_program = null/datum/computer/file/terminal_program/email;
+	setup_drive_type = /obj/item/disk/data/fixed_disk/techcomputer3
 	},
 /turf/floor/wood/five,
 /area/station/library)
