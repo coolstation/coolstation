@@ -224,6 +224,7 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	health_burn = 120
 	hand_count = 2
 	is_npc = FALSE
+	add_abilities = list(/datum/targetable/ankle_bite)
 
 	setup_hands()
 
@@ -245,8 +246,6 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 
 	New()
 		. = ..()
-		var/datum/abilityHolder/critter/abilityHolder = src.add_ability_holder(/datum/abilityHolder/critter)
-		abilityHolder.addAbility(/datum/targetable/ankle_bite)
 		APPLY_ATOM_PROPERTY(src, PROP_LIFT_ANYTHING, src)
 		src.ai = null
 
@@ -2452,13 +2451,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	health_brute = 8
 	health_burn = 8
 	isFlying = 1
-
-	New()
-		..()
-		abilityHolder = new /datum/abilityHolder/critter(src)
-		//todo : move to add_abilities list because its cleaner that way
-		abilityHolder.addAbility(/datum/targetable/critter/vomit)
-		abilityHolder.updateButtons()
+	add_abilities = list(/datum/targetable/critter/vomi)
 
 	Move()
 		. = ..()
@@ -2516,13 +2509,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	health_brute = 8
 	health_burn = 8
 	isFlying = 1
-
-	New()
-		..()
-		abilityHolder = new /datum/abilityHolder/critter(src)
-		//todo : move to add_abilities list because its cleaner that way
-		abilityHolder.addAbility(/datum/targetable/critter/blood_bite)
-		abilityHolder.updateButtons()
+	add_abilities = list(/datum/targetable/critter/blood_bite)
 
 	Move()
 		. = ..()
@@ -3022,6 +3009,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	health_burn = 6
 	flags = TABLEPASS | DOORPASS
 	fits_under_table = 1
+	add_abilities = list(/datum/targetable/critter/bury_hide)
 
 	density = 1
 
@@ -3034,7 +3022,6 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		..()
 		src.remove_stam_mod_max("small_animal")
 		src.add_stam_mod_max("trilobite", -(STAMINA_MAX-10))
-		abilityHolder.addAbility(/datum/targetable/critter/bury_hide)
 		SPAWN_DBG(1 SECOND)
 			animate_bumble(src)
 
@@ -3171,6 +3158,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	health_burn = 24
 	flags = TABLEPASS | DOORPASS
 	fits_under_table = 1
+	add_abilities = list(/datum/targetable/critter/bury_hide)
 
 	density = 1
 
@@ -3183,7 +3171,6 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		..()
 		src.remove_stam_mod_max("small_animal")
 		src.add_stam_mod_max("pikaia", -(STAMINA_MAX-140))
-		abilityHolder.addAbility(/datum/targetable/critter/bury_hide)
 		SPAWN_DBG(1 SECOND)
 			animate_bumble(src)
 

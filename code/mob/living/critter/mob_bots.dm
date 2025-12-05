@@ -87,6 +87,9 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 		desc = "A little cleaning robot, it looks so excited!"
 		icon_state = "cleanbot1"
 		icon_state_base = "cleanbot"
+		add_abilities = list(/datum/targetable/critter/bot/mop_floor,\
+			/datum/targetable/critter/bot/reagent_scan_self,\
+			/datum/targetable/critter/bot/dump_reagents)
 
 		New()
 			. = ..()
@@ -104,9 +107,6 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 
 			src.create_reagents(60)
 			src.reagents.add_reagent("cleaner", 10)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/mop_floor)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/reagent_scan_self)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/dump_reagents)
 
 		emag_act(mob/user, obj/item/card/emag/E)
 			. = ..()
@@ -122,10 +122,11 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 
 		emagged
 			emagged = TRUE
-			New()
-				. = ..()
-				src.abilityHolder.addAbility(/datum/targetable/critter/bot/fill_with_chem/lube)
-				src.abilityHolder.addAbility(/datum/targetable/critter/bot/fill_with_chem/phlogiston_dust)
+			add_abilities = list(/datum/targetable/critter/bot/mop_floor,\
+				/datum/targetable/critter/bot/reagent_scan_self,\
+				/datum/targetable/critter/bot/dump_reagents,\
+				/datum/targetable/critter/bot/fill_with_chem/lube,\
+				/datum/targetable/critter/bot/fill_with_chem/phlogiston_dust)
 
 ABSTRACT_TYPE(/datum/targetable/critter/bot)
 /datum/targetable/critter/bot/mop_floor
@@ -259,6 +260,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	desc = "A little fire-fighting robot! It looks so darn chipper."
 	icon_state = "firebot1"
 	icon_state_base = "firebot"
+	add_abilities = list(/datum/targetable/critter/bot/spray_foam)
 
 	New()
 		. = ..()
@@ -269,9 +271,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			list(0.923407,0.489071,0.0133575,0,0.416634,0.00596684,0.0659536,0,0.151125,0.954365,0.946033,0,0,0,0,1,0,0,0,0),\
 			list(0.34802,0.586676,0.382593,0,0.265555,0.208964,0.409951,0,0.395675,0.227339,0.498367,0,0,0,0,1,0,0,0,0),
 		))
-
-		src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam)
-
 
 	emag_act(mob/user, obj/item/card/emag/E)
 		. = ..()
@@ -284,11 +283,9 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 
 	emagged
 		emagged = TRUE
-		New()
-			. = ..()
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam/fuel)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam/throw_humans)
-
+		add_abilities = list(/datum/targetable/critter/bot/spray_foam,\
+			/datum/targetable/critter/bot/spray_foam/fuel,\
+			/datum/targetable/critter/bot/spray_foam/throw_humans)
 
 /datum/targetable/critter/bot/spray_foam
 	name = "Spray Foam"
@@ -383,6 +380,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	ai_type = /datum/aiHolder/patroller/packet_based/securitron
 	uses_blood = TRUE // yes :3
 	ideal_blood_volume = 20
+	add_abilities = list(/datum/targetable/critter/bot/handcuff)
 	var/random_name = TRUE
 	var/control_freq = FREQ_BOT_CONTROL
 	var/chase_speed_bonus = 0.3
@@ -427,8 +425,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	var/obj/item/implant/access/infinite/secoff/O = new /obj/item/implant/access/infinite/secoff(src)
 	O.owner = src
 	O.implanted = 1
-
-	src.abilityHolder.addAbility(/datum/targetable/critter/bot/handcuff)
 
 	APPLY_MOVEMENT_MODIFIER(src, /datum/movement_modifier/robot_base, "robot_health_slow_immunity")
 
@@ -781,9 +777,8 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			return 1
 	return 0
 
-/mob/living/critter/robotic/bot/securitron/hand_attack(mob/target)
+/mob/living/critter/robotic/bot/securitron/weapon_attack(atom/target, obj/item/I, reach, params)
 	EXTEND_COOLDOWN(target, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
-	var/obj/item/I = src.equipped()
 	if(!I)
 		return FALSE
 	if (istype(I,/obj/item/gun))
@@ -799,13 +794,13 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			if(!batong.is_active)
 				batong.attack_self(src)
 	src.hud.update_intent()
-	..(target)
+	. = ..(target, W, reach, params)
 	var/bonus_hits = src.emagged - 1
 	SPAWN_DBG(0)
 		while(bonus_hits >= 1)
 			sleep(2)
 			src.next_click = 0
-			..(target)
+			. = ..(target, W, reach, params)
 			bonus_hits--
 	return TRUE
 
@@ -855,7 +850,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	if (user)
 		if(!src.emagged)
 			boutput(user, SPAN_ALERT("You short out [src]'s contraband assessment circuits!"))
-			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 3 SECONDS) // just enough time to book it
+			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 2 SECONDS) // just enough time to book it
 		else if(src.emagged == 1)
 			boutput(user, SPAN_ALERT("You scramble [src]'s target verification circuits!"))
 			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 0.3 SECONDS) // run fast
