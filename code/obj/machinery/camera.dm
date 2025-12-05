@@ -70,13 +70,13 @@
 	..()
 	if (isscrewingtool(W)) //to move them
 		if (securedstate && src.securedstate >= 1)
-			playsound(src.loc, "sound/items/Screwdriver.ogg", 30, 1, -2)
+			playsound(src.loc, "sound/items/Screwdriver.ogg", 30, 1, SOUND_RANGE_STANDARD)
 			actions.start(new/datum/action/bar/icon/cameraSecure(src, securedstate), user)
 		else if (securedstate)
 			boutput(user, "<span class='alert'>You need to secure the floor bolts!</span>")
 	else if (iswrenchingtool(W))
 		if (src.securedstate <= 1)
-			playsound(src.loc, "sound/items/Ratchet.ogg", 30, 1, -2)
+			playsound(src.loc, "sound/items/Ratchet.ogg", 30, 1, SOUND_RANGE_STANDARD)
 			boutput(user, "<span class='alert'>You [securedstate == 1 ? "un" : ""]secure the floor bolts on the [src].</span>")
 			src.securedstate = (securedstate == 1) ? 0 : 1
 

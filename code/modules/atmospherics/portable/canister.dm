@@ -199,7 +199,7 @@
 			processing_items.Remove(src.det)
 
 		src.destroyed = 1
-		playsound(src.loc, "sound/effects/spray.ogg", 10, 1, -3)
+		playsound(src.loc, "sound/effects/spray.ogg", 10, 1, SOUND_RANGE_STANDARD)
 		src.set_density(0)
 		update_icon()
 
@@ -277,7 +277,7 @@
 				if (prob(15))
 					switch(rand(1,10))
 						if (1)
-							playsound(src.loc, "sparks", 75, 1, -1)
+							playsound(src.loc, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 							elecflash(src)
 						if (2)
 							playsound(src.loc, "sound/machines/warning-buzzer.ogg", 50, 1)
@@ -310,7 +310,7 @@
 				src.add_simple_light("canister", list(1 * 255, 0.03 * 255, 0.03 * 255, 0.6 * 255))
 				src.visible_message("<span class='alert'>[src] flashes and sparks wildly!</span>")
 				playsound(src.loc, "sound/machines/siren_generalquarters.ogg", 50, 1)
-				playsound(src.loc, "sparks", 75, 1, -1)
+				playsound(src.loc, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 				elecflash(src,power = 2)
 			else if (src.det.part_fs.time <= 3)
 				playsound(src.loc, "sound/machines/warning-buzzer.ogg", 50, 1)
@@ -706,7 +706,7 @@
 						src.det.shocked = 1
 						var/losttime = rand(2,5)
 						src.visible_message("<B><font color=#B7410E>The bomb buzzes oddly, emitting electric sparks. It would be a bad idea to touch any wires for the next [losttime] seconds.</font></B>")
-						playsound(src.loc, "sparks", 75, 1, -1)
+						playsound(src.loc, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 						elecflash(src,power = 2)
 						SPAWN_DBG(10 * losttime)
 							src.det.shocked = 0

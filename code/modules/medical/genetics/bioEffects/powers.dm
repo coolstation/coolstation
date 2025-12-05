@@ -884,7 +884,7 @@
 				owner.unequip_all()
 
 			spell_invisibility(owner, 50)
-			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, -1)
+			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, SOUND_RANGE_STANDARD)
 
 
 	cast_misfire()
@@ -912,7 +912,7 @@
 					boutput(owner, "<span class='alert'>\The [I] you were carrying falls away as you dissolve!</span>")
 
 			spell_invisibility(owner, 50)
-			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, -1)
+			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, SOUND_RANGE_STANDARD)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2244,16 +2244,16 @@
 		)
 		if(shaun == 1)
 			usr.say("SHAUN!")
-			playsound(usr.loc, "sound/misc/funny/Shaun1.ogg", 75, 0, 2)
+			playsound(usr.loc, "sound/misc/funny/Shaun1.ogg", 75, 0, SOUND_RANGE_LARGE)
 		else if(shaun == 2)
 			usr.say("SHAUN!!")
-			playsound(usr.loc, "sound/misc/funny/Shaun2.ogg", 75, 0, 2)
+			playsound(usr.loc, "sound/misc/funny/Shaun2.ogg", 75, 0, SOUND_RANGE_LARGE)
 		else if(shaun == 3)
 			usr.say("SHAAAAAAAAAUN!!!")
-			playsound(usr.loc, "sound/misc/funny/Shaun3.ogg", 75, 0, 2)
+			playsound(usr.loc, "sound/misc/funny/Shaun3.ogg", 75, 0, SOUND_RANGE_LARGE)
 		else if(shaun == 4)
 			usr.say("SHAUN WHERE ARE YOU?!")
-			playsound(usr.loc, "sound/misc/funny/Shaun4.ogg", 75, 0, 2)
+			playsound(usr.loc, "sound/misc/funny/Shaun4.ogg", 75, 0, SOUND_RANGE_LARGE)
 
 
 

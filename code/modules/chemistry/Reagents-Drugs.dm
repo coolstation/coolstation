@@ -1013,10 +1013,10 @@ datum
 				M.druggy = max(M.druggy, 15)
 				if(probmult(11))
 					M.visible_message("<span class='notice'><b>[M.name]</b> screeches!</span>")
-					playsound(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
+					playsound(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, SOUND_RANGE_STANDARD)
 				if(probmult(9))
 					M.visible_message("<span class='notice'><b>[M.name]</b> squeaks! What the fuck?</span>")
-					playsound(M.loc, "sound/voice/animal/batsqueak.ogg", 40, 1, 2)
+					playsound(M.loc, "sound/voice/animal/batsqueak.ogg", 40, 1, SOUND_RANGE_STANDARD)
 
 				var/image/imagekey = pick(bat_halluc)
 				if(probmult(40)) //get attacked

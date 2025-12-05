@@ -782,7 +782,7 @@
 			close()
 	else if (src.density)
 		play_animation("deny")
-		playsound(src.loc, "sound/machines/door_locked.ogg", 50, 1, -2)
+		playsound(src.loc, "sound/machines/door_locked.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		boutput(user, "<span class='alert'>The door is locked!</span>")
 	return
 

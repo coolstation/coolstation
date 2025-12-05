@@ -73,4 +73,4 @@
 		snake.start_expiration(2 MINUTES)
 
 		holder.owner.visible_message("<span class='alert'>[holder.owner] turns [stick] into [snake]!</span>")
-		playsound(holder.owner.loc, "sound/effects/mag_golem.ogg", 25, 1, -1)
+		playsound(holder.owner.loc, "sound/effects/mag_golem.ogg", 25, 1, SOUND_RANGE_STANDARD)

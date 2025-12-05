@@ -303,7 +303,7 @@
 				if (T.active_liquid && T.active_liquid.group && T.active_liquid.group.reagents)
 					T.active_liquid.group.drain(T.active_liquid,slurp,src)
 					if (prob(80))
-						playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 0.1, 0.7)
+						playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 0.1, SOUND_RANGE_STANDARD)
 				update_icon()
 
 		else if (pissing)
@@ -543,10 +543,10 @@
 
 		active = !active
 		if (active)
-			playsound(src.loc, powerupsfx, 50, 1, 0.1, 1)
+			playsound(src.loc, powerupsfx, 50, 1, SOUND_RANGE_STANDARD, 1)
 			user.visible_message("<span class='notice'>[user] activates [src].</span>", "<span class='notice'>You activate [src].</span>")
 		else
-			playsound(src.loc, powerdownsfx, 50, 1, 0.1, 1)
+			playsound(src.loc, powerdownsfx, 50, 1, SOUND_RANGE_STANDARD, 1)
 			user.visible_message("<span class='notice'>[user] disarms [src].</span>","<span class='notice'>You disarm [src].</span>")
 
 	attackby(obj/item/I, mob/user)

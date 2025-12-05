@@ -275,7 +275,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		sleep(sleep_time)
 		if(QDELETED(target))
 			return
-		playsound(target, 'sound/effects/thunder.ogg', 80, 1, floor(power))
+		playsound(target, 'sound/effects/thunder.ogg', 80, 1, SOUND_RANGE_LARGE)
 		new /obj/decal/lightning(target, rodded ? 64 : 0, color)
 		if(!rodded)
 			explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)

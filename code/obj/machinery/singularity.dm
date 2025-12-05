@@ -81,7 +81,7 @@ proc/singularity_containment_check(turf/center)
 		src.visible_message("<span class='notice'>[src] refuses to activate in this place. Odd.</span>")
 		qdel(src)
 
-//	playsound(T, 'sound/machines/satcrash.ogg', 100, FALSE, 15, 0.8, flags=SOUND_IGNORE_SPACE)
+//	playsound(T, 'sound/machines/satcrash.ogg', 100, FALSE, SOUND_RANGE_LARGE, 0.8, flags=SOUND_IGNORE_SPACE)
 	if (src.bhole)
 		new /obj/bhole(T, 3000)
 	else
@@ -1891,7 +1891,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		O.show_message("[bicon(src)] *beep* *beep*", 3, "*beep* *beep*", 2)
 
 
-	playsound(T, 'sound/effects/creaking_metal1.ogg', 100, 0, 5, 0.5)
+	playsound(T, 'sound/effects/creaking_metal1.ogg', 100, 0, SOUND_RANGE_LARGE, 0.5)
 	for (var/mob/M in range(7,T))
 		boutput(M, "<span class='bold alert'>The contaiment field on \the [src] begins destabilizing!</span>")
 		shake_camera(M, 5, 16)
@@ -1908,7 +1908,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		logTheThing("bombing", src.activator, null, "A [src.name] (primed by [src.activator ? "[src.activator]" : "*unknown*"]) detonates at [log_loc(src)].")
 		message_admins("A [src.name] (primed by [src.activator ? "[key_name(src.activator)]" : "*unknown*"]) detonates at [log_loc(src)].")
 
-		playsound(T, 'sound/machines/satcrash.ogg', 100, 0, 5, 0.5)
+		playsound(T, 'sound/machines/satcrash.ogg', 100, 0, SOUND_RANGE_LARGE, 0.5)
 		if (bhole)
 			var/obj/B = new /obj/bhole(get_turf(src.loc), rand(1600, 2400), rand(75, 100))
 			B.name = "gravitational singularity"

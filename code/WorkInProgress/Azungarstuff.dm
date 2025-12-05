@@ -686,7 +686,7 @@
 	attack_hand(mob/user as mob)
 		if (can_reach(user,src))
 			boutput(user, "<span class='alert'>You attempt to open the container but its doors are sealed tight. It doesn't look like you'll be able to open it.</span>")
-			playsound(src.loc, "sound/machines/door_locked.ogg", 50, 1, -2)
+			playsound(src.loc, "sound/machines/door_locked.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 	yellow
 		icon_state = "mantayellow"

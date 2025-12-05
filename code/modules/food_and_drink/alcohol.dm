@@ -205,14 +205,14 @@
 		if (!src.shakes)
 			user.visible_message("[user] shakes up \the [src] a bit!",\
 			"<span class='notice'>You shake up \the [src] a bit to get it ready!</span>")
-			playsound(src, "sound/items/CocktailShake.ogg", 25, 1, 2)
+			playsound(src, "sound/items/CocktailShake.ogg", 25, 1, SOUND_RANGE_STANDARD)
 			src.shakes++
 			return
 		if (src.shakes >= rand(1,5) || bartender_bonus) //succeed at shake on prob or bartender's magic touch
 			src.open_container() //open it
 			src.popped = 1
 			src.update_icon()
-			playsound(src, "sound/items/CocktailShake.ogg", 25, 1, 3)
+			playsound(src, "sound/items/CocktailShake.ogg", 25, 1, SOUND_RANGE_LARGE)
 			user.visible_message("[user] shakes up \the [src] some more, then pops the cork! [src.shakes >= 4 ? "Finally..." : "Party time!"]",\
 			"<span class='notice'>You shake up \the [src] some more and pop the cork! [src.shakes >= 4 ? "At least that's over with..." : "Alright!"]</span>")
 			sleep(2)

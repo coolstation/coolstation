@@ -84,5 +84,12 @@ var/global/list/audio_channel_name_to_id = list(
 #define TOO_QUIET 0.9 //experimentally found to be 0.6 - raised due to lag, I don't care if it's super quiet because there's already shitloads of other sounds playing
 #define SPACE_ATTEN_MIN 0.5
 
-#define MAX_SOUND_RANGE 33
-#define MAX_SPACED_RANGE 6 //diff range for when youre in a vaccuum
+// if you can, use these sound ranges- they have cached falloff calculations
+#define SOUND_RANGE_TINY 5
+#define SOUND_RANGE_SMALL 11
+#define SOUND_RANGE_MODERATE 22
+#define SOUND_RANGE_STANDARD 33
+#define SOUND_RANGE_LARGE 44
+
+#define SPACED_SOUND_RANGE 6 //max range for when youre in a vaccuum
+#define SPACED_SOUND_RANGE_MULT SPACED_SOUND_RANGE / SOUND_RANGE_STANDARD
