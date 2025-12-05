@@ -68,6 +68,8 @@ datum
 		var/temperature_cap = 10000
 		var/temperature_min = 0
 
+		var/external = FALSE
+
 		var/postfoam = 0 //attempt at killing infinite foam
 		var/can_be_heated = TRUE //can be heated by external sources
 
@@ -1423,6 +1425,7 @@ datum
 
 // currently a stub, any behavior for reagents on the surface of something goes here
 /datum/reagents/surface
+	external = TRUE
 
 ///////////////////////////////////////////////////////////////////////////////////
 

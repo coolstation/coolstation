@@ -162,12 +162,12 @@ datum
 			downer_overdose = 18
 
 			on_add()
-				if (holder && ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.setStatus("drunk", duration = INFINITE_STATUS)
 				return
 
 			on_remove()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.delStatus("drunk")
 				return
 
@@ -618,13 +618,13 @@ datum
 			upper_overdose = 19.5
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar", 2)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar")
 				..()
@@ -707,7 +707,7 @@ datum
 			taste = "tasteless"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					if(M.bioHolder && !M.bioHolder.HasEffect("quiet_voice"))
 						M.bioHolder.AddEffect("quiet_voice")
@@ -736,7 +736,7 @@ datum
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					if(M?.bioHolder.HasEffect("quiet_voice"))
 						M.bioHolder.RemoveEffect("quiet_voice")

@@ -231,7 +231,7 @@ datum
 			taste = "tingly"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp", 15)
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
@@ -239,7 +239,7 @@ datum
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp")
 					M.remove_stam_mod_max("aranesp")
@@ -294,14 +294,14 @@ datum
 			taste = "bitter"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine", 50)
 					M.add_stam_mod_max("omegazine", 50)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine")
 					M.remove_stam_mod_max("omegazine")
@@ -1479,7 +1479,7 @@ datum
 			taste = "powdery"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					M.say("yes")
 				..()
@@ -2086,7 +2086,7 @@ datum
 
 
 			on_add()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder.my_atom))
 					var/mob/M = holder.my_atom
 					if (ismartian(M))
 						APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_martian_flesh", 15)
@@ -2094,7 +2094,7 @@ datum
 				..()
 
 			on_remove()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder.my_atom))
 					var/mob/M = holder.my_atom
 					if (ismartian(M))
 						REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_martian_flesh")
@@ -2285,13 +2285,13 @@ datum
 					DEBUG_MESSAGE("<span class='notice'><b>Spun [O]: [dir_temp], [speed_temp]</b></span>")
 */
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip", 2)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip")
 				if (istype(holder) && istype(holder.my_atom))
@@ -2415,13 +2415,13 @@ datum
 				animate_spin(O, dir_temp, speed_temp)
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip", 4)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip")
 				if (istype(holder) && istype(holder.my_atom))
@@ -3165,7 +3165,7 @@ datum
 			minimum_reaction_temperature = T0C + 50
 
 			reaction_temperature(exposed_temperature, exposed_volume)
-				if(ismob(holder.my_atom))
+				if(!holder?.external && ismob(holder.my_atom))
 					return
 				var/list/covered = holder.covered_turf()
 				if(length(covered) < 9 || prob(2)) // no spam pls
@@ -3911,11 +3911,11 @@ datum
 			taste = "gross"
 
 			on_add()
-				if (holder && ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.setStatus("miasma", duration = INFINITE_STATUS)
 
 			on_remove()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.delStatus("miasma")
 
 			on_plant_life(var/obj/machinery/plantpot/P)
@@ -3932,7 +3932,7 @@ datum
 
 				on_add()
 					..()
-					if (holder && ismob(holder.my_atom))
+					if (!holder?.external && ismob(holder?.my_atom))
 						var/mob/bipbip = holder.my_atom
 						bipbip.playsound_local(bipbip.loc, "sound/musical_instruments/Vuvuzela_1.ogg", 60, 1)
 
