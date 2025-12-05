@@ -441,7 +441,7 @@
 	if(src.holder.owner.ai_a_intent)
 		src.holder.owner.a_intent = src.holder.owner.ai_a_intent
 	else
-		src.holder.owner.a_intent = pick(75; INTENT_HARM, 20; INTENT_DISARM, 5; INTENT_GRAB)
+		src.holder.owner.a_intent = pick(70; INTENT_HARM, 20; INTENT_GRAB, 10; INTENT_DISARM)
 
 	var/dont_swap = prob(60)
 
