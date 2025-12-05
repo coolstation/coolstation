@@ -2451,7 +2451,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	health_brute = 8
 	health_burn = 8
 	isFlying = 1
-	add_abilities = list(/datum/targetable/critter/vomi)
+	add_abilities = list(/datum/targetable/critter/vomit)
 
 	Move()
 		. = ..()

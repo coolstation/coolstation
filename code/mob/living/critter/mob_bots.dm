@@ -794,13 +794,13 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			if(!batong.is_active)
 				batong.attack_self(src)
 	src.hud.update_intent()
-	. = ..(target, W, reach, params)
+	. = ..(target, I, reach, params)
 	var/bonus_hits = src.emagged - 1
 	SPAWN_DBG(0)
 		while(bonus_hits >= 1)
 			sleep(2)
 			src.next_click = 0
-			. = ..(target, W, reach, params)
+			. = ..(target, I, reach, params)
 			bonus_hits--
 	return TRUE
 
