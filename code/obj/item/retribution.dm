@@ -115,7 +115,7 @@
 		var/increment_y
 		leavescan(user.loc, 0)
 		destruction_point_z = user.loc.z
-		spawn(16)
+		SPAWN_DBG(16)
 			if(core_inserted)
 				icon = 'icons/misc/retribution/48x32.dmi'
 				src.icon_state = "SDS"

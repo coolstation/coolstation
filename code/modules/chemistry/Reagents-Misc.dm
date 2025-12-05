@@ -180,7 +180,7 @@ datum
 
 			reaction_turf(var/turf/T, var/amount)
 				// adding a slight delay solely to make silver fulminate foam way more fun
-				spawn(rand(0, 5))
+				SPAWN_DBG(rand(0, 5))
 					if (src && T)
 						pop(T, amount)
 

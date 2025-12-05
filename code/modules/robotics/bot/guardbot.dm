@@ -4062,7 +4062,7 @@
 			src.UpdateName()
 
 		else
-			spawn(0)
+			SPAWN_DBG(0)
 				..()
 
 

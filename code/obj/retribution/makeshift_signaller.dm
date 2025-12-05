@@ -98,7 +98,7 @@ var/sword_summoned_before = false
 							desc = "Oh shit, it's overloading!"
 							tooltip_rebuild = 1
 							is_exploding = true
-							spawn(2 SECONDS)
+							SPAWN_DBG(2 SECONDS)
 								logTheThing("combat", user, null, "has summoned the Syndicate Weapon: Orion Retribution Device. It will become active in about 1 minute.")
 								message_admins("[key_name(user)] has summoned the Syndicate Weapon: Orion Retribution Device. It will become active in about 1 minute.")
 								elecflash(src.loc)
