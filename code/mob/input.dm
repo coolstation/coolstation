@@ -222,7 +222,10 @@
 						for (var/obj/item/grab/G as anything in src.grabbed_by)
 							if (G.assailant == pushing || G.affecting == pushing) continue
 							if (G.state < GRAB_NECK) continue
-							if (!G.assailant || !isturf(G.assailant.loc) || G.assailant.anchored)
+							if(!G.assailant)
+								src.grabbed_by -= G
+								continue
+							if (!isturf(G.assailant.loc) || G.assailant.anchored)
 								return 0
 							src.set_density(0) //assailant shouldn't be able to bump us here. Density is set to 0 by the grab stuff but *SAFETY!*
 							step(G.assailant, move_dir)
