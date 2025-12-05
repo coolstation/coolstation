@@ -312,7 +312,6 @@
 		if (!equipped || src.holder.owner.drop_item(equipped))
 			if (isturf(src.target_item.loc))
 				pickup_particle(src.holder.owner,src.target_item)
-				MAKE_PICKUP_SOUND(src.target_item, src.target_item.loc)
 			src.holder.owner.put_in_hand_or_drop(src.target_item)
 			src.target_item = null
 			src.holder.target = null
@@ -320,8 +319,14 @@
 	if(!src.target_item && prob(src.acquire_target_chance) && !src.equipped_validity())
 		src.target_item = src.get_best_target(src.get_targets())
 	if(src.target_item)
+		RegisterSignal(src.target_item, COMSIG_ITEM_PICKUP, PROC_REF(target_picked_up))
 		src.holder.target = src.target_item
 	return ..()
+
+/datum/aiTask/endless/pickup/proc/target_picked_up(obj/item/stolen, mob/thief)
+	UnregisterSignal(src.target_item, COMSIG_ITEM_PICKUP)
+	src.target_item = null
+	src.holder.target = null
 
 /datum/aiTask/endless/pickup/get_targets()
 	. = ..()
