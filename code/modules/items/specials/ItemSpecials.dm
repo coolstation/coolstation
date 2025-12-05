@@ -1539,50 +1539,55 @@
 				K.start.set_loc(T1)
 				K.start.set_dir(direction)
 				flick(K.start.icon_state, K.start)
-				sleep(0.1 SECONDS)
-				if (T4)
-					K.mid1.set_loc(T2)
-					K.mid1.set_dir(direction)
-					flick(K.mid1.icon_state, K.mid1)
+				SPAWN_DBG(0)
 					sleep(0.1 SECONDS)
-					K.mid2.set_loc(T3)
-					K.mid2.set_dir(direction)
-					flick(K.mid2.icon_state, K.mid2)
-					sleep(0.1 SECONDS)
-					K.end.set_loc(T4)
-					K.end.set_dir(direction)
-					flick(K.end.icon_state, K.end)
-				else if (T3)
-					K.mid1.set_loc(T2)
-					K.mid1.set_dir(direction)
-					flick(K.mid1.icon_state, K.mid1)
-					sleep(0.1 SECONDS)
-					K.end.set_loc(T3)
-					K.end.set_dir(direction)
-					flick(K.end.icon_state, K.end)
-				else if (T2)
-					K.end.set_loc(T2)
-					K.end.set_dir(direction)
-					flick(K.end.icon_state, K.end)
+					if (T4)
+						K.mid1.set_loc(T2)
+						K.mid1.set_dir(direction)
+						flick(K.mid1.icon_state, K.mid1)
+						sleep(0.1 SECONDS)
+						K.mid2.set_loc(T3)
+						K.mid2.set_dir(direction)
+						flick(K.mid2.icon_state, K.mid2)
+						sleep(0.1 SECONDS)
+						K.end.set_loc(T4)
+						K.end.set_dir(direction)
+						flick(K.end.icon_state, K.end)
+					else if (T3)
+						K.mid1.set_loc(T2)
+						K.mid1.set_dir(direction)
+						flick(K.mid1.icon_state, K.mid1)
+						sleep(0.1 SECONDS)
+						K.end.set_loc(T3)
+						K.end.set_dir(direction)
+						flick(K.end.icon_state, K.end)
+					else if (T2)
+						K.end.set_loc(T2)
+						K.end.set_dir(direction)
+						flick(K.end.icon_state, K.end)
 
-				//Reset the effects after they're drawn and put back into master for re-use later
-				SPAWN_DBG(0.8 SECONDS)
+					for(var/atom/movable/A in get_step(user, direction))
+						if(A in attacked) continue
+						if(isTarget(A))
+							on_hit(A)
+							attacked += A
+							A.Attackby(master, user, params, 1)
+							// hit = 1
+							break
+
+					afterUse(user)
+					//if (!hit)
+					playsound(master, 'sound/effects/sparks6.ogg', 70, 0)
+
+					//Reset the effects after they're drawn and put back into master for re-use later
+					sleep(0.8 SECONDS)
 					K.start.set_loc(master)
 					K.mid1.set_loc(master)
 					K.mid2.set_loc(master)
 					K.end.set_loc(master)
-				// var/hit = 0
-				for(var/atom/movable/A in get_step(user, direction))
-					if(A in attacked) continue
-					if(isTarget(A))
-						on_hit(A)
-						attacked += A
-						A.Attackby(master, user, params, 1)
-						// hit = 1
-						break
-				afterUse(user)
-				//if (!hit)
-				playsound(master, 'sound/effects/sparks6.ogg', 70, 0)
+					// var/hit = 0
+
+
 			return
 
 		proc/on_hit(var/mob/hit)
@@ -1650,67 +1655,67 @@
 					T2 = get_turf(user)
 				else
 					stopped = 1
+				SPAWN_DBG(0)
+					sleep(world.tick_lag)
 
-				sleep(world.tick_lag)
+					prev_loc = get_turf(user)
+					step(user, direction)
+					if (!stopped && get_turf(user) != prev_loc)
+						T3 = get_turf(user)
+					else
+						stopped = 2
 
-				prev_loc = get_turf(user)
-				step(user, direction)
-				if (!stopped && get_turf(user) != prev_loc)
-					T3 = get_turf(user)
-				else
-					stopped = 2
+					sleep(world.tick_lag)
 
-				sleep(world.tick_lag)
+					prev_loc = get_turf(user)
+					step(user, direction)
+					if (!stopped && get_turf(user) != prev_loc)
+						T4 = get_turf(user)
+					else
+						stopped = 3
 
-				prev_loc = get_turf(user)
-				step(user, direction)
-				if (!stopped && get_turf(user) != prev_loc)
-					T4 = get_turf(user)
-				else
-					stopped = 3
+					sleep(world.tick_lag)
 
-				sleep(world.tick_lag)
+					var/obj/itemspecialeffect/conc/start = new
+					var/obj/itemspecialeffect/katana_dash/mid/mid1 = new
+					var/obj/itemspecialeffect/katana_dash/mid/mid2 = new
+					var/obj/itemspecialeffect/conc/end = new
 
-				var/obj/itemspecialeffect/conc/start = new
-				var/obj/itemspecialeffect/katana_dash/mid/mid1 = new
-				var/obj/itemspecialeffect/katana_dash/mid/mid2 = new
-				var/obj/itemspecialeffect/conc/end = new
+					start.do_flick = 1
+					mid1.do_flick = 1
+					mid2.do_flick = 1
+					end.do_flick = 1
 
-				start.do_flick = 1
-				mid1.do_flick = 1
-				mid2.do_flick = 1
-				end.do_flick = 1
+					//Draws the effects // I did this backwards maybe, but won't fix it -kyle
+					start.setup(T1)
+					start.set_dir(direction)
+					if (T4)
+						mid1.setup(T2)
+						mid1.set_dir(direction)
+						mid2.setup(T2)
+						mid2.set_dir(direction)
+						end.setup(T4)
+						end.set_dir(direction)
+					else if (T3)
+						mid1.setup(T2)
+						mid1.set_dir(direction)
+						end.setup(T3)
+						end.set_dir(direction)
+					else if (T2)
+						end.setup(T2)
+						end.set_dir(direction)
 
-				//Draws the effects // I did this backwards maybe, but won't fix it -kyle
-				start.setup(T1)
-				start.set_dir(direction)
-				if (T4)
-					mid1.setup(T2)
-					mid1.set_dir(direction)
-					mid2.setup(T2)
-					mid2.set_dir(direction)
-					end.setup(T4)
-					end.set_dir(direction)
-				else if (T3)
-					mid1.setup(T2)
-					mid1.set_dir(direction)
-					end.setup(T3)
-					end.set_dir(direction)
-				else if (T2)
-					end.setup(T2)
-					end.set_dir(direction)
+					for(var/atom/movable/A in get_step(user, direction))
+						if(A in attacked) continue
+						if(isTarget(A))
+							attacked += A
+							A.Attackhand(user,params)
+							// hit = 1
+							break
 
-				for(var/atom/movable/A in get_step(user, direction))
-					if(A in attacked) continue
-					if(isTarget(A))
-						attacked += A
-						A.Attackhand(user,params)
-						// hit = 1
-						break
-
-				afterUse(user)
-				//if (!hit)
-				playsound(user, 'sound/effects/swoosh.ogg', 40, 1, pitch = 2.3)
+					afterUse(user)
+					//if (!hit)
+					playsound(user, 'sound/effects/swoosh.ogg', 40, 1, pitch = 2.3)
 			return
 
 	nunchucks
@@ -2073,53 +2078,54 @@
 		if (!hit)
 			playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
 
-		while (hit && H.equipped() == master && current_chain < max_chain)
-			H.next_click = world.time + 5 SECONDS
-			last_use = world.time
-			current_chain++
-			if (current_chain == 13)
-				sleep(0.2 SECONDS)
-				var/string ="[H] raises \the [master] up high!"
-				H.show_message(SPAN_ALERT(string), 1, assoc_maptext = make_chat_maptext(H, "<I>[string]</I>", "color: #C2BEBE;", alpha = 140))
-				sleep(2 SECONDS)
-				damageMult = 5
-			else if (current_chain == 3)
-				sleep(0.2 SECONDS)
-				user.emote("twirl")
-				sleep(1.4 SECONDS)
-				damageMult = damage_mult_start+(current_chain*damage_mult_increment)
-			else if (current_chain < 3)
-				damageMult = damage_mult_start+(current_chain*damage_mult_increment)
-				sleep(rand(7,9) DECI SECONDS)
-			else
-				sleep(rand(4,6) DECI SECONDS)
-			if(!H.equipped() == master)
-				break
-			turf = get_step(master, direction)
-			if (alternate)
-				cleave_effect = new/obj/itemspecialeffect/cleave_flipped
-			else
-				cleave_effect = new/obj/itemspecialeffect/cleave
-			alternate = !alternate
-			cleave_effect.set_dir(direction)
-			cleave_effect.setup(turf)
-			if (prob(10) && current_chain > 3)
-				user.emote(pick("laugh","cackle","grin"))
-
-			hit = 0
-			for(var/atom/A as anything in turf)
-				if(isTarget(A))
-					A.Attackby(master, user, params, TRUE)
-					hit = TRUE
+		SPAWN_DBG(0)
+			while (hit && H.equipped() == master && current_chain < max_chain)
+				H.next_click = world.time + 5 SECONDS
+				last_use = world.time
+				current_chain++
+				if (current_chain == 13)
+					sleep(0.2 SECONDS)
+					var/string ="[H] raises \the [master] up high!"
+					H.show_message(SPAN_ALERT(string), 1, assoc_maptext = make_chat_maptext(H, "<I>[string]</I>", "color: #C2BEBE;", alpha = 140))
+					sleep(2 SECONDS)
+					damageMult = 5
+				else if (current_chain == 3)
+					sleep(0.2 SECONDS)
+					user.emote("twirl")
+					sleep(1.4 SECONDS)
+					damageMult = damage_mult_start+(current_chain*damage_mult_increment)
+				else if (current_chain < 3)
+					damageMult = damage_mult_start+(current_chain*damage_mult_increment)
+					sleep(rand(7,9) DECI SECONDS)
+				else
+					sleep(rand(4,6) DECI SECONDS)
+				if(!H.equipped() == master)
 					break
-			if (!hit)
-				playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
+				turf = get_step(master, direction)
+				if (alternate)
+					cleave_effect = new/obj/itemspecialeffect/cleave_flipped
+				else
+					cleave_effect = new/obj/itemspecialeffect/cleave
+				alternate = !alternate
+				cleave_effect.set_dir(direction)
+				cleave_effect.setup(turf)
+				if (prob(10) && current_chain > 3)
+					user.emote(pick("laugh","cackle","grin"))
 
-		if (current_chain > 1 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the first
-			var/string ="[H] swings \the [master] too hard and loses their balance!"
-			H.show_message(SPAN_ALERT(string), 1)
-			H.changeStatus("disorient", disorient_duration_base + disorient_duration_additive * current_chain)
-		afterUse(user)
+				hit = 0
+				for(var/atom/A as anything in turf)
+					if(isTarget(A))
+						A.Attackby(master, user, params, TRUE)
+						hit = TRUE
+						break
+				if (!hit)
+					playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
+
+			if (current_chain > 1 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the first
+				var/string ="[H] swings \the [master] too hard and loses their balance!"
+				H.show_message(SPAN_ALERT(string), 1)
+				H.changeStatus("disorient", disorient_duration_base + disorient_duration_additive * current_chain)
+			afterUse(user)
 
 	afterUse(mob/user)
 		last_use = world.time

@@ -13,11 +13,15 @@
 		return // heh
 
 	. = list()
+
+
 	if (isalive(usr))
 		. += "<br><span class='notice'>You look closely at <B>[src.name]</B>.</span>"
+/*
 		sleep(get_dist(usr.client.eye, src) + 1)
 		if (!usr.client.eye)
 			return // heh heh
+*/
 
 	if (!istype(usr, /mob/dead/target_observer))
 		if (!ignore_checks && (get_dist(usr.client.eye, src) > 7 && (!usr.client || !usr.client.eye || !usr.client.holder || usr.client.holder.state != 2)))

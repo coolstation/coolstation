@@ -134,10 +134,10 @@
 /datum/aiTask/succeedable/move/on_tick()
 	if(!src.found_path)
 		get_path()
-	if(src.found_path.len > 0)
+	if(length(src.found_path))
 		// follow the path
 		if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
-			if(src.found_path.len >= 2)
+			if(length(src.found_path) >= 2)
 				src.next_turf = src.found_path[1]
 				var/i = 2
 				var/dir_line = get_dir(src.found_path[1],src.found_path[2])
@@ -155,10 +155,10 @@
 
 /datum/aiTask/succeedable/move/on_move()
 	. = ..()
-	if(src.found_path.len > 0)
+	if(length(src.found_path))
 		// follow the path
 		if(!src.next_turf || GET_DIST(src.holder.owner, src.next_turf) < 1)
-			if(src.found_path.len >= 2)
+			if(length(src.found_path) >= 2)
 				src.next_turf = src.found_path[1]
 				var/i = 2
 				var/dir_line = get_dir(src.found_path[1],src.found_path[2])
@@ -318,9 +318,9 @@
 			return ..()
 	if(!src.target_item && prob(src.acquire_target_chance) && !src.equipped_validity())
 		src.target_item = src.get_best_target(src.get_targets())
-	if(src.target_item)
-		RegisterSignal(src.target_item, COMSIG_ITEM_PICKUP, PROC_REF(target_picked_up))
-		src.holder.target = src.target_item
+		if(src.target_item)
+			RegisterSignal(src.target_item, COMSIG_ITEM_PICKUP, PROC_REF(target_picked_up))
+			src.holder.target = src.target_item
 	return ..()
 
 /datum/aiTask/endless/pickup/proc/target_picked_up(obj/item/stolen, mob/thief)
