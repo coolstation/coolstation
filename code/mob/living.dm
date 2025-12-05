@@ -2423,6 +2423,13 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		for(var/datum/targetable/ability in src.abilityHolder.abilities)
 			if(ability.attack_mobs && dist <= ability.ai_range && ability.cooldowncheck() && !ability.handleCast(target, params))
 				return 1
+
+		if(istype(src.abilityHolder, /datum/abilityHolder/composite))
+			var/datum/abilityHolder/composite/composite_holder = src.abilityHolder
+			for(var/datum/abilityHolder/subordinate_holder in composite_holder.holders)
+				for(var/datum/targetable/ability in subordinate_holder.abilities)
+					if(ability.attack_mobs && dist <= ability.ai_range && ability.cooldowncheck() && !ability.handleCast(target, params))
+						return 1
 	return 0
 
 /// a "valid target" is POSSIBLE to attack - this should return true for anything you want it to defend itself from, as well

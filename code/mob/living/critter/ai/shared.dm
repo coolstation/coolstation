@@ -438,22 +438,22 @@
 		src.ticks_since_combat = 0
 		return ..()
 
+	if(src.holder.owner.next_click > world.time)
+		return ..()
+
 	if(src.holder.owner.ai_a_intent)
 		src.holder.owner.a_intent = src.holder.owner.ai_a_intent
 	else
 		src.holder.owner.a_intent = pick(70; INTENT_HARM, 20; INTENT_GRAB, 10; INTENT_DISARM)
 
-	var/dont_swap = prob(60)
-
 	var/mob/living/critter/owncritter = src.holder.owner
 	owncritter.hud.update_intent() // this works even on humans, due to both huds having this proc. hate it though.
-
-	if(src.holder.owner.next_click > world.time)
-		return ..()
 
 	if((!src.ability_cooldown || !ON_COOLDOWN(src.holder.owner, "ai_ability_cooldown", src.ability_cooldown)) && src.holder.owner.ability_attack(src.holder.target))
 		src.holder.owner.next_click = world.time + src.holder.owner.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src.holder.owner)
 		return ..()
+
+	var/dont_swap = prob(60)
 
 	// fake misclicks
 	var/atom/possible_miss = src.holder.target
