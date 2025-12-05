@@ -173,6 +173,12 @@
 	desc = "A backpack that looks like a green turtleshell. Cowabunga!"
 	icon_state = "bp_turtle_green"
 
+/obj/item/storage/backpack/snacker
+	name = "backpack"
+	desc = "A thick, wearable container made of synthetic fibers. This one smells sugary and stale."
+	icon_state = "backpackbr"
+	spawn_contents = list(/obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn)
+
 /obj/item/storage/backpack/satchel
 	name = "satchel"
 	desc = "A thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on a crewmember's shoulder."
