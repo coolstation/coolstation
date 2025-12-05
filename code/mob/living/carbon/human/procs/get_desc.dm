@@ -305,7 +305,7 @@
 			if (src.get_brain_damage() >= 60)
 				. += "<br><span class='alert'>[src.name] has a blank expression on [his_or_her(src)] face.</span>"
 
-			if (!src.client && !src.ai_active)
+			if (!src.client && !src.ai)
 				. += "<br>[src.name] seems to be staring blankly into space."
 
 	switch (src.decomp_stage)

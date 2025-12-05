@@ -839,13 +839,11 @@
 	if (src.client)
 		src.client.mouse_pointer_icon = cursor
 
-
-/mob/proc/overhead_throw() //this is a beefy proc that can be trimmed down
-	if (client)
+/mob/proc/overhead_throw(var/force_toggle = FALSE) //this is a beefy proc that can be trimmed down
+	if(client || force_toggle)
 		var/obj/item/grab/grabHand = find_type_in_hand(/obj/item/grab)
 		if(istype(grabHand))
-			//grabHand.affecting.preBaneMatrix = grabHand.affecting.transform
-			if(grabHand.state == GRAB_NECK && client.check_key(KEY_THROW)) //the agressive grab state is skipped. Don't ask me why.
+			if(grabHand.state == GRAB_NECK && (force_toggle && !grabHand.affecting.beingBaned) || (client && client.check_key(KEY_THROW))) //the agressive grab state is skipped. Don't ask me why.
 				if(!grabHand.affecting.lying)
 					grabHand.affecting.Turn(90) //So we don't turn spacemen upside down
 					grabHand.affecting.gotBent = TRUE
@@ -853,11 +851,10 @@
 				grabHand.set_affected_loc()
 			else
 				grabHand.affecting.beingBaned = FALSE
-				if(!grabHand.affecting.lying)
-					grabHand.affecting.transform = null
+				if(grabHand.affecting.gotBent)
+					grabHand.affecting.Turn(-90)
+					grabHand.affecting.gotBent = FALSE
 				grabHand.set_affected_loc()
-
-
 
 /mob/proc/update_cursor()
 	if (client)

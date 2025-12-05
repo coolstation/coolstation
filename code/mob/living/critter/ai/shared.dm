@@ -467,8 +467,18 @@
 				dont_swap = FALSE
 			else
 				src.holder.owner.a_intent = INTENT_GRAB // finish the choke!
-				equipped.attack_self(src.holder.owner)
 				dont_swap = TRUE
+				if(equipped.state == GRAB_NECK && !equipped.affecting.beingBaned)
+					if(src.holder.owner.can_throw && prob(60))
+						src.holder.owner.overhead_throw(TRUE)
+						SPAWN_DBG(rand(0.8 SECONDS, 1.3 SECONDS))
+							var/turf/current_turf = get_turf(src.holder.owner)
+							var/turf/throw_target = locate(current_turf.x + pick(rand(-10,-3), rand(3, 10)), current_turf.y + pick(rand(-10,-3), rand(3, 10)), current_turf.z)
+							if(throw_target)
+								src.holder.owner.throw_item(throw_target)
+					else if(prob(80))
+						src.holder.owner.emote("flip", TRUE)
+				equipped.attack_self(src.holder.owner)
 		else if(equipped)
 			if(equipped.special && (prob(15) || possible_miss != src.holder.target))
 				equipped.special.pixelaction(possible_miss,src.special_params,src.holder.owner)

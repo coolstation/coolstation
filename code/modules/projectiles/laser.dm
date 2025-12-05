@@ -468,7 +468,7 @@ toxic - poisons
 /datum/projectile/laser/drill
 	name = "drill bit"
 	window_pass = 0
-	icon_state = ""
+	icon_state = "blank"
 	damage_type = D_SLASHING
 	power = 45
 	cost = 1
