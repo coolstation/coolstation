@@ -79,7 +79,7 @@ var/global/matrix/GLOBAL_ANIMATION_MATRIX = matrix()
 
 	proc/stars_start()
 		src.start = 1
-		spawn(0)
+		SPAWN_DBG(0)
 			src.process()
 		return
 
@@ -132,7 +132,7 @@ var/global/matrix/GLOBAL_ANIMATION_MATRIX = matrix()
 			M = M.Translate(actual_x,actual_y)
 			animate(src, transform = M, time = animation_speed, loop = 0, flags = ANIMATION_PARALLEL)
 
-			spawn(animation_speed-1)
+			SPAWN_DBG(animation_speed-1)
 
 				var/apparent_angle = vel_angle - ship_angle
 

@@ -138,6 +138,7 @@
 					return
 		//do regular monkey stuff
 		..()
+
 /*
 /mob/living/carbon/human/npc/monkey/minty/pod_wars
 	preferred_card_type = /obj/item/card/id/pod_wars/syndicate
@@ -464,11 +465,11 @@
 			return
 		var/list/possible_targets = list()
 		//proof of concept, redo this to have a saved list of things to fuck with and move to so we're not a) constantly scanning b) limited to line of sight
-		for (var/obj/decoration/syndiepc/M in orange(10, src))
+		for (var/obj/decoration/syndiepc/M in orange(6, src))
 			possible_targets += M
-		for (var/obj/machinery/nuclearbomb/M in orange(10, src))
+		for (var/obj/machinery/nuclearbomb/M in orange(6, src))
 			possible_targets += M
-		for (var/obj/cairngorm_stats/foss/M in orange(10, src))
+		for (var/obj/cairngorm_stats/foss/M in orange(6, src))
 			possible_targets += M
 		if(length(possible_targets) == 0)
 			return
@@ -482,18 +483,18 @@
 		if (istype(fuckaround_target, /obj/decoration/syndiepc))
 			if(prob(50))
 				walk_towards(src, fuckaround_target, ai_movedelay)
-				sleep(5 SECONDS)
-				src.visible_message(pick("<B>[name]</B> types something into [fuckaround_target]. You're not sure what it is, but it did something.", \
-				"<B>[name]</B> acknowledges some sort of message on [fuckaround_target].", \
-				"<B>[name]</B> looks at [fuckaround_target] with [pick("vague","mild","intense","")] [pick("concern","annoyance","interest")] and types something in."), 1)
-				playsound(fuckaround_target, "sound/machines/keyboard[rand(1,3)].ogg", 50, 1, -5)
-				sleep(15)
-				if(prob(5))
-					playsound(fuckaround_target, 'sound/machines/buzz-two.ogg', 50, 1, -5)
-					if(prob(75))
-						src.emote(pick("sigh","scream","grump"))
-				else
-					playsound(fuckaround_target, 'sound/machines/twobeep.ogg', 50, 1, -5)
+				SPAWN_DBG(5 SECONDS)
+					src.visible_message(pick("<B>[name]</B> types something into [fuckaround_target]. You're not sure what it is, but it did something.", \
+					"<B>[name]</B> acknowledges some sort of message on [fuckaround_target].", \
+					"<B>[name]</B> looks at [fuckaround_target] with [pick("vague","mild","intense","")] [pick("concern","annoyance","interest")] and types something in."), 1)
+					playsound(fuckaround_target, "sound/machines/keyboard[rand(1,3)].ogg", 50, 1, -5)
+					sleep(15)
+					if(prob(5))
+						playsound(fuckaround_target, 'sound/machines/buzz-two.ogg', 50, 1, -5)
+						if(prob(75))
+							src.emote(pick("sigh","scream","grump"))
+					else
+						playsound(fuckaround_target, 'sound/machines/twobeep.ogg', 50, 1, -5)
 
 		else if (istype(fuckaround_target, /obj/machinery/nuclearbomb))
 			if(prob(5))
@@ -505,21 +506,21 @@
 		else if (istype(fuckaround_target, /obj/cairngorm_stats/foss))
 			if(prob(5))
 				walk_towards(src, fuckaround_target, ai_movedelay)
-				sleep(5 SECONDS)
-				src.visible_message(pick("<B>[name]</B> performs a little salute at [fuckaround_target]. [pick("Aw, how cute.","That's kinda weird, actually!")]", \
-				"<B>[name]</B> picks [his_or_her(src)] nose and wipes it on [fuckaround_target].", \
-				"<B>[name]</B> closely reads the names on [fuckaround_target] and [pick("sheds a tear","laughs","hoots","makes a fart noise","flips one of them off")]."), 1)
-				if(prob(10))
-					sleep(2 SECONDS)
-					src.emote("fart")
+				SPAWN_DBG(5 SECONDS)
+					src.visible_message(pick("<B>[name]</B> performs a little salute at [fuckaround_target]. [pick("Aw, how cute.","That's kinda weird, actually!")]", \
+					"<B>[name]</B> picks [his_or_her(src)] nose and wipes it on [fuckaround_target].", \
+					"<B>[name]</B> closely reads the names on [fuckaround_target] and [pick("sheds a tear","laughs","hoots","makes a fart noise","flips one of them off")]."), 1)
+					if(prob(10))
+						sleep(2 SECONDS)
+						src.emote("fart")
 		else
 			src.visible_message(pick("<B>[name]</B> [pick("pokes","prods","fusses with")] [fuckaround_target].", \
 			"<B>[name]</B> [pick("hoots","chimpers","grunts")] at [fuckaround_target]."), 1)
-		sleep(3 SECONDS)
-		src.a_intent = src.ai_default_intent
-		walk_towards(src, null)
-		src.ai_state = 0
-		return
+		SPAWN_DBG(3 SECONDS)
+			src.a_intent = src.ai_default_intent
+			walk_towards(src, null)
+			src.ai_state = 0
+			return
 
 	hear_talk(mob/M as mob, messages, heardname, lang_id)
 		if (isalive(src) && messages)
@@ -527,13 +528,13 @@
 				if (M.singing & (BAD_SINGING | LOUD_SINGING))
 					if (prob(20))
 						// monkey is angered by singing
-						spawn(0.5 SECONDS)
+						SPAWN_DBG(0.5 SECONDS)
 							was_harmed(M)
 							var/singing_modifier = (M.singing & BAD_SINGING) ? "bad" : "loud"
 							src.visible_message("<B>[name]</B> becomes furious at [M] for [his_or_her(M)] [singing_modifier] singing!", 1)
 							src.say(pick("Must take revenge for insult to music!", "I now attack you like your singing attacked my ears!"))
 					else
-						spawn(0.5 SECONDS)
+						SPAWN_DBG(0.5 SECONDS)
 							src.visible_message(pick("<B>[name]</B> doesn't seem to like [M]'s singing", \
 							"<B>[name]</B> puts their hands over [his_or_her(src)] ears", \
 							), 1)

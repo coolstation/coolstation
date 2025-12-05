@@ -131,6 +131,14 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	time = 15 SECONDS
 	create = 1
 
+/******************** Communications Dish *******************/
+
+/datum/manufacture/mechanics/communications_dish
+	name = "Communications Dish"
+	time = 5 SECONDS
+	create = 1
+	frame_path = /obj/machinery/communications_dish
+
 /*
 /datum/manufacture/iron
 	// purely a test

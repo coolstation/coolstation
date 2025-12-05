@@ -1,7 +1,7 @@
 /*
  * Hey! You!
  * Remember to mirror your changes (unless you use the [DEFINE_FLOORS] macro)
- * floors_unsimulated.dm & floors_airless.dm
+ * floors_airless.dm
  */
 
 /turf/floor
@@ -1362,6 +1362,10 @@ DEFINE_FLOORS(snowrough/border,
 	allows_vehicles = 1
 	burnt = UNBURNABLE_TURF
 	permadirty = 1
+
+/turf/floor/diagonal
+	name = "floor tile"
+	icon_state = "diagonal"
 
 /////////////////////////////////////////
 

@@ -1,5 +1,5 @@
 //MBC NOTE : we entirely skip over grab level 1. it is not needed but also i am afraid to remove it entirely right now.
-/obj/item/grab //TODO : pool grabs
+/obj/item/grab
 	flags = SUPPRESSATTACK
 	var/mob/living/assailant
 	var/mob/living/affecting
@@ -62,8 +62,9 @@
 		if(affecting)
 			if (affecting.beingBaned)
 				affecting.beingBaned = FALSE
-			if (!affecting.lying)
-				affecting.transform = null
+			if (affecting.gotBent)
+				affecting.Turn(-90)
+				affecting.gotBent = FALSE
 
 			if (state >= GRAB_NECK)
 				if (assailant)
@@ -411,7 +412,7 @@
 		if (!src.affecting) return 0
 		if (get_dist(user, src.affecting) > 1)
 			return 0
-		if ((src.state < 1 && !(src.affecting.getStatusDuration("paralysis") || src.affecting.getStatusDuration("weakened") || src.affecting.stat)) || !isturf(user.loc))
+		if ((src.state < GRAB_AGGRESSIVE && !(src.affecting.getStatusDuration("paralysis") || src.affecting.getStatusDuration("weakened") || src.affecting.stat)) || !isturf(user.loc))
 			user.visible_message("<span class='alert'>[src.affecting] stumbles a little!</span>")
 			user.u_equip(src)
 			return 0

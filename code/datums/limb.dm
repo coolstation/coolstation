@@ -8,6 +8,7 @@
 /datum/limb
 	var/mob/owner
 	var/name
+	var/max_wclass = W_CLASS_BUBSIAN
 
 	var/special_next = 0
 	var/datum/item_special/disarm_special = null //Contains the datum which executes the items special, if it has one, when used beyond melee range.
@@ -1312,7 +1313,7 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 /datum/limb/small_critter
 	name = "paw"
 
-	var/max_wclass = 1 // biggest thing we can carry
+	max_wclass = W_CLASS_TINY // biggest thing we can carry
 	var/dam_low = 1
 	var/dam_high = 1
 	var/actions = list("scratches", "baps", "slashes", "paws")

@@ -121,6 +121,10 @@
 		M.changeStatus("stunned", 2 SECONDS)
 		random_brute_damage(M, rand(2,5),1)
 
+/obj/critter/bear/dead/New()
+  . = ..()
+  src.CritterDeath() //dies in the same way as its parent does, but on creation
+ 
 obj/critter/bear/care
 	name = "space carebear"
 	desc = "I love you!"

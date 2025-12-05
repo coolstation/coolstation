@@ -907,7 +907,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 					else
 						flick("[src.species]-flaploop", src)
 			else
-				spawn(rand(4,10))
+				SPAWN_DBG(rand(4,10))
 					chatter(1)
 
 		var/boost = M.singing ? signing_learn_boost : 0

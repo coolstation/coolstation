@@ -798,6 +798,10 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 	grime //this type path is stupid
 		icon_state = "grime" //grime
+		sample_reagent = "grime"
+
+		diagonal // this is even stupider though
+			icon_state = "grime_diagonal" // teehee
 
 /obj/decal/cleanable/balloon
 	name = "balloon"

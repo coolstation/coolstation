@@ -250,7 +250,7 @@
 			if (prob(60))
 				G.howl()
 		src.add_fingerprint(user)
-		spawn(100)
+		SPAWN_DBG(100)
 			spam_flag = 0
 	return
 
@@ -272,7 +272,7 @@
 			if (prob(100))
 				G.howl()
 		src.add_fingerprint(user)
-		spawn(30)
+		SPAWN_DBG(30)
 			spam_flag = 0
 	return
 

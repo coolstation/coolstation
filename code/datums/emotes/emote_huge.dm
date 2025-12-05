@@ -667,9 +667,9 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				flipped_a_guy = TRUE
 				var/suplex_result = user.do_suplex(G)
 				if(suplex_result)
-					combatflipped |= TRUE
+					combatflipped |= M
 					message = suplex_result
-				if(!combatflipped)
+				if(!length(combatflipped))
 					var/turf/oldloc = user.loc
 					var/turf/newloc = G.affecting.loc
 					if(istype(oldloc) && istype(newloc))
