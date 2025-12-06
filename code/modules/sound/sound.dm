@@ -575,7 +575,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		S.status |= SOUND_MUTE
 	if (pass_volume != 0)
 		S.volume *= attenuate_for_location(A)
-		S.volume *= max(1,pass_volume) // warc: post-loudening for loud-requiring places
+		//S.volume *= max(1,pass_volume) // warc: post-loudening for loud-requiring places
 	if (soundrepeat)
 		S.status |= SOUND_STREAM //should be lighter for clients
 	if (!soundrepeat) //loops need to be quiet with the way we might use them
