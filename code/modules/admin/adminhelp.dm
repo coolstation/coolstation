@@ -42,7 +42,7 @@
 						C.mob.playsound_local(C.mob.loc, "sound/misc/newsting.ogg", 50, 1)
 					if(PM_DECTALK_ALERT)
 						var/audio = dectalk(msg)
-						var/vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
+						var/vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 						if(vol)
 							C.chatOutput.playDectalk(audio["audio"], "Admin Help from [src] ([src.ckey]) to [C.mob.ckey]", vol)
 
@@ -214,7 +214,7 @@
 				else if(M.client.holder.audible_prayers == 2) // this is a terrible idea
 					if(!audio)
 						audio = dectalk(msg)
-					var/vol = M.client.getVolume(VOLUME_CHANNEL_ADMIN)
+					var/vol = M.client.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 					if(vol)
 						M.client.chatOutput.playDectalk(audio["audio"], "prayer by [src] ([src.ckey]) to [M.ckey]", vol)
 

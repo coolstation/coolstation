@@ -1,29 +1,28 @@
-#define SOUNDCHANNEL_RESERVABLE_MIN		1 // do not reserve any soundchannels lower than this
-#define SOUNDCHANNEL_RESERVABLE_MAX		256 //do not reserve any soundchannels higher than this
-#define SOUNDCHANNEL_CLIENT_MIN			257 //internally used by sound manager
-#define SOUNDCHANNEL_CLIENT_MAX			512 //internally used by sound manager
-#define SOUNDCHANNEL_RANDOM_MIN			513 // for playsound, soon to go away
-#define SOUNDCHANNEL_BYOND_MAX			1024 // this is the highest we CAN go, unless byond dramatically changes
+#define SOUNDCHANNEL_RESERVABLE_MIN		1    // do not reserve any soundchannels lower than this
+#define SOUNDCHANNEL_RESERVABLE_MAX		128  //do not reserve any soundchannels higher than this
+#define SOUNDCHANNEL_SLC_MIN			129  //internally used by SLC
+#define SOUNDCHANNEL_SLC_MAX			512  //internally used by SLC
+#define SOUNDCHANNEL_PLAYSOUND_MIN		513  // where playsound starts
+#define SOUNDCHANNEL_PLAYSOUND_MAX		1024 // this is the highest we CAN go, unless byond dramatically changes
 
 //Reserved sound channels
 #define SOUNDCHANNEL_RESERVED_BIGALARM 1 //area based alarms, typically indicating bosses
 #define SOUNDCHANNEL_RESERVED_LOOPING_Z 2 //looping ambience that plays across an entire z level
-#define SOUNDCHANNEL_LOOPING_1 124
-#define SOUNDCHANNEL_LOOPING_2 125
-#define SOUNDCHANNEL_FX_1 126
-#define SOUNDCHANNEL_FX_2 127
-#define SOUNDCHANNEL_RESERVED_INGAME_RADIO 246
-#define SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN 247
-#define SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MAX 256
+#define SOUNDCHANNEL_LOOPING_1 3
+#define SOUNDCHANNEL_LOOPING_2 4
+#define SOUNDCHANNEL_FX_1 5
+#define SOUNDCHANNEL_FX_2 6
+#define SOUNDCHANNEL_RESERVED_INGAME_RADIO 118
+#define SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN 119
+#define SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MAX 128
 
 #define SOUND_BUCKET_SIZE 15
 
 //sound mute
 #define SOUND_NONE 0
 #define SOUND_SPEECH 1
-#define SOUND_BLAH 2
-#define SOUND_ALL 4
-#define SOUND_VOX 8
+#define SOUND_ALL 2
+#define SOUND_VOX 4
 
 //volume channel defines
 #define VOLUME_CHANNEL_MASTER 0

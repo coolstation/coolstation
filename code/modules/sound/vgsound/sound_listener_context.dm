@@ -39,6 +39,8 @@
 			var/slc = client.listener_context
 			qdel(slc) // dont ask me why its like this. i dont know.
 			client.listener_context = null
+		if(client.ignore_sound_flags & SOUND_ALL)
+			return
 		if(client.byond_build > 1673)
 			client.listener_context = new /datum/sound_listener_context(client, src, SOUND_BUCKET_SIZE)
 		else if(client.byond_build >= 1653)
@@ -69,7 +71,7 @@
 	proxy = P
 	current_channels_by_emitter = list()
 	free_channels = list()
-	for (var/i in SOUNDCHANNEL_CLIENT_MIN to SOUNDCHANNEL_CLIENT_MAX)
+	for (var/i in SOUNDCHANNEL_SLC_MIN to SOUNDCHANNEL_SLC_MAX)
 		free_channels += i
 	sound_zone_manager.register_listener(src)
 
@@ -124,6 +126,8 @@
 	if (!(S.atom in view(10, proxy)))
 		S.volume *= 0.7
 
+	S.volume *= client.getVolume(emitter.volume_channel)
+
 	var/listener_atten = 1
 	if(!emitter.ignore_space)
 		listener_atten = attenuate_for_location(proxy)
@@ -171,6 +175,10 @@
 	// progress and modifying S.offset to start at the correct point
 
 	apply_proxymob_effects(S, emitter)
+
+	client.sound_playing[chan][1] = S.volume
+	client.sound_playing[chan][2] = emitter.volume_channel
+
 	if(S.volume > TOO_QUIET)
 		if (!chan)
 			CRASH("Sound emitter on [emitter.source] failed to reserve a channel for [src]")
@@ -179,7 +187,14 @@
 		client << S
 
 /datum/sound_listener_context/proc/hear_once(sound/S, datum/sound_emitter/emitter)
+	var/chan = current_channels_by_emitter[emitter]
+	if (!chan)
+		return // how?
+
 	apply_proxymob_effects(S, emitter)
+
+	client.sound_playing[chan][1] = S.volume
+
 	if(S.volume > TOO_QUIET)
 		client << S
 
@@ -196,6 +211,9 @@
 		return // emitter isn't playing anything, get out of here
 	var/sound/S = emitter.active_sound.get()
 	apply_proxymob_effects(S, emitter)
+
+	client.sound_playing[chan][1] = S.volume
+
 	if(S.volume > TOO_QUIET)
 		S.status |= SOUND_UPDATE
 		S.channel = chan

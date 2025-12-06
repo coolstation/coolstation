@@ -6,7 +6,7 @@ var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 		return
 
 	var/admin_key = admin_key(src)
-	vol = max(min(vol, 100), 0)
+	vol = clamp(vol, 0, 100)
 
 	var/sound/uploaded_sound = new()
 	uploaded_sound.file = S
@@ -28,7 +28,7 @@ var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 		for (var/client/C in clients)
 			C.sound_playing[ admin_sound_channel ][1] = vol
 			C.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
-			uploaded_sound.volume = vol * C.getVolume( VOLUME_CHANNEL_ADMIN ) / 100
+			uploaded_sound.volume = vol * C.getVolume( VOLUME_CHANNEL_ADMIN )
 			C << uploaded_sound
 
 			//DEBUG_MESSAGE("Playing sound for [C] on channel [uploaded_sound.channel]")
@@ -58,7 +58,7 @@ var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 		var/admin_key = admin_key(src)
 		for (var/client/C in clients)
 			LAGCHECK(LAG_LOW)
-			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
+			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 
 			if (src.djmode || src.non_admin_dj)
 				boutput(C, "<span class=\"medal\"><b>[admin_key] played (your volume: [client_vol ? "[client_vol]" : "muted"]):</b></span> <span class='notice'>[S]</span>")
@@ -66,7 +66,7 @@ var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 			if (!client_vol)
 				continue
 
-			C.sound_playing[ admin_sound_channel ][1] = 1
+			C.sound_playing[ admin_sound_channel ][1] = 100
 			C.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
 
 			music_sound.volume = client_vol
@@ -91,12 +91,12 @@ var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 		for (var/client/C in clients)
 			LAGCHECK(LAG_LOW)
 			C.verbs += /client/verb/stop_the_radio
-			var/client_vol = C.getVolume(VOLUME_CHANNEL_RADIO)
+			var/client_vol = C.getVolume(VOLUME_CHANNEL_RADIO) * 100
 
 			if (!client_vol)
 				continue
 
-			C.sound_playing[ music_sound.channel ][1] = 1
+			C.sound_playing[ music_sound.channel ][1] = 100
 			C.sound_playing[ music_sound.channel ][2] = VOLUME_CHANNEL_RADIO
 
 			music_sound.volume = client_vol
@@ -123,7 +123,7 @@ var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 		for (var/client/C in clients)
 			LAGCHECK(LAG_LOW)
 			C.verbs += /client/verb/stop_the_music
-			var/vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
+			var/vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 
 			var/ismuted
 			if (!vol) ismuted = 1

@@ -70,6 +70,7 @@
 	var/last_hash = null
 	var/spaced = FALSE
 	var/ignore_space = FALSE
+	var/volume_channel = VOLUME_CHANNEL_GAME
 
 	var/datum/sound_zone_manager/szm // not strictly necessary but its here for easy debugging in this early stage
 

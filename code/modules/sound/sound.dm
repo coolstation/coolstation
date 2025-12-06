@@ -68,6 +68,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 /client/var/list/volumes
 /client/var/list/sound_playing = new/list(1024, 2)
 
+/client/var/next_playsound_channel = SOUNDCHANNEL_PLAYSOUND_MIN
+
 /// Returns a list of friendly names for available sound channels
 /client/proc/getVolumeNames()
 	return list("Game", "Ambient", "Radio", "Admin", "Emote", "Mentor PM")
@@ -85,9 +87,9 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	// +1 since master channel is 0, while byond arrays start at 1
 	return getVolumeDescriptions()[channel+1]
 
-/// Returns the volume to set /sound/var/volume to for the given channel(so 0-100)
+/// Returns the volume multiplier of sounds for the given channel (0-1)
 /client/proc/getVolume(id)
-	return volumes[id + 1] * volumes[1] * 100
+	return volumes[id + 1] * volumes[1]
 
 /// Returns the master volume (0-1)
 /client/proc/getMasterVolume()
@@ -213,7 +215,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			LISTENER_ATTEN(atten_temp)
 
 			storedVolume = ourvolume
-			ourvolume *= C.getVolume(channel) / 100
+			ourvolume *= C.getVolume(channel)
 			//boutput(world, "for client [C] updating volume [storedVolume] to [ourvolume] for channel [channel]")
 
 			EARLY_CONTINUE_IF_QUIET(ourvolume)
@@ -221,6 +223,12 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			//sadly, we must generate
 			if (!S) S = generate_sound(source, soundin, vol, pitch_var, range, pitch)
 			if (!S) CRASH("Did not manage to generate sound \"[soundin]\" with source [source].")
+			// cycle through the channels to ensure minimal collisions?
+			S.channel = C.next_playsound_channel
+			C.next_playsound_channel++
+			if(C.next_playsound_channel > SOUNDCHANNEL_PLAYSOUND_MAX)
+				C.next_playsound_channel = SOUNDCHANNEL_PLAYSOUND_MIN
+
 			C.sound_playing[ S.channel ][1] = storedVolume
 			C.sound_playing[ S.channel ][2] = channel
 
@@ -271,7 +279,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	if (CLIENT_IGNORES_SOUND(src.client))
 		return
 
-	vol *= client.getVolume(channel) / 100
+	vol *= client.getVolume(channel)
 
 	EARLY_RETURN_IF_QUIET(vol)
 
@@ -387,7 +395,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		ourvolume = vol
 
 		storedVolume = ourvolume
-		ourvolume *= C.getVolume(channel) / 100
+		ourvolume *= C.getVolume(channel)
 
 		EARLY_CONTINUE_IF_QUIET(ourvolume)
 
@@ -479,7 +487,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	//world.log << "Playing sound; wv = [world.view] + er = [extrarange] / 3.5 = falloff [S.falloff]"
 	S.wait = 0 //No queue
 	//This is apparently a hack // this is such a hack
-	S.channel = rand(SOUNDCHANNEL_RANDOM_MIN, SOUNDCHANNEL_BYOND_MAX)
+	//S.channel = rand(SOUNDCHANNEL_RANDOM_MIN, SOUNDCHANNEL_BYOND_MAX)
 	//eventually let's figure a repeatable way to increment sound channels per client instead of picking at random
 	S.volume = vol
 	S.priority = 5
@@ -560,14 +568,14 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	S.priority = 200
 	sound_playing[ S.channel ][1] = S.volume
 	sound_playing[ S.channel ][2] = VOLUME_CHANNEL_AMBIENT
-	S.volume *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
+	S.volume *= getVolume( VOLUME_CHANNEL_AMBIENT )
 	if (soundupdate)
 		S.status |= SOUND_UPDATE //brimgo
 	if (pass_volume == -1)
 		S.status |= SOUND_MUTE
 	if (pass_volume != 0)
 		S.volume *= attenuate_for_location(A)
-		S.volume *= max(1,(pass_volume / 100)) // warc: post-loudening for loud-requiring places
+		S.volume *= max(1,pass_volume) // warc: post-loudening for loud-requiring places
 	if (soundrepeat)
 		S.status |= SOUND_STREAM //should be lighter for clients
 	if (!soundrepeat) //loops need to be quiet with the way we might use them
@@ -629,7 +637,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	#endif
 
 	var/stored_vol = zloopvol
-	zloopvol *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
+	zloopvol *= getVolume( VOLUME_CHANNEL_AMBIENT )
 
 	if (zloopvol != 0) //lets us cancel loop sounds by passing 0
 		if ((src.last_zloop == soundfile) && (src.last_zvol == zloopvol)) //if the volume and loop are the same

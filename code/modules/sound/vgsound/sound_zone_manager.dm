@@ -76,7 +76,7 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 		emitter_buckets[h] = list()
 	emitter_buckets[h] |= E
 
-	var/hashes = listener_candidate_hashes(X, Y, T.z)
+	var/hashes = listener_candidate_hashes(T.x, T.y, T.z)
 	for (var/H in hashes)
 		var/list/B = listener_buckets[H]
 		for (var/mob/listener in B)
