@@ -202,10 +202,7 @@
 	var/maxY = S.y + rangey
 	return (minX <= T.x && T.x <= maxX && minY <= T.y && T.y <= maxY)
 
-/datum/sound_emitter/proc/contains_bugfix(datum/sound_listener_context/SLC)
-	var/turf/T = get_turf(SLC.proxy)
-	if (!T)
-		return FALSE
+/datum/sound_emitter/proc/contains_bugfix(datum/sound_listener_context/SLC, turf/T)
 	var/turf/S = get_turf(source)
 	if (!S)
 		CRASH("Failed to get source turf in contains_bugfix")
@@ -271,10 +268,7 @@
 	var/maxY = S.y + rangey
 	return (minX <= T.x && T.x <= maxX && minY <= T.y && T.y <= maxY)
 
-/datum/sound_emitter/big/contains_bugfix(datum/sound_listener_context/SLC)
-	var/turf/T = get_turf(SLC.proxy)
-	if (!T)
-		return FALSE
+/datum/sound_emitter/big/contains_bugfix(datum/sound_listener_context/SLC, turf/T)
 	var/turf/S = whatevs_source.get_center()
 	if (!S)
 		CRASH("Failed to get source turf in contains_bugfix")

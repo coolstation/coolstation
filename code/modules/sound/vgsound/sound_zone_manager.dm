@@ -86,10 +86,10 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 			if (!client || !client.listener_context)
 				CRASH("Found a listener with no client or endpoint client")
 			var/datum/sound_listener_context/context = client.listener_context
-			//var/turf/location = get_turf(listener)
+			var/turf/location = get_turf(listener)
 
 			// swap when we stop supporting versions without the byond sound bug
-			if (E.contains_bugfix(context))
+			if (E.contains_bugfix(context, location))
 				context.on_enter_range(E)
 
 /datum/sound_zone_manager/proc/unregister_emitter(datum/sound_emitter/E)
@@ -130,18 +130,18 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 			if (!client || !client.listener_context)
 				CRASH("Found a listener with no client or endpoint client")
 			var/datum/sound_listener_context/context = client.listener_context
-			//var/turf/location = get_turf(listener)
+			var/turf/location = get_turf(listener)
 
 			if (E in context.current_channels_by_emitter)
 				// swap when we stop supporting versions without the byond sound bug
-				if (!E.contains_bugfix(context))
+				if (!E.contains_bugfix(context, location))
 //				if (!E.contains(location))
 					context.on_exit_range(E)
 				//else
 				//	context.on_sound_update(E)
 			else
 				// swap when we stop supporting versions without the byond sound bug
-				if (E.contains_bugfix(context))
+				if (E.contains_bugfix(context, location))
 					context.on_enter_range(E)
 
 	SEND_SIGNAL(src, SIGNAL_SOUND_UPDATED)
@@ -216,6 +216,10 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 
 	var/datum/sound_listener_context/context = receive_client.listener_context
 
+#if defined(MAGINDARA_MAP) && defined(TRACK_GROUPS_TO_ATMOSPHERE)
+	receive_client.playAmbienceZ(location.z, location.parent ? location.parent.groups_to_atmosphere : location.groups_to_atmosphere)
+#endif
+
 	var/list/current = list()
 	for (var/datum/sound_emitter/E in context.current_channels_by_emitter)
 		current[E] = TRUE
@@ -226,7 +230,7 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 		var/list/B = emitter_buckets[H]
 		for (var/datum/sound_emitter/E in B)
 			// swap when we stop supporting versions without the byond sound bug
-			if (E.contains_bugfix(context))
+			if (E.contains_bugfix(context, location))
 //			if (E.contains(location))
 				fresh[E] = TRUE
 				if (current[E] == null)
