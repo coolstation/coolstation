@@ -65,12 +65,12 @@
 					src.visible_message("<span class='alert'>[src] deflects the [P.name] with his [deflecting_sword]!</span>")
 					shoot_reflected_to_sender(P, src)
 					P.die()
-					playsound(src.loc, 'sound/impact_sounds/Energy_Hit_1.ogg', 60, 0.1, 0, 2.6)
+					playsound(src.loc, 'sound/impact_sounds/Energy_Hit_1.ogg', 60, 0.1, SOUND_RANGE_STANDARD, 2.6)
 					return
 				else
 					src.visible_message("<span class='alert'>[src] vaporizes the [P.name] in its trajectory with [deflecting_sword]!</span>")
 					P.die()
-					playsound(src.loc, 'sound/impact_sounds/burn_sizzle.ogg', 90, 0.1, 0, 2.6)
+					playsound(src.loc, 'sound/impact_sounds/burn_sizzle.ogg', 90, 0.1, SOUND_RANGE_STANDARD, 2.6)
 					return
 			else
 				my_ability_holder.points = 0
@@ -792,7 +792,7 @@
 			var/obj/heavenly_light/lightbeam = new /obj/heavenly_light
 			lightbeam.set_loc(T)
 			lightbeam.alpha = 0
-			playsound(T, "sound/voice/heavenly.ogg", 100, 1, 0)
+			playsound(T, "sound/voice/heavenly.ogg", 100, 1, SOUND_RANGE_STANDARD)
 			animate(lightbeam, alpha=255, time=3.5 SECONDS)
 			SPAWN_DBG(30)
 				animate(lightbeam,alpha = 0, time=3.5 SECONDS)

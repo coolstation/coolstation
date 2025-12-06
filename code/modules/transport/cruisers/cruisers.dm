@@ -107,10 +107,10 @@
 	var/list/pooList = list()
 	var/list/interiorViewers = list()
 
-	proc/internal_sound(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch)
-		playsound(source, soundin, vol, vary, extrarange, pitch)
+	proc/internal_sound(var/atom/source, soundin, vol as num, vary, range as num, pitch)
+		playsound(source, soundin, vol, vary, range, pitch)
 		for(var/mob/M in crew)
-			M.playsound_local(M, soundin, vol , vary, extrarange, pitch)
+			M.playsound_local(M, soundin, vol, vary, range, pitch)
 		return
 
 	proc/subscribe_interior(var/mob/who)
@@ -1046,7 +1046,7 @@
 		else
 			ready = 0
 			SPAWN_DBG(1 SECOND) ready = 1
-			playsound(src.loc, 'sound/machines/hydraulic.ogg', 50, 0, -1)
+			playsound(src.loc, 'sound/machines/hydraulic.ogg', 50, 0, SOUND_RANGE_STANDARD)
 			open = 1
 			setIcon()
 			uninstall_component()
@@ -1060,7 +1060,7 @@
 			return
 		ready = 0
 		SPAWN_DBG(1 SECOND) ready = 1
-		playsound(src.loc, 'sound/machines/weapons-deploy.ogg', 60, 0, -1)
+		playsound(src.loc, 'sound/machines/weapons-deploy.ogg', 60, 0, SOUND_RANGE_STANDARD)
 		open = 0
 		setIcon()
 		install_component()

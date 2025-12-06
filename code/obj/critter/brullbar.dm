@@ -234,7 +234,7 @@
 			playsound(src.loc, "sound/voice/animal/brullbar_scream.ogg", 75, 1)
 			src.visible_message("<span class='alert'><b>[src] howls!</b></span>", 1)
 			..()
-			playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			if(ismob(M))
 				M.changeStatus("stunned", 2 SECONDS)
 				M.changeStatus("weakened", 2 SECONDS)

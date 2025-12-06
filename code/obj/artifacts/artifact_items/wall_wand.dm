@@ -43,7 +43,7 @@
 		if (!T)
 			return
 		var/wallloc
-		playsound(user.loc, wand_sound, 50, 1, -1)
+		playsound(user.loc, wand_sound, 50, 1, SOUND_RANGE_STANDARD)
 		if (user.dir == NORTH || user.dir == SOUTH)
 			for(wallloc = T.x - (src.wall_size - 1),wallloc < T.x + src.wall_size,wallloc++)
 				var/obj/forcefield/wand/FW = new /obj/forcefield/wand(locate(wallloc,T.y,T.z),src.wall_duration,src.icon_state)

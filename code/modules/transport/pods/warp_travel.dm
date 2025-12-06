@@ -129,7 +129,7 @@
 	..()
 	SPAWN_DBG(0)
 		// animate_portal_appear(src)
-		playsound(src.loc, "warp", 50, 1, 0.1, 0.7)
+		playsound(src.loc, "warp", 50, 1, SOUND_RANGE_STANDARD, 0.7)
 		sleep(30 SECONDS)
 		qdel(src)
 
@@ -160,7 +160,7 @@
 					H:bioHolder:RandomEffect("good")
 	if (istype(M, /atom/movable))
 		animate_portal_tele(src)
-		playsound(src.loc, "warp", 50, 1, 0.2, 1.2)
+		playsound(src.loc, "warp", 50, 1, SOUND_RANGE_STANDARD, 1.2)
 		do_teleport(M, src.target, 1) ///You will appear adjacent to the beacon
 
 /obj/warp_beacon/proc/startpack()

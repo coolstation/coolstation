@@ -46,7 +46,7 @@
 
 		var/turf/targetturf = locate(targetx, targety, holder.owner.z)
 
-		playsound(holder.owner.loc, "sound/effects/mag_teleport.ogg", 25, 1, -1)
+		playsound(holder.owner.loc, "sound/effects/mag_teleport.ogg", 25, 1, SOUND_RANGE_STANDARD)
 
 		var/list/turfs = new/list()
 		for(var/turf/T in orange(accuracy,targetturf))

@@ -901,7 +901,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 			M.changeStatus("weakened", src.weaken_length)
 			M.force_laydown_standup()
 			boutput(M, text("<span class='notice'>[slam_text]</span>"))
-			playsound(M.loc, 'sound/effects/mag_magmisimpact.ogg', 25, 1, -1)
+			playsound(M.loc, 'sound/effects/mag_magmisimpact.ogg', 25, 1, SOUND_RANGE_STANDARD)
 			M.lastattacker = src.master?.shooter
 			M.lastattackertime = TIME
 		else if(projectile.reflectcount < src.max_bounce_count)
@@ -914,7 +914,7 @@ ABSTRACT_TYPE(/datum/projectile/special)
 				else
 					playsound(T, src.hit_sound, 60, 1)
 		else
-			playsound(A, 'sound/effects/mag_magmisimpact.ogg', 25, 1, -1)
+			playsound(A, 'sound/effects/mag_magmisimpact.ogg', 25, 1, SOUND_RANGE_STANDARD)
 
 /datum/projectile/special/homing/magicmissile/weak
 	name = "magic minimissile"

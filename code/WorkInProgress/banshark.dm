@@ -123,7 +123,7 @@
 					O.show_message("<span class='alert'><B>[src]</B> bites [sharktarget2]!</span>", 1)
 				sharktarget2.changeStatus("weakened", 1 SECOND)
 				sharktarget2.changeStatus("stunned", 10 SECONDS)
-				playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1, -1)
+				playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 				banproc()
 				return
 			else
@@ -136,7 +136,7 @@
 		if(sharktarget2)
 			for(var/mob/O in AIviewers(src, null))
 				O.show_message("<span class='alert'><B>[src]</B> bans [sharktarget2] in one bite!</span>", 1)
-			playsound(src.loc, 'sound/items/eatfood.ogg', 30, 1, -2)
+			playsound(src.loc, 'sound/items/eatfood.ogg', 30, 1, SOUND_RANGE_STANDARD)
 			sharktarget2.gib()
 			boutput(sharktarget2, "<span class='alert'><BIG><B>You have been eaten by the banshark!</B></BIG></span>")
 			logTheThing("admin", callster:client, sharktarget2, "has been eaten by the banshark!")
@@ -181,7 +181,7 @@
 					O.show_message("<span class='alert'><B>[src]</B> bites [sharktarget2]!</span>", 1)
 				sharktarget2.changeStatus("weakened", 1 SECOND)
 				sharktarget2.changeStatus("stunned", 10 SECONDS)
-				playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1, -1)
+				playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 				gibproc()
 				return
 			else
@@ -194,7 +194,7 @@
 		if (IN_RANGE(src, src.sharktarget2, 1))
 			for(var/mob/O in AIviewers(src, null))
 				O.show_message("<span class='alert'><B>[src]</B> gibs [sharktarget2] in one bite!</span>", 1)
-			playsound(src.loc, 'sound/items/eatfood.ogg', 30, 1, -2)
+			playsound(src.loc, 'sound/items/eatfood.ogg', 30, 1, SOUND_RANGE_STANDARD)
 			if(sharktarget2?.client)
 				logTheThing("admin", callster:client, sharktarget2, "sharkgibbed [constructTarget(sharktarget2,"admin")]")
 				logTheThing("diary", callster:client, sharktarget2, "sharkgibbed [constructTarget(sharktarget2,"diary")]", "admin")

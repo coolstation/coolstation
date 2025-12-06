@@ -1416,7 +1416,7 @@ var/datum/action_controller/actions
 					H.implant.Remove(found_imp)
 					qdel(found_imp)
 
-					playsound(target.loc, 'sound/impact_sounds/Crystal_Shatter_1.ogg', 50, 0.1, 0, 0.9)
+					playsound(target.loc, 'sound/impact_sounds/Crystal_Shatter_1.ogg', 50, 0.1, SOUND_RANGE_STANDARD, 0.9)
 					target.visible_message("<span class='notice'>The loyalty implant inside [target] shatters into one million pieces!</span>")
 
 				flash.flash_mob(target, owner)
@@ -1583,7 +1583,7 @@ var/datum/action_controller/actions
 
 			sfx_count += 1
 			if (sfx_count >= sfx_interval)
-				playsound(M.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, 0 , 0.7)
+				playsound(M.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, SOUND_RANGE_STANDARD , 0.7)
 				sfx_count = 0
 
 			var/turf/T = get_turf(M)
@@ -1610,7 +1610,7 @@ var/datum/action_controller/actions
 		M.update_burning(-2)
 
 		M.unlock_medal("Through the fire and flames", 1)
-		playsound(M.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, 0 , 0.7)
+		playsound(M.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, SOUND_RANGE_STANDARD, 0.7)
 
 	onInterrupt(var/flag)
 		..()

@@ -114,10 +114,10 @@
 	proc/locker_sound() //I COULDNT THINK OF A BETTER WAY TO DO THIS BUT ITS FUCKING ANNOYING THE OLD WAY
 		if (src.secure)
 			if (src.locked && !src.open)
-				playsound(src.loc,"sound/machines/bweep.ogg",10,0,-10,0.7)
+				playsound(src.loc,"sound/machines/bweep.ogg",15,0,SOUND_RANGE_SMALL,0.7)
 				return
 			else
-				playsound(src.loc,"sound/machines/bweep.ogg",10,0,-10)
+				playsound(src.loc,"sound/machines/bweep.ogg",15,0,SOUND_RANGE_SMALL)
 
 	emp_act()
 		if (!src.open && length(src.contents))
@@ -504,7 +504,7 @@
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
-		playsound(src.loc, src.open_sound, 50, 1, -3)
+		playsound(src.loc, src.open_sound, 50, 1, SOUND_RANGE_STANDARD)
 		return 1
 
 	proc/close(var/entangleLogic)
@@ -563,7 +563,7 @@
 			entangled.open(1)
 
 		src.update_icon()
-		playsound(src.loc, src.close_sound, 50, 1, -3)
+		playsound(src.loc, src.close_sound, 50, 1, SOUND_RANGE_STANDARD)
 		return 1
 
 	proc/recalcPClass()

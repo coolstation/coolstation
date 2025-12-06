@@ -117,7 +117,7 @@
 
 /mob/living/proc/PAND_Screech(var/protectuser = 1)
 	for(var/mob/O in AIviewers(src, null)) O.show_message(text("<span class='alert'><B>[]</B> emits a horrible shriek!</span>", src), 1)
-	playsound(src.loc, "sound/effects/screech.ogg", 50, 1, -1)
+	playsound(src.loc, "sound/effects/screech.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 	for (var/mob/living/H in hearers(src, null))
 		if (H == src && protectuser)
@@ -139,7 +139,7 @@
 
 /mob/living/proc/PAND_Boost(var/protectuser = 1)
 	for(var/mob/O in AIviewers(src, null)) O.show_message(text("<span class='alert'><B>[]</B> glows with magical power!</span>", src), 1)
-	playsound(src.loc, "sound/mksounds/boost.ogg", 25, 1, -1)
+	playsound(src.loc, "sound/mksounds/boost.ogg", 25, 1, SOUND_RANGE_STANDARD)
 	src.bioHolder.AddEffect("arcane_power", timeleft = 60)
 
 /mob/living/proc/PAND_Roar(var/protectuser = 1)
@@ -157,7 +157,7 @@
 
 /mob/living/proc/PAND_Signaljam(var/protectuser = 1)//wtf.
 	for(var/mob/O in AIviewers(src, null)) O.show_message(text("<span class='alert'><B>[]</B> emits a wave of electrical interference!</span>", src), 1)
-	playsound(src.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+	playsound(src.loc, "sound/effects/mag_warp.ogg", 25, 1, SOUND_RANGE_STANDARD)
 	for (var/client/C)
 		if (!ishuman(C.mob))
 			continue
@@ -169,6 +169,6 @@
 
 /mob/living/proc/PAND_Grilles(var/protectuser = 1)
 	for(var/mob/O in AIviewers(src, null)) O.show_message("<span class='alert'><B>[src]</B> reshapes the metal around [himself_or_herself(src)]!</span>", 1)
-	playsound(src.loc, "sound/impact_sounds/Metal_Hit_Light_1.ogg", 25, 1, -1)
+	playsound(src.loc, "sound/impact_sounds/Metal_Hit_Light_1.ogg", 25, 1, SOUND_RANGE_STANDARD)
 	for(var/turf/floor/T in view(src,7))
 		if (prob(33)) new /obj/grille/classic(T)

@@ -686,7 +686,7 @@
 
 		flick("comp_flush1", src)
 		sleep(1 SECOND)
-		playsound(src, "sound/machines/disposalflush.ogg", 50, 0, 0)
+		playsound(src, "sound/machines/disposalflush.ogg", 50, 0, SOUND_RANGE_STANDARD)
 
 		H.start(src) // start the holder processing movement
 		return
@@ -694,7 +694,7 @@
 	proc/expel(var/obj/disposalholder/H)
 
 		var/turf/target
-		playsound(src, "sound/machines/hiss.ogg", 50, 0, 0)
+		playsound(src, "sound/machines/hiss.ogg", 50, 0, SOUND_RANGE_STANDARD)
 		for(var/atom/movable/AM in H)
 			target = get_offset_target_turf(src.loc, rand(5)-rand(5), rand(5)-rand(5))
 
@@ -2005,7 +2005,7 @@
 		SPAWN_DBG(0)
 			if(src.noise_enabled)
 				src.noise_enabled = false
-				playsound(src, "sound/machines/modem.ogg", WIFI_NOISE_VOLUME, 0, 0)
+				playsound(src, "sound/machines/modem.ogg", WIFI_NOISE_VOLUME, 0, SOUND_RANGE_STANDARD)
 				SPAWN_DBG(WIFI_NOISE_COOLDOWN)
 					src.noise_enabled = true
 			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, sendsig, src.range, "main")
@@ -2031,7 +2031,7 @@
 				SPAWN_DBG(0.5 SECONDS) //Send a reply for those curious jerks
 					if(src.noise_enabled)
 						src.noise_enabled = false
-						playsound(src, "sound/machines/modem.ogg", WIFI_NOISE_VOLUME, 0, 0)
+						playsound(src, "sound/machines/modem.ogg", WIFI_NOISE_VOLUME, 0, SOUND_RANGE_STANDARD)
 						SPAWN_DBG(WIFI_NOISE_COOLDOWN)
 							src.noise_enabled = true
 					SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, pingsignal, src.range)
@@ -3100,7 +3100,7 @@
 				mod_delay /= abs(signum)
 			ON_COOLDOWN(src, SEND_COOLDOWN_ID, mod_delay)
 			flick("comp_instrument1", src)
-			playsound(src, sounds, volume, 0, 0, signum)
+			playsound(src, sounds, volume, 0, SOUND_RANGE_STANDARD, signum)
 		else
 			ON_COOLDOWN(src, SEND_COOLDOWN_ID, delay)
 			flick("comp_instrument1", src)

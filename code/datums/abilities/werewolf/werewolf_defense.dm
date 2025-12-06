@@ -43,14 +43,14 @@
 		H.visible_message("<span class='alert'><B>[H] shifts to a defensive stance and starts to howl!</B></span>")
 
 		//Do some howling
-		playsound(H.loc, 'sound/voice/animal/werewolf_howl.ogg', 65, 1, 0, 0.5) //one really long howl
+		playsound(H.loc, 'sound/voice/animal/werewolf_howl.ogg', 65, 1, SOUND_RANGE_STANDARD, 0.5) //one really long howl
 
 		if (H.getStatusDuration("burning"))
 			H.delStatus("burning")
 			H.visible_message("<span class='alert'><B>[H] deafening howl completely extinguishes the fire on it!</B></span>")
 
 		//SPAWN_DBG(8 SECONDS)
-		//	playsound(H.loc, 'sound/voice/animal/werewolf_howl.ogg', 70, 1, 0, 0.7)
+		//	playsound(H.loc, 'sound/voice/animal/werewolf_howl.ogg', 70, 1, SOUND_RANGE_STANDARD, 0.7)
 
 		H.stance = "defensive"
 		return
@@ -61,5 +61,5 @@
 		if (!istype(H)) return
 		H.stance = "normal"
 		H.visible_message("<span class='alert'><B>[H] shifts back to a normal werewolf stance! You can totally tell the difference!</B></span>")
-		playsound(H.loc, 'sound/voice/animal/werewolf_attack2.ogg', 70, 1, 0, 1.4)
+		playsound(H.loc, 'sound/voice/animal/werewolf_attack2.ogg', 70, 1, SOUND_RANGE_STANDARD, 1.4)
 		return

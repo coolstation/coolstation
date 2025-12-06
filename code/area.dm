@@ -1059,7 +1059,7 @@ ABSTRACT_TYPE(/area/adventure)
 				helldrone_awake_sound.file = 'sound/machines/giantdrone_loop.ogg'
 				helldrone_awake_sound.repeat = 0
 				helldrone_awake_sound.wait = 0
-				helldrone_awake_sound.channel = SOUNDCHANNEL_BIGALARM
+				helldrone_awake_sound.channel = SOUNDCHANNEL_RESERVED_BIGALARM
 				helldrone_awake_sound.volume = 60
 				helldrone_awake_sound.priority = 255
 				helldrone_awake_sound.status = SOUND_UPDATE
@@ -1069,7 +1069,7 @@ ABSTRACT_TYPE(/area/adventure)
 				helldrone_wakeup_sound.file = 'sound/machines/giantdrone_startup.ogg'
 				helldrone_wakeup_sound.repeat = 0
 				helldrone_wakeup_sound.wait = 0
-				helldrone_wakeup_sound.channel = SOUNDCHANNEL_BIGALARM
+				helldrone_wakeup_sound.channel = SOUNDCHANNEL_RESERVED_BIGALARM
 				helldrone_wakeup_sound.volume = 60
 				helldrone_wakeup_sound.priority = 255
 				helldrone_wakeup_sound.status = SOUND_UPDATE
@@ -4223,6 +4223,8 @@ ABSTRACT_TYPE(/area/mining)
 		for_by_tcl(F, /obj/machinery/firealarm)
 			if(get_area(F) == src)
 				F.icon_state = "fire1"
+			if(F.sound_emitter)
+				F.sound_emitter.play("alarm")
 		for (var/obj/machinery/camera/C in src)
 			cameras += C
 			LAGCHECK(LAG_HIGH)
@@ -4243,6 +4245,8 @@ ABSTRACT_TYPE(/area/mining)
 		for_by_tcl(F, /obj/machinery/firealarm)
 			if(get_area(F) == src)
 				F.icon_state = "fire0"
+			if(F.sound_emitter)
+				F.sound_emitter.deactivate()
 		for_by_tcl(aiPlayer, /mob/living/silicon/ai)
 			aiPlayer.cancelAlarm("Fire", src, src)
 		for (var/obj/machinery/computer/atmosphere/alerts/a as anything in machine_registry[MACHINES_ATMOSALERTS])

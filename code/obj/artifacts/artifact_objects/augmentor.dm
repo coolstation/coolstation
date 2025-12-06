@@ -113,7 +113,7 @@
 			working = 1
 			T.visible_message("<span class='alert'><b>[O]</b> suddenly lashes out at [H.name] with a flurry of sharp implements!</span>")
 			H.changeStatus("paralysis", 4 SECONDS)
-			playsound(H.loc, pick(work_sounds), 50, 1, -1)
+			playsound(H.loc, pick(work_sounds), 50, 1, SOUND_RANGE_STANDARD)
 			random_brute_damage(user, 10)
 			sleep(1 SECOND)
 
@@ -143,7 +143,7 @@
 
 				T.visible_message("<span class='alert'><b>[O]</b> [remove_action] [H.name]'s [organ_names[part_loc]], pulls it inside and [replace_action]! [pick("", "Holy fuck!", "It looks incredibly painful!")]</span>")
 
-			playsound(H.loc, pick(work_sounds), 50, 1, -1)
+			playsound(H.loc, pick(work_sounds), 50, 1, SOUND_RANGE_STANDARD)
 			boutput(H, "<span class='alert'><b>[pick("IT HURTS!", "OH GOD!", "JESUS FUCK!")]</b></span>")
 			H.emote("scream")
 			random_brute_damage(user, 30)

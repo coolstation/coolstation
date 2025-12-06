@@ -79,7 +79,7 @@
 		if(prob(10 + amount*effectProbModifier))
 			var/turf/T = get_turf(src.loc)
 			if(src.noise)
-				playsound(T, noise, 50, 1, -1)
+				playsound(T, noise, 50, 1, SOUND_RANGE_STANDARD)
 
 			if(leakChem && prob(50))
 				if(src.smoky)

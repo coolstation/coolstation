@@ -374,7 +374,7 @@
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
-		playsound(src.loc, 'sound/effects/cargodoor.ogg', 15, 1, -3)
+		playsound(src.loc, 'sound/effects/cargodoor.ogg', 15, 1, SOUND_RANGE_STANDARD)
 		return 1
 
 	close(var/entangleLogic)
@@ -428,7 +428,7 @@
 			entangled.open(1)
 
 		src.update_icon()
-		playsound(src.loc, "sound/effects/cargodoor.ogg", 15, 1, -3)
+		playsound(src.loc, "sound/effects/cargodoor.ogg", 15, 1, SOUND_RANGE_STANDARD)
 		return 1
 
 	attackby(obj/item/W as obj, mob/user as mob)

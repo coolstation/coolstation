@@ -1626,7 +1626,7 @@ var/list/fun_images = list()
 			var/trigger = src.key
 			if (src.holder && (src.stealth || src.alt_key))
 				trigger = (C.holder ? "[src.key] (as [src.fakekey])" : src.fakekey)
-			var/vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
+			var/vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 			if (vol)
 				C.chatOutput.playDectalk(audio["audio"], trigger, vol)
 		return 1

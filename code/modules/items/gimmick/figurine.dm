@@ -92,7 +92,7 @@
 				playsound(src, "sound/items/toys/figure-headlock.ogg", 15, 1)
 				user.visible_message("<span class='alert'>[user] has [W.name] put the [src.name] in a headlock!</span>")
 			else if(user:a_intent == INTENT_HARM)
-				playsound(src, "sound/impact_sounds/Flesh_Break_1.ogg", 15, 1, 0.1, 2.5)
+				playsound(src, "sound/impact_sounds/Flesh_Break_1.ogg", 15, 1, SOUND_RANGE_STANDARD, 2.5)
 				user.visible_message("<span class='alert'>[user] bangs the [W.name] into the [src.name] over and over!</span>")
 		user.lastattacked = src
 		return 0

@@ -11,7 +11,7 @@
 	cast(atom/target)
 		if (..())
 			return 1
-		playsound(target, src.sound_bite, 100, 1, -1)
+		playsound(target, src.sound_bite, 100, 1, SOUND_RANGE_STANDARD)
 		var/mob/MT = target
 		MT.TakeDamageAccountArmor("All", src.brute_damage, 0, 0, DAMAGE_CRUSH)
 		holder.owner.visible_message("<span class='combat'><b>[holder.owner] bites [MT]!</b></span>", "<span class='combat'>You bite [MT]!</span>")
@@ -119,7 +119,7 @@
 			boutput(holder.owner, __red("That is too far away to pounce on."))
 			return 1
 		var/mob/MT = target
-		playsound(target, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(target, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		MT.changeStatus("stunned", 2 SECONDS)
 		MT.changeStatus("weakened", 2 SECONDS)
 		if (prob(25))

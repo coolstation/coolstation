@@ -51,7 +51,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 	chamber_round(mob/user)
 		. = FALSE
 
-		playsound(src.loc,"sound/weapons/cylinderclick[rand(1,2)].ogg", vol = 35, vary = TRUE, extrarange = -28)
+		playsound(src.loc,"sound/weapons/cylinderclick[rand(1,2)].ogg", vol = 35, vary = TRUE, range = SOUND_RANGE_TINY)
 		var/ammotype = ammo_list[src.cylinder_index]
 
 		if(!isnull(ammotype))
@@ -63,7 +63,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 
 			src.chambered_index = src.cylinder_index
 			. = TRUE
-			playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 30, extrarange = -28)
+			playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 30, range = SOUND_RANGE_TINY)
 
 		src.cylinder_index++
 		if(src.cylinder_index > src.max_ammo_capacity)
@@ -92,7 +92,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian)
 			if (src.sound_type)
 				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
 			else
-				playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+				playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, SOUND_RANGE_STANDARD, 0.8)
 
 			//load the previous cylinder and spin to it (much computationally cheaper than going forward if you load a lot of bullets)
 			var/potential_slot = src.cylinder_index
@@ -261,7 +261,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		if(prob(min(src.max_fudged_chance, src.successful_chamber_frequency + src.failed_chamber_fudge * src.failures_to_chamber)))
 			return ..()
 
-		playsound(src.loc,"sound/weapons/cylinderclick[rand(1,2)].ogg", vol = min(50, 20 + src.failed_chamber_fudge * 3), vary = TRUE, extrarange = -28)
+		playsound(src.loc,"sound/weapons/cylinderclick[rand(1,2)].ogg", vol = min(50, 20 + src.failed_chamber_fudge * 3), vary = TRUE, range = SOUND_RANGE_TINY)
 		src.cylinder_index++
 		if(src.cylinder_index > src.max_ammo_capacity)
 			src.cylinder_index = 1
@@ -431,11 +431,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 				src.currently_firing = FALSE
 
 	chamber_round(mob/user)
-		playsound(src.loc, "sound/weapons/cylinderclickheavy1.ogg", 50, 0, -10)
+		playsound(src.loc, "sound/weapons/cylinderclickheavy1.ogg", 50, 0, SOUND_RANGE_MODERATE)
 		. = ..()
 
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
-		playsound(src.loc, "sound/weapons/cylinderclickheavy1.ogg", 50, 0, -10)
+		playsound(src.loc, "sound/weapons/cylinderclickheavy1.ogg", 50, 0, SOUND_RANGE_MODERATE)
 		ON_COOLDOWN(user, "mess_with_gunse", 0.7 SECONDS)
 		. = ..()
 

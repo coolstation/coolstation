@@ -141,7 +141,7 @@
 
 	proc/bartend()
 		if (istype(moveTowards, /obj/decal/fakeobjects/barbuddy_dispenser)) // If it's the dispenser, do a little animation.
-			playsound(moveTowards.loc, 'sound/misc/pourdrink2.ogg', 50, 1, 0.3)
+			playsound(moveTowards.loc, 'sound/misc/pourdrink2.ogg', 50, 1, SOUND_RANGE_STANDARD)
 			moveTowards.icon_state = "alc_dispenser[rand(1,5)]"
 			hasDrink = 1
 			moveTowards = null

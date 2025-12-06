@@ -441,7 +441,7 @@ var/mutable_appearance/fluid_ma
 						step_away(push_thing,src)
 
 		if (spawned_any && prob(40))
-			playsound( src.loc, 'sound/misc/waterflow.ogg', 30,0.7,7)
+			playsound( src.loc, 'sound/misc/waterflow.ogg', 30,0.7,SOUND_RANGE_LARGE)
 
 
 	//kind of like a breadth-first search
@@ -773,13 +773,13 @@ var/mutable_appearance/fluid_ma
 					src.pulling = null
 					src.changeStatus("weakened", 3.5 SECONDS)
 					boutput(src, "<span class='notice'>You slipped on [F]!</span>")
-					playsound(T, "sound/misc/slip.ogg", 50, 1, -3)
+					playsound(T, "sound/misc/slip.ogg", 50, 1, SOUND_RANGE_STANDARD)
 					var/atom/target = get_edge_target_turf(src, src.dir)
 					src.throw_at(target, 12, 1, throw_type = THROW_SLIP)
 				if(-2) //superlibe
 					src.pulling = null
 					src.changeStatus("weakened", 6 SECONDS)
-					playsound(T, "sound/misc/slip.ogg", 50, 1, -3)
+					playsound(T, "sound/misc/slip.ogg", 50, 1, SOUND_RANGE_STANDARD)
 					boutput(src, "<span class='notice'>You slipped on [F]!</span>")
 					var/atom/target = get_edge_target_turf(src, src.dir)
 					src.throw_at(target, 30, 1, throw_type = THROW_SLIP)

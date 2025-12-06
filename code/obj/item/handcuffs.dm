@@ -101,7 +101,7 @@
 			boutput(user, "<span class='alert'>[H] is already handcuffed</span>")
 			return
 
-		playsound(src.loc, "sound/weapons/handcuffs.ogg", 30, 1, -2)
+		playsound(src.loc, "sound/weapons/handcuffs.ogg", 30, 1, SOUND_RANGE_STANDARD)
 		actions.start(new/datum/action/bar/icon/handcuffSet(H, src), user)
 		return
 

@@ -73,7 +73,7 @@
 					S.reagents.reaction(A, TOUCH, 0, 0)
 			*/
 
-		if (the_mob) playsound(the_mob, 'sound/effects/spray.ogg', 75, 1, 0)
+		if (the_mob) playsound(the_mob, 'sound/effects/spray.ogg', 75, 1, SOUND_RANGE_STANDARD)
 		//E.reagents.clear_reagents()
 
 		sleep(0.5 SECONDS)

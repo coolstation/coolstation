@@ -415,7 +415,7 @@ ABSTRACT_TYPE(/datum/kart_powerup)
 	UI_icon = "superboost"
 
 	use(obj/vehicle/kart/user)
-		playsound(user, "sound/mksounds/invin10sec.ogg",33, 0,0) // 33
+		playsound(user, "sound/mksounds/invin10sec.ogg",33, 0,SOUND_RANGE_STANDARD) // 33
 
 		user.super = TRUE
 		user.boost(5 SECONDS, TRUE) //if the music lasts 10 seconds, maybe this should?

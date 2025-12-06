@@ -1,5 +1,3 @@
-#define TOO_QUIET 0.9 //experimentally found to be 0.6 - raised due to lag, I don't care if it's super quiet because there's already shitloads of other sounds playing
-#define SPACE_ATTEN_MIN 0.5
 #define EARLY_RETURN_IF_QUIET(v) if (v < TOO_QUIET) return
 #define EARLY_CONTINUE_IF_QUIET(v) if (v < TOO_QUIET) continue
 //I ripped this rand straight out of generate_sound if you wanna fiddle with the random pitch variance
@@ -8,7 +6,7 @@
 #define SOURCE_ATTEN(A) do {\
 	if (A <= SPACE_ATTEN_MIN){\
 		vol *= SPACE_ATTEN_MIN;\
-		extrarange = clamp(-MAX_SOUND_RANGE + MAX_SPACED_RANGE + extrarange, -32,-20);\
+		range = clamp(range * SPACED_SOUND_RANGE_MULT, 1, SOUND_RANGE_MODERATE);\
 		spaced_source = 1;\
 	}\
 	else{\
@@ -18,7 +16,7 @@
 
 #define LISTENER_ATTEN(A) do {\
 	if (A <= SPACE_ATTEN_MIN){\
-		if (!spaced_source && dist >= MAX_SPACED_RANGE){\
+		if (!spaced_source && dist >= SPACED_SOUND_RANGE){\
 			ourvolume = 0;\
 		}\
 		else{\
@@ -31,8 +29,6 @@
 	}\
 } while(false)
 
-#define MAX_SOUND_RANGE 33
-#define MAX_SPACED_RANGE 6 //diff range for when youre in a vaccuum
 #define CLIENT_IGNORES_SOUND(C) (C?.ignore_sound_flags && ((ignore_flag && C.ignore_sound_flags & ignore_flag) || C.ignore_sound_flags & SOUND_ALL))
 
 /// returns 0 to 1 based on air pressure in turf
@@ -59,7 +55,7 @@ var/global/SPACED_ENV = list(100,0.52,0,-1600,-1500,0,2,2,-10000,0,200,0.01,0.16
 var/global/SPACED_ECHO = list(-10000,0,-1450,0,0,1,0,1,10,10,0,1,0,10,10,10,10,7)
 var/global/ECHO_AFAR = list(0,0,0,0,0,0,-10000,1.0,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
 var/global/ECHO_CLOSE = list(0,0,0,0,0,0,0,0.25,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
-var/global/list/falloff_cache = list()
+var/global/list/list/falloff_cache = list("[SOUND_RANGE_TINY]" = list(), "[SOUND_RANGE_SMALL]" = list(), "[SOUND_RANGE_MODERATE]" = list(), "[SOUND_RANGE_STANDARD]" = list(), "[SOUND_RANGE_LARGE]" = list())
 
 //default volumes, 0 = 0, 1 = 100
 //in order: master, game, ambient, radio, admin, emote, mentorpm
@@ -71,6 +67,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 //volumous hair with l'orial paris
 /client/var/list/volumes
 /client/var/list/sound_playing = new/list(1024, 2)
+
+/client/var/next_playsound_channel = SOUNDCHANNEL_PLAYSOUND_MIN
 
 /// Returns a list of friendly names for available sound channels
 /client/proc/getVolumeNames()
@@ -89,9 +87,9 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	// +1 since master channel is 0, while byond arrays start at 1
 	return getVolumeDescriptions()[channel+1]
 
-/// Returns the volume to set /sound/var/volume to for the given channel(so 0-100)
+/// Returns the volume multiplier of sounds for the given channel (0-1)
 /client/proc/getVolume(id)
-	return volumes[id + 1] * volumes[1] * 100
+	return volumes[id + 1] * volumes[1]
 
 /// Returns the master volume (0-1)
 /client/proc/getMasterVolume()
@@ -126,7 +124,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	if( channel == VOLUME_CHANNEL_ADMIN )
 		src.chatOutput.adjustVolumeRaw( getMasterVolume() * volume )
 
-/proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE, atom = src)
+/proc/playsound(var/atom/source, soundin, vol as num, vary, range = SOUND_RANGE_STANDARD as num, pitch, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE, atom = src)
 	// don't play if over the per-tick sound limit
 	if (!limiter || !limiter.canISpawn(/sound))
 		return
@@ -157,14 +155,13 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	var/sound/S
 	var/turf/Mloc
 	var/ourvolume
-	var/scaled_dist
 	var/storedVolume
 
 	var/pitch_var = 0
 	if (vary)
 		pitch_var = DO_RANDOM_PITCH
 
-	for (var/mob/M in GET_NEARBY(source_turf, MAX_SOUND_RANGE + extrarange))
+	for (var/mob/M in GET_NEARBY(source_turf, range))
 		var/client/C = M.client
 		if (!C)
 			continue
@@ -179,7 +176,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 
 		//Hard attentuation
 		dist = max(GET_MANHATTAN_DIST(Mloc, source_turf), 1)
-		if (dist > MAX_SOUND_RANGE + extrarange)
+		if (dist > range)
 			continue
 
 		listener_location = Mloc.loc
@@ -193,16 +190,18 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			ourvolume = vol
 
 			//Custom falloff handling, see: https://www.desmos.com/calculator/ybukxuu9l9
-			if (dist > falloff_cache.len)
-				falloff_cache.len = dist
 			var/falloffmult
-			if(extrarange == 0)
-				falloffmult = falloff_cache[dist]
-			if (falloffmult == null)
-				scaled_dist = clamp(dist/(MAX_SOUND_RANGE+extrarange),0,1)
-				falloffmult = (1 - ((1.0542 * (0.18**-1.7)) / ((scaled_dist**-1.7) + (0.18**-1.7))))
-				if(extrarange == 0)
-					falloff_cache[dist] = falloffmult
+			if(falloff_cache["[range]"])
+				if (dist > length(falloff_cache["[range]"]))
+					falloff_cache["[range]"].len = dist
+				falloffmult = falloff_cache["[range]"][dist]
+				if (falloffmult == null)
+					var/scaled_dist = clamp(dist/range,0,1)
+					falloffmult = (1 - (19.4518 / ((scaled_dist**-1.7) + (18.4517))))
+					falloff_cache["[range]"][dist] = falloffmult
+			else
+				var/scaled_dist = clamp(dist/range,0,1)
+				falloffmult = (1 - (19.4518 / ((scaled_dist**-1.7) + (18.4517))))
 
 			ourvolume *= falloffmult
 
@@ -216,14 +215,20 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			LISTENER_ATTEN(atten_temp)
 
 			storedVolume = ourvolume
-			ourvolume *= C.getVolume(channel) / 100
+			ourvolume *= C.getVolume(channel)
 			//boutput(world, "for client [C] updating volume [storedVolume] to [ourvolume] for channel [channel]")
 
 			EARLY_CONTINUE_IF_QUIET(ourvolume)
 
 			//sadly, we must generate
-			if (!S) S = generate_sound(source, soundin, vol, pitch_var, extrarange, pitch)
+			if (!S) S = generate_sound(source, soundin, vol, pitch_var, range, pitch)
 			if (!S) CRASH("Did not manage to generate sound \"[soundin]\" with source [source].")
+			// cycle through the channels to ensure minimal collisions?
+			S.channel = C.next_playsound_channel
+			C.next_playsound_channel++
+			if(C.next_playsound_channel > SOUNDCHANNEL_PLAYSOUND_MAX)
+				C.next_playsound_channel = SOUNDCHANNEL_PLAYSOUND_MIN
+
 			C.sound_playing[ S.channel ][1] = storedVolume
 			C.sound_playing[ S.channel ][2] = channel
 
@@ -253,7 +258,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 				return (S.channel)
 
 
-/mob/proc/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE)
+/mob/proc/playsound_local(var/atom/source, soundin, vol as num, vary, range = SOUND_RANGE_STANDARD as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE)
 	if(!src.client)
 		return
 
@@ -268,24 +273,29 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		return
 
 	var/dist = max(GET_MANHATTAN_DIST(get_turf(src), source_turf), 1)
-	if (dist > MAX_SOUND_RANGE + extrarange)
+	if (dist > range)
 		return
 
 	if (CLIENT_IGNORES_SOUND(src.client))
 		return
 
-	vol *= client.getVolume(channel) / 100
+	vol *= client.getVolume(channel)
 
 	EARLY_RETURN_IF_QUIET(vol)
 
 	//Custom falloff handling, see: https://www.desmos.com/calculator/ybukxuu9l9
-	if (dist > falloff_cache.len)
-		falloff_cache.len = dist
-	var/falloffmult = falloff_cache[dist]
-	if (falloffmult == null)
-		var/scaled_dist = clamp(dist/(MAX_SOUND_RANGE+extrarange),0,1)
-		falloffmult = (1 - ((1.0542 * (0.18**-1.7)) / ((scaled_dist**-1.7) + (0.18**-1.7))))
-		falloff_cache[dist] = falloffmult
+	var/falloffmult
+	if(falloff_cache["[range]"])
+		if (dist > length(falloff_cache["[range]"]))
+			falloff_cache["[range]"].len = dist
+		falloffmult = falloff_cache["[range]"][dist]
+		if (falloffmult == null)
+			var/scaled_dist = clamp(dist/range,0,1)
+			falloffmult = (1 - (19.4518 / ((scaled_dist**-1.7) + (18.4517))))
+			falloff_cache["[range]"][dist] = falloffmult
+	else
+		var/scaled_dist = clamp(dist/range,0,1)
+		falloffmult = (1 - (19.4518 / ((scaled_dist**-1.7) + (18.4517))))
 
 	vol *= falloffmult
 
@@ -302,7 +312,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	atten_temp = attenuate_for_location(get_turf(src))
 	LISTENER_ATTEN(atten_temp)
 
-	var/sound/S = generate_sound(source, soundin, ourvolume, vary ? DO_RANDOM_PITCH : FALSE, extrarange, pitch)
+	var/sound/S = generate_sound(source, soundin, ourvolume, vary ? DO_RANDOM_PITCH : FALSE, range, pitch)
 	if (forcechannel)
 		S.channel = forcechannel
 	S.repeat = repeat
@@ -385,11 +395,11 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		ourvolume = vol
 
 		storedVolume = ourvolume
-		ourvolume *= C.getVolume(channel) / 100
+		ourvolume *= C.getVolume(channel)
 
 		EARLY_CONTINUE_IF_QUIET(ourvolume)
 
-		if (!S) S = generate_sound(source, soundin, vol, pitch_var, extrarange=0, pitch=pitch)
+		if (!S) S = generate_sound(source, soundin, vol, pitch_var, range=SOUND_RANGE_STANDARD, pitch=pitch)
 		if (!S) CRASH("Did not manage to generate sound \"[soundin]\" with source [source].")
 		C.sound_playing[ S.channel ][1] = storedVolume
 		C.sound_playing[ S.channel ][2] = channel
@@ -398,10 +408,10 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 
 		C << S
 
-/mob/living/silicon/ai/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE)
+/mob/living/silicon/ai/playsound_local(var/atom/source, soundin, vol as num, vary, range = SOUND_RANGE_STANDARD as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE)
 	..()
 	if (deployed_to_eyecam && src.eyecam)
-		src.eyecam.playsound_local(source, soundin, vol, vary, extrarange, pitch, ignore_flag, channel)
+		src.eyecam.playsound_local(source, soundin, vol, vary, range, pitch, ignore_flag, channel)
 	return
 
 
@@ -428,7 +438,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 
 	return S
 
-/proc/generate_sound(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1)
+/proc/generate_sound(var/atom/source, soundin, vol as num, vary, range = SOUND_RANGE_STANDARD as num, pitch = 1)
 	if (narrator_mode && (soundin in list("punch", "swing_hit", "shatter", "explosion")))
 		switch(soundin)
 			if ("shatter") soundin = 'sound/vox/break.ogg'
@@ -476,8 +486,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	S.falloff = 9999//(world.view + extrarange) / 3.5
 	//world.log << "Playing sound; wv = [world.view] + er = [extrarange] / 3.5 = falloff [S.falloff]"
 	S.wait = 0 //No queue
-	//This is apparently a hack
-	S.channel = rand(200,900)
+	//This is apparently a hack // this is such a hack
+	//S.channel = rand(SOUNDCHANNEL_RANDOM_MIN, SOUNDCHANNEL_BYOND_MAX)
 	//eventually let's figure a repeatable way to increment sound channels per client instead of picking at random
 	S.volume = vol
 	S.priority = 5
@@ -558,14 +568,14 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	S.priority = 200
 	sound_playing[ S.channel ][1] = S.volume
 	sound_playing[ S.channel ][2] = VOLUME_CHANNEL_AMBIENT
-	S.volume *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
+	S.volume *= getVolume( VOLUME_CHANNEL_AMBIENT )
 	if (soundupdate)
 		S.status |= SOUND_UPDATE //brimgo
 	if (pass_volume == -1)
 		S.status |= SOUND_MUTE
 	if (pass_volume != 0)
 		S.volume *= attenuate_for_location(A)
-		S.volume *= max(1,(pass_volume / 100)) // warc: post-loudening for loud-requiring places
+		S.volume *= max(1,pass_volume) // warc: post-loudening for loud-requiring places
 	if (soundrepeat)
 		S.status |= SOUND_STREAM //should be lighter for clients
 	if (!soundrepeat) //loops need to be quiet with the way we might use them
@@ -627,7 +637,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	#endif
 
 	var/stored_vol = zloopvol
-	zloopvol *= getVolume( VOLUME_CHANNEL_AMBIENT ) / 100
+	zloopvol *= getVolume( VOLUME_CHANNEL_AMBIENT )
 
 	if (zloopvol != 0) //lets us cancel loop sounds by passing 0
 		if ((src.last_zloop == soundfile) && (src.last_zvol == zloopvol)) //if the volume and loop are the same
@@ -637,7 +647,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		//otherwise: start new sound or replace existing
 		//this works great for things like having a different sound on Z1 vs Z3, but if it's the same sound it'll change without restarting
 
-	var/sound/S = sound(soundfile, repeat = 1, wait = 0, volume = zloopvol, channel = SOUNDCHANNEL_LOOPING_Z)
+	var/sound/S = sound(soundfile, repeat = 1, wait = 0, volume = zloopvol, channel = SOUNDCHANNEL_RESERVED_LOOPING_Z)
 	S.priority = 200
 	S.status |= SOUND_STREAM //should be lighter for clients
 	if (soundupdate)
@@ -769,11 +779,11 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 /proc/csound(var/name)
 	return soundCache[name]
 
+/*
 sound
 	disposing()
 		//LAGCHECK(LAG_LOW)
 		..()
-/*
 sound
 	disposing()
 		// Haha you cant delete me you fuck
@@ -802,14 +812,8 @@ sound
 		echo = initial(echo)
 */
 
-//hey what if we undefined all this crap too?
-#undef TOO_QUIET
+//hey what if we undefined some of this crap too?
 #undef DO_RANDOM_PITCH
-#undef SPACE_ATTEN_MIN
 #undef EARLY_RETURN_IF_QUIET
 #undef EARLY_CONTINUE_IF_QUIET
-#undef MAX_SOUND_RANGE
-#undef MAX_SPACED_RANGE
 #undef CLIENT_IGNORES_SOUND
-#undef SOURCE_ATTEN
-#undef LISTENER_ATTEN

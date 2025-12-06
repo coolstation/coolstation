@@ -19,7 +19,7 @@
 //file location for the sound you want it to play
 	shot_sound = 'sound/weapons/Taser.ogg'
 //should the sound have extra range?
-	shot_sound_extrarange = 5
+	shot_sound_range = SOUND_RANGE_STANDARD
 //How many projectiles should be fired, each will cost the full cost
 	shot_number = 1
 //What is our damage type
@@ -397,7 +397,7 @@ toxic - poisons
 	ks_ratio = 0.0
 	sname = "burst"
 	shot_sound = 'sound/weapons/Taser.ogg'
-	shot_sound_extrarange = 5
+	shot_sound_range = SOUND_RANGE_STANDARD
 	shot_number = 2
 	damage_type = D_ENERGY
 
@@ -416,7 +416,7 @@ toxic - poisons
 	ks_ratio = 0.0
 	sname = "full-auto"
 	shot_sound = 'sound/weapons/SigTase.ogg'
-	shot_sound_extrarange = 5
+	shot_sound_range = SOUND_RANGE_STANDARD
 	shot_number = 1
 	damage_type = D_ENERGY
 
@@ -435,7 +435,7 @@ toxic - poisons
 	ks_ratio = 1.0
 	sname = "burst"
 	shot_sound = 'sound/weapons/Taser.ogg'
-	shot_sound_extrarange = 3
+	shot_sound_range = SOUND_RANGE_STANDARD
 	shot_number = 1
 	damage_type = D_ENERGY
 

@@ -101,7 +101,7 @@
 		o.reagents.trans_to(src, (src.reagents.maximum_volume - src.reagents.total_volume))
 		src.inventory_counter.update_percent(src.reagents.total_volume, src.reagents.maximum_volume)
 		boutput(user, "<span class='notice'>Extinguisher refilled...</span>")
-		playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+		playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		user.lastattacked = target
 		return
 
@@ -113,7 +113,7 @@
 		if (src.reagents.has_reagent("infernite") && src.reagents.has_reagent("blackpowder")) // BAHAHAHAHA
 			user.visible_message("<span class='alert'>[src] violently bursts!</span>")
 			user.drop_item()
-			playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 60, 1, -3)
+			playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 60, 1, SOUND_RANGE_STANDARD)
 			fireflash(src.loc, 0)
 			explosion(src, src.loc, -1,0,1,1)
 			new/obj/item/scrap(get_turf(user))
@@ -131,7 +131,7 @@
 		else if (src.reagents.has_reagent("infernite") || src.reagents.has_reagent("foof"))
 			user.visible_message("<span class='alert'>[src] ruptures!</span>")
 			user.drop_item()
-			playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 60, 1, -3)
+			playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 60, 1, SOUND_RANGE_STANDARD)
 			fireflash(src.loc, 0)
 			new/obj/item/scrap(get_turf(user))
 			qdel(src)
@@ -150,7 +150,7 @@
 				qdel(src)
 				return
 
-		playsound(src, "sound/effects/spray.ogg", 30, 1, -3)
+		playsound(src, "sound/effects/spray.ogg", 30, 1, SOUND_RANGE_STANDARD)
 
 		var/direction = get_dir(src,target)
 

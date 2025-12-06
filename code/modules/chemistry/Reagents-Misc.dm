@@ -1341,7 +1341,7 @@ datum
 					M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
 					M.visible_message("<B>[M]</B> seizes up and falls limp, [his_or_her(M)] eyes dead and lifeless...")
 					M.setStatus("resting", INFINITE_STATUS)
-					playsound(M, "sound/voice/death_[pick(1,2)].ogg", 40, 0, 0, M.get_age_pitch())
+					playsound(M, "sound/voice/death_[pick(1,2)].ogg", 40, 0, SOUND_RANGE_STANDARD, M.get_age_pitch())
 					fakedeathed = 1
 				..()
 
@@ -1375,7 +1375,7 @@ datum
 				if (counter >= 19 && !fakedeathed)
 					M.visible_message("<B>[M]</B> seizes up and falls limp, [his_or_her(M)] eyes dead and lifeless...")
 					M.setStatus("resting", INFINITE_STATUS)
-					playsound(M, "sound/voice/death_[pick(1,2)].ogg", 40, 0, 0, M.get_age_pitch())
+					playsound(M, "sound/voice/death_[pick(1,2)].ogg", 40, 0, SOUND_RANGE_STANDARD, M.get_age_pitch())
 					fakedeathed = 1
 				..()
 
@@ -2641,7 +2641,7 @@ datum
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 						if (H.sound_list_flap && length(H.sound_list_flap))
-							playsound(H, pick(H.sound_list_flap), 80, 0, 0, H.get_age_pitch())
+							playsound(H, pick(H.sound_list_flap), 80, 0, SOUND_RANGE_STANDARD, H.get_age_pitch())
 				..()
 				return
 

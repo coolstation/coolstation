@@ -2145,7 +2145,7 @@ obj/machinery/embedded_controller/radio/maintpanel/mnx
 			sleep(3 SECONDS)
 			//do tiny baby explosion noise
 			//Todo: a squeakier blast sound.
-			playsound(src.loc, "sound/effects/Explosion2.ogg", 40, 0, 0, 4)
+			playsound(src.loc, "sound/effects/Explosion2.ogg", 40, 0, SOUND_RANGE_STANDARD, 4)
 
 			new /obj/effects/explosion/tiny_baby (src.loc)
 			for (var/mob/living/carbon/unfortunate_jerk in range(1, src))

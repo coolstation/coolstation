@@ -371,7 +371,7 @@
 
 	Move()
 		. = ..()
-		playsound(src.loc, 'sound/effects/airbridge_dpl.ogg', 30, 10, -2)
+		playsound(src.loc, 'sound/effects/airbridge_dpl.ogg', 30, 10, SOUND_RANGE_STANDARD)
 
 
 	proc/speak(var/message)
@@ -573,12 +573,12 @@
 	switch(M.a_intent)
 		if("harm", "disarm")
 			if(prob(60))
-				playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, -1)
+				playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='combat'><B>[M] has shoved [rider] off of the [src]!</B></span>")
 				rider.changeStatus("weakened", 2 SECONDS)
 				eject_rider()
 			else
-				playsound(src.loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 25, 1, -1)
+				playsound(src.loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 25, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='combat'><B>[M] has attempted to shove [rider] off of the [src]!</B></span>")
 	return
 

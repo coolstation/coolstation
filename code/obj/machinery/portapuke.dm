@@ -159,7 +159,7 @@
 		if (iswrenchingtool(I))
 			anchored = !anchored
 			user.show_text("You [anchored ? "attach" : "release"] \the [src]'s floor clamps", "red")
-			playsound(src, "sound/items/Ratchet.ogg", 40, 0, 0)
+			playsound(src, "sound/items/Ratchet.ogg", 40, 0, SOUND_RANGE_STANDARD)
 			return
 
 		. = ..()

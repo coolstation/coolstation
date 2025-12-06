@@ -533,7 +533,7 @@
 								qdel(C)
 							else
 								qdel(C)
-							playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, -2)
+							playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, SOUND_RANGE_STANDARD)
 							src.reagents.add_reagent("blood", 120)
 							SPAWN_DBG(2.5 SECONDS)
 								if(src)
@@ -1456,7 +1456,7 @@
 			HYPkillplant()
 
 		//do we have to run the next life tick manually? maybe
-		playsound(src.loc, "rustle", 50, 1, -5, 2)
+		playsound(src.loc, "rustle", 50, 1, SOUND_RANGE_MODERATE, 2)
 		update_icon()
 		update_name()
 

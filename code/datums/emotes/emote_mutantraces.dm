@@ -8,14 +8,14 @@
 /datum/emote/scream/grey/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
-	playsound(user, "sound/voice/screams/Psychic_Scream_1.ogg", 80, 0, 0, max(0.7, min(1.2, 1.0 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE)
+	playsound(user, "sound/voice/screams/Psychic_Scream_1.ogg", 80, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE)
 	return list("<B>[user]</B> screams with [his_or_her(user)] mind! Guh, that's creepy!", null, MESSAGE_AUDIBLE)
 
 //also used by vampiric thralls
 /datum/emote/scream/zombie/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
-	playsound(user, "sound/voice/Zgroan[pick("1","2","3","4")].ogg", 80, 0, 0, max(0.7, min(1.2, 1.0 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE)
+	playsound(user, "sound/voice/Zgroan[pick("1","2","3","4")].ogg", 80, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE)
 	return list("<B>[user]</B> moans!", null, MESSAGE_AUDIBLE)
 
 /datum/emote/scream/abomination/enact(mob/living/carbon/human/user, voluntary = 0, param)
@@ -27,13 +27,13 @@
 /datum/emote/scream/werewolf/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
-	playsound(user, "sound/voice/animal/werewolf_howl.ogg", 65, 0, 0, max(0.7, min(1.2, 1.0 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE)
+	playsound(user, "sound/voice/animal/werewolf_howl.ogg", 65, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE)
 	return list("<span class='alert'><B>[user] howls [pick("ominously", "eerily", "hauntingly", "proudly", "loudly")]!</B></span>", null, MESSAGE_AUDIBLE)
 
 /datum/emote/scream/monkey/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
-	playsound(user, 'sound/voice/screams/monkey_scream.ogg', 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+	playsound(user, 'sound/voice/screams/monkey_scream.ogg', 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 	return list("<B>[user]</B> screams!", null, MESSAGE_AUDIBLE)
 
 /datum/emote/scream/amphibian/enact(mob/living/carbon/human/user, voluntary = 0, param)
@@ -45,19 +45,19 @@
 /datum/emote/scream/cow/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
-	playsound(user, "sound/voice/screams/moo.ogg", 50, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+	playsound(user, "sound/voice/screams/moo.ogg", 50, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 	return list("<B>[user]</B> moos!", null, MESSAGE_AUDIBLE)
 
 /datum/emote/scream/chicken/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
-	playsound(user, "sound/voice/screams/chicken_bawk.ogg", 50, 0, 0, user.get_age_pitch())
+	playsound(user, "sound/voice/screams/chicken_bawk.ogg", 50, 0, SOUND_RANGE_STANDARD, user.get_age_pitch())
 	return list("<B>[user]</B> BWAHCAWCKs!", null, MESSAGE_AUDIBLE)
 
 /datum/emote/scream/fert/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
-	playsound(user, "sound/voice/screams/weaselscream.ogg", 50, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+	playsound(user, "sound/voice/screams/weaselscream.ogg", 50, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 	return list("<B>[user]</B> screams!", null, MESSAGE_AUDIBLE)
 
 // ------------------------------ werewolf RP --------------------------------
@@ -71,20 +71,20 @@
 /datum/emote/werewolf/uwu/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
-	playsound(user, "sound/voice/animal/werewolf_howl.ogg", 65, 0, 0, max(1.2, min(1.4, 1.2 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE) //need better sound for this
+	playsound(user, "sound/voice/animal/werewolf_howl.ogg", 65, 0, SOUND_RANGE_STANDARD, max(1.2, min(1.4, 1.2 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE) //need better sound for this
 	return list("<span class='alert'><B>[user] uwus!</B></span>", "<I>[user] uwus!</I>", MESSAGE_AUDIBLE)
 
 /datum/emote/werewolf/owo/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
-	playsound(user, "sound/voice/animal/werewolf_howl.ogg", 65, 0, 0, max(1.2, min(1.4, 1.2 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE) //need better sound for this
+	playsound(user, "sound/voice/animal/werewolf_howl.ogg", 65, 0, SOUND_RANGE_STANDARD, max(1.2, min(1.4, 1.2 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE) //need better sound for this
 	return list("<span class='alert'><B>[user] owos!</B></span>", "<I>[user] owos!</I>", MESSAGE_AUDIBLE)
 
 /datum/emote/werewolf/rawr/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
 	var/adjective = pick("proudly", "loudly")
-	playsound(user, "sound/voice/animal/werewolf_howl.ogg", 65, 0, 0, max(1.2, min(1.4, 1.2 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE) //also need better sound
+	playsound(user, "sound/voice/animal/werewolf_howl.ogg", 65, 0, SOUND_RANGE_STANDARD, max(1.2, min(1.4, 1.2 + (30 - user.bioHolder.age)/60)), channel=VOLUME_CHANNEL_EMOTE) //also need better sound
 	return list("<span class='alert'><B>[user] rawrs [adjective]! xD</B></span>", "<I>[user] rawrs [adjective]!</I>", MESSAGE_AUDIBLE)
 
 // ------------------------------ Monkeys --------------------------------
@@ -176,7 +176,7 @@
 				if(25) . = "<B>[user]</B> makes a big goofy grin and farts loudly."
 				if(26) . = "<B>[user]</B> hovers off the ground for a moment using a powerful fart."
 				if(27) . = "<B>[user]</B> plays drums on its ass while farting."
-		playsound(user.loc, "sound/voice/farts/poo2.ogg", 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+		playsound(user.loc, "sound/voice/farts/poo2.ogg", 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 
 		user.remove_stamina(STAMINA_DEFAULT_FART_COST)
 		user.stamina_stun()
@@ -211,7 +211,7 @@
 /datum/emote/fert/laugh/enact(mob/living/carbon/human/user, voluntary = 0, param)
 	if (!istype(user))
 		return
-	playsound(user, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, channel=VOLUME_CHANNEL_EMOTE)
+	playsound(user, 'sound/misc/talk/fert.ogg', 40, 1, SOUND_RANGE_STANDARD, channel=VOLUME_CHANNEL_EMOTE)
 	return list("<span class='alert'><B>[user] dooks excitedly</B></span>", "<I>dooks excitedly</I>", MESSAGE_AUDIBLE)
 
 

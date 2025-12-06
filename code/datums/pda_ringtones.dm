@@ -27,7 +27,7 @@ proc/filter_is_character_setup_ringtone(type)
 	/// Pitch to play the sound at this index
 	var/list/pitchList = list(1)
 	/// How much further should this sound carry?
-	var/list/rangeList = list(0)
+	var/list/rangeList = list(SOUND_RANGE_STANDARD)
 	/// Current index to read all the lists from, so if the ringtone wants to cycle through different sounds, it can
 	var/ringListIndex = 1
 	/// Whether this ringtone set should use its alert text instead of the PDA's
@@ -116,7 +116,7 @@ proc/filter_is_character_setup_ringtone(type)
 									"RAWRRWRROOORRRHHH",\
 									"ARF")
 	pitchList = list(0.8, 1, 0.7, 1, 1.1, 1, 1, 0.6)
-	rangeList = list(5, 0, 0, 0, 0, 0, 0, 0)
+	rangeList = list(SOUND_RANGE_LARGE, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_RANDOM
 	succText = "<span class='alert'>*WELCOME THE HECK TO THE PACK*</span>"
 	previewMessage = "GRR RAGH ARGFH AWROO RAFF RARFH THIS IS A PREVIEW OF THE M'F'IN WOLF PACK THRASHTONE TRY BEFORE YOU BUY ARGH WOOF AGRR"
@@ -147,7 +147,7 @@ proc/filter_is_character_setup_ringtone(type)
 									"arwrrwroo",\
 									"arf")
 	pitchList = list(1.1, 1.3, 0.8, 1, 1.1, 1, 1, 1.2)
-	rangeList = list(1, 0, 0, 0, 0, 0, 0, 0)
+	rangeList = list(SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_RANDOM
 	succText = "<span class='notice'>*welcome to the dog pack*</span>"
 	previewMessage = "woof woof this is what you could bark when you install awoo this"
@@ -174,7 +174,7 @@ proc/filter_is_character_setup_ringtone(type)
 	volList = list(35, 35, 35, 35, 35, 35, 35, 35, 35, 35)
 	varyList = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 	pitchList = list(1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 0.5)
-	rangeList = list(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+	rangeList = list(SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_CYCLE
 	succText = "<span class='notice'>*You're ready for your Virtual Numberventure!*</span>"
 	previewMessage = "You're just in time, Numberventurer! I've lost all 10 (ten) of my Numbermals in the Virtual Numberforest! Will you help me find them?"
@@ -220,7 +220,7 @@ proc/filter_is_character_setup_ringtone(type)
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("honk")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"HONKHORN~1.AU\"*</span>"
 	previewMessage = "Remember, laughter is laughter whether it's with you or at you!"
@@ -239,7 +239,7 @@ proc/filter_is_character_setup_ringtone(type)
 	varyList = list(0)
 	pitchList = list(1)
 	alertList = list("<span class='alert'>AAAAAAAA</span>")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"LOUD.AIFF\"*</span>"
 	previewMessage = "Remember, if the crowds don't find you funny, they should at least find you deafening!"
@@ -278,7 +278,7 @@ bathing in her ennui and showering her with money.
 	alertList = list("harmonica",\
 									 "harmonica",\
 									 "harmonica")
-	rangeList = list(0, 0, 0)
+	rangeList = list(SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD, SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_RANDOM
 	succText = "<span class='notice'>*Ringtone set to \"HARM~4.AIFF\"*</span>"
 	previewMessage = "Remember, you're in it for the laughs, not the money!"
@@ -297,7 +297,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone1_short.AU\"*</span>"
 	previewMessage = "Set your sights skyward!"
@@ -315,7 +315,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone1_short_01.AU\"*</span>"
 	previewMessage = "Set your sights skyward!"
@@ -333,7 +333,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone1_short_02.AU\"*</span>"
 	previewMessage = "Set your sights skyward!"
@@ -351,7 +351,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone1_short_03.AU\"*</span>"
 	previewMessage = "Set your sights skyward!"
@@ -369,7 +369,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone2_short.AU\"*</span>"
 	previewMessage = "Set your sky sightward!"
@@ -387,7 +387,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone2_short_01.AU\"*</span>"
 	previewMessage = "Set your sky sightward!"
@@ -405,7 +405,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone2_short_02.AU\"*</span>"
 	previewMessage = "Set your sky sightward!"
@@ -423,7 +423,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone2_short_03.AU\"*</span>"
 	previewMessage = "Set your sky sightward!"
@@ -441,7 +441,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone3_short.AU\"*</span>"
 	previewMessage = "Set your sky sightward!"
@@ -459,7 +459,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone4_short.AU\"*</span>"
 	previewMessage = "Set your sky sightward!"
@@ -477,7 +477,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*starkle*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	succText = "<span class='notice'>*Ringtone set to \"ringtone5_short.AU\"*</span>"
 	previewMessage = "Set your sky sightward!"
@@ -497,7 +497,7 @@ bathing in her ennui and showering her with money.
 	varyList = list(1)
 	pitchList = list(1)
 	alertList = list("*beedleebeep*")
-	rangeList = list(0)
+	rangeList = list(SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_STATIC
 	has_short = TRUE
 	succText = "<span class='notice'>*Ringtone set to \"ringlord1.SND\"*</span>"
@@ -622,7 +622,7 @@ ringtone.dm,58: Cannot read null.name (/datum/ringtone/retkid/ring8): return_tex
 									"Found a bus in the space desert, filled that sucker with gasoline and ran it off a spacecliff. Heck. Yeah. Kinda sucked. Whatever.",\
 									"Oh yeah that bus actually exploded down there, raaaad.")
 	pitchList = list(1, 1, 1, 1, 1, 1, 1)
-	rangeList = list(15, 15, 15, 15, 15, 15, 0)
+	rangeList = list(SOUND_RANGE_LARGE, SOUND_RANGE_LARGE, SOUND_RANGE_LARGE, SOUND_RANGE_LARGE, SOUND_RANGE_LARGE, SOUND_RANGE_LARGE, SOUND_RANGE_STANDARD)
 	listCycleType = RINGLIST_RANDOM
 	succText = "*KABLAMMO installed!*"
 	previewMessage = "SounDreamS Professional Ultrasystems LTD cannot be held liable for any damage done to your device's speakers."
@@ -661,7 +661,7 @@ ringtone.dm,58: Cannot read null.name (/datum/ringtone/retkid/ring8): return_tex
 									"BLAST A HOLE IN MY DREAMS. <span style='color:#888888;font-size:80%'>MY DREAMS.</span> <span style='color:#888888;font-size:40%'>MY.</span> <span style='color:#888888;font-size:20%'>DREAMS.</span>",\
 									"ALCOHOL IS A SIN.")
 	pitchList = list(1, 1, 1, 1, 1, 1, 1)
-	rangeList = list(5, 5, 5, 5, 5, 5, 5)
+	rangeList = list(SOUND_RANGE_LARGE, SOUND_RANGE_LARGE, SOUND_RANGE_LARGE, SOUND_RANGE_LARGE, SOUND_RANGE_LARGE, SOUND_RANGE_LARGE, SOUND_RANGE_LARGE)
 	listCycleType = RINGLIST_RANDOM
 	succText = "*Modern Commando installed!*"
 	previewMessage = "Ready to serve up your project a nice hot cup of lead? Or, rather, a set of sound effects that give that impression?"
@@ -715,7 +715,7 @@ ringtone.dm,58: Cannot read null.name (/datum/ringtone/retkid/ring8): return_tex
 	alertList = list("hi.",\
 									"heyo")
 	pitchList = list(1, 1)
-	rangeList = list(5, 5)
+	rangeList = list(SOUND_RANGE_LARGE, SOUND_RANGE_LARGE)
 	listCycleType = RINGLIST_RANDOM
 	succText = "*SPACEBATTLE installed!*"
 	previewMessage = "Do note that some viewers will complain about being able to hear space battles in space."

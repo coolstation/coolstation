@@ -312,7 +312,7 @@
 			if (prob(50))
 				playsound(src.loc, pick('sound/voice/animal/werewolf_attack1.ogg', 'sound/voice/animal/werewolf_attack2.ogg', 'sound/voice/animal/werewolf_attack3.ogg'), 50, 1)
 			else
-				playsound(src.loc, pick('sound/impact_sounds/Flesh_Tear_1.ogg', 'sound/impact_sounds/Flesh_Tear_2.ogg'), 50, 1, -1)
+				playsound(src.loc, pick('sound/impact_sounds/Flesh_Tear_1.ogg', 'sound/impact_sounds/Flesh_Tear_2.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 
 			SPAWN_DBG(0.1 SECONDS)
 				if (src) playsound(src.loc, "sound/impact_sounds/Flesh_Tear_3.ogg", 40, 1, -1)
@@ -324,8 +324,8 @@
 				SPAWN_DBG(6 SECONDS)
 					sound_playing = 0
 
-			playsound(src.loc, pick('sound/impact_sounds/Flesh_Tear_1.ogg', 'sound/impact_sounds/Flesh_Tear_2.ogg'), 50, 1, -1)
-			playsound(src.loc, "sound/items/eatfood.ogg", 50, 1, -1)
+			playsound(src.loc, pick('sound/impact_sounds/Flesh_Tear_1.ogg', 'sound/impact_sounds/Flesh_Tear_2.ogg'), 50, 1, SOUND_RANGE_STANDARD)
+			playsound(src.loc, "sound/items/eatfood.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			if (prob(40))
 				playsound(target.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
 

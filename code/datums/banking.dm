@@ -758,7 +758,7 @@
 					t1 = copytext(html_encode(t1), 1, MAX_MESSAGE_LEN)
 					if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_interact_range(src, usr) && (!usr_is_robot)))) return
 					R["job"] = t1
-					playsound(src.loc, "keyboard", 50, 1, -15)
+					playsound(src.loc, "keyboard", 50, 1, range = SOUND_RANGE_SMALL)
 				else if(href_list["Fwage"])
 					var/datum/db_record/R = locate(href_list["Fwage"])
 					var/t1 = input("Please input wage:", "Secure. records", R["wage"], null)  as null|num

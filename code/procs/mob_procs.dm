@@ -145,9 +145,9 @@
 			throw_range = max(throw_range,0)
 
 		if (intensity <= 2.4)
-			playsound(src.loc, "sound/misc/slip.ogg", 50, 1, -3)
+			playsound(src.loc, "sound/misc/slip.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		else
-			playsound(src.loc, "sound/misc/slip_big.ogg", 50, 1, -3)
+			playsound(src.loc, "sound/misc/slip_big.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		src.pulling = null
 
 		lastgasp()

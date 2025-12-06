@@ -363,7 +363,7 @@
 		if (has_storage && src.desk_drawer)
 			if (islist(params) && params["icon-y"])
 				if (text2num(params["icon-y"]) <= 8)
-					playsound(src.loc, 'sound/machines/door_open.ogg', 50, 1, -2) //needs better sound
+					playsound(src.loc, 'sound/machines/door_open.ogg', 50, 1, SOUND_RANGE_STANDARD) //needs better sound
 					desk_drawer.MouseDrop(user) //Might seem weird but Attackhand just has user take out the entire drawer
 		if (ishuman(user))
 			var/mob/living/carbon/human/H = user

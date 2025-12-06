@@ -363,8 +363,8 @@
 		return 0
 	user.visible_message("<span class='alert'><b>[user] gazes into the eyes of the [src.name]. The [src.name] gazes back!</b></span>") //And when you gaze long into an abyss, the abyss also gazes into you.
 	SPAWN_DBG(1 SECOND)
-		playsound(src.loc, "sound/voice/chanting.ogg", 25, 0, 0)
-		playsound(src.loc, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, 0)
+		playsound(src.loc, "sound/voice/chanting.ogg", 25, 0, SOUND_RANGE_STANDARD)
+		playsound(src.loc, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, SOUND_RANGE_STANDARD)
 		sleep(1.5 SECONDS)
 		user.emote("scream")
 		sleep(1.5 SECONDS)
@@ -1197,7 +1197,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 		if (!isturf(src.loc))
 			return
 		src.layer = initial(src.layer)
-		playsound(src.loc, "sound/items/coindrop.ogg", 50, 1, null, 2)
+		playsound(src.loc, "sound/items/coindrop.ogg", 50, 1, SOUND_RANGE_STANDARD, 2)
 		SPAWN_DBG(rand(2,5))
 			if (src && isturf(src.loc))
 				var/obj/table/T = locate(/obj/table) in range(3,src)
@@ -1207,7 +1207,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 							break
 						if (src.loc == T.loc)
 							src.visible_message("<span class='alert'>\The [src] rolls under [T]!</span>")
-							playsound(src.loc, "sound/items/coindrop.ogg", 50, 1, null, 2)
+							playsound(src.loc, "sound/items/coindrop.ogg", 50, 1, SOUND_RANGE_STANDARD, 2)
 							if (prob(30))
 								qdel(src)
 								return
@@ -1217,7 +1217,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 						else
 							step_towards(src, T)
 							src.visible_message("<span class='alert'>\The [src] bounces!</span>")
-							playsound(src.loc, "sound/items/coindrop.ogg", 50, 1, null, 2)
+							playsound(src.loc, "sound/items/coindrop.ogg", 50, 1, SOUND_RANGE_STANDARD, 2)
 							sleep(rand(2,5))
 				else
 					for (var/i=rand(0,4), i>0, i--)
@@ -1225,7 +1225,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves/ring)
 							break
 						step(src, pick(alldirs))
 						src.visible_message("<span class='alert'>\The [src] bounces!</span>")
-						playsound(src.loc, "sound/items/coindrop.ogg", 50, 1, null, 2)
+						playsound(src.loc, "sound/items/coindrop.ogg", 50, 1, SOUND_RANGE_STANDARD, 2)
 						sleep(rand(2,5))
 
 /obj/item/clothing/gloves/ring/gold

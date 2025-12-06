@@ -35,7 +35,7 @@
 		return
 
 	proc/activate(mob/user as mob)
-		playsound(src.loc, "sound/effects/light_breaker.ogg", 75, 1, 5)
+		playsound(src.loc, "sound/effects/light_breaker.ogg", 75, 1, SOUND_RANGE_LARGE)
 		for (var/obj/machinery/light/L in view(7, user))
 			if (L.status == 2 || L.status == 1)
 				continue
@@ -92,7 +92,7 @@
 		if (istype(source) && the_tool != source.equipped())
 			interrupt(INTERRUPT_ALWAYS)
 			return
-		playsound(the_breaker, "sound/misc/winding.ogg", 50, 1,3)
+		playsound(the_breaker, "sound/misc/winding.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 	onStart()
 		..()

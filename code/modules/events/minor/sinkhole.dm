@@ -12,7 +12,7 @@
 		if (!istype(center))
 			return
 
-		playsound(center, "sound/misc/ground_rumble_big.ogg", 50, 1, 3)
+		playsound(center, "sound/misc/ground_rumble_big.ogg", 50, 1, SOUND_RANGE_LARGE)
 		SPAWN_DBG(rand(8 SECONDS, 12 SECONDS))
 			create_two_layer_sinkhole(center, 2, 2 SECONDS)
 

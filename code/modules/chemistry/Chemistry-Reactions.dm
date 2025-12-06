@@ -103,9 +103,9 @@
 
 		if (do_sfx)
 			if (narrator_mode || vox_smoke)
-				playsound(location, 'sound/vox/smoke.ogg', 50, 1, -3)
+				playsound(location, 'sound/vox/smoke.ogg', 50, 1, SOUND_RANGE_STANDARD)
 			else
-				playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
+				playsound(location, 'sound/effects/smoke.ogg', 50, 1, SOUND_RANGE_STANDARD)
 
 		//particleMaster.SpawnSystem(new /datum/particleSystem/chemSmoke(source, holder, 20, smoke_size))
 
@@ -150,9 +150,9 @@
 		return 0
 
 	if (narrator_mode || vox_smoke)
-		playsound(location, 'sound/vox/smoke.ogg', 50, 1, -3)
+		playsound(location, 'sound/vox/smoke.ogg', 50, 1, SOUND_RANGE_STANDARD)
 	else
-		playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
+		playsound(location, 'sound/effects/smoke.ogg', 50, 1, SOUND_RANGE_STANDARD)
 
 	var/list/covered = holder.covered_turf()
 	if (!covered || !length(covered))

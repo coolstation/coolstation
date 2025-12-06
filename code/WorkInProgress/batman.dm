@@ -87,7 +87,7 @@
 	set category = "Batman"
 	set name = "Batsmoke \[Support]"
 
-	playsound(usr, "sound/weapons/launcher.ogg", 70, 0, 0)
+	playsound(usr, "sound/weapons/launcher.ogg", 70, 0, SOUND_RANGE_STANDARD)
 	usr.visible_message("<span class='alert'>[usr] drops a smoke bomb!</span>", "<span class='alert'>You drop a smoke bomb!</span>")
 
 	var/datum/effects/system/bad_smoke_spread/smoke = new /datum/effects/system/bad_smoke_spread()
@@ -98,7 +98,7 @@
 	set category = "Batman"
 	set name = "Batarang \[Combat]"
 	usr.visible_message("<span class='alert'>[usr] tosses a batarang at [T]!</span>", "<span class='alert'>You toss a batarang at [T]!</span>")
-	playsound(usr, pick("sound/effects/sword_unsheath1.ogg","sound/effects/sword_unsheath2.ogg"), 70, 0, 0)
+	playsound(usr, pick("sound/effects/sword_unsheath1.ogg","sound/effects/sword_unsheath2.ogg"), 70, 0, SOUND_RANGE_STANDARD)
 	var/obj/overlay/A = new /obj/overlay( usr.loc )
 	A.icon_state = "batarang"
 	A.icon = 'icons/effects/effects.dmi'
@@ -109,7 +109,7 @@
 	for(i=0, i<100, i++)
 		step_to(A,T,0)
 		if (get_dist(A,T) < 1)
-			playsound(T, "sound/impact_sounds/Blade_Small_Bloody.ogg", 70, 0, 0)
+			playsound(T, "sound/impact_sounds/Blade_Small_Bloody.ogg", 70, 0, SOUND_RANGE_STANDARD)
 			random_brute_damage(T, 7)
 			take_bleeding_damage(T, usr, 5, DAMAGE_STAB, 0)
 			bleed(T, 3)
@@ -208,27 +208,27 @@
 			usr.set_dir(NORTH)
 			T.TakeDamage("head", 1, 0)
 			usr.visible_message("<span class='alert'><B>[usr] kicks [T] in the face!</B></span>", "<span class='alert'><B>You kick [T] in the face!</B></span>")
-			playsound(T.loc, "swing_hit", 25, 1, -1)
+			playsound(T.loc, "swing_hit", 25, 1, SOUND_RANGE_STANDARD)
 			sleep(0.1 SECONDS)
 			usr.set_dir(EAST)
 			T.TakeDamage("head", 1, 0)
 			usr.visible_message("<span class='alert'><B>[usr] kicks [T] in the face!</B></span>", "<span class='alert'><B>You kick [T] in the face!</B></span>")
-			playsound(T.loc, "swing_hit", 25, 1, -1)
+			playsound(T.loc, "swing_hit", 25, 1, SOUND_RANGE_STANDARD)
 			sleep(0.1 SECONDS)
 			usr.set_dir(SOUTH)
 			T.TakeDamage("head", 1, 0)
 			usr.visible_message("<span class='alert'><B>[usr] kicks [T] in the face!</B></span>", "<span class='alert'><B>You kick [T] in the face!</B></span>")
-			playsound(T.loc, "swing_hit", 25, 1, -1)
+			playsound(T.loc, "swing_hit", 25, 1, SOUND_RANGE_STANDARD)
 			sleep(0.1 SECONDS)
 			usr.set_dir(WEST)
 			T.TakeDamage("head", 1, 0)
 			usr.visible_message("<span class='alert'><B>[usr] kicks [T] in the face!</B></span>", "<span class='alert'><B>You kick [T] in the face!</B></span>")
-			playsound(T.loc, "swing_hit", 25, 1, -1)
+			playsound(T.loc, "swing_hit", 25, 1, SOUND_RANGE_STANDARD)
 		usr.set_dir(get_dir(usr, T))
 		usr.visible_message("<span class='alert'><B>[usr] stares deeply at [T]!</B></span>", "<span class='alert'><B>You stares deeply at [T]!</B></span>")
 		sleep(0.8 SECONDS)
 		usr.visible_message("<span class='alert'><B>[usr] unleashes a tremendous kick to the jaw towards [T]!</B></span>", "<span class='alert'><B>You unleash a tremendous kick to the jaw towards [T]!</B></span>")
-		playsound(T.loc, "swing_hit", 25, 1, -1)
+		playsound(T.loc, "swing_hit", 25, 1, SOUND_RANGE_STANDARD)
 		batman_pow(T.loc)
 		//flick("e_flash", T.flash)
 		T.setStatus("weakened", T.getStatusDuration("weakened") + 6 SECONDS)

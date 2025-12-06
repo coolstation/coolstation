@@ -1358,7 +1358,7 @@ CONTAINS:
 			src.Attackhand(usr)
 
 	proc/open()
-		playsound(src, src.sound_zipper, 100, 1, , 6)
+		playsound(src, src.sound_zipper, 100, 1, SOUND_RANGE_STANDARD, 6)
 		for (var/obj/O in src)
 			O.set_loc(get_turf(src))
 		for (var/mob/M in src)
@@ -1369,7 +1369,7 @@ CONTAINS:
 		src.update_icon()
 
 	proc/close()
-		playsound(src, src.sound_zipper, 100, 1, , 6)
+		playsound(src, src.sound_zipper, 100, 1, SOUND_RANGE_STANDARD, 6)
 		for (var/obj/O in get_turf(src))
 			if (O.density || O.anchored || O == src)
 				continue

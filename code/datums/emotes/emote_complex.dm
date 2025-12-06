@@ -106,9 +106,9 @@
 /datum/emote/uguu/enact(mob/user, voluntary = 0, param)
 	if (istype(user.wear_mask, /obj/item/clothing/mask/anime) && !user.stat)
 		if (narrator_mode)
-			playsound(user, 'sound/vox/uguu.ogg', 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user, 'sound/vox/uguu.ogg', 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else
-			playsound(user, 'sound/voice/uguu.ogg', 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user, 'sound/voice/uguu.ogg', 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		SPAWN_DBG(1 SECOND)
 			user.wear_mask.set_loc(user.loc)
 			user.wear_mask = null
@@ -323,13 +323,13 @@
 		return list("<B>[user]</B> [pre_message]", "<i>[pre_message]</i>", MESSAGE_VISIBLE)
 	else if (!ismuzzled(user))
 		if (narrator_mode)
-			playsound(user.loc, 'sound/vox/scream.ogg', 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user.loc, 'sound/vox/scream.ogg', 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else if (user.traitHolder && user.traitHolder.hasTrait("scienceteam"))
-			playsound(user.loc, pick(user.sound_list_scream), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user.loc, pick(user.sound_list_scream), 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else if (user.sound_list_scream && length(user.sound_list_scream))
-			playsound(user.loc, pick(user.sound_list_scream), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user.loc, pick(user.sound_list_scream), 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else
-			playsound(user, user.sound_scream, 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user, user.sound_scream, 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		#ifdef HALLOWEEN
 		spooktober_GH.change_points(user.ckey, 30)
 		#endif
@@ -355,9 +355,9 @@
 /datum/emote/scream/silicon //turns out the above wasn't ready for borgs
 /datum/emote/scream/silicon/enact(mob/living/silicon/user, voluntary = 0, param)
 	if (narrator_mode)
-		playsound(user.loc, 'sound/vox/scream.ogg', 50, 1, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+		playsound(user.loc, 'sound/vox/scream.ogg', 50, 1, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 	else
-		playsound(user, user.sound_scream, 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+		playsound(user, user.sound_scream, 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 	return list("<b>[user]</b> screams!", null, MESSAGE_AUDIBLE)
 
 /datum/emote/twerk // also shakebutt, shakebooty, shakeass
@@ -494,9 +494,9 @@
 			user.deathConfetti()
 
 		if (user.traitHolder && user.traitHolder.hasTrait("scienceteam"))
-			playsound(user, "sound/voice/scientist/sci_die[pick(1,2,3)].ogg", 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user, "sound/voice/scientist/sci_die[pick(1,2,3)].ogg", 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else
-			playsound(user, "sound/voice/death_[pick(1,2)].ogg", 40, 0, 0, user.get_age_pitch())
+			playsound(user, "sound/voice/death_[pick(1,2)].ogg", 40, 0, SOUND_RANGE_STANDARD, user.get_age_pitch())
 		return list("<span class='regular'><B>[user]</B> seizes up and falls limp, [his_or_her(user)] eyes dead and lifeless...</span>", null, MESSAGE_VISIBLE)
 
 
@@ -589,9 +589,9 @@
 			M.TakeDamage("chest", 0, 20, 0, DAMAGE_BURN)
 			user.charges -= 1
 			if (narrator_mode)
-				playsound(user.loc, 'sound/vox/bloop.ogg', 70, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user.loc, 'sound/vox/bloop.ogg', 70, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			else
-				playsound(user, user.sound_burp, 70, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, user.sound_burp, 70, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			return
 	else if ((user.charges >= 1) && (ismuzzled(user)))
 		for (var/mob/O in viewers(user, null))
@@ -601,12 +601,12 @@
 		return
 	else if ((user.charges < 1) && (!ismuzzled(user)))
 		if (narrator_mode)
-			playsound(user.loc, 'sound/vox/bloop.ogg', 70, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user.loc, 'sound/vox/bloop.ogg', 70, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else
 			if (user.getStatusDuration("food_deep_burp"))
-				playsound(user, user.sound_burp, 70, 0, 0, user.get_age_pitch() * 0.5, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, user.sound_burp, 70, 0, SOUND_RANGE_STANDARD, user.get_age_pitch() * 0.5, channel=VOLUME_CHANNEL_EMOTE)
 			else
-				playsound(user, user.sound_burp, 70, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, user.sound_burp, 70, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 
 		var/datum/statusEffect/fire_burp/FB = user.hasStatus("food_fireburp")
 		if (!FB)
@@ -643,7 +643,7 @@
 				var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(terlet, user.poop_amount)
 				terlet.reagents.add_reagent("poo", user.poop_amount)
 				terlet.add_contents(shit)
-				playsound(user, user.sound_fart, 50, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, user.sound_fart, 50, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				break
 			user.wiped = 0
 			user.cleanhands = 0

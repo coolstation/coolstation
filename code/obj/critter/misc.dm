@@ -21,7 +21,7 @@
 	var/obj/original_object = null
 
 	CritterAttack(var/mob/M)
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		..()
 
 	attack_hand(mob/user as mob)
@@ -33,7 +33,7 @@
 	CritterDeath()
 		src.visible_message("<b>[src]</b> stops moving!")
 		animate_float(src, 1, 5)
-		playsound(src.loc, "sound/effects/suck.ogg", 40, 1, -1, 0.6)
+		playsound(src.loc, "sound/effects/suck.ogg", 40, 1, SOUND_RANGE_STANDARD, 0.6)
 		SPAWN_DBG(10 SECONDS) //Give time for people to butcher it if they want.
 			if (!src.disposed && src.loc && original_object)
 				original_object.set_loc(src.loc)
@@ -45,7 +45,7 @@
 		..()
 		if (prob(stunprob))
 			M.changeStatus("weakened", 2 SECONDS)
-		//playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		//playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 	disposing()
 		if (original_object)
@@ -532,7 +532,7 @@
 	ChaseAttack(mob/M)
 		if (!src.alive) return
 		..()
-		playsound(M.loc, "punch", 25, 1, -1)
+		playsound(M.loc, "punch", 25, 1, SOUND_RANGE_STANDARD)
 		random_brute_damage(M, rand(5,10),1)
 		if(prob(15)) // too mean before
 			M.visible_message("<span class='combat'><B>[M]</B> staggers!</span>")
@@ -547,7 +547,7 @@
 			H.was_harmed(src)
 		if(!M.stat)
 			M.visible_message("<span class='combat'><B>[src]</B> pummels [src.target] mercilessly!</span>")
-			playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			if(prob(10)) // lowered probability slightly
 				M.visible_message("<span class='combat'><B>[M]</B> staggers!</span>")
 				M.changeStatus("stunned", 2 SECONDS)
@@ -555,7 +555,7 @@
 			random_brute_damage(M, rand(5,10),1)
 		else
 			M.visible_message("<span class='combat'><B>[src]</B> hits [src.target] with a bone!</span>")
-			playsound(src.loc, "punch", 30, 1, -2)
+			playsound(src.loc, "punch", 30, 1, SOUND_RANGE_STANDARD)
 			random_brute_damage(M, rand(10,15),1)
 
 		SPAWN_DBG(1 SECOND)
@@ -667,7 +667,7 @@
 		var/mob/living/carbon/human/H = M
 		if (istype(M) && (H.traitHolder.hasTrait("training_chaplain"))) return
 		..()
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		if(M.reagents)
 			if(src.reagents && src.reagents.total_volume)
 
@@ -752,7 +752,7 @@
 	ChaseAttack(mob/M)
 		if(iscarbon(M) && prob(15))
 			..()
-			playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			random_brute_damage(M, rand(0,3))//this is weak enough as it is without being nerfed by armor - Tarm
 			M.changeStatus("stunned", 2 SECONDS)
 			M.changeStatus("weakened", 2 SECONDS)
@@ -768,7 +768,7 @@
 			var/obj/critter/C = M
 			for(var/mob/O in hearers(src, null))
 				O.show_message("<b>[src]</b> says, \"HALT!\"", 2)
-			playsound(C.loc, "swing_hit", 50, 1, -1)
+			playsound(C.loc, "swing_hit", 50, 1, SOUND_RANGE_STANDARD)
 			C.health -= 6
 			if(C.health <= 0)
 				C.CritterDeath()
@@ -778,7 +778,7 @@
 
 		if (M.health > 40 && !M.getStatusDuration("weakened"))
 			src.visible_message("<span class='combat'><B>[src]</B> attacks [src.target] with his sword!</span>")
-			playsound(M.loc, "swing_hit", 50, 1, -1)
+			playsound(M.loc, "swing_hit", 50, 1, SOUND_RANGE_STANDARD)
 
 			var/to_deal = rand(sword_damage_min,sword_damage_max)
 			random_brute_damage(M, to_deal,1)
@@ -790,7 +790,7 @@
 				src.attacking = 0
 		else
 			src.visible_message("<span class='combat'><B>[src]</B> kicks [src.target]!</span>")
-			playsound(src.loc, "swing_hit", 50, 1, -1)
+			playsound(src.loc, "swing_hit", 50, 1, SOUND_RANGE_STANDARD)
 			random_brute_damage(src.target, rand(4,8),1)
 			SPAWN_DBG(2.5 SECONDS)
 				src.attacking = 0
@@ -859,9 +859,9 @@
 	ChaseAttack(mob/M)
 		src.attacking = 1
 		if (narrator_mode)
-			playsound(src.loc, 'sound/vox/ghost.ogg', 50, 1, -1)
+			playsound(src.loc, 'sound/vox/ghost.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		else
-			playsound(src.loc, 'sound/effects/ghost.ogg', 50, 1, -1)
+			playsound(src.loc, 'sound/effects/ghost.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		if(iscarbon(M) && prob(50))
 			if(M.see_invisible < 2)
 				boutput(M, "<span class='combat'><b>You are forced to the ground by an unseen being!</b></span>")
@@ -875,7 +875,7 @@
 
 
 	CritterAttack(mob/M)
-		playsound(src.loc, "sound/effects/ghost2.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/effects/ghost2.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		attacking = 1
 		if(iscarbon(M))
 			if(prob(50))
@@ -905,7 +905,7 @@
 
 	ai_think()
 		if(!locate(/obj/decal/cleanable/tracked_reagents/blood) in src.loc)
-			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,loc)
 		return ..()
 
@@ -933,7 +933,7 @@
 
 	CritterAttack(mob/M)
 		..()
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 	ChaseAttack(mob/M)
 		..()
@@ -1165,11 +1165,11 @@
 
 	CritterDeath() //go back to your home planet, bart
 		..()
-		playsound(src.loc, "sound/voice/bartsay.ogg", 25, 1, -3) // one last bart...
-		sleep(30 SECONDS)
-		flick("smallbart-disappear",src)
-		playsound(src.loc, "sound/voice/deadbart.ogg", 50, 0, 2) // ...or is it?
-		SPAWN_DBG(10)
+		playsound(src.loc, "sound/voice/bartsay.ogg", 25, 1, SOUND_RANGE_STANDARD) // one last bart...
+		SPAWN_DBG(30 SECONDS)
+			flick("smallbart-disappear",src)
+			playsound(src.loc, "sound/voice/deadbart.ogg", 50, 0, SOUND_RANGE_STANDARD) // ...or is it?
+			sleep(1 SECOND)
 			qdel(src)
 			//there's still one last impact sound as he disappears which i don't like but whatever
 
@@ -1236,7 +1236,7 @@
 				src.frustration = 0 //alright you barted, now settle down (frustration/chase-giving doesn't get reset when you catch your target apparently)
 			if (prob(15))
 				src.visible_message("<B>[src]</B> [pick("says", "grunts", "huffs")], \"[pick("Small Bart!","Small Bart...","small bart","sm br", "Small Bart","Small Bart","Small Bart...")]\"")
-				playsound(src.loc, "sound/voice/bartsay.ogg", 50, 1, -2)
+				playsound(src.loc, "sound/voice/bartsay.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			else if (prob(15))
 				boutput(src.target, "<B>[src]</B> [pick("mutters", "whispers", "murmurs")], \"[pick("Small Bart...","small bart","sm br", "Small Bart","Small Bart","Small Bart...")]\"")
 				M.playsound_local(M.loc, "sound/voice/bartsay.ogg", 50, 1)
@@ -1512,7 +1512,7 @@
 			src.target = Cc
 			src.oldtarget_name = Cc.name
 			//src.visible_message("<span class='combat'><b>[src]</b> charges at [Cc.name]!</span>")
-			playsound(src.loc, "sound/voice/animal/cat_hiss.ogg", 25, 1, -1) // cat hiss, snake hiss - basically the same thing, right?
+			playsound(src.loc, "sound/voice/animal/cat_hiss.ogg", 25, 1, SOUND_RANGE_STANDARD) // cat hiss, snake hiss - basically the same thing, right?
 			src.task = "chasing"
 			return
 
@@ -1525,7 +1525,7 @@
 		contents_check()
 		src.attacking = 1
 		M.visible_message("<span class='combat'><B>[src]</B> bites [src.target]!</span>")
-		playsound(src.loc, "sound/weapons/genhit1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/weapons/genhit1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		random_brute_damage(M, rand(src.attack_damage, src.attack_damage + 5))
 		SPAWN_DBG(1 SECOND)
 			src.attacking = 0

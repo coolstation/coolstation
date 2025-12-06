@@ -436,7 +436,7 @@
 				damage(rand(2,6))
 
 			last_used = world.time + cooldown_time
-			playsound(src.loc, sound_activate, 100, 0, 3, 0.25)
+			playsound(src.loc, sound_activate, 100, 0, SOUND_RANGE_LARGE, 0.25)
 			build_icon()
 
 			target.erase_area()
@@ -674,7 +674,7 @@
 			damage(rand(2,6))
 
 		last_used = world.time + cooldown_time
-		playsound(src.loc, sound_activate, 100, 0, 3, 0.25)
+		playsound(src.loc, sound_activate, 100, 0, SOUND_RANGE_LARGE, 0.25)
 		build_icon()
 
 		for (var/obj/O in mining_controls.magnet_area.contents)

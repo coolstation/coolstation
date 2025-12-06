@@ -3029,7 +3029,7 @@
 						else if (priority < 0)
 							priority = leg ? leg.step_sound : "step_robo"
 
-						playsound(NewLoc, "[priority]", src.m_intent == "run" ? 65 : 40, 1, extrarange = 3)
+						playsound(NewLoc, "[priority]", src.m_intent == "run" ? 65 : 40, 1, range = SOUND_RANGE_STANDARD)
 
 		//STEP SOUND HANDLING OVER
 

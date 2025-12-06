@@ -487,14 +487,14 @@
 					src.visible_message(pick("<B>[name]</B> types something into [fuckaround_target]. You're not sure what it is, but it did something.", \
 					"<B>[name]</B> acknowledges some sort of message on [fuckaround_target].", \
 					"<B>[name]</B> looks at [fuckaround_target] with [pick("vague","mild","intense","")] [pick("concern","annoyance","interest")] and types something in."), 1)
-					playsound(fuckaround_target, "sound/machines/keyboard[rand(1,3)].ogg", 50, 1, -5)
+					playsound(fuckaround_target, "sound/machines/keyboard[rand(1,3)].ogg", 50, 1, SOUND_RANGE_MODERATE)
 					sleep(15)
 					if(prob(5))
-						playsound(fuckaround_target, 'sound/machines/buzz-two.ogg', 50, 1, -5)
+						playsound(fuckaround_target, 'sound/machines/buzz-two.ogg', 50, 1, SOUND_RANGE_MODERATE)
 						if(prob(75))
 							src.emote(pick("sigh","scream","grump"))
 					else
-						playsound(fuckaround_target, 'sound/machines/twobeep.ogg', 50, 1, -5)
+						playsound(fuckaround_target, 'sound/machines/twobeep.ogg', 50, 1, SOUND_RANGE_MODERATE)
 
 		else if (istype(fuckaround_target, /obj/machinery/nuclearbomb))
 			if(prob(5))

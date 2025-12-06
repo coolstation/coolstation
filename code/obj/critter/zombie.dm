@@ -78,7 +78,7 @@
 	ChaseAttack(mob/M)
 		if(iscarbon(M) && prob(15))
 			..()
-			playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			random_brute_damage(M, rand(0,3),1)
 			M.changeStatus("stunned", 2 SECONDS)
 			M.changeStatus("weakened", 2 SECONDS)
@@ -93,7 +93,7 @@
 		if(istype(M,/obj/critter))
 			var/obj/critter/C = M
 			src.visible_message("<span class='alert'><B>[src]</B> punches [src.target]!</span>")
-			playsound(C.loc, "punch", 25, 1, -1)
+			playsound(C.loc, "punch", 25, 1, SOUND_RANGE_STANDARD)
 			C.health -= 4
 			if(C.health <= 0)
 				C.CritterDeath()
@@ -103,7 +103,7 @@
 
 		if (!M.getStatusDuration("weakened") && !M.lying)
 			src.visible_message("<span class='alert'><B>[src]</B> punches [src.target]!</span>")
-			playsound(M.loc, "punch", 25, 1, -1)
+			playsound(M.loc, "punch", 25, 1, SOUND_RANGE_STANDARD)
 
 			var/to_deal = rand(punch_damage_min,punch_damage_max)
 			random_brute_damage(M, to_deal,1)
@@ -127,7 +127,7 @@
 				src.visible_message("<span class='alert'><B>[src]</B> starts trying to eat [M]'s brain!</span>")
 			else
 				src.visible_message("<span class='alert'><B>[src]</B> attacks [src.target]!</span>")
-				playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				random_brute_damage(src.target, rand(punch_damage_min,punch_damage_max),1)
 				after_attack_special(src.target)
 				SPAWN_DBG(2.5 SECONDS)
@@ -139,7 +139,7 @@
 						logTheThing("combat", M, null, "was zombified by [src] at [log_loc(src)].") // Some logging for instakill critters would be nice (Convair880).
 						M.death(1)
 						src.visible_message("<span class='alert'><B>[src]</B> slurps up [M]'s brain!</span>")
-						playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, -2)
+						playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, SOUND_RANGE_STANDARD)
 						M.canmove = 0
 						M.icon = null
 						APPLY_ATOM_PROPERTY(M, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)

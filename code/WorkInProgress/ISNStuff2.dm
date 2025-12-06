@@ -165,7 +165,7 @@
 	has_processing_loop = 1
 
 	process()
-		playsound(src.loc, 'sound/voice/chanting.ogg', 100, 0, 5, 0.5)
+		playsound(src.loc, 'sound/voice/chanting.ogg', 100, 0, SOUND_RANGE_STANDARD, 0.5)
 
 /obj/do_not_press_this_button
 	name = "do not press this button"

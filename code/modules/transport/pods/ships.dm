@@ -1455,7 +1455,7 @@ ABSTRACT_TYPE(/obj/item/podarmor)
 			succeeding = 1
 			did_warp = 1
 
-			playsound(src.loc, "warp", 50, 1, 0.1, 0.7)
+			playsound(src.loc, "warp", 50, 1, SOUND_RANGE_STANDARD, 0.7)
 
 			var/obj/portal/P = new()
 			P.set_loc(get_turf(src))

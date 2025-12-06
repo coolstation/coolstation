@@ -679,7 +679,7 @@
 		mob.see_in_dark = SEE_DARK_FULL
 
 	proc/flub()
-		playsound(mob, "sound/misc/boing/[rand(1,6)].ogg", 20, 1 )
+		playsound(mob, "sound/misc/boing/[rand(1,6)].ogg", 20, 1)
 		animate(mob, time = 1, pixel_y = 16, easing = ELASTIC_EASING)
 		animate(time = 1, pixel_y = 0, easing = ELASTIC_EASING)
 

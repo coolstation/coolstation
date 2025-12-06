@@ -104,7 +104,7 @@
 			if (user)
 				user.show_text("You [anchored ? "release" : "anchor"] the [src]", "blue")
 			src.anchored = !src.anchored
-			playsound(src.loc, 'sound/items/Ratchet.ogg', 40, 0, 0)
+			playsound(src.loc, 'sound/items/Ratchet.ogg', 40, 0, SOUND_RANGE_STANDARD)
 		else
 			..()
 		return

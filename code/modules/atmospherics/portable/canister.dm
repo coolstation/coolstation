@@ -106,6 +106,35 @@
 	..()
 	atmos_dmi = image('icons/obj/atmospherics/atmos.dmi')
 	bomb_dmi = image('icons/obj/atmospherics/canisterbomb.dmi')
+	setup_sound()
+
+// credit Inorien
+/obj/machinery/portable_atmospherics/canister/setup_sound()
+	sound_emitter = new(src)
+	if (sound_emitter)
+		var/sound/hiss = sound()
+		hiss.file = "sound/machines/gasleaklow.ogg"
+		hiss.repeat = 1
+		hiss.volume = 100
+		sound_emitter.add(hiss, "gas_hiss")
+
+/obj/machinery/portable_atmospherics/canister/proc/set_sound_volume() // i copied some of this from process(). sorry
+	if(valve_open)
+		var/datum/gas_mixture/environment
+		if(holding)
+			environment = holding.air_contents
+		else
+			environment = loc.return_air()
+
+		var/env_pressure = MIXTURE_PRESSURE(environment)
+		var/int_pressure = MIXTURE_PRESSURE(src.air_contents)
+		var/soundvol = 0.01
+		if (env_pressure > 0.01 && int_pressure >= env_pressure)
+			var/pressure_delta = min(release_pressure - env_pressure, (int_pressure - env_pressure)/2)
+			soundvol = clamp(25 * (pressure_delta + env_pressure) / env_pressure, 10, 100)
+
+		sound_emitter.update_active_sound_param(volume = soundvol, frequency = (0.8 + 0.0045 * soundvol))
+// end Inorien section
 
 /obj/machinery/portable_atmospherics/canister/update_icon()
 
@@ -170,7 +199,7 @@
 			processing_items.Remove(src.det)
 
 		src.destroyed = 1
-		playsound(src.loc, "sound/effects/spray.ogg", 10, 1, -3)
+		playsound(src.loc, "sound/effects/spray.ogg", 10, 1, SOUND_RANGE_STANDARD)
 		src.set_density(0)
 		update_icon()
 
@@ -217,6 +246,12 @@
 			else
 				loc.assume_air(removed)
 
+			if(!src.sound_emitter.active_sound)
+				src.sound_emitter.play("gas_hiss")
+			src.set_sound_volume()
+		else
+			src.sound_emitter.deactivate()
+
 	overpressure = MIXTURE_PRESSURE(air_contents) / maximum_pressure
 
 	switch(overpressure) // should the canister blow the hell up?
@@ -242,7 +277,7 @@
 				if (prob(15))
 					switch(rand(1,10))
 						if (1)
-							playsound(src.loc, "sparks", 75, 1, -1)
+							playsound(src.loc, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 							elecflash(src)
 						if (2)
 							playsound(src.loc, "sound/machines/warning-buzzer.ogg", 50, 1)
@@ -275,7 +310,7 @@
 				src.add_simple_light("canister", list(1 * 255, 0.03 * 255, 0.03 * 255, 0.6 * 255))
 				src.visible_message("<span class='alert'>[src] flashes and sparks wildly!</span>")
 				playsound(src.loc, "sound/machines/siren_generalquarters.ogg", 50, 1)
-				playsound(src.loc, "sparks", 75, 1, -1)
+				playsound(src.loc, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 				elecflash(src,power = 2)
 			else if (src.det.part_fs.time <= 3)
 				playsound(src.loc, "sound/machines/warning-buzzer.ogg", 50, 1)
@@ -535,10 +570,16 @@
 		logTheThing("station", usr, null, "[valve_open ? "opened [src] into" : "closed [src] from"] the air [log_atmos(src)] at [log_loc(src)].")
 		playsound(src.loc, "sound/effects/valve_creak.ogg", 50, 1)
 		if (src.valve_open)
-			playsound(src.loc, "sound/machines/hiss.ogg", 50, 1)
+			//playsound(src.loc, "sound/machines/hiss.ogg", 50, 1)
 			message_admins("[key_name(usr)] opened [src] into the air at [log_loc(src)]. See station logs for atmos readout.")
 			if (src.det)
 				src.det.leaking()
+	if (!valve_open)
+		sound_emitter.deactivate()
+	else
+		if(!src.sound_emitter.active_sound)
+			src.sound_emitter.play("gas_hiss")
+		src.set_sound_volume()
 	return TRUE
 
 /obj/machinery/portable_atmospherics/canister/proc/set_release_pressure(var/pressure as num)
@@ -547,6 +588,7 @@
 
 	playsound(src.loc, "sound/effects/valve_creak.ogg", 20, 1)
 	src.release_pressure = clamp(pressure, PORTABLE_ATMOS_MIN_RELEASE_PRESSURE, PORTABLE_ATMOS_MAX_RELEASE_PRESSURE)
+	src.set_sound_volume()
 	return TRUE
 
 /obj/machinery/portable_atmospherics/canister/proc/det_wires_interact(var/tool, var/which_wire as num, var/mob/user)
@@ -664,7 +706,7 @@
 						src.det.shocked = 1
 						var/losttime = rand(2,5)
 						src.visible_message("<B><font color=#B7410E>The bomb buzzes oddly, emitting electric sparks. It would be a bad idea to touch any wires for the next [losttime] seconds.</font></B>")
-						playsound(src.loc, "sparks", 75, 1, -1)
+						playsound(src.loc, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 						elecflash(src,power = 2)
 						SPAWN_DBG(10 * losttime)
 							src.det.shocked = 0

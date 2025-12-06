@@ -289,9 +289,9 @@
 		if ("scream")
 			if (src.emote_check(voluntary, 50))
 				if (narrator_mode)
-					playsound(src.loc, 'sound/vox/scream.ogg', 50, 1, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src.loc, 'sound/vox/scream.ogg', 50, 1, SOUND_RANGE_STANDARD, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				else
-					playsound(src, src.sound_scream, 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, src.sound_scream, 80, 0, SOUND_RANGE_STANDARD, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				message = "<b>[src]</b> screams!"
 
 		if ("johnny")
@@ -549,7 +549,7 @@
 			actions.interrupt(src, INTERRUPT_ATTACKED)
 		switch(user.a_intent)
 			if(INTENT_HELP) //Friend person
-				playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, -2)
+				playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 				user.visible_message("<span class='notice'>[user] gives [src] a [pick_string("descriptors.txt", "borg_pat")] pat on the [pick("back", "head", "shoulder")].</span>")
 			if(INTENT_DISARM) //Shove
 				SPAWN_DBG(0) playsound(src.loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 1)
@@ -561,7 +561,7 @@
 					src.beebot = 0
 					src.updateicon()
 				else
-					playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 30, 1, -2)
+					playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 30, 1, SOUND_RANGE_STANDARD)
 					user.visible_message("<span class='alert'>[user] shakes [src] [pick_string("descriptors.txt", "borg_shake")]!</span>")
 			if(INTENT_HARM) //Dumbo
 				if (user.is_hulk())

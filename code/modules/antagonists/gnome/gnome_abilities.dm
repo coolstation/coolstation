@@ -393,7 +393,7 @@
 			target.emote("scream")
 			src.holder.owner.visible_message(SPAN_COMBAT("[src.holder.owner] bites [target] with dozens of needlelike fangs!"), SPAN_COMBAT("You sink your full fangs into [target]!"))
 
-		playsound(target, "sound/impact_sounds/Flesh_Stab_1.ogg", 45, 1, -1)
+		playsound(target, "sound/impact_sounds/Flesh_Stab_1.ogg", 45, 1, SOUND_RANGE_MODERATE)
 		target.TakeDamageAccountArmor("All", isnull(disguise) ? rand(5, 15) : rand(disguise.disguise_scaling / 2, disguise.disguise_scaling), 0, 0, DAMAGE_STAB)
 		target.changeStatus("disorient", 3 SECONDS)
 

@@ -58,7 +58,7 @@
 
 		user.lastattacked = src
 
-		playsound(src.loc, "rustle", 66, 1, -5) // todo: find a better sound.
+		playsound(src.loc, "rustle", 66, 1, SOUND_RANGE_MODERATE) // todo: find a better sound.
 
 		if (max_uses > 0 && ((last_use + time_between_uses) < world.time) && prob(spawn_chance))
 

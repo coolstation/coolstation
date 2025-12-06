@@ -23,7 +23,7 @@
 	Topic(href, href_list)
 		if (..(href, href_list))
 			return 1
-		playsound(src.loc, 'sound/machines/keypress.ogg', 30, 1, -15)
+		playsound(src.loc, 'sound/machines/keypress.ogg', 30, 1, SOUND_RANGE_SMALL)
 
 	attack_hand(var/mob/user)
 		. = ..()

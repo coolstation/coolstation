@@ -278,7 +278,7 @@
 				if (src.mind)
 					src.mind.transfer_to(O)
 
-		playsound(src.loc, "sound/voice/wraith/wraithleaveobject.ogg", 40, 1, -1, 0.6)
+		playsound(src.loc, "sound/voice/wraith/wraithleaveobject.ogg", 40, 1, SOUND_RANGE_STANDARD, 0.6)
 
 		if (gibbed && src.item)
 			qdel(src.item)

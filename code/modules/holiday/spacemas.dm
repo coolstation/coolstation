@@ -350,7 +350,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				src.visible_message("<b>[src]</b> hugs <b>[user]</b> back!", 1)
 				if (user.reagents)
 					user.reagents.add_reagent("hugs", 10)
-				playsound(src.loc, "sound/voice/babynoise.ogg", 50, 10,10)
+				playsound(src.loc, "sound/voice/babynoise.ogg", 50, 10,SOUND_RANGE_LARGE)
 
 	attackby(obj/item/W as obj, mob/living/user as mob)
 		..()
@@ -365,7 +365,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 
 			if(prob(5))
 				src.visible_message("<b>[src]</b> gives [W] back to <b>[user]</b> as if they wanted to share!", 1)
-				playsound(src.loc, "sound/voice/babynoise.ogg", 50, 10,10)
+				playsound(src.loc, "sound/voice/babynoise.ogg", 50, 10,SOUND_RANGE_LARGE)
 			user.visible_message("<b>[user]</b> feeds [W] to [src]!","You feed [W] to [src].")
 			src.visible_message("<b>[src]</b> [pick("coos","purrs","mewls","chirps","arfs","arps","urps")].", 1)
 			modify_christmas_cheer(1)
@@ -755,7 +755,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				return
 
 			src.verbs -= /mob/living/carbon/human/santa/verb/santa_heal
-			playsound(src.loc, "sound/voice/heavenly.ogg", 100, 1, 0)
+			playsound(src.loc, "sound/voice/heavenly.ogg", 100, 1, SOUND_RANGE_STANDARD)
 			src.visible_message("<span class='alert'><B>[src] calls on the power of Spacemas to heal everyone!</B></span>")
 			for (var/mob/living/M in view(src,5))
 				M.HealDamage("All", 30, 30)
@@ -774,7 +774,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 
 			src.verbs -= /mob/living/carbon/human/santa/verb/santa_gifts
 			src.visible_message("<span class='alert'><B>[src] throws out a bunch of Spacemas presents from nowhere!</B></span>")
-			playsound(usr.loc, "sound/machines/fortune_laugh.ogg", 25, 1, -1)
+			playsound(usr.loc, "sound/machines/fortune_laugh.ogg", 25, 1, SOUND_RANGE_STANDARD)
 			src.transforming = 1
 			var/to_throw = rand(3,12)
 
@@ -805,7 +805,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 
 			src.verbs -= /mob/living/carbon/human/santa/verb/santa_food
 			src.visible_message("<span class='alert'><B>[src] casts out a whole shitload of snacks from nowhere!</B></span>")
-			playsound(usr.loc, "sound/machines/fortune_laugh.ogg", 25, 1, -1)
+			playsound(usr.loc, "sound/machines/fortune_laugh.ogg", 25, 1, SOUND_RANGE_STANDARD)
 			src.transforming = 1
 			var/to_throw = rand(6,18)
 
@@ -837,7 +837,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				return
 
 			src.verbs -= /mob/living/carbon/human/santa/verb/santa_warmth
-			playsound(src.loc, "sound/effects/MagShieldUp.ogg", 100, 1, 0)
+			playsound(src.loc, "sound/effects/MagShieldUp.ogg", 100, 1, SOUND_RANGE_STANDARD)
 			src.visible_message("<span class='alert'><B>[src] summons the warmth of a nice toasty fireplace!</B></span>")
 			for (var/mob/living/M in view(src,5))
 				if (M.bioHolder)
@@ -861,8 +861,8 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			var/area/thearea = get_telearea(A)
 
 			src.visible_message("<span class='alert'><B>[src] poofs away in a puff of cold, snowy air!</B></span>")
-			playsound(usr.loc, "sound/effects/bamf.ogg", 25, 1, -1)
-			playsound(usr.loc, "sound/machines/fortune_laugh.ogg", 25, 1, -1)
+			playsound(usr.loc, "sound/effects/bamf.ogg", 25, 1, SOUND_RANGE_STANDARD)
+			playsound(usr.loc, "sound/machines/fortune_laugh.ogg", 25, 1, SOUND_RANGE_STANDARD)
 			var/datum/effects/system/harmless_smoke_spread/smoke = new /datum/effects/system/harmless_smoke_spread()
 			smoke.set_up(1, 0, usr.loc)
 			smoke.attach(usr)
@@ -896,7 +896,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			for (var/mob/living/carbon/cube/meat/krampus/K in view(7,src))
 				src.visible_message("<span class='alert'><B>[src] makes a stern gesture at [K]!</B></span>")
 				boutput(K, "<span class='alert'>You have been banished by Santa Claus!</span>")
-				playsound(usr.loc, "sound/effects/bamf.ogg", 25, 1, -1)
+				playsound(usr.loc, "sound/effects/bamf.ogg", 25, 1, SOUND_RANGE_STANDARD)
 				smoke.set_up(1, 0, K.loc)
 				smoke.attach(K)
 				smoke.start()
@@ -967,14 +967,14 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				M.changeStatus("weakened", 5 SECONDS)
 				random_brute_damage(M, 10,1)
 				M.take_brain_damage(rand(5,10))
-				playsound(M.loc, "fleshbr1.ogg", attack_volume, 1, -1)
-				playsound(M.loc, "loudcrunch2.ogg", attack_volume, 1, -1)
+				playsound(M.loc, "fleshbr1.ogg", attack_volume, 1, SOUND_RANGE_STANDARD)
+				playsound(M.loc, "loudcrunch2.ogg", attack_volume, 1, SOUND_RANGE_STANDARD)
 				if (istype(M.loc,/turf/))
 					src.set_loc(M.loc)
 			else if(isobj(AM))
 				var/obj/O = AM
 				if(O.density)
-					playsound(O.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", attack_volume, 1, 0, 0.4)
+					playsound(O.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", attack_volume, 1, 0, SOUND_RANGE_STANDARD)
 					for (var/mob/C in viewers(src))
 						shake_camera(C, 8, 16)
 						C.show_message("<span class='alert'><B>[src] [attack_text] on [O]!</B></span>", 1)
@@ -988,7 +988,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 					for (var/mob/C in viewers(src))
 						shake_camera(C, 8, 16)
 						C.show_message("<span class='alert'><B>[src] [attack_text] on [T]!</B></span>", 1)
-					playsound(T.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", attack_volume, 1, 0, 0.4)
+					playsound(T.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", attack_volume, 1, 0, SOUND_RANGE_STANDARD)
 					T.ex_act(attack_strength)
 
 			now_pushing = 0
@@ -1033,15 +1033,15 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				return
 			src.verbs -= /mob/living/carbon/human/krampus/verb/krampus_leap
 			src.transforming = 1
-			playsound(src.loc, "sound/misc/rustle5.ogg", 100, 1, 0, 0.3)
+			playsound(src.loc, "sound/misc/rustle5.ogg", 100, 1, SOUND_RANGE_STANDARD, 0.3)
 			src.visible_message("<span class='alert'><B>[src] leaps high into the air, heading right for [M]!</B></span>")
 			animate_fading_leap_up(src)
 			sleep(2.5 SECONDS)
 			src.set_loc(target)
-			playsound(src.loc, "sound/voice/animal/bull.ogg", 50, 1, 0, 0.8)
+			playsound(src.loc, "sound/voice/animal/bull.ogg", 50, 1, SOUND_RANGE_STANDARD, 0.8)
 			animate_fading_leap_down(src)
 			SPAWN_DBG(0)
-				playsound(M.loc, "Explosion1.ogg", 50, 1, -1)
+				playsound(M.loc, "Explosion1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				for (var/mob/C in viewers(src))
 					shake_camera(C, 10, 64)
 					C.show_message("<span class='alert'><B>[src] slams down onto the ground!</B></span>", 1)
@@ -1051,7 +1051,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 					if (X == src)
 						continue
 					X.ex_act(OLD_EX_LIGHT)
-					playsound(X.loc, "fleshbr1.ogg", 50, 1, -1)
+					playsound(X.loc, "fleshbr1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				src.transforming = 0
 
 			SPAWN_DBG(1 MINUTE)
@@ -1072,11 +1072,11 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				for (var/mob/C in viewers(src))
 					shake_camera(C, 10, 64)
 					C.show_message("<span class='alert'><B>[src] stomps the ground with [his_or_her(src)] huge feet!</B></span>", 1)
-				playsound(src.loc, "meteorimpact.ogg", 80, 1, 1, 0.6)
+				playsound(src.loc, "meteorimpact.ogg", 80, 1, SOUND_RANGE_STANDARD, 0.6)
 				for (var/mob/living/M in view(src,2))
 					if (M == src)
 						continue
-					playsound(M.loc, "fleshbr1.ogg", 40, 1, -1)
+					playsound(M.loc, "fleshbr1.ogg", 40, 1, SOUND_RANGE_STANDARD)
 					M.ex_act(OLD_EX_LIGHT)
 				for (var/turf/T in range(src,3))
 					animate_shake(T,5,rand(3,8),rand(3,8))
@@ -1100,7 +1100,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 			var/area/thearea = get_telearea(A)
 
 			src.visible_message("<span class='alert'><B>[src] poofs away in a puff of cold, snowy air!</B></span>")
-			playsound(usr.loc, "sound/effects/bamf.ogg", 25, 1, -1)
+			playsound(usr.loc, "sound/effects/bamf.ogg", 25, 1, SOUND_RANGE_STANDARD)
 			var/datum/effects/system/harmless_smoke_spread/smoke = new /datum/effects/system/harmless_smoke_spread()
 			smoke.set_up(1, 0, usr.loc)
 			smoke.attach(usr)
@@ -1143,7 +1143,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				G.state = 1
 				G.update_icon()
 				src.set_dir(get_dir(src, M))
-				playsound(src.loc, "sound/voice/animal/werewolf_attack3.ogg", 65, 1, 0, 0.5)
+				playsound(src.loc, "sound/voice/animal/werewolf_attack3.ogg", 65, 1, SOUND_RANGE_STANDARD, 0.5)
 				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 65, 1)
 
 		krampus_crush()
@@ -1206,14 +1206,14 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 						boutput(src, "<span class='alert'>Your prey escaped! Curses!</span>")
 					else
 						src.visible_message("<span class='alert'><B>[src] devours [H] whole!</B></span>")
-						playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, -2)
+						playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, SOUND_RANGE_STANDARD)
 						H.death(1)
 						H.ghostize()
 						qdel(H)
 						qdel(G)
 						src.HealDamage("All", 15, 15)
 						sleep(1 SECOND)
-						playsound(src.loc, pick("sound/voice/burp_alien.ogg"), 50, 1, 0 ,0.5)
+						playsound(src.loc, pick("sound/voice/burp_alien.ogg"), 50, 1, SOUND_RANGE_STANDARD, 0.5)
 
 /obj/stocking
 	name = "stocking"

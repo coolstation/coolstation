@@ -162,7 +162,7 @@
 			var/added = intcap.give(src.chargerate * mult)
 			//boutput(world, "yep [added / CELLRATE]")
 			if(!src.canInterdict)
-				playsound(src.loc, src.sound_interdict_run, 5, 0, 0, 0.8)
+				playsound(src.loc, src.sound_interdict_run, 5, 0, SOUND_RANGE_STANDARD, 0.8)
 			use_power(added / CELLRATE)
 		if(intcap.charge == intcap.maxcharge && !src.canInterdict)
 			doupdateicon = 0

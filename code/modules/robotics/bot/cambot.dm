@@ -279,7 +279,7 @@
 					var/obj/item/photo/P = src.camera.create_photo(target, src.emagged)
 					if (P)
 						src.visible_message("[src] takes \a [target == src ? "selfie! How?" : P]!")
-					playsound(src, "sound/items/polaroid[rand(1,2)].ogg", 75, 1, -3)
+					playsound(src, "sound/items/polaroid[rand(1,2)].ogg", 75, 1, SOUND_RANGE_STANDARD)
 
 				if (src.emagged) // if emagged, flash the target too
 					if (ismob(target))

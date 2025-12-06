@@ -221,7 +221,7 @@
 		updateicon()
 
 		usr.show_text("You have selected [P.name]. Walk into an opening on the side of this machine to purchase this item.", "blue")
-		playsound(src.loc, "sound/machines/keypress.ogg", 50, 1, extrarange = -15, pitch = 0.60)
+		playsound(src.loc, "sound/machines/keypress.ogg", 50, 1, range = SOUND_RANGE_SMALL, pitch = 0.60)
 
 	proc/just_pick_anything()
 		for (var/datum/geneboothproduct/P as anything in offered_genes)
@@ -269,9 +269,9 @@
 						offered_genes -= selected_product
 						reload_contexts()
 
-					playsound(src, 'sound/machines/ding.ogg', 50, 1, 0, 1.4)
+					playsound(src, 'sound/machines/ding.ogg', 50, 1, SOUND_RANGE_STANDARD, 1.4)
 			else
-				playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, 0, 0.5)
+				playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, SOUND_RANGE_STANDARD, 0.5)
 
 			//occupant.set_loc(src.loc)
 

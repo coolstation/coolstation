@@ -550,6 +550,9 @@
 			NewLoc = get_step(src, direct)
 		if(isturf(NewLoc))
 			src.set_loc(NewLoc)
+		#ifdef COMSIG_MOVABLE_MOVED
+		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, A, direct) // i THINK we want this, so components can fire on ghosts and such
+		#endif
 	else
 		. = ..()
 		if (A != src.loc &&  !src.skip_loc_change_updates)

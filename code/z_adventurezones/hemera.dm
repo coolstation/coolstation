@@ -385,7 +385,7 @@ Obsidian Crown
 						continue
 					randomturfs.Add(T)
 				boutput(host, "<span class='combat'>[that_jerk] is warped away!</span>")
-				playsound(host.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+				playsound(host.loc, "sound/effects/mag_warp.ogg", 25, 1, SOUND_RANGE_STANDARD)
 				that_jerk.set_loc(pick(randomturfs))
 
 		if (host.get_damage() < 0)
@@ -430,7 +430,7 @@ Obsidian Crown
 
 				boutput(M, "<span class='notice'>You are caught in a magical warp field!</span>")
 				M.visible_message("<span class='combat'>[M] is warped away!</span>")
-				playsound(M.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+				playsound(M.loc, "sound/effects/mag_warp.ogg", 25, 1, SOUND_RANGE_STANDARD)
 				M.set_loc(pick(randomturfs))
 
 		if (armor_paired != -1 && prob(50) && host.max_health > 10)

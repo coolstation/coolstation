@@ -19,7 +19,7 @@
 	light.enable()
 	SPAWN_DBG(0)
 		animate_portal_appear(src)
-		playsound(src.loc, "warp", 50, 1, 0.1, 0.7)
+		playsound(src.loc, "warp", 50, 1, SOUND_RANGE_STANDARD, 0.7)
 
 /obj/portal/Bumped(mob/M as mob|obj)
 	SPAWN_DBG(0)
@@ -58,7 +58,7 @@
 	light.enable()
 	SPAWN_DBG(0)
 		animate_portal_appear(src)
-		playsound(src.loc, "warp", 50, 1, 0.1, 0.7)
+		playsound(src.loc, "warp", 50, 1, SOUND_RANGE_STANDARD, 0.7)
 	..()
 
 /obj/portal/proc/teleport(atom/movable/M as mob|obj)
@@ -74,7 +74,7 @@
 		return
 	if (istype(M, /atom/movable))
 		animate_portal_tele(src)
-		playsound(src.loc, "warp", 50, 1, 0.2, 1.2)
+		playsound(src.loc, "warp", 50, 1, SOUND_RANGE_STANDARD, 1.2)
 		if (!isturf(target))
 			var/turf/destination = get_turf(src.target) // Beacons and tracking implant might have been moved.
 			if (destination)

@@ -73,7 +73,7 @@
 
 			if (owner.lying && !owner.buckled)
 				if (human_owner)
-					playsound(owner.loc, 'sound/misc/body_thud.ogg', 40, 1, 0.3)
+					playsound(owner.loc, 'sound/misc/body_thud.ogg', 40, 1, SOUND_RANGE_STANDARD)
 				else
-					playsound(owner.loc, 'sound/misc/body_thud.ogg', 15, 1, 0.3)
+					playsound(owner.loc, 'sound/misc/body_thud.ogg', 15, 1, SOUND_RANGE_STANDARD)
 		..()

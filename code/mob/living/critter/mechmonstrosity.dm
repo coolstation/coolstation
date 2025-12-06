@@ -493,7 +493,7 @@
 	ChaseAttack(mob/M)
 		if (!src.alive) return
 		M.visible_message("<span class='combat'><B>[src]</B> bashes [src.target]!</span>")
-		playsound(M.loc, "punch", 25, 1, -1)
+		playsound(M.loc, "punch", 25, 1, SOUND_RANGE_STANDARD)
 		random_brute_damage(M, rand(5,10),1)
 		if(prob(15)) // too mean before
 			M.visible_message("<span class='combat'><B>[M]</B> staggers!</span>")
@@ -505,7 +505,7 @@
 		src.attacking = 1
 		if(!M.stat)
 			M.visible_message("<span class='combat'><B>[src]</B> scratches [src.target] mercilessly!</span>")
-			playsound(src.loc, "sound/impact_sounds/Blade_Small.ogg", 50, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Blade_Small.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			if(prob(10)) // lowered probability slightly
 				M.visible_message("<span class='combat'><B>[M]</B> staggers!</span>")
 				M.changeStatus("stunned", 2 SECONDS)
@@ -513,7 +513,7 @@
 			random_brute_damage(M, rand(5,10),1)
 		else
 			M.visible_message("<span class='combat'><B>[src]</B> hits [src.target] with a mechanical arm!</span>")
-			playsound(src.loc, "punch", 30, 1, -2)
+			playsound(src.loc, "punch", 30, 1, SOUND_RANGE_STANDARD)
 			random_brute_damage(M, rand(10,15),1)
 
 		SPAWN_DBG(1 SECOND)

@@ -271,7 +271,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		New()
 			..()
 			SPAWN_DBG(rand(1, 3))
-				playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 20, 0.1, 0, 0.8)
+				playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 20, 0.1, SOUND_RANGE_STANDARD, 0.8)
 
 
 	rifle_loud
@@ -296,7 +296,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		New()
 			..()
 			SPAWN_DBG(rand(1, 3))
-				playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 20, 0.1, 0, 0.9)
+				playsound(src.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 20, 0.1, SOUND_RANGE_STANDARD, 0.9)
 	shotgun
 		red
 			icon_state = "shotgun_red"
@@ -325,7 +325,7 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic)
 		New()
 			..()
 			SPAWN_DBG(rand(2, 4))
-				playsound(src.loc, "sound/weapons/casings/casing-large-0[rand(1,4)].ogg", 35, 0.1, 0, 0.8)
+				playsound(src.loc, "sound/weapons/casings/casing-large-0[rand(1,4)].ogg", 35, 0.1, SOUND_RANGE_STANDARD, 0.8)
 
 	grenade
 		w_class = W_CLASS_SMALL

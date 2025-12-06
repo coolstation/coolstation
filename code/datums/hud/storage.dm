@@ -55,14 +55,16 @@
 								secondcolon = 0
 
 						var/x = copytext(clicked_loc,1,firstcolon ? firstcolon : comma)
-						var/px = firstcolon ? copytext(clicked_loc,firstcolon+1,comma) : 0
+						//var/px = firstcolon ? copytext(clicked_loc,firstcolon+1,comma) : 0
 						var/y = copytext(clicked_loc,comma+1,secondcolon ? secondcolon : 0)
 						var/py = secondcolon ? copytext(clicked_loc,secondcolon+1) : 0
 
+/*
 						if (user.client && user.client.byond_version == 512 && user.client.byond_build == 1469) //sWAP EM BECAUSE OF BAD BYOND BUG
 							var/temp = y
 							y = px
 							px = temp
+*/
 
 						//ddumb hack for offset storage
 						var/turfd = (isturf(master.loc) && !istype(master, /obj/item/storage/bible))
