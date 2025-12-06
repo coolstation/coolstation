@@ -51,7 +51,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	throw_unlimited = 0
 	color = "#ffffff"
 	special_volume_override = -1
-	turf_flags = MINE_MAP_PRESENTS_EMPTY
+	turf_flags = MINE_MAP_PRESENTS_EMPTY | IS_ATMOSPHERE
 
 /* PLEASE DO NOT DO THIS
 	Entered(atom/movable/O)
@@ -172,7 +172,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
 	allows_vehicles = 1
-	turf_flags = IS_TYPE_SIMULATED | MOB_SLIP | MOB_STEP | MINE_MAP_PRESENTS_EMPTY
+	turf_flags = IS_TYPE_SIMULATED | MOB_SLIP | MOB_STEP | MINE_MAP_PRESENTS_EMPTY | IS_ATMOSPHERE
 
 	New()
 		..()
