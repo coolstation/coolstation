@@ -67,7 +67,8 @@
 	icon_closed = "white"
 	spawn_contents = list(/obj/item/clothing/under/color/white = 4,
 	/obj/item/clothing/shoes/brown = 4,
-	/obj/item/clothing/head/white  = 2)
+	/obj/item/clothing/head/white  = 2,
+	/obj/item/material_piece/cloth/rag = 2)
 
 /obj/storage/closet/wardrobe/pink
 	name = "pink wardrobe"

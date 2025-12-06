@@ -29,7 +29,7 @@
 	desc = "A breach in the spatial fabric. Extremely difficult to pass."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "spat-h"
-	anchored = 1.0
+	anchored = ANCHORED
 	opacity = 1
 	density = 1
 	var/stabilized = 0

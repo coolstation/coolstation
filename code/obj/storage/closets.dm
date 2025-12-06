@@ -1,9 +1,12 @@
 /obj/storage/closet
 	name = "closet"
 	desc = "It's a closet! This one can be opened AND closed."
+	hint = "you can seal this with a welding tool."
 	soundproofing = 3
 	can_flip_bust = 1
 	p_class = 3
+	open_sound = "sound/impact_sounds/locker_open2.ogg"
+	close_sound = "sound/impact_sounds/lockerclose.ogg"
 
 	New()
 		. = ..()
@@ -19,6 +22,8 @@
 	icon_state = "emergency"
 	icon_closed = "emergency"
 	icon_opened = "emergency-open"
+	open_sound = "sound/impact_sounds/locker_open.ogg"
+	close_sound = "sound/impact_sounds/lockerslam.ogg"
 
 	make_my_stuff() // cogwerks: adjusted probabilities a bit
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
@@ -49,6 +54,8 @@
 	icon_state = "fire"
 	icon_closed = "fire"
 	icon_opened = "fire-open"
+	open_sound = "sound/impact_sounds/locker_open.ogg"
+	close_sound = "sound/impact_sounds/lockerslam.ogg"
 
 	make_my_stuff()
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
@@ -72,6 +79,8 @@
 /obj/storage/closet/janitor
 	name = "custodial supplies closet"
 	desc = "It's a closet! This one can be opened AND closed. Comes with janitor's clothes and biohazard gear."
+	open_sound = "sound/impact_sounds/locker_open.ogg"
+	close_sound = "sound/impact_sounds/lockerclose.ogg"
 	spawn_contents = list(/obj/item/storage/box/biohazard_bags,
 							/obj/item/storage/box/trash_bags = 2,
 							/obj/item/clothing/suit/bio_suit,
@@ -104,6 +113,9 @@
 	icon_opened = "coffin-open"
 	layer = 2.5
 	icon_welded = "welded-coffin"
+	open_sound = "sound/impact_sounds/coffin_open.ogg"
+	close_sound = "sound/impact_sounds/coffin_close.ogg"
+
 
 	nt
 		icon_closed = "ntcoffin"
@@ -180,7 +192,7 @@
 /obj/storage/closet/thunderdome
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
-	anchored = 1
+	anchored = ANCHORED
 
 /* let us never forget this - haine
 /obj/closet/thunderdome/New()
@@ -340,7 +352,7 @@
 	icon_welded = "mantacontainerleft-welded"
 	bound_height = 96
 	bound_width = 32
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 	open(var/entangleLogic)
 		if (src.open)
@@ -513,7 +525,7 @@
 	icon_welded = "mantacontainerright-welded"
 	bound_height = 96
 	bound_width = 32
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/storage/closet/radiation
 	name = "radiation supplies closet"

@@ -2,9 +2,10 @@
 	name = "Operating Table"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
+	pass_unstable = TRUE
 	desc = "A table that allows qualified professionals to perform delicate surgeries."
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	mats = 25
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	var/mob/living/carbon/human/victim = null
@@ -109,7 +110,7 @@
 		boutput(user, "<span class='alert'>You need to be closer to the operating table.</span>")
 		return
 	if (get_dist(user,O) > 1)
-		boutput(user, "<span class='alert'>Your target needs to be near you to put them on the operating table.</span>")
+		boutput(user, "<span class='alert'>Your target needs to be near you to put [ismob(O) ? him_or_her(O) : "it"] on the operating table.</span>")
 		return
 
 	var/mob/living/carbon/C = O

@@ -7,6 +7,7 @@
 	flags = FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE
 	object_flags = CAN_REPROGRAM_ACCESS
 	machine_registry_idx = MACHINES_BOTS
+	pass_unstable = PRESERVE_CACHE
 	var/obj/item/card/id/botcard // ID card that the bot "holds".
 	var/access_lookup = "Assistant" // For the get_access() proc. Defaults to staff assistant.
 	var/locked = null
@@ -20,7 +21,7 @@
 	var/emagged = 0
 	var/mob/emagger = null
 	/// The bot's net ID
-	var/botnet_id = null
+	var/net_id = null
 	/// What's it talk like?
 	var/list/speakverbs = list("beeps", "boops")
 	var/text2speech = 0 // dectalk!
@@ -92,7 +93,7 @@
 		SPAWN_DBG(0.5 SECONDS)
 			src.botcard = new /obj/item/card/id(src)
 			src.botcard.access = get_access(src.access_lookup)
-			src.botnet_id = format_net_id("\ref[src]")
+			src.net_id = format_net_id("\ref[src]")
 
 	disposing()
 		botcard = null
@@ -270,71 +271,37 @@
 			if(checkTurfPassable(T))
 				return T
 
-/obj/machinery/bot/proc/navigate_to(atom/the_target, var/move_delay = 10, var/adjacent = 0, max_dist=600, turf/exclude = null)
+/obj/machinery/bot/proc/navigate_to(atom/the_target, var/move_delay = 10, var/adjacent = 0, var/turf/exclude = null, var/max_dist=60)
 	var/target_turf = get_pathable_turf(the_target)
+	if((BOUNDS_DIST(the_target, src) < 0))
+		return
+	if(src.bot_mover?.the_target == target_turf && frustration == 0)
+		return 0
 	if(!target_turf)
 		return 0
 
 	src.KillPathAndGiveUp(0)
-	src.bot_mover = new /datum/robot_mover(newmaster = src, _move_delay = move_delay, _target_turf = target_turf, _current_movepath = current_movepath, _adjacent = adjacent, _scanrate = scanrate, _max_dist = max_dist, _exclude = exclude)
-	return 0
-
-/obj/machinery/bot/proc/navigate_with_navbeacons(atom/the_target, var/move_delay = 10, var/adjacent = 0, max_dist=150, max_stop_dist = 150, turf/exclude = null)
-	var/target_turf = get_pathable_turf(the_target)
-	if(!target_turf)
-		return 0
-
-	src.KillPathAndGiveUp(0)
-
-	var/obj/machinery/navbeacon/nearest_to_self
-	var/selfdist = INFINITY
-	for_by_tcl(navbeacon, /obj/machinery/navbeacon)
-		var/nav_dist = GET_DIST(src, navbeacon)
-		if(nav_dist < selfdist)
-			nearest_to_self = navbeacon
-			selfdist = nav_dist
-			if(selfdist < 5)
-				break
-
-	var/obj/machinery/navbeacon/nearest_to_target
-	var/targdist = INFINITY
-	for_by_tcl(navbeacon, /obj/machinery/navbeacon)
-		var/nav_dist = GET_DIST(target_turf, navbeacon)
-		if(nav_dist < targdist)
-			nearest_to_target = navbeacon
-			targdist = nav_dist
-			if(targdist < 5)
-				break
-
-	if(((targdist + selfdist) / 3) > (GET_DIST(src, target_turf)))
-		src.bot_mover = new /datum/robot_mover(newmaster = src, _move_delay = move_delay, _target_turf = target_turf, _current_movepath = current_movepath, _adjacent = adjacent, _scanrate = scanrate, _max_dist = max_dist, _exclude = exclude)
-		return 0
-	var/list/obj/machinery/navbeacon/stops = NavBeaconAStar(nearest_to_self, nearest_to_target, /obj/machinery/navbeacon/proc/neighbors, /turf/proc/Distance, 20, max_stop_dist)
-	if(length(stops))
-		src.bot_mover = new /datum/robot_mover(newmaster = src, _move_delay = move_delay, _target_turf = target_turf, _current_movepath = current_movepath, _adjacent = adjacent, _scanrate = scanrate, _max_dist = max_dist, _stops = stops, _exclude = exclude)
+	var/datum/robot_mover/mover = new /datum/robot_mover(newmaster = src, _move_delay = move_delay, _target_turf = target_turf, _current_movepath = current_movepath, _adjacent = adjacent, _exclude = exclude, _scanrate = scanrate, _max_dist = max_dist)
+	src.bot_mover = !QDELETED(mover) ? mover : null
 	return 0
 
 /// movement control datum. Why yes, this is copied from secbot.dm. Which was copied from guardbot.dm
-/// Now with navbeacon movement so its sorta not copied?? - Mylie
 /datum/robot_mover
 	var/obj/machinery/bot/master = null
 	var/delay = 3
 	var/atom/the_target
-	var/list/obj/machinery/navbeacon/stops = list()
-	var/travelled_to_stop = 0
-	var/last_stop_net_id
 	var/list/current_movepath
+	var/turf/exclude
 	var/adjacent = 0
 	var/scanrate = 10
-	var/max_dist = 150
-	var/max_beacons = 20
-	var/turf/exclude
+	var/max_dist = 600
 
-	New(obj/machinery/bot/newmaster, _move_delay = 3, _target_turf, _current_movepath, _adjacent = 0, _scanrate = 10, _max_dist = 150, list/obj/machinery/navbeacon/_stops = null, turf/_exclude = null)
+	New(obj/machinery/bot/newmaster, _move_delay = 3, _target_turf, _current_movepath, _adjacent = 0, _exclude = null, _scanrate = 10, _max_dist = 80)
 		..()
 		if(istype(newmaster))
 			src.master = newmaster
 			src.delay = _move_delay
+			src.current_movepath = world.time
 			src.the_target = get_turf(_target_turf)
 			if(!isturf(src.the_target))
 				if(istype(master))
@@ -342,11 +309,11 @@
 					return
 				else
 					qdel(src)
+			src.exclude = exclude
+			src.current_movepath = _current_movepath
 			src.adjacent = _adjacent
 			src.scanrate = _scanrate
 			src.max_dist = _max_dist
-			src.stops = _stops
-			src.exclude = _exclude
 			src.master_move()
 		else
 			qdel(src)
@@ -359,8 +326,6 @@
 			master.moving = FALSE
 		src.master = null
 		src.the_target = null
-		src.stops = null
-		src.exclude = null
 		..()
 
 	proc/master_move()
@@ -372,12 +337,8 @@
 		if(!isturf(master.loc) || !istype(src.the_target))
 			master.KillPathAndGiveUp(0)
 			return
-
-		if(length(stops))
-			master.path = AStar(get_turf(master), src.master.get_pathable_turf(stops[1]), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
-		else
-			master.path = AStar(get_turf(master), src.the_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
-
+		var/compare_movepath = src.current_movepath
+		master.path = get_path_to(src.master, src.the_target, max_distance=src.max_dist, id=master.botcard, skip_first=FALSE, move_through_space=FALSE, exclude = exclude, cardinal_only=TRUE, do_doorcheck=TRUE)
 		if(!length(master.path))
 			qdel(src)
 			return
@@ -392,90 +353,29 @@
 
 			master?.moving = 1
 
-			while(length(src.stops) && !QDELETED(src))
-				while(length(master?.path) && src.the_target && !QDELETED(src))
-					if(!master) break
-					if(!length(master.path)) break
-					if(!master.on)
-						master.frustration = 0
-						break
-
-					if(master.DoWhileMoving()) // We're here! Or something!
-						master.moving = 0
-						master.bot_mover = null
-						master.process() // responsive, robust AI = calling process() a million zillion times
-						master = null
-						qdel(src)
-						return
-
-					src.travelled_to_stop++
-
-					if(length(master?.path) && master.path[1])
-						if(istype(get_turf(master), /turf/space)) // frick it, duckie toys get jetpacks
-							var/obj/effects/ion_trails/I = new()
-							I.set_loc(get_turf(master))
-							I.set_dir(master.dir)
-							flick("ion_fade", I)
-							I.icon_state = "blank"
-							I.pixel_x = master.pixel_x
-							I.pixel_y = master.pixel_y
-							SPAWN_DBG( 20 )
-								if (I && !I.disposed) qdel(I)
-
-						step(master, get_dir(master, master?.path[1]))
-						if(isnull(master))
-							break
-						if(length(master?.path) && master.loc != master.path[1])
-							master.frustration++
-							sleep(delay)
-							continue
-
-						master.path -= master.path[1]
-						sleep(delay)
-					else
-						break // i dunno, it runtimes
-				if(last_stop_net_id)
-					src.stops[1].neighbors[last_stop_net_id] = src.travelled_to_stop
-				src.travelled_to_stop = 0
-				var/obj/machinery/navbeacon/last_stop = src.stops[1]
-				src.last_stop_net_id = last_stop.net_id
-				src.stops -= src.stops[1]
-				if(length(src.stops))
-					master.path = AStar(get_turf(master), src.master.get_pathable_turf(src.stops[1]), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
-				else
-					master.path = AStar(get_turf(master), src.the_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, src.max_dist, master.botcard, src.exclude)
-					break
-
 			while(length(master?.path) && src.the_target && !QDELETED(src))
+				if(compare_movepath != current_movepath) break
 				if(!master) break
 				if(!length(master.path)) break
 				if(!master.on)
 					master.frustration = 0
 					break
 
-				if(master.DoWhileMoving()) // We're here! Or something!
-					master.moving = 0
-					master.bot_mover = null
-					master.process() // responsive, robust AI = calling process() a million zillion times
-					master = null
-					qdel(src)
-					return
-
-				src.travelled_to_stop++
+				if(master.DoWhileMoving()) break	// We're here! Or something!
 
 				if(length(master?.path) && master.path[1])
 					if(istype(get_turf(master), /turf/space)) // frick it, duckie toys get jetpacks
-						var/obj/effects/ion_trails/I = new()
+						var/obj/effects/ion_trails/I = new /obj/effects/ion_trails
 						I.set_loc(get_turf(master))
 						I.set_dir(master.dir)
 						flick("ion_fade", I)
 						I.icon_state = "blank"
 						I.pixel_x = master.pixel_x
 						I.pixel_y = master.pixel_y
-						SPAWN_DBG( 20 )
+						SPAWN_DBG(2 SECONDS)
 							if (I && !I.disposed) qdel(I)
 
-					step(master, get_dir(master, master?.path[1]))
+					step_to(master, master?.path[1])
 					if(isnull(master))
 						break
 					if(length(master?.path) && master.loc != master.path[1])
@@ -495,4 +395,3 @@
 				master.process() // responsive, robust AI = calling process() a million zillion times
 				master = null
 				qdel(src)
-

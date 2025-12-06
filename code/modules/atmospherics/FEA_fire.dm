@@ -79,7 +79,7 @@
 
 /obj/hotspot
 	mouse_opacity = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
 

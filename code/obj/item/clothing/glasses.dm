@@ -83,10 +83,10 @@
 			if (istype(H.glasses, /obj/item/clothing/glasses/meson)) //hamdling of the rest is done in life.dm
 				if (src.on)
 					H.vision.set_scan(1)
-					APPLY_MOB_PROPERTY(toggler, PROP_MESONVISION, src)
+					APPLY_ATOM_PROPERTY(toggler, PROP_MESONVISION, src)
 				else
 					H.vision.set_scan(0)
-					REMOVE_MOB_PROPERTY(toggler, PROP_MESONVISION, src)
+					REMOVE_ATOM_PROPERTY(toggler, PROP_MESONVISION, src)
 
 	equipped(var/mob/living/user, var/slot)
 		..()
@@ -94,7 +94,7 @@
 			return
 		if (slot == SLOT_GLASSES && on)
 			user.vision.set_scan(1)
-			APPLY_MOB_PROPERTY(user, PROP_MESONVISION, src)
+			APPLY_ATOM_PROPERTY(user, PROP_MESONVISION, src)
 
 	unequipped(var/mob/living/user)
 		..()
@@ -104,7 +104,7 @@
 
 	unequipped(mob/user)
 		. = ..()
-		REMOVE_MOB_PROPERTY(user, PROP_MESONVISION, src)
+		REMOVE_ATOM_PROPERTY(user, PROP_MESONVISION, src)
 
 /obj/item/clothing/glasses/meson/abilities = list(/obj/ability_button/meson_toggle)
 
@@ -141,11 +141,11 @@
 
 	equipped(mob/user, slot)
 		. = ..()
-		APPLY_MOB_PROPERTY(user, PROP_GHOSTVISION, src)
+		APPLY_ATOM_PROPERTY(user, PROP_GHOSTVISION, src)
 
 	unequipped(mob/user)
 		. = ..()
-		REMOVE_MOB_PROPERTY(user, PROP_GHOSTVISION, src)
+		REMOVE_ATOM_PROPERTY(user, PROP_GHOSTVISION, src)
 
 /obj/item/clothing/glasses/regular/ecto/goggles
 	name = "ectoplasmoleic imager"
@@ -258,16 +258,16 @@
 	equipped(mob/user, slot)
 		. = ..()
 		if(upgraded)
-			APPLY_MOB_PROPERTY(user, PROP_THERMALVISION_MK2, src)
+			APPLY_ATOM_PROPERTY(user, PROP_THERMALVISION_MK2, src)
 		else
-			APPLY_MOB_PROPERTY(user, PROP_THERMALVISION, src)
+			APPLY_ATOM_PROPERTY(user, PROP_THERMALVISION, src)
 
 	unequipped(mob/user)
 		. = ..()
 		if(upgraded)
-			REMOVE_MOB_PROPERTY(user, PROP_THERMALVISION_MK2, src)
+			REMOVE_ATOM_PROPERTY(user, PROP_THERMALVISION_MK2, src)
 		else
-			REMOVE_MOB_PROPERTY(user, PROP_THERMALVISION, src)
+			REMOVE_ATOM_PROPERTY(user, PROP_THERMALVISION, src)
 
 	emp_act()
 		if (ishuman(src.loc))
@@ -278,16 +278,16 @@
 				H.change_eye_blurry(5)
 				H.bioHolder.AddEffect("bad_eyesight")
 				if(upgraded)
-					REMOVE_MOB_PROPERTY(H, PROP_THERMALVISION_MK2, src)
+					REMOVE_ATOM_PROPERTY(H, PROP_THERMALVISION_MK2, src)
 				else
-					REMOVE_MOB_PROPERTY(H, PROP_THERMALVISION, src)
+					REMOVE_ATOM_PROPERTY(H, PROP_THERMALVISION, src)
 
 				SPAWN_DBG(10 SECONDS)
 					H.bioHolder.RemoveEffect("bad_eyesight")
 					if(upgraded)
-						APPLY_MOB_PROPERTY(H, PROP_THERMALVISION_MK2, src)
+						APPLY_ATOM_PROPERTY(H, PROP_THERMALVISION_MK2, src)
 					else
-						APPLY_MOB_PROPERTY(H, PROP_THERMALVISION, src)
+						APPLY_ATOM_PROPERTY(H, PROP_THERMALVISION, src)
 		return
 
 /obj/item/clothing/glasses/thermal/traitor //sees people through walls
@@ -514,11 +514,11 @@
 
 	equipped(mob/user, slot)
 		. = ..()
-		APPLY_MOB_PROPERTY(user, PROP_SPECTRO, src)
+		APPLY_ATOM_PROPERTY(user, PROP_SPECTRO, src)
 
 	unequipped(mob/user)
 		. = ..()
-		REMOVE_MOB_PROPERTY(user, PROP_SPECTRO, src)
+		REMOVE_ATOM_PROPERTY(user, PROP_SPECTRO, src)
 
 /obj/item/clothing/glasses/spectro/monocle //used for bartender job reward
 	name = "spectroscopic monocle"
@@ -604,11 +604,11 @@
 
 	equipped(mob/user, slot)
 		. = ..()
-		APPLY_MOB_PROPERTY(user, PROP_NIGHTVISION, src)
+		APPLY_ATOM_PROPERTY(user, PROP_NIGHTVISION, src)
 
 	unequipped(mob/user)
 		. = ..()
-		REMOVE_MOB_PROPERTY(user, PROP_NIGHTVISION, src)
+		REMOVE_ATOM_PROPERTY(user, PROP_NIGHTVISION, src)
 
 	emp_act()
 		if (ishuman(src.loc))
@@ -620,3 +620,25 @@
 				H.bioHolder.AddEffect("bad_eyesight")
 				SPAWN_DBG(10 SECONDS)
 					H.bioHolder.RemoveEffect("bad_eyesight")
+
+
+
+/obj/item/clothing/glasses/packetvision
+	name = "\improper Packetvision HUD"
+	desc = "These let you see wireless packets like some sort of a hackerman."
+	item_state = "glasses"
+	icon_state = "glasses"
+	color = "#a0ffa0"
+	color_r = 0.9
+	color_g = 1.0
+	color_b = 0.9
+
+	equipped(var/mob/user, var/slot)
+		..()
+		if (slot == SLOT_GLASSES)
+			get_image_group(CLIENT_IMAGE_GROUP_PACKETVISION).add_mob(user)
+
+	unequipped(var/mob/user)
+		if(src.equipped_in_slot == SLOT_GLASSES)
+			get_image_group(CLIENT_IMAGE_GROUP_PACKETVISION).remove_mob(user)
+		..()

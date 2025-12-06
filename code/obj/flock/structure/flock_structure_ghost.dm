@@ -1,4 +1,5 @@
 //so this is like a fuckinn building ghost, ya know? the ones that like a lot of games have. drones should hopefully waltz over to it and input resources
+/*
 /obj/flock_structure/ghost
 	name = "weird lookin ghost building"
 	desc = "It's some weird looking ghost building. Seems like its under construction, You can see faint strands of material floating in it."
@@ -46,3 +47,4 @@
 	if(src.building)
 		new building(get_turf(src), src.flock)
 	qdel(src)
+*/

@@ -163,9 +163,9 @@
 
 		else if (istype(W, /obj/item/device/analyzer/healthanalyzer))
 			animate_scanning(src, "#0AEFEF")
-			var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "name", src.donor_name)
+			var/datum/db_record/MR = data_core.general.find_record("name", src.donor_name)
 			if(MR)
-				boutput(user, "<span style='color:purple'><b>Faxed copy on file</b> -  [MR.fields["name"]]</span>")
+				boutput(user, "<span style='color:purple'><b>Faxed copy on file</b> -  [MR["name"]]</span>")
 			else
 				boutput(user, "<span style='color:purple'><b>Faxed copy not on file</b></span>")
 			return

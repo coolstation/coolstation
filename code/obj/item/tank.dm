@@ -28,8 +28,8 @@ Contains:
 	throw_speed = 1
 	throw_range = 4
 	stamina_damage = 55
-	stamina_cost = 23
-	stamina_crit_chance = 10
+//	stamina_cost = 23
+//	stamina_crit_chance = 10
 
 	New()
 		..()
@@ -328,13 +328,13 @@ Contains:
 			processing_items |= src
 			if(src.process())
 				var/mob/M = src.loc // process can't return true otherwise
-				APPLY_MOB_PROPERTY(M, PROP_ATOM_FLOATING, src)
+				APPLY_ATOM_PROPERTY(M, PROP_ATOM_FLOATING, src)
 		else
 			boutput(usr, "<span class='notice'>The jetpack is now off</span>")
 			processing_items.Remove(src)
 			if(ismob(src.loc))
 				var/mob/M = src.loc
-				REMOVE_MOB_PROPERTY(M, PROP_ATOM_FLOATING, src)
+				REMOVE_ATOM_PROPERTY(M, PROP_ATOM_FLOATING, src)
 		return
 
 	proc/allow_thrust(num, mob/user as mob)
@@ -387,7 +387,7 @@ Contains:
 	w_class = W_CLASS_SMALL
 	force = 3.0
 	stamina_damage = 30
-	stamina_cost = 16
+//	stamina_cost = 16
 	desc = "A small tank that is labelled to contain oxygen. In emergencies, wear a mask that can be used to transfer air, such as a breath mask, turn on the release valve on the oxygen tank, and put it on your belt."
 	wear_image_icon = 'icons/mob/belt.dmi'
 	distribute_pressure = 17 // setting these things to start at the minimum pressure needed to breathe - Haine

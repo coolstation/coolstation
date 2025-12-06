@@ -65,8 +65,8 @@
 	icon_state = "gnome"
 	w_class = W_CLASS_BULKY
 	stamina_damage = 40
-	stamina_cost = 20
-	stamina_crit_chance = 5
+//	stamina_cost = 20
+//	stamina_crit_chance = 5
 	var/last_laugh = 0
 
 	New()
@@ -121,7 +121,7 @@
 	desc = "A tube made of cardboard. Extremely non-threatening."
 	w_class = W_CLASS_TINY
 	stamina_damage = 5
-	stamina_cost = 1
+//	stamina_cost = 1
 
 	New()
 		..()
@@ -153,7 +153,7 @@
 	desc = "A sheet of creased cardboard."
 	w_class = W_CLASS_TINY
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 
 	attack_self(mob/user as mob)
 		boutput(user, __blue("You deftly fold [src] into a party hat!."))
@@ -168,7 +168,7 @@
 /obj/item/dummy
 	name = "dummy"
 	invisibility = 101.0
-	anchored = 1.0
+	anchored = ANCHORED
 	flags = TABLEPASS
 	burn_possible = FALSE
 
@@ -180,8 +180,8 @@
 	item_state = "rubber_chicken"
 	w_class = W_CLASS_SMALL
 	stamina_damage = 10
-	stamina_cost = 5
-	stamina_crit_chance = 3
+//	stamina_cost = 5
+//	stamina_crit_chance = 3
 
 /obj/item/module
 	icon = 'icons/obj/items/module.dmi'
@@ -228,8 +228,8 @@
 	throwforce = 10
 	rand_pos = 8
 	stamina_damage = 40
-	stamina_cost = 20
-	stamina_crit_chance = 5
+//	stamina_cost = 20
+//	stamina_crit_chance = 5
 
 /obj/item/emeter
 	name = "e-meter"
@@ -483,8 +483,9 @@
 /obj/item/wrestlingbell
 	name = "Wrestling bell"
 	desc = "A bell used to signal the start of a wrestling match"
-	anchored = 1
-	density = 1
+	anchored = ANCHORED
+	density = FALSE
+	pass_unstable = FALSE
 	icon = 'icons/obj/wrestlingbell.dmi'
 	icon_state = "wrestlingbell"
 	deconstruct_flags = DECON_WRENCH
@@ -500,7 +501,7 @@
 /obj/item/trophy
 	name = "trophy"
 	desc = "You're winner! You did it! You did the thing! Good job!"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 0
 	icon = 'icons/obj/junk.dmi'
 	icon_state = "trophy"
@@ -604,6 +605,7 @@
 	icon = 'icons/obj/junk.dmi'
 	icon_state = "sarc_0"
 	density = 1
+	pass_unstable = FALSE
 	var/gnome = 1
 
 	attackby(obj/item/W as obj, mob/user as mob)

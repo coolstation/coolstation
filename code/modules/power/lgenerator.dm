@@ -5,7 +5,7 @@
 	name = "Experimental Local Generator"
 	desc = "This machine generates power through the combustion of plasma, charging either the local APC or an inserted power cell."
 	icon_state = "ggen0"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	//layer = FLOOR_EQUIP_LAYER1 //why was this set to this
 	mats = 10
@@ -150,7 +150,7 @@
 			if (!istype(src.loc, /turf/floor/))
 				src.visible_message("<span class='alert'>[src]'s retention bolts fail, triggering an emergency shutdown!</span>")
 				playsound(src.loc, "sound/machines/buzz-two.ogg", 100, 0)
-				src.anchored = 0 // It might have happened, I guess?
+				src.anchored = UNANCHORED // It might have happened, I guess?
 				src.active = 0
 				src.update_icon()
 				src.updateDialog()
@@ -308,16 +308,16 @@
 			if (!src.active)
 				if (!istype(src.loc, /turf/floor/))
 					usr.show_text("You can't secure the generator here.", "red")
-					src.anchored = 0 // It might have happened, I guess?
+					src.anchored = UNANCHORED // It might have happened, I guess?
 					src.update_icon()
 					return
 				playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
 				if (src.anchored)
-					src.anchored = 0
+					src.anchored = UNANCHORED
 					src.update_icon()
 					src.our_APC = null // It's just gonna cause trouble otherwise.
 				else
-					src.anchored = 1
+					src.anchored = ANCHORED
 					src.update_icon()
 				src.visible_message("<span class='alert'>[usr] [src.anchored ? "bolts" : "unbolts"] [src] [src.anchored ? "to" : "from"] the floor.</span>")
 			else

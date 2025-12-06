@@ -13,7 +13,7 @@
 	layer = 5.0 // Todo layer
 	bot_move_delay = BUTTBOT_MOVE_SPEED
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	on = 1
 	health = 5
 	no_camera = 1
@@ -415,10 +415,8 @@
 					continue
 				. = "<span class='alert'><B>[src]</B> farts in [M]'s face!</span>"
 				fart_on_other = 1
-#ifdef DATALOGGER
 				if (M.mind && M.mind.assigned_role == "Clown")
 					game_stats.Increment("clownabuse")
-#endif
 				src.fart_memory += A
 				break
 			else if(istype(A,/obj/item/storage/bible))
@@ -511,9 +509,7 @@
 			if(C.put_in_hand_or_drop(F))
 				break
 		src.visible_message("<b>[src]</B> farts out a... wait is this viral marketing?")
-#ifdef DATALOGGER
 	game_stats.Increment("botfarts")
-#endif
 
 //undef your shiiiiiit when you're done with iiiiiiit
 #undef BUTT_FLESH

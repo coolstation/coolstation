@@ -25,6 +25,7 @@
 	targeted = 1
 	target_anything = 1
 	var/take_eyes = 0
+	ai_range = 1
 	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
@@ -97,6 +98,7 @@
 	cooldown = 200
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
 	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
@@ -136,6 +138,7 @@
 	cooldown = 250
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
 	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
@@ -172,6 +175,7 @@
 	cooldown = 50
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
 	attack_mobs = TRUE
 
 	var/venom1 = "histamine"
@@ -225,7 +229,7 @@
 		D.name = ""
 		D.icon = 'icons/effects/effects.dmi'
 		D.icon_state = "hearts"
-		D.anchored = 1
+		D.anchored = ANCHORED
 		D.layer = EFFECTS_LAYER_2
 		holder.owner.attached_objs += D
 		SPAWN_DBG(4 SECONDS)

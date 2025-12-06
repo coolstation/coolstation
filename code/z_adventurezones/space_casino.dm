@@ -88,7 +88,7 @@
 		if (!prize_type)
 			prize_type = /obj/item/raw_material/rock
 		var/obj/item/prize = new prize_type
-		prize.loc = src.loc
+		prize.set_loc(src.loc)
 		prize.layer += 0.1
 		src.visible_message("<span class='subtle'><b>[src]</b> says, '[exclamation][src.scan.registered] has won \an [prize.name]!'</span>")
 		playsound(get_turf(src), "[win_sound]", 55, 1)
@@ -119,7 +119,7 @@
 	name = "modified GeneTek Scanner"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "scanner_0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/chefbot
@@ -127,7 +127,7 @@
 	desc = "It seems to still be sparking..."
 	icon = 'icons/obj/bots/aibots.dmi'
 	icon_state = "chefbot0"
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/decal/fakeobjects/brokengamblebot
 	name = "inactive gambling robot"

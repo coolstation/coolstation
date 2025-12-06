@@ -37,16 +37,21 @@
 	blink
 		emote_string = "blinks"
 	drool
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "drools"
 	shrug
 		emote_string = "shrugs"
 	tremble
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "trembles"
 	quiver
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "quivers"
 	shiver
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "shivers"
 	shudder
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "shudders"
 	shake
 		emote_string = "shakes"
@@ -108,8 +113,15 @@
 	var/pronoun_proc = null //I want you to make the one you use explicit >:(
 
 	clap
+		group = "emote_clap"
 		emote_string = "claps"
 		emote_fail = "struggles to move"
+		enact(mob/user, voluntary, param)
+			if (!user.restrained())
+				playsound(user.loc, "sound/impact_sounds/Slap.ogg", 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+				if(prob(5))
+					user.TakeDamage(pick("l_arm", "r_arm"), rand(1,3), damage_type = DAMAGE_BLUNT)
+			. = ..()
 	salute
 		emote_string = "salutes"
 		emote_fail = "struggles to move"
@@ -230,6 +242,7 @@
 	sniff
 		emote_string = "sniffs"
 	snore
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "snores"
 	whimper
 		emote_string = "whimpers"
@@ -386,6 +399,7 @@
 */
 //maptext differs
 /datum/emote/pale
+	possible_while = STAT_UNCONSCIOUS
 /datum/emote/pale/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> goes pale for a second.", "<I>goes pale...</I>", MESSAGE_VISIBLE)
 

@@ -10,7 +10,7 @@
 	icon = 'icons/obj/instruments.dmi'
 	icon_state = "player_piano"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	mats = 20
 	var/timing = 0.5 //values from 0.25 to 0.5 please
 	var/items_claimed = 0 //set to 1 when items are claimed
@@ -27,6 +27,7 @@
 	var/list/note_accidentals = list() //(s)harp,b(flat),N(none)
 	var/list/compiled_notes = list() //holds our compiled filenames for the note
 	var/list/linked_pianos = list() //list that stores our linked pianos, including the main one
+	hint = "Use a screwdriver to move or anchor this."
 
 	New()
 		..()
@@ -65,18 +66,18 @@
 		else if (istype(W, /obj/item/screwdriver)) //unanchoring piano
 			if (anchored)
 				user.visible_message("[user] starts loosening the piano's castors...", "You start loosening the piano's castors...")
-				if (!do_after(user, 3 SECONDS) || anchored != 1)
+				if (!do_after(user, 3 SECONDS) || anchored != ANCHORED)
 					return
 				playsound(user, "sound/items/Screwdriver2.ogg", 65, 1)
-				src.anchored = 0
+				src.anchored = UNANCHORED
 				user.visible_message("[user] loosens the piano's castors!", "You loosen the piano's castors!")
 				return
 			else
 				user.visible_message("[user] starts tightening the piano's castors...", "You start tightening the piano's castors...")
-				if (!do_after(user, 3 SECONDS) || anchored != 0)
+				if (!do_after(user, 3 SECONDS) || anchored != UNANCHORED)
 					return
 				playsound(user, "sound/items/Screwdriver2.ogg", 65, 1)
-				src.anchored = 1
+				src.anchored = ANCHORED
 				user.visible_message("[user] tightens the piano's castors!", "You tighten the piano's castors!")
 				return
 

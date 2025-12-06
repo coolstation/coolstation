@@ -1,6 +1,7 @@
 ///////////////////////
 // FLOCK CONTROL PANEL
 
+/*
 /chui/window/flockpanel
 	name = "Flock Control"
 	theme = "flock"
@@ -189,3 +190,4 @@
 			</thead>
 		</table>
 		"}
+*/

@@ -15,8 +15,8 @@ ABSTRACT_TYPE(/obj/item/furniture_parts)
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	flags = FPRINT | TABLEPASS | CONDUCT
 	stamina_damage = 35
-	stamina_cost = 22
-	stamina_crit_chance = 10
+//	stamina_cost = 22
+//	stamina_crit_chance = 10
 	var/furniture_type = /obj/table/auto
 	var/furniture_name = "table"
 	var/reinforced = 0
@@ -106,7 +106,7 @@ ABSTRACT_TYPE(/obj/item/furniture_parts)
 
 	MouseDrop(atom/target, src_location, over_location, over_control, params)
 		. = ..()
-		if (HAS_MOB_PROPERTY(usr, PROP_MOB_CAN_CONSTRUCT_WITHOUT_HOLDING) && isturf(target))
+		if (HAS_ATOM_PROPERTY(usr, PROP_CAN_CONSTRUCT_WITHOUT_HOLDING) && isturf(target))
 			actions.start(new /datum/action/bar/icon/furniture_build(src, src.furniture_name, src.build_duration, target), usr)
 
 

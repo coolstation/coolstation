@@ -35,12 +35,10 @@
 	if (!shielded || !(W.flags & NOSHIELD))
 		SPAWN_DBG( 0 )
 		// drsingh Cannot read null.force
-#ifdef DATALOGGER
 			if (W?.force)
 				game_stats.Increment("violence")
 				if(src.mind && src.mind.assigned_role == "Clown")
 					game_stats.Increment("clownabuse")
-#endif
 			if (!isnull(W))
 				W.attack(src, user, (user.zone_sel && user.zone_sel.selecting ? user.zone_sel.selecting : null), is_special) // def_zone var was apparently useless because the only thing that ever passed def_zone anything was shitty bill when he attacked people
 				if (W && user != src) //ZeWaka: Fix for cannot read null.hide_attack

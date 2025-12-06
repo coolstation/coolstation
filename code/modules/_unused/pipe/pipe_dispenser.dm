@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "autolathe"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 
 /obj/machinery/pipedispenser/attack_hand(user as mob)
 	if(..())

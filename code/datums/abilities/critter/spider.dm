@@ -8,6 +8,7 @@
 	cooldown = 200
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
 	attack_mobs = TRUE
 
 	var/datum/projectile/slam/proj = new
@@ -56,9 +57,8 @@
 	cooldown = 300
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
 	attack_mobs = TRUE
-
-	var/datum/projectile/slam/proj = new
 
 	cast(atom/target)
 		if (disabled && world.time > last_cast)
@@ -94,9 +94,8 @@
 		SPAWN_DBG(0)
 			var/flail = rand(10, 15)
 			holder.owner.canmove = 0
-			while (flail > 0 && MT && !MT.disposed)
-				MT.changeStatus("weakened", 2 SECONDS)
-				MT.canmove = 0
+			while (flail > 0 && !QDELETED(MT))
+				MT.changeStatus("weakened", max(min(2.5 SECONDS, 3.5 SECONDS - MT.getStatusDuration("weakened")), 0.2 SECONDS))
 				if (MT.loc)
 					holder.owner.set_loc(MT.loc)
 				if (holder.owner.getStatusDuration("stunned") || holder.owner.getStatusDuration("weakened") || holder.owner.getStatusDuration("paralysis"))
@@ -118,8 +117,6 @@
 				holder.owner.pixel_y = rand(-2,2) * 2
 				sleep(0.4 SECONDS)
 				flail--
-			if (MT)
-				MT.canmove = 1
 			doCooldown()
 			disabled = 0
 			holder.owner.pixel_x = 0
@@ -242,6 +239,7 @@
 	cooldown = 100
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
 	attack_mobs = TRUE
 
 	var/sound/sound_kick = 'sound/musical_instruments/Bikehorn_1.ogg'
@@ -287,6 +285,7 @@
 	cooldown = 300
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
 	attack_mobs = TRUE
 
 	var/sound/sound_kick = "clownstep"
@@ -368,6 +367,7 @@
 	cooldown = 150
 	targeted = 1
 	target_anything = 1
+	ai_range = 8
 	attack_mobs = TRUE
 
 	var/egg_path = /obj/item/reagent_containers/food/snacks/ingredient/egg/critter/clown

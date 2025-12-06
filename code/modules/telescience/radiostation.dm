@@ -129,7 +129,7 @@
 	desc = "A large and complicated audio mixing desk. Complete with fancy displays, dials, knobs and automated faders."
 	icon = 'icons/obj/radiostation.dmi'
 	icon_state = "mixtable-2"
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 1
 	flags = TGUI_INTERACTIVE
 	var/static/list/accents
@@ -239,11 +239,15 @@
 	desc = "An old school vinyl record player sat on a set of drawers. Shame you don't have any records."
 	icon = 'icons/obj/radiostation.dmi'
 	icon_state = "mixtable-3"
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 1
 	var/has_record = 0
 	var/is_playing = 0
 	var/obj/item/record/record_inside = null
+
+	New()
+		..()
+		MAKE_SENDER_RADIO_PACKET_COMPONENT("pda", FREQ_PDA)
 
 /obj/submachine/record_player/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/record))
@@ -263,12 +267,9 @@
 				R = record_inside.record_name ? record_inside.record_name : pick("rad tunes","hip jams","cool music","neat sounds","magnificent melodies","fantastic farts")
 			user.client.play_music_radio(record_inside.song, R)
 			/// PDA message ///
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="RADIO-STATION", "sender"="00000000", "message"="Now playing: [R].", "group" = MGA_RADIO)
-			pdaSignal.transmission_method = TRANSMISSION_RADIO
-			if(transmit_connection != null)
-				transmit_connection.post_signal(src, pdaSignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, pdaSignal, null, "pda")
 			//////
 			src.is_playing = 1
 #ifdef UNDERWATER_MAP
@@ -769,7 +770,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	desc = "A large standalone reel-to-reel tape deck."
 	icon = 'icons/obj/radiostation.dmi'
 	icon_state = "tapedeck"
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 1
 	var/has_tape = 0
 	var/is_playing = 0
@@ -789,12 +790,9 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 			src.is_playing = 1
 			user.client.play_music_radio(tape_inside.audio)
 			/// PDA message ///
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			pdaSignal.data = list("command"="text_message", "sender_name"="RADIO-STATION", "sender"="00000000", "message"="Now playing: [src.tape_inside.audio_type] for [src.tape_inside.name_of_thing].", "group" = MGA_RADIO)
-			pdaSignal.transmission_method = TRANSMISSION_RADIO
-			if(transmit_connection != null)
-				transmit_connection.post_signal(src, pdaSignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, pdaSignal, null, "pda")
 			//////
 			sleep(6000)
 			is_playing = 0
@@ -971,7 +969,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	icon_state = "gannets_machine1"
 	bound_width = 64
 	bound_height = 64
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/vacuumtape
@@ -981,7 +979,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	icon_state = "gannets_machine2"
 	bound_width = 32
 	bound_height = 64
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/operatorconsole
@@ -991,21 +989,21 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	icon_state = "gannets_machine1"
 	bound_width = 32
 	bound_height = 64
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/broadcastcomputer
 	name = "broadcast server"
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "gannets_machine11"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/tapedeck
 	name = "reel to reel tape deck"
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "gannets_machine20"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 //Computer, disk and files.

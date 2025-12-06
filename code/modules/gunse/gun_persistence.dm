@@ -142,8 +142,9 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	name = "gunsmithing anvil"
 	desc = "hit it with a gun 'till the gun falls apart lmao"
 	var/obj/item/gun_parts/part = null
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
+	pass_unstable = FALSE
 	icon = 'icons/obj/dojo.dmi'
 	icon_state = "anvil"
 	w_class = W_CLASS_BULKY
@@ -151,7 +152,8 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 
 	portable
 		density = 0
-		anchored = 0
+		pass_unstable = PRESERVE_CACHE
+		anchored = UNANCHORED
 		w_class = W_CLASS_SMALL
 		contraband = 1
 		name = "portable gunsmithing anvil"

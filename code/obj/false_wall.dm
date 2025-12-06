@@ -200,7 +200,7 @@
 			return
 
 		var/turf/wall_path = ispath(map_settings.walls) ? map_settings.walls : /turf/wall/auto
-		var/turf/r_wall_path = ispath(map_settings.rwalls) ? map_settings.rwalls : /turf/wall/auto/reinforced
+		var/turf/wall/r_wall_path = ispath(map_settings.rwalls) ? map_settings.rwalls : /turf/wall/auto/reinforced
 		src.icon = initial(wall_path.icon)
 		if (src.can_be_auto)
 			var/dirs = 0
@@ -248,9 +248,9 @@
 		src.setIntact(TRUE)
 		update_nearby_tiles()
 		if(src.was_rwall)
-			src.ReplaceWithRWall()
+			src.ReplaceWithUpdateWalls(map_settings ? map_settings.rwalls : /turf/wall/r_wall)
 		else
-			src.ReplaceWithWall()
+			src.ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 		return 1
 
 /turf/wall/false_wall/hive

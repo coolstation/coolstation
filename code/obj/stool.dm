@@ -25,6 +25,7 @@
 	flags = FPRINT | FLUID_SUBMERGE
 	throwforce = 10
 	pressure_resistance = 3*ONE_ATMOSPHERE
+	pass_unstable = PRESERVE_CACHE
 	//will this prevent someone from unbuckling for some reason? temporary + mindswap related
 	var/locked = 1
 	var/mob/living/stool_user = null
@@ -184,7 +185,7 @@
 	icon_state = "bar-stool"
 	desc = "Like a stool, but in a bar."
 	parts_type = /obj/item/furniture_parts/stool/bar
-	anchored = 1
+	anchored = ANCHORED
 	var/loose = 0 //hee hee
 	var/lying = 0
 
@@ -266,7 +267,7 @@
 	desc = "It's a bench! You can sit on it!"
 	icon = 'icons/obj/furniture/bench.dmi'
 	icon_state = "0"
-	anchored = 1
+	anchored = ANCHORED
 	var/auto = 0
 	var/auto_path = null
 	parts_type = /obj/item/furniture_parts/bench
@@ -403,7 +404,7 @@
 	name = "pew"
 	desc = "It's like a bench, but more holy. No, not <i>holey</i>, <b>holy</b>. Like, godly, divine. That kinda thing.<br>Okay, it's actually kind of holey, too, now that you look at it closer."
 	icon_state = "pew"
-	anchored = 1
+	anchored = ANCHORED
 	rotatable = 0
 	foldable = 0
 	comfort_value = 2
@@ -456,7 +457,7 @@
 	desc = "A small freestanding ladder that lets you peek your head up at the ceiling. Mostly for changing lightbulbs. Maybe for wrestling."
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "ladder"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 0
 	var/wrestling = 0
 	parts_type = /obj/item/furniture_parts/stepladder
@@ -548,7 +549,7 @@
 			user.set_loc(src.loc)
 			user.pixel_y = 10
 			if (src.anchored)
-				user.anchored = 1
+				user.anchored = ANCHORED
 			return 1
 
 	proc/step_off()
@@ -577,7 +578,7 @@
 			user.ceilingreach = 0
 			user.set_loc(src.loc)
 			user.pixel_y = 0
-			user.anchored = 0
+			user.anchored = UNANCHORED
 			return 1
 
 	proc/maybe_unstand(source, turf/oldloc)
@@ -591,7 +592,7 @@
 	desc = "A small freestanding ladder that lets you lay the smack down on your enemies. Mostly for wrestling. Not for changing lightbulbs."
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "ladder"
-	anchored = 0 //no wheels, can be tipped over
+	anchored = UNANCHORED //no wheels, can be tipped over
 	density = 1 //can be pushed around, which may make the user fall
 	wrestling = 1
 	parts_type = /obj/item/furniture_parts/stepladder/wrestling

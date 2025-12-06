@@ -10,6 +10,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			taste = "metalic"
 
 		barium
 			name = "barium"
@@ -20,6 +21,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			taste = "bad"
 
 		bromine
 			name = "bromine"
@@ -30,6 +32,7 @@ datum
 			fluid_g = 50
 			fluid_b = 50
 			transparency = 50
+			taste = "bad"
 
 		calcium
 			name = "calcium"
@@ -40,6 +43,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "like bones"
 
 		carbon
 			name = "carbon"
@@ -51,6 +55,7 @@ datum
 			fluid_b = 5
 			hygiene_value = -0.5
 			transparency = 255
+			taste = "carbonated"
 
 			reaction_turf(var/turf/T, var/volume)
 				if(!istype(T, /turf/space))
@@ -70,6 +75,7 @@ datum
 			transparency = 60
 			penetrates_skin = 1
 			evaporates_cleanly = TRUE
+			taste = "horrible"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -90,6 +96,7 @@ datum
 			fluid_b = 220
 			transparency = 255
 			penetrates_skin = 0
+			taste = "metalic"
 
 		copper
 			name = "copper"
@@ -101,6 +108,7 @@ datum
 			fluid_b = 51
 			transparency = 255
 			penetrates_skin = 0
+			taste = "coppery"
 
 		fluorine
 			name = "fluorine"
@@ -113,6 +121,7 @@ datum
 			transparency = 60
 			penetrates_skin = 1
 			evaporates_cleanly = TRUE
+			taste = "horrible and horrible"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -136,7 +145,6 @@ datum
 			addiction_prob = 1
 			addiction_min = 10
 			depletion_rate = 0.05 // ethanol depletes slower but is formed in smaller quantities
-			overdose = 100 // ethanol poisoning
 			flammable_influence = TRUE
 			combusts_on_gaseous_fire_contact = TRUE
 			burn_speed = 3
@@ -148,14 +156,18 @@ datum
 			hygiene_value = 1
 			target_organs = list("liver")	//heart,  "stomach", "intestines", "left_kidney", "right_kidney"
 			evaporates_cleanly = TRUE
+			taste = "like vodka"
+			overdose = 100 // ethanol poisoning
+			downer = 2
+			downer_overdose = 18
 
 			on_add()
-				if (holder && ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.setStatus("drunk", duration = INFINITE_STATUS)
 				return
 
 			on_remove()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.delStatus("drunk")
 				return
 
@@ -269,6 +281,7 @@ datum
 			fluid_b = 252
 			transparency = 20
 			evaporates_cleanly = TRUE
+			taste = "tasteless"
 
 		iodine
 			name = "iodine"
@@ -280,6 +293,7 @@ datum
 			fluid_b = 255
 			transparency = 50
 			evaporates_cleanly = TRUE
+			taste = "purple"
 
 		iron
 			name = "iron"
@@ -292,13 +306,15 @@ datum
 			transparency = 255
 			overdose = 20
 			pathogen_nutrition = list("iron")
+			taste = "ironic"
 
 			on_mob_life(var/mob/living/H, var/mult = 1)
 				..()
-				if (H.can_bleed)
-					H.blood_volume += 0.5 * mult
+				if (H.uses_blood && H.organHolder && H.organHolder.spleen)
+					H.organHolder.heal_organ(0.33*mult, 0.33*mult, 0.33*mult, "spleen")
 					if(prob(10))
 						H.take_oxygen_deprivation(-1 * mult)
+
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				M.take_toxin_damage(1 * mult) // Iron overdose fucks you up bad
 				if(probmult(5))
@@ -321,6 +337,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -344,6 +361,7 @@ datum
 			burn_energy = 85000
 			burn_temperature = 3000
 			burn_volatility = 4
+			taste = "metalic"
 
 			reaction_turf(var/turf/T, var/volume)
 				if (volume >= 10)
@@ -362,6 +380,7 @@ datum
 			penetrates_skin = 1
 			touch_modifier = 0.2
 			depletion_rate = 0.2
+			taste = "mercurial"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -382,6 +401,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			taste = "metalic"
 
 		nitrogen
 			name = "nitrogen"
@@ -394,6 +414,7 @@ datum
 			transparency = 20
 			pathogen_nutrition = list("nitrogen")
 			evaporates_cleanly = TRUE
+			taste = "tasteless"
 
 		oxygen
 			name = "oxygen"
@@ -405,6 +426,7 @@ datum
 			fluid_b = 252
 			transparency = 20
 			evaporates_cleanly = TRUE
+			taste = "tasteless"
 
 		phosphorus
 			name = "phosphorus"
@@ -415,6 +437,7 @@ datum
 			fluid_g = 110
 			fluid_b = 110
 			transparency = 255
+			taste = "bad"
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(66))
@@ -431,6 +454,7 @@ datum
 			burn_energy = 950000
 			burn_temperature = 2700
 			burn_volatility = 8
+			taste = "hot"
 
 			fluid_r = 130
 			fluid_g = 40
@@ -479,6 +503,7 @@ datum
 			fluid_g = 220
 			fluid_b = 220
 			transparency = 255
+			taste = "metalic"
 
 		potassium
 			name = "potassium"
@@ -489,6 +514,7 @@ datum
 			fluid_g = 190
 			fluid_b = 190
 			transparency = 255
+			taste = "unpleasantly reactive"
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(40))
@@ -504,6 +530,7 @@ datum
 			fluid_g = 140
 			fluid_b = 150
 			transparency = 255
+			taste = "not quite metalic"
 
 		silver
 			name = "silver"
@@ -570,6 +597,7 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 255
+			taste = "bad"
 
 		sugar
 			name = "sugar"
@@ -580,23 +608,25 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
-			overdose = 200
 			hunger_value = 0.098
 			thirst_value = -0.098
 			pathogen_nutrition = list("sugar")
 			taste = "sweet"
 			stun_resist = 6
+			overdose = 200
+			upper = 0.5
+			upper_overdose = 19.5
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar", 2)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -660,6 +690,7 @@ datum
 			transparency = 235
 			thirst_value = 0.7909
 			hunger_value = 0.098
+			taste = "sweet and like tea"
 
 		helium
 			name = "helium"
@@ -673,9 +704,10 @@ datum
 			data = null
 			evaporates_cleanly = TRUE
 			var/granted_updraft = FALSE
+			taste = "tasteless"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					if(M.bioHolder && !M.bioHolder.HasEffect("quiet_voice"))
 						M.bioHolder.AddEffect("quiet_voice")
@@ -704,7 +736,7 @@ datum
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					if(M?.bioHolder.HasEffect("quiet_voice"))
 						M.bioHolder.RemoveEffect("quiet_voice")
@@ -730,6 +762,7 @@ datum
 			penetrates_skin = 1
 			touch_modifier = 0.5 //Half the dose lands on the floor
 			blob_damage = 1
+			taste = "tingly"
 
 			New()
 				..()
@@ -766,6 +799,7 @@ datum
 			fluid_b = 200
 			transparency = 255
 			pathogen_nutrition = list("sodium")
+			taste = "reactive"
 
 		uranium
 			name = "uranium"
@@ -776,6 +810,7 @@ datum
 			fluid_g = 40
 			fluid_b = 40
 			transparency = 255
+			taste = "heavy"
 
 			on_mob_life(var/mob/M, var/mult = 1 )
 				if(!M) M = holder.my_atom
@@ -799,7 +834,7 @@ datum
 			thirst_value = 0.8909
 			hygiene_value = 1.33
 			kidney_multiplier = 0.3
-			taste = "bland"
+			taste = "like water" // fym "bland?"
 			minimum_reaction_temperature = -INFINITY
 			target_organs = list("left_kidney", "right_kidney")
 			heat_capacity = 400
@@ -829,8 +864,8 @@ datum
 					holder?.add_reagent("ice", prev_vol, null, (T0C - 1))
 					if(holder)
 						holder.del_reagent(id)
-				else if (exposed_temperature > T0C && exposed_temperature <= T0C + 100 )
-					name = "water"
+				else if (exposed_temperature > T0C && exposed_temperature <= T0C + 100)
+					name = initial(name)
 					description = initial(description)
 				else if (exposed_temperature > (T0C + 100) )
 					if (!istype(holder,/datum/reagents/fluid_group))
@@ -889,7 +924,11 @@ datum
 
 			name = "filthy water"
 			id = "dirtywater"
+			#ifdef MAGINDARA_MAP
+			description = "This water is choked with plastic, lead, and oil. It's good for you, maybe."
+			#else
 			description = "This water is choked with ash, dust, and god knows what else."
+			#endif
 			reagent_state = LIQUID
 			fluid_r = 106
 			fluid_b = 117
@@ -915,6 +954,7 @@ datum
 			thirst_value = 0.8909
 			hygiene_value = 2
 			value = 3 // 1 1 1
+			taste = "holy"
 
 			reaction_mob(var/mob/target, var/method=TOUCH, var/volume)
 				..()
@@ -1045,3 +1085,4 @@ datum
 			fluid_b = 180
 			transparency = 35
 			value = 5 // 3c + 1c + 1c
+			taste = "like carbolic acid"

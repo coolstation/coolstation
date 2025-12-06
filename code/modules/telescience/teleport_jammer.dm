@@ -5,7 +5,7 @@
 	icon_state = "shieldgen"
 	density = 1
 	opacity = 0
-	anchored = 0
+	anchored = UNANCHORED
 	mats = 9
 	var/obj/item/cell/PCEL = null
 	var/coveropen = 0
@@ -160,13 +160,13 @@
 		if (PCEL.charge < 0)
 			return
 
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.active = 1
 		playsound(src.loc, src.sound_on, 50, 1)
 		build_icon()
 
 	proc/turn_off()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		src.active = 0
 		playsound(src.loc, src.sound_off, 50, 1)
 		build_icon()

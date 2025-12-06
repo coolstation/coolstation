@@ -1,7 +1,7 @@
 /obj/railing
 	name = "railing"
 	desc = "A set of bars shooting onward with the sole goal of blocking you off. They can't stop you from vaulting over them though!"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "railing"
@@ -32,13 +32,13 @@
 	proc/railing_break(obj/railing/The_Railing)
 		if(!(railing_is_broken(The_Railing)))
 			The_Railing.broken = 1
-			The_Railing.density = 0
+			The_Railing.set_density(0)
 			var/random_sprite = rand(1, 4)
 			The_Railing.icon_state = "railing-broken-" + "[random_sprite]"
 
 	proc/railing_fix(obj/railing/The_Railing)
 		if(railing_is_broken(The_Railing))
-			The_Railing.density = 1
+			The_Railing.set_density(1)
 			The_Railing.broken = 0
 
 
@@ -405,11 +405,11 @@
 				playsound(the_railing, "sound/items/Welder.ogg", 50, 1)
 			if (RAILING_FASTEN)
 				verbens = "fastens"
-				the_railing.anchored = 1
+				the_railing.anchored = ANCHORED
 				playsound(the_railing, "sound/items/Screwdriver.ogg", 50, 1)
 			if (RAILING_UNFASTEN)
 				verbens = "unfastens"
-				the_railing.anchored = 0
+				the_railing.anchored = UNANCHORED
 				playsound(the_railing, "sound/items/Screwdriver.ogg", 50, 1)
 		for(var/mob/O in AIviewers(ownerMob))
 			O.show_text("[owner] [verbens] [the_railing].", "red", group = "[owner]-tool_on_railing")

@@ -7,7 +7,8 @@
 	cooldown = 150
 	targeted = 1
 	target_anything = 1
-	max_range = 2
+	max_range = 30
+	ai_range = 2
 	var/throws = 0
 	var/heat = 3000
 	attack_mobs = TRUE

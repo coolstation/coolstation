@@ -6,6 +6,7 @@
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
 	text = ""
+	pass_unstable = PRESERVE_CACHE
 	var/icon_old = null
 	var/uses_multiple_icon_states = 0
 	var/item_state = null
@@ -39,14 +40,14 @@
 	var/r_speed = 1.0
 	var/hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
 	var/stamina_damage = STAMINA_ITEM_DMG //amount of stamina removed from target per hit.
-	var/stamina_cost = STAMINA_ITEM_COST  //amount of stamina removed from USER per hit. This cant bring you below 10 points and you will not be able to attack if it would.
+//	var/stamina_cost = STAMINA_ITEM_COST  //amount of stamina removed from USER per hit. This cant bring you below 10 points and you will not be able to attack if it would.
 
-	var/stamina_crit_chance = STAMINA_CRIT_CHANCE //Crit chance when attacking with this. // kinda deprecated but maybe npcs will use stamina they dont people yknow?
+//	var/stamina_crit_chance = STAMINA_CRIT_CHANCE //Crit chance when attacking with this. // kinda deprecated but maybe npcs will use stamina they dont people yknow?
 	var/datum/item_special/special = null // Contains the datum which executes the items special, if it has one, when used beyond melee range.
 	var/hide_attack = 0 //If 1, hide the attack animation + particles. Used for hiding attacks with silenced .22 and sleepy pen
 						//If 2, play the attack animation but hide the attack particles.
 	var/click_delay = DEFAULT_CLICK_DELAY //Delay before next click after using this.
-	var/combat_click_delay = COMBAT_CLICK_DELAY
+	var/combat_click_delay = COMBAT_CLICK_DELAY //Delay before next click after using this in an attack.
 
 	var/rng_stun_rate = 0 // % chance to old-stun
 	var/rng_stun_time = 0 // how many ticks to old-stun
@@ -62,7 +63,7 @@
 	/*Inventory*/
 	/*‾‾‾‾‾‾‾‾‾*/
 	var/pickup_sfx = 0 //if null, we auto-pick from a list based on w_class
-	var/w_class = W_CLASS_NORMAL // how big they are, determines if they can fit in backpacks and pockets and the like
+	w_class = W_CLASS_NORMAL // how big they are, determines if they can fit in backpacks and pockets and the like
 	p_class = 1.5 // how hard they are to pull around, determines how much something slows you down while pulling it
 
 	var/cant_self_remove = 0 // Can't remove from non-hand slots
@@ -148,7 +149,7 @@
 		if(rarity >= 4)
 			. += "<div><img src='[resource("images/tooltips/rare.gif")]' alt='' class='icon' /><span>Rare item</span></div>"
 		//combat stats
-		. += "<div><img src='[resource("images/tooltips/attack.png")]' alt='' class='icon' /><span>Damage: [src.force ? src.force : "0"] dmg[src.force ? "("+DAMAGE_TYPE_TO_STRING(src.hit_type)+")" : ""], [round((1 / (max(src.click_delay,src.combat_click_delay) / 10)), 0.1)] atk/s, [src.throwforce ? src.throwforce : "0"] thrown dmg</span></div>"
+		. += "<div><img src='[resource("images/tooltips/attack.png")]' alt='' class='icon' /><span>Damage: [src.force ? src.force : "0"] dmg[src.force ? "("+DAMAGE_TYPE_TO_STRING(src.hit_type)+")" : ""], [round((1 / (src.combat_click_delay / 10)), 0.1)] atk/s, [src.throwforce ? src.throwforce : "0"] thrown dmg</span></div>"
 		//if (src.stamina_cost || src.stamina_damage)
 		//	. += "<div><img src='[resource("images/tooltips/stamina.png")]' alt='' class='icon' /><span>Stamina: [src.stamina_damage ? src.stamina_damage : "0"] dmg, [stamina_cost] consumed per swing</span></div>"
 		if(src.rng_stun_rate)
@@ -211,7 +212,7 @@
 			var/show = 1
 
 			if (!lastTooltipContent || !lastTooltipTitle || tooltip_flags & REBUILD_ALWAYS\
-			 || (HAS_MOB_PROPERTY(usr, PROP_SPECTRO) && tooltip_flags & REBUILD_SPECTRO)\
+			 || (HAS_ATOM_PROPERTY(usr, PROP_SPECTRO) && tooltip_flags & REBUILD_SPECTRO)\
 			 || (usr != lastTooltipUser && tooltip_flags & REBUILD_USER)\
 			 || (get_dist(src, usr) != lastTooltipDist && tooltip_flags & REBUILD_DIST))
 				tooltip_rebuild = 1
@@ -300,49 +301,14 @@
 		if (src.amount != 1)
 			// this is a gross hack to make things not just show "1" by default
 			src.inventory_counter.update_number(src.amount)
-	..()
-/*
-/obj/item/unpooled()
-	..()
-	src.amount = initial(src.amount)
 
-	// Reset scaling/transforms/etc.
-	src.transform = initial(transform)
-
-	// @TODO should we just like. clear all overlays? this seems particularly hacky
-	// or maybe this should be done in pooled / disposing???
-	if (src.burning)
-		if (src.burn_output >= 1000)
-			src.overlays -= image('icons/effects/fire.dmi', "2old")
+	..()
+	if (src.contraband > 0)
+		if (istype(src, /obj/item/gun))
+			AddComponent(/datum/component/contraband, 0, src.contraband)
 		else
-			src.overlays -= image('icons/effects/fire.dmi', "1old")
-	src.burning = 0
+			AddComponent(/datum/component/contraband, src.contraband, 0)
 
-	if (inventory_counter_enabled)
-		src.create_inventory_counter()
-
-/obj/item/pooled()
-	src.amount = 0
-	src.health = initial(src.health)
-
-	if (src.burning)
-		if (src.burn_output >= 1000)
-			src.overlays -= image('icons/effects/fire.dmi', "2old")
-		else
-			src.overlays -= image('icons/effects/fire.dmi', "1old")
-	src.burning = 0
-
-	if (ismob(src.loc))
-		var/mob/M = src.loc
-		M.u_equip(src)
-
-	if (src.inventory_counter)
-		src.vis_contents -= src.inventory_counter
-		qdel(src.inventory_counter)
-		src.inventory_counter = null
-
-	..()
-*/
 /obj/item/set_loc(var/newloc as turf|mob|obj in world)
 	if (src.temp_flags & IS_LIMB_ITEM)
 		if (istype(newloc,/obj/item/parts/human_parts/arm/left/item) || istype(newloc,/obj/item/parts/human_parts/arm/right/item))
@@ -645,29 +611,34 @@
 /obj/item/MouseDrop_T(atom/movable/O as obj, mob/user as mob)
 	..()
 	if (max_stack > 1 && src.loc == user && get_dist(O, user) <= 1 && check_valid_stack(O))
-		if ( src.amount >= max_stack)
-			failed_stack(O, user)
-			return
+		SPAWN_DBG(0)
+			if ( src.amount >= max_stack)
+				failed_stack(O, user)
+				return
 
-		var/added = 0
-		var/staystill = user.loc
-		var/stack_result = 0
+			var/added = 0
+			var/staystill = user.loc
+			var/stack_result = 0
 
-		before_stack(O, user)
+			before_stack(O, user)
 
-		for(var/obj/item/other in view(1,user))
-			stack_result = stack_item(other)
-			if (!stack_result)
-				continue
-			else
-				sleep(0.3 SECONDS)
-				added += stack_result
-				if (user.loc != staystill) break
-				if (src.amount >= max_stack)
-					failed_stack(O, user)
-					return
+			var/i = 0
 
-		after_stack(O, user, added)
+			for(var/obj/item/other in view(1,user))
+				i++
+				stack_result = stack_item(other)
+				if (!stack_result)
+					continue
+				else
+					if(!(i % (ceil(i / 5))))
+						sleep(0.1 SECONDS)
+					added += stack_result
+					if (user.loc != staystill) break
+					if (src.amount >= max_stack)
+						failed_stack(O, user)
+						return
+
+			after_stack(O, user, added)
 
 #define src_exists_inside_user_or_user_storage (src.loc == user || (istype(src.loc, /obj/item/storage) && src.loc.loc == user))
 
@@ -939,51 +910,23 @@
 
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	SHOULD_CALL_PARENT(1)
-	if(src.c_flags & NOT_EQUIPPED_WHEN_WORN && slot != SLOT_L_HAND && slot != SLOT_R_HAND)
-		return
 	#ifdef COMSIG_ITEM_EQUIPPED
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
 	#endif
 	src.equipped_in_slot = slot
 	for(var/datum/objectProperty/equipment/prop in src.properties)
-		prop.onEquipped(src, user, src.properties[prop])
-	var/datum/movement_modifier/equipment/equipment_proxy = locate() in user.movement_modifiers
-	if (!equipment_proxy)
-		equipment_proxy = new
-		APPLY_MOVEMENT_MODIFIER(user, equipment_proxy, /obj/item)
-	equipment_proxy.additive_slowdown += src.getProperty("movespeed")
-	var/fluidmove = src.getProperty("negate_fluid_speed_penalty")
-	if (fluidmove)
-		equipment_proxy.additive_slowdown += fluidmove // compatibility hack for old code treating space & fluid movement capability as a slowdown
-		equipment_proxy.aquatic_movement += fluidmove
-	var/spacemove = src.getProperty("space_movespeed")
-	if (spacemove)
-		equipment_proxy.additive_slowdown += spacemove // compatibility hack for old code treating space & fluid movement capability as a slowdown
-		equipment_proxy.space_movement += spacemove
+		prop.onEquipped(src, user, src.properties[prop], slot)
+	user.update_equipped_modifiers()
 
 /obj/item/proc/unequipped(var/mob/user)
 	SHOULD_CALL_PARENT(1)
-	if(src.c_flags & NOT_EQUIPPED_WHEN_WORN && src.equipped_in_slot != SLOT_L_HAND && src.equipped_in_slot != SLOT_R_HAND)
-		return
 	#ifdef COMSIG_ITEM_UNEQUIPPED
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, user)
 	#endif
 	for(var/datum/objectProperty/equipment/prop in src.properties)
 		prop.onUnequipped(src, user, src.properties[prop])
 	src.equipped_in_slot = null
-	var/datum/movement_modifier/equipment/equipment_proxy = locate() in user.movement_modifiers
-	if (!equipment_proxy)
-		equipment_proxy = new
-		APPLY_MOVEMENT_MODIFIER(user, equipment_proxy, /obj/item)
-	equipment_proxy.additive_slowdown -= src.getProperty("movespeed")
-	var/fluidmove = src.getProperty("negate_fluid_speed_penalty")
-	if (fluidmove)
-		equipment_proxy.additive_slowdown -= fluidmove
-		equipment_proxy.aquatic_movement -= fluidmove
-	var/spacemove = src.getProperty("space_movespeed")
-	if (spacemove)
-		equipment_proxy.additive_slowdown -= spacemove
-		equipment_proxy.space_movement -= spacemove
+	user.update_equipped_modifiers()
 
 /obj/item/proc/afterattack(atom/target, mob/user, reach, params)
 	return
@@ -1185,10 +1128,12 @@
 		boutput(user, "<span class='alert'>You cannot harm this person!</span>") //This message was previously sent to the attacking item. YEP.
 		return
 
+/*
 	if(user.traitHolder && !user.traitHolder.hasTrait("glasscannon"))
 		if (!user.process_stamina(src.stamina_cost))
 			logTheThing("combat", user, M, "tries to attack [constructTarget(M,"combat")] with [src] ([type], object name: [initial(name)]) but is out of stamina")
 			return
+*/
 
 	if (chokehold)
 		chokehold.attack(M, user, def_zone, is_special)
@@ -1209,9 +1154,9 @@
 	if(hasProperty("frenzy"))
 		SPAWN_DBG(0)
 			var/frenzy = getProperty("frenzy")
-			click_delay -= frenzy
+			combat_click_delay -= frenzy
 			sleep(3 SECONDS)
-			click_delay += frenzy
+			combat_click_delay += frenzy
 /*
 	if(hasProperty("Momentum"))
 		SPAWN_DBG(0)
@@ -1599,7 +1544,7 @@
 	src.material?.triggerPickup(user, src)
 	set_mob(user)
 	show_buttons()
-	if (src.inventory_counter)
+	if (src.inventory_counter && src.inventory_counter_enabled)
 		src.inventory_counter.show_count()
 	if (src.c_flags & EQUIPPED_WHILE_HELD)
 		src.equipped(user, user.get_slot_from_item(src))

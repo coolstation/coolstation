@@ -10,7 +10,6 @@
 // cardinal directions only
 
 //Todo: junctions where more than one firsthalves come together get one very bright light because of overlaps
-
 /obj/pathlights/shuttle
 	name = "shuttle evacuation light"
 	desc = "A small light that directs the way to the departing shuttle bay."
@@ -20,6 +19,7 @@
 	#else
 	icon_state = "blank"
 	#endif IN_MAP_EDITOR
+	pass_unstable = FALSE
 	plane = PLANE_FLOOR
 	mouse_opacity = 1 //you can't click this because that'd kinda suck
 	var/halves = 3 //1 for first, 2 for second, 3 for both
@@ -27,7 +27,7 @@
 	var/even_alt = FALSE //normally center to north or east, this will center to south or west
 	var/on_state = "shuttle-egress" //when this turns on, what iconstate to load
 	var/image/glow_cutout = null
-	anchored = 1
+	anchored = ANCHORED
 
 	//this can all be done so much better but i'm doing it this way for now so i have something to show
 	//everything is cardinal and basic, if you want compound lights and intersections just plop down more

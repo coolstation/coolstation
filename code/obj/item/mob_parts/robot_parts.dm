@@ -26,8 +26,8 @@
 
 	force = 6
 	stamina_damage = 40
-	stamina_cost = 23
-	stamina_crit_chance = 5
+//	stamina_cost = 23
+//	stamina_crit_chance = 5
 
 	New()
 		..()

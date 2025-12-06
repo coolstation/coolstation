@@ -15,8 +15,8 @@ THAT STUPID GAME KIT
 	w_class = W_CLASS_HUGE
 	desc = "Play chess or checkers. Or don't. Probably don't."
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 5
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 
 /obj/item/game_kit/New()
 	..()

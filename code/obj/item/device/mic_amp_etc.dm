@@ -123,7 +123,7 @@
 	name = "loudspeaker"
 	icon = 'icons/obj/items/device.dmi'
 	icon_state = "loudspeaker"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 15
 

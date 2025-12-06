@@ -9,7 +9,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
+	pass_unstable = FALSE
 	flags = FPRINT | FLUID_SUBMERGE
 	pressure_resistance = 2*ONE_ATMOSPHERE
 	p_class = 1.5
@@ -41,8 +42,9 @@
 		if (die || src.reagents.maximum_volume == 0 || can_break == FALSE)
 			qdel(src)
 		src.icon_state = "[initial(src.icon_state)]-busted"
-		src.reagents.clear_reagents()
-		src.reagents.maximum_volume = 0
+		if(!QDELETED(src))
+			src.reagents.clear_reagents()
+			src.reagents.maximum_volume = 0
 
 
 
@@ -82,7 +84,7 @@
 	icon_state = "spaceants"
 	layer = MOB_LAYER
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	amount_per_transfer_from_this = 5
 
 	New()
@@ -122,7 +124,7 @@
 	icon_state = "spaceants"
 	layer = MOB_LAYER
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	amount_per_transfer_from_this = 5
 	color = "#160505"
 
@@ -182,7 +184,7 @@
 	desc = "A specialised high-pressure water tank for holding large amounts of water."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertankbig"
-	anchored = 0
+	anchored = UNANCHORED
 	amount_per_transfer_from_this = 25
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -190,26 +192,27 @@
 			if(!src.anchored)
 				user.visible_message("<b>[user]</b> secures the [src] to the floor!")
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-				src.anchored = 1
+				src.anchored = ANCHORED
 			else
 				user.visible_message("<b>[user]</b> unbolts the [src] from the floor!")
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-				src.anchored = 0
+				src.anchored = UNANCHORED
 			return
 
 	New()
 		..()
-		src.create_reagents(10000)
-		reagents.add_reagent("water",10000)
+		src.create_reagents(100 LITRES)
+		reagents.add_reagent("water", 100 LITRES)
 
 /obj/reagent_dispensers/watertank/fountain
 	name = "water cooler"
 	desc = "A popular gathering place for NanoTrasen's finest bureaucrats and pencil-pushers."
+	hint = "click with a wrench to steal the water tank."
 	icon_state = "coolerbase"
-	anchored = 1
+	anchored = ANCHORED
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_CROWBAR
 	mats = 8
-	capacity = 500
+	capacity = 8 LITRES
 	can_break = FALSE
 
 	var/has_tank = 1
@@ -282,7 +285,7 @@
 				user.show_text("You start unscrewing [src] from the floor.", "blue", group = "[user]-(un)fasten_watercooler")
 				if (do_after(user, 3 SECONDS))
 					user.show_text("You unscrew [src] from the floor.", "blue", group = "[user]-(un)fasten_watercooler")
-					src.anchored = 0
+					src.anchored = UNANCHORED
 					return
 			else
 				var/turf/T = get_turf(src)
@@ -294,7 +297,7 @@
 					user.show_text("You start securing [src] to [T].", "blue", group = "[user]-(un)fasten_watercooler")
 					if (do_after(user, 3 SECONDS))
 						user.show_text("You secure [src] to [T].", "blue", group = "[user]-(un)fasten_watercooler")
-						src.anchored = 1
+						src.anchored = ANCHORED
 						return
 		..()
 
@@ -314,7 +317,7 @@
 	piss
 		New()
 			..()
-			src.create_reagents(4000)
+			src.create_reagents(10 LITRES)
 			reagents.add_reagent("urine",400)
 			reagents.add_reagent("water",600)
 			src.update_icon()
@@ -325,7 +328,7 @@
 	juicer
 		New()
 			..()
-			src.create_reagents(4000)
+			src.create_reagents(10 LITRES)
 			reagents.add_reagent(pick("CBD","THC","urine","refried_beans","coffee","methamphetamine"),100)
 			reagents.add_reagent(pick("CBD","THC","urine","refried_beans","coffee","methamphetamine"),100)
 			reagents.add_reagent(pick("CBD","THC","urine","refried_beans","coffee","methamphetamine"),100)
@@ -414,7 +417,7 @@
 	desc = "A device that mulches up unwanted produce into usable fertiliser."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "compost"
-	anchored = 0
+	anchored = UNANCHORED
 	amount_per_transfer_from_this = 30
 	event_handler_flags = NO_MOUSEDROP_QOL
 	New()
@@ -438,11 +441,11 @@
 				if(!src.anchored)
 					user.visible_message("<b>[user]</b> secures the [src] to the floor!")
 					playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-					src.anchored = 1
+					src.anchored = ANCHORED
 				else
 					user.visible_message("<b>[user]</b> unbolts the [src] from the floor!")
 					playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
-					src.anchored = 0
+					src.anchored = UNANCHORED
 				return
 			var/load = 1
 			if (istype(W,/obj/item/reagent_containers/food/snacks/plant/)) src.reagents.add_reagent("poo", 20)
@@ -518,11 +521,11 @@
 		src.add_fingerprint(target)
 		src.add_blood(target)
 		target.set_loc(src)
-		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1, 3) // hilariously easy to hear someone being shoveled into a compost tank
+		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1, 13) // hilariously easy to hear someone being shoveled into a compost tank
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
-			src.reagents.add_reagent(H.blood_id, floor((rand() * 0.2 + 0.2) * H.blood_volume))
-			src.reagents.add_reagent("poo", floor((rand() + 0.1) * H.blood_volume))
+			H.reagents.trans_to(src, H.reagents.total_volume * 0.4)
+			src.reagents.add_reagent("poo", floor((rand() + 0.1) * H.reagents.total_volume))
 		else
 			src.reagents.add_reagent("poo", 75)
 		if (target.mind)

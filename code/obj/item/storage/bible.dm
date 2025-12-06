@@ -73,7 +73,7 @@ var/global/list/bible_contents = list()
 		if (iswraith(M) || (M.bioHolder && M.bioHolder.HasEffect("revenant")))
 			M.visible_message("<span class='alert'><B>[user] smites [M] with the [src]!</B></span>")
 			bless(M, user)
-			boutput(M, "<span_class='alert'><B>IT BURNS!</B></span>")
+			boutput(M, "<span class='alert'><B>IT BURNS!</B></span>")
 			if (narrator_mode)
 				playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, -1)
 			else

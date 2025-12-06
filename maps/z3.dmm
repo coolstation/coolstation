@@ -2129,9 +2129,7 @@
 /turf/floor/plating,
 /area/diner/arcade)
 "ahd" = (
-/obj/machinery/door/airlock/gannets/toxins/alt{
-	req_access = null
-	},
+/obj/machinery/door/airlock/gannets/toxins/alt,
 /turf/floor/grime,
 /area/diner/arcade)
 "ahe" = (
@@ -4263,9 +4261,7 @@
 /turf/floor/black/grime,
 /area/diner/backroom)
 "aoI" = (
-/obj/machinery/door/airlock/gannets/toxins/alt{
-	req_access = null
-	},
+/obj/machinery/door/airlock/gannets/toxins/alt,
 /obj/cable{
 	icon_state = "1-2"
 	},
@@ -19412,6 +19408,7 @@
 	icon_state = "coil1"
 	},
 /obj/table/reinforced/auto,
+/obj/item/paper/book/from_file/hosenscheissen,
 /turf/space,
 /area/abandonedmedicalship)
 "blV" = (
@@ -19897,7 +19894,7 @@
 "bFX" = (
 /obj/stool/chair/comfy/shuttle/brown,
 /obj/decal/cleanable/dirt,
-/turf/floor/shuttle{
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -21198,13 +21195,6 @@
 /obj/decal/cleanable/tracked_reagents/blood/splatter,
 /turf/floor/plating,
 /area/evilreaver/genetics)
-"gRp" = (
-/obj/table/auto,
-/obj/item/satchel/mining,
-/turf/shuttle/wall{
-	icon_state = "floor2"
-	},
-/area/shuttle/mining/space)
 "gUM" = (
 /obj/table/auto,
 /obj/random_item_spawner/dressup/one_or_zero,
@@ -21277,7 +21267,7 @@
 	},
 /area/abandonedship)
 "hfS" = (
-/turf/floor/shuttle{
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -21531,7 +21521,8 @@
 /obj/machinery/light/fluorescent/warm{
 	dir = 8
 	},
-/turf/floor/shuttle{
+/obj/item/device/gps,
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -21756,7 +21747,8 @@
 /obj/machinery/light/fluorescent/warm{
 	dir = 4
 	},
-/turf/floor/shuttle{
+/obj/item/satchel/mining,
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -22779,7 +22771,7 @@
 /area/diner/hangar)
 "mfV" = (
 /obj/stool/chair/comfy/shuttle/brown,
-/turf/floor/shuttle{
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -23649,7 +23641,7 @@
 /area/space)
 "oXk" = (
 /obj/machinery/computer/transit_terminal/mining,
-/turf/floor/shuttle{
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -24217,7 +24209,7 @@
 /turf/floor/plating,
 /area/diner/dining)
 "rdq" = (
-/turf/shuttle/wall{
+/turf/wall/r_wall/shuttle_noprotections{
 	icon_state = "wall3"
 	},
 /area/shuttle/mining/space)
@@ -24251,7 +24243,7 @@
 /area/diner/hangar)
 "rkq" = (
 /obj/machinery/door/airlock/external/shuttle_connect,
-/turf/floor/shuttle{
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -24277,7 +24269,7 @@
 /area/hollowasteroid)
 "rof" = (
 /obj/decal/cleanable/dirt,
-/turf/floor/shuttle{
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -24299,7 +24291,7 @@
 	icon_state = "gibbl2"
 	},
 /obj/machinery/light/small/floor/warm,
-/turf/floor/shuttle{
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -25174,7 +25166,8 @@
 	},
 /area/diner/jucer_trader)
 "ugE" = (
-/turf/shuttle/wall/cockpit/window,
+/obj/wingrille_spawn/auto,
+/turf/floor/plating/airless,
 /area/shuttle/mining/space)
 "ugX" = (
 /obj/decal/fakeobjects{
@@ -25367,11 +25360,9 @@
 /turf/floor/delivery,
 /area/diner/dining)
 "uYC" = (
-/obj/table/auto,
 /obj/item/device/gps,
-/obj/item/device/gps,
-/turf/shuttle/wall{
-	icon_state = "floor2"
+/turf/wall/r_wall/shuttle_noprotections{
+	icon_state = "wall3"
 	},
 /area/shuttle/mining/space)
 "uZy" = (
@@ -25853,13 +25844,13 @@
 	name = "Bilateral Shop Ship"
 	})
 "xaN" = (
-/obj/grille/steel,
-/obj/window/reinforced,
 /obj/decal/fakeobjects/shuttleengine{
 	dir = 1;
 	icon_state = "alt_heater"
 	},
-/turf/floor/plating/airless,
+/turf/wall/r_wall/shuttle_noprotections{
+	icon_state = "wall3"
+	},
 /area/shuttle/mining/space)
 "xbt" = (
 /turf/wall/s_wall{
@@ -25900,7 +25891,7 @@
 	dir = 4;
 	icon_state = "wall3_trans"
 	},
-/turf/floor/shuttle{
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -25979,7 +25970,7 @@
 /obj/indestructible/shuttle_corner{
 	icon_state = "wall3_trans"
 	},
-/turf/floor/shuttle{
+/turf/floor/shuttle_noprotections{
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
@@ -81302,7 +81293,7 @@ xaN
 hfS
 rof
 izO
-gRp
+rdq
 ijC
 aaa
 aaa

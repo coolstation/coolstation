@@ -5,6 +5,7 @@
 	targeted = 1
 	target_nodamage_check = 1
 	max_range = 1
+	ai_range = 1
 	cooldown = 10
 	pointCost = 0
 	when_stunned = 0
@@ -121,7 +122,7 @@
 						if (!W.feed_objective.mobs_fed_on.Find(HH.bioHolder.Uid))
 							W.feed_objective.mobs_fed_on.Add(HH.bioHolder.Uid)
 							W.feed_objective.feed_count++
-							APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "feast-[W.feed_objective.feed_count]", 2)
+							APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "feast-[W.feed_objective.feed_count]", 2)
 							M.add_stam_mod_max("feast-[W.feed_objective.feed_count]", 10)
 							M.max_health += 10
 							health_update_queue |= M
@@ -156,7 +157,7 @@
 						if (!W.feed_objective.mobs_fed_on.Find(HH.bioHolder.Uid))
 							W.feed_objective.mobs_fed_on.Add(HH.bioHolder.Uid)
 							W.feed_objective.feed_count++
-							APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "feast-[W.feed_objective.feed_count]", 1)
+							APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "feast-[W.feed_objective.feed_count]", 1)
 							M.add_stam_mod_max("feast-[W.feed_objective.feed_count]", 5)
 							M.max_health += 10
 							health_update_queue |= M

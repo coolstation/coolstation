@@ -1,4 +1,4 @@
-/mob/living/critter/gunbot
+/mob/living/critter/robotic/gunbot
 	name = "robot"
 	real_name = "robot"
 	desc = "A Security Robot, something seems a bit off."
@@ -8,8 +8,6 @@
 	custom_gib_handler = /proc/robogibs
 	hand_count = 3
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 0
 	blood_id = "oil"
 	speechverb_say = "states"
 	speechverb_gasp = "states"

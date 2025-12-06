@@ -95,7 +95,7 @@
 	. = ..(give_medal, include_ejectables)
 
 /mob/living/carbon/proc/poop()
-	if(ON_COOLDOWN(src, "poo", 20 MINUTES))
+	if(ON_COOLDOWN(src, "poo", 30 MINUTES))
 		boutput(src, "You don't feel ready to go.")
 		return
 	SPAWN_DBG(0.1 SECOND)
@@ -170,7 +170,7 @@
 		if(WEST)
 			target_dir = EAST
 
-	shit.loc = C.loc
+	shit.set_loc(C.loc)
 	shit.throw_at(get_turf(get_steps(C, target_dir, rand(2,5))), rand(2,5), rand(1,4))
 	C.visible_message("<span class='alert'><b>[C] [pick("hurls a loaf",\
 		"unloads at speed", "lobs a loaf", "shits with gusto", \
@@ -215,19 +215,11 @@
 			var/perpname = src.name
 			if(src:wear_id && src:wear_id:registered)
 				perpname = src:wear_id:registered
-			// find the matching security record
-			for(var/datum/data/record/R in data_core.general)
-				if(R.fields["name"] == perpname)
-					for (var/datum/data/record/S in data_core.security)
-						if (S.fields["id"] == R.fields["id"])
-							// now add to rap sheet
 
-							S.fields["criminal"] = "*Arrest*"
-							S.fields["mi_crim"] = "Public urination."
-
-							break
-
-
+			var/datum/db_record/sec_record = data_core.security.find_record("name", perpname)
+			if(sec_record && sec_record["criminal"] != "*Arrest*")
+				sec_record["criminal"] = "*Arrest*"
+				sec_record["mi_crim"] = "Public urination."
 
 /mob/living/carbon/swap_hand()
 	var/obj/item/grab/block/B = src.check_block(ignoreStuns = 1)
@@ -242,13 +234,9 @@
 		..(allow_dead, grunt=customGrunt)
 
 /mob/living/carbon/full_heal()
-	src.remove_ailments()
 	src.take_toxin_damage(-INFINITY)
 	src.take_oxygen_deprivation(-INFINITY)
 	src.change_misstep_chance(-INFINITY)
-	if (src.reagents)
-		src.reagents.clear_reagents()
-		src.reagents.stop_combusting()
 	..()
 
 /mob/living/carbon/take_brain_damage(var/amount)
@@ -290,7 +278,7 @@
 	if (..())
 		return
 
-	if (HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+	if (HAS_ATOM_PROPERTY(src, PROP_BREATHLESS))
 		src.oxyloss = 0
 		return
 
@@ -304,7 +292,7 @@
 	if (!losebreath && amount < 0)
 		return
 
-	if (ischangeling(src) || HAS_MOB_PROPERTY(src, PROP_BREATHLESS))
+	if (ischangeling(src) || HAS_ATOM_PROPERTY(src, PROP_BREATHLESS))
 		src.losebreath = 0
 		return
 

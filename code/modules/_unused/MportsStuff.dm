@@ -4,7 +4,7 @@
 	icon_state = "norm"
 	var/info = "There is nothing here."
 	infra_luminosity = 4
-	anchored = 1
+	anchored = ANCHORED
 	invisibility = 1
 
 /obj/infared_icon/examine(mob/user)

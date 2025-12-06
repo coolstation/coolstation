@@ -1,3 +1,4 @@
+/*
 // some special stuff for flockdrones.
 /datum/hud/critter/flock/drone
 	hud_icon = 'icons/ui/unused/flock_ui.dmi'
@@ -18,3 +19,4 @@
 				F.create_egg()
 			else
 				..(id, user, params)
+*/

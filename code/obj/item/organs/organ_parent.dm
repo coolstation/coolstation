@@ -20,7 +20,7 @@
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 5
-	stamina_cost = 5
+//	stamina_cost = 5
 	edible = 1	// currently overridden by material settings
 	var/well_known = FALSE // do connoisseurs know this organ? 35% chance to be set to TRUE in New(), if not already true from mapping
 	var/mob/living/carbon/human/donor = null // if I can't use "owner" I can at least use this
@@ -90,9 +90,9 @@
 			if(HA.organ_scan)
 				animate_scanning(src, "#0AEFEF")
 				boutput(user, "<span style='color:purple'><b>[src]</b> - [src.get_damage()]</span>")
-				var/datum/data/record/MR = FindRecordByFieldValue(data_core.general, "dna", src.donor_DNA)
+				var/datum/db_record/MR = data_core.general.find_record("dna", src.donor_DNA)
 				if(MR)
-					boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR.fields["name"]] ([MR.fields["dna"]])</span>")
+					boutput(user, "<span style='color:purple'><b>DNA on file</b> -  [MR["name"]] ([MR["dna"]])</span>")
 				else
 					boutput(user, "<span style='color:purple'><b>DNA not on file</b></span>")
 				return

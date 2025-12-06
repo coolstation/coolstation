@@ -364,7 +364,7 @@
 			for (var/turf/T in range(radius,new_center))
 				//covered_points += new/datum/hotspot_point(T.x,T.y,T.z)
 				//T.color = "#FFCCCC"
-				var/turf/space/fluid/S = T
+				var/turf/space/fluid/ocean/S = T
 				if (istype(S) && S.captured)
 					vent_capture_amt += 1
 
@@ -459,7 +459,7 @@
 
 	proc/poll_capture_amt(var/turf/center)
 		vent_capture_amt = 0
-		for (var/turf/space/fluid/T in range(radius,center))
+		for (var/turf/space/fluid/ocean/T in range(radius,center))
 			if (T.captured)
 				vent_capture_amt += 1
 			LAGCHECK(LAG_HIGH)
@@ -477,7 +477,7 @@
 	proc/color_ping(var/setcolor = "#FF0011")
 		if (world.time + 10 SECONDS > last_colorping)
 
-			for (var/turf/space/fluid/T in range(radius,center))
+			for (var/turf/space/fluid/ocean/T in range(radius,center))
 				var/lastcolor = T.color
 				T.color = setcolor
 				animate(T, color = lastcolor, time = 3 SECONDS, easing = SINE_EASING)
@@ -522,8 +522,8 @@
 	throw_speed = 4
 	throw_range = 5
 	stamina_damage = 30
-	stamina_cost = 15
-	stamina_crit_chance = 1
+//	stamina_cost = 15
+//	stamina_crit_chance = 1
 	//two_handed = 1
 	var/static/image/speech_bubble = image('icons/mob/mob.dmi', "speech")
 	var/static/dowse_dist_fuzz = 3
@@ -666,12 +666,12 @@
 		//hotspot_controller.colorping_at_turf(src.loc)
 
 
-/turf/space/fluid/attack_hand(var/mob/user)
+/turf/space/fluid/ocean/attack_hand(var/mob/user)
 	var/obj/item/heat_dowsing/H = locate() in src
 	if (H)
 		H.Attackhand(user)
 
-/turf/space/fluid/attackby(var/obj/item/W, var/mob/user)
+/turf/space/fluid/ocean/attackby(var/obj/item/W, var/mob/user)
 	if (istype(W,/obj/item/shovel) || istype(W,/obj/item/slag_shovel))
 		actions.start(new/datum/action/bar/icon/dig_sea_hole(src), user)
 		return
@@ -689,7 +689,7 @@
 	desc = "A hole dug in the seafloor."
 	icon = 'icons/obj/sealab_power.dmi'
 	icon_state = "venthole_1"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 	ex_act(severity)
@@ -774,7 +774,7 @@
 	icon = 'icons/obj/large/32x48.dmi'
 	icon_state = "hydrovent_1"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	var/last_gen = 0
 	var/total_gen = 0
@@ -784,8 +784,8 @@
 	New()
 		..()
 		START_TRACKING
-		if (istype(src.loc,/turf/space/fluid))
-			var/turf/space/fluid/T = src.loc
+		if (istype(src.loc,/turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = src.loc
 			T.captured = 1
 			update_capture()
 
@@ -798,8 +798,8 @@
 	disposing()
 		..()
 		STOP_TRACKING
-		if (istype(src.loc,/turf/space/fluid))
-			var/turf/space/fluid/T = src.loc
+		if (istype(src.loc,/turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = src.loc
 			T.captured = 0
 			update_capture()
 
@@ -814,15 +814,15 @@
 		qdel(src)
 
 	Move(NewLoc,Dir=0,step_x=0,step_y=0)
-		if (istype(src.loc,/turf/space/fluid))
-			var/turf/space/fluid/T = src.loc
+		if (istype(src.loc,/turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = src.loc
 			T.captured = 0
 			update_capture()
 
 		. = ..(NewLoc,Dir,step_x,step_y)
 
-		if (istype(src.loc,/turf/space/fluid))
-			var/turf/space/fluid/T = src.loc
+		if (istype(src.loc,/turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = src.loc
 			T.captured = 1
 			update_capture()
 
@@ -883,7 +883,7 @@
 	icon = 'icons/obj/large/32x48.dmi'
 	icon_state = "stomper0"
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 
 	var/power_up_realtime = 30
 	var/const/power_cell_usage = 4
@@ -1199,7 +1199,7 @@
 		decal.icon_state = "[src.icon_state]-rip2"
 		decal.pixel_x = src.pixel_x
 		decal.pixel_y = src.pixel_y
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		src.icon_state = "[src.icon_state]-rip1"
 		src.can_put_up = 0
 		user.put_in_hand_or_drop(src)
@@ -1210,6 +1210,6 @@
 			"You attach [src] to [A].")
 			user.u_equip(src)
 			src.set_loc(A)
-			src.anchored = 1
+			src.anchored = ANCHORED
 		else
 			return ..()

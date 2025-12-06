@@ -48,7 +48,7 @@ var/global/list/adventure_elements_by_id = list()
 	desc = "Marks a selection in Adventure Mode."
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 /*
 	unpooled()
 		icon_state = "select_generic"
@@ -378,7 +378,7 @@ var/global/list/adventure_elements_by_id = list()
 	invisibility = 100
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 
 	serialize(var/savefile/F, var/path, var/datum/sandbox/sandbox)
 		..()

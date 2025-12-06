@@ -1,3 +1,4 @@
+/*
 /mob/living/critter/flock/bit
 	name = "floaty gewgaw"
 	desc = "Well, that's a thing."
@@ -113,3 +114,4 @@
 	else
 		playsound(src, "sound/misc/flockmind/flockbit_wisp[pick("1","2","3","4","5","6")].ogg")
 		actions.start(new/datum/action/bar/flock_convert(target, 25), user)
+*/

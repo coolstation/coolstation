@@ -82,7 +82,7 @@
 			icon_state = initial(icon_state)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (!src.alive) break
 			if (C.health < 0) continue
@@ -126,7 +126,7 @@
 			icon_state = initial(icon_state)
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (!src.alive) break
 			if (C.health < 0) continue
@@ -246,7 +246,7 @@
 	desc = "You'd best destroy this thing fast."
 	icon = 'icons/mob/critter/martian.dmi'
 	icon_state = "mbomb-off"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/health = 100
 	var/active = 0

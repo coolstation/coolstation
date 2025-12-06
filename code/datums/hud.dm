@@ -1,8 +1,9 @@
 /atom/movable/screen
-	anchored = 1
+	anchored = ANCHORED
 	plane = PLANE_HUD//wow WOW why won't you use /atom/movable/screen/hud, HUD OBJECTS???
 	text = ""
 	flags = TECHNICAL_ATOM //Better safe than looking at a weird-ass bug later
+	pass_unstable = PRESERVE_CACHE //Not sure if these can even take up physical space or interact with the pathfinding cache, but just to be safe
 	New()
 		..()
 		appearance_flags |= NO_CLIENT_COLOR

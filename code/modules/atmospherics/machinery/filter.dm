@@ -36,18 +36,6 @@ Filter types:
 */
 
 	var/frequency = 0
-	var/datum/radio_frequency/radio_connection
-
-	proc
-		set_frequency(new_frequency)
-			radio_controller.remove_object(src, "[frequency]")
-			frequency = new_frequency
-			if(frequency)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
-
-	disposing()
-		radio_controller.remove_object(src,"[frequency]")
-		..()
 
 	New()
 		..()
@@ -70,6 +58,10 @@ Filter types:
 		air_in.volume = 200
 		air_out1.volume = 200
 		air_out2.volume = 200
+
+	proc/set_frequency(new_frequency)
+		get_radio_connection_by_id(src, frequency).update_frequency(new_frequency)
+		frequency = new_frequency
 
 	disposing()
 
@@ -239,7 +231,7 @@ Filter types:
 
 		update_icon()
 
-		set_frequency(frequency)
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
 	build_network()
 		if(!network_out1 && node_out1)

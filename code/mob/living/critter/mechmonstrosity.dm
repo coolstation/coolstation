@@ -9,9 +9,6 @@
 	blood_id = "oil"
 	hand_count = 0
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 0
-	can_help = 0
 	blood_id = "oil"
 	speechverb_say = "states"
 	speechverb_gasp = "states"
@@ -95,9 +92,6 @@
 	desc = "You better wish that apples will keep this thing away from you.."
 	hand_count = 2
 	var/smashes_shit = 1
-	can_grab = 1
-	can_disarm = 1
-	can_help = 1
 	robotic = TRUE
 	health_brute = 200
 	health_burn = 200
@@ -178,6 +172,7 @@
 	cooldown = 600
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
 	attack_mobs = TRUE
 
 	cast(atom/target)
@@ -213,6 +208,7 @@
 	targeted = 1
 	target_nodamage_check = 1
 	max_range = 14
+	ai_range = 6
 	cooldown = 600
 	attack_mobs = TRUE
 
@@ -335,6 +331,7 @@
 	targeted = 1
 	target_nodamage_check = 1
 	max_range = 1
+	ai_range = 1
 	cooldown = 600
 	//attack_mobs = TRUE // eek
 
@@ -548,9 +545,6 @@
 	stepsound = null
 	hand_count = 2
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
-	can_help = 1
 	base_move_delay = 5
 	base_walk_delay = 5
 	blood_id = "oil"

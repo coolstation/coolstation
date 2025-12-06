@@ -93,6 +93,15 @@ var/global/list/cycling_airlocks = list()
 		logTheThing("combat", usr, null, "de-electrified airlock ([src]) at [log_loc(src)].")
 		message_admins("[key_name(user)] de-electrified airlock ([src]) at [log_loc(src)].")
 
+/obj/machinery/door/airlock/hitby(atom/movable/M, datum/thrown_thing/thr)
+	if (iscarbon(M))
+		playsound(src, "sound/impact_sounds/doorbang.ogg", 80, 1)
+	else
+		playsound(src, "sound/impact_sounds/wallbang_small.ogg", 50, 1)
+
+	..()
+
+
 
 /obj/machinery/door/airlock/proc/idscantoggle(mob/user)
 	if(!src.arePowerSystemsOn() || (status & NOPOWER))
@@ -958,8 +967,9 @@ About the new airlock wires panel:
 		if(AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2)
 			//Cutting either one disables the main door power, but unless backup power is also cut, the backup power re-powers the door in 10 seconds. While unpowered, the door may be crowbarred open, but bolts-raising will not work. Cutting these wires may electocute the user.
 			src.loseMainPower()
-			SPAWN_DBG(1 DECI SECOND)
-				src.shock(usr, 50)
+			if(usr)
+				SPAWN_DBG(1 DECI SECOND)
+					src.shock(usr, 50)
 		if (AIRLOCK_WIRE_DOOR_BOLTS)
 			//Cutting this wire also drops the door bolts, and mending it does not raise them. (This is what happens now, except there are a lot more wires going to door bolts at present)
 			if (src.locked!=1)
@@ -971,8 +981,9 @@ About the new airlock wires panel:
 		if (AIRLOCK_WIRE_BACKUP_POWER1, AIRLOCK_WIRE_BACKUP_POWER2)
 			//Cutting either one disables the backup door power (allowing it to be crowbarred open, but disabling bolts-raising), but may electocute the user.
 			src.loseBackupPower()
-			SPAWN_DBG(1 DECI SECOND)
-				src.shock(usr, 50)
+			if(usr)
+				SPAWN_DBG(1 DECI SECOND)
+					src.shock(usr, 50)
 
 		if (AIRLOCK_WIRE_AI_CONTROL)
 			//one wire for AI control. Cutting this prevents the AI from controlling the door unless it has hacked the door through the power connection (which takes about a minute). If both main and backup power are cut, as well as this wire, then the AI cannot operate or hack the door at all.
@@ -981,8 +992,9 @@ About the new airlock wires panel:
 				src.aiControlDisabled = 1
 			else if (src.aiControlDisabled == -1)
 				src.aiControlDisabled = 2
-			SPAWN_DBG(1 DECI SECOND)
-				src.shock(usr, 25)
+			if(usr)
+				SPAWN_DBG(1 DECI SECOND)
+					src.shock(usr, 25)
 
 		if (AIRLOCK_WIRE_ELECTRIFY)
 			//Cutting this wire electrifies the door, so that the next person to touch the door without insulated gloves gets electrocuted.
@@ -1605,7 +1617,6 @@ obj/machinery/door/airlock
 	var/last_radio_login = 0
 	mats = 18
 
-	var/datum/radio_frequency/radio_connection
 
 	receive_signal(datum/signal/signal)
 		if(!signal || signal.encryption)
@@ -1623,9 +1634,8 @@ obj/machinery/door/airlock
 				pingsignal.data["sender"] = src.net_id
 				pingsignal.data["address_1"] = signal.data["sender"]
 				pingsignal.data["command"] = "ping_reply"
-				pingsignal.transmission_method = TRANSMISSION_RADIO
 
-				radio_connection.post_signal(src, pingsignal, radiorange)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, pingsignal, radiorange)
 				return
 
 			else if (!id_tag || id_tag != signal.data["tag"])
@@ -1634,7 +1644,6 @@ obj/machinery/door/airlock
 		if (signal.data["command"] && signal.data["command"] == "help")
 			var/datum/signal/reply = get_free_signal()
 			reply.source = src
-			reply.transmission_method = TRANSMISSION_RADIO
 			reply.data["sender"] = src.net_id
 			reply.data["address_1"] = signal.data["sender"]
 			if (!signal.data["topic"])
@@ -1663,7 +1672,7 @@ obj/machinery/door/airlock
 						reply.data["args"] = "access_code"
 					else
 						reply.data["description"] = "ERROR: UNKNOWN TOPIC"
-			radio_connection.post_signal(src, reply, radiorange)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, reply, radiorange)
 			return
 
 		var/sent_code = text2num(signal.data["access_code"])
@@ -1678,9 +1687,8 @@ obj/machinery/door/airlock
 			rejectsignal.data["command"] = "nack"
 			rejectsignal.data["data"] = "badpass"
 			rejectsignal.data["sender"] = src.net_id
-			rejectsignal.transmission_method = TRANSMISSION_RADIO
 
-			radio_connection.post_signal(src, rejectsignal, radiorange)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, rejectsignal, radiorange)
 			return
 
 		if (!signal.data["command"])
@@ -1739,28 +1747,26 @@ obj/machinery/door/airlock
 					send_status(,senderid)
 
 	proc/send_status(userid,target)
-		if(radio_connection)
-			var/datum/signal/signal = get_free_signal()
-			signal.transmission_method = 1 //radio signal
-			signal.source = src
-			if (id_tag)
-				signal.data["tag"] = id_tag
-			signal.data["sender"] = net_id
-			signal.data["timestamp"] = "[air_master.current_cycle]"
+		var/datum/signal/signal = get_free_signal()
+		signal.source = src
+		if (id_tag)
+			signal.data["tag"] = id_tag
+		signal.data["sender"] = net_id
+		signal.data["timestamp"] = "[air_master.current_cycle]"
+		signal.data["address_tag"] = "door" // prevents other doors from receiving this packet unnecessarily
 
-			if (userid)
-				signal.data["user_id"] = "[userid]"
-			if (target)
-				signal.data["address_1"] = target
-			signal.data["door_status"] = density?("closed"):("open")
-			signal.data["lock_status"] = locked?("locked"):("unlocked")
+		if (userid)
+			signal.data["user_id"] = "[userid]"
+		if (target)
+			signal.data["address_1"] = target
+		signal.data["door_status"] = density?("closed"):("open")
+		signal.data["lock_status"] = locked?("locked"):("unlocked")
 
-			radio_connection.post_signal(src, signal, radiorange)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, radiorange)
 
 	proc/send_packet(userid,target,message) //For unique conditions like a rejection message instead of overall status
-		if(radio_connection && message)
+		if(message)
 			var/datum/signal/signal = get_free_signal()
-			signal.transmission_method = 1 //radio signal
 			signal.source = src
 			if (id_tag)
 				signal.data["tag"] = id_tag
@@ -1771,10 +1777,11 @@ obj/machinery/door/airlock
 				signal.data["user_id"] = "[userid]"
 			if (target)
 				signal.data["address_1"] = target
+			signal.data["address_tag"] = "door" // prevents other doors from receiving this packet unnecessarily
 
 			signal.data["data"] = "[message]"
 
-			radio_connection.post_signal(src, signal, radiorange)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal, radiorange)
 
 	open(surpress_send)
 		. = ..()
@@ -1830,29 +1837,13 @@ obj/machinery/door/airlock
 				send_packet(user_name, ,"denied")
 			src.last_update_time = ticker.round_elapsed_ticks
 
-	proc/set_frequency(new_frequency)
-		radio_controller.remove_object(src, "[frequency]")
-		if(new_frequency)
-			frequency = new_frequency
-			radio_connection = radio_controller.add_object(src, "[frequency]")
-
 	initialize()
 		..()
-		if(frequency)
-			set_frequency(frequency)
-
 		update_icon()
 
 	New()
 		..()
-
-		if(radio_controller)
-			set_frequency(frequency)
-
-	disposing()
-		if (radio_controller)
-			set_frequency(null)
-		..()
+		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
 /obj/machinery/door/airlock/take_damage(amount, mob/user = null, chopping = FALSE)
 	if (!(..()) && src.health <= health_max * 0.9)

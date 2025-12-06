@@ -124,7 +124,7 @@ var/list/stinkThingies = list("ass","taint","armpit","excretions","leftovers","a
 					//I really shouldnt put this here but i dont have a better idea
 					var/obj/overlay/O = new /obj/overlay ( locate(X,Y,Z) )
 					O.name = "sparkles"
-					O.anchored = 1
+					O.anchored = ANCHORED
 					O.set_density(0)
 					O.layer = FLY_LAYER
 					O.set_dir(pick(cardinal))
@@ -676,10 +676,10 @@ var/obj/item/dummy/click_dummy = new
 			if (!move_mobs && istype(AM, /mob/)) continue
 			AM.set_loc(T)
 
-		if(turftoleave)
+		if(turftoleave != /turf/space)
 			S.ReplaceWith(turftoleave, keep_old_material = 0, force=1)
 		else
-			S.ReplaceWithSpaceForce()
+			S.ReplaceWithSpace()
 
 
 

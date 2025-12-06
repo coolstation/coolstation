@@ -64,11 +64,12 @@ A Flamethrower in various states of assembly
 	contraband = 5 //Heh
 	m_amt = 500
 	stamina_damage = 15
-	stamina_cost = 15
-	stamina_crit_chance = 1
+//	stamina_cost = 15
+//	stamina_crit_chance = 1
 	move_triggered = 1
 	spread_angle = 0
 	shoot_delay = 1 SECOND
+	hint = "Uses a handheld fueltank for ammunition and a gas tank for propellant. Use a screwdriver with the tanks removed to disassemble."
 
 	New()
 		..()
@@ -190,8 +191,9 @@ A Flamethrower in various states of assembly
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	desc = "You are a firestarter!"
 	flags = FPRINT | TABLEPASS | CONDUCT | EXTRADELAY
-	force = 3.0
-	throwforce = 10.0
+	c_flags = EQUIPPED_WHILE_HELD
+	force = 3
+	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
 	w_class = W_CLASS_BULKY
@@ -199,6 +201,10 @@ A Flamethrower in various states of assembly
 	var/obj/item/rods/rod = null
 	var/obj/item/device/igniter/igniter = null
 	inventory_counter_enabled = 1
+
+	setupProperties()
+		. = ..()
+		setProperty("carried_movespeed", 0.2)
 
 /obj/item/tank/jetpack/backtank
 	name = "fuelpack"
@@ -300,6 +306,7 @@ A Flamethrower in various states of assembly
 	item_state = "syndthrower_0"
 	uses_multiple_icon_states = 1
 	force = 6
+	contraband = 7
 	two_handed = 1
 	swappable_tanks = 0 // Backpack or bust
 	spread_angle = 10
@@ -377,6 +384,7 @@ A Flamethrower in various states of assembly
 	throw_speed = 1
 	throw_range = 5
 	w_class = W_CLASS_SMALL
+	hint = "Add an igniter to continue assembly, or use a wrench to disassemble."
 
 /obj/item/assembly/weld_rod/New()
 	..()
@@ -398,6 +406,8 @@ A Flamethrower in various states of assembly
 	throw_speed = 1
 	throw_range = 5
 	w_class = W_CLASS_SMALL
+
+	hint = "Use a screwdriver to continue assembly, or use a wrench to disassemble."
 
 /obj/item/assembly/w_r_ignite/New()
 	..()

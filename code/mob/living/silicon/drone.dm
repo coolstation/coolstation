@@ -197,7 +197,7 @@
 				equipped.afterattack(target, src, reach)
 
 			if (src.lastattacked == target && use_delay) //If lastattacked was set, this must be a combat action!! Use combat click delay.
-				src.next_click = world.time + (equipped ? max(equipped.click_delay,src.combat_click_delay) : src.combat_click_delay)
+				src.next_click = world.time + (equipped ? equipped.combat_click_delay : src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 				src.lastattacked = null
 
 	Bump(atom/movable/AM as mob|obj, yes)
@@ -322,7 +322,7 @@
 	icon_state = "frame-0"
 	opacity = 0
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	var/construct_stage = 0
 	var/obj/item/device/radio/part_radio = null
 	var/obj/item/cell/part_cell = null

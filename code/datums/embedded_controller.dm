@@ -397,7 +397,7 @@ obj/machinery/embedded_controller
 
 	name = "Embedded Controller"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 
 	var/on = 1
 
@@ -444,27 +444,13 @@ obj/machinery/embedded_controller
 
 	radio
 		var/frequency
-		var/datum/radio_frequency/radio_connection
-
-		disposing()
-			radio_controller.remove_object(src,"[frequency]")
-			..()
 
 		initialize()
-			set_frequency(frequency)
+			..()
+			MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
 
 		post_signal(datum/signal/signal)
-			signal.transmission_method = TRANSMISSION_RADIO
-			if(radio_connection)
-				return radio_connection.post_signal(src, signal)
-			//else
-				//qdel(signal)
-
-		proc
-			set_frequency(new_frequency)
-				radio_controller.remove_object(src, "[frequency]")
-				frequency = new_frequency
-				radio_connection = radio_controller.add_object(src, "[frequency]")
+			return SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
 
 obj/machinery/embedded_controller/radio/access_controller

@@ -3,7 +3,7 @@
 	icon = 'icons/obj/tripod.dmi'
 	icon_state = "tripod"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 
 	machine_registry_idx = MACHINES_MISC
 	var/obj/item/tripod_bulb/bulb = null

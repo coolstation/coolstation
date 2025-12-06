@@ -205,11 +205,9 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 		..()
 		attack_particle(user,M)
 
-#ifdef DATALOGGER
 		game_stats.Increment("violence")
 		if(M.mind && M.mind.assigned_role == "Clown")
 			game_stats.Increment("clownabuse")
-#endif
 		return
 
 /obj/item/gun/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
@@ -293,10 +291,8 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 
 	SEND_SIGNAL(user, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
 	handle_recoil(user, start, target, POX, POY)
-#ifdef DATALOGGER
 	if (game_stats && istype(game_stats))
 		game_stats.Increment("gunfire")
-#endif
 
 	if (ismob(user))
 		var/mob/M = user
@@ -384,10 +380,10 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 
 	if (first_shot && src.current_projectile.shot_number > 1 && src.current_projectile.shot_delay > 0)
 		for (var/i=1 to src.current_projectile.shot_number-1)
-			spawn(i*src.current_projectile.shot_delay)
+			SPAWN_DBG(i*src.current_projectile.shot_delay)
 				handle_recoil(user,start,target,POX,POY, FALSE)
 	if (start_recoil && icon_recoil_enabled)
-		spawn(0)
+		SPAWN_DBG(0)
 			do_icon_recoil()
 
 /obj/item/gun/proc/process_ammo(var/mob/user)
@@ -419,11 +415,11 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 	user.visible_message("<span class='alert'><b>[user] places [src] against [his_or_her(user)] head!</b></span>")
 	var/dmg = user.get_brute_damage() + user.get_burn_damage()
 	var/turf/T = get_turf(user)
-	APPLY_MOB_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide", 0.1 - user.get_ranged_protection()) // take 10x damage from projectiles for 1 second
+	APPLY_ATOM_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide", 0.1 - user.get_ranged_protection()) // take 10x damage from projectiles for 1 second
 	src.Shoot(T, T, user, point_blank_target = user)
 	SPAWN_DBG(1 SECOND)
 		if(!QDELETED(user)) // i sincerely hope someone makes this check matter
-			REMOVE_MOB_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide")
+			REMOVE_ATOM_PROPERTY(user, PROP_RANGEDPROT, "gun_suicide")
 			var/new_dmg = user.get_brute_damage() + user.get_burn_damage()
 			if (new_dmg < (dmg + 30)) // BOOOO!
 				user.visible_message("<span class='alert'>[user] hangs [his_or_her(user)] head in shame.</span>")

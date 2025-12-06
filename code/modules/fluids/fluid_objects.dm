@@ -10,14 +10,15 @@
 ///////////////////
 
 /obj/machinery/drainage
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
+	pass_unstable = FALSE
 	icon = 'icons/obj/fluid.dmi'
 	var/base_icon = "drain"
 	icon_state = "drain"
 	plane = PLANE_FLOOR //They're supposed to be embedded in the floor.
 	name = "drain"
-	desc = "A drainage pipe embedded in the floor to prevent flooding. Where does the drain go? Nobody knows."
+	desc = "A drainage pipe embedded in the floor to prevent flooding. Where does the drain go? The septic tank!"
 	var/turf/my_turf
 	var/clogged = 0 //temporary block
 	var/welded = 0 //permanent block
@@ -147,7 +148,7 @@
 ///////////////////
 
 /obj/channel
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "channel"
@@ -246,7 +247,7 @@
 
 
 /obj/machinery/fluid_canister
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	icon = 'icons/obj/fluid.dmi'
 	var/base_icon = "blue"
@@ -413,7 +414,7 @@
 
 	var/obj/sea_ladder_deployed/linked_ladder
 	var/obj/item/sea_ladder/og_ladder_item = 0
-	anchored = 1
+	anchored = ANCHORED
 
 	verb/fold_up()
 		set name = "Fold Up"
@@ -436,7 +437,7 @@
 		var/turf/target = 0
 
 		for(var/turf/T in orange(1,linked_ladder))
-			if (!istype(T,/turf/space/fluid/warp_z5))
+			if (!istype(T,/turf/space/fluid/ocean/warp_z5))
 				target = T
 				break
 
@@ -458,8 +459,8 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 9
 	stamina_damage = 30
-	stamina_cost = 20
-	stamina_crit_chance = 6
+//	stamina_cost = 20
+//	stamina_crit_chance = 6
 	var/c_color = null
 	mats = 7
 
@@ -470,23 +471,23 @@
 
 	afterattack(atom/target, mob/user as mob)
 		. = ..()
-		if (istype(target,/turf/space/fluid/warp_z5/realwarp))
-			var/turf/space/fluid/warp_z5/realwarp/hole = target
+		if (istype(target,/turf/space/fluid/ocean/warp_z5/realwarp))
+			var/turf/space/fluid/ocean/warp_z5/realwarp/hole = target
 			var/datum/component/pitfall/target_coordinates/targetzcomp = hole.GetComponent(/datum/component/pitfall/target_coordinates)
-			targetzcomp.update_targets()
-			deploy_ladder(hole, pick(targetzcomp.TargetList), user)
+			targetzcomp.update_target()
+			deploy_ladder(hole, targetzcomp.Target, user)
 
-		else if (istype(target,/turf/space/fluid/warp_z5))
-			var/turf/space/fluid/warp_z5/hole = target
+		else if (istype(target,/turf/space/fluid/ocean/warp_z5))
+			var/turf/space/fluid/ocean/warp_z5/hole = target
 			var/datum/component/pitfall/target_area/targetacomp = hole.GetComponent(/datum/component/pitfall/target_area)
 			deploy_ladder(hole, pick(get_area_turfs(targetacomp.TargetArea)), user)
 
-		else if(istype(target, /turf/space/fluid))
-			var/turf/space/fluid/T = target
+		else if(istype(target, /turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = target
 			if(T.linked_hole)
 				deploy_ladder(T, T.linked_hole, user)
 			else if(istype(T.loc, /area/trench_landing))
-				deploy_ladder(T, pick(by_type[/turf/space/fluid/warp_z5/edge]), user)
+				deploy_ladder(T, pick(by_type[/turf/space/fluid/ocean/warp_z5/edge]), user)
 
 	proc/deploy_ladder(turf/source, turf/dest, mob/user)
 		user.show_text("You deploy [src].")
@@ -507,7 +508,7 @@
 	icon = 'icons/obj/sealab_objects.dmi'
 	icon_state = "mine_0"
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 
 	mats = 16
 	deconstruct_flags = DECON_WRENCH | DECON_WELDER | DECON_MULTITOOL

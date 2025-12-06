@@ -401,7 +401,6 @@ ABSTRACT_TYPE(/datum/artifact/bomb)
 					100;"glass",
 					100;"char",
 					100;"molitz",
-					50;"molitz_b",
 					50;"bohrum",
 					50;"cerenkite",
 					50;"plasmasteel",

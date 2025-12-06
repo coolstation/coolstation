@@ -492,7 +492,7 @@
 	name = "supply pad"
 	desc = "A pad used to teleport goods between Central Command and a survey outpost. Requires a telecrystal to function."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 
 	var/has_crystal = 0
@@ -550,7 +550,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "QMcom"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 
 	var/obj/supply_pad/in_target

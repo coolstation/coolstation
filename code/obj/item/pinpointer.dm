@@ -18,8 +18,8 @@
 	mats = 4
 	desc = "An extremely advanced scanning device used to locate things. It displays this with an extremely technicalogically advanced arrow."
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	var/image/arrow = null
 
 	New()

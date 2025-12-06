@@ -1,6 +1,6 @@
 /mob/living/critter/brullbar
-	name = "brullbar"
-	real_name = "brullbar"
+	name = "brüllbär"
+	real_name = "brüllbär"
 	desc = "Oh god."
 	density = 1
 	icon_state = "brullbar"
@@ -8,20 +8,18 @@
 	custom_gib_handler = /proc/gibs
 	hand_count = 2
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	blood_id = "beff"
 	burning_suffix = "humanoid"
-	health_brute = 100
+	health_brute = 75
 	health_brute_vuln = 0.85
-	health_burn = 100
+	health_burn = 75
 	health_burn_vuln = 1.4
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
-					playsound(src, "sound/voice/animal/brullbar_roar.ogg", 80, 1, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, "sound/voice/animal/brullbar_roar.ogg", 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 					return "<b><span class='alert'>[src] howls!</span></b>"
 		return null
 

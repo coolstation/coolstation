@@ -1,5 +1,6 @@
 /datum/component/waddling
-	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
+	dupe_mode = COMPONENT_DUPE_HIGHLANDER
+	var/static/waddles = list()
 
 /datum/component/waddling/Initialize()
 	if(!isliving(parent))
@@ -16,7 +17,6 @@
 	animate(pixel_z = 0, transform = M, time = 0)
 
 /datum/component/waddling/proc/nextWaddle(var/mob/H)
-	var/static/waddles = list()
 	if (!waddles[H])
 		waddles[H] = -16
 	else

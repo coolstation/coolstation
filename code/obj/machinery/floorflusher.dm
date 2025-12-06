@@ -6,7 +6,7 @@
 	//icon = 'icons/obj/machines/disposal.dmi'
 	icon = 'icons/obj/machines/delivery.dmi' // new icon
 	icon_state = "floorflush_c"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	flags = NOSPLASH
 	event_handler_flags = USE_HASENTERED
@@ -173,10 +173,6 @@
 
 		update()
 		return
-
-	// can breath normally in the disposal
-	alter_health()
-		return get_turf(src)
 
 	// attempt to move while inside
 	relaymove(mob/user as mob)

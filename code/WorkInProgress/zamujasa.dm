@@ -2,7 +2,7 @@
 	name = "very conspicuous cable"
 	desc = "Some sort of cabling that runs under the floor. Looks pretty important."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/machines/power_cond.dmi'
 	icon_state = "1-10"
 	layer = CABLE_LAYER
@@ -53,7 +53,7 @@
 /obj/maptext_junk/RL_counter
 	icon = null
 	maptext = ""
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	var/applies = 0
 	var/updates = 0
 	var/gen = 0
@@ -145,7 +145,7 @@
 #define NW_SE 0
 #define SW_NE 1
 
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	opacity = 0
 	icon = 'icons/obj/unused/glass.dmi'
@@ -183,7 +183,7 @@
 	event_handler_flags = USE_HASENTERED
 	icon = 'icons/effects/letter_overlay.dmi'
 	icon_state = "A"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	var/id = null
 	var/which_end = 0
@@ -253,7 +253,7 @@
 	density = 1
 	event_handler_flags = NO_MOUSEDROP_QOL
 	flags = FPRINT
-	anchored = 1
+	anchored = ANCHORED
 	desc = "Funds further renovations for the afterlife. You can put the fruits / vegetables / minerals / bombs you grew into this (click this with them or click-drag them onto it)."
 	var/total_score = 0
 	var/round_score = 0
@@ -525,8 +525,8 @@
 	throw_speed = 3
 	throw_range = 8
 	stamina_damage = 1
-	stamina_cost = 1
-	stamina_crit_chance = 0
+//	stamina_cost = 1
+//	stamina_crit_chance = 0
 	var/active = 0
 
 	attack_self(mob/user as mob)
@@ -555,7 +555,7 @@
 	name = "big number"
 	mouse_opacity = 0
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "num0"
 	layer = TURF_LAYER + 0.1 // it should basically be part of a turf
@@ -669,7 +669,7 @@
 	icon = 'icons/mob/inhand/hand_general.dmi'
 	icon_state = "DONGS"
 	plane = PLANE_HUD
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	var/last_count = -1
@@ -718,7 +718,7 @@
 	name = "maptext monitor doodad"
 	desc = "This thing reports the value something else has, automatically! Wow!"
 	icon = null
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	density = 0
 	plane = PLANE_HUD - 1
 
@@ -1133,7 +1133,7 @@
 		src.maptext_height = 64
 		src.maptext_width = 232
 		src.plane = 100
-		src.anchored = 2
+		src.anchored = ANCHORED_TECHNICAL
 		src.mouse_opacity = 1
 
 	proc/update_timer(var/num)
@@ -1153,7 +1153,7 @@
 		src.maptext_height = 64
 		src.maptext_width = 232
 		src.plane = 100
-		src.anchored = 2
+		src.anchored = ANCHORED_TECHNICAL
 		src.mouse_opacity = 1
 		src.maptext = {"<div class='c pixel sh' style="background: #00000080;"><strong>-- Welcome to Coolstation! --</strong>
 New? <a href="https://mini.xkeeper.net/ss13/tutorial/" style="color: #8888ff; font-weight: bold;" clss="ol">Click here for a tutorial!</a>
@@ -1399,14 +1399,17 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		..()
 		src.icon_state = "cowbrush[src.on ? "_on" : ""]"
 
+/image/maptext_image
+	icon = null
+	plane = PLANE_HUD - 1
+	maptext = ""
 
-
-// modified from admin_spacebux_store by mylie
+// modified from zamu's admin_spacebux_store by mylie
 /obj/configurable_credit_store
 	name = "configurable credit store setup object"
 	desc = "An admin can click on this to set stuff up."
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/mob/inhand/hand_general.dmi'
 	icon_state = "DONGS"
 	layer = EFFECTS_LAYER_4
@@ -1415,8 +1418,8 @@ Other Coolstation servers: Not Yet!!!</span>"})
 	var/tmp/thing_name = null
 	var/tmp/atom/thing_to_copy = null
 	var/tmp/number_purchased = 0
-	var/tmp/obj/maptext_junk/price_text = null
-	var/tmp/obj/maptext_junk/quantity_text = null
+	var/tmp/image/maptext_image/price_text = null
+	var/tmp/image/maptext_image/quantity_text = null
 	var/tmp/list/purchaser_ckeys = list()
 	var/type_to_spawn = null
 	var/delete_at_zero = TRUE
@@ -1424,10 +1427,34 @@ Other Coolstation servers: Not Yet!!!</span>"})
 	var/price = 0
 	var/limit_per_player = 0
 	var/limit_total = 0
+	var/always_visible_maptext = FALSE
+
+	MouseEntered(location, control, params)
+		. = ..()
+		if(usr.client)
+			usr.client.images |= price_text
+			if(quantity_text)
+				usr.client.images |= quantity_text
+
+	MouseExited(location, control, params)
+		. = ..()
+		if(usr.client)
+			usr.client.images -= price_text
+			usr.client.images -= quantity_text
 
 	get_desc()
 		if (set_up)
 			. += "<br>Looks like it costs $[src.price][src.limit_per_player ? ", a person can buy up to [src.limit_per_player]," : null] and there are [src.limit_total - src.number_purchased] left."
+
+	disposing()
+		thing_to_copy = null
+		dispose(price_text)
+		dispose(quantity_text)
+		src.vis_contents -= price_text
+		price_text = null
+		src.vis_contents -= quantity_text
+		quantity_text = null
+		. = ..()
 
 	attack_hand(mob/user)
 		if (!set_up)
@@ -1491,19 +1518,19 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		src.name = "[price > 0 ? "credit shop" : "dispenser"] - [src.thing_name]"
 		src.desc = "A little shop where you can grab \a [src.thing_name]. Wow!"
 
-		src.price_text = new()
-		src.price_text.set_loc(src)
+		src.price_text = new(null, src)
 		src.price_text.maptext_width = 132
 		src.price_text.maptext_x = -50
 		src.price_text.maptext_y = -8
 		src.price_text.maptext = "<span class='c vb sh xfont'><font color=green>[price > 0 ? "$[price]" : "FREE"]</font></span>"
-		src.vis_contents += src.price_text
+		if(src.always_visible_maptext)
+			src.vis_contents += src.price_text
 		src.price_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 
 		if (src.limit_total && src.limit_total != 1)
-			src.quantity_text = new()
-			src.quantity_text.set_loc(src)
-			src.vis_contents += src.quantity_text
+			src.quantity_text = new(null, src)
+			if(src.always_visible_maptext)
+				src.vis_contents += src.quantity_text
 			src.quantity_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 			src.update_quantity()
 
@@ -1625,19 +1652,19 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		src.thing_name = AM.name
 		src.set_density(AM.density)
 
-		src.price_text = new()
-		src.price_text.set_loc(src)
+		src.price_text = new(null, src)
 		src.price_text.maptext_width = 132
 		src.price_text.maptext_x = -50
 		src.price_text.maptext_y = -8
 		src.price_text.maptext = "<span class='c vb sh xfont'><font color=green>[price > 0 ? "$[price]" : "FREE"]</font></span>"
-		src.vis_contents += src.price_text
+		if(src.always_visible_maptext)
+			src.vis_contents += src.price_text
 		src.price_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 
 		if (src.limit_total && src.limit_total != 1)
-			src.quantity_text = new()
-			src.quantity_text.set_loc(src)
-			src.vis_contents += src.quantity_text
+			src.quantity_text = new(null, src)
+			if(src.always_visible_maptext)
+				src.vis_contents += src.quantity_text
 			src.quantity_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 			src.update_quantity()
 

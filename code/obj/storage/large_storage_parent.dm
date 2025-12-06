@@ -42,7 +42,7 @@
 	var/health = 3
 	var/can_flip_bust = 0 // Can the trapped mob damage this container by flipping?
 	var/obj/item/card/id/scan = null
-	var/datum/data/record/account = null
+	var/datum/db_record/account = null
 	var/last_relaymove_time
 	var/is_short = 0 // can you not stand in it?  ie, crates?
 	var/open_fail_prob = 50
@@ -111,6 +111,14 @@
 		else
 			src.UpdateOverlays(null, "welded")
 
+	proc/locker_sound() //I COULDNT THINK OF A BETTER WAY TO DO THIS BUT ITS FUCKING ANNOYING THE OLD WAY
+		if (src.secure)
+			if (src.locked && !src.open)
+				playsound(src.loc,"sound/machines/bweep.ogg",10,0,-10,0.7)
+				return
+			else
+				playsound(src.loc,"sound/machines/bweep.ogg",10,0,-10)
+
 	emp_act()
 		if (!src.open && length(src.contents))
 			for (var/atom/A in src.contents)
@@ -120,9 +128,6 @@
 				if (isitem(A))
 					var/obj/item/I = A
 					I.emp_act()
-
-	alter_health()
-		. = get_turf(src)
 
 	relaymove(mob/user as mob)
 		if (is_incapacitated(user))
@@ -251,6 +256,7 @@
 					src.locked = !( src.locked )
 					user.visible_message("<span class='notice'>The locker has been [src.locked ? null : "un"]locked by [user].</span>")
 					src.update_icon()
+					locker_sound() //redd was here
 					if (!src.registered)
 						src.registered = I.registered
 						src.name = "[I.registered]'s [src.name]"
@@ -263,6 +269,7 @@
 					src.locked = !src.locked
 					user.visible_message("<span class='notice'>[src] has been [src.locked ? null : "un"]locked by [user].</span>")
 					src.update_icon()
+					locker_sound() //redd was here
 					for (var/mob/M in src.contents)
 						src.log_me(user, M, src.locked ? "locks" : "unlocks")
 					return
@@ -431,9 +438,6 @@
 		if (can_reach(user, src) <= 1 && (isrobot(user) || isshell(user)))
 			. = src.Attackhand(user)
 
-	alter_health()
-		. = get_turf(src)
-
 	CanPass(atom/movable/mover, turf/target)
 		. = open
 		if (src.is_short)
@@ -500,7 +504,7 @@
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
-		playsound(src.loc, src.open_sound, 15, 1, -3)
+		playsound(src.loc, src.open_sound, 50, 1, -3)
 		return 1
 
 	proc/close(var/entangleLogic)
@@ -559,7 +563,7 @@
 			entangled.open(1)
 
 		src.update_icon()
-		playsound(src.loc, src.close_sound, 15, 1, -3)
+		playsound(src.loc, src.close_sound, 50, 1, -3)
 		return 1
 
 	proc/recalcPClass()
@@ -825,17 +829,15 @@
 	var/icon_redlight = "redlight"
 	var/icon_sparks = "sparks"
 	var/always_display_locks = 0
-	var/datum/radio_frequency/radio_control = 1431
+	var/radio_control = FREQ_SECURE_STORAGE
 	var/net_id
 
 	New()
 		..()
-		SPAWN_DBG(1 SECOND)
-			if (isnum(src.radio_control) && radio_controller)
-				radio_control = max(1000, min(round(radio_control), 1500))
-				src.net_id = generate_net_id(src)
-				radio_controller.add_object(src, "[src.radio_control]")
-				src.radio_control = radio_controller.return_frequency("[src.radio_control]")
+		if (isnum(src.radio_control))
+			radio_control = max(1000, min(round(radio_control), 1500))
+			src.net_id = generate_net_id(src)
+			MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, radio_control)
 
 	update_icon()
 		..()
@@ -871,7 +873,6 @@
 		if (signal.data["address_1"] == src.net_id)
 			var/datum/signal/reply = get_free_signal()
 			reply.source = src
-			reply.transmission_method = TRANSMISSION_RADIO
 			reply.data["sender"] = src.net_id
 			reply.data["address_1"] = sender
 			switch (lowertext(signal.data["command"]))
@@ -921,18 +922,17 @@
 				else
 					return //COMMAND NOT RECOGNIZED
 			SPAWN_DBG(0.5 SECONDS)
-				src.radio_control.post_signal(src, reply, 2)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, reply, 2)
 
 		else if (signal.data["address_1"] == "ping")
 			var/datum/signal/reply = get_free_signal()
 			reply.source = src
-			reply.transmission_method = TRANSMISSION_RADIO
 			reply.data["address_1"] = sender
 			reply.data["command"] = "ping_reply"
 			reply.data["device"] = "WNET_SECLOCKER"
 			reply.data["netid"] = src.net_id
 			SPAWN_DBG(0.5 SECONDS)
-				src.radio_control.post_signal(src, reply, 2)
+				SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, reply, 2)
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if (!src.emagged) // secure crates checked for being locked/welded but so long as you aren't telling the thing to open I don't see why that was needed

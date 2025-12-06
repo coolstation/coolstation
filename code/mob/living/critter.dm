@@ -1,3 +1,4 @@
+ABSTRACT_TYPE(/mob/living/critter)
 /mob/living/critter
 	name = "critter"
 	desc = "A beastie!"
@@ -13,7 +14,6 @@
 	var/datum/hud/critter/custom_hud_type = /datum/hud/critter
 	var/datum/organHolder/custom_organHolder_type = null
 
-	var/hand_count = 0		// Used to ease setup. Setting this in-game has no effect.
 	var/list/hands = list()
 	var/list/equipment = list()
 	var/image/equipment_image = new
@@ -35,11 +35,8 @@
 	//this is probably crap but I can't be arsed to refactor
 	var/lie_on_death = TRUE
 
-	var/can_help = 0
-	var/can_grab = 0
-	var/can_disarm = 0
+	ideal_blood_volume = 50
 
-	var/reagent_capacity = 50
 	max_health = 0
 	health = 0
 
@@ -49,8 +46,7 @@
 	var/list/inhands = list()
 	var/list/healthlist = list()
 
-	var/list/implants = list()
-	var/can_implant = 1
+	var/can_implant = TRUE
 
 	var/death_text = null // can use %src%
 	var/pet_text = "pets" // can be a list
@@ -91,26 +87,18 @@
 	blood_id = "blood"
 
 	New()
-//		if (ispath(default_task))
-//			default_task = new default_task
-//		if (ispath(current_task))
-//			current_task = new current_task
 
 		setup_hands()
 		post_setup_hands()
 		setup_equipment_slots()
-		setup_reagents()
 		setup_healths()
 		if (!healthlist.len)
-			message_coders("ALERT: Critter [type] ([name]) does not have health holders.")
+			stack_trace("Critter [type] ([name]) \[\ref[src]\] does not have health holders.")
 		count_healths()
 
 		SPAWN_DBG(0)
 			src.zone_sel.change_hud_style('icons/ui/hud_human.dmi')
 			src.attach_hud(zone_sel)
-
-		for (var/datum/equipmentHolder/EE in equipment)
-			EE.after_setup(hud)
 
 		burning_image.icon = 'icons/mob/critter.dmi'
 		burning_image.icon_state = null
@@ -126,10 +114,9 @@
 		hud = new custom_hud_type(src)
 		src.attach_hud(hud)
 		src.zone_sel = new(src, "CENTER[hud.next_right()], SOUTH")
-/*
-		if (src.stamina_bar)
-			hud.add_object(src.stamina_bar, initial(src.stamina_bar.layer), "EAST-1, NORTH")
-*/
+
+		for (var/datum/equipmentHolder/EE in equipment)
+			EE.after_setup(hud)
 
 		health_update_queue |= src
 
@@ -165,10 +152,10 @@
 		equipment.len = 0
 		equipment = null
 
-		for(var/obj/item/I in implants)
+		for(var/obj/item/I in implant)
 			I.dispose()
-		implants.len = 0
-		implants = null
+		implant.len = 0
+		implant = null
 
 		for(var/damage_type in healthlist)
 			var/datum/healthHolder/hh = healthlist[damage_type]
@@ -389,6 +376,14 @@
 				return (src.pull_w_class >= W_CLASS_BULKY)
 		return 0
 
+	initializeBioholder()
+		switch(src.gender) // default is they/them, this catches stuff like beepsky!
+			if("male")
+				src.bioHolder?.mobAppearance?.pronouns = get_singleton(/datum/pronouns/heHim)
+			if("female")
+				src.bioHolder?.mobAppearance?.pronouns = get_singleton(/datum/pronouns/sheHer)
+		. = ..()
+
 	canRideMailchutes()
 		return src.fits_under_table
 
@@ -556,30 +551,17 @@
 			return
 		if (!HH.can_attack && (HH.can_range_attack || HH.can_special_attack()))
 			hand_range_attack(target, params)
-		else if (HH.can_attack)
-			if (ismob(target))
-				if (a_intent != INTENT_HELP)
-					if (mob_flags & AT_GUNPOINT)
-						for(var/obj/item/grab/gunpoint/G in grabbed_by)
-							G.shoot()
-				switch (a_intent)
-					if (INTENT_HELP)
-						if (can_help)
-							L.help(target, src)
-					if (INTENT_DISARM)
-						if (can_disarm)
-							L.disarm(target, src)
-					if (INTENT_HARM)
-						if (HH.can_attack)
-							L.harm(target, src)
-					if (INTENT_GRAB)
-						if (HH.can_hold_items && can_grab)
-							L.grab(target, src)
+			return
+		if (HH.can_attack)
+			var/obj/item/equipped = src.equipped()
+			if(equipped && src.next_click <= world.time)
+				src.next_click = world.time + max(equipped.click_delay,src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
+				target.Attackby(equipped, src, params)
 			else
 				L.attack_hand(target, src)
 				HH.set_cooldown_overlay()
 		else
-			boutput(src, "<span class='alert'>You cannot attack with your [HH.name]!</span>")
+			boutput(src, SPAN_ALERT("You cannot attack with your [HH.name]!"))
 
 	can_strip(mob/M, showInv = 0)
 		var/datum/handHolder/HH = get_active_hand()
@@ -623,12 +605,6 @@
 					HH.limb = new /datum/limb(src)
 
 	proc/setup_equipment_slots()
-
-	proc/setup_reagents()
-		reagent_capacity = max(0, reagent_capacity)
-		var/datum/reagents/R = new(reagent_capacity)
-		R.my_atom = src
-		reagents = R
 
 	equipped()
 		RETURN_TYPE(/obj/item)
@@ -706,10 +682,7 @@
 				O.set_loc(src)
 		src.mind?.register_death() // it'd be nice if critters get a time of death too tbh
 		set_density(0)
-		if (src.can_implant)
-			for (var/obj/item/implant/H in src.implants)
-				H.on_death()
-			src.can_implant = 0
+		src.can_implant = FALSE
 		if (!gibbed)
 			if (src.death_text)
 				src.tokenized_message(src.death_text, null, "red")
@@ -853,7 +826,7 @@
 
 	update_inhands()
 		var/handcount = 0
-		for (var/datum/handHolder/HH in hands)
+		for (var/datum/handHolder/HH as anything in src.hands)
 			handcount++
 			var/obj/item/I = HH.item
 			if (HH.show_inhands)
@@ -862,7 +835,8 @@
 					continue
 				if (!I.inhand_image)
 					I.inhand_image = image(I.inhand_image_icon, "", HH.render_layer)
-				I.inhand_image.icon_state = I.item_state ? "[I.item_state][HH.suffix]" : "[I.icon_state][HH.suffix]"
+				var/suffix = I.two_handed ? "-LR" : "[HH.suffix]"
+				I.inhand_image.icon_state = I.item_state ? "[I.item_state][suffix]" : "[I.icon_state][suffix]"
 				I.inhand_image.pixel_x = HH.offset_x
 				I.inhand_image.pixel_y = HH.offset_y
 				I.inhand_image.layer = HH.render_layer
@@ -1082,9 +1056,8 @@
 	full_heal()
 		..()
 		icon_state = icon_state_alive ? icon_state_alive : initial(icon_state)
-		density = initial(density)
+		set_density(initial(density))
 		src.can_implant = initial(src.can_implant)
-		blood_volume = initial(blood_volume)
 
 	does_it_metabolize()
 		return metabolizes
@@ -1103,25 +1076,25 @@
 					ret += S.getProperty("exploprot")
 		return ret/100
 
-	ex_act(var/severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
 		..() // Logs.
 		var/ex_res = get_explosion_resistance()
 		if (ex_res >= 0.35 && prob(ex_res * 100))
-			severity++
+			severity = severity * 0.4
 		if (ex_res >= 0.80 && prob(ex_res * 75))
-			severity++
+			severity = severity * 0.4
 		switch(severity)
-			if (1)
+			if (OLD_EX_SEVERITY_1)
 				SPAWN_DBG(0)
 					gib()
-			if (2)
+			if (OLD_EX_SEVERITY_2)
 				if (health < max_health * 0.35 && prob(50))
 					SPAWN_DBG(0)
 						gib()
 				else
 					TakeDamage("All", rand(10, 30), rand(10, 30))
-			if (3)
-				TakeDamage("All", rand(20, 20))
+			if (OLD_EX_SEVERITY_3)
+				TakeDamage("All", rand(10, 15))
 
 	ghostize()
 		var/ghost_icon = src.icon
@@ -1152,7 +1125,7 @@
 		return O
 
 	drop_item()
-		..()
+		. = ..()
 		src.update_inhands()
 
 	proc/on_sleep()
@@ -1273,6 +1246,29 @@
 
 	src.TakeDamage("All", damage, 0)
 	return
+
+ABSTRACT_TYPE(/mob/living/critter/robotic)
+/// Parent for robotic critters. Handles some traits that robots should have- damaged by EMPs, immune to fire and rads
+/mob/living/critter/robotic
+	name = "a fucked up robot"
+	robotic = TRUE
+	can_burn = FALSE
+	dna_to_absorb = 0
+	butcherable = FALSE
+	metabolizes = FALSE
+	uses_blood = FALSE
+	var/emp_vuln = 1
+
+	New()
+		..()
+		APPLY_ATOM_PROPERTY(src, PROP_RADPROT, src, 100)
+		APPLY_ATOM_PROPERTY(src, PROP_HEATPROT, src, 100)
+		APPLY_ATOM_PROPERTY(src, PROP_COLDPROT, src, 100)
+
+	/// EMP does 10 brute and 10 burn by default, can be adjusted linearly with emp_vuln
+	emp_act()
+		src.emag_act() // heh
+		src.TakeDamage(10 * emp_vuln, 10 * emp_vuln)
 
 //crummy hack but I'm not the one leaving critters visually broken for years
 /mob/living/critter/animate_lying()

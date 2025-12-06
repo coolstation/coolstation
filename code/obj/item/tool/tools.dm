@@ -17,6 +17,7 @@ Handsaw
 /obj/item/crowbar
 	name = "crowbar"
 	desc = "A tool used as a lever to pry objects."
+	hint = "you can throw tiles by preforming a special attack with the disarm intent."
 	icon = 'icons/obj/items/tools/tools.dmi'
 	// TODO: crowbar inhand icon
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
@@ -30,8 +31,8 @@ Handsaw
 	force = 8
 	throwforce = 7
 	stamina_damage = 35
-	stamina_cost = 12
-	stamina_crit_chance = 10
+//	stamina_cost = 12
+//	stamina_crit_chance = 10
 
 	m_amt = 50
 	rand_pos = 8
@@ -82,13 +83,14 @@ Handsaw
 	tool_flags = TOOL_SCREWING
 	w_class = W_CLASS_TINY
 
-	force = 5
+	force = 3
 	throwforce = 5
+	combat_click_delay = 0.4 * COMBAT_CLICK_DELAY
 	throw_speed = 3
-	throw_range = 5
+	throw_range = 8
 	stamina_damage = 10
-	stamina_cost = 5
-	stamina_crit_chance = 30
+//	stamina_cost = 5
+//	stamina_crit_chance = 30
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 
@@ -131,15 +133,16 @@ Handsaw
 	tool_flags = TOOL_SNIPPING
 	w_class = W_CLASS_SMALL
 
-	force = 6
+	force = 13
+	combat_click_delay = 1.8 * COMBAT_CLICK_DELAY
 	throw_speed = 2
 	throw_range = 9
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 	m_amt = 80
 	stamina_damage = 15
-	stamina_cost = 10
-	stamina_crit_chance = 30
+//	stamina_cost = 10
+//	stamina_crit_chance = 30
 	rand_pos = 8
 
 	New()
@@ -196,10 +199,11 @@ Handsaw
 	w_class = W_CLASS_SMALL
 
 	force = 5
-	throwforce = 7
+	throwforce = 10
+	throw_range = 8
 	stamina_damage = 40
-	stamina_cost = 14
-	stamina_crit_chance = 15
+//	stamina_cost = 14
+//	stamina_crit_chance = 15
 
 	m_amt = 150
 	rand_pos = 8
@@ -279,9 +283,6 @@ Handsaw
 	var/net_id
 	//And the wifi frequency
 	var/frequency
-	//Beacon and control frequencies for bots!
-	var/control
-	var/beacon
 	//turf and data_terminal for powernet check
 	var/turf/T = get_turf(target.loc)
 	var/obj/machinery/power/data_terminal/test_link = locate() in T
@@ -289,8 +290,6 @@ Handsaw
 	//net_id block, except computers, where we do it all in one go
 	if (hasvar(target, "net_id"))
 		net_id = target:net_id
-	else if (hasvar(target, "botnet_id"))
-		net_id = target:botnet_id
 	else if (istype(target,/obj/machinery/computer3))
 		var/obj/computer = target
 		var/obj/item/peripheral/network/peripheral = locate(/obj/item/peripheral/network) in computer.contents
@@ -307,34 +306,16 @@ Handsaw
 		net_id = targetimplant.net_id
 		frequency = targetimplant.pda_alert_frequency
 
-	//frequency block
-	if (hasvar(target, "alarm_frequency"))
-		frequency = target:alarm_frequency
-	else if (hasvar(target, "freq"))
-		frequency = target:freq
-	else if (hasvar(target, "control_freq"))
-		control = target:control_freq
-		if (hasvar(target, "beacon_freq"))
-			beacon = target:beacon_freq
-	else if (hasvar(target, "radio_connection.frequency"))
-		var/datum/radio_frequency/radiofreq = target:radio_connection
-		frequency = radiofreq.frequency
-	else if (hasvar(target, "frequency"))
-		if(isnum(target:frequency) || istext(target:frequency))
-			frequency = target:frequency
-	//We'll do lockers safely since nothing else seems to store the frequency exactly like this
-	else if (istype(target, /obj/storage/secure))
-		var/obj/storage/secure/lockerfreq = target
-		frequency = lockerfreq.radio_control.frequency
-
 	if(net_id)
 		boutput(user, "<span class='alert'>NETID#[net_id]</span>")
-	if(frequency)
-		boutput(user, "<span class='alert'>FREQ#[frequency]</span>")
-	if(control)
-		boutput(user, "<span class='alert'>CTRLFREQ#[control]</span>")
-	if(beacon)
-		boutput(user, "<span class='alert'>BCKNFREQ#[beacon]</span>")
+
+	//frequencies
+	var/freq_num = 1
+	for(var/datum/component/packet_connected/radio/comp as anything in target.GetComponents(/datum/component/packet_connected/radio))
+		frequency = comp.get_frequency()
+		var/freq_name = comp.connection_id ? uppertext(comp.connection_id + "_FREQ") : "FREQ[freq_num++]"
+		boutput(user, "<span class='alert'>[freq_name]#[frequency]</span>")
+
 	//Powernet Test Block
 	//If we have a net_id but no wireless frequency, we're probably a powernet device
 	if(isturf(T) && net_id && !frequency)
@@ -343,6 +324,7 @@ Handsaw
 	if (test_link)
 		if (length(test_link.powernet.cables) < 1)
 			boutput(user, "<span class='alert'>ERR#NOTATERM</span>")
+
 
 
 //--------------------------- Please Hammer Don't Hurt 'Em (1990) ------------------------------------------

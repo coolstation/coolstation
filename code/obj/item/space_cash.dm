@@ -1,6 +1,7 @@
 
 /obj/item/spacecash
 	name = "1 credit"
+	hint = "Split a stack by clicking it with an empty active hand while the stack is in your inactive hand."
 	real_name = "credit"
 	desc = "You gotta have money."
 	icon = 'icons/obj/items/items.dmi'
@@ -8,9 +9,9 @@
 	uses_multiple_icon_states = 1
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	force = 1.0
-	throwforce = 1.0
+	throwforce = 0
 	throw_speed = 1
 	throw_range = 8
 	w_class = W_CLASS_TINY
@@ -22,8 +23,8 @@
 	max_stack = 1000000
 	stack_type = /obj/item/spacecash // so all cash types can stack iwth each other
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	inventory_counter_enabled = 1
 	var/default_min_amount = 0
 	var/default_max_amount = 0
@@ -122,6 +123,47 @@
 				young_money.Attackhand(user)
 		else
 			..(user)
+
+	pre_thrown(target, params)
+		var/mob/living/L = src.loc
+
+		if (L.next_click > world.time)
+			return TRUE
+
+		if (src.amount > 1)
+			if (L.a_intent == INTENT_DISARM)
+				//THROW 1S LIKE YOU'RE AT THE STRIP CLUB
+				var/obj/item/spacecash/young_money = new()
+				young_money.setup(L.loc, 1)
+				change_stack_amount(-1)
+				young_money.throw_at(target, young_money.throw_range, young_money.throw_speed, params = params)
+
+				if (get_dist(L, target) > 0)
+					L.set_dir(get_dir(L, target))
+				playsound(L.loc, 'sound/effects/throw.ogg', 20, 1, 0.1)
+
+				L.next_click = world.time + (L.combat_click_delay / 4)  * GET_COMBAT_CLICK_DELAY_SCALE(L)
+
+				attack_twitch(L)
+				return TRUE
+
+	throw_impact(atom/hit_atom, datum/thrown_thing/thr)
+		. = ..()
+		if(src.amount > 1 && thr.params && !thr.params["dont_scatter_cash"])
+			var/old_money = src.amount //this is what we start with, old sport
+			var/max_splits = rand(8, 20)
+			var/turf/T1 = get_turf(src)
+
+			for(var/i in 1 to max_splits)
+				if(src.amount <= 1)
+					break
+				var/obj/item/spacecash/young_money = new()
+				young_money.setup(src.loc, min(ceil(old_money / max_splits), src.amount))
+				change_stack_amount(-young_money.amount)
+
+				var/turf/T2 = locate(T1.x + rand(-2, 2), T1.y + rand(-2, 2), T1.z)
+				if(T2)
+					young_money.throw_at(T2, young_money.throw_range, young_money.throw_speed, params = list("dont_scatter_cash" = TRUE, "icon-x" = rand(2, 30), "icon-y" = rand(2, 30)))
 
 //	attack_self(mob/user as mob)
 //		user.visible_message("fart")
@@ -240,7 +282,11 @@
 		processing_items.Remove(src)
 		..()
 
+	pre_thrown()
+		return
 
+	throw_impact()
+		return
 
 /obj/item/spacecash/bag // hufflaw cashbags
 	New(var/atom/loc)
@@ -279,7 +325,7 @@
 
 	opacity = 0
 	density = 0
-	anchored = 0.0
+	anchored = UNANCHORED
 	force = 1.0
 	throwforce = 1.0
 	throw_speed = 1

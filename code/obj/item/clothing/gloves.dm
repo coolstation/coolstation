@@ -194,7 +194,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 		if(ismob(user))
 			var/mob/M = user
 			specialoverride.pixelaction(target,params,M)
-			M.next_click = world.time+M.combat_click_delay
+			M.next_click = world.time + M.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(M)
 			return 1
 
 
@@ -561,9 +561,9 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 
 	equipped(mob/user, slot)
 		. = ..()
-		APPLY_MOB_PROPERTY(user, PROP_LIFT_ANYTHING, src)
+		APPLY_ATOM_PROPERTY(user, PROP_LIFT_ANYTHING, src)
 
 	unequipped(mob/user)
 		. = ..()
-		REMOVE_MOB_PROPERTY(user, PROP_LIFT_ANYTHING, src)
+		REMOVE_ATOM_PROPERTY(user, PROP_LIFT_ANYTHING, src)
 

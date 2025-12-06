@@ -260,8 +260,9 @@
 	icon = 'icons/obj/machines/disposal.dmi'
 	name = "disposal pipe"
 	desc = "An underfloor disposal pipe."
-	anchored = 1
-	density = 0
+	anchored = ANCHORED
+	density = FALSE
+	pass_unstable = FALSE
 	text = ""
 
 	level = 1			// underfloor only
@@ -1662,7 +1663,7 @@
 	name = "smart disposal outlet"
 	desc = "A disposal outlet with a little sonar sensor on the front, so it only dumps contents if it is unblocked."
 	icon_state = "unblockoutlet"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/turf/stuff_chucking_target
 
@@ -1906,6 +1907,7 @@
 	var/target_z
 	var/id
 	icon_state = "pipe-t"
+	event_handler_flags = USE_FLUID_ENTER | USE_HASENTERED
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
 	north
@@ -1989,7 +1991,6 @@
 	New()
 		..()
 		dpdir = dir
-		src.event_handler_flags |= USE_HASENTERED
 		SPAWN_DBG(1 DECI SECOND)
 			getlinked()
 
@@ -2004,31 +2005,29 @@
 		var/turf/T = get_turf(src)
 		if(T.intact)
 			return // this trunk is not exposed
-		if(ismob(AM))
+		if(isliving(AM))
 			var/mob/schmuck = AM
 			if ((schmuck.stat || schmuck.getStatusDuration("weakened")) && prob(50) || prob(10))
 				src.visible_message("[AM] falls down the pipe trunk.")
 				random_brute_damage(schmuck, 10)
 				schmuck.show_text("You fall down the pipe trunk!", "red")
 				schmuck.changeStatus("weakened", 3 SECONDS)
-				#ifdef DATALOGGER
 				game_stats.Increment("workplacesafety")
-				#endif
 
 				var/obj/disposalholder/D = new (src)
-				D.set_loc(src)
 
-				AM.set_loc(D)
+				SPAWN_DBG(0)
+					AM.set_loc(D)
 
-				//flush time
-				if(ishuman(AM))
-					var/mob/living/carbon/human/H = AM
-					H.unlock_medal("Gay Luigi?", 1)
+					//flush time
+					if(ishuman(AM))
+						var/mob/living/carbon/human/H = AM
+						H.unlock_medal("Gay Luigi?", 1)
 
-				//D.start() wants a disposal unit
-				D.active = 1
-				D.set_dir(DOWN)
-				D.process()
+					//D.start() wants a disposal unit
+					D.active = 1
+					D.set_dir(DOWN)
+					D.process()
 
 
 
@@ -2160,7 +2159,8 @@
 	icon = 'icons/obj/machines/disposal.dmi'
 	icon_state = "outlet"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
+	pass_unstable = FALSE
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	mats = 12
@@ -2171,7 +2171,6 @@
 	var/mailgroup2 = null //Do not refactor into a list, maps override these properties
 	var/net_id = null
 	var/frequency = FREQ_PDA
-	var/datum/radio_frequency/radio_connection
 	throw_speed = 1
 
 	ex_act(severity, last_touched, epicenter, turf_safe)
@@ -2205,25 +2204,21 @@
 
 		SPAWN_DBG(1 DECI SECOND)
 			target = get_ranged_target_turf(src, dir, range)
-		SPAWN_DBG(0.8 SECONDS)
-			if(radio_controller)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
-			if(!src.net_id)
-				src.net_id = generate_net_id(src)
+		if(!src.net_id)
+			src.net_id = generate_net_id(src)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
 
 	disposing()
 		var/obj/disposalpipe/trunk/trunk = locate() in src.loc
 		if (trunk && trunk.linked == src)
 			trunk.linked = null
 		trunk = null
-
-		radio_controller.remove_object(src, "[frequency]")
 		..()
 
 	// expel the contents of the holder object, then delete it
 	// called when the holder exits the outlet
 	proc/expel(var/obj/disposalholder/H)
-		if (message && (mailgroup || mailgroup2) && radio_connection)
+		if (message && (mailgroup || mailgroup2))
 			var/groups = list()
 			if (mailgroup)
 				groups += mailgroup
@@ -2233,7 +2228,6 @@
 
 			var/datum/signal/newsignal = get_free_signal()
 			newsignal.source = src
-			newsignal.transmission_method = TRANSMISSION_RADIO
 			newsignal.data["command"] = "text_message"
 			newsignal.data["sender_name"] = "CHUTE-MAILBOT"
 			newsignal.data["message"] = "[message]"
@@ -2241,7 +2235,7 @@
 			newsignal.data["group"] = groups
 			newsignal.data["sender"] = src.net_id
 
-			radio_connection.post_signal(src, newsignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 		flick("outlet-open", src)
 		playsound(src, "sound/machines/warning-buzzer.ogg", 50, 0, 0)

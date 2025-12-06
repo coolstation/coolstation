@@ -153,8 +153,8 @@
 	if (!msg)
 		return
 
-	for (var/obj/machinery/bot/secbot/beepsky/maybeBeepsky in machine_registry[MACHINES_BOTS])
-		maybeBeepsky.speak(msg)
+	for_by_tcl(maybeBeepsky, /mob/living/critter/robotic/bot/securitron)
+		maybeBeepsky.say(msg)
 		break
 
 	logTheThing("admin", usr, null, "forced Beepsky to beep: [msg]")

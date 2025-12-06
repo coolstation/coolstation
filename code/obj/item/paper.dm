@@ -63,8 +63,8 @@
 	var/offset = 0
 
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 
 	var/sealed = 0 //Can you write on this with a pen?
 	var/list/stamps = null
@@ -563,7 +563,7 @@ ASC: Aux. Solar Control<BR>
 	icon_state = "flag_neutral"
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "paper"
-	anchored = 1.0
+	anchored = ANCHORED
 
 /obj/item/paper/sop
 	name = "'Standard Operating Procedure'"
@@ -911,8 +911,8 @@ as it may become compromised.
 
 		if(!initialized)
 			initialized = TRUE
-			for(var/datum/data/record/t in data_core.general)
-				who += "[t.fields["name"]]"
+			for(var/datum/db_record/t as anything in data_core.general.records)
+				who += "[t["name"]]"
 
 		switch(randme)
 			if(1)
@@ -1201,7 +1201,7 @@ as it may become compromised.
 	throw_range = 15
 	m_amt = 60
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	rand_pos = 8
 	var/special_mode = null
 	var/is_reassignable = 1
@@ -1581,3 +1581,9 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	name = "WIP, Read me!"
 	desc = "A note from the mapmaker herself! Probably because she was too lazy to do something!"
 	info = "Hi! Cargo and Mining are not implemented yet on account of their unique features which are still under development. If you need something, ask me via and AHELP with f1, and I'll get it to you <3"
+
+/obj/item/paper/torpedonote
+	name = "torpedo note"
+	desc = "A neatly-written post-it note found next to a torpedo."
+	icon_state = "postit-writing"
+	info = "Just give 'er a few solid whacks and she'll know what to do. Trust me, <i>this</i> is how you win at darts B)"

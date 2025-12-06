@@ -7,6 +7,7 @@
 	cooldown = 150
 	targeted = 1
 	target_anything = 1
+	ai_range = 1
 	var/sound_bite = 'sound/voice/animal/werewolf_attack1.ogg'
 	var/brute_damage = 16
 	attack_mobs = TRUE

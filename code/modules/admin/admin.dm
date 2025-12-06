@@ -1044,6 +1044,13 @@ var/global/noir = 0
 			else
 				alert("You need to be at least a Secondary Administrator to modify limbs.")
 
+		if ("setblood")
+			if (src.level >= LEVEL_SA)
+				var/mob/MC = locate(href_list["target"])
+				if (MC && usr.client)
+					usr.client.set_blood_id(MC)
+			else
+				alert("You need to be at least a Secondary Administrator to set blood reagent.")
 
 		if ("jumpto")
 			if(src.level >= LEVEL_SA)
@@ -1986,7 +1993,7 @@ var/global/noir = 0
 					if(!amt)
 						amt = INFINITY
 					M.cubeize(amt, CT)
-
+/*
 		if ("makeflock")
 			if( src.level < LEVEL_PA)
 				alert("You must be at least a Primary Administrator to make someone a flockmind or flocktrace.")
@@ -2024,7 +2031,7 @@ var/global/noir = 0
 					mind.special_role = "flocktrace"
 				ticker.mode.Agimmicks += mind
 				F.antagonist_overlay_refresh(1, 0)
-
+*/
 		if("makefloorgoblin")
 			if( src.level < LEVEL_PA)
 				alert("You must be at least a Primary Administrator to make someone a floor goblin.")
@@ -3376,6 +3383,8 @@ var/global/noir = 0
 						src.owner:debug_variables(data_core)
 					if("miningcontrols")
 						src.owner:debug_variables(mining_controls)
+					if("miningstats")
+						mining_controls.show_stats()
 					if("mapsettings")
 						src.owner:debug_variables(map_settings)
 					if("ghostnotifications")
@@ -3395,7 +3404,7 @@ var/global/noir = 0
 					if("sun_solar") //tired of having to dig the global vars for this fucker
 						src.owner:debug_variables(sun)
 					if("trains")
-						train_spotter.config()
+						src.owner:debug_variables(train_spotter)
 			else
 				alert("You need to be at least a Coder to use debugging secrets.")
 
@@ -3603,8 +3612,8 @@ var/global/noir = 0
 						simsController.showControls(usr)
 					if("artifacts")
 						artifact_controls.config()
-					if("miningstats")
-						mining_controls.show_stats()
+					if("trains")
+						train_spotter.config()
 					if("ghostnotifier")
 						ghost_notifier.config()
 					if("unelectrify_all")
@@ -4341,10 +4350,10 @@ var/global/noir = 0
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=unelectrify_all'>De-electrify all Airlocks</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=ghostnotifier'>Ghost Notification Controls</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=jobcaps'>Job Controls</A><BR>
-				<A href='byond://?src=\ref[src];action=secretsadmin;type=miningstats'>Mining Generation Statistics</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=motives'>Motive Control</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=randomevents'>Random Event Controls</A><BR>
 				<A href='byond://?src=\ref[src];action=secretsadmin;type=respawn_panel'>Respawn Panel</A><BR>
+				<A href='byond://?src=\ref[src];action=secretsadmin;type=trains'>Train Builder</A><BR>
 
 			"}
 #ifdef SECRETS_ENABLED
@@ -4375,11 +4384,12 @@ var/global/noir = 0
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=mapsettings'>Map Settings</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=mechanic'>Mechanics</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=miningcontrols'>Mining Controls</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=miningstats'>Mining Generation Statistics</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=randevent'>Random Events</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=market'>Shipping Market</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=stock'>Stock Market</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=sun_solar'>Sun</A> |
-					<A href='byond://?src=\ref[src];action=secretsdebug;type=trains'>Trains</A> |
+					<A href='byond://?src=\ref[src];action=secretsdebug;type=trains'>Train Controller</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=valiant'>Valiant Azone</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=budget'>Wages/Money</A> |
 					<A href='byond://?src=\ref[src];action=secretsdebug;type=world'>World</A>
@@ -4923,9 +4933,11 @@ var/global/noir = 0
 	var/chosen
 	if(matches.len == 1)
 		chosen = matches[1]
+		if(chosen in list(/database, /client, /icon, /sound, /savefile))
+			return null
 	else
 		var/safe_matches = matches - list(/database, /client, /icon, /sound, /savefile)
-		chosen = input(usr, "Select an atom type", "Matches for pattern",null) as null|anything in safe_matches
+		chosen = input(usr, "Select an atom type", "Matches for pattern", null) as null|anything in safe_matches
 		if(!chosen) // experimental de-TGUIing - warc
 			return null
 
@@ -4941,7 +4953,7 @@ var/global/noir = 0
 	var/client/client = usr.client
 
 	if (client.holder.level >= LEVEL_PA)
-		var/chosen = get_one_match(object, use_concrete_types = FALSE)
+		var/chosen = get_one_match(object, use_concrete_types = TRUE)
 
 		if (chosen)
 			if (ispath(chosen, /turf))
@@ -5362,6 +5374,7 @@ var/global/noir = 0
 
 /client/Move(NewLoc, direct)
 	if(usr.client.flying)
+		var/prevloc = usr.loc
 		if(!isturf(usr.loc))
 			usr.set_loc(get_turf(usr))
 
@@ -5380,6 +5393,7 @@ var/global/noir = 0
 			usr.x--
 
 		src.mob.set_dir(direct)
+		SEND_SIGNAL(src.mob, COMSIG_MOVABLE_MOVED, prevloc, direct)
 	else
 		..()
 

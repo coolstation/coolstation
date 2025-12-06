@@ -23,7 +23,8 @@
 					src.throw_impact(A, thr)
 					. = TRUE
 
-/atom/movable/proc/throw_begin(atom/target)
+/atom/movable/proc/throw_begin(atom/target, var/list/params)
+	return params
 
 // when an atom gets hit by a thrown object, returns the sound to play
 /atom/proc/hitby(atom/movable/AM, datum/thrown_thing/thr=null)
@@ -77,7 +78,7 @@
 	..()
 
 /atom/movable/proc/throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 	if(!throwing_controller) return
 	if(!target) return
@@ -92,7 +93,7 @@
 
 	src.last_throw_x = src.x
 	src.last_throw_y = src.y
-	src.throw_begin(target)
+	params = src.throw_begin(target, params)
 
 	src.throwforce += bonus_throwforce
 
@@ -144,3 +145,6 @@
 	throwing_controller.start()
 
 	return thr
+
+/atom/movable/proc/pre_thrown(atom/target, list/params)
+	return FALSE

@@ -12,7 +12,7 @@
 
 /mob/keys_changed(keys, changed)
 	if (changed & KEY_EXAMINE)
-		if (keys & KEY_EXAMINE && HAS_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES))
+		if (keys & KEY_EXAMINE && HAS_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES))
 			src.client?.get_plane(PLANE_EXAMINE).alpha = 255
 		else
 			src.client?.get_plane(PLANE_EXAMINE).alpha = 0
@@ -48,8 +48,10 @@
 		if(!src.dir_locked) //in order to not turn around and good fuckin ruin the emote animation
 			src.set_dir(src.move_dir)
 	if (changed & (KEY_THROW|KEY_PULL|KEY_POINT|KEY_EXAMINE|KEY_BOLT|KEY_OPEN|KEY_SHOCK)) // bleh
-		src.overhead_throw()
 		src.update_cursor()
+
+	if (changed & KEY_THROW)
+		src.overhead_throw()
 
 /mob/proc/process_move(keys)
 	set waitfor = 0
@@ -71,7 +73,7 @@
 		//Sadly it's scattered all over this code so I'm leaving it dormant instead of commenting all of it out.
 		var/running = 0
 		var/mob/living/carbon/human/H = src
-		//if ((keys & KEY_RUN) && H.get_stamina() > STAMINA_SPRINT && !HAS_MOB_PROPERTY(src, PROP_CANTSPRINT) && (H.health > -15))
+		//if ((keys & KEY_RUN) && H.get_stamina() > STAMINA_SPRINT && !HAS_ATOM_PROPERTY(src, PROP_CANTSPRINT) && (H.health > -15))
 		//	running = 1
 		if (H.pushing && get_dir(H,H.pushing) != H.move_dir) //Stop pushing before calculating move_delay if we've changed direction
 			H.pushing = 0
@@ -218,9 +220,12 @@
 								G.shoot()
 
 						for (var/obj/item/grab/G as anything in src.grabbed_by)
+							if(!G.assailant)
+								src.grabbed_by -= G
+								continue
 							if (G.assailant == pushing || G.affecting == pushing) continue
 							if (G.state < GRAB_NECK) continue
-							if (!G.assailant || !isturf(G.assailant.loc) || G.assailant.anchored)
+							if (!isturf(G.assailant.loc) || G.assailant.anchored)
 								return 0
 							src.set_density(0) //assailant shouldn't be able to bump us here. Density is set to 0 by the grab stuff but *SAFETY!*
 							step(G.assailant, move_dir)

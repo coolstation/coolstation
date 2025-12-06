@@ -6,7 +6,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 	real_name = "zipgun"
 	desc = "A staple gun welded and reconfigured to fire bullets. Barely. Make sure to spin the casings out."
 	max_ammo_capacity = 1
-	gun_DRM = GUN_NANO | GUN_JUICE | GUN_ITALIAN | GUN_SOVIET
+	gun_DRM = GUN_ALL
 	spread_angle = 4
 	icon_state = "zip"
 	load_time = 1.3 SECONDS
@@ -15,6 +15,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 	grip_overlay_x = -8
 	grip_overlay_y = -5
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	reload_cooldown = 0.9 SECONDS
 	caliber = CALIBER_LONG_WIDE // it would just be disrespectful to this things history to not allow any ammo
 	var/gonna_blow = FALSE
@@ -97,6 +98,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/MPRT)
 	grip_overlay_x = -4
 	grip_overlay_y = -5
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 	jam_frequency = -1
 
 	shoot()
@@ -153,6 +155,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/singularity_buster)
 	grip_overlay_x = -4
 	grip_overlay_y = -5
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 
 	build_gun()
 		. = ..()

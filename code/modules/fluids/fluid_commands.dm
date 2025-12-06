@@ -48,7 +48,7 @@ client/proc/special_fullbright()
 
 	message_admins("[key_name(src)] is making all Z1 Sea Lights static...")
 	SPAWN_DBG(0)
-		for(var/turf/space/fluid/F in world)
+		for(var/turf/space/fluid/ocean/F in world)
 			if (F.z == 1)
 				F.fullbright = 0.5
 			LAGCHECK(LAG_REALTIME)
@@ -93,7 +93,7 @@ client/proc/replace_space()
 		for(var/turf/space/S in world)
 			LAGCHECK(LAG_HIGH)
 			var/turf/orig = locate(S.x, S.y, S.z)
-			orig.ReplaceWith(/turf/space/fluid, FALSE, TRUE, FALSE, TRUE)
+			orig.ReplaceWith(/turf/space/fluid/ocean, FALSE, TRUE, FALSE, TRUE)
 		message_admins("Finished space replace!")
 		map_currently_underwater = 1
 
@@ -145,14 +145,14 @@ client/proc/replace_space_exclusive()
 
 		map_currently_underwater = 1
 		for(var/turf/space/S in world)
-			if (S.z != 1 || istype(S, /turf/space/fluid/warp_z5)) continue
+			if (S.z != 1 || istype(S, /turf/space/fluid/ocean/warp_z5)) continue
 
 			var/turf/orig = locate(S.x, S.y, S.z)
 
 #ifdef UNDERWATER_MAP
-			var/turf/space/fluid/T = orig.ReplaceWith(/turf/space/fluid, FALSE, TRUE, FALSE, TRUE)
+			var/turf/space/fluid/ocean/T = orig.ReplaceWith(/turf/space/fluid/ocean, FALSE, TRUE, FALSE, TRUE)
 #else //space map
-			var/turf/space/fluid/T = orig.ReplaceWith(/turf/space/fluid, FALSE, TRUE, FALSE, TRUE)
+			var/turf/space/fluid/ocean/T = orig.ReplaceWith(/turf/space/fluid/ocean, FALSE, TRUE, FALSE, TRUE)
 #endif
 
 #ifdef UNDERWATER_MAP
@@ -169,7 +169,7 @@ client/proc/replace_space_exclusive()
 client/proc/update_ocean_lighting()
 	admin_only
 	SPAWN_DBG(0)
-		for(var/turf/space/fluid/S in world)
+		for(var/turf/space/fluid/ocean/S in world)
 			S.update_light()
 			LAGCHECK(LAG_REALTIME)
 		message_admins("Finished space light update!!!")
@@ -190,13 +190,13 @@ client/proc/dereplace_space()
 		map_currently_underwater = 0
 
 		if (answer == "Yes")
-			for(var/turf/space/fluid/F in world)
+			for(var/turf/space/fluid/ocean/F in world)
 				if (F.z == 1)
 					var/turf/orig = locate(F.x, F.y, F.z)
 					orig.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
 				LAGCHECK(LAG_REALTIME)
 		else
-			for(var/turf/space/fluid/F in world)
+			for(var/turf/space/fluid/ocean/F in world)
 				var/turf/orig = locate(F.x, F.y, F.z)
 				orig.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
 				LAGCHECK(LAG_REALTIME)

@@ -7,7 +7,6 @@
 	var/list/circulators_to_relube
 	var/event_active
 	var/target_grump
-	var/datum/radio_frequency/pda_connection
 
 #ifdef RP_MODE
 	disabled = 1
@@ -57,8 +56,6 @@
 
 		if (!isnum(grump_to_overcome))
 			grump_to_overcome = 100
-
-		pda_connection = radio_controller.return_frequency("[FREQ_PDA]")
 
 		var/list/obj/machinery/station_switches = list()
 		for(var/area_key as() in stationAreas)
@@ -182,7 +179,6 @@
 	proc/pda_msg(event_string)
 		var/datum/signal/signal = get_free_signal()
 		signal.source = src.generator
-		signal.transmission_method = TRANSMISSION_RADIO
 		signal.data["command"] = "text_message"
 		signal.data["sender_name"] = "ENGINE-MAILBOT"
 		signal.data["group"] = list(MGO_ENGINEER, MGA_ENGINE)
@@ -190,7 +186,7 @@
 		signal.data["sender"] = "00000000"
 		signal.data["address_1"] = "00000000"
 
-		pda_connection.post_signal(src, signal)
+		radio_controller.get_frequency(FREQ_PDA).post_packet_without_source(signal)
 
 datum/teg_transformation/vampire
 	mat_id = "bone"
@@ -267,7 +263,7 @@ datum/teg_transformation/vampire
 
 		if(probmult(20))
 			for(var/mob/living/carbon/M in orange(5, teg))
-				if(M.blood_volume >= 0 && !M.traitHolder.hasTrait("training_chaplain"))
+				if(M.reagents.get_reagent_amount(M.blood_id) >= 0 && !M.traitHolder.hasTrait("training_chaplain"))
 					targets += M
 
 		if(length(targets))
@@ -279,7 +275,7 @@ datum/teg_transformation/vampire
 
 			if(target in abilityHolder.thralls)
 				H = target
-				if( abilityHolder.points > 100 && target.blood_volume < 50 && !ON_COOLDOWN(src.teg,"heal", 120 SECONDS) )
+				if( abilityHolder.points > 100 && target.reagents.get_reagent_amount(target.blood_id) < 50 && !ON_COOLDOWN(src.teg,"heal", 120 SECONDS) )
 					enthrall(H)
 			else
 				if(isalive(target))
@@ -378,10 +374,7 @@ datum/teg_transformation/vampire
 				vampire.vamp_blood += bitesize
 				vampire.addPoints(bitesize)
 				vampire.tally_bite(victim,bitesize)
-				if (victim.blood_volume < bitesize)
-					victim.blood_volume = 0
-				else
-					victim.blood_volume -= bitesize
+				victim.reagents.remove_reagent(victim.blood_id, bitesize)
 		else
 			if(P.proj_data.damage_type & (D_KINETIC | D_ENERGY | D_SLASHING))
 				var/damage = P.power*P.proj_data.ks_ratio

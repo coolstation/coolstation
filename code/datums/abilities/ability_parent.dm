@@ -812,6 +812,7 @@
 		desc = null
 
 		max_range = 10
+		ai_range = 10
 		targeted = 0
 		target_anything = 0
 		target_in_inventory = 0

@@ -1,3 +1,4 @@
+/*
 /mob/living/critter/flock
 	var/resources = 0
 	name = "concept of a bird machine"
@@ -535,3 +536,4 @@
 		target.currentmats += amounttopay
 		if(F.resources && !F.is_npc) //npc check just to make sure it doesnt interfere with their ai.
 			src.onRestart() //restart the action akin to automenders
+*/

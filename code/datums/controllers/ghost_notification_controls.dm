@@ -195,6 +195,7 @@ var/datum/ghost_notification_controller/ghost_notifier
 /////////////////////////////////////////////
 // RESPAWN NOTIFICATION
 // adds all responders to a list and then sends the list to the subscriber
+/*
 /datum/ghost_notification/respawn
 	category = "respawn"
 	var/respawn_explanation = "something or other"
@@ -238,6 +239,7 @@ var/datum/ghost_notification_controller/ghost_notifier
 			if(is_authorised(M) && M.client)
 				valid_entries |= M
 		src.subject:receive_ghosts(valid_entries)
+*/
 
 /////////////////////////////////////////////
 // GHOST NOTIFICATION WINDOW woo chui

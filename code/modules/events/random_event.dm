@@ -42,4 +42,4 @@
 		return 1
 
 /datum/random_event/minor
-	announce_to_admins = 0
+	announce_to_admins = FALSE

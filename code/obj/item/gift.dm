@@ -9,8 +9,8 @@
 	amount = 20.0
 	desc = "Used for wrapping gifts. It's got a neat design!"
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	tooltip_flags = REBUILD_DIST
 	var/style = "r"
 
@@ -100,8 +100,8 @@
 	var/obj/item/gift = null
 	w_class = W_CLASS_BULKY
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 
 /obj/item/gift/attack_self(mob/user as mob)
 	if(!src.gift)

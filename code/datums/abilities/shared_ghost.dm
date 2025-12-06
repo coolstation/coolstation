@@ -1,5 +1,5 @@
 //Abilities that are shared by most if not all ethereal things
-//(observers, wraiths, AEyes would but they don't use a damn abilityholder, preferably blobs at some point but they got their own ability implementation)
+//(observers, wraiths, blob overminds, AEyes would but they don't use a damn abilityholder)
 //I'm as disappointed as you are
 
 //being under ghost_observer is probably fine right?
@@ -54,7 +54,7 @@
 	cooldown = 0
 
 	cast(atom/target)
-		var/turf/destination
+		var/area/destination
 		if (ismob(holder?.owner) && map_settings)
 			if(!emergency_shuttle)
 				destination = locate(map_settings.escape_station)
@@ -71,8 +71,7 @@
 							destination = locate(map_settings.escape_centcom)
 						else
 							destination = locate(map_settings.escape_outpost)
-
-		if(destination)
+		if(destination && length(destination.turfs))
 			holder.owner.set_loc(destination)
 		else(boutput(holder.owner, "someone fucked up lmao call a coder"))
 

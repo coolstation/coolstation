@@ -17,6 +17,7 @@ datum
 			volatility = 3
 			minimum_reaction_temperature = -INFINITY
 			random_chem_blacklisted = 1
+			taste = "sweet and burning" // according to google
 
 			// These figures are for new nitro explosions
 			// brisance = 0.4
@@ -99,6 +100,7 @@ datum
 			fluid_g = 0
 			fluid_b = 255
 			transparency = 255
+			taste = "salty"
 
 		silver_nitrate
 			name = "silver nitrate"
@@ -111,6 +113,7 @@ datum
 			transparency = 255
 			// silver salts are toxic
 			overdose = 10
+			taste = "salty"
 
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				if(!M)
@@ -152,6 +155,7 @@ datum
 			fluid_g = 128
 			fluid_b = 128
 			minimum_reaction_temperature = -INFINITY
+			taste = "salty"
 
 			proc/pop(var/turf/T, var/amount=5)
 				playsound(T, 'sound/weapons/Gunshot.ogg', rand(1, min(amount*10, 50)), 1)
@@ -176,7 +180,7 @@ datum
 
 			reaction_turf(var/turf/T, var/amount)
 				// adding a slight delay solely to make silver fulminate foam way more fun
-				spawn(rand(0, 5))
+				SPAWN_DBG(rand(0, 5))
 					if (src && T)
 						pop(T, amount)
 
@@ -224,19 +228,20 @@ datum
 			transparency = 215
 			value = 41 // 17 18 6
 			viscosity = 0.4
+			taste = "tingly"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp", 15)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp", 15)
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					holder.my_atom:add_stam_mod_max("aranesp", 25)
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp")
 					M.remove_stam_mod_max("aranesp")
 				return
 
@@ -259,6 +264,7 @@ datum
 			id = "anti_fart"
 			description = "This strange liquid seems to have no bubbles on the surface."
 			reagent_state = LIQUID
+			taste = "viscous"
 
 		honk_fart
 			name = "honkfartium"
@@ -269,6 +275,7 @@ datum
 			fluid_g = 182
 			fluid_b = 193
 			transparency = 200
+			taste = "funny"
 
 		//new name for old stimulants
 		omegazine
@@ -284,18 +291,19 @@ datum
 			value = 66 // vOv
 			//addiction_prob = 25
 			stun_resist = 1000
+			taste = "bitter"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine", 50)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine", 50)
 					M.add_stam_mod_max("omegazine", 50)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine")
 					M.remove_stam_mod_max("omegazine")
 				..()
 
@@ -333,6 +341,7 @@ datum
 			penetrates_skin = 1 // why wouldn't it, really
 			value = 20 // 2 9 9
 			viscosity = 0.2
+			taste = "hairy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -362,6 +371,7 @@ datum
 			penetrates_skin = 1 // why wouldn't it, really
 			value = 34 // 20 13 1
 			viscosity = 0.3
+			taste = "very hairy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -404,6 +414,7 @@ datum
 			penetrates_skin = 1
 			value = 61 // 20 34 3 1 3
 			viscosity = 0.2
+			taste = "bubbly and hairy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -428,6 +439,7 @@ datum
 			penetrates_skin = 1
 			value = 59 // 20 34 3 1 1
 			viscosity = 0.2
+			taste = "extremely hairy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -455,6 +467,7 @@ datum
 			viscosity = 0.4
 			// last number: for 50u you take 100 points of health (assuming this is the first time it's been made by those people) so 2 points per 1u
 			// that number is the value of those 2 points
+			taste = "contrived"
 
 			on_add()
 				// Marq fix for cannot read null.my_atom
@@ -528,6 +541,7 @@ datum
 			depletion_rate = 0.2
 			value = 28 // 3 3 22
 			viscosity = 0.5
+			taste = "normal"
 
 			reaction_mob(var/mob/target, var/method=TOUCH, var/volume_passed)
 				. = ..()
@@ -607,6 +621,7 @@ datum
 			transparency = 255
 			value = 4 // 2 2
 			viscosity = 0.3
+			taste = "grimy"
 
 			reaction_turf(var/turf/T, var/volume)
 				if (T.icon == 'icons/turf/floors.dmi' && volume >= 5)
@@ -627,6 +642,7 @@ datum
 			flammable_influence = TRUE
 			burn_volatility = -20 // yes
 			viscosity = 0.14
+			taste = "foamy"
 
 			reaction_turf(var/turf/target, var/volume)
 				var/obj/hotspot/fireflash/fireflash = (locate(/obj/hotspot/fireflash) in target)
@@ -702,6 +718,7 @@ datum
 			fluid_b = 191
 			value = 3 // 1 1 1
 			viscosity = 0.4
+			taste = "like rocks"
 
 			reaction_obj(var/obj/O, var/volume)
 				if (istype(O,/obj/window))
@@ -756,6 +773,7 @@ datum
 			fluid_b = 255
 			transparency = 30
 			value = 5 // 3 1 1
+			taste = "bad"
 
 		lube
 			name = "space lube"
@@ -768,6 +786,7 @@ datum
 			value = 3 // 1 1 1
 			hygiene_value = 0.25
 			block_slippy = -1
+			taste = "slippery"
 
 			reaction_turf(var/turf/target, var/volume)
 				var/list/covered = holder.covered_turf()
@@ -801,6 +820,7 @@ datum
 			hygiene_value = 0.25
 			block_slippy = -2
 			var/visible = 1
+			taste = "very slippery"
 
 			reaction_turf(var/turf/target, var/volume)
 				var/visible = src.visible
@@ -849,6 +869,7 @@ datum
 			value = 2 // 1c + 1c
 			hygiene_value = 0.25
 			evaporates_cleanly = TRUE
+			taste = "bitter, salty, and sour" // according to google
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				P.growth += 4
@@ -866,6 +887,7 @@ datum
 			fluid_b = 200
 			transparency = 50
 			value = 3
+			taste = "like bleach"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if(!M) M = holder.my_atom
@@ -886,6 +908,7 @@ datum
 			fluid_b = 0
 			transparency = 255
 			value = 4 // 2c + 1c + heat
+			taste = "basic"
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(66))
@@ -902,6 +925,7 @@ datum
 			transparency = 20
 			value = 5 // 3c + 1c + 1c
 			hygiene_value = 0.75
+			taste = "like alcohol"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -957,6 +981,7 @@ datum
 			value = 3 // 1c + 1c + 1c
 			flammable_influence = TRUE
 			burn_volatility = -6
+			taste = "bland"
 
 		ectoplasm
 			name = "ectoplasm"
@@ -969,6 +994,7 @@ datum
 			transparency = 175
 			value = 3
 			viscosity = 0.4
+			taste = "slimy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1013,6 +1039,7 @@ datum
 			value = 2
 			hygiene_value = -0.5
 			viscosity = 0.55
+			taste = "fun"
 
 			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -1044,6 +1071,7 @@ datum
 			value = 3 // 1 1 1
 			viscosity = 0.35
 			heat_capacity = 600
+			taste = "cold"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume_passed,var/list/paramslist = 0)
 				. = ..()
@@ -1124,6 +1152,7 @@ datum
 			transparency = 255
 			viscosity = 0.15
 			var/static/list/booster_enzyme_reagents_to_check = list("charcoal","synaptizine","styptic_powder","teporone","salbutamol","methamphetamine","omnizine","perfluorodecalin","penteticacid","oculine","epinephrine","mannitol","synthflesh", "saline", "anti_rad", "salicylic_acid", "menthol", "silver_sulfadiazine"/*,"coffee", "sugar", "espresso", "energydrink", "ephedrine", "crank"*/) //these last ones are probably an awful idea. Uncomment to buff booster a decent amount
+			taste = "like medicine"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				for (var/i = 1, i <= booster_enzyme_reagents_to_check.len, i++)
@@ -1147,6 +1176,8 @@ datum
 			overdose = 5
 			value = 4 // 2 1 1
 			hygiene_value = 3
+			taste = "sharp and unpleasant"
+			evaporates_cleanly = TRUE
 
 			reaction_obj(var/obj/O, var/volume)
 				if (!isnull(O))
@@ -1170,6 +1201,7 @@ datum
 			fluid_g = 255
 			fluid_b = 204
 			transparency = 150
+			taste = "contrived"
 
 			reaction_turf(var/turf/T, var/volume)
 				if (volume >= 5)
@@ -1210,6 +1242,7 @@ datum
 			burn_volatility = 3
 			minimum_reaction_temperature = T0C + 200
 			var/smoke_counter = 0
+			taste = "bad"
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				. = ..()
@@ -1287,6 +1320,7 @@ datum
 			viscosity = 0.13
 			var/counter = 1
 			var/fakedeathed = 0
+			taste = "like a mistake"
 /*
 			pooled()
 				..()
@@ -1323,6 +1357,7 @@ datum
 			viscosity = 0.17
 			var/counter = 1
 			var/fakedeathed = 0
+			taste = "contrived"
 /*
 			pooled()
 				..()
@@ -1383,6 +1418,7 @@ datum
 			name = "life"
 			id = "life"
 			description = "Just a placeholder thing, you shouldn't be seeing this!"
+			taste = "like a bug report"
 
 		ageinium
 			name = "ageinium"
@@ -1394,6 +1430,7 @@ datum
 			fluid_b = 192
 			transparency = 128
 			viscosity = 0.6
+			taste = "crusty"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -1418,6 +1455,7 @@ datum
 			fluid_g = 165
 			fluid_b = 254
 			transparency = 80
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -1438,9 +1476,10 @@ datum
 			fluid_g = 200
 			fluid_b = 200
 			transparency = 255
+			taste = "powdery"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					M.say("yes")
 				..()
@@ -1454,6 +1493,7 @@ datum
 			fluid_g = 36
 			fluid_b = 19
 			transparency = 255
+			taste = "bad"
 
 		enzymatic_leftovers
 			name = "enzymatic leftovers"
@@ -1465,6 +1505,7 @@ datum
 			fluid_b = 19
 			transparency = 255
 			depletion_rate = 0.01
+			taste = "bad"
 
 		// used to make fake initropidril
 		eyeofnewt
@@ -1476,6 +1517,7 @@ datum
 			fluid_g = 10
 			fluid_b = 50
 			transparency = 50
+			taste = "pickled"
 		toeoffrog
 			name = "toe of frog"
 			id = "toeoffrog"
@@ -1485,6 +1527,7 @@ datum
 			fluid_g = 50
 			fluid_b = 10
 			transparency = 50
+			taste = "pickled"
 		woolofbat
 			name = "wool of bat"
 			id = "woolofbat"
@@ -1494,6 +1537,7 @@ datum
 			fluid_g = 10
 			fluid_b = 10
 			transparency = 50
+			taste = "pickled"
 		tongueofdog
 			name = "tongue of dog"
 			id = "tongueofdog"
@@ -1503,6 +1547,7 @@ datum
 			fluid_g = 10
 			fluid_b = 10
 			transparency = 50
+			taste = "pickled"
 
 		werewolf_serum_fake3
 			name = "Werewolf Serum Precursor Gamma"
@@ -1513,6 +1558,7 @@ datum
 			fluid_g = 35
 			fluid_b = 103
 			transparency = 60
+			taste = "hairy"
 
 		werewolf_serum_fake4
 			name = "Imperfect Werewolf Serum"
@@ -1524,6 +1570,7 @@ datum
 			fluid_b = 240
 			transparency = 200
 			depletion_rate = 0.2
+			taste = "hairy"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1564,6 +1611,7 @@ datum
 			fluid_b = 19
 			transparency = 205
 			depletion_rate = 0.2
+			taste = "like feathers"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -1599,6 +1647,7 @@ datum
 			fluid_b = 19
 			transparency = 205
 			depletion_rate = 0.2
+			taste = "like feathers"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -1653,6 +1702,7 @@ datum
 			transparency = 255
 			viscosity = 0.4
 			hygiene_value = -3
+			taste = "fucking horrendous"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -1690,6 +1740,7 @@ datum
 			transparency = 255
 			value = 2
 			viscosity = 0.8
+			taste = "like bugs"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -1719,6 +1770,7 @@ datum
 			var/static/reaction_count = 0
 			value = 13 // 11 2
 			viscosity = 0.8
+			taste = "like bugs"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -1807,6 +1859,7 @@ datum
 			transparency = 250
 			value = 2
 			viscosity = 1
+			taste = "savory"
 
 		hugs
 			name = "pure hugs"
@@ -1819,6 +1872,7 @@ datum
 			transparency = 250
 			value = 11
 			viscosity = 0.2
+			taste = "nice"
 
 		love
 			name = "pure love"
@@ -1831,6 +1885,7 @@ datum
 			transparency = 250
 			value = 13 // 11 2
 			viscosity = 0.3
+			taste = "nice"
 
 			reaction_mob(var/mob/M)
 				. = ..()
@@ -1892,6 +1947,7 @@ datum
 			transparency = 255
 			hygiene_value = -0.5
 			viscosity = 0.1
+			taste = "abstract"
 
 			reaction_mob(var/mob/M, var/method = TOUCH, var/volume)
 				. = ..()
@@ -1917,6 +1973,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "chalky"
 
 		calcium_carbonate //made from extracted sea shells OR just chemical synthesis
 			name = "calcium carbonate"
@@ -1927,6 +1984,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "chalky"
 
 		chalk
 			name = "chalk"
@@ -1938,6 +1996,7 @@ datum
 			fluid_b = 255
 			transparency = 255
 			var/chalk_color = null
+			taste = "chalky"
 
 			reaction_turf(var/turf/T, var/volume)
 				if (volume >= 5 && !locate(/obj/item/pen/crayon/chalk) in T)
@@ -1958,6 +2017,7 @@ datum
 			fluid_b = 255
 			transparency = 100
 			value = 4
+			taste = "vaguely salty" // according to google
 
 		packing_peanuts
 			name = "packing peanuts"
@@ -1969,6 +2029,7 @@ datum
 			fluid_b = 255
 			transparency = 255
 			value = 3
+			taste = "like plastic"
 
 		wax
 			name = "wax"
@@ -1981,6 +2042,7 @@ datum
 			transparency = 200
 			value = 3
 			viscosity = 0.5
+			taste = "waxy"
 
 		pollen
 			name = "pollenium"
@@ -1992,6 +2054,7 @@ datum
 			fluid_b = 61
 			transparency = 255
 			value = 3
+			taste = "bad"
 
 			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume_passed)
 				. = ..()
@@ -2019,20 +2082,23 @@ datum
 			transparency = 230
 			value = 5
 			hunger_value = 0.8
+			taste = "fleshy"
 
 
 			on_add()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder.my_atom))
 					var/mob/M = holder.my_atom
 					if (ismartian(M))
-						M.add_stun_resist_mod("reagent_martian_flesh", 15)
+						APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_martian_flesh", 15)
+						APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_martian_flesh", 15)
 				..()
 
 			on_remove()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder.my_atom))
 					var/mob/M = holder.my_atom
 					if (ismartian(M))
-						M.remove_stun_resist_mod("reagent_martian_flesh")
+						REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_martian_flesh")
+						REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_martian_flesh")
 				..()
 
 			on_mob_life(var/mob/M, var/mult = 1)
@@ -2073,112 +2139,6 @@ datum
 					if(method == TOUCH)
 						boutput(M, "<span class='alert'>Well, that was gross.</span>")
 
-		flockdrone_fluid
-			name = "coagulated gnesis"
-			id = "flockdrone_fluid"
-			description = "A thick teal fluid of alien origin. It moves in ways that suggest it might be alive in some way."
-			reagent_state = LIQUID
-			fluid_r = 77
-			fluid_g = 115
-			fluid_b = 109
-			transparency = 192
-			viscosity = 0.3
-			depletion_rate = 0.05
-			var/conversion_rate = 2
-			var/list/sounds = list("sound/machines/ArtifactFea1.ogg", "sound/machines/ArtifactFea2.ogg", "sound/machines/ArtifactFea3.ogg",
-							"sound/misc/flockmind/flockmind_cast.ogg", "sound/misc/flockmind/flockmind_caw.ogg",
-							"sound/misc/flockmind/flockdrone_beep1.ogg", "sound/misc/flockmind/flockdrone_beep2.ogg", "sound/misc/flockmind/flockdrone_beep3.ogg", "sound/misc/flockmind/flockdrone_beep4.ogg",
-							"sound/misc/flockmind/flockdrone_grump1.ogg", "sound/misc/flockmind/flockdrone_grump2.ogg", "sound/misc/flockmind/flockdrone_grump3.ogg",
-							"sound/effects/radio_sweep1.ogg", "sound/effects/radio_sweep2.ogg", "sound/effects/radio_sweep3.ogg", "sound/effects/radio_sweep4.ogg", "sound/effects/radio_sweep5.ogg")
-
-			on_add()
-				active_reagent_holders |= src
-
-			on_remove()
-				active_reagent_holders -= src
-
-			proc/process_reactions()
-				// consume fellow reagents
-				if (istype(holder))
-					var/otherReagents = FALSE
-					for(var/reagent_id in holder.reagent_list)
-						if(reagent_id != id)
-							holder.remove_reagent(reagent_id, conversion_rate)
-							holder.add_reagent(id, conversion_rate)
-							otherReagents = TRUE
-					if(!otherReagents)
-						// we ate them all, time to die
-						if(holder?.my_atom?.material?.mat_id == "gnesis") // gnesis material prevents coag. gnesis from evaporating
-							return
-						holder.remove_reagent(id, conversion_rate)
-
-			// let's put more teeth into this.
-			// this is the fluid of the assimilating bird robots. clearly it needs to also assimilate other things
-			on_mob_life(var/mob/M, var/mult = 1)
-				if (!M)
-					M = holder.my_atom
-				if (ishuman(M))
-					// i'm sorry sir but your blood counts as raw materials
-					var/mob/living/carbon/human/H = M
-					var/amt = conversion_rate * mult
-					if(H.blood_volume >= amt)
-						H.blood_volume -= amt
-					H.reagents.add_reagent(id, amt)
-					if(holder.get_reagent_amount(src.id) > 300)
-						// oh no
-						if(probmult(1)) // i hate you all, players
-							H.visible_message("<span class='alert bold'>[H] is torn apart from the inside as some weird floaty thing rips its way out of their body! Holy fuck!!</span>")
-							var/mob/living/critter/flock/bit/B = new()
-							B.set_loc(get_turf(H))
-							H.gib()
-					else
-						// DO SPOOKY THINGS
-						if(holder.get_reagent_amount(src.id) < 100)
-							if(probmult(2))
-								M.playsound_local(get_turf(M), pick(sounds), 20, 1)
-							if(probmult(6))
-								boutput(M, "<span class='flocksay italics'>[pick_string("flockmind.txt", "flockjuice_low")]</span>")
-						else
-							if(probmult(20))
-								M.playsound_local(get_turf(M), pick(sounds), 40, 1)
-							if(probmult(30))
-								boutput(M, "<span class='flocksay italics'>[pick_string("flockmind.txt", "flockjuice_high")]</span>")
-
-				..()
-				return
-
-			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume_passed)
-				. = ..()
-				var/col = rgb(fluid_r, fluid_g, fluid_b)
-				if(!volume_passed)
-					return
-				if(method == INGEST)
-					boutput(M, "<span class='alert'>Tastes oily and unpleasant, with a weird sweet aftertaste. It's like eating children's modelling clay.</span>")
-				if(method == TOUCH)
-					boutput(M, "<span class='notice'>It feels like you got smudged with oil paints.</span>")
-					M.color = col
-					SPAWN_DBG(3 SECONDS)
-						boutput(M, "<span class='alert'>Oh god it's not coming off! You're tinted like this forever!</span>")
-
-			reaction_turf(var/turf/T, var/volume)
-				if (!istype(T, /turf/space))
-					if (volume >= 50 && (istype(T, /turf/floor) || istype(T, /turf/wall)))
-						T.visible_message("<span class='notice'>The substance flows out and sinks into [T], forming new shapes.</span>")
-						flock_convert_turf(T)
-					if (volume >= 10)
-						T.visible_message("<span class='notice'>The substance flows out and takes a solid form.</span>")
-						if(prob(50))
-							var/atom/movable/B = new /obj/item/raw_material/scrap_metal()
-							B.set_loc(T)
-							B.setMaterial(getMaterial("gnesis"))
-						else
-							var/atom/movable/B = new /obj/item/raw_material/shard()
-							B.set_loc(T)
-							B.setMaterial(getMaterial("gnesisglass"))
-						return
-				// otherwise we didn't have enough
-				T.visible_message("<span class='notice'>The substance flows out, spread too thinly.</span>")
-
 		black_goop
 			name = "gross black goop"
 			id = "black_goop"
@@ -2189,6 +2149,7 @@ datum
 			fluid_b = 0
 			transparency = 255
 			viscosity = 0.6
+			taste = "grody"
 
 		paper
 			name = "paper"
@@ -2199,6 +2160,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "like paper"
 
 			reaction_turf(var/turf/T, var/volume)
 				var/list/covered = holder.covered_turf()
@@ -2218,6 +2180,7 @@ datum
 			fluid_g = 50
 			fluid_b = 50
 			transparency = 255
+			taste = "rubbery"
 
 			reaction_turf(var/turf/T, var/volume)
 				if (!istype(T, /turf/space))
@@ -2233,6 +2196,7 @@ datum
 			fluid_g = 255
 			fluid_b = 0
 			transparency = 127
+			taste = "bouncy"
 
 		fliptonium
 			name = "fliptonium"
@@ -2254,6 +2218,7 @@ datum
 			var/anim_lock = 0
 			var/speed = 3
 			stun_resist = 9
+			taste = "funny"
 /*
 			pooled()
 				..()
@@ -2320,15 +2285,15 @@ datum
 					DEBUG_MESSAGE("<span class='notice'><b>Spun [O]: [dir_temp], [speed_temp]</b></span>")
 */
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip", 2)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip", 2)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip")
 				if (istype(holder) && istype(holder.my_atom))
 					animate(holder.my_atom)
 				..()
@@ -2377,6 +2342,7 @@ datum
 			depletion_rate = 0.1
 			viscosity = 0.15
 			stun_resist = 60
+			taste = "weird"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M)
@@ -2449,15 +2415,15 @@ datum
 				animate_spin(O, dir_temp, speed_temp)
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip", 4)
+					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip", 4)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
-					REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip")
+					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip")
 				if (istype(holder) && istype(holder.my_atom))
 					animate(holder.my_atom)
 				..()
@@ -2476,6 +2442,7 @@ datum
 			addiction_min = 15
 			overdose = 30
 			depletion_rate = 0.1
+			taste = "watery"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -2506,6 +2473,7 @@ datum
 			addiction_min = 15
 			overdose = 30
 			var/effect_length = 0
+			taste = "like everclear"
 /*
 			pooled()
 				..()
@@ -2559,6 +2527,7 @@ datum
 			fluid_b = 254
 			transparency = 30
 			var/effect_length = 0
+			taste = "like water"
 /*
 			pooled()
 				..()
@@ -2592,6 +2561,7 @@ datum
 			addiction_prob = 1
 			addiction_prob2 = 20
 			addiction_min = 15
+			taste = "like ass"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -2620,6 +2590,7 @@ datum
 			fluid_b = 255
 			transparency = 255
 			var/static/reaction_count = 0
+			taste = "contrived"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 				. = ..()
@@ -2658,6 +2629,7 @@ datum
 			addiction_prob2 = 1
 			addiction_min = 15
 			depletion_rate = 0.1
+			taste = "watery"
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -2684,6 +2656,7 @@ datum
 			transparency = 245
 			depletion_rate = 0.1
 			penetrates_skin = 1
+			taste = "grainy"
 
 			on_add()
 				var/atom/A = holder.my_atom
@@ -2751,6 +2724,7 @@ datum
 			transparency = 245
 			depletion_rate = 0.1
 			penetrates_skin = 1
+			taste = "grainy"
 
 			on_add()
 				var/atom/A = holder.my_atom
@@ -2801,6 +2775,7 @@ datum
 			depletion_rate = 0.8
 			value = 3
 			viscosity = 0.4
+			taste = "foul"
 
 		voltagen
 			name = "voltagen"
@@ -2814,6 +2789,7 @@ datum
 			overdose = 20
 			viscosity = 0.3
 			minimum_reaction_temperature = T0C+100
+			taste = "tingly"
 /*
 			pooled()
 				..()
@@ -2879,6 +2855,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 230
+			taste = "bright"
 
 			proc/calculate_glow_color()
 				if (holder)
@@ -2974,6 +2951,7 @@ datum
 			transparency = 170
 			hygiene_value = 0.3
 			thirst_value = -0.098
+			taste = "bad"
 
 			on_mob_life(var/mob/M, var/mult = 1) // cogwerks note. making atrazine toxic
 				if (!M) M = holder.my_atom
@@ -2998,6 +2976,7 @@ datum
 			fluid_g = 100
 			fluid_b = 0
 			transparency = 200
+			taste = "like candy"
 
 
 		ash
@@ -3008,6 +2987,7 @@ datum
 			fluid_r = 0
 			fluid_g = 0
 			fluid_b = 0
+			taste = "burnt"
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(80))
@@ -3023,6 +3003,7 @@ datum
 			fluid_r = 240
 			fluid_g = 240
 			fluid_b = 240
+			taste = "bad"
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				/*if (prob(80))
@@ -3052,6 +3033,7 @@ datum
 			fluid_g = 240
 			fluid_b = 240
 			hunger_value = 0.048
+			taste = "nutritious"
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(80))
@@ -3081,7 +3063,8 @@ datum
 			hygiene_value = -2
 			hunger_value = 0.068
 			viscosity = 0.4
-			depletion_rate = 0
+			depletion_rate = 0.8
+			taste = "like blood"
 
 			disposing()
 				..()
@@ -3182,6 +3165,8 @@ datum
 			minimum_reaction_temperature = T0C + 50
 
 			reaction_temperature(exposed_temperature, exposed_volume)
+				if(!holder?.external && ismob(holder.my_atom))
+					return
 				var/list/covered = holder.covered_turf()
 				if(length(covered) < 9 || prob(2)) // no spam pls
 					if (holder.my_atom)
@@ -3207,6 +3192,7 @@ datum
 			transparency = 255
 			hygiene_value = -3
 			viscosity = 0.4
+			taste = "gross"
 
 			reaction_turf(var/turf/T, var/volume)
 				var/list/covered = holder.covered_turf()
@@ -3230,6 +3216,7 @@ datum
 			value = 2
 			hygiene_value = -4
 			viscosity = 0.4
+			taste = "vile"
 
 			reaction_turf(var/turf/T, var/volume)
 				var/list/covered = holder.covered_turf()
@@ -3251,6 +3238,7 @@ datum
 			transparency = 245
 			hygiene_value = -3
 			hunger_value = -0.098
+			taste = "salty"
 
 			/*on_mob_life(var/mob/M, var/mult = 1) why
 				for (var/datum/ailment_data/disease/virus in M.ailments)
@@ -3282,6 +3270,7 @@ datum
 			fluid_b = 0
 			transparency = 255
 			hygiene_value = -5
+			taste = "salty, salty, and salty"
 
 			reaction_turf(var/turf/T, var/volume)
 				var/list/covered = holder.covered_turf()
@@ -3305,6 +3294,7 @@ datum
 			transparency = 255
 			hygiene_value = -5
 			viscosity = 0.8
+			taste = "like shit"
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(66))
@@ -3321,6 +3311,7 @@ datum
 			transparency = 255
 			hygiene_value = -5
 			viscosity = 1
+			taste = "like shit and like shit"
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(90))
@@ -3336,6 +3327,7 @@ datum
 			fluid_g = 190
 			fluid_b = 230
 			transparency = 160
+			taste = "wrong"
 
 		big_bang
 			name = "quark-gluon plasma"
@@ -3348,6 +3340,7 @@ datum
 			fluid_b = 250
 			transparency = 255
 			viscosity = 0.7
+			taste = "hot"
 
 			pierces_outerwear = 1//shoo, biofool
 
@@ -3388,6 +3381,7 @@ datum
 			fluid_b = 0
 			transparency = 255
 			viscosity = 0.7
+			taste = "painful"
 
 			pierces_outerwear = 1//shoo, biofool
 
@@ -3416,6 +3410,7 @@ datum
 			fluid_g = 254
 			fluid_b = 254
 			transparency = 50
+			taste = "boring"
 
 		glue
 			name = "glue"
@@ -3427,6 +3422,7 @@ datum
 			fluid_b = 250
 			transparency = 255
 			viscosity = 0.7
+			taste = "like glue"
 
 		magnesium_chloride
 			name = "magnesium chloride"
@@ -3437,6 +3433,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "bad"
 
 		mg_nh3_cl
 			name = "magnesium-ammonium chloride"
@@ -3448,6 +3445,7 @@ datum
 			fluid_b = 255
 			transparency = 255
 			volatility = 2
+			taste = "bad"
 
 		reversium
 			name = "reversium"
@@ -3459,6 +3457,7 @@ datum
 			fluid_b = 160
 			transparency = 155
 			data = null
+			taste = "funny"
 
 			reaction_obj(var/obj/O)
 				if (istype(O,/obj/item/clothing/gloves/yellow))
@@ -3485,6 +3484,7 @@ datum
 			fluid_b = 0
 			fluid_g = 255
 			viscosity = 0.3
+			taste = "buttery"
 
 			reaction_turf(var/turf/target, var/volume)
 				var/turf/T = target
@@ -3522,6 +3522,7 @@ datum
 				new /image('icons/mob/hallucinations.dmi',"bop-bop") = list("bop-bop"),
 				new /image('icons/mob/hallucinations.dmi',"yee") = list("yee"),
 			)
+			taste = "funny"
 
 			disposing()
 				if (src.music_given_to)
@@ -3605,6 +3606,7 @@ datum
 			reagent_state = LIQUID
 			depletion_rate = 1
 			minimum_reaction_temperature = -INFINITY
+			taste = "sweet"
 
 
 
@@ -3826,6 +3828,7 @@ datum
 			fluid_b = 0
 			transparency = 255
 			value = 4
+			taste = "bubsy"
 
 			on_add()
 				if(!holder || !holder.my_atom || istype(holder.my_atom, /turf) || (holder.my_atom.flags & IS_BUBSIUM_SCALED))
@@ -3875,6 +3878,7 @@ datum
 			hygiene_value = -1
 			smoke_spread_mod = 15
 			evaporates_cleanly = TRUE
+			taste = "rancid"
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume_passed)
 				. = ..()
@@ -3904,13 +3908,14 @@ datum
 			hygiene_value = -0.5
 			smoke_spread_mod = 3
 			evaporates_cleanly = TRUE
+			taste = "gross"
 
 			on_add()
-				if (holder && ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.setStatus("miasma", duration = INFINITE_STATUS)
 
 			on_remove()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.delStatus("miasma")
 
 			on_plant_life(var/obj/machinery/plantpot/P)
@@ -3923,10 +3928,11 @@ datum
 				fluid_r = 180
 				fluid_b = 60
 				fluid_g = 80
+				taste = "unclean"
 
 				on_add()
 					..()
-					if (holder && ismob(holder.my_atom))
+					if (!holder?.external && ismob(holder?.my_atom))
 						var/mob/bipbip = holder.my_atom
 						bipbip.playsound_local(bipbip.loc, "sound/musical_instruments/Vuvuzela_1.ogg", 60, 1)
 
@@ -3939,9 +3945,10 @@ datum
 			fluid_g = 161
 			fluid_b = 203
 			transparency = 255
+			taste = "fibrous"
 
 			reaction_turf(var/turf/T, var/volume)
-				if (!(T.turf_flags & CAN_BE_SPACE_SAMPLE) && (volume >= 1))
+				if (!(T.turf_flags & IS_SPACE) && (volume >= 1))
 					if (!T.messy || !locate(/obj/decal/cleanable/sakura) in T)
 						make_cleanable(/obj/decal/cleanable/sakura,T)
 
@@ -3955,6 +3962,7 @@ datum
 			fluid_g = 255
 			value = 1 // Literally grass
 			hygiene_value = 0.25
+			taste = "grassy"
 
 			reaction_turf(var/turf/target, var/volume)
 				var/turf/floor/T = target
@@ -3982,6 +3990,7 @@ datum
 			value = 5
 			hygiene_value = -3
 			depletion_rate = 0.1
+			taste = "strange"
 
 
 		fog
@@ -3995,6 +4004,7 @@ datum
 			transparency = 255
 			blocks_sight_gas = 1
 			evaporates_cleanly = TRUE
+			taste = "tasteless"
 
 		iron_oxide
 			name = "Iron Oxide"
@@ -4003,6 +4013,7 @@ datum
 			fluid_r = 112
 			fluid_b = 40
 			fluid_g = 9
+			taste = "metallic"
 
 		//=-=-=-=-=-=-=-=-=-=
 		//|| COLORS N SUCH ||
@@ -4022,6 +4033,7 @@ datum
 			reagent_state = SOLID
 			overdose = 5
 			target_organs = list("pancreas", "left_kidney", "right_kidney")
+			taste = "tingly"
 
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				if(probmult(30 * severity))
@@ -4050,6 +4062,7 @@ datum
 			reagent_state = SOLID
 			overdose = 5
 			target_organs = list("left_lung", "right_lung", "liver")
+			taste = "tingly"
 
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				if(probmult(15 * severity))
@@ -4075,6 +4088,7 @@ datum
 			transparency = 255
 			reagent_state = SOLID
 			overdose = 5
+			taste = "tingly"
 
 			do_overdose(var/severity, var/mob/M, var/mult = 1)
 				if(probmult(25 * severity))
@@ -4096,6 +4110,7 @@ datum
 			color_multiplier = 100
 			transparency = 255
 			reagent_state = SOLID
+			taste = "synthetic"
 
 		//=-=-=-=-=-=-=-=-=
 		//|| C E M E N T ||
@@ -4110,6 +4125,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "like dirt"
 
 		lime //made from burnt calcium carbonate
 			name = "calcium oxide"
@@ -4120,6 +4136,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "like dirt"
 
 		gypsum //gypsum, made with waste sulfur gas and calcium carbonate or calcium oxide (sulfur + oxygen(4) + water + calcium_carbonate) !!!ALREADY IN, DONT DOUBLE MERGE!!!
 			name = "calcium sulfate"
@@ -4130,6 +4147,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "like dirt"
 
 		silicon_dioxide //primary ingredient in sand, aside from other small rocks
 			name = "silicon dioxide"
@@ -4140,6 +4158,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "like sand"
 
 		sodium_sulfate //useless right now, maybe for laundry detergent? just here so i dont have a really messy reaction
 			name = "sodium sulfate"
@@ -4151,6 +4170,7 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
+			taste = "bad"
 
 		cement //parent to cut down on duplicate code
 			name = "You shouldn't see this!"
@@ -4161,6 +4181,7 @@ datum
 			fluid_g = 124
 			fluid_b = 124
 			transparency = 255
+			taste = "like rocks"
 
 		cement/perfect_cement
 			name = "ultrahigh grade supercement"
@@ -4193,6 +4214,7 @@ datum
 			transparency = 255
 			overdose = 70
 			var/concrete_strength = 0
+			taste = "like rocks"
 
 			reaction_turf(var/turf/T, var/volume)
 				if (volume < 5)
@@ -4233,7 +4255,7 @@ datum
 	icon_state = "badman"
 	layer = EFFECTS_LAYER_2
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	var/mob/deathtarget = null
 	var/deathspeed = 3
 

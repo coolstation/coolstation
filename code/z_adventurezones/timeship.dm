@@ -159,7 +159,7 @@ var/list/timewarp_interior_sounds = list('sound/ambience/industrial/Timeship_Gon
 
 		src.invisibility = 100
 		var/obj/overlay/Ov = new/obj/overlay(T)
-		Ov.anchored = 1
+		Ov.anchored = ANCHORED
 		Ov.name = "Explosion"
 		Ov.layer = NOLIGHT_EFFECTS_LAYER_BASE
 		Ov.pixel_x = -92
@@ -449,4 +449,4 @@ var/list/timewarp_interior_sounds = list('sound/ambience/industrial/Timeship_Gon
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "timehole_edge"
 	plane = PLANE_FLOOR
-	anchored = 1
+	anchored = ANCHORED

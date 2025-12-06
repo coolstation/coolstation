@@ -7,42 +7,37 @@
 	organ_holder_required_op_stage = 4.0
 	icon_state = "stomach"
 	FAIL_DAMAGE = 100
+	var/reagent_capacity = 200 // should be 150 i think, but eh
+	var/blood_availability = 1
+	var/digestion_rate = 5
 
-	//Do something with this when you figure out what the guy who made digestion and handle stomach was doing with stomach_contents and stomach_process - kyle
-	// on_transplant()
-	// 	..()
-	// 	if (iscarbon(src.donor))
-	// 		src.donor.stomach_contents = src.contents
-	// 		src.contents = null //Probably don't need to do this, will undo if I ever remove the var off of mob and into stomach completely -kyle
-	// on_removal()
-	// 	..()
-	// 	//Add stomach contents on mob to this object for transplants
-	// 	if (iscarbon(src.donor))
-	// 		src.contents = src.donor.stomach_contents
-	// 		src.donor.stomach_contents = src.donor.stomach_contents.Cut()
-
-//
-	on_transplant()
-		..()
-		if (iscarbon(src.donor))
-			src.donor.stomach_process = src.contents
-			src.contents = list() //Probably don't need to do this, will undo if I ever remove the var off of mob and into stomach completely -kyle
-		// if (src.donor)
-			// for (var/datum/ailment_data/disease in src.donor.ailments)
-			// 	if (disease.cure == "Stomach Transplant")
-			// 		src.donor.cure_disease(disease)
-			// return
-	on_removal()
-		..()
-		//Add stomach contents on mob to this object for transplants
-		if (iscarbon(src.donor))
-			src.contents = src.donor.stomach_process
-			src.donor.stomach_process = list()
+	New()
+		. = ..()
+		src.create_reagents(src.reagent_capacity)
 
 	on_life(var/mult = 1)
 		if (!..())
 			return 0
-		donor.handle_digestion(mult)
+		if (length(src.contents))
+			var/count_to_process = min(length(src.contents), 5)
+			var/count_left = count_to_process
+			for(var/obj/item/reagent_containers/food in src.contents)
+				if (src.reagents.total_volume <= src.reagents.maximum_volume)
+					if (!food.has_digested)
+						food.reagents.reaction(donor, INGEST, src.reagents.total_volume)
+						food.has_digested = TRUE
+
+					food.reagents.trans_to(src, (src.digestion_rate / count_to_process) * mult, 1) // HAS_ATOM_PROPERTY(donor, PROP_DIGESTION_EFFICIENCY) ? GET_ATOM_PROPERTY(donor, PROP_DIGESTION_EFFICIENCY) : 1)
+
+					if (food.reagents.total_volume <= 0)
+						donor.poops += food.w_class / 8
+						qdel(food)
+				else
+					break
+				if(count_left-- <= 0)
+					break
+
+		src.reagents.trans_to_direct(donor.reagents, src.digestion_rate * 0.9 * mult, src.blood_availability)
 
 		// if (src.get_damage() >= FAIL_DAMAGE && prob(src.get_damage() * 0.2))
 		// 	donor.contract_disease(failure_disease,null,null,1)
