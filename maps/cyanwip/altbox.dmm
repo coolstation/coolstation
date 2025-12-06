@@ -3724,6 +3724,7 @@
 	dir = 10
 	},
 /obj/decal/cleanable/rust/jen/grime,
+/obj/machinery/door_control/podbay/mainpod1/new_walls/east,
 /turf/floor,
 /area/station/hangar/main)
 "bWa" = (
@@ -6282,6 +6283,11 @@
 /obj/machinery/disposal,
 /turf/floor/black,
 /area/station/engine/ptl)
+"dhq" = (
+/obj/lattice/grey,
+/obj/machinery/r_door_control/podbay/security/new_walls/south,
+/turf/space,
+/area/space)
 "dhL" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 2
@@ -6729,6 +6735,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 1
 	},
+/obj/stool,
 /turf/floor/bluewhite,
 /area/station/medical/medbay/pharmacy)
 "dqu" = (
@@ -8731,7 +8738,7 @@
 /obj/machinery/atmospherics/mixer{
 	dir = 4;
 	frequency = 1229;
-	id_tag = "chamber two mixer"
+	id_tag = "chamber_two"
 	},
 /turf/floor,
 /area/station/science/testchamber)
@@ -9398,6 +9405,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/autoname/north,
+/obj/machinery/door_control/podbay/engineering/new_walls/east,
 /turf/floor/black,
 /area/station/hangar/engine)
 "eJY" = (
@@ -12674,7 +12682,7 @@
 	dir = 8;
 	frequency = 1229;
 	id = "chamber one mixer";
-	mixerid = "chamber one mixer";
+	mixerid = "chamber_one";
 	name = "Gas Mixer Control (Combustion Chamber)"
 	},
 /turf/floor,
@@ -16336,6 +16344,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe{
 	dir = 4
 	},
+/obj/stool,
 /turf/floor/bluewhite{
 	dir = 4
 	},
@@ -17041,6 +17050,7 @@
 /obj/disposalpipe/segment/bent{
 	dir = 4
 	},
+/obj/stool,
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "iQl" = (
@@ -18230,6 +18240,7 @@
 /obj/decal/tile_edge/line/grey{
 	icon_state = "line1"
 	},
+/obj/stool,
 /turf/floor/black,
 /area/station/medical/research)
 "jBD" = (
@@ -18918,6 +18929,7 @@
 /obj/landmark/start{
 	name = "Quartermaster"
 	},
+/obj/stool,
 /turf/floor/wood/five,
 /area/station/quartermaster/office)
 "jUJ" = (
@@ -20195,6 +20207,11 @@
 "kBw" = (
 /turf/wall/false_wall,
 /area/station/mailroom)
+"kBz" = (
+/obj/lattice/grey,
+/obj/machinery/r_door_control/podbay/engineering/new_walls/east,
+/turf/space,
+/area/space)
 "kBQ" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe{
 	dir = 5
@@ -20839,6 +20856,7 @@
 /obj/item/clothing/mask/breath{
 	pixel_x = 4
 	},
+/obj/table/reinforced/auto,
 /turf/floor,
 /area/station/atmos/hookups/south)
 "kRw" = (
@@ -27938,6 +27956,7 @@
 /area/shuttle/merchant_shuttle/right_station/cogmap)
 "oqP" = (
 /obj/machinery/manufacturer/hangar,
+/obj/machinery/door_control/podbay/security/new_walls/east,
 /turf/floor,
 /area/station/hangar/sec)
 "oqR" = (
@@ -30372,8 +30391,9 @@
 	},
 /obj/machinery/computer/atmosphere/mixercontrol{
 	frequency = 1229;
-	mixerid = "chamber two mixer";
-	tag = "chamber two mixer"
+	id = "chamber two mixer";
+	mixerid = "chamber_two";
+	tag = null
 	},
 /turf/floor,
 /area/station/science/testchamber)
@@ -33403,6 +33423,10 @@
 	},
 /turf/floor/plating,
 /area/station/science/artifact)
+"rcJ" = (
+/obj/stool,
+/turf/floor,
+/area/station/atmos/hookups/south)
 "rcP" = (
 /obj/machinery/light_switch{
 	pixel_x = 28
@@ -33717,6 +33741,7 @@
 	dir = 1
 	},
 /obj/disposalpipe/segment/mail,
+/obj/stool,
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "rlA" = (
@@ -34170,6 +34195,14 @@
 	mail_tag = "Hydroponics";
 	name = "Hydroponics"
 	})
+"rzv" = (
+/obj/lattice/grey{
+	dir = 6;
+	icon_state = "lattice_grey-dir"
+	},
+/obj/machinery/r_door_control/podbay/mainpod1/new_walls/east,
+/turf/space,
+/area/space)
 "rzE" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -34980,7 +35013,7 @@
 /obj/machinery/atmospherics/mixer{
 	dir = 8;
 	frequency = 1229;
-	id_tag = "chamber one mixer"
+	id_tag = "chamber_one"
 	},
 /turf/floor,
 /area/station/science/lab)
@@ -37910,6 +37943,10 @@
 /area/station/crew_quarters/bathroom{
 	name = "Locker Room"
 	})
+"tnm" = (
+/obj/stool,
+/turf/floor/white,
+/area/station/medical/medbay/lobby)
 "tnr" = (
 /obj/machinery/camera/motion{
 	c_tag = "AI Core South";
@@ -39619,6 +39656,7 @@
 /obj/item/storage/box,
 /obj/item/storage/box,
 /obj/machinery/light,
+/obj/table/reinforced/auto,
 /turf/floor,
 /area/station/atmos/hookups/south)
 "ufF" = (
@@ -44155,6 +44193,7 @@
 /obj/decal/tile_edge/line/grey{
 	icon_state = "line1"
 	},
+/obj/stool,
 /turf/floor/black,
 /area/station/medical/research)
 "wvh" = (
@@ -46105,6 +46144,7 @@
 /obj/landmark/start{
 	name = "Roboticist"
 	},
+/obj/stool,
 /turf/floor/white,
 /area/station/medical/robotics)
 "xui" = (
@@ -75776,7 +75816,7 @@ dNp
 dNp
 dNp
 dNp
-fzp
+kBz
 dNp
 dNp
 dNp
@@ -78700,7 +78740,7 @@ dNp
 dNp
 dNp
 fzp
-fzp
+dhq
 bUi
 sVO
 sVO
@@ -87831,7 +87871,7 @@ iWP
 sLO
 hMJ
 qYf
-sLO
+rcJ
 kRs
 woK
 eZB
@@ -95656,7 +95696,7 @@ avz
 oAi
 mBD
 lsq
-wLM
+tnm
 wLM
 vWj
 ctm
@@ -103865,7 +103905,7 @@ uXH
 uXH
 uXH
 uXH
-uXH
+rzv
 uXH
 fKg
 fKg
