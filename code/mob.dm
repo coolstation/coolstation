@@ -2400,15 +2400,23 @@
 	SEND_SIGNAL(src, COMSIG_MOB_THROW_ITEM, target, params)
 
 /mob/throw_impact(atom/hit, datum/thrown_thing/thr)
-	if(!(src.throwing & THROW_SAFEISH) && (!isturf(hit) || hit.density))
-		if (thr?.get_throw_travelled() <= 410)
-			if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
-				random_brute_damage(src, min((6 + (thr?.get_throw_travelled() / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
-				if (!src.hasStatus("weakened") && !(src.throwing & THROW_BASEBALL))
-					src.changeStatus("weakened", 2 SECONDS)
-					src.force_laydown_standup()
-		else
-			src.gib()
+	if(!isturf(hit) || hit.density)
+		var/thr_travelled = thr?.get_throw_travelled()
+		if(!(src.throwing & THROW_SAFEISH))
+			if (thr_travelled <= 410)
+				if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
+					random_brute_damage(src, min((6 + (thr_travelled / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
+					if (!src.hasStatus("weakened") && !(src.throwing & THROW_BASEBALL))
+						src.changeStatus("weakened", 2 SECONDS)
+						src.force_laydown_standup()
+			else
+				src.gib()
+				return ..()
+		if(thr && src.client?.recoil_controller)
+			var/recoil_oomph = min(thr.speed * 4 + thr_travelled * 0.25 + rand(-3, 6), 50)
+			if(recoil_oomph >= 1)
+				var/dir = arctan(thr.dx == EAST ? thr.dist_x : -thr.dist_x, thr.dy == NORTH ? thr.dist_y : -thr.dist_y)
+				src.client.recoil_controller.recoil_camera(dir, recoil_oomph, 0.25)
 
 	return ..()
 
