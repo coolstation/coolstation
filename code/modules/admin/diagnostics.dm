@@ -372,6 +372,9 @@ proc/debug_map_apc_count(delim,zlim)
 				if(group)
 					img.app.color = debug_color_of(group)
 					img.app.desc = "Group \ref[group]<br>[MOLES_REPORT(group.air)]Temperature=[group.air.temperature]<br/>Spaced=[group.spaced]"
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+					img.app.desc += "<br>GTA=[group.groups_to_atmosphere]"
+#endif
 					if (group.spaced) img.app.overlays += image('icons/misc/air_debug.dmi', icon_state = "spaced")
 					/*
 					var/list/borders_space = list()

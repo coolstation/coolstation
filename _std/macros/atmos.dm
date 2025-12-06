@@ -191,6 +191,8 @@
 #define DEPRESSURIZE_THROW_AT_SPACE_REQUIRED 20
 #define DEPRESSURIZE_THROW_AT_SPACE_MAX_RANGE 7
 
+#define TRACK_GROUPS_TO_ATMOSPHERE TRUE
+#define GROUPS_TO_ATMOSPHERE_MAX 10
 // archiving
 
 // comment out to make atmos a bit less precise but less memory intensive and maybe a bit faster, may cause bugs
