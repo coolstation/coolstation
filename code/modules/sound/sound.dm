@@ -52,6 +52,7 @@
 	return attenuate
 
 var/global/SPACED_ENV = list(100,0.52,0,-1600,-1500,0,2,2,-10000,0,200,0.01,0.165,0,0.25,0.01,-5,1000,20,10,53,100,0x3f)
+var/global/DEAF_ENV = list(20,0.4,-200,-2000,700,0.15,2,1.2,-8000,0.02,400,0.08,0.165,0,0.25,0.01,-15,500,200,3,70,100,0x3f)
 var/global/SPACED_ECHO = list(-10000,0,-1450,0,0,1,0,1,10,10,0,1,0,10,10,10,10,7)
 var/global/ECHO_AFAR = list(0,0,0,0,0,0,-10000,1.0,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
 var/global/ECHO_CLOSE = list(0,0,0,0,0,0,0,0.25,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
@@ -207,9 +208,6 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 
 			EARLY_CONTINUE_IF_QUIET(ourvolume)
 
-			if(cant_hear(M)) //Bone conductivity, I guess?
-				ourvolume *= 0.06
-
 			atten_temp = attenuate_for_location(Mloc)
 			LISTENER_ATTEN(atten_temp)
 
@@ -236,7 +234,13 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 				S.channel = forcechannel
 			S.repeat = repeat
 
-			if (spaced_env && !(flags & SOUND_IGNORE_SPACE))
+
+			if(cant_hear(M)) //Bone conductivity, I guess?
+				S.volume *= 0.75
+				S.environment = DEAF_ENV
+				S.echo = SPACED_ECHO
+
+			else if (spaced_env && !(flags & SOUND_IGNORE_SPACE))
 				S.environment = SPACED_ENV
 				S.echo = SPACED_ECHO
 			else
@@ -324,7 +328,12 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	client.sound_playing[ S.channel ][2] = channel
 
 	if (S)
-		if (spaced_env && !(flags & SOUND_IGNORE_SPACE))
+		if(client.mob && cant_hear(client.mob))
+			S.volume *= 0.75
+			S.environment = DEAF_ENV
+			S.echo = SPACED_ECHO
+
+		else if (spaced_env && !(flags & SOUND_IGNORE_SPACE))
 			S.environment = SPACED_ENV
 			S.echo = SPACED_ECHO
 
@@ -580,7 +589,9 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	if (pass_volume != 0)
 		S.volume *= attenuate_for_location(A)
 		if(src.mob && cant_hear(src.mob))
-			S.volume *= 0.1
+			S.volume *= 0.75
+			S.environment = DEAF_ENV
+			S.echo = SPACED_ECHO
 		//S.volume *= max(1,pass_volume) // warc: post-loudening for loud-requiring places
 	if (soundrepeat)
 		S.status |= SOUND_STREAM //should be lighter for clients
@@ -660,7 +671,9 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	src.last_zvol = S.volume //store in mob's client
 	src.last_zloop = soundfile
 	if(src.mob && cant_hear(src.mob))
-		S.volume *= 0.1
+		S.volume *= 0.75
+		S.environment = DEAF_ENV
+		S.echo = SPACED_ECHO
 	src << S
 
 /// pool of precached sounds
