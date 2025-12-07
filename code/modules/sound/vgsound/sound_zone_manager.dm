@@ -218,7 +218,7 @@ var/global/datum/sound_zone_manager/sound_zone_manager = new
 
 	var/datum/sound_listener_context/context = receive_client.listener_context
 
-#if defined(MAGINDARA_MAP) && defined(TRACK_GROUPS_TO_ATMOSPHERE)
+#if defined(TRACK_GROUPS_TO_ATMOSPHERE) && (defined(MAGINDARA_MAP) || defined(DESERT_MAP))
 	receive_client.playAmbienceZ(location.z, location.parent ? location.parent.groups_to_atmosphere : location.groups_to_atmosphere)
 #endif
 

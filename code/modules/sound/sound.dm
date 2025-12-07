@@ -601,38 +601,24 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	var/soundupdate = 0
 	var/soundmute = 0
 
-	#ifdef DESERT_MAP //only z-loops we got right now
-	//moving this in here to shut up the runtime warning for "var defined but unused"
-	var/reduction = 4
-
-	if (insideness) //if something remembered to pass it and it's non-zero (fuck)
-		reduction = (insideness * 0.5) + 0.5
-		//insideness:
-		//1 is outside, no reduction
-		//2 is non-space area that's open, 33% reduction
-		//3 is non-space area that's insulated but adjacent to /area/space, 50% reduction
-		//4 is non-space area that's insulated but not adjacent, 60% reduction
-
-	if (insideness == 20) //special case calling for a mute
-		soundmute = 1
-	switch(Z)
-		if(1)
-			soundfile = gehenna_surface_loop //surface wind, much quieter inside station areas
-			zloopvol = gehenna_surface_loop_vol / reduction //minvol 80, maxvol 130, loudest at cold night, reduced by how "inside" we are
-		if(3)
-			soundfile = gehenna_underground_loop //for now it's the same wind but really quiet (cave sounds might be appropriate)
-			zloopvol = gehenna_underground_loop_vol / reduction //very quiet wind sounds now, sorta quiet cave sounds with dripping and etc. later
-		//in any other case, this won't play anything and stop any currently playing z-loop
-	#elif defined(MAGINDARA_MAP)
-	var/reduction = insideness * 1.5 + 1
-	// insideness is different from the desert one, this is experimental
 	// insideness comes from the atmos group. if the group is touching atmosphere, its 0
 	// each gaseously distinct group/singleton border is +1, and for now mingling singletons are +1 as well
 	// thus a room with a proper window to the atmosphere (with insulating airgroup) is at 2
+
+	#ifdef DESERT_MAP //only z-loops we got right now
+	switch(Z)
+		if(1)
+			soundfile = gehenna_surface_loop //surface wind, much quieter inside station areas
+			zloopvol = gehenna_surface_loop_vol / (insideness * 1.5 + 1) //minvol 80, maxvol 130, loudest at cold night, reduced by how "inside" we are
+		if(3)
+			soundfile = gehenna_underground_loop //for now it's the same wind but really quiet (cave sounds might be appropriate)
+			zloopvol = gehenna_underground_loop_vol //very quiet wind sounds now, sorta quiet cave sounds with dripping and etc. later
+		//in any other case, this won't play anything and stop any currently playing z-loop
+	#elif defined(MAGINDARA_MAP)
 	switch(Z)
 		if(1)
 			soundfile = magindara_surface_loop //surface wind
-			zloopvol = magindara_surface_loop_volume / reduction //reduced by how "inside" we are
+			zloopvol = magindara_surface_loop_volume / (insideness * 1.5 + 1) //reduced by how "inside" we are
 		/*
 		if(3)
 		*/
