@@ -628,7 +628,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	var/reduction = insideness + 1
 	// insideness is different from the desert one, this is experimental
 	// insideness comes from the atmos group. if the group is touching atmosphere, its 0
-	// each gaseously distinct group/singleton border is +1, while mingling groups/singletons are only +0.5
+	// each gaseously distinct group/singleton border is +1, and for now mingling singletons are +1 as well
 	// thus a room with a proper window to the atmosphere (with insulating airgroup) is at 2
 	switch(Z)
 		if(1)
