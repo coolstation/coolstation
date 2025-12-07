@@ -17,6 +17,7 @@ var/global/magindara_surface_loop_volume = 80
 	color = "#ffffff"
 	special_volume_override = -1
 	turf_flags = MINE_MAP_PRESENTS_EMPTY | IS_ATMOSPHERE
+	groups_to_atmosphere = 0
 #ifdef MAGINDARA_MAP
 	oxygen = MOLES_O2MAGINDARA
 	nitrogen = MOLES_N2MAGINDARA
