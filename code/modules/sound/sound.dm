@@ -207,9 +207,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 
 			EARLY_CONTINUE_IF_QUIET(ourvolume)
 
-			//mbc : i'm making a call and removing this check's affect on volume bc it gets quite expensive and i dont care about the sound being quieter
-			//if(M.ears_protected_from_sound()) //Bone conductivity, I guess?
-			//	ourvolume *= 0.2
+			if(M.ears_protected_from_sound()) //Bone conductivity, I guess?
+				ourvolume *= 0.1
 
 			atten_temp = attenuate_for_location(Mloc)
 			LISTENER_ATTEN(atten_temp)
