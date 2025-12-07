@@ -208,7 +208,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			EARLY_CONTINUE_IF_QUIET(ourvolume)
 
 			if(cant_hear(M)) //Bone conductivity, I guess?
-				ourvolume *= 0.1
+				ourvolume *= 0.06
 
 			atten_temp = attenuate_for_location(Mloc)
 			LISTENER_ATTEN(atten_temp)
@@ -574,6 +574,8 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		S.status |= SOUND_MUTE
 	if (pass_volume != 0)
 		S.volume *= attenuate_for_location(A)
+		if(src.mob && cant_hear(src.mob))
+			S.volume *= 0.1
 		//S.volume *= max(1,pass_volume) // warc: post-loudening for loud-requiring places
 	if (soundrepeat)
 		S.status |= SOUND_STREAM //should be lighter for clients
@@ -650,9 +652,11 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 		S.volume *= max(1,(zloopvol / 100)) // warc: post-loudening for loud-requiring places
 		//the 'early return if quiet' that was here might interfere with variable z-level loop volumes
 	*/
-	src << S
 	src.last_zvol = S.volume //store in mob's client
 	src.last_zloop = soundfile
+	if(src.mob && cant_hear(src.mob))
+		S.volume *= 0.1
+	src << S
 
 /// pool of precached sounds
 /var/global/list/sb_tricks = list(sound('sound/effects/sbtrick1.ogg'),sound('sound/effects/sbtrick2.ogg'),sound('sound/effects/sbtrick3.ogg'),sound('sound/effects/sbtrick4.ogg'),sound('sound/effects/sbtrick5.ogg'),sound('sound/effects/sbtrick6.ogg'),sound('sound/effects/sbtrick7.ogg'),sound('sound/effects/sbtrick8.ogg'),sound('sound/effects/sbtrick9.ogg'),sound('sound/effects/sbtrick10.ogg'))
