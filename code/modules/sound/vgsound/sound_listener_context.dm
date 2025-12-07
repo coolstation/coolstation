@@ -117,8 +117,8 @@
 
 /datum/sound_listener_context/proc/apply_proxymob_effects(sound/S, datum/sound_emitter/emitter)
 	. = S
-	if (proxy.ears_protected_from_sound())
-		S.volume *= 0.07
+	if (cant_hear(src.proxy))
+		S.volume *= 0.1
 		S.environment = EAX_DRUGGED
 		S.echo = SPACED_ECHO
 		return

@@ -207,7 +207,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 
 			EARLY_CONTINUE_IF_QUIET(ourvolume)
 
-			if(M.ears_protected_from_sound()) //Bone conductivity, I guess?
+			if(cant_hear(M)) //Bone conductivity, I guess?
 				ourvolume *= 0.1
 
 			atten_temp = attenuate_for_location(Mloc)
