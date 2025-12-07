@@ -360,9 +360,9 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 #ifdef TRACK_GROUPS_TO_ATMOSPHERE
 
 				if(T.parent)
-					parent.groups_to_atmosphere = min(parent.groups_to_atmosphere, T.parent.groups_to_atmosphere + 0.5)
+					parent.groups_to_atmosphere = min(parent.groups_to_atmosphere, T.parent.groups_to_atmosphere + 1)
 				else
-					parent.groups_to_atmosphere = min(parent.groups_to_atmosphere, T.groups_to_atmosphere + 0.5)
+					parent.groups_to_atmosphere = min(parent.groups_to_atmosphere, T.groups_to_atmosphere + 1)
 			else
 				//not connected
 				if(T.turf_flags & IS_ATMOSPHERE)
@@ -387,9 +387,9 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 				if(T.turf_flags & IS_ATMOSPHERE)
 					src.groups_to_atmosphere = 0
 				else if(T.parent)
-					src.groups_to_atmosphere = min(src.groups_to_atmosphere, T.parent.groups_to_atmosphere + 0.5)
+					src.groups_to_atmosphere = min(src.groups_to_atmosphere, T.parent.groups_to_atmosphere + 1)
 				else
-					src.groups_to_atmosphere = min(src.groups_to_atmosphere, T.groups_to_atmosphere + 0.5)
+					src.groups_to_atmosphere = min(src.groups_to_atmosphere, T.groups_to_atmosphere + 1)
 			else
 				if(T.turf_flags & IS_ATMOSPHERE)
 					src.groups_to_atmosphere = 1
