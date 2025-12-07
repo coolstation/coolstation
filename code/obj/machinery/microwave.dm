@@ -351,7 +351,7 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 				src.cook(MW_COOK_VALID_RECIPE)
 
 /obj/machinery/microwave/proc/eject_contents()
-	if (length(src.contents))
+	if (!src.operating && length(src.contents))
 		for(var/obj/item/I in src.contents)
 			I.set_loc(get_turf(src))
 		src.clean_up()
@@ -507,7 +507,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/microwave)
 
 		checkRequirements(var/obj/machinery/microwave/target, var/mob/user)
 			if(..(target, user))
-				return length(target.contents)
+				return !target.operating && length(target.contents)
 			return FALSE
 
 		execute(var/obj/machinery/microwave/target, var/mob/user)
