@@ -241,6 +241,10 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 		boutput(user, "<span class='alert'>\The [src] refuses to interface with you, as you are not a properly trained chef!</span>")
 		return
 
+	if(src.microwave_state)
+		boutput(user, "It's broken! It could be fixed with some common tools.")
+		return
+
 	src.fiddle(user)
 
 /*
@@ -491,15 +495,15 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/microwave)
 
 		checkRequirements(var/obj/machinery/microwave/target, var/mob/user)
 			if(..(target, user))
-				return !target.operating
+				return !target.operating && !target.microwave_state
 			return FALSE
 
 		execute(var/obj/machinery/microwave/target, var/mob/user)
 			target.start_cooking()
 
 	eject_food
-		name = "eject food"
-		icon_state = "microwave_eject_food"
+		name = "eject contents"
+		icon_state = "microwave_eject_contents"
 
 		checkRequirements(var/obj/machinery/microwave/target, var/mob/user)
 			if(..(target, user))
