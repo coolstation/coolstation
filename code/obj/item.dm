@@ -102,7 +102,6 @@
 	var/item_function_flags = null
 	var/force_use_as_tool = 0
 
-	var/block_hearing_when_worn = HEARING_NORMAL
 	//fuck me mbc why you do this | | ok i did it to reduce type checking in a proc that gets called A LOT and idk what else to do ok help
 	var/block_vision = 0 //cannot see when worn
 	var/needOnMouseMove = 0 //If 1, we check all the stuff required for onMouseMove for this. Leave this off unless required. Might cause extra lag.

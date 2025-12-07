@@ -12,6 +12,9 @@
 
 #define ismuzzled(x) (x.wear_mask && x.wear_mask.is_muzzle)
 
+// the logic: earplugs check, then deafness without Auditory Headset check, then unconsciousness check, sleeping check, and LASTLY the status check for paralysis aka Unconscious
+#define cant_hear(x) ((x.ear_protected > 0) || (!x.ear_protected && (x.ear_permdeaf || x.ear_tempdeaf)) || x.stat == STAT_UNCONSCIOUS || x.sleeping || x.getStatusDuration("paralysis"))
+
 // status effect system stuff
 #define ADD_STATUS_LIMIT(target, group, value)\
 	do { \

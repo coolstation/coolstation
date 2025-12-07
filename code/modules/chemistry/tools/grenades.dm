@@ -377,7 +377,7 @@
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 						var/safety = 0
-						if (H.eyes_protected_from_light() && H.ears_protected_from_sound())
+						if (H.eyes_protected_from_light() && cant_hear(H))
 							safety = 1
 
 						if (safety == 0)

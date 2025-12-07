@@ -60,13 +60,14 @@
 	var/transforming = null
 	var/hand = 0
 	var/ceiling_shown = 0
-	var/eye_blind = null
-	var/eye_blurry = null
-	var/eye_damage = null
-	var/ear_deaf = null
-	var/ear_damage = null
-	var/ear_disability = null
-	var/stuttering = null
+	var/eye_blind = 0
+	var/eye_blurry = 0
+	var/eye_damage = 0
+	var/ear_protected = 0
+	var/ear_tempdeaf = 0
+	var/ear_permdeaf = 0
+	var/ear_damage = 0
+	var/stuttering = 0
 	var/real_name = null
 	var/acid_name = null
 	var/blinded = null
@@ -2599,40 +2600,33 @@
 	//DEBUG_MESSAGE("Amount is [amount], new eye blurry is [src.eye_blurry], cap is [upper_cap]")
 	return 1
 
-/mob/proc/get_ear_damage(var/tempdeaf = 0)
-	if (tempdeaf == 0)
-		return src.ear_damage
-	else
-		return src.ear_deaf
-
 // And here's the missing one for ear damage too (Convair880).
 /mob/proc/take_ear_damage(var/amount, var/tempdeaf = 0)
 	if (!src || !ismob(src) || (!isnum(amount) || amount == 0))
 		return 0
 
-	var/eardeaf = 0
+	var/added_eardeaf = 0
 	if (tempdeaf == 0)
 		src.ear_damage = max(0, src.ear_damage + amount)
 	else
-		eardeaf = amount
+		added_eardeaf = amount
 
-	// Modify ear_damage or ear_deaf if prompted, but don't perform more than we absolutely have to.
-	var/deaf_bypass = 0
-	if (src.ear_disability)
-		deaf_bypass = 1
+	// Modify ear_damage or ear_tempdeaf if prompted, but don't perform more than we absolutely have to.
+	if (src.ear_permdeaf)
+		return TRUE
 
-	if (amount > 0 && tempdeaf == 0 && deaf_bypass == 0)
+	if (amount > 0 && tempdeaf == 0)
 		switch (src.ear_damage)
 			if (10 to 12)
-				eardeaf += 1
+				added_eardeaf += 1
 
 			if (13 to 15)
 				boutput(src, "<span class='alert'>Your ears ring a bit!</span>")
-				eardeaf += rand(2, 3)
+				added_eardeaf += rand(2, 3)
 
 			if (15 to 24)
 				boutput(src, "<span class='alert'>Your ears are really starting to hurt!</span>")
-				eardeaf += src.ear_damage * 0.5
+				added_eardeaf += src.ear_damage * 0.5
 
 			if (25 to INFINITY)
 				boutput(src, "<span class='alert'><b>Your ears ring very badly!</b></span>")
@@ -2641,28 +2635,24 @@
 					src.show_text("<b>You go deaf!</b>", "red")
 					src.bioHolder.AddEffect("deaf")
 				else
-					eardeaf += src.ear_damage * 0.75
+					added_eardeaf += src.ear_damage * 0.75
 
-	if (eardeaf != 0)
+	if (added_eardeaf != 0)
 		var/suppress_message = 0
-		if (!src.get_ear_damage(1) && eardeaf < 0) // We don't have any temporary deafness to begin with and are told to heal it.
+		if (!src.ear_tempdeaf && added_eardeaf < 0) // We don't have any temporary deafness to begin with and are told to heal it.
 			suppress_message = 1
-		if (src.get_ear_damage(1) && (src.get_ear_damage(1) + eardeaf) > 0) // We already have temporary deafness and are adding to it.
+		else if (src.ear_tempdeaf && (src.ear_tempdeaf + added_eardeaf) > 0) // We already have temporary deafness and are adding to it.
 			suppress_message = 1
 
-		src.ear_deaf = max(0, src.ear_deaf + eardeaf)
+		src.ear_tempdeaf = max(0, src.ear_tempdeaf + added_eardeaf)
 
-		if (src.ear_deaf == 0 && deaf_bypass == 0 && suppress_message == 0)
+		if (src.ear_tempdeaf == 0 && suppress_message == 0)
 			boutput(src, "<span class='notice'>The ringing in your ears subsides enough to let you hear again.</span>")
-		else if (eardeaf > 0 && deaf_bypass == 0 && suppress_message == 0)
+		else if (added_eardeaf > 0 && suppress_message == 0)
 			boutput(src, "<span class='alert'>The ringing overpowers your ability to hear momentarily.</span>")
 
 	//DEBUG_MESSAGE("Ear damage applied: [amount]. Tempdeaf: [tempdeaf == 0 ? "N" : "Y"]")
 	return 1
-
-// No natural healing can occur if ear damage is above this threshold. Didn't want to make it yet another mob parent var.
-/mob/proc/get_ear_damage_natural_healing_threshold()
-	return max(0, src.max_health / 4)
 
 /mob/proc/lose_breath(var/amount)
 	if (!isnum(amount) || amount == 0)

@@ -117,7 +117,7 @@
 				for (var/mob/living/M in all_hearers(world.view, T))
 					if (isintangible(M))
 						continue
-					if (!M.ears_protected_from_sound())
+					if (!cant_hear(M))
 						O.ArtifactFaultUsed(M)
 					else
 						continue
