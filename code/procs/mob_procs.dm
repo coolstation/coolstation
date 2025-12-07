@@ -348,8 +348,8 @@
 	var/deafened = cant_hear(src)
 
 	if (deafened) // concussive force remains
-		weak *= 0.1
-		stun *= 0.2
+		weak *= 0.25
+		stun *= 0.25
 		misstep *= 0.5
 		slow *= 0.5
 		drop_item *= 0.5
