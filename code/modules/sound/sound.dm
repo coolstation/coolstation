@@ -625,7 +625,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 			zloopvol = gehenna_underground_loop_vol / reduction //very quiet wind sounds now, sorta quiet cave sounds with dripping and etc. later
 		//in any other case, this won't play anything and stop any currently playing z-loop
 	#elif defined(MAGINDARA_MAP)
-	var/reduction = insideness + 1
+	var/reduction = insideness * 1.5 + 1
 	// insideness is different from the desert one, this is experimental
 	// insideness comes from the atmos group. if the group is touching atmosphere, its 0
 	// each gaseously distinct group/singleton border is +1, and for now mingling singletons are +1 as well
