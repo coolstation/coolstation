@@ -331,11 +331,13 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			LAGCHECK(LAG_REALTIME)
 			var/turf/T = get_step(src,direction)
 
-			//Not a border at all (or a map border)
-			if(!T || (T.parent==parent))
+			//A map border
+			if(!T)
 				continue
 			if(src.gas_cross(T) && T.gas_cross(src))
 				air_check_directions |= direction
+				if(T.parent==parent)
+					continue
 				//connected
 				//See what kind of border it is
 				if(T.turf_flags & IS_SPACE)
