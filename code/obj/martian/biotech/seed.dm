@@ -12,7 +12,7 @@
   icon_state = "seed"
   w_class = W_CLASS_TINY
   stamina_damage = 1
-  stamina_cost = 1
+//  stamina_cost = 1
   rand_pos = 8
   var/martianName = "structural seed"
   var/martianDesc = "Once primed, this seed can be applied to the ground to form a new structure."

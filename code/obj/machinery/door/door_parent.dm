@@ -8,6 +8,7 @@
 	flags = FPRINT | IS_PERSPECTIVE_FLUID | ALWAYS_SOLID_FLUID
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	object_flags = BOTS_DIRBLOCK
+	pass_unstable = TRUE
 	text = "<font color=#D2691E>+"
 	var/secondsElectrified = 0
 	var/visible = 1
@@ -15,9 +16,10 @@
 	var/p_open = 0
 	var/operating = 0
 	var/operation_time = 10
-	anchored = 1
-	///Attempt to close 15 seconds after opening, UNLESS interrupt_autoclose is set sometime in that interval
+	anchored = ANCHORED
+	///Attempt to close 15 seconds (DEFAULT) after opening, UNLESS interrupt_autoclose is set sometime in that interval, this is configurable in autoclose_time
 	var/autoclose = 0
+	var/autoclose_time = 15 //Time in seconds that door will hold open for if autoclose is enabled
 	var/interrupt_autoclose = 0
 	var/last_used = 0
 	var/cant_emag = 0
@@ -128,8 +130,7 @@
 				return 1
 	return 0
 
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	//if(air_group) return 0
+/obj/machinery/door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/projectile))
 		var/obj/projectile/P = mover
 		if(P.proj_data.window_pass)
@@ -306,11 +307,13 @@
 	if(istype(I, /obj/item/grab))
 		return ..() // handled in grab.dm + Bumped
 
+	src.add_fingerprint(user)
+
 	if (src.isblocked() == 1)
-		if (src.density && src.operating != 1 && I)
+		if (src.density && src.operating != 1)
 			if (ischoppingtool(I))
 				src.take_damage(I.force*5, user, TRUE)
-			else
+			else if (I)
 				src.take_damage(I.force, user)
 			user.lastattacked = src
 			attack_particle(user,src)
@@ -322,8 +325,6 @@
 		return
 	if (world.time - src.last_used <= 10)
 		return
-
-	src.add_fingerprint(user)
 
 	if (src.density && src.brainloss_stumble && src.do_brainstumble(user) == 1)
 		return
@@ -353,9 +354,9 @@
 		if (src.sound_deny)
 			playsound(src.loc, src.sound_deny, 25, 0)
 
-		var/resolvedForce = I.force
+		var/resolvedForce = I?.force
 		var/chopped = FALSE
-		if (ischoppingtool(I))
+		if (I && ischoppingtool(I))
 			resolvedForce *= 5
 			chopped = TRUE
 		user.lastattacked = src
@@ -617,7 +618,7 @@
 
 /obj/machinery/door/proc/opened()
 	if(autoclose)
-		sleep(15 SECONDS)
+		sleep(autoclose_time SECONDS)
 		if(interrupt_autoclose)
 			interrupt_autoclose = 0
 		else
@@ -712,7 +713,7 @@
 	density = 1
 	p_open = 0
 	operating = 0
-	anchored = 1
+	anchored = ANCHORED
 	autoclose = 1
 	var/blocked = null
 	var/simple_lock = 0

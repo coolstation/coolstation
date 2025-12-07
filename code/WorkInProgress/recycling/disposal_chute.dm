@@ -16,8 +16,9 @@
 	desc = "A pneumatic waste disposal unit."
 	icon = 'icons/obj/machines/disposal.dmi'
 	icon_state = "disposal"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
+	pass_unstable = FALSE
 	flags = FPRINT | FLUID_SUBMERGE | NOSPLASH | TGUI_INTERACTIVE
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = DISPOSAL_CHUTE_CHARGING	// item mode 0=off 1=charging 2=charged
@@ -156,7 +157,7 @@
 		else
 			if (istype(mag))
 				actions.stopId("magpickerhold", user)
-			else if (!user.drop_item())
+			else if (!user.drop_item(I) || QDELETED(I))
 				return
 			I.set_loc(src)
 			user.visible_message("[user.name] places \the [I] into \the [src].",\
@@ -190,26 +191,27 @@
 			var/obj/item/I = MO
 
 			if(prob(20)) //It might land!
-				I.set_loc(get_turf(src))
 				if(prob(30)) //It landed cleanly!
-					I.set_loc(src)
+					SPAWN_DBG(0)
+						I.set_loc(src)
 					src.visible_message("<span class='alert'>\The [I] lands cleanly in \the [src]!</span>")
 				else	//Aaaa the tension!
 					src.visible_message("<span class='alert'>\The [I] teeters on the edge of \the [src]!</span>")
 					var/delay = rand(5, 15)
 					SPAWN_DBG(0)
+						I.set_loc(get_turf(src))
 						var/in_x = I.pixel_x
 						for(var/d = 0; d < delay; d++)
 							if(I) I.pixel_x = in_x + rand(-1, 1)
 							sleep(0.1 SECONDS)
 						if(I) I.pixel_x = in_x
-					sleep(delay)
-					if(I && I.loc == src.loc)
-						if(prob(40)) //It goes in!
-							src.visible_message("<span class='alert'>\The [I] slips into \the [src]!</span>")
-							I.set_loc(src)
-						else
-							src.visible_message("<span class='alert'>\The [I] slips off of the edge of \the [src]!</span>")
+						sleep(delay)
+						if(I && I.loc == src.loc)
+							if(prob(40)) //It goes in!
+								src.visible_message("<span class='alert'>\The [I] slips into \the [src]!</span>")
+								I.set_loc(src)
+							else
+								src.visible_message("<span class='alert'>\The [I] slips off of the edge of \the [src]!</span>")
 
 		else if (ishuman(MO))
 			var/mob/living/carbon/human/H = MO
@@ -217,22 +219,18 @@
 			if(prob(30))
 				H.visible_message("<span class='alert'><B>[H] falls into the disposal outlet!</B></span>")
 				logTheThing("combat", H, null, "is thrown into a [src.name] at [log_loc(src)].")
-				H.set_loc(src)
-				if(prob(20))
-					src.visible_message("<span class='alert'><B><I>...accidentally hitting the handle!</I></B></span>")
-					H.show_text("<B><I>...accidentally hitting the handle!</I></B>", "red")
-					flush = 1
-					if (!is_processing)
-						SubscribeToProcess()
-						is_processing = 1
-					update()
+				SPAWN_DBG(0)
+					H.set_loc(src)
+					if(prob(20))
+						src.visible_message("<span class='alert'><B><I>...accidentally hitting the handle!</I></B></span>")
+						H.show_text("<B><I>...accidentally hitting the handle!</I></B>", "red")
+						flush = 1
+						if (!is_processing)
+							SubscribeToProcess()
+							is_processing = 1
+						update()
 		else
 			return ..()
-
-
-	// can breath normally in the disposal
-	alter_health()
-		return get_turf(src)
 
 	// attempt to move while inside
 	relaymove(mob/user as mob)
@@ -595,27 +593,19 @@
 
 	var/net_id = null
 	var/frequency = FREQ_PDA
-	var/datum/radio_frequency/radio_connection
 
 	New()
 		..()
-		SPAWN_DBG(0.8 SECONDS)
-			if(radio_controller)
-				radio_connection = radio_controller.add_object(src, "[frequency]")
-			if(!src.net_id)
-				src.net_id = generate_net_id(src)
-
-	disposing()
-		radio_controller.remove_object(src, "[frequency]")
-		..()
+		if(!src.net_id)
+			src.net_id = generate_net_id(src)
+		MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
 
 	expel(var/obj/disposalholder/H)
 		..(H)
 
-		if (message && mailgroup && radio_connection)
+		if (message && mailgroup)
 			var/datum/signal/newsignal = get_free_signal()
 			newsignal.source = src
-			newsignal.transmission_method = TRANSMISSION_RADIO
 			newsignal.data["command"] = "text_message"
 			newsignal.data["sender_name"] = "CHUTE-MAILBOT"
 			newsignal.data["message"] = "[message]"
@@ -623,7 +613,7 @@
 			newsignal.data["group"] = list(mailgroup, MGA_MAIL)
 			newsignal.data["sender"] = src.net_id
 
-			radio_connection.post_signal(src, newsignal)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 /obj/machinery/disposal/cart_port
 	name = "disposal cart port"

@@ -14,8 +14,8 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 /obj/item/uplink
 	name = "uplink"
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 
 	var/uses = 12 // Amount of telecrystals.
 	var/list/datum/syndicate_buylist/items_weapons = list() // See setup().
@@ -760,7 +760,7 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 					if (istype(B.delivery_area, /area/diner))
 						user.show_text("It can be found at the nearby space diner!", "red")
 					var/turf/end = B.delivery_area.spyturf
-					user.gpsToTurf(end, doText = 0, heuristic = /turf/proc/AllDirsTurfsWithAllAccess) // spy thieves probably need to break in anyway, so screw access check
+					user.gpsToTurf(end, doText = 0) // spy thieves probably need to break in anyway, so screw access check
 					return 0
 				user.removeGpsPath(doText = 0)
 				B.claimed = 1

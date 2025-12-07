@@ -30,7 +30,7 @@
 /obj/machinery/gutter
 	density = 1
 	flags = NOSPLASH
-	anchored = 1
+	anchored = ANCHORED
 
 	name = "gutter"
 	icon = 'bowling.dmi'
@@ -104,9 +104,6 @@
 
 		H.vent_gas(loc)
 		qdel(H)
-
-	alter_health()
-		return get_turf(src)
 
 /turf/floor/pin
 	name = "pin"

@@ -149,8 +149,6 @@ var/global/deathConfettiActive = 0
 	custom_gib_handler = /proc/gibs
 	hand_count = 1
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	speechverb_say = "booms"
 	speechverb_exclaim = "flares"
 	speechverb_ask = "spots"
@@ -179,11 +177,11 @@ var/global/deathConfettiActive = 0
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/sun
+		HH.limb = new /datum/limb/sun(src)
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handzap"
 		HH.name = "solar wind"
-		HH.limb_name = "solar wind"
+		HH.limb.name = "solar wind"
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)

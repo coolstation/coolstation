@@ -14,7 +14,7 @@
 	flags =  FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE | DOORPASS
 	layer = 5.0 //TODO LAYER
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	req_access = list(access_engineering_atmos)
 	on = 1
 	health = 20
@@ -444,9 +444,3 @@
 		src.created_name = t
 
 #undef FIREBOT_MOVE_SPEED
-/*
-/mob/living/critter/bot/firebot
-	name = "firebot"
-
-	emagged
-*/

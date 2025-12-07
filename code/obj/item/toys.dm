@@ -11,8 +11,8 @@
 	throw_range = 5
 	contraband = 3
 	stamina_damage = 1
-	stamina_cost = 7
-	stamina_crit_chance = 1
+//	stamina_cost = 7
+//	stamina_crit_chance = 1
 	var/bladecolor = "G"
 	var/sound_attackM1 = 'sound/weapons/male_toyattack.ogg'
 	var/sound_attackM2 = 'sound/weapons/male_toyattack2.ogg'
@@ -47,8 +47,8 @@
 	force = 5
 	throwforce = 7
 	stamina_damage = 25
-	stamina_cost = 10
-	stamina_crit_chance = 5
+//	stamina_cost = 10
+//	stamina_crit_chance = 5
 
 	custom_suicide = 1
 	suicide(var/mob/user as mob)
@@ -73,8 +73,8 @@
 	throw_speed = 4
 	throw_range = 7
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	var/cooldown = 0
 
 /obj/item/toy/judge_block/attackby(obj/item/I, mob/user)
@@ -100,8 +100,8 @@
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	var/redeemer = null
 	var/receiver = null
 

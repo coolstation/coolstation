@@ -3,6 +3,7 @@
 var/list/action_names = list(
 
 	"attackself" = "Use in-hand",
+	"fiddle" = "Fiddle in-hand",
 	"togglethrow" = "Throw (Toggle)",
 	"swaphand" = "Swap Hand",
 	"equip" = "Equip",
@@ -25,6 +26,7 @@ var/list/action_names = list(
 	"scream" = "Scream",
 	"salute" = "Salute",
 	"burp" = "Burp",
+	"clap" = "Clap",
 	"poo" = "Poo",
 	"piss" = "Piss",
 
@@ -100,6 +102,7 @@ var/list/action_verbs = list(
 	"emote" = "say *customv",
 	"salute" = "me_hotkey salute",
 	"burp" = "me_hotkey burp",
+	"clap" = "me_hotkey clap",
 	"dab" = "me_hotkey dab",
 	"dance" = "me_hotkey dance",
 	"eyebrow" = "me_hotkey eyebrow",

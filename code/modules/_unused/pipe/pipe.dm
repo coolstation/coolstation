@@ -897,7 +897,7 @@ var/linenums = 0
 
 		if(A && A.c_status != 0)
 			connected = A
-			A.anchored = 1
+			A.anchored = ANCHORED
 
 
 

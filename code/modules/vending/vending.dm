@@ -1,5 +1,6 @@
 /datum/data/vending_product
 	var/product_name = "generic"
+	var/icon_override = null
 	var/atom/product_path = null
 
 	var/product_cost
@@ -58,15 +59,21 @@
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
+	hint = "Hit the machine with cash or your ID to put credit into it."
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "generic"
 	machinery_flags = MAY_REQUIRE_MAINT
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 20
 	layer = OBJ_LAYER - 0.1 // so items get spawned at 3, don't @ me
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_MULTITOOL
 	object_flags = CAN_REPROGRAM_ACCESS
+	var/voice_sound = "sound/misc/talk/bottalk_1.ogg"
+	var/speech_color = null
+	var/maptext_speech = TRUE
+
+	///Actually a flag for infinite inventory, you still have to pay
 	var/freestuff = 0
 	var/obj/item/card/id/scan = null
 
@@ -133,7 +140,7 @@
 	var/receipt_serv_chg_total   // How much has been racked up in service charges?
 	var/min_serv_chg = 2 // 2 bux just to use your damn machine? Rasm frasm grumble!
 	var/serv_chg_pct = 0.02
-	var/datum/data/record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
+	var/datum/db_record/servicechgaccount = null // TODO: add a way to set/reset this for miscreants to do an embeezle
 
 	var/HTML = null // guh
 	var/vending_HTML = null // buh
@@ -267,17 +274,18 @@
 		if(istype(thing, /obj/item/popsicle))
 			return thing // dont refreeze these. hopefully thats all the exceptions.
 
-		var/obj/item/reagent_containers/food/snacks/shell/frozen/freezie = new(src)
+		var/obj/item/reagent_containers/food/snacks/shell/frozen/freezie
 
 		if(istype(thing, /obj/item/reagent_containers/food/snacks/))
 			var/obj/item/reagent_containers/food/snacks/S = thing
 			if("food_cold" in S.food_effects)
 				return S // if the dispensed item is meant to be cold, don't treat it as "frozen"
 			else
+				freezie = new(src)
 				freezie.food_effects |= S.food_effects
 				freezie.food_effects -= "food_warm"
-
-
+		else
+			freezie = new(src)
 
 		freezie.name = "frozen [thing.name]"
 
@@ -298,8 +306,6 @@
 
 		thing.set_loc(freezie)
 		return freezie
-
-
 
 	MouseDrop(over_object, src_location, over_location)
 		if(!istype(usr,/mob/living/))
@@ -330,6 +336,9 @@
 		else if (istype(over_object,/turf) && !over_object:density)
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set [src] to output to [over_object]!</span>")
+
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
@@ -453,8 +462,8 @@
 	if (!card || !user || !src.acceptcard)
 		return
 	boutput(user, "<span class='notice'>You swipe [card].</span>")
-	var/datum/data/record/account = null
-	account = FindBankAccountById(card.registered_id)
+	var/datum/db_record/account = null
+	account = FindBankAccountByName(card.registered)
 	if (account)
 		var/enterpin = input(user, "Please enter your PIN number.", "Enter PIN", 0) as null|num
 		if (enterpin == card.pin)
@@ -486,46 +495,50 @@
 	src.updateUsrDialog()
 
 /obj/machinery/vending/proc/generate_vending_HTML()
+
 	var/list/html_parts = list()
-	html_parts += "<b>Welcome!</b><br>"
+	html_parts += {"<head><link rel="stylesheet" type="text/css" href="[resource("css/vendingMachine.css")]" />"}
+	html_parts += {"<div class='crt'></div></head>"}
+
+	html_parts += "<div class = 'header'><h1><b>[name]</b></h1> <h1><b>[name]</b></h1> <h1><b>[name]</b></h1> <h1><b>[name]</b></h1></div>"
 
 	if (src.paying_for && (!istype(src.paying_for, /datum/data/vending_product) || !src.pay))
 		src.paying_for = null
 
 	if (src.pay && src.acceptcard)
 		if(src.min_serv_chg)
-			html_parts += "<i>This machine charges a minimum $[src.min_serv_chg] service charge</i><br>"
+			html_parts += "<i><div class = 'disclaimer'>This machine charges a minimum $[src.min_serv_chg] service charge</div></i>"
 		if (src.paying_for && !src.scan)
-			html_parts += "<B>You have selected the following item:</b><br>"
-			html_parts += "&emsp;<b>[src.paying_for.product_name]</b><br>"
-			html_parts += "Please swipe your card to authorize payment.<br>"
-			html_parts += "<B>Current ID:</B> None<BR>"
+			html_parts += "<br><div class = 'disclaimer'>You have selected the following item:</div><br>"
+			html_parts += "<div class = 'itemBox'>[src.paying_for.product_name]</div><br>"
+			html_parts += "<div class = 'disclaimer'>Please swipe your card to authorize payment.</div>"
+			html_parts += "<div class= 'box'><B>Current ID:</B></div>  None<BR>"
 		else if (src.scan)
 			if (src.paying_for)
-				html_parts += "<B>You have selected the following item for purchase:</b><br>"
-				html_parts += "&emsp;[src.paying_for.product_name]<br>"
-				html_parts += "<B>Please swipe your card to authorize payment.</b><br>"
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
-			html_parts += "<B>Current ID:</B> <a href='byond://?src=\ref[src];logout=1'><u>([src.scan])</u></A><BR>"
-			html_parts += "<B>Credits on Account: [account.fields["current_money"]] Credits</B> <BR>"
+				html_parts += "<br><div class = 'disclaimer'>You have selected the following item for purchase:</div><br>"
+				html_parts += "<div class = 'itembBox'>[src.paying_for.product_name]</div><br>"
+				html_parts += "<div class = 'disclaimer'>Please swipe your card to authorize payment.</div><br>"
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
+			html_parts += "<div class= 'box'><B>Current ID :</B></div>  <a href='byond://?src=\ref[src];logout=1'><div class = 'itemBox'><u>([src.scan])</u></div></A><BR>"
+			html_parts += "<div class= 'box'>Credits on Account:</div> <div class = 'itemBox'>[account["current_money"]] Credits</div> <br>"
 		else
-			html_parts += "<B>Current ID:</B> None<BR>"
+			html_parts += "<div class= 'box'><B>Current ID :</B></div> None<BR>"
 
 	if (!length(src.product_list) && !length(src.player_list))
 		html_parts += "<font color = 'red'>No product loaded!</font>"
 
 	else if (src.paying_for)
-		html_parts += "<a href='byond://?src=\ref[src];vend=\ref[src.paying_for]'><u><b>Continue</b></u></a>"
-		html_parts += " | <a href='byond://?src=\ref[src];cancel_payfor=1;logout=1'><u><b>Cancel</b></u></a>"
+		html_parts += "<a href='byond://?src=\ref[src];vend=\ref[src.paying_for]'><div class= 'box'>Continue</div></a>"
+		html_parts += " | <a href='byond://?src=\ref[src];cancel_payfor=1;logout=1'><div class= 'box'>Cancel</b></div></a>"
 
 	else
-		html_parts += "<table style='width: 100%; border: none; border-collapse: collapse;'><thead><tr><th>Product</th><th>Amt.</th><th>Price</th></tr></thead>"
+		html_parts += "<table style='width: 100%; border: none; border-collapse: collapse;'><thead><tr><th style = 'color: #020600;'>XXX</th><th>Product</th><th>[src.freestuff ? "" : "Amt."]</th><th>Price</th></tr></thead>"
 		for (var/datum/data/vending_product/R in src.product_list)
 			if (R.product_hidden && !src.extended_inventory)
 				continue
 			if (R.product_amount > 0)
-				html_parts += "<tr><td><a href='byond://?src=\ref[src];vend=\ref[R]'>[R.product_name]</a></td><td style='text-align: right;'>[R.product_amount]</td><td style='text-align: right;'> $[R.product_cost]</td></tr>"
+				html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [R.product_name]</td><td>[src.freestuff ? "" : R.product_amount]</td><td> $[R.product_cost]</td></tr>"
 			else
 				html_parts += "<tr><td>[R.product_name]</a></td><td colspan='2' style='text-align: center;'><strong>SOLD OUT</strong></td></tr>"
 		if (player_list)
@@ -534,15 +547,15 @@
 				var/obj/item/productholder = R.contents[1]
 				var/nextproduct = html_encode(sanitize(productholder.name))
 				if (!T.unlocked)
-					html_parts += "<tr><td><a href='byond://?src=\ref[src];vend=\ref[R]'>[nextproduct]</a></td><td style='text-align: right;'>[R.product_amount]</td><td style='text-align: right;'> $[R.product_cost]</td></tr>"
+					html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [nextproduct]</a></td><td>[R.product_amount]</td><td> $[R.product_cost]</td></tr>"
 					//Player vending machines don't have "out of stock" items
 				else if (T.unlocked)
 					//Links for setting prices when player vending machines are unlocked
-					html_parts += "<tr><td><a href='byond://?src=\ref[src];vend=\ref[R]'>[nextproduct]</a></td><td style='text-align: right;'>[R.product_amount]</td><td style='text-align: right;'><a href='byond://?src=\ref[src];setprice=\ref[R]'>$[R.product_cost]</a> (<a href='byond://?src=\ref[src];icon=\ref[R]'>*</a>)</td></tr>"
+					html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [nextproduct]</a></td><td>[R.product_amount]</td><td><a href='byond://?src=\ref[src];setprice=\ref[R]'>$[R.product_cost]</a> (<a href='byond://?src=\ref[src];icon=\ref[R]'>*</a>)</td></tr>"
 		html_parts += "</table>";
 
 		if (src.pay)
-			html_parts += "<BR><B>Available Credits:</B> $[src.credit] <a href='byond://?src=\ref[src];return_credits=1'>Return Credits</A>"
+			html_parts += "<BR><div class= 'box'>Available Credits:</div> $[src.credit] <br> <a class = 'box error' href='byond://?src=\ref[src];return_credits=1'>Return Credits</A>"
 			if (!src.acceptcard)
 				html_parts += "<BR>This machine only takes credit bills."
 
@@ -676,9 +689,13 @@
 			src.fall(user)
 
 /obj/machinery/vending/hitby(atom/movable/M, datum/thrown_thing/thr)
-	if (iscarbon(M) && M.throwing && prob(25))
-		src.fall(M)
-		return
+	if (iscarbon(M) && M.throwing)
+		if(prob(25))
+			src.fall(M)
+			animate_storage_thump(src)
+			return
+		else
+			animate_storage_thump(src)
 
 	..()
 
@@ -765,12 +782,12 @@
 				trigger_anti_cheat(usr, "tried to href exploit [src] to spawn an invalid item.")
 				return
 
-			var/datum/data/record/account = null
-			var/service_charge
+			var/datum/db_record/account = null
+			var/service_charge = 0
 			if (src.pay)
 				if (src.acceptcard && src.scan)
 					service_charge = ((R.product_cost * serv_chg_pct) < min_serv_chg) ? min_serv_chg : round(R.product_cost* serv_chg_pct)
-					account = FindBankAccountById(src.scan.registered_id)
+					account = FindBankAccountByName(src.scan.registered)
 					if (!account)
 						boutput(usr, "<span class='alert'>No bank account associated with ID found.</span>")
 						flick(src.icon_deny,src)
@@ -778,10 +795,10 @@
 						src.paying_for = R
 						src.generate_HTML(1)
 						return
-					if (account.fields["current_money"] < (R.product_cost+service_charge))
+					if (account["current_money"] < R.product_cost)
 						boutput(usr, "<span class='alert'>Insufficient funds in account. To use machine credit, log out.</span>")
-						account.fields["current_money"] -= min_serv_chg
-						servicechgaccount.fields["current_money"] += min_serv_chg
+						account["current_money"] -= min_serv_chg
+						servicechgaccount["current_money"] += min_serv_chg
 						flick(src.icon_deny,src)
 						src.vend_ready = 1
 						src.paying_for = R
@@ -811,9 +828,7 @@
 
 			if (src.pay)
 				if (src.acceptcard && account)
-					account.fields["current_money"] -= R.product_cost
-					account.fields["current_money"] -= service_charge
-					servicechgaccount.fields["current_money"] += service_charge
+					account["current_money"] -= R.product_cost
 				else
 					src.credit -= R.product_cost
 				if (!isplayer)
@@ -821,7 +836,7 @@
 				else
 					//Players get 90% of profit from player vending machines QMs get 10%
 					var/obj/machinery/vending/player/T = src
-					T.owneraccount.fields["current_money"] += round(R.product_cost * profit)
+					T.owneraccount["current_money"] += round(R.product_cost * profit)
 					wagesystem.shipping_budget += round(R.product_cost * (1 - profit))
 				if(R.product_amount <= 0 && !isplayer == 0)
 					src.player_list -= R
@@ -950,20 +965,41 @@
 
 	return
 
-/obj/machinery/vending/proc/speak(var/message)
-	if (status & NOPOWER)
+/obj/machinery/vending/proc/speak(var/message, var/sing, var/just_float, var/just_chat, var/req_power = TRUE)
+	if (req_power && status & NOPOWER)
 		return
 
 	if (!message)
 		return
 
-	for (var/mob/O in hearers(src, null))
-		if (src.glitchy_slogans)
-			O.show_message("<span class='game say'><span class='name'>[src]</span> beeps,</span> \"[voidSpeak(message)]\"", 2)
-		else
-			O.show_message("<span class='subtle'><span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span></span>", 2)
+	var/image/chat_maptext/maptext = null
 
-	return
+	if (src.maptext_speech && !just_chat)
+		if( !src.chat_text )
+			src.chat_text = new
+			src.vis_contents += src.chat_text
+		if(!src.speech_color)
+			var/num = hex2num(copytext(md5("[src.name][TIME]"), 1, 7))
+			src.speech_color = hsv2rgb(num % 360, (num / 360) % 10 + 18, num / 360 / 10 % 15 + 85)
+		var/singing_italics = sing ? " font-style: italic;" : ""
+		var/maptext_color
+		if (sing)
+			maptext_color ="#D8BFD8"
+		else
+			maptext_color = src.speech_color
+		maptext = make_chat_maptext(src, message, "color: [maptext_color];" + singing_italics, 150)
+		if(maptext && src.chat_text && length(src.chat_text.lines))
+			maptext.measure(src)
+			for(var/image/chat_maptext/I in src.chat_text.lines)
+				if(I != maptext)
+					I.bump_up(maptext.measured_height)
+
+	if(src.glitchy_slogans)
+		src.audible_message("<span class='game say'><span class='name'>[src]</span> beeps, \"[voidSpeak(message)]\"</span>", just_maptext = just_float, assoc_maptext = maptext)
+	else
+		src.audible_message("<span class='subtle'><span class='game say'><span class='name'>[src]</span> beeps, \"[message]\"</span></span>", just_maptext = just_float, assoc_maptext = maptext)
+	if(src.voice_sound)
+		playsound(src, src.voice_sound, 40, 1)
 
 /obj/machinery/vending/proc/prevend_effect()
 	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, 0.1)
@@ -1006,6 +1042,8 @@
 	status |= BROKEN
 	var/turf/vicTurf = get_turf(victim)
 	src.icon_state = "[initial(icon_state)]-fallen"
+	if(src.has_glow)
+		src.UpdateOverlays(null, "glow")
 //	SPAWN_DBG(0)
 //		src.icon_state = "[initial(icon_state)]-fall"
 //		SPAWN_DBG(2 SECONDS)
@@ -1023,7 +1061,7 @@
 		src.visible_message("<b><font color=red>[src.name] tips over!</font></b>")
 
 	src.power_change()
-	src.anchored = 0
+	src.anchored = UNANCHORED
 	return
 
 //Oh no we're getting roughed up!  Dump out some product and break.
@@ -1286,9 +1324,11 @@
 		if(src.owner && vendor && (src.vendor.status & BROKEN))
 			src.vendor.can_fall = 1
 			src.vendor.layer = initial(src.vendor.layer)
-			src.vendor.anchored = 1
+			src.vendor.anchored = ANCHORED
 			src.vendor.status &= ~BROKEN
 			src.vendor.power_change()
+			if(src.vendor.has_glow)
+				src.vendor.UpdateOverlays(src.vendor.glow, "glow")
 
 			for(var/mob/M in AIviewers(src.owner))
 				M.show_message("<span class='notice'><B>[src.owner] manages to stand \the [src.vendor] back upright!</B></span>", 1)
@@ -1305,7 +1345,7 @@
 	pay = 1
 	vend_delay = 25
 	icon_state = "coffee"
-	icon_vend = "coffee-vend" //TODO: resprite vend state (along with broken/tipped and tipped glow, other vending machines also require this)
+	icon_vend = "coffee-vend"
 	icon_panel = "coffee-panel"
 	light_r = 1
 	light_g = 0.88
@@ -1684,6 +1724,29 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/random, 10, cost=PAY_UNTRAINED/10)
 
+	splurt
+		name = "Mr. Splurt machine"
+		icon_state = "splurt"
+		icon_panel = "splurt-panel"
+		slogan_list = list("boire de mon nectar...",
+		"Je serai là longtemps après toi",
+		"Je suis comme l'arbre qui donne",
+		"je suis excellent")
+
+		light_r =0.1
+		light_g = 0.65
+		light_b = 0.39
+
+
+
+		create_products()
+			..()
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+
 /obj/machinery/vending/electronics
 	name = "ElecTek Vendomaticotron"
 	desc = "Dispenses electronics equipment."
@@ -1897,6 +1960,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/ringtone_chimes, 5, cost=PAY_TRADESMAN/3)
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/ringtone_beepy, 5, cost=PAY_TRADESMAN/3)
 		product_list += new/datum/data/vending_product(/obj/item/device/pda_module/flashlight/high_power, 10, cost=PAY_UNTRAINED/2)
+		product_list += new/datum/data/vending_product(/obj/item/device/pda_module/cigarette_lighter, 2, cost=PAY_UNTRAINED/2)
 
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/security, 1, cost=PAY_TRADESMAN/3, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/disk/data/cartridge/head, 1, cost=PAY_IMPORTANT/3, hidden=1)
@@ -2421,7 +2485,7 @@
 	//card display name
 	var/cardname
 	//Bank account
-	var/datum/data/record/owneraccount = null
+	var/datum/db_record/owneraccount = null
 	var/image/crtoverlay = null
 	var/image/promoimage = null
 	player_list = list()
@@ -2599,7 +2663,7 @@
 				src.generate_HTML(0, 1)
 		else if (href_list["unlock"] && src.panel_open)
 			if (!owner && src.scan?.registered)
-				owneraccount = FindBankAccountById(src.scan.registered_id)
+				owneraccount = FindBankAccountByName(src.scan.registered)
 				owner = src.scan.registered
 				cardname = src.scan.name
 				unlocked = TRUE
@@ -2648,7 +2712,7 @@
 	desc = "A vending machine that serves... pizza?"
 	var/pizcooking = 0
 	var/piztopping = "plain"
-	anchored = 0
+	anchored = UNANCHORED
 	acceptcard = 0
 	pay = 1
 	credit = 100
@@ -3086,16 +3150,16 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/beer, 6)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/fancy_beer, 6)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vodka, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/tequila, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/wine, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/cider, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/mead, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/gin, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/rum, 4)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/champagne, 4)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/beer, 3)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/fancy_beer, 3)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vodka, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/tequila, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/wine, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/cider, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/mead, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/gin, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/rum, 2)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/champagne, 2)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bojackson, 1)
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/cocktail_umbrellas, 4)
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/cocktail_doodads, 4)
@@ -3107,6 +3171,57 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/hobo_wine, 2, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/thegoodstuff, 1, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/stackable_ammo/shotgun/slug_rubber/five, 3, cost=PAY_TRADESMAN, hidden=1)
+
+/obj/machinery/vending/minibar //meant to go behind bars and replace the fountain.
+	name = "Surplus Booze Supply"
+	desc = "an alcohol fridge fit for use behind a bar."
+	icon_state = "minibar"
+	icon_panel = "minibar_panel"
+	icon_off = "minibar_off"
+	icon_broken = "minibar_broken"
+	icon_fallen = "minibar_fallen"
+	pay = 1
+	slogan_list = list("Wet your whistle!","I may be drunk now, but tomorrow I will also be drunk.","Drinking is good for you.")
+	light_r = 0.2
+	light_g = 0.3
+	light_b = 0.95
+
+	create_products()
+		..()
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/beer, 15, cost=15)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/fancy_beer, 6, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vodka, 10, cost=25)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/tequila, 10, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/wine, 15, cost=20)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/vermouth, 3, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/cider, 6, cost=20)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/mead, 3, cost=35)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/gin, 4, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/rum, 6, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/champagne, 5, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bitters, 5, cost=45)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bourbon, 5, cost=50)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/brandy, 5, cost=60)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/bojackson, 1, cost=40)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/curacao, 2, cost=65)
+
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/grog, 1, cost=60, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, 5, cost=20, hidden=1)
+/*
+	attack_hand(mob/user as mob)
+		//tab print out thing, i'll do this later i just wanted to make the thing exist
+*/
+/obj/machinery/vending/minibar/jank
+	name = "janky surplus booze supply"
+	desc = "an alcohol fridge fit for use behind a bar. This one has seen better days."
+	icon_state = "minibarjank"
+	icon_panel = "minibarjank_panel"
+	icon_off = "minibarjank_off"
+	icon_broken = "minibarjank_broken"
+	icon_fallen = "minibarjank_fallen"
+	glitchy_slogans = 1
+	slogan_list = list("*violent coughing*","ffugh off, ah'm on brreaghh...","jesus, my fucking head...")
+
 
 /obj/machinery/vending/chem
 	name = "ChemDepot"
@@ -3251,6 +3366,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/clothing/under/rank/bartender/tuxedo, 1, cost=PAY_IMPORTANT/5, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/shoes/dress_shoes, 1, cost=PAY_IMPORTANT/5, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/gloves/ring/gold, 2, cost=PAY_IMPORTANT, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/clothing/shoes/moffers, 1, cost=PAY_TRADESMAN, hidden=1)
 
 /obj/machinery/vending/janitor
 	name = "JaniTech Vendor"
@@ -3279,6 +3395,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/storage/box/mousetraps, 4)
 		product_list += new/datum/data/vending_product(/obj/item/caution, 10)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/gloves/long, 2)
+		product_list += new/datum/data/vending_product(/obj/item/material_piece/cloth/rag, 2)
 
 		product_list += new/datum/data/vending_product(/obj/item/sponge/cheese, 2, hidden=1)
 
@@ -3357,10 +3474,10 @@
 		html += "<TT><b>Welcome!</b><br>"
 		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
 		if (src.scan)
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
-			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
-			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
+			html += "<b>Current ID:</b> <a href='?src=\ref[src];logout=1'>[src.scan]</a><br />"
+			html += "<b>Credits on Account: [account["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
 		if(src.holding)
@@ -3401,9 +3518,9 @@
 					src.updateUsrDialog()
 					return
 				else if(scan)
-					var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
-					if (account && account.fields["current_money"] >= cost)
-						account.fields["current_money"] -= cost
+					var/datum/db_record/account = FindBankAccountByName(src.scan.registered)
+					if (account && account["current_money"] >= cost)
+						account["current_money"] -= cost
 						src.fill()
 						boutput(usr, "<span class='notice'>You fill up the [src.holding].</span>")
 						src.updateUsrDialog()
@@ -3471,10 +3588,10 @@
 		html += "<b>Current balance: <a href='byond://?src=\ref[src];return_credits=1'>[src.credit] credits</a></b><br>"
 		//bank balance
 		if (src.scan)
-			var/datum/data/record/account = null
-			account = FindBankAccountById(src.scan.registered_id)
+			var/datum/db_record/account = null
+			account = FindBankAccountByName(src.scan.registered)
 			html += "<b>Current ID:</b> <a href='byond://?src=\ref[src];logout=1'>[src.scan]</a><br />"
-			html += "<b>Credits on Account: [account.fields["current_money"]] Credits</b> <br>"
+			html += "<b>Credits on Account: [account["current_money"]] Credits</b> <br>"
 		else
 			html += "<b>Current ID:</b> None<br>"
 
@@ -3506,9 +3623,9 @@
 				src.updateUsrDialog()
 				return
 			else if(scan)
-				var/datum/data/record/account = FindBankAccountById(src.scan.registered_id)
-				if (account && account.fields["current_money"] >= cost)
-					account.fields["current_money"] -= cost
+				var/datum/db_record/account = FindBankAccountByName(src.scan.registered)
+				if (account && account["current_money"] >= cost)
+					account["current_money"] -= cost
 					src.fill()
 					boutput(usr, "<span class='notice'>Thank you for your purchase.</span>")
 					src.updateUsrDialog()

@@ -14,7 +14,7 @@ GAUNTLET CARDS
 	w_class = W_CLASS_TINY
 	burn_type = 1
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	var/list/files = list("tools" = 1)
 
 	disposing()
@@ -71,6 +71,7 @@ GAUNTLET CARDS
 	uses_multiple_icon_states = 1
 	item_state = "card-id"
 	desc = "A standardized NanoTrasen microchipped identification card that contains data that is scanned when attempting to access various doors and computers."
+	hint = "This can be put into your PDA."
 	flags = FPRINT | TABLEPASS
 	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 0.4 SECONDS
@@ -239,7 +240,7 @@ GAUNTLET CARDS
 		boutput(user, "<span class='alert'>[src] explodes.</span>")
 		user.transforming = 1
 		var/obj/overlay/O = new/obj/overlay(get_turf(user))
-		O.anchored = 1
+		O.anchored = ANCHORED
 		O.name = "Explosion"
 		O.layer = NOLIGHT_EFFECTS_LAYER_BASE
 		O.pixel_x = -92

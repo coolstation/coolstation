@@ -485,7 +485,7 @@
 	//alert gangs, alert target which gang to be wary of.
 	for (var/datum/gang/G in gangs)
 		if (G == top_gang)
-			broadcast_to_gang("A bounty has been placed on the capture of [target_name]. Shove them into your gang locker <ALIVE>, within 8 minutes for a massive reward!", G)
+			broadcast_to_gang("A bounty has been placed on the capture of [target_name]. Shove [ismob(kidnapping_target) ? him_or_her(kidnapping_target) : "them"] into your gang locker <ALIVE>, within 8 minutes for a massive reward!", G)
 		else
 			broadcast_to_gang("[target_name] is the target of a kidnapping by [top_gang.gang_name]. Ensure that [target_name] is alive and well for the next 8 minutes for a reward!", G)
 
@@ -1058,7 +1058,7 @@
 	icon = 'icons/obj/large_storage.dmi'
 	icon_state = "gang"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/datum/gang/gang = null
 	var/max_health = 200
 	var/health = 200
@@ -1469,7 +1469,7 @@
 			user.visible_message("<b>[user]</b> attaches [src] to [A].","You attach [src] to [A].")
 			user.u_equip(src)
 			src.set_loc(A)
-			src.anchored = 1
+			src.anchored = ANCHORED
 		else
 			return ..()
 
@@ -1479,7 +1479,7 @@
 
 		var/turf/T = src.loc
 		user.visible_message("<span class='alert'><b>[user]</b> rips down [src] from [T]!</span>", "<span class='alert'>You rip down [src] from [T]!</span>")
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		user.put_in_hand_or_drop(src)
 
 	attack_self(mob/living/carbon/human/user as mob)

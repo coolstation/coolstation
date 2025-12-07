@@ -36,10 +36,8 @@
   speechverb_stammer = "click-clacks"
   density = 1
   can_throw = 1
-  can_grab = 1
-  can_disarm = 1
   hand_count = 3
-  reagent_capacity = 100
+  ideal_blood_volume = 100
   add_abilities = list(/datum/targetable/critter/bite, /datum/targetable/critter/sting/fermid, /datum/targetable/critter/slam)
   health_brute = 25
   health_brute_vuln = 1
@@ -55,21 +53,21 @@
   HH.icon = 'icons/ui/hud_human.dmi'
   HH.icon_state = "handl"
   HH.name = "left feet"
-  HH.limb_name = "foot"
+  HH.limb.name = "foot"
 
   HH = hands[2]
   HH.limb = new src.limb_path
   HH.icon = 'icons/ui/hud_human.dmi'
   HH.icon_state = "handr"
   HH.name = "right feet"
-  HH.limb_name = "foot"
+  HH.limb.name = "foot"
 
   HH = hands[3]
   HH.limb = new src.mouth_path
   HH.icon = 'icons/ui/critter_ui.dmi'
   HH.icon_state = "mouth"
   HH.name = "mouth"
-  HH.limb_name = "mandibles"
+  HH.limb.name = "mandibles"
   HH.can_hold_items = 0
 
 /mob/living/critter/fermid/specific_emotes(var/act, var/param = null, var/voluntary = 0)

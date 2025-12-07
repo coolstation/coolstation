@@ -1,5 +1,5 @@
 /obj/machinery/space_heater
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	icon = 'icons/obj/atmospherics/atmos.dmi'
 	icon_state = "sheater0"
@@ -252,7 +252,7 @@
 		return
 
 /obj/machinery/sauna_stove
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	icon = 'icons/obj/atmospherics/atmos.dmi'
 	icon_state = "sauna0"

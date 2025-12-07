@@ -38,7 +38,7 @@ var/global/icon/station_map = null
 	name = "Map (Click somewhere in space to close)"
 	desc = "A map of the station. Click somewhere in space on the map to close it."
 
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	layer = HUD_LAYER
@@ -62,7 +62,7 @@ var/global/icon/station_map = null
 	desc = "A map of the station."
 
 	layer = EFFECTS_LAYER_BASE
-	anchored = 1
+	anchored = ANCHORED
 
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "stationmap"

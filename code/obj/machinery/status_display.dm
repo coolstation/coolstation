@@ -15,7 +15,7 @@
 // 	icon = 'icons/obj/status_display.dmi'
 // 	icon_state = "frame"
 // 	name = "status display"
-// 	anchored = 1
+// 	anchored = ANCHORED
 // 	density = 0
 // 	mats = 14
 // 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_MULTITOOL
@@ -376,7 +376,7 @@
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "ai_frame"
 	name = "\improper AI display"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mats = list("MET-1"=2, "CON-1"=6, "CRY-1"=6)
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR | DECON_WELDER | DECON_MULTITOOL

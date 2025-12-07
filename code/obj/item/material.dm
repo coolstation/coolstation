@@ -6,6 +6,7 @@
 	throwforce = 6
 	value = 70 //base commodity price
 	burn_type = 1
+	stack_type = /obj/item/raw_material/
 
 	var/material_name = "Ore" //text to display for this ore in manufacturers
 	var/initial_material_name = null // used to store what the ore is
@@ -522,8 +523,8 @@
 	g_amt = 3750
 	burn_type = 1
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	burn_possible = FALSE
 	value = 5
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
@@ -550,7 +551,7 @@
 			playsound(src.loc, src.sound_stepped, 50, 1)
 			if(isabomination(H))
 				return
-			if(H.throwing || HAS_MOB_PROPERTY(H, PROP_ATOM_FLOATING))
+			if(H.throwing || HAS_ATOM_PROPERTY(H, PROP_ATOM_FLOATING))
 				return
 			if(H.lying)
 				boutput(H, "<span class='alert'><B>You crawl on [src]! Ouch!</B></span>")
@@ -587,9 +588,7 @@
 			src.setMaterial(getMaterial("plasmaglass"), appearance = TRUE, setname = TRUE)
 
 /obj/item/raw_material/shard/proc/step_on(mob/living/carbon/human/H as mob)
-	#ifdef DATALOGGER
 	game_stats.Increment("workplacesafety")
-	#endif
 	H.changeStatus("weakened", 3 SECONDS)
 	H.force_laydown_standup()
 	var/obj/item/affecting = H.organs[pick("l_leg", "r_leg")]
@@ -1299,7 +1298,7 @@
 	desc = "A sophisticated piece of machinery that quickly processes minerals into bars."
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "reclaimer"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	event_handler_flags = NO_MOUSEDROP_QOL
 	var/active = 0
@@ -1320,7 +1319,7 @@
 			return
 		user.visible_message("<b>[user.name]</b> switches on [src].")
 		active = 1
-		anchored = 1
+		anchored = ANCHORED
 		icon_state = "reclaimer-on"
 
 		for (var/obj/item/M in src.contents)
@@ -1379,7 +1378,7 @@
 			playsound(src.loc, sound_grump, 40, 1)
 
 		active = 0
-		anchored = 0
+		anchored = UNANCHORED
 		icon_state = "reclaimer"
 		src.visible_message("<b>[src]</b> finishes working and shuts down.")
 
@@ -1516,6 +1515,9 @@
 		else if (istype(over_object,/turf/floor/))
 			src.output_location = over_object
 			boutput(usr, "<span class='notice'>You set the reclaimer to output to [over_object]!</span>")
+
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")

@@ -125,6 +125,7 @@
 	created_decal = /obj/decal/cleanable/martian_viscera/fluid
 	made_from = "viscerite"
 
+/*
 /obj/item/organ/brain/flockdrone
 	name = "odd crystal"
 	desc = "Flickers of energy still trace around inside it. It feels oddly warm to the touch."
@@ -155,3 +156,4 @@
 		<br><span class='bold'>###=-</span></span>"}
 	else
 		return null // give the standard description
+*/

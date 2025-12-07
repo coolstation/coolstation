@@ -280,6 +280,15 @@
 	organ_image_over_suit = "cat_over_suit"
 	colorful = TRUE
 
+/obj/item/organ/tail/cat/cattail
+	name = "cattail cat tail"
+	desc = "a cat tail made out of a cattail"
+	icon_state = "tail-cattail"
+	tail_num = TAIL_CATTAIL
+	organ_image_under_suit_1 = "cattail_under_suit"
+	organ_image_over_suit = "cattail_over_suit"
+	colorful = FALSE
+
 /obj/item/organ/tail/roach
 	name = "roach abdomen"
 	desc = "A large insect behind."

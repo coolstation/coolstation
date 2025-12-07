@@ -3,7 +3,7 @@
 	desc = "Is that a space heater? That doesn't look safe at all!"
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "shittygrill_off"
-	anchored = 0
+	anchored = UNANCHORED
 	density = 1
 	flags = NOSPLASH
 	mats = 20

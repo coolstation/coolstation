@@ -121,6 +121,10 @@
 		M.changeStatus("stunned", 2 SECONDS)
 		random_brute_damage(M, rand(2,5),1)
 
+/obj/critter/bear/dead/New()
+  . = ..()
+  src.CritterDeath() //dies in the same way as its parent does, but on creation
+ 
 obj/critter/bear/care
 	name = "space carebear"
 	desc = "I love you!"
@@ -165,7 +169,7 @@ obj/critter/bear/care
 		src.seek_target()
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"
@@ -215,7 +219,7 @@ obj/critter/bear/care
 		M.transforming = 1
 		M.canmove = 0
 		M.icon = null
-		APPLY_MOB_PROPERTY(M, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+		APPLY_ATOM_PROPERTY(M, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 		if(ishuman(M))
 			animation = new(src.loc)
 			animation.icon_state = "blank"
@@ -289,7 +293,7 @@ obj/critter/bear/care
 		src.seek_target()
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"
@@ -421,11 +425,11 @@ obj/critter/bear/care
 	proc/drink_blood(var/atom/target)
 		if (ishuman(target))
 			var/mob/living/carbon/human/H = target
-			if (H.blood_volume < blood_sip_amt)
-				H.blood_volume = 0
-			else
-				H.blood_volume -= blood_sip_amt
-				src.blood_volume += blood_sip_amt*2			//fresh blood is the quenchiest. Bats get more blood points this way
+			var/blood_to_succ = H.reagents.get_reagent_amount("blood")
+			if(!blood_to_succ)
+				return 0
+			H.reagents.remove_reagent("blood",blood_sip_amt)
+			src.blood_volume += min(blood_to_succ,blood_sip_amt)*2			//fresh blood is the quenchiest. Bats get more blood points this way
 			src.health += 2
 
 		else if (istype(target,/obj/item/reagent_containers/))
@@ -552,7 +556,7 @@ obj/critter/bear/care
 	atk_text = "bites and claws at"
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for (var/mob/living/C in hearers(src.seekrange,src))
 			if (src.target)
 				src.task = "chasing"

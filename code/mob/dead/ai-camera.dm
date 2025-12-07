@@ -40,8 +40,8 @@
 		last_loc = src.loc
 		..()
 		sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_AI_EYE)
-		APPLY_MOB_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_AI_EYE)
+		APPLY_ATOM_PROPERTY(src, PROP_EXAMINE_ALL_NAMES, src)
 		if (render_special)
 			render_special.set_centerlight_icon("nightvision", rgb(0.5 * 255, 0.5 * 255, 0.5 * 255))
 	Login()

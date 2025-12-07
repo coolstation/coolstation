@@ -1504,8 +1504,8 @@ var/list/zalgo_mid = list(
 		modded_tokens += modified_token
 
 	var/modded = jointext(modded_tokens, " ")
-	if(prob(2))
-		modded += pick(" Och!"," Och aye the noo!"," Help ma Boab!"," Hoots!"," Micthy me!"," Get tae fuck!")
+	//if(prob(2))
+	//	modded += pick(" Och!"," Och aye the noo!"," Help ma Boab!"," Hoots!"," Micthy me!"," Get tae fuck!")
 
 	return modded
 

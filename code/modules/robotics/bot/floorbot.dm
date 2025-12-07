@@ -33,7 +33,7 @@
 	icon_state = "floorbot0"
 	layer = 5.0 //TODO LAYER
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	bot_move_delay = FLOORBOT_MOVE_SPEED
 	//weight = 1.0E7
 	var/amount = 50
@@ -323,7 +323,7 @@
 	if(give_up)
 		src.floorbottargets -= turf2coordinates(src.target)
 		src.target = null
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		src.updateicon()
 		src.repairing = 0
 		src.oldtarget = null
@@ -479,7 +479,7 @@
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
-		master.anchored = 1
+		master.anchored = ANCHORED
 		master.icon_state = "floorbot-c"
 		master.repairing = 1
 		src.new_tile = 0
@@ -533,7 +533,7 @@
 		master.repairing = 0
 		master.amount -= 1
 		master.updateicon()
-		master.anchored = 0
+		master.anchored = UNANCHORED
 		master.floorbottargets -= master.turf2coordinates(master.target)
 		master.target = master.find_target(1)
 
@@ -548,7 +548,7 @@
 	New(var/the_bot, var/_target)
 		src.master = the_bot
 
-		master.anchored = 1
+		master.anchored = ANCHORED
 		master.icon_state = "floorbot-c"
 		master.repairing = 1
 
@@ -593,6 +593,6 @@
 		T.ReplaceWithSpace()
 		master.repairing = 0
 		master.updateicon()
-		master.anchored = 0
+		master.anchored = UNANCHORED
 		master.floorbottargets -= master.turf2coordinates(master.target)
 		master.target = master.find_target(1)

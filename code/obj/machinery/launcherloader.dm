@@ -10,7 +10,7 @@
 	density = 0
 	opacity = 0
 	layer = 2.6
-	anchored = 1
+	anchored = ANCHORED
 	event_handler_flags = USE_HASENTERED
 	plane = PLANE_NOSHADOW_BELOW
 
@@ -110,7 +110,7 @@
 	desc = "Scans the barcode on objects and reroutes them accordingly."
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 	plane = PLANE_NOSHADOW_BELOW
 
@@ -313,7 +313,7 @@
 
 	// log account information for QM sales
 	var/obj/item/card/id/scan = null
-	var/datum/data/record/account = null
+	var/datum/db_record/account = null
 
 
 	var/list/destinations = list("Airbridge", "Cafeteria", "EVA", "Engine", "Disposals", "QM", "Catering", "MedSci", "Security") //These have to match the ones on the cargo routers for the routers to work.
@@ -339,7 +339,7 @@
 		if (istype(I, /obj/item/card/id) || (istype(I, /obj/item/device/pda2) && I:ID_card))
 			if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 			boutput(user, "<span class='notice'>You swipe the ID card.</span>")
-			account = FindBankAccountById(I:registered_id)
+			account = FindBankAccountByName(I:registered)
 			if(account)
 				var/enterpin = input(user, "Please enter your PIN number.", "Order Console", 0) as null|num
 				if (enterpin == I:pin)
@@ -436,7 +436,7 @@
 
 	// log account information for QM sales
 	var/obj/item/card/id/scan = null
-	var/datum/data/record/account = null
+	var/datum/db_record/account = null
 
 	attack()
 		return
@@ -490,7 +490,7 @@
 	icon_state = "packing-map"
 #endif
 	desc = "A machine that scoops up items and packages them into cardboard boxes."
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/maxitems = 50 // don't go over 100, the max for crates
 	var/destination_tag = null // tag of crates created by this

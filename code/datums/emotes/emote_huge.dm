@@ -14,6 +14,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 
 /datum/emote/fart
 	cooldown = 1 SECOND
+	possible_while = STAT_UNCONSCIOUS
 
 /datum/emote/fart/return_cooldown(mob/user, voluntary = 0)
 	var/tempcooldown = cooldown
@@ -26,9 +27,9 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			tempcooldown = 0.8*tempcooldown
 		if(user.reagents.has_reagent("refried_beans"))
 			tempcooldown = 0.9*tempcooldown
-		return tempcooldown
-	else
-		return cooldown
+	if(user.stat > STAT_ALIVE)
+		tempcooldown = 8*tempcooldown
+	return tempcooldown
 
 /datum/emote/fart/bio
 /datum/emote/fart/bio/enact(mob/living/carbon/human/user, voluntary = 0, param)
@@ -100,9 +101,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 								user.add_karma(10)
 							if (M.mind && M.mind.assigned_role == "Clown")
 								user.add_karma(1)
-#ifdef DATALOGGER
 								game_stats.Increment("clownabuse")
-#endif
 						fart_on_other = 1
 						break
 					else if (istype(A,/obj/item/storage/bible))
@@ -165,7 +164,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					if (26) message = "<B>[user]</B> farts like a goone!"
 					if (27)
 						message = "<B>[user]</B> sharts! That's just nasty."
-						if(user?.bioHolder.HasEffect("teflon_colon") || user?.traitHolder.hasTrait("teflon_colon"))
+						if((user?.bioHolder.HasEffect("teflon_colon") || user?.traitHolder.hasTrait("teflon_colon"))&& user.poops >=1)
 							user.poop()
 							accident = TRUE
 					if (28) message = "<B>[user]</B> farts delicately."
@@ -234,12 +233,12 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						message = "<B>[user]</B> lets out a tiny flaming fart!"
 						fireflash_s(T,0,user.reagents.composite_combust_temp)
 
-				if (T.turf_flags & CAN_BE_SPACE_SAMPLE)
+				if (T.turf_flags & IS_SPACE)
 					if (accident)
-						if (HAS_MOB_PROPERTY(user, PROP_SPACEFARTS))
+						if (HAS_ATOM_PROPERTY(user, PROP_SPACEFARTS))
 							user.throw_at(get_edge_cheap(T, user.dir), 30, 1)
 					else
-						if ((firepower > 2 && firepower < 10) || HAS_MOB_PROPERTY(user, PROP_SPACEFARTS))
+						if ((firepower > 2 && firepower < 10) || HAS_ATOM_PROPERTY(user, PROP_SPACEFARTS))
 							user.inertia_dir = user.dir
 							//step(user, user.inertia_dir) <- seemed kinda unnecessary, you moved forward 2 tiles from one fart? - Bat
 							SPAWN_DBG(1 DECI SECOND)
@@ -260,6 +259,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 					M.chest_item_attack_self_on_fart()
 
 			user.stamina_stun()
+			game_stats.Increment("farts")
 			fartcount++
 			if(fartcount == 69 || fartcount == 420)
 				var/obj/item/paper/grillnasium/fartnasium_recruitment/flyer/F = new(get_turf(user))
@@ -270,9 +270,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				var/datum/game_mode/pod_wars/mode = ticker.mode
 				mode.stats_manager?.inc_farts(user)
 			#endif
-			#ifdef DATALOGGER
-			game_stats.Increment("farts")
-			#endif
+
 	if(user.bioHolder && user.bioHolder.HasEffect("training_miner") && prob(1))
 		var/glowsticktype = pick(typesof(/obj/item/device/light/glowstick))
 		var/obj/item/device/light/glowstick/G = new glowsticktype
@@ -294,10 +292,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			if (M == user || !M.lying) continue
 			message = "<span class='alert'><B>[user]</B> farts in [M]'s face!</span>"
 			fart_on_other = 1
-#ifdef DATALOGGER
 			if (M.mind && M.mind.assigned_role == "Clown")
 				game_stats.Increment("clownabuse")
-#endif
 			break
 		if (!fart_on_other)
 			switch (rand(1, 40))
@@ -346,14 +342,12 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 		else
 			playsound(user.loc, user.sound_fart, 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 
-#ifdef DATALOGGER
 		game_stats.Increment("farts")
-#endif
 		return list(message, null, MESSAGE_AUDIBLE)
 
 
 /datum/emote/dance //The one, the only, the champion of all emotes (also boogie)
-	possible_while_dead = TRUE //if you're porting this back to goon remove this line, but I want the corpses to dance
+	possible_while = STAT_DEAD //if you're porting this back to goon remove this line, but I want the corpses to dance
 
 	///In the format of "<B>[user]</B> [dance_texts[n]]"
 	///The order of these is important, since they're expected to go with particular animations
@@ -673,9 +667,9 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				flipped_a_guy = TRUE
 				var/suplex_result = user.do_suplex(G)
 				if(suplex_result)
-					combatflipped |= TRUE
+					combatflipped |= M
 					message = suplex_result
-				if(!combatflipped)
+				if(!length(combatflipped))
 					var/turf/oldloc = user.loc
 					var/turf/newloc = G.affecting.loc
 					if(istype(oldloc) && istype(newloc))
@@ -920,16 +914,11 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			dab_id.dab_count++
 			dab_id.tooltip_rebuild = 1
 		user.add_karma(-4)
-		if(!dab_id && locate(/obj/machinery/bot/secbot/beepsky) in view(7, get_turf(user)))
-			for(var/datum/data/record/R in data_core.general) //copy paste from public urination, hope it works
-				if(R.fields["name"] == user.name)
-					for (var/datum/data/record/S in data_core.security)
-						if (S.fields["id"] == R.fields["id"])
-							// now add to rap sheet
-
-							S.fields["criminal"] = "*Arrest*"
-							S.fields["mi_crim"] = "Public dabbing."
-							break
+		if(!dab_id && locate(/obj/machinery/bot/secbot/beepsky) in view(7, get_turf(src)))
+			var/datum/db_record/sec_record = data_core.security.find_record("name", user.name)
+			if(sec_record && sec_record["criminal"] != "*Arrest*")
+				sec_record["criminal"] = "*Arrest*"
+				sec_record["mi_crim"] = "Public dabbing."
 
 		if(user.reagents) user.reagents.add_reagent("dabs",5)
 

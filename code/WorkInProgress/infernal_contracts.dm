@@ -136,7 +136,7 @@ proc/is_weak_rollable_contract(type)
 /mob/proc/satanclownize()
 	src.transforming = 1
 	src.canmove = 0
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	for(var/obj/item/clothing/Q in src)
 		src.u_equip(Q)
 		if (Q)
@@ -259,8 +259,8 @@ proc/is_weak_rollable_contract(type)
 	max_wclass = 3
 	desc = "A diabolical human leather-bound briefcase, capable of holding a number of small objects and tormented souls. All those tormented souls give it a good deal of heft; you could use it as a great improvised bludgeoning weapon."
 	stamina_damage = 80 //buffed from 40
-	stamina_cost = 20 //nerfed from 10
-	stamina_crit_chance = 40 //buffed from 25
+//	stamina_cost = 20 //nerfed from 10
+//	stamina_crit_chance = 40 //buffed from 25
 	spawn_contents = list(/obj/item/paper/soul_selling_kit, /obj/item/storage/box/evil, /obj/item/clothing/under/misc/lawyer/red/demonic)
 	var/merchant = null
 

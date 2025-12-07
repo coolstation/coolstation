@@ -9,8 +9,6 @@
 	targeted = 1
 	target_anything = 1
 
-	var/datum/projectile/slam/proj = new
-
 	cast(atom/target)
 		if (..())
 			return 1

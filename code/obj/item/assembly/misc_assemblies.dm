@@ -28,7 +28,7 @@ Contains:
 	throw_range = 10
 	force = 2
 	stamina_damage = 10
-	stamina_cost = 10
+//	stamina_cost = 10
 	var/force_dud = 0
 
 /obj/item/assembly/proc/c_state(n, O as obj)

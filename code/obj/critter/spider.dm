@@ -124,7 +124,7 @@
 
 		if (src.honk == 1)
 			return ..()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return
@@ -568,7 +568,7 @@
 		item_mask = /obj/item/clothing/mask/cursedclown_hat
 
 	seek_target()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		if (src.target)
 			src.task = "chasing"
 			return

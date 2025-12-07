@@ -125,7 +125,7 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new/datum/limb/thief
+		HH.limb = new /datum/limb/thief(src)
 
 	proc/fix_pulling_sprite()
 		if(src.pulling)
@@ -277,8 +277,6 @@
 	density = 0
 	hand_count = 0
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 0
 	speechverb_say = "rattles"
 	speechverb_exclaim = "rattles"
 	speechverb_ask = "rattles"
@@ -332,7 +330,7 @@
 			src.transforming = 1
 			src.canmove = 0
 			src.icon = null
-			APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+			APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 			if (src.mind || src.client)
 				src.ghostize()
 			qdel(src)

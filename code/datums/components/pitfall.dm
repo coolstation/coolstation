@@ -84,7 +84,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				if (!ON_COOLDOWN(AM, "re-swim", 0.5 SECONDS)) //Try swimming, but not if they've just stopped (for a stun or whatever)
 					peep.attempt_swim() //should do nothing if they're already swimming I think?
 			var/mob/M = AM
-			if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+			if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 				return
 			if (M.client?.flying || isobserver(AM) || isintangible(AM) || istype(AM, /mob/wraith))
 				return
@@ -112,7 +112,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							return
 						if (ismob(AM))
 							var/mob/M = AM
-							if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+							if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 								AM.event_handler_flags &= ~IS_PITFALLING
 								return
 						pit.fall_to(AM, src.BruteDamageMax)
@@ -133,7 +133,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 
 	/// a proc that makes a movable atom 'AM' animate a fall with 'brutedamage' brute damage then actually fall
 	proc/fall_to(var/atom/movable/AM, var/brutedamage = 50, iterations = 0)
-		if(istype(AM, /obj/overlay) || AM.anchored == 2)
+		if(istype(AM, /obj/overlay) || AM.anchored == ANCHORED_TECHNICAL)
 			return
 		#ifdef CHECK_PITFALL_INITIALIZATION
 		if(current_state <= GAME_STATE_WORLD_NEW)
@@ -153,11 +153,9 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							break
 				if(M.mind && M.mind.assigned_role == "Clown")
 					playsound(M, "sound/effects/slidewhistlefall.ogg", 50, 0)
-#ifdef DATALOGGER
 					game_stats.Increment("clownabuse")
-#endif
 				M.emote("scream")
-				APPLY_MOB_PROPERTY(M, PROP_CANTMOVE, src)
+				APPLY_ATOM_PROPERTY(M, PROP_CANTMOVE, src)
 			animate_fall(AM,fall_time,src.DepthScale)
 			var/old_density = AM.density // dont block other fools from falling in
 			AM.set_density(0)
@@ -165,13 +163,14 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				if (!QDELETED(AM))
 					if(M)
 						M.lastgasp()
-					var/turf/T
-					var/datum/component/pitfall/pit = AM.loc.GetComponent(/datum/component/pitfall)
+					var/turf/T = get_turf(AM)
+					var/turf/T2
+					var/datum/component/pitfall/pit = T.GetComponent(/datum/component/pitfall)
 					if(pit)
-						T = pit.get_turf_to_fall(AM)
+						T2 = pit.get_turf_to_fall(AM)
 					else
-						T = src.get_turf_to_fall(AM)
-					src.actually_fall(T, AM, brutedamage, old_density, iterations + 1)
+						T2 = src.get_turf_to_fall(AM)
+					src.actually_fall(T2, AM, brutedamage, old_density, iterations + 1)
 		else
 			if(ismob(AM))
 				var/mob/M = AM
@@ -201,8 +200,8 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 				if (ismob(AM))
 					var/mob/M = AM
 					var/safe = FALSE
-					REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
-					if (HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+					REMOVE_ATOM_PROPERTY(M, PROP_CANTMOVE, src)
+					if (HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 						keep_falling = FALSE
 					if(ishuman(M))
 						var/mob/living/carbon/human/H = M
@@ -210,7 +209,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 							safe = TRUE
 						if(H.wear_suit && (H.wear_suit.c_flags & SAFE_FALL))
 							safe = TRUE
-						if (H.back && (H.back.c_flags & IS_JETPACK) && HAS_MOB_PROPERTY(M,PROP_ATOM_FLOATING))
+						if (H.back && (H.back.c_flags & IS_JETPACK) && HAS_ATOM_PROPERTY(M,PROP_ATOM_FLOATING))
 							safe = TRUE
 					if(safe)
 						M.visible_message("<span class='notice'>[AM] [keep_falling ? "glides down through" : "lands gently on"] [T].</span>","<span class='notice'>You [keep_falling ? "glide down through" : "land gently on"] [T].</span>")
@@ -247,9 +246,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 								M.changeStatus("weakened", 2 SECONDS)
 							M.force_laydown_standup()
 							playsound(M.loc, 'sound/impact_sounds/Flesh_Break_1.ogg', 75, 1)
-							#ifdef DATALOGGER
 							game_stats.Increment("workplacesafety")
-							#endif
 						if(!did_hit_mob)
 							M.visible_message("<span class='alert'>[M] [keep_falling ? "tumbles through" : "slams down into"] [T]!</span>", "<span class='alert'>You [keep_falling ? "tumble through" : "slam down into"] [T]!</span>")
 				else
@@ -272,7 +269,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 			AM.event_handler_flags &= ~IN_COYOTE_TIME
 			if(ismob(AM))
 				var/mob/M = AM
-				REMOVE_MOB_PROPERTY(M, PROP_CANTMOVE, src)
+				REMOVE_ATOM_PROPERTY(M, PROP_CANTMOVE, src)
 				M.show_message("<span class='alert bold'>That pit is MAJORLY fucked up! Tell a coder!</span>")
 
 // ====================== SUBTYPES OF PITFALL ======================
@@ -345,7 +342,7 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 /datum/component/pitfall/target_coordinates
 	CreateUpdraft = TRUE
 	/// a list of targets for the fall to pick from
-	var/list/TargetList = list()
+	var/turf/Target = null
 	/// The X offset added to the pitfall turfs X to find the target.
 	var/OffsetX = 0
 	/// The Y offset added to the pitfall turfs Y to find the target.
@@ -363,23 +360,24 @@ TYPEINFO(/datum/component/pitfall/target_coordinates)
 		src.OffsetY			= OffsetY
 		src.TargetZ			= TargetZ
 		src.LandingRange	= LandingRange
-		src.update_targets()
+		src.update_target()
 
 	get_turf_to_fall(atom/A)
 		RETURN_TYPE(/turf)
-		return pick(src.TargetList)
+		return src.Target
 
-	proc/update_targets() // prefers non-dense turf, only chooses the closest turf. If you want multiple possibilities, make a child.
-		src.TargetList = list()
-		if(src.LandingRange)
-			for(var/turf/T in range(src.LandingRange, locate(src.typecasted_parent().x + src.OffsetX, src.typecasted_parent().y + src.OffsetY, src.TargetZ)))
-				if(!T.density)
-					src.TargetList += T
-					return TRUE
-		src.TargetList += locate(src.typecasted_parent().x + src.OffsetX, src.typecasted_parent().y + src.OffsetY, src.TargetZ)
-		if(!length(src.TargetList))
+	proc/update_target()
+		var/turf/TParent = src.typecasted_parent()
+		src.Target = locate(TParent.x + src.OffsetX, TParent.y + src.OffsetY, src.TargetZ)
+		if(!src.Target.density)
+			return TRUE
+		if(!src.LandingRange)
 			return FALSE
-		return TRUE
+		for(var/turf/T in orange(src.LandingRange, src.Target))
+			if(!T.density)
+				src.Target = T
+				return TRUE
+		return FALSE
 
 TYPEINFO(/datum/component/pitfall/target_coordinates/nonstation)
 	initialization_args = list(
@@ -395,17 +393,18 @@ TYPEINFO(/datum/component/pitfall/target_coordinates/nonstation)
 	)
 /// Pitfall component which avoids targeting station defined areas if possible. Used primarily for the Magindaran sea.
 /datum/component/pitfall/target_coordinates/nonstation
-	update_targets()
-		src.TargetList = list()
-		if(src.LandingRange)
-			for(var/turf/T in range(src.LandingRange, locate(src.typecasted_parent().x + src.OffsetX, src.typecasted_parent().y + src.OffsetY, src.TargetZ)))
-				if(!T.density && !istype(get_area(T), /area/station))
-					src.TargetList += T
-					return TRUE
-		src.TargetList += locate(src.typecasted_parent().x + src.OffsetX, src.typecasted_parent().y + src.OffsetY, src.TargetZ)
-		if(!length(src.TargetList))
+	update_target()
+		var/turf/TParent = src.typecasted_parent()
+		src.Target = locate(TParent.x + src.OffsetX, TParent.y + src.OffsetY, src.TargetZ)
+		if(!src.Target.density && !istype(src.Target.loc, /area/station))
+			return TRUE
+		if(!src.LandingRange)
 			return FALSE
-		return TRUE
+		for(var/turf/T in orange(src.LandingRange, src.Target))
+			if(!T.density && !istype(T.loc, /area/station))
+				src.Target = T
+				return TRUE
+		return FALSE
 
 /datum/component/pitfall/planetary_splat
 	var/list/TargetList

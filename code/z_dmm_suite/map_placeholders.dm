@@ -7,7 +7,7 @@
 	icon = 'icons/map-editing/mapeditor.dmi'
 	icon_state = "comment"
 	invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	layer = FLY_LAYER+1
 	var/coordinates
 	var/dimensions

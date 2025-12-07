@@ -12,6 +12,7 @@
 ////////////////////////////
 // TABLE & PARTS
 ///////////////////////////
+/*
 /obj/table/flock
 	name = "humming surface"
 	desc = "A table? An alien supercomputer? Well, it's flat, you can put stuff on it."
@@ -75,7 +76,7 @@
 	icon_state = "flchair_parts"
 	force = 3
 	stamina_damage = 20
-	stamina_cost = 10
+//	stamina_cost = 10
 	furniture_type = /obj/stool/chair/comfy/flock
 	furniture_name = "thrumming alcove"
 
@@ -299,3 +300,4 @@
 		<br><span class='bold'>###=-</span></span>"}
 	else
 		return null // give the standard description
+*/

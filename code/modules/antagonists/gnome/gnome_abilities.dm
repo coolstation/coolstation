@@ -131,7 +131,7 @@
 			for (var/mob/M in src.contents)
 				boutput(M, SPAN_COMBAT("[user] punches at you!"))
 			src.last_interacted = world.time
-			user.next_click = world.time + user.combat_click_delay
+			user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 			attack_twitch(user)
 			hit_twitch(src)
 
@@ -163,7 +163,7 @@
 			boutput(M, SPAN_COMBAT("[user] attacks you with \the [W]!"))
 
 		src.last_interacted = world.time
-		user.next_click = world.time + W.combat_click_delay
+		user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)
 		attack_twitch(user)
 		hit_twitch(src)
 		. = ..()
@@ -345,6 +345,7 @@
 	pointCost = 0
 	cooldown = 20 SECONDS
 	max_range = 1
+	ai_range = 1
 	attack_mobs = TRUE
 	turf_check = FALSE
 
@@ -394,5 +395,5 @@
 
 		playsound(target, "sound/impact_sounds/Flesh_Stab_1.ogg", 45, 1, -1)
 		target.TakeDamageAccountArmor("All", isnull(disguise) ? rand(5, 15) : rand(disguise.disguise_scaling / 2, disguise.disguise_scaling), 0, 0, DAMAGE_STAB)
-		target.changeStatus("disoriented", 3 SECONDS)
+		target.changeStatus("disorient", 3 SECONDS)
 

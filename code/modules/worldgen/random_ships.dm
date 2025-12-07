@@ -51,16 +51,13 @@ proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space til
 			payout += scrappedBonus
 		step += 1
 
-	for(var/datum/data/record/record in data_core.bank)
-		if(record.fields["job"] == "Scrapper")
-			record.fields["current_money"] += payout
+	for(var/datum/db_record/record in data_core.bank.records)
+		if(record["job"] == "Scrapper")
+			record["current_money"] += payout
 
-	var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 	var/datum/signal/pdaSignal = get_free_signal()
 	pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="SHIPYARD-MAILBOT",  "group"=list(MGD_CARGO, MGA_SHIPPING, MGO_MINING), "sender"="00000000", "message"="Notification: Payment of: [payout] recieved from client ship.")
-	pdaSignal.transmission_method = TRANSMISSION_RADIO
-	if(transmit_connection != null)
-		transmit_connection.post_signal(null, pdaSignal)
+	radio_controller.get_frequency(FREQ_PDA).post_packet_without_source(pdaSignal)
 	shipyardship_pre_densitymap = list()
 	shipyardship_post_densitymap = list()
 

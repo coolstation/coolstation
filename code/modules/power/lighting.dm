@@ -57,8 +57,10 @@
 	#define LIGHTING_POWER_FACTOR 40
 	name = "Area Lighting"
 	event_handler_flags = IMMUNE_SINGULARITY | USE_FLUID_ENTER
+	anchored = ANCHORED_TECHNICAL
 	invisibility = INVIS_ALWAYS_ISH
 	flags = TECHNICAL_ATOM
+	pass_unstable = FALSE
 	var/area/my_area = null
 	var/list/lights = list()
 	var/brightness_placeholder = 1	//hey, maybe later use this in a way that is more optimized than iterating through each individual light
@@ -81,9 +83,10 @@
 /obj/machinery/light //basic root of lighting, currently hosts fluorescent/tube/large lights, maybe move that to /obj/machinery/light/large for clarity
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
+	pass_unstable = FALSE
 	icon_state = "tube1"
 	desc = "A lighting fixture."
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
 	plane = PLANE_NOSHADOW_ABOVE
 	text = ""
@@ -208,6 +211,7 @@
 			A.remove_light(src)
 		if (light)
 			light.dispose()
+			light = null
 		..()
 
 	//auto position these lights so i don't have to mess with dirs in the map editor that's annoying!!!
@@ -269,7 +273,7 @@
 	name = "floor lamp"
 	icon = 'icons/obj/lighting.dmi'
 	desc = "A tall and thin lamp that rests comfortably on the floor."
-	anchored = 1
+	anchored = ANCHORED
 	light_type = /obj/item/light/bulb
 	allowed_type = /obj/item/light/bulb
 	fitting = "bulb"
@@ -545,7 +549,7 @@
 	name = "tripod light"
 	desc = "A large portable light tripod."
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	icon_state = "tripod1"
 	base_state = "tripod"
 	fitting = "bulb"

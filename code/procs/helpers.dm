@@ -100,7 +100,7 @@ var/global/obj/flashDummy
 		flashDummy.event_handler_flags |= Z_ANCHORED
 		flashDummy.set_density(0)
 		flashDummy.opacity = 0
-		flashDummy.anchored = ANCHORED_ALWAYS
+		flashDummy.anchored = ANCHORED_TECHNICAL
 		flashDummy.mouse_opacity = 0
 	return flashDummy
 
@@ -238,8 +238,8 @@ proc/get_angle(atom/a, atom/b)
 
 
 /proc/get_bureau_name()
-	var/list/resource = list("Space Dolphin","Urine","Plasma","Paper","Tree","Human","Robot","AI","Asteroid","Ice","Lamp", "Bone", "Lotion", "Tissue", "Toilet Paper","Alien","Pants","Phasmid","Candy","Colored Pencil","Fish","Beer","Refrigerator","Furniture","Rat") //literally just throw whatever random shit you can think of
-	var/list/fields = list("Pest Control","Paperwork","HR","Rationing","Frontier Census","Middle Management","[pick(resource)] Conservation","[pick(resource)] Management","Cooperation","Integration","Alignment","Documentation","Time Management","[pick(resource)] Eradication")
+	var/list/resource = list("Space Dolphin","Urine","Plasma","Paper","Tree","Human","Robot","AI","Asteroid","Ice","Lamp", "Bone", "Lotion", "Tissue", "Toilet Paper","Alien","Pants","Phasmid","Candy","Colored Pencil","Fish","Beer","Refrigerator","Furniture","Rat","Hockey Stick Handle") //literally just throw whatever random shit you can think of
+	var/list/fields = list("Pest Control","Paperwork","HR","Rationing","Frontier Census","Middle Management","[pick(resource)] Conservation","[pick(resource)] Management","Cooperation","integration","Alignment","Documentation","Time Management","[pick(resource)] Eradication")
 	var/list/titles = list("Head of [pick(fields)]","[pick(fields)] Specialist","[pick(fields)] Director","[pick(fields)] Officer")
 	return(pick(titles))
 
@@ -1755,8 +1755,8 @@ var/list/english_num = list("0" = "zero", "1" = "one", "2" = "two", "3" = "three
 	if (!istype(A) || !istype(B))
 		return
 	if (A.anchored || B.anchored)
-		A.anchored = 1
-		B.anchored = 1
+		A.anchored = ANCHORED
+		B.anchored = ANCHORED
 
 	if (!islist(A.attached_objs))
 		A.attached_objs = list()
@@ -2435,8 +2435,10 @@ proc/illiterateGarbleText(var/message)
 /**
   * Returns given text replaced by nonsense but its based off of a modifier + flock's garblyness
   */
+/*
 proc/flockBasedGarbleText(var/message, var/modifier, var/datum/flock/f = null)
 	if(f?.snooping) . = radioGarbleText(message, f.snoop_clarity + modifier)
+*/
 
 /**
   * Returns the time in seconds since a given timestamp

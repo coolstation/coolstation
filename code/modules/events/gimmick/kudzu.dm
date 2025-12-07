@@ -102,7 +102,7 @@
 	desc = "An extremely expansionistic species of vine."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "vine-light1"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 	var/static/ideal_temp = 310		//same as blob, why not? I have no other reference point.
@@ -460,7 +460,7 @@
 	name = "benign kudzu"
 	desc = "A flowering subspecies of the kudzu plant that, is a non-invasive plant on space stations."
 	// invisibility = 101
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	icon = 'icons/misc/kudzu_plus.dmi'

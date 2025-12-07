@@ -1,8 +1,8 @@
 #define childrentypesof(x) (typesof(x) - x)
 // consider declaring the base type abstract instead and using concrete_typesof instead of childrentypesof
 
-#define ABSTRACT_TYPE(type) /datum/_is_abstract ## type
-#define IS_ABSTRACT(type) text2path("/datum/_is_abstract[type]")
+#define ABSTRACT_TYPE(type) /_is_abstract ## type
+#define IS_ABSTRACT(type) text2path("/_is_abstract[type]")
 /*
 usage:
 
@@ -213,6 +213,7 @@ var/list/list/by_cat = list()
 #define TR_CAT_JOHNBILLS "johnbills"
 #define TR_CAT_OTHERBILLS "otherbills"
 #define TR_CAT_TELEPORT_JAMMERS "teleport_jammers"
+#define TR_CAT_RADIO_JAMMERS "radio_jammers"
 #define TR_CAT_BURNING_MOBS "dudes_on_fire"
 #define TR_CAT_BURNING_ITEMS "items_on_fire"
 #define TR_CAT_OMNIPRESENT_MOBS "omnipresent_mobs"

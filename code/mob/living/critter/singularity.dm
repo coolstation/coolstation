@@ -29,8 +29,6 @@
   custom_gib_handler = /proc/gibs
   hand_count = 1
   can_throw = 1
-  can_grab = 1
-  can_disarm = 1
   speechverb_say = "sucks"
   speechverb_exclaim = "roars"
   speechverb_ask = "pulls"
@@ -67,7 +65,7 @@
   ..(gibbed)
   if(src)
     src.glow.disable()
-    src.anchored = 1
+    src.anchored = ANCHORED
     src.set_density(0)
     src.name = "weird purple rock thing"
     src.desc = "A weird ultra-dense rock that doesn't want to budge. Huh. Is it plasma?"
@@ -75,11 +73,11 @@
 /mob/living/critter/singularity/setup_hands()
   ..()
   var/datum/handHolder/HH = hands[1]
-  HH.limb = new /datum/limb/singularity
+  HH.limb = new /datum/limb/singularity(src)
   HH.icon = 'icons/ui/critter_ui.dmi'
   HH.icon_state = "handzap"
   HH.name = "gravitational pull"
-  HH.limb_name = "gravitational pull"
+  HH.limb.name = "gravitational pull"
   HH.can_range_attack = 1
 
 /mob/living/critter/singularity/attackby(var/obj/item/I as obj, var/mob/user as mob)
@@ -120,7 +118,7 @@
     var/mob/living/M = A
     if(M && !istype(M, /mob/living/critter/singularity))
       M.gib()
-  else if(isobj(A) && A.anchored != 2)
+  else if(isobj(A) && A.anchored != ANCHORED_TECHNICAL)
     A.ex_act(OLD_EX_TOTAL)
     if(A)
       qdel(A)

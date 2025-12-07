@@ -6,7 +6,7 @@
 /obj/poolwater
 	name = "water"
 	density = 0
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "poolwater"
 	layer = EFFECTS_LAYER_UNDER_3
@@ -52,7 +52,7 @@
 	desc = "It's a tree."
 	icon = 'icons/effects/96x96.dmi' // changed from worlds.dmi
 	icon_state = "tree" // changed from 0.0
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_2
 	pixel_x = -20
 	density = 1
@@ -111,7 +111,7 @@
 	desc = "Its a river."
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "river"
-	anchored = 1
+	anchored = ANCHORED
 	plane = PLANE_NOSHADOW_BELOW //You'd be amazed at what has depth shadows in space
 
 /obj/stone
@@ -119,7 +119,7 @@
 	desc = "Its a stone."
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "stone"
-	anchored = 1
+	anchored = ANCHORED
 	density=1
 
 	random
@@ -132,7 +132,7 @@
 	desc = "Some lil' rocks."
 	icon = 'icons/obj/rocks.dmi'
 	icon_state = "other"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 	lava1
@@ -183,11 +183,12 @@
 	name = "shrub"
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "shrub"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = EFFECTS_LAYER_UNDER_3
 	flags = FLUID_SUBMERGE
 	text = "<font color=#5c5>s"
+	pass_unstable = FALSE
 	var/health = 50
 	var/destroyed = 0 // Broken shrubs are unable to vend prizes, this is also used to track a objective.
 	var/max_uses = 0 // The maximum amount of time one can try to shake this shrub for something.
@@ -425,7 +426,7 @@
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "shrub"
 	desc = "The Captain's most prized possession. Don't touch it. Don't even look at it."
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = EFFECTS_LAYER_UNDER_1
 	dir = EAST
@@ -442,7 +443,7 @@
 		var/obj/shrub/captainshrub/C = new /obj/shrub/captainshrub
 		C.overlays += image('icons/misc/32x64.dmi',"halo")
 		C.set_loc(pick(get_area_turfs(/area/afterlife/bar)))
-		C.anchored = 0
+		C.anchored = UNANCHORED
 		C.set_density(0)
 		for (var/mob/living/M in mobs)
 			if (M.mind && M.mind.assigned_role == "Captain")
@@ -484,9 +485,9 @@
 	broccoliss
 		name = "bonsai \"broccoliss\" tree"
 		desc = "I don't think that Jeff guy knows what broccoli even is..."
-		anchored = 0
+		anchored = UNANCHORED
 		density = 1
-		anchored = 0
+		anchored = UNANCHORED
 
 		attackby(obj/item/W as obj, mob/user as mob)
 			if (!W) return
@@ -512,7 +513,7 @@
 	desc = "The Captain's most prized possession. Don't touch it. Don't even look at it."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "bottleship"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = EFFECTS_LAYER_1
 	var/destroyed = 0
@@ -527,7 +528,7 @@
 		var/obj/captain_bottleship/C = new /obj/captain_bottleship
 		C.overlays += image('icons/misc/32x64.dmi',"halo")
 		C.set_loc(pick(get_area_turfs(/area/afterlife/bar)))
-		C.anchored = 0
+		C.anchored = UNANCHORED
 		for (var/mob/living/M in mobs)
 			if (M.mind && M.mind.assigned_role == "Captain")
 				boutput(M, "<span class='alert'>You suddenly feel hollow. Something very dear to you has been lost.</span>")
@@ -565,7 +566,7 @@
 	name = "potted plant"
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "ppot0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 	New()
@@ -592,13 +593,13 @@
 	name = "grass"
 	icon = 'icons/misc/worlds.dmi'
 	icon_state = "grassplug"
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/window_blinds
 	name = "blinds"
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "blindsH-o"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	layer = FLY_LAYER+1.01 // just above windows
@@ -606,10 +607,16 @@
 	var/open = 1
 	var/id = null
 	var/obj/blind_switch/mySwitch = null
+	var/base_x = 0
+	var/base_y = 0
+	event_handler_flags = USE_HASENTERED
 
 	New()
 		. = ..()
 		START_TRACKING
+		base_x = pixel_x
+		base_y = pixel_y
+
 
 	disposing()
 		. = ..()
@@ -629,6 +636,40 @@
 	attackby(obj/item/W, mob/user)
 		src.toggle()
 		src.toggle_group()
+
+	proc/shake_blinds(var/volume)
+
+		playsound(src, "sound/impact_sounds/blind_rattle.ogg", volume, 1, -1)
+
+		var/wiggle = 10
+
+		SPAWN_DBG(0) //need spawn, why would we sleep in attack_hand that's disgusting
+			while (wiggle > 0)
+				wiggle--
+				animate(src, pixel_x = rand(src.base_x-3,src.base_x+3), pixel_y = rand(src.base_y-3,src.base_y+3), time = 2, easing = EASE_IN)
+				sleep(0.1 SECONDS)
+				animate(src, pixel_x = src.base_x, pixel_y = src.base_y, time = 2, easing = EASE_OUT)
+
+
+
+	//This is reused from the
+	HasEntered(atom/movable/AM as mob|obj)
+		..()
+
+		if(!(ishuman(AM) || AM.throwing))
+			return
+
+		if(isnpc(AM)) //if its a monkey (a type of human NPC)
+			src.shake_blinds(10)
+			return
+
+		if (AM.throwing) //if its a thlrown item and not a human/monke
+			src.shake_blinds(20)
+			return
+		//humans are much louder than thrown items and mobs
+		//Only players will trigger this
+		src.shake_blinds(50)
+		AM.setStatus("slowed", 0.5 SECONDS, optional = 4)
 
 	proc/toggle(var/force_state as null|num)
 		if (!isnull(force_state))
@@ -692,8 +733,9 @@
 	desc = "A switch for opening the blinds."
 	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "light1"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
+	pass_unstable = FALSE
 	var/on = 0
 	var/id = null
 	var/list/myBlinds = list()
@@ -783,7 +825,7 @@
 	name = "disco ball"
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "disco0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = 6
 	var/on = 0
@@ -816,7 +858,7 @@
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "billiardlamp"
 	desc = "One of those old timey stained glass pool table lamps."
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = 6
 	var/on = 0
@@ -845,13 +887,13 @@
 	desc = "A nameplate signifying who this office belongs to."
 	icon = 'icons/obj/decals/wallsigns.dmi'
 	icon_state = "office_plaque"
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/chainlink_fence
 	name = "chain-link fence"
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "chainlink"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	centcom_edition
 		name = "electrified super high-security mk. X-22 edition chain-link fence"
@@ -870,7 +912,7 @@
 	desc = "A nearby icy moon orbiting the gas giant. Deep reserves of liquid water have been detected below the fractured and desolate surface."
 	mouse_opacity = 0
 	opacity = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	density = 0
 	plane = PLANE_SPACE
 	var/rotate = FALSE
@@ -932,14 +974,14 @@
 			icon_state = "ss10"
 
 obj/decoration
-
+	pass_unstable = FALSE
 
 obj/decoration/decorativeplant
 	name = "decorative plant"
 	desc = "Is it flora or is it fauna? Hm."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "plant1"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	plant2
@@ -960,7 +1002,7 @@ obj/decoration/junctionbox
 	desc = "It seems to be locked pretty tight with no reasonable way to open it."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "junctionbox"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 	junctionbox2
 		icon_state = "junctionbox2"
@@ -973,7 +1015,7 @@ obj/decoration/clock
 	icon_state = "clock"
 	desc = " "
 	icon = 'icons/obj/decoration.dmi'
-	anchored = 1
+	anchored = ANCHORED
 
 	get_desc()
 		. += "[pick("The time is", "It's", "It's currently", "It reads", "It says")] [o_clock_time()]."
@@ -989,7 +1031,7 @@ obj/decoration/vent
 	desc = "Better not to stick your hand in there, those blades look sharp.."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "vent1"
-	anchored = 1
+	anchored = ANCHORED
 
 	vent2
 		icon_state = "vent2"
@@ -1001,7 +1043,7 @@ obj/decoration/ceilingfan
 	desc = "It's actually just kinda hovering above the floor, not actually in the ceiling. Don't tell anyone."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "detectivefan"
-	anchored = 1
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_BASE
 	alpha = 255
 	plane = PLANE_NOSHADOW_ABOVE
@@ -1023,7 +1065,7 @@ obj/decoration/ceilingfan
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "candles-unlit"
 	density = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	opacity = 0
 	var/icon_off = "candles-unlit"
 	var/icon_on = "candles"
@@ -1104,14 +1146,14 @@ obj/decoration/ceilingfan
 	icon = 'icons/obj/large/64x32.dmi'
 	density = 0
 	opacity = 0
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 /obj/decoration/bookcase
 	name = "bookcase"
 	desc = "It's a bookcase. Full of books."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "bookcase"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	density = 0
 	layer = DECAL_LAYER
 
@@ -1120,7 +1162,7 @@ obj/decoration/ceilingfan
 	desc = "It's a toilet paper holder.<br>Finally, after all this time, you can wipe! Or not wipe, that's also a choice you can make."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "toiletholder"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	//var/papersleft = 20 //whatever
 
@@ -1145,7 +1187,7 @@ obj/decoration/ceilingfan
 	desc = "It's a toilet paper holder.<br>Someone used the last of it and didn't replace it..."
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "toiletholder-empty"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 
 	attack_hand(mob/user as mob)
@@ -1161,14 +1203,14 @@ obj/decoration/ceilingfan
 	desc = "It's a shelf full of things that you'll need to play your favourite tabletop campaigns. Mainly a lot of dice that can only roll 1's."
 	icon_state = "tabletopfull"
 	icon = 'icons/obj/large/64x32.dmi'
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	density = 0
 	layer = DECAL_LAYER
 
 /obj/decoration/syndiepc
 	name = "syndicate computer"
 	desc = "It looks rather sinister with all the red text. I wonder what does it all mean?"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	density = 1
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "syndiepc1"
@@ -1233,7 +1275,7 @@ obj/decoration/ceilingfan
 /obj/decoration/bustedmantapc
 	name = "broken computer"
 	desc = "Yeaaah, it has certainly seen some better days."
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	density = 1
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "bustedmantapc"
@@ -1248,7 +1290,7 @@ obj/decoration/ceilingfan
 
 /obj/decoration/collapsedwall
 	name = "collapsed wall"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	density = 0
 	opacity = 0
 	icon = 'icons/obj/decoration.dmi'
@@ -1256,7 +1298,7 @@ obj/decoration/ceilingfan
 
 /obj/decoration/ntcratesmall
 	name = "metal crate"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	density = 1
 	desc = "A tightly locked metal crate."
 	icon = 'icons/obj/decoration.dmi'
@@ -1264,7 +1306,7 @@ obj/decoration/ceilingfan
 
 /obj/decoration/ntcrate
 	name = "metal crate"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	density = 1
 	desc = "Assortment of two metal crates, both of them sealed shut."
 	icon = 'icons/obj/large/32x64.dmi'
@@ -1279,38 +1321,38 @@ obj/decoration/ceilingfan
 
 /obj/decoration/weirdmark
 	name = "weird mark"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "weirdmark"
 
 /obj/decoration/frontwalldamage
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "frontwalldamage"
 	mouse_opacity = 0
 
 /obj/decoration/damagedchair
 	name = "damaged chair"
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "damagedchair"
 
 /obj/decoration/syndcorpse5
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	name = "syndicate corpse"
 	icon = 'icons/obj/decoration.dmi'
 	desc = "Whoever this was, you're pretty sure they've had better days. Makes you wonder where the other half is..."
 	icon_state = "syndcorpse5"
 
 /obj/decoration/syndcorpse10
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	name = "syndicate corpse"
 	icon = 'icons/obj/decoration.dmi'
 	desc = "... Oh, there it is."
 	icon_state = "syndcorpse10"
 
 /obj/decoration/bullethole
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bhole"
 	mouse_opacity = 0
@@ -1320,7 +1362,7 @@ obj/decoration/ceilingfan
 		return list()
 
 /obj/decoration/plasmabullethole
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "plasma-bhole"
 	mouse_opacity = 0
@@ -1339,8 +1381,8 @@ obj/decoration/ceilingfan
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	item_state = "protopistol"
 	stamina_damage = 0
-	stamina_cost = 4
-	stamina_crit_chance = 0
+//	stamina_cost = 4
+//	stamina_crit_chance = 0
 	throwforce = 0
 
 	attack_hand(mob/user as mob)
@@ -1365,6 +1407,7 @@ obj/decoration/ceilingfan
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	item_state = "table_parts"
 	density = 1
+	pass_unstable = FALSE
 	force = 1.0
 	throwforce = 3.0
 	throw_speed = 1
@@ -1372,8 +1415,8 @@ obj/decoration/ceilingfan
 	w_class = W_CLASS_SMALL
 	flags = FPRINT | TABLEPASS
 	stamina_damage = 0
-	stamina_cost = 4
-	stamina_crit_chance = 0
+//	stamina_cost = 4
+//	stamina_crit_chance = 0
 	var/list/proj_impacts = list()
 	var/image/proj_image = null
 	var/last_proj_update_time = null
@@ -1409,7 +1452,7 @@ obj/decoration/ceilingfan
 	icon = 'icons/obj/furniture/walp_decor.dmi'
 	icon_state = "lamp_regal_unlit"
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	opacity = 0
 	var/parts_type = /obj/item/furniture_parts/decor/regallamp
 	var/icon_off = "lamp_regal_unlit"
@@ -1530,21 +1573,26 @@ obj/decoration/ceilingfan
 	desc = "These look... Very plastic. Huh."
 	icon = 'icons/obj/furniture/walp_decor.dmi'
 	icon_state = "floral_arrange"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decoration/railbed
 	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "railbed"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mouse_opacity = 0
 	bound_height = 64
-	plane = PLANE_NOSHADOW_BELOW
-	layer = TURF_LAYER - 0.1
+	plane = PLANE_FLOOR
+	layer = TURF_OVERLAY_LAYER
+
 	//Grabs turf color set in gehenna.dm for sand
 	New()
 		..()
+		STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen()
+		. = ..()
 		var/turf/T = get_turf(src)
 		src.color = T.color
 
@@ -1556,9 +1604,9 @@ obj/decoration/ceilingfan
 
 /obj/decoration/railbed/trans
 	icon_state = "railbedtrans"
-	New()
-		..()
-		src.color = null
+
+	generate_worldgen()
+		return
 
 /obj/decoration/railbed/trans/cracked1
 	icon_state = "railbedcracked1trans"
@@ -1569,10 +1617,18 @@ obj/decoration/ceilingfan
 /obj/decoration/train_signal
 	icon = 'icons/obj/large/32x64.dmi'
 	icon_state = "trainsignal"
-	anchored = 1
-	density = 0
-	plane = PLANE_NOSHADOW_BELOW
-	//this is just a dummy until it gets logic
+	anchored = ANCHORED
+	density = TRUE
+	layer = MOB_LAYER + 0.1
+
+	New()
+		. = ..()
+		START_TRACKING
+
+	disposing()
+		. = ..()
+		STOP_TRACKING
+
 
 /obj/neon_sign
 	name = "neon sign"
@@ -1588,6 +1644,7 @@ obj/decoration/ceilingfan
 	var/datum/light/light
 	plane = BLEND_OVERLAY
 	layer = PLANE_SELFILLUM
+	anchored = ANCHORED
 
 	New()
 		..()

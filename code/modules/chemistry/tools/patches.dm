@@ -15,6 +15,7 @@
 /obj/item/reagent_containers/patch
 	name = "patch"
 	desc = "A small adhesive chemical pouch, for application to the skin."
+	hint = "doctors can stick these by throwing them at people."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "patch"
 	var/image/fluid_image

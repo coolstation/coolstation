@@ -14,6 +14,9 @@ proc/dir_to_dirname(dir)
 proc/dirname_to_dir(dir)
 	return global.dirnames[dir]
 
+/// returns true if a direction is cardinal
+#define is_cardinal(DIR) (!((DIR - 1) & DIR))
+
 /// Given an angle, matches it to the closest direction and returns it.
 #define angle2dir(X) (modulo_angle_to_dir[floor((((X%360)+382.5)%360)/45)+1])
 

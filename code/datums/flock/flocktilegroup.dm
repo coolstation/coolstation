@@ -1,4 +1,5 @@
 //a bit of a word of warning this is janky ass code but aighto!
+/*
 /datum/flock_tile_group
 	var/list/members = list() //what tiles are a part of the group
 	var/list/connected = list() //what structures are connected
@@ -50,3 +51,4 @@
 			src.poweruse += f.poweruse
 
 	src.powerbalance = src.powergen - src.poweruse
+*/

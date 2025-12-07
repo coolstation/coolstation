@@ -12,8 +12,6 @@
 	speechverb_ask = "meows"
 	hand_count = 2
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	butcherable = 1
 	name_the_meat = 1
 	max_skins = 1
@@ -27,16 +25,16 @@
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/claw
+		HH.limb = new /datum/limb/claw(src)
 		HH.icon = 'icons/ui/critter_ui.dmi'
 		HH.icon_state = "handn"
 		HH.name = "paw"
-		HH.limb_name = "claws"
+		HH.limb.name = "claws"
 
 		HH = hands[2]
-		HH.limb = new /datum/limb/mouth			// if not null, the special limb to use when attack_handing
+		HH.limb = new /datum/limb/mouth(src)			// if not null, the special limb to use when attack_handing
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"					// the icon state of the hand UI background
 		HH.name = "mouth"						// designation of the hand - purely for show
-		HH.limb_name = "teeth"					// name for the dummy holder
+		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.can_hold_items = 0

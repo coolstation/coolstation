@@ -8,7 +8,7 @@
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1
+	anchored = ANCHORED
 	use_stamina = 0
 	mob_flags = SPEECH_BLOB
 
@@ -22,7 +22,7 @@
 
 	New()
 		..()
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
 		src.sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 		src.see_invisible = 15
 		src.see_in_dark = SEE_DARK_FULL

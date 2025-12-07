@@ -1,8 +1,9 @@
 /// # Flock Structure Parent
+/*
 /obj/flock_structure
 	icon = 'icons/misc/featherzone.dmi'
 	icon_state = "egg"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	name = "uh oh"
 	desc = "CALL A CODER THIS SHOULDN'T BE SEEN"
@@ -211,3 +212,4 @@
 	if(src.passthrough && istype(drone) && !drone.floorrunning)
 		animate_flock_passthrough(mover)
 		. = TRUE
+*/

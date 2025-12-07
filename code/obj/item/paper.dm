@@ -46,6 +46,9 @@
 	burn_possible = TRUE
 	health = 10
 	rand_pos = 9
+
+	fiddleType = /datum/contextAction/fiddle/paper
+
 	var/list/form_startpoints
 	var/list/form_endpoints
 	var/font_css_crap = null
@@ -63,8 +66,8 @@
 	var/offset = 0
 
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 
 	var/sealed = 0 //Can you write on this with a pen?
 	var/list/stamps = null
@@ -129,35 +132,7 @@
 	return 1
 
 /obj/item/paper/attack_self(mob/user as mob)
-	var/menuchoice = alert("What would you like to do with [src]?",,"Fold","Read","Nothing")
-	if (menuchoice == "Nothing")
-		return
-	else if (menuchoice == "Read")
-		src.examine(user)
-	else
-		var/fold = alert("What would you like to fold [src] into?",,"Paper hat","Paper plane","Paper ball")
-		if(src.pooled) //It's possible to queue multiple of these menus before resolving any.
-			return
-		user.u_equip(src)
-		if (fold == "Paper hat")
-			user.show_text("You fold the paper into a hat! Neat.", "blue")
-			var/obj/item/clothing/head/paper_hat/H = new()
-			H.paper = src
-			src.set_loc(H)
-			user.put_in_hand_or_drop(H)
-		else
-			var/obj/item/paper/folded/F = null
-			if (fold == "Paper plane")
-				user.show_text("You fold the paper into a plane! Neat.", "blue")
-				F = new /obj/item/paper/folded/plane(user)
-			else
-				user.show_text("You crumple the paper into a ball! Neat.", "blue")
-				F = new /obj/item/paper/folded/ball(user)
-			F.info = src.info
-			F.old_desc = src.desc
-			F.old_icon_state = src.icon_state
-			user.put_in_hand_or_drop(F)
-			qdel(src)
+	src.examine(user)
 
 /obj/item/paper/attack_ai(var/mob/AI as mob)
 	var/mob/living/silicon/ai/user
@@ -563,7 +538,7 @@ ASC: Aux. Solar Control<BR>
 	icon_state = "flag_neutral"
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "paper"
-	anchored = 1.0
+	anchored = ANCHORED
 
 /obj/item/paper/sop
 	name = "'Standard Operating Procedure'"
@@ -619,6 +594,7 @@ Only trained personnel should operate station systems. Follow all procedures car
 		STOP_TRACKING
 		. = ..()
 
+/*
 /obj/item/paper/hellburn
 	name = "paper- 'memo #R13-08-A'"
 	info = {"<h3 style="border-bottom: 1px solid black; width: 80%;">Nanotrasen Toxins Research</h3>
@@ -642,6 +618,7 @@ as it may become compromised.
 </p>
 </tt>
 <center><span style="font-family: 'Dancing Script';">Is this a Hellburn???!!?</span></center>"}
+*/
 
 /obj/item/paper/zeta_boot_kit
 	name = "Paper-'Instructions'"
@@ -909,8 +886,8 @@ as it may become compromised.
 
 		if(!initialized)
 			initialized = TRUE
-			for(var/datum/data/record/t in data_core.general)
-				who += "[t.fields["name"]]"
+			for(var/datum/db_record/t as anything in data_core.general.records)
+				who += "[t["name"]]"
 
 		switch(randme)
 			if(1)
@@ -1199,7 +1176,7 @@ as it may become compromised.
 	throw_range = 15
 	m_amt = 60
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	rand_pos = 8
 	var/special_mode = null
 	var/is_reassignable = 1
@@ -1389,6 +1366,12 @@ as it may become compromised.
 	else
 		..()
 
+/obj/item/paper/folded/fiddle(mob/user as mob)
+	if(src.sealed)
+		src.attack_self(user)
+	else
+		return ..()
+
 /obj/item/paper/folded/examine()
 	if (src.sealed)
 		return list(desc)
@@ -1400,11 +1383,11 @@ as it may become compromised.
 	desc = "If you throw it in space is it a paper spaceship?"
 	icon_state = "paperplane"
 	throw_speed = 1
-	throw_spin = 0
 
-/obj/item/paper/folded/plane/hit_check(datum/thrown_thing/thr)
-	if(src.throwing)
-		src.throw_unlimited = 1
+/obj/item/paper/folded/plane/throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type, allow_anchored, bonus_throwforce, end_throw_callback)
+	src.throw_unlimited = 1
+	src.throw_spin = 0
+	. = ..()
 
 /obj/item/paper/folded/ball
 	name = "paper ball"
@@ -1579,3 +1562,9 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	name = "WIP, Read me!"
 	desc = "A note from the mapmaker herself! Probably because she was too lazy to do something!"
 	info = "Hi! Cargo and Mining are not implemented yet on account of their unique features which are still under development. If you need something, ask me via and AHELP with f1, and I'll get it to you <3"
+
+/obj/item/paper/torpedonote
+	name = "torpedo note"
+	desc = "A neatly-written post-it note found next to a torpedo."
+	icon_state = "postit-writing"
+	info = "Just give 'er a few solid whacks and she'll know what to do. Trust me, <i>this</i> is how you win at darts B)"

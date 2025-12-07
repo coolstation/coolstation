@@ -4,8 +4,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "itemspawn"
 	density = 0
-	anchored = 1.0
-	invisibility = 101
+	anchored = ANCHORED
+	invisibility = 100
 	layer = 99
 	var/amt2spawn = 0
 	var/min_amt2spawn = 0
@@ -955,8 +955,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "podspawn"
 	density = 0
-	anchored = 1.0
-	invisibility = 101
+	anchored = ANCHORED
+	invisibility = 100
 	layer = 99
 	var/obj/machinery/vehicle/pod2spawn = null
 
@@ -1718,7 +1718,8 @@
 						/obj/item/furniture_parts/table/regal,
 						/obj/item/furniture_parts/table/clothred,
 						/obj/item/furniture_parts/table/checkercloth,
-						/obj/item/furniture_parts/table/flock)
+//						/obj/item/furniture_parts/table/flock
+						)
 	items2spawn = list(/obj/item/furniture_parts/IVstand,
 						/obj/item/furniture_parts/surgery_tray,
 						/obj/item/furniture_parts/table/desk,
@@ -1908,8 +1909,7 @@
 	amt2spawn = 1
 	rare_chance = 5
 	rare_items2spawn = list(/obj/machinery/portable_atmospherics/canister/farts/filled,
-						/obj/machinery/portable_atmospherics/canister/sleeping_agent,
-						/obj/machinery/portable_atmospherics/canister/oxygen_agent_b)
+						/obj/machinery/portable_atmospherics/canister/sleeping_agent)
 	items2spawn = list(/obj/machinery/portable_atmospherics/canister/nitrogen,
 						/obj/machinery/portable_atmospherics/canister/oxygen,
 						/obj/machinery/portable_atmospherics/canister/toxins,

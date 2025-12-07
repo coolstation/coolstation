@@ -8,7 +8,7 @@
 	var/announcement_delay = 1200
 	var/obj/item/card/id/ID = null
 	var/unlocked = 0
-	var/announce_status = "Insert Card"
+	var/announce_status = "<div class = 'box warning'>Insert Card</div>"
 	var/message = ""
 	var/inhibit_updates = 0
 	var/announces_arrivals = 0
@@ -38,17 +38,23 @@
 	attack_hand(mob/user)
 		if(..()) return
 		src.add_dialog(user)
-		var/dat = {"
-			<body>
-				<h1>Announcement Computer</h1>
+		var/dat = {"<head><link rel="stylesheet" type="text/css" href="[resource("css/COMPUTAH.css")]" /><div class="crt"></div></head>
+		<body scroll=no>
+
+
+				<h1>Announcement Computer </h1>
 				<hr>
-				Status: [announce_status]<BR>
-				Card: <a href='byond://?src=\ref[src];card=1'>[src.ID ? src.ID.name : "--------"]</a><br>
-				Broadcast delay: [nice_timer()]<br>
-				<br>
-				Message: "<a href='byond://?src=\ref[src];edit_message=1'>[src.message ? src.message : "___________"]</a>" <a href='byond://?src=\ref[src];clear_message=1'>(Clear)</a><br>
-				<br>
-				<b><a href='byond://?src=\ref[src];send_message=1'>Transmit</a></b>
+			<div class = "container>
+				<img src='[resource("images/consoles/transmit.gif")]'/>
+				<div>
+					<div class = "box">STATUS</div> [announce_status]<BR>
+					<div class = "box">CARD</div> <a href='byond://?src=\ref[src];card=1' class = 'filler'>[src.ID ? src.ID.name : "--------"]</a><br>
+
+					<div class = "box">BROADCAST DELAY</div> [nice_timer()]<br>
+					<div class = "box">MESSAGE</div> "<a href='byond://?src=\ref[src];edit_message=1'>[src.message ? src.message : "___________"]</a>" <a class = "box error" href='byond://?src=\ref[src];clear_message=1'>CLEAR</a><br>
+					<div class = "box button"><b><a href='byond://?src=\ref[src];send_message=1'>TRANSMIT</a></b></div>
+				</div>
+			</div>
 			"}
 		if (src.announces_arrivals)
 			dat += "<hr>[src.arrival_announcements_enabled ? "Arrival Announcement Message: \"[src.arrivalalert]\"<br><br><b><a href='byond://?src=\ref[src];set_arrival_message=1'>Change</a></b><br><b><a href='byond://?src=\ref[src];toggle_arrival_message=1'>Disable</a></b>" : "Arrival Announcements Disabled<br><br><b><a href='byond://?src=\ref[src];toggle_arrival_message=1'>Enable</a></b>"]"
@@ -121,9 +127,9 @@
 
 	proc/update_status()
 		if(!src.ID)
-			announce_status = "Insert Card"
+			announce_status = "<div class = 'box warning'>Insert Card</div>"
 		else if(!src.unlocked)
-			announce_status = "Insufficient Access"
+			announce_status = "<div class = 'box error'>INSUFFICIENT ACCESS</div>"
 		else if(!message)
 			announce_status = "Input message."
 		else if(get_time() > 0)

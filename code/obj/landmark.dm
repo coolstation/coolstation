@@ -19,8 +19,9 @@ proc/add_landmark(var/turf/T, var/name, var/data = null)
 	name = "landmark"
 	icon = 'icons/ui/screen1.dmi'
 	icon_state = "x2"
-	anchored = 1
-	invisibility = 101
+	pass_unstable = FALSE
+	anchored = ANCHORED_TECHNICAL
+	invisibility = 100
 	var/deleted_on_start = TRUE
 	var/add_to_landmarks = TRUE
 	var/data = null // data to associatively save with the landmark
@@ -204,7 +205,6 @@ var/global/list/job_start_locations = list()
 	var/spawnchance = 100
 	var/static/list/name_to_type = list(
 		"spare" = /obj/item/card/id/captains_spare,
-		#ifndef IM_TESTING_FUCKING_BASIC_MOB_FUNCTIONALITY
 		"juicer_gene" = /mob/living/carbon/human/geneticist,
 		"shitty_bill" = /mob/living/carbon/human/biker,
 		"john_bill" = /mob/living/carbon/human/john,
@@ -231,7 +231,6 @@ var/global/list/job_start_locations = list()
 		"seamonkeyspawn_lab" = /mob/living/carbon/human/npc/monkey/sea/lab,
 		"waiter" = /mob/living/carbon/human/waiter,
 		"monkeyspawn_inside" = /mob/living/carbon/human/npc/monkey
-		#endif
 	)
 
 	New()
@@ -249,12 +248,15 @@ var/global/list/job_start_locations = list()
 	proc/spawn_the_thing()
 		if(isnull(src.type_to_spawn))
 			src.type_to_spawn = name_to_type[src.name]
+		#ifdef IM_TESTING_BASIC_MOB_FUNCTIONALITY
+		if (ispath(type_to_spawn, /mob)) //ganon voice:
+			qdel(src)
+			return
+		#endif
 		if(!isnull(src.type_to_spawn))
 			new type_to_spawn(src.loc)
-		#ifndef IM_TESTING_FUCKING_BASIC_MOB_FUNCTIONALITY
 		else
 			CRASH("Spawner [src] at [src.x] [src.y] [src.z] had no type.")
-		#endif
 		qdel(src)
 
 /obj/landmark/spawner/inside

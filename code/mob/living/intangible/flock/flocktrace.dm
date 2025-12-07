@@ -3,6 +3,7 @@
 /////////////////
 // Unlike the flockmind, when player drones exit their corporeal body to jump into another one,
 // they're tiny little flickers of thought.
+/*
 /mob/living/intangible/flock/trace
 	name = "weird radio ghost bird"
 	real_name = "Flocktrace"
@@ -73,12 +74,12 @@
 	if(src.client)
 		boutput(src, "<span class='alert'>You cease to exist abruptly.</span>")
 	src.flock?.removeTrace(src)
-	REMOVE_MOB_PROPERTY(src, PROP_INVISIBILITY, src)
+	REMOVE_ATOM_PROPERTY(src, PROP_INVISIBILITY, src)
 	src.icon_state = "blank"
 	src.canmove = 0
 	flick("flocktrace-death", src)
 	src.ghostize()
-	spawn(2 SECONDS) // wait for the animation to finish
+	SPAWN_DBG(2 SECONDS) // wait for the animation to finish
 		qdel(src)
 
 /mob/living/intangible/flock/trace/ghostize()
@@ -92,3 +93,4 @@
 	animate_bumble(O) // bob up and down
 	O.alpha = 160
 	return O
+*/

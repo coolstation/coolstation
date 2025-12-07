@@ -5,6 +5,7 @@
 
 /obj/item/chem_grenade
 	name = "metal casing"
+	hint = "press 'c' to arm the grenade."
 	icon_state = "grenade-chem1"
 	icon = 'icons/obj/items/grenade.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
@@ -22,8 +23,8 @@
 	throw_range = 20
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT | EXTRADELAY | NOSPLASH
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	move_triggered = 1
 	var/detonating = 0
 

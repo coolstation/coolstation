@@ -8,12 +8,12 @@
 	custom_gib_handler = /proc/gibs
 	hand_count = 2
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	blood_id = "methamphetamine"
+	ideal_blood_volume = 100
 	burning_suffix = "humanoid"
-	health_brute = 75
-	health_burn = 75
+	health_brute = 60
+	health_burn = 60
+	add_abilities = list(/datum/targetable/critter/tackle)
 
 	on_pet(mob/user)
 		if (..())
@@ -24,7 +24,7 @@
 		switch (act)
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
-					playsound(src, "sound/voice/MEraaargh.ogg", 70, 1, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, "sound/voice/MEraaargh.ogg", 45, 1, channel=VOLUME_CHANNEL_EMOTE)
 					return "<b><span class='alert'>[src] roars!</span></b>"
 		return null
 
@@ -35,29 +35,20 @@
 		return ..()
 
 	setup_equipment_slots()
-		equipment += new /datum/equipmentHolder/suit(src)
 		equipment += new /datum/equipmentHolder/ears(src)
 		equipment += new /datum/equipmentHolder/head(src)
 
 	setup_hands()
 		..()
 		var/datum/handHolder/HH = hands[1]
-		HH.limb = new /datum/limb/bear
+		HH.limb = new /datum/limb/bear(src)
 		HH.icon_state = "handl"				// the icon state of the hand UI background
-		HH.limb_name = "left bear arm"
+		HH.limb.name = "left bear arm"
 
 		HH = hands[2]
 		HH.icon = 'icons/ui/hud_human.dmi'
-		HH.limb = new /datum/limb/bear
+		HH.limb = new /datum/limb/bear(src)
 		HH.name = "right hand"
 		HH.suffix = "-R"
 		HH.icon_state = "handr"				// the icon state of the hand UI background
-		HH.limb_name = "right bear arm"
-
-	setup_healths()
-		..()
-		add_health_holder(/datum/healthHolder/suffocation)
-
-	New()
-		..()
-		abilityHolder.addAbility(/datum/targetable/critter/tackle)
+		HH.limb.name = "right bear arm"

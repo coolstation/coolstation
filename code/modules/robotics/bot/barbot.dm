@@ -1,4 +1,4 @@
-// Barbuddy [my beloved] -- currently used in the Space Casino prefab
+// Barbuddy [my beloved] -- currently used in the Space Casino prefab and the juicer cloughb
 
 #define BARBUDDY_MOVE_SPEED 7
 /obj/machinery/bot/barbuddy
@@ -8,7 +8,7 @@
 	icon_state = "robuddy1"
 	layer = 5.0 //TODO LAYER
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	bot_move_delay = BARBUDDY_MOVE_SPEED
 	var/hasDrink = 0
 	var/turf/home // Initialized early. Where the barbuddy should be serving. Barbuddy explodes if taken too far from here.
@@ -88,7 +88,7 @@
 				glasses++
 			if (glasses < 1)
 				src.targets += T
-
+	#ifndef IM_TESTING_BASIC_MOB_FUNCTIONALITY
 	process()
 		// Nothing to do. Let's find something to do.
 		if (!length(targets))
@@ -128,6 +128,7 @@
 			if (!length(src.path))
 				KillPathAndGiveUp(1)
 				return
+	#endif
 
 	KillPathAndGiveUp(var/give_up)
 		. = ..()
@@ -201,5 +202,5 @@
 	desc = "A dispenser made specifically for BarBuddies to use."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "alc_dispenser"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1

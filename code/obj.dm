@@ -19,7 +19,8 @@
 	var/artifact = null
 	var/cannot_be_stored = FALSE
 	var/move_triggered = 0
-	var/object_flags = 0
+	var/w_class = W_CLASS_NORMAL
+//	var/object_flags = 0 // moved to atom/movable
 
 	animate_movement = 2
 //	desc = "<span class='alert'>HI THIS OBJECT DOESN'T HAVE A DESCRIPTION MAYBE IT SHOULD???</span>"
@@ -30,6 +31,10 @@
 
 	/// if gun/bullet related, forensic profile of it
 	var/forensic_ID = null
+
+	var/list/datum/contextAction/fiddleActions
+	var/datum/contextLayout/flexdefault/fiddleLayout
+	var/fiddleType = null
 
 	New()
 		. = ..()
@@ -127,7 +132,7 @@
 	onMaterialChanged()
 		..()
 		if(istype(src.material))
-			pressure_resistance = floor((material.getProperty("density") + material.getProperty("density")) / 2)
+			//pressure_resistance = floor((material.getProperty("density") + material.getProperty("density")) / 2)
 			throwforce = floor(max(material.getProperty("hard"),1) / 8)
 			throwforce = max(throwforce, initial(throwforce))
 			quality = src.material.quality
@@ -290,6 +295,7 @@
 		return
 
 /obj/lattice
+	pass_unstable = FALSE
 	desc = "A lightweight support lattice."
 	name = "lattice"
 	icon = 'icons/obj/structures.dmi'
@@ -301,7 +307,7 @@
 
 	density = 0
 	stops_space_move = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	layer = LATTICE_LAYER
 	plane = PLANE_FLOOR
 	//	flags = CONDUCT
@@ -449,7 +455,7 @@
 	icon_state = "girder"
 	density = 1
 	stops_space_move = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	var/strength = 2
 
 	proc/barricade_damage(var/hitstrength)
@@ -516,6 +522,7 @@
 /obj/overlay
 	name = "overlay"
 	anchored = TRUE
+	pass_unstable = PRESERVE_CACHE
 	mat_changename = 0
 	mat_changedesc = 0
 	density = 0
@@ -547,19 +554,16 @@
 
 /obj/projection
 	name = "Projection"
-	anchored = 1.0
+	anchored = ANCHORED
 
 /obj/deskclutter
 	name = "desk clutter"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "deskclutter"
 	desc = "What a mess..."
-	anchored = 1
+	anchored = ANCHORED
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-
-/obj/proc/alter_health()
-	return 1
 
 /obj/proc/hide(h)
 	return
@@ -634,3 +638,29 @@
 		for(var/i = 1 to 10) // 20 characters are way too fuckin' long for anyone to care about
 			. += "[pick(numbersAndLetters)]"
 	while(. in forensic_IDs)
+
+// return any next_click delay to add
+/obj/proc/fiddle(var/mob/user)
+	src.add_fingerprint(user) // the user at the very least tried to mess with it
+
+	if(!src.fiddleType)
+		return DEFAULT_CLICK_DELAY
+
+	if(!src.fiddleLayout) // build the layout if we aint got one
+		src.fiddleActions = list()
+		for(var/fiddle_action in concrete_typesof(src.fiddleType))
+			src.fiddleActions.Add(new fiddle_action())
+		src.fiddleLayout = new /datum/contextLayout/flexdefault(length(src.fiddleActions), 26, 26, length(src.fiddleActions) * -13 + 16, 7)
+
+	if(length(src.fiddleActions)) // check validity
+		var/list/datum/contextAction/validFiddleActions = list()
+		for(var/datum/contextAction/fiddle_action in src.fiddleActions)
+			if(fiddle_action.checkRequirements(src, user))
+				validFiddleActions.Add(fiddle_action)
+
+		if(length(validFiddleActions)) // display valid fiddles
+			src.fiddleLayout.offsetX = length(validFiddleActions) * -13 + 16
+			user.showContextActions(validFiddleActions, src, src.fiddleLayout)
+			return BASE_FIDDLE_DELAY
+
+	return BASE_FIDDLE_DELAY

@@ -646,7 +646,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	desc = "A table with a roulette wheel and a little ball."
 	icon = 'icons/obj/gambling.dmi'
 	icon_state = "roulette_w0"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/obj/roulette_table_e/partner = null
 	var/running = 0
@@ -695,7 +695,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	desc = "A table with a roulette layout, used for placing bets."
 	icon = 'icons/obj/gambling.dmi'
 	icon_state = "roulette_e"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/obj/roulette_table_w/partner = null
 	var/list/bets = null
@@ -785,7 +785,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	desc = "Gambling for the antisocial."
 	icon = 'icons/obj/gambling.dmi'
 	icon_state = "BJ1"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	mats = 9
 	var/on = 1
@@ -1180,8 +1180,8 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 15
-	stamina_cost = 3
-	stamina_crit_chance = 15
+//	stamina_cost = 3
+//	stamina_crit_chance = 15
 	abilities = list(/obj/ability_button/sailormoon_heal)
 
 /obj/ability_button/sailormoon_heal
@@ -1270,8 +1270,8 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 
 	New()
 		..()
@@ -1586,19 +1586,19 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	force = 7
 	throwforce = 5
 	stamina_damage = 25
-	stamina_cost = 15
-	stamina_crit_chance = 5
+//	stamina_cost = 15
+//	stamina_crit_chance = 5
 	rand_pos = 8
 
 	attack(mob/M as mob, mob/user as mob) // big ol hackery here
 		if (M && isvampire(M))
 			src.force = (src.force * 2)
 			src.stamina_damage = (src.stamina_damage * 2)
-			src.stamina_crit_chance = (src.stamina_crit_chance * 2)
+//			src.stamina_crit_chance = (src.stamina_crit_chance * 2)
 			..(M, user)
 			src.force = (src.force / 2)
 			src.stamina_damage = (src.stamina_damage / 2)
-			src.stamina_crit_chance = (src.stamina_crit_chance / 2)
+//			src.stamina_crit_chance = (src.stamina_crit_chance / 2)
 		else
 			return ..()
 
@@ -1606,11 +1606,11 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 		if (hit_atom && isvampire(hit_atom))
 			src.force = (src.force * 2)
 			src.stamina_damage = (src.stamina_damage * 2)
-			src.stamina_crit_chance = (src.stamina_crit_chance * 2)
+//			src.stamina_crit_chance = (src.stamina_crit_chance * 2)
 			..(hit_atom)
 			src.force = (src.force / 2)
 			src.stamina_damage = (src.stamina_damage / 2)
-			src.stamina_crit_chance = (src.stamina_crit_chance / 2)
+//			src.stamina_crit_chance = (src.stamina_crit_chance / 2)
 		else
 			return ..()
 
@@ -1626,8 +1626,8 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	mats = 50
 	contraband = 1
 	stamina_damage = 40
-	stamina_cost = 23
-	stamina_crit_chance = 10
+//	stamina_cost = 23
+//	stamina_crit_chance = 10
 
 /obj/item/destiny_model
 	name = "NSS Destiny model"
@@ -1641,7 +1641,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	desc = "This is an object that's just for testing the knife switch art. Don't use it!"
 	icon = 'icons/obj/unused/knife_switch.dmi'
 	icon_state = "knife_switch1-throw"
-	anchored = 1
+	anchored = ANCHORED
 
 	verb/change_icon()
 		set name = "Change Switch Icon"
@@ -1665,7 +1665,7 @@ var/list/special_parrot_species = list("ikea" = /datum/species_info/parrot/kea/i
 	desc = "This is an object that's just for testing the knife switch art. Don't use it!"
 	icon = 'icons/obj/unused/knife_switch.dmi'
 	icon_state = "knife_base1"
-	anchored = 1
+	anchored = ANCHORED
 
 	verb/change_icon()
 		set name = "Change Board Icon"
@@ -1926,7 +1926,7 @@ Now, his life is in my fist! NOW, HIS LIFE IS IN MY FIST!
 	on_add()
 		if(ismob(holder?.my_atom))
 			var/mob/M = holder.my_atom
-			APPLY_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_cocaine", 200)
+			APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_cocaine", 200)
 			M.addOverlayComposition(/datum/overlayComposition/cocaine)
 		return
 
@@ -1934,7 +1934,7 @@ Now, his life is in my fist! NOW, HIS LIFE IS IN MY FIST!
 		if(ismob(holder?.my_atom))
 			var/mob/M = holder.my_atom
 			if (remove_buff)
-				REMOVE_MOB_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_cocaine")
+				REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_cocaine")
 			M.removeOverlayComposition(/datum/overlayComposition/cocaine)
 			M.removeOverlayComposition(/datum/overlayComposition/cocaine_minor_od)
 			M.removeOverlayComposition(/datum/overlayComposition/cocaine_major_od)

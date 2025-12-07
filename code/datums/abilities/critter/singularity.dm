@@ -10,6 +10,7 @@
   desc = "Send out an electromagnetic pulse."
   icon_state = "zzzap"
   cooldown = 1200
+  ai_range = 5
   attack_mobs = TRUE
 
 /datum/targetable/critter/zzzap/cast(atom/target)
@@ -24,7 +25,7 @@
   pulse.icon = 'icons/effects/effects.dmi'
   pulse.icon_state = "emppulse"
   pulse.name = "emp pulse"
-  pulse.anchored = 1
+  pulse.anchored = ANCHORED
   SPAWN_DBG(2 SECONDS)
     if (pulse)
       qdel(pulse)

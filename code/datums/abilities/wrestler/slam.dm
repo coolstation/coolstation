@@ -7,6 +7,7 @@
 	target_nodamage_check = 0
 	target_selection_check = 0
 	max_range = 0
+	ai_range = 0
 	cooldown = 350
 	start_on_cooldown = 1
 	pointCost = 0

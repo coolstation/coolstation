@@ -96,7 +96,7 @@
           if (M)
             if(!src.attacking) ChaseAttack(M)
             src.task = "attacking"
-            src.anchored = 1
+            src.anchored = ANCHORED
             src.target_lastloc = M.loc
         else
           var/turf/olddist = get_dist(src, src.target)
@@ -111,7 +111,7 @@
       else src.task = "thinking"
     if("attacking")
       if ((get_dist(src, src.target) > 1) || ((src.target:loc != src.target_lastloc)))
-        src.anchored = 0
+        src.anchored = UNANCHORED
         src.task = "chasing"
       else
         if (get_dist(src, src.target) <= 1)
@@ -120,7 +120,7 @@
           if (!src.aggressive)
             src.task = "thinking"
             src.target = null
-            src.anchored = 0
+            src.anchored = UNANCHORED
             src.last_found = world.time
             src.frustration = 0
             src.attacking = 0
@@ -129,12 +129,12 @@
               if (M.health < 0)
                 src.task = "thinking"
                 src.target = null
-                src.anchored = 0
+                src.anchored = UNANCHORED
                 src.last_found = world.time
                 src.frustration = 0
                 src.attacking = 0
         else
-          src.anchored = 0
+          src.anchored = UNANCHORED
           src.attacking = 0
           src.task = "chasing"
     if("wandering")

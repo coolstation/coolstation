@@ -481,7 +481,7 @@
 					out(master, "Seems like you've died. Bummer.")
 					return
 				var/health_state = ((master.health - master.fakeloss) / master.max_health) * 100
-				var/fake_health_max = GET_MOB_PROPERTY(src.master, PROP_FAKEHEALTH_MAX)
+				var/fake_health_max = GET_ATOM_PROPERTY(src.master, PROP_FAKEHEALTH_MAX)
 				if(fake_health_max)
 					health_state = max(health_state, fake_health_max)
 				var/class
@@ -1006,7 +1006,7 @@
 				return
 
 		var/health_state = ((master.health - master.fakeloss) / (master.max_health != 0 ? master.max_health : 1)) * 100
-		var/fake_health_max = GET_MOB_PROPERTY(src.master, PROP_FAKEHEALTH_MAX)
+		var/fake_health_max = GET_ATOM_PROPERTY(src.master, PROP_FAKEHEALTH_MAX)
 		if(fake_health_max)
 			health_state = max(health_state, fake_health_max)
 		switch(health_state)

@@ -393,9 +393,9 @@ proc/create_fluff(datum/mind/target)
 			for (var/obj/item/spacecash/C in L)
 				current_cash += C.amount
 
-		for (var/datum/data/record/Ba in data_core.bank)
-			if (Ba.fields["name"] == owner.current.real_name)
-				current_cash += Ba.fields["current_money"]
+		if(ishuman(owner.current))
+			var/mob/living/carbon/human/H = owner.current
+			current_cash += data_core.bank.find_record("id", H.datacore_id)?["current_money"] || 0
 
 		if (current_cash >= target_cash)
 			return 1

@@ -619,7 +619,7 @@ var/global/datum/module_research_controller/module_control = new
 
 /obj/submachine/module_researcher
 	name = "Cyborg Module Research Station"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	desc = "A research station specializing in the miniaturization of tools and binding them for usage with a cyborg module."
 	icon = 'icons/obj/objects.dmi'

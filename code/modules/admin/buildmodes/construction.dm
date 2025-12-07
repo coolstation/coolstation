@@ -22,11 +22,11 @@ change the direction of created objects.<br>
 				return
 			else if(istype(object,/turf/floor))
 				var/turf/T = object
-				T.ReplaceWithWall()
+				T.ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 				return
 			else if(istype(object,/turf/wall))
 				var/turf/T = object
-				T.ReplaceWithRWall()
+				T.ReplaceWithUpdateWalls()
 				return
 		else if (alt)
 			new /obj/machinery/door/airlock(get_turf(object))
@@ -47,7 +47,7 @@ change the direction of created objects.<br>
 			return
 		else if(istype(object,/turf/wall/r_wall) || istype(object, /turf/wall/auto/reinforced))
 			var/turf/T = object
-			T.ReplaceWithWall()
+			T.ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 			return
 		else if(istype(object,/obj))
 			qdel(object)

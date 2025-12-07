@@ -23,19 +23,24 @@
 					src.throw_impact(A, thr)
 					. = TRUE
 
-/atom/movable/proc/throw_begin(atom/target)
+/atom/movable/proc/throw_begin(atom/target, var/list/params)
+	return params
 
 // when an atom gets hit by a thrown object, returns the sound to play
 /atom/proc/hitby(atom/movable/AM, datum/thrown_thing/thr=null)
 	SHOULD_CALL_PARENT(TRUE)
 
 /atom/movable/proc/throw_end(list/params, turf/thrown_from) //throw ends (callback regardless of whether we impacted something)
+	if (throw_pixel && islist(params) && params["icon-y"] && params["icon-x"])
+		src.pixel_x = text2num(params["icon-x"]) - 16
+		src.pixel_y = text2num(params["icon-y"]) - 16
+
+/obj/item/throw_end(list/params, turf/thrown_from)
 	if(src.throwing & THROW_SPACED)
 		src.pixel_x = rand(-14, 14)
 		src.pixel_y = rand(-14, 14)
-	else if (throw_pixel && islist(params) && params["icon-y"] && params["icon-x"])
-		src.pixel_x = text2num(params["icon-x"]) - 16
-		src.pixel_y = text2num(params["icon-y"]) - 16
+	else
+		..()
 
 /atom/movable/proc/throw_impact(atom/hit_atom, datum/thrown_thing/thr=null)
 	var/area/AR = get_area(hit_atom)
@@ -73,7 +78,7 @@
 	..()
 
 /atom/movable/proc/throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type = 1,
-			allow_anchored = 0, bonus_throwforce = 0, end_throw_callback = null)
+			allow_anchored = FALSE, bonus_throwforce = 0, end_throw_callback = null)
 	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
 	if(!throwing_controller) return
 	if(!target) return
@@ -88,7 +93,7 @@
 
 	src.last_throw_x = src.x
 	src.last_throw_y = src.y
-	src.throw_begin(target)
+	params = src.throw_begin(target, params)
 
 	src.throwforce += bonus_throwforce
 
@@ -140,3 +145,6 @@
 	throwing_controller.start()
 
 	return thr
+
+/atom/movable/proc/pre_thrown(atom/target, list/params)
+	return FALSE

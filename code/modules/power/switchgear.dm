@@ -18,7 +18,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "power"
 	density = 1
-	anchored = 1
+	anchored = ANCHORED
 	var/locked = 1
 	var/open = 0
 	var/mainsupply = 1

@@ -3,7 +3,7 @@
 	desc = "Oh my god!"
 	icon_state = "headspider"
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	aggressive = 1
 	atkcarbon = 1
 	atksilicon = 0

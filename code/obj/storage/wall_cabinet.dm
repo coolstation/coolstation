@@ -8,7 +8,7 @@
 	plane = PLANE_NOSHADOW_ABOVE
 	force = 8.0
 	w_class = W_CLASS_BULKY
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 0
 	mats = 8
 	deconstruct_flags = DECON_SIMPLE
@@ -209,12 +209,44 @@
 	/obj/item/hand_labeler,
 	/obj/item/cargotele)
 
+/obj/item/storage/wall/bottlerack
+	name = "bottle rack"
+	icon = 'icons/obj/furniture/table_bar.dmi'
+	icon_state = "bottlerack"
+	pixel_y = 32
+	slots = 15
+	spawn_contents = list(/obj/item/reagent_containers/food/drinks/bottle/bojackson,
+	/obj/item/reagent_containers/food/drinks/bottle/beer,
+	/obj/item/reagent_containers/food/drinks/bottle/wine,
+	/obj/item/reagent_containers/food/drinks/bottle/wine,
+	/obj/item/reagent_containers/food/drinks/bottle/wine,
+	/obj/item/reagent_containers/food/drinks/bottle/mead,
+	/obj/item/reagent_containers/food/drinks/bottle/cider,
+	/obj/item/reagent_containers/food/drinks/bottle/cider,
+	/obj/item/reagent_containers/food/drinks/bottle/cider,
+	/obj/item/reagent_containers/food/drinks/bottle/vodka,
+	/obj/item/reagent_containers/food/drinks/bottle/vodka,
+	/obj/item/reagent_containers/food/drinks/bottle/vodka,
+	/obj/item/reagent_containers/food/drinks/bottle/tequila)
+
+	New()
+		..()
+		SPAWN_DBG(1 DECI SECOND) //lol
+			update_icon()
+	update_icon()
+		var/list/my_contents = src.get_contents()
+		if (my_contents.len <= 0)
+			src.icon_state = "bottlerack-empty"
+		else
+			src.icon_state = "bottlerack"
+
 /obj/item/storage/wall/clothingrack
 	name = "clothing rack"
 	icon = 'icons/obj/large_storage.dmi'
 	density = 1
+	pass_unstable = FALSE
 	slots = 7
-	anchored = 1
+	anchored = ANCHORED
 	icon_state = "clothingrack" //They start full so might as well
 	can_hold = list(/obj/item/clothing/under,/obj/item/clothing/suit)
 
@@ -348,7 +380,7 @@ obj/item/storage/wall/clothingrack/hatrack
 	icon = 'icons/obj/large/64x64.dmi'
 	density = 0
 	slots = 7
-	anchored = 1
+	anchored = ANCHORED
 	plane = PLANE_DEFAULT
 	icon_state = "toolshelf"
 	can_hold = list(/obj/item/clothing/under,/obj/item/clothing/suit)
@@ -371,7 +403,7 @@ obj/item/storage/wall/clothingrack/hatrack
 	icon = 'icons/obj/large/64x64.dmi'
 	density = 0
 	slots = 7
-	anchored = 1
+	anchored = ANCHORED
 	icon_state = "mineralshelf"
 	plane = PLANE_DEFAULT
 	can_hold = list(/obj/item/raw_material,/obj/item/material_piece)

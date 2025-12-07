@@ -8,6 +8,14 @@
 	var/datum/fluid_group/my_group = null
 	var/last_reaction_loc = 0
 	var/skip_next_update = 0
+
+/*
+	start_combusting()
+		for(var/turf/T in src.covered_turf())
+			if(T.air && T.air.oxygen >= REAGENT_COMBUSTION_MINIMUM_OXYGEN_NEEDED && (T.air.oxygen / MIXTURE_PRESSURE(T.air) >= REAGENT_COMBUSTION_MINIMUM_OXYGEN_PERCENTAGE))
+				return ..()
+*/
+
 	covered_turf()
 		.= list()
 		if (my_group)

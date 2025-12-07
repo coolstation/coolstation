@@ -1,11 +1,11 @@
-#define ASSOCIATE_MOB_PROPERTY(PROP) \
+#define ASSOCIATE_ATOM_PROPERTY(PROP) \
 	updateMob(obj/item/owner, mob/user, value, oldValue=null) { \
 		. = ..(); \
-		APPLY_MOB_PROPERTY(user, PROP, owner, value); \
+		APPLY_ATOM_PROPERTY(user, PROP, owner, value); \
 	} \
 	removeFromMob(obj/item/owner, mob/user, value) { \
 		. = ..(); \
-		REMOVE_MOB_PROPERTY(user, PROP, owner); \
+		REMOVE_ATOM_PROPERTY(user, PROP, owner); \
 	}
 
 /obj/item/proc/dbg_objectprop()
@@ -202,23 +202,6 @@ var/list/globalPropList = null
 		getTooltipDesc(var/obj/propOwner, var/propVal)
 			return "[propVal]% pierce resist"
 
-	movement
-		name = "Speed"
-		id = "movespeed"
-		desc = "Modifies movement speed." //Value is additional movement speed delay. (how much slower - negative value for speed increase)
-		tooltipImg = "movement.png"
-		defaultValue = 1
-		goodDirection = -1
-		getTooltipDesc(var/obj/propOwner, var/propVal)
-			return "[propVal] movement delay"
-
-		space
-			name = "Speed"
-			id = "space_movespeed"
-
-			getTooltipDesc(var/obj/propOwner, var/propVal)
-				return "[propVal] movement delay - 0 when worn in space."
-
 	viralprot
 		name = "Resistance (Viral)"
 		id = "viralprot"
@@ -254,15 +237,6 @@ var/list/globalPropList = null
 		defaultValue = 10
 		getTooltipDesc(var/obj/propOwner, var/propVal)
 			return "-[propVal]% stamina costs."
-
-	negate_fluid_speed_penalty //important : delay added to dry land!
-		name = "Fluid movement"
-		id = "negate_fluid_speed_penalty"
-		desc = "Negates fluid speed penalties."
-		tooltipImg = "movement.png"
-		defaultValue = 1
-		getTooltipDesc(var/obj/propOwner, var/propVal)
-			return "Negates fluid speed penalties.<br>+[propVal] movement delay on dry land."
 
 	momentum // force increases as you attack players.
 		name = "Momentum"
@@ -432,9 +406,9 @@ to say if there's demand for that.
 		if(istype(owner.loc, /mob) && !isnull(owner.equipped_in_slot))
 			src.removeFromMob(owner, owner.loc, value)
 
-// at the moment the mob property stuff only makes sense for human mobs!!
-// Also currently the "source" of the mob property is the owner of the property (the item).
-// If you are adding other properties granting some mob property make sure to use something like "\ref[owner]-something"
+// at the moment the atom property stuff only makes sense for human mobs!!
+// Also currently the "source" of the atom property is the owner of the property (the item).
+// If you are adding other properties granting some atom property make sure to use something like "\ref[owner]-something"
 // as the source. This might be useful for blocking properties for example.
 
 /datum/objectProperty/equipment/meleeprot
@@ -448,22 +422,22 @@ to say if there's demand for that.
 
 	body
 		id = "meleeprot"
-		ASSOCIATE_MOB_PROPERTY(PROP_MELEEPROT_BODY)
+		ASSOCIATE_ATOM_PROPERTY(PROP_MELEEPROT_BODY)
 
 	head //ugly hack im sorry, this is used for head, mask, glasses and ear clothing
 		id = "meleeprot_head"
-		ASSOCIATE_MOB_PROPERTY(PROP_MELEEPROT_HEAD)
+		ASSOCIATE_ATOM_PROPERTY(PROP_MELEEPROT_HEAD)
 
 	all //ugly hack but I'm not sorry, this is used for barriers
 		id = "meleeprot_all"
 		updateMob(obj/item/owner, mob/user, value, oldValue=null)
 			. = ..()
-			APPLY_MOB_PROPERTY(user, PROP_MELEEPROT_BODY, owner, value)
-			APPLY_MOB_PROPERTY(user, PROP_MELEEPROT_HEAD, owner, value)
+			APPLY_ATOM_PROPERTY(user, PROP_MELEEPROT_BODY, owner, value)
+			APPLY_ATOM_PROPERTY(user, PROP_MELEEPROT_HEAD, owner, value)
 		removeFromMob(obj/item/owner, mob/user, value)
 			. = ..()
-			REMOVE_MOB_PROPERTY(user, PROP_MELEEPROT_BODY, owner)
-			REMOVE_MOB_PROPERTY(user, PROP_MELEEPROT_HEAD, owner)
+			REMOVE_ATOM_PROPERTY(user, PROP_MELEEPROT_BODY, owner)
+			REMOVE_ATOM_PROPERTY(user, PROP_MELEEPROT_HEAD, owner)
 
 /datum/objectProperty/equipment/rangedprot
 	name = "Resistance (Ranged)"
@@ -474,7 +448,7 @@ to say if there's demand for that.
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "[propVal] prot."
 
-	ASSOCIATE_MOB_PROPERTY(PROP_RANGEDPROT)
+	ASSOCIATE_ATOM_PROPERTY(PROP_RANGEDPROT)
 
 /datum/objectProperty/equipment/radiationprot
 	name = "Resistance (Radiation)"
@@ -485,7 +459,7 @@ to say if there's demand for that.
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "[propVal]%"
 
-	ASSOCIATE_MOB_PROPERTY(PROP_RADPROT)
+	ASSOCIATE_ATOM_PROPERTY(PROP_RADPROT)
 
 /datum/objectProperty/equipment/coldprot
 	name = "Resistance (Cold)"
@@ -496,7 +470,7 @@ to say if there's demand for that.
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "[propVal]%"
 
-	ASSOCIATE_MOB_PROPERTY(PROP_COLDPROT)
+	ASSOCIATE_ATOM_PROPERTY(PROP_COLDPROT)
 
 /datum/objectProperty/equipment/heatprot
 	name = "Resistance (Heat)"
@@ -507,7 +481,7 @@ to say if there's demand for that.
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "[propVal]%"
 
-	ASSOCIATE_MOB_PROPERTY(PROP_HEATPROT)
+	ASSOCIATE_ATOM_PROPERTY(PROP_HEATPROT)
 
 /datum/objectProperty/equipment/exploprot
 	name = "Resistance (Explosion)"
@@ -518,7 +492,7 @@ to say if there's demand for that.
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "[propVal]%"
 
-	ASSOCIATE_MOB_PROPERTY(PROP_EXPLOPROT)
+	ASSOCIATE_ATOM_PROPERTY(PROP_EXPLOPROT)
 
 /datum/objectProperty/equipment/slidekick_bonus
 	name = "Slidekick Bonus"
@@ -528,7 +502,7 @@ to say if there's demand for that.
 	defaultValue = 0
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "+[propVal] tiles"
-	ASSOCIATE_MOB_PROPERTY(PROP_SLIDEKICK_BONUS)
+	ASSOCIATE_ATOM_PROPERTY(PROP_SLIDEKICK_BONUS)
 
 /datum/objectProperty/equipment/reflection // force increases as you attack players.
 	name = "Reflection"
@@ -539,13 +513,13 @@ to say if there's demand for that.
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "Reflecting projectiles"
 
-	// no ASSOCIATE_MOB_PROPERTY because this one is simple, valueless
+	// no ASSOCIATE_ATOM_PROPERTY because this one is simple, valueless
 	updateMob(obj/item/owner, mob/user, value, oldValue=null)
 		. = ..()
-		APPLY_MOB_PROPERTY(user, PROP_REFLECTPROT, owner)
+		APPLY_ATOM_PROPERTY(user, PROP_REFLECTPROT, owner)
 	removeFromMob(obj/item/owner, mob/user, value)
 		. = ..()
-		REMOVE_MOB_PROPERTY(user, PROP_REFLECTPROT, owner)
+		REMOVE_ATOM_PROPERTY(user, PROP_REFLECTPROT, owner)
 
 /datum/objectProperty/equipment/enchantarmor
 	hidden = 1
@@ -555,7 +529,7 @@ to say if there's demand for that.
 	tooltipImg = "block.png"
 	defaultValue = 1
 
-	ASSOCIATE_MOB_PROPERTY(PROP_ENCHANT_ARMOR)
+	ASSOCIATE_ATOM_PROPERTY(PROP_ENCHANT_ARMOR)
 
 /datum/objectProperty/equipment/stamregen
 	name = "Stamina regen."
@@ -567,7 +541,7 @@ to say if there's demand for that.
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "[propVal] stamina regen."
 
-	ASSOCIATE_MOB_PROPERTY(PROP_STAMINA_REGEN_BONUS)
+	ASSOCIATE_ATOM_PROPERTY(PROP_STAMINA_REGEN_BONUS)
 
 /datum/objectProperty/equipment/deflection
 	name = "Deflection"
@@ -579,6 +553,100 @@ to say if there's demand for that.
 	getTooltipDesc(var/obj/propOwner, var/propVal)
 		return "+[propVal]% additional chance to deflect disarm attempts"
 
-	ASSOCIATE_MOB_PROPERTY(PROP_DISARM_RESIST)
+	ASSOCIATE_ATOM_PROPERTY(PROP_DISARM_RESIST)
 
-#undef ASSOCIATE_MOB_PROPERTY
+/datum/objectProperty/equipment/disorient_resist
+	name = "Body Insulation (Disorient Resist)"
+	id = "disorient_resist"
+	desc = "Reduces disorient effects on the wearer." //Value is % protection.
+	tooltipImg = "protdisorient.png"
+	defaultValue = 0
+	getTooltipDesc(var/obj/propOwner, var/propVal)
+		return "[propVal]%"
+
+	ASSOCIATE_ATOM_PROPERTY(PROP_DISORIENT_RESIST_BODY)
+	ASSOCIATE_ATOM_PROPERTY(PROP_DISORIENT_RESIST_BODY_MAX)
+
+	inline
+		inline = 1
+		hidden = 1
+		name = "Body Insulation (Disorient Resist)"
+		id = "I_disorient_resist"
+		desc = "Reduces disorient effects on the wearer." //Value is % protection.
+		tooltipImg = "protdisorient.png"
+		defaultValue = 0
+		getTooltipDesc(var/obj/propOwner, var/propVal)
+			return "[propVal]%"
+
+/datum/objectProperty/equipment/disorient_resist_eye
+	name = "Eye Insulation (Disorient Resist)"
+	id = "disorient_resist_eye"
+	desc = "Reduces disorient effects that apply through vision on the wearer." //Value is % protection.
+	tooltipImg = "protdisorient_eye.png"
+	defaultValue = 0
+	getTooltipDesc(var/obj/propOwner, var/propVal)
+		return "[propVal]%"
+
+	ASSOCIATE_ATOM_PROPERTY(PROP_DISORIENT_RESIST_EYE)
+	ASSOCIATE_ATOM_PROPERTY(PROP_DISORIENT_RESIST_EYE_MAX)
+
+/datum/objectProperty/equipment/disorient_resist_ear
+	name = "Ear Insulation (Disorient Resist)"
+	id = "disorient_resist_ear"
+	desc = "Reduces disorient effects that apply through sound on the wearer." //Value is % protection.
+	tooltipImg = "protdisorient_ear.png"
+	defaultValue = 0
+	getTooltipDesc(var/obj/propOwner, var/propVal)
+		return "[propVal]%"
+
+	ASSOCIATE_ATOM_PROPERTY(PROP_DISORIENT_RESIST_EAR)
+	ASSOCIATE_ATOM_PROPERTY(PROP_DISORIENT_RESIST_EAR_MAX)
+
+/datum/objectProperty/equipment/movement
+	name = "Speed"
+	id = "movespeed"
+	desc = "Modifies movement speed." //Value is additional movement speed delay. (how much slower - negative value for speed increase)
+	tooltipImg = "movement.png"
+	defaultValue = 1
+	goodDirection = -1
+	getTooltipDesc(var/obj/propOwner, var/propVal)
+		return "[propVal] movement delay"
+	ASSOCIATE_ATOM_PROPERTY(PROP_EQUIPMENT_MOVESPEED)
+
+/datum/objectProperty/equipment/movement/in_hand
+	name = "Speed"
+	id = "carried_movespeed"
+	desc = "Modifies movement speed." //Value is additional movement speed delay. (how much slower - negative value for speed increase)
+
+	onEquipped(obj/item/owner, mob/user, value, slot)
+		if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
+			return 0
+		. = ..()
+
+	onUnequipped(obj/item/owner, mob/user, value)
+		if(owner.equipped_in_slot != SLOT_L_HAND && owner.equipped_in_slot != SLOT_R_HAND)
+			return 0
+		. = ..()
+
+	getTooltipDesc(var/obj/propOwner, var/propVal)
+		return "[propVal] movement delay - 0 when worn."
+
+/datum/objectProperty/equipment/movement/space
+	name = "Speed"
+	id = "space_movespeed"
+
+	getTooltipDesc(var/obj/propOwner, var/propVal)
+		return "[propVal] movement delay - 0 when worn in space."
+	ASSOCIATE_ATOM_PROPERTY(PROP_EQUIPMENT_MOVESPEED_SPACE)
+
+/datum/objectProperty/equipment/movement/fluid //important : delay added to dry land!
+	name = "Fluid movement"
+	id = "negate_fluid_speed_penalty"
+	desc = "Negates fluid speed penalties."
+	tooltipImg = "movement.png"
+	defaultValue = 1
+	getTooltipDesc(var/obj/propOwner, var/propVal)
+		return "Negates fluid speed penalties.<br>+[propVal] movement delay on dry land."
+	ASSOCIATE_ATOM_PROPERTY(PROP_EQUIPMENT_MOVESPEED_FLUID)
+
+#undef ASSOCIATE_ATOM_PROPERTY

@@ -196,12 +196,9 @@
 			if(src.artifact_resupply_amount)
 				SPAWN_DBG(rand(1,5) MINUTES)
 					// message
-					var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 					var/datum/signal/pdaSignal = get_free_signal()
 					pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGD_SCIENCE), "sender"="00000000", "message"="Notification: Incoming artifact resupply crate. ([artifact_resupply_amount] objects)")
-					pdaSignal.transmission_method = TRANSMISSION_RADIO
-					if(transmit_connection != null)
-						transmit_connection.post_signal(null, pdaSignal)
+					radio_controller.get_frequency(FREQ_PDA).post_packet_without_source(pdaSignal)
 					// actual shipment
 					var/obj/storage/crate/artcrate = new /obj/storage/crate()
 					artcrate.name = "Artifact Resupply Crate"
@@ -217,7 +214,6 @@
 
 		// give PDA group messages
 		if (notify_PDAs)
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			var/message = "Notification: [price] credits earned from outgoing artifact \'[sell_art.name]\'. "
 			if(pap)
@@ -225,9 +221,7 @@
 			else
 				message += "Artifact was not analyzed."
 			pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGD_SCIENCE, MGA_SALES), "sender"="00000000", "message"=message)
-			pdaSignal.transmission_method = TRANSMISSION_RADIO
-			if(transmit_connection != null)
-				transmit_connection.post_signal(null, pdaSignal)
+			radio_controller.get_frequency(FREQ_PDA).post_packet_without_source(pdaSignal)
 		else //sellin' via shuttle
 			return list(price, pap ? (pap.lastAnalysis/3)*100 : null)
 
@@ -253,6 +247,7 @@
 					if (sell)
 						qdel(O)
 					continue
+				var/found = 0
 				for (var/C in src.commodities) // Key is type of the commodity
 					var/datum/commodity/CM = commodities[C]
 					if (istype(O, CM.comtype))
@@ -277,10 +272,14 @@
 								qdel(O)
 						//TODO: if (duckets < 0) then penalty += add else
 						duckets += add
+						found =1
 						break
+				if(!found)
+					duckets += O.w_class
 
 		else // Please excuse this duplicate code, I'm gonna change trader commodity lists into associative ones later I swear
 			for(var/obj/O in items)
+				var/found = 0
 				if (istype(O, /obj/item/spacecash))
 					duckets += O:amount
 					if (sell)
@@ -299,40 +298,39 @@
 							if (sell)
 								qdel(O)
 						duckets += add
+						found = 1
 						break
+				if(!found)
+					duckets += O.w_class
 
 
 		return max(duckets, 0) //remove max() to allow negative profits (from selling special deliveries back), dunno what happens if cargo's budget goes in the red though
 
 	proc/sell_crate(obj/storage/crate/sell_crate, var/list/commodities_list, notify_PDAs = TRUE)
 		var/obj/item/card/id/scan = sell_crate.scan
-		var/datum/data/record/account = sell_crate.account
+		var/datum/db_record/account = sell_crate.account
 
 		var/duckets = src.appraise_value(sell_crate, commodities_list, 1) + src.points_per_crate
 		var/list/proceeds
-
 
 		qdel(sell_crate)
 
 		if(scan && account)
 			//No more giving folks half a credit. What are we, complicatedmathsotrasen?
 			wagesystem.shipping_budget += ceil(duckets / 2)
-			account.fields["current_money"] += round(duckets / 2)
+			account["current_money"] += round(duckets / 2)
 			proceeds = list(ceil(duckets / 2), round(duckets / 2))
 		else
 			wagesystem.shipping_budget += duckets
 			proceeds = list(duckets, 0)
 		if (notify_PDAs)
-			var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 			var/datum/signal/pdaSignal = get_free_signal()
 			if(scan && account)
 				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGA_SALES), "sender"="00000000", "message"="Notification: [duckets] credits earned from last outgoing shipment. Splitting half of profits with [scan.registered].")
 			else
 				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT",  "group"=list(MGD_CARGO, MGA_SALES), "sender"="00000000", "message"="Notification: [duckets] credits earned from last outgoing shipment.")
 
-			pdaSignal.transmission_method = TRANSMISSION_RADIO
-			if(transmit_connection != null)
-				transmit_connection.post_signal(null, pdaSignal)
+			radio_controller.get_frequency(FREQ_PDA).post_packet_without_source(pdaSignal)
 		else return proceeds
 
 	proc/receive_crate(atom/movable/shipped_thing, notify_PDAs = TRUE)
@@ -358,7 +356,6 @@
 				shipped_thing.set_loc(free_turf)
 
 			if (notify_PDAs)
-				var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
 				var/datum/signal/pdaSignal = get_free_signal()
 				pdaSignal.transmission_method = TRANSMISSION_RADIO
 				if(free_turf)
@@ -367,7 +364,7 @@
 				else
 					pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="<span class='alert'><b>Failed to load shipment: [shipped_thing.name]. Check shuttle status.</b></span>")
 
-				transmit_connection.post_signal(null, pdaSignal)
+				radio_controller.get_frequency(FREQ_PDA).post_packet_without_source(pdaSignal)
 			return
 
 
@@ -392,12 +389,10 @@
 
 			shipped_thing.set_loc(spawnpoint)
 
-			if (notify_PDAs)
-				var/datum/radio_frequency/transmit_connection = radio_controller.return_frequency("[FREQ_PDA]")
+			if(notify_PDAs)
 				var/datum/signal/pdaSignal = get_free_signal()
 				pdaSignal.data = list("address_1"="00000000", "command"="text_message", "sender_name"="CARGO-MAILBOT", "group"=list(MGD_CARGO, MGA_SHIPPING), "sender"="00000000", "message"="Shipment arriving to Cargo Bay: [shipped_thing.name].")
-				pdaSignal.transmission_method = TRANSMISSION_RADIO
-				transmit_connection.post_signal(null, pdaSignal)
+				radio_controller.get_frequency(FREQ_PDA).post_packet_without_source(pdaSignal)
 
 
 
@@ -458,8 +453,8 @@
 
 	var/payroll = 0
 	var/totalfunds = wagesystem.station_budget + wagesystem.research_budget + wagesystem.shipping_budget
-	for(var/datum/data/record/R in data_core.bank)
-		payroll += R.fields["wage"]
+	for(var/datum/db_record/R as anything in data_core.bank.records)
+		payroll += R["wage"]
 
 	var/dat = {"<B>Budget Variables:</B>
 	<BR><BR><u><b>Total Station Funds:</b> $[num2text(totalfunds,50)]</u>

@@ -8,10 +8,11 @@
 	density = 0
 	canmove = 0
 	blinded = 0
-	anchored = 1
+	anchored = ANCHORED
 	alpha = 180
 	stat = 0
 	suicide_can_succumb = 0
+	pass_unstable = PRESERVE_CACHE
 	var/autofree = 0
 	var/firstfortune = 1
 	var/free = 0
@@ -22,7 +23,7 @@
 
 	New(var/mob/M)
 		..()
-		APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
+		APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
 		src.abilityHolder = new /datum/abilityHolder/zoldorf(src)
 		src.sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 		src.see_invisible = 16
@@ -99,7 +100,7 @@
 		src.addAbility(/datum/targetable/zoldorfAbility/color)
 
 		the_zoldorf = list()
-		spawn(0)
+		SPAWN_DBG(0)
 			src << browse(grabResource("html/traitorTips/souldorfTips.htm"),"window=antagTips;titlebar=1;size=600x400;can_minimize=0;can_resize=0")
 
 	Login()
@@ -154,7 +155,7 @@
 			else
 				animate_spin(src, "L", 1, 0)
 			src.UpdateOverlays(image('icons/obj/zoldorf.dmi',"ectooverlay"),"ecto")
-			REMOVE_MOB_PROPERTY(src, PROP_INVISIBILITY, src)
+			REMOVE_ATOM_PROPERTY(src, PROP_INVISIBILITY, src)
 			qdel(target)
 		else
 			src.examine_verb(target)
@@ -244,14 +245,14 @@
 		switch (lowertext(act))
 			if("flip")
 				if(invisibility)
-					if(src.emote_check(voluntary, 100, 1, 0))
+					if(src.emote_check(voluntary, 100, 1, STAT_DEAD))
 						src.visible_message("<span><b>[src.name]</b> spins in place!</span>")
 						if (prob(50))
 							animate_spin(src, "R", 1, 0)
 						else
 							animate_spin(src, "L", 1, 0)
 				else
-					if(src.emote_check(voluntary, 100, 1, 0))
+					if(src.emote_check(voluntary, 100, 1, STAT_DEAD))
 
 						src.visible_message("<span><b>[src.name]</b> shakes off the ectoplasm!</span>")
 						var/wiggle = 6
@@ -262,7 +263,7 @@
 							sleep(0.1 SECONDS)
 						src.pixel_x = 0
 						src.pixel_y = 0
-						APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
+						APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
 						src.ClearAllOverlays()
 						var/obj/item/reagent_containers/food/snacks/ectoplasm/e = new /obj/item/reagent_containers/food/snacks/ectoplasm
 						e.set_loc(get_turf(src))
@@ -272,7 +273,7 @@
 				soulcache = src.icon
 				if(!src.invisibility)
 					src.visible_message("<span class='alert'><b>The ectoplasm falls off! Oh no!</b></span>")
-					APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
+					APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, src, INVIS_GHOST)
 					src.ClearAllOverlays()
 					var/obj/item/reagent_containers/food/snacks/ectoplasm/e = new /obj/item/reagent_containers/food/snacks/ectoplasm
 					e.set_loc(get_turf(src))
@@ -284,7 +285,7 @@
 				src.icon = soulcache
 				src.emoting = 0
 			if("scream")
-				if(src.emote_check(voluntary, 100, 1, 0))
+				if(src.emote_check(voluntary, 100, 1, STAT_DEAD))
 					src.visible_message("<span><b>[src.name]</b> vibrates mid-air...</span>")
 					var/wiggle = 6
 					while(wiggle > 0)

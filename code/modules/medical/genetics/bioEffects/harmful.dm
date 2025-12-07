@@ -689,7 +689,7 @@
 			pulse.icon = 'icons/effects/effects.dmi'
 			pulse.icon_state = "emppulse"
 			pulse.name = "emp pulse"
-			pulse.anchored = 1
+			pulse.anchored = ANCHORED
 			SPAWN_DBG(2 SECONDS)
 				if (pulse) qdel(pulse)
 
@@ -718,11 +718,11 @@
 	icon_state  = "bad"
 
 	OnAdd()
-		APPLY_MOB_PROPERTY(src.owner, PROP_STAMINA_REGEN_BONUS, "g-fitness-debuff", -2)
+		APPLY_ATOM_PROPERTY(src.owner, PROP_STAMINA_REGEN_BONUS, "g-fitness-debuff", -2)
 		src.owner.add_stam_mod_max("g-fitness-debuff", -30)
 
 	OnRemove()
-		REMOVE_MOB_PROPERTY(src.owner, PROP_STAMINA_REGEN_BONUS, "g-fitness-debuff")
+		REMOVE_ATOM_PROPERTY(src.owner, PROP_STAMINA_REGEN_BONUS, "g-fitness-debuff")
 		src.owner.remove_stam_mod_max("g-fitness-debuff")
 
 /datum/bioEffect/tinnitus
@@ -757,11 +757,10 @@
 	icon_state  = "bad"
 
 	OnLife(var/mult)
-		if (ishuman(owner))
-			var/mob/living/carbon/human/H = owner
-
-			if (H.blood_volume > 400 && H.blood_volume > 0)
-				H.blood_volume -= 2*mult
+		if(..()) return
+		var/mob/living/L = owner
+		if(L.uses_blood && L.reagents.total_volume > L.ideal_blood_volume * 0.8)
+			L.reagents.remove_reagent(L.blood_id, L.ideal_blood_volume * 3 * BLOOD_SCALAR * mult)
 
 /datum/bioEffect/polycythemia
 	name = "Polycythemia"
@@ -777,12 +776,11 @@
 	icon_state  = "bad"
 
 	OnLife(var/mult)
-
-		if (ishuman(owner))
-			var/mob/living/carbon/human/H = owner
-
-			if (H.blood_volume < 600 && H.blood_volume > 0)
-				H.blood_volume += 2*mult
+		if(..()) return
+		var/mob/living/L = owner
+		if(!L.uses_blood) return
+		if(L.reagents.total_volume < L.ideal_blood_volume * 1.2)
+			L.reagents.add_reagent(L.blood_id, L.ideal_blood_volume * 2.5 * BLOOD_SCALAR * mult, temp_new = L.base_body_temp)
 
 
 ////////////////////////////

@@ -30,6 +30,7 @@ datum
 			desc = "A slightly radioactive heavy metal not suitable for nuclear fission. This is the unenriched byproduct form."
 			color = "#1E461E"
 			alpha = 255
+			taste = "metallic"
 
 			nuke_compat = 1
 			fissile = 1
@@ -56,6 +57,7 @@ datum
 			reagent_state = SOLID
 			color = "#286428"
 			alpha = 255
+			taste = "metallic"
 
 			nuke_compat = 1
 			fissile = 1
@@ -82,6 +84,7 @@ datum
 			reagent_state = SOLID
 			color = "#282864"
 			alpha = 255
+			taste = "metallic"
 
 			nuke_compat = 1
 			fissile = 1
@@ -111,6 +114,7 @@ datum
 			fluid_g = 0
 			fluid_b = 0
 			alpha = 255
+			taste = "like a bug report"
 
 			nuke_compat = 1
 			fissile = 1

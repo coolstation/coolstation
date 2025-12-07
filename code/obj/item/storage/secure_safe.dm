@@ -452,7 +452,7 @@
 	flags = FPRINT | TABLEPASS
 	force = 8.0
 	w_class = W_CLASS_BULKY
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 0
 	mats = 8
 	desc = "A extremely tough secure safe."

@@ -23,8 +23,8 @@ Custom Books
 	//
 
 	stamina_damage = 2
-	stamina_cost = 2
-	stamina_crit_chance = 0
+//	stamina_cost = 2
+//	stamina_crit_chance = 0
 
 	attack_self(mob/user)
 		return user.examine_verb(src)
@@ -231,6 +231,7 @@ Custom Books
 
 /obj/item/paper/book/from_file/space_law
 	name = "Space Law"
+	hint = "if you don't follow this to the letter, who will really stop you...?"
 	desc = "A book explaining the laws of space. Well, this section of space, at least."
 	icon_state = "spacelaw"
 	file_path = "strings/books/space_law.txt"
@@ -244,7 +245,7 @@ Custom Books
 
 	density = 0
 	opacity = 0
-	anchored = 0
+	anchored = UNANCHORED
 
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "lawbook"
@@ -331,16 +332,13 @@ Custom Books
 	examine(mob/user)
 		if (!issilicon(user))
 			. = list("What...what is this? It's written entirely in barcodes or something, cripes. You can't make out ANY of this.")
-			var/mob/living/carbon/jerk = user
+			var/mob/living/carbon/human/jerk = user
 			if (!istype(jerk))
 				return
 
-			for(var/datum/data/record/R in data_core.general)
-				if(R.fields["name"] == jerk.real_name)
-					for (var/datum/data/record/S in data_core.security)
-						if (S.fields["id"] == R.fields["id"])
-							S.fields["criminal"] = "*Arrest*"
-							S.fields["mi_crim"] = "Reading highly-confidential private information."
+			var/datum/db_record/S = data_core.security.find_record("id", jerk.datacore_id)
+			S?["criminal"] = "*Arrest*"
+			S?["mi_crim"] = "Reading highly-confidential private information."
 		else
 			return list("It appears to be heavily encrypted information.")
 
@@ -449,6 +447,12 @@ Custom Books
 	icon_state = "book0"
 	file_path = "strings/books/oldwoman.txt"
 
+/obj/item/paper/book/from_file/hosenscheissen
+	name = "die Hosen scheißen"
+	desc = "Seems to be written in Austrian."
+	icon_state = "paper"
+	file_path = "strings/books/die_hosen_scheissen.txt"
+
 /obj/item/paper/book/ratbook
 	name = "chewed and mangled book"
 	desc = "Huh, what is this?"
@@ -475,6 +479,17 @@ soon the light of the unwaking will rise and the shining ones will not be prepar
 	desc = "It looks eclesiastical."
 	icon_state = "book0"
 	file_path = "strings/books/clergy_diary.txt"
+
+/obj/item/paper/charge_sequence
+	name = "Paper- Charge Initial Procedure"
+	desc = "A firm, thick piece of cardstock that describes the nuclear charge connection procedure."
+	icon_state = "paper-stamped"
+	info = {"<center><b>CONNECTION PROCEDURE:</b></center><ul>
+			<li>Step One: Ensure what you are doing is worth it, and authorized by command.</li>
+			<li>Step Two: Lift demarcated charge disconnect panel and close breaker.</li>
+			<li>Step Three: Insert tape marked ███████ out of the provided.</li>
+			<li>Step Four: Refer to document 45-C 'NUKEMAN USAGE AND BEST PRACTICES'</li></ul>
+			<b>DEVICES MAY NEED TO BE RESET BEFORE THEY ARE SEEN BY THE OPERATING SYSTEM</b>"}
 
 /obj/item/paper/book/sillytexts
 	name = "THE ANCIENT TEXTS"

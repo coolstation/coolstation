@@ -1,5 +1,3 @@
-
-
 //Italian Gunse
 //Lower damage, higher fire rate
 //Cylinder "magazine"
@@ -131,14 +129,19 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 	stock_overlay_x = -5
 	stock_overlay_y = -2
 	load_time = 1 SECOND
-	max_ammo_capacity = 6
+	max_ammo_capacity = 4
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 
 	shoot_delay = 0.1 SECONDS // this is a lie. its actually 0.6ish seconds if youre good
 	reload_cooldown = 0.2 SECONDS
 
+	recoil_mult = 0.65
+	recoil_inaccuracy_max = 20
+
 	var/hammer_cocked = FALSE
 	var/currently_firing = FALSE
+	var/recoil_mult_per_fan = 0.35
 
 	//MAYBE: handle unloading all rounds (shot or unshot) at same time, don't load until unloaded?
 	//much too consider
@@ -170,8 +173,10 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 						sleep(0.4 SECONDS)
 						if(src.hammer_cocked)
 							src.chamber_round(user)
+							src.recoil_mult += src.recoil_mult_per_fan
 					if(src.hammer_cocked)
 						playsound(src.loc, "sound/weapons/dryfire.ogg", 35, 1)
+					src.recoil_mult = initial(src.recoil_mult)
 				else
 					playsound(src.loc, "sound/weapons/dryfire.ogg", 35, 1)
 				src.hammer_cocked = FALSE
@@ -190,13 +195,13 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/revolver)
 		return ..()
 
 	alter_projectile(obj/projectile/P, mob/user)
-		P.power = P.power * (0.7 + 0.2 * src.two_handed)
+		P.power = P.power * (0.5 + 0.15 * src.two_handed)
 		..()
 
 	displayed_power()
 		if(src.current_projectile)
-			return "[floor(BARREL_SCALING(src.barrel?.length) * (src.current_projectile.power * (0.7 + 0.2 * src.two_handed)))] dmg - [current_projectile.ks_ratio * 100]% lethal"
-		return "[round(BARREL_SCALING(src.barrel?.length) * 100 * (0.7 + 0.2 * src.two_handed), 0.5)]% power"
+			return "[floor(BARREL_SCALING(src.barrel?.length) * (src.current_projectile.power * (0.5 + 0.15 * src.two_handed)))] dmg - [current_projectile.ks_ratio * 100]% lethal"
+		return "[round(BARREL_SCALING(src.barrel?.length) * 100 * (0.5 + 0.15 * src.two_handed), 0.5)]% power"
 
 	load_ammo(mob/user, obj/item/stackable_ammo/donor_ammo)
 		if(src.hammer_cocked)
@@ -222,16 +227,17 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 	load_time = 0.3 SECONDS // reloads exceptionally fast as long as you use ammo with low load_time
 	max_ammo_capacity = 15
 	bulkiness = 3
-	var/successful_chamber_frequency = 27
-	var/failed_chamber_fudge = 3 // each failed chamber boosts successful_chamber_frequency by this much until the gun is reloaded or chambers
+	w_class = W_CLASS_NORMAL
+	var/successful_chamber_frequency = 30
+	var/failed_chamber_fudge = 5 // each failed chamber boosts successful_chamber_frequency by this much until the gun is reloaded or chambers
 	var/max_fudged_chance = 90 // maxes at this chance after enough fudges
 	var/failures_to_chamber = 0
 
 	shoot_delay = 0.2 SECONDS
 	reload_cooldown = 0.5 SECONDS
 
-	recoil_strength = 4
-	recoil_inaccuracy_max = 12
+	recoil_mult = 2
+	recoil_inaccuracy_max = 14
 	recoil_stacking_enabled = TRUE
 	recoil_stacking_amount = 2
 	recoil_stacking_safe_stacks = 1
@@ -273,12 +279,12 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/rattler)
 		qdel(C)
 
 	alter_projectile(obj/projectile/P, mob/user)
-		P.power = P.power * (0.35 + 0.2 * src.two_handed + 0.25 * src.recoil / src.recoil_max)
+		P.power = P.power * (0.3 + 0.2 * src.two_handed + 0.25 * src.recoil / src.recoil_max)
 		..()
 
 	displayed_power()
-		var/lower_scale = BARREL_SCALING(src.barrel?.length) * (0.35 + 0.2 * src.two_handed)
-		var/upper_scale = BARREL_SCALING(src.barrel?.length) * (0.35 + 0.2 * src.two_handed + 0.25)
+		var/lower_scale = BARREL_SCALING(src.barrel?.length) * (0.3 + 0.2 * src.two_handed)
+		var/upper_scale = BARREL_SCALING(src.barrel?.length) * (0.3 + 0.2 * src.two_handed + 0.25)
 		if(src.current_projectile)
 			return "[floor(lower_scale * src.current_projectile.power)] to [floor(upper_scale * src.current_projectile.power)] dmg - [current_projectile.ks_ratio * 100]% lethal"
 		return "[round(100 * lower_scale, 0.5)]% to [round(100 * upper_scale, 0.5)]% power"
@@ -305,10 +311,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/sniper)
 	stock_overlay_y = -1
 	max_ammo_capacity = 2
 	bulkiness = 4
+	w_class = W_CLASS_NORMAL
 
 	load_time = 1.3 SECONDS
 
-	recoil_strength = 25
+	recoil_mult = 2.5
 	recoil_reset_mult = 0.975
 	recoil_inaccuracy_max = 20
 
@@ -384,6 +391,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	stock_overlay_y = -1
 	max_ammo_capacity = 3
 	bulkiness = 5
+	w_class = W_CLASS_NORMAL
 	caliber = CALIBER_SPUD
 	load_time = 1.5 SECONDS
 	spread_angle = 0
@@ -438,7 +446,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	name = "basic Italian revolver"
 	real_name = "\improper Italianetto"
 	desc = "Una pistola realizzata in acciaio mediocre."
-	max_ammo_capacity = 5
+	max_ammo_capacity = 4
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/short(src)
@@ -449,7 +457,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	name = "improved Italian revolver"
 	real_name = "\improper Italiano"
 	desc = "Una pistola realizzata in acciaio di qualità e pelle."
-	max_ammo_capacity = 6
+	max_ammo_capacity = 5
 
 	make_parts()
 		if (prob(50))
@@ -468,7 +476,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	name = "masterwork Italian revolver"
 	real_name = "\improper Italianone"
 	desc = "Una pistola realizzata con acciaio, cuoio e olio d'oliva della più alta qualità possibile."
-	max_ammo_capacity = 7
+	max_ammo_capacity = 6
 
 	make_parts()
 
@@ -483,7 +491,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 /obj/item/gun/modular/italian/revolver/silly
 	name = "jokerfied Italian revolver"
 	real_name = "\improper Grande Italiano"
-	max_ammo_capacity = 7
+	max_ammo_capacity = 5
 	desc = "Io sono il pagliaccio, bambino!"
 
 	make_parts()
@@ -496,6 +504,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	desc = "Buttateli nella polvere con questa piccola arma da fuoco."
 	max_ammo_capacity = 2
 	bulkiness = 1
+	w_class = W_CLASS_TINY
 
 	make_parts()
 		barrel = new /obj/item/gun_parts/barrel/italian/derringer(src)
@@ -515,11 +524,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	name = "basic Italian rattler"
 	real_name = "\improper Bacino"
 	desc = "Tecnicamente è un revolver, con un tamburo enorme e un meccanismo di cameratura inaffidabile."
-	bulkiness = 3
 
 	load_time = 0.4 SECONDS
-	successful_chamber_frequency = 40
-	failed_chamber_fudge = 3
+	failed_chamber_fudge = 4
 
 	make_parts()
 		if(prob(60))
@@ -541,7 +548,6 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	desc = "Un modello recente di revolver con un massiccio tamburo lucidato."
 
 	load_time = 0.3 SECONDS
-	successful_chamber_frequency = 30
 
 	make_parts()
 		if(prob(70))
@@ -563,8 +569,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/italian/launcher)
 	desc = "Un revolver all'avanguardia con un cilindro massiccio ben unto con olio d'oliva."
 
 	load_time = 0.25 SECONDS
-	successful_chamber_frequency = 30
-	failed_chamber_fudge = 3.5
+	failed_chamber_fudge = 6
 
 	make_parts()
 		stock = new /obj/item/gun_parts/stock/italian(src)

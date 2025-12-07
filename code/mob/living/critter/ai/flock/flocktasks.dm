@@ -1,5 +1,6 @@
 // base shared flock AI stuff
 // main default "what do we do next" task, run for one tick and then switches to a new task
+/*
 /datum/aiHolder/flock
 
 
@@ -708,3 +709,4 @@
 
 /datum/aiTask/succeedable/butcher/on_reset()
 	has_started = 0
+*/

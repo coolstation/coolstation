@@ -36,7 +36,7 @@
 
 	var/obj/item/device/energy_shield/energy_shield = null
 
-	var/custom_gib_handler = null
+	var/custom_gib_handler = /proc/gibs
 	var/obj/decal/cleanable/custom_vomit_type = /obj/decal/cleanable/vomit
 
 	var/list/mob/dead/target_observer/observers = list()
@@ -103,7 +103,7 @@
 	var/wiped = 1 //giving new mobs the benefit of the doubt (does nothing, but varediting admins (and Murray) will see your shame)
 	var/nutrition = 100
 	var/losebreath = 0.0
-	var/intent = null
+	var/intent = INTENT_HELP
 	var/shakecamera = 0
 	var/a_intent = "help"
 	var/m_intent = "run"
@@ -230,13 +230,18 @@
 
 	var/dir_locked = FALSE
 
-	var/list/mob_properties
-
 	var/last_move_dir = null
 
 	var/datum/aiHolder/ai = null
+	/// if set to an a_intent, ai should prioritize that one
+	var/ai_a_intent = null
+	/// used for load balancing mob_ai ticks
+	var/ai_tick_schedule = null
 
 	var/last_pulled_time = 0
+
+	var/drug_upper = 0
+	var/drug_downer = 0
 
 //obj/item/setTwoHanded calls this if the item is inside a mob to enable the mob to handle UI and hand updates as the item changes to or from 2-hand
 /mob/proc/updateTwoHanded(var/obj/item/I, var/twoHanded = 1)
@@ -261,13 +266,13 @@
 	mobs.Add(src)
 	src.lastattacked = src //idk but it fixes bug
 	render_target = "\ref[src]"
-	mob_properties = list()
 	src.chat_text = new
 
 	src.name_tag = new
 	src.update_name_tag()
 	src.vis_contents += src.name_tag
 	START_TRACKING
+	src.ai_tick_schedule = rand(0,30)
 	. = ..()
 
 /// do you want your mob to have custom hairstyles and stuff? don't use spawns but set all of those properties here
@@ -410,7 +415,6 @@
 	lastattacker = null
 	health_update_queue -= src
 	..()
-	src.mob_properties = null
 
 /mob/Login()
 	// drsingh for cannot read null.address (still popping up though)
@@ -679,11 +683,11 @@
 							break
 						M.throw_at(source, 20, 3)
 						LAGCHECK(LAG_MED)
-					sleep(5 SECONDS)
-					src.now_pushing = 0
+					SPAWN_DBG(5 SECONDS)
+						src.now_pushing = 0
 
-					if (tmob) //Wire: Fix for: Cannot modify null.now_pushing
-						tmob.now_pushing = 0
+						if (tmob) //Wire: Fix for: Cannot modify null.now_pushing
+							tmob.now_pushing = 0
 
 					return
 
@@ -691,6 +695,7 @@
 			if (tmob.a_intent == "help" && src.a_intent == "help" && tmob.canmove && src.canmove && !tmob.buckled && !src.buckled && !src.throwing && !tmob.throwing && !(src.pulling && src.pulling.density)) // mutual brohugs all around!
 				var/turf/oldloc = src.loc
 				var/turf/newloc = tmob.loc
+				src.skip_loc_change_updates = TRUE
 
 				src.set_loc(newloc)
 				tmob.set_loc(oldloc)
@@ -703,6 +708,7 @@
 				tmob.deliver_move_trigger("swap")
 				tmob.update_grab_loc()
 				src.now_pushing = 0
+				src.skip_loc_change_updates = FALSE
 
 				return
 
@@ -731,7 +737,9 @@
 			else if (locate(/obj/hotspot) in victim.loc)
 				logTheThing("combat", src, victim, "pushes [constructTarget(victim,"combat")] into a fire.")
 
+		src.skip_loc_change_updates = TRUE
 		step(src,t)
+		src.skip_loc_change_updates = FALSE
 		AM.OnMove(src)
 		//src.OnMove(src) //dont do this here - this Bump() is called from a process_move which sould be calling onmove for us already
 		AM.glide_size = src.glide_size
@@ -831,13 +839,11 @@
 	if (src.client)
 		src.client.mouse_pointer_icon = cursor
 
-
-/mob/proc/overhead_throw() //this is a beefy proc that can be trimmed down
-	if (client)
+/mob/proc/overhead_throw(var/force_toggle = FALSE) //this is a beefy proc that can be trimmed down
+	if(client || force_toggle)
 		var/obj/item/grab/grabHand = find_type_in_hand(/obj/item/grab)
 		if(istype(grabHand))
-			//grabHand.affecting.preBaneMatrix = grabHand.affecting.transform
-			if(grabHand.state == GRAB_NECK && client.check_key(KEY_THROW)) //the agressive grab state is skipped. Don't ask me why.
+			if(grabHand.state == GRAB_NECK && (force_toggle && !grabHand.affecting.beingBaned) || (client && client.check_key(KEY_THROW))) //the agressive grab state is skipped. Don't ask me why.
 				if(!grabHand.affecting.lying)
 					grabHand.affecting.Turn(90) //So we don't turn spacemen upside down
 					grabHand.affecting.gotBent = TRUE
@@ -845,11 +851,10 @@
 				grabHand.set_affected_loc()
 			else
 				grabHand.affecting.beingBaned = FALSE
-				if(!grabHand.affecting.lying)
-					grabHand.affecting.transform = null
+				if(grabHand.affecting.gotBent)
+					grabHand.affecting.Turn(-90)
+					grabHand.affecting.gotBent = FALSE
 				grabHand.set_affected_loc()
-
-
 
 /mob/proc/update_cursor()
 	if (client)
@@ -1234,7 +1239,7 @@
 	T.Entered(item)
 
 /mob/proc/drop_item(obj/item/W)
-	.= 0
+	. = 0
 	if (!W) //only pass W if you KNOW that the mob has it
 		W = src.equipped()
 	if (istype(W))
@@ -1264,13 +1269,14 @@
 				W.layer = initial(W.layer)
 
 			u_equip(W)
-			.= 1
+			. = 1
 		else
 			u_equip(W)
-			.= 0
+			. = 0
 		if (origW)
 			origW.holding = null
 			actions.stopId("magpickerhold", src)
+	return
 
 //throw the dropped item
 /mob/proc/drop_item_throw(obj/item/W)
@@ -1303,6 +1309,11 @@
 			return src.l_hand
 		else
 			return src.r_hand
+
+/mob/living/critter/equipped()
+	RETURN_TYPE(/obj/item)
+	var/datum/handHolder/active_hand = src.get_active_hand()
+	return active_hand.item
 
 /mob/proc/equipped_list(check_for_magtractor = 1)
 	. = list()
@@ -1699,7 +1710,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	if ((src.mind || src.client) && !istype(src, /mob/living/carbon/human/npc))
 		src.ghostize()
@@ -1711,18 +1722,16 @@
 		var/list/virus = src.ailments
 		gibs(src.loc, virus)
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	var/bdna = null // For forensics (Convair880).
 	var/btype = null
@@ -1781,7 +1790,7 @@
 		for(var/atom/A in get_our_fluids_here)
 			if(isturf(A))
 				var/turf/T = A
-				T.fluid_react(src.reagents, src.reagents.total_volume, airborne=prob(10))
+				T.fluid_react(src.reagents, src.reagents.total_volume)//, airborne=prob(10))
 				continue
 			if(istype(A, /obj/decal/cleanable)) // expand reagents
 				if(isnull(A.reagents))
@@ -1801,18 +1810,16 @@
 
 /mob/proc/elecgib()
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is electric-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 
 
@@ -1835,18 +1842,16 @@
 
 /mob/proc/firegib()
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is fire-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	if (ishuman(src))
 		animation = new(src.loc)
@@ -1876,18 +1881,16 @@
 		var/list/virus = src.ailments
 		partygibs(src.loc, virus)
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is party-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	var/bdna = null // For forensics (Convair880).
 	var/btype = null
@@ -1923,11 +1926,9 @@
 		var/list/virus = src.ailments
 		gibs(src.loc, virus)
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	var/transfer_mind_to_owl = prob(control_chance)
 	logTheThing("combat", src, null, "is owl-gibbed at [log_loc(src)].")
 	src.death(1)
@@ -1935,7 +1936,7 @@
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	var/bdna = null // For forensics (Convair880).
 	var/btype = null
@@ -1974,17 +1975,15 @@
 /mob/proc/vaporize(give_medal, forbid_abberation)
 	if (isobserver(src))
 		return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 	logTheThing("combat", src, null, "is vaporized at [log_loc(src)].")
 
 	if (ishuman(src))
@@ -2013,18 +2012,16 @@
 
 /mob/proc/implode(give_medal)
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "imploded at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	if (ishuman(src))
 		animation = new(src.loc)
@@ -2046,14 +2043,12 @@
 	SPAWN_DBG(0) //multicluwne
 		duration = clamp(duration, 10, 100)
 
-	#ifdef DATALOGGER
 		game_stats.Increment("violence")
 		game_stats.Increment("clownabuse") // no check necessary, you're a clown by the time it matters. :)
-	#endif
 		logTheThing("combat", src, null, "is taken by the floor cluwne at [log_loc(src)].")
 		src.transforming = 1
 		src.canmove = 0
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.mouse_opacity = 0
 
 		var/mob/living/carbon/human/cluwne/floor/floorcluwne = null
@@ -2115,18 +2110,16 @@
 
 /mob/proc/buttgib(give_medal)
 	if (isobserver(src)) return
-#ifdef DATALOGGER
 	game_stats.Increment("violence")
 	if(src.mind && src.mind.assigned_role == "Clown")
 		game_stats.Increment("clownabuse")
-#endif
 	logTheThing("combat", src, null, "is butt-gibbed at [log_loc(src)].")
 	src.death(1)
 	var/atom/movable/overlay/gibs/animation = null
 	src.transforming = 1
 	src.canmove = 0
 	src.icon = null
-	APPLY_MOB_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
+	APPLY_ATOM_PROPERTY(src, PROP_INVISIBILITY, "transform", INVIS_ALWAYS)
 
 	var/bdna = null
 	var/btype = null
@@ -2368,26 +2361,30 @@
 
 	jitteriness = min(500, jitteriness + amount)	// store what will be new value
 													// clamped to max 500
-	if (jitteriness > 100 && !is_jittery)
+	if (jitteriness > 75 && !is_jittery)
 		SPAWN_DBG(0)
 			jittery_process()
 
 
 // jittery process - shakes the mob's pixel offset randomly
-// will terminate automatically when dizziness gets <100
+// will terminate automatically when dizziness gets <45
 // jitteriness decrements automatically in the mob's Life() proc.
 /mob/proc/jittery_process()
 	var/old_x = pixel_x
 	var/old_y = pixel_y
 	is_jittery = 1
-	while(jitteriness > 100)
+	while(jitteriness > 45)
 //		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + 1) / 70
 //		pixel_x = amplitude * sin(0.008 * jitteriness * world.time)
 //		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
+		if(jitteriness >= 400 || prob(jitteriness/12))
+			var/amplitude = rand(1, ceil(min(4, jitteriness / 200)))
+			pixel_x = pixel_x + rand(-amplitude, amplitude)
+			pixel_y = pixel_y + rand(-amplitude, amplitude)
+			SPAWN_DBG(0.1 SECONDS)
+				pixel_x = old_x
+				pixel_y = old_y
 
-		var/amplitude = min(4, jitteriness / 100)
-		pixel_x = old_x + rand(-amplitude, amplitude)
-		pixel_y = old_y + rand(-amplitude/3, amplitude/3)
 
 		sleep(0.1 SECONDS)
 	//endwhile - reset the pixel offsets to zero
@@ -2404,21 +2401,31 @@
 
 /mob/throw_impact(atom/hit, datum/thrown_thing/thr)
 	if(!isturf(hit) || hit.density)
-		if (thr?.get_throw_travelled() <= 410)
-			if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
-				random_brute_damage(src, min((6 + (thr?.get_throw_travelled() / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
-				if (!src.hasStatus("weakened") && !(src.throwing & THROW_BASEBALL))
-					src.changeStatus("weakened", 2 SECONDS)
-					src.force_laydown_standup()
-		else
-			src.gib()
+		var/thr_travelled = thr?.get_throw_travelled()
+		if(!(src.throwing & THROW_SAFEISH))
+			if (thr_travelled <= 410)
+				if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
+					random_brute_damage(src, min((6 + (thr_travelled / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
+					if (!src.hasStatus("weakened") && !(src.throwing & THROW_BASEBALL))
+						src.changeStatus("weakened", 2 SECONDS)
+						src.force_laydown_standup()
+			else
+				src.gib()
+				return ..()
+		if(thr && src.client?.recoil_controller)
+			var/recoil_oomph = min(thr.speed * 4 + thr_travelled * 0.25 + rand(-3, 6), 50)
+			if(recoil_oomph >= 1)
+				var/dir = arctan(thr.dx == EAST ? thr.dist_x : -thr.dist_x, thr.dy == NORTH ? thr.dist_y : -thr.dist_y)
+				src.client.recoil_controller.recoil_camera(dir, recoil_oomph, 0.25)
 
 	return ..()
 
 /mob/proc/full_heal()
 	src.HealDamage("All", 100000, 100000)
+	src.dizziness = 0
 	src.drowsyness = 0
 	src.stuttering = 0
+	src.jitteriness = 0
 	src.losebreath = 0
 	src.delStatus("paralysis")
 	src.delStatus("stunned")
@@ -2438,6 +2445,8 @@
 	if (src.hasStatus("handcuffed"))
 		src.handcuffs.destroy_handcuffs(src)
 	src.bodytemperature = src.base_body_temp
+	if (src.reagents)
+		src.reagents.stop_combusting()
 	if (src.stat > 1)
 		setalive(src)
 
@@ -2799,13 +2808,14 @@
 			else
 				if (force_instead || alert(src, "Use the name [newname]?", newname, "Yes", "No") == "Yes")
 					if(!src.traitHolder.hasTrait("immigrant"))// stowaway entertainers shouldn't be on the manifest
-						for (var/L in list(data_core.bank, data_core.security, data_core.general, data_core.medical))
-							if (L)
-								var/datum/data/record/R = FindRecordByFieldValue(L, "name", src.real_name)
+						if(ishuman(src))
+							var/mob/living/carbon/human/H = src
+							for (var/datum/record_database/DB in list(data_core.bank, data_core.security, data_core.general, data_core.medical))
+								var/datum/db_record/R = DB.find_record("id", H.datacore_id)
 								if (R)
-									R.fields["name"] = newname
-									if (R.fields["full_name"])
-										R.fields["full_name"] = newname
+									R["name"] = newname
+									if (R["full_name"])
+										R["full_name"] = newname
 						for (var/obj/item/card/id/ID in src.contents)
 							ID.registered = newname
 							ID.update_name()
@@ -2879,6 +2889,15 @@
 		. = TRUE
 
 /mob/proc/update_equipped_modifiers()
+	var/datum/movement_modifier/equipment/equipment_proxy = locate() in src.movement_modifiers
+	if (!equipment_proxy)
+		equipment_proxy = new
+		APPLY_MOVEMENT_MODIFIER(src, equipment_proxy, /obj/item)
+
+	// reset the modifiers to defaults
+	equipment_proxy.additive_slowdown = GET_ATOM_PROPERTY(src, PROP_EQUIPMENT_MOVESPEED)
+	equipment_proxy.space_movement = GET_ATOM_PROPERTY(src, PROP_EQUIPMENT_MOVESPEED_SPACE)
+	equipment_proxy.aquatic_movement = GET_ATOM_PROPERTY(src, PROP_EQUIPMENT_MOVESPEED_FLUID)
 
 // alright this is copy pasted a million times across the code, time for SOME unification - cirr
 // no text description though, because it's all different everywhere
@@ -2947,7 +2966,7 @@
 	SPAWN_DBG(0.7 SECONDS) //Length of animation.
 		newbody.set_loc(animation.loc)
 		qdel(animation)
-		newbody.anchored = 1 // Stop running into the lava every half second jeez!
+		newbody.anchored = ANCHORED // Stop running into the lava every half second jeez!
 		sleep(4 SECONDS)
 		reset_anchored(newbody)
 
@@ -2962,7 +2981,7 @@
 		logTheThing("combat", src, null, "is damned to hell from [log_loc(src)].")
 		src.transforming = 1
 		src.canmove = 0
-		src.anchored = 1
+		src.anchored = ANCHORED
 		src.mouse_opacity = 0
 
 		var/mob/living/carbon/human/satan/satan = new /mob/living/carbon/human/satan
@@ -3085,7 +3104,7 @@
 	set name = "Point"
 	src.point_at(A)
 
-/mob/proc/point_at(var/atom/target) //overriden by living and dead
+/mob/proc/point_at(var/atom/target, var/pixel_x, var/pixel_y) //overriden by living and dead
 	.=0
 
 /mob/verb/pull_verb(atom/movable/A as mob|obj in view(1, get_turf(usr)))
@@ -3157,7 +3176,7 @@
 	if (src.lying)
 		return CANT_SWIM_LYING
 	var/turf/T = get_turf(src)
-	if (!istype(T, /turf/space/fluid) && T.active_liquid?.last_depth_level < 3)
+	if (!istype(T, /turf/space/fluid/ocean) && T.active_liquid?.last_depth_level < 3)
 		return CANT_SWIM_NO_GODDAMN_WATER
 	src.setStatus("swimming", null)
 	return CAN_SWIM
@@ -3195,16 +3214,16 @@
 				break
 
 	else //Try the old ocean hole system, I don't know if this is used anymore
-		var/turf/space/fluid/trenchfloor = src.loc
+		var/turf/space/fluid/ocean/trenchfloor = src.loc
 		if (!istype(trenchfloor))
 			boutput(src, "<span class='alert'>There's a ceiling above you, go try again outside.</span>", group = "swimtime:)") //don't give me smartassery about walls
 			return
-		for(var/turf/space/fluid/T in range(5,trenchfloor))
+		for(var/turf/space/fluid/ocean/T in range(5,trenchfloor))
 			if(T.linked_hole)
 				actions.start(new/datum/action/bar/private/swim_cross_z(T.linked_hole), src)
 				return
 			else if (istype(get_area(T), /area/trench_landing)) //the trench landing is weird, this is seems to be what sea ladders do?
-				actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/warp_z5/edge])), src)
+				actions.start(new/datum/action/bar/private/swim_cross_z(pick(by_type[/turf/space/fluid/ocean/warp_z5/edge])), src)
 				return
 		boutput(src, "<span class='alert'>There's no nearby way up, shit.</span>", group = "swimtime:)") //RIP
 	return
@@ -3259,7 +3278,7 @@
 	return
 
 /mob/set_density(var/newdensity)
-	if(HAS_MOB_PROPERTY(src, PROP_NEVER_DENSE))
+	if(HAS_ATOM_PROPERTY(src, PROP_NEVER_DENSE))
 		..(0)
 	else
 		..(newdensity)
@@ -3294,3 +3313,16 @@
 //Observers bypass this check anyway, but regardless
 /mob/dead/can_climb_ladder(silent = FALSE)
 	return TRUE
+
+/mob/proc/fiddle_with(var/obj/O)
+	actions.interrupt(src, INTERRUPT_ACT)
+
+	if (src.stat || is_incapacitated(src) || world.time < src.next_click || !can_reach(src, O))
+		return
+	var/time_left = src.next_click - world.time
+	if (time_left > CLICK_GRACE_WINDOW) // currently CLICK_GRACE_WINDOW is 0, but who knows if thatll ever change!
+		return time_left
+	src.next_click = world.time + O.fiddle(src)
+
+/mob/proc/stimulants_and_sedatives()
+	return

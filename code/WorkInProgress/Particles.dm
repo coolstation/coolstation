@@ -13,7 +13,8 @@
 	name = ""
 	desc = ""
 	mouse_opacity = 0
-	anchored = 1
+	pass_unstable = PRESERVE_CACHE
+	anchored = ANCHORED
 	density = 0
 	opacity = 0
 	flags = TECHNICAL_ATOM
@@ -147,7 +148,7 @@ var/datum/particleMaster/particleMaster = new
 
 		if (istype(pType))
 			var/obj/particle/p = new_particle(particleTime)
-			p.loc = get_turf(location)
+			p.set_loc(get_turf(location))
 			p.color = particleColor
 			if (particleSprite)
 				p.override_state = particleSprite

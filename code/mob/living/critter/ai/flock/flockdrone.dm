@@ -1,3 +1,4 @@
+/*
 /datum/aiHolder/flock/drone
 
 /datum/aiHolder/flock/drone/New()
@@ -29,3 +30,4 @@
 	..()
 	if(holder.owner)
 		holder.owner.a_intent = INTENT_GRAB
+*/

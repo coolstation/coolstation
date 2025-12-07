@@ -4,7 +4,7 @@
 	shooting = TRUE
 	var/obj/item/gun/G = parent
 	var/list/local_targets = tracked_targets.Copy()
-	SPAWN(0)
+	SPAWN_DBG(0)
 		if(length(local_targets))
 			G.suppress_fire_msg = TRUE
 			for(var/atom/A as anything in local_targets)

@@ -2,6 +2,7 @@
 // FLOCKMIND ABILITIES
 ///////////////////////
 
+/*
 /datum/abilityHolder/flockmind
 	topBarRendered = 1
 	rendered = 1
@@ -338,3 +339,4 @@
 	if(structurewantedtype)
 		var/mob/living/intangible/flock/F = holder.owner
 		F.createstructure(structurewantedtype, resourcecost)
+*/

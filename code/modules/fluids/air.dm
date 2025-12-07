@@ -135,6 +135,11 @@ var/list/ban_from_airborne_fluid = list()
 
 		src.group.reagents.reaction(M, TOUCH, react_volume/2, 0, paramslist = plist)
 		src.group.reagents.reaction(M, INGEST, react_volume/2,1,src.group.members.len, paramslist = plist)
+		if(isliving(M))
+			var/mob/living/L = M
+			if(L.organHolder && L.organHolder.stomach)
+				src.group.reagents.trans_to(L.organHolder.stomach, react_volume)
+				return
 		src.group.reagents.trans_to(M, react_volume)
 
 	//incorporate touch_modifier?

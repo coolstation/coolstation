@@ -26,12 +26,8 @@
 	health_brute_vuln = 0.45
 	health_burn = 50
 	health_burn_vuln = 0.65
-	reagent_capacity = 100
 
-	can_help = 1
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	var/good_grip = 1
 
 	butcherable = 1
@@ -56,9 +52,9 @@
 		for (var/i=src.hand_count, i>0, i--)
 			HH = hands[i]
 			if (src.good_grip)
-				HH.limb = new /datum/limb // todo: make spider hands. feet? weird spindly bug appendage??
+				HH.limb = new /datum/limb(src) // todo: make spider hands. feet? weird spindly bug appendage??
 			else
-				HH.limb = new /datum/limb/small_critter
+				HH.limb = new /datum/limb/small_critter(src)
 			HH.icon = 'icons/ui/hud_human.dmi'
 			if (i > (src.hand_count / 2)) // if we're halfway through making our hands, start making right-facing ones
 				HH.icon_state = "handr"
@@ -66,7 +62,7 @@
 			else
 				HH.icon_state = "handl"
 			HH.name = "leg [get_english_num(i)]"
-			HH.limb_name = "spider leg"
+			HH.limb.name = "spider leg"
 
 	on_pet()
 		if (..())
@@ -104,6 +100,11 @@
 			src.reagents.add_reagent(venom2, 50, null)
 		return ..()
 
+	ai_rate_target(mob/M)
+		if(istype(M, /mob/living/critter/spider))
+			return 0
+		return ..()
+
 	proc/venom_bite(mob/M)
 		if (src.reagents && istype(M) && M.reagents)
 			playsound(src, src.bitesound, 50, 1)
@@ -115,7 +116,6 @@
 			// now spiders won't poison themselves - cirr
 			M.reagents.add_reagent(src.venom1, bite_transfer_amt)
 			M.reagents.add_reagent(src.venom2, bite_transfer_amt)
-
 
 	proc/grow_up()
 		if (!src.babyspider || !ispath(src.adultpath))
@@ -168,7 +168,6 @@
 	density = 0
 	flags = TABLEPASS
 	fits_under_table = 1
-	can_grab = 0 // Causes issues with tablepass, and doesn't make too much sense
 	health_brute = 25
 	health_burn = 25
 	good_grip = 0
@@ -290,8 +289,6 @@
 	custom_gib_handler = /proc/funnygibs
 	hand_count = 0
 	can_throw = 0
-	can_grab = 0
-	can_disarm = 0
 	butcherable = 0
 	health_brute = 5
 	health_burn = 5
