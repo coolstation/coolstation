@@ -2434,6 +2434,8 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /// a "valid target" is POSSIBLE to attack - this should return true for anything you want it to defend itself from, as well
 /mob/living/proc/ai_is_valid_target(mob/M)
+	if(!istype(M))
+		return TRUE
 	return (M.stat < STAT_DEAD && M != src)
 
 /// the higher the returned value, the better the target is. assume that the target is valid.
