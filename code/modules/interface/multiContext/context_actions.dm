@@ -1,3 +1,4 @@
+ABSTRACT_TYPE(/datum/contextAction)
 /datum/contextAction
 	var/icon = 'icons/ui/context16x16.dmi'
 	var/icon_state = "eye"
@@ -8,6 +9,7 @@
 	var/use_tooltip = 1
 	var/close_clicked = 1
 	var/flick_on_click = null
+	var/unfocus_alpha = 255
 
 	/// Is this action even allowed to show up under the given circumstances? TRUE=yes, FALSE=no
 	proc/checkRequirements(atom/target, mob/user)
@@ -1245,6 +1247,149 @@
 
 		execute(var/atom/target, var/mob/user)
 			user.closeContextActions()
+
+// FIDDLE CONTEXT ACTIONS
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle)
+/datum/contextAction/fiddle
+	icon = 'icons/ui/context24x24.dmi'
+	unfocus_alpha = 127
+	close_clicked = TRUE
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/paper)
+/datum/contextAction/fiddle/paper
+
+	checkRequirements(var/obj/item/paper/target, var/mob/user)
+		return istype(target)
+
+	plane
+		name = "fold a plane"
+		icon_state = "paper_plane"
+
+		execute(var/obj/item/paper/target, var/mob/user)
+			user.show_text("You fold the paper into a plane! Neat.", "blue")
+			var/obj/item/paper/folded/plane/folded = null
+			folded = new /obj/item/paper/folded/plane(user)
+			folded.info = target.info
+			folded.old_desc = target.desc
+			folded.old_icon_state = target.icon_state
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(folded)
+
+	hat
+		name = "fold a hat"
+		icon_state = "paper_hat"
+
+		execute(var/obj/item/paper/target, var/mob/user)
+			user.show_text("You fold the paper into a hat! Neat.", "blue")
+			var/obj/item/clothing/head/paper_hat/H = new()
+			H.paper = target
+			target.set_loc(H)
+			user.u_equip(target)
+			user.put_in_hand_or_drop(H)
+
+	ball
+		name = "ball it up"
+		icon_state = "paper_ball"
+
+		execute(var/obj/item/paper/target, var/mob/user)
+			user.show_text("You crumple the paper into a ball! Neat.", "blue")
+			var/obj/item/paper/folded/ball/folded = null
+			folded = new /obj/item/paper/folded/ball(user)
+			folded.info = target.info
+			folded.old_desc = target.desc
+			folded.old_icon_state = target.icon_state
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(folded)
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
+/datum/contextAction/fiddle/pda2
+
+	checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+		return istype(target)
+
+	eject_id
+		name = "eject ID"
+		icon_state = "pda2_eject_id"
+
+		checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+			if(..(target, user))
+				return !isnull(target.ID_card)
+			return FALSE
+
+		execute(var/obj/item/device/pda2/target, var/mob/user)
+			target.eject_id_card(user)
+
+	eject_pen
+		name = "eject pen"
+		icon_state = "pda2_eject_pen"
+
+		checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+			if(..(target, user))
+				return !isnull(target.pen)
+			return FALSE
+
+		execute(var/obj/item/device/pda2/target, var/mob/user)
+			target.eject_pen(user)
+
+// holy SHIT the variable names for radios are awful. listening is "listening to incoming signals"
+// broadcasting is "broadcasting everything around it" when true or "broadcasting only the holder" when false
+// ill fix that... later.
+ABSTRACT_TYPE(/datum/contextAction/fiddle/radio)
+/datum/contextAction/fiddle/radio
+
+	checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+		return istype(target)
+
+	start_broadcasting
+		name = "enable broad microphone"
+		icon_state = "radio_start_broadcasting"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return !target.broadcasting
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.broadcasting = TRUE
+
+	stop_broadcasting
+		name = "disable broad microphone"
+		icon_state = "radio_stop_broadcasting"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return target.broadcasting
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.broadcasting = FALSE
+
+	start_listening
+		name = "enable incoming"
+		icon_state = "radio_start_listening"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return !target.listening
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.listening = TRUE
+
+	stop_listening
+		name = "disable incoming"
+		icon_state = "radio_stop_listening"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return target.listening
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.listening = FALSE
 
 /*
 	offered
