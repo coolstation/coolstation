@@ -521,7 +521,7 @@
 		..()
 		if (user)
 			for (var/mob/M in hearers(user, null))
-				if (M.ears_protected_from_sound())
+				if (cant_hear(M))
 					continue
 				var/ED = max(0, rand(0, 2) - get_dist(user, M))
 				M.take_ear_damage(ED)

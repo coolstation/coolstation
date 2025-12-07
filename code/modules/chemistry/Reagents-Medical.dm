@@ -882,7 +882,7 @@ datum
 						M.bioHolder.RemoveEffect("bad_eyesight")
 					if (probmult(30) && M.bioHolder.HasEffect("blind"))
 						M.bioHolder.RemoveEffect("blind")
-					if (probmult(30) && (M.get_ear_damage() && M.get_ear_damage() <= M.get_ear_damage_natural_healing_threshold()) && M.bioHolder.HasEffect("deaf") || M.ear_disability)
+					if (probmult(30) && (M.ear_tempdeaf <= EAR_DAMAGE_NATURAL_HEALING_THRESHOLD) && M.bioHolder.HasEffect("deaf") || M.ear_permdeaf)
 						M.bioHolder.RemoveEffect("deaf")
 
 				if (M.get_eye_blurry())
@@ -894,10 +894,10 @@ datum
 				if (M.get_eye_damage(1) && prob(50)) // Temporary blindness.
 					M.take_eye_damage(-0.5 * mult, 1)
 
-				if (M.get_ear_damage() && prob(80)) // Permanent ear damage.
+				if (M.ear_damage && prob(80)) // Permanent ear damage.
 					M.take_ear_damage(-1 * mult)
 
-				if (M.get_ear_damage(1) && prob(50)) // Temporary deafness.
+				if (M.ear_tempdeaf && prob(50)) // Temporary deafness.
 					M.take_ear_damage(-0.5 * mult, 1)
 
 				..()

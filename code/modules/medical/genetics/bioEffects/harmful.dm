@@ -60,11 +60,11 @@
 
 	OnAdd()
 		..()
-		owner.ear_disability = 1
+		owner.ear_permdeaf = TRUE
 
 	OnRemove()
 		..()
-		owner.ear_disability = 0
+		owner.ear_permdeaf = FALSE
 
 
 ///////////////////////////

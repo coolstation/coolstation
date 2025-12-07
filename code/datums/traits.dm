@@ -288,7 +288,7 @@
 				H.equip_new_if_possible(/obj/item/device/radio/headset/deaf, H.slot_ears)
 
 	onLife(var/mob/owner) //Just to be super safe.
-		if(!owner.ear_disability)
+		if(!owner.ear_permdeaf)
 			owner.bioHolder.AddEffect("deaf", 0, 0, 0, 1)
 
 // LANGUAGE - Yellow Border

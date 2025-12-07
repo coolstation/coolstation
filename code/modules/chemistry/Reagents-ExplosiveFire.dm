@@ -350,7 +350,7 @@ datum
 							continue
 
 						if (src.no_fluff == 0)
-							if (!M.ears_protected_from_sound())
+							if (!cant_hear(M))
 								boutput(M, "<span class='alert'><b>[hootmode ? "HOOT" : "BANG"]</b></span>")
 							else
 								continue
@@ -366,7 +366,7 @@ datum
 
 					for (var/mob/living/silicon/S in all_hearers(world.view, location))
 						if (src.no_fluff == 0)
-							if (!S.ears_protected_from_sound())
+							if (!cant_hear(S))
 								boutput(S, "<span class='alert'><b>[hootmode ? "HOOT" : "BANG"]</b></span>")
 							else
 								continue

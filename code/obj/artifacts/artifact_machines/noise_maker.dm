@@ -74,7 +74,7 @@
 			for (var/mob/living/M in hearers(world.view, O))
 				if (issilicon(M) || isintangible(M))
 					continue
-				if (!M.ears_protected_from_sound())
+				if (!cant_hear(M))
 					boutput(M, "<span class='alert'>The loud, horrible noises painfully batter your eardrums!</span>")
 
 				var/weak = 0
