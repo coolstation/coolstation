@@ -962,6 +962,13 @@
 	default_material = "kingbrullbarhide"
 	value = 5000 //holy shit man
 
+/obj/item/material_piece/cloth/mothroachhide
+	name = "mothroach hide"
+	desc = "The hide of a mothroach"
+	icon_state = "mothroachhide"
+	value = 300 //was it worth it?
+	default_material = "mothroachhide"
+
 /obj/item/material_piece/cloth/carbon
 	name = "carbon nano fibre fabric"
 	desc = "carbon based hi-tech material."
