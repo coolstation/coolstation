@@ -1568,3 +1568,51 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	desc = "A neatly-written post-it note found next to a torpedo."
 	icon_state = "postit-writing"
 	info = "Just give 'er a few solid whacks and she'll know what to do. Trust me, <i>this</i> is how you win at darts B)"
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/paper)
+/datum/contextAction/fiddle/paper
+
+	checkRequirements(var/obj/item/paper/target, var/mob/user)
+		return istype(target)
+
+	plane
+		name = "fold a plane"
+		icon_state = "paper_plane"
+
+		execute(var/obj/item/paper/target, var/mob/user)
+			user.show_text("You fold the paper into a plane! Neat.", "blue")
+			var/obj/item/paper/folded/plane/folded = null
+			folded = new /obj/item/paper/folded/plane(user)
+			folded.info = target.info
+			folded.old_desc = target.desc
+			folded.old_icon_state = target.icon_state
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(folded)
+
+	hat
+		name = "fold a hat"
+		icon_state = "paper_hat"
+
+		execute(var/obj/item/paper/target, var/mob/user)
+			user.show_text("You fold the paper into a hat! Neat.", "blue")
+			var/obj/item/clothing/head/paper_hat/H = new()
+			H.paper = target
+			target.set_loc(H)
+			user.u_equip(target)
+			user.put_in_hand_or_drop(H)
+
+	ball
+		name = "ball it up"
+		icon_state = "paper_ball"
+
+		execute(var/obj/item/paper/target, var/mob/user)
+			user.show_text("You crumple the paper into a ball! Neat.", "blue")
+			var/obj/item/paper/folded/ball/folded = null
+			folded = new /obj/item/paper/folded/ball(user)
+			folded.info = target.info
+			folded.old_desc = target.desc
+			folded.old_icon_state = target.icon_state
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(folded)

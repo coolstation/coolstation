@@ -1195,3 +1195,33 @@ Enter the file browser and copy the file you want to send.  Now enter the messen
 ThinkOS 7 supports a wide variety of software solutions, ranging from robot interface systems to forensic and medical scanners.<br>
 <font size=1>This technology produced by Thinktronic Systems, LTD for the NanoTrasen Corporation</font>
 "}
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
+/datum/contextAction/fiddle/pda2
+
+	checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+		return istype(target)
+
+	eject_id
+		name = "eject ID"
+		icon_state = "pda2_eject_id"
+
+		checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+			if(..(target, user))
+				return !isnull(target.ID_card)
+			return FALSE
+
+		execute(var/obj/item/device/pda2/target, var/mob/user)
+			target.eject_id_card(user)
+
+	eject_pen
+		name = "eject pen"
+		icon_state = "pda2_eject_pen"
+
+		checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+			if(..(target, user))
+				return !isnull(target.pen)
+			return FALSE
+
+		execute(var/obj/item/device/pda2/target, var/mob/user)
+			target.eject_pen(user)
