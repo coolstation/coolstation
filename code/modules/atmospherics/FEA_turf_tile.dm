@@ -36,7 +36,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	var/static/max_atmos_operations = 0
 #endif
 #ifdef TRACK_GROUPS_TO_ATMOSPHERE
-	var/tmp/groups_to_atmosphere = GROUPS_TO_ATMOSPHERE_MAX
+	var/tmp/groups_to_atmosphere = 0
 #endif
 
 	var/static/list/mutable_appearance/gas_overlays = list(
