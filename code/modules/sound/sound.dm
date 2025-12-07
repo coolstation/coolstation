@@ -314,6 +314,11 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	var/sound/S = generate_sound(source, soundin, ourvolume, vary ? DO_RANDOM_PITCH : FALSE, range, pitch)
 	if (forcechannel)
 		S.channel = forcechannel
+	else
+		S.channel = client.next_playsound_channel
+		client.next_playsound_channel++
+		if(client.next_playsound_channel > SOUNDCHANNEL_PLAYSOUND_MAX)
+			client.next_playsound_channel = SOUNDCHANNEL_PLAYSOUND_MIN
 	S.repeat = repeat
 	client.sound_playing[ S.channel ][1] = ourvolume
 	client.sound_playing[ S.channel ][2] = channel
