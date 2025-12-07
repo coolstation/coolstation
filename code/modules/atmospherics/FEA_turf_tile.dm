@@ -385,7 +385,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 				air_check_directions |= direction
 #ifdef TRACK_GROUPS_TO_ATMOSPHERE
 				if(T.turf_flags & IS_ATMOSPHERE)
-					parent.groups_to_atmosphere = 0
+					src.groups_to_atmosphere = 0
 				else if(T.parent)
 					src.groups_to_atmosphere = min(src.groups_to_atmosphere, T.parent.groups_to_atmosphere + 0.5)
 				else
