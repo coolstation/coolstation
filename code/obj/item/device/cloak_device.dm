@@ -14,8 +14,8 @@
 	mats = 15
 	desc = "An illegal device that bends light around the user, rendering them invisible to regular vision."
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 15
+//	stamina_cost = 0
+//	stamina_crit_chance = 15
 	contraband = 6
 
 	attack_self(mob/user as mob)

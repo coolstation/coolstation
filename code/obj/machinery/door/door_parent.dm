@@ -16,9 +16,10 @@
 	var/p_open = 0
 	var/operating = 0
 	var/operation_time = 10
-	anchored = 1
-	///Attempt to close 15 seconds after opening, UNLESS interrupt_autoclose is set sometime in that interval
+	anchored = ANCHORED
+	///Attempt to close 15 seconds (DEFAULT) after opening, UNLESS interrupt_autoclose is set sometime in that interval, this is configurable in autoclose_time
 	var/autoclose = 0
+	var/autoclose_time = 15 //Time in seconds that door will hold open for if autoclose is enabled
 	var/interrupt_autoclose = 0
 	var/last_used = 0
 	var/cant_emag = 0
@@ -129,8 +130,7 @@
 				return 1
 	return 0
 
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	//if(air_group) return 0
+/obj/machinery/door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/projectile))
 		var/obj/projectile/P = mover
 		if(P.proj_data.window_pass)
@@ -302,7 +302,7 @@
 	return 1
 
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
-	if (user.getStatusDuration("stunned") || user.getStatusDuration("weakened") || user.stat || user.restrained() || !I)
+	if (user.getStatusDuration("stunned") || user.getStatusDuration("weakened") || user.stat || user.restrained())
 		return
 	if(istype(I, /obj/item/grab))
 		return ..() // handled in grab.dm + Bumped
@@ -313,7 +313,7 @@
 		if (src.density && src.operating != 1)
 			if (ischoppingtool(I))
 				src.take_damage(I.force*5, user, TRUE)
-			else
+			else if (I)
 				src.take_damage(I.force, user)
 			user.lastattacked = src
 			attack_particle(user,src)
@@ -618,7 +618,7 @@
 
 /obj/machinery/door/proc/opened()
 	if(autoclose)
-		sleep(15 SECONDS)
+		sleep(autoclose_time SECONDS)
 		if(interrupt_autoclose)
 			interrupt_autoclose = 0
 		else
@@ -713,7 +713,7 @@
 	density = 1
 	p_open = 0
 	operating = 0
-	anchored = 1
+	anchored = ANCHORED
 	autoclose = 1
 	var/blocked = null
 	var/simple_lock = 0

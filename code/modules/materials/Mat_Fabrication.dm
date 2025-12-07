@@ -66,7 +66,7 @@
 	desc = "'Nano' means it's high-tech stuff."
 	icon = 'icons/obj/machines/manufacturer.dmi'
 	icon_state = "fab2-on"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = FLOOR_EQUIP_LAYER1
 	flags = NOSPLASH
@@ -135,6 +135,9 @@
 		else if (istype(over_object,/turf) && !over_object:density)
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set [src] to output to [over_object]!</span>")
+
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")

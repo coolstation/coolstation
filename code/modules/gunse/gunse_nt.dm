@@ -36,6 +36,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/NT)
 	max_ammo_capacity = 1
 	gun_DRM = GUN_NANO
 	bulkiness = 2
+	w_class = W_CLASS_SMALL
 	spread_angle = 6
 	reload_cooldown = 0.7 SECONDS
 

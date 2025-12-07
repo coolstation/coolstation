@@ -28,7 +28,7 @@
 
 
 /mob/living/proc/handle_organs(var/mult = 1)//for things that arent humans, and dont override to use actual organs - they might use digestion ok
-	src.handle_digestion(mult)
+	return
 
 /mob/living/carbon/human/handle_organs(var/mult = 1)
 	if (src.ignore_organs)

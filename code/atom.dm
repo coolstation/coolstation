@@ -67,6 +67,10 @@
 	var/num_allowed_suffixes = 5
 	var/image/worn_material_texture_image = null
 
+	//Called after get_desc(), so that's the proc to update these dynamically
+	///Added to descriptions on examination, for explaining crafting steps and other things that may not fit kayfabe.
+	var/hint
+
 	proc/name_prefix(var/text_to_add, var/return_prefixes = 0, var/prepend = 0)
 		if( !name_prefixes ) name_prefixes = list()
 		var/prefix = ""
@@ -364,7 +368,7 @@
 
 /atom/movable/overlay
 	var/atom/master = null
-	anchored = 1
+	anchored = ANCHORED
 	pass_unstable = PRESERVE_CACHE
 
 /atom/movable/overlay/gibs
@@ -385,7 +389,7 @@
 	layer = OBJ_LAYER
 	var/turf/last_turf = 0
 	var/last_move = null
-	var/anchored = 0
+	var/anchored = UNANCHORED
 	var/move_speed = 10
 	var/l_move_time = 1
 	var/throwing = 0
@@ -394,6 +398,7 @@
 	var/throwforce = 1
 	/// while this is set, the AM doesnt update flags while moving. pushing and mob swapping made this necessary
 	var/skip_loc_change_updates = FALSE
+	var/object_flags = 0 // youre gonna hate the way you look
 
 	var/soundproofing = 5
 	appearance_flags = LONG_GLIDE | PIXEL_SCALE
@@ -540,60 +545,82 @@
 
 	var/list/old_locs = src.locs
 	var/atom/A = src.loc
-	. = ..()
+	if(src.event_handler_flags & MOVE_NOCLIP)
+		if(!isturf(NewLoc))
+			NewLoc = get_step(src, direct)
+		if(isturf(NewLoc))
+			src.set_loc(NewLoc)
+	else
+		. = ..()
+		if (A != src.loc &&  !src.skip_loc_change_updates)
+			if(A?.z == src.z)
+				src.last_move = get_dir(A, src.loc)
+				if (length(src.attached_objs))
+					for (var/atom/movable/M as anything in attached_objs)
+						M.set_loc(src.loc)
+				actions.interrupt(src, INTERRUPT_MOVE)
+				#ifdef COMSIG_MOVABLE_MOVED
+				SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, A, direct)
+				#endif
+				//note : move is still called when we are steping into a wall. sometimes these are unnecesssary i think
+
+			if (isturf(A) && old_locs && length(old_locs))
+				for(var/turf/covered_turf in old_locs)
+					if(!(src.pass_unstable & PRESERVE_CACHE))
+						covered_turf.pass_unstable -= src.pass_unstable
+						covered_turf.passability_cache = null
+					#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+					if(src.pass_unstable)
+						covered_turf.pass_unstable_debug -= src
+					#endif
+					if (src.event_handler_flags & USE_CHECKEXIT)
+						covered_turf.turf_persistent.checkingexit--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.turf_persistent.checkingexit < 0)
+							DEBUG_MESSAGE("DEBUG: checkingexit value set below 0 by Move at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
+					if (src.event_handler_flags & USE_CANPASS || src.density)
+						covered_turf.turf_persistent.checkingcanpass--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.turf_persistent.checkingcanpass < 0)
+							DEBUG_MESSAGE("DEBUG: checkingcanpass value set below 0 by Move at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
+					if (src.event_handler_flags & USE_HASENTERED)
+						covered_turf.turf_persistent.checkinghasentered--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.turf_persistent.checkinghasentered < 0)
+							DEBUG_MESSAGE("DEBUG: checkinghasentered value set below 0 by Move at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
+					if (src.event_handler_flags & USE_PROXIMITY)
+						covered_turf.checkinghasproximity--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.checkinghasproximity < 0)
+							DEBUG_MESSAGE("DEBUG: checkinghasproximity value set below 0 by Move at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
+
+			if (isturf(src.loc))
+				last_turf = src.loc
+				for(var/turf/covered_turf as anything in src.locs)
+					if (src.event_handler_flags & USE_CHECKEXIT)
+						covered_turf.turf_persistent.checkingexit++
+					if (src.event_handler_flags & USE_CANPASS || src.density)
+						covered_turf.turf_persistent.checkingcanpass++
+					if (src.event_handler_flags & USE_HASENTERED)
+						covered_turf.turf_persistent.checkinghasentered++
+					if (src.event_handler_flags & USE_PROXIMITY)
+						covered_turf.checkinghasproximity++
+					if(!(src.pass_unstable & PRESERVE_CACHE))
+						covered_turf.pass_unstable += src.pass_unstable
+						covered_turf.passability_cache = null
+					#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+					if(src.pass_unstable)
+						covered_turf.pass_unstable_debug += src
+					#endif
+			else
+				last_turf = 0
+
 	src.move_speed = TIME - src.l_move_time
 	src.l_move_time = TIME
-	if (A != src.loc &&  !src.skip_loc_change_updates)
-		if(A?.z == src.z)
-			src.last_move = get_dir(A, src.loc)
-			if (length(src.attached_objs))
-				for (var/atom/movable/M as anything in attached_objs)
-					M.set_loc(src.loc)
-			actions.interrupt(src, INTERRUPT_MOVE)
-			#ifdef COMSIG_MOVABLE_MOVED
-			SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, A, direct)
-			#endif
-			//note : move is still called when we are steping into a wall. sometimes these are unnecesssary i think
-
-		if (old_locs && length(old_locs))
-			for(var/turf/covered_turf in old_locs)
-				if(!(src.pass_unstable & PRESERVE_CACHE))
-					covered_turf.pass_unstable -= src.pass_unstable
-					covered_turf.passability_cache = null
-	#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
-				if(src.pass_unstable)
-					covered_turf.pass_unstable_debug -= src
-	#endif
-				if (src.event_handler_flags & USE_CHECKEXIT)
-					covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
-				if (src.event_handler_flags & USE_CANPASS || src.density)
-					covered_turf.turf_persistent.checkingcanpass = max(covered_turf.turf_persistent.checkingcanpass-1, 0)
-				if (src.event_handler_flags & USE_HASENTERED)
-					covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
-				if (src.event_handler_flags & USE_PROXIMITY)
-					covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
-
-		if (isturf(src.loc))
-			last_turf = src.loc
-			for(var/turf/covered_turf as anything in src.locs)
-				if (src.event_handler_flags & USE_CHECKEXIT)
-					covered_turf.turf_persistent.checkingexit++
-				if (src.event_handler_flags & USE_CANPASS || src.density)
-					covered_turf.turf_persistent.checkingcanpass++
-				if (src.event_handler_flags & USE_HASENTERED)
-					covered_turf.turf_persistent.checkinghasentered++
-				if (src.event_handler_flags & USE_PROXIMITY)
-					covered_turf.checkinghasproximity++
-				if(!(src.pass_unstable & PRESERVE_CACHE))
-					covered_turf.pass_unstable += src.pass_unstable
-					covered_turf.passability_cache = null
-#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
-				if(src.pass_unstable)
-					covered_turf.pass_unstable_debug += src
-#endif
-		else
-			last_turf = 0
-
 	if (!ignore_simple_light_updates)
 		if(src.medium_lights)
 			update_medium_light_visibility()
@@ -689,16 +716,16 @@
 	if (isitem(src) && src.blood_DNA)
 		. = list("<span class='alert'>This is a bloody [src.name].</span>")
 		if (src.desc)
-			if (src.desc && src.blood_DNA == "--conductive_substance--")
-				. += "<br>[src.desc] <span class='alert'>It seems to be covered in an odd azure liquid!</span>"
-			else
-				. += "<br>[src.desc] <span class='alert'>It seems to be covered in blood!</span>"
+			. += "<br>[src.desc] <span class='alert'>It seems to be covered in blood!</span>"
 	else if (src.desc)
 		. += "<br>[src.desc]"
 
 	var/extra = src.get_desc(dist, user)
 	if (extra)
 		. += " [extra]"
+
+	if(src.hint)
+		. += "<br><span class='notice'>hint: <i>[hint]</i></span><br>"
 
 ///Called when something is click-dragged onto this atom
 /atom/proc/MouseDrop_T()
@@ -942,24 +969,40 @@
 	var/do_checks = (src.event_handler_flags & (USE_CHECKEXIT | USE_CANPASS | USE_HASENTERED | USE_PROXIMITY)) || src.density == 1
 
 	if(!src.skip_loc_change_updates)
-		if (oldlocs && length(oldlocs))
+		if (isturf(oldloc) && oldlocs && length(oldlocs))
 			for(var/turf/covered_turf in oldlocs)
 				if(!(src.pass_unstable & PRESERVE_CACHE))
 					covered_turf.pass_unstable -= src.pass_unstable
 					covered_turf.passability_cache = null
-#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
+				#ifdef JPS_INSTABILITY_DEBUG_DO_NOT_LEAVE_ENABLED
 				if(src.pass_unstable)
 					covered_turf.pass_unstable_debug -= src
-#endif
+				#endif
 				if(do_checks)
 					if (src.event_handler_flags & USE_CHECKEXIT)
-						covered_turf.turf_persistent.checkingexit = max(covered_turf.turf_persistent.checkingexit-1, 0)
+						covered_turf.turf_persistent.checkingexit--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.turf_persistent.checkingexit < 0)
+							DEBUG_MESSAGE("DEBUG: checkingexit value set below 0 by set_loc at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
 					if (src.event_handler_flags & USE_CANPASS || src.density)
-						covered_turf.turf_persistent.checkingcanpass = max(covered_turf.turf_persistent.checkingcanpass-1, 0)
+						covered_turf.turf_persistent.checkingcanpass--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.turf_persistent.checkingcanpass < 0)
+							DEBUG_MESSAGE("DEBUG: checkingcanpass value set below 0 by set_loc at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
 					if (src.event_handler_flags & USE_HASENTERED)
-						covered_turf.turf_persistent.checkinghasentered = max(covered_turf.turf_persistent.checkinghasentered-1, 0)
+						covered_turf.turf_persistent.checkinghasentered--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.turf_persistent.checkinghasentered < 0)
+							DEBUG_MESSAGE("DEBUG: checkinghasentered value set below 0 by set_loc at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
 					if (src.event_handler_flags & USE_PROXIMITY)
-						covered_turf.checkinghasproximity = max(covered_turf.checkinghasproximity-1, 0)
+						covered_turf.checkinghasproximity--
+						#ifdef TURF_CHECKING_VALUES_DEBUG
+						if(covered_turf.checkinghasproximity < 0)
+							DEBUG_MESSAGE("DEBUG: checkinghasproximity value set below 0 by set_loc at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+						#endif
 
 		if (isturf(src.loc))
 			last_turf = src.loc
@@ -1109,13 +1152,6 @@
 	message_admins("[key_name(usr)] rotated [target] by [rot] degrees")
 	target.Turn(rot)
 	return
-
-/// For an unanchored movable atom
-#define UNANCHORED 0
-/// For an atom that can't be moved by player actions
-#define ANCHORED 1
-/// For an atom that's always immovable, even by stuff like black holes and gravity artifacts.
-#define ANCHORED_ALWAYS 2
 
 /// The atom is below the floor tiles.
 #define UNDERFLOOR 1

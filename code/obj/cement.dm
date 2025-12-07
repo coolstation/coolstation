@@ -2,7 +2,7 @@
 	name = "wet concrete"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "concrete_wet"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	layer = OBJ_LAYER + 0.9
 	event_handler_flags = USE_CANPASS
@@ -49,7 +49,7 @@
 	icon_state = "concrete"
 	density = 1
 	opacity = 0 	// changed in New()
-	anchored = 1
+	anchored = ANCHORED
 	name = "concrete wall"
 	desc = "A heavy duty wall made of concrete! This thing is gonna take some manual labour to get through..."
 	flags = FPRINT | CONDUCT | USEDELAY
@@ -64,8 +64,10 @@
 		flick("concrete_drying", src)
 
 		if(istype(loc, /turf/space))
-			loc:ReplaceWithConcreteFloor()
-
+			var/turf/floor/floor = loc:ReplaceWith(/turf/floor/concrete)
+			if(floor.icon_old)
+				floor.icon_state = floor.icon_old
+			DELETE_LATTICES_IN(floor)
 		update_nearby_tiles(1)
 		SPAWN_DBG(0.1 SECONDS)
 			RL_SetOpacity(1)

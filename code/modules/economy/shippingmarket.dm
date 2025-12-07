@@ -247,6 +247,7 @@
 					if (sell)
 						qdel(O)
 					continue
+				var/found = 0
 				for (var/C in src.commodities) // Key is type of the commodity
 					var/datum/commodity/CM = commodities[C]
 					if (istype(O, CM.comtype))
@@ -271,10 +272,14 @@
 								qdel(O)
 						//TODO: if (duckets < 0) then penalty += add else
 						duckets += add
+						found =1
 						break
+				if(!found)
+					duckets += O.w_class
 
 		else // Please excuse this duplicate code, I'm gonna change trader commodity lists into associative ones later I swear
 			for(var/obj/O in items)
+				var/found = 0
 				if (istype(O, /obj/item/spacecash))
 					duckets += O:amount
 					if (sell)
@@ -293,7 +298,10 @@
 							if (sell)
 								qdel(O)
 						duckets += add
+						found = 1
 						break
+				if(!found)
+					duckets += O.w_class
 
 
 		return max(duckets, 0) //remove max() to allow negative profits (from selling special deliveries back), dunno what happens if cargo's budget goes in the red though

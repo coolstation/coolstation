@@ -46,10 +46,8 @@
 						if(vol)
 							C.chatOutput.playDectalk(audio["audio"], "Admin Help from [src] ([src.ckey]) to [C.mob.ckey]", vol)
 
-#ifdef DATALOGGER
 	game_stats.Increment("adminhelps")
 	game_stats.ScanText(msg)
-#endif
 	boutput(client.mob, "<span class='ahelp'><font size='3'><b><span class='alert'>HELP: </span> You</b>: [msg]</font></span>")
 	logTheThing("admin_help", client.mob, null, "HELP: [msg]")
 	logTheThing("diary", client.mob, null, "HELP: [msg]", "ahelp")
@@ -136,9 +134,7 @@
 	boutput(client.mob, "<span class='mhelp'><b>MENTORHELP: You</b>: [msg]</span>")
 	logTheThing("mentor_help", client.mob, null, "MENTORHELP: [msg]")
 	logTheThing("diary", client.mob, null, "MENTORHELP: [msg]", "mhelp")
-#ifdef DATALOGGER
 	game_stats.Increment("mentorhelps")
-#endif
 	var/dead = isdead(client.mob) ? "Dead" : ""
 	var/ircmsg[] = new()
 	ircmsg["key"] = client.key
@@ -201,9 +197,7 @@
 		logTheThing("admin_help", client.mob, null, "PRAYER: [msg]")
 		logTheThing("diary", client.mob, null, "PRAYER: [msg]", "ahelp")
 
-#ifdef DATALOGGER
 	game_stats.Increment("prayers")
-#endif
 
 	var/audio
 

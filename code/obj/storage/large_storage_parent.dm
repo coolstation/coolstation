@@ -111,6 +111,14 @@
 		else
 			src.UpdateOverlays(null, "welded")
 
+	proc/locker_sound() //I COULDNT THINK OF A BETTER WAY TO DO THIS BUT ITS FUCKING ANNOYING THE OLD WAY
+		if (src.secure)
+			if (src.locked && !src.open)
+				playsound(src.loc,"sound/machines/bweep.ogg",10,0,-10,0.7)
+				return
+			else
+				playsound(src.loc,"sound/machines/bweep.ogg",10,0,-10)
+
 	emp_act()
 		if (!src.open && length(src.contents))
 			for (var/atom/A in src.contents)
@@ -120,9 +128,6 @@
 				if (isitem(A))
 					var/obj/item/I = A
 					I.emp_act()
-
-	alter_health()
-		. = get_turf(src)
 
 	relaymove(mob/user as mob)
 		if (is_incapacitated(user))
@@ -251,6 +256,7 @@
 					src.locked = !( src.locked )
 					user.visible_message("<span class='notice'>The locker has been [src.locked ? null : "un"]locked by [user].</span>")
 					src.update_icon()
+					locker_sound() //redd was here
 					if (!src.registered)
 						src.registered = I.registered
 						src.name = "[I.registered]'s [src.name]"
@@ -263,6 +269,7 @@
 					src.locked = !src.locked
 					user.visible_message("<span class='notice'>[src] has been [src.locked ? null : "un"]locked by [user].</span>")
 					src.update_icon()
+					locker_sound() //redd was here
 					for (var/mob/M in src.contents)
 						src.log_me(user, M, src.locked ? "locks" : "unlocks")
 					return
@@ -431,9 +438,6 @@
 		if (can_reach(user, src) <= 1 && (isrobot(user) || isshell(user)))
 			. = src.Attackhand(user)
 
-	alter_health()
-		. = get_turf(src)
-
 	CanPass(atom/movable/mover, turf/target)
 		. = open
 		if (src.is_short)
@@ -500,7 +504,7 @@
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
-		playsound(src.loc, src.open_sound, 15, 1, -3)
+		playsound(src.loc, src.open_sound, 50, 1, -3)
 		return 1
 
 	proc/close(var/entangleLogic)
@@ -559,7 +563,7 @@
 			entangled.open(1)
 
 		src.update_icon()
-		playsound(src.loc, src.close_sound, 15, 1, -3)
+		playsound(src.loc, src.close_sound, 50, 1, -3)
 		return 1
 
 	proc/recalcPClass()

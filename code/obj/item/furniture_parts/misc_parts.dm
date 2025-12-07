@@ -5,8 +5,8 @@
 	icon = 'icons/obj/items/metal.dmi'
 	icon_state = "rack_base_parts"
 	stamina_damage = 25
-	stamina_cost = 22
-	stamina_crit_chance = 15
+//	stamina_cost = 22
+//	stamina_crit_chance = 15
 	furniture_type = /obj/rack
 	furniture_name = "rack"
 
@@ -31,7 +31,7 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "bed_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/bed
 	furniture_name = "bed"
 

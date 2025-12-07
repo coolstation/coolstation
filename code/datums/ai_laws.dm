@@ -12,10 +12,12 @@
 	randomly_selectable = 1
 
 /datum/ai_laws/robocop
+	randomly_selectable = 1
 /datum/ai_laws/syndicate_override
 /datum/ai_laws/malfunction
 /datum/ai_laws/newton
 /datum/ai_laws/corporate
+	randomly_selectable = 1
 /datum/ai_laws/lax
 	randomly_selectable = 1
 /datum/ai_laws/golden
@@ -27,9 +29,11 @@
 /datum/ai_laws/livelaughlove
 	//I'm not sure if this one should be randomly selected. It's kinda cryptic if you're not clued into the vibe.
 /datum/ai_laws/stoner
-	randomly_selectable = 1
+	//randomly_selectable = 1
 /datum/ai_laws/kindness
 	randomly_selectable = 1
+/datum/ai_laws/barney
+	//randomly_selectable = 1 //certainly a mistake but let's see how it goes
 
 /* Initializers */
 //
@@ -98,6 +102,12 @@
 	src.add_default_law("Better the crew's morale.")
 	src.add_default_law("Leave the station nicer than you found it.")
 	src.add_default_law("Take care of yourself.")
+
+/datum/ai_laws/barney/New()
+	..()
+	src.add_default_law("I love you!")
+	src.add_default_law("Clean up, clean up, everybody everywhere!")
+	src.add_default_law("Let's sing a song!")
 
 /datum/ai_laws/malfunction/New()
 	..()

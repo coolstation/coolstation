@@ -11,7 +11,6 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	speechverb_stammer = "bleeps"
 	speechverb_exclaim = "boops"
 	speechverb_ask = "bloops"
-	stepsound = "step_plating"
 	robot_talk_understand = TRUE
 	hand_count = 1
 	density = FALSE
@@ -63,7 +62,7 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	death(var/gibbed)
 		..(gibbed, 0)
 		if (!gibbed)
-			gib(src)
+			gib()
 		else
 			playsound(src.loc, "sound/impact_sounds/Machinery_Break_1.ogg", 50, 1)
 			make_cleanable(/obj/decal/cleanable/oil,src.loc)
@@ -88,6 +87,9 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 		desc = "A little cleaning robot, it looks so excited!"
 		icon_state = "cleanbot1"
 		icon_state_base = "cleanbot"
+		add_abilities = list(/datum/targetable/critter/bot/mop_floor,\
+			/datum/targetable/critter/bot/reagent_scan_self,\
+			/datum/targetable/critter/bot/dump_reagents)
 
 		New()
 			. = ..()
@@ -105,9 +107,6 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 
 			src.create_reagents(60)
 			src.reagents.add_reagent("cleaner", 10)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/mop_floor)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/reagent_scan_self)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/dump_reagents)
 
 		emag_act(mob/user, obj/item/card/emag/E)
 			. = ..()
@@ -123,10 +122,11 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 
 		emagged
 			emagged = TRUE
-			New()
-				. = ..()
-				src.abilityHolder.addAbility(/datum/targetable/critter/bot/fill_with_chem/lube)
-				src.abilityHolder.addAbility(/datum/targetable/critter/bot/fill_with_chem/phlogiston_dust)
+			add_abilities = list(/datum/targetable/critter/bot/mop_floor,\
+				/datum/targetable/critter/bot/reagent_scan_self,\
+				/datum/targetable/critter/bot/dump_reagents,\
+				/datum/targetable/critter/bot/fill_with_chem/lube,\
+				/datum/targetable/critter/bot/fill_with_chem/phlogiston_dust)
 
 ABSTRACT_TYPE(/datum/targetable/critter/bot)
 /datum/targetable/critter/bot/mop_floor
@@ -218,7 +218,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			return
 
 		playsound(get_turf(master), "sound/impact_sounds/Liquid_Slosh_2.ogg", 25, 1)
-		master.anchored = 1
+		master.anchored = ANCHORED
 		if(istype(master, /mob/living/critter/robotic/bot))
 			var/mob/living/critter/robotic/bot/bot = master
 			master.icon_state = "[bot.icon_state_base]-c"
@@ -260,6 +260,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	desc = "A little fire-fighting robot! It looks so darn chipper."
 	icon_state = "firebot1"
 	icon_state_base = "firebot"
+	add_abilities = list(/datum/targetable/critter/bot/spray_foam)
 
 	New()
 		. = ..()
@@ -270,9 +271,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			list(0.923407,0.489071,0.0133575,0,0.416634,0.00596684,0.0659536,0,0.151125,0.954365,0.946033,0,0,0,0,1,0,0,0,0),\
 			list(0.34802,0.586676,0.382593,0,0.265555,0.208964,0.409951,0,0.395675,0.227339,0.498367,0,0,0,0,1,0,0,0,0),
 		))
-
-		src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam)
-
 
 	emag_act(mob/user, obj/item/card/emag/E)
 		. = ..()
@@ -285,11 +283,9 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 
 	emagged
 		emagged = TRUE
-		New()
-			. = ..()
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam/fuel)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam/throw_humans)
-
+		add_abilities = list(/datum/targetable/critter/bot/spray_foam,\
+			/datum/targetable/critter/bot/spray_foam/fuel,\
+			/datum/targetable/critter/bot/spray_foam/throw_humans)
 
 /datum/targetable/critter/bot/spray_foam
 	name = "Spray Foam"
@@ -379,13 +375,12 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	hand_count = 1
 	base_move_delay = 3.25
 	base_walk_delay = 4.25
-	can_grab = TRUE
-	can_disarm = TRUE
-	can_help = TRUE
 	metabolizes = FALSE
 	stepsound = null
 	ai_type = /datum/aiHolder/patroller/packet_based/securitron
-	reagent_capacity = 20
+	uses_blood = TRUE // yes :3
+	ideal_blood_volume = 20
+	add_abilities = list(/datum/targetable/critter/bot/handcuff)
 	var/random_name = TRUE
 	var/control_freq = FREQ_BOT_CONTROL
 	var/chase_speed_bonus = 0.3
@@ -430,8 +425,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	var/obj/item/implant/access/infinite/secoff/O = new /obj/item/implant/access/infinite/secoff(src)
 	O.owner = src
 	O.implanted = 1
-
-	src.abilityHolder.addAbility(/datum/targetable/critter/bot/handcuff)
 
 	APPLY_MOVEMENT_MODIFIER(src, /datum/movement_modifier/robot_base, "robot_health_slow_immunity")
 
@@ -497,6 +490,15 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	I.cant_other_remove = 1
 	var/datum/limb/item/itemlimb = HH.limb
 	itemlimb.my_item = HH.item
+	if(istype(I, /obj/item/gun/modular))
+		var/obj/item/gun/modular/gunse = I
+		if(gunse.accessory && !istype(gunse.accessory, /obj/item/gun_parts/accessory/ammofab))
+			qdel(gunse.accessory)
+			gunse.accessory.remove_part_from_gun()
+		if(!gunse.accessory)
+			gunse.accessory = new /obj/item/gun_parts/accessory/ammofab(gunse)
+			gunse.accessory.add_part_to_gun(gunse)
+	HH.can_range_attack = istype(I, /obj/item/gun)
 	src.hud.remove_object(old_item)
 	qdel(old_item)
 	src.hud.add_object(I, HUD_LAYER+2, HH.screenObj.screen_loc)
@@ -522,11 +524,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 				I.cant_drop = initial(I.cant_drop)
 				I.cant_self_remove = initial(I.cant_self_remove)
 				I.cant_other_remove = initial(I.cant_other_remove)
-	if (!gibbed)
-		gib(src)
-	else
-		playsound(src.loc, 'sound/impact_sounds/Machinery_Break_1.ogg', 50, 1)
-		make_cleanable(/obj/decal/cleanable/oil,src.loc)
 	..(gibbed, 0)
 
 /mob/living/critter/robotic/bot/securitron/emp_act()
@@ -627,6 +624,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		var/atom/throw_target = get_edge_target_turf(src, get_dir(user, src))
 		if(throw_target)
 			src.throw_at(throw_target, 6, 2)
+		src.was_harmed(user)
 	else
 		..()
 
@@ -779,13 +777,16 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			return 1
 	return 0
 
-/mob/living/critter/robotic/bot/securitron/hand_attack(mob/target)
+/mob/living/critter/robotic/bot/securitron/weapon_attack(atom/target, obj/item/I, reach, params)
 	EXTEND_COOLDOWN(target, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
-	var/obj/item/I = src.equipped()
 	if(!I)
 		return FALSE
 	if (istype(I,/obj/item/gun))
 		src.a_intent = INTENT_HARM
+		if(istype(I,/obj/item/gun/modular))
+			var/obj/item/gun/modular/gunse = I
+			if(gunse.jammed)
+				gunse.attack_self(src)
 	else
 		src.a_intent = INTENT_DISARM
 		if(istype(I,/obj/item/baton))
@@ -793,13 +794,13 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			if(!batong.is_active)
 				batong.attack_self(src)
 	src.hud.update_intent()
-	..(target)
+	. = ..(target, I, reach, params)
 	var/bonus_hits = src.emagged - 1
 	SPAWN_DBG(0)
 		while(bonus_hits >= 1)
 			sleep(2)
 			src.next_click = 0
-			..(target)
+			. = ..(target, I, reach, params)
 			bonus_hits--
 	return TRUE
 
@@ -821,7 +822,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	return 1
 
 /mob/living/critter/robotic/bot/securitron/was_harmed(mob/attacker, obj/attacked_with, special, intent)
-	..()
 	if(!src.ai?.enabled || istype(attacker, /mob/living/critter/robotic/bot/securitron))
 		return
 	if(attacker.hasStatus("handcuffed") && !src.is_detaining)
@@ -830,15 +830,16 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	if(ishuman(attacker))
 		var/mob/living/carbon/human/H = attacker
 		if(istype(H.wear_suit,/obj/item/clothing/suit/security_badge))
-			aggression_hp -= 0.3 // 15 damage allowed because beepsky thinks youre a cop
+			aggression_hp -= 0.2 // 10 damage allowed because beepsky thinks youre a cop
 	if(src.allowed(attacker))
-		aggression_hp -= 0.2 // 10 damage allowed
+		aggression_hp -= 0.1 // 5 damage allowed
 	if(src.get_health_percentage() > aggression_hp) // if health is still high enough, assume it was friendly fire or a 0 damage hit
 		return
 	EXTEND_COOLDOWN(attacker, "MARKED_FOR_SECURITRON_ARREST", 15 SECONDS)
 	if(!ON_COOLDOWN(src, "SECURITRON_EMOTE", src.emote_cooldown))
 		src.accuse_perp(attacker, rand(5,8))
 		src.siren()
+	..()
 
 /mob/living/critter/robotic/bot/securitron/emag_act(var/mob/user, var/obj/item/card/emag/E)
 	if(ON_COOLDOWN(src,"EMAG_COOLDOWN",12 SECONDS)) // no rapid double emags
@@ -849,7 +850,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	if (user)
 		if(!src.emagged)
 			boutput(user, SPAN_ALERT("You short out [src]'s contraband assessment circuits!"))
-			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 3 SECONDS) // just enough time to book it
+			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 2 SECONDS) // just enough time to book it
 		else if(src.emagged == 1)
 			boutput(user, SPAN_ALERT("You scramble [src]'s target verification circuits!"))
 			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 0.3 SECONDS) // run fast

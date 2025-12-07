@@ -60,7 +60,7 @@
 	icon_state = "secbot0"
 	layer = 5.0 //TODO LAYER
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	luminosity = 2
 	req_access = list(access_security)
 	var/weapon_access = access_carrypermit
@@ -602,7 +602,7 @@
 			src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
 		if (src.target.getStatusDuration("weakened"))
 			mode = SECBOT_AGGRO
-			src.anchored = 1
+			src.anchored = ANCHORED
 			src.target_lastloc = M.loc
 			src.KillPathAndGiveUp(KPAGU_CLEAR_PATH)
 		return
@@ -628,8 +628,10 @@
 			if(SECBOT_IDLE)
 				src.doing_something = 0
 				look_for_perp()	// see if any criminals are in range
+				#ifndef IM_TESTING_BASIC_MOB_FUNCTIONALITY
 				if(auto_patrol)	// still idle, and set to patrol
 					mode = SECBOT_START_PATROL	// switch to patrol mode
+				#endif
 
 			/// No guard orders, engaging target, seeking to arrest them
 			if(SECBOT_AGGRO, SECBOT_GUARD_AGGRO)
@@ -817,7 +819,7 @@
 
 	// look for a criminal in range of the bot
 	proc/look_for_perp()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		for(var/mob/living/carbon/C in view(7, get_turf(src))) //Let's find us a criminal
 			if ((C.stat) || (C.hasStatus("handcuffed")))
 				continue
@@ -974,7 +976,7 @@
 
 	KillPathAndGiveUp(var/give_up = KPAGU_CLEAR_PATH)
 		. = ..()
-		src.anchored = 0
+		src.anchored = UNANCHORED
 		src.icon_state = "secbot[src.on][(src.on && src.emagged >= 2) ? "-wild" : null]"
 		if(give_up == KPAGU_RETURN_TO_GUARD || give_up == KPAGU_CLEAR_ALL)
 			src.oldtarget_name = src.target?.name

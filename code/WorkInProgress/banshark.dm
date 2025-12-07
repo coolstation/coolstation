@@ -86,7 +86,7 @@
 	icon_state = "banshark1"
 	layer = EFFECTS_LAYER_2
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	var/mob/sharktarget2 = null
 	var/data = null
 	var/callster = null
@@ -156,7 +156,7 @@
 	icon_state = "banshark1"
 	layer = EFFECTS_LAYER_2
 	density = 1
-	anchored = 0
+	anchored = UNANCHORED
 	var/mob/sharktarget2 = null
 	var/sharkspeed = 1
 	var/mob/callster = null

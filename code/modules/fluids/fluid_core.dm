@@ -44,7 +44,7 @@ var/mutable_appearance/fluid_ma
 	desc = "It's a free-flowing liquid state of matter!"
 	icon = 'icons/obj/fluid.dmi'
 	icon_state = "15"
-	anchored = 1
+	anchored = ANCHORED
 	mouse_opacity = 1
 	layer = FLUID_LAYER
 	pass_unstable = FALSE
@@ -278,6 +278,11 @@ var/mutable_appearance/fluid_ma
 		if (M.reagents)
 			react_volume = min(react_volume, abs(M.reagents.maximum_volume - M.reagents.total_volume)) //don't push out other reagents if we are full
 		src.group.reagents.reaction(M, INGEST, react_volume,1,src.group.members.len)
+		if(isliving(M))
+			var/mob/living/L = M
+			if(L.organHolder && L.organHolder.stomach)
+				src.group.reagents.trans_to(L.organHolder.stomach, react_volume)
+				return
 		src.group.reagents.trans_to(M, react_volume)
 
 	HasExited(atom/movable/AM, atom/newloc)

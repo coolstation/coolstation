@@ -11,8 +11,6 @@
 	ai_range = 1
 	attack_mobs = TRUE
 
-	var/datum/projectile/slam/proj = new
-
 	cast(atom/target)
 		if (disabled && world.time > last_cast)
 			disabled = 0 // break the deadlock
@@ -39,21 +37,23 @@
 		if (!is_incapacitated(MT))
 			boutput(holder.owner, __red("That is moving around far too much to pounce."))
 			return 1
-		playsound(holder.owner, "sound/voice/animal/brullbar_roar.ogg", 80, 1)
+		holder.owner.emote("scream", FALSE)
 		disabled = 1
 		SPAWN_DBG(0)
 			var/frenz = rand(10, 20)
 			holder.owner.canmove = 0
+			holder.owner.set_loc(MT.loc)
 			while (frenz > 0 && MT && !MT.disposed)
-				MT.changeStatus("weakened", 2 SECONDS)
+				if(MT.getStatusDuration("weakened") <= 1.5 SECONDS)
+					MT.changeStatus("weakened", 2 SECONDS)
 				MT.canmove = 0
-				if (MT.loc)
-					holder.owner.set_loc(MT.loc)
+				if (MT.loc != holder.owner.loc)
+					break
 				if (is_incapacitated(holder?.owner))
 					break
 				playsound(holder.owner, "sound/voice/animal/brullbar_maul.ogg", 80, 1)
 				holder.owner.visible_message("<span class='alert'><b>[holder.owner] [pick("mauls", "claws", "slashes", "tears at", "lacerates", "mangles")] [MT]!</b></span>")
-				holder.owner.set_dir((cardinal))
+				holder.owner.set_dir(pick(cardinal))
 				holder.owner.pixel_x = rand(-5, 5)
 				holder.owner.pixel_y = rand(-5, 5)
 				random_brute_damage(MT, 10,1)

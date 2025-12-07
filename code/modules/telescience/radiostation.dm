@@ -129,7 +129,7 @@
 	desc = "A large and complicated audio mixing desk. Complete with fancy displays, dials, knobs and automated faders."
 	icon = 'icons/obj/radiostation.dmi'
 	icon_state = "mixtable-2"
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 1
 	flags = TGUI_INTERACTIVE
 	var/static/list/accents
@@ -239,7 +239,7 @@
 	desc = "An old school vinyl record player sat on a set of drawers. Shame you don't have any records."
 	icon = 'icons/obj/radiostation.dmi'
 	icon_state = "mixtable-3"
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 1
 	var/has_record = 0
 	var/is_playing = 0
@@ -770,7 +770,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	desc = "A large standalone reel-to-reel tape deck."
 	icon = 'icons/obj/radiostation.dmi'
 	icon_state = "tapedeck"
-	anchored = 1.0
+	anchored = ANCHORED
 	density = 1
 	var/has_tape = 0
 	var/is_playing = 0
@@ -969,7 +969,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	icon_state = "gannets_machine1"
 	bound_width = 64
 	bound_height = 64
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/vacuumtape
@@ -979,7 +979,7 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	icon_state = "gannets_machine2"
 	bound_width = 32
 	bound_height = 64
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/operatorconsole
@@ -989,21 +989,21 @@ ABSTRACT_TYPE(/obj/item/record/random/notaquario)
 	icon_state = "gannets_machine1"
 	bound_width = 32
 	bound_height = 64
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/broadcastcomputer
 	name = "broadcast server"
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "gannets_machine11"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 /obj/decal/fakeobjects/tapedeck
 	name = "reel to reel tape deck"
 	icon = 'icons/obj/decoration.dmi'
 	icon_state = "gannets_machine20"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 //Computer, disk and files.

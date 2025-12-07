@@ -26,6 +26,7 @@ datum
 		var/max_addiction_severity = "HIGH" // HIGH = barfing, stuns, etc, LOW = twitching, getting tired
 		var/dispersal = 4 // The range at which this disperses from a grenade. Should be lower for heavier particles (and powerful stuff).
 		var/volatility = 0 // Volatility determines effectiveness in pipebomb. This is 0 for a bad additive, otherwise a positive number which linerally affects explosive power.
+
 		var/flammable_influence = FALSE  // Determines if the chemical can burn at all
 		var/combusts_on_fire_contact = FALSE // Determines if the chemical burns when in direct contact with fire
 		var/combusts_on_gaseous_fire_contact = FALSE // Determines if the chemical burns when in direct contact with fire while aerosolized
@@ -33,8 +34,8 @@ datum
 		var/burn_energy = 0 // The energy a chemical releases when burnt, in Joules per unit
 		var/burn_volatility = 0 // How violently it burns
 		var/burn_temperature = 0 // Temperature at which a chem burns
+
 		var/reacting = 0 // fuck off chemist spam
-		var/overdose = 0 // if reagents are at or above this in a mob, it's an overdose - if double this, it's a major overdose
 		var/depletion_rate = 0.4 // this much goes away per tick
 		var/penetrates_skin = 0 //if this reagent can enter the bloodstream through simple touch.
 		var/touch_modifier = 1 //If this does penetrate skin, how much should be transferred by default (assuming naked dude)? 1 = transfer full amount, 0.5 = transfer half, etc.
@@ -60,6 +61,12 @@ datum
 		var/can_crack = 0 // used by organic chems
 		var/contraband = 0 // bastards hate this shit
 		var/evaporates_cleanly = FALSE // vanishes on evaporation
+
+		var/overdose = 0 // if reagents are at or above this in a mob, it's an overdose - if double this, it's a major overdose
+		var/upper = 0 // mobs get this much "upper" (generic stimulant stuffs) value from it
+		var/upper_overdose = 0 // mobs get this much additional "upper" value from it if overdosing
+		var/downer = 0 // mobs get this much "downer" (generic sedative stuffs) value from it
+		var/downer_overdose = 0 // mobs get this much additional "downer" value from it if overdosing
 
 		//	Increases the weight of the reagent in the color calculation
 		//	A multiplier of 2 makes the color as if the reagent's volume was twice as much
@@ -88,14 +95,14 @@ datum
 */
 
 		proc/on_add()
-			if (stun_resist > 0 && ismob(holder?.my_atom))
+			if (stun_resist > 0 && !holder?.external && ismob(holder?.my_atom))
 				var/mob/M = holder.my_atom
 				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_[src.id]", stun_resist)
 				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_[src.id]", stun_resist)
 			return
 
 		proc/on_remove()
-			if (stun_resist > 0 && ismob(holder?.my_atom))
+			if (stun_resist > 0 && !holder?.external && ismob(holder?.my_atom))
 				var/mob/M = holder.my_atom
 				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_[src.id]")
 				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_[src.id]")
@@ -227,6 +234,9 @@ datum
 			var/deplRate = depletion_rate
 			deplRate = deplRate * mult
 
+			M.drug_upper += src.upper
+			M.drug_downer += src.downer
+
 			if (ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if (H.traitHolder.hasTrait("slowmetabolism"))
@@ -304,8 +314,8 @@ datum
 			// and allow the individual effects' scale to be adjusted by severity in one spot
 			if (ismob(severity)) return //Wire: Fix for shitty fucking byond mixing up vars
 			var/effect = rand(1, 100) - severity
-			if (effect <= 8)
-				M.take_toxin_damage(severity * mult)
+			M.drug_upper += src.upper_overdose
+			M.drug_downer += src.downer_overdose
 			return effect
 
 		proc/handle_addiction(var/mob/M, var/rate)

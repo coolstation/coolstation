@@ -7,7 +7,7 @@
 #define LINING_CORNER_SMALL 6
 
 /obj/neon_lining
-	anchored = 1
+	anchored = ANCHORED
 	icon = 'icons/obj/decals/neon_lining.dmi'
 	icon_state = "base2"
 	name = "neon lining"

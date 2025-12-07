@@ -112,7 +112,7 @@
 
 		gen_stars()
 
-		spawn(0)
+		SPAWN_DBG(0)
 			do_process = 1
 			src.fast_process()
 
@@ -221,10 +221,10 @@
 				src.unload_body(G)
 
 		if(my_galactic_objects.len > 0 && !src.tracking)
-			spawn(0)
+			SPAWN_DBG(0)
 				src.begin_tracking()
 		else if (my_galactic_objects.len == 0 && src.tracking)
-			spawn(0)
+			SPAWN_DBG(0)
 				src.end_tracking()
 
 	proc/load_body(var/datum/galactic_object/G, var/force_tracking_update = 0)
@@ -249,7 +249,7 @@
 
 			if(force_tracking_update)
 				if(my_galactic_objects.len > 0 && !src.tracking)
-					spawn(0)
+					SPAWN_DBG(0)
 						src.begin_tracking()
 
 	proc/unload_body(var/datum/galactic_object/G, var/force_tracking_update = 0)
@@ -269,7 +269,7 @@
 
 			if(force_tracking_update)
 				if (my_galactic_objects.len == 0 && src.tracking)
-					spawn(0)
+					SPAWN_DBG(0)
 						src.end_tracking()
 
 	proc/update_my_stuff(var/vel, var/rot, var/vang, var/sang)

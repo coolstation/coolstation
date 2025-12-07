@@ -68,6 +68,8 @@ datum
 		var/temperature_cap = 10000
 		var/temperature_min = 0
 
+		var/external = FALSE
+
 		var/postfoam = 0 //attempt at killing infinite foam
 		var/can_be_heated = TRUE //can be heated by external sources
 
@@ -407,7 +409,9 @@ datum
 			return ret
 
 		//multiplier is used to handle realtime metabolizations over byond time
-		proc/metabolize(var/mob/target, var/multiplier = 1)
+		proc/metabolize(var/mob/living/target, var/multiplier = 1)
+			target.drug_upper = 0
+			target.drug_downer = 0
 			if (islist(src.addiction_tally) && length(src.addiction_tally)) // if we got some addictions to process
 				//DEBUG_MESSAGE("metabolize([target]) addiction_tally processing")
 				for (var/rid in src.addiction_tally) // look at each addiction tally
@@ -421,6 +425,8 @@ datum
 
 			var/mult_per_reagent = 1
 			for (var/current_id in reagent_list)
+				if(target.blood_id == current_id)
+					continue
 				var/datum/reagent/current_reagent = reagent_list[current_id]
 				if (current_reagent)
 					mult_per_reagent = min(multiplier,current_reagent.how_many_depletions(target)) //limit the multiplier by how many depletions we have left
@@ -1419,6 +1425,7 @@ datum
 
 // currently a stub, any behavior for reagents on the surface of something goes here
 /datum/reagents/surface
+	external = TRUE
 
 ///////////////////////////////////////////////////////////////////////////////////
 

@@ -20,7 +20,7 @@ var/global/list/datum/client_image_group/client_image_groups
 			mob_to_associated_images_lookup[img.loc] += img
 		else // first time a mob's image is added, on top of adding it to the lookup list a signal is registered on the mob to track invisibility changes.
 			mob_to_associated_images_lookup[img.loc] = list(img)
-			RegisterSignal(img.loc, COMSIG_ATOM_PROP_INVISIBILITY, .proc/on_mob_invisibility_changed)
+			RegisterSignal(img.loc, COMSIG_ATOM_PROP_INVISIBILITY, PROC_REF(on_mob_invisibility_changed))
 
 		for (var/mob/iterated_mob as() in subscribed_mobs_with_subcount)
 			if (!img.loc.invisibility || (img.loc == iterated_mob) || istype(iterated_mob, /mob/dead/observer))

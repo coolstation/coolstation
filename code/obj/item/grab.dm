@@ -1,5 +1,5 @@
 //MBC NOTE : we entirely skip over grab level 1. it is not needed but also i am afraid to remove it entirely right now.
-/obj/item/grab //TODO : pool grabs
+/obj/item/grab
 	flags = SUPPRESSATTACK
 	var/mob/living/assailant
 	var/mob/living/affecting
@@ -9,7 +9,7 @@
 	icon_state = "reinforce"
 	name = "grab"
 	w_class = W_CLASS_HUGE
-	anchored = 1
+	anchored = ANCHORED
 	var/break_prob = 45
 	var/assailant_stam_drain = 30
 	var/affecting_stam_drain = 20
@@ -62,8 +62,9 @@
 		if(affecting)
 			if (affecting.beingBaned)
 				affecting.beingBaned = FALSE
-			if (!affecting.lying)
-				affecting.transform = null
+			if (affecting.gotBent)
+				affecting.Turn(-90)
+				affecting.gotBent = FALSE
 
 			if (state >= GRAB_NECK)
 				if (assailant)
@@ -222,7 +223,7 @@
 					if (!src.affecting.buckled)
 						set_affected_loc()
 
-					user.next_click = world.time + user.combat_click_delay //+ rand(6,11) //this was utterly disgusting, leaving it here in memorial
+					user.next_click = world.time + user.combat_click_delay  * GET_COMBAT_CLICK_DELAY_SCALE(user) //+ rand(6,11) //this was utterly disgusting, leaving it here in memorial
 			if (GRAB_AGGRESSIVE)
 				if (ishuman(src.affecting))
 					var/mob/living/carbon/human/H = src.affecting
@@ -238,7 +239,7 @@
 				src.affecting.lastattacker = src.assailant
 				src.affecting.lastattackertime = world.time
 				logTheThing("combat", src.assailant, src.affecting, "'s grip upped to neck on [constructTarget(src.affecting,"combat")]")
-				user.next_click = world.time + user.combat_click_delay
+				user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)
 				src.assailant.visible_message("<span class='alert'>[src.assailant] has reinforced [his_or_her(assailant)] grip on [src.affecting] (now neck)!</span>")
 			if (GRAB_NECK)
 				if (ishuman(src.affecting))
@@ -250,13 +251,13 @@
 				actions.start(new/datum/action/bar/icon/strangle_target(src.affecting, src), src.assailant)
 				//user.next_click = world.time + 1 //mbc : wow. this makes so much sense as to why i would always toggle killchoke off immediately
 				// this is also gross enough to leave in memorial. lol
-				user.next_click = world.time + user.combat_click_delay
+				user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)
 			if (GRAB_KILL)
 				src.state = GRAB_NECK
 				logTheThing("combat", src.assailant, src.affecting, "releases their choke on [constructTarget(src.affecting,"combat")] after [choke_count] cycles")
 				for (var/mob/O in AIviewers(src.assailant, null))
 					O.show_message("<span class='alert'>[src.assailant] has loosened [his_or_her(assailant)] grip on [src.affecting]'s neck!</span>", 1)
-				user.next_click = world.time + user.combat_click_delay
+				user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)
 		update_icon()
 
 	proc/upgrade_to_kill(var/msg_overridden = 0)
@@ -411,7 +412,7 @@
 		if (!src.affecting) return 0
 		if (get_dist(user, src.affecting) > 1)
 			return 0
-		if ((src.state < 1 && !(src.affecting.getStatusDuration("paralysis") || src.affecting.getStatusDuration("weakened") || src.affecting.stat)) || !isturf(user.loc))
+		if ((src.state < GRAB_AGGRESSIVE && !(src.affecting.getStatusDuration("paralysis") || src.affecting.getStatusDuration("weakened") || src.affecting.stat)) || !isturf(user.loc))
 			user.visible_message("<span class='alert'>[src.affecting] stumbles a little!</span>")
 			user.u_equip(src)
 			return 0
@@ -813,7 +814,7 @@
 	handle_throw(var/mob/living/user,var/atom/target)
 		if (isturf(user.loc) && target)
 			var/turf/T = user.loc
-			if (!(T.turf_flags & CAN_BE_SPACE_SAMPLE) && !(user.lying) && can_act(user))
+			if (!(T.turf_flags & IS_SPACE) && !(user.lying) && can_act(user))
 				user.changeStatus("weakened", max(user.movement_delay()*2, 0.5 SECONDS))
 				user.force_laydown_standup()
 

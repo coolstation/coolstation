@@ -4,7 +4,7 @@
 	name = "poster"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "poster"
-	anchored = 1
+	anchored = ANCHORED
 	opacity = 0
 	density = 0
 	var/imgw = 600 //set this to around +10 your image's actual size or whatever size you want the window to be
@@ -629,6 +629,16 @@
 			name = "periodic table of elements"
 			desc = "A chart listing all known chemical elements."
 			icon_state = "ptoe"
+
+		poster_chme
+			name = "\improper chemical precursor table"
+			desc = "A poster with common chemical precursors and their recipies."
+			icon_state = "chemcomp"
+			popup_win = 1
+			imgw = 500
+			imgh = 647
+			icon = 'icons/obj/decals/posters.dmi'
+			img = "images/arts/posters/precursor.png"
 
 		poster_y4nt
 			name = "\improper NanoTrasen recruitment poster"

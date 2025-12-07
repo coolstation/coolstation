@@ -14,7 +14,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 	var/datum/hud/critter/custom_hud_type = /datum/hud/critter
 	var/datum/organHolder/custom_organHolder_type = null
 
-	var/hand_count = 0		// Used to ease setup. Setting this in-game has no effect.
 	var/list/hands = list()
 	var/list/equipment = list()
 	var/image/equipment_image = new
@@ -36,11 +35,8 @@ ABSTRACT_TYPE(/mob/living/critter)
 	//this is probably crap but I can't be arsed to refactor
 	var/lie_on_death = TRUE
 
-	var/can_help = 0
-	var/can_grab = 0
-	var/can_disarm = 0
+	ideal_blood_volume = 50
 
-	var/reagent_capacity = 50
 	max_health = 0
 	health = 0
 
@@ -50,8 +46,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 	var/list/inhands = list()
 	var/list/healthlist = list()
 
-	var/list/implants = list()
-	var/can_implant = 1
+	var/can_implant = TRUE
 
 	var/death_text = null // can use %src%
 	var/pet_text = "pets" // can be a list
@@ -96,7 +91,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 		setup_hands()
 		post_setup_hands()
 		setup_equipment_slots()
-		setup_reagents()
 		setup_healths()
 		if (!healthlist.len)
 			stack_trace("Critter [type] ([name]) \[\ref[src]\] does not have health holders.")
@@ -105,9 +99,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 		SPAWN_DBG(0)
 			src.zone_sel.change_hud_style('icons/ui/hud_human.dmi')
 			src.attach_hud(zone_sel)
-
-		for (var/datum/equipmentHolder/EE in equipment)
-			EE.after_setup(hud)
 
 		burning_image.icon = 'icons/mob/critter.dmi'
 		burning_image.icon_state = null
@@ -123,6 +114,9 @@ ABSTRACT_TYPE(/mob/living/critter)
 		hud = new custom_hud_type(src)
 		src.attach_hud(hud)
 		src.zone_sel = new(src, "CENTER[hud.next_right()], SOUTH")
+
+		for (var/datum/equipmentHolder/EE in equipment)
+			EE.after_setup(hud)
 
 		health_update_queue |= src
 
@@ -158,10 +152,10 @@ ABSTRACT_TYPE(/mob/living/critter)
 		equipment.len = 0
 		equipment = null
 
-		for(var/obj/item/I in implants)
+		for(var/obj/item/I in implant)
 			I.dispose()
-		implants.len = 0
-		implants = null
+		implant.len = 0
+		implant = null
 
 		for(var/damage_type in healthlist)
 			var/datum/healthHolder/hh = healthlist[damage_type]
@@ -561,7 +555,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 		if (HH.can_attack)
 			var/obj/item/equipped = src.equipped()
 			if(equipped && src.next_click <= world.time)
-				src.next_click = world.time + max(equipped.click_delay,src.combat_click_delay)
+				src.next_click = world.time + max(equipped.click_delay,src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 				target.Attackby(equipped, src, params)
 			else
 				L.attack_hand(target, src)
@@ -611,12 +605,6 @@ ABSTRACT_TYPE(/mob/living/critter)
 					HH.limb = new /datum/limb(src)
 
 	proc/setup_equipment_slots()
-
-	proc/setup_reagents()
-		reagent_capacity = max(0, reagent_capacity)
-		var/datum/reagents/R = new(reagent_capacity)
-		R.my_atom = src
-		reagents = R
 
 	equipped()
 		RETURN_TYPE(/obj/item)
@@ -694,10 +682,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 				O.set_loc(src)
 		src.mind?.register_death() // it'd be nice if critters get a time of death too tbh
 		set_density(0)
-		if (src.can_implant)
-			for (var/obj/item/implant/H in src.implants)
-				H.on_death()
-			src.can_implant = 0
+		src.can_implant = FALSE
 		if (!gibbed)
 			if (src.death_text)
 				src.tokenized_message(src.death_text, null, "red")
@@ -1071,9 +1056,8 @@ ABSTRACT_TYPE(/mob/living/critter)
 	full_heal()
 		..()
 		icon_state = icon_state_alive ? icon_state_alive : initial(icon_state)
-		density = initial(density)
+		set_density(initial(density))
 		src.can_implant = initial(src.can_implant)
-		blood_volume = initial(blood_volume)
 
 	does_it_metabolize()
 		return metabolizes
@@ -1092,25 +1076,25 @@ ABSTRACT_TYPE(/mob/living/critter)
 					ret += S.getProperty("exploprot")
 		return ret/100
 
-	ex_act(var/severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
 		..() // Logs.
 		var/ex_res = get_explosion_resistance()
 		if (ex_res >= 0.35 && prob(ex_res * 100))
-			severity++
+			severity = severity * 0.4
 		if (ex_res >= 0.80 && prob(ex_res * 75))
-			severity++
+			severity = severity * 0.4
 		switch(severity)
-			if (1)
+			if (OLD_EX_SEVERITY_1)
 				SPAWN_DBG(0)
 					gib()
-			if (2)
+			if (OLD_EX_SEVERITY_2)
 				if (health < max_health * 0.35 && prob(50))
 					SPAWN_DBG(0)
 						gib()
 				else
 					TakeDamage("All", rand(10, 30), rand(10, 30))
-			if (3)
-				TakeDamage("All", rand(20, 20))
+			if (OLD_EX_SEVERITY_3)
+				TakeDamage("All", rand(10, 15))
 
 	ghostize()
 		var/ghost_icon = src.icon
@@ -1141,7 +1125,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 		return O
 
 	drop_item()
-		..()
+		. = ..()
 		src.update_inhands()
 
 	proc/on_sleep()
@@ -1276,6 +1260,7 @@ ABSTRACT_TYPE(/mob/living/critter/robotic)
 	dna_to_absorb = 0
 	butcherable = FALSE
 	metabolizes = FALSE
+	uses_blood = FALSE
 	var/emp_vuln = 1
 
 	New()

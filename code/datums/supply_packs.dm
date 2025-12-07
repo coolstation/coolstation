@@ -683,6 +683,16 @@ ABSTRACT_TYPE(/datum/supply_packs/engineering)
 		containertype = /obj/storage/crate/packing
 		containername = "Reclaimed Reclaimer"
 
+	janitoolbelts
+		name = "Janitor Belt Crate"
+		desc = "Belts for the janitors and some cleaner to go along with it"
+		contents = "2x Janitor Belts, 2x Cleaner Spray Bottle"
+		contains = list(/obj/item/storage/belt/utility/janitor = 2,
+						/obj/item/spraybottle/cleaner = 2)
+		cost = 750
+		containertype = /obj/storage/crate/packing
+		containername = "Janitor Belt Crate"
+
 	eva
 		name = "EVA Equipment Crate"
 		desc = "Gear for enabling mobility in major hull damage scenarios."
@@ -1609,6 +1619,15 @@ ABSTRACT_TYPE(/datum/supply_packs/misc)
 		cost = 2000
 		containertype = /obj/storage/crate/packing
 		containername = "Animal Import Kit"
+
+	mothroach
+		name = "Mothroach Import Kit"
+		desc = "Gnab a few mothroaches for your department and find out what true cuteness looks like."
+		category = "Civilian Department"
+		contains = list(/mob/living/critter/small_animal/mothroach = 3)
+		cost = 3000
+		containertype = /obj/storage/crate/packing
+		containername = "Mothroach Import Kit"
 
 	takeout_chinese
 		name = "Golden Gannet Delivery"

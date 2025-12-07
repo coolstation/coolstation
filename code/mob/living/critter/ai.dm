@@ -131,6 +131,7 @@ var/list/ai_move_scheduled = list()
 		owner.move_dir = 0 //Fuck you wander task
 
 	proc/move_step()
+		SHOULD_NOT_SLEEP(TRUE)
 		if(GET_COOLDOWN(src.owner, "ACTION_BLOCKING_AI_MOVEMENT"))
 			return
 		var/atom/old_loc = src.owner.loc
@@ -184,7 +185,10 @@ var/list/ai_move_scheduled = list()
 					src.frustration_turn = 0
 
 	proc/was_harmed(obj/item/W, mob/M)
-		.=0
+		if(src.owner.ai_is_valid_target(M))
+			src.target = M
+			return TRUE
+		return FALSE
 
 	proc/disable()
 		src.enabled = FALSE
@@ -234,8 +238,8 @@ var/list/ai_move_scheduled = list()
 	/// targets is expected (but not required) to be ordered from best to worst - by default view() will do this if score_target() is based on distance
 	proc/get_best_target(list/atom/targets)
 		. = null
-		var/best_score = -INFINITY
-		var/list/best_path = null
+		var/best_score = 0
+		//var/list/best_path = null
 		if(length(targets))
 			var/required_goals = null // find all targets
 			if(score_by_distance_only)
@@ -244,7 +248,7 @@ var/list/ai_move_scheduled = list()
 			if(score_by_distance_only)
 				if(length(paths_found))
 					. = paths_found[1]
-					best_path = paths_found[.]
+					//best_path = paths_found[.]
 			else
 				for(var/atom/A as anything in paths_found)
 					var/score = src.score_target(A)
@@ -252,10 +256,10 @@ var/list/ai_move_scheduled = list()
 						var/list/tmp_best_path = paths_found[A]
 						if(length(tmp_best_path))
 							best_score = score
-							best_path = tmp_best_path
+							//best_path = tmp_best_path
 							. = A
-		holder.target = .
-		holder.target_path = best_path
+		//holder.target = .
+		//holder.target_path = best_path
 
 	/// If overriding also override [score_by_distance_only] to FALSE!
 	proc/score_target(atom/target)

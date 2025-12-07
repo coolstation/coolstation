@@ -89,7 +89,8 @@
 
 /mob/living/critter/New()
 	..()
-	add_lifeprocess(/datum/lifeprocess/blood)
+	if(src.uses_blood)
+		add_lifeprocess(/datum/lifeprocess/blood)
 	//add_lifeprocess(/datum/lifeprocess/bodytemp) //maybe enable per-critter
 	//add_lifeprocess(/datum/lifeprocess/breath) //most of them cant even wear internals
 	add_lifeprocess(/datum/lifeprocess/canmove)
@@ -109,7 +110,8 @@
 /mob/living/carbon/human/New()
 	..()
 	add_lifeprocess(/datum/lifeprocess/arrest_icon)
-	add_lifeprocess(/datum/lifeprocess/blood)
+	if(src.uses_blood)
+		add_lifeprocess(/datum/lifeprocess/blood)
 	add_lifeprocess(/datum/lifeprocess/bodytemp)
 	add_lifeprocess(/datum/lifeprocess/breath)
 	add_lifeprocess(/datum/lifeprocess/canmove)
@@ -565,10 +567,11 @@
 
 		last_stam_change = TIME
 
-
+/*
 	proc/handle_random_events()
 		if (prob(1) && prob(2))
 			emote("sneeze")
+*/
 
 	proc/handle_random_emotes()
 		if (!islist(src.random_emotes) || !src.random_emotes.len || src.stat)

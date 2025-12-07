@@ -1,6 +1,7 @@
 /client/proc/Jump(var/area/A in world)
 	set desc = "Area to jump to"
-	set name = "Jump to turf"
+	SET_ADMIN_CAT(ADMIN_CAT_SELF)
+	set name = "Jump"
 	set popup_menu = 0
 
 	admin_only

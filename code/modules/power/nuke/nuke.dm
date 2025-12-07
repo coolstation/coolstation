@@ -72,7 +72,7 @@
 	desc = "todo"
 	icon = 'icons/obj/machines/nuclear.dmi'
 	icon_state = "enginepoweredworking"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	layer = FLOOR_EQUIP_LAYER1
 

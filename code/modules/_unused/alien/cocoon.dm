@@ -11,7 +11,7 @@ they're trapped
 	name = "cocoon"
 	desc = "a strange... something..."
 	density = 1.0
-	anchored = 1.0
+	anchored = ANCHORED
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "toilet"
 
@@ -26,7 +26,7 @@ they're trapped
 		for(var/mob/O in viewers(user, null))
 			if ((O.client && !( O.blinded )))
 				boutput(O, text("<span class='notice'>[M] is absorbed by the cocoon!</span>"))
-		M.anchored = 1
+		M.anchored = ANCHORED
 		M.buckled = src
 		M.set_loc(src.loc)
 		src.add_fingerprint(user)

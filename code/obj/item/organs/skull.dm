@@ -21,6 +21,7 @@
 	var/made_from = "bone"
 	var/last_use = 0
 	var/teeth = 32 //normal for an adult human
+	hint = "Add a rod to make a chalice, a robotic leg to make a skullbot or use a saw to make a mask."
 
 	New(loc, datum/organHolder/nholder)
 		..()

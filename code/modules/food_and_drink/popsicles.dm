@@ -9,7 +9,7 @@
 	throw_range = 5
 	w_class = W_CLASS_TINY
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	var/broken = 0
 
 	attack_self(mob/user)
@@ -80,7 +80,7 @@
 			if("grape")
 				src.desc = "A purple popsicle, which appears to be \"Raisin' Hell Raisin\" flavor, which features a boost of \"Super Energy Raisin Juice,\" whatever that is."
 				R.add_reagent("wine", 5)
-				R.add_reagent("robustissin", 5) //?
+				R.add_reagent("cold_medicine", 5) //?
 				R.add_reagent("coffee", 5)
 				R.add_reagent("bread", 5)
 				R.add_reagent("milk", 5)

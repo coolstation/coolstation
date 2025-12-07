@@ -47,10 +47,8 @@
 		#endif
 
 	Entered(atom/movable/A)
-		#ifdef DATALOGGER
 		if (ishuman(A) || issilicon(A))
 			game_stats.Increment("workplacesafety") //Please keep your arms and legs inside the shuttle at all times.
-		#endif
 		..()
 
 /turf/floor/shuttle_noprotections
@@ -65,9 +63,8 @@
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
 				if(prob(50))
-					src.ReplaceWithSpace()
-				else
-					src.ReplaceWithLattice()
+					new /obj/lattice(src)
+				src.ReplaceWithSpace()
 
 			if(OLD_EX_SEVERITY_2)
 				if(prob(80))
@@ -137,7 +134,7 @@
 	/////////////////////////////////////////////////////////////////OBJECTS
 
 /obj/indestructible/
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 
 	attackby()
 	attack_hand()

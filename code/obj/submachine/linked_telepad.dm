@@ -7,7 +7,7 @@
 	icon_state = "pad0"
 	density = 0
 	opacity = 0
-	anchored = 1
+	anchored = ANCHORED
 	var/recharging =0
 	var/id = "linkedtele" //The main location of the teleporter, change this for pads and buttons in maps
 	var/recharge = 50 //About 5 seconds seems right
@@ -66,7 +66,7 @@
 	icon_state = "doorctrl0"
 	desc = "A remote control switch for the syndicate teleporter."
 	var/id = "linkedtele"
-	anchored = 1.0
+	anchored = ANCHORED
 	layer = EFFECTS_LAYER_UNDER_1
 	plane = PLANE_NOSHADOW_ABOVE
 

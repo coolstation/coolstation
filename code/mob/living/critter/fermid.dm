@@ -36,10 +36,8 @@
   speechverb_stammer = "click-clacks"
   density = 1
   can_throw = 1
-  can_grab = 1
-  can_disarm = 1
   hand_count = 3
-  reagent_capacity = 100
+  ideal_blood_volume = 100
   add_abilities = list(/datum/targetable/critter/bite, /datum/targetable/critter/sting/fermid, /datum/targetable/critter/slam)
   health_brute = 25
   health_brute_vuln = 1

@@ -17,7 +17,7 @@ proc/debug_map_apc_count(delim,zlim)
 	var/list/apcs = new()
 	var/list/manual_apcs = new()
 	for(var/obj/machinery/power/apc/C in machine_registry[MACHINES_POWER])
-		if(zlim && C.z != zlim)
+		if(zlim && !(C.z in zlim))
 			continue
 
 		if(C.areastring)
@@ -115,7 +115,7 @@ proc/debug_map_apc_count(delim,zlim)
 <B>Special Processing Data</B><BR>
 <B>Hotspot Processing:</B> [hotspots]<BR>
 <B>High Temperature Processing:</B> [air_master.active_super_conductivity.len]<BR>
-<B>High Pressure Processing:</B> [air_master.high_pressure_delta.len] (not yet implemented)<BR>
+<B>High Pressure Processing:</B> [air_master.high_pressure_delta.len]<BR>
 <BR>
 <B>Geometry Processing Data</B><BR>
 <B>Group Rebuild:</B> [air_master.groups_to_rebuild.len]<BR>
@@ -372,6 +372,9 @@ proc/debug_map_apc_count(delim,zlim)
 				if(group)
 					img.app.color = debug_color_of(group)
 					img.app.desc = "Group \ref[group]<br>[MOLES_REPORT(group.air)]Temperature=[group.air.temperature]<br/>Spaced=[group.spaced]"
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+					img.app.desc += "<br>GTA=[group.groups_to_atmosphere]"
+#endif
 					if (group.spaced) img.app.overlays += image('icons/misc/air_debug.dmi', icon_state = "spaced")
 					/*
 					var/list/borders_space = list()
@@ -839,6 +842,16 @@ proc/debug_map_apc_count(delim,zlim)
 		is_ok(atom/A)
 			return !istype(A, /obj/item)
 
+	blocked_dirs
+		name = "blocked dirs"
+		help = "Displays dir flags of blocked turf exits"
+		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
+			if (theTurf.turf_persistent.blocked_dirs)
+				img.app.overlays = list(src.makeText(theTurf.turf_persistent.blocked_dirs))
+				img.app.color = "#0000ff"
+			else
+				img.app.alpha = 0
+
 	blood_owner
 		name = "blood owner"
 		help = {"Shows the real name of the last person to bleed on a thing on a turf. If multiple people the tile is red and you need to hover over it to see a list."}
@@ -880,44 +893,45 @@ proc/debug_map_apc_count(delim,zlim)
 		proc/is_ok(atom/A)
 			return TRUE
 
+	blood_owner/no_items
+		name = "blood owner - no items"
+		is_ok(atom/A)
+			return !istype(A, /obj/item)
+
 	checkingcanpass
 		name = "checkingcanpass"
-		help = "Green = yes."
+		help = "Green = Positive value. Red = Broken negative value"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.turf_persistent.checkingcanpass ? "#0f0" : "#f00"
-
+			if(theTurf.turf_persistent.checkingcanpass)
+				img.app.color = theTurf.turf_persistent.checkingcanpass > 0 ? "#0f0" : "#f00"
+			else
+				img.app.alpha = 0
 	checkingexit
 		name = "checkingexit"
-		help = "Green = yes."
+		help = "Green = Positive value. Red = Broken negative value"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.turf_persistent.checkingexit ? "#0f0" : "#f00"
+			if(theTurf.turf_persistent.checkingexit)
+				img.app.color = theTurf.turf_persistent.checkingexit > 0 ? "#0f0" : "#f00"
+			else
+				img.app.alpha = 0
 
 	checkinghasentered
 		name = "checkinghasentered"
-		help = "Green = yes."
+		help = "Green = Positive value. Red = Broken negative value"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.turf_persistent.checkinghasentered ? "#0f0" : "#f00"
-
-	blocked_dirs
-		name = "blocked dirs"
-		help = "Displays dir flags of blocked turf exits"
-		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			if (theTurf.turf_persistent.blocked_dirs)
-				img.app.overlays = list(src.makeText(theTurf.turf_persistent.blocked_dirs))
-				img.app.color = "#0000ff"
+			if(theTurf.turf_persistent.checkinghasentered)
+				img.app.color = theTurf.turf_persistent.checkinghasentered > 0 ? "#0f0" : "#f00"
 			else
 				img.app.alpha = 0
 
 	checkinghasproximity
 		name = "checkinghasproximity"
-		help = "Green = yes."
+		help = "Green = Positive value. Red = Broken negative value"
 		GetInfo(var/turf/theTurf, var/image/debugoverlay/img)
-			img.app.color = theTurf.checkinghasproximity ? "#0f0" : "#f00"
-
-	blood_owner/no_items
-		name = "blood owner - no items"
-		is_ok(atom/A)
-			return !istype(A, /obj/item)
+			if(theTurf.checkinghasproximity)
+				img.app.color = theTurf.checkinghasproximity > 0 ? "#0f0" : "#f00"
+			else
+				img.app.alpha = 0
 
 	temperature
 		name = "temperature"
@@ -1059,12 +1073,14 @@ proc/debug_map_apc_count(delim,zlim)
 		OnEnabled(client/C)
 			. = ..()
 			var/turf/user_turf = get_turf(C.mob)
-			seed = tgui_input_number(C.mob, "Enter a seed value", "Seed Selection", seed, 50000,0)
+			seed = input(C.mob,"Enter a seed value", "Seed Selection",seed) as null|num
 			if (isnull(seed)) seed = initial(seed)
-			perlin_zoom = tgui_input_number(C.mob, "Enter a zoom value, higher numbers mean slower transitions", "Zoom Selection", perlin_zoom, 500, 2)
+			perlin_zoom = input(C.mob, "Enter a zoom value (2-500), higher numbers mean slower transitions", "Zoom Selection", perlin_zoom) as null|num
 			if (isnull(perlin_zoom)) perlin_zoom = initial(perlin_zoom)
-			square_drift = tgui_input_number(C.mob, "Enter a drift value, controls intensity of randomized intermingling of biomes", "Drift Selection", square_drift, 10, 0)
+			perlin_zoom = clamp(perlin_zoom, 2, 500)
+			square_drift = input(C.mob, "Enter a drift value (0-10), controls intensity of randomized intermingling of biomes", "Drift Selection", square_drift) as null|num
 			if (isnull(square_drift)) square_drift = initial(square_drift)
+			square_drift = clamp(square_drift, 0, 10)
 			noise_cache = new/list(world.maxx, world.maxy)
 			boutput(C, "rustg_noise_get_at_coordinates() Seed:[seed] Zoom:[perlin_zoom] Square Drift:[square_drift]")
 			for (var/turf/T as anything in block(locate(1, 1, user_turf.z), locate(world.maxx, world.maxy, user_turf.z)))
@@ -1093,16 +1109,20 @@ proc/debug_map_apc_count(delim,zlim)
 
 		OnEnabled(client/C)
 			. = ..()
-			seed = tgui_input_number(C.mob, "Enter a seed value", "Seed Selection", seed, 50000,0)
+			seed = input(C.mob,"Enter a seed value", "Seed Selection",seed) as null|num
 			if (isnull(seed)) seed = initial(seed)
-			accuracy = tgui_input_number(C.mob, "Enter a accuracy value, how close to perlin", "Accuracy", accuracy, 500, 1)
+			accuracy = input(C.mob, "Enter a accuracy value (1-500), how close to perlin", "Accuracy", accuracy) as null|num
 			if (isnull(accuracy)) accuracy = initial(accuracy)
-			stamp_size = tgui_input_number(C.mob, "Enter a stamp_size value, ??? ", "Stamp Size Selection", stamp_size, 32, 1)
+			accuracy = clamp(accuracy, 1, 500)
+			stamp_size = input(C.mob, "Enter a stamp_size value (1-32)", "Stamp Size Selection", stamp_size) as null|num
 			if (isnull(stamp_size)) stamp_size = initial(stamp_size)
-			lower_range = tgui_input_number(C.mob, "Enter a lower_range value, Lower range to be active.", "Lower Range Selection", lower_range, 1.0, 0.0, round_input=FALSE)
+			stamp_size = clamp(stamp_size, 1, 32)
+			lower_range = input(C.mob, "Enter a lower_range value (0.0 to 1.0), Lower range to be active.", "Lower Range Selection", lower_range) as null|num
 			if (isnull(lower_range)) lower_range = initial(lower_range)
-			upper_range = tgui_input_number(C.mob, "Enter a upper_range value, Upper range to be active.", "Upper Range Selection", upper_range, 1.0, 0.0, round_input=FALSE)
+			lower_range = clamp(lower_range, 0, 1)
+			upper_range = input(C.mob, "Enter a upper_range value (0.0 to 1.0), Upper range to be active.", "Upper Range Selection", upper_range) as null|num
 			if (isnull(upper_range)) upper_range = initial(upper_range)
+			upper_range = clamp(upper_range, 0, 1)
 			world_size = world.maxx
 			noise_cache = rustg_dbp_generate("[src.seed]", "[src.accuracy]", "[src.stamp_size]", "[src.world_size]", "[src.lower_range]", "[src.upper_range]")
 			boutput(C, "rustg_dbp_generate(\"[src.seed]\", \"[src.accuracy]\", \"[src.stamp_size]\", \"[src.world_size]\", \"[src.lower_range]\", \"[src.upper_range]\")")
@@ -1130,10 +1150,18 @@ proc/debug_map_apc_count(delim,zlim)
 
 		OnEnabled(client/C)
 			. = ..()
-			percentage = tgui_input_number(C.mob, "Chance of cell starting closed.", "Percentage", percentage, 99, 1)
-			smoothing_iterations = tgui_input_number(C.mob, "Iterate this many times.", "Iterations", 1, 1000, 0)
-			birth_limit = tgui_input_number(C.mob, "Number of neighboring cells is higher than this amount, a cell is born.", "Birth Limit", 6, 8, 0)
-			death_limit = tgui_input_number(C.mob, "Number of neighboring cells is lower than this amount, a cell dies.", "Death Limit", 3, 8, 0)
+			percentage = input(C.mob, "Chance of cell starting closed (1-99).", "Percentage", percentage) as null|num
+			if (isnull(percentage)) percentage = initial(percentage)
+			percentage = clamp(percentage, 1, 99)
+			smoothing_iterations = input(C.mob, "Iterate this many times.", "Iterations", smoothing_iterations) as null|num
+			if (isnull(smoothing_iterations)) smoothing_iterations = initial(smoothing_iterations)
+			smoothing_iterations = clamp(smoothing_iterations, 1, 1000)
+			birth_limit = input(C.mob, "Number of neighboring cells is higher than this amount, a cell is born (3-8).", "Birth Limit") as null|num
+			if (isnull(birth_limit)) birth_limit = initial(birth_limit)
+			birth_limit = clamp(birth_limit, 3, 8)
+			death_limit = input(C.mob, "Number of neighboring cells is lower than this amount, a cell dies (3-8).", "Death Limit") as null|num
+			if (isnull(death_limit)) death_limit = initial(death_limit)
+			death_limit = clamp(death_limit, 3, 8)
 			maxx = world.maxx
 			noise_cache = rustg_cnoise_generate("[src.percentage]", "[src.smoothing_iterations]", "[src.birth_limit]", "[src.death_limit]", "[maxx]", "[world.maxy]")
 			boutput(C, "rustg_cnoise_generate(\"[src.percentage]\", \"[src.smoothing_iterations]\", \"[src.birth_limit]\", \"[src.death_limit]\", \"[maxx]\", \"[world.maxy]\")")
@@ -1141,7 +1169,7 @@ proc/debug_map_apc_count(delim,zlim)
 		GetInfo(turf/theTurf, image/debugoverlay/img)
 			. = ..()
 			if (!length(noise_cache)) return
-			var/val = text2num(noise_cache[theTurf.x * src.maxx + theTurf.y])
+			var/val = text2num(noise_cache[(theTurf.x - 1) * src.maxx + theTurf.y])
 			img.app.color = rgb((val*255), 0, (255-val*255))
 			if(!isnull(val))
 				img.app.overlays = list(src.makeText(round(val*100)/100, RESET_ALPHA))
@@ -1159,11 +1187,21 @@ proc/debug_map_apc_count(delim,zlim)
 
 		OnEnabled(client/C)
 			. = ..()
-			region_size = tgui_input_number(C.mob, "size of regions", "region_size", region_size, 300, 1)
-			threshold = tgui_input_number(C.mob, "If distance greater than threshold then alive", "threshold", threshold, 100, 0)
-			node_per_region_chance = tgui_input_number(C.mob, "chance of a node existing in a region.", "node_per_region_chance", node_per_region_chance, 100, 0)
-			node_min = tgui_input_number(C.mob, "minimum amount of nodes in a region", "node_min", node_min, 300, 0)
-			node_max = tgui_input_number(C.mob, "maximum amount of nodes in a region", "node_max", node_max, 300, 0)
+			region_size = input(C.mob, "size of regions (1-300)", "region_size", region_size) as null|num
+			if(isnull(region_size)) region_size = initial(region_size)
+			region_size = clamp(region_size, 1, 300)
+			threshold = input(C.mob, "If distance greater than threshold then alive (0-100)", "threshold", threshold) as null|num
+			if(isnull(threshold)) threshold = initial(threshold)
+			threshold = clamp(threshold, 0, 100)
+			node_per_region_chance = input(C.mob, "chance of a node existing in a region (0-100).", "node_per_region_chance", node_per_region_chance) as null|num
+			if(isnull(node_per_region_chance)) node_per_region_chance = initial(node_per_region_chance)
+			node_per_region_chance = clamp(node_per_region_chance, 0, 100)
+			node_min = input(C.mob, "minimum amount of nodes in a region (0-300)", "node_min", node_min) as null|num
+			if(isnull(node_min)) node_min = initial(node_min)
+			node_min = clamp(node_min, 0, 300)
+			node_max = input(C.mob, "maximum amount of nodes in a region (0-300)", "node_max", node_max) as null|num
+			if(isnull(node_max)) node_max = initial(node_max)
+			node_max = clamp(node_max, 0, 300)
 			maxx = world.maxx
 			noise_cache = rustg_worley_generate("[src.region_size]", "[src.threshold]", "[src.node_per_region_chance]", "[maxx]", "[src.node_min]", "[src.node_max]")
 			boutput(C, "rustg_worley_generate(\"[src.region_size]\", \"[src.threshold]\", \"[src.node_per_region_chance]\", \"[maxx]\", \"[src.node_min]\", \"[src.node_max]\")")
@@ -1227,6 +1265,37 @@ proc/debug_map_apc_count(delim,zlim)
 						img.app.color = "#DD0000"
 						img.app.alpha = 128
 						break
+
+	singularity_containment
+		name = "singularity containment"
+		help = "Highlights tiles on which a singularity center would be contained and a singularity generator would activate.<br>Number is max singulo radius at the tile."
+
+		GetInfo(turf/theTurf, image/debugoverlay/img)
+			var/max_singulo_radius = singularity_containment_check(theTurf)
+			if(isnull(max_singulo_radius))
+				img.app.alpha = 0
+				return
+			img.app.alpha = 120
+			img.app.color = "#9944ff"
+			img.app.overlays = list(src.makeText(max_singulo_radius, RESET_ALPHA | RESET_COLOR))
+
+
+	RL_lights
+		name = "RL Lights"
+		help = "Highlights tiles on which RobustLight2 lights are places.<br>First number is the amount of lights, the second is the largest radius."
+
+		GetInfo(turf/theTurf, image/debugoverlay/img)
+			if (theTurf.turf_persistent.RL_Lights)
+				img.app.alpha = 120
+				img.app.color = "#999999"
+				var/max_radius = 0
+				for (var/datum/light/L as anything in theTurf.turf_persistent.RL_Lights)
+					max_radius = max(max_radius, L.radius)
+				img.app.overlays = list(src.makeText("[length(theTurf.turf_persistent.RL_Lights)] lights\n[max_radius]"))
+			else
+				img.app.alpha = 0
+
+
 
 /client/var/list/infoOverlayImages
 /client/var/datum/infooverlay/activeOverlay

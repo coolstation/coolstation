@@ -8,7 +8,7 @@
 	//TODO LAYER
 	layer = 5.0
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	// ACTION
 	on = 1
 	health = 5

@@ -9,10 +9,16 @@
 
 	New()
 		..()
-		SPAWN_DBG(1 DECI SECOND)
+
+		if (worldgen_hold)
+			worldgen_candidates[worldgen_generation+1] += src
+		else
 			src.setup()
-			sleep(1 SECOND)
 			qdel(src)
+
+	generate_worldgen()
+		src.setup()
+		qdel(src)
 
 	proc/setup()
 		for (var/obj/machinery/door/D in src.loc)
@@ -30,6 +36,7 @@
 
 /obj/machinery/door/firedoor
 	name = "Firelock"
+	hint = "use a crowbar to pry this open!"
 	desc = "Thick, fire-proof doors that prevent the spread of fire, they can only be pried open unless the fire alarm is cleared."
 	icon = 'icons/obj/doors/Doorfire.dmi'
 	icon_state = "door0"

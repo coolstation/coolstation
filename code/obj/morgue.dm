@@ -4,7 +4,7 @@
 	icon_state = "morgue1"
 	density = 1
 	var/obj/m_tray/connected = null
-	anchored = 1.0
+	anchored = ANCHORED
 	dir = EAST
 	var/list/spawn_contents = list()
 
@@ -106,9 +106,6 @@
 				return
 	return
 
-/obj/morgue/alter_health()
-	return src.loc
-
 /obj/morgue/attack_hand(mob/user as mob)
 	if (src.connected && src.connected.loc != src)
 		for( var/atom/movable/A as mob|obj in src.connected.loc)
@@ -182,7 +179,7 @@
 	density = 1
 	layer = FLOOR_EQUIP_LAYER1
 	var/obj/morgue/connected = null
-	anchored = 1.0
+	anchored = ANCHORED
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 
 	disposing()
@@ -229,7 +226,7 @@
 	icon_state = "crema1"
 	density = 1
 	var/obj/c_tray/connected = null
-	anchored = 1.0
+	anchored = ANCHORED
 	var/cremating = 0
 	var/id = 1
 	var/locked = 0
@@ -285,9 +282,6 @@
 				qdel(src)
 				return
 	return
-
-/obj/crematorium/alter_health()
-	return src.loc
 
 /obj/crematorium/attack_hand(mob/user as mob)
 //	if (cremating) AWW MAN! THIS WOULD BE SO MUCH MORE FUN ... TO WATCH
@@ -426,7 +420,7 @@
 	density = 1
 	layer = FLOOR_EQUIP_LAYER1
 	var/obj/crematorium/connected = null
-	anchored = 1.0
+	anchored = ANCHORED
 	var/datum/light/light //Only used for tanning beds.
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS
 
@@ -470,7 +464,7 @@
 	desc = "Burn baby burn!"
 	icon = 'icons/obj/machines/power.dmi'
 	icon_state = "crema_switch"
-	anchored = 1.0
+	anchored = ANCHORED
 	req_access = list(access_crematorium)
 	object_flags = CAN_REPROGRAM_ACCESS
 	var/on = 0

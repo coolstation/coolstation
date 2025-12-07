@@ -1,5 +1,5 @@
 mob/new_player
-	anchored = 1
+	anchored = ANCHORED
 
 	var/ready = 0
 	var/spawning = 0
@@ -14,7 +14,7 @@ mob/new_player
 	stat = 2
 	canmove = 0
 
-	anchored = 1	//  don't get pushed around
+	anchored = ANCHORED	//  don't get pushed around
 
 	//var/chui/window/spend_spacebux/bank_menu
 
@@ -51,6 +51,7 @@ mob/new_player
 		new_player_panel()
 		src.set_loc(pick_landmark(LANDMARK_NEW_PLAYER, locate(1,1,1)))
 		src.sight |= SEE_TURFS
+		src.sight |= SEE_THRU
 
 
 		// byond members get a special join message :]
@@ -157,13 +158,14 @@ mob/new_player
 			winshow(client, "pregameBrowser", 1)
 			client << browse(newplayerHTML, "window=pregameBrowser")
 		//show pregameHTML if it's available
-		else if(pregameHTML && client)
-			winshow(client, "pregameBrowser", 1)
-			client << browse(pregameHTML, "window=pregameBrowser")
-		//if pregameHTML is not available, show blank screen until pregameHTML is generated (which will send a new command to browse upon completion)
-		else if(client)
-			winshow(src.last_client, "pregameBrowser", 0)
-			src.last_client << browse("", "window=pregameBrowser")
+		else if(!ticker.did_lobbymusic)
+			if(pregameHTML && client)
+				winshow(client, "pregameBrowser", 1)
+				client << browse(pregameHTML, "window=pregameBrowser")
+			//if pregameHTML is not available, show blank screen until pregameHTML is generated (which will send a new command to browse upon completion)
+			else if(client)
+				winshow(src.last_client, "pregameBrowser", 0)
+				src.last_client << browse("", "window=pregameBrowser")
 
 	Stat()
 		..()

@@ -12,8 +12,6 @@
 	speechverb_ask = "meows"
 	hand_count = 2
 	can_throw = 1
-	can_grab = 1
-	can_disarm = 1
 	butcherable = 1
 	name_the_meat = 1
 	max_skins = 1

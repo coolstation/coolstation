@@ -5,7 +5,7 @@
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1
+	anchored = ANCHORED
 	var/mob/original = null
 	name = "ghost"
 

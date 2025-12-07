@@ -31,7 +31,7 @@ var/list/rnd_cons = new/list()
 
 /obj/room_monsterspawn //Used to mark spawns for monsters.
 	name = "room monster spawn"
-	anchored = 1
+	anchored = ANCHORED
 	invisibility = 100
 	var/probability = 100 //probability that we actually spawn something here.
 	icon = 'icons/map-editing/mark.dmi'
@@ -39,7 +39,7 @@ var/list/rnd_cons = new/list()
 
 /obj/room_rewardspawn //Used to mark spawns for rewards.
 	name = "room reward spawn"
-	anchored = 1
+	anchored = ANCHORED
 	invisibility = 100
 	var/probability = 100 //probability that we actually spawn something here.
 	icon = 'icons/map-editing/mark.dmi'
@@ -47,7 +47,7 @@ var/list/rnd_cons = new/list()
 
 /obj/room_props //These need to be placed in the center of the room
 	name = "room props"
-	anchored = 1
+	anchored = ANCHORED
 	invisibility = 100
 	var/room_range = 1 //Range of the room (see range proc for how the numbers work)
 	var/room_unique = 0 //Is this an unique room that should only be placed once? 0=no, 1=yes
@@ -57,7 +57,7 @@ var/list/rnd_cons = new/list()
 
 /obj/room_connection //These are placed north east south and west from the center at the edge of the room if that tile is not solid
 	name = "room connection" //Or otherwise blocked. These are used to connect rooms to each other.
-	anchored = 1
+	anchored = ANCHORED
 	invisibility = 100
 	var/open_dir = -1 //These vars are automatically set. Dont need to mess with them.
 	var/obj/room_props/room = null

@@ -4,7 +4,7 @@ obj/machinery/air_vendor
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "O2vend"
 
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 
 	deconstruct_flags = DECON_CROWBAR | DECON_WRENCH | DECON_MULTITOOL

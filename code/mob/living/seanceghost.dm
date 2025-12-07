@@ -7,7 +7,7 @@
 	density = 0
 	canmove = 1
 	blinded = 0
-	anchored = 1
+	anchored = ANCHORED
 	alpha = 180
 	pass_unstable = PRESERVE_CACHE
 	var/obj/machinery/playerzoldorf/homebooth
@@ -111,17 +111,17 @@
 		var/message
 		switch (lowertext(act))
 			if("flip")
-				if(src.emote_check(voluntary, 100, 1, 0))
+				if(src.emote_check(voluntary, 100, 1, STAT_DEAD))
 					message = "flips ominously!"
 					if (prob(50))
 						animate_spin(src, "R", 1, 0)
 					else
 						animate_spin(src, "L", 1, 0)
 			if("fart")
-				if(src.emote_check(voluntary, 100, 1, 0))
+				if(src.emote_check(voluntary, 100, 1, STAT_DEAD))
 					message = "emits a chilling wind..."
 			if("scream")
-				if(src.emote_check(voluntary, 100, 1, 0))
+				if(src.emote_check(voluntary, 100, 1, STAT_DEAD))
 					message = "produces a low hum..."
 		if(message)
 			src.visible_message("<span><b>[src.name]</b> [message]</span>")

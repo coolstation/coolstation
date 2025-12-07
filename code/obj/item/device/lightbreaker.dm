@@ -12,8 +12,8 @@
 	w_class = W_CLASS_SMALL
 	is_syndicate = 1
 	mats = 15
-	stamina_cost = 10
-	stamina_crit_chance = 15
+//	stamina_cost = 10
+//	stamina_crit_chance = 15
 	var/ammo = 4
 	var/ammo_max = 4
 

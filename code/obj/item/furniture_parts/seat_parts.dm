@@ -5,7 +5,7 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "stool_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool
 	furniture_name = "stool"
 
@@ -15,7 +15,7 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "wstool_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/wooden
 	furniture_name = "wooden stool"
 
@@ -42,7 +42,7 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "stool_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/chair/stepladder
 	furniture_name = "stepladder"
 
@@ -52,7 +52,7 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "stool_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/chair/stepladder/wrestling
 	furniture_name = "wrestling stepladder"
 
@@ -65,7 +65,7 @@
 	icon = 'icons/obj/furniture/bench.dmi'
 	icon_state = "bench_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/bench/auto
 	furniture_name = "bench"
 
@@ -116,7 +116,7 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "wchair_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/chair/wooden
 	furniture_name = "wooden chair"
 
@@ -132,7 +132,7 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "whchair_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/chair/comfy/wheelchair
 	furniture_name = "wheelchair"
 
@@ -142,7 +142,7 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "barberchair_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/chair/comfy/barber_chair
 	furniture_name = "barber chair"
 
@@ -152,7 +152,7 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "ochair_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/chair/office
 	furniture_name = "office chair"
 
@@ -190,7 +190,7 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "comf_chair_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/chair/comfy
 	furniture_name = "comfy chair"
 
@@ -228,6 +228,6 @@
 	icon = 'icons/obj/furniture/chairs.dmi'
 	icon_state = "thronegold_parts"
 	stamina_damage = 15
-	stamina_cost = 15
+//	stamina_cost = 15
 	furniture_type = /obj/stool/chair/comfy/throne_gold
 	furniture_name = "golden throne"

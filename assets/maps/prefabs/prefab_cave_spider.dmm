@@ -2,6 +2,10 @@
 "a" = (
 /turf/variableTurf/wall,
 /area/allowGenerate)
+"g" = (
+/obj/landmark/artifact,
+/turf/floor/plating/gehenna,
+/area/noGenerate)
 "l" = (
 /obj/reagent_dispensers/cleanable/spiders,
 /turf/floor/plating/gehenna,
@@ -11,22 +15,44 @@
 /turf/floor/plating/gehenna,
 /area/noGenerate)
 "o" = (
-/mob/living/critter/spider/baby,
+/mob/living/critter/spider/baby{
+	ai_type = "/datum/aiHolder/wanderer"
+	},
 /turf/floor/plating/gehenna,
 /area/noGenerate)
+"q" = (
+/obj/decal/cleanable/cobwebFloor,
+/turf/variableTurf/wall,
+/area/allowGenerate)
 "r" = (
 /turf/space,
 /area/allowGenerate)
+"t" = (
+/obj/decal/cleanable/cobwebFloor,
+/turf/variableTurf/wall,
+/area/noGenerate)
 "u" = (
-/mob/living/critter/spider/med,
+/mob/living/critter/spider/med{
+	ai_type = "/datum/aiHolder/wanderer"
+	},
 /turf/floor/plating/gehenna,
 /area/noGenerate)
+"v" = (
+/turf/variableTurf/wall,
+/area/noGenerate)
 "Q" = (
-/mob/living/critter/spider/spacerachnid,
+/mob/living/critter/spider/spacerachnid{
+	ai_type = "/datum/aiHolder/violent";
+	venom1 = "toxin";
+	venom2 = "histamine"
+	},
 /turf/floor/plating/gehenna,
 /area/noGenerate)
 "T" = (
-/mob/living/critter/spider,
+/mob/living/critter/spider{
+	ai_type = "/datum/aiHolder/violent";
+	venom1 = "toxin"
+	},
 /turf/floor/plating/gehenna,
 /area/noGenerate)
 "U" = (
@@ -38,8 +64,8 @@ r
 r
 a
 a
-a
-a
+q
+q
 a
 a
 r
@@ -47,9 +73,9 @@ r
 "}
 (2,1,1) = {"
 r
+q
 a
-a
-U
+t
 u
 U
 l
@@ -61,8 +87,8 @@ r
 a
 a
 o
-U
-U
+v
+v
 U
 U
 U
@@ -70,12 +96,12 @@ a
 a
 "}
 (4,1,1) = {"
-a
+q
+v
 U
-U
-U
-U
-U
+v
+t
+v
 Q
 U
 o
@@ -87,7 +113,7 @@ U
 U
 n
 U
-U
+v
 U
 U
 l
@@ -95,50 +121,50 @@ a
 "}
 (6,1,1) = {"
 a
-u
+U
 U
 U
 l
+g
 U
 U
 U
-U
-a
+q
 "}
 (7,1,1) = {"
 a
 U
 U
-U
+v
 U
 o
 U
-U
+v
 T
-a
+q
 "}
 (8,1,1) = {"
 a
 a
-U
-o
-U
-U
+v
+v
 U
 U
+U
+v
 a
 a
 "}
 (9,1,1) = {"
 r
 a
-a
+q
 U
 U
 u
 U
 a
-a
+q
 r
 "}
 (10,1,1) = {"
@@ -148,7 +174,7 @@ a
 a
 a
 a
-a
+q
 a
 r
 r

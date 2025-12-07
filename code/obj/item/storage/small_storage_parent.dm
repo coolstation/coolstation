@@ -344,6 +344,7 @@
 	w_class = W_CLASS_SMALL
 	max_wclass = 1
 	desc = "A small bottle designed to carry pills. Does not come with a child-proof lock, as that was determined to be too difficult for the crew to open."
+	hint = "you can create your own pill bottles with a Chemmaster."
 
 	MouseDrop(atom/over_object, src_location, over_location)
 		if(!(usr == over_object)) return ..()
@@ -368,8 +369,8 @@
 	max_wclass = 3
 	desc = "A fancy synthetic leather-bound briefcase, capable of holding a number of small objects, with style."
 	stamina_damage = 40
-	stamina_cost = 17
-	stamina_crit_chance = 10
+//	stamina_cost = 17
+//	stamina_crit_chance = 10
 	spawn_contents = list(/obj/item/paper = 2,/obj/item/pen)
 	// Don't use up more slots, certain job datums put items in the briefcase the player spawns with.
 	// And nobody needs six sheets of paper right away, realistically speaking.

@@ -2,7 +2,7 @@
 	name = "radioisotope thermoelectric generator"
 	desc = "Made by wrapping thermocouples around a chunk of nuclear stuff, or something like that."
 	icon_state = "rtg_empty"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/lastgen = 0
 	var/obj/item/fuel_pellet/fuel_pellet

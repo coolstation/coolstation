@@ -227,10 +227,10 @@ var/list/dirty_keystates = list()
 					src.stathover = t
 					src.stathover_start = get_turf(mob)
 
-		if(prob(10) && user.traitHolder && iscarbon(user) && isturf(object.loc) && user.traitHolder.hasTrait("clutz"))
+		if(prob(GET_ATOM_PROPERTY(src.mob, PROP_CLUTZ)) && isturf(object.loc))
 			var/list/filtered = list()
 			for(var/atom/movable/A in view(1, src.mob))
-				if(A == object || !isturf(A.loc) || !isobj(A) && !ismob(A)) continue
+				if(A == object || !isturf(A.loc) || !ismovable(A)) continue
 				filtered.Add(A)
 			if(filtered.len) object = pick(filtered)
 
@@ -297,6 +297,7 @@ var/list/dirty_keystates = list()
 
 	// returns TRUE if it schedules a move
 	proc/internal_process_move(keys)
+		SHOULD_NOT_SLEEP(TRUE)
 		. = FALSE
 		var/delay = src.process_move(keys)
 		if (isnull(delay))
@@ -306,6 +307,7 @@ var/list/dirty_keystates = list()
 			. = TRUE
 
 /proc/process_keystates()
+	SHOULD_NOT_SLEEP(TRUE)
 	for (var/client/C in dirty_keystates)
 		var/new_state = C.key_state
 		if(C.hellbanned && prob(C.move_drops))

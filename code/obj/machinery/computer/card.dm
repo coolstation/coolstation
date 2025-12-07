@@ -46,15 +46,23 @@
 
 	src.add_dialog(user)
 	var/dat
+	dat = {"<head><link rel="stylesheet" type="text/css" href="[resource("css/COMPUTAH.css")]" /><div class="crt"></div></head>"}
 	if (!( ticker ))
 		return
 	if (src.mode) // accessing crew manifest
-		var/crew = ""
+		var/crew = {"<div class = 'box inverse'><table>
+						<tr>
+							<th>NAME</th>
+							<th>RANK</th>
+						</tr>
+		"}
 		for(var/datum/db_record/t as anything in data_core.general.records)
-			crew += "[t["name"]] - [t["rank"]]<br>"
-		dat = "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br>[crew]<a href='?src=\ref[src];print=1'>Print</a><br><br><a href='?src=\ref[src];mode=0'>Access ID modification console.</a><br></tt>"
+			crew += "<tr><td>[t["name"]]</td> <td>[t["rank"]]</td></tr>"
+
+		dat += "<div class = 'box inverse surround'><a class ='box button inverse' href='?src=\ref[src];mode=0'>ID MODIFICATION</a><a class = 'box button'>CREW MANIFEST</a></div>"
+		dat += "<div class = 'box inverse surround' style = 'flex-direction: column;'><h1>Crew Manifest</h1><div class = 'disclaimer'>Please use security record computer to modify entries.</div>[crew]</table></div><div class ='box button inverse'><a href='?src=\ref[src];print=1'>Print</a></div>"
 	else
-		var/header = "<b>Identification Card Modifier</b><br><i>Please insert the cards into the slots</i><br>"
+		var/header = ""
 
 		var/target_name
 		var/target_owner
@@ -75,22 +83,21 @@
 		if (src.eject)
 			target_name = src.eject.name
 
-		header += "Target: <a href='byond://?src=\ref[src];modify=1'>[target_name]</a><br>"
+		header += "<div class = 'holder'><div class = 'box'>TARGET</div><div><a href='byond://?src=\ref[src];modify=1'>[target_name]</a></div></div>"
 
 		var/scan_name
 		if(src.scan)
 			scan_name = src.scan.name
 		else
 			scan_name = "--------"
-		header += "Confirm Identity: <a href='byond://?src=\ref[src];scan=1'>[scan_name]</a><br>"
-		header += "<hr>"
+		header += " <div class = 'holder'> <div class = 'box'>CONFIRM IDENTITY:</div><div><a href='byond://?src=\ref[src];scan=1'>[scan_name]</a></div></div> <br>"
 
 		var/body = list()
 		//When both IDs are inserted
 		if (src.authenticated && src.modify)
-			body += "Registered: <a href='byond://?src=\ref[src];reg=1'>[target_owner]</a><br>"
-			body += "Assignment: <a href='byond://?src=\ref[src];assign=Custom Assignment'>[replacetext(target_rank, " ", "&nbsp")]</a><br>"
-			body += "PIN: <a href='byond://?src=\ref[src];pin=1'>****</a>"
+			body += "<div class = 'box inverse' style = 'width: 100%; display: flex; justify-content: space-evenly; align-items: center;'><div class = 'box'>Registered:</div> <a href='byond://?src=\ref[src];reg=1'>[target_owner]</a>"
+			body += "<div class = 'box'>Assignment:</div> <a href='byond://?src=\ref[src];assign=Custom Assignment'>[replacetext(target_rank, " ", "&nbsp")]</a>"
+			body += "<div class = 'box'>PIN:</div> <a href='byond://?src=\ref[src];pin=1'>****</a></div>"
 
 			//Jobs organised into sections
 			var/list/civilianjobs = list("Staff Assistant", "Bartender", "Chef", "Botanist", "Rancher", "Chaplain", "Janitor", "Clown")
@@ -99,8 +106,9 @@
 			var/list/securityjobs = list("Security Officer", "Security Assistant", "Detective")
 			var/list/commandjobs = list("Head of Personnel", "Chief Engineer", "Research Director", "Medical Director", "Captain")
 
-			body += "<br><br><u>Jobs</u>"
-			body += "<br>Civilian:"
+			body += "<div class = 'box inverse' style = 'height: 40%; overflow-y: scroll; overflow-x: hidden; flex-direction:row'><div class = 'inHeader'><u>Jobs</u></div>"
+
+			body += "Civilian:"
 			for(var/job in civilianjobs)
 				body += " <a href='byond://?src=\ref[src];assign=[job];colour=blue'>[replacetext(job, " ", "&nbsp")]</a>" //make sure there isn't a line break in the middle of a job
 
@@ -125,35 +133,35 @@
 				body += " [src.custom_names[i]] <a href='byond://?src=\ref[src];save=[i]'>save</a> <a href='byond://?src=\ref[src];apply=[i]'>apply</a>"
 
 			//Change access to individual areas
-			body += "<br><br><u>Access</u>"
+			body += "</div><div class = 'box inverse selector' style = 'height: 40%; overflow-y: scroll; overflow-x: hidden; flex-direction:row'><div class = 'inHeader'><u>Access</u></div>"
 
 			//Organised into sections
-			var/civilian_access = list("<br>Staff:")
-			var/engineering_access = list("<br>Engineering:")
-			var/supply_access = list("<br>Supply:")
-			var/research_access = list("<br>Science and Medical:")
-			var/security_access = list("<br>Security:")
-			var/command_access = list("<br>Command:")
+			var/civilian_access = list("Staff:")
+			var/engineering_access = list("Engineering:")
+			var/supply_access = list("Supply:")
+			var/research_access = list("Science and Medical:")
+			var/security_access = list("Security:")
+			var/command_access = list("Command:")
 
 			for(var/A in access_name_lookup)
 				if(access_name_lookup[A] in src.modify.access)
 					//Click these to remove access
 					if (access_name_lookup[A] in civilian_access_list)
-						civilian_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						civilian_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#0bf53\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in engineering_access_list)
-						engineering_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						engineering_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#0bf53\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in supply_access_list)
-						supply_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						supply_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#0bf53\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in research_access_list)
-						research_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						research_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#0bf53\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in security_access_list)
-						security_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						security_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#0bf53\">[replacetext(A, " ", "&nbsp")]</font></a>"
 					if (access_name_lookup[A] in command_access_list)
-						command_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"red\">[replacetext(A, " ", "&nbsp")]</font></a>"
+						command_access += " <a href='byond://?src=\ref[src];access=[access_name_lookup[A]];allowed=0'><font color=\"#0bf53\">[replacetext(A, " ", "&nbsp")]</font></a>"
 						if ("[access_name_lookup[A]]" in command_locker_access_list)
 							var/access_num_locker = command_locker_access_list["[access_name_lookup[A]]"]
 							if (access_num_locker in src.modify.access)
-								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=0'><font color=\"red\"><i>(Locker)</i></font></a>"
+								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=0'><font color=\"#0bf53\"><i>(Locker)</i></font></a>"
 							else
 								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=1'><i>(Locker)</i></a>"
 
@@ -177,23 +185,24 @@
 							else
 								command_access += "&nbsp<a href='byond://?src=\ref[src];access=[access_num_locker];allowed=1'><i>(Locker)</i></a>"
 
-			body += "[jointext(civilian_access, "")]<br>[jointext(engineering_access, "")]<br>[jointext(supply_access, "")]<br>[jointext(research_access, "")]<br>[jointext(security_access, "")]<br>[jointext(command_access, "")]"
+			body += "[jointext(civilian_access, "")]<br>[jointext(engineering_access, "")]<br>[jointext(supply_access, "")]<br>[jointext(research_access, "")]<br>[jointext(security_access, "")]<br>[jointext(command_access, "")]</div>"
 
-			body += "<br><br><u>Customise ID</u><br>"
+			body += "<div class = 'box inverse' style = 'flex-direction:row'><div class = 'inHeader'><u>Customise ID</u></div>"
 			body += "<a href='byond://?src=\ref[src];colour=none'>Plain</a> "
 			body += "<a href='byond://?src=\ref[src];colour=blue'>Civilian</a> "
 			body += "<a href='byond://?src=\ref[src];colour=yellow'>Engineering</a> "
 			body += "<a href='byond://?src=\ref[src];colour=purple'>Research</a> "
 			body += "<a href='byond://?src=\ref[src];colour=red'>Security</a> "
-			body += "<a href='byond://?src=\ref[src];colour=green'>Command</a>"
+			body += "<a href='byond://?src=\ref[src];colour=green'>Command</a></div>"
 
 			user.unlock_medal("Identity Theft", 1)
 
 		else
-			body += "<a href='byond://?src=\ref[src];auth=1'>{Log in}</a>"
+			body += "<div class = 'box inverse button'><a href='byond://?src=\ref[src];auth=1'>{Log in}</a></div>"
 		body = jointext(body, "")
-		dat = "<tt>[header][body]<hr><a href='byond://?src=\ref[src];mode=1'>Access Crew Manifest</a><br></tt>"
-	user.Browse(dat, "window=id_com;size=725x500")
+		dat += "<div cla></div><div class = 'box inverse surround'><a class ='box button '>ID MODIFICATION</a><a class ='box button inverse' href='byond://?src=\ref[src];mode=1'>CREW MANIFEST</a></div> <br></tt>"
+		dat += "<div class = 'box inverse surround' style = 'height: 100%;'> <div class = 'box inverse surround inner' style='width: 50%; flex-direction:column'>[header]</div><div class = 'box inverse surround inner' style='flex-grow: 1; flex-direction:column'>[body]</div>"
+	user.Browse(dat, "window=id_com;size=1000x700")
 	onclose(user, "id_com")
 	return
 
@@ -370,7 +379,7 @@
 		var/list/selected_access_list = src.custom_access_list[slot]
 		src.modify.access = selected_access_list.Copy()
 	if (src.modify)
-		src.modify.name = "[src.modify.registered]'s [src.modify.generic_name] ([src.modify.assignment])"
+		src.modify.name = "[src.modify.registered]'s [src.modify.generic_name] <br>([src.modify.assignment])"
 	if (src.eject)
 		if (istype(src.eject,/obj/item/implantcase/access))
 			var/obj/item/implantcase/access/A = src.eject

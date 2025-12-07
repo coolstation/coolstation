@@ -5,7 +5,7 @@
 	desc = "A window."
 	density = 1
 	stops_space_move = 1
-	dir = 5 //full tile
+	dir = NORTHEAST //full tile
 	flags = FPRINT | USEDELAY | ON_BORDER
 	event_handler_flags = USE_FLUID_ENTER | USE_CHECKEXIT | USE_CANPASS
 	object_flags = HAS_DIRECTIONAL_BLOCKING
@@ -29,7 +29,7 @@
 	var/deconstruct_time = 0//20
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	gas_impermeable = TRUE
-	anchored = 1
+	anchored = ANCHORED
 
 	the_tuff_stuff
 		explosion_resistance = 3
@@ -67,7 +67,7 @@
 			src.layer = map_settings.window_layer_north
 		else if (src.dir == SOUTH && map_settings.window_layer_south)
 			src.layer = map_settings.window_layer_south
-		else if (src.dir in ordinal && map_settings.window_layer_full)
+		else if ((src.dir in ordinal) && map_settings.window_layer_full)
 			src.layer = map_settings.window_layer_full
 		else
 			src.layer = initial(src.layer)
@@ -338,7 +338,7 @@
 				damage_blunt(O.throwforce)
 
 		if (src && src.health <= 2 && !reinforcement)
-			src.anchored = 0
+			src.anchored = UNANCHORED
 			src.stops_space_move = 0
 			step(src, get_dir(AM, src))
 		..()
@@ -515,7 +515,7 @@
 			if(istype(source)) air_master.tiles_to_update |= source
 			if(istype(target)) air_master.tiles_to_update |= target
 
-		if (map_currently_underwater)
+		if (map_currently_underwater || map_currently_above_magindara)
 			var/turf/space/fluid/n = get_step(src,NORTH)
 			var/turf/space/fluid/s = get_step(src,SOUTH)
 			var/turf/space/fluid/e = get_step(src,EAST)
@@ -597,6 +597,9 @@
 			boutput(owner, "<span class='alert'>Deconstruction of [the_window] interrupted!</span>")
 		..()
 
+/obj/window/classic
+	icon_state = "classic"
+
 /obj/window/pyro
 	icon_state = "pyro"
 
@@ -608,6 +611,9 @@
 	the_tuff_stuff
 		explosion_resistance = 5
 	//deconstruct_time = 30
+
+/obj/window/reinforced/classic
+	icon_state = "rwindow_classic"
 
 /obj/window/reinforced/pyro
 	icon_state = "rpyro"
@@ -671,6 +677,18 @@
 /obj/window/south
 	dir = SOUTH
 
+/obj/window/classic/north
+	dir = NORTH
+
+/obj/window/classic/east
+	dir = EAST
+
+/obj/window/classic/west
+	dir = WEST
+
+/obj/window/classic/south
+	dir = SOUTH
+
 /obj/window/crystal/north
 	dir = NORTH
 
@@ -694,6 +712,19 @@
 
 /obj/window/crystal/reinforced/south
 	dir = SOUTH
+
+/obj/window/reinforced/classic/north
+	dir = NORTH
+
+/obj/window/reinforced/classic/east
+	dir = EAST
+
+/obj/window/reinforced/classic/west
+	dir = WEST
+
+/obj/window/reinforced/classic/south
+	dir = SOUTH
+
 
 /obj/window/reinforced/north
 	dir = NORTH
@@ -843,7 +874,7 @@
 	name = "extremely indestructible window"
 	desc = "An EXTREMELY indestructible window. An absurdly robust one at that."
 	var/initialPos
-	anchored = 2
+	anchored = ANCHORED_TECHNICAL
 	New()
 		..()
 		initialPos = loc
@@ -977,12 +1008,14 @@
 	icon = 'icons/obj/window.dmi'
 	icon_state = "R0"
 	mod = "R"
+
+
 /obj/wingrille_spawn
 	name = "window grille spawner"
 	icon = 'icons/obj/window.dmi'
 	icon_state = "wingrille"
 	density = 1
-	anchored = 1.0
+	anchored = ANCHORED
 	invisibility = 101
 	//layer = 99
 	pressure_resistance = 4*ONE_ATMOSPHERE
@@ -1022,6 +1055,7 @@
 				var/obj/window/new_win = text2path(src.win_path)
 				new new_win(src.loc)
 
+
 	full
 		icon_state = "wingrille_f"
 		full_win = 1
@@ -1054,12 +1088,18 @@
 			full_win = 1
 
 		classic
+			icon_state = "r-wingrille_f"
 			name = "old style reinforced window grille spawner"
 			grille_path = "/obj/grille/classic"
+			full_win = 1
+			win_path = "/obj/window/reinforced/classic"
 
 	classic
+		icon_state = "wingrille_f"
 		name = "old style reinforced window grille spawner"
 		grille_path = "/obj/grille/classic"
+		full_win = 1
+		win_path = "/obj/window/classic"
 
 
 

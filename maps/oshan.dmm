@@ -18,7 +18,7 @@
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
 "aad" = (
-/turf/space/fluid/warp_z5/realwarp,
+/turf/space/fluid/ocean/warp_z5/realwarp,
 /area/space)
 "aae" = (
 /obj/machinery/cell_charger,
@@ -578,7 +578,7 @@
 /turf/floor/caution/northsouth,
 /area/station/quartermaster/office)
 "abA" = (
-/turf/space/fluid/warp_z5/edge,
+/turf/space/fluid/ocean/warp_z5/edge,
 /area/space)
 "abB" = (
 /obj/table/auto,
@@ -1973,7 +1973,7 @@
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aen" = (
 /obj/table/auto,
@@ -2167,7 +2167,7 @@
 /area/station/engine/elect)
 "aeB" = (
 /obj/landmark/artifact,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aeC" = (
 /obj/cable{
@@ -5002,7 +5002,7 @@
 /obj/warp_beacon{
 	name = "Research Dock"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "alH" = (
 /obj/machinery/light/fluorescent/auto/warm,
@@ -6434,7 +6434,7 @@
 /obj/machinery/conveyor/east{
 	id = "inbound"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/supply/delivery_point)
 "apd" = (
 /turf/wall/auto/reinforced/supernorn,
@@ -6941,7 +6941,7 @@
 /turf/floor/plating/airless,
 /area/listeningpost)
 "aqn" = (
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aqo" = (
 /obj/table/auto,
@@ -7620,7 +7620,7 @@
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/light/runway_light,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "arT" = (
 /obj/disposalpipe/segment/mail,
@@ -8112,7 +8112,7 @@
 	dir = 4;
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid/nospawn,
+/turf/space/fluid/ocean/nospawn,
 /area/space)
 "asZ" = (
 /obj/cable{
@@ -8543,7 +8543,7 @@
 "auj" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/lattice,
-/turf/space/fluid/nospawn,
+/turf/space/fluid/ocean/nospawn,
 /area/space)
 "auk" = (
 /obj/cable{
@@ -9166,7 +9166,7 @@
 /obj/warp_beacon{
 	name = "Catering Dock"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "avA" = (
 /obj/cable{
@@ -11841,7 +11841,7 @@
 	dir = 4;
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aBG" = (
 /turf/wall/auto/supernorn,
@@ -14382,7 +14382,7 @@
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/station/maintenance/northwest)
 "aIb" = (
 /obj/storage/closet/emergency,
@@ -18125,18 +18125,18 @@
 /obj/disposalpipe/segment/horizontal,
 /obj/disposalpipe/segment/vertical,
 /obj/lattice,
-/turf/space/fluid/nospawn,
+/turf/space/fluid/ocean/nospawn,
 /area/space)
 "aRI" = (
 /obj/disposalpipe/segment/bent/north,
 /obj/lattice,
-/turf/space/fluid/nospawn,
+/turf/space/fluid/ocean/nospawn,
 /area/space)
 "aRJ" = (
 /obj/disposalpipe/segment/vertical,
 /obj/disposalpipe/segment/horizontal,
 /obj/lattice,
-/turf/space/fluid/nospawn,
+/turf/space/fluid/ocean/nospawn,
 /area/space)
 "aRK" = (
 /obj/submachine/cargopad{
@@ -18187,7 +18187,7 @@
 /area/research_outpost/hangar)
 "aRT" = (
 /obj/disposalpipe/segment/horizontal,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aRU" = (
 /obj/machinery/conveyor/north{
@@ -18873,26 +18873,26 @@
 /area/space)
 "aTt" = (
 /obj/decal/woodclutter,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTu" = (
 /obj/critter/shark,
 /obj/decal/woodclutter,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTv" = (
 /obj/landmark/spawner{
 	name = "seamonkeyspawn"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTw" = (
 /obj/structure/woodwall,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTx" = (
 /obj/sea_plant/anemone/lit,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTy" = (
 /obj/overlay{
@@ -18901,7 +18901,7 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTz" = (
 /obj/overlay{
@@ -18910,49 +18910,49 @@
 	layer = 10;
 	name = "palm tree"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTA" = (
 /obj/machinery/plantpot,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTB" = (
 /obj/item/seed/crystal,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTC" = (
 /obj/item/reagent_containers/food/snacks/plant/banana,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTD" = (
 /obj/item/seed/cannabis,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTE" = (
 /obj/item/seed/alien,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTF" = (
 /obj/table/round/auto,
 /obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane,
 /obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTG" = (
 /obj/table/round/auto,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTH" = (
 /obj/machinery/optable{
 	name = "Autopsy Table"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTI" = (
 /obj/table/round/auto,
 /obj/item/reagent_containers/iv_drip/blood,
 /obj/item/reagent_containers/iv_drip/blood,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTJ" = (
 /obj/machinery/door/unpowered/martian,
@@ -18963,58 +18963,58 @@
 /area/space)
 "aTK" = (
 /obj/iv_stand,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTL" = (
 /obj/table/round/auto,
 /obj/item/circular_saw,
 /obj/item/circular_saw,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTM" = (
 /obj/table/round/auto,
 /obj/item/scalpel,
 /obj/item/scalpel,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTN" = (
 /obj/table/round/auto,
 /obj/item/reagent_containers/food/snacks/plant/banana,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTO" = (
 /obj/table/round/auto,
 /obj/item/reagent_containers/food/snacks/breadslice/toastslice/banana,
 /obj/item/reagent_containers/food/snacks/corndog/banana,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTP" = (
 /obj/table/round/auto,
 /obj/item/reagent_containers/food/snacks/breadslice/banana,
 /obj/item/reagent_containers/food/snacks/breadslice/toastslice/banana,
 /obj/item/reagent_containers/food/snacks/plant/banana,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTQ" = (
 /obj/table/round/auto,
 /obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled/sane,
 /obj/item/kitchen/utensil/knife,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTR" = (
 /obj/table/round/auto,
 /obj/item/reagent_containers/food/snacks/breadloaf/banana,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTS" = (
 /obj/table/round/auto,
 /obj/item/sticker/banana,
 /obj/item/sticker/banana,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTT" = (
 /obj/stool,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTU" = (
 /obj/table/round/auto,
@@ -19023,20 +19023,20 @@
 /obj/item/reagent_containers/food/snacks/ingredient/flour,
 /obj/item/reagent_containers/food/snacks/ingredient/flour,
 /obj/item/reagent_containers/food/snacks/ingredient/flour,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTV" = (
 /obj/decal/oven,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTW" = (
 /obj/item/kitchen/rollingpin,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTX" = (
 /obj/table/round/auto,
 /obj/item/device/igniter,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aTY" = (
 /obj/storage/closet/emergency,
@@ -19045,15 +19045,15 @@
 /area/station/maintenance/north)
 "aUa" = (
 /obj/machinery/processor,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUb" = (
 /obj/machinery/manufacturer,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUc" = (
 /obj/machinery/nanofab/refining,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUd" = (
 /obj/table/round/auto,
@@ -19063,7 +19063,7 @@
 /obj/item/material_piece/coral,
 /obj/item/material_piece/coral,
 /obj/item/material_piece/coral,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUe" = (
 /obj/table/round/auto,
@@ -19073,37 +19073,37 @@
 /obj/item/material_piece/coral,
 /obj/item/material_piece/coral,
 /obj/item/material_piece/coral,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUf" = (
 /obj/machinery/vending/standard,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUg" = (
 /obj/table/round/auto,
 /obj/item/wrench/monkey,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUh" = (
 /obj/table/round/auto,
 /obj/item/reagent_containers/food/drinks/fueltank,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUi" = (
 /obj/stool/bed,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUj" = (
 /obj/stool/bed,
 /obj/decal/skeleton,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUk" = (
 /obj/table/round/auto,
 /obj/item/reagent_containers/food/snacks/breadloaf/banana,
 /obj/item/reagent_containers/food/snacks/breadslice/banana,
 /obj/item/kitchen/utensil/knife,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUl" = (
 /obj/table/auto,
@@ -19128,7 +19128,7 @@
 /area/space)
 "aUp" = (
 /obj/lattice,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUq" = (
 /obj/overlay{
@@ -19138,7 +19138,7 @@
 	icon_state = "sideWall";
 	name = "organic wall"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUr" = (
 /obj/overlay{
@@ -19148,7 +19148,7 @@
 	icon_state = "sideWall";
 	name = "organic wall"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUs" = (
 /obj/map/light/white,
@@ -19163,7 +19163,7 @@
 "aUu" = (
 /obj/lattice,
 /obj/lattice,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aUv" = (
 /turf/shuttle/wall{
@@ -19429,7 +19429,7 @@
 	},
 /obj/item/organ/heart,
 /obj/item/organ/eye,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aVp" = (
 /obj/storage/crate,
@@ -19452,7 +19452,7 @@
 /area/iss)
 "aVs" = (
 /obj/item/tile,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aVt" = (
 /obj/storage/closet/emergency,
@@ -19487,28 +19487,28 @@
 	dir = 1;
 	icon_state = "floattiles4"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aVx" = (
 /obj/decal/floatingtiles{
 	dir = 4;
 	icon_state = "floattiles2"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aVy" = (
 /obj/decal/floatingtiles{
 	dir = 8;
 	icon_state = "floattiles6"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aVz" = (
 /obj/decal/floatingtiles{
 	dir = 4;
 	icon_state = "floattiles4"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aVA" = (
 /obj/machinery/door/airlock/pyro/classic,
@@ -19529,13 +19529,13 @@
 	dir = 8;
 	icon_state = "floattiles3"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aVE" = (
 /obj/decal/floatingtiles{
 	icon_state = "floattiles3"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aVF" = (
 /obj/table/auto,
@@ -19930,7 +19930,7 @@
 	icon_state = "sideWall";
 	name = "organic wall"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aWR" = (
 /obj/overlay{
@@ -20137,11 +20137,11 @@
 /obj/decal/fakeobjects/flock/antenna/end{
 	dir = 1
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aXC" = (
 /obj/decal/fakeobjects/flock/antenna,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aXD" = (
 /obj/decal/fakeobjects/lighttube_broken,
@@ -20158,7 +20158,7 @@
 	icon_state = "sideWall";
 	name = "organic wall"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aXH" = (
 /obj/securearea{
@@ -20320,7 +20320,7 @@
 	dir = 1;
 	icon_state = "antenna-broken-2"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aYc" = (
 /turf/wall/setpieces/martian,
@@ -20393,7 +20393,7 @@
 /obj/decal/fakeobjects/flock/wing/destroyed{
 	dir = 9
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aYo" = (
 /obj/critter/martian/warrior,
@@ -20577,7 +20577,7 @@
 /obj/decal/fakeobjects/flock/wing{
 	dir = 5
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "aYR" = (
 /obj/decal/fakeobjects/pipe{
@@ -21232,7 +21232,7 @@
 /obj/decal/fakeobjects/flock/wing/broken{
 	dir = 5
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "baG" = (
 /obj/machinery/light/flock{
@@ -21277,13 +21277,13 @@
 /obj/decal/fakeobjects/flock/antenna{
 	dir = 8
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "baL" = (
 /obj/decal/fakeobjects/flock/antenna/end{
 	dir = 4
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "baM" = (
 /obj/table/flock/auto,
@@ -21327,7 +21327,7 @@
 	dir = 4;
 	icon_state = "antenna-broken-2"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "baT" = (
 /obj/machinery/light/flock{
@@ -21396,7 +21396,7 @@
 /obj/cable/reinforced{
 	icon_state = "4-8-thick"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bbe" = (
 /obj/decal/cleanable/flockdrone_debris/fluid,
@@ -21741,7 +21741,7 @@
 /area/research_outpost/toxins)
 "bcl" = (
 /obj/machinery/vehicle/tank/car/yellow,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bcn" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -21949,7 +21949,7 @@
 /obj/cable/reinforced{
 	icon_state = "2-4-thick"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bdf" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -21986,7 +21986,7 @@
 /obj/cable/reinforced{
 	icon_state = "1-2-thick"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bds" = (
 /turf/wall/auto/reinforced/supernorn,
@@ -22048,7 +22048,7 @@
 /obj/cable/reinforced{
 	icon_state = "1-8-thick"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bdC" = (
 /obj/cable{
@@ -22471,7 +22471,7 @@
 /area/station/crew_quarters/data)
 "beF" = (
 /obj/lattice/flock,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/flock_trader)
 "beG" = (
 /obj/table/glass/reinforced/auto,
@@ -22496,7 +22496,7 @@
 /obj/decal/fakeobjects/flock/antenna/broken{
 	icon_state = "atenna-broken-1"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "beK" = (
 /obj/machinery/light/fluorescent/auto/warm,
@@ -22666,7 +22666,7 @@
 	},
 /area/station/hallway/primary/west)
 "bfp" = (
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/flock_trader)
 "bfq" = (
 /obj/lattice/flock,
@@ -22725,7 +22725,7 @@
 /obj/decal/fakeobjects/flock/wing{
 	dir = 6
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bfz" = (
 /obj/decal/fakeobjects/flock/antenna,
@@ -22902,7 +22902,7 @@
 /obj/decal/fakeobjects/flock/wing/destroyed{
 	dir = 6
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bfW" = (
 /turf/floor,
@@ -22935,7 +22935,7 @@
 /obj/decal/fakeobjects/flock/wing{
 	dir = 8
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bga" = (
 /obj/shrub{
@@ -30339,7 +30339,7 @@
 /area/station/mining/staff_room)
 "byC" = (
 /obj/critter/gunbot/drone/buzzdrone/fish,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "byD" = (
 /turf/floor/circuit/red,
@@ -31817,7 +31817,7 @@
 /area/station/turret_protected/ai_upload)
 "bCc" = (
 /obj/item/paper/postcard,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bCd" = (
 /obj/rack,
@@ -31850,7 +31850,7 @@
 /area/station/ai_monitored/storage/eva)
 "bCh" = (
 /obj/item/football,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bCi" = (
 /obj/storage/crate/loot,
@@ -32607,7 +32607,7 @@
 /obj/item/plank,
 /obj/item/plank,
 /obj/item/plank,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bEa" = (
 /obj/machinery/light/fluorescent/auto/neutral{
@@ -32631,7 +32631,7 @@
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/light/runway_light,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bEc" = (
 /obj/machinery/door/poddoor/blast/pyro/podbay_autoclose{
@@ -32788,7 +32788,7 @@
 /area/station/hallway/primary/south)
 "bEs" = (
 /obj/item/plank,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bEt" = (
 /turf/floor/caution/corner/misc{
@@ -33030,7 +33030,7 @@
 "bFb" = (
 /obj/table/round/auto,
 /obj/item/staple_gun,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bFc" = (
 /obj/disposalpipe/segment/mail,
@@ -33234,7 +33234,7 @@
 	},
 /obj/item/mining_tool/powerhammer,
 /obj/item/shipcomponent/mainweapon/mining,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bFy" = (
 /obj/machinery/dispenser{
@@ -33378,7 +33378,7 @@
 /obj/item/mine/stun,
 /obj/item/mine/stun,
 /obj/item/mine/stun,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bFS" = (
 /obj/table/reinforced/auto,
@@ -33398,7 +33398,7 @@
 	},
 /area/station/hallway/secondary/exit)
 "bFU" = (
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/shuttle/escape/station/sealab)
 "bFV" = (
 /obj/disposalpipe/segment/mail,
@@ -33428,7 +33428,7 @@
 /area/station/security/main)
 "bFY" = (
 /obj/item/mine/stun/armed,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bFZ" = (
 /obj/decal/boxingrope,
@@ -35153,7 +35153,7 @@
 /turf/floor,
 /area/station/crew_quarters/radio/lab)
 "bKg" = (
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/supply/sell_point)
 "bKh" = (
 /obj/machinery/light/fluorescent/auto/harsh,
@@ -36048,7 +36048,7 @@
 /turf/floor/carpet/purple/fancy/narrow/T_east,
 /area/station/crew_quarters/radio/lab)
 "bMN" = (
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/supply/spawn_point)
 "bMO" = (
 /obj/machinery/conveyor/east{
@@ -37701,7 +37701,7 @@
 /obj/item/spacecash/thousand,
 /obj/item/spacecash/thousand,
 /obj/item/spacecash/thousand,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bQP" = (
 /obj/table/wood,
@@ -39124,7 +39124,7 @@
 /turf/floor/scorched,
 /area/skeleton_trader)
 "bUf" = (
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/station/hallway/secondary/oshan_arrivals)
 "bUg" = (
 /obj/machinery/camera{
@@ -40578,7 +40578,7 @@
 /obj/decal/poster/wallsign/stencil/right/s{
 	pixel_y = 42
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bXM" = (
 /obj/decal/poster/wallsign/stencil/left/h{
@@ -40587,13 +40587,13 @@
 /obj/decal/poster/wallsign/stencil/right/a{
 	pixel_y = 42
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bXN" = (
 /obj/decal/poster/wallsign/stencil/left/n{
 	pixel_y = 42
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bXO" = (
 /turf/wall/auto/reinforced/supernorn,
@@ -40705,10 +40705,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/station/com_dish/comdish)
 "bYk" = (
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/shuttle/merchant_shuttle/left_station/cogmap)
 "bYl" = (
 /turf/wall/auto/reinforced/supernorn,
@@ -40837,7 +40837,7 @@
 /area/station/maintenance/south)
 "bYE" = (
 /obj/grille/steel,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/station/com_dish/comdish)
 "bYF" = (
 /obj/lattice{
@@ -41233,7 +41233,7 @@
 /obj/warp_beacon{
 	name = "Sea Diner"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "bZU" = (
 /turf/floor/shuttlebay,
@@ -42525,7 +42525,7 @@
 /area/cordon)
 "ces" = (
 /obj/landmark/latejoin_missile/north,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "cet" = (
 /obj/machinery/camera{
@@ -42994,7 +42994,7 @@
 /obj/warp_beacon{
 	name = "Pod Bay Dock"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "cfs" = (
 /obj/landmark/start/latejoin,
@@ -43268,7 +43268,7 @@
 /turf/floor/bot,
 /area/shuttle/sea_elevator/upper)
 "cgl" = (
-/turf/space/fluid/warp_z5,
+/turf/space/fluid/ocean/warp_z5,
 /area/space)
 "cgm" = (
 /obj/machinery/conveyor/oshan_carousel{
@@ -43596,7 +43596,7 @@
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "chh" = (
 /obj/machinery/door/airlock/pyro/external{
@@ -43635,7 +43635,7 @@
 	dir = 10;
 	icon_state = "lattice-dir-b"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "chn" = (
 /obj/lattice{
@@ -43643,7 +43643,7 @@
 	icon_state = "lattice-dir";
 	tag = "icon-lattice-dir (EAST)"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "cho" = (
 /obj/item/poster/titled_photo/bee,
@@ -43654,28 +43654,28 @@
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/light/runway_light/delay5,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "chq" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/light/runway_light/delay4,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "chr" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/light/runway_light/delay3,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "chs" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/light/runway_light/delay2,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "cht" = (
 /obj/wingrille_spawn/auto,
@@ -43687,7 +43687,7 @@
 	dir = 6;
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "chv" = (
 /obj/machinery/light/runway_light,
@@ -43695,17 +43695,17 @@
 	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "chw" = (
 /obj/lattice{
 	dir = 1;
 	icon_state = "lattice-dir-b"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "chx" = (
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/shuttle/john/diner)
 "chy" = (
 /obj/machinery/computer/shuttle_bus,
@@ -43796,7 +43796,7 @@
 /area/station/security/checkpoint/escape)
 "chQ" = (
 /obj/wingrille_spawn/auto/crystal,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/station/crew_quarters/lounge/port)
 "chR" = (
 /obj/machinery/door/airlock/pyro/security/alt{
@@ -44426,7 +44426,7 @@
 	dir = 8
 	},
 /obj/lattice,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "cjW" = (
 /obj/machinery/conveyor/oshan_carousel,
@@ -44438,19 +44438,19 @@
 	dir = 6;
 	icon_state = "lattice-dir-b"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "cjY" = (
 /obj/machinery/conveyor/oshan_carousel{
 	dir = 4
 	},
 /obj/lattice,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "cjZ" = (
 /obj/machinery/conveyor/oshan_carousel,
 /obj/lattice,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "cka" = (
 /obj/lattice{
@@ -44459,17 +44459,17 @@
 	},
 /obj/machinery/light/runway_light/delay2,
 /obj/machinery/conveyor/oshan_carousel,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckb" = (
 /obj/lattice,
 /obj/lattice,
 /obj/machinery/conveyor/oshan_carousel/coroner/southeast,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckc" = (
 /obj/machinery/conveyor/oshan_carousel/coroner/northeast,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckd" = (
 /obj/decal/tile_edge/stripe/extra_big,
@@ -44483,35 +44483,35 @@
 	dir = 1
 	},
 /obj/lattice,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckf" = (
 /obj/lattice{
 	dir = 1;
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckg" = (
 /obj/lattice{
 	dir = 6;
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckh" = (
 /obj/lattice{
 	dir = 9;
 	icon_state = "lattice-dir-b"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "cki" = (
 /obj/lattice{
 	dir = 10;
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckj" = (
 /obj/rack,
@@ -44528,13 +44528,13 @@
 	dir = 8;
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckl" = (
 /obj/lattice,
 /obj/lattice,
 /obj/machinery/conveyor/oshan_carousel/coroner/westsouth,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckm" = (
 /obj/machinery/door_control{
@@ -44544,7 +44544,7 @@
 	},
 /obj/machinery/conveyor/oshan_carousel,
 /obj/lattice,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckn" = (
 /obj/cable{
@@ -44560,7 +44560,7 @@
 	dir = 5;
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckp" = (
 /obj/machinery/conveyor_switch{
@@ -44585,7 +44585,7 @@
 "cks" = (
 /obj/lattice,
 /obj/machinery/conveyor/oshan_carousel/coroner/westsouth,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckt" = (
 /obj/machinery/conveyor/oshan_carousel/coroner/westnorth,
@@ -44600,7 +44600,7 @@
 "cku" = (
 /obj/lattice,
 /obj/machinery/conveyor/oshan_carousel/coroner/northeast,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckv" = (
 /obj/machinery/light/small/floor/blueish,
@@ -44627,17 +44627,17 @@
 "ckA" = (
 /obj/lattice,
 /obj/machinery/conveyor/oshan_carousel/coroner/westnorth,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckB" = (
 /obj/lattice,
 /obj/machinery/conveyor/oshan_carousel/coroner/southwest,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckC" = (
 /obj/lattice,
 /obj/machinery/conveyor/oshan_carousel/coroner/southeast,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckD" = (
 /obj/machinery/fluid_canister,
@@ -44688,7 +44688,7 @@
 "ckN" = (
 /obj/lattice,
 /obj/machinery/conveyor/oshan_carousel/coroner/eastnorth,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "ckO" = (
 /turf/wall/false_wall,
@@ -45017,7 +45017,7 @@
 	},
 /obj/lattice,
 /obj/machinery/cargo_router/oshan_south,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "clM" = (
 /obj/machinery/door/airlock/pyro/glass,
@@ -45043,7 +45043,7 @@
 /turf/floor,
 /area/station/crew_quarters/lounge/port)
 "clQ" = (
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/shuttle/merchant_shuttle/right_station/cogmap)
 "clR" = (
 /obj/machinery/drainage/big,
@@ -45217,7 +45217,7 @@
 "cFM" = (
 /obj/lattice,
 /obj/machinery/light/runway_light/delay2,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "cGD" = (
 /obj/decal/poster{
@@ -45720,7 +45720,7 @@
 /obj/machinery/conveyor/oshan_carousel{
 	dir = 8
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "fQs" = (
 /obj/rack,
@@ -45950,7 +45950,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/station/com_dish/research_outpost)
 "gMW" = (
 /obj/cable/reinforced{
@@ -46111,7 +46111,7 @@
 /obj/machinery/conveyor/oshan_carousel{
 	dir = 1
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "isC" = (
 /obj/decal/cleanable/tracked_reagents/blood,
@@ -46210,7 +46210,7 @@
 /obj/warp_beacon{
 	name = "Escape"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "iMs" = (
 /obj/cable{
@@ -46438,7 +46438,7 @@
 	icon_state = "lattice-dir"
 	},
 /obj/machinery/light/runway_light/delay2,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "jVC" = (
 /obj/machinery/light/fluorescent/auto/cool,
@@ -46518,7 +46518,7 @@
 /obj/warp_beacon{
 	name = "Secure Dock"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "kwD" = (
 /obj/noticeboard/persistent{
@@ -46730,7 +46730,7 @@
 /turf/floor/plating/random,
 /area/station/hallway/primary/west)
 "mka" = (
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space{
 	pixel_y = 32
 	})
@@ -47123,7 +47123,7 @@
 /area/station/maintenance/west)
 "oUx" = (
 /obj/grille/steel,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/station/com_dish/research_outpost)
 "oVm" = (
 /obj/table/round/auto,
@@ -47286,7 +47286,7 @@
 	pixel_y = 32
 	},
 /obj/disposalpipe/segment/bent/west,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "pRU" = (
 /obj/cable{
@@ -47553,7 +47553,7 @@
 "rrc" = (
 /obj/lattice,
 /obj/machinery/light/runway_light,
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "rsA" = (
 /obj/item/trench_map,
@@ -47925,7 +47925,7 @@
 /obj/machinery/conveyor/oshan_carousel{
 	dir = 8
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "tWw" = (
 /obj/machinery/door/airlock/pyro/alt,
@@ -48057,7 +48057,7 @@
 	dir = 4;
 	icon_state = "lattice-dir"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "uGR" = (
 /obj/machinery/atmospherics/pipe/vent{
@@ -48387,7 +48387,7 @@
 /obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "floor6"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "wXx" = (
 /obj/lattice{
@@ -48396,7 +48396,7 @@
 /obj/warp_beacon{
 	name = "Mining Dock"
 	},
-/turf/space/fluid,
+/turf/space/fluid/ocean,
 /area/space)
 "xdD" = (
 /obj/decal/cleanable/tracked_reagents/blood/gibs{

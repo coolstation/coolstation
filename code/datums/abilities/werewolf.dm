@@ -204,9 +204,7 @@
 				else if (HH.mind && HH.mind.assigned_role == "Clown")
 					boutput(M, __blue("That tasted funny, huh."))
 					M.unlock_medal("That tasted funny", 1)
-#ifdef DATALOGGER
 					game_stats.Increment("clownabuse")
-#endif
 				else
 					boutput(M, __blue("That tasted good!"))
 					M.unlock_medal("Space Ham", 1) //new way to acquire
@@ -372,7 +370,7 @@
 	New()
 		..()
 		awaken_time = rand(5, 10)*100
-		src.tainted_saliva_reservoir = new/datum/reagents(500)
+		src.tainted_saliva_reservoir = new/datum/reagents(100)
 
 	onAbilityStat() // In the 'Werewolf' tab.
 		..()

@@ -2,7 +2,7 @@
 	name = "Furnace"
 	desc = "An inefficient method of powering the station."
 	icon_state = "furnace"
-	anchored = 1
+	anchored = ANCHORED
 	density = 1
 	var/active = 0
 	var/last_active = 0

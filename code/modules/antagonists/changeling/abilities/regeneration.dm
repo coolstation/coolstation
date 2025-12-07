@@ -56,8 +56,8 @@
 			C.HealDamage("All", 10 * mult, 1 * mult)
 			C.take_toxin_damage(-10 * mult)
 			C.take_oxygen_deprivation(-10 * mult)
-			if (C.blood_volume < 500)
-				C.blood_volume += 10 * mult
+			if (C.organHolder && C.organHolder.spleen && C.reagents.total_volume < C.ideal_blood_volume)
+				C.reagents.add_reagent(C.organHolder.spleen.blood_id, C.ideal_blood_volume * 10 * BLOOD_SCALAR * mult, temp_new = C.base_body_temp)
 				//changelings can get this somehow and it stops speed regen ever turning off otherwise
 			boutput(C, "<span class='notice'>You feel your flesh knitting back together.</span>")
 			for(var/obj/item/implant/I in implants)

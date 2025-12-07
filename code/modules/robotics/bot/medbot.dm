@@ -12,7 +12,7 @@
 	icon_state = "medibot" //now includes the health scanner
 	layer = 5.0 //TODO LAYER
 	density = 0
-	anchored = 0
+	anchored = UNANCHORED
 	luminosity = 2
 	req_access = list(access_medical)
 	access_lookup = "Medical Doctor"
@@ -83,7 +83,7 @@
 	pass_unstable = FALSE
 	emagged = 1
 	terrifying = 1
-	anchored = 1 // don't drag it into space goddamn jerks
+	anchored = ANCHORED // don't drag it into space goddamn jerks
 	no_camera = 1
 	last_patient_cooldown = 5 SECONDS // There's usually only one target anyway, and we want to mess them up right good
 

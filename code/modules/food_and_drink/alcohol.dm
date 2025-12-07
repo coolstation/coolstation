@@ -288,7 +288,7 @@
 	name = "rum"
 	desc = "Yo ho ho and all that."
 	cap_type = "screw"
-	bottle_style = "spicedrum"
+	bottle_style = "bottle-spicedrum"
 	fluid_style = "spicedrum"
 	label = "spicedrum"
 	alt_filled_state = 1
@@ -380,6 +380,20 @@
 	initial_volume = 80
 	initial_reagents = list("wine"=50,"charcoal"=25)
 
+/obj/item/reagent_containers/food/drinks/bottle/vermouth
+	name = "vermouth"
+	desc = "a foul tasting and strong wine."
+	cap_type = "screw"
+	icon_state = "bottle-vermouth"
+	bottle_style = "vermouth"
+	fluid_style = "vermouth"
+	label = "vermouth"
+	alt_filled_state = 1
+	heal_amt = 1
+	g_amt = 60
+	initial_volume = 80
+	initial_reagents = list("vermouth"=80)
+
 /obj/item/reagent_containers/food/drinks/bottle/thegoodstuff
 	name = "Stinkeye's Special Reserve"
 	desc = "An old bottle labelled 'The Good Stuff'. This probably has enough kick to knock an elephant on its ass."
@@ -394,9 +408,43 @@
 	initial_volume = 125
 	initial_reagents = list("champagne"=20,"wine"=20,"cider"=20,"vodka"=20,"eyeofnewt"=40)
 
-/obj/item/reagent_containers/food/drinks/bottle/bojackson
-	name = "Bo Jack Daniel's"
-	desc = "Bo knows how to get you drunk, by diddley!"
+/obj/item/reagent_containers/food/drinks/bottle/brandy
+	name = "brandy"
+	desc= "Darwin's favorite. Nice and sweet."
+	cap_type = "screw"
+	icon_state = "bottle-brandy"
+	bottle_style = "brandy"
+	fluid_style = "brandy"
+	label = "brandy"
+	alt_filled_state = 1
+	heal_amt = 1
+	g_amt = 40
+	initial_volume = 100
+	initial_reagents = "brandy"
+
+/obj/item/reagent_containers/food/drinks/bottle/brandy/silovitz
+	name = "silovitz"
+	desc = "The night is chill, mein Herr"
+	initial_reagents = "silovitz"
+
+/obj/item/reagent_containers/food/drinks/bottle/bitters
+	name = "bitters"
+	desc = "Used for flavoring cocktails, tastes like death."
+	cap_type = "screw"
+	icon_state = "bottle-bitters"
+	bottle_style = "bitters"
+	fluid_style = "bitters"
+	label = "bitters"
+	alt_filled_state = 1
+	heal_amt = 1
+	g_amt = 20
+	initial_volume = 30
+	initial_reagents = "bitters"
+
+
+/obj/item/reagent_containers/food/drinks/bottle/bourbon
+	name = "bourbon"
+	desc = "Some no-name crap brewed in a shed somewhere. Don't drink it for the taste."
 	cap_type = "screw"
 	icon_state = "bottle-whiskey"
 	bottle_style = "whiskey"
@@ -406,7 +454,21 @@
 	heal_amt = 1
 	g_amt = 40
 	initial_volume = 100
+	initial_reagents = "bourbon"
+
+/obj/item/reagent_containers/food/drinks/bottle/bojackson
+	name = "Bo Jack Daniel's"
+	desc = "Bo knows how to get you drunk, by diddley!"
+	cap_type = "screw"
+	icon_state = "bottle-bojack"
+	bottle_style = "bojack"
+	fluid_style = "bojack"
+	label = "bojack"
+	alt_filled_state = 1
+	heal_amt = 1
+	g_amt = 40
 	initial_reagents = "bojack"
+	initial_volume = 90
 
 // knickknacks for making fancy drinks
 
@@ -465,7 +527,7 @@
 	icon_state = "bottle-tvodka"
 	bottle_style = "tvodka"
 	fluid_style = "tvodka"
-	label = "label-none"
+	label = "label-tvodka"
 	alt_filled_state = 1
 	heal_amt = 1
 	g_amt = 60

@@ -9,7 +9,7 @@ obj/machinery/atmospherics/mixer
 	icon_state = "intact_off"
 	density = 0
 //
-	name = "Gas mixer"
+	name = "gas mixer"
 	generic_decon_module = /obj/item/atmospherics/module/mixer
 
 	dir = SOUTH

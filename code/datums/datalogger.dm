@@ -35,6 +35,9 @@ var/global/datum/datalogger/game_stats
 		stats["gunfire"] = 0
 		stats["clownabuse"] = 0
 		stats["workplacesafety"] = 0
+		stats["mining_ores_mined"] = 0
+		stats["mining_turfs_cleared"] = 0
+		stats["food_finished"] = 0
 	proc
 		Increment(var/p)
 			if(!(p in stats))

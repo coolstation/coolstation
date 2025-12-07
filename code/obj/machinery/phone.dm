@@ -3,7 +3,7 @@
 	icon = 'icons/obj/machines/phones.dmi'
 	desc = "A landline phone. In space. Where there is no land. Hmm."
 	icon_state = "phone"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mats = 25
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WIRECUTTERS | DECON_MULTITOOL
@@ -401,7 +401,7 @@
 	icon = 'icons/obj/machines/phones.dmi'
 	desc = "A landline phone. In space. Where there is no land. Hmm."
 	icon_state = "wallphone"
-	anchored = 1
+	anchored = ANCHORED
 	density = 0
 	mats = 25
 	_health = 50
