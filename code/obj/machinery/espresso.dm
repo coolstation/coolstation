@@ -215,6 +215,7 @@
 	throw_speed = 2
 	throw_range = 6
 	throwforce = 10
+	fiddleType = /datum/contextAction/fiddle/coffeemaker
 
 	New()
 		..()
@@ -269,37 +270,34 @@
 				user.show_text ("You put [W] into [src].")
 		else ..()
 
-	attack_hand(mob/user as mob)
-		if (can_reach(user,src))
-			src.add_fingerprint(user)
-			if (src.my_carafe) //freaking spacing errors made me waste hours on this
-				if (!(status & (NOPOWER|BROKEN)))
-					switch (alert("What would you like to do with [src]?",,"Brew coffee","Remove carafe","Nothing"))
-						if ("Brew coffee")
-							if (my_carafe)
-								if (src.an_pod)
-									my_carafe.reagents.add_reagent(an_pod.flavour,100 * an_pod.flavour_to_coffee_ratio)
-									my_carafe.reagents.add_reagent("coffee_fresh",100 * (1 - an_pod.flavour_to_coffee_ratio))
-									qdel(src.an_pod)
-									an_pod = null
-								else
-									my_carafe.reagents.add_reagent("coffee_fresh",100)
-								my_carafe.reagents.set_reagent_temp(T0C + 60) //kinda want it to be 80 but tolerances + no cooloff, this is good enough
-								playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
-						if ("Remove carafe")
-							if (!src.my_carafe)
-								user.show_text("The carafe is gone!")
-								return
-							if (get_dist(src, user) > 1 || isAI(user))
-								user.show_text("You can not do that remotely.")
-								return
-							user.put_in_hand_or_drop(src.my_carafe)
-							src.my_carafe = null
-							user.show_text("You have removed the [src.carafe_name] from [src].")
-							src.update()
-						if ("Nothing")
-							return
-			else return ..()
+
+	proc/brew()
+		if (!(status & (NOPOWER|BROKEN)) && my_carafe && my_carafe.reagents.total_volume < my_carafe.reagents.maximum_volume)
+			if (src.an_pod)
+				my_carafe.reagents.add_reagent(an_pod.flavour,100 * an_pod.flavour_to_coffee_ratio)
+				my_carafe.reagents.add_reagent("coffee_fresh",100 * (1 - an_pod.flavour_to_coffee_ratio))
+				qdel(src.an_pod)
+				an_pod = null
+			else
+				my_carafe.reagents.add_reagent("coffee_fresh",100)
+			my_carafe.reagents.set_reagent_temp(T0C + 60) //kinda want it to be 80 but tolerances + no cooloff, this is good enough
+			playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1)
+
+	proc/remove_carafe(mob/user)
+		if (!src.my_carafe)
+			user.show_text("The carafe is gone!")
+			return
+		if (get_dist(src, user) > 1 || isAI(user))
+			user.show_text("You can not do that remotely.")
+			return
+		user.put_in_hand_or_drop(src.my_carafe)
+		src.my_carafe = null
+		user.show_text("You have removed the [src.carafe_name] from [src].")
+		src.update()
+
+
+	attack_hand(mob/user)
+		src.fiddle(user)
 
 	ex_act(severity)
 		switch(severity)
@@ -335,6 +333,7 @@
 			src.UpdateOverlays(null, "carafe-fluid", 0, 1)
 		return
 
+
 /obj/machinery/coffeemaker/medbay
 	icon_state = "coffeemaker-med"
 	default_carafe = /obj/item/reagent_containers/food/drinks/carafe/medbay
@@ -358,6 +357,38 @@
 /obj/machinery/coffeemaker/generic
 	icon_state = "coffeemaker-gen"
 	default_carafe = /obj/item/reagent_containers/food/drinks/carafe/generic
+
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/coffeemaker)
+/datum/contextAction/fiddle/coffeemaker
+
+	checkRequirements(var/obj/machinery/coffeemaker/target, var/mob/user)
+		return istype(target)
+
+	start_brewing
+		name = "brew"
+		icon_state = "coffeemaker_start_brewing"
+
+		checkRequirements(var/obj/machinery/coffeemaker/target, var/mob/user)
+			if(..(target, user))
+				return !(target.status & (NOPOWER|BROKEN)) && target.my_carafe && target.my_carafe.reagents.total_volume < target.my_carafe.reagents.maximum_volume
+			return FALSE
+
+		execute(var/obj/machinery/coffeemaker/target, var/mob/user)
+			target.brew()
+
+	eject_carafe
+		name = "remove carafe"
+		icon_state = "eject"
+
+		checkRequirements(var/obj/machinery/coffeemaker/target, var/mob/user)
+			if(..(target, user))
+				return target.my_carafe && !isAI(user)
+			return FALSE
+
+		execute(var/obj/machinery/coffeemaker/target, var/mob/user)
+			target.remove_carafe(user)
+
 
 
 /* ===================================================== */
