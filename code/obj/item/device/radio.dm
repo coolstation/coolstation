@@ -4,6 +4,7 @@
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "radio"
+	fiddleType = /datum/contextAction/fiddle/radio
 	var/device_color = null
 	var/chat_class = RADIOCL_STANDARD // respects dark mode, gets overriden by device_color
 	var/last_transmission
@@ -513,6 +514,7 @@ var/list/headset_channel_lookup
 /obj/item/device/radio/proc/send_hear()
 	last_transmission = world.time
 	if ((src.listening && src.wires & WIRE_RECEIVE))
+		// MYLIE NOTE - this is false, because hearers is not viewers and depth is not range. will test if actually limiting range feels nice.
 		var/list/hear = hearers(src.speaker_range, src.loc) // changed so station bounce radios will be loud and headsets will only be heard on their tile
 
 		// modified so that a mob holding the radio is always a hearer of it
@@ -1120,3 +1122,60 @@ obj/item/device/radio/signaler/attackby(obj/item/W as obj, mob/user as mob)
 
 	attack_hand(mob/user as mob)
 		return
+
+// holy SHIT the variable names for radios are awful. listening is "listening to incoming signals"
+// broadcasting is "broadcasting everything around it" when true or "broadcasting only the holder" when false
+// ill fix that... later.
+ABSTRACT_TYPE(/datum/contextAction/fiddle/radio)
+/datum/contextAction/fiddle/radio
+
+	checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+		return istype(target)
+
+	start_broadcasting
+		name = "enable broad microphone"
+		icon_state = "radio_start_broadcasting"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return !target.broadcasting
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.broadcasting = TRUE
+
+	stop_broadcasting
+		name = "disable broad microphone"
+		icon_state = "radio_stop_broadcasting"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return target.broadcasting
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.broadcasting = FALSE
+
+	start_listening
+		name = "enable incoming"
+		icon_state = "radio_start_listening"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return !target.listening
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.listening = TRUE
+
+	stop_listening
+		name = "disable incoming"
+		icon_state = "radio_stop_listening"
+
+		checkRequirements(var/obj/item/device/radio/target, var/mob/user)
+			if(..(target, user))
+				return target.listening
+			return FALSE
+
+		execute(var/obj/item/device/radio/target, var/mob/user)
+			target.listening = FALSE
