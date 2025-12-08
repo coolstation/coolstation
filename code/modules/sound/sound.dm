@@ -557,7 +557,7 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 					//just change the volume
 					soundupdate = 1
 				soundtype = A.sound_loop_1
-			soundchannel = SOUNDCHANNEL_LOOPING_1
+			soundchannel = SOUNDCHANNEL_RESERVED_LOOPING_AREA_1
 			soundrepeat = 1
 		if (AMBIENCE_LOOPING_2)
 			if (pass_volume != 0) //lets us cancel loop sounds by passing 0
@@ -567,15 +567,15 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 					//just change the volume
 					soundupdate = 1
 				soundtype = A.sound_loop_2
-			soundchannel = SOUNDCHANNEL_LOOPING_2
+			soundchannel = SOUNDCHANNEL_RESERVED_LOOPING_AREA_2
 			soundrepeat = 1
 		if (AMBIENCE_FX_1)
 			soundtype = A.sound_fx_1
-			soundchannel = SOUNDCHANNEL_FX_1
+			soundchannel = SOUNDCHANNEL_RESERVED_AREA_FX_1
 			soundwait = 1
 		if (AMBIENCE_FX_2)
 			soundtype = A.sound_fx_2
-			soundchannel = SOUNDCHANNEL_FX_2
+			soundchannel = SOUNDCHANNEL_RESERVED_AREA_FX_2
 
 	var/sound/S = sound(soundtype, repeat = soundrepeat, wait = soundwait, volume = pass_volume, channel = soundchannel)
 	S.priority = 200

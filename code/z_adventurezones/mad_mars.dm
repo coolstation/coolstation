@@ -603,7 +603,7 @@
 		S.file = 'sound/ambience/loop/Mars_Interior.ogg'
 		S.repeat = 1
 		S.wait = 0
-		S.channel = SOUNDCHANNEL_LOOPING_1
+		S.channel = SOUNDCHANNEL_RESERVED_LOOPING_AREA_1
 		S.volume = 60
 		S.priority = 255
 		S.status = SOUND_UPDATE
