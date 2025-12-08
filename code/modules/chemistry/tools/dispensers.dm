@@ -199,7 +199,7 @@
 		//change icon state
 		return
 	proc/lose_charge(var/amount)
-		src.charge = min(0,src.charge - amount)
+		src.charge = max(0,src.charge - amount)
 		update_indicator()
 
 	proc/update_indicator(var/override)

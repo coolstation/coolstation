@@ -1,6 +1,7 @@
 /obj/item/plasma_cutter
 	name = "plasma cutter"
 	desc = "An extremely bulky and dangerous device, this tool uses electricity from an attatched power store to superheat plasma and cut through nearly any material."
+	hint = "click a power bank with the cutter inhand to connect it; in order to start cutting, the bank needs to be charged and the cutter needs to be turned on with the key C or by pressing inhand."
 	//icon = 'icons/obj/items/plasmacutter.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "base"
@@ -17,21 +18,18 @@
 	throw_speed = 1
 	throw_range = 3
 	w_class = W_CLASS_GIGANTIC
-	m_amt = 50000 //?
+	//m_amt = 50000 //?
 
 	var/power_cut_wall = 3
 	var/time_cut_wall = 3 SECONDS
 	var/active = 0
 
-	New()
-		..()
-		var/turf/T = get_turf(src)
-		for(var/obj/I in T)
-			if(istype(I,/obj/reagent_dispensers/powerbank))
-				connect(I)
 	examine()
 		. = ..()
-		. += "<br>The dial says there are [powerbank.value] PU left in the battery."
+		if (powerbank)
+			. += "<br>The dial says there are [powerbank.value] PU left in the battery."
+		else
+			. += "<br>The [src] is not connected to a power bank."
 
 	process()
 		if(!active)
@@ -50,17 +48,30 @@
 				active = 0
 
 	attack_self(mob/user)
-		toggle_active()
 		tooltip_rebuild = 1
-		if (src.active)
-			if(get_power() <= 0)
-				boutput(user, "<span class='notice'>Needs to be charged!</span>")
-				src.active = 0
-				return 0
-			boutput(user, "<span class='notice'>You will now cut when you attack.</span>")
+		if (powerbank)
+			if(get_power() > 0)
+				toggle_active(user)
+			else
+				boutput(user,"<span class='alert'>Power too low!</span>")
+		else
+			boutput(user,"<span class='alert'>No connected power source!</span>")
 
 	afterattack(atom/target, mob/user, reach, params)
-		if (src.active)
+		if (istype(target, /obj/reagent_dispensers/powerbank))
+			if (powerbank == target)
+				//disconnect
+				disconnect()
+				boutput(user, "<span class='notice'>You disconnect [src] from [powerbank].</span>")
+				user.visible_message("<span class='notice'>[user] disconnects [src] from [powerbank].</span>")
+			else if (powerbank)
+				boutput(user, "<span class='notice'>The cutter is already connected to a power source!</span>")
+			else
+				//connect
+				boutput(user, "<span class='notice'>You connect [src] to [powerbank].</span>")
+				user.visible_message("<span class='notice'>[user] connects [src] to [powerbank].</span>")
+				connect(target)
+		else if (src.active)
 			var/power = rand(10,20)
 			if (src.get_power() <= 0)
 				boutput(user, "<span class='notice'>You need to charge the cutter!</span>")
@@ -84,30 +95,18 @@
 	proc/connect(var/obj/reagent_dispensers/powerbank/pb)
 		powerbank = pb
 		//update powerbank
-/*
-	proc/do_it(mob/user as mob, turf/target, var/power, var/delay)
-		if (!power_check(power))
-			boutput(user, "Not enough power to cut this!")
-			return 0
-		if (target in src.working_on)
-			boutput("Already working on that!")
-			return 0
-		src.working_on += target
-		//sounds
-		boutput(user, "<span class='notice'>You start to cut [target].</span>")
 
-		if ((!delay, do_after(user,delay)) && power_check(power))
-			src.use_power(power)
-			elecflash(src)
-			src.working_on -= target
-			return 1
-*/
+	proc/disconnect()
+		powerbank = null
+		//update powerbank
+
 	proc/toggle_active(mob/user)
 		if(!active && get_power())
 			icon_state = "active"
 			active = 1
 			hit_type = DAMAGE_BURN
 //			user.update_inhands()
+			boutput(user, "<span class='notice'>You activate [src]!</span>")
 			//boowap
 			return 1
 		else
@@ -115,6 +114,7 @@
 			active = 0
 			hit_type = DAMAGE_BLUNT
 //			user.update_inhands()
+			boutput(user, "<span class='notice'>You deactivate [src]!</span>")
 			//boowump
 			return 0
 
@@ -214,10 +214,6 @@
 		if (!cutter.power_check(power))
 			boutput(owner, "Not enough power to cut this!")
 			interrupt(INTERRUPT_ALWAYS)
-		if (target in cutter.working_on)
-			boutput(owner,"Already working on that!")
-			interrupt(INTERRUPT_ALWAYS)
-		cutter.working_on += target
 		//sounds
 		boutput(owner, "<span class='notice'>You start to cut [target].</span>")
 
@@ -225,5 +221,4 @@
 		..()
 		cutter.use_power(power)
 		elecflash(cutter)
-		cutter.working_on -= target
 		cutter.cutter_cut(target,owner)
