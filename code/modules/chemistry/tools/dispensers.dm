@@ -184,7 +184,7 @@
 	desc = "A fire hazard filled with lithium that stores large amounts of power." //right now it's just filled with lithium that does nothing. Battery chemistry is another project.
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "powerbank"
-	amount_per_transfer_from_this = 2 //don't take the lithium!
+	amount_per_transfer_from_this = 0 // figure out another way to crack this open!
 	capacity = 5000
 	can_break = TRUE
 	var/charge = 5000 // will eventually be replaced by reagent charge

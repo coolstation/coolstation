@@ -108,6 +108,12 @@
 	},
 /turf/space,
 /area/space)
+"aes" = (
+/obj/machinery/light/small/red{
+	dir = 4
+	},
+/turf/space,
+/area/station/shipyard)
 "aey" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -3730,12 +3736,12 @@
 /turf/floor/grey,
 /area/station/science/storage)
 "cNn" = (
-/obj/machinery/door/airlock/engineering,
 /obj/firedoor_spawn,
 /obj/access_spawn/scrapping,
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/airlock/maintenance,
 /turf/floor/grime,
 /area/station/mining/equipment)
 "cNy" = (
@@ -5666,6 +5672,16 @@
 /obj/machinery/power/apc/autoname/north,
 /turf/floor/wood/five,
 /area/station/hydroponics/lobby)
+"enN" = (
+/obj/stool/chair{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_x = 10;
+	pixel_y = 9
+	},
+/turf/floor/grime,
+/area/station/maintenance/southeast)
 "enR" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/grey,
@@ -8610,9 +8626,6 @@
 	pixel_y = 4
 	},
 /obj/table/auto,
-/obj/machinery/light/small/red{
-	dir = 1
-	},
 /obj/item/crowbar{
 	pixel_x = -3;
 	pixel_y = 2
@@ -11193,6 +11206,8 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/reagent_dispensers/powerbank,
+/obj/item/plasma_cutter,
 /turf/floor/cautionblack/side{
 	dir = 6
 	},
@@ -15776,6 +15791,13 @@
 /obj/machinery/light/fluorescent/ceiling/warm,
 /turf/floor/plating/random,
 /area/station/maintenance/solar/east)
+"lOm" = (
+/obj/storage/closet/fire,
+/obj/machinery/light/small/red{
+	dir = 1
+	},
+/turf/floor/grime,
+/area/station/maintenance/southeast)
 "lOu" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -67684,7 +67706,7 @@ xLm
 xLm
 xLm
 xLm
-bMk
+aes
 bMk
 bMk
 bMk
@@ -67970,7 +67992,7 @@ aFA
 aFA
 aFA
 aFA
-bMk
+aes
 xLm
 xLm
 xLm
@@ -67986,8 +68008,8 @@ xLm
 xLm
 xLm
 xLm
-bMk
-bMk
+seQ
+seQ
 bMk
 bMk
 bMk
@@ -68271,8 +68293,8 @@ gdz
 apK
 rtl
 rtl
-dRi
-jIt
+seQ
+seQ
 xLm
 xLm
 xLm
@@ -75838,7 +75860,7 @@ bKY
 bce
 lCH
 nYF
-cCc
+lOm
 ezI
 ezI
 cdQ
@@ -76137,14 +76159,14 @@ vYm
 nKw
 aEf
 aEf
-fLl
 tNC
+fLl
 aEf
 aEf
 gwx
 bUZ
 nYF
-ezI
+enN
 sms
 uSr
 iaR
