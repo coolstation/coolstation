@@ -1699,6 +1699,32 @@
 		else
 			P.create_overlay("smear2", "#ff8820", direct, 'icons/obj/decals/blood.dmi')
 
+
+/client/var/crab
+
+/datum/statusEffect/crab
+	id = "crab"
+	name = "Crabbed"
+	desc = "A CRAB IS PINCHING YOUR PENIS!"
+	icon_state = "crab"
+	unique = TRUE
+	maxDuration = 30 MINUTES
+
+	onAdd(optional)
+		. = ..()
+		if (!ishuman(owner)) return
+		boutput(owner,"Oh fuck. OH CHRIST.")
+		var/client/C = owner:client
+		if(istype(C))
+			C.crab = TRUE
+
+	onRemove()
+		. = ..()
+		var/client/C = owner:client
+		if(istype(C))
+			C.crab = FALSE
+		boutput(owner,"Oh thank god that's over with.")
+
 /datum/statusEffect/magnetized
 	id = "magnetized"
 	name = "Magnetized"
