@@ -298,7 +298,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			for(var/direction in cardinal)
 				LAGCHECK(LAG_REALTIME)
 				var/turf/T = get_step(src,direction)
-				if(src.gas_cross(T) && T.gas_cross(src))
+				if(src.gas_cross(T))
 					air_check_directions |= direction
 		return removed
 	else
@@ -334,7 +334,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			//A map border
 			if(!T)
 				continue
-			if(src.gas_cross(T) && T.gas_cross(src))
+			if(src.gas_cross(T))
 				air_check_directions |= direction
 				if(T.parent==parent)
 					continue
@@ -383,7 +383,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			var/turf/T = get_step(src,direction)
 			if(!T)
 				continue
-			if(src.gas_cross(T) && T.gas_cross(src))
+			if(src.gas_cross(T))
 				air_check_directions |= direction
 #ifdef TRACK_GROUPS_TO_ATMOSPHERE
 				if(T.turf_flags & IS_ATMOSPHERE)

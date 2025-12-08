@@ -177,7 +177,7 @@ datum/controller/air_system
 				test.length_space_border = 0
 				for(var/direction in cardinal)
 					var/turf/T = get_step(test,direction)
-					if(T && !(T in members) && test.gas_cross(T) && T.gas_cross(test))
+					if(T && !(T in members) && test.gas_cross(T))
 						if(issimulatedturf(T))
 							if(!T:parent)
 								possible_members += T
