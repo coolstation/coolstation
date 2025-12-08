@@ -2,12 +2,13 @@
 	name = "plasma cutter"
 	desc = "An extremely bulky and dangerous device, this tool uses electricity from an attatched power store to superheat plasma and cut through nearly any material."
 	hint = "click a power bank with the cutter inhand to connect it; in order to start cutting, the bank needs to be charged and the cutter needs to be turned on with the key C or by pressing inhand."
-	//icon = 'icons/obj/items/plasmacutter.dmi'
+	icon = 'icons/obj/items/cutter.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
-	icon_state = "base"
+	icon_state = "cutter-inactive"
 	item_state = "cutter"
 	opacity = 0
 	density = 0
+	two_handed = TRUE
 
 	var/obj/reagent_dispensers/powerbank/powerbank
 	var/list/working_on
@@ -46,6 +47,9 @@
 			use_power(10)
 			if(!get_power())
 				active = 0
+		if (get_power() <= 0)
+			icon_state = "cutter-dead"
+			active = 0
 
 	attack_self(mob/user)
 		tooltip_rebuild = 1
@@ -54,8 +58,12 @@
 				toggle_active(user)
 			else
 				boutput(user,"<span class='alert'>Power too low!</span>")
+				icon_state = "cutter-dead"
+				active = 0
 		else
 			boutput(user,"<span class='alert'>No connected power source!</span>")
+			icon_state = "cutter-dead"
+			active = 0
 
 	afterattack(atom/target, mob/user, reach, params)
 		if (istype(target, /obj/reagent_dispensers/powerbank))
@@ -64,6 +72,8 @@
 				disconnect()
 				boutput(user, "<span class='notice'>You disconnect [src] from [powerbank].</span>")
 				user.visible_message("<span class='notice'>[user] disconnects [src] from [powerbank].</span>")
+				icon_state = "cutter-dead"
+				active = 0
 			else if (powerbank)
 				boutput(user, "<span class='notice'>The cutter is already connected to a power source!</span>")
 			else
@@ -71,6 +81,8 @@
 				boutput(user, "<span class='notice'>You connect [src] to [powerbank].</span>")
 				user.visible_message("<span class='notice'>[user] connects [src] to [powerbank].</span>")
 				connect(target)
+				icon_state = "cutter-inactive"
+				active = 0
 		else if (src.active)
 			var/power = rand(10,20)
 			if (src.get_power() <= 0)
@@ -102,7 +114,7 @@
 
 	proc/toggle_active(mob/user)
 		if(!active && get_power())
-			icon_state = "active"
+			icon_state = "cutter-active"
 			active = 1
 			hit_type = DAMAGE_BURN
 //			user.update_inhands()
@@ -110,7 +122,7 @@
 			//boowap
 			return 1
 		else
-			icon_state = "base"
+			icon_state = "cutter-inactive"
 			active = 0
 			hit_type = DAMAGE_BLUNT
 //			user.update_inhands()
