@@ -1025,7 +1025,7 @@ proc/is_teleportation_allowed(var/turf/T)
 			return
 
 		src.add_dialog(usr)
-		playsound(src.loc, 'sound/machines/keypress.ogg', 50, 1, -15)
+		playsound(src.loc, 'sound/machines/keypress.ogg', 50, 1, SOUND_RANGE_SMALL)
 
 		if (href_list["scan"])
 			if (!host_id)
@@ -1096,7 +1096,7 @@ proc/is_teleportation_allowed(var/turf/T)
 			bm.z = ztarget
 			bookmarks.Add(bm)
 			src.updateUsrDialog()
-			playsound(src.loc, "keyboard", 50, 1, -15)
+			playsound(src.loc, "keyboard", 50, 1, SOUND_RANGE_SMALL)
 			return
 
 		if (href_list["setpad"])

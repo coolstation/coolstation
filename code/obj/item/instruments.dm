@@ -163,7 +163,7 @@
 			var/mob/living/L = hit_atom
 			L.changeStatus("paralysis", 2 SECONDS)
 			random_brute_damage(L, 20)
-			playsound(L, "sound/machines/blast_door_9.ogg", 60, 1, 5)
+			playsound(L, "sound/machines/blast_door_9.ogg", 60, 1, SOUND_RANGE_LARGE)
 
 /* -------------------- Grand Piano -------------------- */
 
@@ -297,8 +297,8 @@
 
 /obj/item/instrument/saxophone/attack(mob/M as mob, mob/user as mob)
 	if(ismob(M))
-		playsound(src, pick(sounds_punch), 50, 1, -1)
-		playsound(src, pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg', 'sound/musical_instruments/saxbonk3.ogg'), 50, 1, -1)
+		playsound(src, pick(sounds_punch), 50, 1, SOUND_RANGE_STANDARD)
+		playsound(src, pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg', 'sound/musical_instruments/saxbonk3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 		user.visible_message("<span class='alert'><b>[user] bonks [M] with [src]!</b></span>")
 	else
 		. = ..()
@@ -341,7 +341,7 @@
 
 	attack(mob/M as mob, mob/user as mob)
 		if(ismob(M))
-			playsound(src, pick('sound/musical_instruments/Guitar_bonk1.ogg', 'sound/musical_instruments/Guitar_bonk2.ogg', 'sound/musical_instruments/Guitar_bonk3.ogg'), 50, 1, -1)
+			playsound(src, pick('sound/musical_instruments/Guitar_bonk1.ogg', 'sound/musical_instruments/Guitar_bonk2.ogg', 'sound/musical_instruments/Guitar_bonk3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 		..()
 
 
@@ -366,7 +366,7 @@
 
 	attack(mob/M as mob, mob/user as mob)
 		if(ismob(M))
-			playsound(src, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
+			playsound(src, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 		..()
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -607,7 +607,7 @@
 			return
 		else
 			S.visible_message("<span class='alert'><b>[S.name]'s skeleton rips itself free upon hearing the song of its people!</b></span>")
-			playsound(S, S.gender == "female" ? "sound/voice/screams/female_scream.ogg" : "sound/voice/screams/male_scream.ogg", 50, 0, 0, S.get_age_pitch())
+			playsound(S, S.gender == "female" ? "sound/voice/screams/female_scream.ogg" : "sound/voice/screams/male_scream.ogg", 50, 0, SOUND_RANGE_STANDARD, S.get_age_pitch())
 			playsound(S, "sound/effects/bubbles.ogg", 50, 0)
 			playsound(S, "sound/impact_sounds/Flesh_Tear_2.ogg", 50, 0)
 			var/bdna = null // For forensics (Convair880).
@@ -649,7 +649,7 @@
 
 	attack(mob/M as mob, mob/user as mob)
 		src.add_fingerprint(user)
-		playsound(src, "swing_hit", 50, 1, -1)
+		playsound(src, "swing_hit", 50, 1, SOUND_RANGE_STANDARD)
 		..()
 		satanic_home_run(M, user)
 

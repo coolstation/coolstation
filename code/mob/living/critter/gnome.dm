@@ -44,7 +44,7 @@
 		switch (act)
 			if ("laugh")
 				if (src.emote_check(voluntary, 50))
-					playsound(src, "sound/misc/gnomechuckle.ogg", 50, 1, 0.5, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, "sound/misc/gnomechuckle.ogg", 50, 1, SOUND_RANGE_STANDARD, channel=VOLUME_CHANNEL_EMOTE)
 					return "<span class='emote'><b>[src]</b> chuckles!</span>"
 		return ..()
 

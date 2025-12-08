@@ -179,7 +179,7 @@ proc/razorwave_assess_threat(mob/living/carbon/human/target)
 	var/obj/item/paper/result = new()
 	result.info = report_text
 	result.set_loc(get_turf(src))
-	playsound(src, "sparks", 75, 1, -1)
+	playsound(src, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 
 
 /obj/machinery/razorwave/power_change()

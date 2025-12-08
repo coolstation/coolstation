@@ -1,6 +1,6 @@
 var/list/obj/overlay/magindara_fog/magindara_global_fog
 var/global/magindara_surface_loop = 'sound/ambience/loop/magindarawind.ogg' //Z1
-var/global/magindara_surface_loop_volume = 80
+var/global/magindara_surface_loop_volume = 40
 
 /turf/space/magindara
 	name = "ocean below"
@@ -17,6 +17,7 @@ var/global/magindara_surface_loop_volume = 80
 	color = "#ffffff"
 	special_volume_override = -1
 	turf_flags = MINE_MAP_PRESENTS_EMPTY | IS_ATMOSPHERE
+	groups_to_atmosphere = 0
 #ifdef MAGINDARA_MAP
 	oxygen = MOLES_O2MAGINDARA
 	nitrogen = MOLES_N2MAGINDARA
@@ -275,7 +276,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		sleep(sleep_time)
 		if(QDELETED(target))
 			return
-		playsound(target, 'sound/effects/thunder.ogg', 80, 1, floor(power))
+		playsound(target, 'sound/effects/thunder.ogg', 80, 1, SOUND_RANGE_LARGE)
 		new /obj/decal/lightning(target, rodded ? 64 : 0, color)
 		if(!rodded)
 			explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)

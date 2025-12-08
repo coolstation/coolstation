@@ -34,7 +34,7 @@ var/global/gehenna_time = GEHENNA_TIME
 var/global/gehenna_surface_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z1
 var/global/gehenna_underground_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z3
 // volume curve so wind stuff is loudest in the cold, cold night
-var/global/gehenna_surface_loop_vol = (30 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(60))) //volume meant for outside, min 30 max 90
+var/global/gehenna_surface_loop_vol = (25 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(35))) //volume meant for outside, min 25 max 60
 var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just have it the same but quiet i guess (with a proper cave soundscape, increase to like 100 or something)
 
 // Gehenna shit tho
@@ -52,6 +52,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	color = "#ffffff"
 	special_volume_override = -1
 	turf_flags = MINE_MAP_PRESENTS_EMPTY | IS_ATMOSPHERE
+	groups_to_atmosphere = 0
 
 /* PLEASE DO NOT DO THIS
 	Entered(atom/movable/O)
@@ -173,6 +174,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
 	allows_vehicles = 1
 	turf_flags = IS_TYPE_SIMULATED | MOB_SLIP | MOB_STEP | MINE_MAP_PRESENTS_EMPTY | IS_ATMOSPHERE
+	groups_to_atmosphere = 0
 
 	New()
 		..()
@@ -454,7 +456,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	requires_power = 0
 	sound_environment = EAX_PLAIN
 	sound_loop_1 = 'sound/ambience/loop/SANDSTORM.ogg' //need something wimdy, maybe overlay a storm sound on this
-	sound_loop_1_vol = 100 //always loud, fukken storming
+	sound_loop_1_vol = 50 //always loud, fukken storming
 	var/list/assholes_to_hurt = list()
 	var/buffeting_assoles = FALSE
 	irradiated = 0.5

@@ -61,7 +61,7 @@
 					return
 			user.u_equip(W)
 			W.set_loc(src)
-			playsound(src.loc, "rustle", 50, 1, -5)
+			playsound(src.loc, "rustle", 50, 1, SOUND_RANGE_MODERATE)
 			boutput(user, "You stuff [W] into [src].")
 			if (ishuman(src.loc)) // person be wearin this
 				var/mob/living/carbon/human/H = src.loc
@@ -78,7 +78,7 @@
 			return
 		else
 			var/obj/item/I = pick(src.contents)
-			playsound(src.loc, "rustle", 50, 1, -5)
+			playsound(src.loc, "rustle", 50, 1, SOUND_RANGE_MODERATE)
 			boutput(user, "You rummage around in [src] and pull out [I].")
 			user.put_in_hand_or_drop(I)
 		if (src.contents.len && ishuman(src.loc)) // person be wearin this

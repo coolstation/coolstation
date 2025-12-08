@@ -64,7 +64,7 @@
 			mode = 0
 			attached = 0
 			boutput(user, "[O] disconnects itself from the cable.")
-			playsound(O, "sound/effects/shielddown2.ogg", 75, 1, 0, 2)
+			playsound(O, "sound/effects/shielddown2.ogg", 75, 1, SOUND_RANGE_STANDARD, 2)
 			var/obj/machinery/artifact/power_gen/L = O
 			if (L.light)
 				L.light.disable()
@@ -77,7 +77,7 @@
 			if(PN)
 				PN.newavail += gen_rate
 				var/turf/T = get_turf(O)
-				playsound(O, "sound/machines/engine_highpower.ogg", 75, 1, 0, 1)
+				playsound(O, "sound/machines/engine_highpower.ogg", 75, 1, SOUND_RANGE_STANDARD, 1)
 				if (prob(10))
 					playsound(O, "sound/effects/screech2.ogg", 75, 1)
 					fireflash(O, rand(1,min(5,gen_level)))

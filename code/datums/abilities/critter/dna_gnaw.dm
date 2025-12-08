@@ -28,7 +28,7 @@
 		if (get_dist(holder.owner, target) > 1)
 			boutput(holder.owner, __red("That is too far away to bite."))
 			return 1
-		playsound(target, "sound/impact_sounds/Flesh_Tear_1.ogg", 50, 1, -1)
+		playsound(target, "sound/impact_sounds/Flesh_Tear_1.ogg", 50, 1, SOUND_RANGE_MODERATE)
 		var/mob/M = target
 
 		holder.owner.visible_message(__red("<b>[holder.owner] gnaws into [M]!</b>"), __red("We sink our teeth into [M]!"))

@@ -306,7 +306,7 @@ var/list/ban_from_airborne_fluid = list()
 						step_away(push_thing,src)
 
 		if (spawned_any && prob(40))
-			playsound( src.loc, 'sound/effects/smoke_tile_spread.ogg', 30,1,7)
+			playsound( src.loc, 'sound/effects/smoke_tile_spread.ogg', 30,1,SOUND_RANGE_LARGE)
 
 
 	//kind of like a breadth-first search

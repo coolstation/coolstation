@@ -181,7 +181,7 @@ ABSTRACT_TYPE(/obj/deployable_turret)
 		src.emagged = TRUE
 		boutput(user, SPAN_ALERT("You short out [src]'s targeting systems."))
 		src.visible_message(SPAN_ALERT(SPAN_BOLD("[src] buzzes oddly!")))
-		playsound(src, "sound/effects/sparks[rand(1, 6)].ogg", 40, 1, extrarange = -10)
+		playsound(src, "sound/effects/sparks[rand(1, 6)].ogg", 40, 1, SOUND_RANGE_MODERATE)
 
 	disposing()
 		processing_items.Remove(src)

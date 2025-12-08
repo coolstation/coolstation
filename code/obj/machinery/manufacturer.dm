@@ -1407,7 +1407,7 @@
 				src.timeleft *= 1.5
 			src.timeleft /= src.speed
 			///
-		playsound(src.loc, src.sound_beginwork, 50, 1, 0, 3)
+		playsound(src.loc, src.sound_beginwork, 50, 1, SOUND_RANGE_STANDARD, 3)
 		src.mode = "working"
 		src.build_icon()
 

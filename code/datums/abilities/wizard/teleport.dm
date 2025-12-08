@@ -141,7 +141,7 @@
 				boutput(H, "<span class='notice'>The flames sputter out as you phase shift.</span>")
 				H.set_burning(0)
 
-			playsound(src.loc, "sound/effects/mag_teleport.ogg", 25, 1, -1)
+			playsound(src.loc, "sound/effects/mag_teleport.ogg", 25, 1, SOUND_RANGE_STANDARD)
 
 	var/list/L = list()
 	for (var/turf/T3 in get_area_turfs(thearea.type))

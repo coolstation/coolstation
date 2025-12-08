@@ -19,7 +19,7 @@
 	var/evil = 0
 	var/sound_pitch = 1
 	var/volume = 100
-	var/extrarange = 0
+	var/range = 0
 	var/times_to_play = 1
 	var/list/sounds = list('sound/misc/miles_hornpipe_compressed_clean.ogg', 'sound/machines/fortune_greeting_broken.ogg','sound/machines/engine_highpower.ogg','sound/machines/engine_grump1.ogg','sound/machines/engine_alert1.ogg',
 	'sound/machines/engine_alert2.ogg','sound/machines/engine_alert3.ogg','sound/machines/lavamoon_alarm1.ogg','sound/machines/lavamoon_plantalarm.ogg','sound/machines/pod_alarm.ogg',
@@ -36,9 +36,9 @@
 		if(prob(10))
 			src.sound_pitch /= 10
 		src.volume = pick(prob(25);20, prob(50);30, 40, prob(25);50)
-		src.extrarange = (200 - volume)/2 + rand(-20, 20)
+		src.range = (200 - volume)/2 + rand(13, 40)
 		if(prob(40))
-			src.extrarange = -10
+			src.range = SOUND_RANGE_MODERATE
 		if(prob(30))
 			src.sound_pitch *= -1
 		src.times_to_play = 1
@@ -64,11 +64,11 @@
 		var/turf/T = get_turf(O)
 		if (evil)
 			for(var/X in src.sounds)
-				playsound(T, X, src.volume, 1, src.extrarange, src.sound_pitch)
+				playsound(T, X, src.volume, 1, src.range, src.sound_pitch)
 		else
 			while (loops > 0)
 				loops--
-				playsound(T, src.spamsound, src.volume, 1, src.extrarange, src.sound_pitch)
+				playsound(T, src.spamsound, src.volume, 1, src.range, src.sound_pitch)
 
 		if (src.harmful)
 			for (var/mob/living/M in hearers(world.view, O))

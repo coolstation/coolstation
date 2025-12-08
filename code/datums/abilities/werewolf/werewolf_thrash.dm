@@ -30,7 +30,7 @@
 			if (M)
 				M.set_dir(turn(M.dir, 90))
 				M.set_loc(thrash_loc)
-				playsound(M.loc, 'sound/voice/animal/werewolf_attack2.ogg', 10, 1, 0.1, 1.6)
+				playsound(M.loc, 'sound/voice/animal/werewolf_attack2.ogg', 10, 1, SOUND_RANGE_STANDARD, 1.6)
 			else
 				return 0
 			sleep (1.5)

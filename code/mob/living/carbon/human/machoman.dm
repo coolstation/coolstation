@@ -50,7 +50,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 			return 1
 		if (!src.stat && prob(6))
 			src.visible_message("<b>[src]</b> mutters to himself.")
-			playsound(src.loc, pick(snd_macho_idle), 50, 0, 0, src.get_age_pitch())
+			playsound(src.loc, pick(snd_macho_idle), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 
 //	movement_delay()
 //		return ..() - 10
@@ -146,7 +146,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 			M.changeStatus("weakened", 10 SECONDS)
 			playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 65, 1)
 			SPAWN_DBG(2 SECONDS)
-				playsound(src.loc, pick(snd_macho_rage), 60, 0, 0, src.get_age_pitch())
+				playsound(src.loc, pick(snd_macho_rage), 60, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 		return
 
 	verb/macho_offense()
@@ -178,7 +178,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 			for (var/obj/item/grab/G in src)
 				if (G.affecting == M)
 					return
-			playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+			playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 			src.visible_message("<span class='alert'><B>[src] aggressively grabs [M]!</B></span>")
 			var/obj/item/grab/G = new /obj/item/grab(src, src, M)
 			src.put_in_hand(G, src.hand)
@@ -211,7 +211,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					G.affecting.gib()
 					qdel(G)
 				SPAWN_DBG(2 SECONDS)
-					playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+					playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					src.visible_message("<span class='alert'><b>[src]</b> lets out an angry warcry!</span>")
 				break
 
@@ -237,7 +237,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					G.affecting.gib()
 					qdel(G)
 				SPAWN_DBG(2 SECONDS)
-					playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+					playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					src.visible_message("<span class='alert'><b>[src]</b> lets out an angry warcry!</span>")
 				break
 
@@ -272,7 +272,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				H.set_loc(src.loc)
 			else
 				src.visible_message("<span class='alert'>[src] closes his eyes for a moment.</span>")
-				playsound(src.loc, "sound/voice/macho/macho_breathing18.ogg", 50, 0, 0, src.get_age_pitch())
+				playsound(src.loc, "sound/voice/macho/macho_breathing18.ogg", 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 				sleep(4 SECONDS)
 			src.set_density(0)
 			if (H)
@@ -294,7 +294,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 			else
 				src.visible_message("<span class='alert'>[src] flies through the ceiling!</span>")
 			playsound(src.loc, "sound/effects/bionic_sound.ogg", 50)
-			playsound(src.loc, "sound/voice/macho/macho_become_enraged01.ogg", 50, 0, 0, src.get_age_pitch())
+			playsound(src.loc, "sound/voice/macho/macho_become_enraged01.ogg", 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 			for (var/i = 0, i < 20, i++)
 				src.pixel_y += 15
 				src.set_dir(turn(src.dir, 90))
@@ -345,7 +345,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 			if (G)
 				qdel(G)
 			playsound(src.loc, "explosion", 50)
-			playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+			playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 			for (var/mob/M in viewers(src, 5))
 				if (M != src)
 					M.changeStatus("weakened", 8 SECONDS)
@@ -396,7 +396,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.set_dir(get_dir(src, H))
 					H.set_dir(get_dir(H, src))
 					src.visible_message("<span class='alert'><B>[src] menacingly grabs [H] by the chest!</B></span>")
-					playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+					playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					var/dir_offset = get_dir(src, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -459,7 +459,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.transforming = 0
 					src.verbs += /mob/living/carbon/human/machoman/verb/macho_rend
 					SPAWN_DBG(2 SECONDS)
-						playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+						playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 						src.visible_message("<span class='alert'><b>[src]</b> gloats and boasts!</span>")
 
 	verb/macho_summon_arena()
@@ -472,7 +472,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				//var/arena_time = 45 SECONDS
 				src.verbs -= /mob/living/carbon/human/machoman/verb/macho_summon_arena
 				var/ring_radius = 4
-				playsound(src.loc, "sound/voice/chanting.ogg", 75, 0, 0, src.get_age_pitch())
+				playsound(src.loc, "sound/voice/chanting.ogg", 75, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 				src.visible_message("<span class='alert'><B>[src] begins summoning a wrestling ring!</B></span>", "<span class='alert'><B>You begin summoning a wrestling ring!</B></span>")
 				for (var/mob/living/M in oviewers(ring_radius + 4, get_turf(src)))
 					M.apply_sonic_stun(6, 3, stamina_damage = 0)
@@ -578,7 +578,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.set_dir(get_dir(src, H))
 					H.set_dir(get_dir(H, src))
 					src.visible_message("<span class='alert'><B>[src] menacingly grabs [H] by the chest!</B></span>")
-					playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+					playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					var/dir_offset = get_dir(src, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -631,7 +631,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.transforming = 0
 					src.verbs += /mob/living/carbon/human/machoman/verb/macho_slimjim_snap
 					SPAWN_DBG(20)
-						playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+						playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 						src.visible_message("<span class='alert'><b>[src]</b> gloats and boasts!</span>")
 
 	verb/macho_touch()
@@ -653,7 +653,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.set_dir(get_dir(src, H))
 					H.set_dir(get_dir(H, src))
 					src.visible_message("<span class='alert'><B>[src] picks up [H] by the throat!</B></span>")
-					playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+					playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					var/dir_offset = get_dir(src, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -674,7 +674,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.transforming = 0
 					src.bioHolder.AddEffect("fire_resist")
 					src.transforming = 1
-					playsound(src.loc, "sound/voice/chanting.ogg", 75, 0, 0, src.get_age_pitch())
+					playsound(src.loc, "sound/voice/chanting.ogg", 75, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					src.visible_message("<span class='alert'>[src] begins radiating with dark energy!</span>")
 					sleep(4 SECONDS)
 					for (var/mob/N in viewers(src, null))
@@ -891,7 +891,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.set_dir(get_dir(src, H))
 					H.set_dir(get_dir(H, src))
 					src.visible_message("<span class='alert'><B>[src] picks up [H] by the throat!</B></span>")
-					playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+					playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					var/dir_offset = get_dir(src, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -921,7 +921,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				//		composite.Blend(Ic, ICON_OVERLAY)
 				//	src.overlays = null
 				//	src.icon = composite
-					playsound(src.loc, "sound/voice/chanting.ogg", 75, 0, 0, src.get_age_pitch())
+					playsound(src.loc, "sound/voice/chanting.ogg", 75, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					src.visible_message("<span class='alert'><b>[src] begins radiating with evil energies!</b></span>")
 					sleep(4 SECONDS)
 					for (var/mob/N in viewers(src, null))
@@ -971,7 +971,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.set_dir(get_dir(src, H))
 					H.set_dir(get_dir(H, src))
 					src.visible_message("<span class='alert'><B>[src] gently picks up [H]!</B></span>")
-					playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+					playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					var/dir_offset = get_dir(src, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -1034,7 +1034,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 					src.set_dir(get_dir(src, H))
 					H.set_dir(get_dir(H, src))
 					src.visible_message("<span class='alert'><B>[src] picks up [H] by the throat!</B></span>")
-					playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+					playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					var/dir_offset = get_dir(src, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -1157,7 +1157,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 
 		if (did_it)
 			SPAWN_DBG (rand(2,4) * 10)
-				playsound(src.loc, pick(snd_macho_rage), 50, 0, 0, src.get_age_pitch())
+				playsound(src.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 				src.visible_message("<span class='alert'><b>[src]</b> gloats and boasts!</span>")
 
 		src.verbs += /mob/living/carbon/human/machoman/verb/macho_heartpunch
@@ -1240,7 +1240,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				if (src.mind && src.mind.special_role && src.mind.special_role == "faustian macho man")
 					..()
 				else
-					playsound(src.loc, pick(snd_macho_rage), 75, 0, 0, src.get_age_pitch())
+					playsound(src.loc, pick(snd_macho_rage), 75, 0, SOUND_RANGE_STANDARD, src.get_age_pitch())
 					src.visible_message("<span class='alert'><b>[src] yells out a battle cry!</b></span>")
 			else
 				..()
@@ -1275,12 +1275,12 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 	New()
 		..()
 		if (prob(50))
-			playsound(src.loc, pick(snd_macho_rage), 50, 1, 0, 1.75)
+			playsound(src.loc, pick(snd_macho_rage), 50, 1, SOUND_RANGE_STANDARD, 1.75)
 
 	ai_think()
 		..()
 		if (prob(10))
-			playsound(src.loc, pick(snd_macho_idle), 50, 1, 0, 1.75)
+			playsound(src.loc, pick(snd_macho_idle), 50, 1, SOUND_RANGE_STANDARD, 1.75)
 
 	attack_hand(mob/user as mob)
 		if (src.alive && (user.a_intent != INTENT_HARM))
@@ -1303,7 +1303,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				O.show_message("<span class='alert'>[attack_message]</span>", 1)
 			playsound(src.loc, "swing_hit", 30, 0)
 			if (prob(10))
-				playsound(src.loc, pick(snd_macho_rage), 50, 1, 0, 1.75)
+				playsound(src.loc, pick(snd_macho_rage), 50, 1, SOUND_RANGE_STANDARD, 1.75)
 			random_brute_damage(src.target, rand(0,1))
 			SPAWN_DBG(rand(1,3))
 				src.attacking = 0
@@ -1312,7 +1312,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 		for (var/mob/O in viewers(src, null))
 			O.show_message("<span class='alert'><B>[src]</B> charges at [M]!</span>", 1)
 		if (prob(50))
-			playsound(src.loc, pick(snd_macho_rage), 50, 1, 0, 1.75)
+			playsound(src.loc, pick(snd_macho_rage), 50, 1, SOUND_RANGE_STANDARD, 1.75)
 		M.changeStatus("stunned", 1 SECOND)
 		if (prob(25))
 			M.changeStatus("weakened", 2 SECONDS)
@@ -1511,7 +1511,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 				H.set_loc(holder.owner.loc)
 			else
 				holder.owner.visible_message("<span class='alert'>[holder.owner] closes his eyes for a moment.</span>")
-				playsound(holder.owner.loc, "sound/voice/macho/macho_breathing18.ogg", 50, 0, 0, holder.owner.get_age_pitch())
+				playsound(holder.owner.loc, "sound/voice/macho/macho_breathing18.ogg", 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 				sleep(4 SECONDS)
 			holder.owner.set_density(0)
 			if (H)
@@ -1533,7 +1533,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 			else
 				holder.owner.visible_message("<span class='alert'>[holder.owner] flies through the ceiling!</span>")
 			playsound(holder.owner.loc, "sound/effects/bionic_sound.ogg", 50)
-			playsound(holder.owner.loc, "sound/voice/macho/macho_become_enraged01.ogg", 50, 0, 0, holder.owner.get_age_pitch())
+			playsound(holder.owner.loc, "sound/voice/macho/macho_become_enraged01.ogg", 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 			for (var/i = 0, i < 20, i++)
 				holder.owner.pixel_y += 15
 				holder.owner.set_dir(turn(holder.owner.dir, 90))
@@ -1584,7 +1584,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 			if (G)
 				qdel(G)
 			playsound(holder.owner.loc, "explosion", 50)
-			playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+			playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 			for (var/mob/M in viewers(holder.owner, 5))
 				if (M != holder.owner)
 					M.changeStatus("weakened", 8 SECONDS)
@@ -1663,7 +1663,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 			for (var/obj/item/grab/G in holder.owner)
 				if (G.affecting == M)
 					return
-			playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+			playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 			holder.owner.visible_message("<span class='alert'><B>[holder.owner] aggressively grabs [M]!</B></span>")
 			var/obj/item/grab/G = new /obj/item/grab(holder.owner, holder.owner, M)
 			holder.owner.put_in_hand(G, holder.owner.hand)
@@ -1701,7 +1701,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					G.affecting.gib()
 					qdel(G)
 				SPAWN_DBG(2 SECONDS)
-					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 					holder.owner.visible_message("<span class='alert'><b>[holder.owner]</b> lets out an angry warcry!</span>")
 				break
 
@@ -1732,7 +1732,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					G.affecting.gib()
 					qdel(G)
 				SPAWN_DBG(2 SECONDS)
-					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 					holder.owner.visible_message("<span class='alert'><b>[holder.owner]</b> lets out an angry warcry!</span>")
 				break
 
@@ -1759,7 +1759,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.set_dir(get_dir(holder.owner, H))
 					H.set_dir(get_dir(H, holder.owner))
 					holder.owner.visible_message("<span class='alert'><B>[holder.owner] menacingly grabs [H] by the chest!</B></span>")
-					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 					var/dir_offset = get_dir(holder.owner, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -1822,7 +1822,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.transforming = 0
 					holder.owner.verbs += /mob/living/carbon/human/machoman/verb/macho_rend
 					SPAWN_DBG(2 SECONDS)
-						playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+						playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 						holder.owner.visible_message("<span class='alert'><b>[holder.owner]</b> gloats and boasts!</span>")
 
 /datum/targetable/macho/macho_summon_arena
@@ -1838,7 +1838,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 				//var/arena_time = 45 SECONDS
 				holder.owner.verbs -= /mob/living/carbon/human/machoman/verb/macho_summon_arena
 				var/ring_radius = 4
-				playsound(holder.owner.loc, "sound/voice/chanting.ogg", 75, 0, 0, holder.owner.get_age_pitch())
+				playsound(holder.owner.loc, "sound/voice/chanting.ogg", 75, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 				holder.owner.visible_message("<span class='alert'><B>[holder.owner] begins summoning a wrestling ring!</B></span>", "<span class='alert'><B>You begin summoning a wrestling ring!</B></span>")
 				for (var/mob/living/M in oviewers(ring_radius + 4, get_turf(holder.owner)))
 					M.apply_sonic_stun(6, 3, stamina_damage = 0)
@@ -1946,7 +1946,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.set_dir(get_dir(holder.owner, H))
 					H.set_dir(get_dir(H, holder.owner))
 					holder.owner.visible_message("<span class='alert'><B>[holder.owner] menacingly grabs [H] by the chest!</B></span>")
-					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 					var/dir_offset = get_dir(holder.owner, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -1999,7 +1999,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.transforming = 0
 					holder.owner.verbs += /mob/living/carbon/human/machoman/verb/macho_slimjim_snap
 					SPAWN_DBG(20)
-						playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+						playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 						holder.owner.visible_message("<span class='alert'><b>[holder.owner]</b> gloats and boasts!</span>")
 
 /datum/targetable/macho/macho_touch
@@ -2022,7 +2022,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.set_dir(get_dir(holder.owner, H))
 					H.set_dir(get_dir(H, holder.owner))
 					holder.owner.visible_message("<span class='alert'><B>[holder.owner] picks up [H] by the throat!</B></span>")
-					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 					var/dir_offset = get_dir(holder.owner, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -2043,7 +2043,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.transforming = 0
 					holder.owner.bioHolder.AddEffect("fire_resist")
 					holder.owner.transforming = 1
-					playsound(holder.owner.loc, "sound/voice/chanting.ogg", 75, 0, 0, holder.owner.get_age_pitch())
+					playsound(holder.owner.loc, "sound/voice/chanting.ogg", 75, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 					holder.owner.visible_message("<span class='alert'>[holder.owner] begins radiating with dark energy!</span>")
 					sleep(4 SECONDS)
 					for (var/mob/N in viewers(holder.owner, null))
@@ -2264,7 +2264,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.set_dir(get_dir(holder.owner, H))
 					H.set_dir(get_dir(H, holder.owner))
 					holder.owner.visible_message("<span class='alert'><B>[holder.owner] picks up [H] by the throat!</B></span>")
-					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 					var/dir_offset = get_dir(holder.owner, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -2294,7 +2294,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 				//		composite.Blend(Ic, ICON_OVERLAY)
 				//	holder.owner.overlays = null
 				//	holder.owner.icon = composite
-					playsound(holder.owner.loc, "sound/voice/chanting.ogg", 75, 0, 0, holder.owner.get_age_pitch())
+					playsound(holder.owner.loc, "sound/voice/chanting.ogg", 75, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 					holder.owner.visible_message("<span class='alert'><b>[holder.owner] begins radiating with evil energies!</b></span>")
 					sleep(4 SECONDS)
 					for (var/mob/N in viewers(holder.owner, null))
@@ -2346,7 +2346,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.set_dir(get_dir(holder.owner, H))
 					H.set_dir(get_dir(H, holder.owner))
 					holder.owner.visible_message("<span class='alert'><B>[holder.owner] gently picks up [H]!</B></span>")
-					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 					var/dir_offset = get_dir(holder.owner, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -2411,7 +2411,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 					holder.owner.set_dir(get_dir(holder.owner, H))
 					H.set_dir(get_dir(H, holder.owner))
 					holder.owner.visible_message("<span class='alert'><B>[holder.owner] picks up [H] by the throat!</B></span>")
-					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+					playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 					var/dir_offset = get_dir(holder.owner, H)
 					switch(dir_offset)
 						if (NORTH)
@@ -2543,7 +2543,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 
 		if (did_it)
 			SPAWN_DBG (rand(2,4) * 10)
-				playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, 0, holder.owner.get_age_pitch())
+				playsound(holder.owner.loc, pick(snd_macho_rage), 50, 0, SOUND_RANGE_STANDARD, holder.owner.get_age_pitch())
 				holder.owner.visible_message("<span class='alert'><b>[holder.owner]</b> gloats and boasts!</span>")
 
 		holder.owner.verbs += /mob/living/carbon/human/machoman/verb/macho_heartpunch
