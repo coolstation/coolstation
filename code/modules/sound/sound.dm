@@ -505,6 +505,7 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 	S.volume = vol
 	S.priority = 5
 	S.environment = -1
+	S.echo = null
 
 	var/area/sound_area = get_area(source)
 	if (istype(sound_area))

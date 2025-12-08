@@ -497,7 +497,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				T2.turf_persistent.checkinghasentered++
 
 			src.radius++
-			src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5, falloff = 1.5 + 0.2 * radius)
+			src.sound_emitter.update_active_sound_param(volume = min(src.radius * 15 + 50, 0), falloff = 3 + 0.2 * radius)
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
 			src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
@@ -511,7 +511,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else if (src.energy < godver2 && radius > 0)
 		// we shrink first to simply the math
 		src.radius--
-		src.sound_emitter.update_active_sound_param(volume = src.radius * 0.05 + 0.5, falloff = 1.5 + 0.2 * radius)
+		src.sound_emitter.update_active_sound_param(volume = min(src.radius * 15 + 50, 150), falloff = 3 + 0.2 * radius)
 		var/turf/T = get_turf(src)
 		//resizing does cruel and terrible things to the turf_persistent caches, even when shrinking!
 		//north, including corner
@@ -658,8 +658,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		var/sound/wibble = sound()
 		wibble.file = "sound/machines/fieldgenwibble.ogg"
 		wibble.repeat = 1
-		wibble.falloff = 1.25
-		wibble.volume = 25
+		wibble.falloff = 1
+		wibble.volume = 50
 		sound_emitter.add(wibble, "wibble")
 
 /obj/machinery/field_generator/attack_hand(mob/user as mob)
