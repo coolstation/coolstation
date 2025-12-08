@@ -577,6 +577,7 @@ var/obj/item/dummy/click_dummy = new
 		src.b /= right
 		src.a /= right
 */
+
 /proc/gib_area(var/area/A)
 	var/list/turfs = get_area_turfs(A.type)
 	for(var/turf/S in turfs)
@@ -608,17 +609,17 @@ var/obj/item/dummy/click_dummy = new
 
 
 
-/proc/clear_area(var/area/A, var/turftospare=null, var/objecttospare=null, var/isOcean=false)
-	// Takes: Area, optional turf type to spare from the purge, optional object to spare, whether or not this is in da ocean
-	var/list/turfs = get_area_turfs(A.type)
-	for(var/turf/S in turfs)
-		if(!isOcean && S != turftospare)
-			S.ReplaceWithSpace()
-		else
-			return //come back later and add OSHAN floors to this, i'm lazy(silly) tho
-		for(var/atom/movable/AM as anything in S)
-			if(!istype(AM,objecttospare) && !istype(AM, /mob/dead/observer))
-				qdel(AM)
+/proc/clear_area(var/area_type, var/turftospare=null)
+	// Takes: Area, optional turf type to spare from the purge
+	var/list/turfs = get_area_turfs(area_type)
+	for(var/turf/T in turfs)
+		if(T.type != turftospare)
+			T.ReplaceWithSpace()
+		for(var/obj/O in T)
+			if(!(O.flags & TECHNICAL_ATOM))
+				qdel(O)
+		for(var/mob/M in T)
+			M.remove()
 
 
 /area/proc/move_contents_to(var/area/A, var/turftoleave=/turf/space, var/ignore_fluid = FALSE, var/consider_filler_as_empty = FALSE, var/move_ghosts = TRUE, var/move_mobs = TRUE)
