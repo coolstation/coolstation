@@ -21,6 +21,7 @@ proc/add_landmark(var/turf/T, var/name, var/data = null)
 	icon_state = "x2"
 	pass_unstable = FALSE
 	anchored = ANCHORED_TECHNICAL
+	flags = TECHNICAL_ATOM
 	invisibility = 100
 	var/deleted_on_start = TRUE
 	var/add_to_landmarks = TRUE

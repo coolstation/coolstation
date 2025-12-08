@@ -152,12 +152,9 @@
 		prepShips(start_location, start_location, end_location) //the move is handled in here for various reasons
 
 	else if(shipyardship_location == 1) //station -> staging area
-		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
-		var/area/end_location = locate(/area/shuttle/bayou/stagearea)
-		processShips(start_location)
+		processShips(locate(/area/shuttle/bayou/shipyard))
 		SPAWN_DBG(15 SECONDS)
-			start_location.move_contents_to(end_location, move_ghosts = FALSE, move_mobs = FALSE)
-			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
+			clear_area(/area/shuttle/bayou/shipyard)
 			shipyardship_location = 0
 
 	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])

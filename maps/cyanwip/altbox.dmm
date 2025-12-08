@@ -1383,7 +1383,7 @@
 	dir = 1
 	},
 /obj/access_spawn/chemistry,
-/turf/floor/airless/purple,
+/turf/floor/purple/checker,
 /area/station/science/chemistry)
 "aKp" = (
 /turf/wall,
@@ -3840,7 +3840,7 @@
 /obj/pathlights/shuttle{
 	dir = 1
 	},
-/turf/floor/airless/purplewhite,
+/turf/floor/purplewhite,
 /area/station/science/lobby)
 "bYD" = (
 /obj/stool/chair/comfy/green,
@@ -4221,7 +4221,7 @@
 /obj/pathlights/shuttle{
 	dir = 1
 	},
-/turf/floor/airless/purplewhite{
+/turf/floor/purplewhite{
 	dir = 1
 	},
 /area/station/science/lobby)
@@ -8050,7 +8050,7 @@
 	},
 /obj/item/pen,
 /obj/disposalpipe/segment/mail,
-/turf/floor/airless/purple/side,
+/turf/floor/purple/side,
 /area/station/hallway/primary/east)
 "dZF" = (
 /obj/machinery/light/small{
@@ -13131,6 +13131,7 @@
 /obj/table/reinforced/auto,
 /obj/machinery/door/window/westright,
 /obj/access_spawn/cargo,
+/obj/machinery/light/small,
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "gNn" = (
@@ -13471,7 +13472,7 @@
 /turf/floor/green/checker,
 /area/station/medical/cdc)
 "gVB" = (
-/turf/floor/airless/purplewhite{
+/turf/floor/purplewhite{
 	dir = 1
 	},
 /area/station/science/lobby)
@@ -16493,7 +16494,7 @@
 /area/station/turret_protected/ai_upload)
 "iAt" = (
 /obj/storage/secure/closet/research/uniform,
-/turf/floor/airless/purplewhite,
+/turf/floor/purplewhite,
 /area/station/science/lobby)
 "iAv" = (
 /obj/firedoor_spawn,
@@ -19527,7 +19528,7 @@
 /turf/floor,
 /area/station/hangar/sec)
 "kjX" = (
-/turf/floor/airless/purple/side,
+/turf/floor/purple/side,
 /area/station/hallway/primary/east)
 "kkc" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -22114,7 +22115,7 @@
 /turf/floor/shuttlebay,
 /area/station/hangar/engine)
 "lvh" = (
-/turf/floor/airless/purplewhite,
+/turf/floor/purplewhite,
 /area/station/science/lobby)
 "lvx" = (
 /obj/wingrille_spawn/reinforced,
@@ -22877,7 +22878,7 @@
 /area/station/quartermaster/office)
 "lPS" = (
 /obj/machinery/light,
-/turf/floor/airless/purple/side,
+/turf/floor/purple/side,
 /area/station/hallway/primary/east)
 "lQj" = (
 /obj/table/wood/auto,
@@ -23220,6 +23221,9 @@
 /area/station/maintenance/solar/north)
 "lXY" = (
 /obj/machinery/photocopier,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/floor/wood/six,
 /area/station/bridge/conference)
 "lYc" = (
@@ -24954,7 +24958,7 @@
 	},
 /obj/machinery/cashreg,
 /obj/disposalpipe/segment/mail,
-/turf/floor/airless/purple,
+/turf/floor/purple/checker,
 /area/station/medical/robotics)
 "mPE" = (
 /turf/floor/carpet{
@@ -25706,7 +25710,7 @@
 	dir = 1
 	},
 /obj/disposalpipe/segment/mail,
-/turf/floor/airless/purple/side,
+/turf/floor/purple/side,
 /area/station/hallway/primary/east)
 "ngf" = (
 /obj/disposalpipe/segment/bent{
@@ -25923,6 +25927,9 @@
 "nnN" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/floor/purple/checker{
 	dir = 4
@@ -36519,7 +36526,7 @@
 /area/station/storage/tech)
 "sDI" = (
 /obj/storage/secure/closet/research/uniform,
-/turf/floor/airless/purplewhite{
+/turf/floor/purplewhite{
 	dir = 1
 	},
 /area/station/science/lobby)
@@ -36571,7 +36578,7 @@
 /obj/pathlights/shuttle{
 	dir = 1
 	},
-/turf/floor/airless/purple/side,
+/turf/floor/purple/side,
 /area/station/hallway/primary/east)
 "sFo" = (
 /obj/machinery/firealarm{
@@ -39971,7 +39978,7 @@
 /obj/disposalpipe/segment{
 	dir = 1
 	},
-/turf/floor/airless/purple/side,
+/turf/floor/purple/side,
 /area/station/hallway/primary/east)
 "upL" = (
 /obj/cable/yellow{
@@ -40905,7 +40912,7 @@
 /area/station/security/detectives_office)
 "uQl" = (
 /obj/disposalpipe/segment/mail,
-/turf/floor/airless/purple/side,
+/turf/floor/purple/side,
 /area/station/hallway/primary/east)
 "uQt" = (
 /obj/disposalpipe/segment{
@@ -42500,7 +42507,7 @@
 /obj/disposalpipe/segment{
 	dir = 1
 	},
-/turf/floor/airless/purple/side,
+/turf/floor/purple/side,
 /area/station/hallway/primary/east)
 "vJc" = (
 /obj/disposalpipe/segment{

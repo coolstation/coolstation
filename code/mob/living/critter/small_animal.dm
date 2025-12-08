@@ -2994,6 +2994,12 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 		HH.name = "right claw"
 		HH.limb.name = "claw"
 
+	was_harmed(mob/M, obj/item/weapon, special, intent)
+		. = ..()
+		if(ishuman(M) && get_dist(src,M)<2)
+			M.changeStatus("crab", 3 SECONDS)
+
+
 
 
 /mob/living/critter/small_animal/trilobite
