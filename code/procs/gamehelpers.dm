@@ -621,7 +621,7 @@ var/obj/item/dummy/click_dummy = new
 				qdel(AM)
 
 
-/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/ignore_fluid = FALSE, var/consider_filler_as_empty = FALSE, var/move_ghosts = TRUE, var/move_mobs = TRUE)
+/area/proc/move_contents_to(var/area/A, var/turftoleave=/turf/space, var/ignore_fluid = FALSE, var/consider_filler_as_empty = FALSE, var/move_ghosts = TRUE, var/move_mobs = TRUE)
 	//Takes: Area.
 	//Optional: turf type to leave behind, flag for ignoring fluid puddle objects, and flag to treat source turfs of type turftoleave as "empty" and to not move the turf
 	//(The latter being so we don't put elevator shaft turfs at the bottom of elevators. That wasn't a great time. It might be neat too for simulating shuttles with holes in em though.)
