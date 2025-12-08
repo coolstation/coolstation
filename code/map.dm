@@ -5,6 +5,8 @@
 //Todo - merge with MAP_SPAWN_SHUTTLE, maps need retrofits
 #define MAP_SPAWN_SHUTTLE_DYNAMIC 4 //(most) crew spawns on the arrivals shuttle, which docks with the station at some point
 
+#define GEHENNA_MUSIC list()//list('sound/radio_station/lobby/sundown.ogg')
+
 #define MAP_NAME_RANDOM 1
 
 var/global/map_setting = null
@@ -118,6 +120,9 @@ var/global/list/mapNames = list(
 
 	var/shuttle_map_turf = /turf/space
 	var/qm_supply_type = "space" //can also be "shuttle"!
+
+	//these songs get added to the pool of possible songs, not replaced.
+	var/list/map_specific_musics = list()
 
 	var/merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom
 	var/merchant_left_station = /area/shuttle/merchant_shuttle/left_station
@@ -1318,6 +1323,8 @@ var/global/list/mapNames = list(
 	auto_walls = 0
 	shuttle_map_turf = /turf/space/gehenna/desert/beaten
 
+	map_specific_musics = GEHENNA_MUSIC
+
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
 
@@ -1393,6 +1400,8 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
 	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+
+	map_specific_musics = GEHENNA_MUSIC
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1509,6 +1518,8 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
 	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+
+	map_specific_musics = GEHENNA_MUSIC
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1795,3 +1806,6 @@ var/global/list/mapNames = list(
 			return map
 
 	return 0
+
+
+#undef GEHENNA_MUSIC
