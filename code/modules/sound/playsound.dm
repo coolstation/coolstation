@@ -156,8 +156,9 @@ var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 	var/channel_id = audio_channel_name_to_id[channel_name]
 	if(isnull(channel_id))
 		alert(usr, "Invalid channel.")
-	var/vol = input("Goes from 0-100. Default is [getDefaultVolume(channel_id) * 100]", "[channel_name] Volume", src.getRealVolume(channel_id) * 100) as num
-	vol = max(0,min(vol,100))
+	var/max_vol = getDefaultVolume(channel_id) * 150
+	var/vol = input("Goes from 0-[max_vol]. Default is [getDefaultVolume(channel_id) * 100]", "[channel_name] Volume", src.getRealVolume(channel_id) * 100) as num
+	vol = clamp(vol, 0, max_vol)
 	src.setVolume(channel_id, vol/100 )
 	boutput(usr, "<span class='notice'>You have changed [channel_name] Volume to [vol].</span>")
 

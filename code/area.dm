@@ -136,9 +136,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	// this chunk zone is for Area Ambience
 	var/sound_loop_1 = null
-	var/sound_loop_1_vol = 50
+	var/sound_loop_1_vol = 25
 	var/sound_loop_2 = null
-	var/sound_loop_2_vol = 50
+	var/sound_loop_2_vol = 25
 	var/sound_fx_1 = null
 	var/sound_fx_2 = null
 	var/tmp/played_fx_1 = 0
@@ -210,7 +210,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 				if (!played_fx_1 && prob(AMBIENCE_ENTER_PROB))
 					src.pickAmbience()
-					M.client.playAmbience(src, AMBIENCE_FX_1, 18)
+					M.client.playAmbience(src, AMBIENCE_FX_1, 10)
 
 				#undef AMBIENCE_ENTER_PROB
 
@@ -917,7 +917,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sims_score = 15
 	sound_group = "some place hot"
 	sound_loop_1 = 'sound/ambience/loop/Fire_Medium.ogg'
-	sound_loop_1_vol = 75
+	sound_loop_1_vol = 40
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -1226,7 +1226,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = -1
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 16
+	sound_loop_2_vol = 8
 	sound_group = "diner" //the music's kind of everywhere isn't it
 	sound_group_varied = 1
 	//check shuttles.dm for the diner
@@ -1252,9 +1252,9 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "blue"
 	sound_environment = EAX_HALLWAY
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 5
+	sound_loop_1_vol = 3
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 30
+	sound_loop_2_vol = 15
 	sound_group_varied = 1
 
 /area/diner/hallway/docking
@@ -1264,8 +1264,8 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/backroom
 	name = "Space Diner Backroom"
 	icon_state = "green"
-	sound_loop_1_vol = 5
-	sound_loop_2_vol = 25
+	sound_loop_1_vol = 3
+	sound_loop_2_vol = 13
 
 /area/diner/solar
 	name = "Space Diner Solar Control"
@@ -1308,9 +1308,9 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "juicer"
 	sound_environment = EAX_CONCERT_HALL
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 100
+	sound_loop_1_vol = 35
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 20
+	sound_loop_2_vol = 10
 	sound_group_varied = 1
 
 /area/juicer/club/outside
@@ -1320,7 +1320,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = 20
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 80
+	sound_loop_2_vol = 40
 	sound_group_varied = 1
 
 /area/juicer/club/back
@@ -1328,9 +1328,9 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "juicer3"
 	sound_environment = EAX_SEWER_PIPE
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 20
+	sound_loop_1_vol = 10
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 100
+	sound_loop_2_vol = 40
 
 // Gore's Z5 Space generation areas //
 ABSTRACT_TYPE(/area/prefab)
@@ -5227,7 +5227,7 @@ area/station/crewquarters/cryotron
 	sound_environment = EAX_FOREST
 	workplace = 1
 	sound_loop_1 = 'sound/ambience/station/detectivesoffice.ogg'
-	sound_loop_1_vol = 30
+	sound_loop_1_vol = 15
 	sound_group = "detective"
 
 	detectives_bedroom

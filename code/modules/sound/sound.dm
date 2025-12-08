@@ -60,10 +60,10 @@ var/global/list/list/falloff_cache = list("[SOUND_RANGE_TINY]" = list(), "[SOUND
 
 //default volumes, 0 = 0, 1 = 100
 //in order: master, game, ambient, radio, admin, emote, mentorpm
-//bumping up ambient to 50% from 10%, with the eventual idea of doing ambient 100%
+//bumping up ambient to 50% from 10%, with the eventual idea of doing ambient 100% - done as of dec 7 25
 //target mixing for 100% and let people reduce from there!
 //admin sounds/radio music should fuckin' stay at 50% though, they're always loud
-var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
+var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 
 //volumous hair with l'orial paris
 /client/var/list/volumes
@@ -88,21 +88,21 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
 	// +1 since master channel is 0, while byond arrays start at 1
 	return getVolumeDescriptions()[channel+1]
 
-/// Returns the volume multiplier of sounds for the given channel (0-1)
+/// Returns the volume multiplier of sounds for the given channel (0-1.5)
 /client/proc/getVolume(id)
 	return volumes[id + 1] * volumes[1]
 
-/// Returns the master volume (0-1)
+/// Returns the master volume (0-1.5, default 1)
 /client/proc/getMasterVolume()
 	return volumes[1]
 
-/// Returns the true volume for a channel, unattenuated for the master channel (0-1)
+/// Returns the true volume for a channel, unattenuated for the master channel (0-1.5, default 1 for most channels, 0.5 for music)
 /client/proc/getRealVolume(channel)
 	return volumes[channel + 1]
 
-/// Sets and applies the volume for a channel (0-1)
+/// Sets and applies the volume for a channel (0-1.5)
 /client/proc/setVolume(channel, volume)
-	volume = clamp(volume, 0, 1)
+	volume = clamp(volume, 0, 1.5)
 	volumes[channel + 1] = volume
 
 	cloud_put("audio_volume", json_encode(volumes))
@@ -531,7 +531,7 @@ var/global/list/default_channel_volumes = list(1, 1, 0.5, 0.5, 0.5, 1, 1)
  	*
  	* FX_1 is area-specific background noise handled by area/pickAmbience(), FX_2 is more noticeable stuff directly triggered, normally shorter
  	*/
-/client/proc/playAmbience(area/A, type = AMBIENCE_LOOPING_1, pass_volume=50)
+/client/proc/playAmbience(area/A, type = AMBIENCE_LOOPING_1, pass_volume=25)
 
 	/// Types of sounds: AMBIENCE_LOOPING_1, AMBIENCE_LOOPING_2, AMBIENCE_FX_1, and AMBIENCE_FX_2
 	var/soundtype = null

@@ -1,6 +1,6 @@
 var/list/obj/overlay/magindara_fog/magindara_global_fog
 var/global/magindara_surface_loop = 'sound/ambience/loop/magindarawind.ogg' //Z1
-var/global/magindara_surface_loop_volume = 80
+var/global/magindara_surface_loop_volume = 40
 
 /turf/space/magindara
 	name = "ocean below"

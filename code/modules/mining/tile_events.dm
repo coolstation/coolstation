@@ -175,5 +175,5 @@
 		if (..())
 			return
 		AST.visible_message(text("<span class='alert'><B>The ceiling starts to split apart!</B></span>"))
-		playsound(AST, 'sound/ambience/nature/Cave_Rumbling.ogg',40, 1, SOUND_RANGE_LARGE, 0.5, channel=VOLUME_CHANNEL_AMBIENT)
+		playsound(AST, 'sound/ambience/nature/Cave_Rumbling.ogg',20, 1, SOUND_RANGE_LARGE, 0.5, channel=VOLUME_CHANNEL_AMBIENT)
 		random_events.force_event("Cave-In", "Load-Bearing Rock", AST)
