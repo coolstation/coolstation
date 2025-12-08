@@ -47,7 +47,7 @@
 					sound_fx_2 = pick('sound/ambience/nature/Rain_ThunderDistant.ogg','sound/ambience/nature/Wind_Cold1.ogg','sound/ambience/nature/Wind_Cold2.ogg','sound/ambience/nature/Wind_Cold3.ogg')
 					for(var/mob/M in src)
 						if (M.client)
-							M.client.playAmbience(src, AMBIENCE_FX_2, 50)
+							M.client.playAmbience(src, AMBIENCE_FX_2, 25)
 
 
 

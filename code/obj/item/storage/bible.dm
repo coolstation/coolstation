@@ -75,9 +75,9 @@ var/global/list/bible_contents = list()
 			bless(M, user)
 			boutput(M, "<span class='alert'><B>IT BURNS!</B></span>")
 			if (narrator_mode)
-				playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, -1)
+				playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, SOUND_RANGE_STANDARD)
 			else
-				playsound(src.loc, "punch", 25, 1, -1)
+				playsound(src.loc, "punch", 25, 1, SOUND_RANGE_STANDARD)
 			logTheThing("combat", user, M, "biblically smote [constructTarget(M,"combat")]")
 
 		else if (!isdead(M))
@@ -88,9 +88,9 @@ var/global/list/bible_contents = list()
 				M.visible_message("<span class='alert'><B>[user] heals [M] with the power of [src]!</B></span>")
 				boutput(M, "<span class='alert'>May the power of [src] compel you to be healed!</span>")
 				if (narrator_mode)
-					playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, -1)
+					playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, SOUND_RANGE_STANDARD)
 				else
-					playsound(src.loc, "punch", 25, 1, -1)
+					playsound(src.loc, "punch", 25, 1, SOUND_RANGE_STANDARD)
 				logTheThing("combat", user, M, "ol'biblically healed [constructTarget(M,"combat")]")
 			else
 				if (ishuman(M) && !istype(M:head, /obj/item/clothing/head/helmet))
@@ -102,15 +102,15 @@ var/global/list/bible_contents = list()
 				logTheThing("combat", user, M, "ol'biblically injured [constructTarget(M,"combat")]")
 				M.visible_message("<span class='alert'><B>[user] beats [M] over the head with [src]!</B></span>")
 				if (narrator_mode)
-					playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, -1)
+					playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, SOUND_RANGE_STANDARD)
 				else
-					playsound(src.loc, "punch", 25, 1, -1)
+					playsound(src.loc, "punch", 25, 1, SOUND_RANGE_STANDARD)
 		else if (isdead(M))
 			M.visible_message("<span class='alert'><B>[user] smacks [M]'s lifeless corpse with [src].</B></span>")
 			if (narrator_mode)
-				playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, -1)
+				playsound(src.loc, 'sound/vox/hit.ogg', 25, 1, SOUND_RANGE_STANDARD)
 			else
-				playsound(src.loc, "punch", 25, 1, -1)
+				playsound(src.loc, "punch", 25, 1, SOUND_RANGE_STANDARD)
 		return
 
 	attack_hand(var/mob/user as mob)

@@ -70,7 +70,7 @@
 	var/stuttering = 0
 	var/real_name = null
 	var/acid_name = null
-	var/blinded = null
+	var/blinded = 0
 	var/druggy = 0
 	var/sleeping = 0.0
 	var/lying = 0.0

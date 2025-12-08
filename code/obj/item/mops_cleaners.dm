@@ -208,7 +208,7 @@ WET FLOOR SIGN
 
 	if(src.reagents.has_reagent("water") || src.reagents.has_reagent("cleaner"))
 		JOB_XP(user, "Janitor", 2)
-	playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+	playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 	// Make sure we clean an item that was sprayed directly in case it is in contents
 	if (!isturf(A.loc))
 		if (istype(A, /obj/item))
@@ -1080,9 +1080,9 @@ WET FLOOR SIGN
 			return
 		new/obj/effect/suck(T, get_dir(T, user))
 		if(src.suck(user, T))
-			playsound(T, "sound/effects/suck.ogg", 20, TRUE, 0, 1.5)
+			playsound(T, "sound/effects/suck.ogg", 20, TRUE, SOUND_RANGE_STANDARD, 1.5)
 		else
-			playsound(T, "sound/effects/brrp.ogg", 20, TRUE, 0, 0.8)
+			playsound(T, "sound/effects/brrp.ogg", 20, TRUE, SOUND_RANGE_STANDARD, 0.8)
 
 	pickup(mob/M)
 		RegisterSignal(M, COMSIG_MOVABLE_MOVED, PROC_REF(suck))
@@ -1289,7 +1289,7 @@ WET FLOOR SIGN
 					break
 
 			afterUse(user)
-			playsound(master, "sound/effects/suck.ogg", 40, TRUE, 0, 0.5)
+			playsound(master, "sound/effects/suck.ogg", 40, TRUE, SOUND_RANGE_STANDARD, 0.5)
 
 /obj/effect/suck
 	anchored = ANCHORED_TECHNICAL

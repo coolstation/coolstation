@@ -313,7 +313,7 @@
 		return
 
 	src.create_photo(target)
-	playsound(src, "sound/items/polaroid[rand(1,2)].ogg", 75, 1, -3)
+	playsound(src, "sound/items/polaroid[rand(1,2)].ogg", 75, 1, SOUND_RANGE_STANDARD)
 
 	if (src.pictures_left > 0)
 		src.pictures_left = max(0, src.pictures_left - 1)

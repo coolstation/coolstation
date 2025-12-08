@@ -38,7 +38,7 @@
 
 		var/mob/living/L = target
 
-		playsound(M.loc, 'sound/impact_sounds/Flesh_Tear_1.ogg', 75, 1, -1)
+		playsound(M.loc, 'sound/impact_sounds/Flesh_Tear_1.ogg', 75, 1, SOUND_RANGE_STANDARD)
 		M.visible_message("<span class='alert'><b>[M] shrinks [L]'s heart down two sizes too small!</b></span>")
 		L.add_fingerprint(M) // Why not leave some forensic evidence?
 		L.contract_disease(/datum/ailment/malady/flatline, null, null, 1) // path, name, strain, bypass resist

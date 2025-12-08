@@ -28,9 +28,9 @@
 	filler_turf = "/turf/space"
 	//sneaky
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = -10
+	sound_loop_1_vol = -5
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 50
+	sound_loop_2_vol = 25
 	sound_group = "diner" //the music's kind of everywhere isn't it
 	sound_group_varied = 1
 

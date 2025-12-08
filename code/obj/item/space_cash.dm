@@ -140,7 +140,7 @@
 
 				if (get_dist(L, target) > 0)
 					L.set_dir(get_dir(L, target))
-				playsound(L.loc, 'sound/effects/throw.ogg', 20, 1, 0.1)
+				playsound(L.loc, 'sound/effects/throw.ogg', 20, 1, SOUND_RANGE_STANDARD)
 
 				L.next_click = world.time + (L.combat_click_delay / 4)  * GET_COMBAT_CLICK_DELAY_SCALE(L)
 

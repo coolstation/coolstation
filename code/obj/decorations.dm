@@ -331,7 +331,7 @@
 
 //BUSH ANIMATION!!!!
 	proc/shake_bush(var/volume)
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", volume, 1, -1)
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", volume, 1, SOUND_RANGE_STANDARD)
 
 		var/wiggle = 6
 
@@ -360,7 +360,7 @@
 		user.lastattacked = src
 		hit_twitch(src)
 		attack_particle(user,src)
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, 0)
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		src.take_damage(W.force)
 		user.visible_message("<span class='alert'><b>[user] hacks at [src] with [W]!</b></span>")
 
@@ -639,7 +639,7 @@
 
 	proc/shake_blinds(var/volume)
 
-		playsound(src, "sound/impact_sounds/blind_rattle.ogg", volume, 1, -1)
+		playsound(src, "sound/impact_sounds/blind_rattle.ogg", volume, 1, SOUND_RANGE_STANDARD)
 
 		var/wiggle = 10
 

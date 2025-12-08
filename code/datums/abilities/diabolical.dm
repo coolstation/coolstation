@@ -219,7 +219,7 @@
 			return 1
 
 		holder.owner.visible_message("<span class='alert'><b>[holder.owner] shoots finger guns in [target]s direction.</b></span>")
-		playsound(holder.owner.loc, "sound/effects/fingersnap.ogg", 50, 0, -1)
+		playsound(holder.owner.loc, "sound/effects/fingersnap.ogg", 50, 0, SOUND_RANGE_STANDARD)
 
 		if (H.traitHolder.hasTrait("training_chaplain"))
 			boutput(holder.owner, "<span class='alert'>[H] has divine protection from magic.</span>")
@@ -243,7 +243,7 @@
 
 	cast(atom/T)
 		holder.owner.say("So long folks!")
-		playsound(holder.owner.loc, "sound/voice/wizard/BlinkGrim.ogg", 50, 0, -1)
+		playsound(holder.owner.loc, "sound/voice/wizard/BlinkGrim.ogg", 50, 0, SOUND_RANGE_STANDARD)
 		sleep(0.5 SECONDS)
 
 		if(!spawnturf)

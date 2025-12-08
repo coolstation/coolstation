@@ -280,7 +280,7 @@
 						M.pulling = null
 						M.changeStatus("weakened", 3 SECONDS)
 						boutput(M, "<span class='notice'>You slipped on [src]!</span>")
-						playsound(src.loc, "sound/misc/slip.ogg", 50, 1, -3)
+						playsound(src.loc, "sound/misc/slip.ogg", 50, 1, SOUND_RANGE_STANDARD)
 						M.throw_at(target, distance, 2, throw_type = THROW_SLIP)
 				else
 					if (M.slip(ignore_actual_delay = 1))

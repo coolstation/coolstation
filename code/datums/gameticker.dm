@@ -389,12 +389,12 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			if (C.preferences?.skip_lobby_music)
 				continue
 
-			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
+			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 
 			if (!client_vol)
 				continue
 
-			C.sound_playing[ admin_sound_channel ][1] = 1
+			C.sound_playing[ admin_sound_channel ][1] = 100
 			C.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
 
 			music_sound.volume = client_vol

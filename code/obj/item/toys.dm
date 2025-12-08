@@ -34,9 +34,9 @@
 		if (ishuman(user))
 			var/mob/living/carbon/human/U = user
 			if (U.gender == MALE)
-				playsound(U, pick(src.sound_attackM1, src.sound_attackM2), 100, 0, 0, U.get_age_pitch())
+				playsound(U, pick(src.sound_attackM1, src.sound_attackM2), 100, 0, SOUND_RANGE_STANDARD, U.get_age_pitch())
 			else
-				playsound(U, pick(src.sound_attackF1, src.sound_attackF2), 100, 0, 0, U.get_age_pitch())
+				playsound(U, pick(src.sound_attackF1, src.sound_attackF2), 100, 0, SOUND_RANGE_STANDARD, U.get_age_pitch())
 
 /obj/item/toy/judge_gavel
 	name = "judge's gavel"

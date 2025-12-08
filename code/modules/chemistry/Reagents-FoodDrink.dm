@@ -704,7 +704,7 @@ datum
 						..()
 						return
 					boutput(M, text("<span class='alert'>You blink, and suddenly you're somewhere else!</span>"))
-					playsound(M.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+					playsound(M.loc, "sound/effects/mag_warp.ogg", 25, 1, SOUND_RANGE_STANDARD)
 					M.set_loc(pick(randomturfs))
 				..()
 				return

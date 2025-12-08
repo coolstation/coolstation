@@ -275,10 +275,10 @@
 			src.repairstate = 1
 			if(src.is_open_container() && src.reagents.total_volume )
 				src.visible_message("<span class='alert'>Fluid is starting to drip from inside the [src] maintenance panel.</span>")
-				playsound(src.loc, "sound/effects/bubbles3.ogg", 80, 1, -3, pitch=0.7)
+				playsound(src.loc, "sound/effects/bubbles3.ogg", 80, 1, SOUND_RANGE_STANDARD, pitch=0.7)
 			else
 				src.audible_message("<span class='alert'>An unsettling gurgling sound can be heard from [src].</span>")
-				playsound(src.loc, "sound/effects/bubbles3.ogg", 20, 1, -3, pitch=0.7)
+				playsound(src.loc, "sound/effects/bubbles3.ogg", 20, 1, SOUND_RANGE_STANDARD, pitch=0.7)
 
 			src.repair_desc = "Lubrication system is a mess and needs replacing, the piping needs to be cut up with a welder prior to removal."
 
