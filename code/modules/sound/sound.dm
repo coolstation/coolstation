@@ -501,7 +501,7 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 	S.wait = 0 //No queue
 	//This is apparently a hack // this is such a hack
 	//S.channel = rand(SOUNDCHANNEL_RANDOM_MIN, SOUNDCHANNEL_BYOND_MAX)
-	//eventually let's figure a repeatable way to increment sound channels per client instead of picking at random
+	//eventually let's figure a repeatable way to increment sound channels per client instead of picking at random //done
 	S.volume = vol
 	S.priority = 5
 	S.environment = -1

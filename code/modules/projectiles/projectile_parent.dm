@@ -490,7 +490,7 @@ datum/projectile
 
 		sname = "stun"           // name of the projectile setting, used when you change a guns setting
 		shot_sound = 'sound/weapons/Taser.ogg' // file location for the sound you want it to play
-		shot_sound_range = 0     //what range should the sound check?
+		shot_sound_range = SOUND_RANGE_STANDARD     //what range should the sound check?
 		shot_volume = 100		 // How loud the sound plays (thank you mining drills for making this a needed thing)
 		shot_pitch = 1			 // Sometimes you want a deeper boom, relative to power
 		shot_number = 0          // How many projectiles should be fired, each will cost the full cost
