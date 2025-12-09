@@ -64,6 +64,7 @@
 			boutput(user,"<span class='alert'>No connected power source!</span>")
 			runout(user)
 
+
 	afterattack(atom/target, mob/user, reach, params)
 		if (istype(target, /obj/reagent_dispensers/powerbank))
 			if (powerbank == target)
@@ -89,13 +90,18 @@
 			if (istype(location,/turf))
 				location.hotspot_expose(2000,50,1)
 
-			if (istype(target, /turf))
-				actions.start(new/datum/action/bar/icon/cutter_cut(target,src,power),user)
+			if (istype(target, /turf) || istype(target, /obj/machinery/door))
+				var/time = 6 SECONDS
+				if (istype(target,/obj/machinery/door))
+					time = 10 SECONDS
+				eyecheck(user)
+				actions.start(new/datum/action/bar/icon/cutter_cut(target,src,power),user,time)
 
 			if (target && !ismob(target) && target.reagents)
 				boutput(user, "<span class='notice'>You heat \the [target.name]</span>")
 				src.use_power(power)
 				target.reagents.temperature_reagents(4000,50,100,100,1)
+				return
 		return
 
 	proc/log_construction(mob/user as mob, var/what)
@@ -213,7 +219,7 @@
 
 		if (istype(target, /obj/machinery/door))
 			log_construction(user, "removes door ([target])")
-			ex_act(rand(1,2)) //lol why not
+			target.break_me_complitely()//6 year old typo lmoa
 			boutput(user, "<span class='alert'>You slice through the door!</span>")
 			return
 
@@ -225,19 +231,28 @@
 	var/turf/target
 	var/obj/item/plasma_cutter/cutter
 	var/power
+	var/a_prob
 
-	New(var/atom/ta,var/obj/item/plasma_cutter/cu,var/po)
-		..()
+	New(var/atom/ta,var/obj/item/plasma_cutter/cu,var/po,var/time)
+		if(time)
+			duration = time
 		target = ta
 		cutter = cu
 		power = po
+		a_prob = cu.accident_prob
+		..()
 
 	onUpdate()
 		..()
 		if (get_dist(owner, target) > 1 || target == null || cutter == null || power <= 0)
+			a_prob = 0
 			interrupt(INTERRUPT_ALWAYS)
 		var/mob/source = owner
 		if (cutter != source.equipped())
+			//bro dropped it
+			interrupt(INTERRUPT_ALWAYS)
+		if (!cutter.active)
+			a_prob = 0 //this is how you safely stop a cut!
 			interrupt(INTERRUPT_ALWAYS)
 
 	onStart()
@@ -248,12 +263,13 @@
 		//sounds
 		boutput(owner, "<span class='notice'>You start to slice through [target].</span>")
 
-	onInterrupt()
+	onInterrupt(var/flag)
 		..()
+		var/mob/source = owner
 		var/list/choppableBits = list("r_arm","l_arm","r_leg","l_leg","tail")
-		if(prob(accident_prob)) //ported this straight from my grigori branch (remind me to finish it!)
+		if(prob(cutter.accident_prob)) //ported this straight from my grigori branch (remind me to finish it!)
 			var/mob/living/carbon/human/H
-			if(istype(owner, /mob/living/carbon/human) && prob(accident_prob))
+			if(istype(owner, /mob/living/carbon/human) && prob(cutter.accident_prob))
 				H = owner
 				if(!H.organHolder?.tail)
 					choppableBits.Remove("tail")
@@ -267,13 +283,24 @@
 					choppableBits.Remove("l_leg")
 				var/targetedLimb = pick(choppableBits)
 
+				var/wendung
+				switch (targetedLimb)
+					if("r_arm" || "l_arm")
+						wendung = "arm"
+					else
+						wendung = "leg"
+
 				if(targetedLimb == "tail")
 					H.drop_and_throw_organ("tail",dist=3,speed=1)
+					boutput(source, "<span class='alert'>YOU CUT YOUR FUCKING TAIL OFF! <B>FUCK!!!!</B></span>")
 				else
 					H.sever_limb(targetedLimb)
-				target.TakeDamage("chest",30,0,0,DAMAGE_CUT,0)
+					boutput(source, "<span class='alert'>YOU CUT YOUR FUCKING [H.limb] OFF! <B>FUCK!!!!</B></span>")
+				source.TakeDamage("chest",30,0,0,DAMAGE_CUT,0)
+				boutput(source, "<span class='alert'>You fuck up and cut yourself with the cutter!</span>")
 			else
-				target.TakeDamage("All",50,0,0,DAMAGE_CUT,0)
+				source.TakeDamage("All",50,0,0,DAMAGE_CUT,0)
+				boutput(source, "<span class='alert'>You fuck up and cut yourself with the cutter!</span>")
 
 	onEnd()
 		..()
