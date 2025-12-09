@@ -5,7 +5,7 @@
 	icon = 'icons/obj/items/cutter.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "cutter-inactive"
-	item_state = "cutter"
+	item_state = "cutter-off"
 	opacity = 0
 	density = 0
 	two_handed = TRUE
@@ -37,8 +37,9 @@
 			processing_items.Remove(src)
 			return
 		var/turf/location = src.loc
+		var/mob/M
 		if(ismob(location))
-			var/mob/M = location
+			M = location
 			if (M.l_hand == src || M.r_hand == src)
 				location = M.loc
 		if(istype(location,/turf))
@@ -46,10 +47,9 @@
 		if(prob(10))
 			use_power(10)
 			if(!get_power())
-				active = 0
+				runout(M)
 		if (get_power() <= 0)
-			icon_state = "cutter-dead"
-			active = 0
+			runout(M)
 
 	attack_self(mob/user)
 		tooltip_rebuild = 1
@@ -58,12 +58,10 @@
 				toggle_active(user)
 			else
 				boutput(user,"<span class='alert'>Power too low!</span>")
-				icon_state = "cutter-dead"
-				active = 0
+				runout(user)
 		else
 			boutput(user,"<span class='alert'>No connected power source!</span>")
-			icon_state = "cutter-dead"
-			active = 0
+			runout(user)
 
 	afterattack(atom/target, mob/user, reach, params)
 		if (istype(target, /obj/reagent_dispensers/powerbank))
@@ -72,8 +70,7 @@
 				disconnect()
 				boutput(user, "<span class='notice'>You disconnect [src] from [powerbank].</span>")
 				user.visible_message("<span class='notice'>[user] disconnects [src] from [powerbank].</span>")
-				icon_state = "cutter-dead"
-				active = 0
+				runout(user)
 			else if (powerbank)
 				boutput(user, "<span class='notice'>The cutter is already connected to a power source!</span>")
 			else
@@ -81,8 +78,7 @@
 				boutput(user, "<span class='notice'>You connect [src] to [powerbank].</span>")
 				user.visible_message("<span class='notice'>[user] connects [src] to [powerbank].</span>")
 				connect(target)
-				icon_state = "cutter-inactive"
-				active = 0
+				deactivate(user)
 		else if (src.active)
 			var/power = rand(10,20)
 			if (src.get_power() <= 0)
@@ -112,22 +108,38 @@
 		powerbank = null
 		//update powerbank
 
+	proc/activate(mob/user)
+		icon_state = "cutter-active"
+		item_state = "cutter-on"
+		active = 1
+		hit_type = DAMAGE_BURN
+		if(user)
+			user.update_inhands()
+
+	proc/deactivate(mob/user)
+		icon_state = "cutter-inactive"
+		item_state = "cutter-off"
+		if(user)
+			user.update_inhands()
+		hit_type = DAMAGE_BLUNT
+		active = 0
+
+	proc/runout(mob/user)
+		icon_state = "cutter-dead"
+		item_state = "cutter-off"
+		if(user)
+			user.update_inhands()
+		hit_type = DAMAGE_BLUNT
+		active = 0
+
 	proc/toggle_active(mob/user)
 		if(!active && get_power())
-			icon_state = "cutter-active"
-			active = 1
-			hit_type = DAMAGE_BURN
-//			user.update_inhands()
+			activate(user)
 			boutput(user, "<span class='notice'>You activate [src]!</span>")
-			//boowap
 			return 1
 		else
-			icon_state = "cutter-inactive"
-			active = 0
-			hit_type = DAMAGE_BLUNT
-//			user.update_inhands()
+			deactivate(user)
 			boutput(user, "<span class='notice'>You deactivate [src]!</span>")
-			//boowump
 			return 0
 
 	proc/power_check(var/amount)

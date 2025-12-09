@@ -183,7 +183,7 @@
 	name = "powerbank"
 	desc = "A fire hazard filled with lithium that stores large amounts of power." //right now it's just filled with lithium that does nothing. Battery chemistry is another project.
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "powerbank"
+	icon_state = "powerbank-dead"
 	amount_per_transfer_from_this = 0 // figure out another way to crack this open!
 	capacity = 5000
 	can_break = TRUE
@@ -193,8 +193,8 @@
 	New()
 		..()
 		reagents.add_reagent("lithium",capacity)
-		//var/datum/reagent/lithium = reagents.get_reagent("lithium")
-		//charge = lithium.volume * lithium.powerunit_capacity
+		update_indicator()
+
 	proc/connected()
 		//change icon state
 		return
@@ -204,7 +204,13 @@
 
 	proc/update_indicator(var/override)
 		if(!override)
-			return //change the icon to whatever state is needed
+			if (charge <= 0)
+				icon_state = "powerbank-dead"
+			else if (charge > 0 && charge <= max_charge / 2)
+				icon_state = "powerbank-low"
+			else if (charge > max_charge / 2)
+				icon_state = "powerbank-charged"
+
 
 
 /obj/reagent_dispensers/watertank/big
