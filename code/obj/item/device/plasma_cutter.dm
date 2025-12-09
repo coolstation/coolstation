@@ -24,6 +24,7 @@
 	var/power_cut_wall = 3
 	var/time_cut_wall = 3 SECONDS
 	var/active = 0
+	var/accident_prob = 25 //higher chance of hurting yourself when fucking up with the plasma cutter- higher probabilities also increase the chance of severing limbs.
 
 	examine()
 		. = ..()
@@ -194,20 +195,26 @@
 		if (istype(target,/turf/wall/r_wall) || istype(target,/turf/wall/auto/reinforced))
 			var/turf/wall/T = target:ReplaceWithUpdateWalls(map_setting ? map_settings.walls : /turf/wall)
 			T.setMaterial(getMaterial("steel"))
-			boutput(user, "<span class='notice'>You slice through the reinforcing of the wall.</span>")
+			boutput(user, "<span class='alert'>You slice through the reinforcing of the wall.</span>")
 			log_construction(user, "deconstructs a reinforced wall into a normal wall ([T])")
 			return
 
 		if (istype(target,/turf/wall))
 			var/turf/floor/T = target:ReplaceWithFloor()
-			boutput(user, "<span class='notice'>You cut through the wall.</span>")
+			boutput(user, "<span class='alert'>You cut through the wall.</span>")
 			log_construction(user, "deconstructs a wall ([T])")
 			return
 
 		if (istype(target, /turf/floor))
 			log_construction(user, "removes flooring ([target])")
 			target:ReplaceWithSpace()
-			boutput(user, "<span class='notice'>You slice through the floor.</span>")
+			boutput(user, "<span class='alert'>You slice through the floor.</span>")
+			return
+
+		if (istype(target, /obj/machinery/door))
+			log_construction(user, "removes door ([target])")
+			ex_act(rand(1,2)) //lol why not
+			boutput(user, "<span class='alert'>You slice through the door!</span>")
 			return
 
 //action bars
@@ -219,7 +226,7 @@
 	var/obj/item/plasma_cutter/cutter
 	var/power
 
-	New(var/turf/ta,var/obj/item/plasma_cutter/cu,var/po)
+	New(var/atom/ta,var/obj/item/plasma_cutter/cu,var/po)
 		..()
 		target = ta
 		cutter = cu
@@ -239,7 +246,34 @@
 			boutput(owner, "Not enough power to cut this!")
 			interrupt(INTERRUPT_ALWAYS)
 		//sounds
-		boutput(owner, "<span class='notice'>You start to cut [target].</span>")
+		boutput(owner, "<span class='notice'>You start to slice through [target].</span>")
+
+	onInterrupt()
+		..()
+		var/list/choppableBits = list("r_arm","l_arm","r_leg","l_leg","tail")
+		if(prob(accident_prob)) //ported this straight from my grigori branch (remind me to finish it!)
+			var/mob/living/carbon/human/H
+			if(istype(owner, /mob/living/carbon/human) && prob(accident_prob))
+				H = owner
+				if(!H.organHolder?.tail)
+					choppableBits.Remove("tail")
+				if(!H.limbs.r_arm)
+					choppableBits.Remove("r_arm")
+				if(!H.limbs.l_arm)
+					choppableBits.Remove("l_arm")
+				if(!H.limbs.r_leg)
+					choppableBits.Remove("r_leg")
+				if(!H.limbs.l_leg)
+					choppableBits.Remove("l_leg")
+				var/targetedLimb = pick(choppableBits)
+
+				if(targetedLimb == "tail")
+					H.drop_and_throw_organ("tail",dist=3,speed=1)
+				else
+					H.sever_limb(targetedLimb)
+				target.TakeDamage("chest",30,0,0,DAMAGE_CUT,0)
+			else
+				target.TakeDamage("All",50,0,0,DAMAGE_CUT,0)
 
 	onEnd()
 		..()
