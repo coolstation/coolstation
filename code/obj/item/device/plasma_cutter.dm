@@ -219,7 +219,8 @@
 
 		if (istype(target, /obj/machinery/door))
 			log_construction(user, "removes door ([target])")
-			target.break_me_complitely()//6 year old typo lmoa
+			var/obj/machinery/door/door = target
+			door.break_me_complitely()//6 year old typo lmoa
 			boutput(user, "<span class='alert'>You slice through the door!</span>")
 			return
 
@@ -227,7 +228,7 @@
 
 /datum/action/bar/icon/cutter_cut
 	duration = 5 SECONDS
-	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION | INTERRUPT_ATTACKED
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	var/turf/target
 	var/obj/item/plasma_cutter/cutter
 	var/power
@@ -267,9 +268,9 @@
 		..()
 		var/mob/source = owner
 		var/list/choppableBits = list("r_arm","l_arm","r_leg","l_leg","tail")
-		if(prob(cutter.accident_prob)) //ported this straight from my grigori branch (remind me to finish it!)
+		if(prob(a_prob)) //ported this straight from my grigori branch (remind me to finish it!)
 			var/mob/living/carbon/human/H
-			if(istype(owner, /mob/living/carbon/human) && prob(cutter.accident_prob))
+			if(istype(owner, /mob/living/carbon/human) && prob(a_prob))
 				H = owner
 				if(!H.organHolder?.tail)
 					choppableBits.Remove("tail")
@@ -285,7 +286,7 @@
 
 				var/wendung
 				switch (targetedLimb)
-					if("r_arm" || "l_arm")
+					if("r_arm" , "l_arm")
 						wendung = "arm"
 					else
 						wendung = "leg"
@@ -295,7 +296,7 @@
 					boutput(source, "<span class='alert'>YOU CUT YOUR FUCKING TAIL OFF! <B>FUCK!!!!</B></span>")
 				else
 					H.sever_limb(targetedLimb)
-					boutput(source, "<span class='alert'>YOU CUT YOUR FUCKING [H.limb] OFF! <B>FUCK!!!!</B></span>")
+					boutput(source, "<span class='alert'>YOU CUT YOUR FUCKING [uppertext(wendung)] OFF! <B>FUCK!!!!</B></span>")
 				source.TakeDamage("chest",30,0,0,DAMAGE_CUT,0)
 				boutput(source, "<span class='alert'>You fuck up and cut yourself with the cutter!</span>")
 			else
