@@ -14,7 +14,7 @@ GAUNTLET CARDS
 	w_class = W_CLASS_TINY
 	burn_type = 1
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	var/list/files = list("tools" = 1)
 
 	disposing()

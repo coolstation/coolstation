@@ -17,7 +17,7 @@
 					M.lastgasp()
 					M.show_message("<span class='notice'>You slipped on the floor!</span>")
 
-				playsound(src.loc, "sound/misc/slip.ogg", 50, 1, -3)
+				playsound(src.loc, "sound/misc/slip.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 			SPAWN_DBG(0.1)
 				step(M, M.dir)
@@ -104,9 +104,6 @@
 
 		H.vent_gas(loc)
 		qdel(H)
-
-	alter_health()
-		return get_turf(src)
 
 /turf/floor/pin
 	name = "pin"

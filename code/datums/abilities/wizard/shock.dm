@@ -22,12 +22,12 @@
 			return
 		if(!istype(target))
 			return 1
-		playsound(holder.owner.loc, "sound/effects/elec_bzzz.ogg", 25, 1, -1)
+		playsound(holder.owner.loc, "sound/effects/elec_bzzz.ogg", 25, 1, SOUND_RANGE_STANDARD)
 		if(!istype(get_area(holder.owner), /area/sim/gunsim))
 			holder.owner.say("EI NATH")
 		..()
 
-		playsound(holder.owner.loc, "sound/effects/elec_bigzap.ogg", 25, 1, -1)
+		playsound(holder.owner.loc, "sound/effects/elec_bigzap.ogg", 25, 1, SOUND_RANGE_STANDARD)
 
 		if (ishuman(target))
 			if (target.traitHolder.hasTrait("training_chaplain"))

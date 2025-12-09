@@ -1002,11 +1002,11 @@
 		playsound(src, src.voice_sound, 40, 1)
 
 /obj/machinery/vending/proc/prevend_effect()
-	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, 0.1)
+	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, SOUND_RANGE_STANDARD)
 	return
 
 /obj/machinery/vending/proc/postvend_effect()
-	playsound(src.loc, 'sound/machines/ping.ogg', 20, 1, 0.1)
+	playsound(src.loc, 'sound/machines/ping.ogg', 20, 1, SOUND_RANGE_STANDARD)
 	return
 
 /obj/machinery/vending/power_change()
@@ -1353,7 +1353,7 @@
 
 	//i'd love at some point for this fuckin' thing to rarely drop a cup wrong or out entirely and then it just spills on the floor (and do it more often if hacked)
 	prevend_effect()
-		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, 0.1)
+		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		return
 
 	create_products()
@@ -2772,7 +2772,7 @@
 					src.generate_HTML(1)
 					updateUsrDialog()
 					sleep(20 SECONDS)
-					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, -1)
+					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, SOUND_RANGE_STANDARD)
 					var/obj/item/reagent_containers/food/snacks/pizza/P
 					if(emagged)
 						P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pineapple(src.loc)
@@ -3366,6 +3366,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/clothing/under/rank/bartender/tuxedo, 1, cost=PAY_IMPORTANT/5, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/shoes/dress_shoes, 1, cost=PAY_IMPORTANT/5, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/gloves/ring/gold, 2, cost=PAY_IMPORTANT, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/clothing/shoes/moffers, 1, cost=PAY_TRADESMAN, hidden=1)
 
 /obj/machinery/vending/janitor
 	name = "JaniTech Vendor"

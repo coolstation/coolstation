@@ -17032,10 +17032,6 @@
 	dir = 4;
 	name = "autoname - SS13"
 	},
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/autoname/west,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 4;
@@ -21433,13 +21429,6 @@
 /turf/floor/plating,
 /area/station/maintenance/northeast)
 "tcb" = (
-/obj/machinery/power/apc{
-	areastring = "Cargo Bay";
-	dir = 8;
-	name = "Cargo Bay APC";
-	pixel_x = -24
-	},
-/obj/cable,
 /obj/machinery/power/apc{
 	areastring = "Cargo Bay";
 	dir = 8;

@@ -60,6 +60,7 @@
 	throw_speed = 2
 	throw_range = 3
 	throwforce = 15
+	fiddleType = /datum/contextAction/fiddle/microwave
 
 	throw_end(list/params, turf/thrown_from)
 		. = ..()
@@ -239,6 +240,14 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (isghostdrone(user))
 		boutput(user, "<span class='alert'>\The [src] refuses to interface with you, as you are not a properly trained chef!</span>")
 		return
+
+	if(src.microwave_state)
+		boutput(user, "It's broken! It could be fixed with some common tools.")
+		return
+
+	src.fiddle(user)
+
+/*
 	var/dat
 	if(src.microwave_state > 0)
 		dat = {"
@@ -275,12 +284,13 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	user.Browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")
 	onclose(user, "microwave")
 	return
-
+*/
 
 /**
 	*  Microwave Menu Selection Handling
 	*/
 
+/*
 /obj/machinery/microwave/Topic(href, href_list)
 	if(..())
 		return
@@ -289,65 +299,63 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	src.add_fingerprint(usr)
 
 	if(href_list["cook"])
-		if(!src.operating)
-			var/operation = text2num(href_list["cook"])
-			var/cooked_item = ""
+*/
 
-			/// If cook was pressed in the menu
-			if(operation == 1)
-				src.visible_message("<span class='notice'>The microwave turns on.</span>")
-				playsound(src.loc, 'sound/machines/microwave_start.ogg', 50, 0)
-				var/diceinside = 0
-				for(var/obj/item/dice/D in src.contents)
-					if(!diceinside)
-						diceinside = 1
-					D.load()
-				if(diceinside)
-					src.cook(MW_COOK_BREAK)
-					for(var/obj/item/dice/d in src.contents)
-						d.set_loc(get_turf(src))
-					return
-				for(var/datum/recipe/R in src.available_recipes) //Look through the recipe list we made above
-					if(src.egg_amount == R.egg_amount && src.flour_amount == R.flour_amount && src.monkeymeat_amount == R.monkeymeat_amount && src.synthmeat_amount == R.synthmeat_amount && src.humanmeat_amount == R.humanmeat_amount && src.donkpocket_amount == R.donkpocket_amount && src.frozen_item == null) // Check if it's an accepted recipe
-						if(R.extra_item == null || (src.extra_item && src.extra_item.type == R.extra_item)) // Just in case the recipe doesn't have an extra item in it
-							src.cooked_recipe = R
-							cooked_item = R.creates // Store the item that will be created
+/obj/machinery/microwave/proc/start_cooking()
+	if(!src.operating)
+		var/cooked_item = ""
+		src.visible_message("<span class='notice'>The microwave turns on.</span>")
+		playsound(src.loc, 'sound/machines/microwave_start.ogg', 50, 0)
+		var/diceinside = 0
+		for(var/obj/item/dice/D in src.contents)
+			if(!diceinside)
+				diceinside = 1
+			D.load()
+		if(diceinside)
+			src.cook(MW_COOK_BREAK)
+			for(var/obj/item/dice/d in src.contents)
+				d.set_loc(get_turf(src))
+			return
+		for(var/datum/recipe/R in src.available_recipes) //Look through the recipe list we made above
+			if(src.egg_amount == R.egg_amount && src.flour_amount == R.flour_amount && src.monkeymeat_amount == R.monkeymeat_amount && src.synthmeat_amount == R.synthmeat_amount && src.humanmeat_amount == R.humanmeat_amount && src.donkpocket_amount == R.donkpocket_amount && src.frozen_item == null) // Check if it's an accepted recipe
+				if(R.extra_item == null || (src.extra_item && src.extra_item.type == R.extra_item)) // Just in case the recipe doesn't have an extra item in it
+					src.cooked_recipe = R
+					cooked_item = R.creates // Store the item that will be created
 
-				if(cooked_item == "") //Oops that wasn't a recipe dummy!!!
-					if(src.flour_amount > 0 || src.water_amount > 0 || src.monkeymeat_amount > 0 || src.synthmeat_amount > 0 || src.humanmeat_amount > 0 || src.donkpocket_amount > 0 && src.extra_item == null) //Make sure there's something inside though to dirty it
-						src.cook(MW_COOK_DIRTY)
-					else if(src.egg_amount > 0) // egg was inserted alone
-						src.cook(MW_COOK_EGG)
-					else if(src.extra_item != null) // However if there's a weird item inside we want to break it, not dirty it
-						for(var/obj/item/gun_parts/P in src.contents)
-							if(prob(25)) // if you put a gun part in, theres a chance youll change it's DRM. Still breaks the microwave.
-								P.part_DRM = pick(GUN_FOSS,GUN_ITALIAN,GUN_JUICE,GUN_NANO,GUN_SOVIET)
-								src.visible_message("<span class='notice'>[P] lets off a few sparks.</span>")
-							else if(prob(25))
-								src.visible_message("<span class='notice'>[P] lets off a whole bunch of smoke.</span>")
-								qdel(P)
-								extra_item = new /obj/item/reagent_containers/food/snacks/yuckburn(src)
-						src.cook(MW_COOK_BREAK)
-					else if(src.frozen_item != null) // finally, we defrost.
-						src.cook(MW_COOK_FROZEN)
-						/* */
-					else //Otherwise it was empty, so just turn it on then off again with nothing happening
-						src.visible_message("<span class='notice'>You're grilling nothing!</span>")
-						src.cook(MW_COOK_EMPTY)
-				else
-					var/cooking = text2path(cooked_item) // Get the item that needs to be spanwed
-					if(!isnull(cooking))
-						src.visible_message("<span class='notice'>The microwave begins cooking something!</span>")
-						src.being_cooked = new cooking(src)
-						src.cook(MW_COOK_VALID_RECIPE)
+		if(cooked_item == "") //Oops that wasn't a recipe dummy!!!
+			if(src.flour_amount > 0 || src.water_amount > 0 || src.monkeymeat_amount > 0 || src.synthmeat_amount > 0 || src.humanmeat_amount > 0 || src.donkpocket_amount > 0 && src.extra_item == null) //Make sure there's something inside though to dirty it
+				src.cook(MW_COOK_DIRTY)
+			else if(src.egg_amount > 0) // egg was inserted alone
+				src.cook(MW_COOK_EGG)
+			else if(src.extra_item != null) // However if there's a weird item inside we want to break it, not dirty it
+				for(var/obj/item/gun_parts/P in src.contents)
+					if(prob(25)) // if you put a gun part in, theres a chance youll change it's DRM. Still breaks the microwave.
+						P.part_DRM = pick(GUN_FOSS,GUN_ITALIAN,GUN_JUICE,GUN_NANO,GUN_SOVIET)
+						src.visible_message("<span class='notice'>[P] lets off a few sparks.</span>")
+					else if(prob(25))
+						src.visible_message("<span class='notice'>[P] lets off a whole bunch of smoke.</span>")
+						qdel(P)
+						extra_item = new /obj/item/reagent_containers/food/snacks/yuckburn(src)
+				src.cook(MW_COOK_BREAK)
+			else if(src.frozen_item != null) // finally, we defrost.
+				src.cook(MW_COOK_FROZEN)
+				/* */
+			else //Otherwise it was empty, so just turn it on then off again with nothing happening
+				src.visible_message("<span class='notice'>You're grilling nothing!</span>")
+				src.cook(MW_COOK_EMPTY)
+		else
+			var/cooking = text2path(cooked_item) // Get the item that needs to be spanwed
+			if(!isnull(cooking))
+				src.visible_message("<span class='notice'>The microwave begins cooking something!</span>")
+				src.being_cooked = new cooking(src)
+				src.cook(MW_COOK_VALID_RECIPE)
 
-			/// If empty was selected in the menu
-			if(operation == 2)
-				if (length(src.contents))
-					for(var/obj/item/I in src.contents)
-						I.set_loc(get_turf(src))
-				src.clean_up()
-				boutput(usr, "You empty the contents out of the microwave.")
+/obj/machinery/microwave/proc/eject_contents()
+	if (!src.operating && length(src.contents))
+		for(var/obj/item/I in src.contents)
+			I.set_loc(get_turf(src))
+		src.clean_up()
+		boutput(usr, "You empty the contents out of the microwave.")
 
 /**
 	*  Microwave Cooking
@@ -473,6 +481,38 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 				qdel(O)
 			else
 				O.set_loc(get_turf(src))
+
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/microwave)
+/datum/contextAction/fiddle/microwave
+
+	checkRequirements(var/obj/machinery/microwave/target, var/mob/user)
+		return istype(target)
+
+	start_cooking
+		name = "start cooking"
+		icon_state = "microwave_start_cooking"
+
+		checkRequirements(var/obj/machinery/microwave/target, var/mob/user)
+			if(..(target, user))
+				return !target.operating && !target.microwave_state
+			return FALSE
+
+		execute(var/obj/machinery/microwave/target, var/mob/user)
+			target.start_cooking()
+
+	eject_food
+		name = "eject contents"
+		icon_state = "microwave_eject_contents"
+
+		checkRequirements(var/obj/machinery/microwave/target, var/mob/user)
+			if(..(target, user))
+				return !target.operating && length(target.contents)
+			return FALSE
+
+		execute(var/obj/machinery/microwave/target, var/mob/user)
+			target.eject_contents()
+
 
 #undef MW_COOK_VALID_RECIPE
 #undef MW_COOK_BREAK

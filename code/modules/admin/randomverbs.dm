@@ -1159,7 +1159,7 @@
 		else
 			src.view = "15x15"
 			usr.see_in_dark = initial(usr.see_in_dark)
-
+/*
 /client/proc/idkfa()
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
 	set name = "idkfa"
@@ -1249,7 +1249,7 @@
 
 	else
 		backpack_full_of_ammo.set_loc(get_turf(src.mob))
-
+*/
 
 /client/proc/iddt()
 	SET_ADMIN_CAT(ADMIN_CAT_NONE)
@@ -2082,7 +2082,7 @@
 	if (T.active_airborne_liquid && T.active_airborne_liquid.group)
 		var/datum/fluid_group/FG
 		FG = T.active_airborne_liquid.group
-		spawn()
+		SPAWN_DBG()
 			FG.required_to_spread = 1
 			FG.update_once()
 			FG.update_once()

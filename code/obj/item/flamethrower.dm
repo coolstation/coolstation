@@ -64,8 +64,8 @@ A Flamethrower in various states of assembly
 	contraband = 5 //Heh
 	m_amt = 500
 	stamina_damage = 15
-	stamina_cost = 15
-	stamina_crit_chance = 1
+//	stamina_cost = 15
+//	stamina_crit_chance = 1
 	move_triggered = 1
 	spread_angle = 0
 	shoot_delay = 1 SECOND
@@ -94,7 +94,7 @@ A Flamethrower in various states of assembly
 				tank.reagents.trans_to(src.fueltank, (src.fueltank.reagents.maximum_volume - (src.fueltank.reagents.total_volume)))
 				inventory_counter.update_percent(src.fueltank.reagents.total_volume, src.fueltank.reagents.maximum_volume)
 				boutput(user, "<span class='notice'>You refill the flamethrower's fuel tank.</span>")
-				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				user.lastattacked = target
 			else
 				boutput(user, "<span class='notice'>Load the fuel tank first!</span>")

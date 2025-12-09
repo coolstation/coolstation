@@ -13,6 +13,10 @@
 	health_brute = 150
 	health_brute_vuln = 1.15
 	health_burn = 0
+	add_abilities = list(/datum/targetable/critter/cauterize,\
+		/datum/targetable/critter/flamethrower/throwing,\
+		/datum/targetable/critter/fireball,\
+		/datum/targetable/critter/fire_sprint)
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)
@@ -48,10 +52,6 @@
 
 	New()
 		..()
-		abilityHolder.addAbility(/datum/targetable/critter/cauterize)
-		abilityHolder.addAbility(/datum/targetable/critter/flamethrower/throwing)
-		abilityHolder.addAbility(/datum/targetable/critter/fireball)
-		abilityHolder.addAbility(/datum/targetable/critter/fire_sprint)
 		var/datum/statusEffect/simplehot/S = src.setStatus("simplehot", INFINITE_STATUS)
 		S.visible = 0
 		S.heal_brute = 0.25

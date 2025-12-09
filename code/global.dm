@@ -34,6 +34,7 @@ var/global
 
 	atom/movable/screen/renderSourceHolder
 	obj/overlay/zamujasa/round_start_countdown/game_start_countdown	// Countdown clock for round start
+	obj/overlay/zamujasa/round_start_countdown/timer/title_countdown	// Likewise
 	list/globalImages = list() //List of images that are always shown to all players. Management procs at the bottom of the file.
 	list/image/globalRenderSources = list() //List of images that are always attached invisibly to all player screens. This makes sure they can be used as rendersources.
 	list/aiImages = list() //List of images that are shown to all AIs. Management procs at the bottom of the file.
@@ -102,8 +103,6 @@ var/global
 	area_list_is_up_to_date = 0
 
 	already_a_dominic = 0 // no just shut up right now, I don't care
-
-	footstep_extrarange = 0 // lol same (modified hackily in mobs.dm to avoid lag from sound at high player coutns)
 
 	list/cursors_selection = list("Default" = 'icons/cursors/target/default.dmi',
 	"Red" = 'icons/cursors/target/red.dmi',

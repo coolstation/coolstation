@@ -19,4 +19,4 @@
 
 //I've been putting this in enough places that I might as well macrofy it
 ///if worldgen_hold is on, add ourself to the next worldgen generation. Otherwise do the worldgen immediately
-#define STANDARD_WORLDGEN_HOLD if (worldgen_hold) {worldgen_candidates[worldgen_generation] += src};	else {src.generate_worldgen()}
+#define STANDARD_WORLDGEN_HOLD if (worldgen_hold) {worldgen_candidates[worldgen_generation] |= src};	else {src.generate_worldgen()}

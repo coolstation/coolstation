@@ -167,7 +167,7 @@
 			boutput(M, "<FONT size=[max(0, 5 - get_dist(src, M))]>CLONG, clong!</FONT>")
 
 		if(last_sound + 6 < world.time)
-			playsound(src.loc, "sound/impact_sounds/Metal_Clang_1.ogg", 50, 0, 0)
+			playsound(src.loc, "sound/impact_sounds/Metal_Clang_1.ogg", 50, 0, SOUND_RANGE_STANDARD)
 			last_sound = world.time
 			damage_pipe()
 			if(prob(30))
@@ -389,7 +389,7 @@
 			else						// otherwise limit to 10 tiles
 				target = get_ranged_target_turf(T, direction, 10)
 
-			playsound(src, "sound/machines/hiss.ogg", 50, 0, 0)
+			playsound(src, "sound/machines/hiss.ogg", 50, 0, SOUND_RANGE_STANDARD)
 			for(var/atom/movable/AM in H)
 				AM.set_loc(T)
 				AM.pipe_eject(direction)
@@ -402,7 +402,7 @@
 
 		else	// no specified direction, so throw in random direction
 
-			playsound(src, "sound/machines/hiss.ogg", 50, 0, 0)
+			playsound(src, "sound/machines/hiss.ogg", 50, 0, SOUND_RANGE_STANDARD)
 			for(var/atom/movable/AM in H)
 				target = get_offset_target_turf(T, rand(5)-rand(5), rand(5)-rand(5))
 
@@ -1696,10 +1696,10 @@
 
 		if (allowDump)
 			flick("unblockoutlet-open", src)
-			playsound(src, "sound/machines/warning-buzzer.ogg", 50, 0, 0)
+			playsound(src, "sound/machines/warning-buzzer.ogg", 50, 0, SOUND_RANGE_STANDARD)
 
 			sleep(2 SECONDS)	//wait until correct animation frame
-			playsound(src, "sound/machines/hiss.ogg", 50, 0, 0)
+			playsound(src, "sound/machines/hiss.ogg", 50, 0, SOUND_RANGE_STANDARD)
 
 
 			for(var/atom/movable/AM in H)
@@ -1767,10 +1767,10 @@
 
 		if (things_to_dump.len)
 			flick("unblockoutlet-open", src)
-			playsound(src, "sound/machines/warning-buzzer.ogg", 50, 0, 0)
+			playsound(src, "sound/machines/warning-buzzer.ogg", 50, 0, SOUND_RANGE_STANDARD)
 
 			sleep(2 SECONDS)	//wait until correct animation frame
-			playsound(src, "sound/machines/hiss.ogg", 50, 0, 0)
+			playsound(src, "sound/machines/hiss.ogg", 50, 0, SOUND_RANGE_STANDARD)
 
 			for (var/atom/movable/AM in things_to_dump)
 				AM.set_loc(src.loc)
@@ -2015,19 +2015,19 @@
 				game_stats.Increment("workplacesafety")
 
 				var/obj/disposalholder/D = new (src)
-				D.set_loc(src)
 
-				AM.set_loc(D)
+				SPAWN_DBG(0)
+					AM.set_loc(D)
 
-				//flush time
-				if(ishuman(AM))
-					var/mob/living/carbon/human/H = AM
-					H.unlock_medal("Gay Luigi?", 1)
+					//flush time
+					if(ishuman(AM))
+						var/mob/living/carbon/human/H = AM
+						H.unlock_medal("Gay Luigi?", 1)
 
-				//D.start() wants a disposal unit
-				D.active = 1
-				D.set_dir(DOWN)
-				D.process()
+					//D.start() wants a disposal unit
+					D.active = 1
+					D.set_dir(DOWN)
+					D.process()
 
 
 
@@ -2238,10 +2238,10 @@
 			SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, newsignal)
 
 		flick("outlet-open", src)
-		playsound(src, "sound/machines/warning-buzzer.ogg", 50, 0, 0)
+		playsound(src, "sound/machines/warning-buzzer.ogg", 50, 0, SOUND_RANGE_STANDARD)
 
 		sleep(2 SECONDS)	//wait until correct animation frame
-		playsound(src, "sound/machines/hiss.ogg", 50, 0, 0)
+		playsound(src, "sound/machines/hiss.ogg", 50, 0, SOUND_RANGE_STANDARD)
 
 
 		for(var/atom/movable/AM in H)

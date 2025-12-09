@@ -379,7 +379,7 @@
 	throw_range = 5
 	desc = "Hon hon hon, oui oui! Needs to be cut into slices before eating."
 	stamina_damage = 5
-	stamina_cost = 1
+//	stamina_cost = 1
 	var/slicetype = /obj/item/reagent_containers/food/snacks/breadslice
 
 	New()

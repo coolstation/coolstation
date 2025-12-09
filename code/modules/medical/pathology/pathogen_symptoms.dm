@@ -623,7 +623,7 @@ datum/pathogeneffects/malevolent/serious_paranoia
 		var/what = pick("I am the traitor.", "I will kill you.", "You will die, [M].")
 		if (prob(50))
 			boutput(M, "<B>[O]</B> points at [M].")
-			make_point(get_turf(M))
+			make_point(M)
 		boutput(M, "<B>[O]</B> [action], \"[what]\"")
 
 	proc/backpack(var/mob/M, var/mob/living/O)
@@ -2157,8 +2157,8 @@ datum/pathogeneffects/malevolent/snaps/wild
 			if (possible_limbs.len)
 				var/obj/item/parts/P = pick(possible_limbs)
 				H.visible_message("<span class='alert'>[H.name] violently swings [his_or_her(H)] [initial(P.name)] to provide the necessary energy for producing a thunderously loud finger snap!</span>", "<span class='alert'>You violently swing your [initial(P.name)] to provide the necessary energy for producing a thunderously loud finger snap!</span>")
-				playsound(H.loc, H.sound_snap, 200, 1, 5910) //5910 is approximately the same extra range from which you could hear a max-power artifact bomb
-				playsound(H.loc, "explosion", 200, 1, 5910)
+				playsound(H.loc, H.sound_snap, 200, 1, world.maxx) // used to be 5910 //5910 is approximately the same extra range from which you could hear a max-power artifact bomb
+				playsound(H.loc, "explosion", 200, 1, world.maxx)
 				P.sever()
 				random_brute_damage(H, 40) //makes it equivalent to damage from 2 excessive fingersnap triggers
 
@@ -2171,7 +2171,7 @@ datum/pathogeneffects/malevolent/snaps/wild
 			// no fuck this we are not snapping 25 times, it kills people's byond and eardrums
 			// TODO: make cool echo snap sound?
 			M.emote("snap")
-			playsound(M.loc, 'sound/effects/fingersnap_echo.ogg', 150, 1, 2000)
+			playsound(M.loc, 'sound/effects/fingersnap_echo.ogg', 150, 1, SOUND_RANGE_LARGE)
 			src.infect_snap(M, origin, 9)
 
 	disease_act(var/mob/M, var/datum/pathogen/origin)

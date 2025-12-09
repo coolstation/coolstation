@@ -133,8 +133,8 @@
 	icon = 'icons/obj/furniture/table_reinforced.dmi'
 	reinforced = 1
 	stamina_damage = 40
-	stamina_cost = 22
-	stamina_crit_chance = 15
+//	stamina_cost = 22
+//	stamina_crit_chance = 15
 	furniture_type = /obj/table/reinforced/auto
 	furniture_name = "reinforced table"
 

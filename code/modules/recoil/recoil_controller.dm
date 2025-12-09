@@ -45,7 +45,7 @@
 
 
 /datum/recoil_controller/proc/recoil_camera(dir, strength=1, spread=3)
-	spawn(0)
+	SPAWN_DBG(0)
 		if(!client || !recoilcamera_active)
 			return
 		// If the instant recoil impulse is bigger than our camera's current recoil, just reset and use it.
@@ -72,7 +72,7 @@
 		recoilcamera_last = TIME
 		if (!recoilcamera_processing)
 			recoilcamera_processing = TRUE
-			spawn(0)
+			SPAWN_DBG(0)
 				recoil_camera_loop()
 
 /datum/recoil_controller/proc/recoil_camera_loop()

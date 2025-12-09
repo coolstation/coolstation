@@ -40,7 +40,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	var/tmp/timeDilationUpperBound = OVERLOADED_WORLD_TICKLAG
 	var/tmp/highMapCpuCount = 0 // how many times in a row has the map_cpu been high
 
-	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg', 'sound/radio_station/lobby/onn105.ogg', 'sound/radio_station/lobby/robocop.ogg')
+	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg', 'sound/radio_station/lobby/onn105.ogg', 'sound/radio_station/lobby/robocop.ogg', 'sound/radio_station/lobby/bingbong.ogg')
 	var/picked_music = null
 
 
@@ -70,7 +70,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	var/did_mapvote = 0
 	//if (!player_capa)
 	//	new /obj/overlay/zamujasa/round_start_countdown/encourage()
-	var/obj/overlay/zamujasa/round_start_countdown/timer/title_countdown = new()
+	title_countdown = new()
 	while (current_state <= GAME_STATE_PREGAME)
 		sleep(1 SECOND)
 		// Start the countdown as normal, but hold it at 30 seconds until setup is complete
@@ -369,6 +369,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 /datum/controller/gameticker/proc/lobby_music()
 
 	var/sound/music_sound = new()
+	if(map_settings)
+		lobby_music += map_settings.map_specific_musics
 	ticker.picked_music = pick(lobby_music) //collapse the waveform for the entire round
 	music_sound.file = picked_music
 	music_sound.wait = 0
@@ -387,12 +389,12 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			if (C.preferences?.skip_lobby_music)
 				continue
 
-			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
+			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 
 			if (!client_vol)
 				continue
 
-			C.sound_playing[ admin_sound_channel ][1] = 1
+			C.sound_playing[ admin_sound_channel ][1] = 100
 			C.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
 
 			music_sound.volume = client_vol

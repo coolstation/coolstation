@@ -685,7 +685,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	switch(M.a_intent)
 		if("harm", "disarm")
 			if(prob(60))
-				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='alert'><B>[M] has shoved [rider] off of the [src]!</B></span>")
 				src.log_me(src.rider, M, "shoved_off")
 				if (!rider.hasStatus("weakened"))
@@ -693,7 +693,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 					rider.force_laydown_standup()
 				eject_rider()
 			else
-				playsound(src.loc, "sound/impact_sounds/Generic_Swing_1.ogg", 25, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Swing_1.ogg", 25, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='alert'><B>[M] has attempted to shove [rider] off of the [src]!</B></span>")
 	return
 
@@ -1037,14 +1037,14 @@ ABSTRACT_TYPE(/obj/vehicle)
 	switch(M.a_intent)
 		if("harm", "disarm")
 			if(prob(70) || M.is_hulk())
-				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='alert'><B>[M] has yanked [rider] off of \the [src]!</B></span>")
 				if (!rider.hasStatus("weakened"))
 					rider.changeStatus("weakened", 2 SECONDS)
 					rider.force_laydown_standup()
 				eject_rider()
 			else
-				playsound(src.loc, "sound/impact_sounds/Generic_Swing_1.ogg", 25, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Swing_1.ogg", 25, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='alert'><B>[M] has attempted to yank [rider] off of \the [src]!</B></span>")
 	return
 
@@ -1258,9 +1258,9 @@ ABSTRACT_TYPE(/obj/vehicle)
 					var/mob/N = A
 					N.show_message(text("<span class='alert'><B>[] punches the []!</B></span>", M, src), 1)
 	else
-		playsound(src.loc, "sound/machines/click.ogg", 15, 1, -3)
+		playsound(src.loc, "sound/machines/click.ogg", 15, 1, SOUND_RANGE_STANDARD)
 		if(rider && prob(40))
-			playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			src.visible_message("<span class='alert'><B>[M] has pulled [rider] out of the [src]!</B></span>")
 			if (!rider.hasStatus("weakened"))
 				rider.changeStatus("weakened", 2 SECONDS)
@@ -1268,7 +1268,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 			eject_rider(0, 0, 0)
 		else
 			if(src.contents.len)
-				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='alert'><B>[M] opens up the [src], spilling the contents out!</B></span>")
 				for(var/atom/A in src.contents)
 					if(ismob(A))
@@ -1763,14 +1763,14 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	switch(M.a_intent)
 		if("harm", "disarm")
 			if(prob(60))
-				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='alert'><B>[M] has shoved [rider] off of the [src]!</B></span>")
 				if (!rider.hasStatus("weakened"))
 					rider.changeStatus("weakened", 2 SECONDS)
 					rider.force_laydown_standup()
 				eject_rider()
 			else
-				playsound(src.loc, "sound/impact_sounds/Generic_Swing_1.ogg", 25, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Swing_1.ogg", 25, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='alert'><B>[M] has attempted to shove [rider] off of the [src]!</B></span>")
 	return
 
@@ -1971,15 +1971,15 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 					var/mob/N = A
 					N.show_message("<span class='alert'><B>[M] punches the [src]!</B></span>", 1)
 	else
-		playsound(src.loc, "sound/machines/click.ogg", 15, 1, -3)
+		playsound(src.loc, "sound/machines/click.ogg", 15, 1, SOUND_RANGE_STANDARD)
 		if(rider && prob(40))
-			playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			src.visible_message("<span class='alert'><B>[M] has pulled [rider] out of the [src]!</B></span>", 1)
 			rider.changeStatus("weakened", 2 SECONDS)
 			eject_rider(0,0,0)
 		else
 			if(src.contents.len)
-				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='alert'><B>[M] opens up the [src], spilling the contents out!</B></span>", 1)
 				for(var/atom/A in src.contents)
 					if(ismob(A))
@@ -2625,7 +2625,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	switch(M.a_intent)
 		if("harm", "disarm")
 			if(prob(40) || isunconscious(rider))
-				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='alert'><B>[M] has shoved [rider] off of [src]!</B></span>")
 				if (!rider.hasStatus("weakened"))
 					rider.changeStatus("weakened", 2 SECONDS)
@@ -2634,7 +2634,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 				src.rider = null
 				src.update_overlays()
 			else
-				playsound(src.loc, "sound/impact_sounds/Generic_Swing_1.ogg", 25, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Generic_Swing_1.ogg", 25, 1, SOUND_RANGE_STANDARD)
 				src.visible_message("<span class='alert'><B>[M] has attempted to shove [rider] off of [src]!</B></span>")
 	return
 

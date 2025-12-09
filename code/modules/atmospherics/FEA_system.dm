@@ -89,10 +89,10 @@ datum/controller/air_system
 	var/is_busy = FALSE
 	var/datum/controller/process/air_system/parent_controller = null
 
-	var/turf/space/space_sample = 0 //instead of repeatedly using locate() to find space, we should just cache a space tile ok
+	var/datum/gas_mixture/space_sample //instead of repeatedly using locate() to find space, we should just cache a space tile ok
+	var/space_sample_heat_capacity = SPACE_SAMPLE_HEAT_CAPACITY_BASE
 
 	proc/setup(datum/controller/process/air_system/controller)
-		update_space_sample()
 		//Call this at the start to setup air groups geometry
 		//Warning: Very processor intensive but only must be done once per round
 
@@ -135,13 +135,12 @@ datum/controller/air_system
 		//Used by process_rebuild_select_groups()
 		//Warning: Do not call this, add the group to air_master.groups_to_rebuild instead
 
-	proc/update_space_sample()
-		if (!space_sample || !(space_sample.turf_flags & CAN_BE_SPACE_SAMPLE))
-			space_sample = locate(/turf/space)
-		return space_sample
-
 	setup(datum/controller/process/air_system/controller)
 		parent_controller = controller
+
+		space_sample = new
+		space_sample.zero()
+		space_sample.temperature = TCMB
 
 		#if SKIP_FEA_SETUP == 1
 		return
@@ -169,13 +168,16 @@ datum/controller/air_system
 		var/list/turf/possible_borders
 		var/list/turf/possible_space_borders
 		var/possible_space_length = 0
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+		var/atmos_border = FALSE
+#endif
 
 		while(possible_members.len > 0) //Keep expanding, looking for new members
 			for(var/turf/test as anything in possible_members)
 				test.length_space_border = 0
 				for(var/direction in cardinal)
 					var/turf/T = get_step(test,direction)
-					if(T && !(T in members) && test.gas_cross(T) && T.gas_cross(test))
+					if(T && !(T in members) && test.gas_cross(T))
 						if(issimulatedturf(T))
 							if(!T:parent)
 								possible_members += T
@@ -183,13 +185,17 @@ datum/controller/air_system
 							else
 								LAZYLISTINIT(possible_borders)
 								possible_borders |= test
-						else if(T.turf_flags & CAN_BE_SPACE_SAMPLE)
+						else if(T.turf_flags & IS_SPACE)
 							LAZYLISTINIT(possible_space_borders)
 							possible_space_borders |= test
 #ifdef DEPRESSURIZE_THROW_AT_SPACE_REQUIRED
 							test.nearest_space = T
 #endif
 							test.length_space_border++
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+						else if(T.turf_flags & IS_ATMOSPHERE)
+							atmos_border = TRUE
+#endif
 
 				if(test.length_space_border > 0)
 					possible_space_length += test.length_space_border
@@ -228,6 +234,10 @@ datum/controller/air_system
 			air_groups += group
 
 			group.update_group_from_tiles() //Initialize air group variables
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+			if(atmos_border)
+				group.groups_to_atmosphere = 0
+#endif
 			return group
 		else
 			base.processing = 0 //singletons at startup are technically unconnected anyway

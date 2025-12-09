@@ -1140,7 +1140,7 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 	var/punchstr = rand(13, 18) * pick(-1, 1)
 	var/original_y = A.pixel_y
 	var/matrix/original_matrix = A.transform
-	playsound(A.loc, "sound/impact_sounds/stair_hit.ogg", 25, 1, extrarange = -23)
+	playsound(A.loc, "sound/impact_sounds/stair_hit.ogg", 25, 1, range = SOUND_RANGE_SMALL)
 	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = original_y + 8, time = 1, easing = BOUNCE_EASING)
 	animate(transform = matrix(original_matrix, -punchstr, MATRIX_ROTATE), pixel_y = original_y, time = 1, easing = BOUNCE_EASING)
 	animate(A, transform = matrix(original_matrix, punchstr, MATRIX_ROTATE), pixel_y = original_y + 2, time = 1, easing = BOUNCE_EASING)

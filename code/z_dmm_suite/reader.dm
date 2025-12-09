@@ -19,7 +19,7 @@ dmm_suite
 	default to (1, 1, world.maxz+1)
 	*/
 	read_map(dmm_text as text, coordX as num, coordY as num, coordZ as num, tag as text, overwrite as num)
-		worldgen_hold = TRUE
+		worldgen_hold |= WORLDGEN_HOLD_DMM_READER
 
 		var/datum/loadedProperties/props = new()
 		props.sourceX = coordX
@@ -126,8 +126,8 @@ dmm_suite
 					)
 				sleep(-1)
 			sleep(-1)
-		//
-		if (current_state >= GAME_STATE_PREGAME)
+		worldgen_hold &= ~WORLDGEN_HOLD_DMM_READER
+		if (!worldgen_hold)
 			initialize_worldgen()
 		return props
 
@@ -204,7 +204,7 @@ dmm_suite
 			// Cancel if atomPath is a placeholder (DMM_IGNORE flags used to write file)
 			if(ispath(atomPath, /turf/dmm_suite/clear_turf) || ispath(atomPath, /area/dmm_suite/clear_area))
 				return
-			if(ispath(atomPath, /turf/space)) return //Dont load space
+			if(atomPath == /turf/space) return //Dont load space
 			// Parse all attributes and create preloader
 			var /list/attributesMirror = list()
 			var /turf/location = locate(xcrd, ycrd, zcrd)

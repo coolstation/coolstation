@@ -63,4 +63,4 @@
 		qdel(AnItem)
 		boutput(holder.owner, "<span class='notice'>You conjure up [TheGolem]!</span>")
 		holder.owner.visible_message("<span class='alert'>[holder.owner] conjures up [TheGolem]!</span>")
-		playsound(holder.owner.loc, "sound/effects/mag_golem.ogg", 25, 1, -1)
+		playsound(holder.owner.loc, "sound/effects/mag_golem.ogg", 25, 1, SOUND_RANGE_STANDARD)

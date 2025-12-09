@@ -1,3 +1,4 @@
+ABSTRACT_TYPE(/datum/contextAction)
 /datum/contextAction
 	var/icon = 'icons/ui/context16x16.dmi'
 	var/icon_state = "eye"
@@ -8,6 +9,7 @@
 	var/use_tooltip = 1
 	var/close_clicked = 1
 	var/flick_on_click = null
+	var/unfocus_alpha = 255
 
 	/// Is this action even allowed to show up under the given circumstances? TRUE=yes, FALSE=no
 	proc/checkRequirements(atom/target, mob/user)
@@ -1245,6 +1247,14 @@
 
 		execute(var/atom/target, var/mob/user)
 			user.closeContextActions()
+
+// FIDDLE CONTEXT ACTIONS
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle)
+/datum/contextAction/fiddle
+	icon = 'icons/ui/context24x24.dmi'
+	unfocus_alpha = 127
+	close_clicked = TRUE
 
 /*
 	offered

@@ -60,6 +60,9 @@
 #define MOLES_CO2MAGINDARA MOLES_CELLSTANDARD*CO2MAGINDARA
 #endif
 
+/// what the space samples heat capacity is by default
+#define SPACE_SAMPLE_HEAT_CAPACITY_BASE 700000
+
 /// Moles in a standard cell after which visible gases are visible
 #define MOLES_GAS_VISIBLE	1
 
@@ -188,6 +191,8 @@
 #define DEPRESSURIZE_THROW_AT_SPACE_REQUIRED 20
 #define DEPRESSURIZE_THROW_AT_SPACE_MAX_RANGE 7
 
+#define TRACK_GROUPS_TO_ATMOSPHERE TRUE
+#define GROUPS_TO_ATMOSPHERE_MAX 10
 // archiving
 
 // comment out to make atmos a bit less precise but less memory intensive and maybe a bit faster, may cause bugs

@@ -5939,6 +5939,7 @@
 "dCW" = (
 /obj/disposalpipe/segment/cargo,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/table/reinforced/industrial/auto,
 /turf/floor,
 /area/station/mining/refinery)
 "dDd" = (
@@ -12014,6 +12015,7 @@
 	},
 /obj/disposalpipe/segment/cargo,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
+/obj/table/reinforced/industrial/auto,
 /turf/floor,
 /area/station/mining/equipment)
 "gVm" = (
@@ -12452,10 +12454,6 @@
 	},
 /turf/floor,
 /area/station/quartermaster/refinery)
-"hiN" = (
-/obj/disposalpipe/segment/vertical,
-/turf/floor,
-/area/station/mining/refinery)
 "hiW" = (
 /obj/disposalpipe/segment/sewage,
 /obj/decal/cleanable/dirt/random,
@@ -18740,6 +18738,10 @@
 	icon_state = "4-10"
 	},
 /obj/disposalpipe/segment/vertical,
+/obj/table/reinforced/industrial/auto,
+/obj/decal/mining_display/gehenna{
+	pixel_y = 4
+	},
 /turf/floor,
 /area/station/mining/equipment)
 "kNi" = (
@@ -18883,6 +18885,7 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/mineral,
+/obj/table/reinforced/industrial/auto,
 /turf/floor,
 /area/station/mining/equipment)
 "kPs" = (
@@ -23714,6 +23717,11 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"nEE" = (
+/obj/disposalpipe/segment/mineral,
+/obj/table/reinforced/industrial/auto,
+/turf/floor,
+/area/station/mining/refinery)
 "nEK" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -25427,8 +25435,8 @@
 	},
 /area/station/mining/lobby)
 "oJF" = (
-/obj/machinery/light/small/floor,
 /obj/disposalpipe/segment/vertical,
+/obj/table/reinforced/industrial/auto,
 /turf/floor,
 /area/station/mining/refinery)
 "oJW" = (
@@ -38615,6 +38623,8 @@
 /area/station/crew_quarters/bar)
 "wMm" = (
 /obj/disposalpipe/segment/mineral,
+/obj/table/reinforced/industrial/auto,
+/obj/machinery/light/small/floor/harsh,
 /turf/floor,
 /area/station/mining/refinery)
 "wMz" = (
@@ -41023,10 +41033,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/power)
-"ymb" = (
-/obj/machinery/light/small/floor,
-/turf/floor,
-/area/station/mining/refinery)
 
 (1,1,1) = {"
 dWM
@@ -102734,7 +102740,7 @@ pKw
 pKw
 xCy
 tot
-hiN
+oJF
 oJF
 kMX
 xra
@@ -103036,7 +103042,7 @@ sHs
 kOC
 tCx
 dwz
-wMm
+nEE
 wMm
 kPp
 qap
@@ -103641,7 +103647,7 @@ pro
 pPQ
 cqZ
 qRU
-ymb
+qRU
 nQt
 lZK
 uAt

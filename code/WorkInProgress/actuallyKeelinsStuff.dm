@@ -1092,7 +1092,7 @@ Returns:
 	item_state = "hammer"
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	two_handed = 1
-	click_delay = 30
+	combat_click_delay = 30
 	force = 50
 
 /obj/item/experimental/melee
@@ -3529,10 +3529,10 @@ var/list/lag_list = new/list()
 			target:ReplaceWithFloor()
 			return
 		if(istype(target, /turf/floor))
-			target:ReplaceWithWall()
+			target:ReplaceWithUpdateWalls(map_settings ? map_settings.walls : /turf/wall)
 			return
 		if(istype(target, /turf/wall))
-			target:ReplaceWithRWall()
+			target:ReplaceWithUpdateWalls(map_settings ? map_settings.rwalls : /turf/wall/r_wall)
 			return
 		return
 
@@ -3839,7 +3839,7 @@ var/list/lag_list = new/list()
 	force_fullbright = 1
 	requires_power = 0
 	sound_loop_1 = 'sound/ambience/loop/Shore.ogg'
-	sound_loop_1_vol = 100
+	sound_loop_1_vol = 40
 
 	New()
 		..()
@@ -3854,7 +3854,7 @@ var/list/lag_list = new/list()
 					sound_fx_2 = pick('sound/ambience/nature/Seagulls1.ogg','sound/ambience/nature/Seagulls2.ogg','sound/ambience/nature/Seagulls3.ogg')
 					for(var/mob/M in src)
 						if (M.client)
-							M.client.playAmbience(src, AMBIENCE_FX_2, 50)
+							M.client.playAmbience(src, AMBIENCE_FX_2, 25)
 
 /obj/item/beach_ball
 	icon = 'icons/misc/beach.dmi'

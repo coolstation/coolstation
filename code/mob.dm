@@ -60,16 +60,17 @@
 	var/transforming = null
 	var/hand = 0
 	var/ceiling_shown = 0
-	var/eye_blind = null
-	var/eye_blurry = null
-	var/eye_damage = null
-	var/ear_deaf = null
-	var/ear_damage = null
-	var/ear_disability = null
-	var/stuttering = null
+	var/eye_blind = 0
+	var/eye_blurry = 0
+	var/eye_damage = 0
+	var/ear_protected = 0
+	var/ear_tempdeaf = 0
+	var/ear_permdeaf = 0
+	var/ear_damage = 0
+	var/stuttering = 0
 	var/real_name = null
 	var/acid_name = null
-	var/blinded = null
+	var/blinded = 0
 	var/druggy = 0
 	var/sleeping = 0.0
 	var/lying = 0.0
@@ -239,6 +240,9 @@
 	var/ai_tick_schedule = null
 
 	var/last_pulled_time = 0
+
+	var/drug_upper = 0
+	var/drug_downer = 0
 
 //obj/item/setTwoHanded calls this if the item is inside a mob to enable the mob to handle UI and hand updates as the item changes to or from 2-hand
 /mob/proc/updateTwoHanded(var/obj/item/I, var/twoHanded = 1)
@@ -836,13 +840,11 @@
 	if (src.client)
 		src.client.mouse_pointer_icon = cursor
 
-
-/mob/proc/overhead_throw() //this is a beefy proc that can be trimmed down
-	if (client)
+/mob/proc/overhead_throw(var/force_toggle = FALSE) //this is a beefy proc that can be trimmed down
+	if(client || force_toggle)
 		var/obj/item/grab/grabHand = find_type_in_hand(/obj/item/grab)
 		if(istype(grabHand))
-			//grabHand.affecting.preBaneMatrix = grabHand.affecting.transform
-			if(grabHand.state == GRAB_NECK && client.check_key(KEY_THROW)) //the agressive grab state is skipped. Don't ask me why.
+			if(grabHand.state == GRAB_NECK && (force_toggle && !grabHand.affecting.beingBaned) || (client && client.check_key(KEY_THROW))) //the agressive grab state is skipped. Don't ask me why.
 				if(!grabHand.affecting.lying)
 					grabHand.affecting.Turn(90) //So we don't turn spacemen upside down
 					grabHand.affecting.gotBent = TRUE
@@ -850,11 +852,10 @@
 				grabHand.set_affected_loc()
 			else
 				grabHand.affecting.beingBaned = FALSE
-				if(!grabHand.affecting.lying)
-					grabHand.affecting.transform = null
+				if(grabHand.affecting.gotBent)
+					grabHand.affecting.Turn(-90)
+					grabHand.affecting.gotBent = FALSE
 				grabHand.set_affected_loc()
-
-
 
 /mob/proc/update_cursor()
 	if (client)
@@ -1239,7 +1240,7 @@
 	T.Entered(item)
 
 /mob/proc/drop_item(obj/item/W)
-	.= 0
+	. = 0
 	if (!W) //only pass W if you KNOW that the mob has it
 		W = src.equipped()
 	if (istype(W))
@@ -1269,13 +1270,14 @@
 				W.layer = initial(W.layer)
 
 			u_equip(W)
-			.= 1
+			. = 1
 		else
 			u_equip(W)
-			.= 0
+			. = 0
 		if (origW)
 			origW.holding = null
 			actions.stopId("magpickerhold", src)
+	return
 
 //throw the dropped item
 /mob/proc/drop_item_throw(obj/item/W)
@@ -1310,6 +1312,7 @@
 			return src.r_hand
 
 /mob/living/critter/equipped()
+	RETURN_TYPE(/obj/item)
 	var/datum/handHolder/active_hand = src.get_active_hand()
 	return active_hand.item
 
@@ -1788,7 +1791,7 @@
 		for(var/atom/A in get_our_fluids_here)
 			if(isturf(A))
 				var/turf/T = A
-				T.fluid_react(src.reagents, src.reagents.total_volume, airborne=prob(10))
+				T.fluid_react(src.reagents, src.reagents.total_volume)//, airborne=prob(10))
 				continue
 			if(istype(A, /obj/decal/cleanable)) // expand reagents
 				if(isnull(A.reagents))
@@ -2398,22 +2401,32 @@
 	SEND_SIGNAL(src, COMSIG_MOB_THROW_ITEM, target, params)
 
 /mob/throw_impact(atom/hit, datum/thrown_thing/thr)
-	if(!(src.throwing & THROW_SAFEISH) && (!isturf(hit) || hit.density))
-		if (thr?.get_throw_travelled() <= 410)
-			if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
-				random_brute_damage(src, min((6 + (thr?.get_throw_travelled() / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
-				if (!src.hasStatus("weakened") && !(src.throwing & THROW_BASEBALL))
-					src.changeStatus("weakened", 2 SECONDS)
-					src.force_laydown_standup()
-		else
-			src.gib()
+	if(!isturf(hit) || hit.density)
+		var/thr_travelled = thr?.get_throw_travelled()
+		if(!(src.throwing & THROW_SAFEISH))
+			if (thr_travelled <= 410)
+				if (!((src.throwing & THROW_CHAIRFLIP) && ismob(hit)))
+					random_brute_damage(src, min((6 + (thr_travelled / 5)), (src.health - 5) < 0 ? src.health : (src.health - 5)))
+					if (!src.hasStatus("weakened") && !(src.throwing & THROW_BASEBALL))
+						src.changeStatus("weakened", 2 SECONDS)
+						src.force_laydown_standup()
+			else
+				src.gib()
+				return ..()
+		if(thr && src.client?.recoil_controller)
+			var/recoil_oomph = min(thr.speed * 4 + thr_travelled * 0.25 + rand(-3, 6), 50)
+			if(recoil_oomph >= 1)
+				var/dir = arctan(thr.dx == EAST ? thr.dist_x : -thr.dist_x, thr.dy == NORTH ? thr.dist_y : -thr.dist_y)
+				src.client.recoil_controller.recoil_camera(dir, recoil_oomph, 0.25)
 
 	return ..()
 
 /mob/proc/full_heal()
 	src.HealDamage("All", 100000, 100000)
+	src.dizziness = 0
 	src.drowsyness = 0
 	src.stuttering = 0
+	src.jitteriness = 0
 	src.losebreath = 0
 	src.delStatus("paralysis")
 	src.delStatus("stunned")
@@ -2587,40 +2600,33 @@
 	//DEBUG_MESSAGE("Amount is [amount], new eye blurry is [src.eye_blurry], cap is [upper_cap]")
 	return 1
 
-/mob/proc/get_ear_damage(var/tempdeaf = 0)
-	if (tempdeaf == 0)
-		return src.ear_damage
-	else
-		return src.ear_deaf
-
 // And here's the missing one for ear damage too (Convair880).
 /mob/proc/take_ear_damage(var/amount, var/tempdeaf = 0)
 	if (!src || !ismob(src) || (!isnum(amount) || amount == 0))
 		return 0
 
-	var/eardeaf = 0
+	var/added_eardeaf = 0
 	if (tempdeaf == 0)
 		src.ear_damage = max(0, src.ear_damage + amount)
 	else
-		eardeaf = amount
+		added_eardeaf = amount
 
-	// Modify ear_damage or ear_deaf if prompted, but don't perform more than we absolutely have to.
-	var/deaf_bypass = 0
-	if (src.ear_disability)
-		deaf_bypass = 1
+	// Modify ear_damage or ear_tempdeaf if prompted, but don't perform more than we absolutely have to.
+	if (src.ear_permdeaf)
+		return TRUE
 
-	if (amount > 0 && tempdeaf == 0 && deaf_bypass == 0)
+	if (amount > 0 && tempdeaf == 0)
 		switch (src.ear_damage)
 			if (10 to 12)
-				eardeaf += 1
+				added_eardeaf += 1
 
 			if (13 to 15)
 				boutput(src, "<span class='alert'>Your ears ring a bit!</span>")
-				eardeaf += rand(2, 3)
+				added_eardeaf += rand(2, 3)
 
 			if (15 to 24)
 				boutput(src, "<span class='alert'>Your ears are really starting to hurt!</span>")
-				eardeaf += src.ear_damage * 0.5
+				added_eardeaf += src.ear_damage * 0.5
 
 			if (25 to INFINITY)
 				boutput(src, "<span class='alert'><b>Your ears ring very badly!</b></span>")
@@ -2629,28 +2635,24 @@
 					src.show_text("<b>You go deaf!</b>", "red")
 					src.bioHolder.AddEffect("deaf")
 				else
-					eardeaf += src.ear_damage * 0.75
+					added_eardeaf += src.ear_damage * 0.75
 
-	if (eardeaf != 0)
+	if (added_eardeaf != 0)
 		var/suppress_message = 0
-		if (!src.get_ear_damage(1) && eardeaf < 0) // We don't have any temporary deafness to begin with and are told to heal it.
+		if (!src.ear_tempdeaf && added_eardeaf < 0) // We don't have any temporary deafness to begin with and are told to heal it.
 			suppress_message = 1
-		if (src.get_ear_damage(1) && (src.get_ear_damage(1) + eardeaf) > 0) // We already have temporary deafness and are adding to it.
+		else if (src.ear_tempdeaf && (src.ear_tempdeaf + added_eardeaf) > 0) // We already have temporary deafness and are adding to it.
 			suppress_message = 1
 
-		src.ear_deaf = max(0, src.ear_deaf + eardeaf)
+		src.ear_tempdeaf = max(0, src.ear_tempdeaf + added_eardeaf)
 
-		if (src.ear_deaf == 0 && deaf_bypass == 0 && suppress_message == 0)
+		if (src.ear_tempdeaf == 0 && suppress_message == 0)
 			boutput(src, "<span class='notice'>The ringing in your ears subsides enough to let you hear again.</span>")
-		else if (eardeaf > 0 && deaf_bypass == 0 && suppress_message == 0)
+		else if (added_eardeaf > 0 && suppress_message == 0)
 			boutput(src, "<span class='alert'>The ringing overpowers your ability to hear momentarily.</span>")
 
 	//DEBUG_MESSAGE("Ear damage applied: [amount]. Tempdeaf: [tempdeaf == 0 ? "N" : "Y"]")
 	return 1
-
-// No natural healing can occur if ear damage is above this threshold. Didn't want to make it yet another mob parent var.
-/mob/proc/get_ear_damage_natural_healing_threshold()
-	return max(0, src.max_health / 4)
 
 /mob/proc/lose_breath(var/amount)
 	if (!isnum(amount) || amount == 0)
@@ -3092,7 +3094,7 @@
 	set name = "Point"
 	src.point_at(A)
 
-/mob/proc/point_at(var/atom/target) //overriden by living and dead
+/mob/proc/point_at(var/atom/target, var/pixel_x, var/pixel_y) //overriden by living and dead
 	.=0
 
 /mob/verb/pull_verb(atom/movable/A as mob|obj in view(1, get_turf(usr)))
@@ -3301,3 +3303,16 @@
 //Observers bypass this check anyway, but regardless
 /mob/dead/can_climb_ladder(silent = FALSE)
 	return TRUE
+
+/mob/proc/fiddle_with(var/obj/O)
+	actions.interrupt(src, INTERRUPT_ACT)
+
+	if (src.stat || is_incapacitated(src) || world.time < src.next_click || !can_reach(src, O))
+		return
+	var/time_left = src.next_click - world.time
+	if (time_left > CLICK_GRACE_WINDOW) // currently CLICK_GRACE_WINDOW is 0, but who knows if thatll ever change!
+		return time_left
+	src.next_click = world.time + O.fiddle(src)
+
+/mob/proc/stimulants_and_sedatives()
+	return

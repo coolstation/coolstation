@@ -20,7 +20,7 @@
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 5
-	stamina_cost = 5
+//	stamina_cost = 5
 	edible = 1	// currently overridden by material settings
 	var/well_known = FALSE // do connoisseurs know this organ? 35% chance to be set to TRUE in New(), if not already true from mapping
 	var/mob/living/carbon/human/donor = null // if I can't use "owner" I can at least use this

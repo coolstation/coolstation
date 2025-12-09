@@ -32,6 +32,10 @@
 	/// if gun/bullet related, forensic profile of it
 	var/forensic_ID = null
 
+	var/list/datum/contextAction/fiddleActions
+	var/datum/contextLayout/flexdefault/fiddleLayout
+	var/fiddleType = null
+
 	New()
 		. = ..()
 		if (HAS_FLAG(object_flags, HAS_DIRECTIONAL_BLOCKING))
@@ -561,9 +565,6 @@
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-/obj/proc/alter_health()
-	return 1
-
 /obj/proc/hide(h)
 	return
 
@@ -637,3 +638,29 @@
 		for(var/i = 1 to 10) // 20 characters are way too fuckin' long for anyone to care about
 			. += "[pick(numbersAndLetters)]"
 	while(. in forensic_IDs)
+
+// return any next_click delay to add
+/obj/proc/fiddle(var/mob/user)
+	src.add_fingerprint(user) // the user at the very least tried to mess with it
+
+	if(!src.fiddleType)
+		return DEFAULT_CLICK_DELAY
+
+	if(!src.fiddleLayout) // build the layout if we aint got one
+		src.fiddleActions = list()
+		for(var/fiddle_action in concrete_typesof(src.fiddleType))
+			src.fiddleActions.Add(globalContextActions[fiddle_action])
+		src.fiddleLayout = new /datum/contextLayout/flexdefault(length(src.fiddleActions), 26, 26, length(src.fiddleActions) * -13 + 16, 7)
+
+	if(length(src.fiddleActions)) // check validity
+		var/list/datum/contextAction/validFiddleActions = list()
+		for(var/datum/contextAction/fiddle_action in src.fiddleActions)
+			if(fiddle_action.checkRequirements(src, user))
+				validFiddleActions.Add(fiddle_action)
+
+		if(length(validFiddleActions)) // display valid fiddles
+			src.fiddleLayout.offsetX = length(validFiddleActions) * -13 + 16
+			user.showContextActions(validFiddleActions, src, src.fiddleLayout)
+			return BASE_FIDDLE_DELAY
+
+	return BASE_FIDDLE_DELAY

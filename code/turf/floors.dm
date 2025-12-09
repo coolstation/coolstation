@@ -1,7 +1,7 @@
 /*
  * Hey! You!
  * Remember to mirror your changes (unless you use the [DEFINE_FLOORS] macro)
- * floors_unsimulated.dm & floors_airless.dm
+ * floors_airless.dm
  */
 
 /turf/floor
@@ -917,6 +917,33 @@ DEFINE_FLOORS(marble/border_wb,
 
 	event_handler_flags = IMMUNE_SINGULARITY_INACTIVE
 
+/turf/floor/engine/oxygen
+	oxygen = MOLES_N2STANDARD * 200
+	nitrogen = 0
+
+/turf/floor/engine/nitrogen
+	oxygen = 0
+	nitrogen = MOLES_N2STANDARD * 200
+
+/turf/floor/engine/plasma
+	oxygen = 0
+	nitrogen = 0
+	toxins = MOLES_N2STANDARD * 200
+
+/turf/floor/engine/farts
+	oxygen = 0
+	nitrogen = 0
+	farts = MOLES_N2STANDARD * 200
+
+/turf/floor/engine/carbon
+	oxygen = 0
+	nitrogen = 0
+	carbon_dioxide = MOLES_N2STANDARD * 200
+
+/turf/floor/engine/air_tank
+	oxygen = MOLES_O2STANDARD * 100
+	nitrogen = MOLES_N2STANDARD * 100
+
 /turf/floor/engine/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
@@ -1311,6 +1338,7 @@ DEFINE_FLOORS(snowrough/border,
 	step_material = "step_outdoors"
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
+	burnt = UNBURNABLE_TURF
 	permadirty = 1 //sand gets everywhere
 
 	New()
@@ -1324,6 +1352,7 @@ DEFINE_FLOORS(snowrough/border,
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
 	allows_vehicles = 1
+	burnt = UNBURNABLE_TURF
 	permadirty = 1
 
 /turf/floor/riveted
@@ -1331,7 +1360,12 @@ DEFINE_FLOORS(snowrough/border,
 	step_material = "step_plating"
 	step_priority = STEP_PRIORITY_MED
 	allows_vehicles = 1
+	burnt = UNBURNABLE_TURF
 	permadirty = 1
+
+/turf/floor/diagonal
+	name = "floor tile"
+	icon_state = "diagonal"
 
 /////////////////////////////////////////
 
@@ -1602,7 +1636,7 @@ DEFINE_FLOORS(techfloor/green,
 			src.ReplaceWithSpace()
 
 		if(OLD_EX_SEVERITY_2)
-			switch(pick(1,2;75,3))
+			switch(pick(1,75;2,3))
 				if (1)
 					if(prob(33))
 						var/obj/item/I = new /obj/item/raw_material/scrap_metal()
@@ -1611,7 +1645,8 @@ DEFINE_FLOORS(techfloor/green,
 							I.setMaterial(src.material)
 						else
 							I.setMaterial(getMaterial("steel"))
-					src.ReplaceWithLattice()
+					new /obj/lattice(src)
+					src.ReplaceWithSpace()
 				if(2)
 					src.ReplaceWithSpace()
 				if(3)
@@ -1686,7 +1721,7 @@ DEFINE_FLOORS(techfloor/green,
 	src.icon_state = "plating"
 	setIntact(FALSE)
 	broken = 0
-	burnt = 0
+	burnt = initial(burnt)
 	if(plate_mat)
 		src.setMaterial((plate_mat))
 	else
@@ -1737,7 +1772,7 @@ DEFINE_FLOORS(techfloor/green,
 	if(intact) return
 	setIntact(TRUE)
 	broken = 0
-	burnt = 0
+	burnt = initial(burnt)
 	icon = initial(icon)
 	if(icon_old)
 		icon_state = icon_old
@@ -1862,7 +1897,8 @@ DEFINE_FLOORS(techfloor/green,
 				if (C:amount >= 2)
 					boutput(user, "<span class='notice'>Reinforcing the floor...</span>")
 					if(do_after(user, 3 SECONDS))
-						ReplaceWithEngineFloor()
+						DELETE_LATTICES_IN(src)
+						ReplaceWith(/turf/floor/engine)
 
 						if (C)
 							C.change_stack_amount(-2)
@@ -2179,7 +2215,6 @@ DEFINE_FLOORS_SIMMED_UNSIMMED(racing/rainbow_road,
 		desc = "It seems to be humming slightly. Huh."
 		luminosity = 2
 		icon_state = "bluewall_glow"
-		can_replace_with_stuff = 1
 
 		attackby(obj/item/W as obj, mob/user as mob)
 			if (istype(W, /obj/item/device/key))

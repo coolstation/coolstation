@@ -118,7 +118,7 @@ var/sound/iomoon_alarm_sound = null
 				S.file = ambientSound
 				S.repeat = 0
 				S.wait = 0
-				S.channel = SOUNDCHANNEL_FX_1
+				S.channel = SOUNDCHANNEL_RESERVED_AREA_FX_1
 				S.volume = 60
 				S.priority = 255
 				S.status = SOUND_UPDATE
@@ -132,7 +132,7 @@ var/sound/iomoon_alarm_sound = null
 					iomoon_alarm_sound.file = 'sound/machines/lavamoon_alarm1.ogg'
 					iomoon_alarm_sound.repeat = 0
 					iomoon_alarm_sound.wait = 0
-					iomoon_alarm_sound.channel = SOUNDCHANNEL_BIGALARM
+					iomoon_alarm_sound.channel = SOUNDCHANNEL_RESERVED_BIGALARM
 					iomoon_alarm_sound.volume = 60
 					iomoon_alarm_sound.priority = 255
 					iomoon_alarm_sound.status = SOUND_UPDATE
@@ -1399,19 +1399,21 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 				if (!istype(otherLadder))
 					return
 				src.visible_message("[AM] falls down the ladder.")
-				AM.set_loc(get_turf(otherLadder))
+				SPAWN_DBG(0)
+					AM.set_loc(get_turf(otherLadder))
 		else if(ismob(AM))
 			var/mob/schmuck = AM
 			if ((schmuck.stat || schmuck.getStatusDuration("weakened")) && prob(30))
 				var/obj/ladder/otherLadder = locate("ladder_[id][src.icon_state == "ladder_wall"]")
 				if (!istype(otherLadder))
 					return
-				src.visible_message("[AM] falls down the ladder.")
 				random_brute_damage(schmuck, 10)
-				schmuck.show_text("You fall down the ladder!", "red")
 				schmuck.changeStatus("weakened", 3 SECONDS)
-				AM.set_loc(get_turf(otherLadder))
 				game_stats.Increment("workplacesafety")
+				SPAWN_DBG(0)
+					src.visible_message("[AM] falls down the ladder.")
+					AM.set_loc(get_turf(otherLadder))
+					schmuck.show_text("You fall down the ladder!", "red")
 
 	attack_ai(mob/user)
 		if (!istype(user, /mob/living/silicon/ai)) //even with the chicken feet AIs don't have enough limbs to try

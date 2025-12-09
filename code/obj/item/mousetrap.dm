@@ -20,8 +20,8 @@
 	var/obj/item/gimmickbomb/butt/buttbomb = null
 	var/mob/armer = null
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 5
+//	stamina_cost = 0
+//	stamina_crit_chance = 5
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
 
 	armed
@@ -66,7 +66,7 @@
 			clear_armer()
 
 		src.armed = !src.armed
-		playsound(user.loc, "sound/weapons/handcuffs.ogg", 30, 1, -3)
+		playsound(user.loc, "sound/weapons/handcuffs.ogg", 30, 1, SOUND_RANGE_MODERATE)
 		return
 
 	proc/clear_armer()
@@ -539,5 +539,5 @@
 
 	Move(var/turf/new_loc,direction)
 		if (src.mousetrap.buttbomb && src.armed)
-			playsound(src, 'sound/voice/farts/poo2.ogg', 30, 0, 0, 1.8)
+			playsound(src, 'sound/voice/farts/poo2.ogg', 30, 0, SOUND_RANGE_STANDARD, 1.8)
 		..()

@@ -180,7 +180,7 @@
 		animate_storage_rustle(src)
 		if (!src.sneaky)
 			user.visible_message("<span class='notice'>[user] has added [W] to [src]!</span>", "<span class='notice'>You have added [W] to [src].</span>")
-		playsound(src.loc, "rustle", 50, 1, -5)
+		playsound(src.loc, "rustle", 50, 1, SOUND_RANGE_MODERATE)
 		return
 
 	dropped(mob/user as mob)
@@ -208,7 +208,7 @@
 		..()
 		var/atom/movable/screen/hud/S = over_object
 		if (istype(S))
-			playsound(src.loc, "rustle", 50, 1, -5)
+			playsound(src.loc, "rustle", 50, 1, SOUND_RANGE_MODERATE)
 			if (!usr.restrained() && !usr.stat && src.loc == usr)
 				if (S.id == "rhand")
 					if (!usr.r_hand)
@@ -259,7 +259,7 @@
 
 	attack_hand(mob/user as mob)
 		if (!src.sneaky)
-			playsound(src.loc, "rustle", 50, 1, -2)
+			playsound(src.loc, "rustle", 50, 1, SOUND_RANGE_MODERATE)
 		if (src.loc == user && (!does_not_open_in_pocket || src == user.l_hand || src == user.r_hand)) // todo add shift-click exception -warc
 			if (ishuman(user))
 				var/mob/living/carbon/human/H = user
@@ -369,8 +369,8 @@
 	max_wclass = 3
 	desc = "A fancy synthetic leather-bound briefcase, capable of holding a number of small objects, with style."
 	stamina_damage = 40
-	stamina_cost = 17
-	stamina_crit_chance = 10
+//	stamina_cost = 17
+//	stamina_crit_chance = 10
 	spawn_contents = list(/obj/item/paper = 2,/obj/item/pen)
 	// Don't use up more slots, certain job datums put items in the briefcase the player spawns with.
 	// And nobody needs six sheets of paper right away, realistically speaking.

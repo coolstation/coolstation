@@ -35,6 +35,9 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 	var/tmp/atmos_operations = 0
 	var/static/max_atmos_operations = 0
 #endif
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+	var/tmp/groups_to_atmosphere = GROUPS_TO_ATMOSPHERE_MAX
+#endif
 
 	var/static/list/mutable_appearance/gas_overlays = list(
 				#ifdef ALPHA_GAS_OVERLAYS
@@ -294,7 +297,8 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 			for(var/direction in cardinal)
 				LAGCHECK(LAG_REALTIME)
-				if(gas_cross(get_step(src,direction)))
+				var/turf/T = get_step(src,direction)
+				if(src.gas_cross(T))
 					air_check_directions |= direction
 		return removed
 	else
@@ -311,11 +315,9 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 
 /turf/proc/update_air_properties() //OPTIMIZE - yes this proc right here sir
 	air_check_directions = 0
-
-	for(var/direction in cardinal)
-		LAGCHECK(LAG_REALTIME)
-		if(gas_cross(get_step(src,direction)))
-			air_check_directions |= direction
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+	src.groups_to_atmosphere = GROUPS_TO_ATMOSPHERE_MAX
+#endif
 
 	if(parent)
 		if(parent.borders)
@@ -327,30 +329,78 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 		group_border = 0
 		for(var/direction in cardinal)
 			LAGCHECK(LAG_REALTIME)
-			if(air_check_directions & direction)
-				var/turf/T = get_step(src,direction)
+			var/turf/T = get_step(src,direction)
 
-				//See if actually a border
-				if(!istype(T) || (T.parent!=parent))
+			//A map border
+			if(!T)
+				continue
+			if(src.gas_cross(T))
+				air_check_directions |= direction
+				if(T.parent==parent)
+					continue
+				//connected
+				//See what kind of border it is
+				if(T.turf_flags & IS_SPACE)
+					if(parent.space_borders)
+						parent.space_borders |= src
+					else
+						parent.space_borders = list(src)
+					length_space_border++
+					group_border |= direction
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+					continue
+				else if(T.turf_flags & IS_ATMOSPHERE)
+					parent.groups_to_atmosphere = 0
+					continue
+#endif
+				else if(issimulatedturf(T))
+					if(parent.borders)
+						parent.borders |= src
+					else
+						parent.borders = list(src)
+					group_border |= direction
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
 
-					//See what kind of border it is
-					if(istype_exact(T,/turf/space) && src.gas_cross(T) && T.gas_cross(src))
-						if(parent.space_borders)
-							parent.space_borders |= src
-						else
-							parent.space_borders = list(src)
-						length_space_border++
-						group_border |= direction
-
-					else if(issimulatedturf(T) && src.gas_cross(T) && T.gas_cross(src))
-						if(parent.borders)
-							parent.borders |= src
-						else
-							parent.borders = list(src)
-						group_border |= direction
-
+				if(T.parent)
+					parent.groups_to_atmosphere = min(parent.groups_to_atmosphere, T.parent.groups_to_atmosphere + 1)
+				else
+					parent.groups_to_atmosphere = min(parent.groups_to_atmosphere, T.groups_to_atmosphere + 1)
+			else
+				//not connected
+				if(T.turf_flags & IS_ATMOSPHERE)
+					parent.groups_to_atmosphere = 1
+				else if(!T.density)
+					if(T.parent)
+						parent.groups_to_atmosphere = min(parent.groups_to_atmosphere, T.parent.groups_to_atmosphere + 1)
+					else
+						parent.groups_to_atmosphere = min(parent.groups_to_atmosphere, T.groups_to_atmosphere + 1)
+#endif
 
 		parent.length_space_border += length_space_border
+	else
+		for(var/direction in cardinal)
+			LAGCHECK(LAG_REALTIME)
+			var/turf/T = get_step(src,direction)
+			if(!T)
+				continue
+			if(src.gas_cross(T))
+				air_check_directions |= direction
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+				if(T.turf_flags & IS_ATMOSPHERE)
+					src.groups_to_atmosphere = 0
+				else if(T.parent)
+					src.groups_to_atmosphere = min(src.groups_to_atmosphere, T.parent.groups_to_atmosphere + 1)
+				else
+					src.groups_to_atmosphere = min(src.groups_to_atmosphere, T.groups_to_atmosphere + 1)
+			else
+				if(T.turf_flags & IS_ATMOSPHERE)
+					src.groups_to_atmosphere = 1
+				else if(!T.density)
+					if(T.parent)
+						src.groups_to_atmosphere = min(src.groups_to_atmosphere, T.parent.groups_to_atmosphere + 1)
+					else
+						src.groups_to_atmosphere = min(src.groups_to_atmosphere, T.groups_to_atmosphere + 1)
+#endif
 
 	if(air_check_directions)
 		processing = 1
@@ -655,7 +705,7 @@ atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
 			west.tilenotify(src)
 			air_master.tiles_to_update |= west
 
-	if (map_currently_underwater || map_currently_abovewater)
+	if (map_currently_underwater || map_currently_above_magindara)
 		if(istype(north, /turf/space/fluid))
 			north.tilenotify(src)
 		if(istype(south, /turf/space/fluid))

@@ -17,8 +17,8 @@
 	throw_range = 15
 	throwforce = 5
 	stamina_damage = 10
-	stamina_cost = 10
-	stamina_crit_chance = 5
+//	stamina_cost = 10
+//	stamina_crit_chance = 5
 	var/next_play = 0
 	var/note_time = 100
 	var/randomized_pitch = 1
@@ -163,7 +163,7 @@
 			var/mob/living/L = hit_atom
 			L.changeStatus("paralysis", 2 SECONDS)
 			random_brute_damage(L, 20)
-			playsound(L, "sound/machines/blast_door_9.ogg", 60, 1, 5)
+			playsound(L, "sound/machines/blast_door_9.ogg", 60, 1, SOUND_RANGE_LARGE)
 
 /* -------------------- Grand Piano -------------------- */
 
@@ -233,8 +233,8 @@
 	var/spam_flag = 0
 	var/list/sounds_sax = list('sound/musical_instruments/sax/sax.ogg', 'sound/musical_instruments/sax/sax2.ogg','sound/musical_instruments/sax/sax3.ogg','sound/musical_instruments/sax/sax4.ogg','sound/musical_instruments/sax/sax5.ogg','sound/musical_instruments/sax/sax6.ogg','sound/musical_instruments/sax/sax7.ogg','sound/musical_instruments/sax/sax8.ogg','sound/musical_instruments/sax/sax9.ogg')
 	stamina_damage = 10
-	stamina_cost = 10
-	stamina_crit_chance = 5
+//	stamina_cost = 10
+//	stamina_crit_chance = 5
 	//module_research = list("audio" = 7, "metals" = 3)
 
 /obj/item/saxophone/attack_self(mob/user as mob)
@@ -250,7 +250,7 @@
 			if (prob(60))
 				G.howl()
 		src.add_fingerprint(user)
-		spawn(100)
+		SPAWN_DBG(100)
 			spam_flag = 0
 	return
 
@@ -272,7 +272,7 @@
 			if (prob(100))
 				G.howl()
 		src.add_fingerprint(user)
-		spawn(30)
+		SPAWN_DBG(30)
 			spam_flag = 0
 	return
 
@@ -297,8 +297,8 @@
 
 /obj/item/instrument/saxophone/attack(mob/M as mob, mob/user as mob)
 	if(ismob(M))
-		playsound(src, pick(sounds_punch), 50, 1, -1)
-		playsound(src, pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg', 'sound/musical_instruments/saxbonk3.ogg'), 50, 1, -1)
+		playsound(src, pick(sounds_punch), 50, 1, SOUND_RANGE_STANDARD)
+		playsound(src, pick('sound/musical_instruments/saxbonk.ogg', 'sound/musical_instruments/saxbonk2.ogg', 'sound/musical_instruments/saxbonk3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 		user.visible_message("<span class='alert'><b>[user] bonks [M] with [src]!</b></span>")
 	else
 		. = ..()
@@ -341,7 +341,7 @@
 
 	attack(mob/M as mob, mob/user as mob)
 		if(ismob(M))
-			playsound(src, pick('sound/musical_instruments/Guitar_bonk1.ogg', 'sound/musical_instruments/Guitar_bonk2.ogg', 'sound/musical_instruments/Guitar_bonk3.ogg'), 50, 1, -1)
+			playsound(src, pick('sound/musical_instruments/Guitar_bonk1.ogg', 'sound/musical_instruments/Guitar_bonk2.ogg', 'sound/musical_instruments/Guitar_bonk3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 		..()
 
 
@@ -355,7 +355,7 @@
 	w_class = W_CLASS_TINY
 	throwforce = 3
 	stamina_damage = 5
-	stamina_cost = 5
+//	stamina_cost = 5
 	sounds_instrument = list('sound/musical_instruments/Bikehorn_1.ogg')
 	desc_verb = list("honks")
 	note_time = 8
@@ -366,7 +366,7 @@
 
 	attack(mob/M as mob, mob/user as mob)
 		if(ismob(M))
-			playsound(src, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
+			playsound(src, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 		..()
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -456,7 +456,7 @@
 	force = 1
 	throwforce = 3
 	stamina_damage = 2
-	stamina_cost = 2
+//	stamina_cost = 2
 	note_time = 20
 	sounds_instrument = list('sound/musical_instruments/Harmonica_1.ogg', 'sound/musical_instruments/Harmonica_2.ogg', 'sound/musical_instruments/Harmonica_3.ogg')
 	desc_sound = list("delightful", "chilling", "upbeat")
@@ -473,7 +473,7 @@
 	force = 1
 	throwforce = 3
 	stamina_damage = 2
-	stamina_cost = 2
+//	stamina_cost = 2
 	note_time = 20
 	sounds_instrument = list('sound/items/police_whistle1.ogg', 'sound/items/police_whistle2.ogg')
 	volume = 75
@@ -512,7 +512,7 @@
 	item_state = "vuvuzela"
 	throwforce = 3
 	stamina_damage = 6
-	stamina_cost = 6
+//	stamina_cost = 6
 	sounds_instrument = list('sound/musical_instruments/Vuvuzela_1.ogg')
 	volume = 80
 	pick_random_note = 1
@@ -521,7 +521,7 @@
 		..()
 		if (user)
 			for (var/mob/M in hearers(user, null))
-				if (M.ears_protected_from_sound())
+				if (cant_hear(M))
 					continue
 				var/ED = max(0, rand(0, 2) - get_dist(user, M))
 				M.take_ear_damage(ED)
@@ -607,7 +607,7 @@
 			return
 		else
 			S.visible_message("<span class='alert'><b>[S.name]'s skeleton rips itself free upon hearing the song of its people!</b></span>")
-			playsound(S, S.gender == "female" ? "sound/voice/screams/female_scream.ogg" : "sound/voice/screams/male_scream.ogg", 50, 0, 0, S.get_age_pitch())
+			playsound(S, S.gender == "female" ? "sound/voice/screams/female_scream.ogg" : "sound/voice/screams/male_scream.ogg", 50, 0, SOUND_RANGE_STANDARD, S.get_age_pitch())
 			playsound(S, "sound/effects/bubbles.ogg", 50, 0)
 			playsound(S, "sound/impact_sounds/Flesh_Tear_2.ogg", 50, 0)
 			var/bdna = null // For forensics (Convair880).
@@ -649,7 +649,7 @@
 
 	attack(mob/M as mob, mob/user as mob)
 		src.add_fingerprint(user)
-		playsound(src, "swing_hit", 50, 1, -1)
+		playsound(src, "swing_hit", 50, 1, SOUND_RANGE_STANDARD)
 		..()
 		satanic_home_run(M, user)
 

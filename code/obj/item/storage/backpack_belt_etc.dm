@@ -173,6 +173,12 @@
 	desc = "A backpack that looks like a green turtleshell. Cowabunga!"
 	icon_state = "bp_turtle_green"
 
+/obj/item/storage/backpack/snacker
+	name = "backpack"
+	desc = "A thick, wearable container made of synthetic fibers. This one smells sugary and stale."
+	icon_state = "backpackbr"
+	spawn_contents = list(/obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn)
+
 /obj/item/storage/backpack/satchel
 	name = "satchel"
 	desc = "A thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on a crewmember's shoulder."
@@ -321,8 +327,8 @@
 	max_wclass = 3
 	does_not_open_in_pocket = 0
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 5
+//	stamina_cost = 0
+//	stamina_crit_chance = 5
 	spawn_contents = list(/obj/item/storage/box/starter)
 
 	New()
@@ -361,8 +367,8 @@
 	max_wclass = 2
 	does_not_open_in_pocket = 0
 	stamina_damage = 10
-	stamina_cost = 5
-	stamina_crit_chance = 5
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 	w_class = W_CLASS_BULKY
 
 	New()

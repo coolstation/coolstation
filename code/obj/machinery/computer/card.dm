@@ -294,7 +294,7 @@
 			if (t1 == "Custom Assignment")
 				t1 = input(usr, "Enter a custom job assignment.", "Assignment")
 				t1 = strip_html(t1, 100, 1)
-				playsound(src.loc, "keyboard", 50, 1, -15)
+				playsound(src.loc, "keyboard", 50, 1, SOUND_RANGE_SMALL)
 			else
 				src.modify.access = get_access(t1)
 
@@ -314,7 +314,7 @@
 				logTheThing("station", usr, null, "changes the registered name on the ID card from [src.modify.registered] to [t1]")
 				src.modify.registered = t1
 
-			playsound(src.loc, "keyboard", 50, 1, -15)
+			playsound(src.loc, "keyboard", 50, 1, SOUND_RANGE_SMALL)
 
 	if (href_list["pin"])
 		if (src.authenticated)
@@ -329,7 +329,7 @@
 					src.modify.pin = 9999
 				else
 					src.modify.pin = round(newpin)
-				playsound(src.loc, "keyboard", 50, 1, -15)
+				playsound(src.loc, "keyboard", 50, 1, SOUND_RANGE_SMALL)
 
 	if (href_list["mode"])
 		src.mode = text2num(href_list["mode"])

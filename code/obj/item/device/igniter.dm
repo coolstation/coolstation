@@ -131,7 +131,7 @@
 	return
 
 /obj/item/device/igniter/proc/can_ignite()
-	return (world.time >= last_ignite + src.combat_click_delay/2)
+	return (world.time >= last_ignite + src.click_delay)
 
 /obj/item/device/igniter/afterattack(atom/target, mob/user as mob)
 	if (!ismob(target) && target.reagents && can_ignite())

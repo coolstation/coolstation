@@ -525,8 +525,8 @@
 	throw_speed = 3
 	throw_range = 8
 	stamina_damage = 1
-	stamina_cost = 1
-	stamina_crit_chance = 0
+//	stamina_cost = 1
+//	stamina_crit_chance = 0
 	var/active = 0
 
 	attack_self(mob/user as mob)
@@ -1399,9 +1399,12 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		..()
 		src.icon_state = "cowbrush[src.on ? "_on" : ""]"
 
+/image/maptext_image
+	icon = null
+	plane = PLANE_HUD - 1
+	maptext = ""
 
-
-// modified from admin_spacebux_store by mylie
+// modified from zamu's admin_spacebux_store by mylie
 /obj/configurable_credit_store
 	name = "configurable credit store setup object"
 	desc = "An admin can click on this to set stuff up."
@@ -1415,8 +1418,8 @@ Other Coolstation servers: Not Yet!!!</span>"})
 	var/tmp/thing_name = null
 	var/tmp/atom/thing_to_copy = null
 	var/tmp/number_purchased = 0
-	var/tmp/obj/maptext_junk/price_text = null
-	var/tmp/obj/maptext_junk/quantity_text = null
+	var/tmp/image/maptext_image/price_text = null
+	var/tmp/image/maptext_image/quantity_text = null
 	var/tmp/list/purchaser_ckeys = list()
 	var/type_to_spawn = null
 	var/delete_at_zero = TRUE
@@ -1424,10 +1427,34 @@ Other Coolstation servers: Not Yet!!!</span>"})
 	var/price = 0
 	var/limit_per_player = 0
 	var/limit_total = 0
+	var/always_visible_maptext = FALSE
+
+	MouseEntered(location, control, params)
+		. = ..()
+		if(usr.client)
+			usr.client.images |= price_text
+			if(quantity_text)
+				usr.client.images |= quantity_text
+
+	MouseExited(location, control, params)
+		. = ..()
+		if(usr.client)
+			usr.client.images -= price_text
+			usr.client.images -= quantity_text
 
 	get_desc()
 		if (set_up)
 			. += "<br>Looks like it costs $[src.price][src.limit_per_player ? ", a person can buy up to [src.limit_per_player]," : null] and there are [src.limit_total - src.number_purchased] left."
+
+	disposing()
+		thing_to_copy = null
+		dispose(price_text)
+		dispose(quantity_text)
+		src.vis_contents -= price_text
+		price_text = null
+		src.vis_contents -= quantity_text
+		quantity_text = null
+		. = ..()
 
 	attack_hand(mob/user)
 		if (!set_up)
@@ -1491,19 +1518,19 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		src.name = "[price > 0 ? "credit shop" : "dispenser"] - [src.thing_name]"
 		src.desc = "A little shop where you can grab \a [src.thing_name]. Wow!"
 
-		src.price_text = new()
-		src.price_text.set_loc(src)
+		src.price_text = new(null, src)
 		src.price_text.maptext_width = 132
 		src.price_text.maptext_x = -50
 		src.price_text.maptext_y = -8
 		src.price_text.maptext = "<span class='c vb sh xfont'><font color=green>[price > 0 ? "$[price]" : "FREE"]</font></span>"
-		src.vis_contents += src.price_text
+		if(src.always_visible_maptext)
+			src.vis_contents += src.price_text
 		src.price_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 
 		if (src.limit_total && src.limit_total != 1)
-			src.quantity_text = new()
-			src.quantity_text.set_loc(src)
-			src.vis_contents += src.quantity_text
+			src.quantity_text = new(null, src)
+			if(src.always_visible_maptext)
+				src.vis_contents += src.quantity_text
 			src.quantity_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 			src.update_quantity()
 
@@ -1625,19 +1652,19 @@ Other Coolstation servers: Not Yet!!!</span>"})
 		src.thing_name = AM.name
 		src.set_density(AM.density)
 
-		src.price_text = new()
-		src.price_text.set_loc(src)
+		src.price_text = new(null, src)
 		src.price_text.maptext_width = 132
 		src.price_text.maptext_x = -50
 		src.price_text.maptext_y = -8
 		src.price_text.maptext = "<span class='c vb sh xfont'><font color=green>[price > 0 ? "$[price]" : "FREE"]</font></span>"
-		src.vis_contents += src.price_text
+		if(src.always_visible_maptext)
+			src.vis_contents += src.price_text
 		src.price_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 
 		if (src.limit_total && src.limit_total != 1)
-			src.quantity_text = new()
-			src.quantity_text.set_loc(src)
-			src.vis_contents += src.quantity_text
+			src.quantity_text = new(null, src)
+			if(src.always_visible_maptext)
+				src.vis_contents += src.quantity_text
 			src.quantity_text.appearance_flags = TILE_BOUND | RESET_COLOR | RESET_ALPHA | KEEP_APART | PIXEL_SCALE
 			src.update_quantity()
 

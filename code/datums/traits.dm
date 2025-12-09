@@ -288,7 +288,7 @@
 				H.equip_new_if_possible(/obj/item/device/radio/headset/deaf, H.slot_ears)
 
 	onLife(var/mob/owner) //Just to be super safe.
-		if(!owner.ear_disability)
+		if(!owner.ear_permdeaf)
 			owner.bioHolder.AddEffect("deaf", 0, 0, 0, 1)
 
 // LANGUAGE - Yellow Border
@@ -1144,6 +1144,14 @@ obj/trait/pilot
 	id = "clutz"
 	points = 2
 	isPositive = 0
+
+	onAdd(var/mob/owner)
+		..()
+		APPLY_ATOM_PROPERTY(owner, PROP_CLUTZ, "trait_clutz", 10)
+
+	onRemove(var/mob/owner)
+		..()
+		REMOVE_ATOM_PROPERTY(owner, PROP_CLUTZ, "trait_clutz")
 
 /obj/trait/leftfeet
 	name = "Two left feet (+1)"

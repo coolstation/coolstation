@@ -64,8 +64,10 @@
 		flick("concrete_drying", src)
 
 		if(istype(loc, /turf/space))
-			loc:ReplaceWithConcreteFloor()
-
+			var/turf/floor/floor = loc:ReplaceWith(/turf/floor/concrete)
+			if(floor.icon_old)
+				floor.icon_state = floor.icon_old
+			DELETE_LATTICES_IN(floor)
 		update_nearby_tiles(1)
 		SPAWN_DBG(0.1 SECONDS)
 			RL_SetOpacity(1)

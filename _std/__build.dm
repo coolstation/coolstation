@@ -58,7 +58,7 @@
 
 //////////// DEBUGGING TOGGLES
 
-//#define IM_TESTING_FUCKING_BASIC_MOB_FUNCTIONALITY 1	//force prevent mob spawner landmarks, so you can test movement or damage or whatever without the GODCOCKING MONKEYS TRIPPING YOUR BREAKPOINTS EVERY 2 MILLISECONDS GOD DAMN
+// #define IM_TESTING_BASIC_MOB_FUNCTIONALITY 1	//force prevent mob spawner landmarks and certain automatic bot patrols, so you can test movement or damage or airlocks or whatever without the GODCOCKING MONKEYS TRIPPING YOUR BREAKPOINTS EVERY 2 MILLISECONDS GOD DAMN
 
 // Delete queue debug toggle
 // This is expensive. don't turn it on on the server unless you want things to be bad and slow
@@ -102,19 +102,23 @@
 
 //////////// MAP OVERRIDES
 
-//---------------------- Maps that are being maintained ------------------------------//
-//#define MAP_OVERRIDE_BAYOUBEND 	            //low to midpop scrapping map by Klushy225
-//#define MAP_OVERRIDE_BOBMAP 			//"to be renamed" map by ReginaldHJ
-//#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
+//----------------- Maps that are being maintained and fully playable -----------------//
+//#define MAP_OVERRIDE_BAYOUBEND 	            // low to midpop scrapping map by Klushy225
+#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
-#define MAP_OVERRIDE_CRAG				// secret >:)
+//#define MAP_OVERRIDE_CRAG				// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
-//#define MAP_OVERRIDE_PERDUTA			// Mylie's oceanic oil platform
 //#define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
+
+//----------------- Maps that are work in progress and not feature complete -----------------//
+//#define MAP_OVERRIDE_BOBMAP 			// "to be renamed" map by ReginaldHJ
+//#define MAP_OVERRIDE_COOKIE				// Wackalope's spess staions
+//#define MAP_OVERRIDE_PERDUTA				// Mylie's oceanic oil platform
 //#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
 //#define MAP_OVERRIDE_ALTBOX				// a series of bad choices (very unfinished atm)
+
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION			// Construction mode
 //#define MAP_OVERRIDE_DESTINY			// Destiny/RP

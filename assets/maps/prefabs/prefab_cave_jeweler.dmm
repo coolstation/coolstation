@@ -55,7 +55,22 @@
 "k" = (
 /turf/floor/plating/gehenna,
 /area/noGenerate)
+"l" = (
+/obj/decal/cleanable/dirt/random,
+/obj/item/raw_material/gemstone{
+	pixel_y = -8;
+	pixel_x = 5
+	},
+/turf/floor,
+/area/noGenerate)
 "m" = (
+/turf/floor,
+/area/noGenerate)
+"n" = (
+/mob/living/critter/robotic/gunbot{
+	ai_type = "/datum/aiHolder/violent";
+	dir = 4
+	},
 /turf/floor,
 /area/noGenerate)
 "o" = (
@@ -85,10 +100,6 @@
 	icon_state = "fblue1"
 	},
 /area/noGenerate)
-"u" = (
-/mob/living/critter/spider/med,
-/turf/floor/plating/gehenna,
-/area/noGenerate)
 "v" = (
 /obj/item/raw_material/shard/glass,
 /turf/floor/carpet{
@@ -108,10 +119,6 @@
 "x" = (
 /obj/stool/chair/green,
 /turf/floor,
-/area/noGenerate)
-"y" = (
-/mob/living/critter/spider,
-/turf/floor/plating/gehenna,
 /area/noGenerate)
 "z" = (
 /obj/wingrille_spawn/auto,
@@ -292,13 +299,13 @@ a
 (3,1,1) = {"
 a
 a
-P
+a
 P
 P
 P
 M
-y
-u
+k
+k
 P
 P
 P
@@ -308,9 +315,9 @@ a
 "}
 (4,1,1) = {"
 a
+a
+a
 P
-P
-P
 X
 X
 X
@@ -319,31 +326,31 @@ X
 X
 X
 P
-P
+a
 a
 a
 "}
 (5,1,1) = {"
 a
-P
-P
+a
+a
 P
 X
 m
 E
 m
-m
+n
 m
 X
 P
-P
+a
 a
 a
 "}
 (6,1,1) = {"
 a
-P
-P
+a
+a
 k
 X
 m
@@ -352,15 +359,15 @@ x
 N
 T
 X
-P
-P
-P
+a
+a
+a
 a
 "}
 (7,1,1) = {"
 a
-P
-P
+a
+a
 k
 U
 m
@@ -370,8 +377,8 @@ X
 X
 X
 k
-P
-P
+a
+a
 k
 "}
 (8,1,1) = {"
@@ -387,8 +394,8 @@ b
 r
 z
 k
-P
-P
+a
+a
 k
 "}
 (9,1,1) = {"
@@ -397,7 +404,7 @@ a
 k
 k
 X
-V
+l
 Z
 H
 t
@@ -428,7 +435,7 @@ k
 (11,1,1) = {"
 a
 a
-P
+a
 k
 k
 B
@@ -444,9 +451,9 @@ k
 "}
 (12,1,1) = {"
 a
-P
-P
-P
+a
+a
+a
 k
 k
 X
@@ -457,14 +464,14 @@ K
 k
 k
 p
-P
+a
 "}
 (13,1,1) = {"
 a
-P
-P
-P
-k
+a
+a
+a
+a
 B
 X
 c
@@ -474,30 +481,30 @@ A
 k
 k
 k
-k
+a
 "}
 (14,1,1) = {"
 a
-P
-P
-P
+a
+a
+a
+a
 k
-k
 X
 X
 X
 X
 X
 k
-P
+a
 k
 k
 "}
 (15,1,1) = {"
 a
-P
-P
-P
+a
+a
+a
 B
 k
 k
@@ -506,58 +513,58 @@ k
 k
 k
 k
-P
-k
-P
+a
+a
+a
 "}
 (16,1,1) = {"
 a
 a
-P
-P
-P
+a
+a
+a
 k
 k
-P
-P
-k
-k
+a
+a
 k
 k
 k
-P
+a
+a
+a
 "}
 (17,1,1) = {"
 a
 a
-P
-P
-P
-k
-P
-P
-k
-k
+a
+a
+a
+a
+a
+a
 k
 k
-P
-P
+k
+k
+a
+a
 a
 "}
 (18,1,1) = {"
 a
 a
 a
-P
-P
-P
-P
+a
+a
+a
+a
 k
 k
 k
-P
-P
-P
+a
+a
+a
 a
 a
 "}
@@ -567,13 +574,13 @@ a
 a
 a
 a
-P
-P
-P
-P
-P
-P
-P
+a
+a
+a
+a
+a
+a
+a
 a
 a
 a

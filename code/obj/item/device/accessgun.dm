@@ -90,28 +90,28 @@
 	afterattack(atom/target, mob/user, reach, params)
 		..()
 		if (!src.ID_card)
-			playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, 0, 2)
+			playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, SOUND_RANGE_STANDARD, 2)
 			boutput(user, "<span class='notice'>[src] refuses to turn on without an ID inserted.</span>")
 			return
 		if (!isobj(target))
-			playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, 0, 2)
+			playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, SOUND_RANGE_STANDARD, 2)
 			boutput(user, "<span class='notice'>[src] can't reprogram this.</span>")
 			return
 
 		if (!allowed(user))
-			playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, 0, 2)
+			playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, SOUND_RANGE_STANDARD, 2)
 			boutput(user, "<span class='notice'>Your worn ID fails [src]'s check!</span>")
 			return
 
 		var/obj/O = target
 
 		if (access_maxsec in O.req_access)
-			playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, 0, 2)
+			playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, SOUND_RANGE_STANDARD, 2)
 			boutput(user, "<span class='notice'>[src] can't reprogram this.</span>")
 			return
 
 		if (is_restricted(O, user))
-			playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, 0, 2)
+			playsound(src, 'sound/machines/airlock_deny.ogg', 35, 1, SOUND_RANGE_STANDARD, 2)
 			boutput(user, "<span class='notice'>[src] can't reprogram this.</span>")
 			return
 
@@ -197,17 +197,17 @@
 			return
 		if(target.deconstruct_flags & DECON_BUILT)
 			if (isnull(scanned_access))
-				playsound(src, "sound/machines/airlock_deny.ogg", 35, 1, 0, 2)
+				playsound(src, "sound/machines/airlock_deny.ogg", 35, 1, SOUND_RANGE_STANDARD, 2)
 				boutput(user, "<span class='notice'>[src] has no access requirements loaded.</span>")
 				return
 			if (length(door_reqs.req_access))
-				playsound(src, "sound/machines/airlock_deny.ogg", 35, 1, 0, 2)
+				playsound(src, "sound/machines/airlock_deny.ogg", 35, 1, SOUND_RANGE_STANDARD, 2)
 				boutput(user, "<span class='notice'>[src] cannot reprogram [door_reqs.name], access requirements already set.</span>")
 				return
 			. = ..()
 			return
 		if(is_restricted(door_reqs))
-			playsound(src, "sound/machines/airlock_deny.ogg", 35, 1, 0, 2)
+			playsound(src, "sound/machines/airlock_deny.ogg", 35, 1, SOUND_RANGE_STANDARD, 2)
 			boutput(user, "<span class='notice'>[src] can't scan [door_reqs.name]</span>")
 			return
 		scanned_access = door_reqs.req_access

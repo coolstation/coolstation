@@ -20,8 +20,8 @@ TRAYS
 	w_class = W_CLASS_NORMAL
 	desc = "A wooden tube, used to roll dough flat in order to make various edible objects. It's pretty sturdy."
 	stamina_damage = 40
-	stamina_cost = 15
-	stamina_crit_chance = 2
+//	stamina_cost = 15
+//	stamina_crit_chance = 2
 
 	New()
 		..()
@@ -34,7 +34,7 @@ TRAYS
 	throwforce = 5.0
 	desc = "A hollowed out tube, to save on weight, used to roll dough flat in order to make various edible objects."
 	stamina_damage = 10
-	stamina_cost = 10
+//	stamina_cost = 10
 
 /obj/item/kitchen/utensil
 	inhand_image_icon = 'icons/mob/inhand/hand_food.dmi'
@@ -45,8 +45,8 @@ TRAYS
 	throw_range = 5
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
 	stamina_damage = 5
-	stamina_cost = 10
-	stamina_crit_chance = 15
+//	stamina_cost = 10
+//	stamina_crit_chance = 15
 	dir = NORTH
 	var/rotatable = 1 //just in case future utensils are added that dont wanna be rotated
 	var/snapped
@@ -100,7 +100,9 @@ TRAYS
 	desc = "A metal object that has a handle and ends in a small concave oval. Used to carry liquid objects from the container to the mouth."
 	icon_state = "spoon"
 	dir = NORTH
-	tool_flags =  TOOL_SPOONING
+	tool_flags = TOOL_SPOONING
+	force = 2
+	combat_click_delay = 0.45 * COMBAT_CLICK_DELAY
 
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if (user?.bioHolder.HasEffect("clumsy") && prob(50))
@@ -132,6 +134,8 @@ TRAYS
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 	desc = "A multi-pronged metal object, used to pick up objects by piercing them. Helps with eating some foods."
 	dir = NORTH
+	force = 3
+	combat_click_delay = 0.45 * COMBAT_CLICK_DELAY
 	throwforce = 7
 
 	New()
@@ -167,8 +171,9 @@ TRAYS
 	special_grab = /obj/item/grab
 	hit_type = DAMAGE_CUT
 	hitsound = 'sound/impact_sounds/Flesh_Cut_1.ogg'
-	force = 7.0
-	throwforce = 10
+	force = 6
+	combat_click_delay = 0.55 * COMBAT_CLICK_DELAY
+	throwforce = 8
 	desc = "A long bit of metal that is sharpened on one side, used for cutting foods. Also useful for butchering dead animals. And live ones."
 	dir = NORTH
 
@@ -227,7 +232,7 @@ TRAYS
 	suicide(var/mob/user as mob)
 		user.visible_message("<span style=\"color:red\"><b>[user] tries to jab [src] straight through [his_or_her(user)] eye and into [his_or_her(user)] brain!</b></span>")
 		src.break_utensil(user)
-		spawn(100)
+		SPAWN_DBG(100)
 			if (user)
 				user.suiciding = 0
 		return 1
@@ -257,7 +262,7 @@ TRAYS
 	suicide(var/mob/user as mob)
 		user.visible_message("<span style=\"color:red\"><b>[user] tries to stab [src] right into [his_or_her(user)] heart!</b></span>")
 		src.break_utensil(user)
-		spawn(100)
+		SPAWN_DBG(100)
 			if (user)
 				user.suiciding = 0
 		return 1
@@ -380,8 +385,9 @@ TRAYS
 	icon_state = "cleaver"
 	item_state = "cleaver"
 	desc = "An extremely sharp cleaver in a rectangular shape. Only for the professionals."
-	force = 12.0
-	throwforce = 3.0
+	force = 13
+	combat_click_delay = 1.1 * COMBAT_CLICK_DELAY
+	throwforce = 4
 	hit_type = DAMAGE_CUT
 	hitsound = 'sound/impact_sounds/Blade_Small_Bloody.ogg'
 
@@ -391,17 +397,19 @@ TRAYS
 			if(ismob(usr))
 				A:lastattacker = usr
 				A:lastattackertime = world.time
-			random_brute_damage(C, 15, 1)
-			take_bleeding_damage(C, null, 10, DAMAGE_CUT)
-			playsound(src, 'sound/impact_sounds/Flesh_Stab_3.ogg', 40, 1)
+			if(prob(60)) // listen it aint always gonna hit with the blade side
+				random_brute_damage(C, 15, 1)
+				take_bleeding_damage(C, null, 10, DAMAGE_CUT)
+				playsound(src, 'sound/impact_sounds/Flesh_Stab_3.ogg', 40, 1)
+		..()
 
 /obj/item/kitchen/utensil/knife/bread
 	name = "bread knife"
 	icon_state = "knife-bread"
 	item_state = "knife"
 	desc = "A rather blunt knife; it still cuts things, but not very effectively."
-	force = 3.0
-	throwforce = 3.0
+	force = 3
+	throwforce = 3
 
 	suicide(var/mob/user as mob)
 		user.visible_message("<span class='alert'><b>[user] drags [src] over [his_or_her(user)] own throat!</b></span>")

@@ -201,8 +201,8 @@
 
 	New()
 		..()
-		src.create_reagents(10000)
-		reagents.add_reagent("water",10000)
+		src.create_reagents(100 LITRES)
+		reagents.add_reagent("water", 100 LITRES)
 
 /obj/reagent_dispensers/watertank/fountain
 	name = "water cooler"
@@ -212,7 +212,7 @@
 	anchored = ANCHORED
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_CROWBAR
 	mats = 8
-	capacity = 500
+	capacity = 8 LITRES
 	can_break = FALSE
 
 	var/has_tank = 1
@@ -317,7 +317,7 @@
 	piss
 		New()
 			..()
-			src.create_reagents(4000)
+			src.create_reagents(10 LITRES)
 			reagents.add_reagent("urine",400)
 			reagents.add_reagent("water",600)
 			src.update_icon()
@@ -328,7 +328,7 @@
 	juicer
 		New()
 			..()
-			src.create_reagents(4000)
+			src.create_reagents(10 LITRES)
 			reagents.add_reagent(pick("CBD","THC","urine","refried_beans","coffee","methamphetamine"),100)
 			reagents.add_reagent(pick("CBD","THC","urine","refried_beans","coffee","methamphetamine"),100)
 			reagents.add_reagent(pick("CBD","THC","urine","refried_beans","coffee","methamphetamine"),100)
@@ -361,7 +361,7 @@
 			return 0
 		user.visible_message("<span class='alert'><b>[user] drinks deeply from [src]. [capitalize(he_or_she(user))] then pulls out a match from somewhere, strikes it and swallows it!</b></span>")
 		src.reagents.remove_any(20)
-		playsound(src.loc, "sound/items/drink.ogg", 50, 1, -6)
+		playsound(src.loc, "sound/items/drink.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		user.TakeDamage("chest", 0, 150)
 		if (isliving(user))
 			var/mob/living/L = user
@@ -521,7 +521,7 @@
 		src.add_fingerprint(target)
 		src.add_blood(target)
 		target.set_loc(src)
-		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1, 13) // hilariously easy to hear someone being shoveled into a compost tank
+		playsound(src.loc, "sound/impact_sounds/Slimy_Hit_4.ogg", 50, 1, SOUND_RANGE_LARGE) // hilariously easy to hear someone being shoveled into a compost tank
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			H.reagents.trans_to(src, H.reagents.total_volume * 0.4)

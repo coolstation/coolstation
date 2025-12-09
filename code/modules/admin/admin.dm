@@ -4933,9 +4933,11 @@ var/global/noir = 0
 	var/chosen
 	if(matches.len == 1)
 		chosen = matches[1]
+		if(chosen in list(/database, /client, /icon, /sound, /savefile))
+			return null
 	else
 		var/safe_matches = matches - list(/database, /client, /icon, /sound, /savefile)
-		chosen = input(usr, "Select an atom type", "Matches for pattern",null) as null|anything in safe_matches
+		chosen = input(usr, "Select an atom type", "Matches for pattern", null) as null|anything in safe_matches
 		if(!chosen) // experimental de-TGUIing - warc
 			return null
 
@@ -4951,7 +4953,7 @@ var/global/noir = 0
 	var/client/client = usr.client
 
 	if (client.holder.level >= LEVEL_PA)
-		var/chosen = get_one_match(object, use_concrete_types = FALSE)
+		var/chosen = get_one_match(object, use_concrete_types = TRUE)
 
 		if (chosen)
 			if (ispath(chosen, /turf))
@@ -5372,6 +5374,7 @@ var/global/noir = 0
 
 /client/Move(NewLoc, direct)
 	if(usr.client.flying)
+		var/prevloc = usr.loc
 		if(!isturf(usr.loc))
 			usr.set_loc(get_turf(usr))
 
@@ -5390,6 +5393,7 @@ var/global/noir = 0
 			usr.x--
 
 		src.mob.set_dir(direct)
+		SEND_SIGNAL(src.mob, COMSIG_MOVABLE_MOVED, prevloc, direct)
 	else
 		..()
 
@@ -5415,7 +5419,7 @@ proc/timeywimey(var/time)
 		L.set_loc(positions[L])
 		L.changeStatus("stunned", 6 SECONDS)
 		elecflash(L,power = 2)
-		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, SOUND_RANGE_STANDARD)
 	return 1
 
 /*
