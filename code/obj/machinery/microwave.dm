@@ -329,10 +329,10 @@ obj/machinery/microwave/attackby(var/obj/item/O as obj, var/mob/user as mob)
 				src.cook(MW_COOK_EGG)
 			else if(src.extra_item != null) // However if there's a weird item inside we want to break it, not dirty it
 				for(var/obj/item/gun_parts/P in src.contents)
-					if(prob(25)) // if you put a gun part in, theres a chance youll change it's DRM. Still breaks the microwave.
-						P.part_DRM = pick(GUN_FOSS,GUN_ITALIAN,GUN_JUICE,GUN_NANO,GUN_SOVIET)
+					if(prob(50)) // if you put a gun part in, theres a chance youll change it's DRM. Still breaks the microwave.
+						P.part_DRM |= pick(GUN_JUICE,GUN_SOVIET,GUN_ITALIAN,GUN_RODEO) | pick(GUN_JUICE,GUN_SOVIET,GUN_ITALIAN,GUN_RODEO)
 						src.visible_message("<span class='notice'>[P] lets off a few sparks.</span>")
-					else if(prob(25))
+					else if(prob(75))
 						src.visible_message("<span class='notice'>[P] lets off a whole bunch of smoke.</span>")
 						qdel(P)
 						extra_item = new /obj/item/reagent_containers/food/snacks/yuckburn(src)
