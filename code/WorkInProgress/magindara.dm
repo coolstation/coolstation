@@ -214,7 +214,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 /client/proc/change_magindaran_weather()
 	set name = "Change Magindaran Weather"
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
-	admin_only
+	ADMIN_ONLY
 
 	var/change_time = input(usr, "Please enter the animation time in deciseconds:","Animation Time", "50") as num
 	var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
@@ -230,7 +230,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 /client/proc/strike_lightning_here()
 	set name = "Strike Lightning Here"
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	admin_only
+	ADMIN_ONLY
 
 	var/power = input(usr, "Please enter the power:","Power", "10") as num
 	var/warning_time = input(usr, "Please enter the warning time (deciseconds):","Warning Time", "60") as num

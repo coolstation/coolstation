@@ -3079,7 +3079,7 @@ Returns:
 	set name = "Create Portal"
 	set popup_menu = 0
 
-	admin_only
+	ADMIN_ONLY
 
 	var/mob/M = src.mob
 	if (istype(M))
