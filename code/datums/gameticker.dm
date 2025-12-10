@@ -634,6 +634,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 				ticker.round_elapsed_ticks += elapsed
 
 /datum/controller/gameticker/proc/declare_completion()
+
+	world.TgsTriggerEvent("tg-Roundend", wait_for_completion = TRUE)
+
 	//End of round statistic collection for goonhub
 
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] statlog_traitors")
