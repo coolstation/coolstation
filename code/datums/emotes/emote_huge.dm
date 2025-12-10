@@ -69,17 +69,17 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			if (iscluwne(user))
 				playsound(user, "sound/voice/farts/poo.ogg", fart_loudness, 1, channel=VOLUME_CHANNEL_EMOTE)
 			else if (user.organ_istype("butt", /obj/item/clothing/head/butt/cyberbutt))
-				playsound(user, "sound/voice/farts/poo2_robot.ogg", fart_loudness, 1, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, "sound/voice/farts/poo2_robot.ogg", fart_loudness, 1, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			else if (user.reagents && user.reagents.has_reagent("honk_fart"))
-				playsound(user.loc, 'sound/musical_instruments/Bikehorn_1.ogg', fart_loudness, 1, -1, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user.loc, 'sound/musical_instruments/Bikehorn_1.ogg', fart_loudness, 1, SOUND_RANGE_STANDARD, channel=VOLUME_CHANNEL_EMOTE)
 			else
 				if (narrator_mode)
-					playsound(user, 'sound/vox/fart.ogg', fart_loudness, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+					playsound(user, 'sound/vox/fart.ogg', fart_loudness, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				else
 					if (user.getStatusDuration("food_deep_fart"))
-						playsound(user, user.sound_fart, fart_loudness, 0, 0, user.get_age_pitch() - 0.3, channel=VOLUME_CHANNEL_EMOTE)
+						playsound(user, user.sound_fart, fart_loudness, 0, SOUND_RANGE_STANDARD, user.get_age_pitch() - 0.3, channel=VOLUME_CHANNEL_EMOTE)
 					else
-						playsound(user, user.sound_fart, fart_loudness, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						playsound(user, user.sound_fart, fart_loudness, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 
 			var/fart_on_other = 0
 			for (var/atom/A as anything in user.loc)
@@ -119,7 +119,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						M = V.cursed_dude
 						if (!M || !M.lying)
 							continue
-						playsound(M, user.sound_fart, 20, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						playsound(M, user.sound_fart, 20, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 						switch(rand(1, 7))
 							if (1) M.visible_message("<span class='emote'><b>[M]</b> suddenly radiates an unwelcoming odor.</span>")
 							if (2) M.visible_message("<span class='emote'><b>[M]</b> is visited by ethereal incontinence.</span>")

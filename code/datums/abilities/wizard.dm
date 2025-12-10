@@ -305,11 +305,11 @@
 		if(ishuman(holder.owner))
 			var/mob/living/carbon/human/O = holder.owner
 			if(src.voice_grim && O && istype(O.wear_suit, /obj/item/clothing/suit/wizrobe/necro) && istype(O.head, /obj/item/clothing/head/wizard/necro))
-				playsound(O.loc, src.voice_grim, 50, 0, -1)
+				playsound(O.loc, src.voice_grim, 50, 0, SOUND_RANGE_STANDARD)
 			else if(src.voice_fem && O.gender == "female")
-				playsound(O.loc, src.voice_fem, 50, 0, -1)
+				playsound(O.loc, src.voice_fem, 50, 0, SOUND_RANGE_STANDARD)
 			else if (src.voice_other)
-				playsound(O.loc, src.voice_other, 50, 0, -1)
+				playsound(O.loc, src.voice_other, 50, 0, SOUND_RANGE_STANDARD)
 
 		if (offensive)
 			logTheThing("combat", holder.owner, target, "casts [src.name] from [log_loc(holder.owner)], at [target].")

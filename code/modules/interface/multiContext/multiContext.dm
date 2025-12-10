@@ -139,7 +139,7 @@
 
 		var/matrix/trans = new()
 		trans = trans.Reset()
-		trans.Translate(8, 16)
+		trans.Translate(0, 16)
 		transform = trans
 
 		background = null

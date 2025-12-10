@@ -125,7 +125,7 @@ SYNDICATE DRONE FACTORY AREAS
 					sound_fx_2 = pick('sound/ambience/nature/Rain_ThunderDistant.ogg','sound/ambience/nature/Wind_Cold1.ogg','sound/ambience/nature/Wind_Cold2.ogg','sound/ambience/nature/Wind_Cold3.ogg','sound/ambience/nature/Lavamoon_RocksBreaking1.ogg', 'sound/voice/Zgroan1.ogg', 'sound/voice/Zgroan2.ogg', 'sound/voice/Zgroan3.ogg', 'sound/voice/Zgroan4.ogg', 'sound/voice/animal/werewolf_howl.ogg')
 					for(var/mob/M in src)
 						if (M.client)
-							M.client.playAmbience(src, AMBIENCE_FX_2, 50)
+							M.client.playAmbience(src, AMBIENCE_FX_2, 25)
 
 
 /area/crypt/graveyard/swamp
@@ -688,21 +688,21 @@ SYNDICATE DRONE FACTORY AREAS
 		bleed(user, 5, violent = TRUE)
 		sleep(9 SECONDS)
 		user.visible_message("<span class='alert'><b>[src] violently contracts around [user]!</B></span>")
-		playsound(user.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1, -1)
+		playsound(user.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		random_brute_damage(user, 15)
 		user.emote("scream")
 		take_bleeding_damage(user, null, 0, DAMAGE_STAB, 0)
 		bleed(user, 5, violent = TRUE)
 		sleep(5 SECONDS)
 		user.visible_message("<span class='alert'><b>[src] digs into [user]!</B></span>")
-		playsound(user.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1, -1)
+		playsound(user.loc, 'sound/impact_sounds/Flesh_Stab_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		random_brute_damage(user, 15)
 		user.emote("scream")
 		take_bleeding_damage(user, null, 0, DAMAGE_STAB, 0)
 		bleed(user, 5, violent = TRUE)
 		sleep(5 SECONDS)
 		var/mob/living/carbon/human/H = user
-		playsound(user.loc, 'sound/impact_sounds/Slimy_Hit_4.ogg', 50, 1, -1)
+		playsound(user.loc, 'sound/impact_sounds/Slimy_Hit_4.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		H.visible_message("<span class='alert'><b>[src] absorbs some of [user]'s skin!</b></span>")
 		random_brute_damage(user, 30)
 		H.emote("scream")

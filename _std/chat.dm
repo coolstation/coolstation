@@ -79,7 +79,7 @@
 /datum/tgs_chat_command/reboot
 	name = "reboot"
 	help_text = "<normal|hard|tgs>"
-	admin_only_goon_sucks = TRUE
+	admine_only = TRUE
 
 /datum/tgs_chat_command/reboot/Run(datum/tgs_chat_user/sender, params)
 	if(!params)

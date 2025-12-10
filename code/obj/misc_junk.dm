@@ -312,8 +312,8 @@
 	attack(mob/M as mob, mob/user as mob)
 		src.add_fingerprint(user)
 
-		playsound(M, "sound/musical_instruments/Bikehorn_1.ogg", 50, 1, -1)
-		playsound(M, "sound/misc/boing/[rand(1,6)].ogg", 20, 1)
+		playsound(M, "sound/musical_instruments/Bikehorn_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
+		playsound(M, "sound/misc/boing/[rand(1,6)].ogg", 20, 1, SOUND_RANGE_STANDARD)
 		user.visible_message("<span class='alert'><B>[user] bonks [M] on the head with [src]!</B></span>",\
 							"<span class='alert'><B>You bonk [M] on the head with [src]!</B></span>",\
 							"<span class='alert'>You hear something squeak.</span>")

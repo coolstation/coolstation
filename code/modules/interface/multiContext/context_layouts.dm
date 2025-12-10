@@ -78,7 +78,7 @@ var/list/datum/contextAction/globalContextActions = null
 
 			var/matrix/trans = new()
 			trans = trans.Reset()
-			trans.Translate(offX, offY)
+			trans.Translate(offX + target.pixel_x, offY + target.pixel_y)
 
 			animate(C, alpha=C.unfocus_alpha, transform=trans, easing=CUBIC_EASING, time=5)
 

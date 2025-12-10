@@ -1088,7 +1088,7 @@
 			if(!usable(user)) return
 			if(user.a_intent != INTENT_DISARM) return //only want this to deploy on disarm intent
 			if(master && istype(master, /obj/item/baton) && !master:can_stun())
-				playsound(master, 'sound/weapons/Gunclick.ogg', 50, 0, 0.1, 2)
+				playsound(master, 'sound/weapons/Gunclick.ogg', 50, 0, SOUND_RANGE_STANDARD, 2)
 				return
 
 			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
@@ -1150,7 +1150,7 @@
 			hit.TakeDamage("chest", 0, rand(2 * mult,5 * mult), 0, DAMAGE_BLUNT)
 			hit.bodytemperature += 4 * mult
 
-			playsound(hit, 'sound/effects/electric_shock.ogg', 60, 1, 0.1, 2.8)
+			playsound(hit, 'sound/effects/electric_shock.ogg', 60, 1, SOUND_RANGE_STANDARD, 2.8)
 
 	double
 		cooldown = 0
@@ -1187,7 +1187,7 @@
 						hit = 1
 						break
 				if (!hit)
-					playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 0, 0.1, 1.4)
+					playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 0, SOUND_RANGE_STANDARD, 1.4)
 
 				user.next_click += secondhitdelay
 				SPAWN_DBG(secondhitdelay)
@@ -1202,7 +1202,7 @@
 							hit = 1
 							break
 					if (!hit)
-						playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 0, 0.1, 1.4)
+						playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 0, SOUND_RANGE_STANDARD, 1.4)
 
 				afterUse(user)
 
@@ -1261,7 +1261,7 @@
 				if (hit)
 					E.was_clashed(0)
 				else
-					playsound(master, 'sound/items/miningtool_on.ogg', 30, 0.1, 0, 2)
+					playsound(master, 'sound/items/miningtool_on.ogg', 30, 0.1, SOUND_RANGE_STANDARD, 2)
 
 				afterUse(user)
 			return
@@ -1481,7 +1481,7 @@
 				hit.TakeDamage("chest", 0/*master.force*/, rand(2 * mult,5 * mult), 0, DAMAGE_BLUNT)
 				hit.bodytemperature += 4 * mult
 
-			playsound(hit, 'sound/effects/electric_shock.ogg', 60, 1, 0.1, 2.8)
+			playsound(hit, 'sound/effects/electric_shock.ogg', 60, 1, SOUND_RANGE_STANDARD, 2.8)
 
 	katana_dash
 		cooldown = 30
@@ -2076,7 +2076,7 @@
 				hit = TRUE
 				break
 		if (!hit)
-			playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
+			playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, SOUND_RANGE_STANDARD, 1.4)
 
 		SPAWN_DBG(0)
 			while (hit && H.equipped() == master && current_chain < max_chain)
@@ -2119,7 +2119,7 @@
 						hit = TRUE
 						break
 				if (!hit)
-					playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
+					playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, SOUND_RANGE_STANDARD, 1.4)
 
 			if (current_chain > 1 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the first
 				var/string ="[H] swings \the [master] too hard and loses their balance!"
@@ -2220,7 +2220,7 @@
 
 	proc/was_clashed(var/playsound = 1)
 		if (playsound)
-			playsound(src.loc, 'sound/impact_sounds/Stone_Cut_1.ogg', 50, 0.1, 0, 2)
+			playsound(src.loc, 'sound/impact_sounds/Stone_Cut_1.ogg', 50, 0.1, SOUND_RANGE_STANDARD, 2)
 		var/obj/itemspecialeffect/clash/C = new()
 		C.setup(src.loc)
 
@@ -2376,13 +2376,13 @@
 		was_clashed(var/playsound = 1)
 			..(0)
 			if (playsound)
-				playsound(src.loc, 'sound/impact_sounds/Crystal_Shatter_1.ogg', 50, 0.1, 0, 0.5)
+				playsound(src.loc, 'sound/impact_sounds/Crystal_Shatter_1.ogg', 50, 0.1, SOUND_RANGE_STANDARD, 0.5)
 			qdel(src)
 
 		proc/deactivate()
 			if (src.qdeled || src.pooled)
 				return
-			playsound(src.loc, 'sound/items/miningtool_off.ogg', 30, 0.1, 0, 2)
+			playsound(src.loc, 'sound/items/miningtool_off.ogg', 30, 0.1, SOUND_RANGE_STANDARD, 2)
 			qdel(src)
 
 		Bumped()
@@ -2396,7 +2396,7 @@
 				P.die()
 
 				src.visible_message("<span class='alert'>[src] reflected [Q.name]!</span>")
-				playsound(src.loc, 'sound/impact_sounds/Energy_Hit_1.ogg', 40, 0.1, 0, 2.6)
+				playsound(src.loc, 'sound/impact_sounds/Energy_Hit_1.ogg', 40, 0.1, SOUND_RANGE_STANDARD, 2.6)
 
 				//was_clashed()
 				return

@@ -102,7 +102,6 @@
 	var/item_function_flags = null
 	var/force_use_as_tool = 0
 
-	var/block_hearing_when_worn = HEARING_NORMAL
 	//fuck me mbc why you do this | | ok i did it to reduce type checking in a proc that gets called A LOT and idk what else to do ok help
 	var/block_vision = 0 //cannot see when worn
 	var/needOnMouseMove = 0 //If 1, we check all the stuff required for onMouseMove for this. Leave this off unless required. Might cause extra lag.
@@ -1267,13 +1266,13 @@
 		block_spark(M,armor=1)
 		switch(hit_type)
 			if (DAMAGE_BLUNT)
-				playsound(M, 'sound/impact_sounds/block_blunt.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_blunt.ogg', 50, 1, SOUND_RANGE_STANDARD, pitch=1.5)
 			if (DAMAGE_CUT)
-				playsound(M, 'sound/impact_sounds/block_cut.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_cut.ogg', 50, 1, SOUND_RANGE_STANDARD, pitch=1.5)
 			if (DAMAGE_STAB)
-				playsound(M, 'sound/impact_sounds/block_stab.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_stab.ogg', 50, 1, SOUND_RANGE_STANDARD, pitch=1.5)
 			if (DAMAGE_BURN)
-				playsound(M, 'sound/impact_sounds/block_burn.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_burn.ogg', 50, 1, SOUND_RANGE_STANDARD, pitch=1.5)
 		if(power <= 0)
 			fuckup_attack_particle(user)
 			armor_blocked = 1
@@ -1533,6 +1532,9 @@
 		src.inventory_counter.hide_count()
 	if (special_grab || chokehold)
 		drop_grab()
+
+	if (src.sound_emitter)
+		src.sound_emitter.update_source(src)
 	return
 
 /obj/item/proc/pickup(mob/user)
@@ -1549,6 +1551,8 @@
 		src.inventory_counter.show_count()
 	if (src.c_flags & EQUIPPED_WHILE_HELD)
 		src.equipped(user, user.get_slot_from_item(src))
+	if (src.sound_emitter)
+		src.sound_emitter.update_source(user)
 
 /obj/item/proc/intent_switch_trigger(mob/user)
 	return

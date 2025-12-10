@@ -1,6 +1,6 @@
 var/list/obj/overlay/magindara_fog/magindara_global_fog
 var/global/magindara_surface_loop = 'sound/ambience/loop/magindarawind.ogg' //Z1
-var/global/magindara_surface_loop_volume = 80
+var/global/magindara_surface_loop_volume = 40
 
 /turf/space/magindara
 	name = "ocean below"
@@ -17,6 +17,7 @@ var/global/magindara_surface_loop_volume = 80
 	color = "#ffffff"
 	special_volume_override = -1
 	turf_flags = MINE_MAP_PRESENTS_EMPTY | IS_ATMOSPHERE
+	groups_to_atmosphere = 0
 #ifdef MAGINDARA_MAP
 	oxygen = MOLES_O2MAGINDARA
 	nitrogen = MOLES_N2MAGINDARA
@@ -213,7 +214,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 /client/proc/change_magindaran_weather()
 	set name = "Change Magindaran Weather"
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
-	admin_only
+	ADMIN_ONLY
 
 	var/change_time = input(usr, "Please enter the animation time in deciseconds:","Animation Time", "50") as num
 	var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
@@ -229,7 +230,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 /client/proc/strike_lightning_here()
 	set name = "Strike Lightning Here"
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	admin_only
+	ADMIN_ONLY
 
 	var/power = input(usr, "Please enter the power:","Power", "10") as num
 	var/warning_time = input(usr, "Please enter the warning time (deciseconds):","Warning Time", "60") as num
@@ -275,7 +276,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		sleep(sleep_time)
 		if(QDELETED(target))
 			return
-		playsound(target, 'sound/effects/thunder.ogg', 80, 1, floor(power))
+		playsound(target, 'sound/effects/thunder.ogg', 80, 1, SOUND_RANGE_LARGE)
 		new /obj/decal/lightning(target, rodded ? 64 : 0, color)
 		if(!rodded)
 			explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)

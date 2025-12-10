@@ -723,8 +723,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
 		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.25
-		P.proj_data.shot_sound_extrarange = P.proj_data.shot_sound_extrarange - 11 // this magic number is one third of MAX_SOUND_RANGE
-		playsound(get_turf(gun), 'sound/weapons/silencedshot.ogg', 40 + P.proj_data.shot_volume, extrarange = P.proj_data.shot_sound_extrarange)
+		P.proj_data.shot_sound_range = max(P.proj_data.shot_sound_range - SOUND_RANGE_SMALL, SOUND_RANGE_TINY)
+		playsound(get_turf(gun), 'sound/weapons/silencedshot.ogg', 40 + P.proj_data.shot_volume, range = P.proj_data.shot_sound_range)
 		return ..()
 
 /obj/item/gun_parts/barrel/italian/grenade
@@ -1159,7 +1159,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "alerter"
 
 	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
-		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
+		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 		return ..()
 
 	attack_self(mob/user as mob)

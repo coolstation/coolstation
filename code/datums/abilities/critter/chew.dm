@@ -19,7 +19,7 @@
 		if (GET_DIST(holder.owner, target) > 1)
 			boutput(holder.owner, __red("Get a better bite on that before trying to chew on it!"))
 			return 1
-		playsound(target, "sound/impact_sounds/Flesh_Tear_[rand(1,3)].ogg", 50, 1, -13)
+		playsound(target, "sound/impact_sounds/Flesh_Tear_[rand(1,3)].ogg", 50, 1, SOUND_RANGE_MODERATE)
 		target.TakeDamageAccountArmor("All", src.brute_damage, 0, 0, DAMAGE_CRUSH)
 		holder.owner.visible_message("<span class='combat'><b>[holder.owner] bites [target]!</b></span>", "<span class='combat'>You bite [target]!</span>")
 		return 0
