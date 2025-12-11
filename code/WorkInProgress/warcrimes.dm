@@ -21,7 +21,7 @@ var/doinkssparked = 0
 	icon_state = "fissure"
 
 	Bumped(atom/movable/AM)
-		var/turf/target = pick_landmark("channel fragments")
+		var/turf/target = pick_landmark("channel fragment")
 		if(!target)
 			return
 
