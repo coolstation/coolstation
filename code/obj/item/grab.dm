@@ -98,10 +98,12 @@
 		if (src.disposed)
 			src.set_loc(null)
 
-	set_loc() //never ever ever ever!!!
+	///Grabs shouldn't go *anywhere* except mobs, or I guess the item a mob grabs with :V
+	set_loc()
 		..()
 		if (src.loc && !istype(src.loc, /mob))
-			set_loc(null)
+			if (!assailant.find_in_hand(src.loc)) //fix for item grabs, cause the pathfinding cache demands set_loc now
+				set_loc(null)
 
 	dropped()
 		..()
