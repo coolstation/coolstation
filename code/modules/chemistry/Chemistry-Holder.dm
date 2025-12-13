@@ -773,8 +773,8 @@ datum
 
 				if (!ON_COOLDOWN(my_atom, "internal_fire_1", 6 SECONDS))
 					particleMaster.SpawnSystem(new /datum/particleSystem/internal_combustion_fire(src.my_atom, src.composite_combust_temp, 4))
-
-				if (src.combustible_volume >= 5 && !ON_COOLDOWN(my_atom, "splatter_chem_fire", rand(20,50) - burn_volatility))
+				//must have over 5u to splatter chems, cause if it's 5 exactly at this point and we splatter them all out we end up dividing by a combustible_volume of 0 later
+				if (src.combustible_volume > 5 && !ON_COOLDOWN(my_atom, "splatter_chem_fire", rand(20,50) - burn_volatility))
 					src.my_atom.visible_message("<span class='alert'>[src.my_atom] sprays burning chemicals!</span>", blind_message = "<span class='alert'>You hear a hissing splatter!</span>", group = "splatter_chem_fire_\ref[src]")
 					var/turf/T = get_turf(src.my_atom)
 					if(issimulatedturf(T))
