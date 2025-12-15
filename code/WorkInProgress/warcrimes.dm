@@ -19,9 +19,14 @@ var/doinkssparked = 0
 	alpha = 200
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "fissure"
+	var/turf/target
+
+	New()
+		..()
+		target = pick_landmark("channel fragment")
 
 	Bumped(atom/movable/AM)
-		var/turf/target = pick_landmark("channel fragment")
+
 		if(!target)
 			return
 
@@ -31,6 +36,10 @@ var/doinkssparked = 0
 		trgar.Entered(AM, AM.loc)
 
 		AM.set_loc(target)
+
+		if(prob(5))
+			src.visible_message("the fissure collapses...")
+			qdel(src)
 
 /obj/death_button/immersive
 	name = "Button that simulates the Coolstation Experience"
