@@ -635,7 +635,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 /datum/controller/gameticker/proc/declare_completion()
 
-	world.TgsTriggerEvent("tg-Roundend", wait_for_completion = TRUE)
+	world.TgsTriggerEvent("cool-exciting-roundend", wait_for_completion = TRUE)
 
 	//End of round statistic collection for goonhub
 
