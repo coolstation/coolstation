@@ -548,7 +548,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 				decoded = text2num(cloud_get("icon_size")) //Not the var on world, but the icon scaling on the player's window
 				if (!isnull(decoded))
-					if (!(decoded in list(0, 128, 64, 56, 32)))
+					if (!(decoded in list(0, 512, 256, 128, 96, 64, 32)))
 						decoded = 0 //reset to stretch to fit
 					winset(src, null, "mapwindow.map.icon-size=[decoded]")
 
