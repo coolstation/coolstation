@@ -1651,8 +1651,16 @@ ABSTRACT_TYPE(/area/station/atmos/hookups)
 /area/station/atmos/hookups/east
 	name = "East Air Hookups"
 
+	external
+		name = "East External Air Hookups"
+		ambient_light = "#404058"
+
 /area/station/atmos/hookups/west
 	name = "West Air Hookups"
+
+	external
+		name = "West External Air Hookups"
+		ambient_light = "#404058"
 
 /area/station/atmos/hookups/north
 	name = "North Air Hookups"

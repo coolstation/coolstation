@@ -302,6 +302,7 @@
 	icon_state = "lattice" //shiny blue-grey (also lattice-dir and lattice-dir-b)
 	//Old-style sprites are also available (icon states lattice_grey, lattice_grey-dir and lattice_grey-dir-b)
 	//Seems like all existing lattices are varedited to get the other icon states
+	var/connect = TRUE //manual override for autoconnect
 
 	var/icon_base = "lattice"
 
@@ -385,6 +386,7 @@
 		..()
 
 /obj/lattice/proc/autoconnect(propagate = FALSE)
+	if(!connect) return
 	var/connect_dirs = 0
 	for(var/D in cardinal)
 		var/turf/T = get_step(src, D)
