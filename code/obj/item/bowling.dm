@@ -64,7 +64,7 @@
 								src.hitHard(hitMob, user)
 
 								if(!(hitMob == user))
-									user.say(pick("Who's the kingpin now, baby?", "STRIIIKE!", "Watch it, pinhead!", "Ten points!", "Who do you think you are? I am!", "Yes! God Damn It! Yes!", "That is right I did it!", "Are you kidding me? That's right!", "Damn it right!"))
+									user.say(pick("Who's the kingpin now, baby?", "STRIIIKE!", "Watch it, pinhead!", "Ten points!", "Who do you think you are? I am!", "Yes! God Damn It! Yes!", "That is right I did it!", "Are you kidding me? That's right!", "Damn it right!", "I strike all and spare none!"))
 							else
 								src.hitWeak(hitMob, user)
 						else
