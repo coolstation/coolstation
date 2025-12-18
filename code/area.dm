@@ -1335,6 +1335,24 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
 	sound_loop_2_vol = 40
 
+/area/debris
+	name = "debris field"
+	icon_state = "green"
+
+/area/debris/harmacy
+	name = "the harmacy"
+
+/area/debris/yuletide
+	name = "merryment"
+
+/area/debris/falserock
+	name = "false asteroid"
+
+/area/debris/pee
+	name = "pee pee"
+	icon_state = "yellow"
+
+
 // Gore's Z5 Space generation areas //
 ABSTRACT_TYPE(/area/prefab)
 /area/prefab
