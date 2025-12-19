@@ -61,29 +61,33 @@ proc/scrapperPayout(var/list/preWork,var/list/postWork) //TODO: ignore space til
 	shipyardship_pre_densitymap = list()
 	shipyardship_post_densitymap = list()
 
-proc/prepShips(var/area/stagearea,var/area/start_location,var/area/end_location) //not efficient
+proc/prepShips(var/area/stagearea,var/area/shipyard,var/obj/machinery/computer/shipyard_control/comp)
+	clear_area(stagearea)
+	shuffle_list(by_type[/obj/landmark/random_ship])
+	for_by_tcl(landmark, /obj/landmark/random_ship)
+		landmark.apply()
+	shuffle_list(by_type[/obj/landmark/random_ship_room])
+	for_by_tcl(landmark, /obj/landmark/random_ship_room)
+		landmark.apply()
 	if(prob(60))
 		explode_area(stagearea,rand(60,190),rand(1,3))
 	SPAWN_DBG(7 SECONDS)
 		shipyardship_pre_densitymap = calculate_density_map(stagearea)
-		start_location.move_contents_to(end_location)
+		stagearea.move_contents_to(shipyard)
 		shipyardship_location = 1
+		comp.active = 0
 
-proc/processShips(var/area/shipyard)
+proc/processShips(var/area/stagearea,var/area/shipyard,var/obj/machinery/computer/shipyard_control/comp)
 	command_announcement("Shipyard decontamination process underway, please vacate the shipyard immediately.", "Shipyard Control Alert","sound/machines/engine_alert2.ogg")
 	shipyardship_post_densitymap = calculate_density_map(shipyard)
 	SPAWN_DBG(10 SECONDS)
 		playsound_global(world, "sound/effects/radio_sweep5.ogg", 50)
 		//gib_area(shipyard)
 		scrapperPayout(shipyardship_pre_densitymap,shipyardship_post_densitymap)
+		shipyard.move_contents_to(stagearea)
+		shipyardship_location = 0
+		comp.active = 0
 
-proc/buildRandomShips()
-	shuffle_list(by_type[/obj/landmark/random_ship])
-	for_by_tcl(landmark, /obj/landmark/random_ship)
-		landmark.apply()
-	shuffle_list(by_type[/obj/landmark/random_ship_room]) //this happens twice, as the first landmark would be the 30x25 which then introduces many other ship landmarks that must be generated
-	for_by_tcl(landmark, /obj/landmark/random_ship_room)
-		landmark.apply()
 
 /obj/landmark/random_ship_room
 	var/size = null

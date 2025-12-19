@@ -185,10 +185,10 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "powerbank-dead"
 	amount_per_transfer_from_this = 0
-	capacity = 1500
+	capacity = 500
 	can_break = TRUE
-	var/charge = 1500
-	var/max_charge = 1500
+	var/charge = 500
+	var/max_charge = 500
 	var/cable_active = FALSE
 	var/obj/connected_device
 

@@ -303,6 +303,7 @@ var/global
 	shipyardship_pre_densitymap = list()
 	shipyardship_post_densitymap = list()
 	shipyard_scrapwall_prob = 40
+	shipyard_underway = 0
 	toggles_enabled = 1
 	announce_banlogin = 1
 	announce_jobbans = 0
