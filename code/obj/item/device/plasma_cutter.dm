@@ -25,6 +25,8 @@
 	var/time_cut_wall = 3 SECONDS
 	var/active = 0
 	var/accident_prob = 25 //higher chance of hurting yourself when fucking up with the plasma cutter- higher probabilities also increase the chance of severing limbs.
+	var/cable_length = 4
+	var/turf/last_loc
 
 	examine()
 		. = ..()
@@ -51,6 +53,7 @@
 				runout(M)
 		if (get_power() <= 0)
 			runout(M)
+
 
 	attack_self(mob/user)
 		tooltip_rebuild = 1
@@ -109,9 +112,23 @@
 
 	proc/connect(var/obj/reagent_dispensers/powerbank/pb)
 		powerbank = pb
-		//update powerbank
+		pb.connected(src)
+
+		SPAWN_DBG(0 SECONDS)
+			while (powerbank)
+				var/pbank_dist = GET_DIST(src,powerbank)
+				if (pbank_dist > cable_length)
+					if (istype(src.loc,/mob/))
+						var/mob/holder = src.loc
+						boutput(holder, "<span class='alert'>The cable reaches its length and the cutter is pulled out of your hands!</span>")
+						holder.drop_item(src)
+						walk_to(src, last_loc, 0, 0.3 SECONDS,0)
+				else
+					last_loc = get_turf(src)
+				sleep(0.2)
 
 	proc/disconnect()
+		powerbank.disconnected()
 		powerbank = null
 		//update powerbank
 
