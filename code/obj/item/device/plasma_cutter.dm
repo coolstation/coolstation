@@ -220,18 +220,32 @@
 			T.setMaterial(getMaterial("steel"))
 			boutput(user, "<span class='alert'>You slice through the reinforcing of the wall.</span>")
 			log_construction(user, "deconstructs a reinforced wall into a normal wall ([T])")
+			if (prob(60))
+				var/obj/item/scrap/I = new /obj/item/scrap
+				I.set_loc(target)
+				I.setMaterial(getMaterial(target.material))
+				I.set_components(0.5,0,0.1)
 			return
 
 		if (istype(target,/turf/wall))
 			var/turf/floor/T = target:ReplaceWithFloor()
 			boutput(user, "<span class='alert'>You cut through the wall.</span>")
 			log_construction(user, "deconstructs a wall ([T])")
+			if (prob(90))
+				var/obj/item/scrap/I = new /obj/item/scrap
+				I.set_loc(target)
+				I.setMaterial(getMaterial(target.material))
+				I.set_components(0.5,0,0.1)
 			return
 
 		if (istype(target, /turf/floor))
 			log_construction(user, "removes flooring ([target])")
 			target:ReplaceWithSpace()
 			boutput(user, "<span class='alert'>You slice through the floor.</span>")
+			var/obj/item/scrap/I = new /obj/item/scrap
+			I.set_loc(target)
+			I.setMaterial(getMaterial(target.material))
+			I.set_components(0.5,0,0.1)
 			return
 
 		if (istype(target, /obj/machinery/door))

@@ -40,12 +40,6 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/engine,
 /area/dmm_suite/clear_area)
-"iQ" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/floor/plating/random,
-/area/dmm_suite/clear_area)
 "lx" = (
 /obj/machinery/door/poddoor/blast{
 	dir = 4;
@@ -186,18 +180,10 @@
 /turf/floor/engine,
 /area/dmm_suite/clear_area)
 "CM" = (
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+/obj/decal/fakeobjects/lighttube_broken{
+	dir = 4
 	},
 /turf/floor/grime,
-/area/dmm_suite/clear_area)
-"Dv" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/random_item_spawner/junk/one,
-/turf/floor/engine,
 /area/dmm_suite/clear_area)
 "EW" = (
 /obj/random_item_spawner/hat/maybe_few,
@@ -224,8 +210,8 @@
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
 "Gk" = (
-/obj/machinery/light,
 /obj/random_item_spawner/shoe,
+/obj/decal/fakeobjects/lighttube_broken,
 /turf/floor/engine,
 /area/dmm_suite/clear_area)
 "Gp" = (
@@ -258,12 +244,12 @@
 /turf/floor/plating/random,
 /area/dmm_suite/clear_area)
 "NQ" = (
-/obj/machinery/light/small,
 /obj/decal/cleanable/dirt/random,
+/obj/decal/fakeobjects/lightbulb_broken,
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
 "NX" = (
-/obj/machinery/light/small,
+/obj/decal/fakeobjects/lightbulb_broken,
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
 "Rq" = (
@@ -278,38 +264,25 @@
 "St" = (
 /obj/table/wood/auto,
 /obj/machinery/microwave,
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+/obj/decal/fakeobjects/lighttube_broken{
+	dir = 4
 	},
 /turf/floor/grime,
-/area/dmm_suite/clear_area)
-"SF" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/floor/engine,
 /area/dmm_suite/clear_area)
 "SO" = (
 /obj/computer3frame,
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
 "TP" = (
-/obj/machinery/light{
+/obj/decal/fakeobjects/lighttube_broken{
 	dir = 8
 	},
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
 "Xk" = (
-/obj/machinery/light,
 /obj/random_item_spawner/junk/one,
+/obj/decal/fakeobjects/lighttube_broken,
 /turf/floor/engine,
-/area/dmm_suite/clear_area)
-"XM" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/floor/plating/random,
 /area/dmm_suite/clear_area)
 "XN" = (
 /obj/machinery/light/small{
@@ -401,7 +374,7 @@ rJ
 wR
 ck
 sV
-XM
+eL
 eL
 qR
 Yv
@@ -468,7 +441,7 @@ GC
 cH
 NX
 ck
-SF
+di
 hH
 di
 di
@@ -621,7 +594,7 @@ pj
 cH
 NQ
 ck
-Dv
+di
 hH
 di
 bg
@@ -690,7 +663,7 @@ cy
 gS
 ck
 eL
-iQ
+eL
 Nx
 mo
 Yv
