@@ -80,7 +80,7 @@
 				boutput(user, "<span class='notice'>The cutter is already connected to a power source!</span>")
 			else
 				//connect
-								connect(target)
+				connect(target)
 				boutput(user, "<span class='notice'>You connect [src] to [src.powerbank].</span>")
 				user.visible_message("<span class='notice'>[user] connects [src] to [src.powerbank].</span>")
 				deactivate(user)
@@ -297,7 +297,7 @@
 			interrupt(INTERRUPT_ALWAYS)
 		//sounds
 		boutput(owner, "<span class='notice'>You start to slice through [target].</span>")
-		playsound(src.loc,"sounds/effects/Welder.ogg", 65, 1,pitch=0.8)
+		playsound(src,"sounds/effects/Welder.ogg", 65, 1,pitch=0.8)
 
 	onInterrupt(var/flag)
 		..()
