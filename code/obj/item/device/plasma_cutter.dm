@@ -137,6 +137,7 @@
 		item_state = "cutter-on"
 		active = 1
 		hit_type = DAMAGE_BURN
+		playsound(src.loc, "sound/effects/welder_ignite.ogg",70,5,pitch=0.7)
 		if(user)
 			user.update_inhands()
 
@@ -225,7 +226,7 @@
 				I.set_loc(target)
 				I.setMaterial(getMaterial(target.material))
 				I.set_components(0.5,0,0.1)
-			return
+
 
 		if (istype(target,/turf/wall))
 			var/turf/floor/T = target:ReplaceWithFloor()
@@ -236,7 +237,7 @@
 				I.set_loc(target)
 				I.setMaterial(getMaterial(target.material))
 				I.set_components(0.5,0,0.1)
-			return
+
 
 		if (istype(target, /turf/floor))
 			log_construction(user, "removes flooring ([target])")
@@ -246,14 +247,16 @@
 			I.set_loc(target)
 			I.setMaterial(getMaterial(target.material))
 			I.set_components(0.5,0,0.1)
-			return
+
 
 		if (istype(target, /obj/machinery/door))
 			log_construction(user, "removes door ([target])")
 			var/obj/machinery/door/door = target
 			door.break_me_complitely()//6 year old typo lmoa
 			boutput(user, "<span class='alert'>You slice through the door!</span>")
-			return
+
+		playsound(src.loc,"sounds/effects/Welder2.ogg", 65, 1,pitch=0.8)
+		return
 
 //action bars
 
@@ -294,6 +297,7 @@
 			interrupt(INTERRUPT_ALWAYS)
 		//sounds
 		boutput(owner, "<span class='notice'>You start to slice through [target].</span>")
+		playsound(src.loc,"sounds/effects/Welder.ogg", 65, 1,pitch=0.8)
 
 	onInterrupt(var/flag)
 		..()
@@ -333,6 +337,7 @@
 			else
 				source.TakeDamage("All",50,0,0,DAMAGE_CUT,0)
 				boutput(source, "<span class='alert'>You fuck up and cut yourself with the cutter!</span>")
+			playsound(owner.loc,"sound/impact_sounds/Flesh_Tear_3.ogg", 65, 1)
 
 	onEnd()
 		..()
