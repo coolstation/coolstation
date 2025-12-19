@@ -123,9 +123,7 @@
 						var/mob/holder = src.loc
 						boutput(holder, "<span class='alert'>The cable reaches its length and the cutter is pulled out of your hands!</span>")
 						holder.drop_item(src)
-						walk_to(src, last_loc, 0, 0.3 SECONDS,0)
-				else
-					last_loc = get_turf(src)
+						step_to(src,powerbank.loc,1,0)
 				sleep(0.1)
 
 	proc/disconnect()
@@ -256,7 +254,7 @@
 			door.break_me_complitely()//6 year old typo lmoa
 			boutput(user, "<span class='alert'>You slice through the door!</span>")
 
-		playsound(src.loc,"sounds/items/Welder2.ogg", 65, 1,pitch=0.8)
+		playsound(src.loc,"sound/items/Welder2.ogg", 65, 1,pitch=0.8)
 		return
 
 //action bars
