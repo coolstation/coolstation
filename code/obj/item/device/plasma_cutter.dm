@@ -123,7 +123,7 @@
 						var/mob/holder = src.loc
 						boutput(holder, "<span class='alert'>The cable reaches its length and the cutter is pulled out of your hands!</span>")
 						holder.drop_item(src)
-						step_to(src,powerbank.loc,1,0)
+					walk_to(src,powerbank.loc,1,0.2 SECONDS,0)
 				sleep(0.1)
 
 	proc/disconnect()
