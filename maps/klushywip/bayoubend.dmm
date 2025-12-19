@@ -1797,7 +1797,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor,
+/turf/floor/plating/random,
 /area/station/turret_protected/Zeta)
 "bur" = (
 /obj/machinery/light/small/harsh/very{
@@ -5151,9 +5151,6 @@
 	layer = 3.5;
 	pixel_y = -24
 	},
-/obj/machinery/light/fluorescent/greenish{
-	dir = 8
-	},
 /turf/floor/green/side{
 	dir = 10
 	},
@@ -7305,7 +7302,8 @@
 	icon_state = "1-4"
 	},
 /obj/cable,
-/turf/floor/green/side,
+/obj/machinery/light/fluorescent/red,
+/turf/floor/circuit/vintage,
 /area/station/turret_protected/Zeta)
 "fwa" = (
 /obj/stool/bed,
@@ -8318,9 +8316,7 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/turf/floor/green/side{
-	dir = 5
-	},
+/turf/floor/circuit/vintage,
 /area/station/turret_protected/Zeta)
 "gke" = (
 /obj/machinery/door/window/southleft,
@@ -11191,6 +11187,9 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/solar/north)
+"ihT" = (
+/turf/floor/stairs,
+/area/station/hallway/primary/north)
 "iih" = (
 /obj/cable{
 	d1 = 1;
@@ -12162,6 +12161,9 @@
 	},
 /turf/floor/wood/seven,
 /area/station/library)
+"iRv" = (
+/turf/floor/stairs,
+/area/station/hallway/primary/south)
 "iRJ" = (
 /obj/cable/yellow{
 	icon_state = "1-2"
@@ -13568,7 +13570,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor,
+/turf/floor/plating/random,
 /area/station/turret_protected/Zeta)
 "jWt" = (
 /obj/machinery/firealarm{
@@ -14319,9 +14321,7 @@
 /obj/cable{
 	icon_state = "0-2"
 	},
-/turf/floor/green/side{
-	dir = 4
-	},
+/turf/floor/circuit/vintage,
 /area/station/turret_protected/Zeta)
 "kwi" = (
 /obj/table/wood/auto/desk,
@@ -15295,9 +15295,7 @@
 	pixel_x = 7;
 	pixel_y = -1
 	},
-/turf/floor/green/side{
-	dir = 1
-	},
+/turf/floor/circuit/vintage,
 /area/station/turret_protected/Zeta)
 "ljb" = (
 /obj/cable{
@@ -17899,7 +17897,7 @@
 	name = "Evidence"
 	})
 "nhz" = (
-/turf/floor,
+/turf/floor/plating/random,
 /area/station/turret_protected/Zeta)
 "nhB" = (
 /obj/stool/chair/wooden,
@@ -18558,7 +18556,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/floor,
+/turf/floor/plating/random,
 /area/station/turret_protected/Zeta)
 "nMa" = (
 /obj/wingrille_spawn/reinforced,
@@ -21841,9 +21839,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/turf/floor/green/side{
-	dir = 4
-	},
+/turf/floor/circuit/vintage,
 /area/station/turret_protected/Zeta)
 "pYh" = (
 /turf/floor/circuit/off,
@@ -23252,9 +23248,10 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
-/turf/floor/green/side{
+/obj/machinery/light/fluorescent/red{
 	dir = 1
 	},
+/turf/floor/circuit/vintage,
 /area/station/turret_protected/Zeta)
 "qVd" = (
 /obj/machinery/clone_scanner,
@@ -28002,6 +27999,14 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/southeast)
+"uqW" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/stairs,
+/area/station/hallway/primary/north)
 "urC" = (
 /obj/decal/tile_edge/line/black{
 	icon_state = "line1"
@@ -28148,12 +28153,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/light/fluorescent/greenish{
-	dir = 8
-	},
-/turf/floor/green/side{
-	dir = 9
-	},
+/turf/floor/circuit/vintage,
 /area/station/turret_protected/Zeta)
 "uyY" = (
 /obj/machinery/door/airlock/maintenance,
@@ -30228,6 +30228,13 @@
 /obj/machinery/light/fluorescent/ceiling/warm,
 /turf/floor,
 /area/station/hallway/primary/south)
+"wdu" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment,
+/turf/floor/stairs,
+/area/station/hallway/primary/south)
 "wdw" = (
 /obj/machinery/light_switch/south,
 /obj/decal/cleanable/dirt/random,
@@ -30285,9 +30292,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/floor/green/side{
-	dir = 6
-	},
+/turf/floor/circuit/vintage,
 /area/station/turret_protected/Zeta)
 "whm" = (
 /obj/stool/chair/office/purple,
@@ -30621,7 +30626,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/light_switch/south,
-/turf/floor/green/side,
+/turf/floor/circuit/vintage,
 /area/station/turret_protected/Zeta)
 "wsJ" = (
 /obj/machinery/computer/atmosphere/mixercontrol{
@@ -31801,6 +31806,12 @@
 	},
 /turf/space,
 /area/station/shipyard)
+"xmR" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 1
+	},
+/turf/floor/stairs,
+/area/station/hallway/primary/north)
 "xnM" = (
 /obj/table/wood/auto,
 /obj/item/pen/crayon/golden{
@@ -61603,7 +61614,7 @@ ium
 ium
 kqF
 jYD
-jYD
+wdu
 jYD
 jYD
 jYD
@@ -61905,7 +61916,7 @@ qLH
 rty
 vok
 dXU
-dXU
+iRv
 bwf
 dXU
 dXU
@@ -70620,7 +70631,7 @@ wzh
 xJQ
 xJQ
 xJQ
-xJQ
+xmR
 rya
 qnP
 eRS
@@ -70922,7 +70933,7 @@ vum
 vum
 vum
 vum
-vum
+ihT
 bMQ
 iKR
 qBM
@@ -78169,7 +78180,7 @@ xPS
 xPS
 oob
 xPS
-xPS
+uqW
 xPS
 mMp
 vum
@@ -78471,7 +78482,7 @@ vum
 vum
 vum
 vum
-vum
+ihT
 vum
 lFz
 lFz
