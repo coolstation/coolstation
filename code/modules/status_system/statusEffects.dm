@@ -877,7 +877,7 @@
 			counter += timePassed
 			if (counter >= count && owner && !owner.hasStatus(list("weakened", "paralysis")) )
 				counter -= count
-				playsound(owner, sound, 17, 1, 0.4, 1.6)
+				playsound(owner, sound, 17, 1, SOUND_RANGE_MODERATE, 1.6)
 				violent_twitch(owner)
 			. = ..(timePassed)
 
@@ -898,7 +898,7 @@
 			counter += timePassed
 			if (counter >= count && owner)
 				counter -= count
-				playsound(owner, sound, 17, 1, 0.4, 1.6)
+				playsound(owner, sound, 17, 1, SOUND_RANGE_MODERATE, 1.6)
 				violent_twitch(owner)
 			. = ..(timePassed)
 
@@ -1699,6 +1699,32 @@
 		else
 			P.create_overlay("smear2", "#ff8820", direct, 'icons/obj/decals/blood.dmi')
 
+
+/client/var/crab
+
+/datum/statusEffect/crab
+	id = "crab"
+	name = "Crabbed"
+	desc = "A CRAB IS PINCHING YOUR PENIS!"
+	icon_state = "crab"
+	unique = TRUE
+	maxDuration = 30 MINUTES
+
+	onAdd(optional)
+		. = ..()
+		if (!ishuman(owner)) return
+		boutput(owner,"Oh fuck. OH CHRIST.")
+		var/client/C = owner:client
+		if(istype(C))
+			C.crab = TRUE
+
+	onRemove()
+		. = ..()
+		var/client/C = owner:client
+		if(istype(C))
+			C.crab = FALSE
+		boutput(owner,"Oh thank god that's over with.")
+
 /datum/statusEffect/magnetized
 	id = "magnetized"
 	name = "Magnetized"
@@ -1854,7 +1880,7 @@
 			if (prob(10) && ismob(owner))
 				var/mob/victim = owner
 				victim.emote(pick("cough", "blink"))
-			playsound(owner, sound, 17, TRUE, 0.4, 1.6)
+			playsound(owner, sound, 17, TRUE, SOUND_RANGE_MODERATE, 1.6)
 			violent_twitch(owner)
 		. = ..(timePassed)
 

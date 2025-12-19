@@ -8,7 +8,6 @@
 	w_class = W_CLASS_TINY
 	wear_layer = MOB_EARS_LAYER
 	throwforce = 2
-	block_hearing_when_worn = HEARING_BLOCKED
 
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
@@ -16,6 +15,22 @@
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
 	protective_temperature = 500
+
+	equipped(mob/user, slot)
+		. = ..()
+		if(slot == SLOT_EARS)
+			user.ear_protected++
+
+	unequipped(mob/user)
+		if(src.equipped_in_slot == SLOT_EARS)
+			user.ear_protected--
+		. = ..()
+
+	disposing()
+		if(src.equipped_in_slot == SLOT_EARS && ismob(src.loc))
+			var/mob/M = src.loc
+			M.ear_protected--
+		. = ..()
 
 	setupProperties()
 		..()
@@ -34,12 +49,12 @@
 		setProperty("coldprot", 0)
 		setProperty("disorient_resist_ear", 100)
 
-/obj/item/clothing/ears/earmuffs/yeti
-	name = "yeti-fur earmuffs"
+/obj/item/clothing/ears/yeti_warmers
+	name = "yeti-fur earwarmers"
 	desc = "Keeps you warm without making it hard to hear."
 	icon_state = "yetiearmuffs"
 	item_state = "yetiearmuffs"
-	block_hearing_when_worn = HEARING_NORMAL
+	protective_temperature = 500
 
 	setupProperties()
 		..()

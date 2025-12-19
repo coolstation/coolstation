@@ -550,6 +550,9 @@
 			NewLoc = get_step(src, direct)
 		if(isturf(NewLoc))
 			src.set_loc(NewLoc)
+		#ifdef COMSIG_MOVABLE_MOVED
+		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, A, direct) // i THINK we want this, so components can fire on ghosts and such
+		#endif
 	else
 		. = ..()
 		if (A != src.loc &&  !src.skip_loc_change_updates)
@@ -577,25 +580,25 @@
 						covered_turf.turf_persistent.checkingexit--
 						#ifdef TURF_CHECKING_VALUES_DEBUG
 						if(covered_turf.turf_persistent.checkingexit < 0)
-							message_coders("DEBUG: checkingexit value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+							DEBUG_MESSAGE("DEBUG: checkingexit value set below 0 by Move at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
 						#endif
 					if (src.event_handler_flags & USE_CANPASS || src.density)
 						covered_turf.turf_persistent.checkingcanpass--
 						#ifdef TURF_CHECKING_VALUES_DEBUG
 						if(covered_turf.turf_persistent.checkingcanpass < 0)
-							message_coders("DEBUG: checkingcanpass value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+							DEBUG_MESSAGE("DEBUG: checkingcanpass value set below 0 by Move at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
 						#endif
 					if (src.event_handler_flags & USE_HASENTERED)
 						covered_turf.turf_persistent.checkinghasentered--
 						#ifdef TURF_CHECKING_VALUES_DEBUG
 						if(covered_turf.turf_persistent.checkinghasentered < 0)
-							message_coders("DEBUG: checkinghasentered value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+							DEBUG_MESSAGE("DEBUG: checkinghasentered value set below 0 by Move at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
 						#endif
 					if (src.event_handler_flags & USE_PROXIMITY)
 						covered_turf.checkinghasproximity--
 						#ifdef TURF_CHECKING_VALUES_DEBUG
 						if(covered_turf.checkinghasproximity < 0)
-							message_coders("DEBUG: checkinghasproximity value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+							DEBUG_MESSAGE("DEBUG: checkinghasproximity value set below 0 by Move at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
 						#endif
 
 			if (isturf(src.loc))
@@ -716,10 +719,7 @@
 	if (isitem(src) && src.blood_DNA)
 		. = list("<span class='alert'>This is a bloody [src.name].</span>")
 		if (src.desc)
-			if (src.desc && src.blood_DNA == "--conductive_substance--")
-				. += "<br>[src.desc] <span class='alert'>It seems to be covered in an odd azure liquid!</span>"
-			else
-				. += "<br>[src.desc] <span class='alert'>It seems to be covered in blood!</span>"
+			. += "<br>[src.desc] <span class='alert'>It seems to be covered in blood!</span>"
 	else if (src.desc)
 		. += "<br>[src.desc]"
 
@@ -986,25 +986,25 @@
 						covered_turf.turf_persistent.checkingexit--
 						#ifdef TURF_CHECKING_VALUES_DEBUG
 						if(covered_turf.turf_persistent.checkingexit < 0)
-							message_coders("DEBUG: checkingexit value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+							DEBUG_MESSAGE("DEBUG: checkingexit value set below 0 by set_loc at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
 						#endif
 					if (src.event_handler_flags & USE_CANPASS || src.density)
 						covered_turf.turf_persistent.checkingcanpass--
 						#ifdef TURF_CHECKING_VALUES_DEBUG
 						if(covered_turf.turf_persistent.checkingcanpass < 0)
-							message_coders("DEBUG: checkingcanpass value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+							DEBUG_MESSAGE("DEBUG: checkingcanpass value set below 0 by set_loc at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
 						#endif
 					if (src.event_handler_flags & USE_HASENTERED)
 						covered_turf.turf_persistent.checkinghasentered--
 						#ifdef TURF_CHECKING_VALUES_DEBUG
 						if(covered_turf.turf_persistent.checkinghasentered < 0)
-							message_coders("DEBUG: checkinghasentered value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+							DEBUG_MESSAGE("DEBUG: checkinghasentered value set below 0 by set_loc at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
 						#endif
 					if (src.event_handler_flags & USE_PROXIMITY)
 						covered_turf.checkinghasproximity--
 						#ifdef TURF_CHECKING_VALUES_DEBUG
 						if(covered_turf.checkinghasproximity < 0)
-							message_coders("DEBUG: checkinghasproximity value set below 0 at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
+							DEBUG_MESSAGE("DEBUG: checkinghasproximity value set below 0 by set_loc at [showCoords(covered_turf.x, covered_turf.y, covered_turf.z)]")
 						#endif
 
 		if (isturf(src.loc))

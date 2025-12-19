@@ -1,7 +1,7 @@
 /*
  * Hey! You!
  * Remember to mirror your changes (unless you use the [DEFINE_FLOORS] macro)
- * floors_unsimulated.dm & floors_airless.dm
+ * floors_airless.dm
  */
 
 /turf/floor
@@ -917,6 +917,33 @@ DEFINE_FLOORS(marble/border_wb,
 
 	event_handler_flags = IMMUNE_SINGULARITY_INACTIVE
 
+/turf/floor/engine/oxygen
+	oxygen = MOLES_N2STANDARD * 200
+	nitrogen = 0
+
+/turf/floor/engine/nitrogen
+	oxygen = 0
+	nitrogen = MOLES_N2STANDARD * 200
+
+/turf/floor/engine/plasma
+	oxygen = 0
+	nitrogen = 0
+	toxins = MOLES_N2STANDARD * 200
+
+/turf/floor/engine/farts
+	oxygen = 0
+	nitrogen = 0
+	farts = MOLES_N2STANDARD * 200
+
+/turf/floor/engine/carbon
+	oxygen = 0
+	nitrogen = 0
+	carbon_dioxide = MOLES_N2STANDARD * 200
+
+/turf/floor/engine/air_tank
+	oxygen = MOLES_O2STANDARD * 100
+	nitrogen = MOLES_N2STANDARD * 100
+
 /turf/floor/engine/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
@@ -1335,6 +1362,10 @@ DEFINE_FLOORS(snowrough/border,
 	allows_vehicles = 1
 	burnt = UNBURNABLE_TURF
 	permadirty = 1
+
+/turf/floor/diagonal
+	name = "floor tile"
+	icon_state = "diagonal"
 
 /////////////////////////////////////////
 

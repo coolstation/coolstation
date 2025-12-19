@@ -198,6 +198,21 @@
 	playsound(user, "sound/voice/moth/scream_moth.ogg", 50, 1)
 	src.audible_message("<span class='emote'>[src] screams!</span>")
 
+/obj/item/material_piece/cloth/mothroachhide/attackby(obj/item/W as obj, mob/user as mob) //moth plush construction using a heart and mothroach hide
+	if (istype(W, /obj/item/organ/heart))
+		var/obj/item/organ/heart/C = W
+		boutput(user, "<span class='notice'>You begin adding \the [C.name] to \the [src.name].</span>")
+		if (!do_after(user, 3 SECONDS))
+			boutput(user, "<span class='alert'>You were interrupted!</span>")
+			return ..()
+		else
+			user.drop_item()
+			var/obj/item/toy/plush/small/moth/N = new /obj/item/toy/plush/small/moth/(get_turf(src))
+			src.change_stack_amount(-1)
+			qdel(C)
+			boutput(user, "You have successfully created \a [N]!")
+	return ..()
+
 /obj/item/toy/plush/small/bunny
 	name = "bunny plush toy"
 	icon_state = "bunny"

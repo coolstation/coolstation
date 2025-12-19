@@ -423,7 +423,7 @@ ABSTRACT_TYPE(/obj/submachine)
 		if(A1) A1.machines -= src
 		if(A2) A2.machines += src
 
-/obj/machinery/Move(atom/target)
+/obj/machinery/Move(atom/target, direct)
 	var/area/A1 = get_area(src)
 	. = ..()
 	var/area/A2 = get_area(src)

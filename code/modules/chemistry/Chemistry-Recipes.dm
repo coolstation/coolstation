@@ -2591,7 +2591,7 @@ datum
 					for (var/mob/living/M in all_hearers(world.view, location))
 						if (isintangible(M))
 							continue
-						if (!M.ears_protected_from_sound())
+						if (!cant_hear(M))
 							boutput(M, "<span class='alert'><b>[hootmode ? "HOOT" : "BANG"]</b></span>")
 
 						var/checkdist = get_dist(M, location)
@@ -2620,7 +2620,7 @@ datum
 						for (var/mob/living/M in all_hearers(world.view, location))
 							if (isintangible(M))
 								continue
-							if (!M.ears_protected_from_sound())
+							if (!cant_hear(M))
 								boutput(M, "<span class='alert'><b>[hootmode ? "HOOT" : "BANG"]</b></span>")
 
 							var/checkdist = get_dist(M, location)

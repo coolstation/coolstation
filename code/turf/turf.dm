@@ -636,8 +636,8 @@
 	if (my_area.filler_turf)
 		floor = ReplaceWith(my_area.filler_turf)
 
-	else if (istype(my_area, /area/shuttle))
-		floor = ReplaceWith(/turf/floor/plating/random)
+	//else if (istype(my_area, /area/shuttle))
+	//	floor = ReplaceWith(/turf/floor/plating/random)
 
 	else if (map_currently_above_magindara)
 		switch(src.z)

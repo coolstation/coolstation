@@ -58,6 +58,16 @@
 	MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, "[alarm_frequency]")
 
 	update_icon()
+	setup_sound()
+
+/obj/machinery/firealarm/setup_sound()
+	sound_emitter = new(src)
+	if (sound_emitter)
+		var/sound/alarm = sound()
+		alarm.file = "sound/machines/firealarm.ogg"
+		alarm.repeat = 1
+		alarm.volume = 60
+		sound_emitter.add(alarm, "alarm") // played by area/firealert
 
 /obj/machinery/firealarm/proc/update_icon()
 	switch(icon_state)
@@ -162,10 +172,10 @@
 	if(!isarea(A))
 		return
 	SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"alertReset")
-	A.firereset()	//Icon state is set to "fire0" in A.firereset()
+	A.firereset()	//Icon state is set to "fire0" in A.firereset() and sound stops
 
-	if (src.ringlimiter)
-		src.ringlimiter = 0
+	//if (src.ringlimiter)
+	//	src.ringlimiter = 0
 
 	update_icon()
 	src.dont_spam = 1	//hey let's try having the fire alarm reset set protection against alarming again
@@ -189,13 +199,15 @@
 	if (A.fire) // maybe we should trigger an alarm when there already is one, goddamn
 		return
 
-	A.firealert()	//Icon state is set to "fire1" in A.firealert()
+	A.firealert()	//Icon state is set to "fire1" in A.firealert() and alarm plays
 	post_alert(1)
 
 	SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"alertTriggered")
+/*
 	if (!src.ringlimiter)
 		src.ringlimiter = 1
 		playsound(src.loc, "sound/machines/firealarm.ogg", 50, 1)
+*/
 
 	update_icon()
 	src.dont_spam = 1

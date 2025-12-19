@@ -231,6 +231,7 @@ To remove:
 #define PROP_PASSIVE_WRESTLE(x) x("wrassler", APPLY_ATOM_PROPERTY_SIMPLE, REMOVE_ATOM_PROPERTY_SIMPLE)
 #define PROP_FAKEHEALTH_MAX(x) x("fake_health", APPLY_ATOM_PROPERTY_MAX, REMOVE_ATOM_PROPERTY_MAX)
 #define PROP_CAN_CONSTRUCT_WITHOUT_HOLDING(x) x("can_build_without_holding", APPLY_ATOM_PROPERTY_SIMPLE, REMOVE_ATOM_PROPERTY_SIMPLE) // mob can bulid furniture without holding them (for borgs)
+#define PROP_CLUTZ(x) x("clutz", APPLY_ATOM_PROPERTY_SUM, REMOVE_ATOM_PROPERTY_SUM) // percentage chance of clickin the wrong damn thing!
 
 //speed scalings
 #define PROP_COMBAT_CLICK_DELAY_SLOWDOWN(x) x("click_delay_slowdown", APPLY_ATOM_PROPERTY_MAX, REMOVE_ATOM_PROPERTY_MAX)

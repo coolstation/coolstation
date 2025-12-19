@@ -5122,7 +5122,7 @@ var/global/noir = 0
 	set name = "Manage Bioeffects"
 	set desc = "Select a mob to manage its bioeffects."
 	set popup_menu = 0
-	admin_only
+	ADMIN_ONLY
 
 	var/list/dat = list()
 	dat += {"
@@ -5232,7 +5232,7 @@ var/global/noir = 0
 	set name = "Manage Abilities"
 	set desc = "Select a mob to manage its abilities."
 	set popup_menu = 0
-	admin_only
+	ADMIN_ONLY
 
 	var/list/dat = list()
 	dat += {"
@@ -5374,6 +5374,7 @@ var/global/noir = 0
 
 /client/Move(NewLoc, direct)
 	if(usr.client.flying)
+		var/prevloc = usr.loc
 		if(!isturf(usr.loc))
 			usr.set_loc(get_turf(usr))
 
@@ -5392,6 +5393,7 @@ var/global/noir = 0
 			usr.x--
 
 		src.mob.set_dir(direct)
+		SEND_SIGNAL(src.mob, COMSIG_MOVABLE_MOVED, prevloc, direct)
 	else
 		..()
 
@@ -5417,7 +5419,7 @@ proc/timeywimey(var/time)
 		L.set_loc(positions[L])
 		L.changeStatus("stunned", 6 SECONDS)
 		elecflash(L,power = 2)
-		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, SOUND_RANGE_STANDARD)
 	return 1
 
 /*

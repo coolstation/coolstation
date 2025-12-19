@@ -943,6 +943,10 @@
 				var/obj/ladder/L = locate() in src.loc.contents // warc says this is probably shitty but maybe you can do better
 				if(L)											// warc hits commit anyways
 					L.climb(src)
+		if ("fiddle")
+			var/obj/item/W = src.equipped()
+			if(W)
+				src.fiddle_with(W)
 		if ("equip")
 			src.hud.relay_click("invtoggle", src, list()) // this is incredibly dumb, it's also just as dumb as what was here previously
 		if ("togglethrow")
@@ -3168,14 +3172,14 @@
 					else
 						src.footstep += steps
 					if (src.footstep == 0)
-						playsound(NewLoc, NewLoc.active_liquid.step_sound, 50, 1, extrarange = footstep_extrarange)
+						playsound(NewLoc, NewLoc.active_liquid.step_sound, 50, 1, range = SOUND_RANGE_MODERATE)
 				else
 					if (src.footstep >= 2)
 						src.footstep = 0
 					else
 						src.footstep += steps
 					if (src.footstep == 0)
-						playsound(NewLoc, NewLoc.active_liquid.step_sound, 20, 1, extrarange = footstep_extrarange)
+						playsound(NewLoc, NewLoc.active_liquid.step_sound, 20, 1, range = SOUND_RANGE_MODERATE)
 		else if (src.shoes && src.shoes.step_sound && src.shoes.step_lots)
 			if (src.m_intent == "run")
 				if (src.footstep >= 2)
@@ -3183,9 +3187,9 @@
 				else
 					src.footstep += steps
 				if (src.footstep == 0)
-					playsound(NewLoc, src.shoes.step_sound, 50, 1, extrarange = footstep_extrarange)
+					playsound(NewLoc, src.shoes.step_sound, 50, 1, range = SOUND_RANGE_MODERATE)
 			else
-				playsound(NewLoc, src.shoes.step_sound, 20, 1, extrarange = footstep_extrarange, pitch = 0.9)
+				playsound(NewLoc, src.shoes.step_sound, 20, 1, range = SOUND_RANGE_MODERATE, pitch = 0.9)
 
 		else
 			src.footstep += steps
@@ -3211,7 +3215,7 @@
 						else if (priority < 0)
 							priority = src.shoes ? src.shoes.step_sound : (src.mutantrace && src.mutantrace.step_override ? src.mutantrace.step_override : "step_barefoot")
 
-						playsound(NewLoc, priority, src.m_intent == "run" ? 65 : 40, 1, extrarange = 3, pitch = src.m_intent == "run" ? 1 : 0.9)
+						playsound(NewLoc, priority, src.m_intent == "run" ? 65 : 40, 1, range = SOUND_RANGE_STANDARD, pitch = src.m_intent == "run" ? 1 : 0.9)
 
 	//STEP SOUND HANDLING OVER
 
@@ -3405,7 +3409,7 @@
 		H.job = "Cluwne"
 		H.contract_disease(/datum/ailment/disability/clumsy/cluwne,null,null,1)
 		H.contract_disease(/datum/ailment/disease/cluwneing_around/cluwne,null,null,1)
-		playsound(H, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, 0, max(0.7, min(1.4, 1.0 + (30 - H.bioHolder.age)/50)))
+		playsound(H, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.4, 1.0 + (30 - H.bioHolder.age)/50)))
 		H.change_misstep_chance(60)
 
 		animate_clownspell(H)

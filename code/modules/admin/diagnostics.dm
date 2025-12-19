@@ -205,7 +205,7 @@ proc/debug_map_apc_count(delim,zlim)
 		SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
 		set name = "Open Profiler"
 
-		admin_only
+		ADMIN_ONLY
 		world.SetConfig( "APP/admin", src.key, "role=admin" )
 		input( src, "Enter '.debug profile' in the next command box. Blame BYOND.", "BYONDSucks", ".debug profile" )
 		winset( usr, null, "command=.command" )
@@ -372,6 +372,9 @@ proc/debug_map_apc_count(delim,zlim)
 				if(group)
 					img.app.color = debug_color_of(group)
 					img.app.desc = "Group \ref[group]<br>[MOLES_REPORT(group.air)]Temperature=[group.air.temperature]<br/>Spaced=[group.spaced]"
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+					img.app.desc += "<br>GTA=[group.groups_to_atmosphere]"
+#endif
 					if (group.spaced) img.app.overlays += image('icons/misc/air_debug.dmi', icon_state = "spaced")
 					/*
 					var/list/borders_space = list()
@@ -1392,7 +1395,7 @@ proc/debug_map_apc_count(delim,zlim)
 /client/proc/SetInfoOverlay( )
 	set name = "Debug Overlay"
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
-	admin_only
+	ADMIN_ONLY
 	var/list/available_overlays = list("REMOVE")
 	for (var/datum/infooverlay/dummy as anything in childrentypesof(/datum/infooverlay))
 		var/name = initial(dummy.name)

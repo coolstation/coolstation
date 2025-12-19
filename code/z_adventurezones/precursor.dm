@@ -160,7 +160,7 @@
 					sound_fx_2 = pick('sound/ambience/industrial/Precursor_Drone2.ogg','sound/ambience/industrial/Precursor_Choir.ogg','sound/ambience/industrial/Precursor_Drone3.ogg','sound/ambience/industrial/Precursor_Bells.ogg')
 					for(var/mob/M in src)
 						if (M.client)
-							M.client.playAmbience(src, AMBIENCE_FX_2, 50)
+							M.client.playAmbience(src, AMBIENCE_FX_2, 25)
 
 	pit
 		name = "Ominous Pit"

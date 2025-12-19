@@ -36,7 +36,7 @@
 		reagents.add_reagent("fuel", capacity)
 		src.inventory_counter.update_number(get_fuel())
 
-		//src.setItemSpecial(/datum/item_special/flame) meh
+		src.setItemSpecial(/datum/item_special/flame)
 		return
 
 	examine()
@@ -153,7 +153,7 @@
 				O.reagents.trans_to(src, capacity, 1, 1, O.reagents.reagent_list.Find("fuel"))
 				src.inventory_counter.update_number(get_fuel())
 				boutput(user, "<span class='notice'>Welder refueled</span>")
-				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 				return
 		if (src.welding)
 			use_fuel((ismob(O) || istype(O, /obj/blob) || istype(O, /obj/critter)) ? 2 : 0.2)
@@ -185,7 +185,7 @@
 				src.welding = 0
 				return 0
 			boutput(user, "<span class='notice'>You will now weld when you attack.</span>")
-			src.force = 15
+			src.force = 12
 			hit_type = DAMAGE_BURN
 			src.tool_flags |= TOOL_OPENFLAME
 			set_icon_state("weldingtool-on" + src.icon_state_variant_suffix)

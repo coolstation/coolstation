@@ -277,7 +277,7 @@
 			sleep((timing * 10)) //to get delay into 10ths of a second
 			var/sound_name = "sound/piano/"
 			sound_name += "[compiled_notes[curr_note]].ogg"
-			playsound(src, sound_name, note_volumes[curr_note],0,10,0)
+			playsound(src, sound_name, note_volumes[curr_note],0,SOUND_RANGE_LARGE,0)
 
 	proc/reset_piano(var/disposing) //so i dont have to have duplicate code for multiool pulsing and piano key
 		if (is_looping != 2 || disposing)

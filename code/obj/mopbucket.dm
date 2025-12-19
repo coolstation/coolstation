@@ -105,7 +105,7 @@
 			if (M.bioHolder && M.bioHolder.HasEffect("clumsy") && prob(40))
 				user.visible_message("<span class='alert'><b>[user]</b> trips over [src]!</span>",\
 				"<span class='alert'>You trip over [src]!</span>")
-				playsound(user.loc, 'sound/impact_sounds/Generic_Hit_2.ogg', 15, 1, -3)
+				playsound(user.loc, 'sound/impact_sounds/Generic_Hit_2.ogg', 15, 1, SOUND_RANGE_STANDARD)
 				user.set_loc(src.loc)
 				user.changeStatus("weakened", 1 SECOND)
 				JOB_XP(user, "Clown", 1)

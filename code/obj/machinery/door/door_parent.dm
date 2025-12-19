@@ -130,8 +130,7 @@
 				return 1
 	return 0
 
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	//if(air_group) return 0
+/obj/machinery/door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/projectile))
 		var/obj/projectile/P = mover
 		if(P.proj_data.window_pass)
@@ -782,7 +781,7 @@
 			close()
 	else if (src.density)
 		play_animation("deny")
-		playsound(src.loc, "sound/machines/door_locked.ogg", 50, 1, -2)
+		playsound(src.loc, "sound/machines/door_locked.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		boutput(user, "<span class='alert'>The door is locked!</span>")
 	return
 

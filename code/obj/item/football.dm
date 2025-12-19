@@ -72,7 +72,7 @@
 	var/obj/item/clothing/suit/armor/football/S = src.wear_suit
 	if (S.in_rush) return
 	S.in_rush = 1
-	playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 0.4, 0 , 2)
+	playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 0.4, SOUND_RANGE_STANDARD , 2)
 
 	var/charge_dir = src.dir
 	var/turf/T = get_turf(src)

@@ -1,7 +1,7 @@
 /*
  * Hey! You!
  * Remember to mirror your changes (unless you use the [DEFINE_FLOORS] macro)
- * floors_unsimulated.dm & floors.dm
+ * floors.dm
  */
 
 /turf/floor/airless

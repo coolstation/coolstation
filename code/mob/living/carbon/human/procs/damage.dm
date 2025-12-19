@@ -307,7 +307,7 @@
 	if (src.traitHolder && src.traitHolder.hasTrait("scienceteam"))
 		if (prob(20))
 			var/mob/living/carbon/human/H = src
-			playsound(src.loc, pick(H.sound_list_pain), 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(src.loc, pick(H.sound_list_pain), 80, 0, SOUND_RANGE_STANDARD, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 
 	hit_twitch(src)
 

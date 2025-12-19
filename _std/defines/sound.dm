@@ -1,17 +1,28 @@
-//Reserved Area Ambience sound channels
-#define SOUNDCHANNEL_BIGALARM 122 //uh oh
-#define SOUNDCHANNEL_LOOPING_Z 123 //gehenna outdoors wind (for now)
-#define SOUNDCHANNEL_LOOPING_1 124
-#define SOUNDCHANNEL_LOOPING_2 125
-#define SOUNDCHANNEL_FX_1 126
-#define SOUNDCHANNEL_FX_2 127
+#define SOUNDCHANNEL_RESERVABLE_MIN		1    // do not reserve any soundchannels lower than this
+#define SOUNDCHANNEL_RESERVABLE_MAX		128  //do not reserve any soundchannels higher than this
+#define SOUNDCHANNEL_SLC_MIN			129  //internally used by SLC
+#define SOUNDCHANNEL_SLC_MAX			512  //internally used by SLC
+#define SOUNDCHANNEL_PLAYSOUND_MIN		513  // where playsound starts
+#define SOUNDCHANNEL_PLAYSOUND_MAX		1024 // this is the highest we CAN go, unless byond dramatically changes
+
+//Reserved sound channels
+#define SOUNDCHANNEL_RESERVED_BIGALARM 1 //area based alarms, typically indicating bosses
+#define SOUNDCHANNEL_RESERVED_LOOPING_Z 2 //looping ambience that plays across an entire z level
+#define SOUNDCHANNEL_RESERVED_LOOPING_AREA_1 3
+#define SOUNDCHANNEL_RESERVED_LOOPING_AREA_2 4
+#define SOUNDCHANNEL_RESERVED_AREA_FX_1 5
+#define SOUNDCHANNEL_RESERVED_AREA_FX_2 6
+#define SOUNDCHANNEL_RESERVED_INGAME_RADIO 118
+#define SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN 119
+#define SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MAX 128
+
+#define SOUND_BUCKET_SIZE 15
 
 //sound mute
 #define SOUND_NONE 0
 #define SOUND_SPEECH 1
-#define SOUND_BLAH 2
-#define SOUND_ALL 4
-#define SOUND_VOX 8
+#define SOUND_ALL 2
+#define SOUND_VOX 4
 
 //volume channel defines
 #define VOLUME_CHANNEL_MASTER 0
@@ -68,3 +79,16 @@ var/global/list/audio_channel_name_to_id = list(
 #define EAX_DRUGGED 23
 #define EAX_DIZZY 24
 #define EAX_DISORDERED 25
+
+#define TOO_QUIET 0.9 //experimentally found to be 0.6 - raised due to lag, I don't care if it's super quiet because there's already shitloads of other sounds playing
+#define SPACE_ATTEN_MIN 0.5
+
+// if you can, use these sound ranges- they have cached falloff calculations
+#define SOUND_RANGE_TINY 5
+#define SOUND_RANGE_SMALL 11
+#define SOUND_RANGE_MODERATE 22
+#define SOUND_RANGE_STANDARD 33
+#define SOUND_RANGE_LARGE 44
+
+#define SPACED_SOUND_RANGE 6 //max range for when youre in a vaccuum
+#define SPACED_SOUND_RANGE_MULT SPACED_SOUND_RANGE / SOUND_RANGE_STANDARD

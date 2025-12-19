@@ -136,7 +136,7 @@
 	cooldown = 1 MINUTES
 
 	cast()
-		playsound(holder.owner.loc, "sound/voice/heavenly.ogg", 100, 1, 0)
+		playsound(holder.owner.loc, "sound/voice/heavenly.ogg", 100, 1, SOUND_RANGE_STANDARD)
 		holder.owner.visible_message("<span class='alert'><B>[holder.owner] calls on the power of Spacemas to heal everyone!</B></span>")
 		for (var/mob/living/M in view(holder.owner,5))
 			M.HealDamage("All", 30, 30)
@@ -150,7 +150,7 @@
 
 	cast()
 		holder.owner.visible_message("<span class='alert'><B>[holder.owner] throws out a bunch of Spacemas presents from nowhere!</B></span>")
-		playsound(usr.loc, "sound/machines/fortune_laugh.ogg", 25, 1, -1)
+		playsound(usr.loc, "sound/machines/fortune_laugh.ogg", 25, 1, SOUND_RANGE_STANDARD)
 		holder.owner.transforming = 1
 		var/to_throw = rand(3,12)
 
@@ -175,7 +175,7 @@
 
 	cast()
 		holder.owner.visible_message("<span class='alert'><B>[holder.owner] casts out a whole shitload of snacks from nowhere!</B></span>")
-		playsound(holder.owner.loc, "sound/machines/fortune_laugh.ogg", 25, 1, -1)
+		playsound(holder.owner.loc, "sound/machines/fortune_laugh.ogg", 25, 1, SOUND_RANGE_STANDARD)
 		holder.owner.transforming = 1
 		var/to_throw = rand(6,18)
 
@@ -201,7 +201,7 @@
 	cooldown = 80 SECONDS
 
 	cast()
-		playsound(holder.owner.loc, "sound/effects/MagShieldUp.ogg", 100, 1, 0)
+		playsound(holder.owner.loc, "sound/effects/MagShieldUp.ogg", 100, 1, SOUND_RANGE_STANDARD)
 		holder.owner.visible_message("<span class='alert'><B>[holder.owner] summons the warmth of a nice toasty fireplace!</B></span>")
 		for (var/mob/living/M in view(holder.owner,5))
 			if (M.bioHolder)
@@ -220,8 +220,8 @@
 		var/area/thearea = get_telearea(A)
 
 		holder.owner.visible_message("<span class='alert'><B>[holder.owner] poofs away in a puff of cold, snowy air!</B></span>")
-		playsound(usr.loc, "sound/effects/bamf.ogg", 25, 1, -1)
-		playsound(usr.loc, "sound/machines/fortune_laugh.ogg", 25, 1, -1)
+		playsound(usr.loc, "sound/effects/bamf.ogg", 25, 1, SOUND_RANGE_STANDARD)
+		playsound(usr.loc, "sound/machines/fortune_laugh.ogg", 25, 1, SOUND_RANGE_STANDARD)
 		var/datum/effects/system/harmless_smoke_spread/smoke = new /datum/effects/system/harmless_smoke_spread()
 		smoke.set_up(1, 0, usr.loc)
 		smoke.attach(usr)
@@ -250,7 +250,7 @@
 		for (var/mob/living/carbon/cube/meat/krampus/K in view(7,holder.owner))
 			holder.owner.visible_message("<span class='alert'><B>[holder.owner] makes a stern gesture at [K]!</B></span>")
 			boutput(K, "<span class='alert'>You have been banished by Santa Claus!</span>")
-			playsound(usr.loc, "sound/effects/bamf.ogg", 25, 1, -1)
+			playsound(usr.loc, "sound/effects/bamf.ogg", 25, 1, SOUND_RANGE_STANDARD)
 			smoke.set_up(1, 0, K.loc)
 			smoke.attach(K)
 			smoke.start()

@@ -1,5 +1,5 @@
 //MBC NOTE : we entirely skip over grab level 1. it is not needed but also i am afraid to remove it entirely right now.
-/obj/item/grab //TODO : pool grabs
+/obj/item/grab
 	flags = SUPPRESSATTACK
 	var/mob/living/assailant
 	var/mob/living/affecting
@@ -62,8 +62,9 @@
 		if(affecting)
 			if (affecting.beingBaned)
 				affecting.beingBaned = FALSE
-			if (!affecting.lying)
-				affecting.transform = null
+			if (affecting.gotBent)
+				affecting.Turn(-90)
+				affecting.gotBent = FALSE
 
 			if (state >= GRAB_NECK)
 				if (assailant)
@@ -97,10 +98,12 @@
 		if (src.disposed)
 			src.set_loc(null)
 
-	set_loc() //never ever ever ever!!!
+	///Grabs shouldn't go *anywhere* except mobs, or I guess the item a mob grabs with :V
+	set_loc()
 		..()
 		if (src.loc && !istype(src.loc, /mob))
-			set_loc(null)
+			if (!assailant.find_in_hand(src.loc)) //fix for item grabs, cause the pathfinding cache demands set_loc now
+				set_loc(null)
 
 	dropped()
 		..()
@@ -411,7 +414,7 @@
 		if (!src.affecting) return 0
 		if (get_dist(user, src.affecting) > 1)
 			return 0
-		if ((src.state < 1 && !(src.affecting.getStatusDuration("paralysis") || src.affecting.getStatusDuration("weakened") || src.affecting.stat)) || !isturf(user.loc))
+		if ((src.state < GRAB_AGGRESSIVE && !(src.affecting.getStatusDuration("paralysis") || src.affecting.getStatusDuration("weakened") || src.affecting.stat)) || !isturf(user.loc))
 			user.visible_message("<span class='alert'>[src.affecting] stumbles a little!</span>")
 			user.u_equip(src)
 			return 0
@@ -557,7 +560,7 @@
 	src.Bumped(M)
 	random_brute_damage(G.affecting, rand(2,3))
 	G.affecting.TakeDamage("chest", rand(4,5))
-	playsound(G.affecting.loc, "punch", 25, 1, -1)
+	playsound(G.affecting.loc, "punch", 25, 1, SOUND_RANGE_STANDARD)
 
 	user.u_equip(G)
 	G.dispose()
@@ -770,7 +773,7 @@
 	do_resist()
 		.= 0
 		if (assailant)
-			playsound(assailant.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, 0, 1.5)
+			playsound(assailant.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, SOUND_RANGE_STANDARD, 1.5)
 		qdel(src)
 
 	setProperty(propId, propVal)
@@ -802,13 +805,13 @@
 	proc/play_block_sound(var/hit_type = DAMAGE_BLUNT)
 		switch(hit_type)
 			if (DAMAGE_BLUNT)
-				playsound(src, 'sound/impact_sounds/block_blunt.ogg', 50, 1, -1)
+				playsound(src, 'sound/impact_sounds/block_blunt.ogg', 50, 1, SOUND_RANGE_STANDARD)
 			if (DAMAGE_CUT)
-				playsound(src, 'sound/impact_sounds/block_cut.ogg', 50, 1, -1)
+				playsound(src, 'sound/impact_sounds/block_cut.ogg', 50, 1, SOUND_RANGE_STANDARD)
 			if (DAMAGE_STAB)
-				playsound(src, 'sound/impact_sounds/block_stab.ogg', 50, 1, -1)
+				playsound(src, 'sound/impact_sounds/block_stab.ogg', 50, 1, SOUND_RANGE_STANDARD)
 			if (DAMAGE_BURN)
-				playsound(src, 'sound/impact_sounds/block_burn.ogg', 50, 1, -1)
+				playsound(src, 'sound/impact_sounds/block_burn.ogg', 50, 1, SOUND_RANGE_STANDARD)
 
 	handle_throw(var/mob/living/user,var/atom/target)
 		if (isturf(user.loc) && target)
@@ -840,7 +843,7 @@
 							damage += H.limbs.l_leg.limb_hit_bonus
 
 					dive_attack_hit.TakeDamageAccountArmor("chest", damage, 0, 0, DAMAGE_BLUNT)
-					playsound(user, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, -1)
+					playsound(user, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, SOUND_RANGE_STANDARD)
 					for (var/mob/O in AIviewers(user))
 						O.show_message("<span class='alert'><B>[user] slides into [dive_attack_hit]!</B></span>", 1)
 					logTheThing("combat", user, dive_attack_hit, "slides into [dive_attack_hit] at [log_loc(dive_attack_hit)].")

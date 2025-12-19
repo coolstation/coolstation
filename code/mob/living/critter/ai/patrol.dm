@@ -356,7 +356,7 @@
 /// and lastly, the actual securitron attack task
 /datum/aiTask/concurrent/violence/fixed_target/securitron
 	name = "apprehending perp"
-	max_dist = 40
+	max_dist = 12
 
 /datum/aiTask/concurrent/violence/fixed_target/securitron/on_tick()
 	if(GET_COOLDOWN(src.holder.owner, "HALT_FOR_INTERACTION"))
