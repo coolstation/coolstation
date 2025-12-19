@@ -256,7 +256,7 @@
 			door.break_me_complitely()//6 year old typo lmoa
 			boutput(user, "<span class='alert'>You slice through the door!</span>")
 
-		playsound(src.loc,"sounds/effects/Welder2.ogg", 65, 1,pitch=0.8)
+		playsound(src.loc,"sounds/items/Welder2.ogg", 65, 1,pitch=0.8)
 		return
 
 //action bars
@@ -298,7 +298,7 @@
 			interrupt(INTERRUPT_ALWAYS)
 		//sounds
 		boutput(owner, "<span class='notice'>You start to slice through [target].</span>")
-		playsound(src,"sounds/effects/Welder.ogg", 65, 1,pitch=0.8)
+		playsound(src,"sounds/effects/items/Welder.ogg", 65, 1,pitch=0.8)
 
 	onInterrupt(var/flag)
 		..()

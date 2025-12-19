@@ -253,6 +253,7 @@
 				var/dist = GET_DIST(src,device)
 				src.set_dir(get_dir(src,device))
 				if(cable_line)
+					cable_line.loc = src.loc
 					var/ang = get_angle(get_turf(src), get_turf(device))
 					var/cable_line_dist = 8 + 40 / (1 + 3 ** (3 - dist / 10))
 					var/matrix/M = matrix()
