@@ -113,6 +113,7 @@
 	proc/connect(var/obj/reagent_dispensers/powerbank/pb)
 		powerbank = pb
 		pb.connected(src)
+		playsound(src.loc,"sound/effects/pop,ogg",60,1)
 
 		SPAWN_DBG(0 SECONDS)
 			while (powerbank)

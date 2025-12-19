@@ -29,7 +29,7 @@
 		else
 			pb_connect(pb)
 			boutput(usr, "<span class='notice'>You connect [src] to the floor socket.</span>")
-		playsound(src.loc,"sound/effects/pop,ogg",60,1)
+		playsound(src,"sound/effects/pop,ogg",60,1)
 
 	process(var/mult)
 		if(src.powerbank)
