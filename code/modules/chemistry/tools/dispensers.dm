@@ -197,6 +197,13 @@
 		reagents.add_reagent("lithium",capacity)
 		update_indicator()
 
+	attack_hand(mob/user)
+		. = ..()
+		if (user.a_intent == INTENT_HELP)
+			for (var/obj/machinery/floor_charger/c in get_turf(src))
+				c.pb_toggle_connect(src,user)
+
+
 	proc/connected(var/obj/item/device)
 		cable_active = TRUE
 		var/atom/movable/cable_line = new /atom/movable(src.loc)
@@ -212,6 +219,10 @@
 
 	proc/lose_charge(var/amount)
 		src.charge = max(0,src.charge - amount)
+		update_indicator()
+
+	proc/gain_charge(var/amount)
+		src.charge = min(src.max_charge,src.charge + amount)
 		update_indicator()
 
 	proc/update_indicator(var/override)

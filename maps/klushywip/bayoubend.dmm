@@ -11407,6 +11407,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/floor_charger,
 /obj/reagent_dispensers/powerbank,
 /obj/item/plasma_cutter{
 	pixel_x = -17
@@ -22785,10 +22786,6 @@
 "qHB" = (
 /turf/floor/plating/scorched,
 /area/station/shipyard)
-"qHL" = (
-/obj/reagent_dispensers/fueltank,
-/turf/floor/plating/airless/random,
-/area/station/shipyard)
 "qHU" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -28664,6 +28661,7 @@
 /obj/machinery/light/small/red{
 	dir = 8
 	},
+/obj/machinery/floor_charger,
 /turf/floor/grime,
 /area/station/maintenance/southeast)
 "uSP" = (
@@ -75526,7 +75524,7 @@ sGM
 sGM
 sGM
 uSP
-qHL
+dRi
 jIt
 jIt
 dRi

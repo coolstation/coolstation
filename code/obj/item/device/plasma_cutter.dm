@@ -72,17 +72,17 @@
 		if (istype(target, /obj/reagent_dispensers/powerbank))
 			if (powerbank == target)
 				//disconnect
+				boutput(user, "<span class='notice'>You disconnect [src] from [src.powerbank].</span>")
+				user.visible_message("<span class='notice'>[user] disconnects [src] from [src.powerbank].</span>")
 				disconnect()
-				boutput(user, "<span class='notice'>You disconnect [src] from [powerbank].</span>")
-				user.visible_message("<span class='notice'>[user] disconnects [src] from [powerbank].</span>")
 				runout(user)
 			else if (powerbank)
 				boutput(user, "<span class='notice'>The cutter is already connected to a power source!</span>")
 			else
 				//connect
-				boutput(user, "<span class='notice'>You connect [src] to [powerbank].</span>")
-				user.visible_message("<span class='notice'>[user] connects [src] to [powerbank].</span>")
-				connect(target)
+								connect(target)
+				boutput(user, "<span class='notice'>You connect [src] to [src.powerbank].</span>")
+				user.visible_message("<span class='notice'>[user] connects [src] to [src.powerbank].</span>")
 				deactivate(user)
 		else if (src.active)
 			var/power = rand(10,20)
@@ -125,7 +125,7 @@
 						walk_to(src, last_loc, 0, 0.3 SECONDS,0)
 				else
 					last_loc = get_turf(src)
-				sleep(0.2)
+				sleep(0.1)
 
 	proc/disconnect()
 		powerbank.disconnected()
