@@ -1302,6 +1302,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory/magazine)
 	desc = "Holds 3 rounds, and 30,000 followers."
 	max_ammo_capacity = 3
 	jam_frequency = 8
+	overlay_x = 3
+	overlay_y = 5
 	part_DRM = GUN_JUICE_FRIENDLY
 	add_suffix = "LARGE"
 	icon = 'icons/obj/items/modular_guns/magazines.dmi'
