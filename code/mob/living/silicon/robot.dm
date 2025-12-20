@@ -2019,8 +2019,8 @@
 		if (src.get_eye_blurry()) src.change_eye_blurry(-INFINITY)
 		if (src.get_eye_damage()) src.take_eye_damage(-INFINITY)
 		if (src.get_eye_damage(1)) src.take_eye_damage(-INFINITY, 1)
-		if (src.get_ear_damage()) src.take_ear_damage(-INFINITY)
-		if (src.get_ear_damage(1)) src.take_ear_damage(-INFINITY, 1)
+		if (src.ear_damage) src.take_ear_damage(-INFINITY)
+		if (src.ear_tempdeaf) src.take_ear_damage(-INFINITY, 1)
 		src.lying = 0
 		src.set_density(1)
 		if(src.stat) src.camera.camera_status = 0.0
@@ -3029,7 +3029,7 @@
 						else if (priority < 0)
 							priority = leg ? leg.step_sound : "step_robo"
 
-						playsound(NewLoc, "[priority]", src.m_intent == "run" ? 65 : 40, 1, extrarange = 3)
+						playsound(NewLoc, "[priority]", src.m_intent == "run" ? 65 : 40, 1, range = SOUND_RANGE_STANDARD)
 
 		//STEP SOUND HANDLING OVER
 

@@ -2690,7 +2690,7 @@
 	real_name = "cheesewheel"
 	throw_speed = 2
 	throw_range = 5
-	stamina_cost = 5
+//	stamina_cost = 5
 	stamina_damage = 2
 	var/slice_amount = 4
 	var/slice_product = /obj/item/reagent_containers/food/snacks/ingredient/cheese

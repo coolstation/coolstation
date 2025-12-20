@@ -412,7 +412,7 @@
 				processing_tier = PROCESSING_FULL
 				src.SubscribeToProcess()
 				src.dynamic_processing = 0 // so it doesnt get its processing overwritten
-				playsound(src.loc, 'sound/effects/elec_bzzz.ogg', 99, 1, 0.1, 0.7)
+				playsound(src.loc, 'sound/effects/elec_bzzz.ogg', 99, 1, SOUND_RANGE_STANDARD, 0.7)
 
 
 			if(user)
@@ -628,8 +628,10 @@
 			if(SECBOT_IDLE)
 				src.doing_something = 0
 				look_for_perp()	// see if any criminals are in range
+				#ifndef IM_TESTING_BASIC_MOB_FUNCTIONALITY
 				if(auto_patrol)	// still idle, and set to patrol
 					mode = SECBOT_START_PATROL	// switch to patrol mode
+				#endif
 
 			/// No guard orders, engaging target, seeking to arrest them
 			if(SECBOT_AGGRO, SECBOT_GUARD_AGGRO)
@@ -772,7 +774,7 @@
 				if(prob(50 + (src.emagged * 15)))
 					for(var/mob/M in hearers(C, null))
 						M.show_text("<font size=[max(0, 5 - get_dist(get_turf(src), M))]>THUD, thud!</font>")
-					playsound(C, "sound/impact_sounds/Wood_Hit_1.ogg", 15, 1, -3)
+					playsound(C, "sound/impact_sounds/Wood_Hit_1.ogg", 15, 1, SOUND_RANGE_STANDARD)
 					animate_storage_thump(C)
 				src.container_cool_off_counter++
 				if(src.container_cool_off_counter >= src.container_cool_off_max) // Give him some time to cool off
@@ -1206,7 +1208,7 @@
 				for(var/j in 1 to rand(2,5))
 					qbert += "[pick("!","?")]"
 				src.speak("[qbert]")
-		playsound(src, say_thing, 50, 0, 0, 1)
+		playsound(src, say_thing, 50, 0, SOUND_RANGE_STANDARD, 1)
 		ON_COOLDOWN(src, "[SECBOT_LASTTARGET_COOLDOWN]-[src.target?.name]", src.last_target_cooldown)
 
 //secbot handcuff bar thing
@@ -1237,12 +1239,12 @@
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
-		playsound(master, "sound/weapons/handcuffs.ogg", 30, 1, -2)
+		playsound(master, "sound/weapons/handcuffs.ogg", 30, 1, SOUND_RANGE_STANDARD)
 		master.visible_message("<span class='alert'><B>[master] is trying to put handcuffs on [master.target]!</B></span>")
 		if(master.is_beepsky == IS_BEEPSKY_AND_HAS_HIS_SPECIAL_BATON || master.is_beepsky == IS_BEEPSKY_BUT_HAS_SOME_GENERIC_BATON)
 			duration = round(duration * 0.75)
 			master.visible_message("<span class='alert'><B>...vigorously!</B></span>")
-			playsound(master, "sound/misc/winding.ogg", 30, 1, -2)
+			playsound(master, "sound/misc/winding.ogg", 30, 1, SOUND_RANGE_STANDARD)
 
 	onInterrupt()
 		..()
@@ -1347,10 +1349,10 @@
 		master.baton_charging = 1
 		master.visible_message("<span class='alert'><B>[master] is energizing its prod, preparing to zap [master.target]!</B></span>")
 		if(master.is_beepsky == IS_BEEPSKY_AND_HAS_HIS_SPECIAL_BATON || master.is_beepsky == IS_BEEPSKY_BUT_HAS_SOME_GENERIC_BATON || master.emagged >= 2)
-			playsound(master, "sound/machines/ArtifactBee2.ogg", 30, 1, -2)
+			playsound(master, "sound/machines/ArtifactBee2.ogg", 30, 1, SOUND_RANGE_STANDARD)
 			duration = round(duration * 0.60)
 		else
-			playsound(master, "sound/effects/electric_shock_short.ogg", 30, 1, -2)
+			playsound(master, "sound/effects/electric_shock_short.ogg", 30, 1, SOUND_RANGE_STANDARD)
 
 	onEnd()
 		..()

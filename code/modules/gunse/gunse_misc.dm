@@ -57,7 +57,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular/zip)
 				if (src.sound_type)
 					playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
 				else
-					playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+					playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, SOUND_RANGE_STANDARD, 0.8)
 					src.ammo_list += donor_ammo.projectile_type
 
 			buildTooltipContent()

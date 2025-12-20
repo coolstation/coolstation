@@ -9,8 +9,8 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 	stamina_damage = 3
-	stamina_cost = 3
-	stamina_crit_chance = 3
+//	stamina_cost = 3
+//	stamina_crit_chance = 3
 
 	examine()
 		. = ..()

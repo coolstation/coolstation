@@ -51,6 +51,7 @@
 						break
 				if(!interdictor_influence)
 					owner.changeStatus("radiation", (A.irradiated * 10 * mult) SECONDS)
+			/*
 			if (A.sandstorm)
 				if(ishuman(owner))
 					var/mob/living/carbon/human/H = owner
@@ -71,6 +72,7 @@
 									H.organHolder.damage_organ(3, 0, 0, "right_lung")
 
 				owner.changeStatus("sandy", (A.sandstorm * 5 * mult) SECONDS)
+			*/
 
 
 		if (owner.bioHolder)

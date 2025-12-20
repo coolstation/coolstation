@@ -846,6 +846,79 @@ What are the archived variables for?
 					return 0
 	return 1
 
+//Similar to mimic but it doesnt require a turf
+/datum/gas_mixture/proc/mimic_mixture(datum/gas_mixture/model, border_multiplier = 1, conduction_coefficient = OPEN_HEAT_TRANSFER_COEFFICIENT, var/override_heat_capacity = 0)
+	#define _DELTA_GAS(GAS, ...) var/delta_##GAS = QUANTIZE(((ARCHIVED(GAS) - model.GAS)/5)*border_multiplier/group_multiplier);
+	APPLY_TO_GASES(_DELTA_GAS)
+	#undef _DELTA_GAS
+
+	var/delta_temperature = (ARCHIVED(temperature) - model.temperature)
+
+	var/heat_transferred = 0
+	var/old_self_heat_capacity = 0
+	var/heat_capacity_transferred = 0
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		#define _MIMIC_GAS_HEAT(GAS, SPECIFIC_HEAT, ...) \
+			if(delta_##GAS) { \
+				var/GAS##_heat_capacity = SPECIFIC_HEAT * delta_##GAS; \
+				heat_transferred -= GAS##_heat_capacity * model.temperature; \
+				heat_capacity_transferred -= GAS##_heat_capacity; \
+			}
+		APPLY_TO_GASES(_MIMIC_GAS_HEAT)
+		#undef _MIMIC_GAS_HEAT
+
+		old_self_heat_capacity = HEAT_CAPACITY(src)*group_multiplier
+
+	var/moved_moles = 0
+
+	#define _MIMIC_GAS(GAS, ...) \
+		GAS = QUANTIZE(GAS - delta_##GAS); \
+		moved_moles += delta_##GAS;
+	APPLY_TO_GASES(_MIMIC_GAS)
+	#undef _MIMIC_GAS
+
+	if(length(trace_gases))
+		for(var/datum/gas/trace_gas as anything in trace_gases)
+			var/delta = 0
+
+			delta = QUANTIZE((trace_gas.ARCHIVED(moles)/5)*border_multiplier/group_multiplier)
+
+			if (abs(delta) <= ATMOS_EPSILON) continue
+
+			trace_gas.moles = QUANTIZE(trace_gas.moles - delta)
+
+			var/heat_cap_transferred = delta*trace_gas.specific_heat
+			heat_transferred += heat_cap_transferred*ARCHIVED(temperature)
+			heat_capacity_transferred += heat_cap_transferred
+			moved_moles += delta
+
+	if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
+		var/new_self_heat_capacity = old_self_heat_capacity - heat_capacity_transferred
+		if(new_self_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			if(border_multiplier)
+				temperature = (old_self_heat_capacity*temperature - heat_capacity_transferred*border_multiplier*ARCHIVED(temperature))/new_self_heat_capacity
+			else
+				temperature = (old_self_heat_capacity*temperature - heat_capacity_transferred*border_multiplier*ARCHIVED(temperature))/new_self_heat_capacity
+
+		if(!override_heat_capacity)
+			override_heat_capacity = HEAT_CAPACITY(model)
+
+		if((override_heat_capacity > MINIMUM_HEAT_CAPACITY) && (new_self_heat_capacity > MINIMUM_HEAT_CAPACITY))
+			var/heat = conduction_coefficient*delta_temperature* \
+				(new_self_heat_capacity*override_heat_capacity/(new_self_heat_capacity+override_heat_capacity))
+
+			if(border_multiplier)
+				temperature -= heat*border_multiplier/(new_self_heat_capacity*group_multiplier)
+			else
+				temperature -= heat/(new_self_heat_capacity*group_multiplier)
+
+	if((abs(delta_temperature) > MINIMUM_TEMPERATURE_TO_MOVE) || abs(moved_moles) > MINIMUM_MOLES_DELTA_TO_MOVE)
+		var/delta_pressure = ARCHIVED(temperature)*(TOTAL_MOLES(src) + moved_moles) - model.temperature*BASE_GASES_TOTAL_MOLES(model)
+		return (delta_pressure*R_IDEAL_GAS_EQUATION/volume)
+	else
+		return 0
+
 // Dead prototypes (or never implemented?)
 // /datum/gas_mixture/proc/check_me_then_share(datum/gas_mixture/sharer)
 	//Similar to share(...) but first checks to see if amount of air moved is small enough

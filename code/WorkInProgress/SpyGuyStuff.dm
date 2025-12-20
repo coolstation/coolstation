@@ -1110,15 +1110,17 @@ proc/Create_Tommyname()
 
 /proc/list_item_damage_stats()
 	var/list/L = typesof(/obj/item)
-	var/result = "<table><tr><th>Name</th><th>Type</th><th>Force</th><th>Stamina damage</th><th>Stamina cost</th><th>Damage Type</th><th>Throw force</th></tr>"
+	var/result = "<table><tr><th>Name</th><th>Type</th><th>Force</th><th>Click Delay</th><th>DPS Estimate</th><th>Damage Type</th><th>Throw force</th></tr>"
 
 	for(var/type in L)
+		var/force = initial(type:force)
+		var/click_delay = initial(type:combat_click_delay)
 		result += {"<tr>
 					<td>[initial(type:name)]</td>
 					<td>[type]</td>
-					<td>[initial(type:force)]</td>
-					<td>[initial(type:stamina_damage)]</td>
-					<td>[initial(type:stamina_cost)]</td>
+					<td>[force]</td>
+					<td>[click_delay]</td>
+					<td>[force / click_delay * 1 SECOND]</td>
 					<td>[initial(type:hit_type)]</td>
 					<td>[initial(type:throwforce)]</td>
 					</tr>"}

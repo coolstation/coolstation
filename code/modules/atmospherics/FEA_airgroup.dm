@@ -39,6 +39,11 @@
 	/// If true, will drain the gasses of the airgroup
 	var/spaced = FALSE
 
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+	/// How many airgroups are between us and an open atmosphere
+	var/groups_to_atmosphere = GROUPS_TO_ATMOSPHERE_MAX
+#endif
+
 // overrides
 /datum/air_group/disposing()
 	air = null
@@ -281,21 +286,14 @@
 			if(length_space_border > 0)
 				var/connection_difference = 0
 				if(map_currently_underwater)
-					var/turf/space/sample = air_master.space_sample
-					if (!sample || !(sample.turf_flags & CAN_BE_SPACE_SAMPLE))
-						sample = air_master.update_space_sample()
-
-					if(air && sample && air.check_turf(sample))
-						connection_difference = air.mimic(sample, length_space_border)
+					if(air)
+						connection_difference = air.mimic_mixture(air_master.space_sample, length_space_border, OPEN_HEAT_TRANSFER_COEFFICIENT, air_master.space_sample_heat_capacity)
 					else
 						abort_group = TRUE
 				else // faster check for actual space (modified check_turf)
 					var/moles = TOTAL_MOLES(air)
 					if(moles <= MINIMUM_AIR_TO_SUSPEND)
-						var/turf/space/sample = air_master.space_sample
-						if (!sample || !(sample.turf_flags & CAN_BE_SPACE_SAMPLE))
-							sample = air_master.update_space_sample()
-						connection_difference = air.mimic(sample, length_space_border)
+						connection_difference = air.mimic_mixture(air_master.space_sample, length_space_border, OPEN_HEAT_TRANSFER_COEFFICIENT, air_master.space_sample_heat_capacity)
 					else
 						abort_group = TRUE
 
@@ -355,15 +353,7 @@
 // returns: 1 if the group is zeroed, 0 if not
 /datum/air_group/proc/space_fastpath(var/datum/controller/process/parent_controller)
 //	var/minDist
-	var/turf/space/sample
 	. = 0
-	sample = air_master.space_sample
-
-	if (!sample || !(sample.turf_flags & CAN_BE_SPACE_SAMPLE))
-		sample = air_master.update_space_sample()
-
-	if (!sample)
-		return
 
 	var/totalPressure = 0
 
@@ -391,7 +381,7 @@
 			// Todo - retain nearest space tile border and apply force proportional to amount
 			// of air leaving through it
 #ifdef DEPRESSURIZE_THROW_AT_SPACE_REQUIRED
-			var/the_oomph = member_air.mimic(sample, clamp(length_space_border / (2 * max(1, member.dist_to_space)), 0.1, 1))
+			var/the_oomph = member_air.mimic_mixture(air_master.space_sample, clamp(length_space_border / (2 * max(1, member.dist_to_space)), 0.1, 1), OPEN_HEAT_TRANSFER_COEFFICIENT, air_master.space_sample_heat_capacity)
 			if(the_oomph > DEPRESSURIZE_THROW_AT_SPACE_REQUIRED)
 				the_oomph = min(floor(the_oomph / DEPRESSURIZE_THROW_AT_SPACE_REQUIRED), DEPRESSURIZE_THROW_AT_SPACE_MAX_RANGE)
 				for(var/AM in member)
@@ -399,7 +389,7 @@
 						var/atom/movable/thrown = AM
 						thrown.throw_at(member.nearest_space, the_oomph, 0.5, throw_type = THROW_SPACED)
 #else
-			member_air.mimic(sample, clamp(length_space_border / (2 * max(1, member.dist_to_space)), 0.1, 1))
+			member_air.mimic_mixture(air_master.space_sample, clamp(length_space_border / (2 * max(1, member.dist_to_space)), 0.1, 1), OPEN_HEAT_TRANSFER_COEFFICIENT, air_master.space_sample_heat_capacity)
 #endif
 			ADD_MIXTURE_PRESSURE(member_air, totalPressure) // Build your own atmos disaster
 

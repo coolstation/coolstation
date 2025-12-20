@@ -331,7 +331,7 @@
 
 //BUSH ANIMATION!!!!
 	proc/shake_bush(var/volume)
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", volume, 1, -1)
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", volume, 1, SOUND_RANGE_STANDARD)
 
 		var/wiggle = 6
 
@@ -360,7 +360,7 @@
 		user.lastattacked = src
 		hit_twitch(src)
 		attack_particle(user,src)
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, 0)
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		src.take_damage(W.force)
 		user.visible_message("<span class='alert'><b>[user] hacks at [src] with [W]!</b></span>")
 
@@ -639,7 +639,7 @@
 
 	proc/shake_blinds(var/volume)
 
-		playsound(src, "sound/impact_sounds/blind_rattle.ogg", volume, 1, -1)
+		playsound(src, "sound/impact_sounds/blind_rattle.ogg", volume, 1, SOUND_RANGE_STANDARD)
 
 		var/wiggle = 10
 
@@ -1381,8 +1381,8 @@ obj/decoration/ceilingfan
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	item_state = "protopistol"
 	stamina_damage = 0
-	stamina_cost = 4
-	stamina_crit_chance = 0
+//	stamina_cost = 4
+//	stamina_crit_chance = 0
 	throwforce = 0
 
 	attack_hand(mob/user as mob)
@@ -1415,8 +1415,8 @@ obj/decoration/ceilingfan
 	w_class = W_CLASS_SMALL
 	flags = FPRINT | TABLEPASS
 	stamina_damage = 0
-	stamina_cost = 4
-	stamina_crit_chance = 0
+//	stamina_cost = 4
+//	stamina_crit_chance = 0
 	var/list/proj_impacts = list()
 	var/image/proj_image = null
 	var/last_proj_update_time = null
@@ -1583,11 +1583,16 @@ obj/decoration/ceilingfan
 	density = 0
 	mouse_opacity = 0
 	bound_height = 64
-	plane = PLANE_NOSHADOW_BELOW
-	layer = TURF_LAYER - 0.1
+	plane = PLANE_FLOOR
+	layer = TURF_OVERLAY_LAYER
+
 	//Grabs turf color set in gehenna.dm for sand
 	New()
 		..()
+		STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen()
+		. = ..()
 		var/turf/T = get_turf(src)
 		src.color = T.color
 
@@ -1599,9 +1604,9 @@ obj/decoration/ceilingfan
 
 /obj/decoration/railbed/trans
 	icon_state = "railbedtrans"
-	New()
-		..()
-		src.color = null
+
+	generate_worldgen()
+		return
 
 /obj/decoration/railbed/trans/cracked1
 	icon_state = "railbedcracked1trans"
@@ -1834,3 +1839,34 @@ obj/decoration/ceilingfan
 	light_r = 0.94
 	light_g = 0.98
 	light_b = 0.02
+
+/obj/decoration/broken_airlock
+	name = "broken airlock"
+	desc = "Rust has rendered this airlock useless."
+	icon = 'icons/misc/hstation.dmi'
+	icon_state = "bloodydoor"
+	anchored = 1
+	layer = 5
+
+	classic
+		icon_state = "stuck_partway"
+
+	maint
+		icon = 'icons/misc/rstation.dmi'
+		icon_state = "maint-gap"
+
+	med
+		icon = 'icons/misc/rstation.dmi'
+		icon_state = "med-gap"
+
+	eng
+		icon = 'icons/misc/rstation.dmi'
+		icon_state = "eng-open"
+
+	external
+		icon_state = "bloodydoorext"
+
+		alt
+			icon = 'icons/misc/rstation.dmi'
+			icon_state = "ext-gap"
+

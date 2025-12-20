@@ -14,6 +14,7 @@ starting with SHITTY BILL
 
 /mob/living/carbon/human/biker
 	real_name = "Shitty Bill"
+	interesting = "lots of peperrrony in there. . . . mnostly preparony..... "
 	gender = MALE
 	var/talk_prob = 5
 	var/greeted_murray = 0

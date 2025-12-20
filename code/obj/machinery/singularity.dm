@@ -7,11 +7,15 @@ Contains:
 -Collector array & controller
 -Singularity bomb
 */
+
 // I came here with good intentions, I swear, I didn't know what this code was like until I was already waist deep in it
+
+// i came here with bad intentions and i will continue making singulos meaner until the stock market crashes
+
 #define SINGULARITY_TIME TRUE
 #define FIELD_GENERATOR_MAX_LENGTH 11			//defines the maximum dimension possible by a player created field gen.
 #define SINGULO_POWER_RADIUS_EXPONENT 1.25		//radius is put to this exponent for power generation purposes
-#define SINGULO_POWER_MULTIPLIER 1				//all singulo power is multiplied by this
+#define SINGULO_SCALAR 0.25				// easy enough, if this rises, you get more oomph per singulo energy. allows messing with food values without rewriting calcs.
 #define EVENT_GROWTH 3//the rate at which the event proc radius is scaled relative to the radius of the singularity
 #define EVENT_MINIMUM 5//the base value added to the event proc radius, serves as the radius of a 1x1
 //Anchoring states for the emitters, field generators, and singulo jar
@@ -30,7 +34,7 @@ proc/singularity_containment_check(turf/center)
 		var/found_field = FALSE
 		for(var/i in 0 to 19)
 			T = get_step(T, dir)
-			if(locate(/obj/machinery/containment_field) in T)
+			if(locate(/obj/containment_field) in T)
 				min_dist = min(min_dist, i)
 				found_field = TRUE
 				break
@@ -77,11 +81,11 @@ proc/singularity_containment_check(turf/center)
 		src.visible_message("<span class='notice'>[src] refuses to activate in this place. Odd.</span>")
 		qdel(src)
 
-	playsound(T, 'sound/machines/satcrash.ogg', 100, FALSE, 15, 0.8, flags=SOUND_IGNORE_SPACE)
+//	playsound(T, 'sound/machines/satcrash.ogg', 100, FALSE, SOUND_RANGE_LARGE, 0.8, flags=SOUND_IGNORE_SPACE)
 	if (src.bhole)
 		new /obj/bhole(T, 3000)
 	else
-		new /obj/machinery/the_singularity(T, 600,,max_radius)
+		new /obj/machinery/the_singularity(T, 600 / SINGULO_SCALAR, , max_radius)
 	qdel(src)
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user)
@@ -113,7 +117,7 @@ proc/singularity_containment_check(turf/center)
 	icon_state = "Sing2"
 	anchored = ANCHORED
 	density = 1
-	event_handler_flags = IMMUNE_SINGULARITY | USE_HASENTERED
+	event_handler_flags = IMMUNE_SINGULARITY | USE_HASENTERED | Z_ANCHORED
 	deconstruct_flags = DECON_WELDER | DECON_MULTITOOL
 
 	var/maxboom = 0
@@ -146,19 +150,34 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	src.energy = E
 	src.maxradius = rad
 	src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
+	. = ..()
+	src.setup_sound()
 	event()
 	if (Ti)
 		src.Dtime = Ti
-	..()
-	for(var/turf/T in src.locs)
-		for(var/atom/movable/AM in T.contents)
-			eat_atom(AM)
-		eat_atom(T)
+	SPAWN_DBG(0)
+		for(var/turf/T in src.locs)
+			for(var/atom/movable/AM in T.contents)
+				eat_atom(AM)
+			eat_atom(T)
 	src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 
 /obj/machinery/the_singularity/disposing()
 	STOP_TRACKING
 	. = ..()
+
+/obj/machinery/the_singularity/setup_sound()
+	sound_emitter = new /datum/sound_emitter/big(src)
+	if (sound_emitter)
+		sound_emitter.ignore_space = TRUE
+		var/sound/warble = sound()
+		warble.file = "sound/machines/singulowarble.ogg"
+		warble.repeat = 1
+		warble.falloff = 1.5
+		warble.volume = 100
+		sound_emitter.add(warble, "warble")
+		SPAWN_DBG(0)
+			sound_emitter.play("warble")
 
 /obj/machinery/the_singularity/process()
 	src.gravity()
@@ -181,11 +200,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if (prob(20))//Chance for it to run a special event
 		event()
 
-	move()
+	move_it()
 
 	if (src.active)
 		SPAWN_DBG(1.1 SECONDS) // slowing this baby down a little -drsingh
-			move()
+			move_it()
 		var/recapture_prob = clamp(30-(radius**2) , 0, 25)
 		if(prob(recapture_prob))
 			var/check_max_radius = singularity_containment_check(get_center(src))
@@ -209,6 +228,11 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /obj/machinery/the_singularity/proc/gravity()
 	var/turf/T = src.get_center()
+
+	for(var/atom/movable/AM in orange(src.radius + src.grav_range, T))
+		if(!AM.anchored)
+			step_towards(AM, T)
+/*
 	// the block to the south, including corners
 	for(var/turf/T2 in block(T.x - src.radius - src.grav_range, T.y - src.radius - src.grav_range, T.z, T.x + src.radius + src.grav_range, T.y - src.radius))
 		for (var/atom/movable/AM in T2)
@@ -229,8 +253,9 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		for (var/atom/movable/AM in T2)
 			if (!AM.anchored)
 				step_towards(AM, src)
+*/
 
-/obj/machinery/the_singularity/proc/move()
+/obj/machinery/the_singularity/proc/move_it()
 	// if we're inside something (e.g posessed mob) dont move
 	if (!isturf(src.loc))
 		return
@@ -310,18 +335,20 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/the_singularity/set_loc(atom/target)
 	. = ..()
 	if(isturf(target))
-		for(var/turf/T in src.locs)
-			for(var/atom/movable/AM in T.contents)
-				eat_atom(AM)
-			eat_atom(T)
+		SPAWN_DBG(0)
+			for(var/turf/T in src.locs)
+				for(var/atom/movable/AM in T.contents)
+					eat_atom(AM)
+				eat_atom(T)
 
-/obj/machinery/the_singularity/Move(atom/target)
+/obj/machinery/the_singularity/Move(atom/target, direct)
 	. = ..()
 	if(isturf(target))
-		for(var/turf/T in src.locs)
-			for(var/atom/movable/AM in T.contents)
-				eat_atom(AM)
-			eat_atom(T)
+		SPAWN_DBG(0)
+			for(var/turf/T in src.locs)
+				for(var/atom/movable/AM in T.contents)
+					eat_atom(AM)
+				eat_atom(T)
 
 /obj/machinery/the_singularity/Bumped(atom/A)
 	if(eat_atom(A))
@@ -333,11 +360,18 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		current_target = null
 
 /obj/machinery/the_singularity/hitby(atom/movable/AM, datum/thrown_thing/thr)
-	eat_atom(AM)
 	. = ..()
+	SPAWN_DBG(0)
+		eat_atom(AM)
 
 /obj/machinery/the_singularity/HasEntered(atom/movable/AM, atom/OldLoc)
-	eat_atom(AM)
+	SPAWN_DBG(0)
+		eat_atom(AM)
+
+/obj/machinery/the_singularity/bullet_act(var/obj/projectile/P)
+	if(!P)
+		return
+	src.energy += P.power * 0.05 / SINGULO_SCALAR
 
 /obj/machinery/the_singularity/proc/eat_atom(atom/A)
 	var/gain = 0
@@ -354,7 +388,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	if (isliving(A) && !isintangible(A))//if its a mob
 		var/mob/living/L = A
-		L.set_loc(src.get_center())
+		//L.set_loc(src.get_center())
 		gain = 20
 		if (ishuman(L))
 			var/mob/living/carbon/human/H = A
@@ -362,15 +396,17 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			if (H.unkillable)
 				H.unkillable = 0
 			if (H.mind && H.mind.assigned_role)
+				// Does this count as the weight of a soul?
 				switch (H.mind.assigned_role)
 					if ("Clown")
 						// Hilarious.
-						gain = 500
+						gain = 500 + H.mind.karma
 						game_stats.Increment("clownabuse")
-						resize()
+						SPAWN_DBG(0)
+							resize()
 					if ("Lawyer")
 						// Satan.
-						gain = 250
+						gain = 250 - H.mind.karma
 					if ("Tourist", "Geneticist")
 						// Nerds that are oblivious to dangers
 						gain = 200
@@ -385,7 +421,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 						gain = 20
 					else
 						gain = 50
-
+		for(var/atom/movable/AM in L.contents)
+			src.eat_atom(AM)
 		L.remove()
 
 	else if (isobj(A))
@@ -393,20 +430,29 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			//src.warp = 100
 
 		var/obj/O = A
-		O.ex_act(OLD_EX_TOTAL)
-		O.set_loc(src.get_center())
-		if (O)
-			qdel(O)
-		gain = 2
+		//O.ex_act(OLD_EX_TOTAL)
+		//O.set_loc(src.get_center())
+		//if (O)
+		gain = O.w_class
+		if(isitem(O))
+			var/obj/item/I = O
+			if(I.amount > 5)
+				gain = gain * (4 + sqrt(I.amount - 4))
+			else
+				gain = gain * I.amount
+		for(var/atom/movable/AM in O.contents)
+			src.eat_atom(AM)
+		qdel(O)
 
 	else if (isturf(A))
 		var/turf/T = A
 		if (T.turf_flags & IS_TYPE_SIMULATED)
 			if (istype(T, /turf/floor))
 				T.ReplaceWithSpace()
-				gain = 2
-			else
+				gain = 10
+			else if(!istype(T, /turf/space))
 				T.ReplaceWithFloor()
+				gain = 40
 		else
 			return TRUE
 
@@ -426,42 +472,65 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	else
 		return ..()
 
-/obj/machinery/the_singularity/proc/resize() //also does shrinking as soon as someone else figures out how to get the cocksucking scaling to work
+/obj/machinery/the_singularity/proc/resize() //also does shrinking
 	var/diameter = 2*radius + 1
 	//at least 50d^2 energy to achieve diameter d, picked kinda arbitrarily so the growth is slow and also increasingly more demanding
 	//(though with increased size a singulo will eat more shit fast as well so IDK it's probably still mildly accelerating)
 	//for a 1x1 through 11x11 (uneven diameters only) this comes out to thresholds of 50/450/1250/2450/4050/6050 energy needed
-	//ATM everything that isn't a mob gives 2 energy, so the singulo shouldn't be growing quickly once it's loose
-	var/godver = 50*(diameter+2)*(diameter+2)
-	var/godver2 = 50*diameter*diameter
+	var/godver = (50 / SINGULO_SCALAR) * (diameter+2) * (diameter+2)
+	var/godver2 = (50 / SINGULO_SCALAR) * diameter * diameter
 
 	if (src.energy >= godver) //too small
+		var/check_max_radius = singularity_containment_check(get_center(src))
+		if(!isnull(check_max_radius) && check_max_radius >= radius)
+			src.maxradius = check_max_radius
 		if(src.radius < src.maxradius)
+			//resizing does cruel and terrible things to the turf_persistent caches
+			//north, including corner
+			var/turf/T = get_turf(src)
+			for(var/turf/T2 in block(T.x, T.y + src.radius * 2 + 1, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2 + 2, T.z))
+				T2.turf_persistent.checkingcanpass++
+				T2.turf_persistent.checkinghasentered++
+			//east, not including corner
+			for(var/turf/T2 in block(T.x + src.radius * 2 + 1, T.y, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2, T.z))
+				T2.turf_persistent.checkingcanpass++
+				T2.turf_persistent.checkinghasentered++
+
 			src.radius++
+			src.sound_emitter.update_active_sound_param(volume = min(src.radius * 15 + 50, 0), falloff = 3 + 0.2 * radius)
 			src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 			//SafeScale((radius+0.5)/(radius-0.5),(radius+0.5)/(radius-0.5))
 			src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
-			src.pixel_x = src.pixel_y = 32 * src.radius - 64
 			src.bound_width = src.bound_height = 64 * src.radius + 32
 			src.grav_range = min(src.radius + 3, 5)
 			if(isturf(src.loc))
-				var/turf/T = get_turf(src)
 				var/turf/T2 = locate(T.x - 1, T.y - 1, T.z)
 				if(T2)
 					src.set_loc(T2)
 
-	else if (src.energy < godver2)
+	else if (src.energy < godver2 && radius > 0)
+		// we shrink first to simply the math
 		src.radius--
+		src.sound_emitter.update_active_sound_param(volume = min(src.radius * 15 + 50, 150), falloff = 3 + 0.2 * radius)
+		var/turf/T = get_turf(src)
+		//resizing does cruel and terrible things to the turf_persistent caches, even when shrinking!
+		//north, including corner
+		for(var/turf/T2 in block(T.x, T.y + src.radius * 2 + 1, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2 + 2, T.z))
+			T2.turf_persistent.checkingcanpass--
+			T2.turf_persistent.checkinghasentered--
+		//east, not including corner
+		for(var/turf/T2 in block(T.x + src.radius * 2 + 1, T.y, T.z, T.x + src.radius * 2 + 2, T.y + src.radius * 2, T.z))
+			T2.turf_persistent.checkingcanpass--
+			T2.turf_persistent.checkinghasentered--
 		src.scaled_radius = max(src.radius ** SINGULO_POWER_RADIUS_EXPONENT, 1)
 		src.transform = matrix(0.2 + src.radius * 0.4, MATRIX_SCALE)
-		src.pixel_x = src.pixel_y = 32 * src.radius - 64
 		src.bound_width = src.bound_height = 64 * src.radius + 32
 		src.grav_range = min(src.radius + 3, 5)
 		if(isturf(src.loc))
-			var/turf/T = get_turf(src)
 			var/turf/T2 = locate(T.x + 1, T.y + 1, T.z)
 			if(T2)
 				src.set_loc(T2)
+	src.pixel_x = src.pixel_y = 32 * src.radius - 64
 
 // totally rewrote this proc from the ground-up because it was puke but I want to keep this comment down here vvv so we can bask in the glory of What Used To Be - haine
 		/* uh why was lighting a cig causing the singularity to have an extra process()?
@@ -515,7 +584,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	for (var/turf/T in orange(radius*EVENT_GROWTH+EVENT_MINIMUM, src.get_center()))
 		if (prob(70))
 			continue
-		if (T && !(T.turf_flags & CAN_BE_SPACE_SAMPLE) && (get_dist(src.get_center(),T) == radius+1 || get_dist(src.get_center(),T) == radius+2)) // I'm very tired and this is the least dumb thing I can make of what was here for now.   This needs to get updated for the variable size singularity at some point
+		if (T && !istype(T, /turf/space) && (get_dist(src.get_center(),T) == radius+1 || get_dist(src.get_center(),T) == radius+2)) // I'm very tired and this is the least dumb thing I can make of what was here for now.   This needs to get updated for the variable size singularity at some point
 			if (T.turf_flags & IS_TYPE_SIMULATED)
 				if (istype(T,/turf/floor) && !istype(T,/turf/floor/plating))
 					var/turf/floor/F = T
@@ -573,10 +642,25 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	proc/set_active(var/act)
 		if (src.active != act)
 			src.active = act
-			if (src.active)
-				event_handler_flags |= IMMUNE_SINGULARITY
+			if(src.active > 1)
+				sound_emitter.play("wibble")
 			else
-				event_handler_flags &= ~IMMUNE_SINGULARITY
+				sound_emitter.deactivate()
+			if (src.active)
+				event_handler_flags |= IMMUNE_SINGULARITY | Z_ANCHORED
+			else
+				event_handler_flags &= ~(IMMUNE_SINGULARITY | Z_ANCHORED)
+
+/obj/machinery/field_generator/setup_sound()
+	sound_emitter = new /datum/sound_emitter(src)
+	if (sound_emitter)
+		//sound_emitter.ignore_space = TRUE
+		var/sound/wibble = sound()
+		wibble.file = "sound/machines/fieldgenwibble.ogg"
+		wibble.repeat = 1
+		wibble.falloff = 1
+		wibble.volume = 50
+		sound_emitter.add(wibble, "wibble")
 
 /obj/machinery/field_generator/attack_hand(mob/user as mob)
 	if(state == WELDED)
@@ -611,6 +695,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 /obj/machinery/field_generator/New()
 	START_TRACKING
 	..()
+	setup_sound()
 	SPAWN_DBG(0.6 SECONDS)
 		if(!src.link && (state == WELDED))
 			src.get_link()
@@ -645,9 +730,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	if(src.Varedit_start == 1)
 		if(src.active == 0)
 			src.set_active(1)
-			src.state = WELDED
-			src.power = 100
-			src.anchored = ANCHORED
+			src.power = src.max_power
 			icon_state = "Field_Gen +a"
 		Varedit_start = 0
 
@@ -669,11 +752,8 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				src.visible_message("<span class='alert'>The [src.name] shuts down due to lack of power!</span>")
 				icon_state = "Field_Gen_w"
 				src.set_active(0)
-				src.cleanup(1)
-				src.cleanup(2)
-				src.cleanup(4)
-				src.cleanup(8)
 				for(var/dir in cardinal)
+					src.cleanup(dir)
 					src.UpdateOverlays(null, "field_start_[dir]")
 					src.UpdateOverlays(null, "field_end_[dir]")
 
@@ -723,7 +803,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		//var/field_dir = get_dir(T2,get_step(T2, NSEW))
 		T = get_step(T, NSEW)
 		//T2 = T
-		var/obj/machinery/containment_field/CF = new /obj/machinery/containment_field(src, G) //(ref to this gen, ref to connected gen)
+		var/obj/containment_field/CF = new /obj/containment_field(src, G) //(ref to this gen, ref to connected gen)
 		CF.set_loc(T)
 		CF.set_dir(NSEW)
 
@@ -774,6 +854,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 			return
 
 	if(isweldingtool(W))
+		if(active)
+			boutput(user, "Turn off the field generator first.")
+			return
+
 		if(state != UNWRENCHED)
 			if(!W:try_weld(user, 1, noisy = 2))
 				return
@@ -806,11 +890,13 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /obj/machinery/field_generator/proc/weld_action(mob/user)
 	if(state == WRENCHED)
+		anchored = ANCHORED_TECHNICAL
 		state = WELDED
 		src.get_link() //Set up a link, now that we're secure!
 		boutput(user, "You weld the field generator to the floor.")
 		icon_state = "Field_Gen_w"
 	else if(state == WELDED)
+		anchored = ANCHORED
 		state = WRENCHED
 		if(src.link) //Clear active link.
 			src.link.master = null
@@ -819,7 +905,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		icon_state = "Field_Gen"
 
 /obj/machinery/field_generator/proc/cleanup(var/NSEW)
-	var/obj/machinery/containment_field/F
+	var/obj/containment_field/F
 	var/obj/machinery/field_generator/G
 	var/turf/T = src.loc
 	//var/turf/T2 = src.loc
@@ -832,7 +918,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	for(var/dist = 0, dist <= FIELD_GENERATOR_MAX_LENGTH, dist += 1) // checks out to 8 tiles away for fields
 		T = get_step(T, NSEW)
 		//T2 = T
-		F = (locate(/obj/machinery/containment_field) in T)
+		F = (locate(/obj/containment_field) in T)
 		if(F)
 			if(F.gen_primary == src || F.gen_secondary == src)
 				qdel(F)
@@ -907,24 +993,26 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 /obj/machinery/field_generator/activated
 	Varedit_start = TRUE
+	state = WELDED
+	anchored = ANCHORED
 	power = 50
 
 /////////////////////////////////////////////// Containment field //////////////////////////////////
 
-/obj/machinery/containment_field
+/obj/containment_field
 	name = "containment field"
 	desc = "An energy field."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "Contain_F"
-	pass_unstable = TRUE
-	anchored = ANCHORED
-	density = 0
-	event_handler_flags = USE_FLUID_ENTER | IMMUNE_SINGULARITY | USE_CANPASS
+	pass_unstable = FALSE
+	anchored = ANCHORED_TECHNICAL
+	density = TRUE
+	event_handler_flags = USE_FLUID_ENTER | IMMUNE_SINGULARITY | USE_CANPASS | Z_ANCHORED
 	var/obj/machinery/field_generator/gen_primary
 	var/obj/machinery/field_generator/gen_secondary
 	var/datum/light/light
 
-/obj/machinery/containment_field/New(var/obj/machinery/field_generator/A, var/obj/machinery/field_generator/B)
+/obj/containment_field/New(var/obj/machinery/field_generator/A, var/obj/machinery/field_generator/B)
 	src.gen_primary = A
 	src.gen_secondary = B
 	light = new /datum/light/point
@@ -935,32 +1023,23 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 
 	..()
 
-/obj/machinery/containment_field/disposing()
+/obj/containment_field/disposing()
 	qdel(light)
 	light = null
 	..()
 
 //we gotta override this anyway, might as well have a bit of fun with it
-/obj/machinery/containment_field/ex_act(severity=0,last_touched=0, epicenter = null)
+/obj/containment_field/ex_act(severity=0,last_touched=0, epicenter = null)
 	//throw explosives at the containment field to speed up the singularity breaking out
 	//I'm not 100% on whether this won't runtime if a generator isn't there, buuuut
 	//(also the generators aren't explosion proof atm so)
 	gen_primary?.power = max(0, round(gen_primary.power - severity))
 	gen_secondary?.power = max(0, round(gen_secondary.power - severity))
 
-/obj/machinery/containment_field/attack_hand(mob/user as mob)
+/obj/containment_field/attack_hand(mob/user as mob)
 	return
 
-/obj/machinery/containment_field/process()
-	if(isnull(gen_primary)||isnull(gen_secondary))
-		qdel(src)
-		return
-
-	if(!(gen_primary.active)||!(gen_secondary.active))
-		qdel(src)
-		return
-
-/obj/machinery/containment_field/proc/shock(mob/user as mob)
+/obj/containment_field/proc/shock(mob/user as mob)
 	if(isnull(gen_primary) || isnull(gen_secondary))
 		qdel(src)
 		return
@@ -1011,15 +1090,17 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		user.elecgib()
 		return
 	else
-		var/throwdir = get_dir(src, get_step_away(src, user)) //was get_step_away(user, src), but that seems backwards
+		//var/throwdir = get_dir(src, get_step_away(src, user)) //was get_step_away(user, src), but that seems backwards
+		/* why do we want a 20% chance to just chainthrow back and forth inside the beam?? maybe a chance to fall in, but. why.
 		if (prob(20))
 			user.set_loc(get_turf(src)) //why?
 			if (prob(50))
 				throwdir = turn(throwdir,90)
 			else
 				throwdir = turn(throwdir,-90)
-		var/atom/target = get_edge_target_turf(user, throwdir)
-		user.throw_at(target, 200, 4) //200 because that's the old map size?
+		*/
+		var/atom/target = get_edge_target_turf(user, get_dir(src, user))
+		user.throw_at(target, 40, 4) //200 because that's the old map size? // now 40, space handles the rest
 		user.audible_message("<span class='alert'>[user.name] was shocked by the [src.name]!</span>", "<span class='alert'>You hear a heavy electrical crack</span>")
 		/*for(var/mob/M in AIviewers(src))
 			if(M == user)	continue
@@ -1029,11 +1110,10 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	src.gen_secondary.power -= 3
 	return
 
-/obj/machinery/containment_field/CanPass(atom/movable/O as mob|obj, target as turf)
+/obj/containment_field/Bumped(atom/movable/O as mob|obj)
 	if(isliving(O) && prob(80))
 		shock(O)
-	..()
-
+	return ..()
 
 /////////////////////////////////////////// Emitter ///////////////////////////////
 /obj/machinery/emitter
@@ -1291,6 +1371,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	anchored = ANCHORED
 	density = 1
 	directwired = 1
+	mats = list("MET-2" = 6, "CON-1" = 5, "CRY-1" = 5, "REF-1" = 4)
 	var/magic = 0
 	var/active = 0
 	var/obj/item/tank/plasma/P = null
@@ -1394,6 +1475,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 	anchored = ANCHORED
 	density = 1
 	directwired = 1
+	mats = list("MET-3" = 8, "CON-1" = 9, "CRY-1" = 8, "POW-1" = 7)
 	///Supposed to make power just whenever, should work now
 	var/magic = 0
 	var/active = 0
@@ -1545,7 +1627,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				//Big singulos are great (exponential scaling), fed singulos are good (linear scaling), and distance is uh...
 				//some other kind of scaling that isnt super harsh. its in the divisor idk bestie.
 				var/dist_to_singu = GET_DIST(singu.get_center(), src)
-				power_s += singu.energy * singu.scaled_radius / (4 + dist_to_singu) * SINGULO_POWER_MULTIPLIER
+				power_s += singu.energy * singu.scaled_radius / (4 + dist_to_singu) * SINGULO_SCALAR
 			//For each possible collector, grab the current moles of plasma in the tank and then delete some plasma
 			//If you don't top up the tank after grabbing it from the dispenser, it will take approximately 46.6 minutes (assuming no lag) at the current
 			//3.2s machine loop for an array to run dry. By that point, the SMES is max charge, so its not actually that dangerous.
@@ -1809,7 +1891,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		O.show_message("[bicon(src)] *beep* *beep*", 3, "*beep* *beep*", 2)
 
 
-	playsound(T, 'sound/effects/creaking_metal1.ogg', 100, 0, 5, 0.5)
+	playsound(T, 'sound/effects/creaking_metal1.ogg', 100, 0, SOUND_RANGE_LARGE, 0.5)
 	for (var/mob/M in range(7,T))
 		boutput(M, "<span class='bold alert'>The contaiment field on \the [src] begins destabilizing!</span>")
 		shake_camera(M, 5, 16)
@@ -1826,7 +1908,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		logTheThing("bombing", src.activator, null, "A [src.name] (primed by [src.activator ? "[src.activator]" : "*unknown*"]) detonates at [log_loc(src)].")
 		message_admins("A [src.name] (primed by [src.activator ? "[key_name(src.activator)]" : "*unknown*"]) detonates at [log_loc(src)].")
 
-		playsound(T, 'sound/machines/satcrash.ogg', 100, 0, 5, 0.5)
+		playsound(T, 'sound/machines/satcrash.ogg', 100, 0, SOUND_RANGE_LARGE, 0.5)
 		if (bhole)
 			var/obj/B = new /obj/bhole(get_turf(src.loc), rand(1600, 2400), rand(75, 100))
 			B.name = "gravitational singularity"

@@ -303,7 +303,7 @@
 				if (T.active_liquid && T.active_liquid.group && T.active_liquid.group.reagents)
 					T.active_liquid.group.drain(T.active_liquid,slurp,src)
 					if (prob(80))
-						playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 0.1, 0.7)
+						playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 0.1, SOUND_RANGE_STANDARD)
 				update_icon()
 
 		else if (pissing)
@@ -437,7 +437,7 @@
 		var/turf/target = 0
 
 		for(var/turf/T in orange(1,linked_ladder))
-			if (!istype(T,/turf/space/fluid/warp_z5))
+			if (!istype(T,/turf/space/fluid/ocean/warp_z5))
 				target = T
 				break
 
@@ -459,8 +459,8 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 9
 	stamina_damage = 30
-	stamina_cost = 20
-	stamina_crit_chance = 6
+//	stamina_cost = 20
+//	stamina_crit_chance = 6
 	var/c_color = null
 	mats = 7
 
@@ -471,23 +471,23 @@
 
 	afterattack(atom/target, mob/user as mob)
 		. = ..()
-		if (istype(target,/turf/space/fluid/warp_z5/realwarp))
-			var/turf/space/fluid/warp_z5/realwarp/hole = target
+		if (istype(target,/turf/space/fluid/ocean/warp_z5/realwarp))
+			var/turf/space/fluid/ocean/warp_z5/realwarp/hole = target
 			var/datum/component/pitfall/target_coordinates/targetzcomp = hole.GetComponent(/datum/component/pitfall/target_coordinates)
-			targetzcomp.update_targets()
-			deploy_ladder(hole, pick(targetzcomp.TargetList), user)
+			targetzcomp.update_target()
+			deploy_ladder(hole, targetzcomp.Target, user)
 
-		else if (istype(target,/turf/space/fluid/warp_z5))
-			var/turf/space/fluid/warp_z5/hole = target
+		else if (istype(target,/turf/space/fluid/ocean/warp_z5))
+			var/turf/space/fluid/ocean/warp_z5/hole = target
 			var/datum/component/pitfall/target_area/targetacomp = hole.GetComponent(/datum/component/pitfall/target_area)
 			deploy_ladder(hole, pick(get_area_turfs(targetacomp.TargetArea)), user)
 
-		else if(istype(target, /turf/space/fluid))
-			var/turf/space/fluid/T = target
+		else if(istype(target, /turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = target
 			if(T.linked_hole)
 				deploy_ladder(T, T.linked_hole, user)
 			else if(istype(T.loc, /area/trench_landing))
-				deploy_ladder(T, pick(by_type[/turf/space/fluid/warp_z5/edge]), user)
+				deploy_ladder(T, pick(by_type[/turf/space/fluid/ocean/warp_z5/edge]), user)
 
 	proc/deploy_ladder(turf/source, turf/dest, mob/user)
 		user.show_text("You deploy [src].")
@@ -543,10 +543,10 @@
 
 		active = !active
 		if (active)
-			playsound(src.loc, powerupsfx, 50, 1, 0.1, 1)
+			playsound(src.loc, powerupsfx, 50, 1, SOUND_RANGE_STANDARD, 1)
 			user.visible_message("<span class='notice'>[user] activates [src].</span>", "<span class='notice'>You activate [src].</span>")
 		else
-			playsound(src.loc, powerdownsfx, 50, 1, 0.1, 1)
+			playsound(src.loc, powerdownsfx, 50, 1, SOUND_RANGE_STANDARD, 1)
 			user.visible_message("<span class='notice'>[user] disarms [src].</span>","<span class='notice'>You disarm [src].</span>")
 
 	attackby(obj/item/I, mob/user)

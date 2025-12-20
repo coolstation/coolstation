@@ -1,14 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/space,
-/area/space)
+/area/allowGenerate/caves)
 "b" = (
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
 /area/noGenerate)
 "c" = (
-/obj/decal/cleanable/tracked_reagents/mud/drip/low,
+/obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/plating/gehenna/farts,
 /area/noGenerate)
 "d" = (
@@ -59,7 +59,7 @@
 /area/noGenerate)
 "t" = (
 /turf/wall/asteroid/gehenna/tough/z3,
-/area/space)
+/area/allowGenerate/caves)
 "u" = (
 /turf/floor/damaged5,
 /area/noGenerate)
@@ -82,7 +82,7 @@
 /turf/floor/plating/gehenna/farts,
 /area/noGenerate)
 "C" = (
-/obj/decal/cleanable/tracked_reagents/mud/drip/low,
+/obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/plating/gehenna,
 /area/noGenerate)
 "D" = (
@@ -110,6 +110,9 @@
 	icon_state = "platingdmg3"
 	},
 /area/noGenerate)
+"O" = (
+/turf/floor/plating/gehenna,
+/area/allowGenerate/caves)
 "P" = (
 /turf/floor/plating/gehenna/plasma,
 /area/noGenerate)
@@ -129,17 +132,14 @@
 	icon_state = "panelscorched"
 	},
 /area/noGenerate)
-"Z" = (
-/turf/floor/plating/gehenna,
-/area/space)
 
 (1,1,1) = {"
-Z
-Z
 a
 a
-t
-t
+a
+a
+Q
+Q
 a
 a
 a
@@ -151,15 +151,15 @@ a
 a
 "}
 (2,1,1) = {"
-Z
-Z
-Z
 a
-t
-t
-t
-Z
-Z
+a
+a
+a
+Q
+Q
+Q
+O
+O
 a
 a
 a
@@ -170,14 +170,14 @@ a
 (3,1,1) = {"
 D
 h
-h
-h
+a
+a
 S
+Q
+Q
+Q
 t
-t
-t
-t
-Z
+O
 a
 a
 a
@@ -188,14 +188,14 @@ a
 a
 h
 h
+a
+S
+S
+Q
 h
-S
-S
-t
-Z
-t
-Z
-Z
+Q
+O
+O
 a
 a
 a
@@ -212,8 +212,8 @@ a
 a
 D
 t
-Z
-Z
+O
+O
 a
 a
 a
@@ -228,9 +228,9 @@ h
 a
 a
 D
+Q
 t
-t
-Z
+O
 a
 a
 a
@@ -247,8 +247,8 @@ a
 a
 D
 t
-Z
-Z
+O
+O
 a
 a
 "}
@@ -263,9 +263,9 @@ S
 a
 a
 a
+Q
 t
-t
-Z
+O
 a
 a
 "}
@@ -283,7 +283,7 @@ A
 S
 Q
 t
-Z
+O
 a
 "}
 (10,1,1) = {"
@@ -300,7 +300,7 @@ A
 S
 S
 t
-Z
+O
 a
 "}
 (11,1,1) = {"
@@ -640,7 +640,7 @@ S
 h
 h
 h
-Z
+a
 a
 "}
 (31,1,1) = {"
@@ -657,7 +657,7 @@ S
 S
 h
 h
-Z
+a
 a
 "}
 (32,1,1) = {"
@@ -665,51 +665,51 @@ Q
 A
 A
 A
-A
+a
 Q
 a
 a
 a
 a
 a
-Z
-Z
-Z
+h
+h
+h
 a
 "}
 (33,1,1) = {"
 Q
 A
 A
-A
+a
+t
 Q
-Q
 a
 a
 a
 a
 a
 a
-Z
-Z
-Z
+h
+h
+a
 "}
 (34,1,1) = {"
 Q
 A
-A
-Q
 Q
 a
+t
 a
 a
 a
 a
 a
 a
-Z
-Z
-Z
+a
+a
+h
+a
 "}
 (35,1,1) = {"
 Q
@@ -725,6 +725,6 @@ a
 a
 a
 a
-Z
-Z
+a
+a
 "}

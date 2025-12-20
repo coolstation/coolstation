@@ -106,9 +106,6 @@
 				return
 	return
 
-/obj/morgue/alter_health()
-	return src.loc
-
 /obj/morgue/attack_hand(mob/user as mob)
 	if (src.connected && src.connected.loc != src)
 		for( var/atom/movable/A as mob|obj in src.connected.loc)
@@ -285,9 +282,6 @@
 				qdel(src)
 				return
 	return
-
-/obj/crematorium/alter_health()
-	return src.loc
 
 /obj/crematorium/attack_hand(mob/user as mob)
 //	if (cremating) AWW MAN! THIS WOULD BE SO MUCH MORE FUN ... TO WATCH

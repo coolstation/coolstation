@@ -31,10 +31,7 @@
 	use_bloodoverlay = 0
 
 	setupProperties()
-		..()
-		setProperty("coldprot", 0)
-		setProperty("heatprot", 0)
-		setProperty("meleeprot", 0)
+		return
 
 	New()
 		..()
@@ -544,9 +541,6 @@
 		src.reagents.maximum_volume = 600
 		src.reagents.clear_reagents()
 
-	is_open_container()
-		return 1
-
 /* ================================================= */
 /* -------------------- Packets -------------------- */
 /* ================================================= */
@@ -565,7 +559,7 @@
 	var/package_style = "cigpacket"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigpacket/nicofree
@@ -680,7 +674,7 @@
 	w_class = W_CLASS_TINY
 	throwforce = 1
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	rand_pos = 8
 
 /obj/item/cigarbox
@@ -697,7 +691,7 @@
 	var/package_style = "cigarbox"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigarbox/New()
@@ -761,7 +755,7 @@
 	package_style = "cigarbox"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigarbox/gold/update_icon()
@@ -842,8 +836,8 @@
 	throwforce = 1
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	burn_point = 220
 	burn_output = 900
 	burn_possible = TRUE
@@ -921,8 +915,8 @@
 	throwforce = 1
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	burn_point = 220
 	burn_output = 600
 	burn_possible = TRUE
@@ -999,7 +993,7 @@
 			src.icon_state = "match-broken"
 			src.name = "broken match"
 			if (user)
-				playsound(user, "sound/impact_sounds/Flesh_Crush_1.ogg", 60, 1, 0, 2)
+				playsound(user, "sound/impact_sounds/Flesh_Crush_1.ogg", 60, 1, SOUND_RANGE_STANDARD, 2)
 		else
 			src.icon_state = "match-burnt"
 			src.name = "burnt-out match"
@@ -1140,8 +1134,8 @@
 	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 0.7 SECONDS
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 5
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 	icon_off = "zippo"
 	icon_on = "zippoon"
 	brightness = 0.4
@@ -1254,7 +1248,7 @@
 			if (O.reagents.total_volume)
 				O.reagents.trans_to(src, src.reagents.maximum_volume - src.reagents.get_reagent_amount("fuel"))
 				boutput(user, "<span class='notice'>[src] has been refueled.</span>")
-				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 			else
 				user.show_text("[O] is empty.", "red")
 			return
@@ -1343,3 +1337,20 @@
 
 /obj/item/device/light/zippo/borg
 	infinite_fuel = 1
+
+/* ================================================== */
+/* --------------------- Pipes ---------------------- */
+/* ================================================== */
+
+/obj/item/clothing/mask/pipe
+	name = "pipe"
+	icon = 'icons/obj/items/cigarettes.dmi'
+	wear_image_icon = 'icons/mob/mask.dmi'
+	icon_state = "pipe"
+	uses_multiple_icon_states = 1
+	item_state = "pipe"
+	force = 2
+	hit_type = DAMAGE_BLUNT
+	throw_speed = 1
+	w_class = W_CLASS_TINY
+

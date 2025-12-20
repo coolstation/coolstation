@@ -31,15 +31,15 @@
 	contraband = 10
 	two_handed = 1
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 42
+//	stamina_cost = 5
+//	stamina_crit_chance = 42
 	var/core_inserted = false
 	var/active_force = 50
 	var/active_stamina_dmg = 50
-	var/active_stamina_cost = 40
+//	var/active_stamina_cost = 40
 	var/inactive_force = 1
 	var/inactive_stamina_dmg = 5
-	var/inactive_stamina_cost = 5
+//	var/inactive_stamina_cost = 5
 	var/do_stun = 0
 	var/cooldown = 0
 	var/scan_center_x
@@ -67,7 +67,7 @@
 			light.update(0)
 			force = inactive_force
 			stamina_damage = inactive_stamina_dmg
-			stamina_cost = inactive_stamina_cost
+//			stamina_cost = inactive_stamina_cost
 			w_class = W_CLASS_SMALL
 
 			user.show_message("<span class='notice'>You remove the SWORD core from the Syndicate Destruction System!</span>", 1)
@@ -86,7 +86,7 @@
 			light.update(1)
 			force = active_force
 			stamina_damage = active_stamina_dmg
-			stamina_cost = active_stamina_cost
+//			stamina_cost = active_stamina_cost
 			w_class = W_CLASS_HUGE
 
 			user.show_message("<span class='notice'>You insert the SWORD core into the Syndicate Destruction System!</span>", 1)
@@ -115,7 +115,7 @@
 		var/increment_y
 		leavescan(user.loc, 0)
 		destruction_point_z = user.loc.z
-		spawn(16)
+		SPAWN_DBG(16)
 			if(core_inserted)
 				icon = 'icons/misc/retribution/48x32.dmi'
 				src.icon_state = "SDS"

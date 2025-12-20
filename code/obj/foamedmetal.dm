@@ -18,7 +18,12 @@
 		..()
 
 		if(istype(loc, /turf/space))
-			loc:ReplaceWithMetalFoam(metal)
+			var/turf/floor/metalfoam/floor = loc:ReplaceWith(/turf/floor/metalfoam)
+			if(floor.icon_old)
+				floor.icon_state = floor.icon_old
+			floor.metal = src.metal
+			floor.update_icon()
+			DELETE_LATTICES_IN(floor)
 
 		update_nearby_tiles(1)
 		SPAWN_DBG(1 DECI SECOND)

@@ -156,6 +156,16 @@
 								"Willard Jam",
 								"Willard Jam")
 
+	hop_affirmation
+		name = "Beginning of Shift Affirmations"
+		desc = "For instilling confidence in skittish or flighty Heads of Personnel."
+		continuous = 0
+
+		New()
+			..()
+			audiolog_messages = strings("station/station_audiologs.txt","station_hop_audio")
+			audiolog_speakers = strings("station/station_audiologs.txt","station_hop_speakers")
+
 	wall_mounted
 		name = "Mounted Logger"
 		desc = "A wall-mounted audio log device."

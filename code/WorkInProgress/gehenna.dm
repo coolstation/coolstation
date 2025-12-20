@@ -24,7 +24,7 @@
 #define GEHENNA_SKY_R 0.5*(sin(GEHENNA_TIME)+1)
 #define GEHENNA_SKY_G 0.3*(sin(GEHENNA_TIME )+1)
 #define GEHENNA_SKY_B 0.4*(sin(GEHENNA_TIME - 45 )+1)
-#define GEHENNA_SKY_BRIGHT 0.5*(sin(GEHENNA_TIME)+0.8) + 0.25
+#define GEHENNA_SKY_BRIGHT 0.7*(sin(GEHENNA_TIME)+0.8) + 0.25
 
 
 var/global/gehenna_time = GEHENNA_TIME
@@ -34,7 +34,7 @@ var/global/gehenna_time = GEHENNA_TIME
 var/global/gehenna_surface_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z1
 var/global/gehenna_underground_loop = 'sound/ambience/loop/Gehenna_Surface.ogg' //Z3
 // volume curve so wind stuff is loudest in the cold, cold night
-var/global/gehenna_surface_loop_vol = (30 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(60))) //volume meant for outside, min 30 max 90
+var/global/gehenna_surface_loop_vol = (25 + ((0.5*sin(GEHENNA_TIME-135)+0.5)*(35))) //volume meant for outside, min 25 max 60
 var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just have it the same but quiet i guess (with a proper cave soundscape, increase to like 100 or something)
 
 // Gehenna shit tho
@@ -51,7 +51,10 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	throw_unlimited = 0
 	color = "#ffffff"
 	special_volume_override = -1
+	turf_flags = MINE_MAP_PRESENTS_EMPTY | IS_ATMOSPHERE
+	groups_to_atmosphere = 0
 
+/* PLEASE DO NOT DO THIS
 	Entered(atom/movable/O)
 		..()
 		if(istype(src.loc,/area/gehenna))
@@ -61,6 +64,8 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 					step(O,A.blowOrigin)
 		//if(istype(O, /mob/living))
 			//RegisterSignal(O, COMSIG_MOVABLE_MOVED, PROC_REF(footprints))
+*/
+
 	/*
 	Exited(atom/movable/O)
 		if(istype(O,/mob/living))
@@ -159,15 +164,17 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock3"
 
-/turf/floor/plating/gehenna/
+/turf/floor/plating/gehenna
 	name = "sand"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "sand"
 	step_material = "step_outdoors"
+	burnt = UNBURNABLE_TURF
 	step_priority = STEP_PRIORITY_MED
 	plate_mat = 0 //Prevents this "steel sand" bullshit but it's not a great solution
 	allows_vehicles = 1
-	turf_flags = IS_TYPE_SIMULATED | MOB_SLIP | MOB_STEP | MINE_MAP_PRESENTS_EMPTY
+	turf_flags = IS_TYPE_SIMULATED | MOB_SLIP | MOB_STEP | MINE_MAP_PRESENTS_EMPTY | IS_ATMOSPHERE
+	groups_to_atmosphere = 0
 
 	New()
 		..()
@@ -196,12 +203,12 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	oxygen = GEHENNA_O2
 	nitrogen = GEHENNA_N2
 	temperature = GEHENNA_TEMP
-	turf_flags = MINE_MAP_PRESENTS_EMPTY
+	hint = null
 
 	luminosity = 1 // 0.5*(sin(GEHENNA_TIME)+ 1)
 
 	var/datum/light/point/light = null
-	var/light_atten_con = -0.02
+	var/light_atten_con = -0.08
 	var/light_r = GEHENNA_SKY_R
 	var/light_g = GEHENNA_SKY_G
 	var/light_b = GEHENNA_SKY_B
@@ -248,18 +255,18 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 							var/obj/decal/cragrock/rock = new(src)
 							rock.color = src.color
 
-		if (generateLight)
-			STANDARD_WORLDGEN_HOLD
+		STANDARD_WORLDGEN_HOLD
 
 	generate_worldgen() //this is a trick to stop sand turfs from runtiming if they're immediately replaced with something else
 		..()
-		src.make_light()
+		if (generateLight)
+			src.make_light()
 
 	proc/create_rocks()
 		rocks = list()
 		for(var/i in 1 to 18)
-			var/image/rock = image('icons/turf/gehenna_overlays.dmi',"rock[i]", layer = TURF_LAYER)
-			rock.plane = PLANE_NOSHADOW_BELOW
+			var/image/rock = image('icons/turf/gehenna_overlays.dmi',"rock[i]", layer = TURF_OVERLAY_LAYER + 0.01)
+			rock.plane = PLANE_FLOOR
 			rocks += rock
 
 	make_light()
@@ -270,8 +277,21 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
-		SPAWN_DBG(1 DECI SECOND)
+		//more attempted shuttle movement lagspike reduction
+		//We don't want the spawn to happen on shuttle movement so that enabling the lights actually gets queued
+		//instead of skipping it until after RL is resumed
+		if (RL_Suspended)
 			light?.enable()
+		else //Normal circumstances
+			SPAWN_DBG(1 DECI SECOND)
+				light?.enable()
+
+	//Turns out that moving shuttles back and forth on desert was slowly stacking but not removing lights, oops!
+	Del()
+		if (src.light)
+			qdel(src.light)
+			src.light = null
+		..()
 
 	tunnel_surface
 		name = "bored tunnel floor"
@@ -330,13 +350,18 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		New()
 			if(!src.beaten_sand)
 				src.create_beaten_sand()
+			. = ..()
+
+		generate_worldgen()
+			. = ..()
 			UpdateOverlays(src.beaten_sand["[dir]"], "beaten_sand_overlay")
-			..()
 
 		proc/create_beaten_sand()
 			beaten_sand = list()
 			for(var/i in alldirs)
-				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_edge", dir = i)
+				var/image/sand = image('icons/turf/gehenna_overlays.dmi',"beaten_edge", dir = i, layer = TURF_OVERLAY_LAYER)
+				sand.plane = PLANE_FLOOR
+				beaten_sand["[i]"] = sand
 
 	corner
 		name = "beaten earth"
@@ -355,13 +380,18 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		New()
 			if(!src.beaten_sand)
 				src.create_beaten_sand()
+			. = ..()
+
+		generate_worldgen()
+			. = ..()
 			UpdateOverlays(src.beaten_sand["[dir]"], "beaten_sand_overlay")
-			..()
 
 		proc/create_beaten_sand()
 			beaten_sand = list()
 			for(var/i in alldirs)
-				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_corner", dir = i)
+				var/image/sand = image('icons/turf/gehenna_overlays.dmi',"beaten_corner", dir = i, layer = TURF_OVERLAY_LAYER)
+				sand.plane = PLANE_FLOOR
+				beaten_sand["[i]"] = sand
 
 	beaten
 		name = "beaten earth"
@@ -380,19 +410,25 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		New()
 			if(!src.beaten_sand)
 				src.create_beaten_sand()
+			. = ..()
+
+		generate_worldgen()
+			. = ..()
 			UpdateOverlays(src.beaten_sand["[pick(cardinal)]"], "beaten_sand_overlay")
-			..()
 
 		proc/create_beaten_sand()
 			beaten_sand = list()
 			for(var/i in cardinal)
-				beaten_sand["[i]"] = image('icons/turf/gehenna_overlays.dmi',"beaten_center", dir = i)
+				var/image/sand = image('icons/turf/gehenna_overlays.dmi',"beaten_center", dir = i, layer = TURF_OVERLAY_LAYER)
+				sand.plane = PLANE_FLOOR
+				beaten_sand["[i]"] = sand
 
 /area/gehenna
 	requires_power = 0
 	icon_state = "dither_b"
 	name = "the gehennan desert"
 	is_construction_allowed = TRUE
+	filler_turf = "/turf/space/gehenna/desert"
 
 
 /area/gehenna/south // just in case i need a separate area for stuff
@@ -420,7 +456,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	requires_power = 0
 	sound_environment = EAX_PLAIN
 	sound_loop_1 = 'sound/ambience/loop/SANDSTORM.ogg' //need something wimdy, maybe overlay a storm sound on this
-	sound_loop_1_vol = 100 //always loud, fukken storming
+	sound_loop_1_vol = 50 //always loud, fukken storming
 	var/list/assholes_to_hurt = list()
 	var/buffeting_assoles = FALSE
 	irradiated = 0.5
@@ -531,6 +567,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	luminosity = 0
 	sound_environment = EAX_CAVE
 	is_atmos_simulated = TRUE
+	filler_turf = "/turf/floor/plating/gehenna"
 
 /area/gehenna/underground/staffies_nest
 	name = "the rat's nest"

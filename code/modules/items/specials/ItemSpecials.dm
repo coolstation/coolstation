@@ -304,7 +304,7 @@
 				else
 					if(!isturf(target.loc) && !isturf(target)) return
 					if(!usable()) return
-					if(master && get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+					if(master && params["ai"] || get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 						action = new(src, usr, target)
 						action.params = params
 						actions.start(action, usr)
@@ -421,7 +421,7 @@
 			if(!usable()) return
 			if(!isturf(target.loc) && !isturf(target)) return
 			var/list/parameters = params2list(params)
-			if(parameters["left"] && master && get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(parameters["left"] && master && params["ai"] || get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				var/obj/item/copy = master.split_stack(1)
 				if(copy)
 					preUse(usr)
@@ -452,12 +452,13 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
 
 				var/obj/itemspecialeffect/simple/S = new specialEffect
+				S.clash_time = min(S.clash_time, master.combat_click_delay * 0.75)
 				if(src.animation_color)
 					S.color = src.animation_color
 				if(directional)
@@ -512,7 +513,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
@@ -552,7 +553,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/list/attacked = list()
@@ -635,7 +636,7 @@
 		pixelaction(atom/target, list/params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				if(direction == NORTHEAST || direction == NORTHWEST || direction == SOUTHEAST || direction == SOUTHWEST)
@@ -721,7 +722,7 @@
 			desc = "An AoE attack with a chance for a home run."
 
 			modify_attack_result(mob/user, mob/target, datum/attackResults/msgs)
-				if (msgs.damage > 0 && prob(master.stamina_crit_chance))
+				if (msgs.damage > 0 && prob(30))
 					var/turf/target_turf = get_edge_target_turf(target, get_dir(user, target))
 					target.throw_at(target_turf, 4, 1, throw_type = THROW_BASEBALL)
 					msgs.played_sound = 'sound/impact_sounds/bat_wood_crit.ogg'
@@ -745,7 +746,7 @@
 			var/turf/T = get_turf(target)
 			if(!T) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/pox = text2num(params["icon-x"]) - 16
 				var/poy = text2num(params["icon-y"]) - 16
@@ -803,7 +804,7 @@
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
 
-			if(params["left"] && (master || user) && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && (master || user) && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				if(direction == NORTHEAST || direction == NORTHWEST || direction == SOUTHEAST || direction == SOUTHWEST)
@@ -851,7 +852,7 @@
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
 
-			if(params["left"] && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				if(direction == NORTHEAST || direction == NORTHWEST || direction == SOUTHEAST || direction == SOUTHWEST)
@@ -905,7 +906,7 @@
 			if(!target || (!isturf(target.loc) && !isturf(target))) return
 			if(!usable()) return
 			var/list/parameters = params2list(params)
-			if(parameters["left"] && master && get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(parameters["left"] && master && params["ai"] || get_dist_pixel_squared(usr, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(usr)
 				var/list/attacked = list()
 
@@ -951,7 +952,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params && params["left"] && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params && params["left"] && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(user, direction)
@@ -998,7 +999,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params && params["left"] && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params && params["left"] && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(user, direction)
@@ -1037,7 +1038,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				if(direction == NORTHEAST || direction == NORTHWEST || direction == SOUTHEAST || direction == SOUTHWEST)
@@ -1087,10 +1088,10 @@
 			if(!usable(user)) return
 			if(user.a_intent != INTENT_DISARM) return //only want this to deploy on disarm intent
 			if(master && istype(master, /obj/item/baton) && !master:can_stun())
-				playsound(master, 'sound/weapons/Gunclick.ogg', 50, 0, 0.1, 2)
+				playsound(master, 'sound/weapons/Gunclick.ogg', 50, 0, SOUND_RANGE_STANDARD, 2)
 				return
 
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/list/attacked = list()
@@ -1149,17 +1150,17 @@
 			hit.TakeDamage("chest", 0, rand(2 * mult,5 * mult), 0, DAMAGE_BLUNT)
 			hit.bodytemperature += 4 * mult
 
-			playsound(hit, 'sound/effects/electric_shock.ogg', 60, 1, 0.1, 2.8)
+			playsound(hit, 'sound/effects/electric_shock.ogg', 60, 1, SOUND_RANGE_STANDARD, 2.8)
 
 	double
 		cooldown = 0
 		moveDelay = 5
 		moveDelayDuration = 5
-		damageMult = 0.80
+		damageMult = 0.75
 
 		image = "dagger"
 		name = "Slice"
-		desc = "Attack twice in rapid succession."
+		desc = "Two weaker slices in rapid succession."
 
 		var/secondhitdelay = 2
 
@@ -1171,7 +1172,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
@@ -1186,10 +1187,10 @@
 						hit = 1
 						break
 				if (!hit)
-					playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 0, 0.1, 1.4)
+					playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 0, SOUND_RANGE_STANDARD, 1.4)
 
+				user.next_click += secondhitdelay
 				SPAWN_DBG(secondhitdelay)
-
 					turf = get_step(master, direction)
 					var/obj/itemspecialeffect/simple2/SS = new()
 					SS.setup(turf)
@@ -1201,7 +1202,7 @@
 							hit = 1
 							break
 					if (!hit)
-						playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 0, 0.1, 1.4)
+						playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 0, SOUND_RANGE_STANDARD, 1.4)
 
 				afterUse(user)
 
@@ -1226,7 +1227,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
@@ -1260,7 +1261,7 @@
 				if (hit)
 					E.was_clashed(0)
 				else
-					playsound(master, 'sound/items/miningtool_on.ogg', 30, 0.1, 0, 2)
+					playsound(master, 'sound/items/miningtool_on.ogg', 30, 0.1, SOUND_RANGE_STANDARD, 2)
 
 				afterUse(user)
 			return
@@ -1276,7 +1277,7 @@
 
 		image = "flame"
 		name = "Flame"
-		desc = "Pop out a flame 1 tile away from you in a direction."
+		desc = "Pop out a flame 2 tiles away from you in a direction."
 
 		var/time = 6 SECONDS
 		var/tiny_time = 1 SECOND
@@ -1289,7 +1290,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 
@@ -1297,11 +1298,18 @@
 				if(direction == NORTHEAST || direction == NORTHWEST || direction == SOUTHEAST || direction == SOUTHWEST)
 					direction = (prob(50) ? turn(direction, 45) : turn(direction, -45))
 
-				var/turf/turf = get_step(master, direction)
+				var/turf/prev_turf = get_turf(master)
+				var/turf/turf = get_step(prev_turf, direction)
 
+				if(!turf.gas_cross(prev_turf))
+					return
+
+				prev_turf = turf
 				var/obj/itemspecialeffect/flame/S = new()
 				S.set_dir(direction)
-				turf = get_step(turf,S.dir)
+				turf = get_step(prev_turf,direction)
+				if(!turf.gas_cross(prev_turf))
+					turf = prev_turf
 
 				var/flame_succ = 0
 				if (master)
@@ -1368,7 +1376,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
@@ -1413,7 +1421,7 @@
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
 
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 
 				var/direction = get_dir_pixel(user, target, params)
@@ -1473,7 +1481,7 @@
 				hit.TakeDamage("chest", 0/*master.force*/, rand(2 * mult,5 * mult), 0, DAMAGE_BLUNT)
 				hit.bodytemperature += 4 * mult
 
-			playsound(hit, 'sound/effects/electric_shock.ogg', 60, 1, 0.1, 2.8)
+			playsound(hit, 'sound/effects/electric_shock.ogg', 60, 1, SOUND_RANGE_STANDARD, 2.8)
 
 	katana_dash
 		cooldown = 30
@@ -1498,7 +1506,7 @@
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
 
-			if(params["left"] && (master && K) && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && (master && K) && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				if (reversed)
@@ -1531,50 +1539,55 @@
 				K.start.set_loc(T1)
 				K.start.set_dir(direction)
 				flick(K.start.icon_state, K.start)
-				sleep(0.1 SECONDS)
-				if (T4)
-					K.mid1.set_loc(T2)
-					K.mid1.set_dir(direction)
-					flick(K.mid1.icon_state, K.mid1)
+				SPAWN_DBG(0)
 					sleep(0.1 SECONDS)
-					K.mid2.set_loc(T3)
-					K.mid2.set_dir(direction)
-					flick(K.mid2.icon_state, K.mid2)
-					sleep(0.1 SECONDS)
-					K.end.set_loc(T4)
-					K.end.set_dir(direction)
-					flick(K.end.icon_state, K.end)
-				else if (T3)
-					K.mid1.set_loc(T2)
-					K.mid1.set_dir(direction)
-					flick(K.mid1.icon_state, K.mid1)
-					sleep(0.1 SECONDS)
-					K.end.set_loc(T3)
-					K.end.set_dir(direction)
-					flick(K.end.icon_state, K.end)
-				else if (T2)
-					K.end.set_loc(T2)
-					K.end.set_dir(direction)
-					flick(K.end.icon_state, K.end)
+					if (T4)
+						K.mid1.set_loc(T2)
+						K.mid1.set_dir(direction)
+						flick(K.mid1.icon_state, K.mid1)
+						sleep(0.1 SECONDS)
+						K.mid2.set_loc(T3)
+						K.mid2.set_dir(direction)
+						flick(K.mid2.icon_state, K.mid2)
+						sleep(0.1 SECONDS)
+						K.end.set_loc(T4)
+						K.end.set_dir(direction)
+						flick(K.end.icon_state, K.end)
+					else if (T3)
+						K.mid1.set_loc(T2)
+						K.mid1.set_dir(direction)
+						flick(K.mid1.icon_state, K.mid1)
+						sleep(0.1 SECONDS)
+						K.end.set_loc(T3)
+						K.end.set_dir(direction)
+						flick(K.end.icon_state, K.end)
+					else if (T2)
+						K.end.set_loc(T2)
+						K.end.set_dir(direction)
+						flick(K.end.icon_state, K.end)
 
-				//Reset the effects after they're drawn and put back into master for re-use later
-				SPAWN_DBG(0.8 SECONDS)
+					for(var/atom/movable/A in get_step(user, direction))
+						if(A in attacked) continue
+						if(isTarget(A))
+							on_hit(A)
+							attacked += A
+							A.Attackby(master, user, params, 1)
+							// hit = 1
+							break
+
+					afterUse(user)
+					//if (!hit)
+					playsound(master, 'sound/effects/sparks6.ogg', 70, 0)
+
+					//Reset the effects after they're drawn and put back into master for re-use later
+					sleep(0.8 SECONDS)
 					K.start.set_loc(master)
 					K.mid1.set_loc(master)
 					K.mid2.set_loc(master)
 					K.end.set_loc(master)
-				// var/hit = 0
-				for(var/atom/movable/A in get_step(user, direction))
-					if(A in attacked) continue
-					if(isTarget(A))
-						on_hit(A)
-						attacked += A
-						A.Attackby(master, user, params, 1)
-						// hit = 1
-						break
-				afterUse(user)
-				//if (!hit)
-				playsound(master, 'sound/effects/sparks6.ogg', 70, 0)
+					// var/hit = 0
+
+
 			return
 
 		proc/on_hit(var/mob/hit)
@@ -1642,67 +1655,67 @@
 					T2 = get_turf(user)
 				else
 					stopped = 1
+				SPAWN_DBG(0)
+					sleep(world.tick_lag)
 
-				sleep(world.tick_lag)
+					prev_loc = get_turf(user)
+					step(user, direction)
+					if (!stopped && get_turf(user) != prev_loc)
+						T3 = get_turf(user)
+					else
+						stopped = 2
 
-				prev_loc = get_turf(user)
-				step(user, direction)
-				if (!stopped && get_turf(user) != prev_loc)
-					T3 = get_turf(user)
-				else
-					stopped = 2
+					sleep(world.tick_lag)
 
-				sleep(world.tick_lag)
+					prev_loc = get_turf(user)
+					step(user, direction)
+					if (!stopped && get_turf(user) != prev_loc)
+						T4 = get_turf(user)
+					else
+						stopped = 3
 
-				prev_loc = get_turf(user)
-				step(user, direction)
-				if (!stopped && get_turf(user) != prev_loc)
-					T4 = get_turf(user)
-				else
-					stopped = 3
+					sleep(world.tick_lag)
 
-				sleep(world.tick_lag)
+					var/obj/itemspecialeffect/conc/start = new
+					var/obj/itemspecialeffect/katana_dash/mid/mid1 = new
+					var/obj/itemspecialeffect/katana_dash/mid/mid2 = new
+					var/obj/itemspecialeffect/conc/end = new
 
-				var/obj/itemspecialeffect/conc/start = new
-				var/obj/itemspecialeffect/katana_dash/mid/mid1 = new
-				var/obj/itemspecialeffect/katana_dash/mid/mid2 = new
-				var/obj/itemspecialeffect/conc/end = new
+					start.do_flick = 1
+					mid1.do_flick = 1
+					mid2.do_flick = 1
+					end.do_flick = 1
 
-				start.do_flick = 1
-				mid1.do_flick = 1
-				mid2.do_flick = 1
-				end.do_flick = 1
+					//Draws the effects // I did this backwards maybe, but won't fix it -kyle
+					start.setup(T1)
+					start.set_dir(direction)
+					if (T4)
+						mid1.setup(T2)
+						mid1.set_dir(direction)
+						mid2.setup(T2)
+						mid2.set_dir(direction)
+						end.setup(T4)
+						end.set_dir(direction)
+					else if (T3)
+						mid1.setup(T2)
+						mid1.set_dir(direction)
+						end.setup(T3)
+						end.set_dir(direction)
+					else if (T2)
+						end.setup(T2)
+						end.set_dir(direction)
 
-				//Draws the effects // I did this backwards maybe, but won't fix it -kyle
-				start.setup(T1)
-				start.set_dir(direction)
-				if (T4)
-					mid1.setup(T2)
-					mid1.set_dir(direction)
-					mid2.setup(T2)
-					mid2.set_dir(direction)
-					end.setup(T4)
-					end.set_dir(direction)
-				else if (T3)
-					mid1.setup(T2)
-					mid1.set_dir(direction)
-					end.setup(T3)
-					end.set_dir(direction)
-				else if (T2)
-					end.setup(T2)
-					end.set_dir(direction)
+					for(var/atom/movable/A in get_step(user, direction))
+						if(A in attacked) continue
+						if(isTarget(A))
+							attacked += A
+							A.Attackhand(user,params)
+							// hit = 1
+							break
 
-				for(var/atom/movable/A in get_step(user, direction))
-					if(A in attacked) continue
-					if(isTarget(A))
-						attacked += A
-						A.Attackhand(user,params)
-						// hit = 1
-						break
-
-				afterUse(user)
-				//if (!hit)
-				playsound(user, 'sound/effects/swoosh.ogg', 40, 1, pitch = 2.3)
+					afterUse(user)
+					//if (!hit)
+					playsound(user, 'sound/effects/swoosh.ogg', 40, 1, pitch = 2.3)
 			return
 
 	nunchucks
@@ -1724,7 +1737,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				if(direction == NORTHEAST || direction == NORTHWEST || direction == SOUTHEAST || direction == SOUTHWEST)
@@ -1783,7 +1796,7 @@
 		pixelaction(atom/target, params, mob/user, reach)
 			if(!isturf(target.loc) && !isturf(target)) return
 			if(!usable(user)) return
-			if(params["left"] && master && get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			if(params["left"] && master && params["ai"] || get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
 				preUse(user)
 				var/direction = get_dir_pixel(user, target, params)
 				var/turf/turf = get_step(master, direction)
@@ -1951,6 +1964,9 @@
 	pixelaction(atom/target, params, mob/user, reach)
 		if(!isturf(target.loc) && !isturf(target)) return
 		if(!usable(user)) return
+		if(!params["left"] || !master || !get_dist_pixel_squared(user, target, params) > ITEMSPECIAL_PIXELDIST_SQUARED)
+			return
+		preUse(user)
 		var/direction = get_dir_pixel(user, target, params)
 		var/list/attacked = list()
 
@@ -2060,55 +2076,56 @@
 				hit = TRUE
 				break
 		if (!hit)
-			playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
+			playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, SOUND_RANGE_STANDARD, 1.4)
 
-		while (hit && H.equipped() == master && current_chain < max_chain)
-			H.next_click = world.time + 5 SECONDS
-			last_use = world.time
-			current_chain++
-			if (current_chain == 13)
-				sleep(0.2 SECONDS)
-				var/string ="[H] raises \the [master] up high!"
-				H.show_message(SPAN_ALERT(string), 1, assoc_maptext = make_chat_maptext(H, "<I>[string]</I>", "color: #C2BEBE;", alpha = 140))
-				sleep(2 SECONDS)
-				damageMult = 5
-			else if (current_chain == 3)
-				sleep(0.2 SECONDS)
-				user.emote("twirl")
-				sleep(1.4 SECONDS)
-				damageMult = damage_mult_start+(current_chain*damage_mult_increment)
-			else if (current_chain < 3)
-				damageMult = damage_mult_start+(current_chain*damage_mult_increment)
-				sleep(rand(7,9) DECI SECONDS)
-			else
-				sleep(rand(4,6) DECI SECONDS)
-			if(!H.equipped() == master)
-				break
-			turf = get_step(master, direction)
-			if (alternate)
-				cleave_effect = new/obj/itemspecialeffect/cleave_flipped
-			else
-				cleave_effect = new/obj/itemspecialeffect/cleave
-			alternate = !alternate
-			cleave_effect.set_dir(direction)
-			cleave_effect.setup(turf)
-			if (prob(10) && current_chain > 3)
-				user.emote(pick("laugh","cackle","grin"))
-
-			hit = 0
-			for(var/atom/A as anything in turf)
-				if(isTarget(A))
-					A.Attackby(master, user, params, TRUE)
-					hit = TRUE
+		SPAWN_DBG(0)
+			while (hit && H.equipped() == master && current_chain < max_chain)
+				H.next_click = world.time + 5 SECONDS
+				last_use = world.time
+				current_chain++
+				if (current_chain == 13)
+					sleep(0.2 SECONDS)
+					var/string ="[H] raises \the [master] up high!"
+					H.show_message(SPAN_ALERT(string), 1, assoc_maptext = make_chat_maptext(H, "<I>[string]</I>", "color: #C2BEBE;", alpha = 140))
+					sleep(2 SECONDS)
+					damageMult = 5
+				else if (current_chain == 3)
+					sleep(0.2 SECONDS)
+					user.emote("twirl")
+					sleep(1.4 SECONDS)
+					damageMult = damage_mult_start+(current_chain*damage_mult_increment)
+				else if (current_chain < 3)
+					damageMult = damage_mult_start+(current_chain*damage_mult_increment)
+					sleep(rand(7,9) DECI SECONDS)
+				else
+					sleep(rand(4,6) DECI SECONDS)
+				if(!H.equipped() == master)
 					break
-			if (!hit)
-				playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, 0.1, 1.4)
+				turf = get_step(master, direction)
+				if (alternate)
+					cleave_effect = new/obj/itemspecialeffect/cleave_flipped
+				else
+					cleave_effect = new/obj/itemspecialeffect/cleave
+				alternate = !alternate
+				cleave_effect.set_dir(direction)
+				cleave_effect.setup(turf)
+				if (prob(10) && current_chain > 3)
+					user.emote(pick("laugh","cackle","grin"))
 
-		if (current_chain > 1 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the first
-			var/string ="[H] swings \the [master] too hard and loses their balance!"
-			H.show_message(SPAN_ALERT(string), 1)
-			H.changeStatus("disorient", disorient_duration_base + disorient_duration_additive * current_chain)
-		afterUse(user)
+				hit = 0
+				for(var/atom/A as anything in turf)
+					if(isTarget(A))
+						A.Attackby(master, user, params, TRUE)
+						hit = TRUE
+						break
+				if (!hit)
+					playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, FALSE, SOUND_RANGE_STANDARD, 1.4)
+
+			if (current_chain > 1 && current_chain < max_chain && penalty_disorient) // penalise getting interrupted after the first
+				var/string ="[H] swings \the [master] too hard and loses their balance!"
+				H.show_message(SPAN_ALERT(string), 1)
+				H.changeStatus("disorient", disorient_duration_base + disorient_duration_additive * current_chain)
+			afterUse(user)
 
 	afterUse(mob/user)
 		last_use = world.time
@@ -2162,7 +2179,8 @@
 	desc = ""
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = ""
-	anchored = ANCHORED
+	anchored = ANCHORED_TECHNICAL
+	event_handler_flags = Z_ANCHORED
 	layer = EFFECTS_LAYER_1
 	pixel_x = -64
 	pixel_y = -64
@@ -2202,7 +2220,7 @@
 
 	proc/was_clashed(var/playsound = 1)
 		if (playsound)
-			playsound(src.loc, 'sound/impact_sounds/Stone_Cut_1.ogg', 50, 0.1, 0, 2)
+			playsound(src.loc, 'sound/impact_sounds/Stone_Cut_1.ogg', 50, 0.1, SOUND_RANGE_STANDARD, 2)
 		var/obj/itemspecialeffect/clash/C = new()
 		C.setup(src.loc)
 
@@ -2358,13 +2376,13 @@
 		was_clashed(var/playsound = 1)
 			..(0)
 			if (playsound)
-				playsound(src.loc, 'sound/impact_sounds/Crystal_Shatter_1.ogg', 50, 0.1, 0, 0.5)
+				playsound(src.loc, 'sound/impact_sounds/Crystal_Shatter_1.ogg', 50, 0.1, SOUND_RANGE_STANDARD, 0.5)
 			qdel(src)
 
 		proc/deactivate()
 			if (src.qdeled || src.pooled)
 				return
-			playsound(src.loc, 'sound/items/miningtool_off.ogg', 30, 0.1, 0, 2)
+			playsound(src.loc, 'sound/items/miningtool_off.ogg', 30, 0.1, SOUND_RANGE_STANDARD, 2)
 			qdel(src)
 
 		Bumped()
@@ -2378,7 +2396,7 @@
 				P.die()
 
 				src.visible_message("<span class='alert'>[src] reflected [Q.name]!</span>")
-				playsound(src.loc, 'sound/impact_sounds/Energy_Hit_1.ogg', 40, 0.1, 0, 2.6)
+				playsound(src.loc, 'sound/impact_sounds/Energy_Hit_1.ogg', 40, 0.1, SOUND_RANGE_STANDARD, 2.6)
 
 				//was_clashed()
 				return

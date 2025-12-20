@@ -393,7 +393,7 @@
 		return
 
 	// Called by sleeper console once per tick when occupant is asleep/hibernating.
-	alter_health(var/mob/living/M as mob)
+	proc/alter_health(var/mob/living/M as mob)
 		if (!M || !isliving(M))
 			return
 		if (!ishuman(M))

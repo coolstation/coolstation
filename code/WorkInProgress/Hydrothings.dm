@@ -622,7 +622,7 @@
 	attackby(var/obj/item/W, var/mob/user)
 		if (istype(W, /obj/item/device/key/owl))
 			boutput(user, "You insert the key into the wall causing it to slide into a crevice below!")
-			playsound(src.loc, "sound/effects/rockscrape.ogg", 50, 1, -1)
+			playsound(src.loc, "sound/effects/rockscrape.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			qdel(src)
 
 /datum/projectile/wonk
@@ -856,17 +856,17 @@ obj/critter/madnessowl
 		src.visible_message("<span class='alert'><b>[src] hoots angrily!</b></span>", 1)
 
 	CritterAttack(mob/M)
-		playsound(src.loc, pick(sounds_rustle), 60, 1, -1)
+		playsound(src.loc, pick(sounds_rustle), 60, 1, SOUND_RANGE_STANDARD)
 		if(ismob(M))
 			src.visible_message("<span class='combat'><B>[src]</B> swoops at [src.target] and bites a chunk off off them!</span>")
 			random_brute_damage(src.target, 10,1)
-			playsound(src.loc, "sound/impact_sounds/Flesh_Tear_1.ogg", 35, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Flesh_Tear_1.ogg", 35, 1, SOUND_RANGE_STANDARD)
 			src.pixel_x = -5
 			src.pixel_y = -5
 			sleep(rand(4,6))
 			turftarget = get_turf(target)
 			src.set_loc(turftarget)
-			playsound(src.loc, "sound/impact_sounds/Flesh_Tear_3.ogg", 35, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Flesh_Tear_3.ogg", 35, 1, SOUND_RANGE_STANDARD)
 			random_brute_damage(src.target, 2,1)
 			SPAWN_DBG(rand(1,10))
 				src.attacking = 0
@@ -875,17 +875,17 @@ obj/critter/madnessowl
 
 	ChaseAttack(mob/M)
 		if(prob(25))
-			playsound(src.loc, pick(sounds_rustle), 60, 1, -1)
+			playsound(src.loc, pick(sounds_rustle), 60, 1, SOUND_RANGE_STANDARD)
 		if(ismob(M))
 			src.visible_message("<span class='combat'><B>[src]</B> swoops around and circles [src.target] before biting a chunk off off them!</span>")
 			random_brute_damage(src.target, 10,1)
-			playsound(src.loc, "sound/impact_sounds/Flesh_Tear_1.ogg", 35, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Flesh_Tear_1.ogg", 35, 1, SOUND_RANGE_STANDARD)
 			src.pixel_x = -5
 			src.pixel_y = -5
 			sleep(rand(4,6))
 			turftarget = get_turf(target)
 			src.set_loc(turftarget)
-			playsound(src.loc, "sound/impact_sounds/Flesh_Tear_2.ogg", 35, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Flesh_Tear_2.ogg", 35, 1, SOUND_RANGE_STANDARD)
 			sleep(1 SECOND)
 
 obj/critter/madnessowl/gun
@@ -929,10 +929,10 @@ obj/critter/madnessowl/switchblade
 		if(ismob(M))
 			src.attacking = 1
 			src.visible_message("<span class='combat'><B>[src]</B> shanks [src.target]!</span>")
-			playsound(src.loc, "sound/impact_sounds/Blade_Small.ogg", 40, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Blade_Small.ogg", 40, 1, SOUND_RANGE_STANDARD)
 			random_brute_damage(src.target, 5)//shivved
 			sleep(rand(4,7))
-			playsound(src.loc, "sound/impact_sounds/Blade_Small.ogg", 40, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Blade_Small.ogg", 40, 1, SOUND_RANGE_STANDARD)
 			random_brute_damage(src.target, 5)//shivved
 			take_bleeding_damage(target, null, 5, DAMAGE_STAB, 1, get_turf(target))
 			SPAWN_DBG(rand(1,10))
@@ -945,13 +945,13 @@ obj/critter/madnessowl/switchblade
 	ChaseAttack(mob/M)
 		flick("[src.icon_state]-flaploop", src)
 		if(prob(50))
-			playsound(src.loc, pick(sounds_rustle), 50, 1, -1)
+			playsound(src.loc, pick(sounds_rustle), 50, 1, SOUND_RANGE_STANDARD)
 		if(ismob(M))
 			src.attacking =1
 
 			if(prob(20))
 				src.visible_message("<span class='combat'><B>[src]</B> swoops down upon [M] and plunges a blade deep into their back!</span>")
-				playsound(src.loc, "sound/impact_sounds/Blade_Small.ogg", 40, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Blade_Small.ogg", 40, 1, SOUND_RANGE_STANDARD)
 				random_brute_damage(src.target, 10)//shivved
 				take_bleeding_damage(target, null, 5, DAMAGE_STAB, 1, get_turf(target))
 				M.changeStatus("stunned", 2 SECONDS)
@@ -960,7 +960,7 @@ obj/critter/madnessowl/switchblade
 					M.emote("scream")
 			else
 				src.visible_message("<span class='combat'><B>[src]</B> swoops down and slashes [M]!</span>")
-				playsound(src.loc, "sound/impact_sounds/Blade_Small.ogg", 40, 1, -1)
+				playsound(src.loc, "sound/impact_sounds/Blade_Small.ogg", 40, 1, SOUND_RANGE_STANDARD)
 				random_brute_damage(src.target, 3,1)
 				take_bleeding_damage(target, null, 2, DAMAGE_STAB, 1, get_turf(target))
 			SPAWN_DBG(rand(1,10))
@@ -1162,7 +1162,7 @@ obj/critter/madnessowl/switchblade
 			playsound(src.loc, "sound/voice/animal/hoot.ogg", 75, 1)
 			src.visible_message("<span class='alert'><b>[src] hoots!</b></span>", 1)
 			src.visible_message("<span class='alert'><B>[src]</B> tackles [M]!</span>")
-			playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+			playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 			if(ismob(M))
 				M.changeStatus("stunned", 2 SECONDS)
 				M.changeStatus("weakened", 2 SECONDS)
@@ -1303,7 +1303,7 @@ var/list/owlery_sounds = list('sound/voice/animal/hoot.ogg','sound/ambience/owlz
 					sound_fx_2 = pick(owlery_sounds)
 					for(var/mob/M in src)
 						if (M.client)
-							M.client.playAmbience(src, AMBIENCE_FX_2, 50)
+							M.client.playAmbience(src, AMBIENCE_FX_2, 25)
 
 
 /area/owlery/Owlopen

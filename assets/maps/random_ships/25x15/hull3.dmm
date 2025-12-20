@@ -36,16 +36,13 @@
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
 "v" = (
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+/obj/decal/fakeobjects/lighttube_broken{
+	dir = 4
 	},
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
 "x" = (
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/decal/fakeobjects/lighttube_broken,
 /turf/floor/grime,
 /area/dmm_suite/clear_area)
 "C" = (
@@ -225,7 +222,7 @@ o
 C
 v
 C
-v
+C
 h
 o
 a
@@ -290,7 +287,7 @@ a
 a
 a
 o
-x
+C
 o
 C
 C
@@ -307,7 +304,7 @@ a
 a
 a
 n
-C
+x
 o
 o
 o
@@ -341,7 +338,7 @@ a
 a
 a
 o
-x
+C
 q
 C
 C

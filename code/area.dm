@@ -131,23 +131,23 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	var/workplace = 0
 
 	var/list/obj/critter/registered_critters = list()
-	var/list/obj/critter/registered_mob_critters = list()
+	var/list/mob/living/critter/registered_mob_critters = list()
 	var/waking_critters = 0
 
 	// this chunk zone is for Area Ambience
 	var/sound_loop_1 = null
-	var/sound_loop_1_vol = 50
+	var/sound_loop_1_vol = 25
 	var/sound_loop_2 = null
-	var/sound_loop_2_vol = 50
+	var/sound_loop_2_vol = 25
 	var/sound_fx_1 = null
 	var/sound_fx_2 = null
 	var/tmp/played_fx_1 = 0
 	var/tmp/played_fx_2 = 0
 	var/sound_group = null
 	var/sound_group_varied = null //crossfade between sounds in group, outside is rain inside is rain on roof etc
-	var/sandstorm = FALSE
-	var/blowOrigin = 0
-	var/sandstormIntensity = 0
+//	var/sandstorm = FALSE
+//	var/blowOrigin = 0
+//	var/sandstormIntensity = 0
 
 	/// default environment for sounds - see sound datum vars documentation for the presets.
 	var/sound_environment = EAX_PADDED_CELL
@@ -210,34 +210,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 				if (!played_fx_1 && prob(AMBIENCE_ENTER_PROB))
 					src.pickAmbience()
-					M.client.playAmbience(src, AMBIENCE_FX_1, 18)
-
-				//playAmbienceZ(Z level as num, passthrough vol in code/modules/sound.dm
-				//the function picks the z-loop to play for whatever z-level you're on, if defined
-				#ifdef DESERT_MAP //only do this for gehenna for now, but if anyone else wants in on it i WILL generalize it immediately rather than eventually -bob
-				var/insideness = 1
-				//reduces audio by (0.5*insidedness) + 1
-				//1 is outside, no reduction
-				//2 is 33%
-				//3 is 50%
-				//4 is 60%
-				//7 is 75%
-				//9 is 80%
-				//20 is 95% and is a special case to just mute the sound without stopping it
-				if(M.loc.loc.type == /area/gehenna)
-					insideness = 1
-
-				else if(M.loc.loc.type != /area/space) //bleh
-					insideness = 4 //this is the easiest level to check so let's just use this as our non-space case FOR NOW (happy 2053 to you reading this)
-					//can make a proc that does a calculation that might be useful for adjusting a room's sound environment in general
-					//especially if we figure out how to implement occlusion and such. (god i hope sound occlusion isn't calculated serverside...)
-				//categories and checks for later or maybe never:
-				//outside
-				//non-space area that's open
-				//non-space area that's insulated but adjacent to /area/space (window, wall)
-				//non-space area that's insulated but not adjacent (deep in station)
-				M.client.playAmbienceZ(M.z, insideness)
-				#endif
+					M.client.playAmbience(src, AMBIENCE_FX_1, 10)
 
 				#undef AMBIENCE_ENTER_PROB
 
@@ -524,18 +497,19 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	is_atmos_simulated = FALSE
 
 	Entered(atom/movable/O) // TODO: make this better and not copy n pasted from area_that_kills_you_if_you_enter_it
-		..()
 		if (isobserver(O))
 			return
 		if (ismob(O))
 			var/mob/jerk = O
 			if ((jerk.client && jerk.client.flying))
 				return
-			setdead(jerk)
-			jerk.remove()
+			SPAWN_DBG(0)
+				setdead(jerk)
+				jerk.remove()
 		else if (isobj(O) && !istype(O, /obj/overlay/tile_effect))
-			qdel(O)
-		return
+			SPAWN_DBG(0)
+				qdel(O)
+		. = ..()
 
 	dark
 		force_fullbright = 0
@@ -546,9 +520,12 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	teleport_blocked = 2
 	force_fullbright = 0
 	expandable = 0
-	ambient_light = rgb(79, 164, 184)
 	// filler_turf = "/turf/floor/setpieces/gauntlet"
 	is_atmos_simulated = FALSE
+
+/area/titlescreen/coolisland
+	name = "Paisano Island"
+	ambient_light = rgb(218, 235, 215)
 
 /area/cavetiny
 	name = "Caves"
@@ -577,11 +554,14 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 			var/mob/jerk = O
 			if ((jerk.client && jerk.client.flying))
 				return
-			setdead(jerk)
-			jerk.remove()
+			SPAWN_DBG(0)
+				setdead(jerk)
+				jerk.remove()
 		else if (isobj(O) && !istype(O, /obj/overlay/tile_effect))
-			qdel(O)
+			SPAWN_DBG(0)
+				qdel(O)
 		. = ..()
+
 /area/battle_royale_spawn //People entering VR or exiting VR with stupid exploits are jerks.
 	name = "Battle Royale warp zone"
 	skip_sims = 1
@@ -820,7 +800,10 @@ ABSTRACT_TYPE(/area/shuttle/merchant_shuttle)
 		..()
 		if (ismob(Obj))
 			var/mob/M = Obj
-			M.removeOverlayComposition(/datum/overlayComposition/shuttle_warp)
+			if (src.warp_dir & NORTH || src.warp_dir & SOUTH)
+				M.removeOverlayComposition(/datum/overlayComposition/shuttle_warp)
+			else
+				M.removeOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
 
 /area/shuttle/escape/transit/ew
 	warp_dir = EAST
@@ -937,7 +920,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sims_score = 15
 	sound_group = "some place hot"
 	sound_loop_1 = 'sound/ambience/loop/Fire_Medium.ogg'
-	sound_loop_1_vol = 75
+	sound_loop_1_vol = 40
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -1050,7 +1033,7 @@ ABSTRACT_TYPE(/area/adventure)
 				helldrone_awake_sound.file = 'sound/machines/giantdrone_loop.ogg'
 				helldrone_awake_sound.repeat = 0
 				helldrone_awake_sound.wait = 0
-				helldrone_awake_sound.channel = SOUNDCHANNEL_BIGALARM
+				helldrone_awake_sound.channel = SOUNDCHANNEL_RESERVED_BIGALARM
 				helldrone_awake_sound.volume = 60
 				helldrone_awake_sound.priority = 255
 				helldrone_awake_sound.status = SOUND_UPDATE
@@ -1060,7 +1043,7 @@ ABSTRACT_TYPE(/area/adventure)
 				helldrone_wakeup_sound.file = 'sound/machines/giantdrone_startup.ogg'
 				helldrone_wakeup_sound.repeat = 0
 				helldrone_wakeup_sound.wait = 0
-				helldrone_wakeup_sound.channel = SOUNDCHANNEL_BIGALARM
+				helldrone_wakeup_sound.channel = SOUNDCHANNEL_RESERVED_BIGALARM
 				helldrone_wakeup_sound.volume = 60
 				helldrone_wakeup_sound.priority = 255
 				helldrone_wakeup_sound.status = SOUND_UPDATE
@@ -1246,7 +1229,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = -1
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 16
+	sound_loop_2_vol = 8
 	sound_group = "diner" //the music's kind of everywhere isn't it
 	sound_group_varied = 1
 	//check shuttles.dm for the diner
@@ -1272,9 +1255,9 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "blue"
 	sound_environment = EAX_HALLWAY
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 5
+	sound_loop_1_vol = 3
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 30
+	sound_loop_2_vol = 15
 	sound_group_varied = 1
 
 /area/diner/hallway/docking
@@ -1284,8 +1267,8 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/backroom
 	name = "Space Diner Backroom"
 	icon_state = "green"
-	sound_loop_1_vol = 5
-	sound_loop_2_vol = 25
+	sound_loop_1_vol = 3
+	sound_loop_2_vol = 13
 
 /area/diner/solar
 	name = "Space Diner Solar Control"
@@ -1328,9 +1311,9 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "juicer"
 	sound_environment = EAX_CONCERT_HALL
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 100
+	sound_loop_1_vol = 35
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 20
+	sound_loop_2_vol = 10
 	sound_group_varied = 1
 
 /area/juicer/club/outside
@@ -1340,7 +1323,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = 20
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 80
+	sound_loop_2_vol = 40
 	sound_group_varied = 1
 
 /area/juicer/club/back
@@ -1348,9 +1331,27 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "juicer3"
 	sound_environment = EAX_SEWER_PIPE
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 20
+	sound_loop_1_vol = 10
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 100
+	sound_loop_2_vol = 40
+
+/area/debris
+	name = "debris field"
+	icon_state = "green"
+
+/area/debris/harmacy
+	name = "the harmacy"
+
+/area/debris/yuletide
+	name = "merryment"
+
+/area/debris/falserock
+	name = "false asteroid"
+
+/area/debris/pee
+	name = "pee pee"
+	icon_state = "yellow"
+
 
 // Gore's Z5 Space generation areas //
 ABSTRACT_TYPE(/area/prefab)
@@ -1668,8 +1669,16 @@ ABSTRACT_TYPE(/area/station/atmos/hookups)
 /area/station/atmos/hookups/east
 	name = "East Air Hookups"
 
+	external
+		name = "East External Air Hookups"
+		ambient_light = "#404058"
+
 /area/station/atmos/hookups/west
 	name = "West Air Hookups"
+
+	external
+		name = "West External Air Hookups"
+		ambient_light = "#404058"
 
 /area/station/atmos/hookups/north
 	name = "North Air Hookups"
@@ -2666,28 +2675,25 @@ ABSTRACT_TYPE(/area/station/com_dish)
 /area/station/com_dish
 	name = "Communications Dish"
 	icon_state = "yellow"
+#ifndef MAGINDARA_MAP
 	requires_power = FALSE
+#endif
 
-/area/station/com_dish/comdish
-	name = "Communications Dish"
-	icon_state = "yellow"
 #if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
 	force_fullbright = 1 // ????
 #endif
 
+/area/station/com_dish/comdish
+	name = "Communications Dish"
+	icon_state = "yellow"
+
 /area/station/com_dish/auxdish
 	name = "Auxilary Communications Dish"
 	icon_state = "yellow"
-#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
-	force_fullbright = 1
-#endif
 
 /area/station/com_dish/research_outpost
 	name = "Research Outpost Communications Dish"
 	icon_state = "yellow"
-#if !(defined(UNDERWATER_MAP) || defined(MAGINDARA_MAP))
-	force_fullbright = 1
-#endif
 
 // engine and engineering and engineering adjacent
 
@@ -4217,6 +4223,8 @@ ABSTRACT_TYPE(/area/mining)
 		for_by_tcl(F, /obj/machinery/firealarm)
 			if(get_area(F) == src)
 				F.icon_state = "fire1"
+				if(F.sound_emitter)
+					F.sound_emitter.play("alarm")
 		for (var/obj/machinery/camera/C in src)
 			cameras += C
 			LAGCHECK(LAG_HIGH)
@@ -4237,6 +4245,8 @@ ABSTRACT_TYPE(/area/mining)
 		for_by_tcl(F, /obj/machinery/firealarm)
 			if(get_area(F) == src)
 				F.icon_state = "fire0"
+				if(F.sound_emitter)
+					F.sound_emitter.deactivate()
 		for_by_tcl(aiPlayer, /mob/living/silicon/ai)
 			aiPlayer.cancelAlarm("Fire", src, src)
 		for (var/obj/machinery/computer/atmosphere/alerts/a as anything in machine_registry[MACHINES_ATMOSALERTS])
@@ -4341,7 +4351,7 @@ Don't try and do this in the editor nerd. ~Warc
 	sound_fx_1 = 'sound/ambience/station/Station_VocalNoise1.ogg'
 	var/initial_structure_value = 0
 #ifdef MOVING_SUB_MAP
-	filler_turf = "/turf/space/fluid/manta"
+	filler_turf = "/turf/space/fluid/ocean/manta"
 
 	New()
 		..()
@@ -5246,7 +5256,7 @@ area/station/crewquarters/cryotron
 	sound_environment = EAX_FOREST
 	workplace = 1
 	sound_loop_1 = 'sound/ambience/station/detectivesoffice.ogg'
-	sound_loop_1_vol = 30
+	sound_loop_1_vol = 15
 	sound_group = "detective"
 
 	detectives_bedroom

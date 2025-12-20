@@ -877,7 +877,7 @@
 			counter += timePassed
 			if (counter >= count && owner && !owner.hasStatus(list("weakened", "paralysis")) )
 				counter -= count
-				playsound(owner, sound, 17, 1, 0.4, 1.6)
+				playsound(owner, sound, 17, 1, SOUND_RANGE_MODERATE, 1.6)
 				violent_twitch(owner)
 			. = ..(timePassed)
 
@@ -898,7 +898,7 @@
 			counter += timePassed
 			if (counter >= count && owner)
 				counter -= count
-				playsound(owner, sound, 17, 1, 0.4, 1.6)
+				playsound(owner, sound, 17, 1, SOUND_RANGE_MODERATE, 1.6)
 				violent_twitch(owner)
 			. = ..(timePassed)
 
@@ -1618,6 +1618,8 @@
 				if(how_miasma > 4)
 					. += " You might get sick."
 				#endif
+
+/*
 /datum/statusEffect/sandy
 	id = "sandy"
 	name = "Sandy"
@@ -1651,6 +1653,7 @@
 						S.create_overlay(states[2], "#9a865a", direct, 'icons/obj/decals/blood.dmi') //awawa
 				else
 					S.create_overlay("smear2", "#9a865a", direct, 'icons/obj/decals/blood.dmi')
+*/
 
 /datum/statusEffect/dripping_paint
 	id = "marker_painted"
@@ -1695,6 +1698,32 @@
 				P.create_overlay(states[2], "#ff8820", direct, 'icons/obj/decals/blood.dmi')
 		else
 			P.create_overlay("smear2", "#ff8820", direct, 'icons/obj/decals/blood.dmi')
+
+
+/client/var/crab
+
+/datum/statusEffect/crab
+	id = "crab"
+	name = "Crabbed"
+	desc = "A CRAB IS PINCHING YOUR PENIS!"
+	icon_state = "crab"
+	unique = TRUE
+	maxDuration = 30 MINUTES
+
+	onAdd(optional)
+		. = ..()
+		if (!ishuman(owner)) return
+		boutput(owner,"Oh fuck. OH CHRIST.")
+		var/client/C = owner:client
+		if(istype(C))
+			C.crab = TRUE
+
+	onRemove()
+		. = ..()
+		var/client/C = owner:client
+		if(istype(C))
+			C.crab = FALSE
+		boutput(owner,"Oh thank god that's over with.")
 
 /datum/statusEffect/magnetized
 	id = "magnetized"
@@ -1744,7 +1773,7 @@
 		animate(owner, pixel_y = 0)
 		REMOVE_ATOM_PROPERTY(ffs, PROP_ATOM_FLOATING, src)
 		REMOVE_ATOM_PROPERTY(ffs, PROP_NO_MOVEMENT_PUFFS, src)
-		var/turf/space/fluid/warp_z5/trenchhole = owner.loc
+		var/turf/space/fluid/ocean/warp_z5/trenchhole = owner.loc
 		ON_COOLDOWN(owner,"re-swim", 0.5 SECONDS) //Small cooldown so the trench hole doesn't immediately put the mob on swimming again (they plummet instead :D)
 		var/end_z_cross = TRUE
 		if (ishuman(src)) //let jetpack fans go up and down
@@ -1851,7 +1880,7 @@
 			if (prob(10) && ismob(owner))
 				var/mob/victim = owner
 				victim.emote(pick("cough", "blink"))
-			playsound(owner, sound, 17, TRUE, 0.4, 1.6)
+			playsound(owner, sound, 17, TRUE, SOUND_RANGE_MODERATE, 1.6)
 			violent_twitch(owner)
 		. = ..(timePassed)
 

@@ -5,14 +5,14 @@ client/proc/enable_waterflow(var/enabled as num)
 	set name = "Set Fluid Flow Enabled"
 	set desc = "0 to disable, 1 to enable"
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
-	admin_only
+	ADMIN_ONLY
 	waterflow_enabled = !!enabled
 
 client/proc/delete_fluids()
 	set name = "Delete All Fluids"
 	set desc = "Probably safe to run. Probably."
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
-	admin_only
+	ADMIN_ONLY
 
 	var/exenabled = waterflow_enabled
 	enable_waterflow(0)
@@ -44,11 +44,11 @@ client/proc/special_fullbright()
 	set desc = "Helps when server load is heavy. Doesn't affect trench."
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
 	set hidden = 1
-	admin_only
+	ADMIN_ONLY
 
 	message_admins("[key_name(src)] is making all Z1 Sea Lights static...")
 	SPAWN_DBG(0)
-		for(var/turf/space/fluid/F in world)
+		for(var/turf/space/fluid/ocean/F in world)
 			if (F.z == 1)
 				F.fullbright = 0.5
 			LAGCHECK(LAG_REALTIME)
@@ -58,7 +58,7 @@ client/proc/replace_space()
 	set name = "Replace All Space Tiles With Ocean"
 	set desc = "uh oh."
 	SET_ADMIN_CAT(ADMIN_CAT_UNUSED)
-	admin_only
+	ADMIN_ONLY
 
 	var/list/L = list()
 	var/searchFor = input(usr, "Look for a part of the reagent name (or leave blank for all)", "Add reagent") as null|text
@@ -93,7 +93,7 @@ client/proc/replace_space()
 		for(var/turf/space/S in world)
 			LAGCHECK(LAG_HIGH)
 			var/turf/orig = locate(S.x, S.y, S.z)
-			orig.ReplaceWith(/turf/space/fluid, FALSE, TRUE, FALSE, TRUE)
+			orig.ReplaceWith(/turf/space/fluid/ocean, FALSE, TRUE, FALSE, TRUE)
 		message_admins("Finished space replace!")
 		map_currently_underwater = 1
 
@@ -101,7 +101,7 @@ client/proc/replace_space_exclusive()
 	set name = "Oceanify"
 	set desc = "This is the safer one."
 	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
-	admin_only
+	ADMIN_ONLY
 
 	var/list/L = list()
 	var/searchFor = input(usr, "Look for a part of the reagent name (or leave blank for all)", "Add reagent") as null|text
@@ -145,14 +145,14 @@ client/proc/replace_space_exclusive()
 
 		map_currently_underwater = 1
 		for(var/turf/space/S in world)
-			if (S.z != 1 || istype(S, /turf/space/fluid/warp_z5)) continue
+			if (S.z != 1 || istype(S, /turf/space/fluid/ocean/warp_z5)) continue
 
 			var/turf/orig = locate(S.x, S.y, S.z)
 
 #ifdef UNDERWATER_MAP
-			var/turf/space/fluid/T = orig.ReplaceWith(/turf/space/fluid, FALSE, TRUE, FALSE, TRUE)
+			var/turf/space/fluid/ocean/T = orig.ReplaceWith(/turf/space/fluid/ocean, FALSE, TRUE, FALSE, TRUE)
 #else //space map
-			var/turf/space/fluid/T = orig.ReplaceWith(/turf/space/fluid, FALSE, TRUE, FALSE, TRUE)
+			var/turf/space/fluid/ocean/T = orig.ReplaceWith(/turf/space/fluid/ocean, FALSE, TRUE, FALSE, TRUE)
 #endif
 
 #ifdef UNDERWATER_MAP
@@ -167,9 +167,9 @@ client/proc/replace_space_exclusive()
 
 
 client/proc/update_ocean_lighting()
-	admin_only
+	ADMIN_ONLY
 	SPAWN_DBG(0)
-		for(var/turf/space/fluid/S in world)
+		for(var/turf/space/fluid/ocean/S in world)
 			S.update_light()
 			LAGCHECK(LAG_REALTIME)
 		message_admins("Finished space light update!!!")
@@ -179,7 +179,7 @@ client/proc/dereplace_space()
 	set name = "Unoceanify"
 	set desc = "uh oh."
 	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
-	admin_only
+	ADMIN_ONLY
 
 	var/answer = alert("Replace Z1 only?",,"Yes","No")
 
@@ -190,13 +190,13 @@ client/proc/dereplace_space()
 		map_currently_underwater = 0
 
 		if (answer == "Yes")
-			for(var/turf/space/fluid/F in world)
+			for(var/turf/space/fluid/ocean/F in world)
 				if (F.z == 1)
 					var/turf/orig = locate(F.x, F.y, F.z)
 					orig.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
 				LAGCHECK(LAG_REALTIME)
 		else
-			for(var/turf/space/fluid/F in world)
+			for(var/turf/space/fluid/ocean/F in world)
 				var/turf/orig = locate(F.x, F.y, F.z)
 				orig.ReplaceWith(/turf/space, FALSE, TRUE, FALSE, TRUE)
 				LAGCHECK(LAG_REALTIME)

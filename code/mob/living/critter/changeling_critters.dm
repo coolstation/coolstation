@@ -88,7 +88,7 @@
 			hat = 0
 			update_icon()
 		if (!gibbed)
-			playsound(src, 'sound/impact_sounds/Flesh_Break_1.ogg', 50, 1, 0.2, 1)
+			playsound(src, 'sound/impact_sounds/Flesh_Break_1.ogg', 50, 1, SOUND_RANGE_MODERATE, 1)
 		death_effect()
 		..()
 
@@ -159,7 +159,7 @@
 		switch (act)
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
-					playsound(src, 'sound/voice/creepyshriek.ogg', 50, 1, 0, 2.1, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, 'sound/voice/creepyshriek.ogg', 50, 1, SOUND_RANGE_STANDARD, 2.1, channel=VOLUME_CHANNEL_EMOTE)
 					return "<b><span class='alert'>[src] screams!</span></b>"
 			if("flip")
 				if(src.emote_check(voluntary, 50))
@@ -383,7 +383,7 @@
 		switch (act)
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
-					playsound(src, 'sound/voice/creepyshriek.ogg', 50, 1, 0.2, 1.7, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, 'sound/voice/creepyshriek.ogg', 50, 1, SOUND_RANGE_STANDARD, 1.7, channel=VOLUME_CHANNEL_EMOTE)
 					return "<b><span class='alert'>[src] screams!</span></b>"
 		return null
 
@@ -400,7 +400,7 @@
 			animate( src )
 			animate( src, pixel_y = 6, easing = SINE_EASING, time = ((NewLoc.y-y)>0)?3:1 )
 			animate( pixel_y = opy, easing = SINE_EASING, time = 3 )
-			playsound( get_turf(src), "sound/misc/footstep[rand(1,2)].ogg", 20, 1, 0.1, 0.6)
+			playsound( get_turf(src), "sound/misc/footstep[rand(1,2)].ogg", 20, 1, SOUND_RANGE_MODERATE, 0.6)
 
 	hand_attack(atom/target)
 		if (hivemind_owner && ismob(target) && target:get_ability_holder(/datum/abilityHolder/changeling) == hivemind_owner)
@@ -502,7 +502,7 @@
 		switch (act)
 			if ("fart")
 				if (src.emote_check(voluntary, 50))
-					playsound(src,"sound/voice/farts/fart[rand(1,6)].ogg", 50, 1, 0.2, 1.7, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src,"sound/voice/farts/fart[rand(1,6)].ogg", 50, 1, SOUND_RANGE_STANDARD, 1.7, channel=VOLUME_CHANNEL_EMOTE)
 					var/turf/fart_turf = get_turf(src)
 					fart_turf.fluid_react_single("toxic_fart",1,airborne = 1)
 					return "<b><span class='alert'>[src] farts!</span></b>"
@@ -566,7 +566,7 @@
 		switch (act)
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
-					playsound(src, 'sound/voice/creepyshriek.ogg', 50, 1, 0.2, 1.7, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, 'sound/voice/creepyshriek.ogg', 50, 1, SOUND_RANGE_STANDARD, 1.7, channel=VOLUME_CHANNEL_EMOTE)
 					return "<b><span class='alert'>[src] screams!</span></b>"
 		return null
 
@@ -582,8 +582,8 @@
 		HH.name = "mouth"				 // designation of the hand - purely for show
 		HH.icon = 'icons/ui/critter_ui.dmi'	// the icon of the hand UI background
 		HH.icon_state = "mouth"			 // the icon state of the hand UI background
-		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.limb = new /datum/limb
+		HH.limb.name = "teeth"					// name for the dummy holder
 		HH.can_hold_items = 0
 
 	New()

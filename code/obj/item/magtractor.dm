@@ -17,8 +17,8 @@
 	m_amt = 50000
 	mats = 12
 	stamina_damage = 15
-	stamina_cost = 15
-	stamina_crit_chance = 5
+//	stamina_cost = 15
+//	stamina_crit_chance = 5
 	var/working = 0
 	var/mob/holder //this is hacky way to get the user without looping through all mobs in process
 	var/processHeld = 0

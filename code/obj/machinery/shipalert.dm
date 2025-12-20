@@ -141,5 +141,5 @@ var/global/soundGeneralQuarters = sound('sound/machines/siren_generalquarters_qu
 	m_amt = 50
 	desc = "Like a normal hammer, but teeny."
 	stamina_damage = 33
-	stamina_cost = 18
-	stamina_crit_chance = 10
+//	stamina_cost = 18
+//	stamina_crit_chance = 10

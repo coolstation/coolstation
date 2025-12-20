@@ -145,7 +145,6 @@ datum
 			addiction_prob = 1
 			addiction_min = 10
 			depletion_rate = 0.05 // ethanol depletes slower but is formed in smaller quantities
-			overdose = 100 // ethanol poisoning
 			flammable_influence = TRUE
 			combusts_on_gaseous_fire_contact = TRUE
 			burn_speed = 3
@@ -158,14 +157,17 @@ datum
 			target_organs = list("liver")	//heart,  "stomach", "intestines", "left_kidney", "right_kidney"
 			evaporates_cleanly = TRUE
 			taste = "like vodka"
+			overdose = 100 // ethanol poisoning
+			downer = 2
+			downer_overdose = 18
 
 			on_add()
-				if (holder && ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.setStatus("drunk", duration = INFINITE_STATUS)
 				return
 
 			on_remove()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.delStatus("drunk")
 				return
 
@@ -606,21 +608,23 @@ datum
 			fluid_g = 255
 			fluid_b = 255
 			transparency = 255
-			overdose = 200
 			hunger_value = 0.098
 			thirst_value = -0.098
 			pathogen_nutrition = list("sugar")
 			taste = "sweet"
 			stun_resist = 6
+			overdose = 200
+			upper = 0.5
+			upper_overdose = 19.5
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar", 2)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_sugar")
 				..()
@@ -703,7 +707,7 @@ datum
 			taste = "tasteless"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					if(M.bioHolder && !M.bioHolder.HasEffect("quiet_voice"))
 						M.bioHolder.AddEffect("quiet_voice")
@@ -732,7 +736,7 @@ datum
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					if(M?.bioHolder.HasEffect("quiet_voice"))
 						M.bioHolder.RemoveEffect("quiet_voice")
@@ -860,8 +864,8 @@ datum
 					holder?.add_reagent("ice", prev_vol, null, (T0C - 1))
 					if(holder)
 						holder.del_reagent(id)
-				else if (exposed_temperature > T0C && exposed_temperature <= T0C + 100 )
-					name = "water"
+				else if (exposed_temperature > T0C && exposed_temperature <= T0C + 100)
+					name = initial(name)
 					description = initial(description)
 				else if (exposed_temperature > (T0C + 100) )
 					if (!istype(holder,/datum/reagents/fluid_group))
@@ -920,7 +924,11 @@ datum
 
 			name = "filthy water"
 			id = "dirtywater"
+			#ifdef MAGINDARA_MAP
+			description = "This water is choked with plastic, lead, and oil. It's good for you, maybe."
+			#else
 			description = "This water is choked with ash, dust, and god knows what else."
+			#endif
 			reagent_state = LIQUID
 			fluid_r = 106
 			fluid_b = 117

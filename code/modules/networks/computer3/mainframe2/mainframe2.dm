@@ -255,7 +255,7 @@
 			var/area/A = get_area(src)
 			if (!A.played_fx_1) //try not to stack this on top of ambient effect
 				SPAWN_DBG(1 DECI SECOND)
-					playsound(src.loc, pick(ambience_computer), 50, 1, channel = VOLUME_CHANNEL_AMBIENT)
+					playsound(src.loc, pick(ambience_computer), 25, 1, channel = VOLUME_CHANNEL_AMBIENT)
 
 		for (var/progIndex = 1, progIndex <= src.processing.len, progIndex++)
 			var/datum/computer/file/mainframe_program/prog = src.processing[progIndex]
