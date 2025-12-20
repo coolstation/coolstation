@@ -2333,7 +2333,7 @@
 /area/diner/dining)
 "akU" = (
 /turf/floor/plating/airless/random,
-/area/space)
+/area/abandonedship)
 "akV" = (
 /obj/decal/floatingtiles{
 	dir = 8;
@@ -5235,7 +5235,7 @@
 /turf/floor/airless/plating/catwalk{
 	dir = 10
 	},
-/area/space)
+/area/abandonedship)
 "atM" = (
 /obj/lattice{
 	dir = 10;
@@ -6495,6 +6495,7 @@
 	dir = 1;
 	icon_state = "floattiles3"
 	},
+/obj/item/raw_material/telecrystal,
 /turf/floor/plating/airless/random,
 /area/debris/harmacy)
 "aHh" = (
@@ -6542,6 +6543,7 @@
 	icon_state = "floattiles5"
 	},
 /obj/item/raw_material/shard/glass,
+/obj/decal/sink,
 /turf/floor/plating/airless/random,
 /area/debris/harmacy)
 "aHo" = (
@@ -6566,6 +6568,7 @@
 /obj/window/reinforced/south,
 /obj/window/reinforced/north,
 /obj/window/reinforced/east,
+/obj/decal/garland,
 /turf/floor/plating/airless/random,
 /area/debris/harmacy)
 "aHt" = (
@@ -6581,6 +6584,7 @@
 /obj/window/reinforced/south,
 /obj/window/reinforced/north,
 /obj/window/reinforced/west,
+/obj/decal/garland,
 /turf/floor/plating/airless/random,
 /area/debris/harmacy)
 "aHv" = (
@@ -6654,6 +6658,9 @@
 	icon_state = "coil1";
 	name = "torn up cable"
 	},
+/obj/lattice{
+	icon_state = "lattice_grey"
+	},
 /turf/space,
 /area/debris/harmacy)
 "aHI" = (
@@ -6719,6 +6726,7 @@
 	dir = 4;
 	icon_state = "floattiles2"
 	},
+/obj/item/pen,
 /turf/floor/plating/airless/random,
 /area/debris/harmacy)
 "aHW" = (
@@ -6775,6 +6783,9 @@
 	color = "#DD0000";
 	icon_state = "coil1"
 	},
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
 /turf/space,
 /area/debris/harmacy)
 "aIf" = (
@@ -6789,20 +6800,34 @@
 /turf/floor/plating/airless/random,
 /area/debris/harmacy)
 "aIk" = (
+/obj/machinery/vending/cigarette/schweewa{
+	can_fall = 2;
+	icon_state = "s_cigs_old-fallen";
+	status = 1
+	},
 /obj/neon_sign/syringe{
 	pixel_y = 32
 	},
-/obj/machinery/vending/cigarette/schweewa,
 /turf/floor/airless,
 /area/debris/harmacy)
 "aIl" = (
 /turf/floor/airless,
 /area/debris/harmacy)
 "aIm" = (
+/obj/machinery/vending/cigarette/schweewa{
+	icon_state = "s_cigs_old-broken";
+	status = 1
+	},
 /obj/neon_sign/knife{
 	pixel_y = 34
 	},
-/obj/machinery/vending/cigarette/schweewa,
+/turf/floor/airless,
+/area/debris/harmacy)
+"aIn" = (
+/obj/machinery/vending/cigarette/schweewa{
+	icon_state = "s_cigs_old-broken";
+	status = 1
+	},
 /turf/floor/airless,
 /area/debris/harmacy)
 "aIo" = (
@@ -7003,6 +7028,7 @@
 	color = "#DD0000";
 	icon_state = "coil1"
 	},
+/obj/decal/fakeobjects/pipe,
 /turf/space,
 /area/debris/harmacy)
 "aIZ" = (
@@ -7047,6 +7073,9 @@
 	},
 /obj/item/cable_coil/cut{
 	color = "#DD0000"
+	},
+/obj/decal/fakeobjects/pipe{
+	dir = 5
 	},
 /turf/space,
 /area/debris/harmacy)
@@ -7140,7 +7169,7 @@
 /area/debris/harmacy)
 "aJv" = (
 /obj/lattice{
-	dir = 8;
+	dir = 4;
 	icon_state = "lattice-dir"
 	},
 /obj/item/raw_material/shard/glass,
@@ -8129,10 +8158,6 @@
 	icon_state = "wall3_space"
 	},
 /area/space)
-"aMk" = (
-/obj/lattice,
-/turf/space,
-/area/abandonedship)
 "aMl" = (
 /obj/lattice{
 	dir = 5;
@@ -16276,16 +16301,17 @@
 	},
 /turf/floor/darkblue,
 /area/diner/hallway)
-"cfr" = (
-/obj/grille/steel,
-/turf/space,
-/area/abandonedship)
 "cib" = (
 /obj/machinery/door/airlock/external/shuttle_connect,
 /turf/floor,
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"ciP" = (
+/obj/lattice,
+/obj/item/pen,
+/turf/space,
+/area/space)
 "cjL" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -16301,6 +16327,15 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"cls" = (
+/obj/lattice{
+	icon_state = "lattice_grey"
+	},
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/turf/space,
+/area/space)
 "clA" = (
 /obj/machinery/light/small,
 /turf/floor,
@@ -16379,9 +16414,19 @@
 	icon_state = "floor3"
 	},
 /area/general_spaceships)
+"cCN" = (
+/obj/item/raw_material/shard/glass,
+/turf/space,
+/area/abandonedship)
 "cDz" = (
 /turf/wall/asteroid,
 /area/debris/yuletide)
+"cEb" = (
+/obj/storage/crate{
+	name = "crate of extremely cheap pens"
+	},
+/turf/floor/airless,
+/area/debris/harmacy)
 "cEu" = (
 /obj/decal/floatingtiles{
 	dir = 8;
@@ -16595,6 +16640,14 @@
 	name = "solar paneling"
 	},
 /area/diner/solar)
+"dGk" = (
+/obj/decal/floatingtiles{
+	dir = 1;
+	icon_state = "floattiles3"
+	},
+/obj/item/hand_labeler,
+/turf/floor/plating/airless/random,
+/area/debris/harmacy)
 "dGX" = (
 /obj/lattice{
 	dir = 4;
@@ -16691,6 +16744,10 @@
 "eaV" = (
 /turf/floor/airless/plating/damaged2,
 /area/abandonedmedicalship)
+"ecu" = (
+/obj/item/raw_material/shard/glass,
+/turf/floor/plating/airless,
+/area/space)
 "ecH" = (
 /obj/decal/skeleton{
 	desc = "There are bite marks on the neck.";
@@ -17160,6 +17217,18 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"fvF" = (
+/obj/lattice{
+	icon_state = "lattice_grey"
+	},
+/obj/item/raw_material/shard/glass,
+/obj/item/cable_coil/cut{
+	color = "#DD0000";
+	icon_state = "coil1"
+	},
+/obj/decal/fakeobjects/pipe,
+/turf/space,
+/area/debris/harmacy)
 "fwV" = (
 /obj/lattice{
 	dir = 4;
@@ -17191,6 +17260,15 @@
 	},
 /turf/floor/plating/airless,
 /area/salyut)
+"fyM" = (
+/obj/lattice{
+	icon_state = "lattice_grey"
+	},
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/turf/space,
+/area/debris/harmacy)
 "fyY" = (
 /turf/floor/grime,
 /area/diner/bathroom)
@@ -17320,6 +17398,9 @@
 	icon_state = "red2"
 	},
 /area/diner/dining)
+"fYE" = (
+/turf/wall/s_wall,
+/area/abandonedship)
 "fZA" = (
 /obj/decal/cleanable/dirt,
 /turf/floor/caution/west,
@@ -17386,6 +17467,10 @@
 	},
 /turf/wall/s_wall,
 /area/space)
+"gdg" = (
+/obj/item/pen,
+/turf/space,
+/area/space)
 "gdD" = (
 /obj/securearea{
 	desc = "Blue, blue.";
@@ -17447,6 +17532,16 @@
 /obj/machinery/bot/medbot/terrifying,
 /turf/floor/airless/plating/damaged2,
 /area/abandonedmedicalship)
+"grr" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/obj/decal/fakeobjects/pipe{
+	dir = 4
+	},
+/turf/space,
+/area/abandonedship)
 "gvV" = (
 /obj/grille/steel,
 /obj/window/reinforced/west,
@@ -17607,6 +17702,14 @@
 	},
 /turf/shuttle/wall,
 /area/abandonedship)
+"heS" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (EAST)"
+	},
+/turf/space,
+/area/abandonedship)
 "heW" = (
 /obj/grille/steel,
 /obj/window/reinforced/south,
@@ -17657,6 +17760,11 @@
 	icon_state = "aplaceholder"
 	},
 /area/space)
+"hkS" = (
+/obj/item/raw_material/shard/glass,
+/obj/item/hemostat,
+/turf/floor/plating/airless/random,
+/area/debris/harmacy)
 "hmp" = (
 /turf/floor/stairs/dark{
 	dir = 8
@@ -17781,6 +17889,19 @@
 	},
 /turf/space,
 /area/diner/jucer_trader)
+"hxl" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-broken"
+	},
+/obj/lattice{
+	icon_state = "lattice-broken"
+	},
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space"
+	},
+/area/space)
 "hyN" = (
 /mob/living/carbon/human/clubfert,
 /turf/floor/purpleblack/corner{
@@ -17905,6 +18026,10 @@
 	},
 /turf/floor,
 /area/h7/crew)
+"hTZ" = (
+/obj/grille/steel,
+/turf/space,
+/area/abandonedship)
 "hUh" = (
 /obj/machinery/light/small/warm,
 /turf/floor/darkpurple,
@@ -17928,6 +18053,14 @@
 "hYx" = (
 /turf/floor/airless/damaged2,
 /area/abandonedmedicalship)
+"hZq" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir"
+	},
+/obj/machinery/light/runway_light/delay3,
+/turf/space,
+/area/space)
 "hZu" = (
 /obj/lattice{
 	dir = 1;
@@ -17971,6 +18104,10 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"icW" = (
+/obj/item/pen,
+/turf/floor/airless,
+/area/debris/harmacy)
 "ieM" = (
 /obj/lattice{
 	icon_state = "lattice-dir-b"
@@ -18013,6 +18150,16 @@
 /obj/window/bulletproof/east,
 /turf/floor/plating,
 /area/juicer/club/outside)
+"ilR" = (
+/obj/lattice{
+	dir = 9;
+	icon_state = "lattice-dir"
+	},
+/turf/wall/s_wall{
+	icon = 'icons/turf/shuttle.dmi';
+	icon_state = "wall3_space"
+	},
+/area/abandonedship)
 "ind" = (
 /obj/table/auto,
 /turf/floor/shuttle{
@@ -18020,6 +18167,18 @@
 	icon_state = "floor3"
 	},
 /area/general_spaceships)
+"inR" = (
+/obj/item/pen,
+/turf/floor/plating/airless/random,
+/area/debris/harmacy)
+"ioc" = (
+/obj/lattice{
+	dir = 6;
+	icon_state = "lattice-dir"
+	},
+/obj/machinery/light/runway_light/delay2,
+/turf/space,
+/area/space)
 "iov" = (
 /obj/table/auto,
 /obj/random_item_spawner/snacks/one_or_zero,
@@ -18291,16 +18450,10 @@
 	},
 /turf/floor/plating,
 /area/diner/hangar)
-"jhs" = (
-/obj/lattice{
-	dir = 9;
-	icon_state = "lattice-dir"
-	},
-/turf/wall/s_wall{
-	icon = 'icons/turf/shuttle.dmi';
-	icon_state = "wall3_space"
-	},
-/area/abandonedship)
+"jgD" = (
+/obj/grille/steel,
+/turf/floor/plating/airless/random,
+/area/space)
 "jim" = (
 /turf/floor/industrial,
 /area/prefab/mobius{
@@ -18365,6 +18518,11 @@
 	dir = 1
 	},
 /area/abandonedmedicalship)
+"jqD" = (
+/obj/table/reinforced/auto,
+/obj/item/device/radio,
+/turf/floor/plating/airless/random,
+/area/debris/harmacy)
 "jqR" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 4
@@ -18395,6 +18553,29 @@
 	icon_state = "floor3"
 	},
 /area/salyut)
+"jtL" = (
+/obj/lattice{
+	icon_state = "lattice_grey"
+	},
+/obj/item/raw_material/shard/glass,
+/obj/decal/fakeobjects/pipe{
+	dir = 10;
+	tag = "icon-intact (SOUTHWEST)"
+	},
+/turf/space,
+/area/debris/harmacy)
+"juG" = (
+/obj/lattice/grey{
+	icon_state = "lattice-single"
+	},
+/turf/space,
+/area/space)
+"jwb" = (
+/obj/lattice{
+	icon_state = "lattice_grey"
+	},
+/turf/space,
+/area/abandonedship)
 "jxo" = (
 /obj/decal/cleanable/dirt,
 /turf/floor/damaged2,
@@ -18422,6 +18603,15 @@
 	tag = "icon-catwalk (WEST)"
 	},
 /area/derelict_ai_sat/solar)
+"jDe" = (
+/obj/lattice{
+	icon_state = "lattice_grey"
+	},
+/obj/lattice/grey{
+	icon_state = "chunk"
+	},
+/turf/space,
+/area/space)
 "jHa" = (
 /obj/table/auto,
 /obj/random_item_spawner/tools_w_igloves/one_or_zero,
@@ -18481,6 +18671,19 @@
 	},
 /turf/space,
 /area/abandonedmedicalship)
+"jUw" = (
+/obj/table/reinforced/auto,
+/obj/item/audio_tape,
+/turf/floor/plating/airless/random,
+/area/debris/harmacy)
+"jVD" = (
+/obj/lattice{
+	dir = 5;
+	icon_state = "lattice-dir-b"
+	},
+/obj/item/raw_material/shard/glass,
+/turf/space,
+/area/space)
 "jWI" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks,
 /obj/decal/fakeobjects/lighttube_broken{
@@ -18511,9 +18714,6 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
-"jYz" = (
-/turf/wall/s_wall,
-/area/abandonedship)
 "jZY" = (
 /obj/critter/roach,
 /turf/floor/grime,
@@ -18538,10 +18738,7 @@
 	},
 /area/salyut)
 "kcu" = (
-/obj/grille/catwalk{
-	dir = 1;
-	icon_state = "catwalk_cross"
-	},
+/obj/grille/catwalk/grey,
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
 	icon_state = "catwalk_cross"
@@ -18624,6 +18821,10 @@
 	icon_state = "wall_space"
 	},
 /area/abandonedmedicalship)
+"kxJ" = (
+/obj/item/extinguisher,
+/turf/space,
+/area/space)
 "kzY" = (
 /obj/decal/cleanable/dirt,
 /obj/cable{
@@ -18870,6 +19071,11 @@
 	icon_state = "hive"
 	},
 /area/bee_trader)
+"lez" = (
+/obj/decal/fakeobjects/robot,
+/obj/item/pen,
+/turf/floor/airless,
+/area/debris/harmacy)
 "lfY" = (
 /obj/machinery/door/airlock/external/shuttle_connect,
 /turf/floor/carpet/purple/standard/edge/north,
@@ -18919,6 +19125,10 @@
 	dir = 4
 	},
 /area/diner/solar)
+"llE" = (
+/obj/item/device/radio/beacon,
+/turf/floor/airless/black,
+/area/debris/harmacy)
 "lnk" = (
 /turf/floor/shuttle{
 	dir = 8;
@@ -19033,12 +19243,6 @@
 	},
 /obj/item/peripheral/sound_card,
 /turf/floor/airless/scorched,
-/area/abandonedship)
-"lDB" = (
-/obj/lattice{
-	icon_state = "lattice_grey"
-	},
-/turf/space,
 /area/abandonedship)
 "lDI" = (
 /obj/lattice{
@@ -19169,6 +19373,15 @@
 	icon_state = "wall_space"
 	},
 /area/space)
+"lUU" = (
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 8;
+	icon_state = "catwalk_cross"
+	},
+/area/space)
 "lWc" = (
 /obj/grille/steel,
 /obj/window/reinforced/east,
@@ -19208,6 +19421,10 @@
 	},
 /turf/space,
 /area/diner/jucer_trader)
+"mac" = (
+/obj/lattice,
+/turf/space,
+/area/abandonedship)
 "mav" = (
 /obj/item/parts/human_parts/leg/mutant/skeleton/right,
 /turf/floor/plating/airless/asteroid,
@@ -19221,10 +19438,16 @@
 	icon_state = "wall_space"
 	},
 /area/general_spaceships)
+"mcg" = (
+/obj/lattice{
+	icon_state = "lattice_grey"
+	},
+/obj/decal/fakeobjects/pipe,
+/turf/space,
+/area/debris/harmacy)
 "mfH" = (
-/obj/grille/catwalk{
-	dir = 9;
-	icon_state = "catwalk_cross"
+/obj/lattice/grey{
+	icon_state = "grate"
 	},
 /turf/floor/airless/plating/catwalk{
 	dir = 9
@@ -19292,16 +19515,6 @@
 /obj/machinery/light/runway_light/delay3,
 /turf/space,
 /area/space)
-"mmq" = (
-/obj/grille/catwalk{
-	dir = 5;
-	icon_state = "catwalk_cross"
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 5;
-	icon_state = "catwalk_cross"
-	},
-/area/space)
 "moB" = (
 /obj/table/regal/auto,
 /obj/machinery/cashreg,
@@ -19316,6 +19529,13 @@
 	icon_state = "red2"
 	},
 /area/diner/dining)
+"mrs" = (
+/obj/neon_sign/medical/weed{
+	name = "harmacy sign";
+	pixel_y = 30
+	},
+/turf/floor/plating/airless,
+/area/space)
 "mrx" = (
 /obj/grille/catwalk,
 /obj/machinery/door/airlock/external{
@@ -19340,9 +19560,6 @@
 	icon = 'icons/turf/shuttle.dmi';
 	icon_state = "wall"
 	},
-/area/abandonedship)
-"mtO" = (
-/turf/floor/plating/airless/random,
 /area/abandonedship)
 "mwa" = (
 /obj/lattice{
@@ -19441,6 +19658,14 @@
 "mQx" = (
 /turf/floor/carpet/purple/fancy/edge/north,
 /area/juicer/club/outside)
+"mQY" = (
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 10
+	},
+/area/space)
 "mRE" = (
 /obj/machinery/light/small,
 /turf/floor/carpet/arcade,
@@ -19531,6 +19756,17 @@
 	},
 /turf/floor/airless/plating,
 /area/diner/solar)
+"ndW" = (
+/obj/lattice{
+	icon_state = "lattice_grey"
+	},
+/obj/decal/fakeobjects/pipe{
+	dir = 8;
+	icon = 'icons/obj/atmospherics/pipes/manifold_pipe.dmi';
+	icon_state = "manifold"
+	},
+/turf/space,
+/area/debris/harmacy)
 "ngg" = (
 /turf/shuttle/wall{
 	icon_state = "wall_space"
@@ -19746,10 +19982,6 @@
 	},
 /turf/floor/plating/airless,
 /area/abandonedmedicalship)
-"nCe" = (
-/obj/item/raw_material/shard/glass,
-/turf/space,
-/area/abandonedship)
 "nDe" = (
 /obj/securearea{
 	desc = "A warning sign which reads 'COLLISION HAZARD'";
@@ -19799,9 +20031,7 @@
 /turf/space,
 /area/diner/jucer_trader)
 "nQm" = (
-/obj/grille/catwalk{
-	dir = 9
-	},
+/obj/grille/catwalk/grey,
 /turf/floor/airless/plating/catwalk{
 	dir = 8;
 	icon_state = "catwalk_cross"
@@ -19867,6 +20097,10 @@
 	},
 /turf/floor/black,
 /area/juicer/club)
+"obB" = (
+/obj/item/extinguisher,
+/turf/floor/airless,
+/area/debris/harmacy)
 "odf" = (
 /obj/lattice{
 	dir = 4;
@@ -19941,7 +20175,7 @@
 	name = "Bilateral Shop Ship"
 	})
 "olq" = (
-/obj/grille/catwalk{
+/obj/grille/catwalk/grey{
 	dir = 6
 	},
 /turf/floor/airless/plating/catwalk{
@@ -20079,6 +20313,16 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"oAc" = (
+/obj/lattice{
+	dir = 4;
+	icon_state = "lattice_grey-dir"
+	},
+/obj/decal/pole{
+	pixel_x = 12
+	},
+/turf/space,
+/area/space)
 "oBA" = (
 /obj/machinery/bathtub,
 /turf/floor/longtile/black,
@@ -20092,6 +20336,10 @@
 /obj/item/reagent_containers/food/drinks/bowl,
 /turf/floor/delivery,
 /area/diner/dining)
+"oCw" = (
+/obj/decal/fakeobjects/smallrocks,
+/turf/floor/plating/airless/random,
+/area/debris/harmacy)
 "oEP" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/plate,
@@ -20134,6 +20382,12 @@
 	icon_state = "floor3"
 	},
 /area/general_spaceships)
+"oSF" = (
+/obj/decal/floatingtiles/loose{
+	icon_state = "floattiles6"
+	},
+/turf/floor/plating/airless,
+/area/space)
 "oSX" = (
 /obj/stool/chair,
 /obj/decal/cleanable/tracked_reagents/blood/splatter{
@@ -20333,19 +20587,17 @@
 /obj/landmark/artifact,
 /turf/floor/airless,
 /area/debris/harmacy)
-"pCq" = (
-/obj/lattice{
-	dir = 10;
-	icon_state = "lattice-dir"
-	},
-/obj/decal/fakeobjects/pipe{
-	dir = 4
-	},
-/turf/space,
-/area/abandonedship)
 "pCP" = (
 /turf/floor/carpet/green/standard/edge/se,
 /area/diner/jucer_trader)
+"pDn" = (
+/obj/decal/floatingtiles{
+	dir = 1;
+	icon_state = "floattiles3"
+	},
+/obj/item/device/narco,
+/turf/floor/plating/airless/random,
+/area/debris/harmacy)
 "pEc" = (
 /obj/decal/cleanable/dirt,
 /obj/decal/fakeobjects/lightbulb_broken,
@@ -20551,6 +20803,12 @@
 /obj/item/c_tube,
 /turf/floor/shuttlebay,
 /area/bee_trader)
+"qpi" = (
+/obj/lattice/grey{
+	icon_state = "lattice-broken8"
+	},
+/turf/space,
+/area/space)
 "qqL" = (
 /obj/grille/steel,
 /obj/window/reinforced/north,
@@ -20661,15 +20919,6 @@
 	tag = "icon-catwalk (WEST)"
 	},
 /area/derelict_ai_sat/solar)
-"qJz" = (
-/obj/grille/catwalk{
-	dir = 10;
-	icon_state = "catwalk_cross"
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 10
-	},
-/area/abandonedship)
 "qJX" = (
 /obj/decal/cleanable/tracked_reagents/blood,
 /obj/spook,
@@ -20709,14 +20958,6 @@
 	},
 /turf/space,
 /area/diner/jucer_trader)
-"qXi" = (
-/obj/lattice{
-	dir = 4;
-	icon_state = "lattice-dir-b";
-	tag = "icon-lattice-dir-b (EAST)"
-	},
-/turf/space,
-/area/abandonedship)
 "qXO" = (
 /obj/loudspeaker{
 	density = 0;
@@ -20748,6 +20989,10 @@
 	icon_state = "red2"
 	},
 /area/diner/dining)
+"raG" = (
+/obj/grille/steel/broken,
+/turf/floor/plating/airless/random,
+/area/debris/harmacy)
 "rbe" = (
 /obj/grille/steel,
 /obj/window/reinforced/north,
@@ -20824,6 +21069,14 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
+"rkU" = (
+/obj/lattice{
+	dir = 10;
+	icon_state = "lattice-dir"
+	},
+/obj/machinery/turret/antidrone,
+/turf/space,
+/area/space)
 "rnl" = (
 /obj/cup_rack{
 	pixel_x = 32;
@@ -20898,9 +21151,8 @@
 	},
 /area/general_spaceships)
 "rsB" = (
-/obj/grille/catwalk{
-	dir = 10;
-	icon_state = "catwalk_cross"
+/obj/grille/catwalk/grey{
+	dir = 6
 	},
 /turf/floor/airless/plating/catwalk{
 	dir = 10
@@ -21042,6 +21294,10 @@
 /obj/item/storage/box/grenade_starter_kit,
 /turf/floor/airless/damaged2,
 /area/abandonedmedicalship)
+"rXR" = (
+/obj/item/raw_material/syreline,
+/turf/floor/plating/airless,
+/area/space)
 "rXS" = (
 /obj/decal/cleanable/dirt,
 /obj/map/light/white,
@@ -21124,6 +21380,12 @@
 /obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/plating,
 /area/diner/kitchen)
+"smA" = (
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/turf/space,
+/area/space)
 "soQ" = (
 /obj/rack,
 /turf/floor/grime,
@@ -21200,6 +21462,10 @@
 	},
 /turf/floor,
 /area/h7/computer_core)
+"szM" = (
+/obj/structure/girder/displaced,
+/turf/space,
+/area/abandonedship)
 "sAB" = (
 /obj/decal/cleanable/dirt,
 /turf/floor/shuttle{
@@ -21482,14 +21748,6 @@
 	},
 /turf/floor/darkpurple,
 /area/juicer/club/outside)
-"thA" = (
-/obj/lattice{
-	dir = 8;
-	icon_state = "lattice-dir-b";
-	tag = "icon-lattice-dir-b (WEST)"
-	},
-/turf/space,
-/area/abandonedship)
 "tix" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -21612,6 +21870,11 @@
 "tAl" = (
 /turf/floor/black,
 /area/juicer/club)
+"tAv" = (
+/obj/lattice,
+/obj/lattice,
+/turf/space,
+/area/space)
 "tBi" = (
 /obj/cable{
 	d1 = 1;
@@ -21696,7 +21959,7 @@
 	},
 /area/diner/solar)
 "tNY" = (
-/obj/grille/catwalk{
+/obj/grille/catwalk/grey{
 	dir = 10
 	},
 /turf/floor/airless/plating/catwalk{
@@ -21782,15 +22045,6 @@
 	},
 /turf/wall/s_wall,
 /area/space)
-"tYF" = (
-/obj/grille/catwalk{
-	icon_state = "catwalk_cross"
-	},
-/turf/floor/airless/plating/catwalk{
-	dir = 5;
-	icon_state = "catwalk_cross"
-	},
-/area/space)
 "tZX" = (
 /obj/rack,
 /turf/floor/black,
@@ -21859,10 +22113,6 @@
 "uqo" = (
 /turf/floor/carpet/purple/fancy/innercorner/west,
 /area/juicer/club/outside)
-"uqr" = (
-/obj/structure/girder/displaced,
-/turf/space,
-/area/abandonedship)
 "urD" = (
 /obj/machinery/door/airlock/command,
 /obj/access_spawn/juicer/crypto,
@@ -21959,6 +22209,12 @@
 	icon_state = "old_rwall"
 	},
 /area/juicer/club)
+"uOx" = (
+/obj/lattice/grey{
+	icon_state = "lattice-broken4"
+	},
+/turf/space,
+/area/space)
 "uOV" = (
 /obj/lattice{
 	dir = 1;
@@ -22117,10 +22373,14 @@
 /obj/neon_sign/hearts,
 /turf/floor/plating,
 /area/juicer/club)
+"vmh" = (
+/obj/storage/crate/loot,
+/obj/item/organ/brain,
+/turf/floor/plating/airless/random,
+/area/debris/harmacy)
 "vnz" = (
-/obj/grille/catwalk{
-	dir = 6;
-	icon_state = "catwalk_cross"
+/obj/lattice/grey{
+	icon_state = "grate"
 	},
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
@@ -22248,9 +22508,8 @@
 /turf/floor/specialroom/bar,
 /area/diner/dining)
 "vNa" = (
-/obj/grille/catwalk{
-	dir = 6;
-	icon_state = "catwalk_cross"
+/obj/grille/catwalk/grey{
+	dir = 6
 	},
 /turf/floor/airless/plating/catwalk{
 	dir = 6
@@ -22380,6 +22639,14 @@
 	dir = 10
 	},
 /area/diner/dining)
+"weY" = (
+/obj/lattice{
+	icon_state = "lattice_grey"
+	},
+/obj/grille/steel/broken,
+/obj/item/pen,
+/turf/space,
+/area/debris/harmacy)
 "wfJ" = (
 /obj/storage/secure/closet/personal,
 /obj/item/clothing/under/gimmick/cosby,
@@ -22717,9 +22984,7 @@
 	name = "Bilateral Shop Ship"
 	})
 "xib" = (
-/obj/grille/catwalk{
-	dir = 5
-	},
+/obj/grille/catwalk/grey,
 /turf/floor/airless/plating/catwalk{
 	dir = 4;
 	icon_state = "catwalk_cross"
@@ -22931,6 +23196,14 @@
 	},
 /turf/floor/black,
 /area/juicer/club)
+"xMR" = (
+/obj/lattice{
+	dir = 8;
+	icon_state = "lattice-dir-b";
+	tag = "icon-lattice-dir-b (WEST)"
+	},
+/turf/space,
+/area/abandonedship)
 "xOl" = (
 /turf/floor/plating/airless/asteroid{
 	stone_color = "#D1E6FF"
@@ -22967,9 +23240,8 @@
 	},
 /area/abandonedmedicalship)
 "xSq" = (
-/obj/grille/catwalk{
-	dir = 5;
-	icon_state = "catwalk_cross"
+/obj/grille/catwalk/grey{
+	dir = 10
 	},
 /turf/floor/airless/plating/catwalk{
 	dir = 5
@@ -23053,9 +23325,8 @@
 /turf/floor/airless/plating/damaged1,
 /area/abandonedmedicalship)
 "ygu" = (
-/obj/grille/catwalk{
-	dir = 9;
-	icon_state = "catwalk_cross"
+/obj/grille/catwalk/grey{
+	dir = 10
 	},
 /turf/floor/airless/plating/catwalk{
 	dir = 9
@@ -33708,7 +33979,7 @@ aaa
 aab
 aaa
 aab
-aaa
+aab
 qso
 qso
 ucg
@@ -34009,7 +34280,7 @@ aaa
 aab
 okO
 aab
-aaa
+aab
 aaa
 qso
 qso
@@ -34017,7 +34288,7 @@ arT
 arT
 asg
 qso
-asg
+qso
 asg
 arR
 aaa
@@ -34310,7 +34581,7 @@ aaa
 aaa
 aaa
 aab
-aaa
+aab
 aaa
 aab
 qso
@@ -34623,7 +34894,7 @@ arT
 arT
 arT
 qso
-asg
+qso
 aaa
 aan
 aaa
@@ -35228,7 +35499,7 @@ asj
 arT
 qso
 arR
-aaa
+aab
 aab
 aaa
 aaa
@@ -35833,7 +36104,7 @@ arT
 arT
 arT
 aab
-aaa
+aab
 aan
 asr
 aaa
@@ -36438,7 +36709,7 @@ aaa
 aaa
 aab
 aab
-aaa
+aab
 aaa
 aab
 aaa
@@ -42494,7 +42765,7 @@ aab
 anS
 aoM
 aog
-jhs
+ilR
 aaa
 aaa
 aaa
@@ -45211,8 +45482,8 @@ aaa
 aIO
 aoh
 apr
-qJz
-pCq
+atL
+grr
 aaa
 aaa
 aaa
@@ -45514,7 +45785,7 @@ aIO
 aoi
 apE
 aur
-pCq
+grr
 aaa
 aaa
 aaa
@@ -45816,7 +46087,7 @@ aIO
 aop
 akY
 auM
-pCq
+grr
 aaa
 aaa
 aaa
@@ -65150,8 +65421,8 @@ aaa
 aaj
 aak
 mfH
-arq
-atL
+lUU
+mQY
 aaF
 aaj
 aaa
@@ -65451,8 +65722,8 @@ awR
 bnk
 boU
 aan
-mmq
-tYF
+vnz
+vnz
 vnz
 aan
 boU
@@ -70986,7 +71257,7 @@ aIz
 aKT
 aJM
 aaa
-aaa
+juG
 aaa
 aIy
 aaa
@@ -73062,9 +73333,9 @@ aaa
 aaa
 aaa
 aaa
-aak
-aKI
-aKI
+aao
+aip
+rXR
 aaa
 aaa
 aaa
@@ -73666,9 +73937,9 @@ aaa
 aaa
 aaa
 aaa
-aak
+aao
 bkc
-aKI
+ecu
 aaa
 aaa
 aaa
@@ -73968,11 +74239,11 @@ aaa
 aaa
 aaa
 aaa
-aak
+aao
 bkc
 aKI
 aaa
-aaa
+aGZ
 aaa
 aaa
 aaa
@@ -74270,7 +74541,7 @@ aaa
 aaa
 aaa
 aaa
-aak
+aao
 bkc
 aKI
 aaa
@@ -74574,7 +74845,7 @@ aaa
 aaa
 aak
 bkc
-aKI
+oSF
 aaa
 aaa
 aaa
@@ -74875,7 +75146,7 @@ aaa
 aaa
 aaa
 aJv
-aKI
+aGL
 aKI
 aaa
 aaa
@@ -81813,7 +82084,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aip
 agV
 aak
 aIW
@@ -82115,11 +82386,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aGK
 aHJ
 aIC
 aaa
-aaa
+aGZ
 aaa
 aaa
 aaa
@@ -82417,8 +82688,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aeH
+aGL
+jVD
 aak
 aIW
 aaa
@@ -88719,8 +88990,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+ioc
+aaK
 aaa
 aaa
 aaa
@@ -89013,15 +89284,15 @@ aaK
 aaK
 aaK
 ahv
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aaK
+aaK
+aaK
+aaK
+aaK
+aaK
+aaK
+aaK
+rkU
 aaa
 aaa
 aaa
@@ -89323,8 +89594,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+hZq
+aaK
 aaa
 aaa
 aaa
@@ -94801,7 +95072,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aab
 aaa
 aaa
 aaa
@@ -95102,10 +95373,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
 aab
-aaa
-aaa
+aab
+asT
+aBi
 aaa
 aaa
 aaa
@@ -95403,11 +95674,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
 aab
 aab
 aab
-aaa
+asT
+aGK
 aaa
 aaa
 aaa
@@ -95708,8 +95979,8 @@ aaa
 aab
 aab
 aab
-aab
-aaa
+asT
+aGK
 aaa
 aaa
 aaa
@@ -95989,29 +96260,29 @@ aab
 aab
 aab
 aab
-aaa
-aaa
-aaa
-aab
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+gdg
 aaa
 aaa
 aab
 aab
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aab
 aaa
+asT
+aBj
 aaa
 aaa
 aaa
@@ -96294,7 +96565,7 @@ aab
 aaa
 aaa
 aaa
-aaa
+gdg
 aaa
 aaa
 aaa
@@ -96752,7 +97023,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+auk
 aaa
 aaa
 aaa
@@ -96894,7 +97165,7 @@ aaa
 aaa
 aaa
 aab
-aaa
+gdg
 aaa
 aaa
 aaa
@@ -97188,7 +97459,7 @@ aab
 aab
 aab
 aab
-aaa
+gdg
 aaa
 aaa
 aaa
@@ -98094,7 +98365,7 @@ aab
 aab
 aab
 aab
-aaa
+gdg
 aaa
 aaa
 aaa
@@ -98393,7 +98664,7 @@ aaa
 aaa
 aab
 aab
-aaa
+gdg
 aaa
 aaa
 aaa
@@ -99913,7 +100184,7 @@ aaa
 aaa
 aaa
 aaa
-aBk
+hxl
 aan
 arL
 aaa
@@ -99923,6 +100194,7 @@ aaa
 aaa
 aaa
 aaa
+gdg
 aaa
 aaa
 aaa
@@ -99932,8 +100204,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+aad
 aaa
 aaa
 aaa
@@ -100215,9 +100486,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aBk
-aan
+aGL
+hxl
+ciP
 aaa
 aaa
 aaa
@@ -100518,8 +100789,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+aGL
+aBj
 aaa
 aaa
 aaa
@@ -100538,7 +100809,7 @@ aaa
 aHb
 aaa
 aaa
-aaa
+uOx
 aaa
 aaa
 aaa
@@ -100796,7 +101067,7 @@ acS
 acS
 acS
 acS
-aaa
+aBj
 aaa
 asR
 aaa
@@ -100832,7 +101103,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aad
 aaa
 aaa
 aaa
@@ -100840,7 +101111,7 @@ aaa
 atb
 aHl
 aaa
-aaa
+qpi
 aaa
 aaa
 aaa
@@ -101132,11 +101403,11 @@ aaa
 aaa
 aaa
 aaa
+gdg
 aaa
 aaa
 aaa
-aaa
-aaa
+gdg
 aaa
 aaa
 aaa
@@ -101398,14 +101669,14 @@ acS
 acS
 acS
 asT
-aaa
+aBj
 aaa
 aaa
 aaa
 aog
 atv
 atv
-lDB
+jwb
 aaa
 aAj
 aaa
@@ -101437,12 +101708,12 @@ aaa
 aaa
 aaa
 aaa
+atb
+atb
+smA
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+smA
 aHl
 aHl
 aHl
@@ -101452,7 +101723,7 @@ aHl
 atb
 aHl
 aHl
-atb
+cls
 afD
 aaa
 aaa
@@ -101707,8 +101978,8 @@ aaa
 aog
 atw
 ayC
-mtO
-mtO
+akU
+akU
 aog
 aab
 aaa
@@ -102008,9 +102279,9 @@ aaa
 aaa
 aog
 axz
-mtO
-mtO
-mtO
+akU
+akU
+akU
 aog
 aab
 aaa
@@ -102043,7 +102314,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+juG
 aaa
 ftq
 xDU
@@ -102308,11 +102579,11 @@ aaa
 aaa
 aaa
 aaa
-qXi
+heS
 axB
-lDB
-mtO
-mtO
+jwb
+akU
+akU
 aog
 asT
 aaa
@@ -102349,8 +102620,8 @@ aaa
 aHi
 aZR
 aZR
-aHk
-aZR
+jtL
+ndW
 aIF
 hAo
 aIl
@@ -102358,7 +102629,7 @@ aIl
 qcN
 aHl
 aHl
-atb
+cls
 afD
 aaa
 aaa
@@ -102612,11 +102883,11 @@ aaa
 aaa
 atr
 atr
-thA
-lDB
-lDB
+xMR
+jwb
+jwb
 aog
-aaa
+aBj
 aaa
 aaa
 aaa
@@ -102907,15 +103178,15 @@ acS
 acS
 aaa
 aaa
-aaa
+aLt
 aaa
 aaa
 aaa
 aaa
 ats
 axL
-mtO
-thA
+akU
+xMR
 atr
 aAy
 aaa
@@ -102954,9 +103225,9 @@ aaa
 kUg
 aHn
 aHq
-jMQ
-aZR
-aIb
+inR
+mcg
+fvF
 hAo
 aIl
 qcN
@@ -103216,10 +103487,10 @@ aGZ
 aaa
 aog
 axL
-mtO
-lDB
-lDB
-qXi
+akU
+jwb
+jwb
+heS
 aaa
 aaa
 aaa
@@ -103260,11 +103531,11 @@ aIf
 wGD
 aIX
 aJg
-aIl
+cEb
 qcN
 aHl
 aHl
-atb
+cls
 afD
 aaa
 aaa
@@ -103519,9 +103790,9 @@ aaa
 aog
 axM
 axL
-mtO
+akU
 ayZ
-qXi
+heS
 aaa
 aGZ
 aaa
@@ -103559,14 +103830,14 @@ fjo
 aHp
 qcN
 aIi
-aIi
+jqD
 aIi
 wGD
 pBw
 qcN
 aaa
 aaa
-aHb
+oAc
 aaa
 aaa
 aaa
@@ -103820,7 +104091,7 @@ aaa
 aaa
 aog
 axz
-mtO
+akU
 ayX
 azc
 aog
@@ -103855,13 +104126,13 @@ aaa
 aaa
 aaa
 kUg
-wGD
+hkS
 aHj
 fjo
 fjo
 qcN
 aIk
-aIl
+lez
 aIZ
 aIl
 aIl
@@ -103869,9 +104140,9 @@ qcN
 qcN
 qcN
 qcN
-aaa
-aaa
-aaa
+aKI
+aKI
+aad
 aaa
 aaa
 aaa
@@ -104122,8 +104393,8 @@ atb
 aGW
 aog
 axN
-mtO
-mtO
+akU
+akU
 azH
 aog
 aaa
@@ -104154,7 +104425,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aad
 aaa
 aHc
 phl
@@ -104171,8 +104442,8 @@ qcN
 aJD
 aIl
 qcN
-aJw
-aaa
+mrs
+aKI
 aaa
 aaa
 aaa
@@ -104290,7 +104561,7 @@ tXl
 tXl
 tBi
 xiV
-aan
+tAv
 aaa
 aan
 aaa
@@ -104422,10 +104693,10 @@ acS
 acS
 acS
 aGW
-jYz
+fYE
 axQ
-mtO
-mtO
+akU
+akU
 axM
 aog
 aaa
@@ -104461,7 +104732,7 @@ aaa
 aHc
 dHv
 fjo
-fjo
+llE
 fjo
 aHt
 aIl
@@ -104473,8 +104744,8 @@ aJs
 aIl
 aIl
 aJs
-aaa
-aaa
+aKI
+aKI
 aaa
 aaa
 aaa
@@ -104724,8 +104995,8 @@ acS
 acS
 acS
 acS
-jYz
-cfr
+fYE
+hTZ
 ayF
 aog
 azO
@@ -104766,7 +105037,7 @@ fjo
 trD
 fjo
 aHu
-aIl
+icW
 aIl
 aJb
 aIl
@@ -104775,8 +105046,8 @@ aJs
 aIl
 aIl
 aJs
-aaa
-aaa
+aKI
+aKI
 aaa
 aaa
 aaa
@@ -105026,11 +105297,11 @@ acS
 acS
 acS
 acS
-jYz
-lDB
+fYE
+jwb
 axM
-mtO
-thA
+akU
+xMR
 aog
 aGZ
 aaa
@@ -105063,8 +105334,8 @@ aaa
 aaa
 aaa
 kUg
-aHg
-jMQ
+pDn
+vmh
 fjo
 fjo
 qcN
@@ -105077,7 +105348,8 @@ qcN
 aIl
 aIl
 qcN
-aJw
+mrs
+aKI
 aaa
 aaa
 aaa
@@ -105193,8 +105465,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+aGL
 ewp
 dEq
 aaa
@@ -105329,9 +105600,9 @@ acS
 acS
 acS
 acS
-nCe
-mtO
-mtO
+cCN
+akU
+akU
 azR
 aog
 aaa
@@ -105366,11 +105637,11 @@ aaa
 aab
 kUg
 aHh
-aHg
+dGk
 aHk
-jMQ
+raG
 qcN
-aIi
+jUw
 aIi
 aJc
 aIl
@@ -105379,6 +105650,8 @@ qcN
 qcN
 qcN
 qcN
+aKI
+aKI
 aaa
 aaa
 aaa
@@ -105495,9 +105768,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+aGL
 ewp
 tXl
 arY
@@ -105672,7 +105943,7 @@ kUg
 kUg
 kAl
 qcN
-aIl
+aIn
 ayU
 aJd
 aIl
@@ -105934,7 +106205,7 @@ acS
 acS
 acS
 acS
-jYz
+fYE
 aog
 aog
 aGC
@@ -105972,20 +106243,20 @@ aab
 aab
 aab
 aab
-akU
+jgD
 aHw
-jMQ
-aZR
+raG
+fyM
 jMQ
 aIE
 aIl
 qcN
 aHl
 aHl
-atb
+cls
 afD
-aaa
-aaa
+aHl
+afD
 aaa
 aaa
 aaa
@@ -106278,7 +106549,7 @@ aab
 aHF
 wGD
 wGD
-aZR
+weY
 jMQ
 aIl
 qcN
@@ -106287,7 +106558,7 @@ aaa
 aHb
 afD
 aaa
-aaa
+afD
 aaa
 aaa
 aaa
@@ -106517,7 +106788,7 @@ aaa
 aaa
 acS
 acS
-uqr
+szM
 aan
 aaa
 aaa
@@ -106579,7 +106850,7 @@ aab
 aab
 lOP
 aIB
-jMQ
+oCw
 aJe
 aJh
 aIl
@@ -106589,7 +106860,7 @@ aaa
 aHb
 afD
 aaa
-aaa
+afD
 aaa
 aaa
 aaa
@@ -106820,7 +107091,7 @@ aaa
 aaa
 aaa
 asD
-mtO
+akU
 alj
 aan
 aan
@@ -106884,14 +107155,14 @@ gVn
 xDU
 aHh
 aJi
-aIl
+obB
 qcN
 aHl
 aHl
-atb
+cls
 afD
-aaa
-aaa
+aHl
+afD
 aaa
 aaa
 aaa
@@ -107123,7 +107394,7 @@ aaa
 aaa
 aog
 akV
-mtO
+akU
 alj
 aaa
 aaa
@@ -107425,9 +107696,9 @@ aaa
 aaa
 aog
 akW
-mtO
-aMk
-cfr
+akU
+mac
+hTZ
 aaa
 aaa
 aaa
@@ -107786,11 +108057,11 @@ aab
 aab
 aab
 aab
+kxJ
 aaa
 aaa
 aaa
-aaa
-aaa
+juG
 aaa
 aaa
 aaa
@@ -108393,7 +108664,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+bkz
 aaa
 aaa
 aaa
@@ -108691,16 +108962,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aHb
-aaa
-aaa
+juG
 aaa
 aHb
 aaa
 aaa
 aaa
+aHb
+aaa
+aaa
+aad
 aaa
 aaa
 aaa
@@ -108995,7 +109266,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+jDe
 aaa
 aaa
 aaa
@@ -109290,7 +109561,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aad
 aaa
 aaa
 aaa
