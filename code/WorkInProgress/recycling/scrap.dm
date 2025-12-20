@@ -18,6 +18,7 @@
 	var/blood = 0		// 0=none, 1=blood-stained, 2=bloody
 	throw_speed = 1
 	throw_range = 4
+	rand_pos = 3
 	w_class = W_CLASS_TINY
 	flags = FPRINT | TABLEPASS | CONDUCT
 
