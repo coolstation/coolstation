@@ -93,7 +93,7 @@
 			if (istype(location,/turf))
 				location.hotspot_expose(2000,50,1)
 
-			if (istype(target, /turf) || istype(target, /obj/machinery/door) || istype(/obj/lattice))
+			if (istype(target, /turf) || istype(target, /obj/machinery/door) || istype(target,/obj/lattice))
 				if(!istype(target,/turf/space))
 					var/time = 6 SECONDS
 					if (istype(target,/obj/machinery/door))
