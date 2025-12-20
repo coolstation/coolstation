@@ -666,9 +666,6 @@
 					M.force_laydown_standup()
 		..()
 
-	alter_health()
-		return get_turf(src)
-
 	// called from mob/living/carbon/human/HasEntered()
 	// when mulebot is in the same loc
 	proc/RunOver(var/mob/living/carbon/human/H)

@@ -48,8 +48,10 @@
 		if(!src.dir_locked) //in order to not turn around and good fuckin ruin the emote animation
 			src.set_dir(src.move_dir)
 	if (changed & (KEY_THROW|KEY_PULL|KEY_POINT|KEY_EXAMINE|KEY_BOLT|KEY_OPEN|KEY_SHOCK)) // bleh
-		src.overhead_throw()
 		src.update_cursor()
+
+	if (changed & KEY_THROW)
+		src.overhead_throw()
 
 /mob/proc/process_move(keys)
 	set waitfor = 0
@@ -218,9 +220,12 @@
 								G.shoot()
 
 						for (var/obj/item/grab/G as anything in src.grabbed_by)
+							if(!G.assailant)
+								src.grabbed_by -= G
+								continue
 							if (G.assailant == pushing || G.affecting == pushing) continue
 							if (G.state < GRAB_NECK) continue
-							if (!G.assailant || !isturf(G.assailant.loc) || G.assailant.anchored)
+							if (!isturf(G.assailant.loc) || G.assailant.anchored)
 								return 0
 							src.set_density(0) //assailant shouldn't be able to bump us here. Density is set to 0 by the grab stuff but *SAFETY!*
 							step(G.assailant, move_dir)

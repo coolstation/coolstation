@@ -104,8 +104,6 @@ var/global
 
 	already_a_dominic = 0 // no just shut up right now, I don't care
 
-	footstep_extrarange = 0 // lol same (modified hackily in mobs.dm to avoid lag from sound at high player coutns)
-
 	list/cursors_selection = list("Default" = 'icons/cursors/target/default.dmi',
 	"Red" = 'icons/cursors/target/red.dmi',
 	"Green" = 'icons/cursors/target/green.dmi',
@@ -305,6 +303,7 @@ var/global
 	shipyardship_pre_densitymap = list()
 	shipyardship_post_densitymap = list()
 	shipyard_scrapwall_prob = 40
+	shipyard_underway = 0
 	toggles_enabled = 1
 	announce_banlogin = 1
 	announce_jobbans = 0

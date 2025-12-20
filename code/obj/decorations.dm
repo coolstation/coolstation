@@ -331,7 +331,7 @@
 
 //BUSH ANIMATION!!!!
 	proc/shake_bush(var/volume)
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", volume, 1, -1)
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", volume, 1, SOUND_RANGE_STANDARD)
 
 		var/wiggle = 6
 
@@ -360,7 +360,7 @@
 		user.lastattacked = src
 		hit_twitch(src)
 		attack_particle(user,src)
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, 0)
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		src.take_damage(W.force)
 		user.visible_message("<span class='alert'><b>[user] hacks at [src] with [W]!</b></span>")
 
@@ -639,7 +639,7 @@
 
 	proc/shake_blinds(var/volume)
 
-		playsound(src, "sound/impact_sounds/blind_rattle.ogg", volume, 1, -1)
+		playsound(src, "sound/impact_sounds/blind_rattle.ogg", volume, 1, SOUND_RANGE_STANDARD)
 
 		var/wiggle = 10
 
@@ -1839,3 +1839,34 @@ obj/decoration/ceilingfan
 	light_r = 0.94
 	light_g = 0.98
 	light_b = 0.02
+
+/obj/decoration/broken_airlock
+	name = "broken airlock"
+	desc = "Rust has rendered this airlock useless."
+	icon = 'icons/misc/hstation.dmi'
+	icon_state = "bloodydoor"
+	anchored = 1
+	layer = 5
+
+	classic
+		icon_state = "stuck_partway"
+
+	maint
+		icon = 'icons/misc/rstation.dmi'
+		icon_state = "maint-gap"
+
+	med
+		icon = 'icons/misc/rstation.dmi'
+		icon_state = "med-gap"
+
+	eng
+		icon = 'icons/misc/rstation.dmi'
+		icon_state = "eng-open"
+
+	external
+		icon_state = "bloodydoorext"
+
+		alt
+			icon = 'icons/misc/rstation.dmi'
+			icon_state = "ext-gap"
+

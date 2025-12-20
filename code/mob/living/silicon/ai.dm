@@ -263,12 +263,6 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 		src.eyecam.show_text(message, color, 0, sight_check, allow_corruption, group)
 	return
 
-
-
-///mob/living/silicon/ai/playsound_local(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME)
-//sound.dm
-
-
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
 	if (isscrewingtool(W))
 		src.anchored = !src.anchored
@@ -843,7 +837,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 	if (src.get_eye_damage()) src.take_eye_damage(-INFINITY)
 	if (src.get_eye_damage(1)) src.take_eye_damage(-INFINITY, 1)
 	if (src.blinded) src.blinded = 0
-	if (src.get_ear_damage()) src.take_ear_damage(-INFINITY) // Ear_deaf is handled by src.set_vision().
+	if (src.ear_damage) src.take_ear_damage(-INFINITY) // ear_permdeaf is handled by src.set_vision().
 	if (src.dizziness) src.dizziness = 0
 	if (src.drowsyness) src.drowsyness = 0
 	if (src.stuttering) src.stuttering = 0
@@ -1723,13 +1717,13 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 			src.sight |= SEE_OBJS
 		src.see_in_dark = SEE_DARK_FULL
 		src.see_invisible = 2
-		src.ear_deaf = 0
+		src.ear_permdeaf = 0
 	else
 		vision.set_color_mod("#000000")
 		src.sight = src.sight & ~(SEE_TURFS | SEE_MOBS | SEE_OBJS)
 		src.see_in_dark = 0
 		src.see_invisible = 0
-		src.ear_deaf = 1
+		src.ear_permdeaf = 1
 
 /mob/living/silicon/ai/verb/open_nearest_door()
 	set name = "Open Nearest Door to..."

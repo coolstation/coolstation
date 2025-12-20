@@ -149,7 +149,7 @@
 		user.visible_message(message)
 		src.on = 1
 		src.icon_state = "stove2"
-		spawn(pot.total_wclass SECONDS)
+		SPAWN_DBG(pot.total_wclass SECONDS)
 			src.on = 0
 			src.icon_state = "stove1"
 			src.generate_soup()

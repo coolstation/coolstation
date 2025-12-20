@@ -34,7 +34,7 @@ CONTENTS:
 					sound_fx_2 = pick('sound/ambience/spooky/Void_Hisses.ogg','sound/ambience/spooky/Void_Screaming.ogg','sound/ambience/spooky/Void_Wail.ogg','sound/ambience/spooky/Void_Calls.ogg')
 					for(var/mob/M in src)
 						if (M.client)
-							M.client.playAmbience(src, AMBIENCE_FX_2, 50)
+							M.client.playAmbience(src, AMBIENCE_FX_2, 25)
 
 /turf/wall/void
 	name = "dense void"

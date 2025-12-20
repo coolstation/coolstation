@@ -328,7 +328,7 @@
 
 	ChaseAttack(mob/M)
 		..()
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 		if(ismob(M))
 			M.changeStatus("stunned", 2 SECONDS)
@@ -510,7 +510,7 @@
 
 	ChaseAttack(mob/M)
 		..()
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 		if(ismob(M))
 			M.changeStatus("stunned", 2 SECONDS)
@@ -628,7 +628,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 
 	ChaseAttack(mob/M)
 		..()
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 		if(ismob(M))
 			M.changeStatus("stunned", 4 SECONDS)
@@ -715,7 +715,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 
 	ChaseAttack(mob/M)
 		..()
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		random_brute_damage(src.target, 1)//peck peck
 
 		return
@@ -790,7 +790,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 
 	ChaseAttack(mob/M)
 		flick("[src.icon_state]-flaploop", src)
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		..()
 
 		if(ismob(M))
@@ -907,7 +907,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 					else
 						flick("[src.species]-flaploop", src)
 			else
-				spawn(rand(4,10))
+				SPAWN_DBG(rand(4,10))
 					chatter(1)
 
 		var/boost = M.singing ? signing_learn_boost : 0
@@ -1153,7 +1153,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 
 	ChaseAttack(mob/M)
 		..()
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 		if (prob(3))
 			src.create_feather()
@@ -1758,7 +1758,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 
 	ChaseAttack(mob/M)
 		..()
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 		if (ismob(M))
 			M.changeStatus("stunned", 2 SECONDS)
@@ -1839,7 +1839,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 		..()
 
 	ChaseAttack(mob/M)
-		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		..()
 
 		if(ismob(M))
@@ -1959,15 +1959,15 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 
 			if (prob(15) && src.farten)
 				src.visible_message("<span class='emote'><b>[src]</b> farts wildly!</span>")
-				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, SOUND_RANGE_STANDARD, 3, channel=VOLUME_CHANNEL_EMOTE)
 
 			if (prob(5))
-				playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, SOUND_RANGE_STANDARD, 1.5, channel=VOLUME_CHANNEL_EMOTE)
 				return "<span class='emote'><b>[src]</b> dooks wildly!</span>"
 
 			if (prob(10))
 				src.visible_message("\The [src] [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","dooks")]!")
-				playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, SOUND_RANGE_STANDARD, 1.5, channel=VOLUME_CHANNEL_EMOTE)
 				for (var/mob/M in viewers(src))
 					if (istype(M, /mob/living/critter/small_animal/meatslinky)) //small ferrets (mobs only)
 						var/mob/living/critter/small_animal/meatslinky/frrt = M
@@ -1984,9 +1984,9 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 				if (src.alive && !src.sleeping && prob(2) && !src.lying && !src.freakout)
 					if (prob(5) && src.farten)
 						src.visible_message("<span class='emote'><b>[src]</b> farts!</span>")
-						playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, 0.3, 3, channel=VOLUME_CHANNEL_EMOTE)
+						playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, SOUND_RANGE_STANDARD, 3, channel=VOLUME_CHANNEL_EMOTE)
 					if (prob(5))
-						playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
+						playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, SOUND_RANGE_STANDARD, 1.5, channel=VOLUME_CHANNEL_EMOTE)
 						return "<span class='emote'><b>[src]</b> dooks!</span>"
 					if (prob(50))
 						src.freakout = rand(10,20) //x * 1.6 (critter loop tickrate) = duration in seconds
@@ -2011,7 +2011,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 
 	CritterAttack(mob/M)
 		if (prob(10))
-			playsound(src, 'sound/voice/screams/weaselscream.ogg', 40, 1, 0.3, 1.0, channel=VOLUME_CHANNEL_EMOTE)
+			playsound(src, 'sound/voice/screams/weaselscream.ogg', 40, 1, SOUND_RANGE_STANDARD, 1.0, channel=VOLUME_CHANNEL_EMOTE)
 		..()
 
 	attack_hand(mob/user as mob)
@@ -2053,7 +2053,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 							if(prob(4))
 								animate_spin(src, prob(50) ? "L" : "R", 1, 0)
 							if(prob(4))
-								playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
+								playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, SOUND_RANGE_STANDARD, 1.5, channel=VOLUME_CHANNEL_EMOTE)
 								src.audible_message("<span class='combat'><b>[src]</b> dooks wildly!</span>","<span class='combat'>You hear some kind of ferret being excited!</span>")
 							sleep(0.2 SECONDS)
 						src.visible_message("<span class='emote'><b>[src]</b> calms down a little bit.</span>")
@@ -2076,7 +2076,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 						if(prob(3))
 							animate_spin(src, prob(50) ? "L" : "R", 1, 0) //try a rare spin every loop
 						if(prob(3))
-							playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, 0.3, 1.5, channel=VOLUME_CHANNEL_EMOTE)
+							playsound(src, 'sound/misc/talk/fert.ogg', 40, 1, SOUND_RANGE_STANDARD, 1.5, channel=VOLUME_CHANNEL_EMOTE)
 							src.audible_message("<span class='combat'><b>[src]</b> dooks wildly!</span>","<span class='combat'>You hear some kind of ferret being excited!</span>")
 						sleep(0.2 SECONDS)
 					src.visible_message("<span class='emote'><b>[src]</b> calms down again. For now.</span>")
@@ -2253,7 +2253,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 		..()
 		if(src.target)
 			src.visible_message("<span class='combat'><b>[src]</b> [src.angertext] [src.target]!</span>")
-			playsound(src.loc, "sound/items/Scissor.ogg", 30, 0, -1)
+			playsound(src.loc, "sound/items/Scissor.ogg", 30, 0, SOUND_RANGE_STANDARD)
 
 	CritterAttack(mob/M)
 		if(ismob(M))
@@ -2261,9 +2261,9 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 			src.visible_message("<span class='combat'><B>[src]</B> snips [src.target] with its claws!</span>")
 			random_brute_damage(src.target, 2)
 			SPAWN_DBG(0)
-				playsound(src.loc, "sound/items/Wirecutter.ogg", 30, 0, -1)
+				playsound(src.loc, "sound/items/Wirecutter.ogg", 30, 0, SOUND_RANGE_STANDARD)
 				sleep(0.3 SECONDS)
-				playsound(src.loc, "sound/items/Wirecutter.ogg", 30, 0, -1)
+				playsound(src.loc, "sound/items/Wirecutter.ogg", 30, 0, SOUND_RANGE_STANDARD)
 			SPAWN_DBG(rand(1,10))
 				src.attacking = 0
 		return
@@ -2290,7 +2290,7 @@ var/list/shiba_names = list("Maru", "Coco", "Foxtrot", "Nectarine", "Moose", "Pe
 
 	ChaseAttack(mob/M)
 		src.visible_message("<span class='combat'><B>[src]</B> parties hard into [M]!</span>")
-		playsound(src.loc, pick(sounds_hit), 50, 1, -1)
+		playsound(src.loc, pick(sounds_hit), 50, 1, SOUND_RANGE_STANDARD)
 
 		if(ismob(M))
 			M.changeStatus("stunned", 2 SECONDS)

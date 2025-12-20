@@ -128,7 +128,7 @@
 									power_drained += 50
 
 				if(power_drained > max_power * 0.95)
-					playsound(src, "sound/effects/screech.ogg", 50, 1, 1)
+					playsound(src, "sound/effects/screech.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				if(power_drained >= max_power)
 					processing_items.Remove(src)
 					explosion(src, src.loc, 3,6,9,12)
@@ -366,7 +366,7 @@
 				if (H.wear_mask && H.head && H.shoes && H.w_uniform)
 					if (istype(H.head, /obj/item/clothing/head/jester) && istype(H.wear_mask, /obj/item/clothing/mask/jester) && istype(H.shoes, /obj/item/clothing/shoes/jester) && istype(H.w_uniform, /obj/item/clothing/under/gimmick/jester))
 						triggerer.visible_message("<span class='alert'>A hidden compartment opens up, revealing a hatch and a ladder.</span>")
-						playsound(src.loc, "sound/effects/polaris_crateopening.ogg", 90, 1,1)
+						playsound(src.loc, "sound/effects/polaris_crateopening.ogg", 90, 1, SOUND_RANGE_STANDARD)
 						new /obj/ladder/vaultladder(get_turf(src))
 						triggered = 1
 						return

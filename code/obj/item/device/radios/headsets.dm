@@ -342,7 +342,22 @@
 	desc = "A radio headset that interfaces with the ear canal, allowing the deaf to hear."
 	icon_state = "deaf headset"
 	item_state = "headset"
-	block_hearing_when_worn = HEARING_ANTIDEAF
+
+	equipped(mob/user, slot)
+		. = ..()
+		if(slot == SLOT_EARS)
+			user.ear_protected--
+
+	unequipped(mob/user)
+		if(src.equipped_in_slot == SLOT_EARS)
+			user.ear_protected++
+		. = ..()
+
+	disposing()
+		if(src.equipped_in_slot == SLOT_EARS && ismob(src.loc))
+			var/mob/M = src.loc
+			M.ear_protected++
+		. = ..()
 
 /obj/item/device/radio/headset/gang
 	name = "Radio Headset"

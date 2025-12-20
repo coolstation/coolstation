@@ -172,10 +172,12 @@
 			if(active)
 				dat += "Status: Active ([(target_temp > R.total_temperature) ? "Heating" : "Cooling"])<BR>"
 				dat += "Current Temperature: [R.total_temperature]<BR>"
+				dat += "Current Charge: [R.total_charge]<BR>"
 				dat += "<A href='byond://?src=\ref[src];stop=1'>Deactivate</A><BR><BR>"
 			else
 				dat += "Status: Inactive<BR>"
 				dat += "Current Temperature: [R.total_temperature]<BR>"
+				dat += "Current Charge: [R.total_charge]<BR>"
 				dat += "<A href='byond://?src=\ref[src];start=1'>Activate</A><BR><BR>"
 
 			for(var/reagent_id in R.reagent_list)

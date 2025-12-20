@@ -139,7 +139,7 @@ client/proc/open_dj_panel()
 
 		if("stop-radio")
 			SPAWN_DBG(0)
-				var/sound/stopsound = sound(null, wait = 0, channel=1013)
+				var/sound/stopsound = sound(null, wait = 0, channel=SOUNDCHANNEL_RESERVED_INGAME_RADIO)
 				for (var/client/C in clients)
 					C << stopsound
 					LAGCHECK(LAG_MED)
@@ -152,15 +152,15 @@ client/proc/open_dj_panel()
  */
 /datum/dj_panel/proc/move_admin_sound_channel(backwards = FALSE)
 	if (backwards)
-		if (admin_sound_channel > 1014)
+		if (admin_sound_channel > SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN)
 			admin_sound_channel--
-		else //At 1014, set it bring it up 10.
-			admin_sound_channel = 1024
+		else //At min, set it bring it up.
+			admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MAX
 	else
-		if (admin_sound_channel < 1024)
+		if (admin_sound_channel < SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MAX)
 			admin_sound_channel++
-		else //At 1024, set it back down 10.
-			admin_sound_channel = 1014
+		else //At max, set it back down.
+			admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 
 /**
  * Toggles the DJ Mode for a given client

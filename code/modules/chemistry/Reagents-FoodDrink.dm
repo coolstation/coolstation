@@ -704,7 +704,7 @@ datum
 						..()
 						return
 					boutput(M, text("<span class='alert'>You blink, and suddenly you're somewhere else!</span>"))
-					playsound(M.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+					playsound(M.loc, "sound/effects/mag_warp.ogg", 25, 1, SOUND_RANGE_STANDARD)
 					M.set_loc(pick(randomturfs))
 				..()
 				return
@@ -2313,13 +2313,13 @@ datum
 			upper_overdose = 7
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good", 2)
 				. = ..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "consumable_good")
 				. = ..()
@@ -2422,13 +2422,13 @@ datum
 				tickcounter = 0
 */
 			on_add()
-				if (ismob(holder?.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/energydrink, src.type)
 				return ..()
 
 			on_remove()
-				if (ismob(holder?.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/energydrink, src.type)
 				return ..()
@@ -2671,7 +2671,7 @@ datum
 				..()
 
 			on_add()
-				if(holder && ismob(holder.my_atom))
+				if(holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					if(M.client)
 						boutput(M, "<em>You feel reinvigorated with Spacemas spirit!</em>")
@@ -3713,11 +3713,11 @@ datum
 				new /image('icons/mob/hallucinations.dmi', "lemon") = list("lemon"),
 			)
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple", 3333)
 
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/cocktail_triple, src.type)
 				..()
@@ -3731,14 +3731,14 @@ datum
 					boutput(M, "<span class='notice'><B>You feel refreshed.<B></span>")
 
 			on_remove()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/cocktail_triple, src.type)
 
 				if(hascall(holder.my_atom,"removeOverlayComposition"))
 					holder.my_atom:removeOverlayComposition(/datum/overlayComposition/triplemeth)
 
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "tripletriple")
 				..()

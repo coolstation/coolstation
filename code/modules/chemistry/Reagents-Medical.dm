@@ -27,13 +27,13 @@ datum
 			taste = "contrived"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_REBREATHING, src.type)
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_REBREATHING, src.type)
 				return
@@ -89,7 +89,7 @@ datum
 			downer_overdose = 10
 
 			on_add()
-				if(ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
+				if(!holder?.external && ismob(holder?.my_atom) && !holder.has_reagent("naloxone"))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
 					APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine", 75)
@@ -97,7 +97,7 @@ datum
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
 					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine")
@@ -160,7 +160,7 @@ datum
 			taste = "life-saving"
 
 			on_add()
-				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
+				if(!holder?.external && ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine")
 					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine")
@@ -168,7 +168,7 @@ datum
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom) && holder.has_reagent("morphine"))
+				if(!holder?.external && ismob(holder?.my_atom) && holder.has_reagent("morphine"))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_morphine", -2)
 					APPLY_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "r_morphine", 75)
@@ -204,13 +204,13 @@ datum
 			downer_overdose = 10
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ether", -5)
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ether")
 				return
@@ -314,7 +314,7 @@ datum
 					return
 				holder.my_atom.SafeScale(1,1/1.125)
 				holder.my_atom.flags &= ~IS_BONER_SCALED
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					M.changeStatus("weakened", 5 SECONDS) //flop
 					M.visible_message("<span class='alert'>[M] suddenly goes limp!</span>")
@@ -434,13 +434,13 @@ datum
 				return
 
 			on_add()
-				if (ismob(holder?.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
 
 			on_remove()
 				src.fake_health = -10
-				if (ismob(holder?.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "salicylic_acid")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/salicylic_acid, src.type)
@@ -631,13 +631,13 @@ datum
 			downer_overdose = 3
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_synaptizine", 4)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_synaptizine")
 				..()
@@ -820,13 +820,13 @@ datum
 			upper_overdose = 10
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom) && !holder?.external)
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_smelling_salt", 5)
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_smelling_salt")
 				return
@@ -882,7 +882,7 @@ datum
 						M.bioHolder.RemoveEffect("bad_eyesight")
 					if (probmult(30) && M.bioHolder.HasEffect("blind"))
 						M.bioHolder.RemoveEffect("blind")
-					if (probmult(30) && (M.get_ear_damage() && M.get_ear_damage() <= M.get_ear_damage_natural_healing_threshold()) && M.bioHolder.HasEffect("deaf") || M.ear_disability)
+					if (probmult(30) && (M.ear_tempdeaf <= EAR_DAMAGE_NATURAL_HEALING_THRESHOLD) && M.bioHolder.HasEffect("deaf") || M.ear_permdeaf)
 						M.bioHolder.RemoveEffect("deaf")
 
 				if (M.get_eye_blurry())
@@ -894,10 +894,10 @@ datum
 				if (M.get_eye_damage(1) && prob(50)) // Temporary blindness.
 					M.take_eye_damage(-0.5 * mult, 1)
 
-				if (M.get_ear_damage() && prob(80)) // Permanent ear damage.
+				if (M.ear_damage && prob(80)) // Permanent ear damage.
 					M.take_ear_damage(-1 * mult)
 
-				if (M.get_ear_damage(1) && prob(50)) // Temporary deafness.
+				if (M.ear_tempdeaf && prob(50)) // Temporary deafness.
 					M.take_ear_damage(-0.5 * mult, 1)
 
 				..()
@@ -920,7 +920,7 @@ datum
 			downer_overdose = 6
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
 					APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_haloperidol", 0.25)
@@ -928,7 +928,7 @@ datum
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_CANTSPRINT, "r_haloperidol")
 					REMOVE_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "r_haloperidol")
@@ -996,7 +996,7 @@ datum
 			upper_overdose = 7
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_epinephrine", 3)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/epinepherine, src.type)
@@ -1005,7 +1005,7 @@ datum
 
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_epinephrine")
 					REMOVE_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/epinepherine, src.type)
@@ -1321,13 +1321,13 @@ datum
 			upper_overdose = 3
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ephedrine", 2)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_ephedrine")
 				..()
@@ -1424,13 +1424,13 @@ datum
 			downer_overdose = 2
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_diphenhydramine", -3)
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_diphenhydramine")
 				return
@@ -1603,7 +1603,7 @@ datum
 				return
 
 			on_remove()
-				if(remove_buff)
+				if(remove_buff && !holder?.external)
 					if(istype(holder) && istype(holder.my_atom))
 						if (hascall(holder.my_atom,"remove_stam_mod_max"))
 							holder.my_atom:remove_stam_mod_max("atropine")

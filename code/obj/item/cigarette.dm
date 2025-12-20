@@ -993,7 +993,7 @@
 			src.icon_state = "match-broken"
 			src.name = "broken match"
 			if (user)
-				playsound(user, "sound/impact_sounds/Flesh_Crush_1.ogg", 60, 1, 0, 2)
+				playsound(user, "sound/impact_sounds/Flesh_Crush_1.ogg", 60, 1, SOUND_RANGE_STANDARD, 2)
 		else
 			src.icon_state = "match-burnt"
 			src.name = "burnt-out match"
@@ -1248,7 +1248,7 @@
 			if (O.reagents.total_volume)
 				O.reagents.trans_to(src, src.reagents.maximum_volume - src.reagents.get_reagent_amount("fuel"))
 				boutput(user, "<span class='notice'>[src] has been refueled.</span>")
-				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 			else
 				user.show_text("[O] is empty.", "red")
 			return

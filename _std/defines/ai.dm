@@ -6,6 +6,10 @@
 #define AI_IDLE 4
 #define AI_FLEEING 5
 
+//mob AI flags
+#define MOB_AI_PICKUP_WEAPONS (1<<0)
+
+
 //This is for silicon player AI, but I figure they can share a file
 
 //AI governor registry strings. The strings do double duty in the PDA governor manifest, which is why they're human readable

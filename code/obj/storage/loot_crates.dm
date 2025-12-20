@@ -296,7 +296,7 @@
 							items += /obj/item/reagent_containers/food/snacks/plant/tomato/incendiary
 							item_amounts += 5
 						if(2)
-							items += /obj/item/clothing/ears/earmuffs/yeti
+							items += /obj/item/clothing/ears/yeti_warmers
 							item_amounts += 1
 						if(3)
 							items += /obj/item/device/light/zippo/gold

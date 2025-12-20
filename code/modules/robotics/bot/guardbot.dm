@@ -1682,7 +1682,7 @@
 			interrupt(INTERRUPT_ALWAYS)
 			return
 
-		playsound(master, "sound/weapons/handcuffs.ogg", 30, 1, -2)
+		playsound(master, "sound/weapons/handcuffs.ogg", 30, 1, SOUND_RANGE_STANDARD)
 		master.visible_message("<span class='alert'><B>[master] is trying to put handcuffs on [task.arrest_target]!</B></span>")
 
 	onInterrupt(flag)
@@ -3539,7 +3539,7 @@
 							sleep(4.5 SECONDS)
 							var/mob/living/carbon/human/deaf_person = null
 							for (var/mob/living/carbon/human/maybe_deaf in view(7, master))
-								if (!isdead(maybe_deaf) && !maybe_deaf.hearing_check(1))
+								if (!isdead(maybe_deaf) && cant_hear(maybe_deaf))
 									deaf_person = maybe_deaf
 									break
 
@@ -4062,7 +4062,7 @@
 			src.UpdateName()
 
 		else
-			spawn(0)
+			SPAWN_DBG(0)
 				..()
 
 

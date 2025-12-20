@@ -12,7 +12,7 @@
 
 	var/turf/T = get_turf(holder.owner)
 	if(T == holder.owner.loc)
-		playsound(T, 'sound/effects/shovel1.ogg', 50, 1, 0.3)
+		playsound(T, 'sound/effects/shovel1.ogg', 50, 1, SOUND_RANGE_MODERATE)
 		holder.owner.visible_message("<span class='notice'><b>[holder.owner]</b> buries themselves!</span>",
 		                             "<span class='notice'>You bury yourself.</span>")
 
@@ -35,7 +35,7 @@
 			src.relaymove(AM,pick(cardinal))
 
 	relaymove(var/mob/user, direction)
-		playsound(src, 'sound/effects/shovel1.ogg', 50, 1, 0.3)
+		playsound(src, 'sound/effects/shovel1.ogg', 50, 1, SOUND_RANGE_MODERATE)
 		for (var/mob/M in src)
 			if (M.ai)
 				M.ai.enabled = 1

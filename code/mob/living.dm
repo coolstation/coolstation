@@ -12,6 +12,9 @@
 
 	//AI Vars
 
+	// mylies replacement for having a ton of booleans
+	var/ai_flags = MOB_AI_PICKUP_WEAPONS
+
 	var/ai_busy = 0
 	var/ai_laststep = 0
 	var/ai_state = 0
@@ -481,6 +484,10 @@
 				else
 					src.hasStatus("resting") ? src.delStatus("resting") : src.setStatus("resting", INFINITE_STATUS)
 					src.force_laydown_standup()
+		if ("fiddle")
+			var/obj/item/W = src.equipped()
+			if(W)
+				src.fiddle_with(W)
 		if ("togglepoint")
 			src.toggle_point_mode()
 		if ("say_radio")
@@ -914,18 +921,18 @@
 					speech_bubble.icon_state = "notebad"
 				else if (src.bioHolder?.HasEffect("quiet_voice"))
 					singing |= SOFT_SINGING
-			playsound(src, sounds_speak["[VT]"],  55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
+			playsound(src, sounds_speak["[VT]"],  55, 0.01, SOUND_RANGE_LARGE, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 		else if (ending == "?")
-			playsound(src, sounds_speak["[VT]?"], 55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
+			playsound(src, sounds_speak["[VT]?"], 55, 0.01, SOUND_RANGE_LARGE, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "?"
 		else if (ending == "!")
-			playsound(src, sounds_speak["[VT]!"], 55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
+			playsound(src, sounds_speak["[VT]!"], 55, 0.01, SOUND_RANGE_LARGE, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "!"
 		else if (VT == "spaceradio")
-			playsound(src, sounds_speak["[VT]"], 55, 0, 8, pitch = 1, ignore_flag = SOUND_SPEECH)
+			playsound(src, sounds_speak["[VT]"], 55, 0, SOUND_RANGE_LARGE, pitch = 1, ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "speech"
 		else
-			playsound(src, sounds_speak["[VT]"],  55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
+			playsound(src, sounds_speak["[VT]"],  55, 0.01, SOUND_RANGE_LARGE, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "speech"
 
 		last_voice_sound = world.time
@@ -1585,21 +1592,21 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			if(move_dir & last_move_dir)
 				if (sustained_moves < SUSTAINED_RUN_REQ+1 && sustained_moves + steps >= SUSTAINED_RUN_REQ+1 && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 					sprint_particle_small(src,get_step(NewLoc,turn(move_dir,180)),move_dir)
-					playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.5)
+					playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,range = SOUND_RANGE_TINY, pitch=2.5)
 				sustained_moves += steps
 			else
 				if (sustained_moves >= SUSTAINED_RUN_REQ+1 && !isFlying && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 					sprint_particle_small(src,get_step(NewLoc,turn(move_dir,180)),turn(move_dir,180))
-					playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.8)
+					playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,range = SOUND_RANGE_TINY, pitch=2.8)
 				else if (move_dir == turn(last_move_dir,180) && !isFlying)
 					if(!HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 						sprint_particle_tiny(src,get_step(NewLoc,turn(move_dir,180)),turn(move_dir,180))
-						playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.9)
+						playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,range = SOUND_RANGE_TINY, pitch=2.9)
 					if(src.bioHolder.HasEffect("magnets_pos") || src.bioHolder.HasEffect("magnets_neg"))
 						var/datum/bioEffect/hidden/magnetic/src_effect = src.bioHolder.GetEffect("magnets_pos")
 						if(src_effect == null) src_effect = src.bioHolder.GetEffect("magnets_neg")
 						if(src_effect.update_charge(1))
-							playsound(src, "sound/effects/sparks[rand(1,6)].ogg", 25, 1,extrarange = -25)
+							playsound(src, "sound/effects/sparks[rand(1,6)].ogg", 25, 1,range = SOUND_RANGE_TINY)
 
 
 				sustained_moves = 0
@@ -1616,10 +1623,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /mob/living/Move(var/turf/NewLoc, direct)
 	. = ..()
-	if (. && move_dir && !(direct & move_dir) && src.use_stamina)
+	if (. && src.use_stamina && move_dir && !(direct & move_dir))
 		if (sustained_moves >= SUSTAINED_RUN_REQ+1 && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 			sprint_particle_small(src,get_step(NewLoc,turn(move_dir,180)),turn(move_dir,180))
-			playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.8)
+			playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,range = SOUND_RANGE_TINY, pitch=2.8)
 		sustained_moves = 0
 
 
@@ -1807,7 +1814,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				if ((src.loc != last || force_puff) && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS)) //ugly check to prevent stationary sprint weirds
 					sprint_particle(src, last)
 					if (!isFlying)
-						playsound(src.loc,"sound/effects/sprint_puff.ogg", 29, 1,extrarange = -4)*/
+						playsound(src.loc,"sound/effects/sprint_puff.ogg", 29, 1,range = SOUND_RANGE_STANDARD)*/
 
 // cogwerks - fix for soulguard and revive
 /mob/living/proc/remove_ailments()
@@ -1863,7 +1870,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		var/obj/projectile/Q = shoot_reflected_to_sender(P, src)
 		P.die()
 		src.visible_message("<span class='alert'>[src] reflected [Q.name] with [equipped]!</span>")
-		playsound(src.loc, 'sound/impact_sounds/Energy_Hit_1.ogg',80, 0.1, 0, 3)
+		playsound(src.loc, 'sound/impact_sounds/Energy_Hit_1.ogg',80, 0.1, SOUND_RANGE_STANDARD, 3)
 		return 0
 
 	if (P?.proj_data?.is_magical  && src?.traitHolder?.hasTrait("training_chaplain"))
@@ -2126,6 +2133,23 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		var/did_any_dive_hit = FALSE
 		if(!target_dir)
 			target_dir = src.dir
+
+		// copied from input.dm with doubled chances
+		var/misstep_angle = 0
+		if (src.traitHolder && prob(10) && src.traitHolder.hasTrait("leftfeet"))
+			misstep_angle += 45
+		if (prob(DISORIENT_MISSTEP_CHANCE * 2) && src.getStatusDuration("disorient"))
+			misstep_angle += 45
+		if (prob(src.misstep_chance * 2))
+			misstep_angle += rand(0,src.misstep_chance*1.5)
+
+		if(misstep_angle)
+			misstep_angle = min(misstep_angle,90)
+			var/move_angle = dir2angle(target_dir)
+			move_angle += pick(-misstep_angle,misstep_angle)
+			target_dir = angle2dir(move_angle)
+		// yea
+
 		var/slidekick_range = max(1 + min(GET_ATOM_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
 		if (!T.throw_unlimited && target_dir)
 			src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
@@ -2175,7 +2199,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 						if (dive_attack_hit)
 							dive_attack_hit.TakeDamageAccountArmor("chest", damage, 0, 0, DAMAGE_BLUNT)
 							dive_attack_hit.was_harmed(src, special = "slidekick")
-							playsound(src, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, -1)
+							playsound(src, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, SOUND_RANGE_STANDARD)
 							for (var/mob/O in AIviewers(src))
 								O.show_message("<span class='alert'><B>[src] slides into [dive_attack_hit]!</B></span>", 1)
 							logTheThing("combat", src, dive_attack_hit, "slides into [dive_attack_hit] at [log_loc(dive_attack_hit)].")
@@ -2298,7 +2322,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			var/mob/M = I
 			M.inertia_dir = get_dir(src,target)
 
-		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, 0.1)
+		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, SOUND_RANGE_STANDARD)
 		if(istype(I,/mob/living/carbon/human))
 			how_to_throw = THROW_KNOCKDOWN
 		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from, throw_type=how_to_throw, allow_anchored=TRUE)
@@ -2403,10 +2427,19 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		for(var/datum/targetable/ability in src.abilityHolder.abilities)
 			if(ability.attack_mobs && dist <= ability.ai_range && ability.cooldowncheck() && !ability.handleCast(target, params))
 				return 1
+
+		if(istype(src.abilityHolder, /datum/abilityHolder/composite))
+			var/datum/abilityHolder/composite/composite_holder = src.abilityHolder
+			for(var/datum/abilityHolder/subordinate_holder in composite_holder.holders)
+				for(var/datum/targetable/ability in subordinate_holder.abilities)
+					if(ability.attack_mobs && dist <= ability.ai_range && ability.cooldowncheck() && !ability.handleCast(target, params))
+						return 1
 	return 0
 
 /// a "valid target" is POSSIBLE to attack - this should return true for anything you want it to defend itself from, as well
 /mob/living/proc/ai_is_valid_target(mob/M)
+	if(!istype(M))
+		return TRUE
 	return (M.stat < STAT_DEAD && M != src)
 
 /// the higher the returned value, the better the target is. assume that the target is valid.
