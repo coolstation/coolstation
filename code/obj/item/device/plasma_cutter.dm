@@ -11,7 +11,6 @@
 	two_handed = TRUE
 
 	var/obj/reagent_dispensers/powerbank/powerbank
-	var/list/working_on
 
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 20.0
@@ -27,6 +26,7 @@
 	var/accident_prob = 25 //higher chance of hurting yourself when fucking up with the plasma cutter- higher probabilities also increase the chance of severing limbs.
 	var/cable_length = 4
 	var/turf/last_loc
+
 
 	examine()
 		. = ..()
@@ -93,12 +93,14 @@
 			if (istype(location,/turf))
 				location.hotspot_expose(2000,50,1)
 
-			if (istype(target, /turf) || istype(target, /obj/machinery/door))
-				var/time = 6 SECONDS
-				if (istype(target,/obj/machinery/door))
-					time = 10 SECONDS
-				eyecheck(user)
-				actions.start(new/datum/action/bar/icon/cutter_cut(target,src,power),user,time)
+			if (istype(target, /turf) || istype(target, /obj/machinery/door) || istype(target,/obj/lattice))
+				if(!istype(target,/turf/space))
+					var/time = 6 SECONDS
+					if (istype(target,/obj/machinery/door))
+						time = 10 SECONDS
+					eyecheck(user)
+					actions.start(new/datum/action/bar/icon/cutter_cut(target,src,power),user,time)
+				return
 
 			if (target && !ismob(target) && target.reagents)
 				boutput(user, "<span class='notice'>You heat \the [target.name]</span>")
@@ -215,38 +217,27 @@
 				user.take_eye_damage(rand(20, 29))
 
 	proc/cutter_cut(atom/target,mob/user)
+		var/atom/oldtarget = target
 		if (istype(target,/turf/wall/r_wall) || istype(target,/turf/wall/auto/reinforced))
 			var/turf/wall/T = target:ReplaceWithUpdateWalls(map_setting ? map_settings.walls : /turf/wall)
 			T.setMaterial(getMaterial("steel"))
 			boutput(user, "<span class='alert'>You slice through the reinforcing of the wall.</span>")
 			log_construction(user, "deconstructs a reinforced wall into a normal wall ([T])")
-			if (prob(60))
-				var/obj/item/scrap/I = new /obj/item/scrap
-				I.set_loc(target)
-				I.setMaterial(getMaterial(target.material))
-				I.set_components(0.5,0,0.1)
-
 
 		if (istype(target,/turf/wall))
 			var/turf/floor/T = target:ReplaceWithFloor()
 			boutput(user, "<span class='alert'>You cut through the wall.</span>")
 			log_construction(user, "deconstructs a wall ([T])")
-			if (prob(90))
-				var/obj/item/scrap/I = new /obj/item/scrap
-				I.set_loc(target)
-				I.setMaterial(getMaterial(target.material))
-				I.set_components(0.5,0,0.1)
-
 
 		if (istype(target, /turf/floor))
 			log_construction(user, "removes flooring ([target])")
 			target:ReplaceWithSpace()
 			boutput(user, "<span class='alert'>You slice through the floor.</span>")
-			var/obj/item/scrap/I = new /obj/item/scrap
-			I.set_loc(target)
-			I.setMaterial(getMaterial(target.material))
-			I.set_components(0.5,0,0.1)
 
+		if (istype(target, /obj/lattice))
+			log_construction(user, "removes lattice ([target])")
+			ex_act(target)
+			boutput(user, "<span class='alert'>You slice through the lattice.</span>")
 
 		if (istype(target, /obj/machinery/door))
 			log_construction(user, "removes door ([target])")
@@ -254,6 +245,11 @@
 			door.break_me_complitely()//6 year old typo lmoa
 			boutput(user, "<span class='alert'>You slice through the door!</span>")
 
+		if (prob(90))
+			var/obj/item/scrap/I = new /obj/item/scrap
+			I.set_loc(oldtarget)
+			I.setMaterial(getMaterial(oldtarget.material))
+			I.set_components(0.5,0,0.1)
 		playsound(src.loc,"sound/items/Welder2.ogg", 65, 1,pitch=0.8)
 		return
 

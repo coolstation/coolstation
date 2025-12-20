@@ -38,7 +38,7 @@
 				//full, play sound or something
 				powerbank.update_indicator()
 			else
-				powerbank.gain_charge(power_usage / 100)
+				powerbank.gain_charge(power_usage / 1000)
 				use_power(power_usage)
 		else
 			power_usage = drain * mult
