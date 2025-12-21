@@ -1787,6 +1787,7 @@
 		setProperty("coldprot", 60)
 		setProperty("meleeprot", 1)
 		setProperty("rangedprot", 0.2)
+		setProperty("movespeed", 0.7)
 
 /obj/item/clothing/suit/cryo/sec
 	name = "security cryogenic coat"

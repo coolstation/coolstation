@@ -350,9 +350,9 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/summit
 	name = "SUMMIT"
-	walls = /turf/wall/
-	rwalls = /turf/wall/r_wall/
-	auto_walls = 0
+	walls = /turf/wall/auto
+	rwalls = /turf/wall/auto/reinforced
+	auto_walls = 1
 	job_limits_from_landmarks = TRUE
 	arrivals_type = MAP_SPAWN_CRYO
 
