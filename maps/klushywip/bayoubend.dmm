@@ -3297,6 +3297,12 @@
 	},
 /turf/floor/cautionblack,
 /area/station/engine/core)
+"csV" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/carpet/grime,
+/area/station/crew_quarters/quartersA)
 "csZ" = (
 /obj/lattice{
 	dir = 10;
@@ -18762,6 +18768,9 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quartersA)
 "nQW" = (
@@ -21573,6 +21582,11 @@
 "pNA" = (
 /obj/storage/closet/wardrobe/white,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/power/apc/autoname/north,
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quartersA)
 "pNB" = (
@@ -33156,6 +33170,12 @@
 /obj/machinery/light_switch/west,
 /turf/floor/plating/random,
 /area/station/maintenance/west)
+"yfM" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/carpet/grime,
+/area/station/crew_quarters/quartersA)
 "yfP" = (
 /obj/stool,
 /obj/landmark/start{
@@ -63607,7 +63627,7 @@ aDY
 rfV
 sYP
 pNA
-wzd
+yfM
 vrU
 vqY
 sYP
@@ -63909,7 +63929,7 @@ awX
 lbc
 sYP
 vlm
-wzd
+csV
 lyp
 wQR
 sYP
@@ -64211,7 +64231,7 @@ bWG
 lbc
 sYP
 pzX
-wzd
+csV
 wjL
 uBS
 sYP
