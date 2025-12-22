@@ -8,7 +8,7 @@
 #define SHUTTLE_TRANSIT 1
 
 /// Time the shuttle takes to get to SS13
-#define SHUTTLEARRIVETIME (6 MINUTES / (1 SECOND))
+#define SHUTTLEARRIVETIME (5.9 MINUTES / (1 SECOND))
 /// Time the shuttle takes to leave SS13
 #define SHUTTLELEAVETIME (2 MINUTES / (1 SECOND))
 /// Time the shuttle spends in transit away from SS13

@@ -21,7 +21,12 @@ datum/shuttle_controller
 	// otherwise if outgoing, switch to incoming
 	proc/incall()
 		if (!online || direction != 1)
-			world << csound("sound/misc/shuttle_enroute.ogg")
+			var/timely = floor(timeleft()/60)
+			switch(timely)
+				if(1 to 5)
+					world << csound("sound/misc/shuttle_enroute_[timely].ogg")
+				else
+					world << csound("sound/misc/shuttle_enroute.ogg")
 
 		if (online)
 			if(direction == -1)
@@ -173,6 +178,9 @@ datum/shuttle_controller
 						boutput(world, "<B>The Emergency Shuttle has docked with the station! You have [timeleft()/60] minutes to board the Emergency Shuttle.</B>")
 						ircbot.event("shuttledock")
 						world << csound("sound/misc/shuttle_arrive1.ogg")
+						var/area/sound_location = locate(/area/shuttle_sound_spawn)
+						if(length(sound_location.turfs))
+							playsound(sound_location.turfs[1], 'sound/machines/blast_door_9.ogg', 100,0,SOUND_RANGE_LARGE)
 						//activate guide lights
 						for_by_tcl(L, /obj/pathlights/shuttle)
 							L.shuttle_pathlights()
@@ -196,18 +204,22 @@ datum/shuttle_controller
 
 					else if (announcement_done < 2 && timeleft < 30)
 						var/area/sound_location = locate(/area/shuttle_sound_spawn)
-						playsound(sound_location, 'sound/effects/ship_charge.ogg', 100)
+						if(length(sound_location.turfs))
+							playsound(sound_location.turfs[1], 'sound/effects/ship_charge.ogg', 100,0,SOUND_RANGE_LARGE)
 						announcement_done = 2
 
-					else if (announcement_done < 3 && timeleft < 4)
+					else if (announcement_done < 3 && timeleft < 6)
 						var/area/sound_location = locate(/area/shuttle_sound_spawn)
-						playsound(sound_location, 'sound/effects/ship_engage.ogg', 100)
+						if(length(sound_location.turfs))
+							playsound(sound_location.turfs[1], 'sound/effects/ship_engage.ogg', 100,0,SOUND_RANGE_LARGE)
+						world << csound("sound/misc/ss13_departure.ogg")
 						announcement_done = 3
 
 					else if (announcement_done < 4 && timeleft < 1)
 						var/area/sound_location = locate(/area/shuttle_sound_spawn)
-						playsound(sound_location, 'sound/effects/explosion_new4.ogg', 75)
-						playsound(sound_location, 'sound/effects/flameswoosh.ogg', 75)
+						if(length(sound_location.turfs))
+							playsound(sound_location.turfs[1], 'sound/effects/explosion_new4.ogg', 75,0,SOUND_RANGE_LARGE)
+							playsound(sound_location.turfs[1], 'sound/effects/flameswoosh.ogg', 100,0,SOUND_RANGE_LARGE)
 						announcement_done = 4
 						if (src.airbridges.len)
 							for (var/obj/machinery/computer/airbr/S in src.airbridges)
@@ -296,7 +308,7 @@ datum/shuttle_controller
 						DEBUG_MESSAGE("Done moving shuttle!")
 						settimeleft(SHUTTLETRANSITTIME)
 						boutput(world, "<B>The Emergency Shuttle has left for CentCom! It will arrive in [timeleft()/60] minute[s_es(timeleft()/60)]!</B>")
-						world << csound("sound/misc/shuttle_enroute.ogg")
+
 						//deactivate guide lights
 						for_by_tcl(L, /obj/pathlights/shuttle)
 							L.shuttle_pathlights()
