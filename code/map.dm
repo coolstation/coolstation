@@ -285,17 +285,18 @@ var/global/list/mapNames = list(
 	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
-	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main, /area/station/security/secwing, /area/station/security/quarters),
 		"the central research sector hub" = list(/area/station/science/lobby),
 		"the cargo bay" = list(/area/station/quartermaster/cargobay),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
-		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
+		"the engineering control room" = list(/area/station/engine/inner, /area/station/engine/power),
+		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/recovery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment1 ),
 		"the bar" = list(/area/station/crew_quarters/bar),
-		"the EVA storage" = list(/area/station/ai_monitored/storage/eva),
+		"the EVA storage" = list(/area/station/ai_monitored/storage/eva, /area/station/storage/emergency),
 		"the robotics lab" = list(/area/station/medical/robotics),
-		"the bridge" = list(/area/station/bridge),
+		"the bridge" = list(/area/station/bridge, /area/station/bridge/conference, /area/station/bridge/captain),
 		"the escape arm" = list(/area/station/hallway/secondary/exit),
-		"the dank ass observatory" = list(/area/station/crew_quarters/observatory),
+		"the library" = list(/area/station/library),
+		"the septic tank" = list(/area/station/maintenance/disposal/sewage),
 		"the chapel" = list(/area/station/chapel/sanctuary))
 
 /datum/map_settings/chunk
@@ -334,10 +335,12 @@ var/global/list/mapNames = list(
 	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
-	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+	job_limits_override = list(/datum/job/medical/pathologist = 0)
+
+	valid_nuke_targets = list("the security department" = list(/area/station/security/main, /area/station/security/checkpoint/customs),
 		"the central research sector hub" = list(/area/station/science/lobby),
 		"the cargo bay" = list(/area/station/quartermaster/cargobay),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the singularity" = list(/area/station/engine/singcore, /area/station/engine/inner),
 		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
 		"the bar" = list(/area/station/crew_quarters/bar),
 		"the EVA storage" = list(/area/station/ai_monitored/storage/eva),
@@ -388,12 +391,12 @@ var/global/list/mapNames = list(
 	escape_dir = WEST
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
-		"research sector" = list(/area/station/science/lobby),
+		"the research lobby" = list(/area/station/science/lobby),
 		"the logistics bay" = list(/area/station/quartermaster/cargobay),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/engineering/breakroom),
 		"the robotics workshop" = list(/area/station/medical/robotics),
 		"the bridge" = list(/area/station/bridge),
-		"the departures wing" = list(/area/station/hallway/secondary/exit),
+		"the departures wing" = list(/area/station/hallway/secondary/exit, /area/station/maintenance/outer/ne),
 		"the chapel" = list(/area/station/chapel/sanctuary),
 		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
 		"the cafeteria" = list(/area/station/crew_quarters/bar))
@@ -1206,8 +1209,17 @@ var/global/list/mapNames = list(
 	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
-	valid_nuke_targets = list()
-	//job_limits_override = list()
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+		"the cargo office (QM)" = list(/area/station/quartermaster/cargooffice, /area/station/quartermaster/cargobay),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/monitoring),
+		"the hospital" = list(/area/station/medical/medbay, /area/station/medical/medbay/pharmacy, /area/station/medical/robotics, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby, /area/station/medical/medbay/treatment),
+		"the bar" = list(/area/station/crew_quarters/bar),
+		"the bridge" = list(/area/station/bridge),
+		"the escape arm" = list(/area/station/hallway/secondary/exit),
+		"the chapel" = list(/area/station/chapel/sanctuary))
+
+
+	job_limits_override = list(/datum/job/medical/pathologist = 0)
 
 	init()
 		..()
@@ -1434,13 +1446,13 @@ var/global/list/mapNames = list(
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
-		"the cargo office (QM)" = list(/area/station/quartermaster/office, /area/station/quartermaster/cargooffice/storefront),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
-		"the hospital" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
+		"the cargo office (QM)" = list(/area/station/quartermaster/cargooffice/idk_another_one, /area/station/quartermaster/cargooffice/storefront),
+		"the engineering hot loop" = list(/area/station/engine/hotloop),
+		"the hospital" = list(/area/station/medical/medbay/treatment, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
 		"the bar" = list(/area/station/crew_quarters/bar),
-		"the bridge" = list(/area/station/bridge, /area/station/bridge/conference),
+		"the bridge" = list(/area/station/bridge),
 		"the chapel" = list(/area/station/chapel/sanctuary),
-		"somewhere in the main tunnels, whatever" = list(/area/station/maintenance/west, /area/station/maintenance/inner/north, /area/station/maintenance/central, /area/station/maintenance/inner/ne, /area/station/maintenance/outer/east, /area/station/maintenance/south, /area/station/maintenance/inner/nw))
+		"somewhere in the main tunnels, whatever" = list(/area/station/maintenance/inner/south, /area/station/maintenance/inner/north, /area/station/crew_quarters/fitness))
 
 	//job_limits_override = list()
 
