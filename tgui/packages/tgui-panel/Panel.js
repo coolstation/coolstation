@@ -43,18 +43,12 @@ export const Panel = (props, context) => {
                   color="grey"
                   selected={audio.visible}
                   icon="music"
-                  tooltip="Music player"
-                  tooltipPosition="bottom-left"
                   onClick={() => audio.toggle()} />
               </Stack.Item>
               <Stack.Item>
                 <Button
                   icon={settings.visible ? 'times' : 'cog'}
                   selected={settings.visible}
-                  tooltip={settings.visible
-                    ? 'Close settings'
-                    : 'Open settings'}
-                  tooltipPosition="bottom-left"
                   onClick={() => settings.toggle()} />
               </Stack.Item>
             </Stack>
