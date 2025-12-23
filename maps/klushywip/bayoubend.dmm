@@ -7147,6 +7147,21 @@
 "foE" = (
 /turf/floor/airless/damaged1,
 /area/space)
+"foF" = (
+/obj/machinery/atmospherics/unary/furnace_connector{
+	dir = 8
+	},
+/obj/machinery/power/furnace/thermo{
+	fuel = 100
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 8;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor/cautionblack,
+/area/station/engine/core)
 "foP" = (
 /obj/storage/closet/office,
 /turf/floor/wood/seven,
@@ -9941,6 +9956,18 @@
 /obj/railing/yellow,
 /turf/space,
 /area/station/shipyard)
+"hio" = (
+/obj/lattice,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13"
+	},
+/turf/space,
+/area/space)
 "hir" = (
 /obj/grille/catwalk/bob/twosides{
 	dir = 8
@@ -10303,7 +10330,9 @@
 /turf/space,
 /area/station/solar/east)
 "hvB" = (
-/obj/machinery/door/airlock/command,
+/obj/machinery/door/airlock/command{
+	aiControlDisabled = 1
+	},
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
@@ -10402,6 +10431,19 @@
 	dir = 5
 	},
 /area/station/bridge/customs)
+"hzS" = (
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/space,
+/area/station/solar/small_backup1)
 "hzX" = (
 /obj/machinery/light/small/red{
 	dir = 8
@@ -12331,6 +12373,13 @@
 /area/station/engine/coldloop)
 "iUz" = (
 /obj/reagent_dispensers/fueltank,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 4;
+	name = "autoname - SS13";
+	pixel_y = -20;
+	tag = ""
+	},
 /turf/floor/grime,
 /area/station/hangar/sec)
 "iVd" = (
@@ -17430,14 +17479,18 @@
 /turf/floor,
 /area/station/hallway/primary/west)
 "mHJ" = (
+/obj/lattice,
+/obj/cable{
+	icon_state = "1-4"
+	},
 /obj/machinery/camera{
 	c_tag = "autotag";
-	dir = 4;
+	dir = 5;
 	name = "autoname - SS13";
 	tag = ""
 	},
-/turf/floor/plating/random,
-/area/station/maintenance/central)
+/turf/space,
+/area/station/solar/small_backup1)
 "mHP" = (
 /turf/floor/black,
 /area/station/turret_protected/ai_upload)
@@ -24496,6 +24549,12 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 8;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/space,
 /area/station/solar/small_backup1)
 "rzF" = (
@@ -28410,6 +28469,12 @@
 "urC" = (
 /obj/decal/tile_edge/line/black{
 	icon_state = "line1"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13";
+	tag = ""
 	},
 /turf/floor/carpet/grime3,
 /area/station/hallway/secondary/exit)
@@ -46671,7 +46736,7 @@ ipT
 ipT
 ipT
 gTy
-iPC
+hio
 pri
 pri
 pri
@@ -48198,7 +48263,7 @@ mNm
 pri
 pri
 pri
-lcy
+hzS
 ipT
 ipT
 ipT
@@ -48483,7 +48548,7 @@ ipT
 ipT
 ipT
 gTy
-iPC
+hio
 pri
 pri
 pri
@@ -49397,7 +49462,7 @@ txG
 ipT
 ipT
 nPT
-iAT
+mHJ
 aKe
 ipT
 ipT
@@ -59092,7 +59157,7 @@ vyN
 pDA
 ioA
 nmP
-eck
+foF
 eck
 cHh
 bHm
@@ -69617,7 +69682,7 @@ sLX
 pEt
 nlm
 oqf
-mHJ
+cjV
 lse
 fDt
 riX
