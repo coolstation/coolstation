@@ -192,7 +192,9 @@
 	/obj/item/clothing/head/flatcap,
 	/obj/item/clothing/head/policecap,
 	/obj/item/clothing/head/helmet/bobby,
-	/obj/item/clothing/head/helmet/siren = 2)
+	/obj/item/clothing/head/helmet/siren = 2,
+	/obj/item/clothing/head/sec = 3,
+	/obj/item/clothing/under/rank/security/suit = 3)
 
 /obj/storage/closet/wardrobe/white/medical
 	name = "\improper Medical wardrobe"

@@ -613,7 +613,11 @@
 
 			if(JOB.receives_badge)
 				var/obj/item/clothing/suit/security_badge/B = new /obj/item/clothing/suit/security_badge(src)
+				#ifdef MAP_OVERRIDE_BAYOUBEND
+				src.equip_if_possible(B, slot_wear_suit)
+				#else
 				src.equip_if_possible(B, slot_in_backpack)
+				#endif
 				B.badge_owner_name = src.real_name
 				B.badge_owner_job = src.job
 
