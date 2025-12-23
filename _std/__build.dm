@@ -198,7 +198,7 @@ var/global/ci_dm_version_minor = "100"
 #define BUILD_TIME_MONTH 12
 #define BUILD_TIME_DAY 24 //SET ME TO 13 TO TEST YOUR ASS_JAM CONTENT!!
 #define BUILD_TIME_HOUR 18
-#define BUILD_TIME_MINUTE 31
+#define BUILD_TIME_MINUTE 58
 #define BUILD_TIME_SECOND 30
 #define BUILD_TIME_UNIX 1234567890 // Unix epoch, second precision
 

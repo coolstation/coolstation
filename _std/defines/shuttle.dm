@@ -7,12 +7,22 @@
 /// If true, the shuttle spends time in transit. If false, it instantly teleports.
 #define SHUTTLE_TRANSIT 1
 
-/// Time the shuttle takes to get to SS13
-#define SHUTTLEARRIVETIME (5.9 MINUTES / (1 SECOND))
+/// Time the shuttle takes to get to SS13 (now a little random!)
+#if(BUILD_TIME_MINUTE < 3)
+#define SHUTTLEARRIVETIME (7.5 MINUTES / (1 SECOND))
+#else
+#if(BUILD_TIME_MINUTE > 54)
+#define SHUTTLEARRIVETIME (4.5 MINUTES / (1 SECOND))
+#else
+#define SHUTTLEARRIVETIME (5.5 MINUTES / (1 SECOND))
+#endif
+#endif
+
+
 /// Time the shuttle takes to leave SS13
 #define SHUTTLELEAVETIME (2 MINUTES / (1 SECOND))
 /// Time the shuttle spends in transit away from SS13
-#define SHUTTLETRANSITTIME (2.5 MINUTES / (1 SECOND))
+#define SHUTTLETRANSITTIME (SHUTTLEARRIVETIME / 2)
 
 // you might be asking "why in seconds?" the answer is that shuttle code uses seconds as a base unit and I'm too tired to refactor it
 
