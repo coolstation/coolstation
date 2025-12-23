@@ -11267,6 +11267,9 @@
 /obj/disposalpipe/segment/bent{
 	dir = 2
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/floor,
 /area/station/hallway/primary/central)
 "fJq" = (
@@ -32039,6 +32042,13 @@
 	dir = 10
 	},
 /area/station/quartermaster/cargobay)
+"qmr" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/floor,
+/area/station/hallway/primary/west)
 "qmy" = (
 /obj/machinery/atmospherics/filter{
 	filter_type = 2;
@@ -72440,7 +72450,7 @@ wHg
 aeO
 twx
 ptF
-rZe
+qmr
 siN
 siN
 siN
@@ -73648,7 +73658,7 @@ jaK
 bOu
 wTi
 aPk
-cEQ
+qmr
 siN
 pLR
 gQx
@@ -75158,7 +75168,7 @@ jSp
 nsZ
 aWP
 ptF
-rZe
+qmr
 siN
 gwq
 gQx
