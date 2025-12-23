@@ -1367,12 +1367,10 @@
 /area/station/security/brig/solitary)
 "bdS" = (
 /obj/decal/cleanable/dirt/random,
-/obj/disposalpipe/trunk/mail{
+/obj/window/cubicle{
 	dir = 4
 	},
-/obj/machinery/disposal/mail/small/autoname/public/cafeteria{
-	dir = 4
-	},
+/obj/machinery/door/window/southright,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/bar)
 "bdV" = (
@@ -23338,6 +23336,16 @@
 	},
 /turf/floor/carpet/blue,
 /area/station/bridge)
+"qRO" = (
+/obj/window/cubicle{
+	dir = 4
+	},
+/obj/submachine/ATM/atm_alt{
+	pixel_y = -32
+	},
+/obj/machinery/door/window/northleft,
+/turf/floor/grime,
+/area/station/hallway/primary/east)
 "qRS" = (
 /obj/machinery/power/apc/autoname/east,
 /obj/cable{
@@ -28371,10 +28379,10 @@
 "uup" = (
 /obj/machinery/door/airlock/security,
 /obj/firedoor_spawn,
-/obj/access_spawn/forensics,
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/access_spawn/security,
 /turf/floor/plating/random,
 /area/station/security/secwing{
 	name = "Evidence"
@@ -78014,7 +78022,7 @@ noB
 noB
 gqG
 qnC
-tgF
+mNG
 xbO
 vxm
 hkU
@@ -78621,7 +78629,7 @@ oqv
 sSh
 nid
 qFf
-mNG
+qRO
 rqL
 wuZ
 gBP
