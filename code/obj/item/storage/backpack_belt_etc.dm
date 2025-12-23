@@ -201,6 +201,9 @@
 		icon_state = "satchelg"
 		item_state = "satchelg"
 
+	withO2
+		spawn_contents = list(/obj/item/storage/box/starter/withO2)
+
 /obj/item/storage/backpack/satchel/syndie
 	name = "\improper Syndicate Satchel"
 	desc = "A stylish red, evil, thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on an operative's shoulder."
