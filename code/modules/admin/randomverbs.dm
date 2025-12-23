@@ -2803,6 +2803,30 @@ var/global/mirrored_physical_zone_created = FALSE //enables secondary code branc
 	else
 		boutput(src, "You must be at least an Administrator to use this command.")
 
+/client/proc/cmd_belt_floors()
+	SET_ADMIN_CAT(ADMIN_CAT_RISKYFUN)
+	set name = "Belt Floors"
+	set desc = "Turns every single station floor into a random-direction belt object"
+	if(holder && src.holder.level >= LEVEL_ADMIN)
+		switch(alert("Holy shit are you sure?! This is going to turn the floors into belt-hell!",,"Yes","No"))
+			if("Yes")
+				for(var/turf/floor/F in world)
+					if(F.z != Z_LEVEL_STATION) continue
+					var/obj/machinery/conveyor/C = locate() in F.contents
+					if(C) continue
+					C = new(locate(F.x, F.y, F.z))
+					C.dir = pick(NORTH, SOUTH, EAST, WEST)
+					C.power_usage = 0
+					C.operating = 1
+
+				logTheThing("admin", src, null, "has turned every floor into belt-hell! God damn.")
+				logTheThing("diary", src, null, "has turned every floor into belt-hell! God damn.", "admin")
+				message_admins("[key_name(src)] has turned every floor into belt-hell! God damn.")
+			if("No")
+				return
+	else
+		boutput(src, "You must be at least an Administrator to use this command.")
+
 /client/proc/cmd_disco_lights()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Disco Lights"
