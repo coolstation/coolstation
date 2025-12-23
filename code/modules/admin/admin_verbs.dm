@@ -1016,6 +1016,7 @@ var/list/fun_images = list()
 
 	var/icon/I = input("Pick an icon:","Icon") as null|icon
 	if (I)
+		I = icon(I)
 		var/datum/hud/funimage/fun_image = new(I)
 		fun_images += fun_image
 		for (var/client/C in clients)
