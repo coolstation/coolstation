@@ -2027,6 +2027,15 @@
 	icon_state = "floorgrime_gb2"
 	},
 /area/station/crew_quarters/bar)
+"chl" = (
+/obj/machinery/computer/supplycomp{
+	dir = 8
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9
+	},
+/turf/floor/riveted,
+/area/station/quartermaster/cargobay)
 "chG" = (
 /obj/machinery/light/fluorescent{
 	dir = 1
@@ -5233,6 +5242,13 @@
 	},
 /turf/floor,
 /area/station/science/artifact)
+"foP" = (
+/obj/machinery/drainage,
+/turf/floor/green,
+/area/station/hydroponics/bay{
+	mail_tag = "Hydroponics";
+	name = "Hydroponics"
+	})
 "fpa" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 10
@@ -11346,11 +11362,9 @@
 /turf/wall,
 /area/station/security/armory)
 "lES" = (
-/obj/machinery/computer/transit_terminal/cargo{
-	dir = 8
-	},
-/turf/floor/industrial,
-/area/station/quartermaster/cargobay)
+/obj/item/storage/box/stma_kit,
+/turf/floor/plating,
+/area/station/maintenance/outer/ne)
 "lEW" = (
 /turf/floor/grey/side{
 	dir = 4
@@ -13919,7 +13933,13 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/floor/industrial,
+/obj/machinery/computer/transit_terminal/cargo{
+	dir = 8
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10
+	},
+/turf/floor/riveted,
 /area/station/quartermaster/cargobay)
 "nXH" = (
 /turf/floor/carpet/red/fancy/edge/se,
@@ -17162,6 +17182,8 @@
 /obj/disposalpipe/segment{
 	dir = 1
 	},
+/obj/table/wood/auto,
+/obj/item/storage/box/agarose_replicator,
 /turf/floor/bluegreen,
 /area/station/medical/research)
 "rcI" = (
@@ -19763,6 +19785,11 @@
 	},
 /obj/machinery/phone/wall{
 	pixel_x = -27
+	},
+/obj/table/wood/auto,
+/obj/item/storage/box/agarose_separator,
+/obj/item/storage/box/genetic_syringes{
+	pixel_y = 17
 	},
 /turf/floor/bluegreen,
 /area/station/medical/research)
@@ -58175,7 +58202,7 @@ fSI
 aTZ
 wrR
 wrR
-wrR
+chl
 nXE
 wrR
 wrR
@@ -58480,7 +58507,7 @@ kli
 fSI
 fSI
 ddb
-lES
+wrR
 ddb
 yeq
 mZF
@@ -83488,7 +83515,7 @@ mZF
 mZF
 mZF
 uPz
-fHT
+lES
 fHT
 fHT
 lsA
@@ -83502,7 +83529,7 @@ pUs
 pUs
 bwy
 kdh
-kdh
+foP
 kdh
 uwT
 tXf
