@@ -1252,6 +1252,12 @@ proc/filter_trait_hats(var/type)
 	icon_state = "headsprout"
 	item_state = "headsprout"
 
+/obj/item/clothing/head/sec
+	name = "Security Hat"
+	desc = "There are some stains on this."
+	icon_state = "sec"
+	item_state = "sec"
+
 /obj/item/clothing/head/hos_hat
 	name = "HoS Hat"
 	icon_state = "hoscap"

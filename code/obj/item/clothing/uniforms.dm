@@ -432,6 +432,10 @@
 		icon_state = "security-alt"
 		item_state = "security-alt"
 
+	suit
+		icon_state = "security-suit"
+		item_state = "security-suit"
+
 /obj/item/clothing/under/rank/det
 	name = "hard worn suit"
 	desc = "Someone who wears this means business. Either that or they're a total dork."
