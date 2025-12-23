@@ -104,7 +104,7 @@
 
 //----------------- Maps that are being maintained and fully playable -----------------//
 //#define MAP_OVERRIDE_BAYOUBEND 	            // low to midpop scrapping map by Klushy225
-#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
+//#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
@@ -115,7 +115,7 @@
 //----------------- Maps that are work in progress and not feature complete -----------------//
 //#define MAP_OVERRIDE_BOBMAP 			// "to be renamed" map by ReginaldHJ
 //#define MAP_OVERRIDE_COOKIE				// Wackalope's spess staions
-//#define MAP_OVERRIDE_PERDUTA				// Mylie's oceanic oil platform
+#define MAP_OVERRIDE_PERDUTA				// Mylie's oceanic oil platform
 //#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
 //#define MAP_OVERRIDE_ALTBOX				// a series of bad choices (very unfinished atm)
 
