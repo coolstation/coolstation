@@ -663,7 +663,8 @@ var/obj/item/dummy/click_dummy = new
 				continue //There's no platform to carry them up, so don't move any of the contents either
 			else
 				CATWALK.set_loc(T) //load bearing that these move first
-		else
+
+		else if(!istype(S, turftoleave))
 			T.ReplaceWith(S.type, keep_old_material = 0, force=1, handle_air=0)
 			T.appearance = S.appearance
 			T.set_density(S.density)
