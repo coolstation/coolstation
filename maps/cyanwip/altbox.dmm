@@ -7034,6 +7034,9 @@
 /turf/floor/plating,
 /area/station/engine/inner)
 "dwT" = (
+/obj/machinery/igniter{
+	id = "engine"
+	},
 /turf/floor/engine/vacuum,
 /area/station/engine/combustion_chamber)
 "dxc" = (
@@ -7200,6 +7203,12 @@
 /turf/floor/plating,
 /area/station/maintenance/northwest)
 "dBO" = (
+/obj/decal/cleanable/rust/jen/grime,
+/obj/machinery/ignition_switch{
+	id = "engine";
+	pixel_x = 24;
+	pixel_y = -8
+	},
 /obj/machinery/computer/atmosphere/mixercontrol{
 	dir = 8;
 	frequency = 1225;
@@ -7207,7 +7216,6 @@
 	mixerid = "engine_combust";
 	name = "Gas Mixer Control (Combustion Chamber)"
 	},
-/obj/decal/cleanable/rust/jen/grime,
 /turf/floor,
 /area/station/engine/inner)
 "dBR" = (
@@ -8768,8 +8776,10 @@
 "erM" = (
 /obj/machinery/atmospherics/mixer{
 	dir = 4;
-	frequency = 1229;
-	id_tag = "chamber_two"
+	frequency = 1227;
+	id_tag = "test";
+	master_id = "test_control";
+	name = "Gas Mixer (test Chamber)"
 	},
 /turf/floor,
 /area/station/science/testchamber)
@@ -12756,9 +12766,9 @@
 /obj/machinery/computer/atmosphere/mixercontrol{
 	dir = 8;
 	frequency = 1229;
-	id = "chamber one mixer";
-	mixerid = "chamber_one";
-	name = "Gas Mixer Control (Combustion Chamber)"
+	id = "tox_combust_control";
+	mixerid = "tox_combust";
+	name = "Gas Mixer Control (Toxins Chamber)"
 	},
 /turf/floor,
 /area/station/science/lab)
@@ -30596,10 +30606,10 @@
 	dir = 1
 	},
 /obj/machinery/computer/atmosphere/mixercontrol{
-	frequency = 1229;
-	id = "chamber two mixer";
-	mixerid = "chamber_two";
-	tag = null
+	frequency = 1227;
+	id = "test_control";
+	mixerid = "test_combust";
+	name = "Gas Mixer Control (Test Chamber)"
 	},
 /turf/floor,
 /area/station/science/testchamber)
@@ -35244,7 +35254,9 @@
 /obj/machinery/atmospherics/mixer{
 	dir = 8;
 	frequency = 1229;
-	id_tag = "chamber_one"
+	id_tag = "tox_combust";
+	master_id = "tox_combust_control";
+	name = "Gas Mixer (Toxins Chamber)"
 	},
 /turf/floor,
 /area/station/science/lab)
@@ -40240,7 +40252,9 @@
 /obj/machinery/atmospherics/mixer{
 	dir = 4;
 	frequency = 1225;
-	id_tag = "engine_combust"
+	id_tag = "engine_combust";
+	master_id = "engine_combust_control";
+	name = "Gas Mixer (Combustion Chamber)"
 	},
 /obj/decal/cleanable/rust/jen/grime,
 /turf/floor,
