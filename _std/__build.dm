@@ -110,14 +110,14 @@
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
 //#define MAP_OVERRIDE_CRAG				// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
-#define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
+//#define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
 
 //----------------- Maps that are work in progress and not feature complete -----------------//
 //#define MAP_OVERRIDE_BOBMAP 			// "to be renamed" map by ReginaldHJ
 //#define MAP_OVERRIDE_COOKIE				// Wackalope's spess staions
 //#define MAP_OVERRIDE_PERDUTA				// Mylie's oceanic oil platform
 //#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
-//#define MAP_OVERRIDE_ALTBOX				// a series of bad choices (very unfinished atm)
+#define MAP_OVERRIDE_ALTBOX				// a series of bad choices (very unfinished atm)
 
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION			// Construction mode
@@ -198,7 +198,7 @@ var/global/ci_dm_version_minor = "100"
 #define BUILD_TIME_MONTH 12
 #define BUILD_TIME_DAY 24 //SET ME TO 13 TO TEST YOUR ASS_JAM CONTENT!!
 #define BUILD_TIME_HOUR 18
-#define BUILD_TIME_MINUTE 58
+#define BUILD_TIME_MINUTE 18
 #define BUILD_TIME_SECOND 30
 #define BUILD_TIME_UNIX 1234567890 // Unix epoch, second precision
 
