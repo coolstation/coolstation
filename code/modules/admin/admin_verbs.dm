@@ -413,6 +413,7 @@ var/list/admin_verbs = alist(
 		/client/proc/toggle_literal_disarm,
 		/datum/admins/proc/toggle_emote_cooldowns,
 		/client/proc/implant_all,
+		/client/proc/cmd_belt_floors,
 		/client/proc/cmd_crusher_walls,
 		/client/proc/cmd_disco_lights,
 		/client/proc/cmd_blindfold_monkeys,
