@@ -3462,6 +3462,21 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
+"czi" = (
+/obj/machinery/atmospherics/unary/furnace_connector{
+	dir = 8
+	},
+/obj/machinery/power/furnace/thermo{
+	fuel = 100
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 8;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor/cautionblack,
+/area/station/engine/core)
 "czs" = (
 /obj/structure/girder/displaced,
 /turf/floor/plating/random,
@@ -4113,6 +4128,11 @@
 /area/space)
 "cZK" = (
 /obj/machinery/light/small/red,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
 "cZO" = (
@@ -4154,6 +4174,9 @@
 "daR" = (
 /obj/machinery/light/small/red{
 	dir = 4
+	},
+/obj/cable{
+	icon_state = "1-2"
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
@@ -4442,6 +4465,9 @@
 	icon_state = "4-9"
 	},
 /obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "2-4"
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
 "dpq" = (
@@ -7147,21 +7173,6 @@
 "foE" = (
 /turf/floor/airless/damaged1,
 /area/space)
-"foF" = (
-/obj/machinery/atmospherics/unary/furnace_connector{
-	dir = 8
-	},
-/obj/machinery/power/furnace/thermo{
-	fuel = 100
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 8;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/floor/cautionblack,
-/area/station/engine/core)
 "foP" = (
 /obj/storage/closet/office,
 /turf/floor/wood/seven,
@@ -9956,18 +9967,6 @@
 /obj/railing/yellow,
 /turf/space,
 /area/station/shipyard)
-"hio" = (
-/obj/lattice,
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 1;
-	name = "autoname - SS13"
-	},
-/turf/space,
-/area/space)
 "hir" = (
 /obj/grille/catwalk/bob/twosides{
 	dir = 8
@@ -10018,9 +10017,11 @@
 /area/station/shipyard)
 "hkU" = (
 /obj/decal/cleanable/dirt/random,
-/obj/machinery/power/apc/autoname/east,
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "1-10"
 	},
 /turf/floor/cautionblack/side{
 	dir = 4
@@ -10431,19 +10432,6 @@
 	dir = 5
 	},
 /area/station/bridge/customs)
-"hzS" = (
-/obj/lattice{
-	dir = 1;
-	icon_state = "lattice-dir-b"
-	},
-/obj/machinery/camera{
-	c_tag = "autotag";
-	dir = 6;
-	name = "autoname - SS13";
-	tag = ""
-	},
-/turf/space,
-/area/station/solar/small_backup1)
 "hzX" = (
 /obj/machinery/light/small/red{
 	dir = 8
@@ -14178,7 +14166,7 @@
 	},
 /area/station/crew_quarters/market)
 "kkM" = (
-/obj/machinery/light/small/red{
+/obj/machinery/light/small/greenish{
 	dir = 8
 	},
 /turf/floor/grime,
@@ -16419,9 +16407,11 @@
 	dir = 4
 	},
 /obj/submachine/ATM/atm_alt{
-	pixel_y = -32
+	pixel_y = -1;
+	pixel_x = -31
 	},
 /obj/machinery/door/window/northleft,
+/obj/machinery/light/small/warm,
 /turf/floor/grime,
 /area/station/hallway/primary/east)
 "lTb" = (
@@ -17479,13 +17469,13 @@
 /turf/floor,
 /area/station/hallway/primary/west)
 "mHJ" = (
-/obj/lattice,
-/obj/cable{
-	icon_state = "1-4"
+/obj/lattice{
+	dir = 1;
+	icon_state = "lattice-dir-b"
 	},
 /obj/machinery/camera{
 	c_tag = "autotag";
-	dir = 5;
+	dir = 6;
 	name = "autoname - SS13";
 	tag = ""
 	},
@@ -18073,7 +18063,7 @@
 /turf/space,
 /area/space)
 "nfH" = (
-/obj/machinery/light/small/red{
+/obj/machinery/light/small/greenish{
 	dir = 4
 	},
 /turf/floor/grime,
@@ -19206,6 +19196,9 @@
 "nXO" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 6
+	},
+/obj/cable{
+	icon_state = "2-5"
 	},
 /turf/floor/industrial,
 /area/station/mining/equipment)
@@ -21286,6 +21279,12 @@
 /obj/decal/floatingtiles/loose/random,
 /turf/floor/plating/random,
 /area/station/storage/warehouse)
+"pxB" = (
+/obj/cable{
+	icon_state = "1-10"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/oldstation)
 "pxK" = (
 /obj/reagent_dispensers/fueltank,
 /turf/floor/plating/random,
@@ -24122,6 +24121,12 @@
 /obj/firedoor_spawn,
 /turf/floor/purple,
 /area/station/science/lobby)
+"rlY" = (
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/oldstation)
 "rml" = (
 /obj/machinery/atmospherics/valve/horizontal,
 /obj/machinery/light/fluorescent/ceiling/cool,
@@ -24806,6 +24811,9 @@
 	pixel_x = 6
 	},
 /obj/machinery/light/small/warm,
+/obj/cable{
+	icon_state = "1-8"
+	},
 /turf/floor/cautionblack/side,
 /area/station/mining/equipment)
 "rJm" = (
@@ -28802,9 +28810,6 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/light/small/warm{
-	dir = 8
-	},
 /turf/floor/grime,
 /area/station/hallway/primary/east)
 "uFX" = (
@@ -29751,6 +29756,18 @@
 "vpr" = (
 /turf/floor/cautionblack,
 /area/station/engine/engineering/ce/private)
+"vps" = (
+/obj/lattice,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13"
+	},
+/turf/space,
+/area/space)
 "vpz" = (
 /obj/machinery/vending/clothing,
 /obj/machinery/light/small/warm,
@@ -30629,6 +30646,9 @@
 	pixel_x = 5;
 	pixel_y = 1
 	},
+/obj/machinery/light/small/red{
+	dir = 1
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/northeast)
 "waY" = (
@@ -31019,6 +31039,13 @@
 /obj/item/clothing/head/helmet/space/engineer,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/shoes/magnetic,
+/obj/machinery/power/apc/autoname/east{
+	pixel_x = 1;
+	pixel_y = -27
+	},
+/obj/cable{
+	icon_state = "0-4"
+	},
 /turf/floor/cautionblack/side{
 	dir = 10
 	},
@@ -31771,6 +31798,19 @@
 	},
 /turf/wall/auto/rivet,
 /area/station/maintenance/solar/east)
+"wPS" = (
+/obj/lattice,
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 5;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/space,
+/area/station/solar/small_backup1)
 "wQN" = (
 /obj/cable{
 	d1 = 1;
@@ -31787,6 +31827,12 @@
 /obj/window/reinforced/east,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quartersA)
+"wRn" = (
+/obj/cable{
+	icon_state = "5-8"
+	},
+/turf/floor/plating/random,
+/area/station/maintenance/oldstation)
 "wRz" = (
 /obj/cable{
 	d1 = 4;
@@ -46736,7 +46782,7 @@ ipT
 ipT
 ipT
 gTy
-hio
+vps
 pri
 pri
 pri
@@ -48263,7 +48309,7 @@ mNm
 pri
 pri
 pri
-hzS
+mHJ
 ipT
 ipT
 ipT
@@ -48548,7 +48594,7 @@ ipT
 ipT
 ipT
 gTy
-hio
+vps
 pri
 pri
 pri
@@ -49462,7 +49508,7 @@ txG
 ipT
 ipT
 nPT
-mHJ
+wPS
 aKe
 ipT
 ipT
@@ -59157,7 +59203,7 @@ vyN
 pDA
 ioA
 nmP
-foF
+czi
 eck
 cHh
 bHm
@@ -65745,7 +65791,7 @@ bUV
 sSF
 dkq
 kWC
-wDt
+rlY
 nTy
 kme
 vsT
@@ -66349,7 +66395,7 @@ myk
 wDt
 wDt
 wDt
-wDt
+wRn
 lwB
 euY
 dLS
@@ -66650,7 +66696,7 @@ wDt
 pbf
 doU
 daR
-wDt
+pxB
 wDt
 lwB
 pgO

@@ -408,7 +408,7 @@ var/global/list/mapNames = list(
 		/datum/job/medical/pathologist = 0,
 		/datum/job/logistics/janitor = 1
 	)
-
+	/*
 	init()
 		..()
 		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
@@ -425,7 +425,7 @@ var/global/list/mapNames = list(
 			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
 			if(t_shuttle_l)
 				t_shuttle_l.filler_turf = "/turf/floor/airless/engine/caution"
-
+	*/
 
 /datum/map_settings/cogmap
 	name = "COGMAP"
