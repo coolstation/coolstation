@@ -422,8 +422,14 @@
 	can_hold = list(/obj/item/mop,
 		/obj/item/chem_grenade,
 		/obj/item/clothing/under/trash_bag,
-		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/glass,
 		/obj/item/spraybottle,
+		/obj/item/sponge,
+		/obj/item/material_piece/cloth/rag,
+		/obj/item/device/light/flashlight,
+		/obj/item/caution,
+		/obj/item/handheld_vacuum,
+		/obj/item/clothing/under/trash_bag
 	)
 	spawn_contents = list(/obj/item/spraybottle/cleaner)
 	in_list_or_max = 0
