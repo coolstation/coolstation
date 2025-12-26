@@ -1715,6 +1715,12 @@ datum/preferences
 			if (H?.organHolder?.head?.donor_appearance) // aaaa
 				H.organHolder.head.donor_appearance.CopyOther(AH)
 
+			//Sorry this is hardcoded but I don't have other sets of screams to warrant making this
+			//also no worries about setting sound_scream below, this takes precedence.
+			if (AH.screamsound == "wilhelm")
+				//Wilhelm_actual excluded on purpose :3
+				H.sound_list_scream = list('sound/voice/screams/wilhelm/Wilhelm_1.ogg', 'sound/voice/screams/wilhelm/Wilhelm_2.ogg', 'sound/voice/screams/wilhelm/Wilhelm_3.ogg', 'sound/voice/screams/wilhelm/Wilhelm_4.ogg', 'sound/voice/screams/wilhelm/Wilhelm_5.ogg')
+
 		if (traitPreferences.isValid() && character.traitHolder)
 			for (var/T in traitPreferences.traits_selected)
 				character.traitHolder.addTrait(T)
