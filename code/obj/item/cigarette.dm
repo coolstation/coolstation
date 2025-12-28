@@ -1134,6 +1134,7 @@
 	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 0.7 SECONDS
 	stamina_damage = 5
+	var/lighter_sound = 'sound/items/zippo_open.ogg'
 //	stamina_cost = 5
 //	stamina_crit_chance = 5
 	icon_off = "zippo"
@@ -1142,12 +1143,14 @@
 	col_r = 0.94
 	col_g = 0.69
 	col_b = 0.27
+	var/alt_message = 0 //toggles more generic messages for non zippoey lighters
 	var/infinite_fuel = 0 //1 is infinite fuel. Borgs use this apparently.
+	var/fuel_amount = 10
 
 	New()
 		..()
-		src.create_reagents(10)
-		reagents.add_reagent("fuel", 10)
+		src.create_reagents(fuel_amount)
+		reagents.add_reagent("fuel", fuel_amount)
 
 		src.setItemSpecial(/datum/item_special/flame)
 		return
@@ -1177,8 +1180,11 @@
 		processing_items |= src
 		src.tool_flags |= TOOL_OPENFLAME
 		if (user != null)
-			user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
-			playsound(user, 'sound/items/zippo_open.ogg', 30, 1)
+			if(!alt_message)
+				user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
+			else
+				user.visible_message("<span class='alert'>[user] lights [src].</span>")
+			playsound(user, lighter_sound, 30, 1)
 			user.update_inhands()
 
 	proc/deactivate(mob/user as mob)
@@ -1190,7 +1196,9 @@
 		processing_items.Remove(src)
 		src.tool_flags &= ~TOOL_OPENFLAME
 		if (user != null)
-			user.visible_message("<span class='alert'>You hear a quiet click, as [user] shuts off [src] without even looking what they're doing. Wow.</span>")
+			if(!alt_message)
+				user.visible_message("<span class='alert'>You hear a quiet click, as [user] shuts off [src] without even looking what they're doing. Wow.</span>")
+
 			playsound(user, 'sound/items/zippo_close.ogg', 30, 1)
 			user.update_inhands()
 
@@ -1300,7 +1308,11 @@
 			user.suiciding = 0
 			return 0
 		if (!src.on) // don't need to do more than just show the message since the lighter is deleted in a moment anyway
-			user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
+			if(!alt_message)
+				user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
+			else
+				user.visible_message("<span class='alert'>[user] lights [src].</span>")
+
 		user.visible_message("<span class='alert'><b>[user] swallows the on [src.name]!</b></span>")
 		user.take_oxygen_deprivation(75)
 		user.TakeDamage("chest", 0, 100)
@@ -1316,6 +1328,59 @@
 	icon_state = "gold_zippo"
 	icon_off = "gold_zippo"
 	icon_on = "gold_zippoon"
+
+/obj/item/device/light/zippo/cheap
+	name = "\improper cheap lighter"
+	alt_message = 1
+	lighter_sound = 'sound/effects/spark_lighter.ogg'
+	icon_state = "lighter_cheap"
+	icon_off = "lighter_cheap"
+	icon_on = "cheap_on"
+	fuel_amount = 5
+
+	attack_self(mob/user)
+		if(user.find_in_hand(src))
+			if (src.on)
+				return
+		if(prob(50) && reagents.get_reagent_amount("fuel"))
+			..()
+			SPAWN_DBG(1.2 SECONDS)
+				deactivate()
+		else
+			playsound(user, lighter_sound, 30, 1)
+			flick("cheap_fail",src)
+			if(prob(2))
+				user.visible_message("<span class='alert'><b>[user] fumbles the [src.name]!</b></span>")
+				user.drop_item()
+			else
+				user.visible_message("<span class='alert'><b>The [src.name] fails to light.</b></span>")
+
+	dropped(mob/user as mob)
+		..()
+		deactivate()
+
+
+/obj/item/device/light/zippo/gun
+	name = "Novelty Gun lighter"
+	icon_state = "gun"
+	icon_off = "gun"
+	icon_on = "gun_on"
+	lighter_sound = 'sound/effects/spark_lighter.ogg'
+
+	attack_self(mob/user)
+		if(user.find_in_hand(src))
+			if (src.on)
+				return
+		..()
+		SPAWN_DBG(1 SECOND)
+			deactivate()
+
+
+	dropped(mob/user as mob)
+		..()
+		deactivate()
+
+
 
 /obj/item/device/light/zippo/brighter
 	name = "\improper Zippo brighter"
