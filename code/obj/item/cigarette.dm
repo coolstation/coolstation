@@ -1330,7 +1330,7 @@
 	icon_on = "gold_zippoon"
 
 /obj/item/device/light/zippo/cheap
-	name = "\improper cheap lighter"
+	name = "\improper disposable lighter"
 	alt_message = 1
 	lighter_sound = 'sound/effects/spark_lighter.ogg'
 	icon_state = "lighter_cheap"
