@@ -1146,6 +1146,9 @@
 	var/alt_message = 0 //toggles more generic messages for non zippoey lighters
 	var/infinite_fuel = 0 //1 is infinite fuel. Borgs use this apparently.
 	var/fuel_amount = 10
+	var/lighter_animated = 1
+	var/anim_open = "zippo_open"
+	var/anim_close = "zippo_close"
 
 	New()
 		..()
@@ -1180,11 +1183,13 @@
 		processing_items |= src
 		src.tool_flags |= TOOL_OPENFLAME
 		if (user != null)
-			if(!alt_message)
+			if(!alt_message && user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker"))
 				user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
 			else
-				user.visible_message("<span class='alert'>[user] lights [src].</span>")
+				user.visible_message("<span class='alert'>[user] lights the [src].</span>")
 			playsound(user, lighter_sound, 30, 1)
+			if(lighter_animated)
+				flick(anim_open, src)
 			user.update_inhands()
 
 	proc/deactivate(mob/user as mob)
@@ -1196,10 +1201,14 @@
 		processing_items.Remove(src)
 		src.tool_flags &= ~TOOL_OPENFLAME
 		if (user != null)
-			if(!alt_message)
+			if(!alt_message && user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker"))
 				user.visible_message("<span class='alert'>You hear a quiet click, as [user] shuts off [src] without even looking what they're doing. Wow.</span>")
+			else
+				user.visible_message("<span class='alert'>[user] shuts off the [src].</span>")
 
 			playsound(user, 'sound/items/zippo_close.ogg', 30, 1)
+			if(lighter_animated)
+				flick(anim_close, src)
 			user.update_inhands()
 
 	attack(mob/target, mob/user as mob)
@@ -1308,7 +1317,7 @@
 			user.suiciding = 0
 			return 0
 		if (!src.on) // don't need to do more than just show the message since the lighter is deleted in a moment anyway
-			if(!alt_message)
+			if(!alt_message && user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker"))
 				user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
 			else
 				user.visible_message("<span class='alert'>[user] lights [src].</span>")
@@ -1328,6 +1337,9 @@
 	icon_state = "gold_zippo"
 	icon_off = "gold_zippo"
 	icon_on = "gold_zippoon"
+	anim_open = "gold_open"
+	anim_close = "gold_close"
+
 
 /obj/item/device/light/zippo/cheap
 	name = "\improper disposable lighter"
@@ -1336,20 +1348,34 @@
 	icon_state = "lighter_cheap"
 	icon_off = "lighter_cheap"
 	icon_on = "cheap_on"
+	lighter_animated = 0
 	fuel_amount = 5
 
 	attack_self(mob/user)
 		if(user.find_in_hand(src))
 			if (src.on)
 				return
-		if(prob(50) && reagents.get_reagent_amount("fuel"))
+		if(reagents.get_reagent_amount("fuel") > 0 && (prob(50) || user.traitHolder.hasTrait("hardcore")))
 			..()
-			SPAWN_DBG(1.2 SECONDS)
+
+			if((user.traitHolder.hasTrait("clutz") && prob(30)) || prob(5))
+				SPAWN_DBG(0.5 SECONDS)
+
+					user.TakeDamage(user.hand == 1 ? "l_arm": "r_arm", 0, 3, 0, DAMAGE_BURN)
+					user.visible_message("<span class='alert'><b>[user] gets burnt on the [src.name]!</b></span>")
+					playsound(src, "sound/impact_sounds/burn_sizzle.ogg", 50, 1)
+
+					sleep(0.5 SECONDS)
+					if(!user.traitHolder.hasTrait("hardcore")) //cool as fuuuuuuuuuuuuuck
+						user.drop_item()
+
+			SPAWN_DBG(rand(0.8 SECONDS, 1.7 SECONDS))
 				deactivate()
 		else
 			playsound(user, lighter_sound, 30, 1)
 			flick("cheap_fail",src)
-			if(prob(2))
+			violent_twitch(src)
+			if(prob(2) || user.traitHolder.hasTrait("clutz") && prob(30))
 				user.visible_message("<span class='alert'><b>[user] fumbles the [src.name]!</b></span>")
 				user.drop_item()
 			else
@@ -1366,15 +1392,8 @@
 	icon_off = "gun"
 	icon_on = "gun_on"
 	lighter_sound = 'sound/effects/spark_lighter.ogg'
-
-	attack_self(mob/user)
-		if(user.find_in_hand(src))
-			if (src.on)
-				return
-		..()
-		SPAWN_DBG(1 SECOND)
-			deactivate()
-
+	anim_open = "gun_open"
+	anim_close = "gun_close"
 
 	dropped(mob/user as mob)
 		..()
