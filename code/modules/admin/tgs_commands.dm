@@ -61,3 +61,10 @@
 			else
 				boutput(C, mentormsg)
 	return "Mentaur Peem Sent!"
+
+/datum/tgs_chat_command/echo
+	name = "echo"
+	help_text = "echo!"
+
+/datum/tgs_chat_command/mentor_pm/Run(datum/tgs_chat_user/sender, params)
+	return "[params]"
