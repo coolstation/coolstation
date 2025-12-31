@@ -52,7 +52,7 @@
 
 	var/mentormsg = "<span class='mhelp'><b>MENTOR PM: [sender.friendly_name] (Discord)  <i class='icon-arrow-right'></i> [key_name(M,0,0,1)]</b>: <span class='message'>[t]</span></span>"
 	for (var/client/C)
-		if (C.can_see_mentor_pms() && C.key != usr.key && (M && C.key != M.key))
+		if (C.can_see_mentor_pms() && (M && C.key != M.key))
 			if (C.holder)
 				if (C.player_mode && !C.player_mode_mhelp)
 					continue
