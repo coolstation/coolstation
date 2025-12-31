@@ -10,7 +10,7 @@
 	help_text = "Respawns a given ckey."
 
 /datum/tgs_chat_command/respawn_dude/Run(datum/tgs_chat_user/sender, params)
-	var/mob/target = whois_ckey_to_mob_reference(params)
+	var/mob/target = whois_ckey_to_mob_reference(params, FALSE)
 	if(!target)
 		return "Target not found."
 	logTheThing("admin", "[sender.friendly_name] (Discord)", target, "respawned [constructTarget(target,"admin")]")
@@ -36,10 +36,11 @@
 	help_text = "Mentor-PMs a given ckey. Usage: !tgs mpm <key> <message>"
 
 /datum/tgs_chat_command/mentor_pm/Run(datum/tgs_chat_user/sender, params)
-	var/mob/M = whois_ckey_to_mob_reference(params[1])
+	var/list/stuff = params2list(params)
+	var/mob/M = whois_ckey_to_mob_reference(stuff[1], FALSE)
 	if(!M)
 		return "Target not found."
-	var/t = params - params[1]
+	var/t = stuff - stuff[1]
 	if(!t)
 		return "uhh say something"
 
@@ -59,3 +60,4 @@
 					boutput(C, "<span class='mhelp'><b>MENTOR PM: [sender.friendly_name] (Discord) <i class='icon-arrow-right'></i> [key_name(M,0,0,1)]/[M.real_name] <A HREF='byond://?src=\ref[C.holder];action=adminplayeropts;targetckey=[M.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: <span class='message'>[t]</span></span>")
 			else
 				boutput(C, mentormsg)
+	return "Mentaur Peem Sent!"
