@@ -92,7 +92,7 @@
 									O:serialize(F, "[base].OBJ.[objc]", sandbox)
 									objc++
 							F["[base].OBJC"] << objc
-							blink(Q)
+							//blink(Q)
 							workgroup_curr++
 							if (workgroup_curr >= workgroup_size)
 								workgroup_curr = 0

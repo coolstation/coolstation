@@ -30,7 +30,7 @@ Right Mouse Button on the mode         = Cycle loading modes<br>
 			dmm_suite = new
 		var/turf/A = get_turf(object)
 		if (!A) return
-		blink(A)
+		//blink(A)
 		if(loading)
 			boutput(usr, "<span class='alert'>Already loading a map!</span>")
 			return
