@@ -31,6 +31,68 @@
 	boutput(newM, "<b>You have been respawned.</b>")
 	return "Player respawned."
 
+/datum/tgs_chat_command/ooc
+	admine_only = TRUE
+	name = "ooc"
+	help_text = "OOC-blasts a message. Usage: !tgs ooc <message>"
+
+/datum/tgs_chat_command/ooc/Run(datum/tgs_chat_user/sender, params)
+	var/msg = trim(copytext(sanitize(params), 1, MAX_MESSAGE_LEN))
+	msg = discord_emojify(msg)
+	if(!msg)
+		return "try harder."
+
+	logTheThing("ooc", nick, null, "OOC: [msg]")
+	logTheThing("diary", nick, null, ": [msg]", "ooc")
+	var/rendered = "<span class=\"adminooc\"><span class=\"prefix\">OOC:</span> <span class=\"name\">[nick]:</span> <span class=\"message\">[msg]</span></span>"
+
+	for (var/client/C in clients)
+		if (C.preferences && !C.preferences.listen_ooc)
+			continue
+		boutput(C, rendered)
+	return "OOC blasted out."
+
+/datum/tgs_chat_command/admin_pm
+	admine_only = TRUE
+	name = "pm"
+	help_text = "Admin-PMs a given ckey. Usage: !tgs pm <key> <message>"
+
+/datum/tgs_chat_command/admin_pm/Run(datum/tgs_chat_user/sender, params)
+	var/list/stuff = splittext(params, " ")
+	var/mob/M = whois_ckey_to_mob_reference(stuff[1], FALSE)
+	var/nick = sender.friendly_name
+
+	if(stuff.len < 2)
+		return "uhh say something"
+
+	stuff = stuff.Copy(2,0)
+	var/t = jointext(stuff," ")
+
+	if (M?.client)
+		boutput(M, {"
+			<div style='border: 2px solid red; font-size: 110%;'>
+				<div style="color: black; background: #f88; font-weight: bold; border-bottom: 1px solid red; text-align: center; padding: 0.2em 0.5em;">
+					Admin PM from <a href=\"byond://?action=priv_msg_irc&nick=[ckey(nick)]\">[nick]</a>
+				</div>
+				<div style="padding: 0.2em 0.5em;">
+					[t]
+				</div>
+				<div style="font-size: 90%; background: #fcc; font-weight: bold; border-top: 1px solid red; text-align: center; padding: 0.2em 0.5em;">
+					<a href=\"byond://?action=priv_msg_irc&nick=[ckey(nick)]" style='color: #833; font-weight: bold;'>&lt; Click to Reply &gt;</a></div>
+				</div>
+			</div>
+			"})
+		M << sound('sound/misc/adminhelp.ogg', volume=100, wait=0)
+		logTheThing("admin_help", null, M, "Discord: [nick] PM'd [constructTarget(M,"admin_help")]: [t]")
+		logTheThing("diary", null, M, "Discord: [nick] PM'd [constructTarget(M,"diary")]: [t]", "ahelp")
+		for (var/client/C)
+			if (C.holder && C.key != M.key)
+				if (C.player_mode && !C.player_mode_ahelp)
+					continue
+				else
+					boutput(C, "<span class='ahelp'><b>PM: <a href=\"byond://?action=priv_msg_irc&nick=[ckey(nick)]\">[nick]</a> (Discord) <i class='icon-arrow-right'></i> [key_name(M)]</b>: [t]</span>")
+		return "Yelled At [key_name(M)]"
+
 /datum/tgs_chat_command/mentor_pm
 	name = "mpm"
 	help_text = "Mentor-PMs a given ckey. Usage: !tgs mpm <key> <message>"
@@ -39,7 +101,7 @@
 	var/list/stuff = splittext(params, " ")
 	var/mob/M = whois_ckey_to_mob_reference(stuff[1], FALSE)
 	if(!M)
-		return "Target not found."
+		return "Target not found. Might not have spawned?"
 
 	if(stuff.len < 2)
 		return "uhh say something"
