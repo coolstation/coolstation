@@ -92,7 +92,8 @@
 					continue
 				else
 					boutput(C, "<span class='ahelp'><b>PM: <a href=\"byond://?action=priv_msg_irc&nick=[ckey(nick)]\">[nick]</a> (Discord) <i class='icon-arrow-right'></i> [key_name(M)]</b>: [t]</span>")
-		return "Yelled At [key_name(M)]"
+		return "Yelled At [M.key]"
+	else return "Seems they ran off."
 
 /datum/tgs_chat_command/mentor_pm
 	name = "mpm"
@@ -101,8 +102,6 @@
 /datum/tgs_chat_command/mentor_pm/Run(datum/tgs_chat_user/sender, params)
 	var/list/stuff = splittext(params, " ")
 	var/mob/M = whois_ckey_to_mob_reference(stuff[1], FALSE)
-	if(!M)
-		return "Target not found. Might not have spawned?"
 
 	if(stuff.len < 2)
 		return "uhh say something"
@@ -110,23 +109,26 @@
 	stuff = stuff.Copy(2,0)
 	var/t = jointext(stuff," ")
 
-	boutput(M, "<span class='mhelp'><b>MENTOR PM: FROM [sender.friendly_name] (Discord) </b>: <span class='message'>[t]</span></span>")
-	M.playsound_local(M, "sound/misc/mentorhelp.ogg", 100, flags = SOUND_IGNORE_SPACE, channel = VOLUME_CHANNEL_MENTORPM)
+	if (M?.client)
 
-	logTheThing("mentor_help", sender.friendly_name, M, "Mentor PM'd [constructTarget(M,"mentor_help")]: [t]")
-	logTheThing("diary", sender.friendly_name, M, "Mentor PM'd [constructTarget(M,"diary")]: [t]", "admin")
+		boutput(M, "<span class='mhelp'><b>MENTOR PM: FROM [sender.friendly_name] (Discord) </b>: <span class='message'>[t]</span></span>")
+		M.playsound_local(M, "sound/misc/mentorhelp.ogg", 100, flags = SOUND_IGNORE_SPACE, channel = VOLUME_CHANNEL_MENTORPM)
 
-	var/mentormsg = "<span class='mhelp'><b>MENTOR PM: [sender.friendly_name] (Discord)  <i class='icon-arrow-right'></i> [key_name(M,0,0,1)]</b>: <span class='message'>[t]</span></span>"
-	for (var/client/C)
-		if (C.can_see_mentor_pms() && (M && C.key != M.key))
-			if (C.holder)
-				if (C.player_mode && !C.player_mode_mhelp)
-					continue
+		logTheThing("mentor_help", sender.friendly_name, M, "Mentor PM'd [constructTarget(M,"mentor_help")]: [t]")
+		logTheThing("diary", sender.friendly_name, M, "Mentor PM'd [constructTarget(M,"diary")]: [t]", "admin")
+
+		var/mentormsg = "<span class='mhelp'><b>MENTOR PM: [sender.friendly_name] (Discord)  <i class='icon-arrow-right'></i> [key_name(M,0,0,1)]</b>: <span class='message'>[t]</span></span>"
+		for (var/client/C)
+			if (C.can_see_mentor_pms() && (M && C.key != M.key))
+				if (C.holder)
+					if (C.player_mode && !C.player_mode_mhelp)
+						continue
+					else
+						boutput(C, "<span class='mhelp'><b>MENTOR PM: [sender.friendly_name] (Discord) <i class='icon-arrow-right'></i> [key_name(M,0,0,1)]/[M.real_name] <A HREF='byond://?src=\ref[C.holder];action=adminplayeropts;targetckey=[M.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: <span class='message'>[t]</span></span>")
 				else
-					boutput(C, "<span class='mhelp'><b>MENTOR PM: [sender.friendly_name] (Discord) <i class='icon-arrow-right'></i> [key_name(M,0,0,1)]/[M.real_name] <A HREF='byond://?src=\ref[C.holder];action=adminplayeropts;targetckey=[M.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: <span class='message'>[t]</span></span>")
-			else
-				boutput(C, mentormsg)
-	return "Mentaur Peem Sent!"
+					boutput(C, mentormsg)
+		return "Mentaur Peem Sent!"
+	else return "Must have been the wind..."
 
 /datum/tgs_chat_command/echo
 	name = "echo"
