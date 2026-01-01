@@ -144,7 +144,7 @@
 	ircmsg["msg"] = html_decode(msg)
 	ircbot.export("mentorhelp", ircmsg)
 
-	discord_send("MHELP ([client.key]): [msg]","centcom")
+	discord_send("MHELP ([client.key]): [msg]","mentors")
 
 /mob/verb/pray(msg as text)
 	set category = "Commands"
