@@ -305,7 +305,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
-	goonhub_map = "https://wiki.coolstation.space/wiki/Chunk"
+	goonhub_map = "https://play.coolstation.space/maps/chunk/"
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -357,7 +357,7 @@ var/global/list/mapNames = list(
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
 	arrivals_type = MAP_SPAWN_CRYO
-	goonhub_map = "https://wiki.coolstation.space/wiki/File:Bayoubendmapimage.png"
+	goonhub_map = "https://play.coolstation.space/maps/bayou/"
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -1329,7 +1329,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/gehenna
 	name = "GEHENNA"
-	goonhub_map = "https://wiki.coolstation.space/wiki/Gehenna"
+	goonhub_map = "https://coolstation.space/maps/gehenna/"
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
@@ -1407,7 +1407,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/crag
 	name = "CRAG"
-	goonhub_map = "https://wiki.coolstation.space/wiki/Gehenna"
+	goonhub_map = "https://coolstation.space/maps/crag/" //what do we do for multi z shite
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
