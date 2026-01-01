@@ -36,13 +36,16 @@
 	help_text = "Mentor-PMs a given ckey. Usage: !tgs mpm <key> <message>"
 
 /datum/tgs_chat_command/mentor_pm/Run(datum/tgs_chat_user/sender, params)
-	var/list/stuff = params2list(params)
+	var/list/stuff = splittext(params, " ")
 	var/mob/M = whois_ckey_to_mob_reference(stuff[1], FALSE)
 	if(!M)
 		return "Target not found."
-	var/t = stuff - stuff[1]
-	if(!t)
+
+	if(stuff.len < 2)
 		return "uhh say something"
+
+	stuff = stuff.Copy(2,0)
+	var/t = jointext(stuff," ")
 
 	boutput(M, "<span class='mhelp'><b>MENTOR PM: FROM [sender.friendly_name] (Discord) </b>: <span class='message'>[t]</span></span>")
 	M.playsound_local(M, "sound/misc/mentorhelp.ogg", 100, flags = SOUND_IGNORE_SPACE, channel = VOLUME_CHANNEL_MENTORPM)
@@ -66,5 +69,5 @@
 	name = "echo"
 	help_text = "echo!"
 
-/datum/tgs_chat_command/mentor_pm/Run(datum/tgs_chat_user/sender, params)
+/datum/tgs_chat_command/echo/Run(datum/tgs_chat_user/sender, params)
 	return params
