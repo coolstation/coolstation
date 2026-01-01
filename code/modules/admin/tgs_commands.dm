@@ -38,6 +38,7 @@
 
 /datum/tgs_chat_command/ooc/Run(datum/tgs_chat_user/sender, params)
 	var/msg = trim(copytext(sanitize(params), 1, MAX_MESSAGE_LEN))
+	var/nick = sender.friendly_name
 	msg = discord_emojify(msg)
 	if(!msg)
 		return "try harder."
