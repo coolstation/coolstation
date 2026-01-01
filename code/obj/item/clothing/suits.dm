@@ -20,6 +20,7 @@
 	var/restrain_wearer = 0
 	var/bloodoverlayimage = 0
 	var/team_num
+	var/cape = 0
 
 
 	setupProperties()
@@ -614,7 +615,6 @@
 	over_hair = 1
 	wear_layer = MOB_OVERLAY_BASE
 	var/eyeholes = 0 //Did we remember to cut eyes in the thing?
-	var/cape = 0
 	var/obj/stool/bed/Bed = null
 	var/bcolor = null
 	//cogwerks - burn vars
