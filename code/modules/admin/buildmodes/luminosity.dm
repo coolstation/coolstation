@@ -30,7 +30,7 @@ Ctrl + RMB                             = Reset object luminosity and color to de
 
 			if (istype(object, /obj/machinery/light))
 				object:brightness = 0
-			blink(get_turf(object))
+			//blink(get_turf(object))
 
 			boutput(usr, "<span class='notice'>Set [object]'s luminosity to 0.</span>")
 		else
@@ -43,7 +43,7 @@ Ctrl + RMB                             = Reset object luminosity and color to de
 				object.sd_SetLuminosity(luminosity)
 			else
 				object.sd_SetLuminosity(0)
-			blink(get_turf(object))
+			//blink(get_turf(object))
 
 			boutput(usr, "<span class='notice'>Set [object] to ([object.sd_ColorRed], [object.sd_ColorGreen], [object.sd_ColorBlue]):[luminosity].</span>")
 

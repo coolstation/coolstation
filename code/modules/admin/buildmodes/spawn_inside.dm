@@ -20,7 +20,7 @@ Right Mouse Button + Shift             = Set object type to selected mob/obj typ
 		var/atom/movable/M = object
 		if(istype(M))
 			new objpath(object)
-			blink(get_turf(object))
+			//blink(get_turf(object))
 		else if(istype(object, /turf/floor))
 			var/turf/floor/floor = object
 			var/atom/movable/AM = new objpath(floor)

@@ -723,7 +723,7 @@ var/list/special_pa_observing_verbs = list(
 	//	src.mob.mind.observing = 1
 		update_admins(rank)
 
-	blink(get_turf(src.mob))
+	//blink(get_turf(src.mob))
 	if(!istype(src.mob, /mob/dead/observer) && !istype(src.mob, /mob/dead/target_observer))
 		src.mob.mind?.damned = 0
 		src.mob.ghostize()
@@ -745,7 +745,7 @@ var/list/special_pa_observing_verbs = list(
 	//	src.mob.mind.observing = 0
 		update_admins(rank)
 
-	blink(get_turf(src.mob))
+	//blink(get_turf(src.mob))
 	if(istype(src.mob, /mob/dead/observer))
 		src.mob:reenter_corpse()
 		boutput(src, "<span class='notice'>You are now playing</span>")
