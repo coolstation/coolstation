@@ -139,3 +139,54 @@
 
 /datum/tgs_chat_command/echo/Run(datum/tgs_chat_user/sender, params)
 	return params
+
+/datum/tgs_chat_command/who
+	name = "who"
+	help_text = "who!"
+
+/datum/tgs_chat_command/who/Run(datum/tgs_chat_user/sender, params)
+	var/list/whoAdmins = list()
+	var/list/whoMentors = list()
+	var/list/whoNormies = list()
+	if(!clients.len)
+		return "Not a soul."
+
+	for (var/client/C in clients)
+		if (!C || !C.mob) continue
+
+		//Admins
+		if (C.holder)
+			if (C.stealth)
+				if (C.fakekey)
+					whoNormies += C.fakekey
+			else
+				whoAdmins += C.key
+
+		//Mentors
+		else if (C.can_see_mentor_pms())
+			whoMentors += C.key
+
+		//Normies
+		else
+			whoNormies += C.key
+
+	whoAdmins = sortList(whoAdmins)
+	whoMentors = sortList(whoMentors)
+	whoNormies = sortList(whoNormies)
+
+	var/rendered = "Who? I Tell ya who."
+	if (whoAdmins.len)
+		rendered += "\n **Admins:**"
+		for (var/anAdmin in whoAdmins)
+			rendered += " [anAdmin],"
+	if (whoMentors.len)
+		rendered += "\n **Mentors:**"
+		for (var/aMentor in whoMentors)
+			rendered += " [aMentor],"
+	if (whoNormies.len)
+		rendered += "\n **Normal:</b>**"
+		for (var/aNormie in whoNormies)
+			rendered += " [aNormie],"
+
+	return rendered
+
