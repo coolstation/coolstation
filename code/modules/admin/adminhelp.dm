@@ -68,6 +68,8 @@
 	ircmsg["msg"] = html_decode(msg)
 	ircbot.export("help", ircmsg)
 
+	discord_send("AHELP ([client.key]): [msg]","centcom")
+
 /mob/verb/mentorhelp()
 	set category = "Commands"
 	set name = "Mentorhelp"
@@ -141,6 +143,8 @@
 	ircmsg["name"] = client.mob.job ? "[stripTextMacros(client.mob.real_name)] \[[dead] [client.mob.job]]" : (dead ? "[stripTextMacros(client.mob.real_name)] \[[dead]\]" : stripTextMacros(client.mob.real_name))
 	ircmsg["msg"] = html_decode(msg)
 	ircbot.export("mentorhelp", ircmsg)
+
+	discord_send("MHELP ([client.key]): [msg]","centcom")
 
 /mob/verb/pray(msg as text)
 	set category = "Commands"
