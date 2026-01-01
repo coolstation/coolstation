@@ -1374,7 +1374,7 @@ var/list/fun_images = list()
 		del(bgObj)
 
 	var/start_x = (viewport_width / 2) + 1
-	var/start_y = (viewport_height / 2) + 1
+//	var/start_y = (viewport_height / 2) + 1
 
 	boutput(src, "<span class='notice'><B>Begining mapping.</B></span>")
 
@@ -1383,7 +1383,7 @@ var/list/fun_images = list()
 		for (var/curZ = 1; curZ <= world.maxz; curZ++)
 			if (safeAllZ && (curZ == 2 || curZ == 4))
 				continue //Skips centcom
-			for (var/y = start_y; y <= world.maxy; y += viewport_height)
+			for (var/y = (world.maxy - (viewport_height * 0.5)); y >= 0; y -= viewport_height)
 				for (var/x = start_x; x <= world.maxx; x += viewport_width)
 					src.mob.x = x
 					src.mob.y = y
@@ -1398,7 +1398,7 @@ var/list/fun_images = list()
 					return
 	//Or just one level I GUESS
 	else
-		for (var/y = start_y; y <= world.maxy; y += viewport_height)
+		for (var/y = (world.maxy - (viewport_height * 0.5)); y >= 0; y -= viewport_height)
 			for (var/x = start_x; x <= world.maxx; x += viewport_width)
 				src.mob.x = x
 				src.mob.y = y
@@ -1409,6 +1409,10 @@ var/list/fun_images = list()
 				sleep(delay)
 
 	alert("Mapping complete!", "Yay!", "Ok")
+
+        // If you are planning on stitching these images together using imagemagick, you probably
+        // want something like the following:
+        // montage -border 0 -geometry +0+0 -tile 10 <screenshot files> <outputfile>
 
 /client/proc/view_cid_list(var/C as text)
 	set name = "View CompID List"
