@@ -67,4 +67,4 @@
 	help_text = "echo!"
 
 /datum/tgs_chat_command/mentor_pm/Run(datum/tgs_chat_user/sender, params)
-	return "[params]"
+	return params
