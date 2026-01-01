@@ -109,3 +109,8 @@ var/title_screen_loader_key = null
 #endif
 
 #undef LANDMARK_CUSTOMTITLESCREEN
+
+/obj/decal/fakeobjects/csbanner
+	icon = 'icons/effects/320x320.dmi'
+	icon_state = "cs"
+	plane = PLANE_HUD

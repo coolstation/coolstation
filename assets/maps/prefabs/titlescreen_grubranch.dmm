@@ -111,8 +111,8 @@
 "nf" = (
 /obj/decal/landing_gear_prints_gehenna{
 	dir = 4;
-	pixel_y = 7;
-	pixel_x = 21
+	pixel_x = 21;
+	pixel_y = 7
 	},
 /turf/space/gehenna/desert/path{
 	dir = 10
@@ -160,8 +160,8 @@
 /area/titlescreen)
 "qe" = (
 /obj/decal/beaten_edge_thin{
-	pixel_x = -10;
-	dir = 1
+	dir = 1;
+	pixel_x = -10
 	},
 /turf/space/gehenna/desert,
 /area/titlescreen)
@@ -228,8 +228,8 @@
 "wT" = (
 /obj/table/reinforced/auto,
 /obj/item/kitchen/utensil/knife/cleaver{
-	pixel_y = 3;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 3
 	},
 /obj/machinery/light/fluorescent/ceiling/red,
 /turf/floor/blackwhite/whitegrime,
@@ -277,8 +277,8 @@
 /area/titlescreen)
 "Br" = (
 /mob/living/critter/grub/wildgrub{
-	dir = 8;
-	ai_type = "/datum/aiHolder/wanderer"
+	ai_type = "/datum/aiHolder/wanderer";
+	dir = 8
 	},
 /turf/space/gehenna/desert/beaten,
 /area/titlescreen)
@@ -329,10 +329,15 @@
 /obj/decal/cleanable/rust,
 /turf/floor/blackwhite/whitegrime,
 /area/titlescreen)
+"FD" = (
+/obj/chainlink_fence,
+/obj/decal/fakeobjects/csbanner,
+/turf/space/gehenna/desert/path,
+/area/titlescreen)
 "Gs" = (
 /mob/living/critter/grub/wildgrub{
-	dir = 1;
-	ai_type = "/datum/aiHolder/wanderer"
+	ai_type = "/datum/aiHolder/wanderer";
+	dir = 1
 	},
 /turf/space/gehenna/desert,
 /area/titlescreen)
@@ -451,8 +456,8 @@
 /area/titlescreen)
 "Pd" = (
 /obj/decoration/train_signal{
-	pixel_y = 2;
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 2
 	},
 /turf/space/gehenna/desert/corner{
 	dir = 9
@@ -495,8 +500,8 @@
 /area/titlescreen)
 "RZ" = (
 /obj/decal/beaten_edge_thin{
-	pixel_x = -9;
-	dir = 1
+	dir = 1;
+	pixel_x = -9
 	},
 /obj/random_item_spawner/junk/one,
 /turf/space/gehenna/desert,
@@ -516,15 +521,15 @@
 /area/titlescreen)
 "Uz" = (
 /mob/living/critter/grub/wildgrub{
-	dir = 4;
-	ai_type = "/datum/aiHolder/wanderer"
+	ai_type = "/datum/aiHolder/wanderer";
+	dir = 4
 	},
 /turf/space/gehenna/desert,
 /area/titlescreen)
 "VA" = (
 /mob/living/critter/grub/wildgrub{
-	dir = 8;
-	ai_type = "/datum/aiHolder/wanderer"
+	ai_type = "/datum/aiHolder/wanderer";
+	dir = 8
 	},
 /turf/space/gehenna/desert,
 /area/titlescreen)
@@ -758,7 +763,7 @@ ML
 dd
 CX
 nl
-jW
+FD
 OW
 Tf
 sZ
