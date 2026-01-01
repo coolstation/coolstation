@@ -103,6 +103,9 @@
 	var/list/stuff = splittext(params, " ")
 	var/mob/M = whois_ckey_to_mob_reference(stuff[1], FALSE)
 
+	if(sender.channel.custom_tag != "mentors")
+		return "this command is only for mentors. try it in the mentor channel."
+
 	if(stuff.len < 2)
 		return "uhh say something"
 
