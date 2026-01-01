@@ -718,6 +718,9 @@ var/f_color_selector_handler/F_Color_Selector
 	var/datum/prefab_shuttle/D = new
 	D.inialize_prefabs()
 
+#ifdef DESERT_MAP
+	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_grubranch.dmm')
+#endif
 	UPDATE_TITLE_STATUS("Ready")
 	boutput(world, "we good 2 go")
 	current_state = GAME_STATE_PREGAME
