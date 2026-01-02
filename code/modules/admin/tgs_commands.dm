@@ -184,7 +184,7 @@
 		for (var/aMentor in whoMentors)
 			rendered += " [aMentor],"
 	if (whoNormies.len)
-		rendered += "\n **Normal:</b>**"
+		rendered += "\n **Normal:**"
 		for (var/aNormie in whoNormies)
 			rendered += " [aNormie],"
 
