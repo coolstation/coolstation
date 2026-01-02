@@ -494,7 +494,8 @@ ABSTRACT_TYPE(/datum/train_preset)
 /datum/train_conductor/proc/sound_horn()
 	if(!src.horn_sound || !src.train_z || !src.train_front_y)
 		return
-	playsound(locate(clamp(src.train_front_x, src.train_unload_x, src.train_not_yet_loaded_x), src.train_front_y, src.train_z), pick(src.horn_sound), 50, 1, SOUND_RANGE_LARGE)
+	if(locate(/obj/traincar/NT_engine) in src.cars)
+		playsound(locate(clamp(src.train_front_x, src.train_unload_x, src.train_not_yet_loaded_x), src.train_front_y, src.train_z), pick(src.horn_sound), 50, 1, SOUND_RANGE_LARGE)
 
 /datum/train_conductor/proc/train_loop()
 	if(QDELETED(src)) // ah hell nah
