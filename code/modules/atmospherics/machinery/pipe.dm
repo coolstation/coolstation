@@ -85,8 +85,8 @@ obj/machinery/atmospherics/pipe
 		var/obj/machinery/atmospherics/node1
 		var/obj/machinery/atmospherics/node2
 
-		var/minimum_temperature_difference = 300
-		var/thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
+		var/minimum_temperature_difference = 3000
+		var/thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT*0.2
 
 		var/fatigue_pressure = 150*ONE_ATMOSPHERE
 
