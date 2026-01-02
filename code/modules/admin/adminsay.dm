@@ -26,7 +26,7 @@
 	ircmsg["msg"] = html_decode(msg)
 	ircbot.export("asay", ircmsg)
 
-	discord_send("ASAY ([src.key]): [msg]","centcom")
+	discord_send("*ASAY* ([src.key]): [msg]","centcom")
 
 /client/proc/cmd_admin_forceallsay(msg as text)
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
