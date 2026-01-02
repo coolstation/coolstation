@@ -103,14 +103,14 @@
 //////////// MAP OVERRIDES
 
 //----------------- Maps that are being maintained and fully playable -----------------//
-#define MAP_OVERRIDE_BAYOUBEND 	            // low to midpop scrapping map by Klushy225
+//#define MAP_OVERRIDE_BAYOUBEND 	            // low to midpop scrapping map by Klushy225
 //#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
 //#define MAP_OVERRIDE_CRAG				// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
-//#define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
+#define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
 
 //----------------- Maps that are work in progress and not feature complete -----------------//
 //#define MAP_OVERRIDE_BOBMAP 			// "to be renamed" map by ReginaldHJ
