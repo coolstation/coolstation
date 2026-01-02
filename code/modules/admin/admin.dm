@@ -4535,6 +4535,13 @@ var/global/noir = 0
 		logTheThing("admin", usr, null, ": [message]")
 		logTheThing("diary", usr, null, ": [message]", "admin")
 
+/datum/admins/proc/trains()
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	set name = "Trains"
+	set desc = "Train control panel"
+
+	train_spotter.config()
+
 /datum/admins/proc/startnow()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
 	set desc="Start the round RIGHT NOW"
