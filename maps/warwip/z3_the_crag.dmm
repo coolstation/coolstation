@@ -1514,7 +1514,6 @@
 	pixel_y = 7;
 	print_id = "Command"
 	},
-/obj/machinery/power/data_terminal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/cable{
 	d2 = 2;
@@ -7689,11 +7688,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/disposalpipe/segment/bent/west,
-/obj/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/floor/grey,
 /area/station/bridge)
 "zC" = (
@@ -8378,6 +8372,7 @@
 	pixel_x = 1;
 	pixel_y = 7
 	},
+/obj/machinery/power/data_terminal,
 /turf/floor/grey,
 /area/station/bridge)
 "BR" = (
@@ -8981,6 +8976,7 @@
 	desc = "Clearly a custom job, this much pork-based-pseudo-mahogany in materials alone would be 10,000 credits";
 	name = "extremely expensive custom hogany wrap-around table"
 	},
+/obj/machinery/power/data_terminal,
 /turf/floor/grey,
 /area/station/bridge)
 "DJ" = (
