@@ -177,11 +177,11 @@
 	spawn_contents = list(/obj/item/clothing/under/rank/engineer = 4,
 	/obj/item/clothing/shoes/orange = 4)
 
-/obj/storage/closet/wardrobe/red/security_gimmick
+/obj/storage/closet/wardrobe/red/security_gimmick //we should cut this down and put these outfits elsewhere.
 	name = "\improper Security wardrobe"
 	spawn_contents = list(/obj/item/clothing/shoes/brown = 4,
-	/obj/item/clothing/under/color/red,
-	/obj/item/clothing/under/gimmick/police,
+	/obj/item/clothing/under/color/red = 2,
+	///obj/item/clothing/under/gimmick/police,
 	/obj/item/clothing/under/misc/head_of_security,
 	/obj/item/clothing/under/misc/tourist,
 	/obj/item/clothing/under/misc/tourist/max_payne,
@@ -190,11 +190,12 @@
 	/obj/item/clothing/head/serpico,
 	/obj/item/clothing/head/red,
 	/obj/item/clothing/head/flatcap,
-	/obj/item/clothing/head/policecap,
-	/obj/item/clothing/head/helmet/bobby,
-	/obj/item/clothing/head/helmet/siren = 2,
-	/obj/item/clothing/head/sec = 3,
-	/obj/item/clothing/under/rank/security/suit = 3)
+	///obj/item/clothing/head/policecap,
+	///obj/item/clothing/head/helmet/bobby,
+	/obj/item/clothing/head/helmet/siren = 1,
+	/obj/item/clothing/head/sec = 1,
+	/obj/item/clothing/under/rank/security/suit = 1,
+	/obj/item/clothing/under/rank/security = 2)
 
 /obj/storage/closet/wardrobe/white/medical
 	name = "\improper Medical wardrobe"

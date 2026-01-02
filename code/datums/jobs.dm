@@ -287,15 +287,17 @@ ABSTRACT_TYPE(/datum/job/command)
 	items_in_backpack = list(/obj/item/device/flash)
 
 	//hos can spawn with everything, no big deal
-#ifdef MAP_OVERRIDE_BAYOUBEND
+//#ifdef MAP_OVERRIDE_BAYOUBEND
 	slot_back = list(/obj/item/storage/backpack/satchel/withO2)
 	slot_jump = list(/obj/item/clothing/under/rank/security/suit)
 	slot_glov = list(/obj/item/clothing/gloves/latex)
+/*
 #else
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_jump = list(/obj/item/clothing/under/rank/head_of_securityold)
 	slot_suit = list(/obj/item/clothing/suit/armor/vest)
 #endif
+*/
 	slot_belt = list(/obj/item/storage/belt/security/HoS)
 	slot_poc1 = list(/obj/item/device/pda2/hos)
 	slot_poc2 = list(/obj/item/instrument/whistle) //replaces sec starter kit
@@ -534,16 +536,18 @@ ABSTRACT_TYPE(/datum/job/security)
 	cant_spawn_as_con = 1
 	cant_spawn_as_rev = 1
 	receives_badge = 1
-#ifdef MAP_OVERRIDE_BAYOUBEND
+//#ifdef MAP_OVERRIDE_BAYOUBEND
 	slot_back = list(/obj/item/storage/backpack/satchel/withO2)
 	slot_jump = list(/obj/item/clothing/under/rank/security/suit)
 	slot_head = list(/obj/item/clothing/head/sec)
 	slot_glov = list(/obj/item/clothing/gloves/latex)
+/*
 #else
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_jump = list(/obj/item/clothing/under/rank/security)
 #endif
-	//slot_suit = list(/obj/item/clothing/suit/armor/vest)
+*/
+	//slot_suit = list(/obj/item/clothing/suit/armor/vest) they get a badge
 	slot_belt = list(/obj/item/storage/belt/security/enhanced)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
 	slot_ears = list(/obj/item/device/radio/headset/security)
