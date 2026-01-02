@@ -65,6 +65,7 @@ var/list/server_toggles_tab_verbs = list(\
 /datum/admins/proc/adrev,\
 /datum/admins/proc/toggle_deadchat,\
 /datum/admins/proc/toggle_farting,\
+/datum/admins/proc/toggle_pooping,\
 /datum/admins/proc/toggle_ferting,\
 /datum/admins/proc/toggle_blood_system,\
 /datum/admins/proc/toggle_bone_system,\
@@ -670,6 +671,21 @@ var/global/IP_alerts = 1
 	logTheThing("admin", usr, null, "toggled Farting [farting_allowed ? "on" : "off"].")
 	logTheThing("diary", usr, null, "toggled Farting [farting_allowed ? "on" : "off"].", "admin")
 	message_admins("[key_name(usr)] toggled Farting [farting_allowed ? "on" : "off"]")
+
+//sometimes people can't behave or we need to be fancy and grownup
+/datum/admins/proc/toggle_pooping()
+	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)
+	set desc = "Toggle Poo on or off."
+	set name = "Toggle Poo"
+	NOT_IF_TOGGLES_ARE_OFF
+	pooping_allowed = !( pooping_allowed )
+	if (pooping_allowed)
+		boutput(world, "<B>Poo has been enabled.</B>")
+	else
+		boutput(world, "<B>Poo has been disabled.</B>")
+	logTheThing("admin", usr, null, "toggled Poo [pooping_allowed ? "on" : "off"].")
+	logTheThing("diary", usr, null, "toggled Poo [pooping_allowed ? "on" : "off"].", "admin")
+	message_admins("[key_name(usr)] toggled Poo [pooping_allowed ? "on" : "off"]")
 
 /datum/admins/proc/toggle_ferting()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER_TOGGLES)

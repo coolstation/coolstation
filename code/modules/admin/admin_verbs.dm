@@ -150,6 +150,7 @@ var/list/admin_verbs = alist(
 
 		//toggles
 		/datum/admins/proc/toggle_farting,
+		/datum/admins/proc/toggle_pooping,
 		/datum/admins/proc/toggle_emote_random_pitch,
 		/datum/admins/proc/toggle_blood_system,
 		/datum/admins/proc/toggle_traitor_scaling,
