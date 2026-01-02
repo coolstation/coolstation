@@ -309,6 +309,7 @@ var/global
 	announce_banlogin = 1
 	announce_jobbans = 0
 	channel_open = 0 // is the channel collapsed or is it open?
+	json_enabled = 0 //disabling this for now, I don't think I intended to leave this on
 
 
 	outpost_destroyed = 0
