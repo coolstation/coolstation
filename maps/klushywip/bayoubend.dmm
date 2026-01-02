@@ -405,7 +405,6 @@
 /turf/wall,
 /area/station/storage/tech)
 "apv" = (
-/obj/machinery/computer3/generic/secure_data,
 /obj/cable{
 	icon_state = "0-4"
 	},
@@ -415,6 +414,9 @@
 	},
 /obj/machinery/power/data_terminal{
 	layer = 2
+	},
+/obj/stool/chair/office/red{
+	dir = 1
 	},
 /turf/floor,
 /area/station/security/main)
@@ -2226,12 +2228,11 @@
 	},
 /area/station/medical/medbay/surgery)
 "bHN" = (
-/obj/machinery/vending/security,
 /obj/machinery/alarm{
 	pixel_x = -32
 	},
 /turf/floor/red/side{
-	dir = 9
+	dir = 8
 	},
 /area/station/security/main)
 "bIf" = (
@@ -2425,6 +2426,10 @@
 	},
 /obj/machinery/power/apc/autoname/east,
 /obj/cable,
+/obj/item/storage/box/handcuff_kit{
+	pixel_x = -8;
+	pixel_y = 8
+	},
 /turf/floor/red/side{
 	dir = 4
 	},
@@ -4099,6 +4104,15 @@
 	},
 /turf/floor/carpet/arcade/half,
 /area/station/bridge/captain)
+"cYH" = (
+/obj/machinery/light/small/warm{
+	dir = 4
+	},
+/obj/machinery/vending/cigarette,
+/turf/floor/red/side{
+	dir = 5
+	},
+/area/station/security/main)
 "cYY" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -5648,7 +5662,9 @@
 /area/station/bridge/customs)
 "eic" = (
 /obj/table/reinforced/auto,
-/obj/machinery/recharger,
+/obj/item/paper/book/from_file/space_law{
+	pixel_x = -2
+	},
 /turf/floor,
 /area/station/security/main)
 "eih" = (
@@ -6625,6 +6641,14 @@
 /obj/machinery/light/small/harsh/very,
 /turf/floor/black,
 /area/station/turret_protected/ai_upload)
+"eTs" = (
+/obj/disposalpipe/segment/brig{
+	dir = 4
+	},
+/obj/table/reinforced/auto,
+/obj/machinery/phone,
+/turf/floor,
+/area/station/security/main)
 "eUj" = (
 /obj/machinery/atmospherics/pipe/simple/insulated,
 /obj/decal/tile_edge/stripe/extra_big,
@@ -9389,9 +9413,6 @@
 	},
 /area/station/crew_quarters/catering)
 "gNq" = (
-/obj/stool/chair/office/red{
-	dir = 1
-	},
 /obj/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
@@ -13198,9 +13219,10 @@
 /obj/disposalpipe/segment/bent{
 	dir = 4
 	},
-/turf/floor/red/side{
-	dir = 1
+/obj/stool/chair/red{
+	dir = 4
 	},
+/turf/floor,
 /area/station/security/main)
 "jEJ" = (
 /obj/machinery/portable_reclaimer,
@@ -15505,6 +15527,15 @@
 	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
+"liQ" = (
+/obj/disposalpipe/segment/brig{
+	dir = 4
+	},
+/obj/stool/chair/red{
+	dir = 8
+	},
+/turf/floor,
+/area/station/security/main)
 "liZ" = (
 /obj/table/auto,
 /obj/table/auto,
@@ -16217,7 +16248,11 @@
 /area/space)
 "lJu" = (
 /obj/table/reinforced/auto,
-/obj/item/paper/book/from_file/space_law,
+/obj/item/kitchen/food_box/donut_box{
+	desc = "It appears to be a Martian brand of donuts.";
+	name = "Robust Donuts";
+	pixel_y = 4
+	},
 /turf/floor,
 /area/station/security/main)
 "lJI" = (
@@ -16798,9 +16833,8 @@
 /area/station/crew_quarters/baroffice)
 "mgK" = (
 /obj/table/reinforced/auto,
-/obj/item/stamp/law,
-/obj/item/storage/box/handcuff_kit{
-	pixel_x = -15
+/obj/item/stamp/law{
+	pixel_y = 4
 	},
 /turf/floor,
 /area/station/security/main)
@@ -16828,12 +16862,6 @@
 /turf/floor,
 /area/station/hallway/primary/south)
 "mhy" = (
-/obj/table/reinforced/auto,
-/obj/item/kitchen/food_box/donut_box{
-	desc = "It appears to be a Martian brand of donuts.";
-	name = "Robust Donuts";
-	pixel_y = 4
-	},
 /obj/cable{
 	icon_state = "4-8"
 	},
@@ -20973,6 +21001,12 @@
 	dir = 6
 	},
 /area/station/science/artifact)
+"pkR" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/red/side{
+	dir = 1
+	},
+/area/station/security/main)
 "pla" = (
 /obj/machinery/mass_driver{
 	dir = 8;
@@ -21744,6 +21778,12 @@
 /area/station/storage/emergency)
 "pKY" = (
 /obj/decal/cleanable/dirt/random,
+/obj/stool/chair/red{
+	dir = 8
+	},
+/obj/landmark/start{
+	name = "Security Officer"
+	},
 /turf/floor,
 /area/station/security/main)
 "pLb" = (
@@ -21985,8 +22025,9 @@
 	},
 /area/station/hallway/secondary/exit)
 "pRK" = (
-/obj/table/reinforced/auto,
-/obj/machinery/phone,
+/obj/machinery/computer3/generic/secure_data{
+	dir = 1
+	},
 /turf/floor,
 /area/station/security/main)
 "pRS" = (
@@ -23095,14 +23136,14 @@
 	name = "Convienence Store"
 	})
 "qEu" = (
-/obj/stool/chair/red,
-/obj/landmark/start{
-	name = "Security Officer"
-	},
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/stool/chair/red,
+/obj/landmark/start{
+	name = "Security Officer"
 	},
 /turf/floor,
 /area/station/security/main)
@@ -24527,13 +24568,9 @@
 /turf/wall/auto/rivet,
 /area/station/maintenance/northwest)
 "ryn" = (
-/obj/stool/chair/red{
-	dir = 8
+/turf/floor/red/side{
+	dir = 1
 	},
-/obj/landmark/start{
-	name = "Security Officer"
-	},
-/turf/floor,
 /area/station/security/main)
 "ryv" = (
 /obj/landmark/gps_waypoint,
@@ -24745,6 +24782,9 @@
 	},
 /obj/stool/bed/brig,
 /obj/item/clothing/suit/bedsheet/red,
+/obj/landmark/start{
+	name = "Security Assistant"
+	},
 /turf/floor/carpet/grime,
 /area/station/security/secoffquarters)
 "rGe" = (
@@ -25994,12 +26034,6 @@
 	},
 /area/station/mining/cargo_staff_room)
 "sDd" = (
-/obj/stool/chair/red{
-	dir = 4
-	},
-/obj/landmark/start{
-	name = "Security Assistant"
-	},
 /obj/cable{
 	icon_state = "1-8"
 	},
@@ -29161,6 +29195,16 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/west)
+"uRp" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/red/side{
+	dir = 1
+	},
+/area/station/security/main)
 "uRC" = (
 /obj/lattice{
 	dir = 4;
@@ -31029,11 +31073,11 @@
 /turf/wall,
 /area/station/maintenance/northeast)
 "wns" = (
-/obj/machinery/vending/cigarette,
 /obj/disposalpipe/segment/brig,
 /obj/machinery/light/emergency{
 	dir = 4
 	},
+/obj/decal/cleanable/dirt/random,
 /turf/floor/red/side{
 	dir = 4
 	},
@@ -31394,9 +31438,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/red/side{
-	dir = 1
-	},
+/turf/floor,
 /area/station/security/main)
 "wyr" = (
 /obj/decal/poster/wallsign/escape_right,
@@ -31914,9 +31956,9 @@
 /obj/disposalpipe/segment/brig{
 	dir = 4
 	},
-/turf/floor/red/side{
-	dir = 1
-	},
+/obj/table/reinforced/auto,
+/obj/machinery/recharger,
+/turf/floor,
 /area/station/security/main)
 "wUn" = (
 /obj/landmark/gps_waypoint,
@@ -31967,6 +32009,12 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
+"wVq" = (
+/obj/machinery/vending/security,
+/turf/floor/red/side{
+	dir = 9
+	},
+/area/station/security/main)
 "wVE" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -55584,6 +55632,7 @@ ipT
 ipT
 ipT
 dxW
+jKL
 ipT
 ipT
 ipT
@@ -55592,7 +55641,6 @@ ipT
 ipT
 ipT
 jKL
-ipT
 ipT
 ipT
 ipT
@@ -68526,13 +68574,13 @@ ipT
 qfS
 ipT
 ipT
-ipT
 cks
 fYl
 lZd
 pQT
 loy
 gIA
+kVb
 kVb
 oQh
 cBz
@@ -68828,13 +68876,13 @@ ipT
 qfS
 ipT
 ipT
-ipT
 cks
 fYl
 spu
 ved
 gZQ
 fYl
+wVq
 bHN
 svu
 eya
@@ -69130,13 +69178,13 @@ ipT
 qfS
 ipT
 ipT
-ipT
 cks
 fYl
 xlv
 nlP
 dqI
 hvB
+uRp
 jEA
 iTM
 qEu
@@ -69432,13 +69480,13 @@ ipT
 qfS
 ipT
 ipT
-ipT
 cks
 fYl
 kwt
 cXY
 iXK
 fYl
+ryn
 wUj
 eic
 lJu
@@ -69734,14 +69782,14 @@ cxd
 ecz
 aaB
 aaB
-aaB
 bdG
 bdG
 bdG
 bdG
 bdG
 bdG
-wUj
+ryn
+eTs
 mgK
 pRK
 apv
@@ -70037,15 +70085,15 @@ ipT
 ipT
 ipT
 ipT
-ipT
 fCi
 thn
 sKd
 auX
 bdG
-wUj
+pkR
+liQ
 pKY
-ryn
+iPE
 wEZ
 cfN
 xqD
@@ -70339,12 +70387,12 @@ ipT
 ipT
 ipT
 ipT
-ipT
 fCi
 tll
 tll
 cOk
 cTz
+uRp
 wyq
 wNK
 fvj
@@ -70641,12 +70689,12 @@ ipT
 ipT
 ipT
 ipT
-ipT
 fCi
 gnE
 rFW
 geH
 bdG
+cYH
 mKy
 wns
 rpS
@@ -70942,13 +70990,13 @@ cxd
 mVx
 aaB
 aaB
-aaB
 bdG
 bdG
 bdG
 bdG
 bdG
 bdG
+hGC
 gEu
 hGC
 hGC
