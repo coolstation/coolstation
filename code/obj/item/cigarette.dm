@@ -644,6 +644,28 @@
 			return ..()
 		return
 
+	attack_self(var/mob/user as mob)
+		if (src.cigcount == 0)
+			user.show_text("Alas, it appears there are no cigarettes remaining in this packet. What a pity", "red")
+			return
+		else
+			var/obj/item/clothing/mask/cigarette/W = new src.cigtype(user)
+
+			if (src.cigcount != -1)
+				src.cigcount--
+
+			W.light(user)
+
+			if (user.put_in_hand(W))
+				playsound(user.loc, 'sound/items/matchstick_light.ogg', 50, 1)
+				user.visible_message("[user] flicks a cigarette out of [src] into [his_or_her(user)] empty hand, automatically lighting it in the process. Now <em>that</em> is fancy.", "You stylishly flick a cig out of [src] into your other hand. It ignites as it leaves the packet. You are the most important person alive.")
+			else
+				playsound(user.loc, 'sound/items/matchstick_light.ogg', 50, 1)
+				W.set_loc(get_turf(user))
+				user.show_text("You flick a cigarette out of [src], igniting as it exits the packet and falls to the ground.", "red")
+
+			src.update_icon()
+
 /obj/item/cigpacket/greasy
 	name = "greasy cigarette packet"
 	desc = "Big Papa XL's old-fashioned Double Greased! The label on the slightly translucent packet proclaims these cigarettes to be sopping wet."
