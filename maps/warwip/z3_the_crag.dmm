@@ -1264,7 +1264,10 @@
 /area/station/security/brig/south_side)
 "dM" = (
 /obj/machinery/vending/gunse{
-	pixel_y = 3
+	acceptcard = 0;
+	desc = "Nanotrasen Official Gunse storage unit.";
+	name = "NanoGunse - Corporate";
+	pay = 0
 	},
 /turf/floor/industrial,
 /area/station/security/armory)
@@ -14366,6 +14369,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/access_spawn/heads,
 /turf/floor/darkblue,
 /area/station/bridge)
 "VR" = (

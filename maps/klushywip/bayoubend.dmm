@@ -2369,8 +2369,8 @@
 /turf/space,
 /area/station/shipyard)
 "bMC" = (
-/obj/wingrille_spawn/reinforced,
 /obj/decal/poster/wallsign/barber,
+/obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/crew_quarters/barber_shop)
 "bMQ" = (
@@ -2387,7 +2387,7 @@
 /turf/floor/airless/solar,
 /area/station/solar/north)
 "bNb" = (
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/crew_quarters/kitchen)
 "bNo" = (
@@ -3085,7 +3085,7 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "cke" = (
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/crew_quarters/arcade)
 "ckl" = (
@@ -4152,7 +4152,7 @@
 /turf/floor,
 /area/station/storage/eva)
 "dah" = (
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/crew_quarters/market)
 "daA" = (
@@ -4487,6 +4487,13 @@
 /obj/firedoor_spawn,
 /turf/floor/plating/random,
 /area/station/medical/medbay)
+"dpU" = (
+/obj/wingrille_spawn,
+/turf/floor/plating,
+/area/station/quartermaster/cargooffice/storefront{
+	mail_tag = "Conveience Store";
+	name = "Convienence Store"
+	})
 "dpZ" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -7634,7 +7641,7 @@
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
 "fGu" = (
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/hallway/primary/west)
 "fGR" = (
@@ -9002,6 +9009,10 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quartersA)
+"gAU" = (
+/obj/wingrille_spawn,
+/turf/floor/plating,
+/area/station/chapel/sanctuary)
 "gAX" = (
 /obj/machinery/defib_mount{
 	pixel_y = 4
@@ -10080,10 +10091,10 @@
 /turf/space,
 /area/station/solar/north)
 "hlU" = (
-/obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/quartermaster/cargooffice/storefront{
 	mail_tag = "Conveience Store";
@@ -12435,6 +12446,10 @@
 /area/station/hallway/primary/north{
 	name = "Judgement Cage"
 	})
+"iWK" = (
+/obj/wingrille_spawn,
+/turf/floor/plating,
+/area/station/construction)
 "iWP" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -18587,8 +18602,8 @@
 	},
 /area/station/bridge/customs)
 "nAP" = (
-/obj/wingrille_spawn/reinforced,
 /obj/window_blinds,
+/obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/library)
 "nBk" = (
@@ -20362,7 +20377,7 @@
 /turf/floor/wood/five,
 /area/station/chapel/sanctuary)
 "oLW" = (
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/crew_quarters/barber_shop)
 "oNf" = (
@@ -22393,6 +22408,16 @@
 /obj/machinery/vending/minibar/jank,
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
+"qcQ" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/glass,
+/obj/firedoor_spawn,
+/turf/floor,
+/area/station/hallway/primary/south)
 "qcY" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -23729,6 +23754,13 @@
 /obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/engine,
 /area/station/engine/core)
+"qWt" = (
+/obj/machinery/door/airlock/external,
+/obj/airlock_cycle_linker{
+	cycle_id = "scrap"
+	},
+/turf/floor/plating/random,
+/area/station/hallway/primary/south)
 "qWC" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -28003,6 +28035,13 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/sanitary/blue,
 /area/station/medical/morgue)
+"tVu" = (
+/obj/pathlights/shuttle{
+	dir = 1
+	},
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/station/hallway/primary/south)
 "tVH" = (
 /obj/item/suture{
 	pixel_x = -10;
@@ -29901,6 +29940,13 @@
 /obj/machinery/light/fluorescent/ceiling/warm,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quartersA)
+"vrY" = (
+/obj/machinery/door/airlock/external,
+/obj/airlock_cycle_linker{
+	cycle_id = "scrap"
+	},
+/turf/floor/plating/random,
+/area/station/shipyard)
 "vsT" = (
 /obj/cable{
 	d1 = 1;
@@ -32273,7 +32319,7 @@
 /turf/floor/plating,
 /area/station/medical/research)
 "xhg" = (
-/obj/wingrille_spawn/reinforced,
+/obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/mining/staff_room{
 	name = "Cargo Barracks"
@@ -33680,6 +33726,11 @@
 "yjO" = (
 /turf/wall/asteroid/dark,
 /area/ghostdrone_factory)
+"yjP" = (
+/obj/machinery/door/airlock/glass,
+/obj/firedoor_spawn,
+/turf/floor,
+/area/station/hallway/primary/south)
 "yjZ" = (
 /obj/shrub{
 	dir = 1;
@@ -70444,13 +70495,13 @@ lqN
 dXU
 rUz
 dXU
-cai
+qWt
 nNl
 nNl
 jVa
 nNl
 nNl
-oeb
+vrY
 dRi
 dRi
 dRi
@@ -70746,13 +70797,13 @@ ktx
 ktx
 jRo
 dXU
-cai
+hwz
 gRV
 nNl
 nNl
 nNl
 gRV
-oeb
+pAM
 dRi
 dRi
 mwZ
@@ -73420,7 +73471,7 @@ vvl
 uky
 uky
 eZi
-kcM
+gAU
 pZK
 gOe
 ahu
@@ -73722,7 +73773,7 @@ cso
 bUi
 eVz
 rEz
-kcM
+gAU
 vum
 ubw
 vTS
@@ -74930,7 +74981,7 @@ pmC
 uUJ
 ndD
 aFX
-kcM
+gAU
 vum
 iKR
 qBM
@@ -74974,7 +75025,7 @@ wBR
 dXU
 fgu
 dXU
-mZS
+iWK
 nOe
 uXL
 rwu
@@ -75232,7 +75283,7 @@ uky
 run
 fER
 aFX
-kcM
+gAU
 vum
 tMY
 qBM
@@ -75268,7 +75319,7 @@ aFU
 dXU
 pqW
 dXU
-dXU
+yjP
 dXU
 sdQ
 hhx
@@ -75570,7 +75621,7 @@ aFU
 sRb
 sry
 sry
-sry
+tVu
 sry
 sry
 sgD
@@ -75872,7 +75923,7 @@ gqF
 rAA
 ccY
 ccY
-ccY
+qcQ
 ccY
 ccY
 ddz
@@ -75880,7 +75931,7 @@ sHI
 fUV
 sZT
 dXU
-mZS
+iWK
 fUD
 nOe
 qQA
@@ -76175,13 +76226,13 @@ maB
 aas
 sjp
 uTA
-jve
-jve
+dpU
+dpU
 qKq
 iEf
 uTA
-jve
-jve
+dpU
+dpU
 eLe
 wRT
 wxg
@@ -76777,7 +76828,7 @@ wmZ
 xzr
 maB
 aas
-jve
+dpU
 aSP
 qlC
 aSP
@@ -77079,7 +77130,7 @@ wmZ
 xzr
 kKP
 aas
-jve
+dpU
 aSP
 mYl
 jxD
@@ -77381,7 +77432,7 @@ wmZ
 fXC
 maB
 aas
-jve
+dpU
 nzD
 aSP
 cql
@@ -77683,7 +77734,7 @@ wmZ
 xzr
 maB
 aas
-jve
+dpU
 nDK
 ews
 uFx
@@ -77986,14 +78037,14 @@ jZC
 uNh
 bxg
 ngg
-jve
-jve
+dpU
+dpU
 hlU
 uTA
 rLR
 tgQ
-jve
-jve
+dpU
+dpU
 uTA
 uTA
 uTA

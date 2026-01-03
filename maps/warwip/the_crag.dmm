@@ -687,6 +687,7 @@
 /area/shuttle/merchant_shuttle/left_station/cogmap)
 "bV" = (
 /obj/machinery/light,
+/obj/storage/closet/office,
 /turf/floor,
 /area/station/maintenance/central)
 "bW" = (
@@ -3253,6 +3254,10 @@
 /obj/machinery/atmospherics/portables_connector/east,
 /turf/floor/plating,
 /area/station/atmos/hookups/west)
+"iC" = (
+/obj/storage/closet/office,
+/turf/floor/carpet/arcade/blank,
+/area/station/chapel/sanctuary)
 "iD" = (
 /obj/machinery/atmospherics/pipe/vertical_pipe/west{
 	target_z = 3
@@ -7783,13 +7788,13 @@
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quarters_east)
 "ux" = (
-/obj/table/reinforced/auto,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 9;
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/storage/closet/office,
 /turf/floor/yellow/side{
 	dir = 4
 	},
@@ -10364,7 +10369,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/maintenance,
-/obj/access_spawn/maint,
+/obj/access_spawn/tox,
+/obj/firedoor_spawn,
 /turf/floor/plating,
 /area/station/science/gen_storage)
 "Bq" = (
@@ -59014,7 +59020,7 @@ le
 le
 DO
 le
-le
+iC
 Di
 go
 OF
