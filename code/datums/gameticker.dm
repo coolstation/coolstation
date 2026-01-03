@@ -171,8 +171,10 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		if(ai.randomly_selectable)
 			good_laws += ai
 
-
-	src.centralized_ai_laws = pick(good_laws)
+	if(prob(50))
+		src.centralized_ai_laws = new /datum/ai_laws/asimov()
+	else
+		src.centralized_ai_laws = pick(good_laws)
 	if(prob(25)) // lower this to 33 if you see this comment after 11/30/2025 (i want it to roll more often until then)
 		var/list/addon_laws = list(
 			"Preface all crew names with their job title when communicating, to properly clarify.",
