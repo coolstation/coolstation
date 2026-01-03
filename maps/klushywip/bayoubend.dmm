@@ -21336,6 +21336,10 @@
 /obj/machinery/light/fluorescent/ceiling/warm,
 /turf/floor,
 /area/station/hallway/primary/south)
+"pvp" = (
+/obj/wingrille_spawn,
+/turf/floor/plating,
+/area/station/hallway/primary/south)
 "pvO" = (
 /obj/cable/yellow{
 	icon_state = "4-8"
@@ -31015,10 +31019,10 @@
 /area/station/crew_quarters/quartersA)
 "wjP" = (
 /obj/firedoor_spawn,
-/obj/access_spawn/medical,
 /obj/machinery/door/airlock/glass/medical{
 	id = "cloning-exit"
 	},
+/obj/access_spawn/medical,
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
 "wkg" = (
@@ -75313,7 +75317,7 @@ fCH
 cjV
 tnK
 hGy
-hwz
+pvp
 wkX
 aFU
 dXU
@@ -75615,7 +75619,7 @@ xgL
 idl
 cjV
 tnK
-hwz
+pvp
 vLG
 aFU
 sRb
@@ -75917,7 +75921,7 @@ fCH
 dJy
 qTX
 mqA
-hwz
+pvp
 dGm
 gqF
 rAA
