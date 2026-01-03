@@ -394,6 +394,20 @@
 	desc = "A cigarette that appears to have been ... dipped in grease? It's almost dripping!"
 	flavor = "grease"
 
+/obj/item/clothing/mask/cigarette/luxury
+	name = "Excelsior Luxury cigarette"
+	desc = "This single cigarette costs more than your entire paycheck."
+	icon_state = "ciglx"
+	litstate = "ciglxlit"
+	buttstate = "ciglxbutt"
+	buttdesc = "It's not a butt. Don't call it a butt."
+	buttname = "Excelsior Luxury Stub"
+	//need to find an 'expensive' flavor
+	New()
+		src.on = TRUE
+		src.setMaterial(getMaterial("gold"), appearance = 0, setname = 0)
+		return ..()
+
 /obj/item/clothing/mask/cigarette/ilgallo
 	name = "Il Gallo cigarette"
 	desc = "A cigarette that appears to have been infused with genuine space parmesan."
@@ -589,6 +603,46 @@
 	cigtype = /obj/item/clothing/mask/cigarette/random
 	icon_state = "cigpacket-p"
 	package_style = "cigpacket-p"
+
+/obj/item/cigpacket/luxury
+	name = "Excelsior Luxury cigarette packet"
+	desc = "The most expensive cigarette for the most expensive taste. Excelsior Luxury. Accept no substitution.<br>This packet has a self-lighting match mechanism built into every cigarette. It's the fanciest thing you've seen in your entire life."
+	cigtype = /obj/item/clothing/mask/cigarette/luxury
+	icon_state = "cigpacket-lx"
+	package_style = "cigpacket-lx"
+
+	//fuck it, sparkle
+	New()
+		src.setMaterial(getMaterial("gold"), appearance = 0, setname = 0)
+		return ..()
+
+	update_icon()
+		src.overlays = null
+		if (src.cigcount <= 0)
+			src.icon_state = "[src.package_style]0"
+			src.desc = "The entire complement of cigarettes in this packet has been exhausted."
+		else
+			src.icon_state = "[src.package_style]o"
+			src.overlays += "ciglx[src.cigcount]"
+		return
+
+	attack_hand(mob/user as mob)
+		if (user.find_in_hand(src))//r_hand == src || user.l_hand == src)
+			if (src.cigcount == 0)
+				user.show_text("Alas, it appears there are no cigarettes remaining in this packet. What a pity.", "red")
+				return
+			else
+				var/obj/item/clothing/mask/cigarette/W = new src.cigtype(user)
+				user.put_in_hand_or_drop(W)
+				playsound(user.loc, 'sound/items/matchstick_light.ogg', 50, 1)
+				W.light(user)
+				user.visible_message("[user]'s [src] automatically lights [W] as it's pulled out of the packet. Now <em>that</em> is fancy.", "You pull a cigarette from [src] and the friction causes it to light itself. The perks of fabulous wealth.")
+				if (src.cigcount != -1)
+					src.cigcount--
+			src.update_icon()
+		else
+			return ..()
+		return
 
 /obj/item/cigpacket/greasy
 	name = "greasy cigarette packet"
