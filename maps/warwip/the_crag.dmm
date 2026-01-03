@@ -9049,6 +9049,12 @@
 	icon_state = "on";
 	on = 1
 	},
+/obj/machinery/sparker{
+	id = "tox_ignition2";
+	layer = 7;
+	name = "Mounted Igniter";
+	pixel_x = 21
+	},
 /turf/floor/airless/engine/vacuum,
 /area/station/science/lab)
 "xO" = (
@@ -14937,6 +14943,11 @@
 	pixel_x = -24
 	},
 /obj/item/crowbar/red,
+/obj/machinery/ignition_switch{
+	id = "tox_ignition2";
+	pixel_x = -24;
+	pixel_y = 10
+	},
 /turf/floor,
 /area/station/science/lab)
 "NB" = (
@@ -19197,6 +19208,11 @@
 	name = "autoname - SS13";
 	tag = ""
 	},
+/obj/machinery/ignition_switch{
+	id = "tox_ignition1";
+	pixel_x = 24;
+	pixel_y = 10
+	},
 /turf/floor,
 /area/station/science/lab)
 "YU" = (
@@ -19339,6 +19355,13 @@
 	dir = 8;
 	icon_state = "on";
 	on = 1
+	},
+/obj/machinery/sparker{
+	id = "tox_ignition1";
+	layer = 7;
+	name = "Mounted Igniter";
+	pixel_x = -18;
+	dir = 8
 	},
 /turf/floor/airless/engine/vacuum,
 /area/station/science/lab)
