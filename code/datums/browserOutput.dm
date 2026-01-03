@@ -205,6 +205,7 @@ var/global
 				message_admins("[key_name(src.owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
 				logTheThing("debug", src.owner, null, "has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
 				logTheThing("diary", src.owner, null, "has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])", "debug")
+				discord_send("[src.key] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])", "centcom")
 
 				//Irc message too
 				if(owner)
