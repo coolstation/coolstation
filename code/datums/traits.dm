@@ -1,6 +1,6 @@
 //Unlockable traits? tied to achievements?
 #define TRAIT_STARTING_POINTS 1 //How many "free" points you get
-#define TRAIT_MAX 7			    //How many traits people can select at most.
+#define TRAIT_MAX 69			    //How many traits people can select at most.
 
 /proc/getTraitById(var/id)
 	. = traitList[id]
