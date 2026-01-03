@@ -196,6 +196,11 @@
 		src.current_receipt_subtotal = 0
 		src.receipt_serv_chg_total   = 0
 
+		if(prob(5))
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad, 1)
+		else if(prob(5))
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/hotdogs, 1)
+
 	proc/addToReceipt(productName, productCost, serviceCharge)
 		if(!print_receipts)
 			return

@@ -27,6 +27,8 @@ datum/shuttle_controller
 					world << csound("sound/misc/shuttle_enroute_[timely].ogg")
 				else
 					world << csound("sound/misc/shuttle_enroute.ogg")
+			if(prob(5))
+				broadcast_controls.broadcast_start(new /datum/directed_broadcast/eaglestoryone, 1)
 
 		if (online)
 			if(direction == -1)
@@ -312,6 +314,8 @@ datum/shuttle_controller
 						DEBUG_MESSAGE("Done moving shuttle!")
 						settimeleft(SHUTTLETRANSITTIME)
 						boutput(world, "<B>The Emergency Shuttle has left for CentCom! It will arrive in [timeleft()/60] minute[s_es(timeleft()/60)]!</B>")
+
+						broadcast_controls.broadcast_start(new /datum/directed_broadcast/signoff, 1)
 
 						//deactivate guide lights
 						for_by_tcl(L, /obj/pathlights/shuttle)
