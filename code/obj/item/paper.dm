@@ -33,6 +33,7 @@
 	wear_image_icon = 'icons/mob/head.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "paper"
+	hitsound = null //need a very weak paper paff type sound
 	var/info = ""
 	var/stampable = 1
 	throwforce = 0
