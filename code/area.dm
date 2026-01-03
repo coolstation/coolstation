@@ -650,11 +650,15 @@ ABSTRACT_TYPE(/area/shuttle)
 	icon_state = "shuttle"
 	sound_group = "centcom"
 	is_centcom = 1
+	sound_loop_1 = 'sound/ambience/loop/Station_Background_Drone.ogg'
+	sound_loop_1_vol = 60
 
 /area/shuttle/escape/outpost
 	icon_state = "shuttle3"
 	sound_group = "centcom"
 	is_centcom = 1
+	sound_loop_1 = 'sound/ambience/loop/Station_Background_Drone.ogg'
+	sound_loop_1_vol = 60
 
 /area/shuttle/prison/
 	name = "Prison Shuttle"
@@ -785,6 +789,10 @@ ABSTRACT_TYPE(/area/shuttle/merchant_shuttle)
 	var/warp_dir = NORTH // fuck you
 	is_atmos_simulated = FALSE
 	is_construction_allowed = FALSE
+	sound_loop_1 = 'sound/ambience/loop/Station_Background_Drone.ogg'
+	sound_loop_1_vol = 100
+	sound_loop_2 = 'sound/ambience/loop/Wind_Low.ogg'
+	sound_loop_2_vol = 100
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
