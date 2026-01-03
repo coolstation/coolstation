@@ -398,6 +398,7 @@
 	name = "Excelsior Luxury cigarette"
 	desc = "This single cigarette costs more than your entire paycheck."
 	icon_state = "ciglx"
+	item_state = "ciglx"
 	litstate = "ciglxlit"
 	buttstate = "ciglxbutt"
 	buttdesc = "It's not a butt. Don't call it a butt."
