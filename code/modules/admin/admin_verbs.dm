@@ -65,6 +65,7 @@ var/list/admin_verbs = alist(
 		/datum/admins/proc/startnow,
 		/datum/admins/proc/delay_start,
 		/datum/admins/proc/delay_end,
+		/datum/admins/proc/trains,
 
 		/client/proc/toggle_station_name_changing,
 		/client/proc/cmd_admin_remove_all_labels,

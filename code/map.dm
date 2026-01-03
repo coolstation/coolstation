@@ -32,7 +32,7 @@ var/global/list/mapNames = list(
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
 	"La Noyade" = 		list("id" = "NOYADE",		"settings" = "noyade",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
-	"The Goon Station" =list("id" = "ALTBOX",		"settings" = "altbox",			"playerPickable" = 1),
+	"Altbox" 	=		list("id" = "ALTBOX",		"settings" = "altbox",			"playerPickable" = 1),
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),

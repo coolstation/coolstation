@@ -417,13 +417,13 @@
 // Security
 
 /obj/item/clothing/under/rank/security
-	name = "security uniform"
+	name = "security jumpsuit"
 	desc = "Is anyone who wears a jacket like that EVER good?"
 	icon_state = "security"
 	item_state = "security"
 
 	assistant
-		name = "security assistant uniform"
+		name = "security assistant jumpsuit"
 		desc = "Wait, is that velcro?"
 		icon_state = "security-assistant"
 		item_state = "security-assistant"
@@ -433,6 +433,8 @@
 		item_state = "security-alt"
 
 	suit
+		name = "security uniform"
+		desc = "The buttons are not shining!!!"
 		icon_state = "security-suit"
 		item_state = "security-suit"
 

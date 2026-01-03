@@ -400,6 +400,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			music_sound.volume = client_vol
 			C << music_sound
 
+	discord_send("Round starting in 2 minutes on [getMapNameFromID(map_setting)]!","game-updates")
+
 /datum/controller/gameticker
 	proc/distribute_jobs()
 		DivideOccupations()

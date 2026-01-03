@@ -68,7 +68,7 @@
 	ircmsg["msg"] = html_decode(msg)
 	ircbot.export("help", ircmsg)
 
-	discord_send("AHELP ([client.key]): [msg]","centcom")
+	discord_send("**ADMINHELP** \n([client.key]): [msg]","centcom")
 
 /mob/verb/mentorhelp()
 	set category = "Commands"
@@ -144,7 +144,7 @@
 	ircmsg["msg"] = html_decode(msg)
 	ircbot.export("mentorhelp", ircmsg)
 
-	discord_send("MHELP ([client.key]): [msg]","mentors")
+	discord_send("**MENTORHELP** \n([client.key]): [msg]","mentors")
 
 /mob/verb/pray(msg as text)
 	set category = "Commands"
@@ -276,6 +276,7 @@
 
 		logTheThing("admin_help", user, M, "<b>PM'd [constructTarget(M,"admin_help")]</b>: [t]")
 		logTheThing("diary", user, M, "PM'd [constructTarget(M,"diary")]: [t]", "ahelp")
+		discord_send("**Admin PM** ([user.key]) -> ([M.key]): [t]","centcom")
 
 		var/ircmsg[] = new()
 		ircmsg["key"] = user?.client ? user.client.key : ""
