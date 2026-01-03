@@ -12664,6 +12664,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/power/solar_control/north,
+/obj/machinery/power/data_terminal{
+	layer = 2
+	},
 /turf/floor/plating/random,
 /area/station/maintenance/solar/north)
 "jhM" = (
@@ -16377,7 +16380,9 @@
 /turf/floor/plating,
 /area/station/turret_protected/AIsat)
 "lNx" = (
-/obj/machinery/power/tracker/west,
+/obj/machinery/power/tracker/west{
+	id = "north"
+	},
 /obj/cable/yellow{
 	icon_state = "0-2"
 	},
@@ -24730,6 +24735,9 @@
 /obj/machinery/power/solar_control/east,
 /obj/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/machinery/power/data_terminal{
+	layer = 2
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/solar/east)
@@ -33277,7 +33285,9 @@
 	name = "Warehouse"
 	})
 "xQE" = (
-/obj/machinery/power/tracker/west,
+/obj/machinery/power/tracker/west{
+	id = "east"
+	},
 /obj/cable/yellow{
 	icon_state = "0-8"
 	},
