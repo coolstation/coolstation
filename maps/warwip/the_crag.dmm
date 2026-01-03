@@ -687,7 +687,6 @@
 /area/shuttle/merchant_shuttle/left_station/cogmap)
 "bV" = (
 /obj/machinery/light,
-/obj/storage/closet/office,
 /turf/floor,
 /area/station/maintenance/central)
 "bW" = (
@@ -10371,6 +10370,7 @@
 /obj/machinery/door/airlock/maintenance,
 /obj/access_spawn/tox,
 /obj/firedoor_spawn,
+/obj/access_spawn/maint,
 /turf/floor/plating,
 /area/station/science/gen_storage)
 "Bq" = (
@@ -13095,6 +13095,7 @@
 /obj/machinery/light/small/red{
 	dir = 4
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "IH" = (
@@ -19363,11 +19364,11 @@
 	on = 1
 	},
 /obj/machinery/sparker{
+	dir = 8;
 	id = "tox_ignition1";
 	layer = 7;
 	name = "Mounted Igniter";
-	pixel_x = -18;
-	dir = 8
+	pixel_x = -18
 	},
 /turf/floor/airless/engine/vacuum,
 /area/station/science/lab)
