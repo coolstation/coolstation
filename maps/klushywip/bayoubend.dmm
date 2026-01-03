@@ -74,8 +74,8 @@
 /turf/floor,
 /area/station/hallway/primary/west)
 "acH" = (
-/obj/storage/secure/closet/research/uniform,
-/turf/floor/purplewhite,
+/obj/stool/chair/purple,
+/turf/floor/carpet/grime3,
 /area/station/science/lobby)
 "acJ" = (
 /obj/decal/poster/wallsign/warning3{
@@ -6841,8 +6841,8 @@
 	},
 /area/station/science/artifact)
 "fbF" = (
-/obj/machinery/vending/coffee,
-/turf/floor/purplewhite,
+/obj/storage/secure/closet/research/uniform,
+/turf/floor/carpet/grime3,
 /area/station/science/lobby)
 "fbT" = (
 /obj/shrub,
@@ -7156,6 +7156,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/decal/mule/dropoff,
 /turf/floor,
 /area/station/hallway/primary/east)
 "fnT" = (
@@ -7221,8 +7222,8 @@
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment,
-/turf/floor/plating/random,
-/area/station/maintenance/west)
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "fqJ" = (
 /turf/floor/plating/airless/asteroid,
 /area/space)
@@ -7674,8 +7675,12 @@
 /turf/floor/grime,
 /area/station/security/brig/genpop)
 "fHk" = (
-/obj/decal/poster/wallsign/portrait_scientist,
-/turf/wall/r_wall,
+/obj/table/auto,
+/obj/machinery/coffeemaker/research{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/turf/floor/carpet/grime3,
 /area/station/science/lobby)
 "fHn" = (
 /obj/critter/mouse,
@@ -7787,7 +7792,6 @@
 	},
 /area/station/security/main)
 "fLg" = (
-/obj/storage/secure/closet/research/uniform,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/purplewhite,
 /area/station/science/lobby)
@@ -9477,6 +9481,8 @@
 /obj/machinery/ai_status_display{
 	pixel_x = 33
 	},
+/obj/decal/mule/beacon/no_auto_dropoff_spawn,
+/obj/machinery/navbeacon/mule/QM1_north,
 /turf/floor,
 /area/station/hallway/primary/east)
 "gPB" = (
@@ -10549,6 +10555,11 @@
 /obj/machinery/meter,
 /turf/floor/cautionblack,
 /area/station/engine/core)
+"hEN" = (
+/obj/storage/secure/closet/research/uniform,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "hES" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -11592,8 +11603,8 @@
 	},
 /obj/access_spawn/research,
 /obj/firedoor_spawn,
-/turf/floor/purple,
-/area/station/maintenance/west)
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "iro" = (
 /obj/machinery/door/airlock/command,
 /obj/access_spawn/eva,
@@ -14523,15 +14534,13 @@
 /turf/space,
 /area/station/maintenance/oldstation)
 "kvO" = (
-/obj/machinery/door/airlock/medical,
-/obj/firedoor_spawn,
-/obj/access_spawn/research,
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/disposalpipe/segment,
+/obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
 /area/station/science/bot_storage)
 "kvV" = (
@@ -17740,6 +17749,11 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
+"mOC" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/light/small/cool,
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "mOD" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -19924,11 +19938,6 @@
 /turf/wall/auto/rivet,
 /area/station/maintenance/southeast)
 "ovg" = (
-/obj/table/auto,
-/obj/machinery/coffeemaker/research{
-	pixel_x = -4;
-	pixel_y = 1
-	},
 /obj/mug_rack{
 	pixel_y = -20
 	},
@@ -22455,6 +22464,7 @@
 	},
 /obj/access_spawn/research,
 /obj/firedoor_spawn,
+/obj/access_spawn/maint,
 /turf/floor/plating/random,
 /area/space)
 "qed" = (
@@ -22629,8 +22639,8 @@
 	icon_state = "1-4"
 	},
 /obj/disposalpipe/segment,
-/turf/floor/plating/random,
-/area/station/maintenance/west)
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "qkL" = (
 /obj/machinery/computer3/generic/secure_data{
 	dir = 8
@@ -24107,6 +24117,13 @@
 /area/station/security/secwing{
 	name = "Evidence"
 	})
+"rgU" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/light/small/cool{
+	dir = 1
+	},
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "rgW" = (
 /obj/table/auto,
 /obj/item/storage/box/beakerbox{
@@ -24362,6 +24379,21 @@
 	},
 /turf/floor/carpet/green,
 /area/station/crew_quarters/heads)
+"rqQ" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment,
+/obj/table/auto,
+/obj/item/kitchen/food_box/donut_box{
+	desc = "It appears to be a Martian brand of donuts.";
+	name = "Robust Donuts";
+	pixel_y = 4
+	},
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "rqS" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/light/fluorescent/ceiling/warm,
@@ -25330,9 +25362,8 @@
 /turf/floor/carpet/grime3,
 /area/station/hallway/secondary/exit)
 "saY" = (
-/obj/item/constructioncone,
-/turf/floor/plating/random,
-/area/station/maintenance/west)
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "sba" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -27883,8 +27914,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating/random,
-/area/station/maintenance/west)
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "tMJ" = (
 /turf/wall/r_wall,
 /area/station/maintenance/southeast)
@@ -28658,6 +28689,18 @@
 	},
 /turf/floor/plating/random,
 /area/station/crew_quarters/catering)
+"utN" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/disposalpipe/segment,
+/obj/decal/poster/wallsign/portrait_scientist{
+	pixel_x = 29
+	},
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "utO" = (
 /obj/decal/cleanable/mess/random_litter,
 /turf/floor/grime,
@@ -29215,6 +29258,12 @@
 /obj/machinery/light/small/red,
 /turf/floor/plating/random,
 /area/station/maintenance/outer/ne)
+"uPH" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "uPL" = (
 /obj/decal/mule/dropoff,
 /obj/machinery/door_control{
@@ -31302,6 +31351,14 @@
 /obj/machinery/light_switch/south,
 /turf/floor/circuit/vintage,
 /area/station/turret_protected/Zeta)
+"wsG" = (
+/obj/machinery/vending/coffee,
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/light/small/broken{
+	dir = 1
+	},
+/turf/floor/carpet/grime3,
+/area/station/science/lobby)
 "wsJ" = (
 /obj/machinery/computer/atmosphere/mixercontrol{
 	dir = 4;
@@ -32822,12 +32879,6 @@
 /turf/floor/carpet/blue/fancy/narrow/south,
 /area/station/medical/staff)
 "xyj" = (
-/obj/table/auto,
-/obj/item/kitchen/food_box/donut_box{
-	desc = "It appears to be a Martian brand of donuts.";
-	name = "Robust Donuts";
-	pixel_y = 4
-	},
 /turf/floor/purplewhite,
 /area/station/science/lobby)
 "xyr" = (
@@ -61738,11 +61789,11 @@ mKY
 sxM
 jII
 brH
-sIt
-jII
+wsG
 saY
-jII
-jII
+saY
+acH
+fHk
 ium
 jkd
 kko
@@ -62041,10 +62092,10 @@ uQY
 bFY
 tLT
 fqo
-fqo
+utN
 fqo
 qjD
-fqo
+rqQ
 kvO
 hQS
 axU
@@ -62344,9 +62395,9 @@ scG
 scG
 scG
 scG
-sIt
-mKY
-jII
+rgU
+uPH
+saY
 jzE
 ulF
 pug
@@ -62646,9 +62697,9 @@ bQG
 vcK
 efE
 scG
-jII
-mKY
-jII
+fbF
+uPH
+saY
 jzE
 sSA
 toa
@@ -62948,9 +62999,9 @@ pLG
 jzx
 aWQ
 scG
-jII
-mKY
-xTH
+hEN
+uPH
+mOC
 ium
 gmV
 vIB
@@ -64155,7 +64206,7 @@ mcn
 ixG
 mcn
 mcn
-fHk
+gPB
 fpw
 fLg
 gPB
@@ -64459,7 +64510,7 @@ uNM
 ixG
 wzf
 prl
-acH
+xyj
 gPB
 ipT
 ipT
@@ -64761,7 +64812,7 @@ wNh
 ixG
 syN
 pVz
-fbF
+xyj
 fWX
 fWX
 wcs
