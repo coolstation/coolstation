@@ -2576,6 +2576,7 @@
 /area/station/crew_quarters/cafeteria)
 "gH" = (
 /obj/machinery/light_switch/east,
+/obj/item/chair/folded/stepladder,
 /turf/floor/plating,
 /area/station/science/gen_storage)
 "gI" = (
@@ -17910,6 +17911,13 @@
 /obj/access_spawn/tox,
 /turf/floor/plating,
 /area/station/science/storage)
+"Vn" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/item/chair/folded/stepladder,
+/turf/floor/plating,
+/area/station/maintenance/central)
 "Vo" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -63288,7 +63296,7 @@ OG
 za
 fU
 DU
-AF
+Vn
 mU
 tR
 tR
