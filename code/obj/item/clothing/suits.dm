@@ -1356,6 +1356,12 @@
 		icon_state = "ntso_specialist-scout"
 		item_state = "ntso_specialist-scout"
 
+	rogue
+		name = "Old NT-SO combat suit"
+		desc = "A patched Nanotrasen special forces vacuum suit with armor plates missing, modified, and spray-painted."
+		icon_state = "ntso_rogue"
+		item_state = "ntso_rogue"
+
 /obj/item/clothing/suit/space/engineer
 	name = "engineering space suit"
 	desc = "An overly bulky space suit designed mainly for maintenance and mining."

@@ -2605,6 +2605,26 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		M.traitHolder.addTrait("training_security")
 		M.show_text("<b>Hostile assault force incoming! Defend the crew from the attacking Syndicate Special Operatives!</b>", "blue")
 
+/datum/job/special/ntso_rogue
+	linkcolor = "#1f276d"
+	name = "Rogue Nanotrasen Security Operative"
+	limit = 0
+	wages = 0
+	slot_ears = list()
+	slot_card = null
+	slot_glov = list()
+	slot_foot = list()
+	slot_back = list()
+	slot_belt = list()
+	spawn_id = 0
+
+	special_setup(var/mob/living/carbon/human/H)
+		..()
+		if (!H)
+			return
+		antagify(H, "Rogue NTSO", 0)
+		equip_rogue(H)
+		return
 
 // Use this one for late respawns to dael with existing antags. they are weaker cause they dont get a laser rifle or frags
 /datum/job/special/ntso_specialist_weak

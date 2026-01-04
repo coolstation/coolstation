@@ -373,6 +373,12 @@
 		cant_self_remove = 1
 		cant_other_remove = 1
 
+	rogue
+		name = "Old NT-SO combat helmet"
+		desc = "A scratched and faded helmet designed for Nanotrasen special forces"
+		icon_state = "ntso_rogue"
+		item_state = "ntso_rogue"
+
 /obj/item/clothing/head/helmet/space/nanotrasen
 	name = "Nanotrasen Heavy Helmet"
 	icon_state = "nthelm2"

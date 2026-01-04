@@ -254,6 +254,20 @@
 	else
 		boutput(traitor_mob, "Something is BUGGED and we couldn't find you a PDA. Tell a coder.")
 
+/proc/equip_rogue(mob/living/carbon/human/rogue)
+	if (!ishuman(rogue))
+		return
+	rogue.equip_if_possible(new /obj/item/clothing/head/helmet/space/ntso/rogue(rogue), rogue.slot_head)
+	rogue.equip_if_possible(new /obj/item/clothing/suit/space/ntso/rogue(rogue), rogue.slot_wear_suit)
+	rogue.equip_if_possible(new /obj/item/device/radio/headset/ntso_rogue(rogue), rogue.slot_ears)
+	rogue.equip_if_possible(new /obj/item/clothing/under/misc/turds/rogue(rogue), rogue.slot_w_uniform)
+	rogue.equip_if_possible(new /obj/item/clothing/shoes/swat(rogue), rogue.slot_shoes)
+	rogue.equip_if_possible(new /obj/item/clothing/gloves/swat(rogue), rogue.slot_gloves)
+	rogue.equip_if_possible(new /obj/item/storage/backpack/backpack/satchel/NT(rogue), rogue.slot_gloves)
+	rogue.equip_if_possible(new /obj/item/clothing/mask/breath(rogue), rogue.slot_wear_mask)
+	rogue.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(rogue), rogue.slot_glasses)
+	rogue.equip_if_possible(new /obj/item/tank/emergency_oxygen(rogue), rogue.slot_l_store)
+	rogue.equip_if_possible(new /obj/item/storage/belt/security/rogue(rogue), rogue.slot_belt)
 
 /proc/equip_syndicate(mob/living/carbon/human/synd_mob, var/leader = 0)
 	if (!ishuman(synd_mob))
