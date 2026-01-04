@@ -664,7 +664,7 @@
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/rifle/capacitive/burst/five, /obj/item/stackable_ammo/pistol/capacitive/five)
 
 	rogue
-		spawn_contents = list(/obj/item/gun/modular/NT/pistol, /obj/item/stackable_ammo/pistol/NT/HP/ten, /obj/item/stackable_ammo/pistol/NT/twenty, /obj/item/clothing/mask/gas/NTSO/rogue, /obj/item/barrier, /obj/item/baton/ntso) //if the baton ends up being a problem, I'll yoink the power cell from it
+		spawn_contents = list(/obj/item/gun/modular/NT/pistol, /obj/item/stackable_ammo/pistol/NT/HP/ten, /obj/item/stackable_ammo/pistol/NT/twenty, /obj/item/clothing/mask/gas/NTSO/rogue, /obj/item/barrier, /obj/item/baton/ntso/old) //if the baton ends up being a problem, I'll yoink the power cell from it
 
 //////////////////////////////
 // ~Nuke Ops Class Storage~ //
