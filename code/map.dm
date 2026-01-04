@@ -255,7 +255,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
-	goonhub_map = "https://wiki.coolstation.space/wiki/Box"
+	goonhub_map = "https://coolstation.space/maps/altbox/"
 
 	windows = /obj/window/classic
 	windows_thin = /obj/window/classic
