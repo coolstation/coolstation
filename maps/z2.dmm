@@ -18,6 +18,15 @@
 	dir = 8
 	},
 /area/owlery/owleryhall)
+"aaZ" = (
+/obj/stool/chair/couch{
+	dir = 4
+	},
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "abn" = (
 /turf/wall/setpieces/hospital{
 	dir = 5
@@ -349,19 +358,6 @@
 	opacity = 1
 	},
 /area/hospital/somewhere)
-"adV" = (
-/obj/table/wood/auto,
-/obj/machinery/light/lamp/green{
-	pixel_x = -6;
-	pixel_y = 10
-	},
-/obj/deskclutter{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/decal/cleanable/dirt/random,
-/turf/floor/carpet/grime,
-/area/ntso_shuttle)
 "adW" = (
 /obj/decal/cleanable/oil/streak,
 /turf/floor/plating,
@@ -1467,18 +1463,6 @@
 /obj/map/light/brightwhite,
 /turf/floor/setpieces/iomoon/crust/arena,
 /area/afterlife/arena)
-"aqr" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/blue,
-/obj/decal/cleanable/dirt/random,
-/obj/decal/poster/wallsign/poster_nt{
-	pixel_x = 33
-	},
-/obj/landmark/start{
-	name = "Rogue Nanotrasen Security Operative"
-	},
-/turf/floor/carpet/grime,
-/area/ntso_shuttle)
 "aqw" = (
 /obj/decal/stalagmite{
 	desc = "It's very warm.";
@@ -8138,6 +8122,18 @@
 	name = "strange surface"
 	},
 /area/crater/cave/lower)
+"bkl" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_y = 11;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/drinks/bottle/mead{
+	pixel_y = 6;
+	pixel_x = 5
+	},
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "bko" = (
 /obj/stool/chair/couch/purple{
 	dir = 4
@@ -9627,6 +9623,10 @@
 	},
 /turf/floor/carpet/grime,
 /area/owlery/staffhall)
+"bFm" = (
+/obj/wingrille_spawn/auto/tuff,
+/turf/floor/plating/random,
+/area/ntso_shuttle)
 "bFs" = (
 /obj/machinery/door/unpowered/wood{
 	desc = "Really old. Old as heck.";
@@ -15178,6 +15178,13 @@
 	dir = 9
 	},
 /area/crunch)
+"bYU" = (
+/obj/storage/closet/wardrove/ntso,
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "bYX" = (
 /obj/item/storage/wall/research_supplies{
 	pixel_x = 32;
@@ -33566,6 +33573,12 @@
 /obj/item/casing,
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"dsl" = (
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "dsI" = (
 /obj/lattice{
 	dir = 6;
@@ -36545,6 +36558,13 @@
 	},
 /turf/space/shuttle_transit,
 /area/shuttle/escape/transit/battle_shuttle)
+"eEF" = (
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "eER" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -36603,14 +36623,6 @@
 	dir = 8
 	},
 /area/owlery/gangzone)
-"eJl" = (
-/obj/machinery/door/poddoor/blast/single{
-	dir = 4;
-	id = "hangar_ntso";
-	name = "external blast door"
-	},
-/turf/floor/shuttlebay,
-/area/ntso_shuttle)
 "eJW" = (
 /obj/cable{
 	d1 = 4;
@@ -36805,12 +36817,6 @@
 	},
 /turf/floor/green,
 /area/owlery/owllock)
-"fcw" = (
-/obj/stool/chair/couch{
-	dir = 8
-	},
-/turf/floor/plating/random,
-/area/ntso_shuttle)
 "fen" = (
 /turf/floor/carpet{
 	dir = 4;
@@ -36954,6 +36960,10 @@
 "ftA" = (
 /turf/space,
 /area/shuttle/arrival/pre_load)
+"ftW" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "ftX" = (
 /obj/landmark{
 	name = "icefall"
@@ -37026,6 +37036,10 @@
 	dir = 4
 	},
 /area/owlery/gangzone)
+"fAA" = (
+/obj/critter/spider/clownqueen,
+/turf/space,
+/area/space)
 "fAK" = (
 /obj/decal/cleanable/tracked_reagents/blood/drip/high,
 /obj/reagent_dispensers/cleanable/spiders,
@@ -37043,11 +37057,6 @@
 "fBI" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/blue,
-/obj/machinery/light/small/blueish{
-	dir = 1
-	},
-/obj/decal/cleanable/dirt/random,
-/obj/decal/cleanable/dirt/random,
 /obj/landmark/start{
 	name = "Rogue Nanotrasen Security Operative"
 	},
@@ -37266,6 +37275,12 @@
 	icon_state = "green";
 	name = "garrys"
 	})
+"gnu" = (
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/turf/floor/shuttlebay,
+/area/ntso_shuttle)
 "gpj" = (
 /obj/table,
 /obj/item/paper/book/from_file/pharmacopia,
@@ -37317,10 +37332,6 @@
 /obj/storage/closet/wardrobe/white,
 /turf/floor/vr/fourbit,
 /area/sim/racing_entry)
-"gux" = (
-/obj/storage/closet/wardrove/ntso,
-/turf/floor/carpet/grime,
-/area/ntso_shuttle)
 "gve" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe valve. It seems stuck.";
@@ -37379,6 +37390,15 @@
 	dir = 8
 	},
 /area/owlery/owleryhall)
+"gxy" = (
+/obj/table/reinforced/auto,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/reagent_containers/food/drinks/fueltank{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "gyu" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/entry)
@@ -37701,9 +37721,6 @@
 	dir = 8
 	},
 /area/owlery/owleryhall)
-"hbT" = (
-/turf/floor/engine/caution/west,
-/area/ntso_shuttle)
 "hcc" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -37973,10 +37990,6 @@
 "hzN" = (
 /turf/floor/carpet/grime,
 /area/wizard_station)
-"hAi" = (
-/obj/decal/floatingtiles/loose/random,
-/turf/floor/plating/random,
-/area/ntso_shuttle)
 "hAS" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
 	icon_state = "u_ketchup"
@@ -38074,13 +38087,6 @@
 	},
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
-"hWq" = (
-/obj/reagent_dispensers/fueltank,
-/obj/decal/tile_edge/stripe{
-	icon_state = "delivery2"
-	},
-/turf/floor/grime,
-/area/ntso_shuttle)
 "hWF" = (
 /obj/machinery/door/poddoor/blast{
 	density = 0;
@@ -38159,18 +38165,6 @@
 	dir = 4
 	},
 /area/owlery/gangzone)
-"ieG" = (
-/obj/table/wood/auto,
-/obj/item/reagent_containers/food/drinks/bottle/beer{
-	pixel_y = 11;
-	pixel_x = -6
-	},
-/obj/item/reagent_containers/food/drinks/bottle/mead{
-	pixel_y = 6;
-	pixel_x = 5
-	},
-/turf/floor/carpet/grime2,
-/area/ntso_shuttle)
 "iff" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
 	dir = 5
@@ -38875,10 +38869,6 @@
 /obj/table/round/auto,
 /turf/floor/carpet/red/standard,
 /area/upper_arctic/fita/messhall)
-"jDh" = (
-/obj/machinery/vehicle/pod_smooth/nt_light,
-/turf/floor/shuttlebay,
-/area/ntso_shuttle)
 "jDu" = (
 /obj/stool/bench,
 /turf/floor/carpet/red/standard,
@@ -39147,8 +39137,12 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
-"kjg" = (
-/turf/space,
+"kiF" = (
+/obj/machinery/light/small/red{
+	dir = 8
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grime,
 /area/ntso_shuttle)
 "kjI" = (
 /obj/decal/cleanable/tracked_reagents/blood{
@@ -39198,6 +39192,11 @@
 	},
 /area/owlery/gangzone)
 "ktb" = (
+/obj/machinery/door/poddoor/blast/single{
+	dir = 4;
+	id = "hangar_ntso";
+	name = "external blast door"
+	},
 /turf/floor/shuttlebay,
 /area/ntso_shuttle)
 "ktV" = (
@@ -39208,6 +39207,10 @@
 	dir = 6
 	},
 /area/owlery/gangzone)
+"kuU" = (
+/obj/machinery/vehicle/pod_smooth/nt_light,
+/turf/floor/shuttlebay,
+/area/ntso_shuttle)
 "kwt" = (
 /obj/decal/floatingtiles{
 	icon_state = "floattiles4";
@@ -39260,12 +39263,6 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
-"kBL" = (
-/obj/machinery/light/small/blueish{
-	dir = 1
-	},
-/turf/floor/grime,
-/area/ntso_shuttle)
 "kDZ" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -39297,10 +39294,6 @@
 	},
 /turf/floor/green,
 /area/owlery/owllock)
-"kGf" = (
-/obj/decal/cleanable/dirt/random,
-/turf/floor/carpet/grime,
-/area/ntso_shuttle)
 "kGY" = (
 /obj/window{
 	desc = "A window.  For a museum exhibit.";
@@ -39319,12 +39312,6 @@
 	dir = 4
 	},
 /area/owlery/owllock)
-"kHA" = (
-/obj/decal/cleanable/ripped_poster,
-/turf/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/ntso_shuttle)
 "kIu" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -39496,6 +39483,9 @@
 	},
 /turf/floor/green/checker,
 /area/owlery/owleryhall)
+"kRw" = (
+/turf/space,
+/area/ntso_shuttle)
 "kTc" = (
 /turf/floor/arctic/cliff{
 	dir = 10
@@ -39526,6 +39516,11 @@
 	},
 /turf/floor/green,
 /area/owlery/owllock)
+"kWi" = (
+/obj/table/wood/auto,
+/obj/machinery/microwave,
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "kXE" = (
 /obj/decal/poster/wallsign/poster_beach{
 	pixel_y = 32
@@ -39892,15 +39887,6 @@
 	},
 /turf/floor/white,
 /area/owlery/office)
-"lYI" = (
-/obj/table/reinforced/auto,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/reagent_containers/food/drinks/fueltank{
-	pixel_x = 5;
-	pixel_y = -1
-	},
-/turf/floor/grime,
-/area/ntso_shuttle)
 "maU" = (
 /obj/stool/chair,
 /turf/floor/carpet/red/standard/edge/sw,
@@ -39991,15 +39977,6 @@
 	},
 /turf/floor/engine/caution,
 /area/lower_arctic/mining)
-"mfI" = (
-/obj/stool/chair/couch{
-	dir = 4
-	},
-/obj/machinery/light/small/blueish{
-	dir = 1
-	},
-/turf/floor/carpet/grime2,
-/area/ntso_shuttle)
 "mjp" = (
 /obj/decal/cleanable/tracked_reagents/blood/gibs{
 	icon_state = "gib4"
@@ -40024,10 +40001,6 @@
 	icon_state = "blue";
 	name = "garrys dark room"
 	})
-"mkX" = (
-/obj/wingrille_spawn/auto/tuff,
-/turf/floor/plating/random,
-/area/ntso_shuttle)
 "mle" = (
 /obj/cable{
 	icon_state = "1-8"
@@ -40107,6 +40080,13 @@
 	},
 /turf/floor/green,
 /area/owlery/owllock)
+"myi" = (
+/obj/reagent_dispensers/fueltank,
+/obj/decal/tile_edge/stripe{
+	icon_state = "delivery2"
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "myN" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -40203,6 +40183,10 @@
 	dir = 1
 	},
 /area/upper_arctic/exterior/surface)
+"mKt" = (
+/obj/table/reinforced/auto,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "mKz" = (
 /obj/storage/closet/radiation,
 /turf/floor/concrete,
@@ -40258,6 +40242,9 @@
 	dir = 10
 	},
 /area/lower_arctic/mining)
+"mLZ" = (
+/turf/floor/engine/caution/west,
+/area/ntso_shuttle)
 "mMy" = (
 /turf/shuttle/wall{
 	dir = 1;
@@ -40364,6 +40351,18 @@
 	},
 /turf/floor/green,
 /area/owlery/owllock)
+"nbV" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/blue,
+/obj/decal/cleanable/dirt/random,
+/obj/decal/poster/wallsign/poster_nt{
+	pixel_x = 33
+	},
+/obj/landmark/start{
+	name = "Rogue Nanotrasen Security Operative"
+	},
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "ncc" = (
 /obj/machinery/camera,
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
@@ -40382,6 +40381,9 @@
 	},
 /turf/floor/engine/caution,
 /area/upper_arctic/fita/hall)
+"ncM" = (
+/turf/floor/shuttlebay,
+/area/ntso_shuttle)
 "ndh" = (
 /obj/disposalpipe/segment/vertical,
 /turf/space/fluid/ocean/noexplosion,
@@ -40390,11 +40392,6 @@
 /obj/critter/spider/ice/baby,
 /turf/floor/arctic/snow/ice,
 /area/lower_arctic/mining)
-"nfb" = (
-/obj/table/wood/auto,
-/obj/machinery/microwave,
-/turf/floor/carpet/grime2,
-/area/ntso_shuttle)
 "ngk" = (
 /obj/map/light/graveyard,
 /obj/tombstone/memorial{
@@ -40580,6 +40577,10 @@
 	icon_state = "wall3_trans"
 	},
 /turf/space,
+/area/ntso_shuttle)
+"nxo" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grime,
 /area/ntso_shuttle)
 "nyz" = (
 /obj/decal/fakeobjects{
@@ -41095,6 +41096,13 @@
 /obj/random_item_spawner/junk/maybe_few,
 /turf/wall/water,
 /area/lower_arctic/septic)
+"oxj" = (
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/obj/machinery/manufacturer/hangar,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "oxO" = (
 /obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/black,
@@ -41161,10 +41169,6 @@
 	},
 /turf/floor/green,
 /area/owlery/owllock)
-"oDL" = (
-/obj/table/reinforced/auto,
-/turf/floor/grime,
-/area/ntso_shuttle)
 "oFR" = (
 /obj/table,
 /obj/shitty_radio,
@@ -41200,14 +41204,6 @@
 	},
 /turf/outdoors/grass,
 /area/shuttle/escape/transit/battle_shuttle)
-"oLk" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/blue,
-/obj/landmark/start{
-	name = "Rogue Nanotrasen Security Operative"
-	},
-/turf/floor/carpet/grime,
-/area/ntso_shuttle)
 "oLX" = (
 /obj/item/clothing/suit/bedsheet{
 	bcolor = "red";
@@ -41328,6 +41324,13 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster)
+"oXt" = (
+/obj/decal/tile_edge/stripe{
+	icon_state = "delivery2"
+	},
+/obj/machinery/portable_reclaimer,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "oXP" = (
 /obj/grille/steel,
 /obj/window/auto/reinforced,
@@ -41400,9 +41403,6 @@
 	},
 /turf/floor/carpet/grime,
 /area/wizard_station)
-"pfu" = (
-/turf/floor/carpet/grime,
-/area/ntso_shuttle)
 "phe" = (
 /obj/decal/cleanable/tracked_reagents/blood/gibs{
 	icon_state = "gibup1"
@@ -41448,6 +41448,9 @@
 	},
 /turf/floor/carpet/red/standard/edge/nw,
 /area/upper_arctic/fita/quartermaster)
+"piQ" = (
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "pjx" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -41533,12 +41536,6 @@
 	},
 /turf/floor/setpieces/gauntlet,
 /area/gauntlet/viewing)
-"pvd" = (
-/obj/decal/poster/wallsign/poster_nt{
-	pixel_x = 33
-	},
-/turf/floor/carpet/grime2,
-/area/ntso_shuttle)
 "pvp" = (
 /obj/stool/chair/office/red{
 	dir = 4
@@ -41579,11 +41576,6 @@
 /obj/stool/bed,
 /turf/floor/concrete,
 /area/lower_arctic/mining)
-"pym" = (
-/obj/decal/cleanable/cobweb,
-/obj/decal/cleanable/dirt/random,
-/turf/floor/grime,
-/area/ntso_shuttle)
 "pyK" = (
 /turf/floor/carpet/red/standard/edge/north,
 /area/upper_arctic/fita/quartermaster)
@@ -41596,11 +41588,14 @@
 	},
 /turf/outdoors/concrete,
 /area/lower_arctic/septic)
-"pCg" = (
-/obj/machinery/door/window/northright{
-	dir = 8
+"pBK" = (
+/obj/table/wood/auto,
+/obj/machinery/light/small/blueish,
+/obj/item/storage/box/donkpocket_kit{
+	pixel_y = 6;
+	pixel_x = -2
 	},
-/turf/floor/grime,
+/turf/floor/carpet/grime2,
 /area/ntso_shuttle)
 "pCV" = (
 /obj/indestructible/shuttle_corner{
@@ -41793,12 +41788,6 @@
 "pZL" = (
 /turf/wall/auto/concrete,
 /area/upper_arctic/fita/quartermaster/supplycloset)
-"qaN" = (
-/obj/decal/poster/wallsign/poster_nt,
-/turf/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/ntso_shuttle)
 "qbj" = (
 /obj/storage/crate/freezer,
 /obj/machinery/light/small/neutral{
@@ -41933,12 +41922,11 @@
 	dir = 8
 	},
 /area/owlery/owleryhall)
-"qqz" = (
-/obj/decal/tile_edge/stripe{
-	icon_state = "delivery2"
+"qqX" = (
+/obj/stool/chair/couch{
+	dir = 8
 	},
-/obj/machinery/portable_reclaimer,
-/turf/floor/grime,
+/turf/floor/plating/random,
 /area/ntso_shuttle)
 "qrD" = (
 /obj/machinery/r_door_control/podbay/wizard,
@@ -42058,18 +42046,6 @@
 /obj/storage/secure/crate,
 /turf/floor/engine/caution,
 /area/upper_arctic/fita/mining)
-"qKE" = (
-/obj/storage/secure/closet/fridge/kitchen{
-	locked = 0
-	},
-/obj/item/reagent_containers/food/snacks/taco/complete,
-/obj/item/banme,
-/obj/decal/cleanable/cobweb{
-	dir = 1;
-	icon_state = "cobweb"
-	},
-/turf/floor/carpet/grime2,
-/area/ntso_shuttle)
 "qLM" = (
 /obj/table/auto,
 /turf/floor/specialroom/bar,
@@ -42416,6 +42392,12 @@
 "rtc" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/crew)
+"rtg" = (
+/obj/decal/poster/wallsign/poster_nt,
+/turf/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/ntso_shuttle)
 "rtp" = (
 /obj/machinery/light/small/cool/very{
 	dir = 4
@@ -42593,6 +42575,12 @@
 	},
 /turf/wall/auto/reinforced,
 /area/owlery/office)
+"rNV" = (
+/obj/machinery/door/window/northright{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "rQz" = (
 /obj/npc/trader/katya,
 /turf/floor/concrete,
@@ -43246,14 +43234,6 @@
 	},
 /turf/floor/green,
 /area/owlery/owllock)
-"tdw" = (
-/obj/machinery/r_door_control/podbay/wizard{
-	id = "hangar_ntso"
-	},
-/turf/shuttle/wall{
-	icon_state = "wall3"
-	},
-/area/ntso_shuttle)
 "tgi" = (
 /obj/decal/cleanable/tracked_reagents/blood/drip/high,
 /obj/item/rods,
@@ -43266,10 +43246,6 @@
 	dir = 4
 	},
 /area/owlery/gangzone)
-"tgB" = (
-/obj/critter/spider/clownqueen,
-/turf/space,
-/area/space)
 "tiK" = (
 /obj/table/wood/auto,
 /obj/item/kitchen/utensil/fork,
@@ -43307,6 +43283,18 @@
 	},
 /turf/floor/wood/two,
 /area/owlery/staffhall)
+"tmX" = (
+/obj/machinery/r_door_control/podbay/wizard{
+	id = "hangar_ntso"
+	},
+/turf/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/ntso_shuttle)
+"tne" = (
+/obj/storage/closet/wardrove/ntso,
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "tor" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks,
 /obj/decal/cleanable/tracked_reagents/blood/tracks,
@@ -43327,13 +43315,6 @@
 "tpV" = (
 /turf/wall/virtual/reinforced,
 /area/gauntlet/viewing)
-"ttk" = (
-/obj/machinery/light/small/blueish{
-	dir = 1
-	},
-/obj/decal/cleanable/dirt/random,
-/turf/floor/grime,
-/area/ntso_shuttle)
 "ttp" = (
 /obj/item/storage/wall/emergency{
 	dir = 1;
@@ -43469,6 +43450,10 @@
 /obj/stool,
 /turf/floor/carpet/office,
 /area/hospital/samostrel)
+"tIQ" = (
+/obj/decal/floatingtiles/loose/random,
+/turf/floor/plating/random,
+/area/ntso_shuttle)
 "tJa" = (
 /obj/table/auto/desk,
 /obj/item/electronics/soldering,
@@ -43509,10 +43494,16 @@
 /turf/floor,
 /area/meat_derelict/guts)
 "tKp" = (
-/obj/storage/closet/wardrove/ntso,
-/obj/machinery/light/small/blueish{
-	dir = 1
+/obj/table/wood/auto,
+/obj/machinery/light/lamp/green{
+	pixel_x = -6;
+	pixel_y = 10
 	},
+/obj/deskclutter{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/decal/cleanable/dirt/random,
 /turf/floor/carpet/grime,
 /area/ntso_shuttle)
 "tKQ" = (
@@ -43784,13 +43775,6 @@
 	dir = 8
 	},
 /area/owlery/gangzone)
-"uqR" = (
-/obj/machinery/light/small/blueish{
-	dir = 1
-	},
-/obj/machinery/manufacturer/hangar,
-/turf/floor/grime,
-/area/ntso_shuttle)
 "url" = (
 /obj/decal/icefloor,
 /obj/machinery/light/small/warm/very{
@@ -43798,6 +43782,19 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"urA" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/blue,
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/obj/decal/cleanable/dirt/random,
+/obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Rogue Nanotrasen Security Operative"
+	},
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "urE" = (
 /obj/random_item_spawner/junk/one,
 /turf/wall/water,
@@ -43863,10 +43860,21 @@
 	dir = 9
 	},
 /area/owlery/gangzone)
+"uwt" = (
+/obj/decal/cleanable/ripped_poster,
+/turf/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/ntso_shuttle)
 "uwZ" = (
 /obj/sign_accidents,
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma)
+"uye" = (
+/obj/decal/cleanable/cobweb,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "uyr" = (
 /obj/table/wood/round,
 /obj/decal/cleanable/mess/noodles/random_all{
@@ -44500,6 +44508,12 @@
 "vMS" = (
 /turf/floor/setpieces/gauntlet,
 /area/gauntlet/staging)
+"vOh" = (
+/obj/decal/poster/wallsign/poster_nt{
+	pixel_x = 33
+	},
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "vOm" = (
 /obj/map/light/white,
 /turf/floor/shuttle,
@@ -44528,13 +44542,6 @@
 	},
 /turf/floor/cautionblack,
 /area/owlery/staffhall)
-"vRd" = (
-/obj/machinery/light/small/red{
-	dir = 8
-	},
-/obj/decal/cleanable/dirt/random,
-/turf/floor/grime,
-/area/ntso_shuttle)
 "vSS" = (
 /turf/wall/auto/rivet/window,
 /area/wizard_station)
@@ -44772,15 +44779,6 @@
 	icon_state = "white"
 	},
 /area/sim/chess)
-"wqi" = (
-/obj/table/wood/auto,
-/obj/machinery/light/small/blueish,
-/obj/item/storage/box/donkpocket_kit{
-	pixel_y = 6;
-	pixel_x = -2
-	},
-/turf/floor/carpet/grime2,
-/area/ntso_shuttle)
 "wqp" = (
 /turf/floor/arctic/cliff{
 	dir = 10
@@ -45046,10 +45044,6 @@
 	icon_state = "floor5"
 	},
 /area/wizard_station)
-"wVY" = (
-/obj/decal/cleanable/dirt/random,
-/turf/floor/grime,
-/area/ntso_shuttle)
 "wWb" = (
 /obj/decal/tile_edge/line/black{
 	icon_state = "line1";
@@ -45377,6 +45371,18 @@
 /obj/decal/snowbits,
 /turf/floor/engine/caution/east,
 /area/upper_arctic/fita/mining)
+"xAG" = (
+/obj/storage/secure/closet/fridge/kitchen{
+	locked = 0
+	},
+/obj/item/reagent_containers/food/snacks/taco/complete,
+/obj/item/banme,
+/obj/decal/cleanable/cobweb{
+	dir = 1;
+	icon_state = "cobweb"
+	},
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "xAQ" = (
 /turf/floor/wood/two,
 /area/afterlife/bar)
@@ -109066,10 +109072,10 @@ aaa
 duf
 vww
 eFb
-fcw
+qqX
 eoJ
 eoJ
-qKE
+xAG
 eFb
 vww
 duf
@@ -109368,10 +109374,10 @@ aaa
 duf
 vww
 eFb
-mfI
+aaZ
 eoJ
 eoJ
-wqi
+pBK
 eFb
 vww
 duf
@@ -109671,9 +109677,9 @@ duf
 gAm
 eFb
 eoJ
-pvd
-ieG
-nfb
+vOh
+bkl
+kWi
 eFb
 vww
 duf
@@ -109972,7 +109978,7 @@ aaa
 duf
 eFb
 eFb
-pCg
+rNV
 eFb
 eFb
 eFb
@@ -110273,12 +110279,12 @@ vww
 aaa
 duf
 eFb
-pym
-hAi
+uye
+tIQ
 eFb
+bYU
+tne
 tKp
-gux
-adV
 eFb
 duf
 aaa
@@ -110575,12 +110581,12 @@ vww
 aaa
 duf
 eFb
-ttk
+eEF
 dJL
 wHL
-pfu
-pfu
-pfu
+piQ
+piQ
+piQ
 eFb
 duf
 aaa
@@ -110876,13 +110882,13 @@ vww
 vww
 aaa
 duf
-qaN
-wVY
+rtg
+nxo
 dJL
 gyL
-kGf
-pfu
-pfu
+ftW
+piQ
+piQ
 eFb
 duf
 aaa
@@ -111182,9 +111188,9 @@ eFb
 dJL
 dJL
 eFb
+urA
+nbV
 fBI
-aqr
-oLk
 eFb
 duf
 aaa
@@ -111481,7 +111487,7 @@ vww
 aaa
 duf
 eFb
-kBL
+dsl
 dJL
 eFb
 eFb
@@ -111782,13 +111788,13 @@ vww
 vww
 aaa
 duf
-kHA
-hAi
+uwt
+tIQ
 dJL
 dJL
-vRd
-lYI
-oDL
+kiF
+gxy
+mKt
 eFb
 duf
 aaa
@@ -112090,7 +112096,7 @@ dJL
 dJL
 dJL
 dJL
-wVY
+nxo
 eFb
 duf
 aaa
@@ -112387,12 +112393,12 @@ vww
 aaa
 duf
 eFb
-uqR
-wVY
-mkX
-hbT
-hbT
-hbT
+oxj
+nxo
+bFm
+mLZ
+mLZ
+mLZ
 eFb
 duf
 aaa
@@ -112689,12 +112695,12 @@ vww
 aaa
 duf
 eFb
-hWq
-qqz
-mkX
-ktb
-jDh
-ktb
+myi
+oXt
+bFm
+ncM
+kuU
+ncM
 eFb
 duf
 aaa
@@ -112994,9 +113000,9 @@ uBk
 lhO
 lhO
 eFb
-ktb
-ktb
-ktb
+gnu
+ncM
+ncM
 eFb
 duf
 aaa
@@ -113292,13 +113298,13 @@ vww
 vww
 aaa
 duf
-kjg
+kRw
 ccq
 ccq
 uBk
-tdw
-eJl
-eJl
+tmX
+ktb
+ktb
 nve
 duf
 aaa
@@ -114208,7 +114214,7 @@ duf
 duf
 duf
 aaa
-tgB
+fAA
 aaa
 aIr
 aIr
