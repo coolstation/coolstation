@@ -613,6 +613,10 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay/treatment1)
+"apa" = (
+/obj/machinery/vending/air_vendor,
+/turf/floor/arrival,
+/area/station/hallway/secondary/entry)
 "ape" = (
 /obj/machinery/atmospherics/pipe/manifold/south,
 /obj/disposalpipe/segment/mail{
@@ -2742,6 +2746,7 @@
 	dir = 1
 	},
 /obj/decal/cleanable/rust/jen/grime/diagonal,
+/obj/machinery/vending/snack,
 /turf/floor/diagonal,
 /area/station/crew_quarters/quartersA)
 "bqI" = (
@@ -3802,6 +3807,15 @@
 	dir = 4
 	},
 /area/station/hallway/secondary/entry)
+"bUK" = (
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/table/wood/auto,
+/turf/floor/escape{
+	dir = 8
+	},
+/area/station/hallway/secondary/exit)
 "bUO" = (
 /obj/decal/cleanable/rust/jen/grime,
 /turf/floor/sanitary,
@@ -5837,6 +5851,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/solar/south)
+"cQX" = (
+/obj/machinery/vending/snack,
+/turf/floor/blue/checker{
+	dir = 4
+	},
+/area/station/bridge/customs)
 "cRk" = (
 /obj/cable/yellow{
 	icon_state = "0-2"
@@ -14825,6 +14845,17 @@
 	},
 /turf/floor/engine/vacuum,
 /area/station/engine/proto)
+"huC" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 1
+	},
+/obj/machinery/light/fluorescent/cool{
+	dir = 4
+	},
+/turf/floor/red/side{
+	dir = 5
+	},
+/area/station/security/secwing)
 "huK" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/diagonal,
@@ -15340,7 +15371,7 @@
 /obj/machinery/light/fluorescent/cool{
 	dir = 1
 	},
-/obj/iv_stand,
+/obj/machinery/vending/snack,
 /turf/floor/bluewhite{
 	dir = 8
 	},
@@ -19521,6 +19552,14 @@
 /obj/disposalpipe/segment/sewage,
 /turf/floor/plating,
 /area/station/security/brig/genpop)
+"jUQ" = (
+/obj/decal/cleanable/dirt/edge{
+	dir = 1
+	},
+/obj/decal/cleanable/rust/jen/grime/diagonal,
+/obj/machinery/vending/cola/blue,
+/turf/floor/diagonal,
+/area/station/crew_quarters/quartersA)
 "jUY" = (
 /obj/machinery/atmospherics/pipe/manifold/west,
 /turf/floor/neutral/side{
@@ -20332,7 +20371,7 @@
 /turf/floor/wood/six,
 /area/station/bridge/conference)
 "kpV" = (
-/obj/machinery/vending/cola/blue,
+/obj/machinery/vending/cola/red,
 /obj/decal/cleanable/ripped_poster{
 	pixel_y = 32
 	},
@@ -23564,6 +23603,10 @@
 /turf/space,
 /turf/floor,
 /area/station/construction)
+"lQq" = (
+/obj/machinery/vending/fortune,
+/turf/floor/specialroom/bar,
+/area/station/crew_quarters/bar)
 "lQE" = (
 /obj/cable/yellow{
 	icon_state = "1-2"
@@ -28000,6 +28043,10 @@
 	dir = 1
 	},
 /area/station/hallway/primary/north)
+"nVT" = (
+/obj/machinery/vending/cola/splurt,
+/turf/floor/plating,
+/area/station/maintenance/outer/se)
 "nWd" = (
 /obj/disposalpipe/segment/produce{
 	dir = 4
@@ -31431,6 +31478,7 @@
 /area/station/security/secwing)
 "pGW" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/vending/cola/blue,
 /turf/floor/bluewhite{
 	dir = 1
 	},
@@ -42094,6 +42142,7 @@
 /obj/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/machinery/vending/cola/blue,
 /turf/floor/escape/corner{
 	dir = 1
 	},
@@ -43560,6 +43609,7 @@
 /area/station/security/detectives_office)
 "vFM" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/iv_stand,
 /turf/floor/green,
 /area/station/medical/medbay/recovery)
 "vFZ" = (
@@ -45724,6 +45774,7 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 1
 	},
+/obj/storage/secure/closet/command/medical_director,
 /turf/floor/carpet/office/other,
 /area/station/medical/head)
 "wCm" = (
@@ -46799,6 +46850,10 @@
 	},
 /turf/floor,
 /area/station/atmos/department)
+"xcs" = (
+/obj/machinery/vending/pizza,
+/turf/floor/plating,
+/area/station/maintenance/outer/nw)
 "xdg" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable/orange{
@@ -65932,7 +65987,7 @@ jgL
 jVg
 oTp
 gsh
-ubT
+apa
 lhT
 pVx
 mgA
@@ -74977,7 +75032,7 @@ ced
 dNp
 dNp
 sUp
-muz
+xcs
 muz
 muz
 ciX
@@ -84080,8 +84135,8 @@ fMw
 quG
 ujB
 kvu
-pph
-mvx
+lpc
+cQX
 pKK
 eOd
 wif
@@ -86748,7 +86803,7 @@ aQM
 knX
 wMT
 wMT
-wMT
+huC
 vAP
 rRr
 rhc
@@ -93730,7 +93785,7 @@ tkl
 xtW
 suW
 nSE
-mpJ
+lQq
 gBB
 suW
 iVz
@@ -94614,7 +94669,7 @@ mVt
 mVt
 cpT
 bxn
-bqw
+jUQ
 hjt
 nxK
 dZx
@@ -111243,8 +111298,8 @@ qRR
 xaM
 dYU
 iDm
-iDm
-iDm
+bUK
+bUK
 uRP
 gGV
 gGV
@@ -114319,7 +114374,7 @@ ekr
 ekr
 cGh
 gGw
-ekr
+nVT
 ekr
 gGw
 fzp
