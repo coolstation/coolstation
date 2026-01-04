@@ -2067,6 +2067,55 @@
 	say_verb()
 		return "dooks"
 
+
+/// EXTREMELY WIP RODENTIA IMPLEMENTATION
+/datum/mutantrace/rodentia
+	// TODO: spritework
+	// TODO: work out color customization
+	// TODO: work out dietary & sensory stuff
+	// TODO: work out mousetrap vulnerability
+	// TODO: work out custom emotes? bruxxing & boggling
+	// TODO: rodentia should be small?
+	name = "rodentia"
+	icon = 'icons/mob/rodentia.dmi'
+	//icon_state = TODO
+	override_attack = FALSE
+	mutant_appearance_flags = (HAS_HUMAN_EYES | BUILT_FROM_PIECES | HAS_EXTRA_DETAILS | FIX_COLORS | HAS_HUMAN_HAIR | WEARS_UNDERPANTS | HAS_PARTIAL_SKINTONE)
+	voice_override = "rodentia"
+	special_head = HEAD_RODENTIA
+	special_head_state = "head"
+	//eye_state = TODO
+	mutant_organs = list("tail" = /obj/item/organ/tail/rodentia)
+	mutant_folder = 'icons/mob/rodentia.dmi'
+	detail_1_icon = 'icons/mob/rodentia.dmi'
+	detail_1_state = "rodentia_detail-1"
+	//detail_1_color = TODO
+	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/rodentia/right
+	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/rodentia/left
+	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/rodentia/right
+	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/rodentia/left
+	race_mutation = /datum/bioEffect/mutantrace/rodentia
+	clothing_icon_override = 'icons/mob/rodentia_clothes.dmi'
+	//color_channel_names = TODO
+	//emote_overrides = TODO
+	dna_mutagen_banned = FALSE
+
+	New(mob/living/carbon/human/H)
+		..()
+		if(ishuman(H))
+			H.mob_flags |= SHOULD_HAVE_A_TAIL
+
+			H.update_face()
+			H.update_body()
+			H.update_clothing()
+
+	sight_modifier()
+		mob.see_in_dark = SEE_DARK_HUMAN + 1
+
+	say_verb()
+		return "squeaks"
+
+
 #undef OVERRIDE_ARM_L
 #undef OVERRIDE_ARM_R
 #undef OVERRIDE_LEG_R
