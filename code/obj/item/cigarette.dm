@@ -1183,10 +1183,10 @@
 		processing_items |= src
 		src.tool_flags |= TOOL_OPENFLAME
 		if (user != null)
-			if(!alt_message && user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker"))
-				user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
+			if(!alt_message && (user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker")))
+				user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights \the [src] in one smooth movement.</span>")
 			else
-				user.visible_message("<span class='alert'>[user] lights the [src].</span>")
+				user.visible_message("<span class='alert'>[user] lights \the [src].</span>")
 			playsound(user, lighter_sound, 30, 1)
 			if(lighter_animated)
 				flick(anim_open, src)
@@ -1201,10 +1201,10 @@
 		processing_items.Remove(src)
 		src.tool_flags &= ~TOOL_OPENFLAME
 		if (user != null)
-			if(!alt_message && user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker"))
-				user.visible_message("<span class='alert'>You hear a quiet click, as [user] shuts off [src] without even looking what they're doing. Wow.</span>")
+			if(!alt_message && (user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker")))
+				user.visible_message("<span class='alert'>You hear a quiet click, as [user] shuts off \the [src] without even looking what they're doing. Wow.</span>")
 			else
-				user.visible_message("<span class='alert'>[user] shuts off the [src].</span>")
+				user.visible_message("<span class='alert'>[user] shuts off \the [src].</span>")
 
 			playsound(user, 'sound/items/zippo_close.ogg', 30, 1)
 			if(lighter_animated)
@@ -1221,9 +1221,9 @@
 						fella.TakeDamage("chest",0,10)
 						fella.limbs.l_arm_bleed = max(0,fella.limbs.l_arm_bleed-5)
 						if (fella.limbs.l_arm_bleed == 0)
-							user.visible_message("<span class='alert'>[user] completely cauterises [fella]'s left stump with [src]!</span>")
+							user.visible_message("<span class='alert'>[user] completely cauterises [fella]'s left stump with \the [src]!</span>")
 						else
-							user.visible_message("<span class='alert'>[user] partially cauterises [fella]'s left stump with [src]!</span>")
+							user.visible_message("<span class='alert'>[user] partially cauterises [fella]'s left stump with \the [src]!</span>")
 						return
 
 				if (user.zone_sel.selecting == "r_arm")
@@ -1231,14 +1231,14 @@
 						fella.TakeDamage("chest",0,10)
 						fella.limbs.r_arm_bleed = max(0,fella.limbs.r_arm_bleed-5)
 						if (fella.limbs.r_arm_bleed == 0)
-							user.visible_message("<span class='alert'>[user] completely cauterises [fella]'s right stump with [src]!</span>")
+							user.visible_message("<span class='alert'>[user] completely cauterises [fella]'s right stump with \the [src]!</span>")
 						else
-							user.visible_message("<span class='alert'>[user] partially cauterises [fella]'s right stump with [src]!</span>")
+							user.visible_message("<span class='alert'>[user] partially cauterises [fella]'s right stump with \the [src]!</span>")
 						return
 
 				if (fella.wear_mask && istype(fella.wear_mask, /obj/item/clothing/mask/cigarette))
 					var/obj/item/clothing/mask/cigarette/smoke = fella.wear_mask // aaaaaaa
-					smoke.light(user, "<span class='alert'><b>[user]</b> lights [fella]'s [smoke] with [src].</span>")
+					smoke.light(user, "<span class='alert'><b>[user]</b> lights [fella]'s [smoke] with \the [src].</span>")
 					fella.set_clothing_icon_dirty()
 					return
 
@@ -1246,7 +1246,7 @@
 				if (src.cautery_surgery(target, user, 10, src.on))
 					return
 
-		user.visible_message("<span class='alert'><b>[user]</b> waves [src] around in front of [target]'s face! OoOo, are ya scared?![src.on ? "" : " No, probably not, since [src] is closed."]</span>")
+		user.visible_message("<span class='alert'><b>[user]</b> waves \the [src] around in front of [target]'s face! OoOo, are ya scared?![src.on ? "" : " No, probably not, since \the [src] is out."]</span>")
 		return
 
 	afterattack(atom/O, mob/user as mob)
@@ -1255,16 +1255,16 @@
 				return
 
 			if (infinite_fuel)
-				user.show_text("You can't seem to find any way to add more fuel to [src]. It's probably fine.", "blue")
+				user.show_text("You can't seem to find any way to add more fuel to \the [src]. It's probably fine.", "blue")
 				return
 
 			if (reagents.get_reagent_amount("fuel") >= src.reagents.maximum_volume) //this could be == but just in case...
-				boutput(user, "<span class='alert'>[src] is full!</span>")
+				boutput(user, "<span class='alert'>\the [src] is full!</span>")
 				return
 
 			if (O.reagents.total_volume)
 				O.reagents.trans_to(src, src.reagents.maximum_volume - src.reagents.get_reagent_amount("fuel"))
-				boutput(user, "<span class='notice'>[src] has been refueled.</span>")
+				boutput(user, "<span class='notice'>\the [src] has been refueled.</span>")
 				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 			else
 				user.show_text("[O] is empty.", "red")
@@ -1317,10 +1317,10 @@
 			user.suiciding = 0
 			return 0
 		if (!src.on) // don't need to do more than just show the message since the lighter is deleted in a moment anyway
-			if(!alt_message && user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker"))
-				user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
+			if(!alt_message && (user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker")))
+				user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights \the [src] in one smooth movement.</span>")
 			else
-				user.visible_message("<span class='alert'>[user] lights [src].</span>")
+				user.visible_message("<span class='alert'>[user] lights \the [src].</span>")
 
 		user.visible_message("<span class='alert'><b>[user] swallows the on [src.name]!</b></span>")
 		user.take_oxygen_deprivation(75)
@@ -1342,7 +1342,8 @@
 
 
 /obj/item/device/light/zippo/cheap
-	name = "\improper disposable lighter"
+	name = "disposable lighter"
+	desc = "a cheap, disposable lighter"
 	alt_message = 1
 	lighter_sound = 'sound/effects/spark_lighter.ogg'
 	icon_state = "lighter_cheap"
@@ -1351,22 +1352,55 @@
 	lighter_animated = 0
 	fuel_amount = 5
 
+
+	New()
+		..()
+		var/lightercolor
+		if(prob(90))
+			switch(rand(1, 5))
+				if(1) lightercolor = "cheap_green"
+				if(2) lightercolor = "cheap_blue"
+				if(3) lightercolor = "cheap_red"
+				if(4) lightercolor = "cheap_yellow"
+				if(5) lightercolor = "cheap_purple"
+		else
+			lightercolor = "rare_[rand(1,3)]"
+			if(lightercolor == "rare_2")
+				name = "baby Ginch lighter"
+				desc = "A commemorative lighter for the experimental Bulgarian indie film, Бебе Гинч: Изкупление"
+
+		src.overlays += image(src.icon, lightercolor)
+
 	attack_self(mob/user)
+		if(user.traitHolder.hasTrait("hardcore"))
+			boutput(user, "<span class='alert'>You feel WAY too cool to use \the [src].</span>")
+			return
+
 		if(user.find_in_hand(src))
 			if (src.on)
 				return
-		if(reagents.get_reagent_amount("fuel") > 0 && (prob(50) || user.traitHolder.hasTrait("hardcore")))
+		if(reagents.get_reagent_amount("fuel") > 0 && prob(50))
 			..()
 
 			if((user.traitHolder.hasTrait("clutz") && prob(30)) || prob(5))
-				SPAWN_DBG(0.5 SECONDS)
+				var/prot = 0
+				var/mob/living/carbon/human/H = user
 
-					user.TakeDamage(user.hand == 1 ? "l_arm": "r_arm", 0, 3, 0, DAMAGE_BURN)
-					user.visible_message("<span class='alert'><b>[user] gets burnt on the [src.name]!</b></span>")
-					playsound(src, "sound/impact_sounds/burn_sizzle.ogg", 50, 1)
+				if(istype(H))
 
-					sleep(0.5 SECONDS)
-					if(!user.traitHolder.hasTrait("hardcore")) //cool as fuuuuuuuuuuuuuck
+					if(H.gloves)
+						var/obj/item/clothing/gloves/G = H.gloves
+						prot = (G.getProperty("heatprot") >= 5)	//You'll get burnt wearing thin gloves like latex, thicker ones give protection
+				else
+					prot = 1 //skipping this check on non humans, better for the edge cases I can imagine
+
+				if (prot == 0 && !user.is_heat_resistant())
+					SPAWN_DBG(0.5 SECONDS)
+						user.TakeDamage(user.hand == 1 ? "l_arm": "r_arm", 0, 3, 0, DAMAGE_BURN)
+						user.visible_message("<span class='alert'><b>[user] gets burnt on the [src.name]!</b></span>")
+						playsound(src, "sound/impact_sounds/burn_sizzle.ogg", 50, 1)
+
+						sleep(0.5 SECONDS)
 						user.drop_item()
 
 			SPAWN_DBG(rand(0.8 SECONDS, 1.7 SECONDS))
@@ -1376,24 +1410,32 @@
 			flick("cheap_fail",src)
 			violent_twitch(src)
 			if(prob(2) || user.traitHolder.hasTrait("clutz") && prob(30))
-				user.visible_message("<span class='alert'><b>[user] fumbles the [src.name]!</b></span>")
+				user.visible_message("<span class='alert'><b>[user] fumbles \the [src.name]!</b></span>")
 				user.drop_item()
 			else
-				user.visible_message("<span class='alert'><b>The [src.name] fails to light.</b></span>")
+				user.visible_message("<span class='alert'><b>\the [src.name] fails to light.</b></span>")
 
 	dropped(mob/user as mob)
 		..()
 		deactivate()
 
 
+
+
+
+
+
+
+
 /obj/item/device/light/zippo/gun
-	name = "Novelty Gun lighter"
+	name = "novelty gun lighter"
 	icon_state = "gun"
 	icon_off = "gun"
 	icon_on = "gun_on"
 	lighter_sound = 'sound/effects/spark_lighter.ogg'
 	anim_open = "gun_open"
 	anim_close = "gun_close"
+	alt_message = 1
 
 	dropped(mob/user as mob)
 		..()
