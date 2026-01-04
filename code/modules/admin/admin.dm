@@ -4792,7 +4792,9 @@ var/global/noir = 0
 				M.mind.special_role = "rogue_ntso"
 				M.show_text("<h2><font color=red><B>You have defected from Nanotrasen and become rogue!</B></font></h2>", "red")
 				var/mob/living/carbon/human/tmob = M
+				M.unequip_all(0)
 				equip_rogue(tmob)
+				SHOW_NTSO_TIPS(M)
 			if("hunter")
 				M.mind.special_role = "hunter"
 				M.mind.assigned_role = "Hunter"
