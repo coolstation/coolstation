@@ -196,6 +196,11 @@
 		src.current_receipt_subtotal = 0
 		src.receipt_serv_chg_total   = 0
 
+		if(prob(5))
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad, 1)
+		else if(prob(5))
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/hotdogs, 1)
+
 	proc/addToReceipt(productName, productCost, serviceCharge)
 		if(!print_receipts)
 			return
@@ -1449,7 +1454,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigarbox, 1, cost=PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/nicotine, 10, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/matchbook, 10, cost=PAY_UNTRAINED/20)
-		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 5, cost=PAY_TRADESMAN/10)
+		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo/cheap, 5, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/vape, 10, cost=PAY_TRADESMAN/2)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/ecig_refill_cartridge, 20, cost=PAY_TRADESMAN/5)
 

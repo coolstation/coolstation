@@ -653,6 +653,11 @@
 				if((!H.shoes || (src.material && src.material.hasProperty("hard") && src.material.getProperty("hard") >= 70)) && !iscow(H))
 					boutput(H, "<span class='alert'><B>You step on [src]! Ouch!</B></span>")
 					step_on(H)
+
+			if(prob(5))
+				new /obj/decal/cleanable/grit/small(src.loc)
+				qdel(src)
+				return
 		..()
 
 	custom_suicide = 1
