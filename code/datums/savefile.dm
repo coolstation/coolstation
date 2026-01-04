@@ -240,6 +240,7 @@
 		F["[profileNum]_be_conspirator"] << src.be_conspirator
 		F["[profileNum]_be_flock"] << src.be_flock
 		F["[profileNum]_be_misc"] << src.be_misc
+		F["[profileNum]_be_roguentso"] << src.be_roguentso
 
 		// UI settings. Ehhhhh.
 		F["[profileNum]_hud_style"] << src.hud_style
@@ -423,6 +424,7 @@
 		F["[profileNum]_be_conspirator"] >> src.be_conspirator
 		F["[profileNum]_be_flock"] >> src.be_flock
 		F["[profileNum]_be_misc"] >> src.be_misc
+		F["[profileNum]_be_roguentso"] >> src.be_roguentso
 
 		// UI settings...
 		F["[profileNum]_hud_style"] >> src.hud_style

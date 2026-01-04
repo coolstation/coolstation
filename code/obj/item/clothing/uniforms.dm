@@ -763,8 +763,6 @@
 	rogue
 		name = "tattered turtleneck"
 		desc = "Looks like it used to be a Nanotrasen Special Ops jumpsuit."
-		icon_state = "turdsuit-rogue"
-		item_state = "turdsuit-rogue"
 
 
 /obj/item/clothing/under/misc/NT

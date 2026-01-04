@@ -3778,6 +3778,13 @@ ABSTRACT_TYPE(/area/station/catwalk)
 
 // end syndie //
 
+/area/ntso_shuttle
+	name = "NTSO Shuttle"
+	icon_state = "blue"
+	requires_power = 0
+	sound_environment = EAX_ROOM
+	teleport_blocked = 1
+
 /// Wizard den area for the wizard shuttle spawn
 /area/wizard_station
 	name = "Wizard's Den"

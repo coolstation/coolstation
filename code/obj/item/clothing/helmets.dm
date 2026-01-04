@@ -361,8 +361,8 @@
 /obj/item/clothing/head/helmet/space/ntso //recoloured nuke class suits for ntso vs syndicate specialist
 	name = "NT-SO combat helmet"
 	desc = "A modified combat helmet for Nanotrasen special forces"
-	icon_state = "ntso_specialist"
-	item_state = "ntso_specialist"
+	icon_state = "ntso"
+	item_state = "ntso"
 
 	setupProperties()
 		..()
@@ -376,8 +376,8 @@
 	rogue
 		name = "Old NT-SO combat helmet"
 		desc = "A scratched and faded helmet designed for Nanotrasen special forces"
-		icon_state = "ntso_rogue"
-		item_state = "ntso_rogue"
+		icon_state = "ntso-rogue"
+		item_state = "ntso-rogue"
 
 /obj/item/clothing/head/helmet/space/nanotrasen
 	name = "Nanotrasen Heavy Helmet"

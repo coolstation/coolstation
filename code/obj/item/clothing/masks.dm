@@ -141,8 +141,6 @@
 	rogue
 		name = "Old NT-SO gas mask"
 		desc = "A poorly maintained CBRN mask with a yellowed lense and dirty filters, once designed to protect no longer loyal death squads."
-		icon_state = "gas_mask_NT_rogue"
-		item_state = "gas_mask_NT_rogue"
 
 /obj/item/clothing/mask/moustache
 	name = "fake moustache"

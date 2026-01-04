@@ -8648,6 +8648,10 @@
 	},
 /turf/floor/grime,
 /area/station/hallway/primary/east)
+"gqH" = (
+/obj/warp_beacon/port,
+/turf/floor/plating/airless,
+/area/station/shipyard)
 "grd" = (
 /obj/decal/poster/wallsign/poster_beach,
 /turf/wall/r_wall,
@@ -9482,7 +9486,6 @@
 	pixel_x = 33
 	},
 /obj/decal/mule/beacon/no_auto_dropoff_spawn,
-/obj/machinery/navbeacon/mule/QM1_north,
 /turf/floor,
 /area/station/hallway/primary/east)
 "gPB" = (
@@ -10703,7 +10706,7 @@
 	icon_state = "delivery2"
 	},
 /obj/machinery/bot/mulebot/QM2,
-/obj/machinery/navbeacon/mule/QM2_north,
+/obj/machinery/navbeacon/mule/QM2_north/east,
 /turf/floor/grime,
 /area/station/quartermaster/storage)
 "hJc" = (
@@ -25479,6 +25482,10 @@
 	},
 /turf/floor/industrial,
 /area/station/engine/power)
+"sew" = (
+/obj/warp_beacon/escape,
+/turf/floor/airless/plating/damaged2,
+/area/space)
 "seH" = (
 /obj/machinery/hot_roller{
 	dir = 8
@@ -30387,7 +30394,7 @@
 	icon_state = "delivery2"
 	},
 /obj/machinery/bot/mulebot/QM1,
-/obj/machinery/navbeacon/mule/QM1_north,
+/obj/machinery/navbeacon/mule/QM1_north/east,
 /turf/floor/grime,
 /area/station/quartermaster/storage)
 "vGW" = (
@@ -65430,7 +65437,7 @@ hwz
 utA
 rtl
 utA
-rtl
+gqH
 gXf
 hrV
 pqS
@@ -84418,7 +84425,7 @@ qch
 npW
 aaB
 aaB
-aaB
+sew
 aaB
 aaB
 sZW

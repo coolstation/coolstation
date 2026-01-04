@@ -12,6 +12,7 @@
 #define iswrestler(x) ((istype(x, /mob/living/carbon/human) || istype(x, /mob/living/critter)) && (x:get_ability_holder(/datum/abilityHolder/wrestler) != null || HAS_ATOM_PROPERTY(x, PROP_PASSIVE_WRESTLE)))
 #define iswraith(x) istype(x, /mob/wraith)
 #define ispoltergeist(x) istype(x, /mob/wraith/poltergeist)
+#define istraitor(x) (istype(x, /mob/living/carbon/human) && x:mind && x:mind:special_role == ROLE_ROGUENTSO)
 
 #define isblob(x) istype(x, /mob/living/intangible/blob_overmind)
 #define isspythief(x) (istype(x, /mob/living/carbon/human) && x:mind && x:mind:special_role == ROLE_SPY_THIEF)
