@@ -257,16 +257,15 @@
 /proc/equip_rogue(mob/living/carbon/human/rogue)
 	if (!ishuman(rogue))
 		return
-	rogue.equip_if_possible(new /obj/item/clothing/head/helmet/space/ntso/rogue(rogue), rogue.slot_head)
-	rogue.equip_if_possible(new /obj/item/clothing/suit/space/ntso/rogue(rogue), rogue.slot_wear_suit)
-	rogue.equip_if_possible(new /obj/item/device/radio/headset/command/nt/rogue(rogue), rogue.slot_ears)
 	rogue.equip_if_possible(new /obj/item/clothing/under/misc/turds/rogue(rogue), rogue.slot_w_uniform)
 	rogue.equip_if_possible(new /obj/item/clothing/shoes/swat(rogue), rogue.slot_shoes)
-	rogue.equip_if_possible(new /obj/item/clothing/gloves/swat/NT(rogue), rogue.slot_gloves)
-	rogue.equip_if_possible(new /obj/item/storage/backpack/satchel/NT/rogue(rogue), rogue.slot_back)
 	rogue.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(rogue), rogue.slot_glasses)
 	rogue.equip_if_possible(new /obj/item/tank/emergency_oxygen(rogue), rogue.slot_l_store)
-	rogue.equip_if_possible(new /obj/item/storage/belt/security/rogue(rogue), rogue.slot_belt)
+
+	var/obj/item/card/id/ntso/I = new /obj/item/card/id/ntso(rogue)
+	I.icon_state = "ntso"
+	I.icon = 'icons/obj/items/card.dmi'
+	rogue.equip_if_possible(I, rogue.slot_wear_id)
 
 	SHOW_NTSO_TIPS(rogue)
 

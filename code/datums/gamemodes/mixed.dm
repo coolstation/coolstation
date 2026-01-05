@@ -53,10 +53,10 @@
 	var/num_werewolves = 0
 	var/num_roguentso = 0
 
-//#ifdef XMAS
-	//src.traitor_types += ROLE_GRINCH
-	//src.latejoin_antag_roles += ROLE_GRINCH
-//#endif
+#ifdef XMAS
+	src.traitor_types += ROLE_GRINCH
+	src.latejoin_antag_roles += ROLE_GRINCH
+#endif
 
 	if ((num_enemies >= 4 && prob(20)) || debug_mixed_forced_wraith || debug_mixed_forced_blob)
 		if (prob(50) || debug_mixed_forced_wraith)

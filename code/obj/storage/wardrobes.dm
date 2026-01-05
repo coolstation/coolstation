@@ -286,5 +286,16 @@
 	/obj/item/clothing/under/misc/turds/rogue,
 	/obj/item/clothing/shoes/swat,
 	/obj/item/clothing/gloves/swat/NT,
-	/obj/item/storage/belt/security
+	/obj/item/storage/belt/security/rogue,
+	/obj/item/device/radio/headset/command/nt/rogue,
+	/obj/item/storage/backpack/satchel/NT/rogue,
+	/obj/item/gun/modular/NT/rifle,
+	/obj/item/storage/firstaid/old,
+	/obj/item/stackable_ammo/rifle/NT/ten,
+	/obj/item/gun/modular/NT/pistol,
+	/obj/item/stackable_ammo/pistol/NT/HP/ten,
+	/obj/item/stackable_ammo/pistol/NT/twenty,
+	/obj/item/clothing/mask/gas/NTSO/rogue,
+	/obj/item/barrier,
+	/obj/item/baton/ntso/old,
 	)
