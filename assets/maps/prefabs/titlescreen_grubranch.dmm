@@ -48,6 +48,10 @@
 	dir = 6
 	},
 /area/titlescreen)
+"dQ" = (
+/obj/machinery/light/beacon,
+/turf/space/gehenna/desert,
+/area/titlescreen)
 "dT" = (
 /obj/chainlink_fence{
 	dir = 10
@@ -107,6 +111,12 @@
 /turf/space/gehenna/desert/path{
 	dir = 4
 	},
+/area/titlescreen)
+"mb" = (
+/obj/machinery/light/sodium{
+	dir = 1
+	},
+/turf/space/gehenna/desert/plating,
 /area/titlescreen)
 "nf" = (
 /obj/decal/landing_gear_prints_gehenna{
@@ -218,6 +228,12 @@
 "wn" = (
 /obj/chainlink_fence,
 /turf/space/gehenna/desert,
+/area/titlescreen)
+"wp" = (
+/obj/machinery/light/sodium{
+	dir = 8
+	},
+/turf/space/gehenna/desert/plating,
 /area/titlescreen)
 "wJ" = (
 /obj/railway/rusty,
@@ -607,7 +623,7 @@ tA
 QK
 Gx
 cW
-dn
+mb
 eU
 EI
 dT
@@ -682,7 +698,7 @@ yV
 vj
 pV
 sZ
-eU
+dQ
 Gs
 eU
 "}
@@ -690,7 +706,7 @@ eU
 yK
 dn
 dn
-dn
+wp
 IA
 Uz
 eU
