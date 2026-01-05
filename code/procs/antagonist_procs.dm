@@ -263,7 +263,7 @@
 	rogue.equip_if_possible(new /obj/item/tank/emergency_oxygen(rogue), rogue.slot_l_store)
 
 	var/obj/item/card/id/ntso/I = new /obj/item/card/id/ntso(rogue)
-	I.icon_state = "ntso"
+	I.icon_state = "faded"
 	I.icon = 'icons/obj/items/card.dmi'
 	rogue.equip_if_possible(I, rogue.slot_wear_id)
 

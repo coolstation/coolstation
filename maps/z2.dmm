@@ -15183,6 +15183,16 @@
 /obj/machinery/light/small/blueish{
 	dir = 1
 	},
+/obj/item/clothing/suit/armor/NT{
+	name = "dusty armored jacket";
+	desc = "An unwashed and old jacket with armor plating stuffed in the lining. The fabric is stained and tattered in places."
+	},
+/obj/item/clothing/head/NTberet{
+	desc = "It's a momento, I guess. An old keepsake. And maybe a reminder of the things we've left behind.";
+	name = "Old Beret";
+	pixel_x = -7;
+	pixel_y = -3
+	},
 /turf/floor/carpet/grime,
 /area/ntso_shuttle)
 "bYX" = (
@@ -33574,10 +33584,10 @@
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
 "dsl" = (
-/obj/machinery/light/small/blueish{
+/obj/machinery/macrofab/emergency_pod{
 	dir = 1
 	},
-/turf/floor/grime,
+/turf/floor/engine/caution/west,
 /area/ntso_shuttle)
 "dsI" = (
 /obj/lattice{
@@ -36559,10 +36569,14 @@
 /turf/space/shuttle_transit,
 /area/shuttle/escape/transit/battle_shuttle)
 "eEF" = (
-/obj/machinery/light/small/blueish{
-	dir = 1
+/obj/table/reinforced/auto,
+/obj/item/stackable_ammo/pistol/NT/HP/ten,
+/obj/item/stackable_ammo/pistol/NT/twenty{
+	pixel_x = 5
 	},
-/obj/decal/cleanable/dirt/random,
+/obj/item/stackable_ammo/pistol/NT/twenty{
+	pixel_x = 10
+	},
 /turf/floor/grime,
 /area/ntso_shuttle)
 "eER" = (
@@ -37403,18 +37417,15 @@
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/entry)
 "gyL" = (
-/obj/table/wood/auto,
-/obj/machinery/light/lamp/green{
-	pixel_x = -6;
-	pixel_y = 10
+/obj/table/reinforced/auto,
+/obj/item/gun/modular/NT/shotty{
+	pixel_y = 9
 	},
-/obj/deskclutter{
-	pixel_x = 4;
-	pixel_y = 2
+/obj/item/gun/modular/NT/rifle,
+/obj/machinery/light/small/blueish{
+	dir = 1
 	},
-/obj/decal/cleanable/dirt/random,
-/obj/window/north,
-/turf/floor/carpet/grime,
+/turf/floor/grime,
 /area/ntso_shuttle)
 "gAm" = (
 /obj/indestructible/shuttle_corner{
@@ -37564,6 +37575,20 @@
 	},
 /turf/floor/concrete,
 /area/lower_arctic/mining)
+"gLI" = (
+/obj/table/wood/auto,
+/obj/machinery/light/lamp/green{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/deskclutter{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/decal/cleanable/dirt/random,
+/obj/window/north,
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "gMo" = (
 /obj/machinery/door/airlock/classic,
 /obj/decal/cleanable/tracked_reagents/blood/tracks,
@@ -39494,7 +39519,7 @@
 /turf/floor/green/checker,
 /area/owlery/owleryhall)
 "kRw" = (
-/turf/space,
+/turf/wall/auto/rivet/window/porthole,
 /area/ntso_shuttle)
 "kTc" = (
 /turf/floor/arctic/cliff{
@@ -41110,7 +41135,9 @@
 /obj/machinery/light/small/blueish{
 	dir = 1
 	},
-/obj/machinery/manufacturer/hangar,
+/obj/decal/cleanable/dirt/random,
+/obj/table/reinforced/auto,
+/obj/item/gun/modular/NT/flare_gun,
 /turf/floor/grime,
 /area/ntso_shuttle)
 "oxO" = (
@@ -42402,6 +42429,12 @@
 "rtc" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/crew)
+"rtf" = (
+/obj/decal/cleanable/dirt/random,
+/obj/item/gun_exploder,
+/obj/item/paper/book/from_file/pocketguide/gunsmith,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "rtg" = (
 /obj/decal/poster/wallsign/poster_nt,
 /turf/shuttle/wall{
@@ -42678,6 +42711,17 @@
 	},
 /turf/floor/vr/fourbit,
 /area/sim/chess)
+"rZl" = (
+/obj/decal/cleanable/cobweb,
+/obj/decal/cleanable/dirt/random,
+/obj/table/reinforced/auto,
+/obj/item/gun/modular/NT/pistol,
+/obj/item/gun/modular/NT/pistol{
+	pixel_y = 9;
+	pixel_x = 7
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "rZt" = (
 /turf/floor/shuttle{
 	icon_state = "floor5"
@@ -43303,6 +43347,16 @@
 /area/ntso_shuttle)
 "tne" = (
 /obj/storage/closet/wardrove/ntso,
+/obj/item/clothing/suit/armor/NT{
+	name = "dusty armored jacket";
+	desc = "An unwashed and old jacket with armor plating stuffed in the lining. The fabric is stained and tattered in places."
+	},
+/obj/item/clothing/head/NTberet{
+	desc = "It's a momento, I guess. An old keepsake. And maybe a reminder of the things we've left behind.";
+	name = "Old Beret";
+	pixel_x = -7;
+	pixel_y = -3
+	},
 /turf/floor/carpet/grime,
 /area/ntso_shuttle)
 "tor" = (
@@ -43503,6 +43557,19 @@
 	},
 /turf/floor,
 /area/meat_derelict/guts)
+"tKp" = (
+/obj/table/reinforced/auto,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 6
+	},
+/obj/item/clothing/head/NTberet{
+	desc = "It's a momento, I guess. An old keepsake. And maybe a reminder of the things we've left behind.";
+	name = "Old Beret";
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "tKQ" = (
 /obj/grille/catwalk{
 	dir = 10;
@@ -43868,8 +43935,23 @@
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma)
 "uye" = (
-/obj/decal/cleanable/cobweb,
-/obj/decal/cleanable/dirt/random,
+/obj/table/reinforced/auto,
+/obj/item/stackable_ammo/rifle/NT/ten{
+	pixel_x = -17
+	},
+/obj/item/stackable_ammo/shotgun/NT/ten{
+	pixel_x = -12
+	},
+/obj/item/stackable_ammo/shotgun/NT/ten{
+	pixel_x = -6
+	},
+/obj/item/device/flash{
+	pixel_x = 7
+	},
+/obj/item/device/flash{
+	pixel_x = 3;
+	pixel_y = 8
+	},
 /turf/floor/grime,
 /area/ntso_shuttle)
 "uyr" = (
@@ -45396,6 +45478,13 @@
 /obj/storage/secure/closet/logistics/mining,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
+"xGk" = (
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/obj/decal/floatingtiles/loose/random,
+/turf/floor/plating/random,
+/area/ntso_shuttle)
 "xGt" = (
 /turf/floor/specialroom/gym,
 /area/afterlife/bar)
@@ -45657,6 +45746,10 @@
 /area/sim/test_area{
 	name = "VR Test Area"
 	})
+"yei" = (
+/obj/machinery/manufacturer/hangar,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "yeB" = (
 /obj/stool/chair/comfy,
 /obj/landmark/start{
@@ -108155,8 +108248,8 @@ vww
 vww
 vww
 vww
-vww
-vww
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -108457,18 +108550,18 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
 duf
 aaa
 duf
@@ -108759,10 +108852,10 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
+vww
 vww
 gAm
 eFb
@@ -109061,10 +109154,10 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
+vww
 vww
 eFb
 qqX
@@ -109363,10 +109456,10 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
+vww
 vww
 eFb
 aaZ
@@ -109665,10 +109758,10 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
+vww
 gAm
 eFb
 eoJ
@@ -109967,10 +110060,10 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
+gAm
 eFb
 eFb
 rNV
@@ -110269,12 +110362,12 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
 eFb
-uye
+rZl
+dJL
 tIQ
 eFb
 bYU
@@ -110571,14 +110664,14 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
-eFb
-eEF
+vww
+kRw
+oxj
 dJL
-gyL
+dJL
+gLI
 piQ
 piQ
 piQ
@@ -110873,12 +110966,12 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
 rtg
-nxo
+tKp
+dJL
 dJL
 wHL
 ftW
@@ -111175,11 +111268,11 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
 eFb
+rtf
 dJL
 dJL
 eFb
@@ -111477,12 +111570,12 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
-eFb
-dsl
+vww
+kRw
+gyL
+dJL
 dJL
 eFb
 eFb
@@ -111779,12 +111872,12 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
 uwt
-tIQ
+eEF
+dJL
 dJL
 dJL
 kiF
@@ -112081,11 +112174,11 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
 eFb
+uye
 dJL
 dJL
 dJL
@@ -112383,17 +112476,17 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
-eFb
-oxj
+vww
+kRw
+xGk
+dJL
 nxo
 bFm
 mLZ
 mLZ
-mLZ
+dsl
 eFb
 duf
 aaa
@@ -112685,12 +112778,12 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
 eFb
 myi
+yei
 oXt
 bFm
 ncM
@@ -112987,11 +113080,11 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
 uBk
+lhO
 lhO
 lhO
 eFb
@@ -113289,11 +113382,11 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
-kRw
+vww
+vww
+ccq
 ccq
 ccq
 uBk
@@ -113591,10 +113684,10 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
+vww
 vww
 vww
 vww
@@ -113893,10 +113986,10 @@ vww
 vww
 vww
 vww
-vww
-vww
 aaa
 duf
+vww
+vww
 vww
 vww
 vww
@@ -114196,8 +114289,8 @@ aaa
 aaa
 aaa
 aaa
-vww
-aaa
+duf
+duf
 duf
 duf
 duf

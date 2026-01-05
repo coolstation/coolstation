@@ -486,7 +486,7 @@ GAUNTLET CARDS
 	access = list(access_juicer, access_juicer_fraud, access_juicer_grease)
 
 /obj/item/card/id/ntso
-	name = "NTSO"
+	name = "old NTSO ID card"
 	icon_state = "faded"
 	assignment = "Nanotrasen Special Operative"
 	desc = "This ID card has seen better days. The text is barely legible and it's way more flexible than it should be. It could still have some uncleared access, though..."
