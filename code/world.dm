@@ -702,6 +702,10 @@ var/f_color_selector_handler/F_Color_Selector
 	if(!worldgen_hold)
 		initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
 
+#ifdef DESERT_MAP
+	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_grubranch.dmm')
+#endif
+
 	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
 	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
 	RL_Start()
@@ -718,9 +722,6 @@ var/f_color_selector_handler/F_Color_Selector
 	var/datum/prefab_shuttle/D = new
 	D.inialize_prefabs()
 
-#ifdef DESERT_MAP
-	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_grubranch.dmm')
-#endif
 	UPDATE_TITLE_STATUS("Ready")
 	boutput(world, "we good 2 go")
 	current_state = GAME_STATE_PREGAME
