@@ -417,10 +417,6 @@
 	dir = 4
 	},
 /area/gehenna/wasteland)
-"atG" = (
-/obj/machinery/vending/cola/red,
-/turf/floor/grey,
-/area/station/hallway/primary/east)
 "atL" = (
 /obj/decal/skeleton,
 /turf/space/gehenna/desert/plating{
@@ -1238,6 +1234,11 @@
 /obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/north)
+"aZL" = (
+/obj/table/wood/auto,
+/obj/item/decoration/ashtray,
+/turf/floor/grey,
+/area/station/chapel/sanctuary)
 "aZV" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -1664,6 +1665,11 @@
 	},
 /turf/floor,
 /area/station/bridge/customs)
+"bAU" = (
+/obj/table/wood/auto,
+/obj/item/decoration/ashtray,
+/turf/floor/grey,
+/area/station/hallway/primary/east)
 "bAW" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
@@ -1791,7 +1797,7 @@
 /obj/machinery/light/small/warm{
 	dir = 4
 	},
-/obj/reagent_dispensers/beerkeg/owlfeed,
+/obj/reagent_dispensers/beerkeg/owldrugs,
 /turf/floor/wood/six,
 /area/station/ranch)
 "bEX" = (
@@ -2700,6 +2706,10 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/southwest,
 /turf/floor/bluewhite,
 /area/station/medical/medbay/cloner)
+"cwj" = (
+/obj/machinery/vending/cola/red,
+/turf/floor/grey,
+/area/station/hallway/primary/east)
 "cwk" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/cable{
@@ -3351,13 +3361,6 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/grey,
 /area/station/turret_protected/Zeta)
-"cUV" = (
-/obj/stool/chair{
-	dir = 4;
-	tag = "icon-chair (EAST)"
-	},
-/turf/floor/grey,
-/area/station/chapel/sanctuary)
 "cVm" = (
 /obj/grille/catwalk/elevator{
 	dir = 10
@@ -3448,6 +3451,10 @@
 /obj/machinery/shower,
 /turf/floor/sanitary,
 /area/station/security/brig/north_side)
+"dcz" = (
+/obj/stool/chair,
+/turf/floor/grey,
+/area/station/hallway/primary/east)
 "dcS" = (
 /turf/floor/shuttlebay,
 /area/station/hangar/catering)
@@ -5202,6 +5209,10 @@
 	},
 /turf/floor/grime,
 /area/station/quartermaster/automat)
+"eFY" = (
+/obj/shrub/big/big2,
+/turf/floor/planter,
+/area/station/bridge/customs)
 "eGt" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/light/small/floor/harsh,
@@ -5372,12 +5383,6 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor/plating,
 /area/station/medical/maintenance)
-"eNJ" = (
-/obj/stool/chair{
-	dir = 8
-	},
-/turf/floor/grey,
-/area/station/chapel/sanctuary)
 "eNL" = (
 /obj/machinery/door/airlock/command,
 /obj/cable{
@@ -7446,11 +7451,6 @@
 /obj/machinery/light/fluorescent/cool/very,
 /turf/floor,
 /area/station/security/main)
-"gLM" = (
-/obj/table/wood/auto,
-/obj/item/decoration/ashtray,
-/turf/floor/grey,
-/area/station/hallway/primary/east)
 "gLT" = (
 /obj/machinery/light/small/warm,
 /turf/floor/black,
@@ -7461,10 +7461,6 @@
 	dir = 8
 	},
 /area/station/bridge)
-"gMx" = (
-/obj/shrub/big/big2,
-/turf/floor/planter,
-/area/station/bridge/customs)
 "gMM" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/cable{
@@ -10801,12 +10797,6 @@
 /obj/disposalpipe/junction/right/north,
 /turf/floor/grey,
 /area/station/wc/bridge)
-"jMr" = (
-/obj/stool/chair/comfy{
-	dir = 8
-	},
-/turf/floor/carpet/grime,
-/area/station/crew_quarters/arcade/dungeon)
 "jMA" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -12182,6 +12172,10 @@
 /obj/machinery/disposal/mail/autoname/qm,
 /turf/floor/black,
 /area/station/quartermaster/office)
+"kPI" = (
+/obj/table/wood/auto,
+/turf/floor/carpet/grime,
+/area/station/crew_quarters/arcade/dungeon)
 "kQc" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -13728,12 +13722,6 @@
 	},
 /turf/floor/sanitary/white,
 /area/station/wc/bridge)
-"mjr" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/floor,
-/area/station/crew_quarters/arcade/dungeon)
 "mjA" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -14776,6 +14764,10 @@
 	},
 /turf/floor/plating,
 /area/station/medical/maintenance)
+"nkM" = (
+/obj/shrub/big/big3,
+/turf/floor/planter,
+/area/station/bridge/customs)
 "nle" = (
 /obj/machinery/atmospherics/unary/vent_pump/east,
 /turf/floor/black,
@@ -15732,10 +15724,6 @@
 /obj/access_spawn/security,
 /turf/floor/shuttlebay,
 /area/station/hangar/sec)
-"ogH" = (
-/obj/table/wood/auto,
-/turf/floor/carpet/grime,
-/area/station/crew_quarters/arcade/dungeon)
 "ogM" = (
 /obj/disposalpipe/trunk{
 	dir = 8
@@ -16755,6 +16743,12 @@
 	},
 /turf/floor/grey,
 /area/station/crew_quarters/courtroom)
+"oRr" = (
+/obj/stool/chair{
+	dir = 8
+	},
+/turf/floor/grey,
+/area/station/chapel/sanctuary)
 "oRL" = (
 /turf/floor/carpet/red/fancy/edge/west,
 /area/station/chapel/sanctuary)
@@ -18920,10 +18914,6 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
-"qEs" = (
-/obj/stool/chair,
-/turf/floor/grey,
-/area/station/hallway/primary/east)
 "qEC" = (
 /obj/stool/chair{
 	dir = 8
@@ -19441,10 +19431,6 @@
 	},
 /turf/floor/grey,
 /area/station/medical/robotics)
-"rdW" = (
-/obj/shrub/big/big3,
-/turf/floor/planter,
-/area/station/bridge/customs)
 "reK" = (
 /obj/cable/brown{
 	icon_state = "4-8-conduit-tap"
@@ -19460,11 +19446,6 @@
 	},
 /turf/floor/black,
 /area/station/engine/engineering)
-"reQ" = (
-/obj/table/wood/auto,
-/obj/item/decoration/ashtray,
-/turf/floor/grey,
-/area/station/chapel/sanctuary)
 "rfc" = (
 /obj/cable{
 	d1 = 4;
@@ -21385,10 +21366,6 @@
 	},
 /turf/floor/plating/random,
 /area/station/engine/engineering)
-"sCq" = (
-/obj/stool,
-/turf/floor/carpet/grime,
-/area/station/crew_quarters/arcade/dungeon)
 "sCx" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -23954,6 +23931,12 @@
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/sandytile,
 /area/station/security/brig/south_side)
+"uAK" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor,
+/area/station/crew_quarters/arcade/dungeon)
 "uAQ" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/stool/chair,
@@ -28832,6 +28815,12 @@
 /obj/access_spawn/hydro,
 /turf/floor/green,
 /area/station/hydroponics/bay)
+"xYO" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/floor/carpet/grime,
+/area/station/crew_quarters/arcade/dungeon)
 "xZm" = (
 /turf/floor,
 /area/station/security/main)
@@ -28887,6 +28876,13 @@
 	dir = 4
 	},
 /area/station/medical/medbay/surgery/storage)
+"yaq" = (
+/obj/stool/chair{
+	dir = 4;
+	tag = "icon-chair (EAST)"
+	},
+/turf/floor/grey,
+/area/station/chapel/sanctuary)
 "yat" = (
 /obj/disposaloutlet/east,
 /obj/disposalpipe/trunk{
@@ -29080,6 +29076,10 @@
 /obj/decal/cleanable/rust/jen/grime,
 /turf/floor/grey,
 /area/station/hallway/primary/east)
+"yjA" = (
+/obj/stool,
+/turf/floor/carpet/grime,
+/area/station/crew_quarters/arcade/dungeon)
 "yjE" = (
 /obj/machinery/atmospherics/pipe/vertical_pipe/north{
 	target_z = 3
@@ -29099,7 +29099,7 @@
 	requires_power = 0
 	})
 "yjL" = (
-/obj/reagent_dispensers/beerkeg/owlfeed,
+/obj/reagent_dispensers/beerkeg,
 /turf/floor/wood/six,
 /area/station/ranch)
 "yjN" = (
@@ -48946,7 +48946,7 @@ rFK
 eAE
 uuu
 tou
-sCq
+yjA
 ecO
 xWi
 jEb
@@ -49547,10 +49547,10 @@ xWi
 gBV
 kfs
 qWZ
-mjr
+uAK
 uuu
 tou
-sCq
+yjA
 ecO
 xWi
 jEb
@@ -50154,8 +50154,8 @@ vDr
 rZV
 pcN
 aHx
-jMr
-ogH
+xYO
+kPI
 xWi
 jEb
 jEb
@@ -53777,7 +53777,7 @@ cKa
 oxg
 fdX
 rzT
-cUV
+yaq
 aHJ
 wgW
 vyW
@@ -54079,7 +54079,7 @@ mtN
 sEU
 fdX
 rzT
-reQ
+aZL
 quK
 mtN
 mtN
@@ -54381,7 +54381,7 @@ mtN
 sEU
 fdX
 rzT
-eNJ
+oRr
 aHJ
 pSf
 vyW
@@ -67070,7 +67070,7 @@ qsF
 pYK
 xrc
 qNU
-rdW
+nkM
 vKf
 nqh
 xdJ
@@ -67976,7 +67976,7 @@ qsK
 qkr
 daY
 qNU
-gMx
+eFY
 vKf
 gZa
 qBw
@@ -84343,7 +84343,7 @@ npt
 dSc
 tav
 kmk
-atG
+cwj
 lXN
 lXN
 bAW
@@ -85545,8 +85545,8 @@ npe
 uGi
 uGi
 uGi
-qEs
-gLM
+dcz
+bAU
 lXN
 wXP
 lXN
