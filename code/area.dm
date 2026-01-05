@@ -522,6 +522,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	expandable = 0
 	// filler_turf = "/turf/floor/setpieces/gauntlet"
 	is_atmos_simulated = FALSE
+	requires_power = 0
 
 /area/titlescreen/coolisland
 	name = "Paisano Island"

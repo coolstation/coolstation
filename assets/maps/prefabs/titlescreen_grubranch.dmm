@@ -49,8 +49,11 @@
 	},
 /area/titlescreen)
 "dQ" = (
-/obj/machinery/light/beacon,
-/turf/space/gehenna/desert,
+/obj/railway/rusty,
+/obj/map/light/yellow{
+	brightness = 2
+	},
+/turf/space/gehenna/desert/no_spikes,
 /area/titlescreen)
 "dT" = (
 /obj/chainlink_fence{
@@ -113,10 +116,11 @@
 	},
 /area/titlescreen)
 "mb" = (
-/obj/machinery/light/sodium{
-	dir = 1
+/obj/railway/rusty,
+/obj/map/light/yellow{
+	brightness = 4
 	},
-/turf/space/gehenna/desert/plating,
+/turf/space/gehenna/desert/beaten,
 /area/titlescreen)
 "nf" = (
 /obj/decal/landing_gear_prints_gehenna{
@@ -181,6 +185,10 @@
 	dir = 4
 	},
 /area/titlescreen)
+"rR" = (
+/obj/machinery/light/beacon,
+/turf/space/gehenna/desert,
+/area/titlescreen)
 "rY" = (
 /obj/railway/rusty,
 /turf/space/gehenna/desert/path{
@@ -211,6 +219,9 @@
 /area/titlescreen)
 "vj" = (
 /obj/railway/rusty,
+/obj/map/light/yellow{
+	brightness = 5
+	},
 /turf/space/gehenna/desert/path{
 	dir = 4
 	},
@@ -308,6 +319,14 @@
 /obj/decal/cleanable/molten_item,
 /turf/floor/blackwhite/whitegrime,
 /area/titlescreen)
+"CO" = (
+/obj/railway/rusty,
+/obj/decoration/railbed,
+/obj/map/light/yellow{
+	brightness = 6
+	},
+/turf/space/gehenna/desert/no_spikes,
+/area/titlescreen)
 "CX" = (
 /obj/decal/beaten_edge_thin{
 	pixel_x = -9
@@ -390,6 +409,13 @@
 	name = "lobby_timer"
 	},
 /turf/space/gehenna/desert,
+/area/titlescreen)
+"Jw" = (
+/obj/railway/rusty,
+/obj/map/light/white{
+	brightness = 7
+	},
+/turf/space/gehenna/desert/no_spikes,
 /area/titlescreen)
 "Jy" = (
 /obj/decal/cleanable/tracked_reagents/blood/gibs{
@@ -503,8 +529,11 @@
 /turf/floor/blackwhite/whitegrime,
 /area/titlescreen)
 "QN" = (
-/obj/railway/rusty,
 /obj/decoration/railbed,
+/obj/railway/rusty,
+/obj/map/light/yellow{
+	brightness = 4
+	},
 /turf/space/gehenna/desert/corner{
 	dir = 8
 	},
@@ -556,6 +585,7 @@
 "WG" = (
 /obj/railway/rusty,
 /obj/decoration/railbed/cracked1,
+/obj/map/light/yellow,
 /turf/space/gehenna/desert/path{
 	dir = 8
 	},
@@ -564,6 +594,14 @@
 /obj/decal/cleanable/rust/jen,
 /obj/decal/slipmat/torn,
 /turf/floor/blackwhite/whitegrime,
+/area/titlescreen)
+"XK" = (
+/obj/railway/rusty,
+/obj/decoration/railbed,
+/obj/map/light/yellow{
+	brightness = 2
+	},
+/turf/space/gehenna/desert/no_spikes,
 /area/titlescreen)
 "XX" = (
 /obj/chainlink_fence{
@@ -593,7 +631,7 @@ Nn
 vX
 eU
 wn
-OW
+dQ
 Tf
 wn
 Lr
@@ -611,7 +649,7 @@ HQ
 vX
 wn
 OW
-Tf
+XK
 dT
 eU
 Eb
@@ -623,11 +661,11 @@ tA
 QK
 Gx
 cW
-mb
+dn
 eU
 EI
 dT
-OW
+dQ
 Tf
 Ir
 JU
@@ -661,7 +699,7 @@ dn
 GT
 dq
 nl
-os
+mb
 bW
 ML
 ML
@@ -698,7 +736,7 @@ yV
 vj
 pV
 sZ
-dQ
+eU
 Gs
 eU
 "}
@@ -713,7 +751,7 @@ eU
 pj
 jW
 OW
-Tf
+CO
 sZ
 eU
 Eb
@@ -729,7 +767,7 @@ VA
 Lr
 dB
 jW
-OW
+Jw
 Tf
 sZ
 eU
@@ -867,7 +905,7 @@ eU
 sZ
 OW
 Tf
-eU
+rR
 eU
 eU
 HQ
