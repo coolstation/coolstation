@@ -276,3 +276,15 @@
 	/obj/item/clothing/head/wizard/red = 2,
 	/obj/item/clothing/suit/wizrobe = 2,
 	/obj/item/clothing/head/wizard = 2)
+
+/obj/storage/closet/wardrove/ntso
+	name = "rusted NT Special Ops locker"
+	desc = "It smells of sweat, piracy, and sadness."
+	spawn_contents = list(
+	/obj/item/clothing/head/helmet/space/ntso/rogue,
+	/obj/item/clothing/suit/space/ntso/rogue,
+	/obj/item/clothing/under/misc/turds/rogue,
+	/obj/item/clothing/shoes/swat,
+	/obj/item/clothing/gloves/swat/NT,
+	/obj/item/storage/belt/security
+	)

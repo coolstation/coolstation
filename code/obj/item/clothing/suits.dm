@@ -1338,8 +1338,8 @@
 /obj/item/clothing/suit/space/ntso
 	name = "NT-SO combat dress"
 	desc = "A Nanotrasen special forces combat dress system, pressurized for space travel."
-	icon_state = "ntso_specialist"
-	item_state = "ntso_specialist"
+	icon_state = "ntso"
+	item_state = "ntso"
 
 	setupProperties()
 		..()
@@ -1355,6 +1355,12 @@
 		desc = "A Nanotrasen special forces combat dress system, pressurized for space travel."
 		icon_state = "ntso_specialist-scout"
 		item_state = "ntso_specialist-scout"
+
+	rogue
+		name = "Old NT-SO combat suit"
+		desc = "A patched Nanotrasen special forces vacuum suit with armor plates missing, modified, and spray-painted."
+		icon_state = "ntso-rogue"
+		item_state = "ntso-rogue"
 
 /obj/item/clothing/suit/space/engineer
 	name = "engineering space suit"

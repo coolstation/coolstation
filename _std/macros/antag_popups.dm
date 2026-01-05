@@ -28,6 +28,9 @@
 #define SHOW_ADMINWIZARD_TIPS(M) M.Browse(grabResource("html/traitorTips/wizardcustomTips.html"), ANTAG_TIPS_WINDOW)
 #define SHOW_POLYMORPH_TIPS(M) M.Browse(grabResource("html/polymorph.html"), POLYMORPH_TIPS_WINDOW)
 
+// ntso
+#define SHOW_NTSO_TIPS(M) M.Browse(grabResource("html/traitorTips/NtsoTips.html"), ANTAG_TIPS_WINDOW)
+
 // nuke
 #define SHOW_NUKEOP_TIPS(M) M.Browse(grabResource("html/traitorTips/syndiTips.html"), ANTAG_TIPS_WINDOW)
 

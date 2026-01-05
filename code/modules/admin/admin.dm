@@ -2156,7 +2156,7 @@ var/global/noir = 0
 						/*	else
 								SPAWN_DBG(0) alert("An error occurred, please try again.")*/
 					else
-						var/list/traitor_types = list("Traitor", "Wizard", "Changeling", "Dracula", "Werewolf", "Hunter", "Wrestler", "Grinch", "Omnitraitor", "Spy_Thief")
+						var/list/traitor_types = list("Traitor", "Wizard", "Changeling", "Dracula", "Werewolf", "Hunter", "Wrestler", "Grinch", "Omnitraitor", "Spy_Thief", "rogue NTSO")
 						if(ticker?.mode && istype(ticker.mode, /datum/game_mode/gang))
 							traitor_types += "Gang Leader"
 						var/selection = input(usr, "Select traitor type.", "Traitorize", "Traitor") as null|anything in traitor_types
@@ -4788,6 +4788,13 @@ var/global/noir = 0
 				M.mind.special_role = "vampire"
 				M.show_text("<h2><font color=red><B>You have joined the ranks of the undead and are now a dracula!</B></font></h2>", "red")
 				M.make_vampire()
+			if("rogue NTSO")
+				M.mind.special_role = "rogue_ntso"
+				M.show_text("<h2><font color=red><B>You have defected from Nanotrasen and become rogue!</B></font></h2>", "red")
+				var/mob/living/carbon/human/tmob = M
+				M.unequip_all(0)
+				equip_rogue(tmob)
+				SHOW_NTSO_TIPS(M)
 			if("hunter")
 				M.mind.special_role = "hunter"
 				M.mind.assigned_role = "Hunter"

@@ -218,6 +218,11 @@
 	item_state = "NTsatchel"
 	spawn_contents = list(/obj/item/storage/box/starter/withO2)
 
+/obj/item/storage/backpack/satchel/NT/rogue
+	name = "\improper Old NT Satchel"
+	desc = "A faded Nanotrasen bag with the logo covered by a strip of tape and red paint." //ive been at this for 15+ hours i'll make a sprite later
+	spawn_contents = list(/obj/item/storage/box/starter/withO2,/obj/item/gun/modular/NT/rifle,/obj/item/storage/firstaid/old,/obj/item/stackable_ammo/rifle/NT/ten)
+
 /obj/item/storage/backpack/satchel/captain
 	name = "Captain's Satchel"
 	desc = "A fancy designer bag made out of space snake leather and encrusted with plastic expertly made to look like gold."
@@ -657,6 +662,9 @@
 	tasersmg
 		spawn_contents = list(/obj/item/gun/modular/NT/pistol, //energy/tasersmg,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/rifle/capacitive/burst/five, /obj/item/stackable_ammo/pistol/capacitive/five)
+
+	rogue
+		spawn_contents = list(/obj/item/gun/modular/NT/pistol, /obj/item/stackable_ammo/pistol/NT/HP/ten, /obj/item/stackable_ammo/pistol/NT/twenty, /obj/item/clothing/mask/gas/NTSO/rogue, /obj/item/barrier, /obj/item/baton/ntso/old) //if the baton ends up being a problem, I'll yoink the power cell from it
 
 //////////////////////////////
 // ~Nuke Ops Class Storage~ //
