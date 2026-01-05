@@ -64,7 +64,7 @@
 #define DESERT_MAP
 #define Z3_IS_A_STATION_LEVEL //Allows AIs to work (mostly) across upper and lower level
 #define Z3_IS_CAVES
-#define RAILWAY_Y 215
+#define RAILWAY_Y 148
 
 #elif defined(MAP_OVERRIDE_CRAG)
 #define DESERT_MAP
