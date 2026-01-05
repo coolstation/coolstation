@@ -510,6 +510,10 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/floor/grey,
 /area/station/engine/hotloop)
+"aog" = (
+/obj/machinery/drainage/big/off_station,
+/turf/floor/plating/gehenna,
+/area/station/maintenance/inner/nw)
 "aot" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -4246,6 +4250,7 @@
 /area/station/maintenance/disposal/sewage)
 "cGC" = (
 /obj/decal/cleanable/rust/jen/grime/diagonal,
+/obj/machinery/drainage/big,
 /turf/floor/diagonal,
 /area/station/mining/lobby)
 "cGV" = (
@@ -5034,6 +5039,7 @@
 	icon_state = "4-8"
 	},
 /obj/decal/cleanable/rust/jen/grime/diagonal,
+/obj/machinery/drainage/big,
 /turf/floor/diagonal,
 /area/station/mining/lobby)
 "ddH" = (
@@ -6029,6 +6035,11 @@
 	},
 /turf/floor,
 /area/station/mining/equipment)
+"dEK" = (
+/obj/decal/cleanable/dirt/dirt3,
+/obj/machinery/drainage/big/off_station,
+/turf/floor/plating/gehenna,
+/area/station/crew_quarters/clown)
 "dES" = (
 /obj/fireworksbox,
 /obj/decal/cleanable/dirt/random,
@@ -10252,6 +10263,10 @@
 	},
 /turf/floor/black,
 /area/station/ai_monitored/armory)
+"gAS" = (
+/obj/machinery/drainage/big,
+/turf/floor,
+/area/station/janitor/office)
 "gBi" = (
 /obj/cable{
 	icon_state = "2-5"
@@ -10545,6 +10560,11 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/inner/west)
+"gKJ" = (
+/obj/decal/cleanable/rust/jen/grime,
+/obj/machinery/drainage/big,
+/turf/floor,
+/area/station/maintenance/disposal)
 "gKP" = (
 /obj/cable{
 	d1 = 1;
@@ -19575,6 +19595,10 @@
 	},
 /turf/floor/white,
 /area/station/medical/basement)
+"nii" = (
+/obj/machinery/drainage/big,
+/turf/floor/white,
+/area/station/crewquarters/cryotron)
 "nim" = (
 /obj/machinery/disposal,
 /obj/decal/cleanable/dirt,
@@ -24641,14 +24665,9 @@
 /turf/floor/plating,
 /area/station/crew_quarters/catering)
 "rfB" = (
-/obj/machinery/light/fluorescent/red{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
-/turf/floor/grey,
-/area/station/maintenance/outer/east{
-	name = "East Lower Maintenance"
-	})
+/obj/machinery/drainage/big,
+/turf/floor,
+/area/station/bridge/basement)
 "rfN" = (
 /turf/floor/carpet/blue/standard/edge/sw,
 /area/station/bridge/basement)
@@ -26246,6 +26265,18 @@
 	},
 /turf/floor/plating,
 /area/station/science/lobby)
+"smi" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/drainage/big,
+/turf/floor/grey,
+/area/station/science/lobby)
 "smV" = (
 /obj/cable{
 	d1 = 1;
@@ -27827,6 +27858,12 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor/grey,
 /area/station/engine/inner)
+"tyi" = (
+/obj/machinery/drainage/big,
+/turf/floor/grey,
+/area/station/maintenance/outer/east{
+	name = "East Lower Maintenance"
+	})
 "tyn" = (
 /obj/table/auto,
 /obj/item/device/t_scanner{
@@ -58303,7 +58340,7 @@ oKF
 cep
 mIV
 ylI
-vGA
+dEK
 vGA
 ylI
 vGA
@@ -63392,7 +63429,7 @@ lNd
 lNd
 bxm
 gKS
-udT
+aog
 udT
 udT
 nbY
@@ -64359,7 +64396,7 @@ crA
 mwR
 kEu
 sXB
-vlV
+smi
 fhD
 xGH
 men
@@ -64578,7 +64615,7 @@ qZT
 tvc
 mHX
 gXf
-kQO
+rfB
 aba
 act
 agb
@@ -67951,7 +67988,7 @@ dwV
 oNq
 wgg
 fXD
-brN
+nii
 diC
 efn
 ffL
@@ -82778,7 +82815,7 @@ fII
 gam
 fII
 bZu
-agi
+gKJ
 yih
 agi
 kTw
@@ -84291,7 +84328,7 @@ bZj
 nKo
 dgf
 dQl
-dQl
+gAS
 jYt
 bvD
 bSr
@@ -96331,7 +96368,7 @@ uYa
 ygU
 qic
 ygU
-rfB
+ygU
 lbo
 odr
 kwc
@@ -96632,7 +96669,7 @@ dEn
 rXf
 jBI
 wZn
-xcc
+tyi
 xcc
 uOY
 svF
