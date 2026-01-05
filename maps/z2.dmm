@@ -37403,6 +37403,16 @@
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/entry)
 "gyL" = (
+/obj/table/wood/auto,
+/obj/machinery/light/lamp/green{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/deskclutter{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/decal/cleanable/dirt/random,
 /obj/window/north,
 /turf/floor/carpet/grime,
 /area/ntso_shuttle)
@@ -43493,19 +43503,6 @@
 	},
 /turf/floor,
 /area/meat_derelict/guts)
-"tKp" = (
-/obj/table/wood/auto,
-/obj/machinery/light/lamp/green{
-	pixel_x = -6;
-	pixel_y = 10
-	},
-/obj/deskclutter{
-	pixel_x = 4;
-	pixel_y = 2
-	},
-/obj/decal/cleanable/dirt/random,
-/turf/floor/carpet/grime,
-/area/ntso_shuttle)
 "tKQ" = (
 /obj/grille/catwalk{
 	dir = 10;
@@ -45375,8 +45372,6 @@
 /obj/storage/secure/closet/fridge/kitchen{
 	locked = 0
 	},
-/obj/item/reagent_containers/food/snacks/taco/complete,
-/obj/item/banme,
 /obj/decal/cleanable/cobweb{
 	dir = 1;
 	icon_state = "cobweb"
@@ -110284,7 +110279,7 @@ tIQ
 eFb
 bYU
 tne
-tKp
+tne
 eFb
 duf
 aaa
@@ -110583,7 +110578,7 @@ duf
 eFb
 eEF
 dJL
-wHL
+gyL
 piQ
 piQ
 piQ
@@ -110885,7 +110880,7 @@ duf
 rtg
 nxo
 dJL
-gyL
+wHL
 ftW
 piQ
 piQ
