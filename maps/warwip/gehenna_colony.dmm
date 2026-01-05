@@ -417,6 +417,10 @@
 	dir = 4
 	},
 /area/gehenna/wasteland)
+"atG" = (
+/obj/machinery/vending/cola/red,
+/turf/floor/grey,
+/area/station/hallway/primary/east)
 "atL" = (
 /obj/decal/skeleton,
 /turf/space/gehenna/desert/plating{
@@ -748,7 +752,8 @@
 /area/station/crew_quarters/arcade/dungeon)
 "aHB" = (
 /obj/railing/cool{
-	dir = 4
+	dir = 4;
+	is_reinforced = 1
 	},
 /turf/space/gehenna/desert,
 /area/gehenna)
@@ -1757,21 +1762,11 @@
 /turf/floor,
 /area/station/engine/engineering)
 "bEt" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/mob/living/critter/grub/wildgrub,
+/turf/space/gehenna/desert/path{
+	dir = 8
 	},
-/obj/disposalpipe/segment/sewage{
-	dir = 4
-	},
-/obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/floor,
-/area/station/crew_quarters/arcade/dungeon)
+/area/gehenna)
 "bEy" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -1807,7 +1802,8 @@
 /area/station/security/brig/north_side)
 "bFP" = (
 /obj/railing/cool{
-	dir = 4
+	dir = 4;
+	is_reinforced = 1
 	},
 /obj/machinery/conveyor/north{
 	operating = 1
@@ -1925,12 +1921,6 @@
 	dir = 4
 	},
 /area/station/hallway/primary/east)
-"bMf" = (
-/obj/stool/chair/comfy{
-	dir = 8
-	},
-/turf/floor/carpet/grime,
-/area/station/crew_quarters/arcade/dungeon)
 "bMt" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -2517,9 +2507,12 @@
 /area/station/hangar/catering)
 "cmb" = (
 /obj/railing/cool{
-	dir = 4
+	dir = 4;
+	is_reinforced = 1
 	},
-/obj/railing/cool,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /turf/space/gehenna/desert,
 /area/gehenna)
 "cmE" = (
@@ -3192,7 +3185,8 @@
 /area/station/medical/robotics)
 "cNW" = (
 /obj/railing/cool{
-	dir = 8
+	dir = 8;
+	is_reinforced = 1
 	},
 /turf/space/gehenna/desert/path{
 	dir = 8
@@ -3357,6 +3351,13 @@
 /obj/landmark/gps_waypoint,
 /turf/floor/grey,
 /area/station/turret_protected/Zeta)
+"cUV" = (
+/obj/stool/chair{
+	dir = 4;
+	tag = "icon-chair (EAST)"
+	},
+/turf/floor/grey,
+/area/station/chapel/sanctuary)
 "cVm" = (
 /obj/grille/catwalk/elevator{
 	dir = 10
@@ -5168,10 +5169,6 @@
 /obj/disposalpipe/segment/sewage,
 /turf/wall,
 /area/station/wc/sec)
-"eAh" = (
-/obj/table/wood/auto,
-/turf/floor/carpet/grime,
-/area/station/crew_quarters/arcade/dungeon)
 "eAE" = (
 /obj/cable{
 	d1 = 1;
@@ -5375,6 +5372,12 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor/plating,
 /area/station/medical/maintenance)
+"eNJ" = (
+/obj/stool/chair{
+	dir = 8
+	},
+/turf/floor/grey,
+/area/station/chapel/sanctuary)
 "eNL" = (
 /obj/machinery/door/airlock/command,
 /obj/cable{
@@ -7443,6 +7446,11 @@
 /obj/machinery/light/fluorescent/cool/very,
 /turf/floor,
 /area/station/security/main)
+"gLM" = (
+/obj/table/wood/auto,
+/obj/item/decoration/ashtray,
+/turf/floor/grey,
+/area/station/hallway/primary/east)
 "gLT" = (
 /obj/machinery/light/small/warm,
 /turf/floor/black,
@@ -7453,6 +7461,10 @@
 	dir = 8
 	},
 /area/station/bridge)
+"gMx" = (
+/obj/shrub/big/big2,
+/turf/floor/planter,
+/area/station/bridge/customs)
 "gMM" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/cable{
@@ -7954,9 +7966,12 @@
 /area/pricemaster)
 "hmM" = (
 /obj/railing/cool{
-	dir = 8
+	dir = 8;
+	is_reinforced = 1
 	},
-/obj/railing/cool,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /turf/space/gehenna/desert,
 /area/gehenna)
 "hmO" = (
@@ -10786,6 +10801,12 @@
 /obj/disposalpipe/junction/right/north,
 /turf/floor/grey,
 /area/station/wc/bridge)
+"jMr" = (
+/obj/stool/chair/comfy{
+	dir = 8
+	},
+/turf/floor/carpet/grime,
+/area/station/crew_quarters/arcade/dungeon)
 "jMA" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -11352,7 +11373,8 @@
 	dir = 8
 	},
 /obj/railing/cool{
-	dir = 4
+	dir = 8;
+	is_reinforced = 1
 	},
 /obj/machinery/packing_machine{
 	dir = 1
@@ -11396,9 +11418,12 @@
 /area/station/engine/core)
 "klH" = (
 /obj/railing/cool{
-	dir = 4
+	dir = 4;
+	is_reinforced = 1
 	},
-/obj/railing/cool,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /turf/space/gehenna/desert/path{
 	dir = 6
 	},
@@ -11984,10 +12009,6 @@
 	dir = 8
 	},
 /turf/floor/grey,
-/area/station/bridge/customs)
-"kFe" = (
-/obj/shrub/big/big2,
-/turf/floor/planter,
 /area/station/bridge/customs)
 "kFm" = (
 /obj/cable{
@@ -12716,7 +12737,9 @@
 	},
 /area/station/medical/medbay/lobby)
 "lmT" = (
-/obj/railing/cool,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /obj/storage/crate/loot,
 /turf/space/gehenna/desert/path,
 /area/gehenna)
@@ -13079,10 +13102,12 @@
 /area/station/engine/engineering)
 "lEE" = (
 /obj/railing/cool{
-	dir = 1
+	dir = 1;
+	is_reinforced = 1
 	},
 /obj/railing/cool{
-	dir = 8
+	dir = 8;
+	is_reinforced = 1
 	},
 /turf/space/gehenna/desert/path{
 	dir = 9
@@ -13329,10 +13354,12 @@
 /area/station/security/main)
 "lNV" = (
 /obj/railing/cool{
-	dir = 1
+	dir = 1;
+	is_reinforced = 1
 	},
 /obj/railing/cool{
-	dir = 4
+	dir = 4;
+	is_reinforced = 1
 	},
 /turf/space/gehenna/desert/path{
 	dir = 5
@@ -13701,6 +13728,12 @@
 	},
 /turf/floor/sanitary/white,
 /area/station/wc/bridge)
+"mjr" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor,
+/area/station/crew_quarters/arcade/dungeon)
 "mjA" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -14085,7 +14118,9 @@
 /area/station/medical/maintenance)
 "mFS" = (
 /obj/decal/gehennagrass,
-/obj/railing/cool,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /turf/space/gehenna/desert,
 /area/gehenna)
 "mGn" = (
@@ -14686,7 +14721,9 @@
 /turf/floor/black,
 /area/station/engine/monitoring)
 "niz" = (
-/obj/railing/cool,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /turf/space/gehenna/desert/path,
 /area/gehenna)
 "niJ" = (
@@ -15531,7 +15568,9 @@
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/arcade/dungeon)
 "nWV" = (
-/obj/railing/cool,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /turf/space/gehenna/desert/corner{
 	dir = 10
 	},
@@ -15576,10 +15615,6 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/medical/medbay)
-"nYC" = (
-/obj/machinery/vending/cola/red,
-/turf/floor/grey,
-/area/station/hallway/primary/east)
 "nZF" = (
 /obj/disposalpipe/segment/bent/east,
 /turf/floor/black,
@@ -15697,6 +15732,10 @@
 /obj/access_spawn/security,
 /turf/floor/shuttlebay,
 /area/station/hangar/sec)
+"ogH" = (
+/obj/table/wood/auto,
+/turf/floor/carpet/grime,
+/area/station/crew_quarters/arcade/dungeon)
 "ogM" = (
 /obj/disposalpipe/trunk{
 	dir = 8
@@ -16083,7 +16122,8 @@
 /area/station/security/secoffquarters)
 "ovg" = (
 /obj/railing/cool{
-	dir = 4
+	dir = 4;
+	is_reinforced = 1
 	},
 /turf/space/gehenna/desert/path{
 	dir = 4
@@ -16300,13 +16340,6 @@
 	},
 /turf/floor/grey,
 /area/station/quartermaster/cargooffice/storefront)
-"oCQ" = (
-/obj/railing/cool,
-/obj/railing/cool{
-	dir = 8
-	},
-/turf/space/gehenna/desert,
-/area/gehenna)
 "oDd" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -16332,10 +16365,6 @@
 	dir = 8
 	},
 /area/station/medical/medbay/surgery)
-"oDv" = (
-/obj/stool/chair,
-/turf/floor/grey,
-/area/station/hallway/primary/east)
 "oDC" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -16806,7 +16835,9 @@
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/arcade/dungeon)
 "oVt" = (
-/obj/railing/cool,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /turf/space/gehenna/desert/corner{
 	dir = 6
 	},
@@ -18889,6 +18920,10 @@
 /obj/disposalpipe/segment/morgue,
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
+"qEs" = (
+/obj/stool/chair,
+/turf/floor/grey,
+/area/station/hallway/primary/east)
 "qEC" = (
 /obj/stool/chair{
 	dir = 8
@@ -19322,7 +19357,17 @@
 /area/station/chapel/sanctuary)
 "qWZ" = (
 /obj/cable{
-	icon_state = "1-2"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/floor,
 /area/station/crew_quarters/arcade/dungeon)
@@ -19347,11 +19392,6 @@
 	},
 /turf/floor,
 /area/station/chapel/sanctuary)
-"qXV" = (
-/obj/table/wood/auto,
-/obj/item/decoration/ashtray,
-/turf/floor/grey,
-/area/station/hallway/primary/east)
 "qYg" = (
 /obj/table/auto,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -19401,6 +19441,10 @@
 	},
 /turf/floor/grey,
 /area/station/medical/robotics)
+"rdW" = (
+/obj/shrub/big/big3,
+/turf/floor/planter,
+/area/station/bridge/customs)
 "reK" = (
 /obj/cable/brown{
 	icon_state = "4-8-conduit-tap"
@@ -19416,6 +19460,11 @@
 	},
 /turf/floor/black,
 /area/station/engine/engineering)
+"reQ" = (
+/obj/table/wood/auto,
+/obj/item/decoration/ashtray,
+/turf/floor/grey,
+/area/station/chapel/sanctuary)
 "rfc" = (
 /obj/cable{
 	d1 = 4;
@@ -19427,11 +19476,15 @@
 /turf/floor,
 /area/station/hydroponics/bay)
 "rfn" = (
-/obj/railing/cool,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /turf/space/gehenna/desert,
 /area/gehenna)
 "rft" = (
-/obj/railing/cool,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /obj/machinery/conveyor/east{
 	operating = 1
 	},
@@ -20315,12 +20368,6 @@
 	},
 /turf/floor,
 /area/station/medical/medbay/treatment1)
-"rNi" = (
-/obj/stool/chair{
-	dir = 8
-	},
-/turf/floor/grey,
-/area/station/chapel/sanctuary)
 "rNK" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/light/fluorescent,
@@ -20571,7 +20618,8 @@
 /area/station/crew_quarters/courtroom)
 "rVb" = (
 /obj/railing/cool{
-	dir = 1
+	dir = 1;
+	is_reinforced = 1
 	},
 /turf/space/gehenna/desert/path{
 	dir = 1
@@ -20999,10 +21047,6 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/hallway/primary/east)
-"soo" = (
-/obj/stool,
-/turf/floor/carpet/grime,
-/area/station/crew_quarters/arcade/dungeon)
 "sor" = (
 /obj/grille/catwalk/elevator{
 	dir = 6
@@ -21341,6 +21385,10 @@
 	},
 /turf/floor/plating/random,
 /area/station/engine/engineering)
+"sCq" = (
+/obj/stool,
+/turf/floor/carpet/grime,
+/area/station/crew_quarters/arcade/dungeon)
 "sCx" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/mail/horizontal,
@@ -21860,7 +21908,8 @@
 /area/station/engine/engineering)
 "sYB" = (
 /obj/railing/cool{
-	dir = 8
+	dir = 8;
+	is_reinforced = 1
 	},
 /obj/machinery/conveyor/east{
 	operating = 1
@@ -22053,7 +22102,10 @@
 /obj/railing/cool{
 	dir = 8
 	},
-/obj/railing/cool,
+/obj/railing/cool{
+	dir = 4;
+	is_reinforced = 1
+	},
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
 "tfx" = (
@@ -23138,10 +23190,6 @@
 	},
 /turf/floor/plating,
 /area/station/engine/core)
-"tXq" = (
-/obj/shrub/big/big3,
-/turf/floor/planter,
-/area/station/bridge/customs)
 "tYh" = (
 /obj/cable{
 	d1 = 1;
@@ -23935,8 +23983,10 @@
 /obj/railing/cool{
 	dir = 8
 	},
-/obj/railing/cool,
 /obj/storage/crate/loot,
+/obj/railing/cool{
+	is_reinforced = 1
+	},
 /turf/space/gehenna/desert/path{
 	dir = 10
 	},
@@ -24719,7 +24769,9 @@
 /obj/stool/chair/couch/green{
 	dir = 8
 	},
-/obj/npc/trader/chad,
+/obj/npc/trader/chad{
+	trader_area = "/area/station/ranch"
+	},
 /turf/floor/wood,
 /area/station/ranch)
 "vdx" = (
@@ -25077,7 +25129,8 @@
 "vrg" = (
 /obj/decal/gehennagrass,
 /obj/railing/cool{
-	dir = 1
+	dir = 1;
+	is_reinforced = 1
 	},
 /turf/space/gehenna/desert/path{
 	dir = 1
@@ -27829,7 +27882,8 @@
 /area/station/medical/medbay/treatment)
 "xnr" = (
 /obj/railing/cool{
-	dir = 8
+	dir = 8;
+	is_reinforced = 1
 	},
 /turf/space/gehenna/desert,
 /area/gehenna)
@@ -28246,7 +28300,8 @@
 	dir = 8
 	},
 /obj/railing/cool{
-	dir = 4
+	dir = 8;
+	is_reinforced = 1
 	},
 /obj/machinery/conveyor/north{
 	operating = 1
@@ -28422,13 +28477,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/wood,
 /area/station/crew_quarters/farmers)
-"xKH" = (
-/obj/stool/chair{
-	dir = 4;
-	tag = "icon-chair (EAST)"
-	},
-/turf/floor/grey,
-/area/station/chapel/sanctuary)
 "xLh" = (
 /obj/disposalpipe/switch_junction/left/north,
 /turf/floor/grey,
@@ -28784,11 +28832,6 @@
 /obj/access_spawn/hydro,
 /turf/floor/green,
 /area/station/hydroponics/bay)
-"xZe" = (
-/obj/table/wood/auto,
-/obj/item/decoration/ashtray,
-/turf/floor/grey,
-/area/station/chapel/sanctuary)
 "xZm" = (
 /turf/floor,
 /area/station/security/main)
@@ -48903,7 +48946,7 @@ rFK
 eAE
 uuu
 tou
-soo
+sCq
 ecO
 xWi
 jEb
@@ -48915,7 +48958,7 @@ cqC
 cqC
 cqC
 cqC
-iiv
+rfn
 pWl
 mMd
 iiv
@@ -49217,7 +49260,7 @@ cqC
 cqC
 cqC
 iiv
-oCQ
+rfn
 pWl
 mMd
 iiv
@@ -49503,11 +49546,11 @@ aHJ
 xWi
 gBV
 kfs
-bEt
 qWZ
+mjr
 uuu
 tou
-soo
+sCq
 ecO
 xWi
 jEb
@@ -50111,8 +50154,8 @@ vDr
 rZV
 pcN
 aHx
-bMf
-eAh
+jMr
+ogH
 xWi
 jEb
 jEb
@@ -53734,7 +53777,7 @@ cKa
 oxg
 fdX
 rzT
-xKH
+cUV
 aHJ
 wgW
 vyW
@@ -54036,7 +54079,7 @@ mtN
 sEU
 fdX
 rzT
-xZe
+reQ
 quK
 mtN
 mtN
@@ -54338,7 +54381,7 @@ mtN
 sEU
 fdX
 rzT
-rNi
+eNJ
 aHJ
 pSf
 vyW
@@ -67027,7 +67070,7 @@ qsF
 pYK
 xrc
 qNU
-tXq
+rdW
 vKf
 nqh
 xdJ
@@ -67933,7 +67976,7 @@ qsK
 qkr
 daY
 qNU
-kFe
+gMx
 vKf
 gZa
 qBw
@@ -84300,7 +84343,7 @@ npt
 dSc
 tav
 kmk
-nYC
+atG
 lXN
 lXN
 bAW
@@ -85502,8 +85545,8 @@ npe
 uGi
 uGi
 uGi
-oDv
-qXV
+qEs
+gLM
 lXN
 wXP
 lXN
@@ -102905,7 +102948,7 @@ eLC
 eLC
 eLC
 eLC
-eLC
+jKv
 niz
 evd
 wgn
@@ -106223,7 +106266,7 @@ iiv
 iiv
 rVb
 git
-iiv
+chH
 iiv
 eLC
 cRe
@@ -109548,7 +109591,7 @@ rYB
 xfZ
 xfZ
 xfZ
-xfZ
+bEt
 aSF
 niz
 iiv

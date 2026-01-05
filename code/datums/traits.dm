@@ -1292,6 +1292,22 @@ obj/trait/pilot
 				H.set_mutantrace(our_pick)
 		return
 
+/obj/trait/stodgy
+	name = "Stodgy Pudding (0)"
+	cleanName = "Stodgy"
+	id = "stodgy"
+	icon_state = "stodgy"
+	desc = "You feel sturdy, like industrial mayo."
+	points = 0
+	isPositive = 1
+
+	onAdd(var/mob/owner)
+		..()
+		owner.SafeScale(1.25,1)
+
+	onRemove(var/mob/owner)
+		..()
+		owner.SafeScale(1/1.25,1)
 
 /obj/trait/teflon_colon
 	name = "Non-Stick Colon (-1)"
