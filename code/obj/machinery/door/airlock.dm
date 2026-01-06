@@ -1889,7 +1889,9 @@ obj/machinery/door/airlock
 		boutput(user, "<span class='alert'>You have lost the ability to interface with airlocks.</span>" )
 		return
 
-	if (src.aiControlDisabled) return
+	if (src.aiControlDisabled)
+		boutput(user, "<span class='alert'>AI Control is disabled on this airlock.</span>" )
+		return
 
 	if (user.client.check_key(KEY_OPEN) && user.client.check_key(KEY_BOLT))
 		. = 1
