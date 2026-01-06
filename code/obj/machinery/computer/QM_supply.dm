@@ -723,6 +723,8 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 			O.object = P
 			O.orderedby = usr.name
 			O.comment = copytext(html_encode(input(usr,"Comment:","Enter comment","")), 1, MAX_MESSAGE_LEN)
+			if(!shippingmarket.CSS_at_NTFC)
+				. = {"<strong>Please send the Cargo Shuttle back to the NTFC."}
 			var/obj/storage/S = O.create(usr)
 			shippingmarket.receive_crate(S)
 			logTheThing("station", usr, null, "ordered a [P.name] at [log_loc(src)].")
@@ -750,7 +752,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 
 				return
 
-			if(wagesystem.shipping_budget >= P.cost)
+			if(wagesystem.shipping_budget >= P.cost && shippingmarket.CSS_at_NTFC)
 				wagesystem.shipping_budget -= P.cost
 				O.object = P
 				O.orderedby = usr.name
@@ -760,6 +762,8 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 				logTheThing("station", usr, null, "ordered a [P.name] at [log_loc(src)].")
 				shippingmarket.supply_history += "[O.object.name] ordered by [O.orderedby] for [P.cost] credits. Comment: [O.comment]<br>"
 				. = {"<strong>Thanks for your order.</strong>"}
+			else if (!shippingmarket.CSS_at_NTFC)
+				. = {"<strong>Please send the Cargo Shuttle back to the NTFC."</strong>}
 			else
 				. = {"<strong>Insufficient funds in shipping budget.</strong>"}
 
