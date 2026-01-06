@@ -2538,8 +2538,8 @@
 /obj/machinery/firealarm{
 	pixel_y = -26
 	},
-/obj/machinery/computer/barcode,
 /obj/machinery/light/small/warm,
+/obj/machinery/computer/barcode/qm/no_belthell,
 /turf/floor/cautionblack,
 /area/station/quartermaster/cargobay)
 "bQG" = (
@@ -12617,6 +12617,10 @@
 	id = "2cargo";
 	operating = 1
 	},
+/obj/machinery/door/poddoor/pyro{
+	id = "lagerhaus";
+	name = "Storage Door"
+	},
 /turf/floor/plating,
 /area/station/storage/warehouse)
 "jdJ" = (
@@ -15060,6 +15064,15 @@
 	},
 /obj/plasticflaps,
 /obj/firedoor_spawn,
+/obj/machinery/door/poddoor/pyro{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "cargosto";
+	layer = 4;
+	name = "Storage Doors";
+	opacity = 0
+	},
 /turf/floor/plating,
 /area/station/quartermaster/cargobay)
 "kOB" = (
@@ -20924,10 +20937,10 @@
 /turf/floor/carpet/grime,
 /area/station/library)
 "pgk" = (
-/obj/machinery/computer/barcode,
 /obj/machinery/alarm{
 	pixel_x = -32
 	},
+/obj/machinery/computer/barcode/qm/no_belthell,
 /turf/floor/grime,
 /area/station/storage/warehouse)
 "pgx" = (
@@ -22182,6 +22195,10 @@
 	})
 "pTv" = (
 /obj/machinery/manufacturer/mining,
+/obj/machinery/door_control{
+	pixel_y = -23;
+	id = "lagerhaus"
+	},
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
 "pTw" = (
@@ -23925,6 +23942,10 @@
 	operating = 1
 	},
 /obj/window/reinforced/south,
+/obj/machinery/door_control{
+	pixel_y = 26;
+	id = "cargosto"
+	},
 /turf/floor/cautionblack/side{
 	dir = 9
 	},
