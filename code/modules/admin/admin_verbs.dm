@@ -526,6 +526,8 @@ var/list/admin_verbs = alist(
 		// /client/proc/dbg_itemspecial,
 		// /client/proc/dbg_objectprop,
 
+		/verb/adminDumpBlueprint,
+
 		//big debugging
 		/client/proc/grant_webview_devtools,
 
