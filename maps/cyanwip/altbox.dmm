@@ -2,14 +2,6 @@
 "aav" = (
 /turf/wall/r_wall,
 /area/station/security/secwing)
-"aaU" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
-	dir = 1
-	},
-/turf/floor/green/side{
-	dir = 8
-	},
-/area/station/medical/research)
 "abc" = (
 /turf/floor/escape{
 	dir = 8
@@ -4706,6 +4698,11 @@
 /obj/machinery/vending/cola/blue,
 /turf/floor/diagonal,
 /area/station/crew_quarters/quartersA)
+"cpM" = (
+/turf/floor/green/side{
+	dir = 4
+	},
+/area/station/medical/research)
 "cpT" = (
 /obj/machinery/light/small/cool{
 	dir = 4
@@ -5293,6 +5290,11 @@
 /obj/decal/cleanable/dirt/jen,
 /turf/wall,
 /area/station/maintenance/northwest)
+"cDR" = (
+/obj/decal/cleanable/rust/jen/grime,
+/obj/item/clothing/suit/labcoat/genetics,
+/turf/floor/plating,
+/area/station/maintenance/outer/se)
 "cDW" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/disposalpipe/segment{
@@ -7038,6 +7040,12 @@
 /obj/access_spawn/engineering_mechanic,
 /turf/floor,
 /area/station/engine/elect)
+"drm" = (
+/obj/machinery/computer/genetics,
+/turf/floor/greenblack{
+	dir = 8
+	},
+/area/station/medical/research)
 "drD" = (
 /turf/floor/plating/airless,
 /area/space)
@@ -10533,6 +10541,9 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/autoname/north,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
 /turf/floor/plating,
 /area/station/maintenance/east)
 "feN" = (
@@ -13070,6 +13081,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "bot"
 	},
+/obj/machinery/power/data_terminal,
 /turf/floor/black,
 /area/station/science/artifact)
 "gAS" = (
@@ -18150,14 +18162,6 @@
 "jeV" = (
 /turf/wall/r_wall,
 /area/station/turret_protected/ai_upload)
-"jfd" = (
-/obj/window/reinforced{
-	dir = 1
-	},
-/obj/table/reinforced/auto,
-/obj/item/circuitboard/genetics,
-/turf/floor,
-/area/station/medical/research)
 "jfx" = (
 /obj/machinery/door_timer{
 	id = "Cell 2";
@@ -18428,6 +18432,15 @@
 "jlu" = (
 /turf/wall,
 /area/station/medical/crematorium)
+"jmC" = (
+/obj/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/east)
 "jmE" = (
 /obj/random_item_spawner/vendor,
 /turf/floor/plating,
@@ -22719,6 +22732,14 @@
 	},
 /turf/floor,
 /area/station/hallway/secondary/entry)
+"lrR" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
+	dir = 1
+	},
+/turf/floor/green/side{
+	dir = 8
+	},
+/area/station/medical/research)
 "lrS" = (
 /obj/machinery/camera{
 	dir = 5
@@ -31565,6 +31586,7 @@
 /obj/machinery/camera{
 	dir = 8
 	},
+/obj/machinery/power/data_terminal,
 /turf/floor/black,
 /area/station/science/artifact)
 "pHA" = (
@@ -32945,11 +32967,6 @@
 	},
 /turf/floor,
 /area/station/atmos/department)
-"qpy" = (
-/obj/decal/cleanable/rust/jen/grime,
-/obj/item/clothing/suit/labcoat/genetics,
-/turf/floor/plating,
-/area/station/maintenance/outer/se)
 "qpL" = (
 /turf/floor,
 /area/station/security/main)
@@ -32982,6 +32999,14 @@
 /obj/access_spawn/security,
 /turf/floor,
 /area/station/security/beepsky)
+"qqF" = (
+/obj/window/reinforced{
+	dir = 1
+	},
+/obj/table/reinforced/auto,
+/obj/item/circuitboard/genetics,
+/turf/floor,
+/area/station/medical/research)
 "qqH" = (
 /obj/machinery/vending/cola/blue,
 /obj/disposalpipe/segment/bent{
@@ -33622,6 +33647,7 @@
 /obj/machinery/networked/test_apparatus/pitching_machine{
 	dir = 4
 	},
+/obj/machinery/power/data_terminal,
 /turf/floor/carpet/purple/standard/edge{
 	dir = 10
 	},
@@ -36217,6 +36243,7 @@
 	dir = 4
 	},
 /obj/landmark/artifact,
+/obj/machinery/power/data_terminal,
 /turf/floor/carpet/purple/standard/edge{
 	dir = 6
 	},
@@ -36251,14 +36278,6 @@
 	},
 /turf/floor,
 /area/station/science/lobby)
-"rWs" = (
-/obj/window/reinforced{
-	dir = 1
-	},
-/obj/table/reinforced/auto,
-/obj/item/reagent_containers/agarose/replicator,
-/turf/floor,
-/area/station/medical/research)
 "rWL" = (
 /obj/lattice/grey,
 /obj/disposalpipe/segment/bent{
@@ -38443,6 +38462,13 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/plating,
 /area/station/maintenance/west)
+"sTi" = (
+/obj/machinery/power/data_terminal,
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/floor/plating,
+/area/station/maintenance/east)
 "sTl" = (
 /obj/machinery/door/window/eastleft,
 /obj/storage/closet/coffin/nt,
@@ -38896,6 +38922,14 @@
 "teu" = (
 /turf/floor/diagonal,
 /area/station/hallway/primary/east)
+"teQ" = (
+/obj/window/reinforced{
+	dir = 1
+	},
+/obj/table/reinforced/auto,
+/obj/item/reagent_containers/agarose/replicator,
+/turf/floor,
+/area/station/medical/research)
 "teT" = (
 /obj/decal/cleanable/rust/jen/grime,
 /obj/machinery/light/small/warm{
@@ -41485,12 +41519,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/south)
-"uwX" = (
-/obj/machinery/computer/genetics,
-/turf/floor/greenblack{
-	dir = 8
-	},
-/area/station/medical/research)
 "uwZ" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/decal/cleanable/rust/jen/grime,
@@ -44645,11 +44673,6 @@
 	},
 /turf/floor/cautionblack,
 /area/station/engine/elect)
-"vZj" = (
-/turf/floor/green/side{
-	dir = 4
-	},
-/area/station/medical/research)
 "vZu" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe{
 	dir = 4
@@ -44750,6 +44773,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "bot"
 	},
+/obj/machinery/power/data_terminal,
 /turf/floor/black,
 /area/station/science/artifact)
 "waw" = (
@@ -47609,6 +47633,15 @@
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
+"xtZ" = (
+/obj/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/station/maintenance/east)
 "xug" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
 	dir = 1
@@ -105107,7 +105140,7 @@ wIB
 xPe
 rzI
 nPg
-jfd
+qqF
 xPe
 rzI
 nPg
@@ -105401,7 +105434,7 @@ wgK
 iJY
 kOq
 ojj
-uwX
+drm
 jBj
 vei
 cbQ
@@ -105409,19 +105442,19 @@ wYF
 hHS
 cbQ
 iex
-vZj
-vZj
-vZj
-vZj
-vZj
-vZj
-vZj
+cpM
+cpM
+cpM
+cpM
+cpM
+cpM
+cpM
 kWU
-vZj
-vZj
-vZj
+cpM
+cpM
+cpM
 kWU
-vZj
+cpM
 kxC
 dNp
 dNp
@@ -106011,19 +106044,19 @@ duk
 dtq
 iee
 baF
-aaU
-aaU
-aaU
-aaU
-aaU
-aaU
-aaU
-aaU
-aaU
-aaU
-aaU
-aaU
-aaU
+lrR
+lrR
+lrR
+lrR
+lrR
+lrR
+lrR
+lrR
+lrR
+lrR
+lrR
+lrR
+lrR
 ezs
 dSX
 coB
@@ -106319,7 +106352,7 @@ nIq
 xPe
 sTt
 vRr
-rWs
+teQ
 xPe
 sTt
 vRr
@@ -109647,7 +109680,7 @@ pjk
 wkW
 qkH
 udN
-qpy
+cDR
 xJh
 gGw
 gGw
@@ -114751,11 +114784,11 @@ fKg
 uPW
 mAF
 caw
-ldP
-ldP
-ldP
-ldP
-ldP
+jmC
+gYc
+xtZ
+gYc
+wiC
 ldP
 ldP
 uNk
@@ -115053,11 +115086,11 @@ dNp
 dNp
 dNp
 caw
-ldP
+sTi
 dpZ
+sTi
 ldP
-ldP
-ldP
+sTi
 dpZ
 uNk
 uNk
