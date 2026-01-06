@@ -528,7 +528,7 @@
 	/obj/machinery/portable_atmospherics/canister, \
 )
 
-#define WHITELIST_TURFS list(/turf/floor, turf/wall)
+#define WHITELIST_TURFS list(/turf/floor, /turf/wall)
 
 /datum/abcu_blueprint
 	var/cost_metal = 0
