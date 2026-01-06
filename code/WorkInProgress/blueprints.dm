@@ -288,7 +288,7 @@
 		logTheThing("station", src, "[user] started ABCU build at [log_loc(src)], with blueprint [src.current_bp.name], authored by [src.current_bp.author]")
 
 	proc/end_build()
-		SPAWN(2 SECONDS) // gotta wait for make_tile() to finish
+		SPAWN_DBG(2 SECONDS) // gotta wait for make_tile() to finish
 			for (var/datum/objectinfo/N in src.apc_list)
 				var/atom/new_obj = new N.objecttype(src.apc_list[N])
 				new_obj.dir = N.direction
