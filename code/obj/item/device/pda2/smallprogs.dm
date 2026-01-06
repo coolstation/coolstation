@@ -1410,6 +1410,8 @@ Using electronic "Detomatix" BOMB program is perhaps less simple!<br>
 
 		dat += "<a href='byond://?src=\ref[src];update=1'>Refresh</a>"
 
+		dat += "Scan malfunctionning equipment with a Device Analyser for further details."
+
 		return dat
 
 	Topic(href, href_list)

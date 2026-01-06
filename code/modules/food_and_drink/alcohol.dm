@@ -20,6 +20,10 @@
 	initial_volume = 40
 	initial_reagents = list("beer"=35)
 
+/obj/item/reagent_containers/food/drinks/bottle/beer/papist
+	name = "papist blue ribbon"
+	initial_reagents = list("beer"=25, "mercury"=5, "wine"=5)
+
 /obj/item/reagent_containers/food/drinks/bottle/beer/borg
 	cap_type = null
 	cap = "none"
