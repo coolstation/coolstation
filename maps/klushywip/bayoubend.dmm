@@ -3720,12 +3720,10 @@
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "cJR" = (
-/obj/submachine/cargopad{
-	name = "Botany Pad"
-	},
 /obj/storage/secure/crate/bee/loaded,
 /obj/machinery/light_switch/east,
 /obj/machinery/light/small/warm,
+/obj/submachine/cargopad/hydroponic,
 /turf/floor/wood/five,
 /area/station/hydroponics/lobby)
 "cKa" = (
@@ -8465,9 +8463,6 @@
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
 "gmv" = (
-/obj/submachine/cargopad{
-	name = "Mechanical Workshop Pad"
-	},
 /obj/machinery/power/apc/autoname/south,
 /obj/cable,
 /obj/blind_switch/area/north{
@@ -8478,6 +8473,7 @@
 	pixel_x = 22;
 	pixel_y = 12
 	},
+/obj/submachine/cargopad/mechanics,
 /turf/floor/yellow/side{
 	dir = 6
 	},
@@ -8868,6 +8864,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light/fluorescent/ceiling/cool,
+/obj/submachine/cargopad/engineering,
 /turf/floor,
 /area/station/engine/storage)
 "gyb" = (
@@ -22196,8 +22193,8 @@
 "pTv" = (
 /obj/machinery/manufacturer/mining,
 /obj/machinery/door_control{
-	pixel_y = -23;
-	id = "lagerhaus"
+	id = "lagerhaus";
+	pixel_y = -23
 	},
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
@@ -23717,6 +23714,10 @@
 /obj/window_blinds,
 /turf/floor/plating,
 /area/station/crew_quarters/quarters_west)
+"qTE" = (
+/obj/submachine/cargopad/qm,
+/turf/floor,
+/area/station/quartermaster/cargobay)
 "qTG" = (
 /turf/floor/carpet{
 	dir = 10;
@@ -23943,8 +23944,8 @@
 	},
 /obj/window/reinforced/south,
 /obj/machinery/door_control{
-	pixel_y = 26;
-	id = "cargosto"
+	id = "cargosto";
+	pixel_y = 26
 	},
 /turf/floor/cautionblack/side{
 	dir = 9
@@ -25278,12 +25279,10 @@
 /turf/floor,
 /area/station/hallway/primary/south)
 "rVb" = (
-/obj/submachine/cargopad{
-	name = "Artifact Lab Pad"
-	},
 /obj/disposalpipe/segment/bent{
 	dir = 1
 	},
+/obj/submachine/cargopad/artlab,
 /turf/floor/grey,
 /area/station/science/artifact)
 "rVf" = (
@@ -25436,10 +25435,8 @@
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
 "sbt" = (
-/obj/submachine/cargopad{
-	name = "Robotics Workshop Pad"
-	},
 /obj/machinery/light/fluorescent/ceiling/cool,
+/obj/submachine/cargopad/robotics,
 /turf/floor/grey,
 /area/station/medical/robotics)
 "sbA" = (
@@ -81204,7 +81201,7 @@ tgF
 jdW
 iGF
 obJ
-kZg
+qTE
 kZg
 kAj
 wwO
