@@ -147,6 +147,7 @@
 	src.add_fingerprint(user)
 	if (!ispryingtool(C))
 		if (src.density && !src.operating)
+			if (issilicon(user) && IN_RANGE(src,user,1))
 			user.lastattacked = src
 			attack_particle(user,src)
 			playsound(src.loc, src.hitsound , 50, 1, pitch = 1.6)
