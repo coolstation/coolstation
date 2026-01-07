@@ -143,6 +143,9 @@
 		newbio.mobAppearance.e_color = P.AH.e_color
 		src.bioHolder = newbio
 
+	src.bioHolder.mobAppearance.pronouns = P.AH.pronouns
+	src.update_name_tag()
+
 
 //#ifdef HALLOWEEN
 /mob/dead/observer/CanPass(atom/movable/mover, turf/target)
