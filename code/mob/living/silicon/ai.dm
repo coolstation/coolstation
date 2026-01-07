@@ -2165,3 +2165,16 @@ proc/get_mobs_trackable_by_AI()
 				still_needed += "a pane of glass"
 			boutput(user, "\The [src] needs [still_needed.len ? english_list(still_needed) : "bugfixing (please call a coder)"] before you can activate it.")
 			return
+
+/mob/living/silicon/ai/point_at(var/atom/target, var/pixel_x, var/pixel_y)
+	if (!isturf(src.loc) || !isalive(src) || src.restrained())
+		return
+
+	if (istype(target, /obj/decal/point))
+		return
+
+	if (istype(target, /obj/fake_attacker))
+		src.visible_message("<span class='emote'><b>[src]</b> points to [get_turf(target)].</span>","<span class='emote'><b>[src]</b> points to [target].</span>")
+	else
+		src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
+	make_point(target, pixel_x=pixel_x, pixel_y=pixel_y, color=src.faceColor, pointer = src)

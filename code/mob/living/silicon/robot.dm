@@ -3059,5 +3059,22 @@
 		boutput(src, "<span class=alert>You don't have enough limbs to climb ladders!</span>")
 	return FALSE
 
+/mob/living/silicon/robot/point_at(var/atom/target, var/pixel_x, var/pixel_y)
+	if (!isturf(src.loc) || !isalive(src) || src.restrained())
+		return
+
+	if (istype(target, /obj/decal/point))
+		return
+
+	if (istype(target, /obj/fake_attacker))
+		src.visible_message("<span class='emote'><b>[src]</b> points to [get_turf(target)].</span>","<span class='emote'><b>[src]</b> points to [target].</span>")
+	else
+		var/obj/item/gun/G = src.equipped()
+		if(!istype(G) || !ismob(target))
+			src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
+		else
+			src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
+	make_point(target, pixel_x=pixel_x, pixel_y=pixel_y, color=rgb(src.cosmetic_mods.fx[1], src.cosmetic_mods.fx[2], src.cosmetic_mods.fx[3]), pointer = src)
+
 #undef can_step_sfx
 #undef ROBOT_BATTERY_DISTRESS_THRESHOLD
