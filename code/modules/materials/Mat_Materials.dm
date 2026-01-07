@@ -561,7 +561,7 @@
 		setProperty("density", 20)
 		setProperty("hard", 20)
 		setProperty("electrical", 60)
-		setProperty("radioactive", 75)
+		setProperty("radioactive", 15)
 		setProperty("stability", 10)
 
 		addTrigger(triggersFail, new /datum/materialProc/fail_explosive())
@@ -584,7 +584,7 @@
 		setProperty("density", 10)
 		setProperty("hard", 10)
 		setProperty("electrical", 50)
-		setProperty("radioactive", 20)
+		setProperty("radioactive", 5)
 		setProperty("flammable", 80)
 
 		addTrigger(triggersTemp, new /datum/materialProc/plasmastone())
