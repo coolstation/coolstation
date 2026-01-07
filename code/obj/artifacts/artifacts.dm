@@ -34,7 +34,9 @@
 		return
 
 	attack_ai(mob/user as mob)
-		return attack_hand(user)
+		if(!isAI(user) && IN_RANGE(src,user,1))
+			return attack_hand(user)
+		return
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		user.lastattacked = src
