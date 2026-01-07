@@ -438,7 +438,7 @@
 	name = "VACUUM AREA"
 	},
 /turf/wall,
-/area/station/shipyard)
+/area/station/hallway/primary/south)
 "aqd" = (
 /obj/storage/secure/closet/command,
 /obj/item/clothing/head/that/gold,
@@ -8201,9 +8201,12 @@
 /turf/floor/sanitary,
 /area/station/crew_quarters/bathroom)
 "gdz" = (
-/obj/machinery/door/airlock/external/shuttle_connect,
+/obj/machinery/door/airlock/external,
+/obj/airlock_cycle_linker{
+	cycle_id = "scrap"
+	},
 /turf/floor/plating,
-/area/station/shipyard)
+/area/station/hallway/primary/south)
 "gdB" = (
 /obj/machinery/door/poddoor/blast/pyro{
 	dir = 4
@@ -10459,9 +10462,6 @@
 	dir = 4
 	},
 /area/station/engine/coldloop)
-"hyY" = (
-/turf/floor/plating,
-/area/station/shipyard)
 "hzr" = (
 /obj/machinery/power/furnace{
 	active = 1;
@@ -12315,13 +12315,9 @@
 /turf/floor/plating/random,
 /area/station/maintenance/west)
 "iPx" = (
-/obj/securearea{
-	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
-	icon_state = "space";
-	name = "VACUUM AREA"
-	},
-/turf/wall/r_wall,
-/area/station/shipyard)
+/obj/machinery/door/airlock/external/shuttle_connect,
+/turf/floor/plating,
+/area/station/hallway/primary/south)
 "iPC" = (
 /obj/lattice,
 /obj/cable{
@@ -28834,7 +28830,10 @@
 /obj/decal/poster/wallsign/poster_chme{
 	pixel_y = 28
 	},
-/obj/item/paper/book/from_file/pharmacopia,
+/obj/item/storage/box/syringes{
+	pixel_x = 7;
+	pixel_y = 9
+	},
 /turf/floor/purplewhite{
 	dir = 1
 	},
@@ -29129,6 +29128,12 @@
 	},
 /obj/machinery/light/small/warm{
 	dir = 1
+	},
+/obj/item/reagent_containers/dropper/mechanical{
+	pixel_x = -12
+	},
+/obj/item/reagent_containers/dropper/mechanical{
+	pixel_x = -16
 	},
 /turf/floor/purplewhite{
 	dir = 1
@@ -30050,13 +30055,6 @@
 /obj/machinery/light/fluorescent/ceiling/warm,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quartersA)
-"vrY" = (
-/obj/machinery/door/airlock/external,
-/obj/airlock_cycle_linker{
-	cycle_id = "scrap"
-	},
-/turf/floor/plating/random,
-/area/station/shipyard)
 "vsT" = (
 /obj/cable{
 	d1 = 1;
@@ -31052,6 +31050,7 @@
 /obj/landmark/start{
 	name = "Chemist"
 	},
+/obj/item/paper/book/from_file/pharmacopia,
 /turf/floor/white,
 /area/station/science/chemistry)
 "whw" = (
@@ -69711,10 +69710,10 @@ dXU
 hwz
 bMk
 hZS
+bMk
+apK
 iPx
-gdz
-iPx
-rtl
+apK
 rtl
 dAJ
 sui
@@ -70013,10 +70012,10 @@ dXU
 qyM
 bMk
 vrk
-seQ
-hyY
-seQ
-dRi
+bMk
+qyM
+nNl
+qyM
 dRi
 dRi
 dYn
@@ -70316,8 +70315,8 @@ qPn
 qyM
 hwz
 qyM
-vGI
 qyM
+vGI
 apK
 cqf
 rtl
@@ -70620,7 +70619,7 @@ nNl
 jVa
 nNl
 nNl
-vrY
+hwz
 dRi
 dRi
 dRi
@@ -70922,7 +70921,7 @@ nNl
 nNl
 nNl
 gRV
-pAM
+gdz
 dRi
 dRi
 mwZ
