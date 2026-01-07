@@ -3044,6 +3044,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Miscellaneous"
 
+/datum/manufacture/bluebin
+	name = "Blue Bin"
+	item_paths = list("MET-1")
+	item_amounts = list(5)
+	item_outputs = list(/obj/table/folding/bin)
+	time = 10 SECONDS
+	create = 1
+	category = "Miscellaneous"
+
 /************ INTERDICTOR STUFF ************/
 
 /datum/manufacture/interdictor_frame

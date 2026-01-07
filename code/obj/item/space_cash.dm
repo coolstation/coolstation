@@ -226,6 +226,10 @@
 	default_min_amount = 500
 	default_max_amount = 1500
 
+/obj/item/spacecash/random/medium
+	default_min_amount = 1000
+	default_max_amount = 1500
+
 // for couches
 /obj/item/spacecash/random/small
 	default_min_amount = 1

@@ -231,7 +231,6 @@
 /turf/floor/grime,
 /area/station/science/lab)
 "aib" = (
-/obj/landmark/gps_waypoint,
 /turf/floor,
 /area/station/bridge{
 	mail_tag = "Shipyard control"
@@ -1324,6 +1323,9 @@
 	},
 /turf/space,
 /area/ghostdrone_factory)
+"bbx" = (
+/turf/space,
+/area/station/hallway/primary/south)
 "bbA" = (
 /turf/floor,
 /area/station/bridge)
@@ -2535,8 +2537,8 @@
 /obj/machinery/firealarm{
 	pixel_y = -26
 	},
-/obj/machinery/computer/barcode,
 /obj/machinery/light/small/warm,
+/obj/machinery/computer/barcode/qm/no_belthell,
 /turf/floor/cautionblack,
 /area/station/quartermaster/cargobay)
 "bQG" = (
@@ -3718,12 +3720,10 @@
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office)
 "cJR" = (
-/obj/submachine/cargopad{
-	name = "Botany Pad"
-	},
 /obj/storage/secure/crate/bee/loaded,
 /obj/machinery/light_switch/east,
 /obj/machinery/light/small/warm,
+/obj/submachine/cargopad/hydroponic,
 /turf/floor/wood/five,
 /area/station/hydroponics/lobby)
 "cKa" = (
@@ -8463,9 +8463,6 @@
 /turf/floor/plating/random,
 /area/station/maintenance/oldstation)
 "gmv" = (
-/obj/submachine/cargopad{
-	name = "Mechanical Workshop Pad"
-	},
 /obj/machinery/power/apc/autoname/south,
 /obj/cable,
 /obj/blind_switch/area/north{
@@ -8476,6 +8473,7 @@
 	pixel_x = 22;
 	pixel_y = 12
 	},
+/obj/submachine/cargopad/mechanics,
 /turf/floor/yellow/side{
 	dir = 6
 	},
@@ -8866,6 +8864,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light/fluorescent/ceiling/cool,
+/obj/submachine/cargopad/engineering,
 /turf/floor,
 /area/station/engine/storage)
 "gyb" = (
@@ -12614,6 +12613,10 @@
 	id = "2cargo";
 	operating = 1
 	},
+/obj/machinery/door/poddoor/pyro{
+	id = "lagerhaus";
+	name = "Storage Door"
+	},
 /turf/floor/plating,
 /area/station/storage/warehouse)
 "jdJ" = (
@@ -12937,6 +12940,7 @@
 	pixel_x = -10;
 	pixel_y = -7
 	},
+/obj/item/clothing/head/helmet/camera,
 /turf/floor/grime,
 /area/station/science/teleporter)
 "jqf" = (
@@ -15057,6 +15061,15 @@
 	},
 /obj/plasticflaps,
 /obj/firedoor_spawn,
+/obj/machinery/door/poddoor/pyro{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "cargosto";
+	layer = 4;
+	name = "Storage Doors";
+	opacity = 0
+	},
 /turf/floor/plating,
 /area/station/quartermaster/cargobay)
 "kOB" = (
@@ -20921,10 +20934,10 @@
 /turf/floor/carpet/grime,
 /area/station/library)
 "pgk" = (
-/obj/machinery/computer/barcode,
 /obj/machinery/alarm{
 	pixel_x = -32
 	},
+/obj/machinery/computer/barcode/qm/no_belthell,
 /turf/floor/grime,
 /area/station/storage/warehouse)
 "pgx" = (
@@ -21396,6 +21409,10 @@
 	},
 /turf/floor,
 /area/station/hallway/primary/east)
+"pwI" = (
+/obj/machinery/computer/mining_shuttle,
+/turf/floor/plating/random,
+/area/station/hallway/primary/south)
 "pxz" = (
 /obj/decal/floatingtiles/loose/random,
 /turf/floor/plating/random,
@@ -22175,6 +22192,10 @@
 	})
 "pTv" = (
 /obj/machinery/manufacturer/mining,
+/obj/machinery/door_control{
+	id = "lagerhaus";
+	pixel_y = -23
+	},
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
 "pTw" = (
@@ -23693,6 +23714,10 @@
 /obj/window_blinds,
 /turf/floor/plating,
 /area/station/crew_quarters/quarters_west)
+"qTE" = (
+/obj/submachine/cargopad/qm,
+/turf/floor,
+/area/station/quartermaster/cargobay)
 "qTG" = (
 /turf/floor/carpet{
 	dir = 10;
@@ -23918,6 +23943,10 @@
 	operating = 1
 	},
 /obj/window/reinforced/south,
+/obj/machinery/door_control{
+	id = "cargosto";
+	pixel_y = 26
+	},
 /turf/floor/cautionblack/side{
 	dir = 9
 	},
@@ -25250,12 +25279,10 @@
 /turf/floor,
 /area/station/hallway/primary/south)
 "rVb" = (
-/obj/submachine/cargopad{
-	name = "Artifact Lab Pad"
-	},
 /obj/disposalpipe/segment/bent{
 	dir = 1
 	},
+/obj/submachine/cargopad/artlab,
 /turf/floor/grey,
 /area/station/science/artifact)
 "rVf" = (
@@ -25408,10 +25435,8 @@
 /turf/floor/plating/random,
 /area/station/maintenance/northwest)
 "sbt" = (
-/obj/submachine/cargopad{
-	name = "Robotics Workshop Pad"
-	},
 /obj/machinery/light/fluorescent/ceiling/cool,
+/obj/submachine/cargopad/robotics,
 /turf/floor/grey,
 /area/station/medical/robotics)
 "sbA" = (
@@ -25932,6 +25957,9 @@
 	},
 /turf/wall/r_wall,
 /area/station/turret_protected/Zeta)
+"suV" = (
+/turf/floor/plating/random,
+/area/station/hallway/primary/south)
 "svu" = (
 /obj/disposalpipe/segment/brig{
 	dir = 4
@@ -63042,10 +63070,10 @@ tcz
 tcz
 tcz
 hwz
-hwz
 xtK
-cai
-cai
+pwI
+suV
+suV
 xtK
 hwz
 hwz
@@ -63344,12 +63372,12 @@ tJo
 gLA
 tcz
 bMk
-eFg
-eFg
-eFg
-eFg
-eFg
-eFg
+dSw
+hwz
+cai
+cai
+mvK
+bbx
 bMk
 bMk
 bMk
@@ -63652,10 +63680,10 @@ eFg
 eFg
 eFg
 eFg
-eFg
 bMk
 bMk
-dqy
+bMk
+wXL
 bMk
 bMk
 bMk
@@ -63955,9 +63983,9 @@ eFg
 eFg
 eFg
 eFg
-eFg
 bMk
-wXL
+bMk
+dqy
 bMk
 bMk
 bMk
@@ -64861,9 +64889,9 @@ eFg
 eFg
 eFg
 eFg
+eFg
 bMk
-bMk
-uRC
+wXL
 bMk
 bMk
 bMk
@@ -65162,10 +65190,10 @@ eFg
 eFg
 eFg
 eFg
+eFg
 bMk
 bMk
-bMk
-wXL
+uRC
 bMk
 bMk
 bMk
@@ -65453,21 +65481,21 @@ dXU
 aFU
 dXU
 hwz
-utA
-rtl
-utA
-gqH
-gXf
-hrV
-pqS
-sui
-pqS
-sui
-gHb
-utA
-tBm
-utA
-dAJ
+bMk
+vrk
+bMk
+vrk
+bMk
+eFg
+eFg
+eFg
+eFg
+eFg
+eFg
+bMk
+bMk
+bMk
+wXL
 cvN
 bMk
 bMk
@@ -65755,21 +65783,21 @@ dXU
 wdc
 dXU
 hwz
-bMk
-vrk
-bMk
-vrk
-bMk
-bMk
-bMk
-bMk
-bMk
-bMk
-bMk
-bMk
-bMk
-bMk
-bMk
+utA
+rtl
+utA
+gqH
+gXf
+hrV
+pqS
+sui
+pqS
+sui
+gHb
+utA
+tBm
+utA
+dAJ
 bMk
 bMk
 bMk
@@ -81173,7 +81201,7 @@ tgF
 jdW
 iGF
 obJ
-kZg
+qTE
 kZg
 kAj
 wwO

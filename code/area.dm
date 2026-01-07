@@ -189,30 +189,43 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				return 0
 		else
 			return 1
+	proc/handle_ambience_entered(var/mob/M, atom/oldloc)
+#define AMBIENCE_ENTER_PROB 6
+		//Handle ambient sound
+		var/area/lastarea = get_area(oldloc)
+		if (lastarea) //People can come from places with no area. :byondood:
+			M.client.last_soundgroup = lastarea.sound_group
+
+		if (sound_loop_1)
+			M.client.playAmbience(src, AMBIENCE_LOOPING_1, sound_loop_1_vol)
+
+		if (sound_loop_2) //secondary loop, transition and mixing
+			M.client.playAmbience(src, AMBIENCE_LOOPING_2, sound_loop_2_vol)
+
+		if (!played_fx_1 && prob(AMBIENCE_ENTER_PROB))
+			src.pickAmbience()
+			M.client.playAmbience(src, AMBIENCE_FX_1, 10)
+
+#undef AMBIENCE_ENTER_PROB
+	proc/handle_ambience_exited(var/mob/M)
+		if (sound_loop_1 || sound_loop_2 || sound_group)
+			SPAWN_DBG(1 DECI SECOND)
+				var/area/mobarea = get_area(M)
+				// If the area we are exiting has a sound loop but the new area doesn't
+				// we should stop the ambience or it will play FOREVER causing player insanity
+				if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && (!mobarea?.sound_loop_1)) //different place and doesn't have loop 1?
+					M.client.playAmbience(src, AMBIENCE_LOOPING_1, 0) //pass 0 to cancel
+				if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && (!mobarea?.sound_loop_2)) //same with loop 2?
+					M.client.playAmbience(src, AMBIENCE_LOOPING_2, 0) //pass 0 to cancel
+
 
 	/// Gets called when a movable atom enters an area.
 	Entered(var/atom/movable/A, atom/oldloc)
-		if (ismob(A))
+		if (isobserver(A))
 			var/mob/M = A
 			if (M?.client)
-				#define AMBIENCE_ENTER_PROB 6
+				handle_ambience_entered(M, oldloc)
 
-				//Handle ambient sound
-				var/area/lastarea = get_area(oldloc)
-				if (lastarea) //People can come from places with no area. :byondood:
-					M.client.last_soundgroup = lastarea.sound_group
-
-				if (sound_loop_1)
-					M.client.playAmbience(src, AMBIENCE_LOOPING_1, sound_loop_1_vol)
-
-				if (sound_loop_2) //secondary loop, transition and mixing
-					M.client.playAmbience(src, AMBIENCE_LOOPING_2, sound_loop_2_vol)
-
-				if (!played_fx_1 && prob(AMBIENCE_ENTER_PROB))
-					src.pickAmbience()
-					M.client.playAmbience(src, AMBIENCE_FX_1, 10)
-
-				#undef AMBIENCE_ENTER_PROB
 
 		if ((isliving(A) || iswraith(A)) || locate(/mob) in A)
 			if (!Z4_ACTIVE && A.z == 4) Z4_ACTIVE = 1//bloop
@@ -230,6 +243,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 					//If it's a real fuckin player
 					if (enteringM.ckey && enteringM.client)
+						handle_ambience_entered(enteringM, oldloc)
 						if( !CanEnter( enteringM ) )
 
 							var/target = get_turf(oldloc)
@@ -258,18 +272,10 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	/// Gets called when a movable atom exits an area.
 	Exited(var/atom/movable/A)
-		if (ismob(A))
+		if (isobserver(A))
 			var/mob/M = A
 			if (M?.client)
-				if (sound_loop_1 || sound_loop_2 || sound_group)
-					SPAWN_DBG(1 DECI SECOND)
-						var/area/mobarea = get_area(M)
-						// If the area we are exiting has a sound loop but the new area doesn't
-						// we should stop the ambience or it will play FOREVER causing player insanity
-						if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && (!mobarea?.sound_loop_1)) //different place and doesn't have loop 1?
-							M.client.playAmbience(src, AMBIENCE_LOOPING_1, 0) //pass 0 to cancel
-						if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && (!mobarea?.sound_loop_2)) //same with loop 2?
-							M.client.playAmbience(src, AMBIENCE_LOOPING_2, 0) //pass 0 to cancel
+				handle_ambience_exited(M)
 
 		if ((isliving(A) || iswraith(A)) || locate(/mob) in A)
 			//world.log << "[src] exited by [A]"
@@ -280,6 +286,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				for (var/mob/exitingM in exitingMobs)
 					if (exitingM.ckey && exitingM.client && exitingM.mind)
 						var/area/the_area = get_area(exitingM)
+						handle_ambience_exited(exitingM)
 						if( sanctuary && !blocked && !(the_area.sanctuary) )
 							boutput( exitingM, "<b style='color:#31BAE8'>You are leaving the sanctuary zone.</b>" )
 						if( blocked && !exitingM.client.holder )

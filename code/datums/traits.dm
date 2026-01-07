@@ -1195,6 +1195,17 @@ obj/trait/pilot
 	points = 0
 	isPositive = 0
 
+/obj/trait/monkey
+	name = "Clericanzee Error (0) \[Species\]"
+	cleanName = "Clericanzee Error"
+	icon_state = "monkeyT"
+	desc = "There's been a mistake at the lab and you've been picked out of your pen and sent to work. Technically an employee with paycheck and everything."
+	id = "monkey"
+	points = 0
+	isPositive = 0
+	category = "species"
+	mutantRace = /datum/mutantrace/monkey
+
 /obj/trait/lizard
 	name = "Reptilian (0) \[Species\]"
 	cleanName = "Reptilian"

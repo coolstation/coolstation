@@ -310,3 +310,11 @@ proc/get_type_typeinfo(type)
 	RETURN_TYPE(/typeinfo/datum) // change to /typeinfo if we ever implement /typeinfo for non-datums for some reason
 	var/datum/type_dummy = type
 	return get_singleton(initial(type_dummy.typeinfo_type))
+
+/// istype but for checking a list of types
+proc/istypes(datum/dat, list/types)
+	// based on the size of the types list this could be optimizable later by pre-generating and caching a concatenation of typesof() of them
+	for(var/type in types)
+		if(istype(dat, type))
+			return TRUE
+	return FALSE
