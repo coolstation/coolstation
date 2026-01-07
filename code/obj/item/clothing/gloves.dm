@@ -219,6 +219,9 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	icon_state = "fgloves"
 	item_state = "finger-"
 	hide_prints = 0
+		setupProperties()
+		..()
+		setProperty("conductivity", 1)
 
 /obj/item/clothing/gloves/black
 	desc = "These gloves are fire-resistant."
@@ -260,6 +263,29 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	setupProperties()
 		..()
 		setProperty("conductivity", 0.3)
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istool(W, TOOL_SNIPPING))
+			boutput(user, "You snip off the tips of your latex gloves. You feel really cool all of a sudden.")
+			playsound(src.loc, "sound/items/Scissor.ogg", 50, 1, -6)
+			var/obj/item/clothing/gloves/latex/fingerless/craft = new()
+			craft.set_loc(get_turf(src))
+			qdel(src)
+
+
+
+/obj/item/clothing/gloves/latex/fingerless
+	name = "Fingerless Latex Gloves"
+	icon_state = "flatex"
+	item_state = "flgloves"
+	permeability_coefficient = 0.02
+	desc = "Latex gloves that have been made utterly useless due to some asshole cutting off the tips on the fingers. Looks badass though."
+	protective_temperature = 310
+	scramble_prints = 0
+	setupProperties()
+		..()
+		setProperty("conductivity", 1)
+		setProperty("viralprot", 0)
+
 
 /obj/item/clothing/gloves/latex/blue
 	color = "#91d5e9"
@@ -279,7 +305,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 /obj/item/clothing/gloves/crafted
 	name = "gloves"
 	icon_state = "latex"
-	item_state = "lgloves"
+	item_state = "lglosves"
 	desc = "Custom made gloves."
 	scramble_prints = 1
 
