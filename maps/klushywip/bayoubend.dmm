@@ -1999,9 +1999,7 @@
 /area/station/hallway/primary/south)
 "bAG" = (
 /obj/machinery/light/fluorescent/ceiling/warm,
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
+/turf/floor/industrial,
 /area/station/storage/warehouse)
 "bBp" = (
 /obj/table/reinforced,
@@ -2238,11 +2236,9 @@
 	},
 /area/station/security/main)
 "bIf" = (
-/obj/machinery/light/small,
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
-/area/station/storage/warehouse)
+/obj/reagent_dispensers/fueltank,
+/turf/floor/airless/plating,
+/area/station/shipyard)
 "bIu" = (
 /obj/machinery/computer/bank_data,
 /turf/floor,
@@ -2734,10 +2730,10 @@
 /turf/floor/carpet/arcade/half,
 /area/station/bridge/captain)
 "bWM" = (
-/obj/railing/yellow,
 /obj/decal/tile_edge/stripe/extra_big{
-	dir = 6
+	dir = 4
 	},
+/obj/grille/catwalk/jen,
 /turf/floor/airless/plating,
 /area/station/shipyard)
 "bWO" = (
@@ -3226,10 +3222,8 @@
 	name = "Convienence Store"
 	})
 "crJ" = (
-/obj/machinery/nanofab/refining,
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
+/obj/storage/crate/wooden/wind,
+/turf/floor/industrial,
 /area/station/storage/warehouse)
 "crL" = (
 /obj/cable/yellow{
@@ -7553,9 +7547,8 @@
 /turf/floor/carpet/arcade,
 /area/station/bridge/captain)
 "fDl" = (
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
+/obj/machinery/manufacturer/qm,
+/turf/floor/industrial,
 /area/station/storage/warehouse)
 "fDt" = (
 /turf/wall,
@@ -9440,9 +9433,9 @@
 /area/station/security/main)
 "gNO" = (
 /obj/decal/cleanable/dirt/random,
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
+/obj/decal/mule/dropoff,
+/obj/machinery/portable_reclaimer,
+/turf/floor/industrial,
 /area/station/storage/warehouse)
 "gNZ" = (
 /obj/stool/chair/comfy,
@@ -10061,7 +10054,10 @@
 /turf/space,
 /area/station/shipyard)
 "hkR" = (
-/obj/machinery/manufacturer/qm,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
+	},
 /turf/floor/airless/plating,
 /area/station/shipyard)
 "hkU" = (
@@ -10613,10 +10609,7 @@
 /turf/space,
 /area/station/shipyard)
 "hFo" = (
-/obj/machinery/processor,
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
+/turf/floor/industrial,
 /area/station/storage/warehouse)
 "hGy" = (
 /obj/storage/closet/fire,
@@ -11707,7 +11700,6 @@
 /area/station/crew_quarters/barber_shop)
 "ixV" = (
 /obj/storage/crate/wooden,
-/obj/item/pipebomb/bomb,
 /obj/item/storage/pill_bottle/cyberpunk{
 	pixel_x = 8;
 	pixel_y = 4
@@ -14444,9 +14436,7 @@
 "ksc" = (
 /obj/decal/cleanable/dirt/random,
 /obj/decal/cleanable/dirt/random,
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
+/turf/floor/industrial,
 /area/station/storage/warehouse)
 "ksm" = (
 /obj/grille/catwalk/jen/twosides,
@@ -16085,11 +16075,14 @@
 /turf/floor/wood/seven,
 /area/station/library)
 "lBr" = (
-/obj/machinery/manufacturer/mining,
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 0;
 	name = "autoname - SS13"
+	},
+/obj/machinery/nanofab/refining,
+/obj/machinery/light/small/red{
+	dir = 1
 	},
 /turf/floor/airless/plating,
 /area/station/shipyard)
@@ -18624,11 +18617,8 @@
 /turf/floor/white,
 /area/station/science/chemistry)
 "nzO" = (
-/obj/item/storage/toolbox/mechanical{
-	pixel_y = 2
-	},
 /obj/grille/catwalk/jen,
-/obj/table/reinforced/auto,
+/obj/machinery/processor,
 /turf/floor/airless/plating,
 /area/station/shipyard)
 "nAc" = (
@@ -19890,10 +19880,8 @@
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "osb" = (
-/obj/machinery/light/small/red{
-	dir = 1
-	},
-/obj/reagent_dispensers/fueltank,
+/obj/grille/catwalk/jen,
+/obj/machinery/neosmelter,
 /turf/floor/airless/plating,
 /area/station/shipyard)
 "osd" = (
@@ -21522,8 +21510,8 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "pAM" = (
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating/random,
+/obj/item/constructioncone,
+/turf/floor/airless/plating,
 /area/station/shipyard)
 "pBl" = (
 /obj/machinery/ai_status_display{
@@ -21681,10 +21669,10 @@
 /turf/floor,
 /area/station/bridge)
 "pGm" = (
-/obj/machinery/neosmelter,
-/turf/floor/shuttlebay{
-	name = "reinforced plating"
-	},
+/obj/storage/crate/wooden,
+/obj/item/clothing/suit/fire,
+/obj/item/pipebomb/bomb,
+/turf/floor/industrial,
 /area/station/storage/warehouse)
 "pGt" = (
 /obj/cable{
@@ -21820,7 +21808,7 @@
 	})
 "pKK" = (
 /obj/decal/mule/dropoff,
-/obj/storage/crate/wooden,
+/obj/reagent_dispensers/fueltank,
 /turf/floor/airless/plating,
 /area/station/shipyard)
 "pKL" = (
@@ -25060,6 +25048,9 @@
 /obj/item/clothing/suit/hi_vis{
 	pixel_x = -3
 	},
+/obj/item/clothing/suit/hi_vis{
+	pixel_x = -3
+	},
 /turf/floor/grime,
 /area/station/storage/warehouse)
 "rKe" = (
@@ -25320,11 +25311,11 @@
 /turf/floor/plating/random,
 /area/space)
 "rWo" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
 /obj/railing/yellow{
 	dir = 4
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
 	},
 /turf/floor/airless/plating,
 /area/station/shipyard)
@@ -26698,9 +26689,9 @@
 /turf/floor/wood/five,
 /area/station/maintenance/oldstation)
 "sUK" = (
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
-/area/station/shipyard)
+/obj/table/reinforced/industrial/auto,
+/turf/floor/industrial,
+/area/station/storage/warehouse)
 "sVA" = (
 /obj/disposalpipe/segment,
 /obj/cable{
@@ -31700,8 +31691,9 @@
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "wAK" = (
-/obj/item/constructioncone,
-/obj/grille/catwalk/jen,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
+	},
 /turf/floor/airless/plating,
 /area/station/shipyard)
 "wBi" = (
@@ -79706,8 +79698,8 @@ ltM
 tZj
 aaF
 qoR
-pKK
-dRi
+coH
+bIf
 qyF
 bMk
 bMk
@@ -82417,14 +82409,14 @@ kIp
 fKl
 qNM
 pvc
-fDl
-fDl
+hFo
+hFo
 pGm
-sUK
-bQW
-jIt
-jIt
+gJu
 dRi
+osb
+dRi
+jIt
 coH
 qyF
 ipT
@@ -82721,10 +82713,10 @@ gKk
 pvc
 bAG
 ksc
-bIf
-sUK
-hkR
-wAK
+hFo
+gJu
+dRi
+jIt
 dRi
 dRi
 dRi
@@ -83023,12 +83015,12 @@ gKk
 dlB
 fDl
 gNO
-fDl
-seQ
-osb
+sUK
+gJu
+dRi
 jIt
 dRi
-dRi
+pAM
 dRi
 mwZ
 ipT
@@ -83326,13 +83318,13 @@ vWX
 hUO
 gJu
 gJu
-seQ
+gJu
 lBr
 nzO
 jIt
-dRi
-dRi
-qyF
+hkR
+bWM
+wAK
 ipT
 ipT
 ipT
@@ -83628,13 +83620,13 @@ wJp
 wJp
 lhp
 dRi
-seQ
-pAM
-seQ
-isJ
+bQW
+dRi
 dRi
 dRi
 qyF
+bMk
+bMk
 ipT
 ipT
 ipT
@@ -83935,8 +83927,8 @@ iyh
 ueL
 iyh
 rWo
-iyh
-bWM
+bMk
+bMk
 ipT
 ipT
 ipT
