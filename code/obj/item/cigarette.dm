@@ -354,6 +354,8 @@
 		// Added (Convair880).
 		if (ismob(src.loc))
 			logTheThing("bombing", null, src.loc, "A trick cigarette (held/equipped by [constructTarget(src.loc,"bombing")]) explodes at [log_loc(src)].")
+			var/mob/M = src.loc
+			JOB_XP_FORCE(M,"CIGARETTE",15)
 		else
 			logTheThing("bombing", src.fingerprintslast, null, "A trick cigarette explodes at [log_loc(src)]. Last touched by [src.fingerprintslast ? "[src.fingerprintslast]" : "*null*"].")
 
