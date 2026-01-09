@@ -2062,6 +2062,12 @@
 /obj/decal/poster/wallsign/warning3{
 	pixel_y = -30
 	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/grime,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -2994,6 +3000,18 @@
 	dir = 8
 	},
 /area/station/mining/lobby)
+"jw" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "jx" = (
 /obj/decal/cleanable/mess/random_food,
 /turf/floor/black/grime,
@@ -4769,6 +4787,12 @@
 /area/station/atmos/hookups/south)
 "pt" = (
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -6982,6 +7006,15 @@
 /obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"wX" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor/grass,
+/area/station/medical/research)
 "wY" = (
 /obj/cable{
 	d1 = 4;
@@ -7547,6 +7580,12 @@
 "yO" = (
 /obj/disposalpipe/junction/right/east,
 /obj/grille/catwalk/jen,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 10;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -13107,6 +13146,13 @@
 	dir = 8
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13";
+	pixel_y = 12;
+	tag = ""
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -14286,6 +14332,12 @@
 "Vj" = (
 /obj/grille/catwalk/jen,
 /obj/table/auto,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -14548,6 +14600,12 @@
 	})
 "Wb" = (
 /obj/machinery/light/fluorescent/neutral,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/green/side,
 /area/station/medical/research)
 "Wc" = (
@@ -15018,6 +15076,20 @@
 /obj/cable,
 /turf/floor/plating,
 /area/station/security/brig/south_side)
+"XI" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "XN" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -53280,7 +53352,7 @@ Gt
 lv
 nf
 vO
-SI
+wX
 SI
 uE
 SI
@@ -60523,7 +60595,7 @@ kU
 kU
 uq
 uq
-qj
+XI
 lN
 NQ
 uq
@@ -66232,7 +66304,7 @@ XT
 pK
 ZH
 Ox
-xD
+jw
 XT
 bc
 jV
