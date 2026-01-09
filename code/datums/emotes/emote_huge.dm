@@ -285,7 +285,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 
 /datum/emote/fart/silicon
 /datum/emote/fart/silicon/enact(mob/living/silicon/user, voluntary = 0, param)
-	if (farting_allowed && user.emote_check(voluntary))
+	if (farting_allowed)
 		var/fart_on_other = 0
 		var/message
 		for (var/mob/living/M in user.loc)
