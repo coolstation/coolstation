@@ -1740,6 +1740,12 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"fe" = (
+/obj/machinery/vending/monkey{
+	name = "Mining Labor"
+	},
+/turf/floor/plating,
+/area/station/mining/tunnel)
 "ff" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -2598,7 +2604,7 @@
 /turf/floor/grime,
 /area/station/bridge)
 "ib" = (
-/obj/storage/crate,
+/obj/machinery/processor,
 /turf/floor/plating,
 /area/station/mining/lobby)
 "ic" = (
@@ -5222,12 +5228,6 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
-"qV" = (
-/obj/machinery/vending/monkey{
-	name = "Mining Labor"
-	},
-/turf/floor/plating,
-/area/station/mining/tunnel)
 "qX" = (
 /obj/machinery/atmospherics/unary/vent_pump/east,
 /turf/floor/grime,
@@ -12806,6 +12806,7 @@
 /obj/machinery/light/fluorescent/harsh{
 	dir = 1
 	},
+/obj/storage/crate,
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "PG" = (
@@ -75985,7 +75986,7 @@ HB
 DQ
 kU
 wC
-qV
+fe
 OW
 OW
 OW
