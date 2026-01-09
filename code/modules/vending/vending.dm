@@ -2847,7 +2847,8 @@
 	icon_state = "monkey"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
-	acceptcard = 0
+	acceptcard = 1
+	pay = 1
 	mats = 0 // >:I
 	slogan_list = list("My monkeys are too strong for you, traveler!")
 	slogan_chance = 1
@@ -2858,7 +2859,7 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/mob/living/carbon/human/npc/monkey, rand(10, 15), logged_on_vend=TRUE)
+		product_list += new/datum/data/vending_product(/mob/living/carbon/human/npc/monkey, rand(10, 15), cost=100, logged_on_vend=TRUE)
 
 		product_list += new/datum/data/vending_product(/obj/item/clothing/mask/monkey_translator, rand(1,2), hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/banana, rand(1,20), hidden=1)
@@ -2869,7 +2870,8 @@
 	icon_state = "grub"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
-	acceptcard = 0
+	acceptcard = 1
+	pay = 1
 	mats = 0 // >:I
 	slogan_list = list("Free bug for your de bug!")
 	slogan_chance = 1
@@ -2880,7 +2882,7 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/mob/living/critter/grub/wildgrub, rand(10, 15), logged_on_vend=TRUE)
+		product_list += new/datum/data/vending_product(/mob/living/critter/grub/wildgrub, rand(10, 15), cost=10, logged_on_vend=TRUE)
 
 
 /obj/machinery/vending/magivend
