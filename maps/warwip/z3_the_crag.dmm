@@ -43,6 +43,12 @@
 /obj/machinery/vending/cola/blue,
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
+"ai" = (
+/obj/machinery/vending/monkey{
+	name = "Mining Labor"
+	},
+/turf/floor/plating,
+/area/station/mining/tunnel)
 "aj" = (
 /obj/table/auto,
 /obj/decal/cleanable/dirt/random,
@@ -1740,12 +1746,6 @@
 	},
 /turf/floor/grime,
 /area/station/engine/hotloop)
-"fe" = (
-/obj/machinery/vending/monkey{
-	name = "Mining Labor"
-	},
-/turf/floor/plating,
-/area/station/mining/tunnel)
 "ff" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -11738,8 +11738,7 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/cable{
-	d2 = 2;
-	icon_state = "0-2"
+	icon_state = "2-8"
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
@@ -75986,7 +75985,7 @@ HB
 DQ
 kU
 wC
-fe
+ai
 OW
 OW
 OW
