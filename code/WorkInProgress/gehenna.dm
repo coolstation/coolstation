@@ -405,7 +405,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		rock_mult = 20
 		doublesize = TRUE
 		big_rock_chance = 0
-		var/static/list/image/beaten_sand = list()
+		var/static/list/image/beaten_sand
 
 		New()
 			if(!src.beaten_sand)
