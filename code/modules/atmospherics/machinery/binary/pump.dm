@@ -93,6 +93,11 @@ Thus, the two variables affect pump operation are set in New():
 
 	initialize()
 		..()
+		AddComponent(/datum/component/mechanics_holder)
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"toggle", "mechToggle")
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"open", "mechPowerOn")
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"close", "mechPowerOff")
+		SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"set_output", "mechSetOutput")
 		ui = new/datum/pump_ui/basic_pump_ui(src)
 		MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
@@ -123,6 +128,32 @@ Thus, the two variables affect pump operation are set in New():
 			SPAWN_DBG(0.5 SECONDS) broadcast_status()
 
 		update_icon()
+
+
+	proc/mechPowerOn()
+		on = 1
+		update_icon()
+		return
+
+	proc/mechPowerOff()
+		on = 0
+		update_icon()
+		return
+
+	proc/mechToggle()
+		on = !on
+		update_icon()
+		return
+
+
+	proc/mechSetOutput(var/datum/mechanicsMessage/input)
+		var/new_pressure = text2num(input.signal)
+		new_pressure = min(max(new_pressure, 0), ONE_ATMOSPHERE*50)
+		target_pressure = new_pressure
+		update_icon()
+		return
+
+
 
 /obj/machinery/atmospherics/binary/pump/attackby(obj/item/W as obj, mob/user as mob)
 	if(ispulsingtool(W) || iswrenchingtool(W))
