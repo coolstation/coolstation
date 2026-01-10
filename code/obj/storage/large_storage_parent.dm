@@ -128,6 +128,10 @@
 				if (isitem(A))
 					var/obj/item/I = A
 					I.emp_act()
+	Move(NewLoc, direct)
+		. = ..()
+		if(!src.throwing && prob(75))
+			playsound(src, "sound/misc/chair/normal/scoot[rand(1,5)].ogg", 40, 1)
 
 	relaymove(mob/user as mob)
 		if (is_incapacitated(user))
