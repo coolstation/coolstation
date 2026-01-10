@@ -9,11 +9,13 @@
 	var/has_welding = 0
 	var/welding = 0
 
+	fiddleType = /datum/contextAction/fiddle/omnitool
+
 	custom_suicide = 1
 
 	var/omni_mode = "prying"
 
-	hint = "Use in hand to cycle modes."
+	hint = "Use in hand to cycle modes. Press X to fiddle to a specific mode."
 
 	New()
 		..()
@@ -284,3 +286,58 @@
 /obj/item/tool/omnitool/silicon
 	prefix = "silicon-omnitool"
 	desc = "A set of tools on telescopic arms. It's the robotic future!"
+
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/omnitool)
+/datum/contextAction/fiddle/omnitool
+	checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
+		return istype(target)
+
+	crowbar
+		name = "crowbar"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("prying", user)
+
+	screwdriver
+		name = "screwdriver"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("screwing", user)
+
+	multitool
+		name = "multitool"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("pulsing", user)
+
+	wirecutters
+		name = "wirecutters"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("snipping", user)
+
+	wrench
+		name = "wrench"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("wrenching", user)
+
+	cutting
+		name = "cutting"
+		checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
+			. = ..()
+			if(!.)
+				return
+			if(!target.has_cutting)
+				return FALSE
+			return TRUE
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("cutting", user)
+
+	welding
+		name = "welding"
+		checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
+			. = ..()
+			if(!.)
+				return
+			if(!target.has_welding)
+				return FALSE
+			return TRUE
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("welding", user)
