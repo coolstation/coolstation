@@ -295,31 +295,37 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/omnitool)
 
 	crowbar
 		name = "crowbar"
+		icon_state = "omni_prying"
 		execute(var/obj/item/tool/omnitool/target, var/mob/user)
 			target.change_mode("prying", user)
 
 	screwdriver
 		name = "screwdriver"
+		icon_state = "omni_screwing"
 		execute(var/obj/item/tool/omnitool/target, var/mob/user)
 			target.change_mode("screwing", user)
 
 	multitool
 		name = "multitool"
+		icon_state = "omni_pulsing"
 		execute(var/obj/item/tool/omnitool/target, var/mob/user)
 			target.change_mode("pulsing", user)
 
 	wirecutters
 		name = "wirecutters"
+		icon_state = "omni_snipping"
 		execute(var/obj/item/tool/omnitool/target, var/mob/user)
 			target.change_mode("snipping", user)
 
 	wrench
 		name = "wrench"
+		icon_state = "omni_wrenching"
 		execute(var/obj/item/tool/omnitool/target, var/mob/user)
 			target.change_mode("wrenching", user)
 
 	cutting
 		name = "cutting"
+		icon_state = "omni_cutting"
 		checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
 			. = ..()
 			if(!.)
@@ -332,6 +338,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/omnitool)
 
 	welding
 		name = "welding"
+		icon_state = "omni_welding"
 		checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
 			. = ..()
 			if(!.)
