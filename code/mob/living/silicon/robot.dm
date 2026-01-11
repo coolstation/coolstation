@@ -2019,8 +2019,8 @@
 		if (src.get_eye_blurry()) src.change_eye_blurry(-INFINITY)
 		if (src.get_eye_damage()) src.take_eye_damage(-INFINITY)
 		if (src.get_eye_damage(1)) src.take_eye_damage(-INFINITY, 1)
-		if (src.get_ear_damage()) src.take_ear_damage(-INFINITY)
-		if (src.get_ear_damage(1)) src.take_ear_damage(-INFINITY, 1)
+		if (src.ear_damage) src.take_ear_damage(-INFINITY)
+		if (src.ear_tempdeaf) src.take_ear_damage(-INFINITY, 1)
 		src.lying = 0
 		src.set_density(1)
 		if(src.stat) src.camera.camera_status = 0.0
@@ -3029,7 +3029,7 @@
 						else if (priority < 0)
 							priority = leg ? leg.step_sound : "step_robo"
 
-						playsound(NewLoc, "[priority]", src.m_intent == "run" ? 65 : 40, 1, extrarange = 3)
+						playsound(NewLoc, "[priority]", src.m_intent == "run" ? 65 : 40, 1, range = SOUND_RANGE_STANDARD)
 
 		//STEP SOUND HANDLING OVER
 
@@ -3058,6 +3058,23 @@
 	else
 		boutput(src, "<span class=alert>You don't have enough limbs to climb ladders!</span>")
 	return FALSE
+
+/mob/living/silicon/robot/point_at(var/atom/target, var/pixel_x, var/pixel_y)
+	if (!isturf(src.loc) || !isalive(src) || src.restrained())
+		return
+
+	if (istype(target, /obj/decal/point))
+		return
+
+	if (istype(target, /obj/fake_attacker))
+		src.visible_message("<span class='emote'><b>[src]</b> points to [get_turf(target)].</span>","<span class='emote'><b>[src]</b> points to [target].</span>")
+	else
+		var/obj/item/gun/G = src.equipped()
+		if(!istype(G) || !ismob(target))
+			src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
+		else
+			src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
+	make_point(target, pixel_x=pixel_x, pixel_y=pixel_y, color=rgb(src.cosmetic_mods.fx[1], src.cosmetic_mods.fx[2], src.cosmetic_mods.fx[3]), pointer = src)
 
 #undef can_step_sfx
 #undef ROBOT_BATTERY_DISTRESS_THRESHOLD

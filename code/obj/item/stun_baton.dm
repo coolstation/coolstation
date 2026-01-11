@@ -170,11 +170,11 @@
 				logTheThing("combat", user, null, "accidentally stuns [himself_or_herself(user)] with the [src.name] at [log_loc(user)].")
 				user.visible_message("<span class='alert'><b>[user]</b> fumbles with the [src.name] and accidentally stuns [himself_or_herself(user)]!</span>")
 				flick(flick_baton_active, src)
-				playsound(src, "sound/impact_sounds/Energy_Hit_3.ogg", 50, 1, -1)
+				playsound(src, "sound/impact_sounds/Energy_Hit_3.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 			if ("failed_stun")
 				user.visible_message("<span class='alert'><B>[victim] has been prodded with the [src.name] by [user]! Luckily it was off.</B></span>")
-				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 25, 1, -1)
+				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 25, 1, SOUND_RANGE_STANDARD)
 				logTheThing("combat", user, victim, "unsuccessfully tries to stun [constructTarget(victim,"combat")] with the [src.name] at [log_loc(victim)].")
 				if (src.is_active && !(SEND_SIGNAL(src, COMSIG_CELL_CHECK_CHARGE, src.cost_normal) & CELL_SUFFICIENT_CHARGE))
 					if (user && ismob(user))
@@ -183,7 +183,7 @@
 
 			if ("failed_harm")
 				user.visible_message("<span class='alert'><B>[user] has attempted to beat [victim] with the [src.name] but held it wrong!</B></span>")
-				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1, -1)
+				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 				logTheThing("combat", user, victim, "unsuccessfully tries to beat [constructTarget(victim,"combat")] with the [src.name] at [log_loc(victim)].")
 				random_brute_damage(user, 2 * src.force)
 
@@ -192,14 +192,14 @@
 				logTheThing("combat", user, victim, "stuns [constructTarget(victim,"combat")] with the [src.name] at [log_loc(victim)].")
 				JOB_XP(victim, "Clown", 3)
 				flick(flick_baton_active, src)
-				playsound(src, "sound/impact_sounds/Energy_Hit_3.ogg", 50, 1, -1)
+				playsound(src, "sound/impact_sounds/Energy_Hit_3.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 			if ("fizzle")
 				logTheThing("combat", user, null, "experiences a baton misfire with the [src.name] at [log_loc(user)].")
 				user.visible_message("<span class='alert'><B>[user]'s [src.name] fizzles out on impact!</B></span>")
 				JOB_XP_FORCE(user, "Clown", 3)
 				flick(flick_baton_active, src)
-				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 25, 1, -1)
+				playsound(src, "sound/impact_sounds/Generic_Stab_1.ogg", 25, 1, SOUND_RANGE_STANDARD)
 				random_brute_damage(victim, 2 * src.force)
 				return
 
@@ -249,7 +249,7 @@
 				user.show_text("[src] is recharging!", "red")
 				return
 			user.visible_message("<span class='alert'>[user] begins to charge up \the [src].</span>", "<span class='notice'>You start charging up \the [src].</span>", "<span class='alert'>You hear a sharp spark.</span>")
-			playsound(src, "sparks", 75, 1, -1)
+			playsound(src, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 			SETUP_GENERIC_ACTIONBAR(user, src, src.charge_time, PROC_REF(turn_on), user, src.icon, "[src.icon_on]", null, null)
 			return
 
@@ -270,7 +270,7 @@
 	proc/turn_on(mob/user)
 		src.is_active = TRUE
 		boutput(user, "<span class='notice'>The [src.name] is now on.</span>")
-		playsound(src, "sparks", 75, 1, -1)
+		playsound(src, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 		src.update_icon()
 		user.update_inhands()
 		if(src.active_time)
@@ -280,7 +280,7 @@
 	proc/turn_off(mob/user)
 		src.is_active = FALSE
 		boutput(user, "<span class='notice'>The [src.name] is now off.</span>")
-		playsound(src, "sparks", 75, 1, -1)
+		playsound(src, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 		src.update_icon()
 		user.update_inhands()
 
@@ -299,7 +299,7 @@
 		switch (user.a_intent)
 			if ("harm")
 				if (!src.is_active || (src.is_active && src.can_stun() == 0))
-					playsound(src, "swing_hit", 50, 1, -1)
+					playsound(src, "swing_hit", 50, 1, SOUND_RANGE_STANDARD)
 					..()
 				else
 					src.do_stun(user, M, "failed_harm", 1)
@@ -425,7 +425,7 @@
 
 	do_stun(mob/user, mob/victim, type, stun_who)
 		user.visible_message("<span class='alert'><B>[victim] has been beaten with the [src.name] by [user]!</B></span>")
-		playsound(src, "swing_hit", 50, 1, -1)
+		playsound(src, "swing_hit", 50, 1, SOUND_RANGE_STANDARD)
 		random_brute_damage(victim, src.force, 1) // Necessary since the item/attack() parent wasn't called.
 		victim.changeStatus("weakened", 8 SECONDS)
 		victim.force_laydown_standup()
@@ -488,7 +488,7 @@
 					src.is_active = FALSE
 					src.w_class = W_CLASS_BULKY
 					src.force = 7
-					playsound(src, "sound/misc/lightswitch.ogg", 75, 1, -1)
+					playsound(src, "sound/misc/lightswitch.ogg", 75, 1, SOUND_RANGE_STANDARD)
 					boutput(user, "<span class='notice'>The [src.name] is now open and unpowered.</span>")
 					src.update_icon()
 					user.update_inhands()
@@ -500,7 +500,7 @@
 				boutput(user, "<span class='notice'>The [src.name] is now open and on.</span>")
 				src.w_class = W_CLASS_BULKY
 				src.force = 7
-				playsound(src, "sparks", 75, 1, -1)
+				playsound(src, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 			if (OPEN_AND_ON)		//move to open/off state
 				src.state = OPEN_AND_OFF
 				src.is_active = FALSE
@@ -508,14 +508,14 @@
 				src.force = 7
 				playsound(src, "sound/misc/lightswitch.ogg", 75, 1, -1)
 				boutput(user, "<span class='notice'>The [src.name] is now open and unpowered.</span>")
-				// playsound(src, "sparks", 75, 1, -1)
+				// playsound(src, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 			if (OPEN_AND_OFF)		//move to closed/off state
 				src.state = CLOSED_AND_OFF
 				src.is_active = FALSE
 				src.w_class = W_CLASS_SMALL
 				src.force = 1
 				boutput(user, "<span class='notice'>The [src.name] is now closed.</span>")
-				playsound(src, "sparks", 75, 1, -1)
+				playsound(src, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 
 		src.update_icon()
 		user.update_inhands()
@@ -552,6 +552,12 @@
 		src.process_charges(-INFINITY)
 
 		return
+
+	old
+		name = "dead extendable stun baton"
+		desc = "The battery is completely corroded, but it can still bludgeon perfectly fine."
+		cell_type = /obj/item/ammo/power_cell/dead
+
 
 #undef CLOSED_AND_OFF
 #undef OPEN_AND_ON

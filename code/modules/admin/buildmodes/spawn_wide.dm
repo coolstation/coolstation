@@ -13,7 +13,7 @@ change the direction of created objects.<br>
 ***********************************************************"}
 	icon_state = "buildmode5"
 	var/objpath = null
-	var/cinematic = "Blink"
+	var/cinematic = "None"
 	var/delete_area = 0
 	var/turf/A = null
 	var/image/marker = null

@@ -10,6 +10,7 @@
 	opacity = 0
 	density = 0
 	anchored = UNANCHORED
+	hitsound = null //need a very light paff sound but then scaling up to bigger and bigger hitsounds with more on the stack
 	force = 1.0
 	throwforce = 0
 	throw_speed = 1
@@ -62,18 +63,25 @@
 		switch (src.amount)
 			if (-INFINITY to 0)
 				src.icon_state = "cashnone"
+				src.hitsound = null
 			if (1 to 9)
 				src.icon_state = "cashgreen"
+				src.hitsound = null
 			if (10 to 49)
 				src.icon_state = "cashblue"
+				src.hitsound = null
 			if (50 to 499)
 				src.icon_state = "cashindi"
+				src.hitsound = 'sound/impact_sounds/block_blunt.ogg'
 			if (500 to 999)
 				src.icon_state = "cashpurp"
+				src.hitsound = 'sound/impact_sounds/block_blunt.ogg'
 			if (1000 to 999999)
 				src.icon_state = "cashred"
-			else // 1mil bby
+				src.hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
+			else // 1mil+ bby
 				src.icon_state = "cashrbow"
+				src.hitsound = 'sound/impact_sounds/Generic_Hit_Heavy_1.ogg'
 
 	UpdateName()
 		src.name = "[src.amount == src.max_stack ? "1000000" : src.amount] [name_prefix(null, 1)][src.real_name][s_es(src.amount)][name_suffix(null, 1)]"
@@ -140,7 +148,7 @@
 
 				if (get_dist(L, target) > 0)
 					L.set_dir(get_dir(L, target))
-				playsound(L.loc, 'sound/effects/throw.ogg', 20, 1, 0.1)
+				playsound(L.loc, 'sound/effects/throw.ogg', 20, 1, SOUND_RANGE_STANDARD)
 
 				L.next_click = world.time + (L.combat_click_delay / 4)  * GET_COMBAT_CLICK_DELAY_SCALE(L)
 
@@ -216,6 +224,10 @@
 // That's what tourists spawn with.
 /obj/item/spacecash/random/tourist
 	default_min_amount = 500
+	default_max_amount = 1500
+
+/obj/item/spacecash/random/medium
+	default_min_amount = 1000
 	default_max_amount = 1500
 
 // for couches

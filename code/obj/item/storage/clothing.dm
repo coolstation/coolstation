@@ -133,7 +133,10 @@
 	spawn_contents = list(/obj/item/clothing/under/rank/security,\
 	/obj/item/clothing/shoes/swat,\
 	/obj/item/device/radio/headset/security,\
-	/obj/item/device/pda2/security)
+	/obj/item/device/pda2/security, \
+	/obj/item/clothing/under/rank/security/suit, \
+	/obj/item/clothing/head/sec)
+
 
 /obj/item/storage/box/clothing/detective
 	name = "\improper Detective's equipment"

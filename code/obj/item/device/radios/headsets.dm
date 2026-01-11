@@ -91,6 +91,10 @@
 		)
 	icon_override = "nt"
 
+/obj/item/device/radio/headset/command/nt/rogue
+	name = "Hacked NT Headset"
+	desc = "An old jailbroken NT headset. The headset is still capable of accessing secure frequencies."
+
 /obj/item/device/radio/headset/command/captain
 	name = "Captain's Headset"
 	icon_state = "captain headset"
@@ -342,7 +346,22 @@
 	desc = "A radio headset that interfaces with the ear canal, allowing the deaf to hear."
 	icon_state = "deaf headset"
 	item_state = "headset"
-	block_hearing_when_worn = HEARING_ANTIDEAF
+
+	equipped(mob/user, slot)
+		. = ..()
+		if(slot == SLOT_EARS)
+			user.ear_protected--
+
+	unequipped(mob/user)
+		if(src.equipped_in_slot == SLOT_EARS)
+			user.ear_protected++
+		. = ..()
+
+	disposing()
+		if(src.equipped_in_slot == SLOT_EARS && ismob(src.loc))
+			var/mob/M = src.loc
+			M.ear_protected++
+		. = ..()
 
 /obj/item/device/radio/headset/gang
 	name = "Radio Headset"

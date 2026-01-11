@@ -9,11 +9,13 @@
 	var/has_welding = 0
 	var/welding = 0
 
+	fiddleType = /datum/contextAction/fiddle/omnitool
+
 	custom_suicide = 1
 
 	var/omni_mode = "prying"
 
-	hint = "Use in hand to cycle modes."
+	hint = "Use in hand to cycle modes. Press X to fiddle to a specific mode."
 
 	New()
 		..()
@@ -255,7 +257,7 @@
 			if (O.reagents.total_volume)
 				O.reagents.trans_to(src, 20)
 				boutput(user, "<span class='notice'>Welder refueled</span>")
-				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 			else
 				boutput(user, "<span class='alert'>The [O.name] is empty!</span>")
 			return
@@ -284,3 +286,65 @@
 /obj/item/tool/omnitool/silicon
 	prefix = "silicon-omnitool"
 	desc = "A set of tools on telescopic arms. It's the robotic future!"
+
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/omnitool)
+/datum/contextAction/fiddle/omnitool
+	checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
+		return istype(target)
+
+	crowbar
+		name = "crowbar"
+		icon_state = "omni_prying"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("prying", user)
+
+	screwdriver
+		name = "screwdriver"
+		icon_state = "omni_screwing"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("screwing", user)
+
+	multitool
+		name = "multitool"
+		icon_state = "omni_pulsing"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("pulsing", user)
+
+	wirecutters
+		name = "wirecutters"
+		icon_state = "omni_snipping"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("snipping", user)
+
+	wrench
+		name = "wrench"
+		icon_state = "omni_wrenching"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("wrenching", user)
+
+	cutting
+		name = "cutting"
+		icon_state = "omni_cutting"
+		checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
+			. = ..()
+			if(!.)
+				return
+			if(!target.has_cutting)
+				return FALSE
+			return TRUE
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("cutting", user)
+
+	welding
+		name = "welding"
+		icon_state = "omni_welding"
+		checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
+			. = ..()
+			if(!.)
+				return
+			if(!target.has_welding)
+				return FALSE
+			return TRUE
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("welding", user)

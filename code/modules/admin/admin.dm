@@ -849,7 +849,7 @@ var/global/noir = 0
 					logTheThing("admin", usr, null, "set the mode as [requestedMode].")
 					logTheThing("diary", usr, null, "set the mode as [requestedMode].", "admin")
 					message_admins("<span class='internal'>[key_name(usr)] set the mode as [requestedMode].</span>")
-					discord_send("[key_name(usr)] set this round's mode as [requestedMode].", -1)
+					discord_send("[usr.key] set this round's mode as [requestedMode].", -1)
 					world.save_mode(requestedMode)
 					master_mode = requestedMode
 					if(master_mode == "battle_royale")
@@ -874,7 +874,7 @@ var/global/noir = 0
 				logTheThing("admin", usr, null, "set the next round's mode as [newmode].")
 				logTheThing("diary", usr, null, "set the next round's mode as [newmode].", "admin")
 				message_admins("<span class='internal'>[key_name(usr)] set the next round's mode as [newmode].</span>")
-				discord_send("[key_name(usr)] set next round's mode as [newmode].", -1)
+				discord_send("[usr.key] set next round's mode as [newmode].", -1)
 				world.save_mode(newmode)
 				if (alert("Declare mode change to all players?","Mode Change","Yes","No") == "Yes")
 					boutput(world, "<span class='notice'><b>The next round's mode will be: [newmode]</b></span>")
@@ -2156,7 +2156,7 @@ var/global/noir = 0
 						/*	else
 								SPAWN_DBG(0) alert("An error occurred, please try again.")*/
 					else
-						var/list/traitor_types = list("Traitor", "Wizard", "Changeling", "Dracula", "Werewolf", "Hunter", "Wrestler", "Grinch", "Omnitraitor", "Spy_Thief")
+						var/list/traitor_types = list("Traitor", "Wizard", "Changeling", "Dracula", "Werewolf", "Hunter", "Wrestler", "Grinch", "Omnitraitor", "Spy_Thief", "rogue NTSO")
 						if(ticker?.mode && istype(ticker.mode, /datum/game_mode/gang))
 							traitor_types += "Gang Leader"
 						var/selection = input(usr, "Select traitor type.", "Traitorize", "Traitor") as null|anything in traitor_types
@@ -4535,6 +4535,13 @@ var/global/noir = 0
 		logTheThing("admin", usr, null, ": [message]")
 		logTheThing("diary", usr, null, ": [message]", "admin")
 
+/datum/admins/proc/trains()
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	set name = "Trains"
+	set desc = "Train control panel"
+
+	train_spotter.config()
+
 /datum/admins/proc/startnow()
 	SET_ADMIN_CAT(ADMIN_CAT_SERVER)
 	set desc="Start the round RIGHT NOW"
@@ -4781,6 +4788,13 @@ var/global/noir = 0
 				M.mind.special_role = "vampire"
 				M.show_text("<h2><font color=red><B>You have joined the ranks of the undead and are now a dracula!</B></font></h2>", "red")
 				M.make_vampire()
+			if("rogue NTSO")
+				M.mind.special_role = "rogue_ntso"
+				M.show_text("<h2><font color=red><B>You have defected from Nanotrasen and become rogue!</B></font></h2>", "red")
+				var/mob/living/carbon/human/tmob = M
+				M.unequip_all(0)
+				equip_rogue(tmob)
+				SHOW_NTSO_TIPS(M)
 			if("hunter")
 				M.mind.special_role = "hunter"
 				M.mind.assigned_role = "Hunter"
@@ -5122,7 +5136,7 @@ var/global/noir = 0
 	set name = "Manage Bioeffects"
 	set desc = "Select a mob to manage its bioeffects."
 	set popup_menu = 0
-	admin_only
+	ADMIN_ONLY
 
 	var/list/dat = list()
 	dat += {"
@@ -5232,7 +5246,7 @@ var/global/noir = 0
 	set name = "Manage Abilities"
 	set desc = "Select a mob to manage its abilities."
 	set popup_menu = 0
-	admin_only
+	ADMIN_ONLY
 
 	var/list/dat = list()
 	dat += {"
@@ -5419,7 +5433,7 @@ proc/timeywimey(var/time)
 		L.set_loc(positions[L])
 		L.changeStatus("stunned", 6 SECONDS)
 		elecflash(L,power = 2)
-		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+		playsound(L.loc, "sound/effects/mag_warp.ogg", 25, 1, SOUND_RANGE_STANDARD)
 	return 1
 
 /*

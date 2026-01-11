@@ -28,7 +28,7 @@ Right Mouse Button on buildmode    = Select reagent<br>
 		if (!(reagent_id in reagent_holder.reagent_list))
 			return
 		var/datum/reagent/reagent = reagent_holder.reagent_list[reagent_id]
-		blink(get_turf(object))
+		//blink(get_turf(object))
 		if(ismob(object)) reagent.reaction_mob(object, 1, 20)
 		if(isobj(object)) reagent.reaction_obj(object, 20)
 		if(isturf(object)) reagent.reaction_turf(object, 20)
@@ -42,4 +42,4 @@ Right Mouse Button on buildmode    = Select reagent<br>
 			return
 		if (object.reagents)
 			object.reagents.add_reagent(reagent_id, 5)
-			blink(get_turf(object))
+			//blink(get_turf(object))

@@ -69,7 +69,7 @@
 		else if(sound == 2)
 			playsound(src.loc, "sound/voice/burp.ogg", 100, 1)
 		else if(sound == 3)
-			playsound(src.loc, "sound/effects/screech2.ogg", 100, 5,0)
+			playsound(src.loc, "sound/effects/screech2.ogg", 100, 5,SOUND_RANGE_STANDARD)
 	if(containment_fail == 1)
 		SPAWN_DBG(9 SECONDS)
 		emittsound()

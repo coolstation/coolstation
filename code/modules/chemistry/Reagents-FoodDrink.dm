@@ -704,7 +704,7 @@ datum
 						..()
 						return
 					boutput(M, text("<span class='alert'>You blink, and suddenly you're somewhere else!</span>"))
-					playsound(M.loc, "sound/effects/mag_warp.ogg", 25, 1, -1)
+					playsound(M.loc, "sound/effects/mag_warp.ogg", 25, 1, SOUND_RANGE_STANDARD)
 					M.set_loc(pick(randomturfs))
 				..()
 				return
@@ -2255,10 +2255,10 @@ datum
 			on_mob_life(var/mob/M, var/mult = 1)
 				..()
 				if(prob(80))
-					M.reagents.add_reagent("cattail_fluff", rand(2,5) * mult)
-					M.reagents.trans_to(M.loc, rand(15,20) * mult) //some spillage + barf
+					//M.reagents.add_reagent("cattail_fluff", rand(2,5) * mult)
+					//M.reagents.trans_to(M.loc, rand(15,20) * mult) //some spillage + barf
 					M.take_oxygen_deprivation(rand(8,20)) // grrk gghfg glugg ghrkjhhrrk
-					playsound(M, "sound/misc/meat_plop.ogg", 50,1)
+					M.vomit()
 					boutput(M, "<span class='alert'>The cattail fluff explodes in your mouth!</span>")
 
 

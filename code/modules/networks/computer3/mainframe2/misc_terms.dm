@@ -451,7 +451,7 @@
 					sessionid = 0
 
 				if (setup_access_click)
-					playsound(src.loc, "sound/machines/driveclick.ogg", 25, 0, -2)
+					playsound(src.loc, "sound/machines/driveclick.ogg", 25, 0, SOUND_RANGE_STANDARD)
 				switch(data["command"])
 					if("sync")
 						if (!src.tape)

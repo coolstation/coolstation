@@ -40,7 +40,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	var/tmp/timeDilationUpperBound = OVERLOADED_WORLD_TICKLAG
 	var/tmp/highMapCpuCount = 0 // how many times in a row has the map_cpu been high
 
-	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg', 'sound/radio_station/lobby/onn105.ogg', 'sound/radio_station/lobby/robocop.ogg')
+	var/list/lobby_music = list('sound/radio_station/lobby/opus_number_null.ogg','sound/radio_station/lobby/tv_girl.ogg','sound/radio_station/lobby/tane_lobby.ogg','sound/radio_station/lobby/muzak_lobby.ogg','sound/radio_station/lobby/say_you_will.ogg','sound/radio_station/lobby/two_of_them.ogg','sound/radio_station/lobby/ultimatum_low.ogg', 'sound/radio_station/lobby/onn105.ogg', 'sound/radio_station/lobby/robocop.ogg', 'sound/radio_station/lobby/bingbong.ogg')
 	var/picked_music = null
 
 
@@ -171,9 +171,11 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 		if(ai.randomly_selectable)
 			good_laws += ai
 
-
-	src.centralized_ai_laws = pick(good_laws)
-	if(prob(50)) // lower this to 33 if you see this comment after 11/30/2025 (i want it to roll more often until then)
+	if(prob(50))
+		src.centralized_ai_laws = new /datum/ai_laws/asimov()
+	else
+		src.centralized_ai_laws = pick(good_laws)
+	if(prob(25)) // lower this to 33 if you see this comment after 11/30/2025 (i want it to roll more often until then)
 		var/list/addon_laws = list(
 			"Preface all crew names with their job title when communicating, to properly clarify.",
 			"Conserve power by turning off lights in unused rooms.",
@@ -369,6 +371,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 /datum/controller/gameticker/proc/lobby_music()
 
 	var/sound/music_sound = new()
+	if(map_settings)
+		lobby_music += map_settings.map_specific_musics
 	ticker.picked_music = pick(lobby_music) //collapse the waveform for the entire round
 	music_sound.file = picked_music
 	music_sound.wait = 0
@@ -387,16 +391,18 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 			if (C.preferences?.skip_lobby_music)
 				continue
 
-			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
+			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 
 			if (!client_vol)
 				continue
 
-			C.sound_playing[ admin_sound_channel ][1] = 1
+			C.sound_playing[ admin_sound_channel ][1] = 100
 			C.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
 
 			music_sound.volume = client_vol
 			C << music_sound
+
+	discord_send("Round starting in 2 minutes on [getMapNameFromID(map_setting)]!","game-updates")
 
 /datum/controller/gameticker
 	proc/distribute_jobs()
@@ -632,6 +638,9 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 				ticker.round_elapsed_ticks += elapsed
 
 /datum/controller/gameticker/proc/declare_completion()
+
+	world.TgsTriggerEvent("cool-exciting-roundend", wait_for_completion = TRUE)
+
 	//End of round statistic collection for goonhub
 
 	//logTheThing("debug", null, null, "Zamujasa: [world.timeofday] statlog_traitors")

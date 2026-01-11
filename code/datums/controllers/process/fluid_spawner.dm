@@ -63,7 +63,7 @@ var/global/datum/color/ocean_color = 0
 
 		handle_light_generating_turfs()
 
-		for (var/turf/space/fluid/T in processing_fluid_turfs)
+		for (var/turf/space/fluid/T as anything in processing_fluid_turfs)
 			if (!T) continue
 			adjacent_space = 0
 			adjacent_block = 0

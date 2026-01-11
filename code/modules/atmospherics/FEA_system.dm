@@ -168,13 +168,16 @@ datum/controller/air_system
 		var/list/turf/possible_borders
 		var/list/turf/possible_space_borders
 		var/possible_space_length = 0
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+		var/atmos_border = FALSE
+#endif
 
 		while(possible_members.len > 0) //Keep expanding, looking for new members
 			for(var/turf/test as anything in possible_members)
 				test.length_space_border = 0
 				for(var/direction in cardinal)
 					var/turf/T = get_step(test,direction)
-					if(T && !(T in members) && test.gas_cross(T) && T.gas_cross(test))
+					if(T && !(T in members) && test.gas_cross(T))
 						if(issimulatedturf(T))
 							if(!T:parent)
 								possible_members += T
@@ -189,6 +192,10 @@ datum/controller/air_system
 							test.nearest_space = T
 #endif
 							test.length_space_border++
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+						else if(T.turf_flags & IS_ATMOSPHERE)
+							atmos_border = TRUE
+#endif
 
 				if(test.length_space_border > 0)
 					possible_space_length += test.length_space_border
@@ -227,6 +234,10 @@ datum/controller/air_system
 			air_groups += group
 
 			group.update_group_from_tiles() //Initialize air group variables
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+			if(atmos_border)
+				group.groups_to_atmosphere = 0
+#endif
 			return group
 		else
 			base.processing = 0 //singletons at startup are technically unconnected anyway

@@ -136,9 +136,9 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	// this chunk zone is for Area Ambience
 	var/sound_loop_1 = null
-	var/sound_loop_1_vol = 50
+	var/sound_loop_1_vol = 25
 	var/sound_loop_2 = null
-	var/sound_loop_2_vol = 50
+	var/sound_loop_2_vol = 25
 	var/sound_fx_1 = null
 	var/sound_fx_2 = null
 	var/tmp/played_fx_1 = 0
@@ -189,59 +189,43 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				return 0
 		else
 			return 1
+	proc/handle_ambience_entered(var/mob/M, atom/oldloc)
+#define AMBIENCE_ENTER_PROB 6
+		//Handle ambient sound
+		var/area/lastarea = get_area(oldloc)
+		if (lastarea) //People can come from places with no area. :byondood:
+			M.client.last_soundgroup = lastarea.sound_group
+
+		if (sound_loop_1)
+			M.client.playAmbience(src, AMBIENCE_LOOPING_1, sound_loop_1_vol)
+
+		if (sound_loop_2) //secondary loop, transition and mixing
+			M.client.playAmbience(src, AMBIENCE_LOOPING_2, sound_loop_2_vol)
+
+		if (!played_fx_1 && prob(AMBIENCE_ENTER_PROB))
+			src.pickAmbience()
+			M.client.playAmbience(src, AMBIENCE_FX_1, 10)
+
+#undef AMBIENCE_ENTER_PROB
+	proc/handle_ambience_exited(var/mob/M)
+		if (sound_loop_1 || sound_loop_2 || sound_group)
+			SPAWN_DBG(1 DECI SECOND)
+				var/area/mobarea = get_area(M)
+				// If the area we are exiting has a sound loop but the new area doesn't
+				// we should stop the ambience or it will play FOREVER causing player insanity
+				if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && (!mobarea?.sound_loop_1)) //different place and doesn't have loop 1?
+					M.client.playAmbience(src, AMBIENCE_LOOPING_1, 0) //pass 0 to cancel
+				if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && (!mobarea?.sound_loop_2)) //same with loop 2?
+					M.client.playAmbience(src, AMBIENCE_LOOPING_2, 0) //pass 0 to cancel
+
 
 	/// Gets called when a movable atom enters an area.
 	Entered(var/atom/movable/A, atom/oldloc)
-		if (ismob(A))
+		if (isobserver(A))
 			var/mob/M = A
 			if (M?.client)
-				#define AMBIENCE_ENTER_PROB 6
+				handle_ambience_entered(M, oldloc)
 
-				//Handle ambient sound
-				var/area/lastarea = get_area(oldloc)
-				if (lastarea) //People can come from places with no area. :byondood:
-					M.client.last_soundgroup = lastarea.sound_group
-
-				if (sound_loop_1)
-					M.client.playAmbience(src, AMBIENCE_LOOPING_1, sound_loop_1_vol)
-
-				if (sound_loop_2) //secondary loop, transition and mixing
-					M.client.playAmbience(src, AMBIENCE_LOOPING_2, sound_loop_2_vol)
-
-				if (!played_fx_1 && prob(AMBIENCE_ENTER_PROB))
-					src.pickAmbience()
-					M.client.playAmbience(src, AMBIENCE_FX_1, 18)
-
-				//playAmbienceZ(Z level as num, passthrough vol in code/modules/sound.dm
-				//the function picks the z-loop to play for whatever z-level you're on, if defined
-				#ifdef DESERT_MAP //only do this for gehenna for now, but if anyone else wants in on it i WILL generalize it immediately rather than eventually -bob
-				var/insideness = 1
-				//reduces audio by (0.5*insidedness) + 1
-				//1 is outside, no reduction
-				//2 is 33%
-				//3 is 50%
-				//4 is 60%
-				//7 is 75%
-				//9 is 80%
-				//20 is 95% and is a special case to just mute the sound without stopping it
-				if(M.loc.loc.type == /area/gehenna || istype(M.loc.loc, /area/shuttle))
-					insideness = 1
-
-				else if(M.loc.loc.type != /area/space) //bleh
-					insideness = 4 //this is the easiest level to check so let's just use this as our non-space case FOR NOW (happy 2053 to you reading this)
-					//can make a proc that does a calculation that might be useful for adjusting a room's sound environment in general
-					//especially if we figure out how to implement occlusion and such. (god i hope sound occlusion isn't calculated serverside...)
-				//categories and checks for later or maybe never:
-				//outside
-				//non-space area that's open
-				//non-space area that's insulated but adjacent to /area/space (window, wall)
-				//non-space area that's insulated but not adjacent (deep in station)
-				M.client.playAmbienceZ(M.z, insideness)
-				#elif defined(MAGINDARA_MAP)
-				M.client.playAmbienceZ(M.z, 1)
-				#endif
-
-				#undef AMBIENCE_ENTER_PROB
 
 		if ((isliving(A) || iswraith(A)) || locate(/mob) in A)
 			if (!Z4_ACTIVE && A.z == 4) Z4_ACTIVE = 1//bloop
@@ -259,6 +243,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 					//If it's a real fuckin player
 					if (enteringM.ckey && enteringM.client)
+						handle_ambience_entered(enteringM, oldloc)
 						if( !CanEnter( enteringM ) )
 
 							var/target = get_turf(oldloc)
@@ -287,18 +272,10 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 
 	/// Gets called when a movable atom exits an area.
 	Exited(var/atom/movable/A)
-		if (ismob(A))
+		if (isobserver(A))
 			var/mob/M = A
 			if (M?.client)
-				if (sound_loop_1 || sound_loop_2 || sound_group)
-					SPAWN_DBG(1 DECI SECOND)
-						var/area/mobarea = get_area(M)
-						// If the area we are exiting has a sound loop but the new area doesn't
-						// we should stop the ambience or it will play FOREVER causing player insanity
-						if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && (!mobarea?.sound_loop_1)) //different place and doesn't have loop 1?
-							M.client.playAmbience(src, AMBIENCE_LOOPING_1, 0) //pass 0 to cancel
-						if (M?.client && (mobarea?.sound_group != src.sound_group || isnull(src.sound_group)) && (!mobarea?.sound_loop_2)) //same with loop 2?
-							M.client.playAmbience(src, AMBIENCE_LOOPING_2, 0) //pass 0 to cancel
+				handle_ambience_exited(M)
 
 		if ((isliving(A) || iswraith(A)) || locate(/mob) in A)
 			//world.log << "[src] exited by [A]"
@@ -309,6 +286,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 				for (var/mob/exitingM in exitingMobs)
 					if (exitingM.ckey && exitingM.client && exitingM.mind)
 						var/area/the_area = get_area(exitingM)
+						handle_ambience_exited(exitingM)
 						if( sanctuary && !blocked && !(the_area.sanctuary) )
 							boutput( exitingM, "<b style='color:#31BAE8'>You are leaving the sanctuary zone.</b>" )
 						if( blocked && !exitingM.client.holder )
@@ -551,6 +529,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	expandable = 0
 	// filler_turf = "/turf/floor/setpieces/gauntlet"
 	is_atmos_simulated = FALSE
+	requires_power = 0
 
 /area/titlescreen/coolisland
 	name = "Paisano Island"
@@ -679,11 +658,15 @@ ABSTRACT_TYPE(/area/shuttle)
 	icon_state = "shuttle"
 	sound_group = "centcom"
 	is_centcom = 1
+	sound_loop_1 = 'sound/ambience/loop/Station_Background_Drone.ogg'
+	sound_loop_1_vol = 60
 
 /area/shuttle/escape/outpost
 	icon_state = "shuttle3"
 	sound_group = "centcom"
 	is_centcom = 1
+	sound_loop_1 = 'sound/ambience/loop/Station_Background_Drone.ogg'
+	sound_loop_1_vol = 60
 
 /area/shuttle/prison/
 	name = "Prison Shuttle"
@@ -814,6 +797,10 @@ ABSTRACT_TYPE(/area/shuttle/merchant_shuttle)
 	var/warp_dir = NORTH // fuck you
 	is_atmos_simulated = FALSE
 	is_construction_allowed = FALSE
+	sound_loop_1 = 'sound/ambience/loop/Station_Background_Drone.ogg'
+	sound_loop_1_vol = 100
+	sound_loop_2 = 'sound/ambience/loop/Wind_Low.ogg'
+	sound_loop_2_vol = 100
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -829,7 +816,10 @@ ABSTRACT_TYPE(/area/shuttle/merchant_shuttle)
 		..()
 		if (ismob(Obj))
 			var/mob/M = Obj
-			M.removeOverlayComposition(/datum/overlayComposition/shuttle_warp)
+			if (src.warp_dir & NORTH || src.warp_dir & SOUTH)
+				M.removeOverlayComposition(/datum/overlayComposition/shuttle_warp)
+			else
+				M.removeOverlayComposition(/datum/overlayComposition/shuttle_warp/ew)
 
 /area/shuttle/escape/transit/ew
 	warp_dir = EAST
@@ -946,7 +936,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 	sims_score = 15
 	sound_group = "some place hot"
 	sound_loop_1 = 'sound/ambience/loop/Fire_Medium.ogg'
-	sound_loop_1_vol = 75
+	sound_loop_1_vol = 40
 
 	Entered(atom/movable/Obj,atom/OldLoc)
 		..()
@@ -1059,7 +1049,7 @@ ABSTRACT_TYPE(/area/adventure)
 				helldrone_awake_sound.file = 'sound/machines/giantdrone_loop.ogg'
 				helldrone_awake_sound.repeat = 0
 				helldrone_awake_sound.wait = 0
-				helldrone_awake_sound.channel = SOUNDCHANNEL_BIGALARM
+				helldrone_awake_sound.channel = SOUNDCHANNEL_RESERVED_BIGALARM
 				helldrone_awake_sound.volume = 60
 				helldrone_awake_sound.priority = 255
 				helldrone_awake_sound.status = SOUND_UPDATE
@@ -1069,7 +1059,7 @@ ABSTRACT_TYPE(/area/adventure)
 				helldrone_wakeup_sound.file = 'sound/machines/giantdrone_startup.ogg'
 				helldrone_wakeup_sound.repeat = 0
 				helldrone_wakeup_sound.wait = 0
-				helldrone_wakeup_sound.channel = SOUNDCHANNEL_BIGALARM
+				helldrone_wakeup_sound.channel = SOUNDCHANNEL_RESERVED_BIGALARM
 				helldrone_wakeup_sound.volume = 60
 				helldrone_wakeup_sound.priority = 255
 				helldrone_wakeup_sound.status = SOUND_UPDATE
@@ -1255,7 +1245,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = -1
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 16
+	sound_loop_2_vol = 8
 	sound_group = "diner" //the music's kind of everywhere isn't it
 	sound_group_varied = 1
 	//check shuttles.dm for the diner
@@ -1281,9 +1271,9 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "blue"
 	sound_environment = EAX_HALLWAY
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 5
+	sound_loop_1_vol = 3
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 30
+	sound_loop_2_vol = 15
 	sound_group_varied = 1
 
 /area/diner/hallway/docking
@@ -1293,8 +1283,8 @@ ABSTRACT_TYPE(/area/diner)
 /area/diner/backroom
 	name = "Space Diner Backroom"
 	icon_state = "green"
-	sound_loop_1_vol = 5
-	sound_loop_2_vol = 25
+	sound_loop_1_vol = 3
+	sound_loop_2_vol = 13
 
 /area/diner/solar
 	name = "Space Diner Solar Control"
@@ -1337,9 +1327,9 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "juicer"
 	sound_environment = EAX_CONCERT_HALL
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 100
+	sound_loop_1_vol = 35
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 20
+	sound_loop_2_vol = 10
 	sound_group_varied = 1
 
 /area/juicer/club/outside
@@ -1349,7 +1339,7 @@ ABSTRACT_TYPE(/area/diner)
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = 20
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 80
+	sound_loop_2_vol = 40
 	sound_group_varied = 1
 
 /area/juicer/club/back
@@ -1357,9 +1347,27 @@ ABSTRACT_TYPE(/area/diner)
 	icon_state = "juicer3"
 	sound_environment = EAX_SEWER_PIPE
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = 20
+	sound_loop_1_vol = 10
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 100
+	sound_loop_2_vol = 40
+
+/area/debris
+	name = "debris field"
+	icon_state = "green"
+
+/area/debris/harmacy
+	name = "the harmacy"
+
+/area/debris/yuletide
+	name = "merryment"
+
+/area/debris/falserock
+	name = "false asteroid"
+
+/area/debris/pee
+	name = "pee pee"
+	icon_state = "yellow"
+
 
 // Gore's Z5 Space generation areas //
 ABSTRACT_TYPE(/area/prefab)
@@ -1677,8 +1685,16 @@ ABSTRACT_TYPE(/area/station/atmos/hookups)
 /area/station/atmos/hookups/east
 	name = "East Air Hookups"
 
+	external
+		name = "East External Air Hookups"
+		ambient_light = "#404058"
+
 /area/station/atmos/hookups/west
 	name = "West Air Hookups"
+
+	external
+		name = "West External Air Hookups"
+		ambient_light = "#404058"
 
 /area/station/atmos/hookups/north
 	name = "North Air Hookups"
@@ -3770,6 +3786,13 @@ ABSTRACT_TYPE(/area/station/catwalk)
 
 // end syndie //
 
+/area/ntso_shuttle
+	name = "NTSO Shuttle"
+	icon_state = "blue"
+	requires_power = 0
+	sound_environment = EAX_ROOM
+	teleport_blocked = 1
+
 /// Wizard den area for the wizard shuttle spawn
 /area/wizard_station
 	name = "Wizard's Den"
@@ -4223,6 +4246,8 @@ ABSTRACT_TYPE(/area/mining)
 		for_by_tcl(F, /obj/machinery/firealarm)
 			if(get_area(F) == src)
 				F.icon_state = "fire1"
+				if(F.sound_emitter)
+					F.sound_emitter.play("alarm")
 		for (var/obj/machinery/camera/C in src)
 			cameras += C
 			LAGCHECK(LAG_HIGH)
@@ -4243,6 +4268,8 @@ ABSTRACT_TYPE(/area/mining)
 		for_by_tcl(F, /obj/machinery/firealarm)
 			if(get_area(F) == src)
 				F.icon_state = "fire0"
+				if(F.sound_emitter)
+					F.sound_emitter.deactivate()
 		for_by_tcl(aiPlayer, /mob/living/silicon/ai)
 			aiPlayer.cancelAlarm("Fire", src, src)
 		for (var/obj/machinery/computer/atmosphere/alerts/a as anything in machine_registry[MACHINES_ATMOSALERTS])
@@ -5252,7 +5279,7 @@ area/station/crewquarters/cryotron
 	sound_environment = EAX_FOREST
 	workplace = 1
 	sound_loop_1 = 'sound/ambience/station/detectivesoffice.ogg'
-	sound_loop_1_vol = 30
+	sound_loop_1_vol = 15
 	sound_group = "detective"
 
 	detectives_bedroom

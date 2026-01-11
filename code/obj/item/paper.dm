@@ -33,6 +33,7 @@
 	wear_image_icon = 'icons/mob/head.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "paper"
+	hitsound = null //need a very weak paper paff type sound
 	var/info = ""
 	var/stampable = 1
 	throwforce = 0
@@ -46,6 +47,9 @@
 	burn_possible = TRUE
 	health = 10
 	rand_pos = 9
+
+	fiddleType = /datum/contextAction/fiddle/paper
+
 	var/list/form_startpoints
 	var/list/form_endpoints
 	var/font_css_crap = null
@@ -129,35 +133,7 @@
 	return 1
 
 /obj/item/paper/attack_self(mob/user as mob)
-	var/menuchoice = alert("What would you like to do with [src]?",,"Fold","Read","Nothing")
-	if (menuchoice == "Nothing")
-		return
-	else if (menuchoice == "Read")
-		src.examine(user)
-	else
-		var/fold = alert("What would you like to fold [src] into?",,"Paper hat","Paper plane","Paper ball")
-		if(src.pooled) //It's possible to queue multiple of these menus before resolving any.
-			return
-		user.u_equip(src)
-		if (fold == "Paper hat")
-			user.show_text("You fold the paper into a hat! Neat.", "blue")
-			var/obj/item/clothing/head/paper_hat/H = new()
-			H.paper = src
-			src.set_loc(H)
-			user.put_in_hand_or_drop(H)
-		else
-			var/obj/item/paper/folded/F = null
-			if (fold == "Paper plane")
-				user.show_text("You fold the paper into a plane! Neat.", "blue")
-				F = new /obj/item/paper/folded/plane(user)
-			else
-				user.show_text("You crumple the paper into a ball! Neat.", "blue")
-				F = new /obj/item/paper/folded/ball(user)
-			F.info = src.info
-			F.old_desc = src.desc
-			F.old_icon_state = src.icon_state
-			user.put_in_hand_or_drop(F)
-			qdel(src)
+	src.examine(user)
 
 /obj/item/paper/attack_ai(var/mob/AI as mob)
 	var/mob/living/silicon/ai/user
@@ -502,6 +478,22 @@ ASC: Aux. Solar Control<BR>
 	The cryogenics chamber will automatically eject patients once their health is back to normal, but post-cryo evaluation is recommended nevertheless.
 	"}
 
+/obj/item/paper/sgletter
+	name = "'Strongly Worded Letter'"
+	info = {"<h4><span style='font-family: Special Elite, cursive;'>DEAR SITE DIRECTOR,</span></h4>
+	<p>
+    The matter of your refusal to co-operate with <i>contract binding</i> orders regarding my departments has once again been brought to my attention. Your unwillingness to come to a single compromise with any items of my various, very important, and pressing affairs is simply unacceptable. I, once again, writing to voice my dissatisfaction with your lacklustre, negligent, and misguided management of the Security, Civilian, and Engineering departments. Your blatant and flippant refusal to work with my departments sets a poor example for your underlings to follow-at the detriment of the entire instillation. Need I remind you that your authority does not extend past the 51/49 station line.
+    Any further incursion upon my authority, refusal to co-operate, bothering of my staff, or impeding of my dutiful survey responsibilities will result in legal action.<br>
+	<br>
+	Consider your future actions with my dissatisfaction and the sake of the outpost in mind, Director.
+	<br>
+	Sincerely,<br>
+    Nevicata Survey Instillation 13 Surveyor General,<br>
+	Director of Medical, Logistics, Reconnaissance and Research departments,<br>
+	PhD. MD. MFA.
+	_________
+	</P>"}
+
 /obj/item/paper/cargo_instructions
 	name = "'Cargo Bay Setup Instructions'"
 	info = "In order to properly set up the cargo computer, both the incoming and outgoing supply pads must be directly or diagonally adjacent to the computer."
@@ -681,6 +673,19 @@ as it may become compromised.
 	name = "strange note"
 	desc = "What's this doing here?"
 	info = "<i>On the other side... 232 09</i>"
+
+/obj/item/paper/rtfm
+	name = "angrily scribed FOSS missive"
+	info = {"Wow! I cannot BELIEVE the numbers of operatives we have that do not know how to RTFM (Read The FREAKIN' Manual)<br>
+	Primarily, our sophisticated weaponry has many interesting capabilities for bringing order to the chaos of draconian software licensing.<br>
+	Secondarily, the more times you crank, the more powerful the emitted laser will be. Or, in the flywheel model, the more charges you will have stored up.<br>
+	Tertiarily, the more of a charge the capacitors have, the more damage it will do to the bulb. Big shots means faster burnout.<br>
+	Quaternarily, the flywheel laser does not gain more powerful shots, but it does fire multiple times without needing to re-crank.<br>
+	<s>Pent</s>Quinarily, there is a SAFETY mechanism to avoid overcranking that can be toggled with any screwdriver for higher damage and more risk.<br>
+	That's it! You'd have known these things if you simply took a few hours of your time to read the 96 man pages we prepared.<br>
+	<br>
+	Unbelievable.<br>
+	-RT"}
 
 /obj/item/paper/torn
 	name = "torn note"
@@ -1391,6 +1396,12 @@ as it may become compromised.
 	else
 		..()
 
+/obj/item/paper/folded/fiddle(mob/user as mob)
+	if(src.sealed)
+		src.attack_self(user)
+	else
+		return ..()
+
 /obj/item/paper/folded/examine()
 	if (src.sealed)
 		return list(desc)
@@ -1402,11 +1413,11 @@ as it may become compromised.
 	desc = "If you throw it in space is it a paper spaceship?"
 	icon_state = "paperplane"
 	throw_speed = 1
-	throw_spin = 0
 
-/obj/item/paper/folded/plane/hit_check(datum/thrown_thing/thr)
-	if(src.throwing)
-		src.throw_unlimited = 1
+/obj/item/paper/folded/plane/throw_at(atom/target, range, speed, list/params, turf/thrown_from, throw_type, allow_anchored, bonus_throwforce, end_throw_callback)
+	src.throw_unlimited = 1
+	src.throw_spin = 0
+	. = ..()
 
 /obj/item/paper/folded/ball
 	name = "paper ball"
@@ -1587,3 +1598,51 @@ exposed to overconfident outbursts on the part of individuals unqualifed to embo
 	desc = "A neatly-written post-it note found next to a torpedo."
 	icon_state = "postit-writing"
 	info = "Just give 'er a few solid whacks and she'll know what to do. Trust me, <i>this</i> is how you win at darts B)"
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/paper)
+/datum/contextAction/fiddle/paper
+
+	checkRequirements(var/obj/item/paper/target, var/mob/user)
+		return istype(target)
+
+	plane
+		name = "fold a plane"
+		icon_state = "paper_plane"
+
+		execute(var/obj/item/paper/target, var/mob/user)
+			user.show_text("You fold the paper into a plane! Neat.", "blue")
+			var/obj/item/paper/folded/plane/folded = null
+			folded = new /obj/item/paper/folded/plane(user)
+			folded.info = target.info
+			folded.old_desc = target.desc
+			folded.old_icon_state = target.icon_state
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(folded)
+
+	hat
+		name = "fold a hat"
+		icon_state = "paper_hat"
+
+		execute(var/obj/item/paper/target, var/mob/user)
+			user.show_text("You fold the paper into a hat! Neat.", "blue")
+			var/obj/item/clothing/head/paper_hat/H = new()
+			H.paper = target
+			target.set_loc(H)
+			user.u_equip(target)
+			user.put_in_hand_or_drop(H)
+
+	ball
+		name = "ball it up"
+		icon_state = "paper_ball"
+
+		execute(var/obj/item/paper/target, var/mob/user)
+			user.show_text("You crumple the paper into a ball! Neat.", "blue")
+			var/obj/item/paper/folded/ball/folded = null
+			folded = new /obj/item/paper/folded/ball(user)
+			folded.info = target.info
+			folded.old_desc = target.desc
+			folded.old_icon_state = target.icon_state
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(folded)

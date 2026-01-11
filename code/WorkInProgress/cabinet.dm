@@ -369,3 +369,16 @@
 		slots["4"] = new /obj/item/stackable_ammo/pistol/NT/five(src)
 		rebuildOverlays()
 		return ..()
+
+/obj/cabinet/smoking
+	name = "Smoking Cabinet"
+
+	New()
+		slots["1"] = new/obj/item/item_box/tobacco(src)
+		slots["2"] = new/obj/item/device/light/zippo/gold(src)
+		slots["3"] = new/obj/item/cigpacket/cigarillo/juicer(src)
+		slots["4"] = new/obj/item/cigpacket/random(src)
+		slots["5"] = new/obj/item/cigarbox(src)
+		slots["6"] = new/obj/item/cigarbox(src)
+		rebuildOverlays()
+		return ..()

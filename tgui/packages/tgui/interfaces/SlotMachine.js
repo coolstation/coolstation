@@ -61,8 +61,6 @@ const SlotWindow = (props, context) => {
         <Button
           icon="eject"
           content={scannedCard}
-          tooltip="Pull Funds and Eject Card"
-          tooltipPosition="bottom-right"
           onClick={() => act('eject')} />
       </Box>
       <Box>
@@ -71,14 +69,10 @@ const SlotWindow = (props, context) => {
         {' '}
         <Button
           content="Cash In"
-          tooltip="Add Funds"
-          tooltipPosition="right"
           onClick={() => act('cashin')} />
         {' '}
         <Button
           content="Cash Out"
-          tooltip="Pull Funds"
-          tooltipPosition="right"
           onClick={() => act('cashout')} />
       </Box>
       <Box>
@@ -104,8 +98,6 @@ const SlotWindow = (props, context) => {
       <Button
         icon="dice"
         content="Play!"
-        tooltip="Pull the lever"
-        tooltipPosition="right"
         onClick={() => act('play', {
           bet: wager,
         })} />

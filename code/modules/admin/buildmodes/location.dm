@@ -37,10 +37,10 @@ Right Mouse Button on mob/obj      = Select Target<br>
 				O.set_loc(T)
 			else
 				boutput(usr, "<span class='alert'>ERROR - You somehow have a non mob/obj target!</span>")
-		blink(get_turf(object))
+		//blink(get_turf(object))
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
 		if (isobj(object) || ismob(object))
 			src.target = object
-			blink(get_turf(object))
+			//blink(get_turf(object))
 			update_button_text(object.name)

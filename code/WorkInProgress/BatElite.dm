@@ -945,7 +945,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 /area/proc/Force_Ambience(mob/M)
 		if (M?.client)
 			src.pickAmbience()
-			M.client.playAmbience(src, AMBIENCE_FX_1, 18)
+			M.client.playAmbience(src, AMBIENCE_FX_1, 10)
 
 /client/proc/admin_force_ambience()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)

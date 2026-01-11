@@ -737,13 +737,20 @@ proc/find_ghost_by_key(var/find_key)
 				. = TRUE
 
 			for (var/datum/computer/file/clone/R in src.diskette.root.contents)
-				if (R["ckey"] == selected_record["ckey"])
+				if (R.clone_ckey == selected_record["ckey"])
 					show_message("Record already exists on disk.", "info")
 					. = TRUE
 
 			var/datum/computer/file/clone/cloneFile = new
 			cloneFile.name = "CloneRecord-[ckey(selected_record["name"])]"
-			cloneFile.fields = selected_record
+			cloneFile.clone_ckey = selected_record["ckey"]
+			cloneFile.clone_name = selected_record["name"]
+			cloneFile.id = selected_record["id"]
+			cloneFile.bioholder = selected_record["holder"]
+			cloneFile.abilities = selected_record["abilities"]
+			cloneFile.traits = selected_record["traits"]
+			cloneFile.imp = selected_record["imp"]
+			cloneFile.mind = selected_record["mind"]
 			if((src.diskette.file_used + cloneFile.size) > src.diskette.file_amount)
 				show_message("Disk is full.", "danger")
 				return TRUE
@@ -762,8 +769,16 @@ proc/find_ghost_by_key(var/find_key)
 			var/loaded = 0
 
 			for(var/datum/computer/file/clone/cloneRecord in src.diskette.root.contents)
-				if (!find_record(cloneRecord["ckey"]))
-					var/datum/db_record/R = new(null, cloneRecord.fields.Copy())
+				if (!find_record(cloneRecord.clone_ckey))
+					var/datum/db_record/R = new(null)
+					R["ckey"] = cloneRecord.clone_ckey
+					R["name"] = cloneRecord.clone_name
+					R["id"] = cloneRecord.id
+					R["holder"] = cloneRecord.bioholder
+					R["abilities"] = cloneRecord.abilities
+					R["traits"] = cloneRecord.traits
+					R["imp"] = cloneRecord.imp
+					R["mind"] = cloneRecord.mind
 					src.records += R
 					loaded++
 					show_message("Load successful, [loaded] [loaded > 1 ? "records" : "record"] transferred.", "success")
@@ -839,7 +854,7 @@ proc/find_ghost_by_key(var/find_key)
 			currentHealth = implant.getHealthList()
 		if(src.diskette) // checks if saved to disk
 			for (var/datum/computer/file/clone/F in src.diskette.root.contents)
-				if(F["ckey"] == r["ckey"])
+				if(F.clone_ckey == r["ckey"])
 					saved = TRUE
 
 		recordsTemp.Add(list(list(

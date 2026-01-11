@@ -965,7 +965,7 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 			else
 				msg = alt
 				type = alt_type
-		if ((type & 2) && !src.hearing_check(1))
+		if ((type & 2) && cant_hear(src))
 			check_failed = TRUE
 			if (!alt)
 				return

@@ -182,7 +182,7 @@
 	plane = PLANE_HUD
 	anchored = ANCHORED
 
-proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time=2 SECONDS, invisibility=INVIS_NONE, atom/movable/pointer)
+proc/make_point(atom/movable/target, pixel_x=16, pixel_y=16, color="#ffffff", time=2 SECONDS, invisibility=INVIS_NONE, atom/movable/pointer)
 	// note that `target` can also be a turf, but byond sux and I can't declare the var as atom because areas don't have vis_contents
 	if(QDELETED(target)) return
 	var/obj/decal/point/point = new
@@ -704,7 +704,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 		src.color = color_in
 		src.pixel_y = abs(src.height * 32) + y_offset
 		if(src.volume)
-			playsound(src, pick(big_explosions), 50, TRUE, extrarange = 10, flags = SOUND_IGNORE_SPACE)
+			playsound(src, pick(big_explosions), 50, TRUE, range = SOUND_RANGE_LARGE, flags = SOUND_IGNORE_SPACE)
 		animate(src, time = src.strike_time / 8, pixel_y = abs(src.height * 16 - 8) + y_offset, flags = ANIMATION_PARALLEL)
 		animate(time = src.strike_time / 8, transform = matrix(1,src.height / 2,MATRIX_SCALE))
 		animate_ripple(src,3,shake_intensity,0.2)

@@ -196,6 +196,11 @@
 		src.current_receipt_subtotal = 0
 		src.receipt_serv_chg_total   = 0
 
+		if(prob(5))
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad, 1)
+		else if(prob(5))
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/hotdogs, 1)
+
 	proc/addToReceipt(productName, productCost, serviceCharge)
 		if(!print_receipts)
 			return
@@ -1002,11 +1007,11 @@
 		playsound(src, src.voice_sound, 40, 1)
 
 /obj/machinery/vending/proc/prevend_effect()
-	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, 0.1)
+	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, SOUND_RANGE_STANDARD)
 	return
 
 /obj/machinery/vending/proc/postvend_effect()
-	playsound(src.loc, 'sound/machines/ping.ogg', 20, 1, 0.1)
+	playsound(src.loc, 'sound/machines/ping.ogg', 20, 1, SOUND_RANGE_STANDARD)
 	return
 
 /obj/machinery/vending/power_change()
@@ -1353,7 +1358,7 @@
 
 	//i'd love at some point for this fuckin' thing to rarely drop a cup wrong or out entirely and then it just spills on the floor (and do it more often if hacked)
 	prevend_effect()
-		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, 0.1)
+		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		return
 
 	create_products()
@@ -1449,11 +1454,13 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigarbox, 1, cost=PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/nicotine, 10, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/matchbook, 10, cost=PAY_UNTRAINED/20)
-		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 5, cost=PAY_TRADESMAN/10)
+		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 2, cost=PAY_TRADESMAN/4)
+		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo/cheap, 5, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/vape, 10, cost=PAY_TRADESMAN/2)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/ecig_refill_cartridge, 20, cost=PAY_TRADESMAN/5)
 
 		product_list += new/datum/data/vending_product(/obj/item/device/igniter, rand(1, 6), hidden=1, cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/luxury, 1, hidden=1, cost=1500)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(0, 1), hidden=1, cost=420)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), hidden=1, cost=69)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3),hidden=1, cost=PAY_UNTRAINED/5)
@@ -2772,7 +2779,7 @@
 					src.generate_HTML(1)
 					updateUsrDialog()
 					sleep(20 SECONDS)
-					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, -1)
+					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, SOUND_RANGE_STANDARD)
 					var/obj/item/reagent_containers/food/snacks/pizza/P
 					if(emagged)
 						P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pineapple(src.loc)
@@ -2840,7 +2847,8 @@
 	icon_state = "monkey"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
-	acceptcard = 0
+	acceptcard = 1
+	pay = 1
 	mats = 0 // >:I
 	slogan_list = list("My monkeys are too strong for you, traveler!")
 	slogan_chance = 1
@@ -2851,7 +2859,7 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/mob/living/carbon/human/npc/monkey, rand(10, 15), logged_on_vend=TRUE)
+		product_list += new/datum/data/vending_product(/mob/living/carbon/human/npc/monkey, rand(10, 15), cost=100, logged_on_vend=TRUE)
 
 		product_list += new/datum/data/vending_product(/obj/item/clothing/mask/monkey_translator, rand(1,2), hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/banana, rand(1,20), hidden=1)
@@ -2862,7 +2870,8 @@
 	icon_state = "grub"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
-	acceptcard = 0
+	acceptcard = 1
+	pay = 1
 	mats = 0 // >:I
 	slogan_list = list("Free bug for your de bug!")
 	slogan_chance = 1
@@ -2873,7 +2882,7 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/mob/living/critter/grub/wildgrub, rand(10, 15), logged_on_vend=TRUE)
+		product_list += new/datum/data/vending_product(/mob/living/critter/grub/wildgrub, rand(10, 15), cost=10, logged_on_vend=TRUE)
 
 
 /obj/machinery/vending/magivend

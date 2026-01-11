@@ -2629,22 +2629,8 @@
 	icon_state = "xtra_bigstripe-corner2"
 	},
 /obj/table/auto,
-/obj/item/storage/box/cutlery{
-	pixel_y = 8
-	},
 /obj/disposalpipe/segment/mail/bent/west,
-/obj/item/kitchen/utensil/knife/pizza_cutter{
-	pixel_x = 5;
-	pixel_y = -8
-	},
-/obj/item/kitchen/utensil/knife/bread{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/kitchen/rollingpin{
-	pixel_x = -9;
-	pixel_y = 8
-	},
+/obj/submachine/mixer,
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
 "agn" = (
@@ -3642,6 +3628,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/storage/closet/emergency,
 /turf/floor/industrial,
 /area/station/hallway/primary/north)
 "aiG" = (
@@ -9823,10 +9810,17 @@
 "axg" = (
 /obj/storage/secure/closet/kitchen,
 /obj/disposalpipe/segment/food/vertical,
+/obj/item/kitchen/utensil/knife/pizza_cutter{
+	pixel_x = 5;
+	pixel_y = -8
+	},
+/obj/item/storage/box/cutlery{
+	pixel_y = 8
+	},
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
 "axh" = (
-/obj/item/storage/toolbox{
+/obj/item/storage/toolbox/mechanical/empty{
 	pixel_y = -2
 	},
 /obj/table/reinforced/industrial/auto,
@@ -12960,8 +12954,8 @@
 /turf/floor/grass,
 /area/station/medical/research)
 "aEC" = (
-/obj/grille/steel,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
 /area/station/maintenance/north)
 "aED" = (
@@ -16796,6 +16790,14 @@
 	pixel_y = 9
 	},
 /obj/table/reinforced/kitchen/plate,
+/obj/item/kitchen/rollingpin{
+	pixel_x = -9;
+	pixel_y = 8
+	},
+/obj/item/kitchen/utensil/knife/bread{
+	pixel_x = -5;
+	pixel_y = 5
+	},
 /turf/floor/white/checker2,
 /area/station/crew_quarters/kitchen)
 "aNz" = (
@@ -21956,6 +21958,14 @@
 	},
 /turf/floor/airless/engine/glow,
 /area/station/engine/thermo)
+"haG" = (
+/obj/storage/closet/emergency,
+/turf/floor/plating/random,
+/area/station/maintenance/southwest)
+"hdU" = (
+/obj/storage/closet/emergency,
+/turf/floor/plating/random,
+/area/station/maintenance/south)
 "heb" = (
 /obj/decal/poster/wallsign/hazard_danger,
 /turf/wall/auto/rivet,
@@ -52130,7 +52140,7 @@ aMe
 aog
 aog
 aog
-aog
+haG
 aMe
 aMe
 aMe
@@ -59683,7 +59693,7 @@ aeL
 aRb
 aEZ
 aYh
-aYh
+hdU
 aRf
 aRf
 aRf

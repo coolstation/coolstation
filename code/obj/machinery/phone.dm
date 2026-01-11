@@ -29,26 +29,18 @@
 	var/base_x = 0 //this gets set later with the pixel offset of the phone
 	var/base_y = 0
 
-
 	proc/shake_phone(var/volume)
-
 		var/wiggle = 25 //the amount o' shakin
 		if(src.answered == 0)
 			src.icon_state = "[ringingicon]"
-
 		SPAWN_DBG(0)
 			for (var/i = wiggle,i > 0, i--)
 				animate(src, pixel_x = rand(src.base_x-1,src.base_x+1), pixel_y = rand(src.base_y-1,src.base_y+1), time = 0.5, easing = EASE_IN)
 				sleep(0.1 SECONDS)
-
 		animate(src, pixel_x = src.base_x, pixel_y = src.base_y, time = 2, easing = EASE_OUT)
 		SPAWN_DBG(1.8 SECONDS)
 			if(src.answered == 0)
 				src.icon_state = "[phoneicon]"
-
-
-
-
 
 	New()
 		..() // Set up power usage, subscribe to loop, yada yada yada
@@ -117,6 +109,9 @@
 		..(user)
 		if(src.answered == 1)
 			return
+		if(issilicon(user))
+			boutput(user,"<span class='alert'>You're not really sure how to pick this up.</span>")
+			return //they can't even hold the handset! Maybe revisit this
 
 		src.handset = new /obj/item/phone_handset(src,user)
 		user.put_in_hand_or_drop(src.handset)

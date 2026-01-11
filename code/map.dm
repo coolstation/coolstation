@@ -5,6 +5,8 @@
 //Todo - merge with MAP_SPAWN_SHUTTLE, maps need retrofits
 #define MAP_SPAWN_SHUTTLE_DYNAMIC 4 //(most) crew spawns on the arrivals shuttle, which docks with the station at some point
 
+#define GEHENNA_MUSIC list()//list('sound/radio_station/lobby/sundown.ogg')
+
 #define MAP_NAME_RANDOM 1
 
 var/global/map_setting = null
@@ -30,8 +32,9 @@ var/global/list/mapNames = list(
 	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
 	"La Noyade" = 		list("id" = "NOYADE",		"settings" = "noyade",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
-	"The Goon Station" =list("id" = "ALTBOX",		"settings" = "altbox",			"playerPickable" = 1),
+	"Altbox" 	=		list("id" = "ALTBOX",		"settings" = "altbox",			"playerPickable" = 1),
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
+	"Summit Outpost" =  list("id" = "SUMMIT", "settings" = "summit", 				"playerPickable" = 1,		"MaxPlayersAllowed" = 75),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
 	"Spirit" =			list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
@@ -118,6 +121,9 @@ var/global/list/mapNames = list(
 
 	var/shuttle_map_turf = /turf/space
 	var/qm_supply_type = "space" //can also be "shuttle"!
+
+	//these songs get added to the pool of possible songs, not replaced.
+	var/list/map_specific_musics = list()
 
 	var/merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom
 	var/merchant_left_station = /area/shuttle/merchant_shuttle/left_station
@@ -250,7 +256,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
-	goonhub_map = "https://wiki.coolstation.space/wiki/Box"
+	goonhub_map = "https://coolstation.space/maps/altbox/"
 
 	windows = /obj/window/classic
 	windows_thin = /obj/window/classic
@@ -280,17 +286,18 @@ var/global/list/mapNames = list(
 	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
-	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main, /area/station/security/secwing, /area/station/security/quarters),
 		"the central research sector hub" = list(/area/station/science/lobby),
 		"the cargo bay" = list(/area/station/quartermaster/cargobay),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
-		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
+		"the engineering control room" = list(/area/station/engine/inner, /area/station/engine/power),
+		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/recovery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment1 ),
 		"the bar" = list(/area/station/crew_quarters/bar),
-		"the EVA storage" = list(/area/station/ai_monitored/storage/eva),
+		"the EVA storage" = list(/area/station/ai_monitored/storage/eva, /area/station/storage/emergency),
 		"the robotics lab" = list(/area/station/medical/robotics),
-		"the bridge" = list(/area/station/bridge),
+		"the bridge" = list(/area/station/bridge, /area/station/bridge/conference, /area/station/bridge/captain),
 		"the escape arm" = list(/area/station/hallway/secondary/exit),
-		"the dank ass observatory" = list(/area/station/crew_quarters/observatory),
+		"the library" = list(/area/station/library),
+		"the septic tank" = list(/area/station/maintenance/disposal/sewage),
 		"the chapel" = list(/area/station/chapel/sanctuary))
 
 /datum/map_settings/chunk
@@ -299,7 +306,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
-	goonhub_map = "https://wiki.coolstation.space/wiki/Chunk"
+	goonhub_map = "https://play.coolstation.space/maps/chunk/"
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -329,10 +336,12 @@ var/global/list/mapNames = list(
 	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
-	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+	job_limits_override = list(/datum/job/medical/pathologist = 0)
+
+	valid_nuke_targets = list("the security department" = list(/area/station/security/main, /area/station/security/checkpoint/customs),
 		"the central research sector hub" = list(/area/station/science/lobby),
 		"the cargo bay" = list(/area/station/quartermaster/cargobay),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the singularity" = list(/area/station/engine/singcore, /area/station/engine/inner),
 		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
 		"the bar" = list(/area/station/crew_quarters/bar),
 		"the EVA storage" = list(/area/station/ai_monitored/storage/eva),
@@ -342,6 +351,39 @@ var/global/list/mapNames = list(
 		"the dank ass observatory" = list(/area/station/crew_quarters/observatory),
 		"the chapel" = list(/area/station/chapel/sanctuary))
 
+/datum/map_settings/summit
+	name = "SUMMIT"
+	walls = /turf/wall/auto
+	rwalls = /turf/wall/auto/reinforced
+	auto_walls = 1
+	job_limits_from_landmarks = TRUE
+	arrivals_type = MAP_SPAWN_CRYO
+
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER
+	window_layer_north = GRILLE_LAYER+0.1
+	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+	qm_supply_type = "shuttle" //todo: replace this with.. a TRAINNNN
+
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	//all of the escape shuttle stuff to, to be replaced with... train
+	escape_centcom = /area/shuttle/escape/centcom/donut2
+	escape_outpost = /area/shuttle/escape/outpost/donut2
+	escape_transit = /area/shuttle/escape/transit/donut2
+	escape_station = /area/shuttle/escape/station/donut2
+	escape_def = SHUTTLE_WEST
+	escape_dir = WEST
+
 /datum/map_settings/bayoubend
 	name = "BAYOUBEND"
 	walls = /turf/wall/
@@ -349,7 +391,7 @@ var/global/list/mapNames = list(
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
 	arrivals_type = MAP_SPAWN_CRYO
-	goonhub_map = "https://wiki.coolstation.space/wiki/File:Bayoubendmapimage.png"
+	goonhub_map = "https://play.coolstation.space/maps/bayou/"
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -383,12 +425,12 @@ var/global/list/mapNames = list(
 	escape_dir = WEST
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
-		"research sector" = list(/area/station/science/lobby),
+		"the research lobby" = list(/area/station/science/lobby),
 		"the logistics bay" = list(/area/station/quartermaster/cargobay),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/engineering/breakroom),
 		"the robotics workshop" = list(/area/station/medical/robotics),
 		"the bridge" = list(/area/station/bridge),
-		"the departures wing" = list(/area/station/hallway/secondary/exit),
+		"the departures wing" = list(/area/station/hallway/secondary/exit, /area/station/maintenance/outer/ne),
 		"the chapel" = list(/area/station/chapel/sanctuary),
 		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
 		"the cafeteria" = list(/area/station/crew_quarters/bar))
@@ -400,7 +442,7 @@ var/global/list/mapNames = list(
 		/datum/job/medical/pathologist = 0,
 		/datum/job/logistics/janitor = 1
 	)
-
+	/*
 	init()
 		..()
 		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
@@ -417,7 +459,7 @@ var/global/list/mapNames = list(
 			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
 			if(t_shuttle_l)
 				t_shuttle_l.filler_turf = "/turf/floor/airless/engine/caution"
-
+	*/
 
 /datum/map_settings/cogmap
 	name = "COGMAP"
@@ -1162,7 +1204,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/noyade
 	name = "NOYADE"
-	goonhub_map = "https://goonhub.com/maps/oshan"
+	goonhub_map = "https://play.coolstation.space/maps/noyade/"
 
 	arrivals_type = MAP_SPAWN_MISSILE
 
@@ -1201,8 +1243,17 @@ var/global/list/mapNames = list(
 	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
-	valid_nuke_targets = list()
-	//job_limits_override = list()
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+		"the cargo office (QM)" = list(/area/station/quartermaster/cargooffice, /area/station/quartermaster/cargobay),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/monitoring),
+		"the hospital" = list(/area/station/medical/medbay, /area/station/medical/medbay/pharmacy, /area/station/medical/robotics, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby, /area/station/medical/medbay/treatment),
+		"the bar" = list(/area/station/crew_quarters/bar),
+		"the bridge" = list(/area/station/bridge),
+		"the escape arm" = list(/area/station/hallway/secondary/exit),
+		"the chapel" = list(/area/station/chapel/sanctuary))
+
+
+	job_limits_override = list(/datum/job/medical/pathologist = 0)
 
 	init()
 		..()
@@ -1312,11 +1363,13 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/gehenna
 	name = "GEHENNA"
-	goonhub_map = "https://wiki.coolstation.space/wiki/Gehenna"
+	goonhub_map = "https://play.coolstation.space/maps/gehenna/"
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
 	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+
+	map_specific_musics = GEHENNA_MUSIC
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1388,11 +1441,13 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/crag
 	name = "CRAG"
-	goonhub_map = "https://wiki.coolstation.space/wiki/Gehenna"
+	goonhub_map = "https://play.coolstation.space/maps/crag/" //what do we do for multi z shite
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
 	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+
+	map_specific_musics = GEHENNA_MUSIC
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1425,13 +1480,13 @@ var/global/list/mapNames = list(
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
-		"the cargo office (QM)" = list(/area/station/quartermaster/office, /area/station/quartermaster/cargooffice/storefront),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
-		"the hospital" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
+		"the cargo office (QM)" = list(/area/station/quartermaster/cargooffice/idk_another_one, /area/station/quartermaster/cargooffice/storefront),
+		"the engineering hot loop" = list(/area/station/engine/hotloop),
+		"the hospital" = list(/area/station/medical/medbay/treatment, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
 		"the bar" = list(/area/station/crew_quarters/bar),
-		"the bridge" = list(/area/station/bridge, /area/station/bridge/conference),
+		"the bridge" = list(/area/station/bridge),
 		"the chapel" = list(/area/station/chapel/sanctuary),
-		"somewhere in the main tunnels, whatever" = list(/area/station/maintenance/west, /area/station/maintenance/inner/north, /area/station/maintenance/central, /area/station/maintenance/inner/ne, /area/station/maintenance/outer/east, /area/station/maintenance/south, /area/station/maintenance/inner/nw))
+		"somewhere in the main tunnels, whatever" = list(/area/station/maintenance/inner/south, /area/station/maintenance/inner/north, /area/station/crew_quarters/fitness))
 
 	//job_limits_override = list()
 
@@ -1504,11 +1559,13 @@ var/global/list/mapNames = list(
 /// currently a crag copy
 /datum/map_settings/saxum
 	name = "SAXUM"
-	goonhub_map = "https://wiki.coolstation.space/wiki/Gehenna"
+	goonhub_map = "https://play.coolstation.space/maps/gehenna"
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
 	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+
+	map_specific_musics = GEHENNA_MUSIC
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1795,3 +1852,6 @@ var/global/list/mapNames = list(
 			return map
 
 	return 0
+
+
+#undef GEHENNA_MUSIC

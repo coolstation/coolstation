@@ -30,6 +30,11 @@
 #ifdef DESERT_MAP  // I have to set lower caps for Gehenna because the tile replacement is so expensive. Lets call it atmospheric damping.
 #define CANISTER_BOMB_MAXCAP 4000
 #define CANISTER_BOMB_MINCAP 75
+/*
+#ifdef SNOW_MAP // copying warc's canister bomb maxcap here for the same reasons
+#define CANISTER_BOMB_MAXCAP 4000
+#define CANISTER_BOMB_MINCAP 75
+*/
 #else
 #define CANISTER_BOMB_MAXCAP 8000 //THIS IS WHERE TO SET THE CANBOMB POWER MAXCAP
 #define CANISTER_BOMB_MINCAP 100   //THIS IS ACTUALLY THE BANG YOU GET WITH THE ABSOLUTE MINIMUM STATS
@@ -191,6 +196,8 @@
 #define DEPRESSURIZE_THROW_AT_SPACE_REQUIRED 20
 #define DEPRESSURIZE_THROW_AT_SPACE_MAX_RANGE 7
 
+#define TRACK_GROUPS_TO_ATMOSPHERE TRUE
+#define GROUPS_TO_ATMOSPHERE_MAX 10
 // archiving
 
 // comment out to make atmos a bit less precise but less memory intensive and maybe a bit faster, may cause bugs

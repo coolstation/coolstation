@@ -60,7 +60,7 @@
 	src.locked = L[desc]
 	for(var/mob/O in hearers(src, null))
 		O.show_message("<span class='notice'>Locked In</span>", 2)
-	playsound(src.loc, 'sound/machines/keypress.ogg', 50, 1, -15)
+	playsound(src.loc, 'sound/machines/keypress.ogg', 50, 1, SOUND_RANGE_SMALL)
 	return
 
 // Called by the telegun etc (Convair880).

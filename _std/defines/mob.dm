@@ -51,12 +51,6 @@
 /// Burning Lv3 starts at this duration.
 #define BURNING_LV3 400
 
-//hearing
-#define HEARING_NORMAL 0
-#define HEARING_BLOCKED 1
-/// cures deafness when worn
-#define HEARING_ANTIDEAF -1 // w h a t the fuck is an anti deaf
-
 //cooldowns
 #define REST_TOGGLE_COOLDOWN 0.1 SECONDS
 #define EAT_COOLDOWN 0.5 SECONDS
@@ -67,3 +61,6 @@
 
 //multiplies all blood regen, 0.002 is because humans have 500 units ideally and get 1 unit back usually
 #define BLOOD_SCALAR 0.002
+
+// No natural ear damage healing can occur if ear damage is above this threshold.
+#define EAR_DAMAGE_NATURAL_HEALING_THRESHOLD 25

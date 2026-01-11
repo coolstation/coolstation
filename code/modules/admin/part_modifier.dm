@@ -8,7 +8,7 @@ var/list/default_limb_paths = list("l_arm" = /obj/item/parts/human_parts/arm/lef
 	set name = "Modify Mob Parts"
 	SET_ADMIN_CAT(ADMIN_CAT_PLAYERS)
 	set popup_menu = 0
-	admin_only
+	ADMIN_ONLY
 	if (!istype(target))
 		return
 	if (!target.limbs)
@@ -28,7 +28,7 @@ var/list/default_limb_paths = list("l_arm" = /obj/item/parts/human_parts/arm/lef
 		..()
 		if (!href_list["action"] || !usr)
 			return
-		usr_admin_only
+		USR_ADMIN_ONLY
 		switch (href_list["action"])
 // refresh
 			if ("refresh")

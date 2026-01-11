@@ -297,12 +297,12 @@ var/obj/item/dummy/click_dummy = new
 	if (iscluwne(H))
 		message = honk(message)
 		if (world.time >= (H.last_cluwne_noise + CLUWNE_NOISE_DELAY))
-			playsound(H, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, 0, H.get_age_pitch())
+			playsound(H, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, SOUND_RANGE_STANDARD, H.get_age_pitch())
 			H.last_cluwne_noise = world.time
 	if (ishorse(H))
 		message = neigh(message)
 		if (world.time >= (H.last_cluwne_noise + CLUWNE_NOISE_DELAY))
-			playsound(H, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, 0, H.get_age_pitch())
+			playsound(H, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, SOUND_RANGE_STANDARD, H.get_age_pitch())
 			H.last_cluwne_noise = world.time
 
 	if ((H.reagents && H.reagents.get_reagent_amount("ethanol") > 30 && !isdead(H)) || H.traitHolder.hasTrait("alcoholic"))
@@ -577,6 +577,7 @@ var/obj/item/dummy/click_dummy = new
 		src.b /= right
 		src.a /= right
 */
+
 /proc/gib_area(var/area/A)
 	var/list/turfs = get_area_turfs(A.type)
 	for(var/turf/S in turfs)
@@ -608,20 +609,20 @@ var/obj/item/dummy/click_dummy = new
 
 
 
-/proc/clear_area(var/area/A, var/turftospare=null, var/objecttospare=null, var/isOcean=false)
-	// Takes: Area, optional turf type to spare from the purge, optional object to spare, whether or not this is in da ocean
-	var/list/turfs = get_area_turfs(A.type)
-	for(var/turf/S in turfs)
-		if(!isOcean && S != turftospare)
-			S.ReplaceWithSpace()
-		else
-			return //come back later and add OSHAN floors to this, i'm lazy(silly) tho
-		for(var/atom/movable/AM as anything in S)
-			if(!istype(AM,objecttospare) && !istype(AM, /mob/dead/observer))
-				qdel(AM)
+/proc/clear_area(var/area_type, var/turftospare=null)
+	// Takes: Area, optional turf type to spare from the purge
+	var/list/turfs = get_area_turfs(area_type)
+	for(var/turf/T in turfs)
+		if(T.type != turftospare)
+			T.ReplaceWithSpace()
+		for(var/obj/O in T)
+			if(!(O.flags & TECHNICAL_ATOM))
+				qdel(O)
+		for(var/mob/M in T)
+			M.remove()
 
 
-/area/proc/move_contents_to(var/area/A, var/turftoleave=null, var/ignore_fluid = FALSE, var/consider_filler_as_empty = FALSE, var/move_ghosts = TRUE, var/move_mobs = TRUE)
+/area/proc/move_contents_to(var/area/A, var/turftoleave=/turf/space, var/ignore_fluid = FALSE, var/consider_filler_as_empty = FALSE, var/move_ghosts = TRUE, var/move_mobs = TRUE)
 	//Takes: Area.
 	//Optional: turf type to leave behind, flag for ignoring fluid puddle objects, and flag to treat source turfs of type turftoleave as "empty" and to not move the turf
 	//(The latter being so we don't put elevator shaft turfs at the bottom of elevators. That wasn't a great time. It might be neat too for simulating shuttles with holes in em though.)
@@ -656,12 +657,13 @@ var/obj/item/dummy/click_dummy = new
 
 		if(T?.loc != A) continue
 
-		if (istype(S, turftoleave) && consider_filler_as_empty)
-			var/obj/CATWALK = locate(/obj/grille/catwalk) in S
-			if (!CATWALK) //turfless elevator platforms, sorry for the direct typecheck in a proc this basic >>;
-				continue //There's no platform to carry them up, so don't move any of the contents either
-			else
-				CATWALK.set_loc(T) //load bearing that these move first
+		if (istype(S, turftoleave))
+			if(consider_filler_as_empty)
+				var/obj/CATWALK = locate(/obj/grille/catwalk) in S
+				if (!CATWALK) //turfless elevator platforms, sorry for the direct typecheck in a proc this basic >>;
+					continue //There's no platform to carry them up, so don't move any of the contents either
+				else
+					CATWALK.set_loc(T) //load bearing that these move first
 		else
 			T.ReplaceWith(S.type, keep_old_material = 0, force=1, handle_air=0)
 			T.appearance = S.appearance

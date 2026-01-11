@@ -39,6 +39,11 @@
 	/// If true, will drain the gasses of the airgroup
 	var/spaced = FALSE
 
+#ifdef TRACK_GROUPS_TO_ATMOSPHERE
+	/// How many airgroups are between us and an open atmosphere
+	var/groups_to_atmosphere = GROUPS_TO_ATMOSPHERE_MAX
+#endif
+
 // overrides
 /datum/air_group/disposing()
 	air = null

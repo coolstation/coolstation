@@ -490,11 +490,11 @@ datum/projectile
 
 		sname = "stun"           // name of the projectile setting, used when you change a guns setting
 		shot_sound = 'sound/weapons/Taser.ogg' // file location for the sound you want it to play
-		shot_sound_extrarange = 0 //should the sound have extra range?
+		shot_sound_range = SOUND_RANGE_STANDARD     //what range should the sound check?
 		shot_volume = 100		 // How loud the sound plays (thank you mining drills for making this a needed thing)
-		shot_pitch = 1			// Sometimes you want a deeper boom, relative to power
+		shot_pitch = 1			 // Sometimes you want a deeper boom, relative to power
 		shot_number = 0          // How many projectiles should be fired, each will cost the full cost
-		shot_delay = 1          // Time between shots in a burst.
+		shot_delay = 1           // Time between shots in a burst.
 		damage_type = D_KINETIC  // What is our damage type
 		hit_type = null          // For blood system damage - DAMAGE_BLUNT, DAMAGE_CUT and DAMAGE_STAB
 		hit_ground_chance = 0    // With what % do we hit mobs laying down
@@ -507,7 +507,7 @@ datum/projectile
 		caliber = null
 		dud_freq = 1			 // How often this thing simply doesn't fire and sucks as a projectile
 		fouling = 1				 // How much smut and filth does this thing leave in the receiver/barrel/etc
-		ignores_spread = FALSE	// Ignores all spread from the gun, usually used for things that just need to pass that spread to subprojectiles they create
+		ignores_spread = FALSE	 // Ignores all spread from the gun, usually used for things that just need to pass that spread to subprojectiles they create
 
 		datum/material/material = null
 
@@ -894,7 +894,7 @@ datum/projectile/snowball
 		if (narrator_mode)
 			playsound(S, 'sound/vox/shoot.ogg', 50, 1)
 		else if(DATA.shot_sound && DATA.shot_volume && shooter)
-			playsound(S, DATA.shot_sound, DATA.shot_volume, 1,DATA.shot_sound_extrarange,DATA.shot_pitch)
+			playsound(S, DATA.shot_sound, DATA.shot_volume, 1,DATA.shot_sound_range,DATA.shot_pitch)
 			if (isobj(shooter))
 				for (var/mob/M in shooter)
 					M << sound(DATA.shot_sound, volume=DATA.shot_volume)

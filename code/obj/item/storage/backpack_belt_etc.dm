@@ -201,6 +201,9 @@
 		icon_state = "satchelg"
 		item_state = "satchelg"
 
+	withO2
+		spawn_contents = list(/obj/item/storage/box/starter/withO2)
+
 /obj/item/storage/backpack/satchel/syndie
 	name = "\improper Syndicate Satchel"
 	desc = "A stylish red, evil, thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on an operative's shoulder."
@@ -213,6 +216,11 @@
 	desc = "A stylish blue, thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on a crewmember's shoulder."
 	icon_state = "NTsatchel"
 	item_state = "NTsatchel"
+	spawn_contents = list(/obj/item/storage/box/starter/withO2)
+
+/obj/item/storage/backpack/satchel/NT/rogue
+	name = "\improper Old NT Satchel"
+	desc = "A faded Nanotrasen bag with the logo covered by a strip of tape and red paint." //ive been at this for 15+ hours i'll make a sprite later
 	spawn_contents = list(/obj/item/storage/box/starter/withO2)
 
 /obj/item/storage/backpack/satchel/captain
@@ -419,8 +427,14 @@
 	can_hold = list(/obj/item/mop,
 		/obj/item/chem_grenade,
 		/obj/item/clothing/under/trash_bag,
-		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/glass,
 		/obj/item/spraybottle,
+		/obj/item/sponge,
+		/obj/item/material_piece/cloth/rag,
+		/obj/item/device/light/flashlight,
+		/obj/item/caution,
+		/obj/item/handheld_vacuum,
+		/obj/item/clothing/under/trash_bag
 	)
 	spawn_contents = list(/obj/item/spraybottle/cleaner)
 	in_list_or_max = 0
@@ -648,6 +662,11 @@
 	tasersmg
 		spawn_contents = list(/obj/item/gun/modular/NT/pistol, //energy/tasersmg,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/rifle/capacitive/burst/five, /obj/item/stackable_ammo/pistol/capacitive/five)
+
+	rogue
+		name = "ratty duty belt"
+		desc = "the buckle doesn't click anymore."
+		//if the baton ends up being a problem, I'll yoink the power cell from it
 
 //////////////////////////////
 // ~Nuke Ops Class Storage~ //

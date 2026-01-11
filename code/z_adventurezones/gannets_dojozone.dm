@@ -99,7 +99,7 @@ Contents:
 	sims_score = 15
 	sound_group = "dojo"
 	sound_loop_1 = 'sound/ambience/dojo/dojoambi.ogg'
-	sound_loop_1_vol = 50
+	sound_loop_1_vol = 25
 	is_construction_allowed = FALSE
 
 
@@ -116,7 +116,7 @@ Contents:
 					sound_fx_2 = pick('sound/ambience/nature/Biodome_Birds1.ogg','sound/ambience/nature/Biodome_Birds2.ogg','sound/ambience/nature/Biodome_Bugs.ogg')
 					for(var/mob/M in src)
 						if (M.client)
-							M.client.playAmbience(src, AMBIENCE_FX_2, 30)
+							M.client.playAmbience(src, AMBIENCE_FX_2, 15)
 
 // Mobs
 
