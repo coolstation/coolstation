@@ -12,6 +12,7 @@
 
 /obj/machinery/meter/New()
 	..()
+	AddComponent(/datum/component/mechanics_holder)
 	SPAWN_DBG(1 SECOND)
 		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 	net_id = generate_net_id(src)
@@ -66,6 +67,8 @@
 
 		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
+	SEND_SIGNAL(src, COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "[round(env_pressure)]")
+
 /obj/machinery/meter/attackby(obj/item/I, mob/user)
 	if(ispulsingtool(I))
 		var/new_label = input(usr, "Input a label up to 12 characters.", "Label", "") as text
@@ -80,6 +83,7 @@
 
 /obj/machinery/meter/proc/deconstruct(mob/user)
 	user.visible_message("[user] detaches \the [src] from the pipe.", "You detach \the [src] from the pipe.")
+	SEND_SIGNAL(src, COMSIG_MECHCOMP_RM_ALL_CONNECTIONS)
 	new/obj/item/pipe_meter(src.loc)
 	qdel(src)
 
