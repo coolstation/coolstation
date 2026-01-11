@@ -96,7 +96,7 @@
 						if (D)
 							var/datum/computer/file/clone/R = locate(/datum/computer/file/clone/) in D.root.contents
 							if (R)
-								R.fields["imp"] = "\ref[I]"
+								R.imp = "\ref[I]"
 
 			var/give_access_implant = ismobcritter(M)
 			if(!spawn_id && (access.len > 0 || access.len == 1 && access[1] != access_fuck_all))

@@ -846,6 +846,10 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	category = "Atmospherics"
 	item_outputs = list(/obj/item/atmospherics/purger)
 
+/datum/manufacture/atmos_module/meter
+	name = "Gas Meter"
+	item_outputs = list(/obj/item/pipe_meter)
+
 /******************** Misc **************************/
 
 /datum/manufacture/sds

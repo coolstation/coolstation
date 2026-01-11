@@ -580,26 +580,26 @@
 				var/obj/item/disk/data/floppy/read_only/D = new /obj/item/disk/data/floppy/read_only(src)
 				src.equip_if_possible(D, slot_in_backpack)
 				var/datum/computer/file/clone/R = new
-				R["ckey"] = ckey(src.key)
-				R["name"] = src.real_name
-				R["id"] = copytext(md5(src.real_name), 2, 6)
+				R.clone_ckey = ckey(src.key)
+				R.clone_name = src.real_name
+				R.id = copytext(md5(src.real_name), 2, 6)
 
 				var/datum/bioHolder/B = new/datum/bioHolder(null)
 				B.CopyOther(src.bioHolder)
 
-				R["holder"] = B
+				R.bioholder = B
 
-				R["abilities"] = null
+				R.abilities = null
 				if (src.abilityHolder)
 					var/datum/abilityHolder/A = src.abilityHolder.deepCopy()
-					R["abilities"] = A
+					R.abilities = A
 
 				SPAWN_DBG(0)
 					if(src.traitHolder && length(src.traitHolder.traits))
-						R["traits"] = src.traitHolder.traits.Copy()
+						R.traits = src.traitHolder.traits.Copy()
 
-				R["imp"] = null
-				R["mind"] = src.mind
+				R.imp = null
+				R.mind = src.mind
 				R.name = "CloneRecord-[ckey(src.real_name)]"
 				D.root.add_file(R)
 

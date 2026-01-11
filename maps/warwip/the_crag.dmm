@@ -720,7 +720,9 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/specialroom/elevator_shaft/straight_down{
+	dir = 6
+	},
 /area/transit_vehicle/elevator/med_top)
 "bZ" = (
 /obj/disposalpipe/segment{
@@ -4332,7 +4334,9 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/specialroom/elevator_shaft/straight_down{
+	dir = 10
+	},
 /area/transit_vehicle/elevator/eng_top)
 "lp" = (
 /obj/decal/slipmat{
@@ -4443,7 +4447,9 @@
 /obj/grille/catwalk/elevator{
 	dir = 10
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/specialroom/elevator_shaft/straight_down{
+	dir = 10
+	},
 /area/transit_vehicle/elevator/med_top)
 "lG" = (
 /obj/disposalpipe/segment{
@@ -6013,6 +6019,12 @@
 "pL" = (
 /obj/submachine/chef_sink,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
 "pM" = (
@@ -10037,7 +10049,9 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/specialroom/elevator_shaft/straight_down{
+	dir = 9
+	},
 /area/transit_vehicle/elevator/eng_top)
 "Aj" = (
 /turf/floor/purple/corner{
@@ -11799,7 +11813,9 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/specialroom/elevator_shaft/straight_down{
+	dir = 5
+	},
 /area/transit_vehicle/elevator/eng_top)
 "Fc" = (
 /obj/disposalpipe/segment/bent{
@@ -12915,6 +12931,12 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/autoname/north,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/blue/side{
 	dir = 5
 	},
@@ -13586,7 +13608,9 @@
 /obj/grille/catwalk/elevator{
 	dir = 5
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/specialroom/elevator_shaft/straight_down{
+	dir = 5
+	},
 /area/transit_vehicle/elevator/med_top)
 "JK" = (
 /obj/machinery/plantpot,
@@ -17499,7 +17523,9 @@
 /obj/grille/catwalk/elevator{
 	dir = 9
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/specialroom/elevator_shaft/straight_down{
+	dir = 9
+	},
 /area/transit_vehicle/elevator/med_top)
 "Ud" = (
 /obj/machinery/light/fluorescent{
@@ -19056,7 +19082,9 @@
 /obj/grille/catwalk/elevator{
 	dir = 6
 	},
-/turf/floor/specialroom/elevator_shaft/straight_down,
+/turf/floor/specialroom/elevator_shaft/straight_down{
+	dir = 6
+	},
 /area/transit_vehicle/elevator/eng_top)
 "Yj" = (
 /obj/stool,

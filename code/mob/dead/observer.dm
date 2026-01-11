@@ -137,6 +137,8 @@
 	detail.alpha = 192
 	overlays += detail
 
+	src.name = P.real_name
+
 	if (!src.bioHolder) //For critter spawns
 		var/datum/bioHolder/newbio = new/datum/bioHolder(src)
 		newbio.mobAppearance.customization_first_color = hair.color

@@ -1538,6 +1538,12 @@
 	},
 /turf/floor/grey,
 /area/station/bridge)
+"eA" = (
+/obj/machinery/vending/monkey{
+	name = "Mining Labor"
+	},
+/turf/floor/plating,
+/area/station/mining/tunnel)
 "eC" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -2061,6 +2067,12 @@
 	},
 /obj/decal/poster/wallsign/warning3{
 	pixel_y = -30
+	},
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
 	},
 /turf/floor/grime,
 /area/station/maintenance/inner/north{
@@ -2592,7 +2604,7 @@
 /turf/floor/grime,
 /area/station/bridge)
 "ib" = (
-/obj/storage/crate,
+/obj/machinery/processor,
 /turf/floor/plating,
 /area/station/mining/lobby)
 "ic" = (
@@ -2994,6 +3006,18 @@
 	dir = 8
 	},
 /area/station/mining/lobby)
+"jw" = (
+/obj/grille/catwalk/jen,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/north{
+	name = "North Tunnel"
+	})
 "jx" = (
 /obj/decal/cleanable/mess/random_food,
 /turf/floor/black/grime,
@@ -4769,6 +4793,12 @@
 /area/station/atmos/hookups/south)
 "pt" = (
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -4933,9 +4963,6 @@
 /area/station/engine/hotloop)
 "pY" = (
 /obj/disposalpipe/switch_junction/left/west,
-/obj/table/auto{
-	color = "#666666"
-	},
 /turf/floor/darkblueblack,
 /area/station/bridge)
 "qd" = (
@@ -6982,6 +7009,15 @@
 /obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/grime,
 /area/station/engine/hotloop)
+"wX" = (
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor/grass,
+/area/station/medical/research)
 "wY" = (
 /obj/cable{
 	d1 = 4;
@@ -7547,6 +7583,12 @@
 "yO" = (
 /obj/disposalpipe/junction/right/east,
 /obj/grille/catwalk/jen,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 10;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -9602,6 +9644,9 @@
 /area/station/crew_quarters/fitness)
 "Fq" = (
 /obj/disposalpipe/switch_junction/left/west,
+/obj/table/auto{
+	color = "#666666"
+	},
 /turf/floor/darkblueblack,
 /area/station/bridge)
 "Fr" = (
@@ -11693,8 +11738,7 @@
 	},
 /obj/grille/catwalk/jen,
 /obj/cable{
-	d2 = 2;
-	icon_state = "0-2"
+	icon_state = "2-8"
 	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
@@ -12761,6 +12805,7 @@
 /obj/machinery/light/fluorescent/harsh{
 	dir = 1
 	},
+/obj/storage/crate,
 /turf/floor/cautionblack,
 /area/station/mining/lobby)
 "PG" = (
@@ -13107,6 +13152,13 @@
 	dir = 8
 	},
 /obj/grille/catwalk/jen,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 9;
+	name = "autoname - SS13";
+	pixel_y = 12;
+	tag = ""
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/south{
 	name = "South Tunnel"
@@ -14286,6 +14338,12 @@
 "Vj" = (
 /obj/grille/catwalk/jen,
 /obj/table/auto,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/plating,
 /area/station/maintenance/inner/north{
 	name = "North Tunnel"
@@ -14548,6 +14606,12 @@
 	})
 "Wb" = (
 /obj/machinery/light/fluorescent/neutral,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 1;
+	name = "autoname - SS13";
+	tag = ""
+	},
 /turf/floor/green/side,
 /area/station/medical/research)
 "Wc" = (
@@ -15018,6 +15082,20 @@
 /obj/cable,
 /turf/floor/plating,
 /area/station/security/brig/south_side)
+"XI" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/jen,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/machinery/camera{
+	c_tag = "autotag";
+	dir = 6;
+	name = "autoname - SS13";
+	tag = ""
+	},
+/turf/floor/plating,
+/area/station/maintenance/inner/south{
+	name = "South Tunnel"
+	})
 "XN" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -53280,7 +53358,7 @@ Gt
 lv
 nf
 vO
-SI
+wX
 SI
 uE
 SI
@@ -60523,7 +60601,7 @@ kU
 kU
 uq
 uq
-qj
+XI
 lN
 NQ
 uq
@@ -66232,7 +66310,7 @@ XT
 pK
 ZH
 Ox
-xD
+jw
 XT
 bc
 jV
@@ -75906,12 +75984,12 @@ HB
 HB
 DQ
 kU
-kU
-kU
+wC
+eA
 OW
 OW
 OW
-kU
+on
 jP
 jP
 jP
@@ -76208,12 +76286,12 @@ HB
 HB
 uL
 kU
-kU
-kU
+on
+on
 eU
 OW
 OW
-kU
+on
 kU
 kU
 kU
@@ -76510,12 +76588,12 @@ HB
 HB
 HB
 uL
-kU
-kU
+on
+on
 OW
 OW
 OW
-kU
+on
 kU
 kU
 kU
