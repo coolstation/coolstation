@@ -959,6 +959,9 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 		//iconstate = "fartbomb-dirty"
 
 		detonate()
+			if (!pooping_allowed)
+				//just act like a regular buttbomb
+				return ..()
 			var/theturf = get_turf(src)
 			var/list/spraybits = new/list()
 			var/direction = NORTH

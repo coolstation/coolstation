@@ -370,10 +370,22 @@
 
 		playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1)
 
-		if (src.state == GRAB_PASSIVE)
+		if (src.state == GRAB_PASSIVE) //the logic here is that once you are in a grab_pin situation, they're grabbing onto the body and not really the clothes. This is just for catching people
+			var/succ = 0 //tug
 			for (var/mob/O in AIviewers(src.affecting, null))
-				O.show_message(text("<span class='alert'>[] has broken free of []'s grip!</span>", src.affecting, src.assailant), 1, group = "resist")
-			qdel(src)
+				succ = 1
+				if (istype(O,/mob/living/carbon/human))
+					var/mob/living/carbon/human/H = O
+					if (istype(H.get_slot(SLOT_WEAR_SUIT), /obj/item/clothing/suit))
+						var/obj/item/clothing/suit/c = H.get_slot(SLOT_WEAR_SUIT)
+						if (c.cape && prob(20))
+							succ = 0
+				if (succ)
+					O.show_message(text("<span class='alert'>[] has broken free of []'s grip!</span>", src.affecting, src.assailant), 1, group = "resist")
+					qdel(src)
+				else
+					O.show_message(text("<span class='alert'>[]'s cape has been caught by []!</span>", src.affecting, src.assailant), 1, group = "resist")
+
 		else if (src.state == GRAB_PIN)
 			var/succ = 0
 

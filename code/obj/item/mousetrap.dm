@@ -297,6 +297,8 @@
 								other_trap.triggered(H)
 								var/obj/item/clothing/shoes/mousetraps/kicks = new(src, other_trap)
 								H.equip_if_possible(kicks, H.slot_shoes)
+								src.set_loc(kicks)
+								other_trap.set_loc(kicks)
 								break
 				H.visible_message("<span class='alert'><B>[H] accidentally steps on the mousetrap.</B></span>",\
 				"<span class='alert'><B>You accidentally step on the mousetrap!</B></span>")

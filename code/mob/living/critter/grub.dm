@@ -29,6 +29,7 @@
 	var/hat_antenna = 0
 	var/body_hair = 0
 	var/eyes_2 = 0
+	ai_type = "/datum/aiHolder/wanderer"
 
 	base_move_delay = 2.3
 	base_walk_delay = 4

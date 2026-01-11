@@ -553,6 +553,12 @@
 
 		return
 
+	old
+		name = "dead extendable stun baton"
+		desc = "The battery is completely corroded, but it can still bludgeon perfectly fine."
+		cell_type = /obj/item/ammo/power_cell/dead
+
+
 #undef CLOSED_AND_OFF
 #undef OPEN_AND_ON
 #undef OPEN_AND_OFF

@@ -177,11 +177,11 @@
 	spawn_contents = list(/obj/item/clothing/under/rank/engineer = 4,
 	/obj/item/clothing/shoes/orange = 4)
 
-/obj/storage/closet/wardrobe/red/security_gimmick
+/obj/storage/closet/wardrobe/red/security_gimmick //we should cut this down and put these outfits elsewhere.
 	name = "\improper Security wardrobe"
 	spawn_contents = list(/obj/item/clothing/shoes/brown = 4,
-	/obj/item/clothing/under/color/red,
-	/obj/item/clothing/under/gimmick/police,
+	/obj/item/clothing/under/color/red = 2,
+	///obj/item/clothing/under/gimmick/police,
 	/obj/item/clothing/under/misc/head_of_security,
 	/obj/item/clothing/under/misc/tourist,
 	/obj/item/clothing/under/misc/tourist/max_payne,
@@ -190,9 +190,12 @@
 	/obj/item/clothing/head/serpico,
 	/obj/item/clothing/head/red,
 	/obj/item/clothing/head/flatcap,
-	/obj/item/clothing/head/policecap,
-	/obj/item/clothing/head/helmet/bobby,
-	/obj/item/clothing/head/helmet/siren = 2)
+	///obj/item/clothing/head/policecap,
+	///obj/item/clothing/head/helmet/bobby,
+	/obj/item/clothing/head/helmet/siren = 1,
+	/obj/item/clothing/head/sec = 1,
+	/obj/item/clothing/under/rank/security/suit = 1,
+	/obj/item/clothing/under/rank/security = 2)
 
 /obj/storage/closet/wardrobe/white/medical
 	name = "\improper Medical wardrobe"
@@ -273,3 +276,26 @@
 	/obj/item/clothing/head/wizard/red = 2,
 	/obj/item/clothing/suit/wizrobe = 2,
 	/obj/item/clothing/head/wizard = 2)
+
+/obj/storage/closet/wardrove/ntso
+	name = "rusted NT Special Ops locker"
+	desc = "It smells of sweat, piracy, and sadness."
+	spawn_contents = list(
+	/obj/item/clothing/head/helmet/space/ntso/rogue,
+	/obj/item/clothing/suit/space/ntso/rogue,
+	/obj/item/clothing/under/misc/turds/rogue,
+	/obj/item/clothing/shoes/swat,
+	/obj/item/clothing/gloves/swat/NT,
+	/obj/item/storage/belt/security/rogue,
+	/obj/item/device/radio/headset/command/nt/rogue,
+	/obj/item/storage/backpack/satchel/NT/rogue,
+	/obj/item/gun/modular/NT/rifle,
+	/obj/item/storage/firstaid/old,
+	/obj/item/stackable_ammo/rifle/NT/ten,
+	/obj/item/gun/modular/NT/pistol,
+	/obj/item/stackable_ammo/pistol/NT/HP/ten,
+	/obj/item/stackable_ammo/pistol/NT/twenty,
+	/obj/item/clothing/mask/gas/NTSO/rogue,
+	/obj/item/barrier,
+	/obj/item/baton/ntso/old,
+	)

@@ -33,6 +33,7 @@
 	wear_image_icon = 'icons/mob/head.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "paper"
+	hitsound = null //need a very weak paper paff type sound
 	var/info = ""
 	var/stampable = 1
 	throwforce = 0
@@ -672,6 +673,19 @@ as it may become compromised.
 	name = "strange note"
 	desc = "What's this doing here?"
 	info = "<i>On the other side... 232 09</i>"
+
+/obj/item/paper/rtfm
+	name = "angrily scribed FOSS missive"
+	info = {"Wow! I cannot BELIEVE the numbers of operatives we have that do not know how to RTFM (Read The FREAKIN' Manual)<br>
+	Primarily, our sophisticated weaponry has many interesting capabilities for bringing order to the chaos of draconian software licensing.<br>
+	Secondarily, the more times you crank, the more powerful the emitted laser will be. Or, in the flywheel model, the more charges you will have stored up.<br>
+	Tertiarily, the more of a charge the capacitors have, the more damage it will do to the bulb. Big shots means faster burnout.<br>
+	Quaternarily, the flywheel laser does not gain more powerful shots, but it does fire multiple times without needing to re-crank.<br>
+	<s>Pent</s>Quinarily, there is a SAFETY mechanism to avoid overcranking that can be toggled with any screwdriver for higher damage and more risk.<br>
+	That's it! You'd have known these things if you simply took a few hours of your time to read the 96 man pages we prepared.<br>
+	<br>
+	Unbelievable.<br>
+	-RT"}
 
 /obj/item/paper/torn
 	name = "torn note"

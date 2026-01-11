@@ -702,6 +702,10 @@ var/f_color_selector_handler/F_Color_Selector
 	if(!worldgen_hold)
 		initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
 
+#ifdef DESERT_MAP
+	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_grubranch.dmm')
+#endif
+
 	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
 	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
 	RL_Start()
@@ -886,7 +890,7 @@ var/f_color_selector_handler/F_Color_Selector
 	else
 		s += "SERVER NAME HERE</b> &#8212; "
 
-	s += "The [pick("hotdog","acab","vintage","jenkem","burnout")] SS13 experience. Now 516! (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "The [pick("hotdog","acab","vintage","jenkem","burnout")] SS13 experience. [pick("Open for business!","Open 24/7","Spicy","It's Queer","Bigger than Jesus Christ","A solid 5/7")]! (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
 	s += "[pick("Goon's <b>only</b> active downstream!","Italian: <b>[pick("as hell","kinda","not really","yes","no","very")]</b>","Style: [pick("Action","<b>ACTION</b>")] [pick("Roleplay","<b>ROLEPLAY</b>")]","Style: [pick("Roleplay","<b>ROLEPLAY</b>")] [pick("Action","<b>ACTION</b>")]","Smells: <b>[pick("Great","Bad")]</b>!","<br>Mouthfeel: <b>[pick("crunchy","chewy","moist","wet")]</b>","No ERP! 18+ Only!")]<br>"
 
 	if (map_settings)

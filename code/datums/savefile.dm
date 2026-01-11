@@ -17,6 +17,10 @@
 
 	json_to_character(client/user, var/JSON, var/profileNum) //doesn't even need to deal with savefiles tbh, this is only here just so it's next to savefile_to_json
 
+		if(!json_enabled)
+			boutput(usr, "<span class='alert'><b>Sorry, JSON save imports are disabled right now. Please use a cloud save instead.</b></span>")
+			return 0
+
 		src.profile_number = profileNum
 		var/list/decodedJSON = list()
 		decodedJSON = json_decode(JSON)
@@ -83,6 +87,10 @@
 		return 1
 
 	savefile_to_json(client/user)
+		if(!json_enabled)
+			boutput(usr, "<span class='alert'><b>Sorry, JSON save imports are disabled right now. Please use a cloud save instead.</b></span>")
+			return 0
+
 		var/savefile/F
 		var/list/export = list()
 		var/profileNum = src.profile_number
@@ -232,6 +240,7 @@
 		F["[profileNum]_be_conspirator"] << src.be_conspirator
 		F["[profileNum]_be_flock"] << src.be_flock
 		F["[profileNum]_be_misc"] << src.be_misc
+		F["[profileNum]_be_roguentso"] << src.be_roguentso
 
 		// UI settings. Ehhhhh.
 		F["[profileNum]_hud_style"] << src.hud_style
@@ -415,6 +424,7 @@
 		F["[profileNum]_be_conspirator"] >> src.be_conspirator
 		F["[profileNum]_be_flock"] >> src.be_flock
 		F["[profileNum]_be_misc"] >> src.be_misc
+		F["[profileNum]_be_roguentso"] >> src.be_roguentso
 
 		// UI settings...
 		F["[profileNum]_hud_style"] >> src.hud_style

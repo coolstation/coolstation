@@ -217,7 +217,10 @@
 		block_begin(src)
 		src.next_click = world.time + (COMBAT_CLICK_DELAY)
 		*/
-		src.visible_message("<span class='alert'><B>[src] tweaks [his_or_her(src)] own nipples! That's [pick_string("tweak_yo_self.txt", "tweakadj")] [pick_string("tweak_yo_self.txt", "tweak")]!</B></span>")
+		if (src.gender == NEUTER)
+			src.visible_message("<span class='alert'><B>[src] grasps at [pick("nothing", "the air", "a feeling", "[his_or_her(src)] chest")]!</B></span>")
+		else
+			src.visible_message("<span class='alert'><B>[src] tweaks [his_or_her(src)] own nipples! That's [pick_string("tweak_yo_self.txt", "tweakadj")] [pick_string("tweak_yo_self.txt", "tweak")]!</B></span>")
 
 
 /mob/living/proc/grab_block() //this is sorta an ugly but fuck it!!!!

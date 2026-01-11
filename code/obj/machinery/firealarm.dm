@@ -58,7 +58,7 @@
 	MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, "[alarm_frequency]")
 
 	update_icon()
-	setup_sound()
+	//setup_sound()
 
 /obj/machinery/firealarm/setup_sound()
 	sound_emitter = new(src)
@@ -203,11 +203,10 @@
 	post_alert(1)
 
 	SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"alertTriggered")
-/*
+
 	if (!src.ringlimiter)
 		src.ringlimiter = 1
 		playsound(src.loc, "sound/machines/firealarm.ogg", 50, 1)
-*/
 
 	update_icon()
 	src.dont_spam = 1

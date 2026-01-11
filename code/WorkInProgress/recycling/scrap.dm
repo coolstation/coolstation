@@ -21,6 +21,7 @@
 	rand_pos = 3
 	w_class = W_CLASS_TINY
 	flags = FPRINT | TABLEPASS | CONDUCT
+	stack_type = /obj/item/scrap
 
 #define MAX_SCRAP	15000	// maximum content amount of a scrap pile
 

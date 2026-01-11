@@ -35,7 +35,7 @@ Right Mouse Button                     = Attempt to fix Lighting on selected til
 		if (RL_Started)
 			for(T in A) // T & A hehE HEHE SNARF SNARF FUCKING LOL
 				RL_UPDATE_LIGHT(T) //rl_reset didnt even exist lol
-				blink(T) // Might be shit. Remove if shit.
+				//blink(T) // Might be shit. Remove if shit.
 				LAGCHECK(LAG_LOW)
 
 		in_progress = 0
@@ -44,4 +44,4 @@ Right Mouse Button                     = Attempt to fix Lighting on selected til
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
 		var/turf/T = get_turf(object)
 		if (RL_Started) RL_UPDATE_LIGHT(T)
-		blink(T)
+		//blink(T)

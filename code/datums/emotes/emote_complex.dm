@@ -649,7 +649,7 @@
 			user.cleanhands = 0
 		else
 			message = "<B>[user]</B> unzips [his_or_her(user)] pants but, try as [he_or_she(user)] might, [he_or_she(user)] can't shit!"
-	else if (user.poops < 1)
+	else if (user.poops < 1 || !pooping_allowed)
 		message = "<B>[user]</B> grunts for a moment. [prob(1)?"something":"nothing"] happens."
 	else
 

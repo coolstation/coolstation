@@ -19,7 +19,7 @@ Right Mouse Button                     = Select object to copy<br>
 		else if (isturf(cloned))
 			var/turf/t = new cloned.type(T)
 			t.appearance = cloned.appearance
-		blink(T)
+		//blink(T)
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
 		if (isturf(object))

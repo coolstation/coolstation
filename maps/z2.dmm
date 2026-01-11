@@ -18,6 +18,15 @@
 	dir = 8
 	},
 /area/owlery/owleryhall)
+"aaZ" = (
+/obj/stool/chair/couch{
+	dir = 4
+	},
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "abn" = (
 /turf/wall/setpieces/hospital{
 	dir = 5
@@ -8113,6 +8122,18 @@
 	name = "strange surface"
 	},
 /area/crater/cave/lower)
+"bkl" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_y = 11;
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/drinks/bottle/mead{
+	pixel_y = 6;
+	pixel_x = 5
+	},
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "bko" = (
 /obj/stool/chair/couch/purple{
 	dir = 4
@@ -9602,6 +9623,10 @@
 	},
 /turf/floor/carpet/grime,
 /area/owlery/staffhall)
+"bFm" = (
+/obj/wingrille_spawn/auto/tuff,
+/turf/floor/plating/random,
+/area/ntso_shuttle)
 "bFs" = (
 /obj/machinery/door/unpowered/wood{
 	desc = "Really old. Old as heck.";
@@ -15153,6 +15178,23 @@
 	dir = 9
 	},
 /area/crunch)
+"bYU" = (
+/obj/storage/closet/wardrove/ntso,
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/obj/item/clothing/suit/armor/NT{
+	name = "dusty armored jacket";
+	desc = "An unwashed and old jacket with armor plating stuffed in the lining. The fabric is stained and tattered in places."
+	},
+/obj/item/clothing/head/NTberet{
+	desc = "It's a momento, I guess. An old keepsake. And maybe a reminder of the things we've left behind.";
+	name = "Old Beret";
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "bYX" = (
 /obj/item/storage/wall/research_supplies{
 	pixel_x = 32;
@@ -16048,6 +16090,13 @@
 	},
 /turf/floor/wood/two,
 /area/afterlife/bar)
+"ccq" = (
+/obj/decal/fakeobjects/shuttlethruster{
+	dir = 4;
+	icon_state = "alt_propulsion"
+	},
+/turf/space,
+/area/ntso_shuttle)
 "ccr" = (
 /obj/decal/fakeobjects/pipe{
 	dir = 6
@@ -33534,6 +33583,12 @@
 /obj/item/casing,
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"dsl" = (
+/obj/machinery/macrofab/emergency_pod{
+	dir = 1
+	},
+/turf/floor/engine/caution/west,
+/area/ntso_shuttle)
 "dsI" = (
 /obj/lattice{
 	dir = 6;
@@ -35994,6 +36049,9 @@
 	icon_state = "white"
 	},
 /area/sim/chess)
+"dJL" = (
+/turf/floor/grime,
+/area/ntso_shuttle)
 "dLn" = (
 /obj/item/raw_material/shard,
 /obj/decal/cleanable/tracked_reagents/blood{
@@ -36403,6 +36461,9 @@
 /obj/machinery/light/emergency,
 /turf/floor/cautionblack,
 /area/owlery/staffhall)
+"eoJ" = (
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "epx" = (
 /obj/storage/secure/closet/security/equipment,
 /obj/machinery/light/small/neutral,
@@ -36507,6 +36568,17 @@
 	},
 /turf/space/shuttle_transit,
 /area/shuttle/escape/transit/battle_shuttle)
+"eEF" = (
+/obj/table/reinforced/auto,
+/obj/item/stackable_ammo/pistol/NT/HP/ten,
+/obj/item/stackable_ammo/pistol/NT/twenty{
+	pixel_x = 5
+	},
+/obj/item/stackable_ammo/pistol/NT/twenty{
+	pixel_x = 10
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "eER" = (
 /obj/decal/fakeobjects/pipe{
 	desc = "A pipe.";
@@ -36523,6 +36595,11 @@
 "eFa" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/south)
+"eFb" = (
+/turf/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/ntso_shuttle)
 "eFE" = (
 /obj/table/virtual{
 	dir = 6;
@@ -36897,6 +36974,10 @@
 "ftA" = (
 /turf/space,
 /area/shuttle/arrival/pre_load)
+"ftW" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "ftX" = (
 /obj/landmark{
 	name = "icefall"
@@ -36969,6 +37050,10 @@
 	dir = 4
 	},
 /area/owlery/gangzone)
+"fAA" = (
+/obj/critter/spider/clownqueen,
+/turf/space,
+/area/space)
 "fAK" = (
 /obj/decal/cleanable/tracked_reagents/blood/drip/high,
 /obj/reagent_dispensers/cleanable/spiders,
@@ -36983,6 +37068,14 @@
 	},
 /turf/floor/neutral,
 /area/upper_arctic/fita/hall)
+"fBI" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/blue,
+/obj/landmark/start{
+	name = "Rogue Nanotrasen Security Operative"
+	},
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "fCo" = (
 /obj/spacevine,
 /turf/wall/auto/lead/blue,
@@ -37196,6 +37289,12 @@
 	icon_state = "green";
 	name = "garrys"
 	})
+"gnu" = (
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/turf/floor/shuttlebay,
+/area/ntso_shuttle)
 "gpj" = (
 /obj/table,
 /obj/item/paper/book/from_file/pharmacopia,
@@ -37305,9 +37404,36 @@
 	dir = 8
 	},
 /area/owlery/owleryhall)
+"gxy" = (
+/obj/table/reinforced/auto,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/reagent_containers/food/drinks/fueltank{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "gyu" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/entry)
+"gyL" = (
+/obj/table/reinforced/auto,
+/obj/item/gun/modular/NT/shotty{
+	pixel_y = 9
+	},
+/obj/item/gun/modular/NT/rifle,
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
+"gAm" = (
+/obj/indestructible/shuttle_corner{
+	dir = 8;
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/ntso_shuttle)
 "gAw" = (
 /obj/decal/cleanable/mess/burrito,
 /obj/decal/fakeobjects/pipe{
@@ -37449,6 +37575,20 @@
 	},
 /turf/floor/concrete,
 /area/lower_arctic/mining)
+"gLI" = (
+/obj/table/wood/auto,
+/obj/machinery/light/lamp/green{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/deskclutter{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/decal/cleanable/dirt/random,
+/obj/window/north,
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "gMo" = (
 /obj/machinery/door/airlock/classic,
 /obj/decal/cleanable/tracked_reagents/blood/tracks,
@@ -37920,6 +38060,9 @@
 "hKE" = (
 /turf/wall/auto/lead/gray,
 /area/sim/tdome/tdome1)
+"hKP" = (
+/turf/wall/auto/virtual,
+/area/space)
 "hKT" = (
 /obj/machinery/space_heater,
 /turf/floor/neutral,
@@ -39029,6 +39172,13 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"kiF" = (
+/obj/machinery/light/small/red{
+	dir = 8
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "kjI" = (
 /obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "left_bloodyhands"
@@ -39076,6 +39226,14 @@
 	dir = 4
 	},
 /area/owlery/gangzone)
+"ktb" = (
+/obj/machinery/door/poddoor/blast/single{
+	dir = 4;
+	id = "hangar_ntso";
+	name = "external blast door"
+	},
+/turf/floor/shuttlebay,
+/area/ntso_shuttle)
 "ktV" = (
 /obj/decal/cleanable/tracked_reagents/blood{
 	icon_state = "left_bloodygloves"
@@ -39084,6 +39242,10 @@
 	dir = 6
 	},
 /area/owlery/gangzone)
+"kuU" = (
+/obj/machinery/vehicle/pod_smooth/nt_light,
+/turf/floor/shuttlebay,
+/area/ntso_shuttle)
 "kwt" = (
 /obj/decal/floatingtiles{
 	icon_state = "floattiles4";
@@ -39356,6 +39518,9 @@
 	},
 /turf/floor/green/checker,
 /area/owlery/owleryhall)
+"kRw" = (
+/turf/wall/auto/rivet/window/porthole,
+/area/ntso_shuttle)
 "kTc" = (
 /turf/floor/arctic/cliff{
 	dir = 10
@@ -39371,6 +39536,12 @@
 	},
 /turf/floor/carpet/red/standard/edge/north,
 /area/upper_arctic/fita/director)
+"kUC" = (
+/obj/landmark{
+	name = "CUSTOM_TITLE_SCREEN_ORIGIN"
+	},
+/turf/space,
+/area/space)
 "kVh" = (
 /turf/floor/carpet/red/standard/edge/north,
 /area/upper_arctic/fita/director)
@@ -39380,6 +39551,11 @@
 	},
 /turf/floor/green,
 /area/owlery/owllock)
+"kWi" = (
+/obj/table/wood/auto,
+/obj/machinery/microwave,
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "kXE" = (
 /obj/decal/poster/wallsign/poster_beach{
 	pixel_y = 32
@@ -39447,6 +39623,13 @@
 	},
 /turf/floor/plating,
 /area/lower_arctic/mining)
+"lhO" = (
+/obj/decal/fakeobjects/shuttleengine{
+	dir = 4;
+	icon_state = "alt_heater"
+	},
+/turf/space,
+/area/ntso_shuttle)
 "lkg" = (
 /obj/table/round/auto,
 /obj/item/storage/box/cookie_tin,
@@ -39676,6 +39859,12 @@
 /obj/item/reagent_containers/food/drinks/milk/rancid,
 /turf/floor/white/grime,
 /area/crypt/sigma/kitchen)
+"lWl" = (
+/obj/indestructible/shuttle_corner{
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/ntso_shuttle)
 "lWq" = (
 /obj/table/virtual{
 	dir = 10;
@@ -39926,6 +40115,13 @@
 	},
 /turf/floor/green,
 /area/owlery/owllock)
+"myi" = (
+/obj/reagent_dispensers/fueltank,
+/obj/decal/tile_edge/stripe{
+	icon_state = "delivery2"
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "myN" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -40022,6 +40218,10 @@
 	dir = 1
 	},
 /area/upper_arctic/exterior/surface)
+"mKt" = (
+/obj/table/reinforced/auto,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "mKz" = (
 /obj/storage/closet/radiation,
 /turf/floor/concrete,
@@ -40077,6 +40277,9 @@
 	dir = 10
 	},
 /area/lower_arctic/mining)
+"mLZ" = (
+/turf/floor/engine/caution/west,
+/area/ntso_shuttle)
 "mMy" = (
 /turf/shuttle/wall{
 	dir = 1;
@@ -40183,6 +40386,18 @@
 	},
 /turf/floor/green,
 /area/owlery/owllock)
+"nbV" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/blue,
+/obj/decal/cleanable/dirt/random,
+/obj/decal/poster/wallsign/poster_nt{
+	pixel_x = 33
+	},
+/obj/landmark/start{
+	name = "Rogue Nanotrasen Security Operative"
+	},
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "ncc" = (
 /obj/machinery/camera,
 /obj/decal/cleanable/tracked_reagents/blood/tracks{
@@ -40201,6 +40416,9 @@
 	},
 /turf/floor/engine/caution,
 /area/upper_arctic/fita/hall)
+"ncM" = (
+/turf/floor/shuttlebay,
+/area/ntso_shuttle)
 "ndh" = (
 /obj/disposalpipe/segment/vertical,
 /turf/space/fluid/ocean/noexplosion,
@@ -40388,6 +40606,17 @@
 "nuo" = (
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma)
+"nve" = (
+/obj/indestructible/shuttle_corner{
+	dir = 4;
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/ntso_shuttle)
+"nxo" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "nyz" = (
 /obj/decal/fakeobjects{
 	desc = "Press this for a good time.";
@@ -40902,6 +41131,15 @@
 /obj/random_item_spawner/junk/maybe_few,
 /turf/wall/water,
 /area/lower_arctic/septic)
+"oxj" = (
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/obj/decal/cleanable/dirt/random,
+/obj/table/reinforced/auto,
+/obj/item/gun/modular/NT/flare_gun,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "oxO" = (
 /obj/decal/cleanable/tracked_reagents/blood,
 /turf/floor/black,
@@ -41123,6 +41361,13 @@
 	},
 /turf/floor/concrete,
 /area/upper_arctic/fita/quartermaster)
+"oXt" = (
+/obj/decal/tile_edge/stripe{
+	icon_state = "delivery2"
+	},
+/obj/machinery/portable_reclaimer,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "oXP" = (
 /obj/grille/steel,
 /obj/window/auto/reinforced,
@@ -41240,6 +41485,9 @@
 	},
 /turf/floor/carpet/red/standard/edge/nw,
 /area/upper_arctic/fita/quartermaster)
+"piQ" = (
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "pjx" = (
 /obj/decal/fakeobjects{
 	anchored = 1;
@@ -41377,6 +41625,15 @@
 	},
 /turf/outdoors/concrete,
 /area/lower_arctic/septic)
+"pBK" = (
+/obj/table/wood/auto,
+/obj/machinery/light/small/blueish,
+/obj/item/storage/box/donkpocket_kit{
+	pixel_y = 6;
+	pixel_x = -2
+	},
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "pCV" = (
 /obj/indestructible/shuttle_corner{
 	dir = 8
@@ -41702,6 +41959,12 @@
 	dir = 8
 	},
 /area/owlery/owleryhall)
+"qqX" = (
+/obj/stool/chair/couch{
+	dir = 8
+	},
+/turf/floor/plating/random,
+/area/ntso_shuttle)
 "qrD" = (
 /obj/machinery/r_door_control/podbay/wizard,
 /turf/shuttle/wall{
@@ -42166,6 +42429,18 @@
 "rtc" = (
 /turf/wall/auto/lead/blue,
 /area/crater/biodome/crew)
+"rtf" = (
+/obj/decal/cleanable/dirt/random,
+/obj/item/gun_exploder,
+/obj/item/paper/book/from_file/pocketguide/gunsmith,
+/turf/floor/grime,
+/area/ntso_shuttle)
+"rtg" = (
+/obj/decal/poster/wallsign/poster_nt,
+/turf/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/ntso_shuttle)
 "rtp" = (
 /obj/machinery/light/small/cool/very{
 	dir = 4
@@ -42343,6 +42618,12 @@
 	},
 /turf/wall/auto/reinforced,
 /area/owlery/office)
+"rNV" = (
+/obj/machinery/door/window/northright{
+	dir = 8
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "rQz" = (
 /obj/npc/trader/katya,
 /turf/floor/concrete,
@@ -42430,6 +42711,17 @@
 	},
 /turf/floor/vr/fourbit,
 /area/sim/chess)
+"rZl" = (
+/obj/decal/cleanable/cobweb,
+/obj/decal/cleanable/dirt/random,
+/obj/table/reinforced/auto,
+/obj/item/gun/modular/NT/pistol,
+/obj/item/gun/modular/NT/pistol{
+	pixel_y = 9;
+	pixel_x = 7
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "rZt" = (
 /turf/floor/shuttle{
 	icon_state = "floor5"
@@ -43045,6 +43337,28 @@
 	},
 /turf/floor/wood/two,
 /area/owlery/staffhall)
+"tmX" = (
+/obj/machinery/r_door_control/podbay/wizard{
+	id = "hangar_ntso"
+	},
+/turf/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/ntso_shuttle)
+"tne" = (
+/obj/storage/closet/wardrove/ntso,
+/obj/item/clothing/suit/armor/NT{
+	name = "dusty armored jacket";
+	desc = "An unwashed and old jacket with armor plating stuffed in the lining. The fabric is stained and tattered in places."
+	},
+/obj/item/clothing/head/NTberet{
+	desc = "It's a momento, I guess. An old keepsake. And maybe a reminder of the things we've left behind.";
+	name = "Old Beret";
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "tor" = (
 /obj/decal/cleanable/tracked_reagents/blood/tracks,
 /obj/decal/cleanable/tracked_reagents/blood/tracks,
@@ -43200,6 +43514,10 @@
 /obj/stool,
 /turf/floor/carpet/office,
 /area/hospital/samostrel)
+"tIQ" = (
+/obj/decal/floatingtiles/loose/random,
+/turf/floor/plating/random,
+/area/ntso_shuttle)
 "tJa" = (
 /obj/table/auto/desk,
 /obj/item/electronics/soldering,
@@ -43239,6 +43557,19 @@
 	},
 /turf/floor,
 /area/meat_derelict/guts)
+"tKp" = (
+/obj/table/reinforced/auto,
+/obj/item/storage/toolbox/mechanical{
+	pixel_y = 6
+	},
+/obj/item/clothing/head/NTberet{
+	desc = "It's a momento, I guess. An old keepsake. And maybe a reminder of the things we've left behind.";
+	name = "Old Beret";
+	pixel_x = -7;
+	pixel_y = -3
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "tKQ" = (
 /obj/grille/catwalk{
 	dir = 10;
@@ -43515,6 +43846,19 @@
 	},
 /turf/floor/arctic/snow,
 /area/upper_arctic/exterior/surface)
+"urA" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/blue,
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/obj/decal/cleanable/dirt/random,
+/obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Rogue Nanotrasen Security Operative"
+	},
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "urE" = (
 /obj/random_item_spawner/junk/one,
 /turf/wall/water,
@@ -43580,10 +43924,36 @@
 	dir = 9
 	},
 /area/owlery/gangzone)
+"uwt" = (
+/obj/decal/cleanable/ripped_poster,
+/turf/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/ntso_shuttle)
 "uwZ" = (
 /obj/sign_accidents,
 /turf/wall/auto/lead/gray,
 /area/crypt/sigma)
+"uye" = (
+/obj/table/reinforced/auto,
+/obj/item/stackable_ammo/rifle/NT/ten{
+	pixel_x = -17
+	},
+/obj/item/stackable_ammo/shotgun/NT/ten{
+	pixel_x = -12
+	},
+/obj/item/stackable_ammo/shotgun/NT/ten{
+	pixel_x = -6
+	},
+/obj/item/device/flash{
+	pixel_x = 7
+	},
+/obj/item/device/flash{
+	pixel_x = 3;
+	pixel_y = 8
+	},
+/turf/floor/grime,
+/area/ntso_shuttle)
 "uyr" = (
 /obj/table/wood/round,
 /obj/decal/cleanable/mess/noodles/random_all{
@@ -43627,6 +43997,13 @@
 	icon_state = "floorgrime-w"
 	},
 /area/sim/chess)
+"uBk" = (
+/obj/indestructible/shuttle_corner{
+	dir = 1;
+	icon_state = "wall3_trans"
+	},
+/turf/space,
+/area/ntso_shuttle)
 "uBm" = (
 /obj/machinery/light/small/red{
 	dir = 8
@@ -44210,6 +44587,12 @@
 "vMS" = (
 /turf/floor/setpieces/gauntlet,
 /area/gauntlet/staging)
+"vOh" = (
+/obj/decal/poster/wallsign/poster_nt{
+	pixel_x = 33
+	},
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "vOm" = (
 /obj/map/light/white,
 /turf/floor/shuttle,
@@ -44620,6 +45003,10 @@
 	},
 /turf/floor/sanitary/white,
 /area/owlery/owleryhall)
+"wHL" = (
+/obj/machinery/door/window/northright,
+/turf/floor/carpet/grime,
+/area/ntso_shuttle)
 "wHY" = (
 /obj/decal/cleanable/tracked_reagents/blood/drip/high,
 /turf/floor/yellowblack{
@@ -45063,6 +45450,16 @@
 /obj/decal/snowbits,
 /turf/floor/engine/caution/east,
 /area/upper_arctic/fita/mining)
+"xAG" = (
+/obj/storage/secure/closet/fridge/kitchen{
+	locked = 0
+	},
+/obj/decal/cleanable/cobweb{
+	dir = 1;
+	icon_state = "cobweb"
+	},
+/turf/floor/carpet/grime2,
+/area/ntso_shuttle)
 "xAQ" = (
 /turf/floor/wood/two,
 /area/afterlife/bar)
@@ -45081,6 +45478,13 @@
 /obj/storage/secure/closet/logistics/mining,
 /turf/floor/concrete,
 /area/upper_arctic/fita/mining)
+"xGk" = (
+/obj/machinery/light/small/blueish{
+	dir = 1
+	},
+/obj/decal/floatingtiles/loose/random,
+/turf/floor/plating/random,
+/area/ntso_shuttle)
 "xGt" = (
 /turf/floor/specialroom/gym,
 /area/afterlife/bar)
@@ -45342,6 +45746,10 @@
 /area/sim/test_area{
 	name = "VR Test Area"
 	})
+"yei" = (
+/obj/machinery/manufacturer/hangar,
+/turf/floor/grime,
+/area/ntso_shuttle)
 "yeB" = (
 /obj/stool/chair/comfy,
 /obj/landmark/start{
@@ -107840,19 +108248,19 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -108142,19 +108550,19 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
 aaa
 duf
 duf
@@ -108444,19 +108852,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
 vww
 vww
+gAm
+eFb
+eFb
+eFb
+eFb
+lWl
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+duf
 aaa
 duf
 vww
@@ -108746,19 +109154,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
 vww
 vww
+eFb
+qqX
+eoJ
+eoJ
+xAG
+eFb
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+duf
 aaa
 duf
 vww
@@ -109048,19 +109456,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
 vww
 vww
+eFb
+aaZ
+eoJ
+eoJ
+pBK
+eFb
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+duf
 aaa
 duf
 vww
@@ -109350,19 +109758,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
 vww
+gAm
+eFb
+eoJ
+vOh
+bkl
+kWi
+eFb
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+duf
 aaa
 duf
 vww
@@ -109652,19 +110060,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+gAm
+eFb
+eFb
+rNV
+eFb
+eFb
+eFb
+eFb
+lWl
+duf
 aaa
 duf
 vww
@@ -109954,19 +110362,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+eFb
+rZl
+dJL
+tIQ
+eFb
+bYU
+tne
+tne
+eFb
+duf
 aaa
 duf
 vww
@@ -110256,19 +110664,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+kRw
+oxj
+dJL
+dJL
+gLI
+piQ
+piQ
+piQ
+eFb
+duf
 aaa
 duf
 vww
@@ -110558,19 +110966,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+rtg
+tKp
+dJL
+dJL
+wHL
+ftW
+piQ
+piQ
+eFb
+duf
 aaa
 duf
 vww
@@ -110860,19 +111268,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+eFb
+rtf
+dJL
+dJL
+eFb
+urA
+nbV
+fBI
+eFb
+duf
 aaa
 duf
 vww
@@ -111162,19 +111570,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+kRw
+gyL
+dJL
+dJL
+eFb
+eFb
+eFb
+eFb
+eFb
+duf
 aaa
 duf
 vww
@@ -111464,19 +111872,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+uwt
+eEF
+dJL
+dJL
+dJL
+kiF
+gxy
+mKt
+eFb
+duf
 aaa
 duf
 vww
@@ -111766,19 +112174,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+eFb
+uye
+dJL
+dJL
+dJL
+dJL
+dJL
+nxo
+eFb
+duf
 aaa
 duf
 vww
@@ -112068,19 +112476,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+kRw
+xGk
+dJL
+nxo
+bFm
+mLZ
+mLZ
+dsl
+eFb
+duf
 aaa
 duf
 vww
@@ -112370,19 +112778,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+eFb
+myi
+yei
+oXt
+bFm
+ncM
+kuU
+ncM
+eFb
+duf
 aaa
 duf
 vww
@@ -112672,19 +113080,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+uBk
+lhO
+lhO
+lhO
+eFb
+gnu
+ncM
+ncM
+eFb
+duf
 aaa
 duf
 vww
@@ -112974,19 +113382,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+ccq
+ccq
+ccq
+uBk
+tmX
+ktb
+ktb
+nve
+duf
 aaa
 duf
 vww
@@ -113276,19 +113684,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
 vww
 vww
 vww
 vww
+axy
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
+axy
+duf
 aaa
 duf
 duf
@@ -113578,19 +113986,19 @@ vww
 vww
 vww
 vww
+aaa
+duf
 vww
 vww
 vww
 vww
 vww
+axy
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
+axy
+duf
 aaa
 aaa
 aaa
@@ -113881,20 +114289,20 @@ aaa
 aaa
 aaa
 aaa
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+duf
+aaa
+fAA
 aaa
 aIr
 aIr
@@ -128171,25 +128579,25 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 dpH
 dpH
@@ -128473,25 +128881,25 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -128775,6 +129183,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -128789,11 +129199,9 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
+kUC
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -129077,6 +129485,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -129092,10 +129502,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -129379,6 +129787,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -129394,10 +129804,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -129681,6 +130089,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -129696,10 +130106,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -129983,6 +130391,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -129998,10 +130408,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -130285,6 +130693,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -130300,10 +130710,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -130587,6 +130995,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -130602,10 +131012,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -130889,6 +131297,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -130904,10 +131314,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -131191,6 +131599,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -131206,10 +131616,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -131493,6 +131901,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -131508,10 +131918,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -131795,6 +132203,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -131810,10 +132220,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -132097,6 +132505,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -132112,10 +132522,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -132399,6 +132807,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -132414,10 +132824,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -132701,6 +133109,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -132716,10 +133126,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -133003,6 +133411,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -133018,10 +133428,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -133305,6 +133713,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -133320,10 +133730,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -133607,6 +134015,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -133622,10 +134032,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -133909,6 +134317,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -133924,10 +134334,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -134211,6 +134619,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -134226,10 +134636,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -134513,6 +134921,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -134528,10 +134938,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -134815,6 +135223,8 @@ vww
 vww
 vww
 vww
+aaa
+hKP
 vww
 vww
 vww
@@ -134830,10 +135240,8 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -135117,25 +135525,25 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+hKP
+aaa
 aaa
 dpH
 dpH
@@ -135419,25 +135827,25 @@ vww
 vww
 vww
 vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
-vww
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 dpH
 dpH

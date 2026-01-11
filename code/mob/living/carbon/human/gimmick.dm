@@ -674,7 +674,7 @@ proc/empty_mouse_params()//TODO MOVE THIS!!!
 
 
 /mob/living/carbon/human/gunsemanne
-	is_npc = 1
+	//is_npc = 1
 	//uses_mobai = 1
 	real_name = "Pingin' \"Grand\" Thum"
 	gender = NEUTER

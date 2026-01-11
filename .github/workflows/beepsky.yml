@@ -19,7 +19,7 @@ jobs:
       - name: Cache SpacemanDMM
         uses: actions/cache@v3
         with:
-          path: $HOME/SpacemanDMM
+          path: ~/dreamchecker
           key: ${{ runner.os }}-spacemandmm
 
       - name: Setup Rust
@@ -63,7 +63,7 @@ jobs:
       - name: Cache BYOND
         uses: actions/cache@v3
         with:
-          path: $HOME/BYOND
+          path: ~/BYOND
           key: ${{ runner.os }}-byond
 
       - name: Setup BYOND
@@ -110,7 +110,7 @@ jobs:
       - name: Cache BYOND
         uses: actions/cache@v3
         with:
-          path: $HOME/BYOND
+          path: ~/BYOND
           key: ${{ runner.os }}-byond
 
       # Ass Jam occurs on the 13th of the month.

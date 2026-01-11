@@ -1,6 +1,6 @@
 //Unlockable traits? tied to achievements?
 #define TRAIT_STARTING_POINTS 1 //How many "free" points you get
-#define TRAIT_MAX 7			    //How many traits people can select at most.
+#define TRAIT_MAX 69			    //How many traits people can select at most.
 
 /proc/getTraitById(var/id)
 	. = traitList[id]
@@ -1195,6 +1195,17 @@ obj/trait/pilot
 	points = 0
 	isPositive = 0
 
+/obj/trait/monkey
+	name = "Clericanzee Error (0) \[Species\]"
+	cleanName = "Clericanzee Error"
+	icon_state = "monkeyT"
+	desc = "There's been a mistake at the lab and you've been picked out of your pen and sent to work. Technically an employee with paycheck and everything."
+	id = "monkey"
+	points = 0
+	isPositive = 0
+	category = "species"
+	mutantRace = /datum/mutantrace/monkey
+
 /obj/trait/lizard
 	name = "Reptilian (0) \[Species\]"
 	cleanName = "Reptilian"
@@ -1292,6 +1303,22 @@ obj/trait/pilot
 				H.set_mutantrace(our_pick)
 		return
 
+/obj/trait/stodgy
+	name = "Stodgy Pudding (0)"
+	cleanName = "Stodgy"
+	id = "stodgy"
+	icon_state = "stodgy"
+	desc = "You feel sturdy, like industrial mayo."
+	points = 0
+	isPositive = 1
+
+	onAdd(var/mob/owner)
+		..()
+		owner.SafeScale(1.25,1)
+
+	onRemove(var/mob/owner)
+		..()
+		owner.SafeScale(1/1.25,1)
 
 /obj/trait/teflon_colon
 	name = "Non-Stick Colon (-1)"

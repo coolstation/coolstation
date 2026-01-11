@@ -52,7 +52,7 @@
 			stack_item(W)
 			if(!user.is_in_hands(src))
 				user.put_in_hand(src)
-			boutput(user, "<span class='notice'>You add the ores to the stack. It now has [src.amount] ores.</span>")
+			boutput(user, "<span class='notice'>You add the [initial(src.name)] to the stack. It now has [src.amount] pieces of [src.material].</span>")
 			return
 		if (istype(W, /obj/item/satchel/mining/))
 			var/obj/item/satchel/mining/satchel = W
@@ -665,6 +665,11 @@
 				if((!H.shoes || (src.material && src.material.hasProperty("hard") && src.material.getProperty("hard") >= 70)) && !iscow(H))
 					boutput(H, "<span class='alert'><B>You step on [src]! Ouch!</B></span>")
 					step_on(H)
+
+			if(prob(5))
+				new /obj/decal/cleanable/grit/small(src.loc)
+				qdel(src)
+				return
 		..()
 
 	custom_suicide = 1

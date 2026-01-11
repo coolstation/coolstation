@@ -23,8 +23,8 @@ Right Mouse Button on buildmode    = Set material ID<br>
 		if (!mat_id)
 			return
 		object.setMaterial(getMaterial(mat_id))
-		blink(get_turf(object))
+		//blink(get_turf(object))
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
 		object.removeMaterial()
-		blink(get_turf(object))
+		//blink(get_turf(object))

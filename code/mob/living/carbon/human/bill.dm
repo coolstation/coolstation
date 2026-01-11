@@ -10,7 +10,7 @@ starting with SHITTY BILL
 
 /// BILL SPEECH STUFF
 
-#define BILL_PICK(WHAT) pick_string("shittybill.txt", WHAT)
+//#define BILL_PICK(WHAT) pick_string("shittybill.txt", WHAT)
 
 /mob/living/carbon/human/biker
 	real_name = "Shitty Bill"

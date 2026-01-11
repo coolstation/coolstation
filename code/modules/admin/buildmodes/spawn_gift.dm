@@ -14,7 +14,7 @@ change the direction of created objects.<br>
 ***********************************************************"}
 	icon_state = "buildmode12"
 	var/objpath = null
-	var/cinematic = "Blink"
+	var/cinematic = "None"
 	var/giftwrap_style = "Regular"
 	var/turf/first_corner = null
 	var/matrix/mtx = matrix()
