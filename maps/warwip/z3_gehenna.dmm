@@ -1,12 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aac" = (
-/turf/floor/redblack{
-	dir = 8
+/obj/cable{
+	icon_state = "1-2"
 	},
-/area/allowGenerate/caves)
-"aat" = (
-/obj/machinery/door/airlock/glass/command,
-/turf/floor/darkblue,
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor,
 /area/allowGenerate/caves)
 "aaE" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
@@ -17,44 +19,87 @@
 /turf/floor/black,
 /area/allowGenerate/caves)
 "aaW" = (
-/obj/machinery/door/airlock/glass,
-/turf/floor,
+/obj/cable,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"abd" = (
+/obj/machinery/chem_dispenser/soda,
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/black,
 /area/allowGenerate/caves)
 "abs" = (
-/obj/wingrille_spawn,
-/turf/floor/plating{
-	icon_old = "diamondtile"
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/darkblue,
 /area/allowGenerate/caves)
 "acg" = (
-/turf/floor/redblack{
-	dir = 5
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
+/turf/floor/darkblue,
+/area/allowGenerate/caves)
+"ach" = (
+/obj/decal/cleanable/rust/jen/grime,
+/obj/disposalpipe/segment/mineral,
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "adv" = (
-/obj/disposalpipe/segment/bent/north,
-/turf/floor/plating,
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor,
 /area/allowGenerate/caves)
 "aed" = (
-/obj/disposalpipe/switch_junction/right/east,
-/turf/floor/plating,
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-4"
+	},
+/turf/floor/darkblue,
+/area/allowGenerate/caves)
+"afb" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/carpet/blue/standard/edge/ne,
+/area/allowGenerate/caves)
+"afr" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor,
 /area/allowGenerate/caves)
 "age" = (
-/obj/disposalpipe/segment/mail/horizontal,
-/obj/grille/catwalk/bob,
-/turf/floor/plating,
-/area/allowGenerate/caves)
-"agi" = (
-/obj/machinery/door/airlock/glass,
-/turf/floor/industrial,
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/darkblue,
 /area/allowGenerate/caves)
 "agx" = (
 /turf/wall/r_wall,
 /area/allowGenerate/caves)
 "agC" = (
-/obj/grille/catwalk/bob,
-/obj/disposalpipe/switch_junction/right/south,
-/turf/floor/plating,
+/turf/floor/blueblack,
 /area/allowGenerate/caves)
 "agP" = (
 /obj/machinery/atmospherics/valve/vertical{
@@ -64,20 +109,19 @@
 /turf/floor/black,
 /area/allowGenerate/caves)
 "ahp" = (
-/obj/machinery/light/fluorescent/harsh/very{
+/turf/floor/redblack{
 	dir = 8
 	},
-/turf/floor/grey,
 /area/allowGenerate/caves)
 "ahP" = (
-/obj/machinery/power/data_terminal,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
 /obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/turf/floor/yellow/side{
-	dir = 4
-	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "aiB" = (
 /obj/disposalpipe/segment/horizontal,
@@ -90,26 +134,42 @@
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "ajJ" = (
-/obj/decal/cleanable/dirt/random,
+/obj/cable{
+	icon_state = "1-8"
+	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "ajK" = (
-/obj/grille/catwalk/bob,
-/obj/decal/poster/wallsign/logistics_right{
-	pixel_y = 32
+/obj/machinery/door/airlock/glass/command,
+/turf/floor/darkblue,
+/area/allowGenerate/caves)
+"akd" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"akd" = (
-/obj/disposalpipe/segment/bent/east,
-/turf/floor/white,
-/area/allowGenerate/caves)
 "akD" = (
-/obj/disposalpipe/segment{
-	dir = 2
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/blueblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"alq" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/floor/yellowblack{
-	dir = 1
+	dir = 8
 	},
 /area/allowGenerate/caves)
 "alw" = (
@@ -123,27 +183,21 @@
 /turf/floor/grey,
 /area/allowGenerate/caves)
 "alx" = (
-/turf/floor/yellowblack{
-	dir = 5
-	},
+/obj/machinery/door/airlock/glass,
+/turf/floor,
 /area/allowGenerate/caves)
 "amq" = (
-/turf/floor/yellowblack{
-	dir = 4
+/obj/wingrille_spawn,
+/turf/floor/plating{
+	icon_old = "diamondtile"
 	},
 /area/allowGenerate/caves)
 "amE" = (
-/turf/floor/tangerineblack/corner{
-	dir = 8
-	},
+/turf/floor/stairs/wide/other,
 /area/allowGenerate/caves)
 "anb" = (
-/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
-/obj/cable{
-	icon_state = "2-9"
-	},
-/turf/floor/plating{
-	icon_old = "fullblack"
+/turf/floor/redblack{
+	dir = 5
 	},
 /area/allowGenerate/caves)
 "ann" = (
@@ -158,31 +212,27 @@
 /turf/floor/grey,
 /area/allowGenerate/caves)
 "aot" = (
-/obj/disposalpipe/segment/bent/west,
-/turf/floor/white,
+/obj/disposalpipe/segment/bent/north,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "aoX" = (
-/obj/decal/tile_edge/floorguide/mining{
-	dir = 8
-	},
-/obj/decal/tile_edge/floorguide/qm{
-	dir = 4
-	},
-/turf/floor/black,
-/area/allowGenerate/caves)
-"apx" = (
-/turf/floor/tangerineblack{
-	dir = 6
-	},
+/obj/disposalpipe/switch_junction/right/east,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "apH" = (
-/obj/machinery/atmospherics/valve/purge/horizontal,
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/grille/catwalk/bob,
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "aqd" = (
-/obj/machinery/light/fluorescent/harsh/very,
-/obj/rack,
-/turf/floor/black,
+/obj/grille/catwalk/bob,
+/obj/machinery/door/airlock/glass,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "aqq" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
@@ -195,36 +245,48 @@
 	},
 /area/allowGenerate/caves)
 "atf" = (
-/turf/floor/neutral/corner{
-	dir = 4
+/obj/machinery/door/airlock/glass,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "atl" = (
-/obj/machinery/light/fluorescent/harsh/very{
-	dir = 1
-	},
-/turf/floor/plating{
-	icon_old = "dark"
-	},
+/obj/grille/catwalk/bob,
+/obj/disposalpipe/switch_junction/right/south,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "atF" = (
-/obj/disposalpipe/segment/bent/north,
-/turf/floor,
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "atP" = (
-/obj/disposalpipe/segment/bent/west,
-/turf/floor,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "6-8"
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "auf" = (
 /obj/cable{
-	icon_state = "0-2"
-	},
-/obj/cable{
+	d1 = 2;
 	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "6-9"
 	},
-/obj/machinery/power/data_terminal,
-/turf/floor/black,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "auS" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -233,86 +295,109 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"avd" = (
+/obj/submachine/chem_extractor,
+/turf/floor/industrial,
+/area/allowGenerate/caves)
+"axf" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/yellowblack,
+/area/allowGenerate/caves)
 "axg" = (
-/obj/cable{
-	icon_state = "4-8"
+/obj/machinery/light/fluorescent/harsh/very{
+	dir = 8
 	},
-/turf/floor/black,
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "axu" = (
-/obj/wingrille_spawn/reinforced,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
 /obj/cable{
+	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/floor/plating{
-	icon_old = "diamondtile"
-	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "axS" = (
-/obj/machinery/door/airlock/gannets/glass/chemistry/alt,
-/turf/floor/purple,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "ayu" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/floor/carpet/grime4,
-/area/allowGenerate/caves)
-"ayw" = (
-/obj/cable/blue,
-/obj/cable/blue{
-	icon_state = "0-4"
+/obj/grille/catwalk/bob/side{
+	dir = 8
 	},
-/obj/machinery/power/data_terminal,
-/turf/floor/carpet/grime3,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "aAa" = (
 /obj/wingrille_spawn/reinforced,
 /obj/decal/poster/wallsign/fire,
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"aAV" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/floor/purple/side{
-	dir = 9
-	},
+"aAt" = (
+/obj/disposalpipe/junction/left/east,
+/turf/floor/specialroom/bar,
 /area/allowGenerate/caves)
 "aBo" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/machinery/vending/snack_freezer,
 /turf/floor,
 /area/allowGenerate/caves)
 "aBL" = (
-/obj/machinery/door/airlock/gannets/chemistry/alt,
-/turf/floor,
-/area/allowGenerate/caves)
-"aCx" = (
-/obj/machinery/door/airlock/gannets/toxins/alt,
-/turf/floor/tangerineblack/checker,
-/area/allowGenerate/caves)
-"aCG" = (
-/obj/stool/chair/couch/purple{
+/obj/grille/catwalk/bob,
+/obj/decal/poster/wallsign/logistics_right{
+	pixel_y = 32
+	},
+/obj/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/carpet/grime3,
+/turf/floor/plating,
 /area/allowGenerate/caves)
-"aDd" = (
-/obj/machinery/vending/coffee,
-/turf/floor/carpet/grime3,
+"aBR" = (
+/obj/table/auto{
+	color = "#666666"
+	},
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/cell_charger,
+/turf/floor/purpleblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"aCx" = (
+/obj/disposalpipe/segment/bent/east,
+/turf/floor/white,
+/area/allowGenerate/caves)
+"aCG" = (
+/obj/grille/catwalk/bob,
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "aDD" = (
-/turf/floor/black/corner{
-	dir = 8
+/obj/disposalpipe/segment{
+	dir = 2
 	},
+/turf/floor/yellowblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"aFw" = (
+/turf/floor/yellowblack{
+	dir = 5
+	},
+/area/allowGenerate/caves)
+"aFU" = (
+/obj/machinery/vending/player,
+/turf/floor,
 /area/allowGenerate/caves)
 "aFY" = (
 /obj/rack,
@@ -335,17 +420,110 @@
 	},
 /turf/floor,
 /area/allowGenerate/caves)
+"aHW" = (
+/turf/floor/yellowblack{
+	dir = 4
+	},
+/area/allowGenerate/caves)
+"aIr" = (
+/turf/floor/tangerineblack/corner{
+	dir = 8
+	},
+/area/allowGenerate/caves)
+"aIR" = (
+/obj/decal/tile_edge/floorguide/qm{
+	dir = 4
+	},
+/turf/floor/tangerineblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"aIW" = (
+/obj/disposalpipe/segment/bent/east,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"aJe" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "aJN" = (
 /obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "4-10"
+	icon_state = "5-10"
 	},
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"aJV" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/allowGenerate/caves)
+"aKN" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/grille/catwalk/bob/side{
+	dir = 1
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"aLS" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/floor,
 /area/allowGenerate/caves)
 "aLW" = (
 /obj/machinery/light/fluorescent/harsh/very,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"aMl" = (
+/obj/disposalpipe/segment/bent/west,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"aNV" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/obj/cable{
+	icon_state = "2-9"
+	},
+/turf/floor/plating{
+	icon_old = "fullblack"
+	},
+/area/allowGenerate/caves)
+"aPm" = (
+/obj/disposalpipe/segment/bent/west,
+/turf/floor/white,
+/area/allowGenerate/caves)
+"aPo" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-4"
+	},
+/obj/cable,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"aPv" = (
+/obj/machinery/conveyor/south{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"aQt" = (
+/obj/table/reinforced/auto{
+	icon_state = "12"
+	},
+/obj/machinery/door/window/northleft,
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "aQD" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
@@ -354,18 +532,116 @@
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"aQO" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"aRz" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal{
+	dir = 6
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"aSu" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"aSH" = (
+/turf/wall{
+	name = "column";
+	opacity = 0
+	},
+/area/allowGenerate/caves)
+"aTs" = (
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-4"
+	},
+/obj/grille/catwalk/bob,
+/obj/machinery/door/airlock/engineering,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "aTV" = (
 /obj/decal/poster/wallsign/hazard_coldloop,
 /turf/wall/r_wall,
+/area/allowGenerate/caves)
+"aUp" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/floor/black,
 /area/allowGenerate/caves)
 "aVb" = (
 /obj/decal/poster/wallsign/hazard_exheat,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/wall,
 /area/allowGenerate/caves)
+"aVL" = (
+/obj/decal/tile_edge/floorguide/mining{
+	dir = 8
+	},
+/obj/decal/tile_edge/floorguide/qm{
+	dir = 4
+	},
+/obj/decal/tile_edge/floorguide/arrow_s{
+	dir = 1
+	},
+/obj/decal/tile_edge/floorguide/arrow_s,
+/turf/floor/black,
+/area/allowGenerate/caves)
 "aWU" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"aXy" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/purplewhite,
+/area/allowGenerate/caves)
+"aXz" = (
+/obj/stool,
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"aXG" = (
+/obj/machinery/chem_heater,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "bot2"
+	},
+/turf/floor/industrial,
+/area/allowGenerate/caves)
+"aZE" = (
+/obj/disposalpipe/segment/bent/east,
+/turf/floor/tangerineblack,
+/area/allowGenerate/caves)
+"aZL" = (
+/obj/disposaloutlet/east{
+	name = "undeliverable mail outlet"
+	},
+/obj/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"baz" = (
+/obj/disposalpipe/segment/bent/west,
+/turf/floor/tangerineblack{
+	dir = 6
+	},
 /area/allowGenerate/caves)
 "bbe" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -376,6 +652,13 @@
 	tag = ""
 	},
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"bbo" = (
+/obj/machinery/atmospherics/binary/volume_pump{
+	on = 1;
+	transfer_rate = 1000
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "bbu" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -390,13 +673,140 @@
 	icon_old = "fullblack"
 	},
 /area/allowGenerate/caves)
+"bcN" = (
+/obj/machinery/atmospherics/pipe/vertical_pipe/east{
+	target_z = 1
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"bdu" = (
+/obj/machinery/atmospherics/pipe/manifold/overfloor/west,
+/obj/machinery/meter,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"bdy" = (
+/obj/machinery/atmospherics/pipe/simple/overfloor/tg_green{
+	dir = 1
+	},
+/obj/machinery/meter,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"bdL" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating/random,
+/area/allowGenerate/caves)
+"bdP" = (
+/obj/machinery/light/fluorescent/harsh/very,
+/obj/rack,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bdQ" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/neutral,
+/area/allowGenerate/caves)
 "bdR" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/grille/catwalk/bob,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"beb" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "bfa" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/northwest,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bfb" = (
+/obj/table/reinforced/auto{
+	icon_state = "3"
+	},
+/obj/window/reinforced/west,
+/turf/floor/purpleblack{
+	dir = 8
+	},
+/area/allowGenerate/caves)
+"bfC" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/table/auto{
+	color = "#666666"
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bga" = (
+/obj/machinery/door_control{
+	desc = "A remote control switch for the outer blast door.";
+	id = "tele_inner";
+	name = "Blast Door Control";
+	pixel_x = 23;
+	pixel_y = 6
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bhx" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "4-10"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"bhW" = (
+/obj/machinery/conveyor/west{
+	name = "garbo belt";
+	operating = 1
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"bic" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/grey/side{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"biC" = (
+/turf/floor/neutral/corner{
+	dir = 4
+	},
+/area/allowGenerate/caves)
+"bjv" = (
+/obj/table/reinforced/auto{
+	icon_state = "3"
+	},
+/obj/machinery/door/window/westleft,
+/turf/floor/purpleblack{
+	dir = 8
+	},
+/area/allowGenerate/caves)
+"bjM" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/turf/floor/industrial,
+/area/allowGenerate/caves)
+"bkr" = (
+/obj/cabinet/chemistry,
 /turf/floor/black,
 /area/allowGenerate/caves)
 "blf" = (
@@ -413,6 +823,14 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"blC" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/carpet/blue/standard/edge/nw,
+/area/allowGenerate/caves)
 "blI" = (
 /obj/disposalpipe/segment/mineral{
 	dir = 8
@@ -424,13 +842,58 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"blU" = (
+/obj/cabinet/chemistry2,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bmi" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/vending/cigarette,
+/turf/floor/black,
+/area/allowGenerate/caves)
 "bnk" = (
 /obj/disposalpipe/junction/left/east,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"bny" = (
+/obj/submachine/chem_extractor{
+	dir = 8
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
 "bnB" = (
 /obj/machinery/atmospherics/portables_connector/east,
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"bnG" = (
+/obj/machinery/door/airlock/classic,
+/obj/grille/catwalk/bob,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"bnX" = (
+/obj/machinery/light/fluorescent/harsh/very{
+	dir = 1
+	},
+/turf/floor/plating{
+	icon_old = "dark"
+	},
+/area/allowGenerate/caves)
+"boo" = (
+/obj/disposalpipe/segment/bent/west,
+/turf/floor,
+/area/allowGenerate/caves)
+"boQ" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/black,
 /area/allowGenerate/caves)
 "bpo" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -446,6 +909,37 @@
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"bqE" = (
+/obj/machinery/door/airlock/glass,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bsB" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer3/terminal/zeta{
+	dir = 8;
+	setup_os_string = "ZETA_MAINFRAME"
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bsX" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"btf" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
 "bul" = (
 /obj/cable{
 	d1 = 4;
@@ -458,6 +952,19 @@
 	icon_state = "6-8"
 	},
 /turf/floor,
+/area/allowGenerate/caves)
+"buL" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/door/poddoor/blast{
+	density = 0;
+	icon = 'icons/obj/doors/sovblastdoor.dmi';
+	icon_base = "bdoormidb";
+	icon_state = "bdoormidb0";
+	id = "tele_inner";
+	layer = 6.1;
+	opacity = 0
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "bvr" = (
 /obj/machinery/atmospherics/binary/passive_gate{
@@ -472,6 +979,98 @@
 /obj/machinery/atmospherics/unary/cold_sink/freezer/south,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"bwR" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment/horizontal,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"bxm" = (
+/obj/grille/catwalk/bob,
+/obj/machinery/door/airlock/glass,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"byp" = (
+/obj/table/reinforced/bar/auto,
+/obj/disposalpipe/segment/mail/vertical,
+/turf/floor/black/side{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"byH" = (
+/obj/disposalpipe/junction/right/south,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"byL" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/decal/tile_edge/line/grey{
+	icon_state = "line1"
+	},
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
+"bzd" = (
+/obj/decal/tile_edge/line/grey{
+	icon_state = "line1"
+	},
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
+"bzz" = (
+/obj/decal/tile_edge/line/grey{
+	dir = 9;
+	icon_state = "line2"
+	},
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/diagonal,
+/area/allowGenerate/caves)
+"bzR" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bAr" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bBx" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bCN" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/glass,
+/obj/machinery/door/poddoor/blast{
+	density = 0;
+	icon = 'icons/obj/doors/sovblastdoor.dmi';
+	icon_base = "bdoormidb";
+	icon_state = "bdoormidb0";
+	id = "tele_inner";
+	layer = 6.1;
+	opacity = 0
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "bCO" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
@@ -480,9 +1079,33 @@
 	dir = 8
 	},
 /area/allowGenerate/caves)
+"bDc" = (
+/obj/machinery/conveyor/south{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/machinery/crusher,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"bDw" = (
+/obj/machinery/conveyor/south{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/machinery/door/poddoor/pyro{
+	id = "crusher";
+	name = "Crusher-Gard(tm)"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "bDx" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
 /turf/floor/airless/engine/glow,
+/area/allowGenerate/caves)
+"bDL" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/machinery/door/airlock/classic,
+/turf/floor,
 /area/allowGenerate/caves)
 "bDV" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -499,10 +1122,115 @@
 	},
 /turf/floor/carpet/grime3,
 /area/allowGenerate/caves)
+"bFM" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/allowGenerate/caves)
+"bGa" = (
+/obj/machinery/door/airlock/gannets/glass/chemistry/alt,
+/turf/floor/purple,
+/area/allowGenerate/caves)
+"bHm" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/purple/side,
+/area/allowGenerate/caves)
+"bIo" = (
+/obj/machinery/door/airlock/gannets/glass/chemistry/alt,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/purple,
+/area/allowGenerate/caves)
+"bIP" = (
+/obj/machinery/door/airlock/gannets/glass/chemistry,
+/turf/floor/purple,
+/area/allowGenerate/caves)
+"bLI" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 10
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bNf" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 6
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"bNh" = (
+/obj/cable/blue,
+/obj/cable/blue{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal,
+/obj/cable/blue{
+	icon_state = "0-2"
+	},
+/turf/floor/carpet/grime3,
+/area/allowGenerate/caves)
+"bNS" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/purple/side{
+	dir = 9
+	},
+/area/allowGenerate/caves)
+"bOH" = (
+/obj/storage/closet/wardrobe/white/research,
+/turf/floor/purple/side{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"bQm" = (
+/obj/storage/closet/biohazard,
+/turf/floor/purple/side{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"bSf" = (
+/turf/floor/carpet/blue/standard/edge/west,
+/area/allowGenerate/caves)
+"bSi" = (
+/obj/submachine/laundry_machine,
+/turf/floor/purple/side{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"bSA" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/carpet/grime4,
+/area/allowGenerate/caves)
+"bTk" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "bTY" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"bUb" = (
+/obj/machinery/door/airlock,
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "bUD" = (
 /obj/machinery/atmospherics/valve/horizontal{
@@ -510,10 +1238,53 @@
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"bUR" = (
+/obj/machinery/door/airlock/gannets/chemistry/alt,
+/turf/floor,
+/area/allowGenerate/caves)
+"bUV" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/floor,
+/area/allowGenerate/caves)
+"bVC" = (
+/obj/submachine/cargopad/artlab,
+/turf/floor/carpet/grime3,
+/area/allowGenerate/caves)
+"bWc" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/decal/tile_edge/floorguide/science,
+/turf/floor,
+/area/allowGenerate/caves)
+"bXK" = (
+/obj/machinery/conveyor/east{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/plasticflaps,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "bXM" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /obj/machinery/meter,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"bXT" = (
+/obj/machinery/conveyor/east{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal{
+	dir = 6
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"bYT" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "bZG" = (
 /obj/disposalpipe/segment/ejection,
@@ -524,25 +1295,118 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"cfI" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"cfV" = (
+/obj/decal/tile_edge/line/grey{
+	dir = 9;
+	icon_state = "line2"
+	},
+/turf/floor/diagonal,
+/area/allowGenerate/caves)
+"cgI" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating{
+	icon_old = "dark"
+	},
+/area/allowGenerate/caves)
 "cgT" = (
 /obj/machinery/light/fluorescent/red,
 /obj/machinery/atmospherics/portables_connector/north,
 /turf/floor/yellow/side,
 /area/allowGenerate/caves)
+"chn" = (
+/obj/decal/tile_edge/line/grey{
+	dir = 8;
+	icon_state = "line1"
+	},
+/turf/floor/diagonal,
+/area/allowGenerate/caves)
+"ciq" = (
+/obj/machinery/neosmelter,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"cjt" = (
+/obj/machinery/door/airlock/glass/engineering,
+/turf/floor,
+/area/allowGenerate/caves)
+"cjA" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"cjC" = (
+/obj/machinery/door/airlock/gannets/toxins/alt,
+/turf/floor/tangerineblack/checker,
+/area/allowGenerate/caves)
+"cjH" = (
+/obj/stool/chair/couch/purple{
+	dir = 4
+	},
+/turf/floor/carpet/grime3,
+/area/allowGenerate/caves)
+"clv" = (
+/obj/machinery/vending/coffee,
+/turf/floor/carpet/grime3,
+/area/allowGenerate/caves)
 "clJ" = (
 /obj/grille/catwalk/bob,
 /obj/disposalpipe/junction/right/south,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"clR" = (
+/obj/machinery/atmospherics/pipe/manifold/west,
+/obj/machinery/meter,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"clU" = (
+/obj/machinery/atmospherics/pipe/vent/north,
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "cmg" = (
 /obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	icon_state = "1-8"
 	},
 /turf/floor/purple/side{
 	dir = 1
 	},
+/area/allowGenerate/caves)
+"cmE" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"cmG" = (
+/obj/machinery/atmospherics/pipe/manifold/south,
+/obj/machinery/meter,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"cmH" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/floor/industrial,
+/area/allowGenerate/caves)
+"cmR" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 9;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/floor/industrial,
+/area/allowGenerate/caves)
+"cno" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "cnD" = (
 /obj/cable{
@@ -555,6 +1419,34 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"cor" = (
+/obj/machinery/conveyor/east{
+	name = "garbo belt";
+	operating = 1
+	},
+/turf/floor/industrial,
+/area/allowGenerate/caves)
+"cpO" = (
+/turf/floor/black/corner{
+	dir = 8
+	},
+/area/allowGenerate/caves)
+"cqD" = (
+/obj/machinery/button/elevator/qm{
+	pixel_x = -32
+	},
+/turf/floor/industrial,
+/area/allowGenerate/caves)
+"crA" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/carpet/grime3,
+/area/allowGenerate/caves)
+"crT" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northwest,
+/turf/floor/black,
+/area/allowGenerate/caves)
 "csp" = (
 /obj/cable{
 	d1 = 1;
@@ -563,6 +1455,16 @@
 	},
 /obj/disposalpipe/segment/bent/north,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"csX" = (
+/turf/floor/plating,
+/area/transit_vehicle/elevator/qm_bot)
+"ctV" = (
+/obj/vehicle/forklift,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "bot2"
+	},
+/turf/floor/black,
 /area/allowGenerate/caves)
 "cvk" = (
 /obj/machinery/light/fluorescent/red,
@@ -577,9 +1479,26 @@
 	},
 /turf/floor/yellow/side,
 /area/allowGenerate/caves)
+"cCI" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/yellowblack,
+/area/allowGenerate/caves)
 "cFD" = (
 /obj/machinery/atmospherics/valve/purge/horizontal,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"cGr" = (
+/obj/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/grille/catwalk/bob/side{
+	dir = 4
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "cHT" = (
 /obj/machinery/light/small/warm{
@@ -588,6 +1507,14 @@
 /obj/machinery/space_heater,
 /turf/floor/yellow/side{
 	dir = 1
+	},
+/area/allowGenerate/caves)
+"cHU" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/tangerineblack{
+	dir = 4
 	},
 /area/allowGenerate/caves)
 "cNj" = (
@@ -606,17 +1533,27 @@
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/floor/black,
 /area/allowGenerate/caves)
+"cQy" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "cQB" = (
 /obj/cable{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "4-9"
-	},
-/obj/stool/chair{
-	dir = 4
-	},
-/obj/landmark/start{
-	name = "Engineer"
 	},
 /turf/floor,
 /area/allowGenerate/caves)
@@ -625,6 +1562,17 @@
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
+/area/allowGenerate/caves)
+"cTP" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor,
 /area/allowGenerate/caves)
 "cUA" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/northeast,
@@ -639,19 +1587,6 @@
 /obj/window/west,
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"cYa" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-9"
-	},
-/turf/floor/plating,
-/area/allowGenerate/caves)
 "dbA" = (
 /obj/machinery/atmospherics/valve/horizontal{
 	name = "Gas Feed 1"
@@ -663,10 +1598,30 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"dfV" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/tangerineblack{
+	dir = 8
+	},
+/area/allowGenerate/caves)
 "dha" = (
 /obj/wingrille_spawn/crystal,
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/southwest,
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"dhO" = (
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/mail/autoname/kitchen{
+	mail_tag = "bar";
+	name = "bar"
+	},
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "dkd" = (
 /obj/cable{
@@ -681,22 +1636,23 @@
 /obj/machinery/meter,
 /turf/floor/black,
 /area/allowGenerate/caves)
-"dnG" = (
-/obj/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/smes{
-	charge = 1e+006;
-	chargelevel = 15000;
-	name = "SMES - MISC & RESERVE";
-	output = 10000
-	},
-/turf/floor/plating,
-/area/allowGenerate/caves)
 "doB" = (
 /obj/machinery/light/fluorescent/red,
 /obj/machinery/light_switch/west,
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"dpG" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/allowGenerate/caves)
+"dtv" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/floor/white,
 /area/allowGenerate/caves)
 "dwP" = (
 /obj/decal/tile_edge/floorguide/evac{
@@ -715,9 +1671,28 @@
 "dxN" = (
 /turf/floor/carpet/blue/standard/narrow/east,
 /area/allowGenerate/caves)
+"dyc" = (
+/obj/grille/catwalk/bob/side,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "dyD" = (
 /obj/machinery/door/airlock/gannets/glass/chemistry,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"dyE" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/cable{
+	icon_state = "0-2"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"dyX" = (
+/turf/floor/yellowblack{
+	dir = 8
+	},
 /area/allowGenerate/caves)
 "dzf" = (
 /obj/cable{
@@ -741,18 +1716,6 @@
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
-/area/allowGenerate/caves)
-"dzW" = (
-/obj/cable,
-/obj/machinery/power/data_terminal,
-/obj/machinery/power/monitor{
-	dir = 1
-	},
-/turf/floor/yellowblack,
-/area/allowGenerate/caves)
-"dAQ" = (
-/obj/decal/tile_edge/stripe/extra_big,
-/turf/floor/black,
 /area/allowGenerate/caves)
 "dBA" = (
 /obj/machinery/power/data_terminal/cable_tray{
@@ -792,6 +1755,13 @@
 /obj/decal/cleanable/rust/jen/grime,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"dDF" = (
+/obj/stool,
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/neutral,
+/area/allowGenerate/caves)
 "dDQ" = (
 /obj/cable{
 	d1 = 4;
@@ -805,10 +1775,24 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"dJd" = (
+/obj/grille/catwalk/bob/side{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "dJG" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southeast,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"dKH" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/purple/side{
+	dir = 1
+	},
 /area/allowGenerate/caves)
 "dKK" = (
 /obj/disposalpipe/trunk{
@@ -816,6 +1800,12 @@
 	},
 /obj/disposaloutlet/west,
 /turf/floor/airless/engine/glow,
+/area/allowGenerate/caves)
+"dML" = (
+/obj/machinery/atmospherics/pipe/simple/overfloor/tg_green{
+	dir = 4
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "dOr" = (
 /obj/cable{
@@ -826,6 +1816,14 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/yellowblack{
 	dir = 4
+	},
+/area/allowGenerate/caves)
+"dPG" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/plating{
+	icon_old = "dark"
 	},
 /area/allowGenerate/caves)
 "dRS" = (
@@ -877,6 +1875,23 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"ebI" = (
+/obj/machinery/door/airlock/glass,
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/carpet/blue/standard/edge/north,
+/area/allowGenerate/caves)
+"edd" = (
+/obj/decal/tile_edge/line/grey{
+	dir = 4;
+	icon_state = "line1"
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/carpet/grime3,
+/area/allowGenerate/caves)
 "eho" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/stairs/wide{
@@ -905,6 +1920,15 @@
 	icon_old = "fullblack"
 	},
 /area/allowGenerate/caves)
+"ekP" = (
+/obj/disposalpipe/segment/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
 "eos" = (
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/yellowblack{
@@ -921,6 +1945,13 @@
 "esw" = (
 /obj/decal/tile_edge/floorguide/evac,
 /turf/wall,
+/area/allowGenerate/caves)
+"exD" = (
+/obj/machinery/atmospherics/pipe/simple/overfloor/tg_green{
+	dir = 10
+	},
+/obj/machinery/meter,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "eyC" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -1004,6 +2035,18 @@
 	icon_old = "dark"
 	},
 /area/allowGenerate/caves)
+"eQl" = (
+/obj/table/reinforced/bar/auto,
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/black/side{
+	dir = 1
+	},
+/area/allowGenerate/caves)
 "eRD" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
@@ -1014,6 +2057,10 @@
 	dir = 8;
 	icon_state = "line1"
 	},
+/obj/disposalpipe/segment/bent/west,
+/turf/floor/diagonal,
+/area/allowGenerate/caves)
+"eTR" = (
 /turf/floor/diagonal,
 /area/allowGenerate/caves)
 "eUc" = (
@@ -1046,10 +2093,42 @@
 /obj/machinery/atmospherics/pipe/simple/junction,
 /turf/floor/airless/engine/glow,
 /area/allowGenerate/caves)
+"ffI" = (
+/obj/cable/blue,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "0-8"
+	},
+/turf/floor/carpet/grime3,
+/area/allowGenerate/caves)
+"fjd" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/industrial,
+/area/allowGenerate/caves)
 "fjn" = (
 /obj/grille/catwalk/bob,
 /obj/machinery/door/airlock/glass,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"fnz" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/carpet/blue/standard/edge/nw,
+/area/allowGenerate/caves)
+"foA" = (
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/black,
 /area/allowGenerate/caves)
 "fsl" = (
 /obj/disposalpipe/segment/mineral{
@@ -1057,16 +2136,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/northwest,
 /turf/floor/airless/engine/glow,
-/area/allowGenerate/caves)
-"fsF" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/plating{
-	icon_old = "dark"
-	},
 /area/allowGenerate/caves)
 "fvN" = (
 /obj/machinery/atmospherics/valve/horizontal{
@@ -1079,6 +2148,11 @@
 /area/allowGenerate/caves)
 "fyr" = (
 /obj/machinery/door/airlock/gannets/glass/chemistry,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/purple,
 /area/allowGenerate/caves)
 "fyS" = (
@@ -1115,6 +2189,13 @@
 	dir = 10
 	},
 /area/allowGenerate/caves)
+"fBK" = (
+/obj/machinery/door/airlock/glass,
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/tangerineblack/checker,
+/area/allowGenerate/caves)
 "fCZ" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /turf/floor/plating{
@@ -1129,6 +2210,20 @@
 "fEA" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/floor/airless/engine/glow/blue,
+/area/allowGenerate/caves)
+"fII" = (
+/obj/grille/catwalk/bob/inner{
+	dir = 8
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"fIS" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/cable,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "fJk" = (
 /obj/machinery/shower{
@@ -1145,6 +2240,16 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/poddoor/blast{
+	density = 0;
+	dir = 4;
+	icon = 'icons/obj/doors/sovblastdoor.dmi';
+	icon_base = "bdoormidb";
+	icon_state = "bdoormidb0";
+	id = "tele_inner";
+	layer = 6.1;
+	opacity = 0
 	},
 /turf/floor,
 /area/allowGenerate/caves)
@@ -1166,6 +2271,11 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /turf/floor/plating{
 	icon_old = "fullblack"
+	},
+/area/allowGenerate/caves)
+"fUG" = (
+/turf/floor/greenblack{
+	dir = 8
 	},
 /area/allowGenerate/caves)
 "fWx" = (
@@ -1226,9 +2336,30 @@
 	dir = 4
 	},
 /area/allowGenerate/caves)
+"grX" = (
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"gtw" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/purpleblack,
+/area/allowGenerate/caves)
 "gtC" = (
-/obj/disposalpipe/segment/mail/horizontal,
+/obj/disposalpipe/switch_junction/right/west,
 /turf/floor/carpet/blue/standard/edge/sw,
+/area/allowGenerate/caves)
+"guY" = (
+/obj/machinery/vending/minibar,
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/black,
 /area/allowGenerate/caves)
 "gzq" = (
 /obj/machinery/light/fluorescent/cool/very{
@@ -1264,6 +2395,11 @@
 /area/allowGenerate/caves)
 "gHT" = (
 /obj/machinery/door/airlock/gannets/command/alt,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/carpet/grime3,
 /area/allowGenerate/caves)
 "gIZ" = (
@@ -1283,9 +2419,17 @@
 /area/allowGenerate/caves)
 "gLf" = (
 /obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
+	},
+/obj/cable{
+	icon_state = "2-4"
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
@@ -1311,13 +2455,23 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
-"gZu" = (
+"hab" = (
+/obj/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/grille/catwalk/bob,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"haE" = (
 /obj/cable{
-	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "0-4"
 	},
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"hdL" = (
+/obj/machinery/door/airlock/gannets/glass/alt,
+/turf/floor/white,
 /area/allowGenerate/caves)
 "heK" = (
 /obj/grille/catwalk/bob,
@@ -1341,17 +2495,12 @@
 /obj/decal/tile_edge/floorguide/arrow_s,
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"hje" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+"hiW" = (
+/obj/machinery/conveyor/east{
+	name = "garbo belt";
+	operating = 1
 	},
-/turf/floor,
-/area/allowGenerate/caves)
-"hjJ" = (
-/obj/disposalpipe/segment/mineral,
-/turf/floor/grey,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "hmg" = (
 /turf/floor/tangerineblack/checker,
@@ -1362,11 +2511,30 @@
 	},
 /turf/wall/gehenna,
 /area/gehenna/underground)
+"hry" = (
+/turf/floor/tangerineblack{
+	dir = 8
+	},
+/area/allowGenerate/caves)
+"hug" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating/random,
+/area/allowGenerate/caves)
 "huE" = (
 /obj/machinery/light/fluorescent/red,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/plating{
 	icon_old = "dark"
 	},
+/area/allowGenerate/caves)
+"huW" = (
+/obj/disposalpipe/segment/bent/west,
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "hvi" = (
 /obj/machinery/shower{
@@ -1375,10 +2543,42 @@
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/floor/black,
 /area/allowGenerate/caves)
+"hyS" = (
+/obj/table/wood/auto/desk,
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/turf/floor/neutral,
+/area/allowGenerate/caves)
 "hzr" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"hAP" = (
+/obj/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/bob/side{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"hBp" = (
+/obj/decal/tile_edge/line/grey{
+	dir = 5;
+	icon_state = "line2"
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/diagonal,
 /area/allowGenerate/caves)
 "hCb" = (
 /obj/cable{
@@ -1408,6 +2608,9 @@
 /area/allowGenerate/caves)
 "hIt" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
+/obj/machinery/atmospherics/pipe/simple/overfloor/tg_green{
+	dir = 4
+	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "hJM" = (
@@ -1458,6 +2661,22 @@
 "hOF" = (
 /turf/floor/carpet/blue/standard/edge/south,
 /area/allowGenerate/caves)
+"hQb" = (
+/obj/decal/tile_edge/stripe/extra_big,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"hRJ" = (
+/obj/table/auto{
+	color = "#666666"
+	},
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/turf/floor/purpleblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
 "hRO" = (
 /obj/cable{
 	d2 = 4;
@@ -1472,6 +2691,10 @@
 "hTf" = (
 /turf/wall/asteroid/gehenna/tough/z3,
 /area/allowGenerate/caves)
+"hUe" = (
+/obj/ladder/auto,
+/turf/floor/green,
+/area/allowGenerate/caves)
 "hUf" = (
 /obj/cable{
 	d1 = 1;
@@ -1484,10 +2707,16 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"hUF" = (
+/turf/floor/purplewhite,
+/area/allowGenerate/caves)
 "icg" = (
 /obj/machinery/atmospherics/valve/purge/horizontal{
 	icon_state = "valve1";
 	open = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/overfloor/tg_green{
+	dir = 1
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
@@ -1497,6 +2726,43 @@
 	icon_state = "xtra_bigstripe-corner2"
 	},
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"igw" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/carpet/grime4,
+/area/allowGenerate/caves)
+"igF" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"iho" = (
+/obj/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/grille/catwalk/bob/side{
+	dir = 8
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"inP" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/greenblack{
+	dir = 10
+	},
 /area/allowGenerate/caves)
 "ioJ" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -1519,6 +2785,17 @@
 	dir = 8
 	},
 /area/allowGenerate/caves)
+"itf" = (
+/obj/table/auto,
+/turf/floor/purpleblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"itU" = (
+/turf/floor/tangerineblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
 "ivF" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /turf/floor/plating{
@@ -1534,6 +2811,12 @@
 	},
 /obj/wingrille_spawn/crystal,
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"ixG" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "iyR" = (
 /turf/floor/plating,
@@ -1560,6 +2843,14 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
 /turf/floor/airless/engine/glow/blue,
 /area/allowGenerate/caves)
+"iDN" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/tangerineblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
 "iFl" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -1571,11 +2862,6 @@
 	},
 /turf/floor/yellowblack{
 	dir = 1
-	},
-/area/allowGenerate/caves)
-"iFW" = (
-/turf/floor/stairs/wide/other{
-	dir = 4
 	},
 /area/allowGenerate/caves)
 "iGn" = (
@@ -1602,6 +2888,12 @@
 	pixel_y = 2
 	},
 /turf/floor/yellow/side,
+/area/allowGenerate/caves)
+"iLu" = (
+/obj/grille/catwalk/bob/side{
+	dir = 1
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "iMH" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -1649,11 +2941,20 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
-"iUc" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 1
+"iUl" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/cable{
+	icon_state = "4-8"
 	},
 /turf/floor/black,
+/area/allowGenerate/caves)
+"iUA" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "iVV" = (
 /obj/machinery/atmospherics/valve/horizontal{
@@ -1705,18 +3006,25 @@
 /obj/machinery/meter,
 /turf/floor/grey,
 /area/allowGenerate/caves)
-"jjS" = (
-/obj/cable{
-	icon_state = "1-8"
-	},
-/turf/floor,
-/area/allowGenerate/caves)
 "jjT" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
 	dir = 4
 	},
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 8
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"jkb" = (
+/obj/cable/blue{
+	icon_state = "1-2"
+	},
+/turf/floor/carpet/grime3,
+/area/allowGenerate/caves)
+"jku" = (
+/obj/table/reinforced/bar/auto,
+/obj/machinery/coffeemaker/generic{
+	pixel_y = 4
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
@@ -1728,16 +3036,58 @@
 	},
 /turf/floor/carpet/grime3,
 /area/allowGenerate/caves)
+"jlg" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "jlO" = (
 /obj/cable{
-	icon_state = "2-4"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/floor/plating{
 	icon_old = "dark"
 	},
 /area/allowGenerate/caves)
+"jmY" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/door/poddoor/blast{
+	density = 0;
+	icon = 'icons/obj/doors/sovblastdoor.dmi';
+	icon_base = "bdoormidb";
+	icon_state = "bdoormidb0";
+	id = "tele_inner";
+	layer = 6.1;
+	opacity = 0
+	},
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/allowGenerate/caves)
+"job" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "jsy" = (
-/turf/floor/tangerineblack{
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/floor/yellowblack{
 	dir = 8
 	},
 /area/allowGenerate/caves)
@@ -1757,6 +3107,10 @@
 	icon_old = "fullblack"
 	},
 /area/allowGenerate/caves)
+"jsO" = (
+/obj/table/reinforced/auto,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "jtp" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /obj/machinery/light/fluorescent/ceiling,
@@ -1773,6 +3127,9 @@
 /obj/window/west,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"jzM" = (
+/turf/floor/green,
+/area/allowGenerate/caves)
 "jAQ" = (
 /obj/cable{
 	d1 = 1;
@@ -1785,6 +3142,18 @@
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
+/area/allowGenerate/caves)
+"jDm" = (
+/obj/grille/catwalk/bob,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "jHf" = (
 /obj/cable{
@@ -1801,12 +3170,25 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"jIC" = (
+/obj/table/reinforced/auto{
+	icon_state = "3"
+	},
+/turf/floor/redblack{
+	dir = 4
+	},
+/area/allowGenerate/caves)
 "jKc" = (
 /turf/floor/airless/engine/vacuum,
 /area/allowGenerate/caves)
 "jNO" = (
 /obj/table/reinforced/industrial/auto,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"jQx" = (
+/turf/floor/black/side{
+	dir = 4
+	},
 /area/allowGenerate/caves)
 "jSh" = (
 /obj/machinery/light/small/warm{
@@ -1820,11 +3202,43 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"jVF" = (
+/obj/disposalpipe/segment/bent/east,
+/obj/machinery/conveyor/north{
+	name = "garbo belt";
+	operating = 1
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"jWQ" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/carpet/blue/standard/edge/sw,
+/area/allowGenerate/caves)
 "jYc" = (
 /obj/machinery/light_switch/north,
 /turf/floor/yellowblack{
 	dir = 1
 	},
+/area/allowGenerate/caves)
+"jYQ" = (
+/obj/machinery/atmospherics/valve/purge/horizontal,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"jYU" = (
+/obj/disposalpipe/segment/bent/west,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"jZG" = (
+/obj/decal/tile_edge/line/grey{
+	icon_state = "line1"
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/diagonal,
 /area/allowGenerate/caves)
 "jZV" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/northeast,
@@ -1833,6 +3247,14 @@
 "kah" = (
 /obj/machinery/light/fluorescent/ceiling,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"keV" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/carpet/grime4,
 /area/allowGenerate/caves)
 "kfi" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
@@ -1853,6 +3275,15 @@
 "kiB" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/carpet/blue/standard/edge/se,
+/area/allowGenerate/caves)
+"kja" = (
+/obj/table/reinforced/bar/auto,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/black/side{
+	dir = 1
+	},
 /area/allowGenerate/caves)
 "kjN" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
@@ -1898,6 +3329,12 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"ktd" = (
+/obj/machinery/chem_dispenser,
+/turf/floor/purpleblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
 "kvL" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -1905,19 +3342,23 @@
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"kwc" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/power/breaker,
-/obj/machinery/light/emergency{
+"kwl" = (
+/obj/machinery/chem_heater,
+/turf/floor/purpleblack{
 	dir = 1
 	},
+/area/allowGenerate/caves)
+"kwy" = (
+/obj/machinery/door/airlock/classic,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"kxN" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/northwest,
+/turf/floor/industrial,
+/area/allowGenerate/caves)
 "kyd" = (
+/obj/decal/tile_edge/floorguide/science,
 /turf/floor/purplewhite/corner{
 	dir = 4
 	},
@@ -1930,6 +3371,18 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"kyR" = (
+/obj/grille/steel,
+/turf/floor/plating/gehenna,
+/area/allowGenerate/caves)
+"kBq" = (
+/obj/grille/catwalk/bob,
+/obj/disposalpipe/segment/mail/vertical,
+/obj/disposalpipe/segment{
+	dir = 4
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
@@ -1953,6 +3406,13 @@
 	transfer_rate = 1000
 	},
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"kJo" = (
+/obj/machinery/vending/chem,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/turf/floor/neutral,
 /area/allowGenerate/caves)
 "kMJ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
@@ -1978,6 +3438,10 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"kQy" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/floor/industrial,
+/area/allowGenerate/caves)
 "kRc" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -1993,6 +3457,12 @@
 	icon_old = "fullblack"
 	},
 /area/allowGenerate/caves)
+"kUQ" = (
+/obj/disposalpipe/segment/bent/south,
+/turf/floor/yellowblack{
+	dir = 4
+	},
+/area/allowGenerate/caves)
 "kVg" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -2000,9 +3470,13 @@
 /turf/floor/stairs/wide/other,
 /area/allowGenerate/caves)
 "kXr" = (
-/turf/floor/purpleblack{
-	dir = 10
+/obj/submachine/chef_sink{
+	color = "#FFDDAA";
+	desc = "A common utility sink. Unsanitary.";
+	dir = 4;
+	name = "utility sink"
 	},
+/turf/floor/purpleblack,
 /area/allowGenerate/caves)
 "kZq" = (
 /obj/machinery/power/data_terminal,
@@ -2034,6 +3508,19 @@
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"ldd" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
+"ldN" = (
+/obj/stool,
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "leM" = (
 /obj/grille/catwalk/bob,
 /obj/disposalpipe/segment/bent/west,
@@ -2043,6 +3530,11 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"llX" = (
+/turf/floor/black/side{
+	dir = 1
+	},
 /area/allowGenerate/caves)
 "lmz" = (
 /obj/cable{
@@ -2063,6 +3555,10 @@
 	icon_old = "fullblack"
 	},
 /area/allowGenerate/caves)
+"lmC" = (
+/obj/machinery/door/airlock/glass,
+/turf/floor/grey/checker,
+/area/allowGenerate/caves)
 "lmP" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/door/firedoor/border_only,
@@ -2081,6 +3577,18 @@
 "lti" = (
 /obj/machinery/door/airlock/glass,
 /turf/floor/carpet/blue/standard/edge/south,
+/area/allowGenerate/caves)
+"luF" = (
+/obj/machinery/conveyor/south{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/plasticflaps,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"lxt" = (
+/obj/machinery/door/airlock/maintenance,
+/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "lzb" = (
 /obj/cable{
@@ -2121,20 +3629,19 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
-"lQO" = (
-/obj/cable,
-/obj/machinery/power/smes{
-	charge = 2e+006;
-	chargelevel = 15000;
-	name = "SMES - QM & MINING";
-	output = 10000
-	},
-/turf/floor/plating,
-/area/allowGenerate/caves)
 "lSQ" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/tangerineblack{
 	dir = 10
 	},
+/area/allowGenerate/caves)
+"lSY" = (
+/obj/stool,
+/turf/floor/black,
 /area/allowGenerate/caves)
 "lTO" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
@@ -2165,12 +3672,27 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"mcb" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "mdr" = (
 /turf/floor/stairs/wide,
 /area/allowGenerate/caves)
 "mjY" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"mkW" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "mls" = (
 /obj/machinery/atmospherics/valve/purge/horizontal{
@@ -2200,14 +3722,25 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
-"mxL" = (
-/obj/disposalpipe/segment/mail/horizontal,
+"mxH" = (
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/grille/catwalk/bob,
+/obj/stool,
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "myw" = (
 /turf/floor/redblack{
 	dir = 4
 	},
+/area/allowGenerate/caves)
+"myW" = (
+/obj/machinery/atmospherics/pipe/simple/overfloor/tg_green{
+	dir = 6
+	},
+/obj/machinery/meter,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "mzt" = (
 /obj/cable{
@@ -2226,7 +3759,16 @@
 /obj/decal/tile_edge/floorguide/engineering{
 	dir = 8
 	},
+/obj/decal/tile_edge/floorguide/arrow_e,
+/obj/decal/tile_edge/floorguide/arrow_n{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"mHg" = (
+/obj/decal/tile_edge/floorguide/science,
+/turf/floor/purplewhite,
 /area/allowGenerate/caves)
 "mIt" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -2234,6 +3776,12 @@
 	pixel_y = 32
 	},
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"mJo" = (
+/obj/machinery/chem_master{
+	dir = 8
+	},
+/turf/floor/black,
 /area/allowGenerate/caves)
 "mJB" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -2267,11 +3815,22 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"mNS" = (
+/obj/machinery/door/airlock/glass,
+/turf/floor/white,
+/area/allowGenerate/caves)
+"mNV" = (
+/obj/disposalpipe/segment/mineral,
+/turf/floor,
+/area/allowGenerate/caves)
 "mOO" = (
 /obj/cable{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
@@ -2283,6 +3842,10 @@
 	icon_state = "4-8"
 	},
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"mRm" = (
+/obj/machinery/nanofab/mining,
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "mRG" = (
 /obj/table/reinforced/industrial/auto,
@@ -2303,8 +3866,22 @@
 /obj/wingrille_spawn/crystal,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"mYd" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-4"
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "neA" = (
 /obj/machinery/door/airlock/gannets/glass/chemistry,
+/obj/cable/blue{
+	icon_state = "1-2"
+	},
 /turf/floor/carpet/grime3,
 /area/allowGenerate/caves)
 "ngH" = (
@@ -2317,11 +3894,21 @@
 /turf/floor/grey,
 /area/allowGenerate/caves)
 "nim" = (
+/obj/decal/tile_edge/floorguide/science{
+	dir = 4
+	},
 /turf/floor/purplewhite,
 /area/allowGenerate/caves)
 "niU" = (
 /obj/machinery/light/fluorescent/harsh/very,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"nkx" = (
+/obj/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/data_terminal,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "nkU" = (
 /obj/grille/catwalk/bob,
@@ -2333,9 +3920,30 @@
 "nlN" = (
 /turf/floor/yellow/checker,
 /area/allowGenerate/caves)
+"nnw" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/cable,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "noy" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"nqF" = (
+/obj/table/reinforced/bar/auto,
+/turf/floor/black/side{
+	dir = 8
+	},
 /area/allowGenerate/caves)
 "nvh" = (
 /obj/disposalpipe/trunk/zlevel{
@@ -2360,6 +3968,10 @@
 "nyR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/wall/r_wall,
+/area/allowGenerate/caves)
+"nBL" = (
+/obj/machinery/door/airlock,
+/turf/floor/black,
 /area/allowGenerate/caves)
 "nEv" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -2399,6 +4011,15 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"nUp" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/decal/tile_edge/floorguide/science{
+	dir = 8
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "nXo" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/door/airlock/glass,
@@ -2419,6 +4040,11 @@
 	},
 /area/allowGenerate/caves)
 "nZl" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/stairs/wide/other,
 /area/allowGenerate/caves)
 "oaN" = (
@@ -2444,6 +4070,7 @@
 /turf/wall/r_wall,
 /area/allowGenerate/caves)
 "ogy" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/diagonal,
 /area/allowGenerate/caves)
 "ohj" = (
@@ -2459,6 +4086,10 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"ojx" = (
+/obj/machinery/atmospherics/pipe/tank/south,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "ojB" = (
 /obj/cable{
 	d1 = 4;
@@ -2471,6 +4102,12 @@
 	icon_state = "1-4"
 	},
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"ojN" = (
+/obj/submachine/chef_sink{
+	dir = 4
+	},
+/turf/floor/black,
 /area/allowGenerate/caves)
 "onb" = (
 /obj/cable{
@@ -2487,12 +4124,24 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"ooY" = (
+/turf/floor/stairs/wide/other{
+	dir = 4
+	},
+/area/allowGenerate/caves)
 "opH" = (
 /obj/grille/catwalk/bob,
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/plating{
 	icon_old = "diamondtile"
 	},
+/area/allowGenerate/caves)
+"ora" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 5;
+	icon_state = "xtra_bigstripe-corner2"
+	},
+/turf/floor/black,
 /area/allowGenerate/caves)
 "ouj" = (
 /obj/wingrille_spawn/reinforced,
@@ -2504,6 +4153,16 @@
 /obj/disposalpipe/segment/configurator{
 	dir = 2
 	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"ovy" = (
+/obj/machinery/power/smes{
+	charge = 2e+006;
+	chargelevel = 15000;
+	name = "SMES";
+	output = 10000
+	},
+/obj/cable,
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "ovz" = (
@@ -2542,6 +4201,25 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/purplewhite,
 /area/allowGenerate/caves)
+"oFv" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"oJW" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/grey/side{
+	dir = 1
+	},
+/area/allowGenerate/caves)
 "oLl" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 1
@@ -2554,6 +4232,11 @@
 	},
 /area/allowGenerate/caves)
 "oMN" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/blueblack,
 /area/allowGenerate/caves)
 "oMY" = (
@@ -2579,6 +4262,9 @@
 /turf/floor/yellowblack{
 	dir = 6
 	},
+/area/allowGenerate/caves)
+"oTg" = (
+/turf/floor/carpet/blue/standard/edge/north,
 /area/allowGenerate/caves)
 "oTW" = (
 /obj/machinery/atmospherics/pipe/simple/junction,
@@ -2607,6 +4293,14 @@
 /obj/access_spawn/engineering_control,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"oXT" = (
+/obj/stool/chair/couch/blue{
+	dir = 8
+	},
+/turf/floor/purpleblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
 "oZi" = (
 /obj/machinery/light/fluorescent/red{
 	dir = 1
@@ -2618,6 +4312,11 @@
 /turf/floor/stairs/wide{
 	dir = 8
 	},
+/area/allowGenerate/caves)
+"pbm" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/door/airlock/glass,
+/turf/floor/carpet/blue/standard/edge/south,
 /area/allowGenerate/caves)
 "pcG" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -2652,10 +4351,35 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"pje" = (
+/obj/machinery/atmospherics/pipe/manifold/west,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"pjX" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/stool,
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "ply" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/stairs/wide/other{
 	dir = 8
+	},
+/area/allowGenerate/caves)
+"pmZ" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable{
+	icon_state = "1-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/purple/side{
+	dir = 1
 	},
 /area/allowGenerate/caves)
 "poe" = (
@@ -2682,14 +4406,36 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"puM" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/neutral/side{
+	dir = 8
+	},
+/area/allowGenerate/caves)
 "pvo" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/floor/airless/engine/glow/blue,
+/area/allowGenerate/caves)
+"pwB" = (
+/obj/machinery/door/airlock,
+/turf/floor,
 /area/allowGenerate/caves)
 "pyn" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/wingrille_spawn/crystal,
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"pyB" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-4"
+	},
+/obj/cable{
+	icon_state = "0-2"
+	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "pzc" = (
@@ -2741,12 +4487,34 @@
 /turf/floor/black,
 /area/allowGenerate/caves)
 "pNY" = (
+/obj/table/reinforced/bar/auto,
 /turf/floor/black/side{
 	dir = 4
 	},
 /area/allowGenerate/caves)
+"pOo" = (
+/obj/machinery/chem_dispenser,
+/turf/floor/industrial,
+/area/allowGenerate/caves)
+"pSx" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/machinery/door/airlock/classic,
+/turf/floor/black,
+/area/allowGenerate/caves)
 "pTm" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
 /turf/floor/carpet/blue/standard/edge/north,
+/area/allowGenerate/caves)
+"pTR" = (
+/obj/grille/catwalk/bob,
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "pWd" = (
 /obj/machinery/atmospherics/valve/horizontal{
@@ -2766,6 +4534,10 @@
 	dir = 1
 	},
 /area/allowGenerate/caves)
+"qez" = (
+/obj/disposalpipe/segment/bent/east,
+/turf/floor/industrial,
+/area/allowGenerate/caves)
 "qfN" = (
 /obj/machinery/ignition_switch{
 	id = "combustion_ignition";
@@ -2783,6 +4555,10 @@
 	},
 /obj/decal/cleanable/rust/jen/grime,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"qfV" = (
+/obj/table/reinforced/auto,
+/turf/floor,
 /area/allowGenerate/caves)
 "qgD" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
@@ -2825,6 +4601,17 @@
 	icon_old = "fullblack"
 	},
 /area/allowGenerate/caves)
+"qof" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
 "qrO" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/northwest,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -2837,6 +4624,17 @@
 /obj/machinery/light/emergency,
 /turf/floor/yellowblack{
 	dir = 10
+	},
+/area/allowGenerate/caves)
+"qtp" = (
+/obj/grille/catwalk/bob,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating{
+	icon_old = "diamondtile"
 	},
 /area/allowGenerate/caves)
 "quR" = (
@@ -2856,6 +4654,16 @@
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
+/area/allowGenerate/caves)
+"qwG" = (
+/obj/grille/catwalk/bob,
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "qyp" = (
 /obj/machinery/door/firedoor/border_only,
@@ -2936,6 +4744,12 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/black,
 /area/allowGenerate/caves)
+"qIy" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
 "qJm" = (
 /obj/machinery/light/small/warm{
 	dir = 8
@@ -2947,6 +4761,16 @@
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
+/area/allowGenerate/caves)
+"qJB" = (
+/obj/grille/catwalk/bob,
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "qLd" = (
 /obj/disposalpipe/segment{
@@ -2998,6 +4822,10 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"qVh" = (
+/obj/disposalpipe/segment/bent/north,
+/turf/floor,
+/area/allowGenerate/caves)
 "qWW" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
@@ -3046,8 +4874,14 @@
 	},
 /area/allowGenerate/caves)
 "rde" = (
-/obj/disposalpipe/segment/bent/west,
+/obj/disposalpipe/segment/mineral,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"rek" = (
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/white,
 /area/allowGenerate/caves)
 "rhf" = (
 /obj/cable{
@@ -3063,14 +4897,6 @@
 	},
 /turf/floor,
 /area/allowGenerate/caves)
-"rkx" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/grey,
-/area/allowGenerate/caves)
 "rlG" = (
 /obj/cable{
 	icon_state = "2-4"
@@ -3085,6 +4911,10 @@
 	icon_state = "xtra_bigstripe-corner2"
 	},
 /turf/floor/black,
+/area/allowGenerate/caves)
+"rmn" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor,
 /area/allowGenerate/caves)
 "rnh" = (
 /obj/cable/blue,
@@ -3112,6 +4942,10 @@
 /obj/reagent_dispensers/foamtank,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"rqZ" = (
+/obj/machinery/door/airlock/gannets/glass/alt,
+/turf/floor/bluegreen,
+/area/allowGenerate/caves)
 "ruZ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -3119,10 +4953,50 @@
 	icon_old = "fullblack"
 	},
 /area/allowGenerate/caves)
+"rwG" = (
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "rxM" = (
 /turf/floor/purple/side{
 	dir = 9
 	},
+/area/allowGenerate/caves)
+"ryv" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/white,
+/area/allowGenerate/caves)
+"ryO" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/floor/black,
+/area/allowGenerate/caves)
+"rBa" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/purple/side{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"rEp" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "rFm" = (
 /obj/machinery/camera{
@@ -3136,6 +5010,11 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"rKE" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment/mineral,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "rLl" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /obj/wingrille_spawn/reinforced,
@@ -3147,6 +5026,9 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
+/obj/cable/blue{
+	icon_state = "0-2"
+	},
 /turf/floor/carpet/grime3,
 /area/allowGenerate/caves)
 "rLY" = (
@@ -3197,6 +5079,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"rSf" = (
+/obj/machinery/nanofab/refining,
+/turf/floor/industrial,
+/area/allowGenerate/caves)
 "rTc" = (
 /obj/cable{
 	icon_state = "1-10"
@@ -3207,12 +5093,6 @@
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
-/area/allowGenerate/caves)
-"rTo" = (
-/obj/cable{
-	icon_state = "1-10"
-	},
-/turf/floor/plating,
 /area/allowGenerate/caves)
 "rUY" = (
 /obj/grille/catwalk/bob,
@@ -3235,6 +5115,18 @@
 	},
 /turf/floor,
 /area/allowGenerate/caves)
+"rWk" = (
+/obj/grille/catwalk/bob/side{
+	dir = 10
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"rXX" = (
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/industrial,
+/area/allowGenerate/caves)
 "rYG" = (
 /obj/landmark/gps_waypoint,
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
@@ -3245,6 +5137,9 @@
 /area/allowGenerate/caves)
 "seq" = (
 /obj/machinery/light_switch/north,
+/obj/cable{
+	icon_state = "2-8"
+	},
 /turf/floor/plating{
 	icon_old = "dark"
 	},
@@ -3283,6 +5178,10 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"snE" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/wall,
+/area/allowGenerate/caves)
 "snZ" = (
 /obj/cable{
 	d1 = 1;
@@ -3295,6 +5194,18 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/floor/black,
 /area/allowGenerate/caves)
+"ssE" = (
+/obj/decal/tile_edge/line/grey{
+	dir = 1;
+	icon_state = "line1"
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/diagonal,
+/area/allowGenerate/caves)
 "svF" = (
 /turf/floor/tangerineblack{
 	dir = 4
@@ -3304,12 +5215,26 @@
 /obj/machinery/atmospherics/portables_connector/west,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"syL" = (
+/obj/cable{
+	icon_state = "2-4"
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/white,
+/area/allowGenerate/caves)
 "szc" = (
 /turf/floor/purple/side{
 	dir = 4
 	},
 /area/allowGenerate/caves)
 "szg" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/carpet/blue/standard/edge/west,
 /area/allowGenerate/caves)
 "sCc" = (
@@ -3321,17 +5246,16 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"sDa" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/floor/purple/side{
-	dir = 8
+"sDj" = (
+/obj/submachine/chem_extractor,
+/turf/floor/purpleblack{
+	dir = 1
 	},
 /area/allowGenerate/caves)
 "sDR" = (
+/obj/machinery/ai_status_display{
+	pixel_y = 28
+	},
 /turf/floor/neutral/side{
 	dir = 8
 	},
@@ -3342,6 +5266,20 @@
 /area/allowGenerate/caves)
 "sIA" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/northeast,
+/turf/floor/grey,
+/area/allowGenerate/caves)
+"sJa" = (
+/obj/machinery/chem_master,
+/turf/floor/purpleblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"sKK" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
 "sMe" = (
@@ -3363,12 +5301,28 @@
 /obj/disposalpipe/segment/bent/west,
 /turf/floor/industrial,
 /area/allowGenerate/caves)
+"sNk" = (
+/obj/grille/catwalk/bob,
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "sPh" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /turf/floor,
+/area/allowGenerate/caves)
+"sTK" = (
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/white,
 /area/allowGenerate/caves)
 "sUk" = (
 /obj/cable{
@@ -3381,6 +5335,12 @@
 "sXP" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"sYW" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/white,
 /area/allowGenerate/caves)
 "taw" = (
 /obj/disposalpipe/segment{
@@ -3397,6 +5357,12 @@
 	},
 /turf/floor/diagonal,
 /area/allowGenerate/caves)
+"tcy" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/wall,
+/area/allowGenerate/caves)
 "tcM" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /turf/floor/black,
@@ -3407,7 +5373,23 @@
 "tdm" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/wingrille_spawn/reinforced,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/plating/random,
+/area/allowGenerate/caves)
+"tgp" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor,
+/area/allowGenerate/caves)
+"tjf" = (
+/obj/grille/catwalk/bob,
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "tjs" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
@@ -3428,9 +5410,35 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"toN" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
+"tpR" = (
+/obj/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/grille/catwalk/bob,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"tqc" = (
+/obj/cable{
+	icon_state = "1-2"
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "tqv" = (
 /obj/disposalpipe/segment/ejection,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"tqJ" = (
+/obj/decal/tile_edge/line/grey{
+	dir = 1;
+	icon_state = "line1"
+	},
+/turf/floor/diagonal,
 /area/allowGenerate/caves)
 "tsv" = (
 /turf/floor/yellowblack{
@@ -3456,8 +5464,18 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/floor/yellowblack,
 /area/allowGenerate/caves)
+"tzD" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/greenblack,
+/area/allowGenerate/caves)
 "tBg" = (
 /turf/floor/purple/side,
+/area/allowGenerate/caves)
+"tBh" = (
+/obj/disposalpipe/segment/bent/north,
+/turf/floor/black,
 /area/allowGenerate/caves)
 "tFp" = (
 /turf/floor/carpet/blue/standard/narrow/west,
@@ -3469,6 +5487,35 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"tIt" = (
+/obj/grille/catwalk/bob,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"tLy" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/submachine/slot_machine,
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
+"tMz" = (
+/obj/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/grille/catwalk/bob,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "tNx" = (
 /obj/decal/tile_edge/line/grey{
 	dir = 5;
@@ -3478,13 +5525,17 @@
 /area/allowGenerate/caves)
 "tOa" = (
 /obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	icon_state = "2-8"
 	},
-/obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/disposalpipe/segment/mail/vertical,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"tOK" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "tTR" = (
 /obj/machinery/camera{
@@ -3500,6 +5551,27 @@
 "tUA" = (
 /turf/floor/tangerineblack,
 /area/allowGenerate/caves)
+"tVa" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/carpet/grime4,
+/area/allowGenerate/caves)
+"tVV" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/submachine/slot_machine,
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
+"tYj" = (
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/turf/floor/black,
+/area/allowGenerate/caves)
 "tZi" = (
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
 	target_z = 1
@@ -3514,9 +5586,21 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"ubj" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/grille/catwalk/bob,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "udy" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"udQ" = (
+/obj/table/reinforced/auto{
+	icon_state = "12"
+	},
+/obj/window/reinforced/north,
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "ufl" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
@@ -3538,15 +5622,16 @@
 "uhV" = (
 /turf/floor/airless/engine/glow/blue,
 /area/allowGenerate/caves)
-"uiI" = (
-/turf/floor/yellowblack,
-/area/allowGenerate/caves)
 "ujC" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "umZ" = (
 /turf/floor/purple,
+/area/allowGenerate/caves)
+"unm" = (
+/obj/machinery/door/airlock/maintenance,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "unt" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
@@ -3573,17 +5658,35 @@
 /turf/floor/grey,
 /area/allowGenerate/caves)
 "uro" = (
+/obj/disposalpipe/segment/bent/south,
 /obj/decal/tile_edge/line/grey{
-	dir = 9;
-	icon_state = "line2"
+	icon_state = "line1"
 	},
-/turf/floor/diagonal,
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "urF" = (
 /turf/floor/purpleblack,
 /area/allowGenerate/caves)
+"usb" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "utf" = (
 /turf/floor/circuit,
+/area/allowGenerate/caves)
+"uuc" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8;
+	tag = "icon-xtra_bigstripe-edge (WEST)"
+	},
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "uxX" = (
 /obj/disposalpipe/junction/right/west,
@@ -3591,6 +5694,17 @@
 	dir = 4
 	},
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"uzH" = (
+/obj/machinery/conveyor/south{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/machinery/door/poddoor/pyro{
+	id = "refining";
+	name = "refining"
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "uzO" = (
 /turf/floor/grey/side{
@@ -3600,6 +5714,9 @@
 "uzY" = (
 /turf/floor/yellow,
 /area/allowGenerate/caves)
+"uAB" = (
+/turf/floor/plating,
+/area/transit_vehicle/elevator/dum_bot)
 "uCF" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/landmark/start{
@@ -3609,24 +5726,11 @@
 	dir = 4
 	},
 /area/allowGenerate/caves)
-"uEX" = (
-/obj/cable{
-	d2 = 8;
-	icon_state = "0-8"
+"uCN" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
 	},
-/obj/machinery/power/smes{
-	charge = 2e+006;
-	chargelevel = 15000;
-	name = "SMES - CIVILLIAN";
-	output = 10000
-	},
-/turf/floor/plating,
-/area/allowGenerate/caves)
-"uFv" = (
-/obj/disposalpipe/segment/mineral{
-	dir = 8
-	},
-/turf/floor/grey,
+/turf/floor/black,
 /area/allowGenerate/caves)
 "uHl" = (
 /obj/disposalpipe/segment/mineral{
@@ -3641,12 +5745,25 @@
 /obj/machinery/door/airlock/engineering,
 /obj/access_spawn/engineering_engine,
 /obj/machinery/door/firedoor/border_only,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "uJY" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"uMu" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor,
 /area/allowGenerate/caves)
 "uMP" = (
 /turf/floor/plating{
@@ -3684,6 +5801,14 @@
 	dir = 8
 	},
 /area/allowGenerate/caves)
+"uQB" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "uSr" = (
 /obj/decal/tile_edge/line/grey{
 	icon_state = "line1"
@@ -3706,6 +5831,17 @@
 /obj/decal/cleanable/rust/jen/grime,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"uVn" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/cable,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"uWc" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "uXf" = (
 /obj/disposalpipe/segment/bent/west,
 /turf/floor/yellowblack/corner{
@@ -3716,10 +5852,9 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/specialroom/bar,
 /area/allowGenerate/caves)
-"vax" = (
-/turf/floor/purpleblack{
-	dir = 8
-	},
+"vaB" = (
+/obj/machinery/atmospherics/pipe/vent/east,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "vbn" = (
 /turf/floor/grey/side{
@@ -3732,6 +5867,11 @@
 	},
 /area/allowGenerate/caves)
 "vce" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/stairs/wide/middle{
 	dir = 8
 	},
@@ -3756,7 +5896,17 @@
 /area/allowGenerate/caves)
 "vhT" = (
 /obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
 	icon_state = "2-4"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
@@ -3776,8 +5926,8 @@
 	dir = 8
 	},
 /area/allowGenerate/caves)
-"vlE" = (
-/obj/disposalpipe/segment/mail/horizontal,
+"vkE" = (
+/obj/submachine/ice_cream_dispenser,
 /turf/floor/industrial,
 /area/allowGenerate/caves)
 "vmc" = (
@@ -3791,7 +5941,15 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor/black,
 /area/allowGenerate/caves)
+"vol" = (
+/obj/table/auto,
+/turf/floor/black,
+/area/allowGenerate/caves)
 "vpv" = (
+/obj/table/reinforced/bar/auto,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/black/side{
 	dir = 5
 	},
@@ -3809,12 +5967,6 @@
 	},
 /turf/floor,
 /area/allowGenerate/caves)
-"vpS" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/turf/floor,
-/area/allowGenerate/caves)
 "vpZ" = (
 /obj/cable{
 	d1 = 1;
@@ -3827,17 +5979,33 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"vrL" = (
+/obj/cable,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"vse" = (
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/data_terminal,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "vsW" = (
 /turf/floor/carpet/blue/standard/edge/se,
+/area/allowGenerate/caves)
+"vtD" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "vtT" = (
 /obj/machinery/power/data_terminal,
 /obj/cable{
 	d2 = 8;
 	icon_state = "0-8"
-	},
-/obj/machinery/computer3/terminal{
-	dir = 8
 	},
 /turf/floor/yellow/side{
 	dir = 4
@@ -3847,8 +6015,20 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/northwest,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"vwy" = (
+/obj/machinery/door/airlock/classic{
+	name = "Bathroom Door"
+	},
+/turf/floor/grey/blackgrime,
+/area/allowGenerate/caves)
 "vwJ" = (
 /turf/floor/carpet/blue/standard/edge/nw,
+/area/allowGenerate/caves)
+"vxu" = (
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor,
 /area/allowGenerate/caves)
 "vyB" = (
 /obj/decal/tile_edge/line/grey{
@@ -3867,6 +6047,12 @@
 	icon_old = "fullblack"
 	},
 /area/allowGenerate/caves)
+"vzz" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/carpet/grime3,
+/area/allowGenerate/caves)
 "vAn" = (
 /obj/disposalpipe/segment/ejection,
 /obj/machinery/light/fluorescent/cool/very{
@@ -3874,13 +6060,12 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
-"vAE" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 8
-	},
-/turf/floor/black,
-/area/allowGenerate/caves)
 "vBX" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/tangerineblack{
 	dir = 1
 	},
@@ -3891,6 +6076,13 @@
 /area/allowGenerate/caves)
 "vHU" = (
 /obj/disposalpipe/segment/bent/south,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"vKT" = (
+/obj/machinery/conveyor/north{
+	name = "garbo belt";
+	operating = 1
+	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "vMl" = (
@@ -3921,6 +6113,30 @@
 	icon_old = "fullblack"
 	},
 /area/allowGenerate/caves)
+"vQL" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment/mail/vertical,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"vRa" = (
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/grille/catwalk/bob,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"vRS" = (
+/obj/grille/catwalk/bob,
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "vSw" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
 /obj/item/device/radio/beacon,
@@ -3946,13 +6162,14 @@
 	dir = 1
 	},
 /area/allowGenerate/caves)
-"waD" = (
+"vVZ" = (
 /obj/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "1-6"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/floor/plating,
+/obj/machinery/door/airlock/engineering,
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "wdn" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -3965,12 +6182,13 @@
 	dir = 1
 	},
 /area/allowGenerate/caves)
+"wev" = (
+/obj/table/reinforced/auto,
+/turf/floor/plating/gehenna,
+/area/allowGenerate/caves)
 "wfP" = (
 /obj/cable,
 /obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal/zeta{
-	setup_os_string = "CIV_MAINFRAME"
-	},
 /turf/floor/yellowblack,
 /area/allowGenerate/caves)
 "wfY" = (
@@ -3987,6 +6205,9 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"wkU" = (
+/turf/floor/yellowblack,
+/area/allowGenerate/caves)
 "wnF" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southeast,
 /turf/floor/airless/engine/glow,
@@ -3999,15 +6220,23 @@
 "wpY" = (
 /turf/floor/carpet/blue/standard/narrow/eastwest,
 /area/allowGenerate/caves)
-"wqm" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
+"wqv" = (
 /obj/cable{
-	d2 = 2;
-	icon_state = "0-2"
+	icon_state = "4-8"
 	},
-/turf/floor/plating,
+/turf/floor/black,
+/area/allowGenerate/caves)
+"wra" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/wall,
+/area/allowGenerate/caves)
+"wsa" = (
+/obj/disposalpipe/segment/horizontal,
+/turf/floor/black,
 /area/allowGenerate/caves)
 "wso" = (
 /obj/wingrille_spawn/crystal,
@@ -4029,6 +6258,11 @@
 /area/allowGenerate/caves)
 "wtI" = (
 /obj/machinery/door/airlock/glass,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/white,
 /area/allowGenerate/caves)
 "wtR" = (
@@ -4047,6 +6281,11 @@
 /area/allowGenerate/caves)
 "wBg" = (
 /obj/disposalpipe/segment/mail/horizontal,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/white,
 /area/allowGenerate/caves)
 "wCR" = (
@@ -4068,6 +6307,10 @@
 "wFT" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/carpet/blue/standard/edge/ne,
+/area/allowGenerate/caves)
+"wGx" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/black,
 /area/allowGenerate/caves)
 "wGK" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
@@ -4096,6 +6339,12 @@
 /turf/floor/redwhite{
 	dir = 8
 	},
+/area/allowGenerate/caves)
+"wLW" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/specialroom/bar,
 /area/allowGenerate/caves)
 "wMz" = (
 /obj/cable{
@@ -4131,13 +6380,26 @@
 	},
 /turf/floor/carpet/grime3,
 /area/allowGenerate/caves)
+"wRU" = (
+/obj/wingrille_spawn/reinforced,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"wTG" = (
+/obj/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/grille/catwalk/bob,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "wTP" = (
 /obj/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/power/breaker,
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "wUI" = (
@@ -4148,6 +6410,12 @@
 /turf/floor/neutral/side{
 	dir = 1
 	},
+/area/allowGenerate/caves)
+"wWg" = (
+/obj/machinery/chem_master{
+	dir = 8
+	},
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "wWO" = (
 /obj/grille/catwalk/bob,
@@ -4165,9 +6433,16 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"wYE" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/black,
+/area/allowGenerate/caves)
 "wYU" = (
-/obj/wingrille_spawn/reinforced,
-/turf/floor/plating,
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/ladder/auto,
+/turf/floor/green,
 /area/allowGenerate/caves)
 "wZK" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
@@ -4207,6 +6482,19 @@
 /obj/decal/poster/wallsign/fire,
 /turf/wall/r_wall,
 /area/allowGenerate/caves)
+"xkA" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/plating/random,
+/area/allowGenerate/caves)
+"xkK" = (
+/obj/grille/catwalk/bob,
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "xlB" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/light/fluorescent/harsh/very{
@@ -4217,6 +6505,21 @@
 "xmM" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southwest,
 /turf/floor/airless/engine/glow,
+/area/allowGenerate/caves)
+"xnI" = (
+/obj/stool/chair/couch/blue{
+	dir = 4
+	},
+/turf/floor/purpleblack{
+	dir = 1
+	},
+/area/allowGenerate/caves)
+"xoL" = (
+/obj/machinery/conveyor/south{
+	name = "garbo belt";
+	operating = 1
+	},
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "xtv" = (
 /turf/floor/sandytile,
@@ -4246,14 +6549,32 @@
 /obj/machinery/light/fluorescent/red,
 /turf/floor/airless/engine/glow/blue,
 /area/allowGenerate/caves)
+"xzv" = (
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "xBt" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor,
 /area/allowGenerate/caves)
+"xBX" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "xCF" = (
+/obj/table/reinforced/bar/auto,
 /turf/floor/black/side{
 	dir = 1
 	},
+/area/allowGenerate/caves)
+"xCV" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor,
 /area/allowGenerate/caves)
 "xDY" = (
 /turf/floor/carpet/green,
@@ -4263,18 +6584,38 @@
 	dir = 1;
 	icon_state = "line1"
 	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/diagonal,
 /area/allowGenerate/caves)
-"xJb" = (
-/turf/floor/plating/random,
+"xGo" = (
+/obj/machinery/conveyor/east{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/plasticflaps,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
 /area/allowGenerate/caves)
-"xJV" = (
+"xHw" = (
+/obj/grille/catwalk/bob,
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"xIx" = (
+/obj/machinery/door/airlock/gannets/command/alt,
+/turf/floor/carpet/grime4,
+/area/allowGenerate/caves)
+"xJb" = (
+/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "xJX" = (
 /turf/floor/carpet/blue/standard/edge/ne,
@@ -4304,12 +6645,15 @@
 "xMA" = (
 /turf/floor/darkblue,
 /area/allowGenerate/caves)
-"xNV" = (
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "xOo" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/white,
+/area/allowGenerate/caves)
+"xPc" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 8
+	},
+/turf/floor/black,
 /area/allowGenerate/caves)
 "xPN" = (
 /obj/machinery/atmospherics/valve/purge/horizontal{
@@ -4322,7 +6666,19 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"xQE" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "xQK" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
 /turf/floor/specialroom/bar,
 /area/allowGenerate/caves)
 "xQU" = (
@@ -4331,6 +6687,10 @@
 	},
 /area/allowGenerate/caves)
 "xSl" = (
+/obj/table/reinforced/bar/auto,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/black/side{
 	dir = 9
 	},
@@ -4365,10 +6725,15 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal,
+/obj/machinery/computer3/terminal/zeta{
+	setup_os_string = "ZETA_MAINFRAME"
+	},
 /turf/floor/yellowblack{
 	dir = 1
 	},
+/area/allowGenerate/caves)
+"xZo" = (
+/turf/floor/black,
 /area/allowGenerate/caves)
 "yaH" = (
 /obj/cable{
@@ -4376,10 +6741,14 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/cable{
-	icon_state = "2-5"
-	},
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"ybd" = (
+/obj/machinery/door/airlock/maintenance,
+/turf/floor/grey,
+/area/allowGenerate/caves)
+"ybl" = (
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "ybt" = (
 /turf/floor/carpet/grime3,
@@ -4390,6 +6759,14 @@
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
+/area/allowGenerate/caves)
+"ydz" = (
+/obj/machinery/conveyor/east{
+	name = "garbo belt";
+	operating = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "yeC" = (
 /turf/floor,
@@ -4408,7 +6785,12 @@
 "yhK" = (
 /turf/floor/carpet/red/standard,
 /area/allowGenerate/caves)
+"yhL" = (
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "yhN" = (
+/obj/table/reinforced/bar/auto,
+/obj/machinery/espresso_machine,
 /turf/floor/industrial,
 /area/allowGenerate/caves)
 "yhP" = (
@@ -4416,14 +6798,6 @@
 /area/allowGenerate/caves)
 "yig" = (
 /turf/floor/carpet/blue/standard/edge/sw,
-/area/allowGenerate/caves)
-"yiO" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/floor/black,
 /area/allowGenerate/caves)
 "yjp" = (
 /obj/cable{
@@ -4449,6 +6823,11 @@
 /turf/floor/airless/engine/glow,
 /area/allowGenerate/caves)
 "ykr" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/black,
 /area/allowGenerate/caves)
 "yks" = (
@@ -4458,7 +6837,8 @@
 	},
 /area/allowGenerate/caves)
 "ylx" = (
-/turf/floor/carpet/grime2,
+/obj/ladder/auto,
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "ylz" = (
 /turf/floor/plating,
@@ -4466,9 +6846,9 @@
 "ylW" = (
 /obj/cable,
 /obj/machinery/power/smes{
-	charge = 3e+006;
+	charge = 2e+006;
 	chargelevel = 15000;
-	name = "SMES - SEC & COMMAND";
+	name = "SMES";
 	output = 10000
 	},
 /turf/floor/plating,
@@ -25758,8 +28138,8 @@ yjL
 xUJ
 xUJ
 xUJ
-ykr
-ykr
+xZo
+xZo
 yjL
 hTf
 twZ
@@ -26060,8 +28440,8 @@ iyR
 xUJ
 xUJ
 xUJ
-ykr
-ykr
+xZo
+xZo
 yjL
 hTf
 twZ
@@ -26362,8 +28742,8 @@ iyR
 xUJ
 xUJ
 xUJ
-ykr
-ykr
+xZo
+xZo
 yjL
 hTf
 twZ
@@ -26664,8 +29044,8 @@ yjL
 xUJ
 xUJ
 xUJ
-ykr
-ykr
+xZo
+xZo
 yjL
 hTf
 hTf
@@ -30582,7 +32962,7 @@ xMA
 xMA
 xMA
 xMA
-xMA
+aed
 agx
 ylz
 agx
@@ -30884,9 +33264,9 @@ xMA
 xMA
 xMA
 xMA
-xMA
-ylz
-ylz
+age
+ovy
+ahP
 agx
 agx
 xUJ
@@ -31182,13 +33562,13 @@ ylz
 agx
 xMA
 xMA
-ylz
-ylz
-ylz
+pyB
+uVn
+aPo
 xMA
 xMA
 agx
-ylz
+wTP
 agx
 agx
 xUJ
@@ -31484,13 +33864,13 @@ ylz
 agx
 xMA
 xMA
-ylz
-ylz
-ylz
+mYd
+haE
+mYd
 xMA
 xMA
 agx
-ylz
+wTP
 agx
 agx
 xUJ
@@ -31786,13 +34166,13 @@ ylz
 agx
 xMA
 xMA
-ylz
-ylz
-ylz
+dyE
+nnw
+fIS
 xMA
 xMA
 agx
-ylz
+wTP
 agx
 agx
 xUJ
@@ -32089,12 +34469,12 @@ agx
 xMA
 xMA
 xMA
-xMA
-xMA
-xMA
-xMA
-ylz
-ylz
+abs
+acg
+acg
+acg
+yaH
+ajJ
 agx
 agx
 xUJ
@@ -32136,9 +34516,9 @@ xJb
 xJb
 xJb
 yjL
-xJb
-uIa
-xJb
+bdL
+rqZ
+bdL
 yjL
 agx
 ylz
@@ -32391,7 +34771,7 @@ agx
 xMA
 xMA
 yeC
-yeC
+uMu
 yeC
 xMA
 xMA
@@ -32693,7 +35073,7 @@ agx
 agx
 agx
 ylz
-yeC
+uMu
 agx
 agx
 agx
@@ -32992,20 +35372,20 @@ ygU
 ygU
 ygU
 agx
-yeC
-yeC
-yeC
-yeC
-yeC
-yeC
+tOK
+tqc
+tqc
+cQy
+tqc
+vrL
 yjL
 ylz
 ylz
 agx
 agx
-fjn
-fjn
-fjn
+bxm
+bxm
+bxm
 yjL
 hTf
 hTf
@@ -33294,12 +35674,12 @@ ygU
 ygU
 ygU
 agx
-yeC
-yeC
-yeC
-yeC
-yeC
-yeC
+tOK
+tqc
+tqc
+aJV
+tqc
+vrL
 agx
 agx
 agx
@@ -33594,14 +35974,14 @@ ygU
 ylz
 ovP
 xfY
-iFW
+ooY
 agx
-yeC
-yeC
-yeC
-yeC
-yeC
-yeC
+tOK
+aac
+tqc
+usb
+cTP
+vrL
 agx
 ylz
 ylz
@@ -33648,7 +36028,7 @@ agx
 agx
 yjL
 agx
-xLF
+hdL
 yjL
 yjL
 ylz
@@ -33898,11 +36278,11 @@ ygU
 ygU
 ygU
 agx
-yeC
-yeC
+tOK
+aaW
 agx
 agx
-yeC
+uMu
 agx
 agx
 ylz
@@ -33951,7 +36331,7 @@ xLF
 xLF
 xLF
 xLF
-nim
+mHg
 vSP
 vSP
 vSP
@@ -33961,8 +36341,8 @@ vSP
 vSP
 ohj
 kvL
-ayu
-ygM
+keV
+bSA
 ygM
 ygM
 ygM
@@ -34204,7 +36584,7 @@ agx
 agx
 agx
 yeC
-yeC
+uMu
 yeC
 agx
 agx
@@ -34251,7 +36631,7 @@ xLF
 xLF
 xLF
 xLF
-akd
+aCx
 xOo
 oFt
 xBt
@@ -34260,11 +36640,11 @@ xBt
 xBt
 xBt
 xBt
-atF
+qVh
 tBg
+xIx
 ygM
-ygM
-ygM
+tVa
 ygM
 ygM
 ygM
@@ -34506,13 +36886,13 @@ ygU
 wnZ
 yeC
 yeC
+uMu
 yeC
-yeC
-ykr
-oMN
-aat
+xZo
+agC
+ajK
 xbW
-ykr
+xZo
 xUJ
 xUJ
 xUJ
@@ -34553,25 +36933,25 @@ xLF
 xLF
 xLF
 xLF
-wBg
+dtv
 xLF
-nim
+hUF
 pzc
 pzc
 pzc
 pzc
 pzc
-atf
+biC
 wQv
 tBg
 kvL
-ayu
-ygM
-ygM
-ygM
-ygM
+keV
+igw
+keV
+keV
+keV
 gHT
-ybt
+crA
 ybt
 yjL
 hTf
@@ -34808,15 +37188,15 @@ ygU
 wnZ
 yeC
 yeC
-yeC
-yeC
+adv
+xCV
 ykr
 oMN
-wYU
-xbW
+akd
+akD
 ykr
-xUJ
-xUJ
+xHw
+pTR
 xUJ
 agx
 hTf
@@ -34849,13 +37229,13 @@ xLF
 xLF
 xLF
 xLF
-ylz
+wRU
 xLF
 xLF
 xLF
 xLF
 xLF
-wBg
+dtv
 xLF
 kyd
 yjL
@@ -34873,7 +37253,7 @@ ygM
 ygM
 ygM
 yjL
-ybt
+vzz
 ybt
 yjL
 hTf
@@ -35112,13 +37492,13 @@ yeC
 yeC
 yeC
 yeC
-ykr
-oMN
-aat
+xZo
+agC
+ajK
 xbW
-ykr
+xZo
 xUJ
-xUJ
+tIt
 xUJ
 agx
 agx
@@ -35151,13 +37531,13 @@ xLF
 xLF
 xLF
 xLF
-ylz
+wRU
 xLF
 xLF
 xLF
 xLF
 xLF
-wBg
+dtv
 xLF
 xLF
 xLF
@@ -35170,12 +37550,12 @@ wQv
 tBg
 yjL
 yjL
-wYU
-wYU
-wYU
+wRU
+wRU
+wRU
 yjL
 yjL
-ybt
+vzz
 ybt
 yjL
 hTf
@@ -35418,48 +37798,48 @@ agx
 agx
 agx
 agx
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+vtD
+ybl
+ybl
 yeC
-yhN
-yhN
+ybl
+ybl
 mdr
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
 yjL
 yjL
 yjL
-ylz
-ylz
-ylz
+wRU
+wRU
+wRU
 yjL
-ylz
-ylz
-ylz
-yjL
-yjL
-yjL
-ylz
-ylz
+wRU
+wRU
+wRU
 yjL
 yjL
-ylz
-ylz
-ylz
+yjL
+wRU
+wRU
+yjL
+yjL
+wRU
+wRU
+wRU
 xLF
 xLF
 xLF
 xLF
 xLF
-wBg
+dtv
 xLF
 xLF
 xLF
@@ -35477,7 +37857,7 @@ ybt
 ybt
 ybt
 yjL
-ybt
+vzz
 ybt
 yjL
 hTf
@@ -35720,39 +38100,39 @@ hTf
 hTf
 hTf
 agx
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+vtD
+ybl
+ybl
 yeC
-yhN
-yhN
+ybl
+ybl
 tcV
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-ylz
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-wtI
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+wRU
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+mNS
 xLF
 xLF
 xLF
@@ -35761,7 +38141,7 @@ xLF
 xLF
 xLF
 xLF
-wBg
+dtv
 xLF
 xLF
 xLF
@@ -35773,13 +38153,13 @@ wVR
 wQv
 tBg
 xWU
-ayw
-ybt
-ybt
-ybt
-ybt
+bNh
+jkb
+jkb
+jkb
+jkb
 neA
-ybt
+ffI
 ybt
 yjL
 hTf
@@ -36024,7 +38404,7 @@ agx
 agx
 agx
 xUJ
-xUJ
+tIt
 eYD
 vgo
 xBt
@@ -36063,7 +38443,7 @@ xOo
 xOo
 xOo
 xOo
-aot
+aPm
 xLF
 xLF
 xLF
@@ -36081,7 +38461,7 @@ ybt
 ybt
 ybt
 yjL
-ybt
+vzz
 ybt
 yjL
 yjL
@@ -36326,39 +38706,39 @@ yeC
 yeC
 agx
 xUJ
-xUJ
-ufR
-xUJ
-yeC
-xUJ
-xUJ
+jDm
+qJB
+xHw
+xCV
+xHw
+xHw
 nZl
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-fjn
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+aqd
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
 wtI
-xLF
-xLF
+ryv
+rek
 xLF
 xLF
 yjL
@@ -36382,8 +38762,8 @@ ybt
 ybt
 ybt
 ybt
-wYU
-ybt
+wRU
+vzz
 ybt
 yjL
 uSu
@@ -36628,7 +39008,7 @@ yeC
 yeC
 agx
 xUJ
-xUJ
+tIt
 ufR
 xUJ
 yeC
@@ -36637,40 +39017,40 @@ xUJ
 agx
 agx
 agx
-xJb
+lxt
 yjL
 yjL
 yjL
-yhN
-yhN
-ylz
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+wRU
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
 yjL
-ylz
+wRU
+sYW
 xLF
-xLF
 yjL
 yjL
 ylz
 ylz
 yjL
 yjL
-ylz
-ykr
-ylz
+wRU
+xZo
+wRU
 yjL
 hTf
 hTf
@@ -36682,13 +39062,13 @@ xWU
 rnh
 ybt
 ybt
+bVC
 ybt
+wRU
+vzz
 ybt
-wYU
-ybt
-ybt
-wYU
-aCG
+wRU
+cjH
 ybt
 ybt
 yjL
@@ -36930,7 +39310,7 @@ yeC
 yeC
 agx
 xUJ
-xUJ
+tIt
 ufR
 agx
 agx
@@ -36944,7 +39324,7 @@ xJb
 xJb
 yjL
 yjL
-sej
+kyR
 yjL
 yjL
 hTf
@@ -36956,13 +39336,13 @@ yjL
 hTf
 yjL
 yjL
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
 yjL
 xLF
-xLF
+sYW
 xLF
 yjL
 ygU
@@ -36970,9 +39350,9 @@ ylz
 ylz
 ygU
 yjL
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
 yjL
 hTf
 hTf
@@ -36987,7 +39367,7 @@ ybt
 ybt
 ybt
 yjL
-ybt
+vzz
 ybt
 ybt
 ybt
@@ -37232,7 +39612,7 @@ yeC
 yeC
 agx
 xUJ
-xUJ
+tIt
 ufR
 agx
 rxM
@@ -37264,7 +39644,7 @@ yjL
 yjL
 yjL
 xLF
-xLF
+sYW
 xLF
 yjL
 ygU
@@ -37272,9 +39652,9 @@ ygU
 ygU
 ygU
 yjL
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
 yjL
 yjL
 yjL
@@ -37284,12 +39664,12 @@ wQv
 tBg
 xWU
 rLo
-ybt
-ybt
-ybt
-ybt
+jkb
+jkb
+jkb
+jkb
 neA
-ybt
+ffI
 ybt
 ybt
 ybt
@@ -37532,9 +39912,9 @@ yeC
 yeC
 yeC
 yeC
-wYU
+wRU
 yeC
-yeC
+uMu
 wQv
 agx
 xQU
@@ -37566,21 +39946,21 @@ xLF
 xLF
 yjL
 xLF
+sYW
 xLF
-xLF
 yjL
 ygU
 ygU
 ygU
 ygU
 yjL
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
 yjL
-ylz
-ylz
-agx
+hyS
+dDF
 wVR
 wQv
 tBg
@@ -37591,10 +39971,10 @@ ybt
 ybt
 ybt
 yjL
-ybt
+vzz
 ybt
 yjL
-aDd
+clv
 ybt
 shm
 yjL
@@ -37834,9 +40214,9 @@ yeC
 yeC
 yeC
 yeC
-aaW
+alx
 yeC
-yeC
+uMu
 wQv
 umZ
 xQU
@@ -37866,23 +40246,23 @@ ygU
 ygU
 xyp
 xLF
-wtI
+mNS
 xLF
-xLF
-xLF
-yjL
-yjL
-xLF
+sYW
 xLF
 yjL
 yjL
-ylz
-myw
-myw
+lmC
+lmC
+yjL
+yjL
+wRU
+jIC
+jIC
 yjL
 agx
-agx
-agx
+kJo
+bdQ
 wVR
 wQv
 tBg
@@ -37893,7 +40273,7 @@ yjL
 yjL
 yjL
 yjL
-wRQ
+edd
 wRQ
 yjL
 agx
@@ -38136,9 +40516,9 @@ yeC
 yeC
 yeC
 yeC
-wYU
+wRU
 yeC
-yeC
+uMu
 wQv
 yjL
 xQU
@@ -38168,9 +40548,9 @@ ygU
 ygU
 xyp
 xLF
-wtI
+mNS
 xLF
-xLF
+sYW
 xLF
 xLF
 xLF
@@ -38181,21 +40561,21 @@ xLF
 xLF
 wLU
 wLU
-nim
+mHg
 yjL
 sDR
-sDR
+puM
 vUh
 wQv
 tBg
-axu
-aAV
-sDa
+bFM
+bNS
 vSP
 vSP
 vSP
 vSP
-yeC
+vSP
+xBX
 yeC
 yeC
 yeC
@@ -38472,11 +40852,11 @@ xyp
 xLF
 yjL
 xLF
+sYW
 xLF
 xLF
 xLF
-xLF
-akd
+aCx
 xOo
 xOo
 xOo
@@ -38486,18 +40866,18 @@ xOo
 oFt
 yks
 xBt
+beb
 xBt
-xBt
-atP
+boo
 tBg
-axS
-xQU
+bGa
+dKH
 yeC
 yeC
 yeC
 yeC
 yeC
-yeC
+xBX
 yeC
 yeC
 yeC
@@ -38742,7 +41122,7 @@ agx
 agx
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 yjL
@@ -38768,38 +41148,38 @@ hTf
 hTf
 hTf
 yjL
-yhN
+ylx
 xyp
 xLF
 xLF
 yjL
 xLF
-xLF
-xLF
-xLF
-xLF
+sTK
+ryv
+ryv
+ryv
 wBg
-xLF
-xLF
-xLF
-xLF
-xLF
-xLF
-nim
-xQU
-yeC
-yeC
-yeC
-yeC
-tBg
-axS
-xQU
-yeC
-vpS
-yeC
-yeC
-yeC
-yeC
+ryv
+syL
+ryv
+ryv
+ryv
+ryv
+aXy
+rBa
+xCV
+jlg
+xCV
+xCV
+bHm
+bIo
+pmZ
+xCV
+afr
+xCV
+xCV
+xCV
+vxu
 yeC
 yeC
 yeC
@@ -39044,7 +41424,7 @@ hTf
 hTf
 agx
 wWO
-wWO
+qtp
 opH
 hTf
 hTf
@@ -39070,7 +41450,7 @@ hTf
 hTf
 hTf
 agx
-yhN
+ylx
 xyp
 xLF
 xLF
@@ -39080,9 +41460,9 @@ xLF
 xLF
 xLF
 xLF
-wBg
+dtv
 xLF
-xLF
+sYW
 yjL
 xLF
 xLF
@@ -39094,10 +41474,10 @@ szc
 szc
 szc
 mKu
-axu
+bFM
 cmg
-aBo
-vpS
+yeC
+xBX
 vbB
 vbB
 vbB
@@ -39346,7 +41726,7 @@ hTf
 yjL
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 hTf
@@ -39374,7 +41754,7 @@ agx
 agx
 agx
 yjL
-xNV
+yhL
 yjL
 yjL
 yjL
@@ -39382,9 +41762,9 @@ yjL
 yjL
 yjL
 xLF
-wBg
+dtv
 xLF
-xLF
+sYW
 yjL
 yjL
 yjL
@@ -39392,21 +41772,21 @@ yjL
 agx
 agx
 yjL
-umZ
-umZ
+bfb
+bjv
 yjL
 yjL
 yjL
 xQU
 yeC
-vpS
+xBX
 agx
 agx
 agx
 agx
 agx
-aCx
-aCx
+cjC
+cjC
 agx
 agx
 agx
@@ -39648,7 +42028,7 @@ yjL
 yjL
 wXC
 tFp
-wWO
+qtp
 opH
 hTf
 hTf
@@ -39670,38 +42050,38 @@ hTf
 hTf
 hTf
 yjL
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
 agx
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
 yjL
 ouj
 qgM
 qEm
-ouj
+dpG
 yjL
 ygM
 ygM
 ygM
 ygM
 agx
-vax
-vax
-vax
-vax
+sJa
+xZo
+lSY
+xZo
 kXr
 yjL
 xQU
 yeC
-vpS
+xBX
 agx
 ylz
 ylz
@@ -39709,7 +42089,7 @@ ejv
 tUA
 hmg
 hmg
-vBX
+itU
 ejv
 ylz
 ylz
@@ -39950,7 +42330,7 @@ yjL
 gCA
 qyp
 wpY
-wWO
+qtp
 opH
 yjL
 hTf
@@ -39972,45 +42352,45 @@ hTf
 hTf
 hTf
 yjL
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
 yjL
 xJb
 wQv
 yeC
-yeC
+xBX
 yjL
 ygM
 ygM
 ygM
 ygM
 agx
-ykr
-ykr
-ykr
-ykr
+ktd
+xZo
+xZo
+xZo
 urF
 yjL
 xQU
 yeC
-vpS
+xBX
 agx
 ylz
 agx
 agx
 agx
-jsy
-jsy
+hry
+hry
 agx
 agx
 agx
@@ -40252,7 +42632,7 @@ yjL
 yjL
 wXC
 dxN
-wWO
+qtp
 opH
 hTf
 hTf
@@ -40274,49 +42654,49 @@ hTf
 hTf
 hTf
 yjL
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
 yjL
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
 yjL
 yeC
 wQv
 yeC
-xJb
-yeC
+xkA
+tgp
 ygM
 ygM
 ygM
 ygM
 agx
-ykr
-ykr
-ykr
-ykr
+sDj
+xZo
+xZo
+xZo
 urF
 yjL
 xQU
 yeC
-vpS
+xBX
 agx
 ylz
 agx
 erL
-pNY
-pNY
-pNY
-pNY
-pNY
-pNY
-aDD
+jQx
+jQx
+jQx
+jQx
+jQx
+jQx
+cpO
 agx
 ylz
 agx
@@ -40554,7 +42934,7 @@ twZ
 yjL
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 hTf
@@ -40576,38 +42956,38 @@ hTf
 hTf
 hTf
 yjL
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
 yjL
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
 yeC
 yeC
 wQv
 yeC
-yeC
+xBX
 yjL
 ygM
 ygM
 ygM
 ygM
 agx
-ykr
-ykr
-ykr
-ykr
+wRU
+wRU
+bkr
+xZo
 urF
 yjL
 xQU
 yeC
-vpS
+xBX
 agx
 ylz
 agx
@@ -40618,7 +42998,7 @@ yeC
 yeC
 yeC
 yeC
-xCF
+llX
 agx
 ylz
 agx
@@ -40856,7 +43236,7 @@ twZ
 twZ
 agx
 wWO
-wWO
+qtp
 opH
 hTf
 hTf
@@ -40884,9 +43264,9 @@ yjL
 yjL
 yjL
 yjL
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
 yjL
 yjL
 yjL
@@ -40894,22 +43274,22 @@ yjL
 yeC
 wQv
 yeC
-yeC
+xBX
 yjL
 ygM
 ygM
 ygM
 ygM
 agx
-ykr
-ykr
-ykr
-ykr
+itf
+vol
+blU
+xZo
 urF
 yjL
 xQU
 yeC
-vpS
+xBX
 agx
 ylz
 agx
@@ -40920,7 +43300,7 @@ yeC
 yeC
 yeC
 yeC
-xCF
+llX
 agx
 ylz
 agx
@@ -41158,7 +43538,7 @@ hTf
 twZ
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 hTf
@@ -41196,22 +43576,22 @@ yjL
 yeC
 wQv
 yeC
-yeC
+xBX
 yjL
 yjL
 yjL
 yjL
 yjL
 agx
-ykr
-ykr
-ykr
-ykr
-urF
+oXT
+xZo
+xZo
+foA
+gtw
 fyr
-xQU
-yeC
-vpS
+rBa
+xCV
+bTk
 ouj
 ylz
 ouj
@@ -41222,7 +43602,7 @@ yeC
 yeC
 yeC
 yeC
-xCF
+llX
 agx
 ylz
 agx
@@ -41460,7 +43840,7 @@ hTf
 hTf
 agx
 wWO
-wWO
+qtp
 opH
 hTf
 hTf
@@ -41498,22 +43878,22 @@ yjL
 xJb
 wQv
 yeC
-yeC
+xBX
 yjL
 ybt
 ybt
 ybt
 ybt
 agx
-ykr
-ykr
-ykr
-ykr
+xnI
+xZo
+xZo
+wqv
 urF
-fyr
+bIP
 xQU
 yeC
-vpS
+xBX
 ouj
 ylz
 ouj
@@ -41524,7 +43904,7 @@ yeC
 yeC
 yeC
 yeC
-xCF
+llX
 agx
 ylz
 agx
@@ -41762,7 +44142,7 @@ hTf
 hTf
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 hTf
@@ -41800,22 +44180,22 @@ yjL
 yeC
 wQv
 yeC
-yeC
+xBX
 yjL
 ybt
 ybt
 ybt
 ybt
 yjL
-ykr
-ykr
-ykr
-ykr
+aBR
+bfC
+bmi
+boQ
 urF
 yjL
 xQU
 yeC
-vpS
+xBX
 agx
 ylz
 agx
@@ -41826,7 +44206,7 @@ yeC
 yeC
 yeC
 yeC
-xCF
+llX
 agx
 ylz
 agx
@@ -42064,7 +44444,7 @@ hTf
 hTf
 agx
 wWO
-wWO
+qtp
 opH
 twZ
 hTf
@@ -42102,22 +44482,22 @@ yjL
 yeC
 wQv
 yeC
-yeC
-yeC
+xBX
+tgp
 ybt
 ybt
 ybt
 ybt
 yjL
-ykr
-ykr
-ykr
-ykr
-urF
+wRU
+wRU
+wRU
+bqE
+wRU
 yjL
-xQU
+wRU
 yeC
-vpS
+xBX
 agx
 ylz
 agx
@@ -42128,7 +44508,7 @@ yeC
 yeC
 yeC
 yeC
-xCF
+llX
 agx
 ylz
 agx
@@ -42366,7 +44746,7 @@ hTf
 hTf
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 twZ
@@ -42400,26 +44780,26 @@ wQF
 wQF
 wQF
 wKF
-wKF
+vwy
 yeC
 wQv
 yeC
+xBX
+yjL
+ybt
+ybt
+ybt
+ybt
+yjL
+hRJ
+ykr
+ykr
+boQ
+kXr
+yjL
+bOH
 yeC
-yjL
-ybt
-ybt
-ybt
-ybt
-yjL
-ykr
-ykr
-ykr
-ykr
-urF
-yjL
-xQU
-yeC
-vpS
+xBX
 agx
 ylz
 agx
@@ -42430,7 +44810,7 @@ yeC
 yeC
 yeC
 yeC
-xCF
+llX
 agx
 ylz
 agx
@@ -42668,7 +45048,7 @@ hTf
 yjL
 yjL
 wWO
-wWO
+qtp
 opH
 twZ
 twZ
@@ -42706,22 +45086,22 @@ yjL
 yeC
 wQv
 yeC
-yeC
+xBX
 yjL
 ybt
 ybt
 ybt
 ybt
 yjL
-ykr
-ykr
-ykr
-ykr
+ktd
+lSY
+xZo
+wqv
 urF
 yjL
-xQU
+bQm
 yeC
-vpS
+xBX
 agx
 ylz
 agx
@@ -42970,7 +45350,7 @@ hTf
 yjL
 xMt
 wWO
-wWO
+qtp
 opH
 yjL
 twZ
@@ -43008,22 +45388,22 @@ yjL
 yeC
 wQv
 yeC
-yeC
+xBX
 yjL
 yjL
 yjL
 yjL
 yjL
 yjL
-ykr
-ykr
-ykr
-ykr
+kwl
+mJo
+bny
+bsB
 urF
 yjL
-xQU
+bSi
 yeC
-vpS
+xBX
 agx
 ylz
 ylz
@@ -43272,7 +45652,7 @@ hTf
 yjL
 xMt
 wWO
-wWO
+qtp
 opH
 hTf
 hTf
@@ -43310,12 +45690,12 @@ yjL
 yeC
 wQv
 yeC
+xBX
 yeC
+ygU
+ygU
+ygU
 yjL
-ylx
-ylx
-ylx
-ylx
 yjL
 yjL
 yjL
@@ -43325,7 +45705,7 @@ yjL
 yjL
 yjL
 yeC
-vpS
+xBX
 agx
 agx
 ylz
@@ -43574,7 +45954,7 @@ twZ
 yjL
 yjL
 wWO
-wWO
+qtp
 opH
 yjL
 hTf
@@ -43608,26 +45988,26 @@ hTf
 hTf
 hTf
 yjL
-yeC
+aFU
 yeC
 wQv
 yeC
+xBX
 yeC
+ygU
+ygU
+ygU
 yjL
-ylx
-ylx
-ylx
-ylx
-yjL
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 ouj
 yeC
-vpS
+xBX
 yeC
 agx
 ylz
@@ -43876,7 +46256,7 @@ twZ
 hTf
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 sej
@@ -43910,26 +46290,26 @@ sej
 sej
 sej
 xJb
-yeC
+aBo
 yeC
 wQv
 yeC
+xBX
 yeC
-yeC
-ylx
-ylx
-ylx
-ylx
+ygU
+ylz
+ylz
 yjL
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 dyD
 yeC
-vpS
+xBX
 yeC
 agx
 ylz
@@ -44178,9 +46558,9 @@ twZ
 twZ
 agx
 wWO
-wWO
+qtp
 opH
-sej
+kyR
 sej
 hTf
 hTf
@@ -44212,26 +46592,26 @@ hTf
 hTf
 sej
 xJb
-yeC
+qfV
 yeC
 wQv
 yeC
+xBX
 yeC
+ygU
+ylz
+ylz
 yjL
-ylx
-ylx
-ylx
-ylx
-yjL
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+bga
+xZo
+xZo
+xZo
+xZo
 ouj
 yeC
-vpS
+xBX
 yeC
 agx
 ylz
@@ -44480,7 +46860,7 @@ hTf
 twZ
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 hTf
@@ -44514,26 +46894,26 @@ hTf
 hTf
 xJb
 yjL
-yeC
+qfV
 yeC
 wQv
 yeC
-yeC
+xBX
 yjL
-ylx
-ylx
-ylx
-ylx
 yjL
-ykr
+yjL
+yjL
+yjL
+yjL
+xZo
 agx
-ouj
-ouj
-ouj
-ouj
-ouj
+jmY
+jmY
+jmY
+jmY
+jmY
 agx
-vpS
+xBX
 yeC
 agx
 ylz
@@ -44782,7 +47162,7 @@ hTf
 hTf
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 hTf
@@ -44820,12 +47200,12 @@ yjL
 yeC
 wQv
 yeC
+xBX
+yjL
 yeC
-yjL
-yjL
-yjL
-yjL
-yjL
+yeC
+yeC
+yeC
 yjL
 yjL
 yjL
@@ -44835,7 +47215,7 @@ yeC
 yeC
 yeC
 agx
-vpS
+xBX
 yeC
 agx
 agx
@@ -45084,7 +47464,7 @@ hTf
 yjL
 agx
 wWO
-wWO
+qtp
 opH
 hTf
 hTf
@@ -45109,8 +47489,8 @@ hTf
 hTf
 yjL
 xJb
-ykr
-ykr
+xZo
+xZo
 xJb
 yjL
 xMt
@@ -45122,7 +47502,7 @@ yjL
 yeC
 wQv
 yeC
-yeC
+xBX
 yjL
 yeC
 yeC
@@ -45132,12 +47512,12 @@ yeC
 yeC
 yjL
 yeC
-ykr
-ykr
-ykr
+bsX
+bzR
+bLI
 yeC
 agx
-vpS
+xBX
 yeC
 agx
 hTf
@@ -45386,7 +47766,7 @@ yjL
 dwP
 wXC
 xUJ
-wWO
+qtp
 opH
 yjL
 hTf
@@ -45411,35 +47791,35 @@ twZ
 twZ
 yjL
 xJb
-ykr
-ykr
+xZo
+xZo
 xJb
 yjL
 xMt
 xMt
 xMt
-yhN
-yhN
+ybl
+ybl
 yjL
 yeC
 wQv
 yeC
-yeC
+xBX
 yjL
 yeC
 vwJ
-szg
+bSf
 yig
 yeC
 yeC
 yjL
 yeC
-ykr
-auf
-yiO
-aBo
+uCN
+bAr
+wMz
+xCV
 fMd
-jjS
+vxu
 yeC
 agx
 hTf
@@ -45688,7 +48068,7 @@ fOZ
 rRP
 qyp
 xUJ
-wWO
+qtp
 opH
 hTf
 hTf
@@ -45713,21 +48093,21 @@ hTf
 hTf
 yjL
 xJb
-ykr
-ykr
+xZo
+xZo
 xJb
 yjL
 xMt
 xMt
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
 yjL
 yeC
 wQv
 yeC
-yeC
-yeC
+xBX
+pwB
 yeC
 xJX
 pEn
@@ -45736,9 +48116,9 @@ yeC
 yeC
 yjL
 yeC
-ykr
-axg
-ykr
+btf
+bBx
+bNf
 yeC
 agx
 yeC
@@ -45990,7 +48370,7 @@ yjL
 esw
 wXC
 xUJ
-wWO
+qtp
 opH
 yjL
 yjL
@@ -46015,20 +48395,20 @@ hTf
 hTf
 yjL
 xJb
-ykr
-ykr
+xZo
+xZo
 xJb
 yjL
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
 yjL
 yeC
 wQv
 yeC
-yeC
+xBX
 yjL
 xJb
 xJb
@@ -46039,7 +48419,7 @@ yeC
 yjL
 yeC
 yeC
-vpS
+xBX
 yeC
 yeC
 agx
@@ -46292,7 +48672,7 @@ twZ
 yjL
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 ylz
@@ -46317,20 +48697,20 @@ hTf
 hTf
 yjL
 xJb
-ykr
-ykr
+xZo
+xZo
 xJb
 yjL
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
 agx
 yeC
 sHO
 yig
-yeC
+xBX
 yjL
 yeC
 xJb
@@ -46340,12 +48720,12 @@ agx
 agx
 agx
 agx
-yeC
-vpS
-yeC
+buL
+bCN
+buL
 agx
 agx
-aBL
+bUR
 agx
 agx
 hTf
@@ -46594,9 +48974,9 @@ hTf
 hTf
 agx
 wWO
-wWO
+qtp
 opH
-ylz
+unm
 ylz
 ylz
 ylz
@@ -46619,7 +48999,7 @@ hTf
 hTf
 yjL
 yjL
-wYU
+wRU
 ygU
 yjL
 yjL
@@ -46632,23 +49012,23 @@ agx
 agx
 nXo
 lti
-yjL
+tcy
 agx
 agx
 yeC
 yjL
 yjL
 agx
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
 yeC
-vpS
+xBX
 yeC
 yjL
-xUJ
-xUJ
-xUJ
+yeC
+yeC
+yeC
 yjL
 hTf
 hTf
@@ -46896,7 +49276,7 @@ hTf
 hTf
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 ylz
@@ -46931,26 +49311,26 @@ ygU
 ygU
 qmq
 agx
-xQK
+xzv
 wFT
 vsW
-xQK
-xQK
-xQK
-xQK
-xQK
-xQK
-wYU
-yhN
-yhN
-yhN
+wLW
+xzv
+xzv
+xzv
+xzv
+xzv
+wRU
+ybl
+ybl
+ybl
 xUJ
 nkU
 xUJ
 yjL
-xUJ
-xUJ
-xUJ
+yeC
+yeC
+yeC
 yjL
 hTf
 hTf
@@ -47233,15 +49613,15 @@ ygU
 ygU
 qmq
 agx
-xQK
+xzv
 uZW
-xQK
-xQK
-xQK
-xQK
-xQK
-xQK
-xQK
+xzv
+wLW
+xzv
+xzv
+xzv
+xzv
+xzv
 yjL
 xUJ
 xUJ
@@ -47250,9 +49630,9 @@ xUJ
 nkU
 xUJ
 yjL
-xUJ
-xUJ
-xUJ
+nUp
+bUV
+bWc
 yjL
 yjL
 yjL
@@ -47500,7 +49880,7 @@ hTf
 hTf
 agx
 wWO
-wWO
+qtp
 opH
 yjL
 xMt
@@ -47535,21 +49915,21 @@ yeC
 ygU
 ygU
 wnZ
-xQK
+xzv
 uZW
-xQK
-xQK
-xQK
-xQK
-xQK
-xQK
-vwJ
+xzv
+ldd
+uQB
+uQB
+uQB
+uQB
+blC
 szg
-yig
-xUJ
-xUJ
-xUJ
-xUJ
+jWQ
+xHw
+xHw
+xHw
+tjf
 xUJ
 xUJ
 xUJ
@@ -47802,7 +50182,7 @@ twZ
 hTf
 agx
 wWO
-wWO
+qtp
 opH
 xMt
 xMt
@@ -47837,15 +50217,15 @@ fMK
 ygU
 ygU
 wnZ
-xQK
+xzv
 uZW
-xQK
-xQK
-xQK
-xQK
-xQK
-xQK
-pTm
+xzv
+wLW
+xzv
+xzv
+xzv
+xzv
+oTg
 oMY
 hOF
 xUJ
@@ -48104,7 +50484,7 @@ twZ
 twZ
 agx
 wWO
-wWO
+qtp
 opH
 xMt
 xMt
@@ -48139,14 +50519,14 @@ yeC
 ygU
 ygU
 wnZ
-xQK
+xzv
 uZW
-xQK
-xQK
-xQK
-xQK
-xQK
-xQK
+xzv
+wLW
+xzv
+xzv
+xzv
+xzv
 xJX
 pEn
 vsW
@@ -48159,8 +50539,7 @@ xUJ
 xUJ
 xUJ
 xUJ
-nZl
-ylz
+amE
 ylz
 ylz
 ylz
@@ -48169,7 +50548,8 @@ ylz
 ylz
 ylz
 hTf
-sej
+hTf
+hTf
 hTf
 twZ
 hTf
@@ -48406,7 +50786,7 @@ hTf
 twZ
 vmc
 wWO
-wWO
+qtp
 opH
 yjL
 xMt
@@ -48443,35 +50823,35 @@ ygU
 agx
 xQK
 uZW
-xQK
-xQK
-xQK
-xQK
-xQK
-xQK
-xQK
-yjL
-yhN
-yhN
-yhN
-yhN
+xzv
+wLW
+xzv
+xzv
+xzv
+xzv
+xzv
 yjL
 yjL
 yjL
-ygU
 yjL
 yjL
 yjL
+yjL
+yjL
+bUb
+yjL
+yjL
+yjL
+yjL
 ylz
 ylz
 ylz
 ylz
 ylz
-ylz
-ylz
-ylz
-sej
-sej
+hTf
+hTf
+hTf
+hTf
 hTf
 hTf
 twZ
@@ -48708,7 +51088,7 @@ yjL
 yjL
 vmc
 wWO
-wWO
+qtp
 opH
 yjL
 xMt
@@ -48742,29 +51122,29 @@ wfY
 yeC
 ygU
 ygU
-wYU
+wRU
 xQK
 uZW
-xQK
+xzv
 xSl
+nqF
+nqF
+wRU
 vky
-vky
-wYU
-vky
 yjL
 yjL
+uAB
+uAB
 yjL
+jzM
 yjL
-yjL
-yjL
-yjL
-ygU
-ygU
-ygU
+jzM
 ygU
 ygU
 yjL
-hTf
+ylz
+ylz
+yjL
 ylz
 ylz
 twZ
@@ -49004,13 +51384,13 @@ hTf
 hTf
 hTf
 yjL
-xNV
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
+yhL
 vmc
 xUJ
-xUJ
+tIt
 ufR
 yjL
 yjL
@@ -49044,29 +51424,29 @@ ygU
 ygU
 ygU
 ygU
-wYU
+wRU
 xQK
 uZW
-xQK
-xCF
-ykr
-ykr
-ykr
-ykr
-ykr
+xzv
+kja
+xZo
+xZo
+xZo
+xZo
+ojN
 yjL
+uAB
+uAB
 ygU
 ygU
 ygU
-ygU
-ylz
-ygU
-uzY
 ygU
 ygU
 ygU
 yjL
-hTf
+yjL
+yjL
+yjL
 ylz
 ylz
 twZ
@@ -49306,13 +51686,13 @@ hTf
 hTf
 hTf
 yjL
-xNV
-xNV
-xNV
-xNV
-abs
+yhL
+yhL
+yhL
+yhL
+amq
 xUJ
-xUJ
+tIt
 ufR
 xUJ
 xUJ
@@ -49349,14 +51729,14 @@ ygU
 agx
 xQK
 uZW
-xQK
-xCF
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xzv
+kja
+xZo
+xZo
+xZo
+xZo
+xZo
+nBL
 ygU
 ygU
 ygU
@@ -49369,8 +51749,8 @@ ygU
 ygU
 yjL
 yjL
-ylz
-ylz
+unm
+yjL
 yjL
 twZ
 twZ
@@ -49608,13 +51988,13 @@ hTf
 hTf
 hTf
 yjL
-xNV
-xNV
-xNV
-xNV
-abs
+yhL
+yhL
+yhL
+yhL
+amq
 xUJ
-xUJ
+tIt
 ufR
 xUJ
 xUJ
@@ -49640,7 +52020,7 @@ yjL
 yjL
 yjL
 yjL
-wYU
+wRU
 yjL
 yjL
 yjL
@@ -49649,28 +52029,28 @@ yjL
 yjL
 agx
 agx
-xQK
-uZW
-xQK
-xCF
-ykr
-ykr
-ykr
-ykr
-ykr
+aAt
+mcb
+toN
+eQl
+abd
+guY
+qIy
+qIy
+tYj
 yjL
 ygU
 ygU
 ygU
 ygU
-ylz
+ygU
+ygU
 ygU
 ygU
 ygU
 ygU
 ygU
 yjL
-ylz
 ylz
 ylz
 ylz
@@ -49910,13 +52290,13 @@ yjL
 yjL
 yjL
 yjL
-xNV
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
+yhL
 vmc
 xUJ
-xUJ
+tIt
 ufR
 xUJ
 xUJ
@@ -49926,8 +52306,8 @@ yjL
 yjL
 yjL
 hTf
-sej
-sej
+wev
+wev
 agx
 ylz
 ylz
@@ -49949,21 +52329,21 @@ ylz
 ylz
 ylz
 ylz
-wYU
+wRU
 wto
 xQK
 uZW
-xQK
+xzv
 vpv
 pNY
+aSH
+xZo
+xZo
+jku
 yjL
-ykr
-ykr
-ykr
-yjL
-wYU
-xNV
-xNV
+wRU
+yhL
+yhL
 yjL
 yjL
 yjL
@@ -49972,7 +52352,7 @@ agx
 ygU
 ygU
 ygU
-ylz
+yjL
 ylz
 ylz
 ylz
@@ -50199,37 +52579,37 @@ hTf
 hTf
 hTf
 agx
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 vmc
 yhK
 yhK
 yhK
 yhK
 yjL
-xNV
-xNV
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
+yhL
+yhL
 xUJ
-xUJ
+tIt
 ufR
 xUJ
 xUJ
 xUJ
 xUJ
-yhN
-yhN
+ybl
+ybl
 yjL
-ylz
-ylz
-ylz
+yjL
+jsO
+jsO
 agx
 ylz
 ylz
@@ -50251,30 +52631,30 @@ ylz
 ylz
 ylz
 ylz
-wYU
+wRU
 wto
 xQK
 uZW
-xQK
-xQK
-xQK
+xzv
+wLW
+xzv
 xCF
-ykr
-ykr
+xZo
+xZo
 yhN
-wYU
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
+wRU
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
 agx
 ygU
 ygU
-yjL
-ylz
+ygU
+unm
 ylz
 ylz
 yjL
@@ -50501,35 +52881,35 @@ hTf
 hTf
 hTf
 agx
-ykr
+xZo
 yeC
 yeC
 yeC
 yeC
-ykr
-ykr
+xZo
+xZo
 vmc
 yhK
 yhK
 yhK
 yhK
 yhK
-xNV
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
+yhL
 vmc
 xUJ
-xUJ
+tIt
 ufR
 xUJ
 xUJ
 xUJ
 xUJ
-yhN
-vlE
+ybl
+ybl
 yjL
-ylz
+aZL
 ylz
 ylz
 agx
@@ -50553,30 +52933,30 @@ ylz
 ylz
 ylz
 ylz
-wYU
+wRU
 wto
 xQK
 uZW
-xQK
-xQK
-xQK
+xzv
+wLW
+xzv
 xCF
-ykr
-ykr
-yhN
-wYU
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
-xNV
+xZo
+xZo
+vkE
+wRU
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
+yhL
 agx
 ygU
 ygU
+ygU
 yjL
-ylz
 ylz
 ylz
 ylz
@@ -50803,48 +53183,48 @@ hTf
 hTf
 hTf
 agx
-ykr
+xZo
 yeC
 yeC
 yeC
 yeC
-ykr
-ykr
+xZo
+xZo
 vmc
 yhK
 yhK
 yhK
 yhK
 yjL
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
 vmc
 vmc
-ykr
-yhN
+xZo
+vtD
 ipp
 vgo
 pgM
 ovw
-adv
-yhN
-vlE
+aot
+ybl
+ybl
+yjL
+uWc
+ylz
+ylz
+agx
+agx
+agx
+agx
+unm
+yjL
+yjL
 yjL
 ylz
 ylz
 ylz
-agx
-agx
-agx
-agx
-ylz
-yjL
-yjL
-yjL
-ylz
-ylz
-ylz
 ylz
 ylz
 ylz
@@ -50857,30 +53237,30 @@ ylz
 ylz
 agx
 agx
-vwJ
+fnz
 gtC
-wYU
-xQK
-xQK
-xCF
-ykr
-ykr
-yhN
-wYU
-xNV
-xNV
-xNV
+vQL
+tVV
+pjX
+byp
+qHg
+qHg
+dhO
+wRU
+yhL
+yhL
+yhL
 yjL
 yjL
-xNV
+yhL
 yjL
 agx
 ygU
 ygU
+ygU
 yjL
-hTf
-hTf
-hTf
+ylz
+ylz
 hTf
 hTf
 hTf
@@ -51105,13 +53485,13 @@ hTf
 hTf
 hTf
 agx
-ykr
+xZo
 yeC
 yeC
 yeC
 yeC
-ykr
-ykr
+xZo
+xZo
 vmc
 yhK
 yhK
@@ -51124,22 +53504,22 @@ yjL
 vmc
 xge
 wee
-yhN
+vtD
 xUJ
 xUJ
 ylz
 ylz
-mxL
-yhN
-vlE
-ylz
-yhN
-yhN
-yhN
-yhN
-ylz
-yhN
-yhN
+uWc
+ybl
+ybl
+wRU
+kQy
+ybl
+ybl
+ybl
+wRU
+ybl
+ybl
 ylz
 ylz
 ylz
@@ -51161,29 +53541,29 @@ ylz
 agx
 pTm
 qiC
-wYU
-xQK
-xQK
+wRU
+tLy
+ldN
 xCF
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
 yjL
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
 yjL
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
 agx
 agx
+yjL
+yjL
+yjL
 ylz
-yjL
-hTf
-hTf
-hTf
-hTf
+ylz
+ylz
 hTf
 hTf
 hTf
@@ -51407,13 +53787,13 @@ hTf
 hTf
 hTf
 agx
-ykr
+xZo
 yeC
 yeC
 yeC
 yeC
-ykr
-ykr
+xZo
+xZo
 vmc
 yhK
 yhK
@@ -51426,22 +53806,22 @@ sej
 agx
 xge
 wee
-yhN
+vtD
 eYD
 vgo
 pgM
 pgM
-aed
-yhN
-vlE
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+aoX
+ybl
+qez
+ovz
+sMQ
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
 ylz
 ylz
 ylz
@@ -51461,36 +53841,36 @@ ylz
 ylz
 ylz
 agx
-pTm
-qiC
+ebI
+pbm
+yjL
+tcy
+yjL
+wRU
+ora
+aUp
+aXz
 yjL
 yjL
+wRU
+wRU
 yjL
-wYU
-ykr
-ykr
-ykr
-yjL
+yhL
+yhL
+yhL
 yjL
 ylz
 ylz
+ylz
+ylz
+ylz
+ylz
+ylz
+ylz
+hTf
+hTf
 yjL
-xNV
-xNV
-xNV
 yjL
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
 hTf
 hTf
 hTf
@@ -51709,12 +54089,12 @@ hTf
 hTf
 hTf
 agx
-ykr
+xZo
 yeC
 yeC
 yeC
 yeC
-ykr
+xZo
 yjL
 yjL
 yjL
@@ -51728,22 +54108,22 @@ sej
 agx
 xge
 wee
-yhN
+vtD
 ufR
 xUJ
 xUJ
 xUJ
-age
-yhN
-vlE
+apH
+ybl
+kQy
 yjL
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
 yjL
-yhN
-yhN
+ybl
+ybl
 ylz
 ylz
 ylz
@@ -51752,8 +54132,8 @@ yjL
 yjL
 yjL
 yjL
-yhN
-yhN
+ybl
+ybl
 yjL
 yjL
 yjL
@@ -51765,34 +54145,34 @@ yjL
 agx
 pTm
 qiC
-agx
+hUe
 wYU
 yjL
-yhN
-ykr
-ykr
-yhN
+pOo
+uCN
+hQb
+wWg
 yjL
-hTf
-hTf
-hTf
+xUJ
+xUJ
+xUJ
 yjL
-xNV
-xNV
-xNV
+yhL
+yhL
+yhL
 yjL
+ylz
+ylz
+ylz
+ylz
+ylz
+ylz
+ylz
+ylz
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+ylz
+yjL
 hTf
 hTf
 hTf
@@ -52011,18 +54391,18 @@ hTf
 hTf
 hTf
 agx
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 yjL
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
 yjL
 hTf
 hTf
@@ -52030,7 +54410,7 @@ hTf
 agx
 xge
 wee
-yhN
+vtD
 ufR
 xUJ
 xUJ
@@ -52039,62 +54419,62 @@ bdR
 ovz
 sMQ
 yjL
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
 yjL
-yhN
-yhN
+ybl
+ybl
 ylz
 ylz
 ylz
 agx
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
 agx
-xJX
+afb
 kiB
-wYU
-uzY
+fUG
+inP
 agx
-yhN
-ykr
-ykr
-yhN
+avd
+uCN
+hQb
+aXG
 yjL
-hTf
-hTf
-hTf
-yjL
-yjL
+xUJ
+xUJ
+xUJ
 yjL
 yjL
 yjL
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+yjL
+yjL
+ovP
+ooY
+yjL
+yjL
+yjL
+yjL
+yjL
+yjL
+yjL
+ylz
+ylz
+twZ
 hTf
 hTf
 hTf
@@ -52313,18 +54693,18 @@ hTf
 hTf
 hTf
 agx
-ykr
-ykr
+xZo
+xZo
 vmc
 vmc
-ykr
-ykr
+xZo
+xZo
 yjL
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
 yjL
 agx
 agx
@@ -52332,7 +54712,7 @@ agx
 agx
 xge
 wee
-yhN
+vtD
 ufR
 xUJ
 agx
@@ -52348,56 +54728,56 @@ agx
 agx
 agx
 agx
+unm
+agx
+agx
+agx
+ybl
+ybl
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xkK
+ufR
+xZo
+tzD
+agx
+yjL
+yjL
+yjL
+yjL
+yjL
+yjL
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+yjL
 ylz
-agx
-agx
-agx
-yhN
-yhN
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-ufR
-ygU
-ygU
-agx
+ylz
+ylz
+ylz
+ylz
 yjL
-yjL
-yjL
-yjL
-yjL
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+ylz
+ylz
+twZ
+twZ
 hTf
 hTf
 hTf
@@ -52615,92 +54995,92 @@ agx
 agx
 yjL
 agx
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 agx
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 agx
-aac
-aac
+ahp
+ahp
 agx
 xge
 wee
-yhN
-ufR
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-yhN
-agi
-yhN
-yhN
-yhN
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-xUJ
-ufR
-ygU
-ygU
+rXX
+qJB
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+mkW
+atf
+mkW
+mkW
+mkW
+sNk
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+xHw
+vRS
+qJB
+oFv
+cCI
 agx
+ybl
+ybl
+vse
+vse
+vse
+yjL
+xUJ
+xUJ
+xUJ
+xUJ
+xUJ
+yjL
+dJd
+xUJ
+dJd
+yjL
+ylz
+ylz
+ylz
+ylz
+ylz
+yjL
+ylz
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+twZ
+twZ
 hTf
 hTf
 hTf
@@ -52915,28 +55295,28 @@ hTf
 yjL
 ylz
 ylz
-ykr
+xZo
 ylz
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 agx
-ykr
-ykr
+xZo
+xZo
 agx
 agx
 wee
-yhN
+ybl
 ipp
 vgo
 vgo
@@ -52957,7 +55337,7 @@ vgo
 heK
 vgo
 vgo
-agC
+atl
 clJ
 vgo
 vgo
@@ -52971,40 +55351,40 @@ ovz
 ovz
 ovz
 ovz
-vgo
+kBq
 leM
-xUJ
-yhN
-agx
+wqv
+wkU
+udQ
+hab
+tpR
+ayu
+ayu
+iho
+yjL
+yjL
+bnG
+yjL
+yjL
+yjL
+yjL
+wRU
+fII
+hiW
+wRU
+ylz
+ylz
+ylz
+ylz
+ylz
+yjL
+ylz
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+twZ
+twZ
+twZ
 hTf
 hTf
 hTf
@@ -53217,28 +55597,28 @@ hTf
 yjL
 ylz
 ylz
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 mdr
 wee
-yhN
+ybl
 xUJ
 xUJ
 xUJ
@@ -53256,11 +55636,11 @@ xUJ
 xUJ
 xUJ
 xUJ
-fjn
+bxm
 xUJ
 xUJ
 ufR
-ufR
+qwG
 xUJ
 xUJ
 xUJ
@@ -53273,41 +55653,41 @@ hTf
 hTf
 hTf
 agx
-ajK
+aBL
 xUJ
-xUJ
-yhN
-agx
+wqv
+wkU
+aQt
+mxH
+ybl
+ybl
+ybl
+ybl
+yjL
+xoL
+xoL
+luF
+bDw
+xoL
+bDc
+luF
+xoL
+hiW
+wRU
+ylz
+ylz
+ylz
+ylz
+ylz
+yjL
+ylz
 hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+twZ
+twZ
+twZ
 hTf
 hTf
 hTf
@@ -53517,51 +55897,51 @@ hTf
 hTf
 hTf
 yjL
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 yjL
-ykr
-ykr
-ykr
-nZl
+xZo
+xZo
+xZo
+amE
 wee
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
 agx
 agx
 agx
-tdm
+hug
 tdm
 yjL
 ylz
@@ -53575,42 +55955,42 @@ hTf
 hTf
 hTf
 agx
+xkK
 xUJ
-xUJ
-xUJ
-yhN
-agx
+wqv
+wkU
+udQ
+vRa
+ybl
+ybl
+ybl
+ybl
+yjL
+bhW
+wRU
+wRU
+wRU
+wRU
+wRU
+wRU
+rWk
+hiW
+yjL
+ylz
+ylz
+ylz
+ylz
+ylz
+yjL
+ylz
+ylz
 hTf
 hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+twZ
+twZ
 hTf
 hTf
 hTf
@@ -53819,29 +56199,29 @@ hTf
 hTf
 hTf
 yjL
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
 ylz
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 yjL
 myw
 myw
 myw
 yjL
-acg
+anb
 myw
 myw
 myw
@@ -53864,7 +56244,7 @@ hTf
 hTf
 hTf
 nEv
-nEv
+atF
 hTf
 hTf
 hTf
@@ -53877,44 +56257,44 @@ hTf
 hTf
 xJb
 agx
+xkK
 xUJ
-xUJ
-xUJ
-yhN
+wqv
+wkU
 agx
+vRa
+ybl
+ybl
+ybl
+ybl
+yjL
+bhW
+vKT
+jVF
+grX
+wRU
+xUJ
+xUJ
+dyc
+hiW
+yjL
+ylz
+ylz
+ylz
+ylz
+ylz
+yjL
+ylz
+ylz
+ylz
 hTf
 hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+twZ
+twZ
+twZ
 hTf
 hTf
 hTf
@@ -54125,8 +56505,8 @@ yjL
 agx
 yjL
 agx
-ykr
-ykr
+xZo
+xZo
 agx
 agx
 agx
@@ -54166,7 +56546,7 @@ hTf
 hTf
 hTf
 nEv
-nEv
+atF
 hTf
 hTf
 hTf
@@ -54179,44 +56559,44 @@ hTf
 xJb
 sej
 agx
+xkK
 xUJ
-xUJ
-xUJ
-yhN
-agx
+wqv
+wkU
+aQO
+wTG
+ybl
+ybl
+ybl
+ybl
+yjL
+yjL
+wRU
+bwR
+yjL
+yjL
+tgp
+yjL
+yjL
+bXK
+yjL
+rEp
+yjL
+yjL
+yjL
+yjL
+yjL
+wRU
+wRU
+wRU
+yjL
 hTf
 hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+twZ
+twZ
 hTf
 hTf
 hTf
@@ -54468,7 +56848,7 @@ hTf
 hTf
 hTf
 nEv
-nEv
+atF
 hTf
 hTf
 hTf
@@ -54481,45 +56861,45 @@ sej
 sej
 hTf
 agx
+xkK
+xUJ
+wqv
+wkU
+aQO
+wTG
+ybl
+ybl
+ybl
+ybl
+yjL
+yhL
+yhL
+byL
+yeC
+yeC
+yeC
+yeC
+yjL
+hiW
+iLu
 xUJ
 xUJ
-xUJ
-yhN
-agx
+yjL
+ylz
+ylz
+wRU
+ylz
+ylz
+ylz
+yjL
 hTf
 hTf
 hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+twZ
+twZ
 hTf
 sej
 sej
@@ -54770,7 +57150,7 @@ hTf
 hTf
 hTf
 nEv
-nEv
+atF
 hTf
 hTf
 hTf
@@ -54783,10 +57163,36 @@ sej
 agx
 agx
 agx
+xkK
 xUJ
-xUJ
-xUJ
-yhN
+wqv
+wkU
+aQO
+tMz
+tpR
+hAP
+hAP
+cGr
+yjL
+yhL
+yhL
+uro
+qVh
+yeC
+yeC
+yeC
+rEp
+bXT
+aKN
+ubj
+ubj
+kwy
+pje
+clR
+rwG
+clU
+ylz
+ylz
 yjL
 hTf
 hTf
@@ -54795,34 +57201,8 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+twZ
+twZ
 sej
 sej
 sej
@@ -55072,7 +57452,7 @@ hTf
 hTf
 hTf
 nEv
-nEv
+atF
 yjL
 agx
 hTf
@@ -55084,11 +57464,37 @@ hTf
 hTf
 agx
 nYN
-ykr
+xZo
+xkK
+xUJ
+wqv
+wkU
+agx
+vRa
+ybl
+nkx
+nkx
+nkx
+yjL
+yhL
+yhL
+bzd
+aLS
+yeC
+yeC
+yeC
+yjL
+ydz
+iLu
 xUJ
 xUJ
-xUJ
-yhN
+yjL
+sxC
+sxC
+wRU
+vaB
+ylz
+ylz
 yjL
 hTf
 hTf
@@ -55098,33 +57504,7 @@ hTf
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+twZ
 sej
 sej
 sej
@@ -55374,7 +57754,7 @@ hTf
 hTf
 hTf
 nEv
-nEv
+atF
 yhP
 xJb
 xJb
@@ -55386,11 +57766,13 @@ hTf
 hTf
 agx
 nYN
-ykr
+xZo
+xkK
 xUJ
-xUJ
-xUJ
-yhN
+wqv
+wkU
+agx
+aTs
 agx
 agx
 agx
@@ -55399,25 +57781,23 @@ agx
 agx
 agx
 agx
+bDL
 agx
 agx
 agx
-agx
-agx
-agx
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+yjL
+xGo
+yjL
+yjL
+yjL
+yjL
+yjL
+yjL
+wRU
+cmE
+yjL
+yjL
+yjL
 hTf
 hTf
 hTf
@@ -55676,7 +58056,7 @@ hTf
 hTf
 hTf
 nEv
-nEv
+atF
 yjL
 agx
 xJb
@@ -55688,37 +58068,37 @@ hTf
 hTf
 agx
 nYN
-ykr
+xZo
+xkK
 xUJ
-xUJ
-xUJ
-ykr
+wqv
+pFq
+dyX
 jsy
-jsy
-jsy
-jsy
+alq
+dfV
 lSQ
-yjL
+wra
 vBX
-wnZ
+bic
+xCV
+aJe
+aLS
 yeC
 yeC
-yeC
-yeC
-yeC
+yjL
+ylz
+ydz
+ylz
 yjL
 hTf
 hTf
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+yjL
+ojx
+cmG
+hiW
+yjL
 hTf
 hTf
 hTf
@@ -55977,8 +58357,8 @@ hTf
 hTf
 hTf
 agx
+hug
 tdm
-tdm
 agx
 agx
 agx
@@ -55990,37 +58370,37 @@ agx
 agx
 agx
 agx
-ykr
-xUJ
-xUJ
-xUJ
-ykr
-ykr
-ykr
-ykr
-aoX
-tUA
-hmg
-vBX
-wnZ
-yeC
-uro
+xZo
+ipp
+aCG
+iUl
+qIy
+byH
+igF
+tBh
+aVL
+aZE
+fBK
+iDN
+oJW
+job
+bzz
 eTa
 vyB
 yeC
 agx
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+xoL
+aPv
+xoL
+uzH
+xoL
+xoL
+xoL
+xoL
+xoL
+aPv
+hiW
+yjL
 hTf
 hTf
 hTf
@@ -56291,42 +58671,42 @@ sMe
 xfj
 hUf
 csp
-yjL
+wra
 ykr
 ykr
 ykr
+ryO
 ykr
-ykr
-ykr
-ykr
-svF
-svF
-apx
+ekP
+qof
+kUQ
+cHU
+baz
 agx
-vBX
+itU
 wnZ
 yeC
-xFG
-ogy
+ssE
+eTR
 uSr
 yeC
 agx
+ylz
+bYT
+ylz
 agx
 agx
 agx
 agx
 agx
+wRU
+bYT
+hiW
 agx
 agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
+hTf
+hTf
+hTf
 hTf
 hTf
 hTf
@@ -56598,9 +58978,9 @@ agx
 agx
 svF
 svF
-amE
-ykr
-ykr
+aIr
+wsa
+wqv
 agx
 agx
 agx
@@ -56608,23 +58988,23 @@ agx
 agx
 agx
 yeC
-xFG
-ogy
+ssE
+eTR
 uSr
 yeC
 agx
+xPc
+cfI
+xPc
 agx
-agx
-agx
-agx
-ykr
-ykr
-ykr
-ykr
-yhN
-yhN
-yhN
-yhN
+xZo
+cjA
+wYE
+pSx
+fjd
+kxN
+cor
+ybl
 agx
 agx
 agx
@@ -56885,13 +59265,13 @@ hTf
 agx
 uqa
 auS
-rde
+huW
 agx
-wYU
+wRU
 qzs
 veI
 qzs
-wYU
+wRU
 agx
 noy
 uOY
@@ -56900,36 +59280,36 @@ qNW
 agx
 ylz
 ylz
-vBX
-ykr
-ykr
+aIR
+wsa
+wqv
 tsv
 yjL
-ylz
-ylz
-ylz
-yjL
-yeC
+myW
+bbo
+bdy
+snE
+rmn
 xFG
 ogy
-uSr
-yeC
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+jZG
+rmn
+wYE
+wYE
+crT
+xZo
+xZo
+xZo
+wGx
 agx
 agx
-yhN
-yhN
-yhN
-yhN
-yhN
-ylz
-ylz
+iUA
+cmH
+ybl
+ybl
+cqD
+csX
+csX
 agx
 hTf
 hTf
@@ -57191,7 +59571,7 @@ rFm
 agx
 oLl
 qEG
-vAE
+xPc
 qEG
 kOy
 agx
@@ -57203,16 +59583,16 @@ agx
 ylz
 ylz
 yjL
-ykr
-ykr
-uiI
-wYU
-ylz
+aRz
+wYE
+axf
+rwG
+unt
 ajw
 jZV
 yjL
 yeC
-tNx
+hBp
 tbK
 qBF
 yeC
@@ -57222,16 +59602,16 @@ yeC
 yeC
 yeC
 yeC
-ykr
+wGx
 agx
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
 ylz
-ylz
+ciq
+bjM
+ybl
+ybl
+ybl
+csX
+csX
 agx
 hTf
 hTf
@@ -57495,25 +59875,26 @@ jYc
 lQJ
 ers
 lQJ
-uiI
+wkU
 agx
 agx
 uOY
 noy
 agx
 agx
-wYU
-wYU
-wYU
-ykr
-ykr
-uiI
-wYU
-ylz
-ylz
+wRU
+wRU
+wRU
+aSu
+xZo
+wkU
+wRU
+jYQ
+bcN
 kHf
 yjL
 yeC
+uMu
 yeC
 yeC
 yeC
@@ -57523,17 +59904,16 @@ yeC
 yeC
 yeC
 yeC
-yeC
-ykr
+wGx
 agx
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+ylz
+ylz
+bjM
+ybl
+ybl
+ybl
+ybl
+ybl
 agx
 hTf
 hTf
@@ -57805,36 +60185,36 @@ noy
 uVg
 agx
 nYN
-ykr
-ykr
-ykr
-ykr
-uiI
+xZo
+aIW
+jYU
+xZo
+wkU
 agx
-ylz
-ylz
+dML
+exD
 icg
-yjL
-ykr
-ygU
-ygU
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
-yeC
-yeC
-ykr
+snE
+wYE
+xQE
+wYE
+wYE
+wYE
+wYE
+wYE
+wYE
+wYE
+rmn
+rmn
+crT
 agx
-yhN
-yhN
-yhN
-yhN
-yhN
-ykr
-ykr
+ylz
+ylz
+bjM
+ybl
+ybl
+ctV
+ctV
 agx
 agx
 hTf
@@ -58106,38 +60486,38 @@ glD
 jSQ
 wFK
 rLY
-akD
-ykr
-ykr
+aDD
+qIy
+aMl
 mzV
 gTG
 tza
 nQN
 hIt
-izu
+bdu
 unt
 agx
-ykr
-ygU
-ygU
+xZo
+sKK
+xZo
 agx
 agx
 agx
 agx
 agx
-ykr
+xZo
 yeC
 yeC
-ykr
+xZo
 agx
 agx
-yhN
-yhN
-yhN
-yhN
+uuc
+cmR
+ybl
+ybl
 hTf
 hTf
-hTf
+agx
 hTf
 hTf
 hTf
@@ -58402,44 +60782,44 @@ tnn
 wXC
 ppn
 vpZ
-dzW
+wfP
 agx
 uOY
 ygU
 ygU
 agx
-alx
-amq
+aFw
+aHW
 qhO
-ykr
+wGx
 sof
-uiI
+wkU
 agx
-ylz
-apH
-apH
+dML
+jYQ
+jYQ
 agx
-ykr
-ygU
-ygU
-ygU
+xZo
+sKK
+xZo
+ybd
 oaN
 oaN
 oaN
 agx
-ykr
+xZo
 yeC
 yeC
-ykr
+xZo
 agx
-yhN
-yhN
-yhN
-yhN
-yhN
+mRm
+ybl
+ybl
+ybl
+ybl
 hTf
-hTf
-hTf
+agx
+agx
 hTf
 hTf
 hTf
@@ -58711,36 +61091,36 @@ ygU
 vGd
 agx
 nlN
-wYU
+wRU
 nYN
-ykr
+wGx
 sof
-uiI
+wkU
 yjL
-ylz
 sxC
 sxC
+sxC
 agx
-ykr
-ygU
-ygU
+xZo
+sKK
+xZo
 agx
 oaN
 oaN
 oaN
 agx
-ykr
-yeC
-yeC
-ykr
+cgI
+cjt
+cjt
+cgI
 agx
-yhN
-yhN
-yhN
-yhN
-yhN
+rSf
+ybl
+ybl
+ybl
+ybl
 hTf
-hTf
+agx
 hTf
 hTf
 hTf
@@ -59024,25 +61404,25 @@ agx
 agx
 yjL
 agx
-ygU
-ygU
+vVZ
 agx
 agx
 agx
 agx
 agx
-ykr
+agx
+xZo
 yeC
 yeC
-ykr
+xZo
 agx
-yhN
-yhN
-yhN
-yhN
-yhN
-hTf
-hTf
+agx
+agx
+cno
+agx
+agx
+agx
+agx
 hTf
 hTf
 sej
@@ -59326,8 +61706,8 @@ hJM
 kqG
 oBS
 wXE
-rkx
-uFv
+sKK
+ygU
 eyC
 agx
 yeC
@@ -59337,14 +61717,14 @@ yeC
 yeC
 yeC
 yeC
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
 hTf
-hTf
+agx
 hTf
 hTf
 sej
@@ -59628,10 +62008,10 @@ iek
 alw
 kFv
 ygU
-rkx
-uFv
+sKK
+ygU
 vGd
-wYU
+wRU
 yeC
 yeC
 yeC
@@ -59639,12 +62019,12 @@ yeC
 yeC
 yeC
 yeC
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
 hTf
 hTf
 hTf
@@ -59907,11 +62287,11 @@ noy
 uJY
 aGh
 agx
-wYU
+wRU
 nXL
-wYU
+wRU
 iAr
-wYU
+wRU
 agx
 aGh
 uOY
@@ -59920,7 +62300,7 @@ wMK
 vyN
 vyN
 wdn
-anb
+aNV
 dzH
 bvr
 bvr
@@ -59928,27 +62308,27 @@ rYG
 qch
 qch
 bnk
-hjJ
-hjJ
+rde
+rde
 ngH
 rde
-vGd
-wYU
+ach
+rKE
+mNV
 yeC
-yeC
-uro
-eTa
+cfV
+chn
 vyB
 yeC
 yeC
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+aSH
+ybl
+ybl
+ybl
+ybl
+ybl
 hTf
-agx
+hTf
 sej
 sej
 sej
@@ -60233,22 +62613,22 @@ blI
 lVS
 snZ
 mOO
-ygU
+ixG
 vGd
-wYU
+wRU
 yeC
 yeC
-xFG
-ogy
+tqJ
+eTR
 uSr
 yeC
 yeC
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
 hTf
 agx
 sej
@@ -60512,10 +62892,10 @@ uJY
 agx
 cVl
 jze
-gZu
-uEX
-wqm
-waD
+bhx
+ylz
+ylz
+ylz
 doB
 wMK
 uOY
@@ -60535,21 +62915,21 @@ gkP
 bZG
 vAn
 tqv
-tqv
+bZG
 vGd
-wYU
+wRU
 yeC
 yeC
-xFG
-ogy
+tqJ
+eTR
 uSr
 yeC
 yeC
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
 agx
 agx
 agx
@@ -60816,9 +63196,9 @@ wOY
 ujC
 gLf
 ylW
-wqm
-xJV
-cYa
+axu
+yaH
+yaH
 oWD
 gfB
 snZ
@@ -60837,9 +63217,9 @@ rQu
 mSE
 hFz
 xkn
-ygU
+sKK
 vGd
-wYU
+wRU
 yeC
 yeC
 tNx
@@ -60847,12 +63227,12 @@ tbK
 qBF
 yeC
 yeC
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+aSH
+ybl
+ybl
+ybl
+ybl
+ybl
 sej
 sej
 sej
@@ -61117,9 +63497,9 @@ agx
 kfi
 kfi
 vhT
-lQO
-wqm
-xJV
+ylW
+axu
+yaH
 yaH
 oWD
 gfB
@@ -61139,9 +63519,9 @@ uHl
 tuB
 uhV
 agx
-ygU
+sKK
 vGd
-wYU
+wRU
 yeC
 yeC
 yeC
@@ -61149,12 +63529,12 @@ yeC
 yeC
 yeC
 yeC
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
 sej
 sej
 sej
@@ -61418,10 +63798,10 @@ uJY
 agx
 wXC
 wXC
-gZu
-dnG
-wqm
-rTo
+atP
+ylz
+ylz
+ylz
 wUI
 wMK
 jSQ
@@ -61441,7 +63821,7 @@ rQu
 mSE
 xzm
 agx
-ygU
+sKK
 eEf
 agx
 yeC
@@ -61451,12 +63831,12 @@ yeC
 yeC
 yeC
 yeC
-yhN
-yhN
-yhN
-yhN
-yhN
-yhN
+ybl
+ybl
+ybl
+ybl
+ybl
+ybl
 sej
 sej
 sej
@@ -61721,7 +64101,7 @@ agx
 khj
 khj
 lct
-lct
+auf
 ylz
 fAD
 iGn
@@ -61749,10 +64129,10 @@ agx
 agx
 agx
 agx
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
 agx
 agx
 hTf
@@ -62045,15 +64425,15 @@ fsl
 mSE
 uhV
 agx
-uMP
+jlO
 uMP
 yjL
 hTf
 hTf
 agx
 agx
-ykr
-ykr
+xZo
+xZo
 agx
 agx
 hTf
@@ -62322,11 +64702,11 @@ agx
 lmP
 kPM
 agx
-wYU
-wYU
+wRU
+wRU
 aAa
-gZu
-gZu
+wTP
+wTP
 bDV
 cwb
 agx
@@ -62348,14 +64728,14 @@ mSE
 uhV
 agx
 seq
-uMP
+dPG
 yjL
 hTf
 hTf
 hTf
 agx
-ykr
-ykr
+xZo
+xZo
 agx
 hTf
 hTf
@@ -62626,9 +65006,9 @@ uJY
 agx
 qMC
 qMC
-wYU
-gZu
-gZu
+wRU
+wTP
+wTP
 lBl
 aFY
 agx
@@ -62929,8 +65309,8 @@ agx
 qMC
 qMC
 kgw
-gZu
-gZu
+wTP
+wTP
 bbu
 iHd
 agx
@@ -62952,7 +65332,7 @@ mSE
 uhV
 agx
 uMP
-uMP
+jlO
 yjL
 hTf
 hTf
@@ -63230,9 +65610,9 @@ uJY
 agx
 aQD
 qMC
-wYU
-gZu
-gZu
+wRU
+wTP
+wTP
 bbu
 cvk
 agx
@@ -63254,7 +65634,7 @@ eKD
 xzm
 agx
 tTR
-uMP
+jlO
 yjL
 hTf
 hTf
@@ -63532,7 +65912,7 @@ uJY
 agx
 agx
 agx
-wYU
+wRU
 mzt
 mzt
 xkn
@@ -63858,7 +66238,7 @@ agx
 agx
 xkn
 uMP
-fsF
+jlO
 yjL
 hTf
 hTf
@@ -64137,9 +66517,9 @@ agx
 eAc
 wtB
 peS
-gZu
-gZu
-ajJ
+wTP
+wTP
+axS
 rRS
 rbi
 eRD
@@ -64149,16 +66529,16 @@ pFs
 vmZ
 bfa
 aWU
-ykr
+xZo
 ehM
-ykr
-ykr
-ykr
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
+xZo
+xZo
+xZo
 qJm
-ykr
+xZo
 uMP
 lQJ
 yjL
@@ -64439,9 +66819,9 @@ agx
 dxk
 pWd
 bUD
-gZu
+wTP
 eCu
-ajJ
+axS
 hfK
 rbi
 eRD
@@ -64455,13 +66835,13 @@ jIn
 cnD
 qCe
 rlG
-yiO
-yiO
-yiO
+ykr
+ykr
+ykr
 eMK
 eMK
-yiO
-yiO
+ykr
+ykr
 dzf
 yjL
 hTf
@@ -64751,14 +67131,14 @@ ygU
 aTV
 fvN
 iVV
-dAQ
+hQb
 bnB
 kfD
 bpo
 bnB
 ebq
-ykr
-ykr
+xZo
+xZo
 niU
 yjL
 yjL
@@ -65060,8 +67440,8 @@ wXC
 sXP
 mKU
 mjY
-ykr
-ykr
+xZo
+xZo
 uMP
 uMP
 uMP
@@ -65346,7 +67726,7 @@ cHT
 yeC
 yeC
 eUc
-hje
+uMu
 yeC
 gIZ
 agx
@@ -65355,15 +67735,15 @@ ygU
 agx
 fDn
 tcM
-dAQ
+hQb
 sXP
 uPd
 bwd
 unt
 ebq
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
 uMP
 uMP
 uMP
@@ -65657,15 +68037,15 @@ ygU
 agx
 pfs
 tcM
-dAQ
+hQb
 sXP
 uPd
 bwd
 unt
 ebq
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
 uMP
 uMP
 uMP
@@ -65959,14 +68339,14 @@ ygU
 agx
 tcM
 tcM
-dAQ
+hQb
 sXP
 uPd
 bwd
 unt
 ebq
-ykr
-ykr
+xZo
+xZo
 iOW
 agx
 uMP
@@ -66252,7 +68632,7 @@ yjp
 xLa
 rhf
 yeC
-rhf
+uMu
 cQB
 eEc
 agx
@@ -66261,17 +68641,17 @@ ygU
 agx
 mvn
 tcM
-dAQ
+hQb
 lgP
 uPd
 bwd
 unt
 ebq
-ykr
-ykr
-aqd
+xZo
+xZo
+bdP
 agx
-atl
+bnX
 uMP
 agx
 hTf
@@ -66550,12 +68930,12 @@ agx
 ygU
 lbo
 wMK
-kwc
+wTP
 vtT
 kZq
 hLq
-ahP
-ahP
+vtT
+vtT
 wTP
 agx
 uOY
@@ -66570,8 +68950,8 @@ wXC
 wGK
 mKU
 mjY
-ykr
-ykr
+xZo
+xZo
 agx
 uMP
 uMP
@@ -66853,11 +69233,11 @@ ygU
 uOY
 agx
 mPX
-wYU
-wYU
+wRU
+wRU
 agx
-wYU
-wYU
+wRU
+wRU
 mPX
 agx
 uOY
@@ -66865,15 +69245,15 @@ ygU
 agx
 ohy
 tcM
-dAQ
+hQb
 ioJ
 lXk
 gzq
 lGR
 ebq
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
 uMP
 uMP
 uMP
@@ -67154,10 +69534,10 @@ agx
 ygU
 uOY
 ygU
+sKK
 ygU
 ygU
-ygU
-ahp
+axg
 ygU
 ygU
 rOs
@@ -67173,9 +69553,9 @@ lzb
 lzb
 kyi
 wkh
-ykr
-ykr
-ykr
+xZo
+xZo
+xZo
 uMP
 uMP
 uMP
@@ -67464,20 +69844,20 @@ kOT
 seL
 pIa
 kOT
-rde
+huW
 ygU
 yjL
 tcM
 tcM
-dAQ
+hQb
 sxC
 ylz
 ylz
 sxC
-iUc
+uCN
 tcM
 tcM
-ykr
+xZo
 uMP
 uMP
 uMP
@@ -67764,7 +70144,7 @@ ygU
 ygU
 ygU
 ygU
-ygU
+sKK
 ygU
 ygU
 ygU
@@ -68066,7 +70446,7 @@ agx
 agx
 ylz
 ylz
-ylz
+wTP
 agx
 agx
 agx
@@ -68074,10 +70454,10 @@ agx
 dlq
 dlq
 agx
-wYU
-wYU
-wYU
-wYU
+wRU
+wRU
+wRU
+wRU
 agx
 dlq
 dlq
@@ -68368,7 +70748,7 @@ hTf
 agx
 ylz
 ylz
-ylz
+wTP
 agx
 hTf
 hTf
