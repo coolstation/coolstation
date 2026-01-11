@@ -118,6 +118,7 @@
 //#define MAP_OVERRIDE_PERDUTA			// Mylie's oceanic oil platform
 //#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use (very unfinished atm)
+//#define MAP_OVERRIDE_SUMMIT				// klushy snow map (this does not work yet)
 
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION			// Construction mode
