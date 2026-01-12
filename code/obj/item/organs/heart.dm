@@ -20,7 +20,8 @@
 
 	New(loc, datum/organHolder/nholder)
 		. = ..()
-		reagents = new/datum/reagents(reag_cap)
+		src.reagents = new/datum/reagents/resize_sponge(reag_cap, 0.9, 0.3)
+		src.reagents.my_atom = src
 
 	disposing()
 		if (holder)
@@ -96,6 +97,24 @@
 			return 1
 		else
 			return 0
+
+	splat(turf/T)
+		if(!istype(T) || !src.reagents.total_volume)
+			return
+
+		playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
+
+		var/obj/decal/cleanable/tracked_reagents/dynamic/B = null
+
+		if (T.messy > 0)
+			B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
+
+		if (!B) // look for an existing dynamic blood decal and add to it if you find one
+			B = make_cleanable(/obj/decal/cleanable/tracked_reagents/dynamic,T)
+
+		B.transfer_volume(src.reagents, 40, src.donor ? src.donor.bioHolder.Uid : null, src.donor ? src.donor.bioHolder.bloodType : null, violent = TRUE)
+
+		return B
 
 /obj/item/organ/heart/synth
 	name = "synthheart"
