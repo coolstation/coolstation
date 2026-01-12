@@ -5,6 +5,7 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/robot3)
 	name = "robot"
 	desc = "A concept of what a robot should be."
 	mob_flags = USR_DIALOG_UPDATES_RANGE
+	canmove = FALSE
 	var/datum/ai_laws/laws
 	var/list/datum/robot3_mechanism/parts = list()
 
@@ -120,15 +121,14 @@ ABSTRACT_TYPE(/obj/item/robot3_part)
 	name = "basic robot"
 	desc = "A very basic robot."
 
-/// ----- HAND MECHANISM -----
-/// This adds a limb, technically, not a hand. However, all limbs are things you use to interact with the world
-/// in the same way as a hand, so this naming scheme hopefully makes sense.
-ABSTRACT_TYPE(/datum/robot3_mechanism/hand)
-/datum/robot3_mechanism/hand
+/// ----- ABSTRACT LIMB MECHANISM -----
+/// This adds a limb.
+ABSTRACT_TYPE(/datum/robot3_mechanism/limb)
+/datum/robot3_mechanism/limb
 	var/limb_type = /datum/limb
 	var/datum/handHolder/hand
 
-/datum/robot3_mechanism/hand/on_enabled()
+/datum/robot3_mechanism/limb/on_enabled()
 	. = ..()
 	if(.)
 		var/datum/handHolder/HH = new
@@ -139,7 +139,7 @@ ABSTRACT_TYPE(/datum/robot3_mechanism/hand)
 		HH.limb = new src.limb_type(src.owner)
 		src.owner.hud.add_additional_hand()
 
-/datum/robot3_mechanism/hand/on_disabled()
+/datum/robot3_mechanism/limb/on_disabled()
 	. = ..()
 	if(.)
 		if(src.hand.item)
@@ -150,17 +150,17 @@ ABSTRACT_TYPE(/datum/robot3_mechanism/hand)
 		qdel(src.hand)
 		src.hand = null
 
-ABSTRACT_TYPE(/obj/item/robot3_part/hand)
+ABSTRACT_TYPE(/obj/item/robot3_part/limb)
 
-/// ----- CONCRETE HANDS -----
-/datum/robot3_mechanism/hand/manipulator
+/// ----- CONCRETE LIMBS -----
+/datum/robot3_mechanism/limb/manipulator
 	name = "manipulator"
 	description = "A small robotic limb with a precise but weak hand."
 	health = 15
 	max_health = 15
 	limb_type = /datum/limb/small_critter
 
-/obj/item/robot3_part/hand/manipulator
+/obj/item/robot3_part/limb/manipulator
 	name = "manipulator component"
 	desc = "A small robotic limb with a precise but weak hand."
-	mechanism_type = /datum/robot3_mechanism/hand/manipulator
+	mechanism_type = /datum/robot3_mechanism/limb/manipulator
