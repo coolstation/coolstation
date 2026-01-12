@@ -369,12 +369,12 @@
 			user.show_text("[src] is already occupied!", "red")
 			return
 
-		shove_in(G.affecting)
+		shove_in(G.affecting, user)
 		qdel(G)
 		return
 
-	proc/shove_in(var/mob/target as mob)
-		if (can_operate(target))
+	proc/shove_in(var/mob/target as mob, mob/user)
+		if (can_operate(user))
 			var/mob/living/carbon/human/H = target
 			H.set_loc(src)
 			src.occupant = H
@@ -569,7 +569,7 @@
 					if (istype(user.equipped(), /obj/item/grab))
 						src.Attackby(user.equipped(), user)
 					else if (issilicon(user))
-						shove_in(target)
+						shove_in(target, user)
 		return
 
 	proc/can_operate(var/mob/M)
