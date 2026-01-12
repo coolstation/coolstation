@@ -478,12 +478,19 @@
 /datum/hud/critter/proc/add_additional_hand()
 	for (var/i = src.hands.len + 1, i <= src.master.hands.len, i++)
 		src.leftmost_hand_offset--
-		var/new_screen_loc = "CENTER[src.leftmost_hand_offset], SOUTH"
+		var/center_offset = 0
+		if (src.leftmost_hand_offset < 0)
+			center_offset = src.leftmost_hand_offset
+		else if (src.leftmost_hand_offset > 0)
+			center_offset = "+[src.leftmost_hand_offset]"
+		else
+			center_offset = ""
+		var/new_screen_loc = "CENTER[center_offset], SOUTH"
 		var/datum/handHolder/handHolder = src.master.hands[i]
 		var/atom/movable/screen/hud/hand_element = src.create_screen("hand[i]", handHolder.name, handHolder.icon,\
 		"[handHolder.icon_state][i == src.master.active_hand ? 1 : 0]", new_screen_loc, HUD_LAYER)
 		handHolder.screenObj = hand_element
-		src.hands.Add(handHolder)
+		src.hands |= handHolder
 	src.left_offset = src.leftmost_hand_offset - 1
 	for (var/i = 1, i <= src.equipment.len, i++)
 		src.equipment[i].screenObj.screen_loc = src.loc_left()
