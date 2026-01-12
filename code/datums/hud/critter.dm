@@ -1,9 +1,9 @@
 /// Highly modular HUD for critters.
 /datum/hud/critter
 	/// list of holders of hand hud elements
-	var/list/hands = list()
-	/// list of equipment hud elements
-	var/list/equipment = list()
+	var/list/datum/handHolder/hands = list()
+	/// list of holders of equipment hud elements
+	var/list/datum/equipmentHolder/equipment = list()
 	/// health hud element
 	var/atom/movable/screen/hud/health = null
 	/// oxygen hud element
@@ -50,6 +50,8 @@
 	var/left_offset = 0
 	/// offset for a screen location in the top right (generally where health and status icons go)
 	var/top_right_offset = 0
+	/// offset for the current leftmost hand
+	var/leftmost_hand_offset = 0
 
 	/// status effect left offset
 	var/wraparound_offset_left = 0
@@ -471,6 +473,20 @@
 		handHolder.screenObj = hand_element
 		src.hands.Add(handHolder)
 	src.right_offset = initial_hand_offset + length(src.master.hands)
+	src.leftmost_hand_offset = src.left_offset + 1
+
+/datum/hud/critter/proc/add_additional_hand()
+	for (var/i = src.hands.len + 1, i <= src.master.hands.len, i++)
+		src.leftmost_hand_offset--
+		var/new_screen_loc = "CENTER[src.leftmost_hand_offset], SOUTH"
+		var/datum/handHolder/handHolder = src.master.hands[i]
+		var/atom/movable/screen/hud/hand_element = src.create_screen("hand[i]", handHolder.name, handHolder.icon,\
+		"[handHolder.icon_state][i == src.master.active_hand ? 1 : 0]", new_screen_loc, HUD_LAYER)
+		handHolder.screenObj = hand_element
+		src.hands.Add(handHolder)
+	src.left_offset = src.leftmost_hand_offset - 1
+	for (var/i = 1, i <= src.equipment.len, i++)
+		src.equipment[i].screenObj.screen_loc = src.loc_left()
 
 /datum/hud/critter/proc/create_health_element()
 	src.health = src.create_screen("health", "health", src.hud_icon, "health0",\

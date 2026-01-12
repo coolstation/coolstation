@@ -300,6 +300,14 @@ ABSTRACT_TYPE(/mob/living/critter)
 			return 1
 		return 0
 
+	proc/add_a_limb(var/datum/limb/limb_type)
+		var/datum/handHolder/HH = new
+		HH.holder = src
+		src.hand_count++
+		src.hands += HH
+		HH.limb = new limb_type(src)
+		src.hud.add_additional_hand()
+
 	attackby(var/obj/item/I, var/mob/M)
 		if (isdead(src)) 	//Just copied from pets_small_animals.dm with only small modifications. yep!
 			if (src.skinresult && max_skins)
