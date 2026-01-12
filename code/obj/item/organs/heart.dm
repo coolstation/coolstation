@@ -29,6 +29,7 @@
 
 	on_transplant(var/mob/M as mob)
 		..()
+		src.close_container()
 		if (src.donor.reagents && src.reagents)
 			src.reagents.trans_to(src.donor, src.reagents.total_volume)
 
@@ -58,6 +59,7 @@
 
 	on_removal()
 		..()
+		src.open_container()
 		if (donor)
 			if (src.donor.reagents && src.reagents)
 				src.donor.reagents.trans_to(src, src.reagents.maximum_volume - src.reagents.total_volume)
