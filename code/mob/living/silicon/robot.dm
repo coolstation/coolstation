@@ -612,7 +612,8 @@
 			return 0
 
 	emp_act()
-		vision.noise(60)
+		if(src.client?.preferences && !src.client?.preferences.photosensitive)
+			vision.noise(60)
 		boutput(src, "<span class='alert'><B>*BZZZT*</B></span>")
 		for (var/obj/item/parts/robot_parts/RP in src.contents)
 			if (RP.ropart_take_damage(0,10) == 1) src.compborg_lose_limb(RP)

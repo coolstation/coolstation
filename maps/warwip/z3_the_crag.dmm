@@ -43,12 +43,6 @@
 /obj/machinery/vending/cola/blue,
 /turf/floor/grime,
 /area/station/crew_quarters/fitness)
-"ai" = (
-/obj/machinery/vending/monkey{
-	name = "Mining Labor"
-	},
-/turf/floor/plating,
-/area/station/mining/tunnel)
 "aj" = (
 /obj/table/auto,
 /obj/decal/cleanable/dirt/random,
@@ -1544,6 +1538,12 @@
 	},
 /turf/floor/grey,
 /area/station/bridge)
+"eA" = (
+/obj/machinery/vending/monkey{
+	name = "Mining Labor"
+	},
+/turf/floor/plating,
+/area/station/mining/tunnel)
 "eC" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -4963,9 +4963,6 @@
 /area/station/engine/hotloop)
 "pY" = (
 /obj/disposalpipe/switch_junction/left/west,
-/obj/table/auto{
-	color = "#666666"
-	},
 /turf/floor/darkblueblack,
 /area/station/bridge)
 "qd" = (
@@ -9647,6 +9644,9 @@
 /area/station/crew_quarters/fitness)
 "Fq" = (
 /obj/disposalpipe/switch_junction/left/west,
+/obj/table/auto{
+	color = "#666666"
+	},
 /turf/floor/darkblueblack,
 /area/station/bridge)
 "Fr" = (
@@ -75985,7 +75985,7 @@ HB
 DQ
 kU
 wC
-ai
+eA
 OW
 OW
 OW

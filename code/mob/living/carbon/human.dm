@@ -591,7 +591,7 @@
 	..()
 
 /mob/living/carbon/human/death(gibbed, deathgasp = TRUE, decompose = TRUE)
-	if (ticker.mode)
+	if (ticker?.mode)
 		ticker.mode.on_human_death(src)
 	if(src.mind && src.mind.damned) // Ha you arent getting out of hell that easy.
 		src.hell_respawn()

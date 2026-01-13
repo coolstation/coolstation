@@ -530,15 +530,22 @@ WET FLOOR SIGN
 
 // SPONGES? idk
 
-/datum/reagents/sponge
+/datum/reagents/resize_sponge
+	var/initial_size = 1
+	var/extra_size = 0.6
+
+	New(maximum, init_size, ex_size)
+		. = ..()
+		src.initial_size = init_size
+		src.extra_size = ex_size
+
 	update_total()
 		..()
-		var/obj/item/sponge/S = src.my_atom
-		if (S)
-			var/size = 1
+		if (src.my_atom)
+			var/size = src.initial_size
 			if (src.total_volume > 0)
-				size += (src.total_volume / src.maximum_volume) * 0.6
-			sponge_size(S, size)
+				size += (src.total_volume / src.maximum_volume) * src.extra_size
+			sponge_size(src.my_atom, size)
 		return 0
 
 /obj/item/sponge
@@ -559,7 +566,7 @@ WET FLOOR SIGN
 /obj/item/sponge/New()
 	..()
 	// We use this instead of create_reagents because sponges need a special reagent holder to grow in size
-	reagents = new/datum/reagents/sponge(50)
+	reagents = new/datum/reagents/resize_sponge(50, 1, 0.6)
 	reagents.my_atom = src
 	processing_items |= src
 

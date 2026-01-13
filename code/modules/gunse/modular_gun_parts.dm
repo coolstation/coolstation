@@ -376,7 +376,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "standard barrel"
 	desc = "A cylindrical barrel, unrifled."
 	spread_angle = 4 // decent stabilisation
-	part_DRM = GUN_NANO
+	part_DRM = GUN_NANO_FRIENDLY
 	icon_state = "nt_blue_short"
 	length = 10
 	overlay_x = 5

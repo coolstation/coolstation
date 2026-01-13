@@ -904,6 +904,36 @@ proc/filter_trait_hats(var/type)
 	w_class = W_CLASS_BULKY
 	blocked_from_petasusaphilic = TRUE
 
+/obj/item/clothing/head/bighat/shako
+	name = "Surveyor General's Shako"
+	desc = "A tall and very audacious hat."
+	icon_state = "shako"
+	item_state = "shako"
+
+	get_desc(var/dist, var/mob/user)
+		if(user.mind && user.mind.assigned_role == "Surveyor General")
+			. = "It tells everyone that you're in charge around here."
+		else if(user.mind && user.mind.assigned_role == "Site Director")
+			. = "This is a frivolous piece of garbage. Your hat is clearly better."
+		else
+			. = "Where did they even find this thing?"
+		. = ..()
+
+/obj/item/clothing/head/bighat/czako
+	name = "Site Director's Czako"
+	desc = "A tall and very bold hat."
+	icon_state = "czako"
+	item_state = "czako"
+
+	get_desc(var/dist, var/mob/user)
+		if(user.mind && user.mind.assigned_role == "Surveyor General")
+			. = "Why if this isn't the most senseless waste of good quality fabric you've ever seen..."
+		else if(user.mind && user.mind.assigned_role == "Site Director")
+			. = "This tasteful piece gives you an air of authority."
+		else
+			. = "Where did they even find this thing?"
+		. = ..()
+
 /obj/item/clothing/head/bighat/syndicate
 	name = "syndicate hat"
 	desc = "A commitment."
