@@ -86,9 +86,14 @@
 
 	var/datum/pump_ui/ui
 
+	New()
+		. = ..()
+		dir = SOUTH
+
 	initialize()
 		..()
 		ui = new/datum/pump_ui/circulator_ui(src)
+		sync_node_connections()
 
 	New()
 		. = ..()
@@ -112,10 +117,11 @@
 			if (RIGHT_CIRCULATOR)
 				src.generator?.circ2 = null
 		src.generator = null
+		qdel(src.ui)
 		..()
 
 	get_desc(dist, mob/user)
-		if(variant_description || generator.variant_description)
+		if(variant_description || (src.generator && generator.variant_description))
 			. += variant_description
 			. += generator.variant_description
 			. += "The instruction manual should have more information."
@@ -421,6 +427,60 @@
 
 		return 1
 
+	//oh my
+	was_built_from_frame(mob/user, newly_built)
+		..()
+		dir = SOUTH
+		initialize()
+		air1 = new()
+		air2 = new()
+
+		air1.volume = 200
+		air2.volume = 200
+
+	//oh god
+	was_deconstructed_to_frame(mob/user)
+		//All of this is basically disposing
+
+		// Signal air disposing...
+		if (network1)
+			network1.air_disposing_hook(air1,air2)
+		if (network2)
+			network2.air_disposing_hook(air1,air2)
+
+		if(node1)
+			node1.disconnect(src)
+			if (network1)
+				network1.dispose()
+		if(node2)
+			node2.disconnect(src)
+			if (network2)
+				network2.dispose()
+
+		node1 = null
+		node2 = null
+		network1 = null
+		network2 = null
+
+		if(air1)
+			qdel(air1)
+
+		if(air2)
+			qdel(air2)
+
+		air1 = null
+		air2 = null
+
+		if(src.generator)
+			switch (side)
+				if (LEFT_CIRCULATOR)
+					src.generator?.circ1 = null
+				if (RIGHT_CIRCULATOR)
+					src.generator?.circ2 = null
+			src.generator = null
+		qdel(src.ui)
+		..()
+
 /obj/item/electronics/frame/cold_circ
 	name = "cold gas circulator frame"
 	store_type = /obj/machinery/atmospherics/binary/circulatorTemp/right
@@ -699,17 +759,22 @@ datum/pump_ui/circulator_ui
 			updateicon()
 
 	proc/check_circs()
-		src.circ1 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,WEST)
-		src.circ2 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,EAST)
+		if(!src.circ1)
+			src.circ1 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,WEST)
+			if(src.circ1)
+				src.circ1.generator = src
+				src.circ1.side = LEFT_CIRCULATOR
+
+		if(!src.circ2)
+			src.circ2 = locate(/obj/machinery/atmospherics/binary/circulatorTemp) in get_step(src,EAST)
+			if(src.circ2)
+				src.circ2.generator = src
+				src.circ2.side = RIGHT_CIRCULATOR
+
 		if(!src.circ1 || !src.circ2)
 			src.status |= BROKEN
 		else
 			src.status &= ~BROKEN
-
-		src.circ1?.generator = src
-		src.circ1?.side = LEFT_CIRCULATOR
-		src.circ2?.generator = src
-		src.circ2?.side = RIGHT_CIRCULATOR
 
 	disposing()
 		src.circ1?.generator = null
