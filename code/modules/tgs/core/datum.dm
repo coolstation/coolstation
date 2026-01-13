@@ -72,3 +72,6 @@ TGS_DEFINE_AND_SET_GLOBAL(tgs, null)
 
 /datum/tgs_api/proc/TriggerEvent(event_name, list/parameters, wait_for_completion)
 	return FALSE
+
+/datum/tgs_api/proc/TriggerDeployment()
+	return TGS_UNIMPLEMENTED
