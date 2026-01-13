@@ -178,6 +178,8 @@
 
 
 /mob/living/flash(duration)
+	if(src.client?.preferences && src.client?.preferences.photosensitive)
+		return
 	vision.flash(duration)
 
 /mob/living/disposing()

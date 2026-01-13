@@ -56,6 +56,7 @@ datum/preferences
 	var/auto_capitalization = 0
 	var/local_deadchat = 0
 	var/hidden_spiders = 0
+	var/photosensitive = 0
 	var/use_wasd = 1
 	var/use_azerty = 0 // do they have an AZERTY keyboard?
 	var/spessman_direction = SOUTH
