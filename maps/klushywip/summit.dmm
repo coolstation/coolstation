@@ -405,6 +405,11 @@
 /obj/item/clothing/suit/wintercoat,
 /turf/floor/carpet/grime3,
 /area/space)
+"cP" = (
+/obj/machinery/chem_heater,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grey,
+/area/space)
 "cQ" = (
 /obj/machinery/manufacturer/mining,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -917,6 +922,10 @@
 /turf/floor/purple/side{
 	dir = 4
 	},
+/area/space)
+"fP" = (
+/obj/machinery/chem_dispenser,
+/turf/floor/grey,
 /area/space)
 "fT" = (
 /turf/floor/carpet/blue/fancy/edge/nw,
@@ -1606,6 +1615,11 @@
 /obj/storage/crate,
 /turf/floor/industrial,
 /area/space)
+"kT" = (
+/obj/window/reinforced/south,
+/obj/machinery/disposal,
+/turf/floor/grey,
+/area/space)
 "kV" = (
 /obj/submachine/chem_extractor{
 	pixel_x = -4
@@ -1650,6 +1664,14 @@
 "lq" = (
 /obj/submachine/chef_oven,
 /turf/floor/specialroom/cafeteria,
+/area/space)
+"lr" = (
+/obj/table/reinforced/chemistry/auto,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -1;
+	pixel_y = 1
+	},
+/turf/floor/grey,
 /area/space)
 "lv" = (
 /obj/stool/chair{
@@ -1918,6 +1940,11 @@
 /obj/item/instrument/large/organ,
 /turf/floor/wood/eight,
 /area/space)
+"nd" = (
+/obj/table/reinforced/auto,
+/obj/machinery/door/window/southright,
+/turf/floor/grime,
+/area/space)
 "ne" = (
 /obj/machinery/vending/gunse,
 /turf/floor/grey,
@@ -1962,6 +1989,19 @@
 	icon_state = "delivery2"
 	},
 /turf/floor/industrial,
+/area/space)
+"nu" = (
+/obj/table/reinforced/chemistry/auto,
+/obj/item/storage/box/syringes{
+	pixel_x = 7;
+	pixel_y = 9
+	},
+/obj/item/storage/box/beakerbox{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grey,
 /area/space)
 "nw" = (
 /obj/fluid_spawner/polluted_filth/blood,
@@ -2223,6 +2263,12 @@
 "oT" = (
 /obj/decal/cleanable/tracked_reagents/blood/splatter,
 /turf/floor/sanitary/blue,
+/area/space)
+"oW" = (
+/obj/stool/chair/office/blue{
+	dir = 8
+	},
+/turf/floor/grey,
 /area/space)
 "oZ" = (
 /obj/decal/snowbits,
@@ -2822,6 +2868,18 @@
 /obj/random_item_spawner/snacks/one,
 /turf/floor/specialroom/bar,
 /area/space)
+"sC" = (
+/obj/table/reinforced/chemistry/auto,
+/obj/machinery/glass_recycler/chemistry{
+	pixel_y = 6;
+	glass_amt = 15
+	},
+/obj/decal/poster/wallsign/poster_chme{
+	pixel_y = 28
+	},
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grey,
+/area/space)
 "sE" = (
 /obj/securearea{
 	pixel_x = 27
@@ -3072,6 +3130,14 @@
 	icon_state = "plant"
 	},
 /turf/floor/carpet/grime,
+/area/space)
+"tX" = (
+/obj/machinery/chem_heater,
+/obj/decal/poster/wallsign/poster_ptoe{
+	pixel_y = 4;
+	pixel_x = 31
+	},
+/turf/floor/grey,
 /area/space)
 "tZ" = (
 /obj/table/auto,
@@ -3382,6 +3448,12 @@
 	pixel_y = 4
 	},
 /turf/space/nevicata/wastes/beaten,
+/area/space)
+"vL" = (
+/obj/machinery/chem_master{
+	dir = 8
+	},
+/turf/floor/grey,
 /area/space)
 "vT" = (
 /obj/table/folding,
@@ -4926,6 +4998,10 @@
 /obj/decal/poster/wallsign/stencil/right/s,
 /turf/wall/auto/reinforced,
 /area/space)
+"Fw" = (
+/obj/machinery/door/airlock/maintenance,
+/turf/space/nevicata/wastes,
+/area/space)
 "Fy" = (
 /obj/table/auto,
 /obj/item/storage/box/evidence,
@@ -5773,6 +5849,10 @@
 /obj/machinery/light/fluorescent/ceiling/warm,
 /turf/floor/carpet/darkcarpet,
 /area/space)
+"KF" = (
+/obj/window/reinforced/south,
+/turf/floor/white,
+/area/space)
 "KH" = (
 /obj/decal/floatingtiles/loose/random,
 /turf/floor/plating/random,
@@ -6138,6 +6218,10 @@
 /obj/stool/chair/couch{
 	dir = 8
 	},
+/obj/item/reagent_containers/food/drinks/water_pipe{
+	pixel_x = 8;
+	pixel_y = 6
+	},
 /turf/floor/wood/five,
 /area/space)
 "MM" = (
@@ -6348,6 +6432,11 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/carpet/grime,
 /area/space)
+"NQ" = (
+/obj/table/reinforced/chemistry/auto,
+/obj/item/paper/book/from_file/pharmacopia,
+/turf/floor/grey,
+/area/space)
 "NR" = (
 /obj/stool/chair/wooden{
 	desc = "An antique chair.";
@@ -6363,6 +6452,10 @@
 "NW" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
 /obj/decal/cleanable/dirt/random,
+/turf/floor/grey,
+/area/space)
+"NZ" = (
+/obj/stool/chair/office/blue,
 /turf/floor/grey,
 /area/space)
 "Od" = (
@@ -6539,6 +6632,12 @@
 "Pa" = (
 /obj/reagent_dispensers/compostbin,
 /turf/floor/grass,
+/area/space)
+"Pc" = (
+/obj/table/reinforced/auto,
+/obj/machinery/door/window/westleft,
+/obj/machinery/cashreg,
+/turf/floor/grey,
 /area/space)
 "Pf" = (
 /obj/stool/chair/green{
@@ -6727,6 +6826,12 @@
 /turf/floor/red/side{
 	dir = 5
 	},
+/area/space)
+"Qn" = (
+/obj/submachine/chem_extractor{
+	dir = 1
+	},
+/turf/floor/grey,
 /area/space)
 "Qo" = (
 /obj/decal/cleanable/dirt/random,
@@ -6947,6 +7052,12 @@
 	pixel_x = 10
 	},
 /turf/floor/carpet/blue/fancy/narrow/nw,
+/area/space)
+"RN" = (
+/obj/machinery/door/airlock/glass/medical{
+	id = "cloning-exit"
+	},
+/turf/floor/grey,
 /area/space)
 "RQ" = (
 /obj/stool/bed/brig,
@@ -7886,7 +7997,10 @@
 /area/space)
 "Xj" = (
 /obj/table/reinforced/auto,
-/turf/floor/purple/checker,
+/obj/window/reinforced/west,
+/obj/item/clipboard/with_pen,
+/obj/item/clothing/glasses/spectro,
+/turf/floor/grey,
 /area/space)
 "Xk" = (
 /obj/table,
@@ -8202,11 +8316,6 @@
 /area/space)
 "Zl" = (
 /obj/table/wood/round,
-/obj/item/reagent_containers/glass/water_pipe{
-	pixel_x = -6;
-	pixel_y = 2;
-	initial_reagents = "water"
-	},
 /obj/item/plant/herb/cannabis,
 /obj/item/device/light/zippo{
 	pixel_x = 11;
@@ -45326,11 +45435,11 @@ ki
 ki
 ki
 ki
-ki
-ki
-sa
-sa
-sa
+he
+he
+he
+he
+he
 he
 ux
 bU
@@ -45628,11 +45737,11 @@ ki
 ki
 ki
 ki
+he
 ki
 ki
-sa
-pn
-pn
+ki
+ki
 he
 mF
 jH
@@ -45930,11 +46039,11 @@ sa
 sa
 Oe
 Oe
-sa
-sa
-sa
-pn
-pn
+he
+ki
+ki
+ki
+ki
 he
 he
 he
@@ -46232,12 +46341,12 @@ pn
 sa
 Oe
 Oe
-sa
-pn
-pn
-pn
-pn
-pn
+Bd
+ki
+ki
+ki
+ki
+dn
 pn
 pn
 he
@@ -46534,12 +46643,12 @@ pn
 sa
 Oe
 Oe
-sa
-pn
-pn
-pn
-pn
-pn
+he
+ki
+ki
+ki
+ki
+nd
 pn
 pn
 he
@@ -46836,12 +46945,12 @@ sa
 sa
 sa
 Oe
-sa
-sa
-sa
-pn
-pn
-pn
+he
+he
+he
+he
+Fw
+he
 xT
 xT
 xT
@@ -47442,7 +47551,7 @@ sa
 Oe
 Oe
 Oe
-sa
+he
 pn
 pn
 xT
@@ -52899,11 +53008,11 @@ oc
 dn
 pn
 he
+he
 Xj
-Xj
+Pc
 dn
-dn
-QA
+RN
 he
 pn
 xT
@@ -53200,13 +53309,13 @@ zc
 XW
 dn
 pn
-dn
-QA
-QA
-QA
-QA
-QA
 he
+nu
+oW
+xv
+kT
+xv
+dn
 pn
 xT
 xT
@@ -53502,14 +53611,14 @@ Yx
 TT
 dn
 pn
-dn
-QA
-QA
-QA
-QA
-QA
-dn
-pn
+he
+sC
+zJ
+Yx
+KF
+RN
+he
+he
 xT
 xT
 xT
@@ -53804,14 +53913,14 @@ mi
 zc
 he
 pn
-dn
-QA
-QA
-QA
-QA
-QA
 he
-pn
+Qn
+Yx
+Yx
+Yx
+xv
+cP
+dn
 xT
 xT
 xT
@@ -54106,14 +54215,14 @@ mi
 zc
 kx
 pn
-dn
-QA
-QA
-QA
-QA
-QA
-dn
-pn
+xH
+xv
+Yx
+ro
+zJ
+NZ
+fP
+he
 xT
 xT
 xT
@@ -54408,14 +54517,14 @@ mi
 zc
 he
 pn
-dn
-QA
-QA
-QA
-QA
-QA
 he
-pn
+vL
+fP
+tX
+xv
+NQ
+lr
+dn
 xT
 xT
 xT
@@ -54714,10 +54823,10 @@ he
 he
 dn
 he
-dn
-QA
+RN
 he
-pn
+he
+he
 xT
 xT
 xT

@@ -37,7 +37,7 @@ var/global/list/image/spider_filter_images
 	qdel(src.filter_image)
 	. = ..()
 
-// todo: persist this pref? arachnophobia etc
+
 /mob/verb/hide_spiders()
 	set desc = "Replace spiders with a text 'SPIDER' icon"
 	set name = "Toggle Spiders (arachnophobe mode)"
