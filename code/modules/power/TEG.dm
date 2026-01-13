@@ -86,22 +86,20 @@
 
 	var/datum/pump_ui/ui
 
-	New()
-		. = ..()
-		dir = SOUTH
-
 	initialize()
 		..()
 		ui = new/datum/pump_ui/circulator_ui(src)
-		sync_node_connections()
 
 	New()
 		. = ..()
+		dir = SOUTH
 		circulator_preferred_reagents = list("oil"=1.0,"lube"=1.1,"superlube"=1.12)
 		create_reagents(400)
 		reagents.add_reagent("oil", reagents.maximum_volume*0.50)
 		target_pressure = min_circ_pressure
 		target_pressure_enabled = FALSE
+		if(current_state >= GAME_STATE_PLAYING)
+			sync_node_connections()
 
 	proc/assign_variant(partial_serial_num, variant_a, variant_b=null)
 		src.serial_num = "CIRC-[partial_serial_num][variant_a][rand(100,999)]"
@@ -437,6 +435,7 @@
 
 		air1.volume = 200
 		air2.volume = 200
+		sync_node_connections()
 
 	//oh god
 	was_deconstructed_to_frame(mob/user)
