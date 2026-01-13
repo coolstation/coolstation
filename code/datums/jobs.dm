@@ -2630,7 +2630,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 /datum/job/special/ntso_specialist_weak
 	linkcolor = "#3348ff"
 	name = "Nanotrasen Security Operative"
-	limit = 1 // backup during HELL WEEK. players will probably like it
+	limit = 0 // backup during HELL WEEK. players will probably like it
 	wages = PAY_TRADESMAN
 	requires_whitelist = 1
 	requires_supervisor_job = "Head of Security"
