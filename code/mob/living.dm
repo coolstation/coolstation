@@ -564,7 +564,7 @@
 				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 		else if (params["ctrl"])
 			var/atom/movable/movable = target
-			if (istype(movable))
+			if (istype(movable) && IN_RANGE(target.loc, src.loc, 1))
 				if (src.pulling && src.pulling == movable)
 					unpull_particle(src,src.pulling)
 					src.set_pulling(null)
