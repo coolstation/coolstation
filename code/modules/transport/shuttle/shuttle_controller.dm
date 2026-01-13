@@ -191,7 +191,7 @@ datum/shuttle_controller
 
 						processScheduler.enableProcess("Fluid_Turfs")
 
-						TgsTriggerDeployment() //round is guaranteed to end in 3:30 or less now- builds take about 60 seconds.
+						world.TgsTriggerDeployment() //round is guaranteed to end in 3:30 or less now- builds take about 60 seconds.
 
 						return 1
 
