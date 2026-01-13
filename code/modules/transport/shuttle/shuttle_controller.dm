@@ -191,6 +191,8 @@ datum/shuttle_controller
 
 						processScheduler.enableProcess("Fluid_Turfs")
 
+						world.TgsTriggerDeployment() //round is guaranteed to end in 3:30 or less now- builds take about 60 seconds.
+
 						return 1
 
 #ifdef SHUTTLE_TRANSIT // shuttle spends some time in transit to centcom before arriving
