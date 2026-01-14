@@ -102,11 +102,10 @@ ABSTRACT_TYPE(/datum/robot3_mechanism)
 /// Take damage to the mechanism and shut down if at 0
 /datum/robot3_mechanism/proc/take_damage(var/damage)
 	SHOULD_CALL_PARENT(TRUE)
-	if(!src.enabled)
-		return FALSE
 	src.health = max(0, src.health - damage)
-	if(!src.health)
+	if(!src.health && src.enabled)
 		src.on_disabled()
+		return FALSE
 	return TRUE
 
 /// ----- ABSTRACT ROBOT3 PART -----
