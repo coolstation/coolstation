@@ -124,7 +124,7 @@
 								if (!Q.dir)
 									Q.set_dir(SOUTH)
 								new /area/adventure(Q)
-								blink(Q)
+								//blink(Q)
 							workgroup_curr++
 							if (workgroup_curr >= workgroup_size)
 								workgroup_curr = 0
@@ -149,7 +149,7 @@
 											PP += O
 								else
 									boutput(user, "<span class='alert'>Error: Invalid object type [F.ExportText("[base].OBJ.[objid].type")] in [base].OBJ.[objid].type</span>")
-							blink(Q)
+							//blink(Q)
 							workgroup_curr++
 							if (workgroup_curr >= workgroup_size)
 								workgroup_curr = 0
@@ -169,7 +169,7 @@
 					for (var/turf/R in block(locate(basex, basey, cz), locate(basex + w - 1, basey + h - 1, cz)))
 						R.RL_Reset()
 						R.tag = null
-						blink(R)
+						//blink(R)
 						for (var/atom/A in R.contents)
 							A.tag = null
 						workgroup_curr++

@@ -518,7 +518,6 @@ datum
 			burn_volatility = 20
 			minimum_reaction_temperature = T0C - 160
 			evaporates_cleanly = TRUE
-			random_chem_blacklisted = 1 // was causing runtimes pre-gamestart when it spawned randomly
 			taste = "like it's too late"
 
 			reaction_turf(var/turf/T, var/volume)

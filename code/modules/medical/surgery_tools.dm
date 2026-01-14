@@ -1568,7 +1568,7 @@ CONTAINS:
 			var/mob/living/carbon/human/H = M
 
 			if (!H.blinded) // can't see the light if you can't see shit else!!
-				H.vision.flash(src.anim_duration)
+				H.flash(src.anim_duration)
 
 			if (istype(H.glasses) && !istype(H.glasses, /obj/item/clothing/glasses/regular) && H.glasses.c_flags & COVERSEYES) // check all the normal things that could cover eyes
 				results_msg = "&emsp;<span class='alert'>It's hard to accurately judge how [H]'s eyes reacted through [his_or_her(H)] [H.glasses.name]!</span>"
@@ -1678,7 +1678,7 @@ CONTAINS:
 
 		else if (isliving(M)) // other mooooooobs
 			var/mob/living/L = M
-			L.vision.flash(src.anim_duration)
+			L.flash(src.anim_duration)
 
 		M.tri_message("[user] shines [src] in [M == user ? "[his_or_her(user)] own" : "[M]'s"] eyes.[results_msg ? "<br>[results_msg]" : null]",\
 		user, "You shine [src] in [M == user ? "your own" : "[M]'s"] eyes.[(M != user && results_msg) ? "<br>[results_msg]" : null]",\

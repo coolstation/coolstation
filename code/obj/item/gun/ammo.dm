@@ -952,6 +952,8 @@
 		if(SEND_SIGNAL(src, COMSIG_CELL_CHECK_CHARGE, ret) & CELL_RETURNED_LIST)
 			. += "There are [ret["charge"]]/[ret["max_charge"]] PU left!"
 
+/obj/item/ammo/power_cell/dead
+	charge = 0.0 //might be useful!
 
 /obj/item/ammo/power_cell/med_power
 	name = "Power Cell - 200"

@@ -149,6 +149,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon_state = "anvil"
 	w_class = W_CLASS_BULKY
 	throw_spin = FALSE
+	throwforce = 20
 
 	portable
 		density = 0

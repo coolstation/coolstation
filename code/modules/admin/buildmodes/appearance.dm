@@ -30,7 +30,7 @@ Right Mouse Button on mob/obj/turf = Copy Appearance<br>
 			H.update_colorful_parts()
 		else
 			object.appearance = MA
-		blink(get_turf(object))
+		//blink(get_turf(object))
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
 		if (ishuman(object))
@@ -39,5 +39,5 @@ Right Mouse Button on mob/obj/turf = Copy Appearance<br>
 		else
 			AH = null
 		MA = object.appearance
-		blink(get_turf(object))
+		//blink(get_turf(object))
 		update_button_text(object.name)

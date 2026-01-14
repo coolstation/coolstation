@@ -177,7 +177,6 @@ var/list/figure_high_rarity = list(\
 /datum/figure_info/omnitraitor,
 /datum/figure_info/shitty_bill,
 /datum/figure_info/don_glabs,
-/datum/figure_info/father_jack,
 /datum/figure_info/inspector,
 /datum/figure_info/coach,
 /datum/figure_info/sous_chef,
@@ -468,10 +467,6 @@ var/list/figure_high_rarity = list(\
 	don_glabs
 		name = "\improper Donald \"Don\" Glabs"
 		icon_state = "don"
-
-	father_jack
-		name = "\improper Father Jack"
-		icon_state = "jack"
 
 	santa
 		name = "\improper Santa Claus"

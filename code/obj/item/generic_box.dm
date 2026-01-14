@@ -304,6 +304,12 @@
 		icon_open = "heart_box-open"
 		icon_empty = "heart_box-empty"
 
+	tobacco
+		name = "box of tobacco leaves"
+		contained_item = /obj/item/plant/herb/tobacco
+		item_amount = 10
+		max_item_amount = 10
+
 	New()
 		..()
 		if (src.contained_items_proc)

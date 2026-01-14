@@ -485,6 +485,16 @@ GAUNTLET CARDS
 	registered = "John Bill"
 	access = list(access_juicer, access_juicer_fraud, access_juicer_grease)
 
+/obj/item/card/id/ntso
+	name = "old NTSO ID card"
+	icon_state = "faded"
+	assignment = "Nanotrasen Special Operative"
+	desc = "This ID card has seen better days. The text is barely legible and it's way more flexible than it should be. It could still have some uncleared access, though..."
+	access = list(access_maint_tunnels, access_external_airlocks)
+	New()
+		access += pick(access_eva,access_security,access_heads)
+		..()
+
 /obj/item/card/id/soviet
 	name = "identification pass"
 	icon_state = "soviet_gen"

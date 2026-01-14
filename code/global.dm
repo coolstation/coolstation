@@ -281,6 +281,7 @@ var/global
 	debug_mixed_forced_wraith = 0
 	debug_mixed_forced_blob = 0
 	farting_allowed = 1
+	pooping_allowed = 1
 	resonance_fertscade = 0
 	random_emotesounds = 1
 	blood_system = 1
@@ -303,10 +304,12 @@ var/global
 	shipyardship_pre_densitymap = list()
 	shipyardship_post_densitymap = list()
 	shipyard_scrapwall_prob = 40
+	shipyard_underway = 0
 	toggles_enabled = 1
 	announce_banlogin = 1
 	announce_jobbans = 0
 	channel_open = 0 // is the channel collapsed or is it open?
+	json_enabled = 0 //disabling this for now, I don't think I intended to leave this on
 
 
 	outpost_destroyed = 0

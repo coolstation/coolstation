@@ -1,4 +1,3 @@
-
 /obj/decal/poster //don't use this one (or do, i'm not your dad)
 	desc = "A piece of paper with an image on it. Clearly dealing with incredible technology here."
 	name = "poster"
@@ -9,7 +8,7 @@
 	density = 0
 	var/imgw = 600 //set this to around +10 your image's actual size or whatever size you want the window to be
 	var/imgh = 400 //ditto
-	var/img = "images/arts/posters/sweaterferrets.jpg" //fallback image
+	var/img = "browserassets/images/arts/posters/sweaterferrets.jpg" //fallback image
 	var/resource = null //use html resource instead of quick and dirty html image? ex. "html/traitorTips/wizardTips.html"
 	var/popup_win = 1 //wallsign root is 0 don't worry about it
 	var/cat = "poster" //reuse windows, define differently if you want a separate/persistent category
@@ -18,7 +17,7 @@
 
 	examine()
 		if (usr.client && src.popup_win)
-			src.show_popup_win(usr)
+			src.show_popup_win(usr.client)
 			return ..() //someone smarter than me please tell me why we wouldn't also return the name/desc in chatbox like a usual examine
 		else			//idk i think we should so im making it happen, ass hole.
 			return ..()
@@ -32,8 +31,15 @@
 		if (src.resource) //do we have a resource defined?
 			C.Browse(grabResource("[resource]"),"window=[cat];size=[imgw]x[imgh];title=[name]")
 		else //no? then it's obviously an image
-			C.Browse("<html><title>[name]</title><body style='margin:2px'><img src='[resource("[img]")]'></body></html>","window=[cat];size=[imgw]x[imgh];title=[name]")
-			//C.Browse("<img src=\"[resource("images/pw_map.png")]\">","window=Map;size=[imgw]x[imgh];title=Map") //marginless from pw_map, preserved as curiosity (or if i fucked up and need to put it back)
+			//C.Browse("<html><title>[name]</title><body style='margin:2px'><img src='[resource("[img]")]'></body></html>","window=[cat];size=[imgw]x[imgh];title=[name]")
+			//C.Browse("<img src=\"[resource("browserassets/images/pw_map.png")]\">","window=Map;size=[imgw]x[imgh];title=Map") //marginless from pw_map, preserved as curiosity (or if i fucked up and need to put it back)
+			var/icon/I = icon(file(img))
+			if (I)
+
+
+				var/datum/hud/funimage/fun_image = new(I)
+				fun_image.add_client(C)
+
 
 	wallsign
 		desc = "A sign, on a wall. Wow!"
@@ -547,7 +553,7 @@
 			popup_win = 1
 			imgw = 185
 			imgh = 235
-			img = "images/arts/posters/sign-area.jpg"
+			img = "browserassets/images/arts/posters/sign-area.jpg"
 
 		poster_hair
 			name = "Fabulous Hair!"
@@ -563,7 +569,7 @@
 			popup_win = 1
 			imgw = 645
 			imgh = 545
-			img = "images/arts/posters/idiot-bastard.jpg"
+			img = "browserassets/images/arts/posters/idiot-bastard.jpg"
 
 		poster_delari
 			name = "Framed portrait"
@@ -573,7 +579,7 @@
 			popup_win = 1
 			imgw = 360
 			imgh = 410
-			img = "images/arts/posters/delari-by-killfrenzy.png"
+			img = "browserassets/images/arts/posters/delari-by-killfrenzy.png"
 
 		poster_cool
 			name = "cool poster"
@@ -638,7 +644,7 @@
 			imgw = 500
 			imgh = 647
 			icon = 'icons/obj/decals/posters.dmi'
-			img = "images/arts/posters/precursor.png"
+			img = "browserassets/images/arts/posters/precursor.png"
 
 		poster_y4nt
 			name = "\improper NanoTrasen recruitment poster"
@@ -656,7 +662,7 @@
 			popup_win = 1
 			imgw = 365
 			imgh = 450
-			img = "images/arts/posters/y4nt-shitty.jpg"
+			img = "browserassets/images/arts/posters/y4nt-shitty.jpg"
 
 		poster_tiger
 			name = "tiger poster"
@@ -666,7 +672,7 @@
 			popup_win = 1
 			imgw = 410
 			imgh = 275
-			img = "images/arts/posters/tiger.png"
+			img = "browserassets/images/arts/posters/tiger.png"
 
 		newspaper_gg
 			name = "newspaper clipping"
@@ -676,7 +682,7 @@
 			popup_win = 1
 			imgw = 1252
 			imgh = 1765
-			img = "images/arts/posters/gg.png"
+			img = "browserassets/images/arts/posters/gg.png"
 
 		pope_portrait
 			name = "portrait of the Pope"
@@ -686,7 +692,7 @@
 			popup_win = 1
 			imgw = 199
 			imgh = 262
-			img = "images/arts/posters/pope.jpg"
+			img = "browserassets/images/arts/posters/pope.jpg"
 
 		circulatory
 			name = "anatomical poster"
@@ -696,7 +702,7 @@
 			popup_win = 1
 			imgw = 275
 			imgh = 574
-			img = "images/arts/posters/circulatory.jpg"
+			img = "browserassets/images/arts/posters/circulatory.jpg"
 
 		poster_beach
 			name = "beach poster"
@@ -1252,7 +1258,7 @@
 	popup_win = 1
 	imgw = 690
 	imgh = 570
-	img = "images/arts/posters/hypothermia.jpg"
+	img = "browserassets/images/arts/posters/hypothermia.jpg"
 
 /obj/decal/poster/wallsign/recremation
 	name = "recremation LCD sign"
@@ -1267,7 +1273,7 @@
 	popup_win = 1
 	imgw = 650
 	imgh = 200
-	img = "images/arts/posters/gunsmithing.jpg"
+	img = "browserassets/images/arts/posters/gunsmithing.jpg"
 
 /obj/decal/poster/wallsign/pod_build/nt
 	icon_state = "nt-pod-poster"
@@ -1282,7 +1288,7 @@
 	popup_win = 1
 	imgw = 702
 	imgh = 702
-	img = "images/pw_map.png"
+	img = "browserassets/images/pw_map.png"
 	cat = "map"
 
 /obj/decal/poster/wallsign/dont_drugs
@@ -1372,3 +1378,4 @@
 				clear_banner()
 			else
 				return
+

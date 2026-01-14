@@ -137,11 +137,16 @@
 	detail.alpha = 192
 	overlays += detail
 
+	src.name = P.real_name
+
 	if (!src.bioHolder) //For critter spawns
 		var/datum/bioHolder/newbio = new/datum/bioHolder(src)
 		newbio.mobAppearance.customization_first_color = hair.color
 		newbio.mobAppearance.e_color = P.AH.e_color
 		src.bioHolder = newbio
+
+	src.bioHolder.mobAppearance.pronouns = P.AH.pronouns
+	src.update_name_tag()
 
 
 //#ifdef HALLOWEEN
@@ -827,6 +832,7 @@
 			src.real_name = corpse.real_name
 		else
 			src.real_name = corpse.acid_name
+	newobs.real_name = src.real_name
 	newobs.my_ghost = src
 	delete_on_logout_reset = delete_on_logout
 	delete_on_logout = 0

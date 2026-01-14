@@ -102,6 +102,13 @@
 				close()
 	return
 
+/obj/machinery/door/firedoor/receive_silicon_hotkey(mob/user)
+	..()
+	for (var/obj/o in src.loc)
+		if (istype(o,/obj/machinery/door/airlock))
+			o.receive_silicon_hotkey(user)
+			return
+
 // listen for fire alert from firealarm
 /obj/machinery/door/firedoor/receive_signal(datum/signal/signal)
 	if(!("address_tag" in signal.data) && !("address_1" in signal.data))
@@ -140,6 +147,8 @@
 	src.add_fingerprint(user)
 	if (!ispryingtool(C))
 		if (src.density && !src.operating)
+			if (issilicon(user) && !IN_RANGE(src,user,1))
+				return
 			user.lastattacked = src
 			attack_particle(user,src)
 			playsound(src.loc, src.hitsound , 50, 1, pitch = 1.6)

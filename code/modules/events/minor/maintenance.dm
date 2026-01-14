@@ -67,7 +67,7 @@ ABSTRACT_TYPE(/datum/random_event/minor/maintenance)
 /datum/random_event/minor/maintenance/maintenance_new
 	name = "Maintenance Arrears"
 	//for centcom_headline see below
-	centcom_message = "The NanoTrasen Station Maintenance Department has determined that some on-station equipment has not been properly maintained. The equipment in question may experience faults in the near future if the situation is not addressed. The engineering department has been given details on the affected equipment on their PDAs."
+	centcom_message = "The NanoTrasen Station Maintenance Department has determined that some on-station equipment has not been properly maintained. The equipment in question may experience faults in the near future if the situation is not addressed. The engineering department has been given details on the affected equipment via the Maintenance Arrears program on their PDAs."
 	customization_available = TRUE
 
 	admin_call(var/source)
