@@ -14,6 +14,7 @@
 	var/cat = "poster" //reuse windows, define differently if you want a separate/persistent category
 	layer = EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
+	cares_bout_turf_change = TRUE
 
 	examine()
 		if (usr.client && src.popup_win)
