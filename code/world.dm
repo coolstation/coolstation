@@ -131,7 +131,7 @@ var/global/mob/twitch_mob = 0
 
 /world/proc/set_map_tgs(var/the_string)
 
-	var/F = file("data/map.txt")
+	var/F = file("data/map.dm")
 	fdel(F)
 	F << the_string
 
