@@ -142,6 +142,7 @@
 		/obj/item/hemostat,
 		/obj/item/suture,
 		/obj/item/staple_gun,
+		/obj/item/tweezers,
 		/obj/item/reagent_containers/iv_drip/blood,
 		/obj/item/reagent_containers/mender/brute/medbot,
 		/obj/item/reagent_containers/mender/burn/medbot,
