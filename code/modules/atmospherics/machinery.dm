@@ -102,7 +102,6 @@ obj/machinery/atmospherics
 
 					var/image/scrumpy = image(PF.gizmo.icon, PF.gizmo.icon_state)
 					PF.UpdateOverlays(scrumpy, "added_gizmo")
-					SEND_SIGNAL(src,COMSIG_MECHCOMP_RM_ALL_CONNECTIONS) //remove any MechComp connections (I.E. digital valves, pumps, etc)
 			qdel(src)
 
 		sync_node_connections()

@@ -73,6 +73,10 @@ Thus, the two variables affect pump operation are set in New():
 
 		return 1
 
+	disposing()
+		SEND_SIGNAL(src, COMSIG_MECHCOMP_RM_ALL_CONNECTIONS)
+		..()
+
 	proc/broadcast_status()
 		var/datum/signal/signal = get_free_signal()
 		signal.transmission_method = 1 //radio signal

@@ -79,6 +79,10 @@ obj/machinery/atmospherics/valve
 			SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"close", "mechClose")
 			MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
 
+		disposing()
+			SEND_SIGNAL(src, COMSIG_MECHCOMP_RM_ALL_CONNECTIONS)
+			..()
+
 		receive_signal(datum/signal/signal)
 			if(signal.data["tag"] && (signal.data["tag"] != id))
 				return 0

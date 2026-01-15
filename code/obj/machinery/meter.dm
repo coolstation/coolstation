@@ -18,6 +18,10 @@
 	net_id = generate_net_id(src)
 	MAKE_SENDER_RADIO_PACKET_COMPONENT(net_id, frequency)
 
+/obj/machinery/meter/disposing()
+	SEND_SIGNAL(src, COMSIG_MECHCOMP_RM_ALL_CONNECTIONS)
+	..()
+
 /obj/machinery/meter/process()
 	if(!target)
 		icon_state = "meterX"
@@ -83,7 +87,6 @@
 
 /obj/machinery/meter/proc/deconstruct(mob/user)
 	user.visible_message("[user] detaches \the [src] from the pipe.", "You detach \the [src] from the pipe.")
-	SEND_SIGNAL(src, COMSIG_MECHCOMP_RM_ALL_CONNECTIONS)
 	new/obj/item/pipe_meter(src.loc)
 	qdel(src)
 
