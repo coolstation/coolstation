@@ -26,7 +26,7 @@
 
 	disposing()
 		if(src.visual_turf)
-			UnregisterSignal(src.visual_turf.turf_persistent, COMSIG_TURF_REPLACED)
+			UnregisterSignal(src.visual_turf.turf_persistent, COMSIG_TURF_POST_REPLACE)
 		..()
 
 	generate_worldgen()
@@ -38,7 +38,7 @@
 			if(T)
 				src.visual_turf = T
 			src.old_turf_density = src.visual_turf.density
-			RegisterSignal(src.visual_turf.turf_persistent, COMSIG_TURF_REPLACED, PROC_REF(turf_changed))
+			RegisterSignal(src.visual_turf.turf_persistent, COMSIG_TURF_POST_REPLACE, PROC_REF(turf_changed))
 
 	proc/turf_changed(datum/turf_persistent/visual_turf_persistent, new_turf)
 		if(src.old_turf_density != src.visual_turf.density)

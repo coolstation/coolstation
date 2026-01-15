@@ -88,8 +88,10 @@
 
 // ---- turf signals ----
 
-/// sent to the turf_persistent when a turf is replaced by another turf (what)
-#define COMSIG_TURF_REPLACED "turf_replaced"
+/// sent to the turf_persistent before a turf is replaced by another turf (new_type)
+#define COMSIG_TURF_PRE_REPLACE "turf_replaced_pre"
+/// sent to the turf_persistent when a turf is replaced by another turf (new_turf)
+#define COMSIG_TURF_POST_REPLACE "turf_replaced_post"
 /// when a movable lands in a turf (thing, /datum/thrown_thing)
 #define COMSIG_TURF_LANDIN_THROWN "turf_landin"
 
