@@ -5,7 +5,7 @@
 	icon_state = "ghost"
 	layer = NOLIGHT_EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
-	event_handler_flags = USE_CANPASS | USE_FLUID_ENTER //maybe?
+	event_handler_flags = USE_CANPASS | USE_FLUID_ENTER | MOVE_NOCLIP //maybe?
 	density = 0
 	canmove = 1
 	blinded = 0
@@ -56,7 +56,7 @@
 /mob/dead/observer/click(atom/target, params, location, control)
 
 	if (src.in_point_mode || (src.client && src.client.check_key(KEY_POINT)))
-		src.point(target)
+		src.point_at(target, text2num(params["icon-x"]), text2num(params["icon-y"]))
 		if (src.in_point_mode)
 			src.toggle_point_mode()
 		return
@@ -77,7 +77,7 @@
 	REMOVE_ATOM_PROPERTY(src, PROP_INVISIBILITY, "clientless")
 
 
-/mob/dead/observer/point_at(var/atom/target)
+/mob/dead/observer/point_at(atom/target, var/pixel_x, var/pixel_y)
 	if (!isturf(src.loc))
 		return
 
@@ -91,7 +91,7 @@
 	if(prob(20))
 		point_invisibility = 0
 #endif
-	make_point(get_turf(target), pixel_x=target.pixel_x, pixel_y=target.pixel_y, color="#5c00e6", invisibility=point_invisibility)
+	make_point(target, pixel_x=pixel_x, pixel_y=pixel_y, color="#5c00e6", invisibility=point_invisibility, pointer=src)
 
 
 #define GHOST_LUM	1		// ghost luminosity
@@ -137,11 +137,16 @@
 	detail.alpha = 192
 	overlays += detail
 
+	src.name = P.real_name
+
 	if (!src.bioHolder) //For critter spawns
 		var/datum/bioHolder/newbio = new/datum/bioHolder(src)
 		newbio.mobAppearance.customization_first_color = hair.color
 		newbio.mobAppearance.e_color = P.AH.e_color
 		src.bioHolder = newbio
+
+	src.bioHolder.mobAppearance.pronouns = P.AH.pronouns
+	src.update_name_tag()
 
 
 //#ifdef HALLOWEEN
@@ -498,24 +503,7 @@
 			src.z = 1
 		return OnMove()
 
-	if (!isturf(src.loc))
-		src.set_loc(get_turf(src))
-	if (NewLoc)
-		set_dir(get_dir(loc, NewLoc))
-		src.set_loc(NewLoc)
-		OnMove()
-		return
-
-	set_dir(direct)
-	if((direct & NORTH) && src.y < world.maxy)
-		src.y++
-	if((direct & SOUTH) && src.y > 1)
-		src.y--
-	if((direct & EAST) && src.x < world.maxx)
-		src.x++
-	if((direct & WEST) && src.x > 1)
-		src.x--
-	OnMove()
+	. = ..()
 
 /mob/dead/observer/MouseDrop(atom/A)
 	if (usr != src || isnull(A)) return
@@ -844,6 +832,7 @@
 			src.real_name = corpse.real_name
 		else
 			src.real_name = corpse.acid_name
+	newobs.real_name = src.real_name
 	newobs.my_ghost = src
 	delete_on_logout_reset = delete_on_logout
 	delete_on_logout = 0

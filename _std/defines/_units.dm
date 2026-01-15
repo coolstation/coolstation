@@ -25,9 +25,13 @@
 #define MOLES *1
 #define CANDELAS *1
 #define PASCALS *1
+#define LITRES *100
+//500u blood to a body, 5L irl, 1u= 1cL
 
 #define WATT WATTS
 #define METER METERS
+#define METRE METERS
+#define METRES METERS
 #define KILOGRAM KILOGRAMS
 #define AMPERE AMPERES
 #define AMP AMPERES
@@ -35,6 +39,7 @@
 #define MOLE MOLES
 #define CANDELA CANDELAS
 #define PASCAL PASCALS
+#define LITRE LITRES
 
 #define YOTTA *(10**24)
 #define ZETTA *(10**21)

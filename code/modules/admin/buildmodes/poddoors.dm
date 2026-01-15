@@ -22,14 +22,14 @@ Ctrl + RMB                             = Remove pod door or door control<br>
 	click_left(atom/object, var/ctrl, var/alt, var/shift)
 		var/obj/machinery/door/poddoor/newdoor = new/obj/machinery/door/poddoor(get_turf(object))
 		newdoor.id = id
-		blink(get_turf(object))
+		//blink(get_turf(object))
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
 		if (ctrl)
 			if (istype(object, /obj/machinery/door/poddoor) || istype(object, /obj/machinery/door_control))
-				blink(get_turf(object))
+				//blink(get_turf(object))
 				qdel(object)
 		else
 			var/obj/machinery/door_control/newcontrol = new/obj/machinery/door_control(get_turf(object))
 			newcontrol.id = id
-			blink(get_turf(object))
+			//blink(get_turf(object))

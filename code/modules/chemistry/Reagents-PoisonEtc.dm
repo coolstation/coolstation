@@ -201,11 +201,7 @@ datum
 			transparency = 50
 			var/damage_counter = 0
 			taste = "tasteless"
-/*
-			pooled()
-				..()
-				damage_counter = 0
-*/
+
 			on_mob_life(var/mob/M, var/mult = 1)
 
 				if (!M) M = holder.my_atom
@@ -251,6 +247,9 @@ datum
 			transparency = 80
 			depletion_rate = 0.05
 			taste = "bitter"
+			overdose = 15
+			downer = 15
+			downer_overdose = 25
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -275,11 +274,10 @@ datum
 			evaporates_cleanly = TRUE
 			var/counter = 1
 			taste = "bitter"
-/*
-			pooled()
-				..()
-				counter = 1
-*/
+			overdose = 20
+			downer = 5
+			downer_overdose = 10
+
 			on_mob_life(var/mob/M, var/mult = 1) // -cogwerks. previous version
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
@@ -372,6 +370,9 @@ datum
 			var/counter = 1
 			penetrates_skin = 1
 			taste = "tasteless"
+			overdose = 15
+			downer = 6
+			downer_overdose = 14
 
 			pooled()
 				..()
@@ -499,15 +500,18 @@ datum
 			fluid_b = 192
 			transparency = 255
 			taste = "like medicine"
+			overdose = 15
+			upper = 10
+			upper_overdose = 40
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_initropidril", 33)
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_initropidril")
 				return
@@ -543,6 +547,9 @@ datum
 			transparency = 255
 			depletion_rate = 0.1 //per 3 sec
 			taste = "old"
+			overdose = 15
+			upper = 10
+			upper_overdose = 30
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -605,6 +612,9 @@ datum
 			transparency = 255
 			depletion_rate = 0.2
 			taste = "funny"
+			overdose = 15
+			upper = 10
+			upper_overdose = 30
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -686,6 +696,9 @@ datum
 			transparency = 255
 			depletion_rate = 0.2
 			taste = "fancy"
+			overdose = 15
+			upper = 10
+			upper_overdose = 90
 
 			on_mob_life(var/mob/living/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1111,6 +1124,9 @@ datum
 			var/counter = 1
 			var/remove_buff = 0
 			taste = "bad"
+			overdose = 50
+			downer = 10
+			downer_overdose = 15
 /*
 			pooled()
 				..()
@@ -1135,7 +1151,7 @@ datum
 				switch(counter+= (1 * mult))
 					if (1)
 						M.emote("drool")
-						M.change_misstep_chance(5 * mult)
+						//M.change_misstep_chance(5 * mult)
 					if (2 to 4)
 						M.drowsyness = max(M.drowsyness, 20)
 					if (5)
@@ -1144,11 +1160,8 @@ datum
 					if (6 to INFINITY)
 						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 5 SECONDS * mult))
 
-				M.jitteriness = max(M.jitteriness-50,0)
-
-				if (prob(10))
-					M.emote("drool")
-					M.take_brain_damage(1 * mult)
+				M.drug_downer += counter
+				//M.jitteriness = max(M.jitteriness-50,0)
 
 				..()
 				return
@@ -1168,6 +1181,9 @@ datum
 			var/counter = 1
 			var/remove_buff = 0
 			taste = "bad"
+			overdose = 25
+			downer = 9
+			downer_overdose = 11
 /*
 			pooled()
 				..()
@@ -1217,12 +1233,10 @@ datum
 			var/remove_buff = 0
 			blob_damage = 2
 			taste = "old"
-/*
-			pooled()
-				..()
-				remove_buff = 0
-				counter = 1
-*/
+			overdose = 15
+			downer = 3
+			downer_overdose = 7
+
 			on_add()
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					remove_buff = holder.my_atom:add_stam_mod_max("r_sulfonal", -10)
@@ -1332,12 +1346,10 @@ datum
 			blob_damage = 1
 			value = 4 // 3c + heat
 			taste = "like water"
-/*
-			pooled()
-				..()
-				counter = 1
-				fainted = 0
-*/
+			overdose = 40
+			downer = 0
+			downer_overdose = 10
+
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
@@ -1360,11 +1372,13 @@ datum
 						M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 10 SECONDS * mult))
 						M.drowsyness  = max(M.drowsyness, 20)
 
+				M.drug_downer += min(counter, 20)
+
 				M.jitteriness = max(M.jitteriness-30,0)
 				if (M.get_brain_damage() <= 80)
-					M.take_brain_damage(1 * mult)
+					M.take_brain_damage(0.8 * mult)
 				else
-					if (prob(10)) M.take_brain_damage(1 * mult) // let's slow down a bit after 80
+					if (prob(10)) M.take_brain_damage(0.8 * mult) // let's slow down a bit after 80
 				M.take_toxin_damage(1 * mult)
 				..(M, mult)
 				return
@@ -1380,6 +1394,9 @@ datum
 			depletion_rate = 0.2
 			var/counter = 1
 			taste = "tingly"
+			overdose = 40
+			downer = 10
+			downer_overdose = 15
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1767,7 +1784,7 @@ datum
 							M.losebreath += (1 * mult)
 					if (61 to INFINITY)
 						if (probmult(15))
-							M.emote(pick("gasp", "choke", "cough","twitch", "shake", "tremble","quiver","drool", "twitch_v","collapse"))
+							M.emote(pick("gasp", "choke", "cough","twitch", "shake", "tremble","quiver","drool","twitch_v","collapse"))
 						M.losebreath = max(5, M.losebreath + (5 * mult))
 						M.take_toxin_damage(1 * mult)
 						M.take_brain_damage(1 * mult)
@@ -1840,6 +1857,17 @@ datum
 				if (prob(80)) P.growth -= rand(1,3)
 				if (prob(16)) P.HYPmutateplant(1)
 
+#define MADNESS_TOXIN_TICKS_TO_STAGE_1 2
+#define MADNESS_TOXIN_TICKS_TO_STAGE_2 11
+#define MADNESS_TOXIN_TICKS_TO_STAGE_3 18
+#define MADNESS_TOXIN_TICKS_TO_STAGE_4 26
+#define MADNESS_TOXIN_TICKS_TO_STAGE_5 28
+#define MADNESS_TOXIN_TICKS_TO_STAGE_6 30
+#define MADNESS_TOXIN_TICKS_TO_STAGE_7 50
+#define MADNESS_TOXIN_TICKS_TO_STAGE_8 51
+#define MADNESS_TOXIN_TICKS_TO_STAGE_9 101
+#define MADNESS_TOXIN_TICKS_TO_STAGE_10 103
+
 		harmful/madness_toxin
 			name = "Rajaijah"
 			id = "madness_toxin"
@@ -1851,181 +1879,227 @@ datum
 			transparency = 255
 			depletion_rate = 0.1
 			taste = "strange"
-			var/spooksounds = list('sound/effects/ghost.ogg' = 80,'sound/effects/ghost2.ogg' = 20,'sound/effects/ghostbreath.ogg' = 60, \
+			overdose = 50
+			upper = 10
+			upper_overdose = 30
+			var/static/spooksounds = list('sound/effects/ghost.ogg' = 80,'sound/effects/ghost2.ogg' = 20,'sound/effects/ghostbreath.ogg' = 60, \
 					'sound/effects/ghostlaugh.ogg' = 40,'sound/effects/ghostvoice.ogg' = 90)
 
 			var/lastSpook = 0
 			var/lastSpookLen = 0
-			var/ai_was_active = 0
 
-			var/t1 = 2
-			var/t2 = 11
-			var/t3 = 18
-			var/t4 = 26
-			var/t5 = 28
-			var/t6 = 30
-			var/t7 = 50
-			var/t8 = 51
-			var/t9 = 101
-			var/t10 = 103
+			var/counter = 0
+			var/stage = 0
+			var/last_stage = 0
+
+			var/datum/aiHolder/stored_ai = null
+			var/ai_was_active = 0
 
 			disposing()
 				..()
 				lastSpook = 0
 				lastSpookLen = 0
 				ai_was_active = 0
-/*
-			unpooled()
-				..()
-				data = 0
-				t1 = initial(t1)
-				t2 = initial(t2)
-				t3 = initial(t3)
-				t4 = initial(t4)
-				t5 = initial(t5)
-				t6 = initial(t6)
-				t7 = initial(t7)
-				t8 = initial(t8)
-				t9 = initial(t9)
-				t10 = initial(t10)
-*/
 
 			//MBC : you may be wondering why this looks so weird
 			//we need to proc tiered effects IN ORDER, even if they were skipped! that is why! also im bad but this works fine its just harder to read than the OG way ok
+
+			//Mylie: rewrote this to be a bit cleaner and support nonhuman mobs
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
-				var/mob/living/carbon/human/H = M
-				if (!istype(H)) return
+				var/mob/living/L = M
+				if (!istype(L)) return
 
-				data+=(1 * mult)
+				src.last_stage = src.stage
 
-				if (t1 && data >= t1)
-					if (probmult(33))
-						H.drowsyness = max(H.drowsyness,4)
-						H.show_text(pick_string("chemistry_reagent_messages.txt", "madness0"), "red")
-					if (probmult(10)) H.emote(pick_string("chemistry_reagent_messages.txt", "madness_e0"))
+				if(!L.client) // with no client in control, we rapidly move to the ai state
+					counter += 4 * mult
 
-				if (t2 && data >= t2)
-					t1 = 0
-					if (probmult(33))
-						H.drowsyness = max(H.drowsyness,7)
-						H.show_text(pick_string("chemistry_reagent_messages.txt", "madness1"), "blue")
-					if (probmult(10)) H.emote(pick_string("chemistry_reagent_messages.txt", "madness_e1"))
+				if(stage < 10)
+					// this ensures each stage fires at least once, permitting uneven spacing
+					switch(counter += (1 * mult))
+						if(MADNESS_TOXIN_TICKS_TO_STAGE_1 to MADNESS_TOXIN_TICKS_TO_STAGE_2)
+							stage = min(1, stage + 1)
+						if(MADNESS_TOXIN_TICKS_TO_STAGE_2 to MADNESS_TOXIN_TICKS_TO_STAGE_3)
+							stage = min(2, stage + 1)
+						if(MADNESS_TOXIN_TICKS_TO_STAGE_3 to MADNESS_TOXIN_TICKS_TO_STAGE_4)
+							stage = min(3, stage + 1)
+						if(MADNESS_TOXIN_TICKS_TO_STAGE_4 to MADNESS_TOXIN_TICKS_TO_STAGE_5)
+							stage = min(4, stage + 1)
+						if(MADNESS_TOXIN_TICKS_TO_STAGE_5 to MADNESS_TOXIN_TICKS_TO_STAGE_6)
+							stage = min(5, stage + 1)
+						if(MADNESS_TOXIN_TICKS_TO_STAGE_6 to MADNESS_TOXIN_TICKS_TO_STAGE_7)
+							stage = min(6, stage + 1)
+						if(MADNESS_TOXIN_TICKS_TO_STAGE_7 to MADNESS_TOXIN_TICKS_TO_STAGE_9)
+							stage = min(7, stage + 1)
+						if(MADNESS_TOXIN_TICKS_TO_STAGE_8 to MADNESS_TOXIN_TICKS_TO_STAGE_9)
+							stage = min(8, stage + 1)
+						if(MADNESS_TOXIN_TICKS_TO_STAGE_9 to MADNESS_TOXIN_TICKS_TO_STAGE_10)
+							stage = min(9, stage + 1)
+						if(MADNESS_TOXIN_TICKS_TO_STAGE_10 to INFINITY)
+							stage = min(10, stage + 1)
 
-				if (t3 && data >= t3)
-					t2 = 0
-					if (probmult(33))
-						H.drowsyness = max(H.drowsyness,7)
-						H.make_jittery(300)
-						H.show_text("<B>[pick_string("chemistry_reagent_messages.txt", "madness2")]</B>", "red")
-						if (probmult(33) && world.time > lastSpook + lastSpookLen)
-							var/spook = pick(spooksounds)
-							H.playsound_local(H, spook, 50, 1)
-							lastSpookLen = spooksounds[spook]
+				switch(stage)
+					if (1)
+						if (probmult(33))
+							L.drowsyness = max(L.drowsyness,4)
+							if(L.client)
+								L.show_text(pick_string("chemistry_reagent_messages.txt", "madness0"), "red")
+						if (probmult(10))
+							L.emote(pick("drool","blink","stare","shudder"))
+
+					if (2)
+						if(src.last_stage == 1)
+							L.make_jittery(150)
+						if (probmult(33))
+							L.drowsyness = max(L.drowsyness,7)
+							if(L.client)
+								L.show_text(pick_string("chemistry_reagent_messages.txt", "madness1"), "blue")
+						if (probmult(10))
+							L.emote(pick("yawn","blink","smile","stretch","faint"))
+
+					if (3)
+						if(src.last_stage == 2)
+							L.make_jittery(150)
+						if (probmult(33))
+							L.drowsyness = max(L.drowsyness,7)
+							if(L.client)
+								L.show_text("<B>[pick_string("chemistry_reagent_messages.txt", "madness2")]</B>", "red")
+								if (probmult(33) && world.time > lastSpook + lastSpookLen)
+									var/spook = pick(spooksounds)
+									L.playsound_local(L, spook, 50, 1)
+									lastSpookLen = spooksounds[spook]
+									lastSpook = world.time
+						if (probmult(15))
+							L.emote(pick("twitch_v","wgesticulate","scream","flipout","panic","rage","blink_r","flinch","shudder","shiver"))
+
+					if (4)
+						if(last_stage == 3)
+							if(L.client)
+								L.show_text("<B>Your mind feels painfully clear.<B>", "blue")
+							L.drowsyness = 0
+
+					if (5)
+						if(L.ai)
+							src.ai_was_active = L.ai.enabled
+							src.stored_ai = L.ai //:getout:
+							src.stored_ai.disable()
+						L.ai = new /datum/aiHolder/violent(L) //:getin:
+						L.ai.enable()
+						L.is_npc = TRUE
+						logTheThing("combat", L, null, "has violent AI enabled by [src.id]")
+						if(L.client)
+							L.show_text("<font size=+2><B>IT HURTS!!</B></font>","red")
+							L.playsound_local(L, 'sound/effects/Heart Beat.ogg', 50, 1)
 							lastSpook = world.time
+						L.emote("scream")
 
-					if (probmult(15)) H.emote(pick_string("chemistry_reagent_messages.txt", "madness_e2"))
+					if (6)
+						if (probmult(33))
+							L.emote(pick("twitch_v","wgesticulate","scream","flipout","panic","rage","blink_r","flinch","shudder","shiver"))
+							L.make_jittery(200)
 
-				if (t4 && data >= t4)
-					t3 = 0
-					H.show_text("<B>Your mind feels clearer.<B>", "blue")
-					H.drowsyness = 0
+						if(L.client)
+							if (probmult(33))
+								L.show_text("<B>[pick_string("chemistry_reagent_messages.txt", "madness3")]</B>", "red")
 
-				if (t5 && data >= t5)
-					t4 = 0
-					H.show_text("<font size=+2><B>IT HURTS!!</B></font>","red")
-					H.emote("scream")
-					ai_was_active = H.ai_active
-					H.ai_init() //:getin:
-					H.ai_aggressive = 1 //Fak
-					H.ai_calm_down = 0
-					logTheThing("combat", H, null, "has their AI enabled by [src.id]")
-					H.playsound_local(H, 'sound/effects/Heart Beat.ogg', 50, 1)
-					lastSpook = world.time
-
-				if (t6 && data >= t6)
-					t5 = 0
-					if (probmult(33))
-						H.make_jittery(600)
-						H.show_text("<B>[pick_string("chemistry_reagent_messages.txt", "madness3")]</B>", "red")
-
-					if (probmult(33)) H.emote(pick_string("chemistry_reagent_messages.txt", "madness_e2"))
-
-					if (probmult(20) && world.time > lastSpook + 510)
-						H.show_text("You feel your heartbeat pounding inside your head...", "red")
-						H.playsound_local(H, 'sound/effects/Heart Beat.ogg', 75, 1) // LOUD
-						lastSpook = world.time
+							if (probmult(20) && world.time > lastSpook + 510)
+								L.show_text("You feel your heartbeat pounding inside your head...", "red")
+								L.playsound_local(L, 'sound/effects/Heart Beat.ogg', 75, 1) // LOUD
+								lastSpook = world.time
 
 
-					//POWER UP!!
-				if (t7 && data >= t7)
-					t6 = 0
-					APPLY_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, src.id, 100) //Buff
-					H.show_text("You feel very buff!", "red")
+						//POWER UP!!
+					if (7)
+						//APPLY_ATOM_PROPERTY(L, PROP_STAMINA_REGEN_BONUS, src.id, 100) //Buff
+						APPLY_ATOM_PROPERTY(L, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "r_madness_toxin", 0.25)
+						if(L.client)
+							L.show_text("You feel very buff!", "red")
 
-				if (t8 && data >= t8)
-					t7 = 0
+					if (8)
+						/*
+						if (prob(20)) //The AI is in control now.
+							L.change_misstep_chance(100 * mult)
+							L.show_text("You can't seem to control your legs!", "red")
+						*/
+						APPLY_ATOM_PROPERTY(L, PROP_CLUTZ, "r_madness_toxin", 20)
 
-					if (prob(20)) //The AI is in control now.
-						H.change_misstep_chance(100 * mult)
-						H.show_text("You can't seem to control your legs!", "red")
+						if (probmult(10)) //Stronk
+							if(L.client)
+								L.show_text("You feel strong!", "red")
+							L.delStatus("weakened")
+							L.delStatus("stunned")
+							L.delStatus("paralysis")
+							L.delStatus("disorient")
 
-					if (probmult(10)) //Stronk
-						H.show_text("You feel strong!", "red")
-						H.delStatus("weakened")
-						H.delStatus("stunned")
-						H.delStatus("paralysis")
-						H.delStatus("disorient")
+					if (9)
+						if(src.last_stage == 8)
+							if(L.client)
+								L.show_text("Death... I can only stop this by dying...", "red")
+							APPLY_ATOM_PROPERTY(L, PROP_CLUTZ, "r_madness_toxin", 40)
 
-				if (t9 && data >= t9)
-					t8 = 0
-					H.ai_suicidal = 1
-					H.show_text("Death... I can only stop this by dying...", "red")
+					if (10)
+						if (probmult(33))
+							L.emote(pick("twitch_v","wgesticulate","scream","flipout","panic","rage","blink_r","flinch","shudder","shiver"))
+							L.make_jittery(200)
 
-				if (t10 && data > t10)
-					t9 = 0
-					if (probmult(33))
-						H.make_jittery(600)
-						H.show_text("<B>[pick_string("chemistry_reagent_messages.txt", "madness3")]</B>", "red")
+						if(L.client)
+							if (probmult(33))
+								L.show_text("<B>[pick_string("chemistry_reagent_messages.txt", "madness3")]</B>", "red")
 
-					if (probmult(33)) H.emote(pick_string("chemistry_reagent_messages.txt", "madness_e2"))
-
-					if (probmult(20) && world.time > lastSpook + 510)
-						H.show_text("You feel your heartbeat pounding inside your head...", "red")
-						H.playsound_local(H, 'sound/effects/Heart Beat.ogg', 100, 1) // LOUD
-						lastSpook = world.time
+							if (probmult(20) && world.time > lastSpook + 510)
+								L.show_text("You feel your heartbeat pounding inside your head...", "red")
+								L.playsound_local(L, 'sound/effects/Heart Beat.ogg', 100, 1) // LOUD
+								lastSpook = world.time
 
 
-					//POWER UP!!
-					if (prob(20)) //The AI is in control now.
-						H.change_misstep_chance(100 * mult)
-						H.show_text("You can't seem to control your legs!", "red")
+						//POWER UP!!
+						/*
+						if (prob(20)) //The AI is in control now.
+							L.change_misstep_chance(100 * mult)
+							L.show_text("You can't seem to control your legs!", "red")
+						*/
+						APPLY_ATOM_PROPERTY(L, PROP_CLUTZ, "r_madness_toxin", 70)
 
-					if (probmult(20)) //V. Stronk
-						H.show_text("You feel strong!", "red")
-						H.delStatus("weakened")
-						H.delStatus("stunned")
-						H.delStatus("paralysis")
-						H.delStatus("disorient")
+						if (probmult(20)) //V. Stronk
+							if(L.client)
+								L.show_text("You feel invincible!", "red")
+							L.delStatus("weakened")
+							L.delStatus("stunned")
+							L.delStatus("paralysis")
+							L.delStatus("disorient")
 
-				H.take_brain_damage(0.5 * mult)
+				L.take_brain_damage(0.3 * mult)
 
 				..()
+
 			on_remove()
-				if (holder?.my_atom && ishuman(holder.my_atom))
-					var/mob/living/carbon/human/H = holder.my_atom
-					// moving the 'turn off the ai' part here because it failed
-					// to actually deactivate, leaving it on forever
-					//if(!ai_was_active)
-					H.ai_stop()
-					H.ai_aggressive = initial(H.ai_aggressive)
-					H.ai_calm_down = initial(H.ai_calm_down)
-					H.ai_suicidal = 0
-					if (data >= 30)
-						REMOVE_ATOM_PROPERTY(H, PROP_STAMINA_REGEN_BONUS, src.id) //Not so buff
-						logTheThing("combat", H, null, "has their AI disabled by [src.id]")
-						H.show_text("It's okay... it's okay... breathe... calm... it's okay...", "blue")
+				if (holder?.my_atom && isliving(holder.my_atom))
+					var/mob/living/L = holder.my_atom
+					if(src.stage >= 5)
+						L.ai.disable()
+						qdel(L.ai) // remove the violent ai
+						L.ai = src.stored_ai
+						L.is_npc = src.ai_was_active
+						if(src.ai_was_active)
+							L.ai.enable()
+						REMOVE_ATOM_PROPERTY(L, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "r_madness_toxin") //Not so buff
+						REMOVE_ATOM_PROPERTY(L, PROP_CLUTZ, "r_madness_toxin") //Not so evil
+						logTheThing("combat", L, null, "has their AI disabled by [src.id]")
+						if(L.client)
+							L.show_text("It's okay... it's okay... breathe... calm... it's okay...", "blue")
 				..()
+
+#undef MADNESS_TOXIN_TICKS_TO_STAGE_1
+#undef MADNESS_TOXIN_TICKS_TO_STAGE_2
+#undef MADNESS_TOXIN_TICKS_TO_STAGE_3
+#undef MADNESS_TOXIN_TICKS_TO_STAGE_4
+#undef MADNESS_TOXIN_TICKS_TO_STAGE_5
+#undef MADNESS_TOXIN_TICKS_TO_STAGE_6
+#undef MADNESS_TOXIN_TICKS_TO_STAGE_7
+#undef MADNESS_TOXIN_TICKS_TO_STAGE_8
+#undef MADNESS_TOXIN_TICKS_TO_STAGE_9
+#undef MADNESS_TOXIN_TICKS_TO_STAGE_10
 
 		harmful/strychnine
 			name = "strychnine"
@@ -2038,6 +2112,9 @@ datum
 			fluid_b = 244
 			transparency = 255
 			depletion_rate = 0.2
+			overdose = 35
+			upper = 8
+			upper_overdose = 42
 
 			on_mob_life(var/mob/M, var/mult = 1)
 

@@ -118,12 +118,12 @@
 	ex_act(severity)
 		switch(severity)
 			if(OLD_EX_SEVERITY_1)
-				SPAWN_DBG(0)
-					src.take_damage(400)
+				//SPAWN_DBG(0)
+				src.take_damage(400)
 				return
 			if(OLD_EX_SEVERITY_2)
-				SPAWN_DBG(0)
-					src.take_damage(150)
+				//SPAWN_DBG(0)
+				src.take_damage(150)
 				return
 
 	blob_act(var/power)
@@ -187,6 +187,9 @@
 		else if (istype(over_object,/turf/floor/))
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set the dispenser to output to [over_object]!</span>")
+
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
@@ -282,7 +285,7 @@
 				beaker.reagents.add_reagent(params["reagentId"], isnum(amount) ? amount : 10)
 				beaker.reagents.handle_reactions()
 				src.update_icon()
-				playsound(src.loc, dispense_sound, 50, 1, 0.3)
+				playsound(src.loc, dispense_sound, 50, 1, SOUND_RANGE_STANDARD)
 				use_power(10)
 				. = TRUE
 			if ("eject")
@@ -372,7 +375,7 @@
 							beaker.reagents.handle_reactions()
 					src.update_icon()
 					use_power(length(group.reagents) * 10)
-				playsound(src.loc, dispense_sound, 50, 1, 0.3)
+				playsound(src.loc, dispense_sound, 50, 1, SOUND_RANGE_STANDARD)
 				. = TRUE
 			if ("card")
 				if (src.user_id)

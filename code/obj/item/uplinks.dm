@@ -14,13 +14,14 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 /obj/item/uplink
 	name = "uplink"
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 
 	var/uses = 12 // Amount of telecrystals.
 	var/list/datum/syndicate_buylist/items_weapons = list() // See setup().
 	var/list/datum/syndicate_buylist/items_utility = list()
 	var/list/datum/syndicate_buylist/items_personal = list()
+	var/list/datum/syndicate_buylist/items_generic = list()
 	var/list/datum/syndicate_buylist/items_telecrystal = list()
 	var/is_VR_uplink = 0
 	var/lock_code = null
@@ -57,6 +58,8 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 			src.items_utility = list()
 		if (!islist(src.items_personal))
 			src.items_personal = list()
+		if (!islist(src.items_generic))
+			src.items_generic = list()
 		if (!islist(src.items_telecrystal))
 			src.items_telecrystal = list()
 
@@ -121,6 +124,9 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 							if (ownermind.assigned_role && ownermind.assigned_role == allowedjob && !src.items_personal.Find(S))
 								src.items_personal.Add(S)
 
+				if (istype(S, /datum/syndicate_buylist/generic) && !src.items_generic.Find(S))
+					src.items_generic.Add(S)
+
 		// Sort alphabetically by item name.
 		var/list/names = list()
 		var/list/namecounts = list()
@@ -172,6 +178,22 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 				sort3[name] = S3
 
 			src.items_personal = sortList(sort3)
+
+		if (length(src.items_generic))
+			var/list/sort3 = list()
+
+			for (var/datum/syndicate_buylist/S3 in src.items_generic)
+				var/name = S3.name
+				if (name in names)
+					namecounts[name]++
+					name = text("[] ([])", name, namecounts[name])
+				else
+					names.Add(name)
+					namecounts[name] = 1
+
+				sort3[name] = S3
+
+			src.items_generic = sortList(sort3)
 
 		if (length(src.items_telecrystal))
 			var/list/sort4 = list()
@@ -284,6 +306,11 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 					for (var/O in src.items_personal)
 						var/datum/syndicate_buylist/I3 = src.items_personal[O]
 						dat += "<tr><td><A href='byond://?src=\ref[src];spawn=\ref[src.items_personal[O]]'>[I3.name]</A> ([I3.cost])</td><td><A href='byond://?src=\ref[src];about=\ref[src.items_personal[O]]'>About</A></td>"
+				if (src.items_generic && islist(src.items_generic) && length(src.items_generic))
+					dat += "</table><B>Non-contraband:</B><BR><table cellspacing=5>"
+					for (var/O in src.items_generic)
+						var/datum/syndicate_buylist/I3 = src.items_generic[O]
+						dat += "<tr><td><A href='byond://?src=\ref[src];spawn=\ref[src.items_generic[O]]'>[I3.name]</A> ([I3.cost])</td><td><A href='byond://?src=\ref[src];about=\ref[src.items_generic[O]]'>About</A></td>"
 				if (src.items_utility && islist(src.items_utility) && length(src.items_utility))
 					dat += "</table><B>Utility Items:</B><BR><table cellspacing=5>"
 					for (var/J in src.items_utility)
@@ -327,6 +354,10 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 
 		for(var/S in items_personal)
 			if(SB == items_personal[S])
+				return 1
+
+		for(var/S in items_generic)
+			if(SB == items_generic[S])
 				return 1
 
 		for(var/S in items_telecrystal)
@@ -567,6 +598,11 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 			for (var/O in src.items_personal)
 				var/datum/syndicate_buylist/I3 = src.items_personal[O]
 				src.menu_message += "<tr><td><A href='byond://?src=\ref[src];buy_item=\ref[src.items_personal[O]]'>[I3.name]</A> ([I3.cost])</td><td><A href='byond://?src=\ref[src];abt_item=\ref[src.items_personal[O]]'>About</A></td>"
+		if (src.items_generic && islist(src.items_generic) && length(src.items_generic))
+			src.menu_message += "</table><B>Non-contraband:</B><BR><table cellspacing=5>"
+			for (var/O in src.items_generic)
+				var/datum/syndicate_buylist/I3 = src.items_generic[O]
+				src.menu_message += "<tr><td><A href='byond://?src=\ref[src];buy_item=\ref[src.items_generic[O]]'>[I3.name]</A> ([I3.cost])</td><td><A href='byond://?src=\ref[src];abt_item=\ref[src.items_generic[O]]'>About</A></td>"
 		if (src.items_telecrystal && islist(src.items_telecrystal) && length(src.items_telecrystal))
 			src.menu_message += "</table><B>Miscellaneous:</B><BR><table cellspacing=5>"
 			for (var/O in src.items_telecrystal)

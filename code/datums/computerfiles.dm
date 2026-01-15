@@ -279,10 +279,21 @@
 	name = "Clone Record"
 	extension = "DNA"
 	size = 8
-	var/list/fields = list()
+	var/clone_ckey
+	var/clone_name
+	var/id
+	var/datum/bioHolder/bioholder
+	var/datum/abilityHolder/abilities
+	var/list/traits
+	var/imp
+	var/datum/mind/mind
 
 	disposing()
-		fields = null
+		qdel(bioholder)
+		qdel(abilities)
+		traits = null
+		imp = null
+		mind = null
 		. = ..()
 
 

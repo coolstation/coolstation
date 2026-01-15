@@ -112,7 +112,7 @@
 	if(isnum(network) || istext(network))
 		network = radio_controller.get_frequency(network).packet_network
 	. = ..(connection_id, network, address, receive_packet_proc, send_only, net_tags, all_hearing)
-	RegisterSignal(parent, COMSIG_MOVABLE_POST_RADIO_PACKET, .proc/send_radio_packet)
+	RegisterSignal(parent, COMSIG_MOVABLE_POST_RADIO_PACKET, PROC_REF(send_radio_packet))
 
 /datum/component/packet_connected/radio/proc/send_radio_packet(atom/movable/sender, datum/signal/signal, range=null, frequency_or_id=null)
 	var/datum/packet_network/radio/radio_network = src.network

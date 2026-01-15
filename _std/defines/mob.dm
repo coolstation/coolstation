@@ -13,10 +13,10 @@
 #define UNUSED_512 (1<<9)
 #define AT_GUNPOINT (1<<10) 	//quick check for guns holding me at gunpoint
 #define IGNORE_SHIFT_CLICK_MODIFIER (1<<11) //shift+click doesn't retrigger a SHIFT keypress - use for mobs that sprint on shift and not on mobs that use shfit for bolting doors etc
-#define LIGHTWEIGHT_AI_MOB (1<<12)		//not a part of the normal 'mobs' list so it wont show up in searches for observe admin etc, has its own slowed update rate on Life() etc
+#define SHOULD_HAVE_A_TAIL (1<<12) //Would we miss our tail if it comes off?
 #define USR_DIALOG_UPDATES_RANGE (1<<13)	//updateusrdialog will consider this mob as being able to 'attack_ai' and update its ui at range
-#define UNUSED_16384 (1<<14)
-#define SHOULD_HAVE_A_TAIL (1<<15) //Would we miss our tail if it comes off?
+#define UNUSED_16384 (1<<14) // probably for something mobai related in the future
+#define LIGHTWEIGHT_AI_MOB (1<<15) //not a part of the normal 'mobs' list so it wont show up in searches for observe admin etc, has its own slowed update rate on Life() etc
 #define HEAVYWEIGHT_AI_MOB (1<<16) //ai gets ticked every 0.2 seconds instead of the usual 1 seconds - gotta go fast
 
 //mob intent type defines
@@ -51,12 +51,6 @@
 /// Burning Lv3 starts at this duration.
 #define BURNING_LV3 400
 
-//hearing
-#define HEARING_NORMAL 0
-#define HEARING_BLOCKED 1
-/// cures deafness when worn
-#define HEARING_ANTIDEAF -1 // w h a t the fuck is an anti deaf
-
 //cooldowns
 #define REST_TOGGLE_COOLDOWN 0.1 SECONDS
 #define EAT_COOLDOWN 0.5 SECONDS
@@ -67,3 +61,6 @@
 
 //multiplies all blood regen, 0.002 is because humans have 500 units ideally and get 1 unit back usually
 #define BLOOD_SCALAR 0.002
+
+// No natural ear damage healing can occur if ear damage is above this threshold.
+#define EAR_DAMAGE_NATURAL_HEALING_THRESHOLD 25

@@ -149,6 +149,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 	icon_state = "anvil"
 	w_class = W_CLASS_BULKY
 	throw_spin = FALSE
+	throwforce = 20
 
 	portable
 		density = 0
@@ -167,7 +168,7 @@ ABSTRACT_TYPE(/obj/item/storage/gun_workbench/)
 				L.show_message("<span class='alert'>YOWCH! You're lucky it wasn't a solid anvil!</span>")
 				random_brute_damage(L, 15)
 				playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 70, 1)
-				playsound(L, "sound/misc/laughter/laughtrack3.ogg", 50, 0, 3)
+				playsound(L, "sound/misc/laughter/laughtrack3.ogg", 50, 0, SOUND_RANGE_STANDARD)
 
 	attackby(obj/item/W as obj, mob/user as mob, params)
 		if(!istype(W,/obj/item/gun/modular/) || prob(60))

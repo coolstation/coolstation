@@ -1,8 +1,8 @@
 #define childrentypesof(x) (typesof(x) - x)
 // consider declaring the base type abstract instead and using concrete_typesof instead of childrentypesof
 
-#define ABSTRACT_TYPE(type) /datum/_is_abstract ## type
-#define IS_ABSTRACT(type) text2path("/datum/_is_abstract[type]")
+#define ABSTRACT_TYPE(type) /_is_abstract ## type
+#define IS_ABSTRACT(type) text2path("/_is_abstract[type]")
 /*
 usage:
 
@@ -221,6 +221,7 @@ var/list/list/by_cat = list()
 #define TR_CAT_SOUL_TRACKING_ITEMS "soul_tracking_items"
 #define TR_CAT_CLOWN_DISBELIEF_MOBS "clown_disbelief_mobs"
 #define TR_CAT_SPIDER_FILTER_MOBS "spider_filter_mobs"
+#define TR_CAT_PHOTOSENSITIVE_MOBS "photosensitive_mobs"
 #define TR_CAT_RADIO_BROADCAST_RECEIVERS "radio_receivers" //demo channel
 #define TR_CAT_FINITE_BROADCAST_RECEIVERS "finite_radio_receivers" //demo channel
 #define TR_CAT_TEEVEE_BROADCAST_RECEIVERS "teevee_broadcast_receivers" //demo channel, but this one gets video blasted at it
@@ -310,3 +311,11 @@ proc/get_type_typeinfo(type)
 	RETURN_TYPE(/typeinfo/datum) // change to /typeinfo if we ever implement /typeinfo for non-datums for some reason
 	var/datum/type_dummy = type
 	return get_singleton(initial(type_dummy.typeinfo_type))
+
+/// istype but for checking a list of types
+proc/istypes(datum/dat, list/types)
+	// based on the size of the types list this could be optimizable later by pre-generating and caching a concatenation of typesof() of them
+	for(var/type in types)
+		if(istype(dat, type))
+			return TRUE
+	return FALSE

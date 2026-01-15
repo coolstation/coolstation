@@ -101,7 +101,7 @@ var tooltip = {
 
 	unInterrupt: function() {
 		tooltip.interrupt = false;
-		tooltip.removeDelays();
+		tooltip.hide();
 	},
 
 	setInterrupt: function(which) {
@@ -268,8 +268,8 @@ var tooltip = {
 		//Otherwise, auto-size according to content
 		} else {
 			//the +2 is to fix some incredibly strange text wrapping bug that occurs AFTER sizing is complete
-			docWidth = tooltip.$wrap.outerWidth() + 2;
-			docHeight = tooltip.$wrap.outerHeight();
+			docWidth = tooltip.$wrap.outerWidth() * window.devicePixelRatio + 2;
+			docHeight = tooltip.$wrap.outerHeight() * window.devicePixelRatio;
 		}
 
 		//Apply our sizing
@@ -359,6 +359,8 @@ var tooltip = {
 	},
 
 	updateCallback: function(map) {
+		if(tooltip.interrupt) return; //Better to not create a clickable invisible window while we can still stop
+
 		if (typeof map === 'undefined' || !map) {return false;}
 
 		tooltip.map = {

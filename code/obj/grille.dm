@@ -92,6 +92,7 @@
 		connects_to_turf = null
 		connects_to_turf = null
 		flags = FPRINT | CONDUCT | USEDELAY | MINERAL_MAGNET_SAFE
+		event_handler_flags = USE_FLUID_ENTER
 
 		New()
 			..()
@@ -670,7 +671,7 @@
 
 		for(var/obj/cable/C in T)
 			if(C.d1 == 0)
-				return C.get_netnumber()
+				return C.netnum
 
 		return 0
 

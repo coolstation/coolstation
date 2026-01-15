@@ -13,7 +13,7 @@ change the direction of created objects.<br>
 ***********************************************************"}
 	icon_state = "buildmode2"
 	var/objpath = null
-	var/cinematic = "Blink"
+	var/cinematic = "None"
 	var/matrix/mtx = matrix()
 	click_mode_right(var/ctrl, var/alt, var/shift)
 		if(ctrl)

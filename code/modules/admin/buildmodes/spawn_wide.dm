@@ -13,7 +13,7 @@ change the direction of created objects.<br>
 ***********************************************************"}
 	icon_state = "buildmode5"
 	var/objpath = null
-	var/cinematic = "Blink"
+	var/cinematic = "None"
 	var/delete_area = 0
 	var/turf/A = null
 	var/image/marker = null
@@ -195,7 +195,7 @@ change the direction of created objects.<br>
 					qdel (O)
 				if (delete_area)
 					new /area(T)
-				T.ReplaceWithSpaceForce()
+				T.ReplaceWithSpace()
 				LAGCHECK(LAG_LOW)
 			A = null
 			usr.client?.images -= marker

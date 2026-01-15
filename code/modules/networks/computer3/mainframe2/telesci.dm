@@ -573,6 +573,8 @@ proc/is_teleportation_allowed(var/turf/T)
 				processbadeffect(pick("flash","buzz","scatter","ignite","chill"))
 		if(prob(5) && !locate(/obj/dfissure_to) in get_step(src, EAST))
 			new/obj/dfissure_to(get_step(src, EAST))
+		else if(prob(3) && !locate(/obj/channel_fragment_portal) in get_step(src, WEST))
+			new/obj/channel_fragment_portal(get_step(src, WEST))
 		else
 			start_portal = makeportal(src.loc, target)
 			if (start_portal)
@@ -1025,7 +1027,7 @@ proc/is_teleportation_allowed(var/turf/T)
 			return
 
 		src.add_dialog(usr)
-		playsound(src.loc, 'sound/machines/keypress.ogg', 50, 1, -15)
+		playsound(src.loc, 'sound/machines/keypress.ogg', 50, 1, SOUND_RANGE_SMALL)
 
 		if (href_list["scan"])
 			if (!host_id)
@@ -1096,7 +1098,7 @@ proc/is_teleportation_allowed(var/turf/T)
 			bm.z = ztarget
 			bookmarks.Add(bm)
 			src.updateUsrDialog()
-			playsound(src.loc, "keyboard", 50, 1, -15)
+			playsound(src.loc, "keyboard", 50, 1, SOUND_RANGE_SMALL)
 			return
 
 		if (href_list["setpad"])

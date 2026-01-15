@@ -54,7 +54,7 @@
 		if(!src.authenticated && src.setup_needs_authentication)
 			switch(lowertext(command))
 				if("login","logon")
-					if ((issilicon(usr) || isAI(usr)) && !isghostdrone(usr))
+					if ((issilicon(usr) || isAI(usr) || isnanites(usr)) && !isghostdrone(usr))
 						src.system_login("AIUSR","Station AI", null, 1)
 						//src.print_text("Authorization Accepted.<br>Welcome, AIUSR!<br><b>Current Folder: [current_folder.name]</b>")
 						//src.authenticated = "AI"

@@ -9,7 +9,7 @@
 	var/tagged = 0 // Gang wars thing
 
 	///If ReplaceWith() actually does a thing or not. Used to be a thing on turf, gets set for unsimmed turfs in New() in base_lighting.dm
-	var/can_replace_with_stuff = 0
+	var/can_replace_with_stuff = TRUE
 
 	//To the best of my knowledge nothing cares about a turf's level
 	level = 1
@@ -242,11 +242,13 @@
 		if (!istype(src, /turf/space))
 			turf_flags |= IS_TYPE_SIMULATED
 
+/* mylie note - actually unsimmed turfs are replaceable by admins now, check for these things sanely
 	//unsimmed turfs are unreplaceable by default
 	can_replace_with_stuff = (A.is_construction_allowed || can_replace_with_stuff) //(no it's not lighting related but this override already had the area going on)
 #ifdef RUNTIME_CHECKING
 	can_replace_with_stuff = 1  //Shitty dumb hack bullshit (moved from turf/unsimulated definition, IDK what it's for)
 #endif
+*/
 
 	//Base lighting setup
 	#ifdef UNDERWATER_MAP //FUCK THIS SHIT. NO FULLBRIGHT ON THE MINING LEVEL, I DONT CARE.
@@ -360,7 +362,7 @@
 	src.material?.triggerOnEntered(src, M)
 
 	//optionally cancel swims
-	if (isliving(M) && M.hasStatus("swimming") && !istype(src, /turf/space/fluid))
+	if (isliving(M) && M.hasStatus("swimming") && !istype(src, /turf/space/fluid/ocean))
 		if (src.active_liquid?.last_depth_level < 3) //Trying to swim into the air
 			actions.start(new/datum/action/swim_coyote_time(), M)
 			//M.delStatus("swimming")
@@ -489,8 +491,9 @@
 		return
 
 /turf/proc/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
-	SEND_SIGNAL(src, COMSIG_TURF_REPLACED, what)
-	if (!can_replace_with_stuff && !force) //(for unsimmed turfs)
+	SEND_SIGNAL(src.turf_persistent, COMSIG_TURF_PRE_REPLACE, what)
+
+	if (!can_replace_with_stuff && !force) //(for some rare turfs)
 		return //..(what, keep_old_material = keep_old_material, handle_air = handle_air)
 
 	var/turf/new_turf
@@ -504,7 +507,7 @@
 
 	var/datum/gas_mixture/oldair = null //Set if old turf is simulated and has air on it.
 	var/datum/air_group/oldparent = null //Ditto.
-	var/zero_new_turf_air = (turf_flags & CAN_BE_SPACE_SAMPLE)
+	var/zero_new_turf_air = (turf_flags & IS_SPACE)
 
 	//For unsimulated static air tiles such as ice moon surface.
 	var/temp_old = null
@@ -530,32 +533,6 @@
 		if(old_loc)
 			old_loc.contents -= src.loc
 	*/
-	if ((map_currently_abovewater && what == "Space")  && (src.z == 1 || src.z == 3))
-		var/area/area = src.loc
-		if(istype(area, /area/shuttle/))
-			what = "Plating"
-			keep_old_material = 1
-		else
-			what = "Above Ocean"
-			keep_old_material = 0
-
-	if ((map_currently_underwater && what == "Space")  && (src.z == 1 || src.z == 5))
-		var/area/area = src.loc
-		if(istype(area, /area/shuttle/))
-			what = "Plating"
-			keep_old_material = 1
-		else
-			what = "Ocean"
-			keep_old_material = 0
-
-	if ((map_currently_very_dusty && what == "Space") && (src.z == 1 || src.z == 3))
-		var/area/area = src.loc
-		if(istype(area, /area/shuttle/))
-			what = "Plating"
-			keep_old_material = 1
-		else
-			what = "Desert"
-			keep_old_material = 0
 
 	//This doesn't work properly yet, but the solution seems to be calling RL_UPDATE_LIGHT on 3 of our neighbours and fuck that
 
@@ -572,49 +549,9 @@
 	if (new_type)
 		new_turf = new new_type(src, src.turf_persistent)
 		if (!isturf(new_turf))
-			new_turf = new /turf/space(src, src.turf_persistent)
+			message_coders("Turf replacement at [showCoords(src.x,src.y,src.z)] tried to replace a turf with not a turf.")
 
-	else switch(what)
-		if ("Above Ocean")
-			if(src.z==3)
-				new_turf = new /turf/space/fluid(src, src.turf_persistent)
-			else
-				new_turf = new /turf/space/magindara(src, src.turf_persistent)
-				var/turf/space/magindara/new_pitfall = new_turf
-				new_pitfall.initialise_component()
-		if ("Desert")
-			if(src.z==3)
-				new_turf = new /turf/floor/plating/gehenna(src, src.turf_persistent)
-			else
-				new_turf = new /turf/space/gehenna/desert(src, src.turf_persistent)
-		if ("Ocean")
-			new_turf = new /turf/space/fluid(src, src.turf_persistent)
-		if ("Floor")
-			new_turf = new /turf/floor(src, src.turf_persistent)
-		if ("MetalFoam")
-			new_turf = new /turf/floor/metalfoam(src, src.turf_persistent)
-		if ("EngineFloor")
-			new_turf = new /turf/floor/engine(src, src.turf_persistent)
-		if ("Circuit")
-			new_turf = new /turf/floor/circuit(src, src.turf_persistent)
-		if ("RWall")
-			if (map_settings)
-				new_turf = new map_settings.rwalls (src, src.turf_persistent)
-			else
-				new_turf = new /turf/wall/r_wall(src, src.turf_persistent)
-		if("Concrete")
-			new_turf = new /turf/floor/concrete(src, src.turf_persistent)
-		if ("Wall")
-			if (map_settings)
-				new_turf = new map_settings.walls (src, src.turf_persistent)
-			else
-				new_turf = new /turf/wall(src, src.turf_persistent)
-		if ("Unsimulated Floor") //AREASIMSTODO
-			new_turf = new /turf/floor(src, src.turf_persistent)
-		if ("Plating")
-			new_turf = new /turf/floor/plating/random(src, src.turf_persistent)
-		else
-			new_turf = new /turf/space(src, src.turf_persistent)
+	SEND_SIGNAL(src.turf_persistent, COMSIG_TURF_POST_REPLACE, new_turf)
 
 	if(keep_old_material && oldmat && !istype(new_turf, /turf/space)) new_turf.setMaterial(oldmat)
 
@@ -639,7 +576,7 @@
 	//example of failure : fire destorying a wall, the fire goes away, the area BEHIND the wall that used to be blocked gets strip()ped and now it leaves a blue glow (negative fire color)
 	if (new_turf.opacity != old_opacity)
 		new_turf.opacity = old_opacity
-		new_turf.RL_SetOpacity(!new_turf.opacity)
+		new_turf.RL_SetOpacity(!new_turf.opacity/*, queue_late = !(new_type == /turf/space/gehenna/desert)*/) //only wall -> desert changes should go early //RL_OPACITY_TODO
 
 
 	if (handle_air)
@@ -674,15 +611,13 @@
 
 	return new_turf
 
-
 /turf/proc/ReplaceWithFloor()
-	var/turf/floor = ReplaceWith("Floor")
+	DELETE_LATTICES_IN(src)
+	var/turf/floor = ReplaceWith(/turf/floor)
 	if (icon_old)
 		floor.icon_state = icon_old
 	if (name_old)
 		floor.name = name_old
-	for (var/obj/lattice/L in src.contents)
-		qdel(L)
 
 	if (map_settings)
 		if (map_settings.auto_walls)
@@ -693,37 +628,6 @@
 				W.update_icon()
 	return floor
 
-/turf/proc/ReplaceWithMetalFoam(var/mtype)
-	var/turf/floor/metalfoam/floor = ReplaceWith("MetalFoam")
-	if(icon_old)
-		floor.icon_state = icon_old
-	if(name_old)
-		floor.name_old = name_old
-
-	for (var/obj/lattice/L in src.contents)
-		qdel(L)
-
-	floor.metal = mtype
-	floor.update_icon()
-
-	return floor
-
-/turf/proc/ReplaceWithEngineFloor()
-	var/turf/floor = ReplaceWith("EngineFloor")
-	if(icon_old)
-		floor.icon_state = icon_old
-	for (var/obj/lattice/L in src.contents)
-		qdel(L)
-	return floor
-
-/turf/proc/ReplaceWithCircuit()
-	var/turf/floor = ReplaceWith("Circuit")
-	if(icon_old)
-		floor.icon_state = icon_old
-	for (var/obj/lattice/L in src.contents)
-		qdel(L)
-	return floor
-
 /turf/proc/ReplaceWithSpace()
 	if( air_master.is_busy )
 		air_master.tiles_to_space |= src
@@ -731,23 +635,58 @@
 
 	var/area/my_area = loc
 	var/turf/floor
-	if (my_area)
-		if (my_area.filler_turf)
-			floor = ReplaceWith(my_area.filler_turf)
-		else
-			floor = ReplaceWith("Space")
+
+	if (my_area.filler_turf)
+		floor = ReplaceWith(my_area.filler_turf)
+
+	//else if (istype(my_area, /area/shuttle))
+	//	floor = ReplaceWith(/turf/floor/plating/random)
+
+	else if (map_currently_above_magindara)
+		switch(src.z)
+			if(1)
+				floor = ReplaceWith(/turf/space/magindara, FALSE)
+			if(3)
+				floor = ReplaceWith(/turf/space/fluid/magindara, FALSE)
+			else
+				floor = ReplaceWith(/turf/space, FALSE)
+
+	else if (map_currently_underwater)
+		switch(src.z)
+			if(1)
+				floor = ReplaceWith(/turf/space/fluid/ocean, FALSE)
+			if(5)
+				floor = ReplaceWith(/turf/space/fluid/ocean/trench, FALSE)
+			else
+				floor = ReplaceWith(/turf/space, FALSE)
+
+	else if (map_currently_very_dusty)
+		switch(src.z)
+			if(1)
+				floor = ReplaceWith(/turf/space/gehenna/desert, FALSE)
+			if(3)
+				floor = ReplaceWith(/turf/floor/plating/gehenna, FALSE)
+			else
+				floor = ReplaceWith(/turf/space, FALSE)
 	else
-		floor = ReplaceWith("Space")
+		floor = ReplaceWith(/turf/space, FALSE)
 
 	return floor
 
-/turf/proc/ReplaceWithConcreteFloor()
-	var/turf/floor = ReplaceWith("Concrete")
-	if(icon_old)
-		floor.icon_state = icon_old
-	return floor
+/turf/proc/ReplaceWithUpdateWalls(var/what)
+	DELETE_LATTICES_IN(src)
+	var/wall = ReplaceWith(what)
+	if (map_settings)
+		if (map_settings.auto_walls)
+			for (var/turf/wall/auto/W in orange(1))
+				W.update_icon()
+		if (map_settings.auto_windows)
+			for (var/obj/window/auto/W in orange(1))
+				W.update_icon()
+	return wall
 
 //This is for admin replacements (deletions) ONLY. I swear to god if any actual in-game code uses this I will be pissed - Wire
+/* mylie note from 2025 - this was used in like 5 places of important actual in-game code. i am getting rid of it
 /turf/proc/ReplaceWithSpaceForce()
 	var/area/my_area = loc
 	var/turf/floor
@@ -760,32 +699,7 @@
 		floor = ReplaceWith("Space", force=1)
 
 	return floor
-
-/turf/proc/ReplaceWithLattice()
-	new /obj/lattice(src)
-	return ReplaceWithSpace()
-
-/turf/proc/ReplaceWithWall()
-	var/wall = ReplaceWith("Wall")
-	if (map_settings)
-		if (map_settings.auto_walls)
-			for (var/turf/wall/auto/W in orange(1))
-				W.update_icon()
-		if (map_settings.auto_windows)
-			for (var/obj/window/auto/W in orange(1))
-				W.update_icon()
-	return wall
-
-/turf/proc/ReplaceWithRWall()
-	var/wall = ReplaceWith("RWall")
-	if (map_settings)
-		if (map_settings.auto_walls)
-			for (var/turf/wall/auto/W in orange(1))
-				W.update_icon()
-		if (map_settings.auto_windows)
-			for (var/obj/window/auto/W in orange(1))
-				W.update_icon()
-	return wall
+*/
 
 /turf/proc/is_sanctuary()
   var/area/AR = src.loc
@@ -858,7 +772,7 @@
 	var/static/image/starlight
 
 	flags = ALWAYS_SOLID_FLUID
-	turf_flags = CAN_BE_SPACE_SAMPLE | MINE_MAP_PRESENTS_EMPTY
+	turf_flags = IS_SPACE | MINE_MAP_PRESENTS_EMPTY
 	event_handler_flags = IMMUNE_SINGULARITY
 	dense
 		icon_state = "dplaceholder"
@@ -876,7 +790,7 @@
 	desc = "Looks normal."
 
 /turf/space/proc/update_icon(starlight_alpha=255)
-	if(!isnull(space_color) && !istype(src, /turf/space/fluid) && !istype(src, /turf/space/gehenna))
+	if(!isnull(space_color) && !istype(src, /turf/space/fluid/ocean) && !istype(src, /turf/space/gehenna))
 		src.color = space_color
 
 	if(fullbright)
@@ -921,7 +835,7 @@ proc/repaint_space(regenerate=TRUE, starlight_alpha)
 		if(regenerate)
 			T.space_color = generate_space_color()
 			regenerate = FALSE
-		if(istype(T, /turf/space/fluid))
+		if(istype(T, /turf/space/fluid/ocean))
 			continue
 		T.update_icon(starlight_alpha)
 
@@ -985,7 +899,7 @@ proc/generate_space_color()
 //	if (locate(/obj/movable, src))
 //		return 1
 
-	//if (!istype(src,/turf/space/fluid))//ignore inertia if we're in the ocean
+	//if (!istype(src,/turf/space/fluid/ocean))//ignore inertia if we're in the ocean
 	if (src.throw_unlimited)//ignore inertia if we're in the ocean (faster but kind of dumb check)
 		if ((ismob(A) && src.x > 2 && src.x < (world.maxx - 1))) //fuck?
 			var/mob/M = A

@@ -25,8 +25,8 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 	throw_range = 5
 	flags = TABLEPASS|EXTRADELAY|FPRINT|CONDUCT|ONBELT
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 10
+//	stamina_cost = 5
+//	stamina_crit_chance = 10
 	rand_pos = 2
 	event_handler_flags = USE_GRAB_CHOKE | USE_FLUID_ENTER
 	special_grab = /obj/item/grab
@@ -327,9 +327,12 @@ obj/item/cable_coil/abilities = list(/obj/ability_button/cable_toggle)
 
 ///This was copy-pasted some 5 times across the 4 cable laying procs that existed) FSR?
 obj/item/cable_coil/proc/plop_a_cable(turf/overthere, mob/user, dir1, dir2)
-	var/obj/cable/NC = new cable_obj_type(overthere, src, dir1, dir2)
+	var/obj/cable/NC = new cable_obj_type(overthere, src)
 	applyCableMaterials(NC, src.insulator, src.conductor)
+	NC.d1 = dir1
+	NC.d2 = dir2
 	NC.add_fingerprint()
 	NC.updateicon()
+	NC.update_network()
 	NC.log_wirelaying(user)
 	src.use(1)

@@ -548,7 +548,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 				decoded = text2num(cloud_get("icon_size")) //Not the var on world, but the icon scaling on the player's window
 				if (!isnull(decoded))
-					if (!(decoded in list(0, 128, 64, 56, 32)))
+					if (!(decoded in list(0, 512, 256, 128, 96, 64, 32)))
 						decoded = 0 //reset to stretch to fit
 					winset(src, null, "mapwindow.map.icon-size=[decoded]")
 
@@ -754,11 +754,11 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 			music_sound.environment = -1
 			music_sound.echo = -1
 
-			var/client_vol = src.getVolume(VOLUME_CHANNEL_ADMIN)
+			var/client_vol = src.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 
 			if (client_vol)
 
-				src.sound_playing[ admin_sound_channel ][1] = 1
+				src.sound_playing[ admin_sound_channel ][1] = 100
 				src.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
 
 				music_sound.volume = client_vol
@@ -1139,6 +1139,7 @@ var/global/curr_day = null
 			boutput(src.mob, "<span class='ahelp' class=\"bigPM\">Admin PM to-<b>[target] (Discord)</b>: [t]</span>")
 			logTheThing("admin_help", src, null, "<b>PM'd [target]</b>: [t]")
 			logTheThing("diary", src, null, "PM'd [target]: [t]", "ahelp")
+			discord_send("*Admin PM Reply* ([src.key]) -> ([target]): [t]","centcom")
 
 			var/ircmsg[] = new()
 			ircmsg["key"] = src.mob && src ? src.key : ""
@@ -1173,6 +1174,7 @@ var/global/curr_day = null
 			boutput(src.mob, "<span class='mhelp'><b>MENTOR PM: TO [target] (Discord)</b>: <span class='message'>[t]</span></span>")
 			logTheThing("mentor_help", src, null, "<b>Mentor PM'd [target]</b>: [t]")
 			logTheThing("diary", src, null, "Mentor PM'd [target]: [t]", "admin")
+			discord_send("*MPM* ([src.key]) -> ([target]): [t]","mentors")
 
 			var/ircmsg[] = new()
 			ircmsg["key"] = src.mob && src ? src.key : ""
@@ -1226,6 +1228,7 @@ var/global/curr_day = null
 
 				logTheThing("mentor_help", src.mob, M, "Mentor PM'd [constructTarget(M,"mentor_help")]: [t]")
 				logTheThing("diary", src.mob, M, "Mentor PM'd [constructTarget(M,"diary")]: [t]", "admin")
+				discord_send("*MPM* ([src.key]) -> ([M.key]): [t]","mentors")
 
 				var/ircmsg[] = new()
 				ircmsg["key"] = src.mob && src ? src.key : ""
@@ -1385,9 +1388,9 @@ var/global/curr_day = null
 	cloud_put("set_tint", view_tint)
 
 /client/proc/set_view_size(var/x, var/y)
-	//These maximum values make for a near-fullscreen game view at 32x32 tile size, 1920x1080 monitor resolution.
-	x = min(59,x)
-	y = min(30,y)
+	//This is the biggest byond can handle
+	x = min(67,x)
+	y = min(67,y)
 
 	x = max(15,x)
 	y = max(15,y)
@@ -1543,7 +1546,6 @@ var/global/curr_day = null
 		src.use_chui_custom_frames = 1
 	cloud_put("use_chui_custom_frames", use_chui_custom_frames)
 
-
 /client/verb/set_speech_sounds()
 	set hidden = 1
 	set name = "set-speech-sounds"
@@ -1557,8 +1559,17 @@ var/global/curr_day = null
 	set name = "set-all-sounds"
 	if (src.ignore_sound_flags & SOUND_ALL)
 		src.ignore_sound_flags &= ~SOUND_ALL
+		if(!src.listener_context)
+			if(src.byond_build > 1673)
+				src.listener_context = new /datum/sound_listener_context(src, src, SOUND_BUCKET_SIZE)
+			else if(src.byond_build >= 1653)
+				src.listener_context = new /datum/sound_listener_context/byond_sound_falloff_bug(src, src, SOUND_BUCKET_SIZE)
 	else
 		src.ignore_sound_flags |= SOUND_ALL
+		if(src.listener_context)
+			var/slc = src.listener_context
+			qdel(slc)
+			src.listener_context = null
 
 /client/verb/set_vox_sounds()
 	set hidden = 1

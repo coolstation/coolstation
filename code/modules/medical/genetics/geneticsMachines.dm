@@ -14,7 +14,7 @@
 	circuit_type = /obj/item/circuitboard/genetics
 	/// Linked scanner. For scanning.
 	var/obj/machinery/genetics_scanner/scanner = null
-	var/list/equipment = list(
+	var/list/equipment = alist(
 		GENETICS_INJECTORS = 0,
 		GENETICS_ANALYZER = 0,
 		GENETICS_EMITTERS = 0,
@@ -250,7 +250,7 @@
 
 /obj/machinery/computer/genetics/proc/on_ui_interacted(mob/user, minor = FALSE)
 	src.add_fingerprint(user)
-	playsound(src.loc, 'sound/machines/keypress.ogg', minor ? 25 : 50, 1, -15)
+	playsound(src.loc, 'sound/machines/keypress.ogg', minor ? 25 : 50, 1, SOUND_RANGE_SMALL)
 
 /obj/machinery/computer/genetics/proc/play_emitter_sound()
 	SPAWN_DBG(0)
@@ -700,7 +700,7 @@
 				var/waste = (E.reclaim_mats + genResearch.researchMaterial) - reclamation_cap
 				if (waste >= E.reclaim_mats)
 					scanner_alert(ui.user, "Nothing would be gained from reclamation due to material capacity limit. Reclamation aborted.", error = TRUE)
-					playsound(src, "sound/machines/buzz-two.ogg", 50, 1, -10)
+					playsound(src, "sound/machines/buzz-two.ogg", 50, 1, SOUND_RANGE_MODERATE)
 					return
 				genResearch.researchMaterial = min(genResearch.researchMaterial + E.reclaim_mats, reclamation_cap)
 				if (waste > 0)

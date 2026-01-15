@@ -25,7 +25,7 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 				S.file = ambientSound
 				S.repeat = 0
 				S.wait = 0
-				S.channel = SOUNDCHANNEL_FX_1
+				S.channel = SOUNDCHANNEL_RESERVED_AREA_FX_1
 				S.volume = 60
 				S.priority = 255
 				S.status = SOUND_UPDATE
@@ -141,6 +141,12 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 	desc = ""
 	icon_state = "panelwindow"
 	opacity = 0
+
+/obj/indestructible/hospitalcavern
+	icon = 'icons/misc/worlds.dmi'
+	name = "asteroid"
+	desc = ""
+	icon_state = "cavern1"
 
 /turf/wall/setpieces/hospital/cavern
 	name = "asteroid"

@@ -11,6 +11,7 @@
 	rand_pos = 0
 	flags = FPRINT | TABLEPASS | ONBELT
 	wear_layer = MOB_BELT_LAYER
+	fiddleType = /datum/contextAction/fiddle/pda2
 	var/obj/item/card/id/ID_card = null // slap an ID card into that thang
 	var/obj/item/pen = null // slap a pen into that thang
 	var/registered = null // so we don't need to replace all the dang checks for ID cards
@@ -1194,3 +1195,33 @@ Enter the file browser and copy the file you want to send.  Now enter the messen
 ThinkOS 7 supports a wide variety of software solutions, ranging from robot interface systems to forensic and medical scanners.<br>
 <font size=1>This technology produced by Thinktronic Systems, LTD for the NanoTrasen Corporation</font>
 "}
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
+/datum/contextAction/fiddle/pda2
+
+	checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+		return istype(target)
+
+	eject_id
+		name = "eject ID"
+		icon_state = "pda2_eject_id"
+
+		checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+			if(..(target, user))
+				return !isnull(target.ID_card)
+			return FALSE
+
+		execute(var/obj/item/device/pda2/target, var/mob/user)
+			target.eject_id_card(user)
+
+	eject_pen
+		name = "eject pen"
+		icon_state = "pda2_eject_pen"
+
+		checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+			if(..(target, user))
+				return !isnull(target.pen)
+			return FALSE
+
+		execute(var/obj/item/device/pda2/target, var/mob/user)
+			target.eject_pen(user)

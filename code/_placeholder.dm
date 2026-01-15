@@ -6,6 +6,8 @@
 /obj/item/device/audio_log/ht_2
 /obj/item/device/audio_log/ht_3
 /obj/item/paper/grillnasium/fartnasium_recruitment/flyer
+/mob/living/critter/admin
+/mob/living/carbon/human/giuseppe
 
 /** Placeholder Spawner
  *  Spawns a designated atom/movable at it's location upon creation

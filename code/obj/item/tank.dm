@@ -28,8 +28,8 @@ Contains:
 	throw_speed = 1
 	throw_range = 4
 	stamina_damage = 55
-	stamina_cost = 23
-	stamina_crit_chance = 10
+//	stamina_cost = 23
+//	stamina_crit_chance = 10
 
 	New()
 		..()
@@ -387,7 +387,7 @@ Contains:
 	w_class = W_CLASS_SMALL
 	force = 3.0
 	stamina_damage = 30
-	stamina_cost = 16
+//	stamina_cost = 16
 	desc = "A small tank that is labelled to contain oxygen. In emergencies, wear a mask that can be used to transfer air, such as a breath mask, turn on the release valve on the oxygen tank, and put it on your belt."
 	wear_image_icon = 'icons/mob/belt.dmi'
 	distribute_pressure = 17 // setting these things to start at the minimum pressure needed to breathe - Haine
@@ -563,6 +563,43 @@ Contains:
 	w_class = W_CLASS_BULKY
 	item_state = "jetpack"*/
 
+/obj/item/tank/emergency_plasma
+	name = "small plasma tank"
+	icon_state = "em_plastank"
+	flags = FPRINT | TABLEPASS | ONBELT | CONDUCT
+	w_class = W_CLASS_SMALL
+	force = 3.0
+	desc = "A small tank that is labelled to contain plasma. Be sure not to confuse this with oxygen in emergencies"
+	wear_image_icon = 'icons/mob/belt.dmi'
+	distribute_pressure = 17
+
+	New()
+		..()
+		src.air_contents.volume = 6
+		src.air_contents.toxins = (ONE_ATMOSPHERE / 4.5)*70/(R_IDEAL_GAS_EQUATION*T20C) // exact same as the oxygen tanks, probably could use tweaking
+		return
+
+	proc/ignite() //won't blow up as violently as a regular sized tank, you also have to get it really hot
+		if(!src)
+			return
+		var/fuel_moles = air_contents.toxins + air_contents.oxygen/6
+		var/turf/ground_zero = get_turf(loc)
+		var/strength = 1
+
+		if(air_contents.temperature > (T0C + 400))
+			strength = fuel_moles/15
+			explosion(src,ground_zero,strength,strength*2,strength*4,strength*5)
+		else if(air_contents.temperature > (T0C + 250))
+			strength = fuel_moles / 23
+			explosion(src,ground_zero,-1,-1,strength*3,strength*4)
+			air_contents = null
+		else
+			ground_zero.assume_air(air_contents)
+			air_contents = null
+		if(src.master) qdel(src.master)
+		qdel(src)
+
+/obj/item/tank/emergency_plasma/abilities = list(/obj/ability_button/tank_valve_toggle)
 
 /obj/item/tank/jetpack/jetpackmk2
 	name = "Jetpack MKII (Oxygen)"

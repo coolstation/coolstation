@@ -9,9 +9,11 @@
 	hand_count = 2
 	can_throw = 1
 	blood_id = "methamphetamine"
+	ideal_blood_volume = 100
 	burning_suffix = "humanoid"
-	health_brute = 75
-	health_burn = 75
+	health_brute = 60
+	health_burn = 60
+	add_abilities = list(/datum/targetable/critter/tackle)
 
 	on_pet(mob/user)
 		if (..())
@@ -22,7 +24,7 @@
 		switch (act)
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
-					playsound(src, "sound/voice/MEraaargh.ogg", 45, 1, channel=VOLUME_CHANNEL_EMOTE)
+					playsound(src, "sound/voice/MEraaargh.ogg", 40, 1, SOUND_RANGE_LARGE, channel=VOLUME_CHANNEL_EMOTE)
 					return "<b><span class='alert'>[src] roars!</span></b>"
 		return null
 
@@ -33,7 +35,6 @@
 		return ..()
 
 	setup_equipment_slots()
-		equipment += new /datum/equipmentHolder/suit(src)
 		equipment += new /datum/equipmentHolder/ears(src)
 		equipment += new /datum/equipmentHolder/head(src)
 
@@ -51,11 +52,3 @@
 		HH.suffix = "-R"
 		HH.icon_state = "handr"				// the icon state of the hand UI background
 		HH.limb.name = "right bear arm"
-
-	setup_healths()
-		..()
-		add_health_holder(/datum/healthHolder/suffocation)
-
-	New()
-		..()
-		abilityHolder.addAbility(/datum/targetable/critter/tackle)

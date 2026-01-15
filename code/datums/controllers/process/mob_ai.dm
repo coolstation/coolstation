@@ -1,5 +1,5 @@
 
-/// handles mobcritters
+/// handles mob ai
 datum/controller/process/mob_ai
 	setup()
 		name = "Mob AI"
@@ -12,6 +12,7 @@ datum/controller/process/mob_ai
 			last_object = X
 
 			if (!M)
+				ai_mobs -= X
 				continue
 
 			//what we're doing here is giving each mob a raffle ticket, and mod 30ing it to determine if a mob should tick
@@ -29,20 +30,20 @@ datum/controller/process/mob_ai
 				var/mob/living/L = X
 				if(isliving(L) && L.is_npc && M.ai)
 					M.ai.tick()
-				// i cant wait to remove this - this does monkey ai, mostly
+				// look forward to finally getting rid of this old monkey ai
 				var/mob/living/carbon/human/H = M
 				if(ishuman(H) && H.ai_active)
 					H.ai_process()
 				scheck()
 
 			if ((ticknum % 15) == 0)
-				M.handle_stamina_updates()
+				//M.handle_stamina_updates()
 				if (!M.client) continue
 
 				if (M.abilityHolder && !M.abilityHolder.composite_owner)
 					if (world.time >= M.abilityHolder.next_update) //after a failure to update (no abbilities!!) wait 10 seconds instead of checking again next process
 						if (M.abilityHolder.updateCounters() > 0)
-							M.abilityHolder.next_update = 1 SECOND
+							M.abilityHolder.next_update = world.time + 1 SECOND
 						else
-							M.abilityHolder.next_update = 10 SECONDS
+							M.abilityHolder.next_update = world.time + 10 SECONDS
 				scheck()

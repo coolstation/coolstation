@@ -1057,8 +1057,8 @@
 			throw_range = 5
 			w_class = W_CLASS_SMALL
 			stamina_damage = 15
-			stamina_cost = 15
-			stamina_crit_chance = 50
+//			stamina_cost = 15
+//			stamina_crit_chance = 50
 			tooltip_rebuild = 1
 
 			if (src.weakness >= rand(2,12))
@@ -1501,6 +1501,12 @@
 	proc/checkContinue()
 		if (glass.reagents.total_volume <= 0 || !isalive(glassholder) || !glassholder.find_in_hand(glass))
 			return FALSE
+		if(target && isliving(target))
+			var/mob/living/L = target
+			if(L.organHolder && L.organHolder.stomach && (L.organHolder.stomach.reagents?.maximum_volume - L.organHolder.stomach.reagents?.total_volume <= 0))
+				target.visible_message("[target.name] [pick("fucken HURLS.","barfs it back up!","vomits bigtime!","pukes.")]")
+				target.vomit()
+				return FALSE
 		if ((target.reagents?.maximum_volume-target.reagents?.total_volume) <= 0) // we're fuckin full, slosh slosh,
 			target.visible_message("[target.name] [pick("fucken HURLS.","barfs it back up!","vomits bigtime!","pukes.")]")
 			target.vomit()
@@ -1514,7 +1520,7 @@
 		if(glassholder == target)
 			if (glassholder.traitHolder && glassholder.traitHolder.hasTrait("hardcore"))
 				duration = 0.2 SECONDS
-				glassholder.visible_message("[glassholder.name] starts chugging the [glass.name] like its NOTHING!")
+				glassholder.visible_message("[glassholder.name] starts chugging the [glass.name] like it's NOTHING!")
 			else
 				glassholder.visible_message("[glassholder.name] starts chugging the [glass.name]!")
 		else
@@ -1539,8 +1545,15 @@
 	onEnd()
 
 		if (glass.reagents.total_volume) //Take a sip
+			if(target && isliving(target))
+				var/mob/living/L = target
+				if(L.organHolder && L.organHolder.stomach) //drinking with no stomach just pours it into your blood
+					glass.reagents.trans_to(L.organHolder.stomach, min(glass.reagents.total_volume, glass.gulp_size))
+				else
+					glass.reagents.trans_to(L, min(glass.reagents.total_volume, glass.gulp_size))
+			else
+				glass.reagents.trans_to(target, min(glass.reagents.total_volume, glass.gulp_size))
 			glass.reagents.reaction(target, INGEST, min(glass.reagents.total_volume, glass.gulp_size, (target.reagents?.maximum_volume-target.reagents?.total_volume)))
-			glass.reagents.trans_to(target, min(glass.reagents.total_volume, glass.gulp_size))
 			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
 			eat_twitch(target)
 
@@ -2080,7 +2093,7 @@
 	attack_self(mob/user)
 		if (src.reagents.total_volume > 0)
 			user.visible_message("<b>[user.name]</b> shakes the container [pick("rapidly", "thoroughly", "carefully")].")
-			playsound(src, "sound/items/CocktailShake.ogg", 25, 1, -6)
+			playsound(src, "sound/items/CocktailShake.ogg", 25, 1, SOUND_RANGE_MODERATE)
 			sleep (0.3 SECONDS)
 			src.reagents.inert = 0
 			src.reagents.physical_shock(rand(5, 20))

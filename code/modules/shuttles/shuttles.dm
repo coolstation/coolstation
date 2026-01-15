@@ -20,7 +20,7 @@
 /area/shuttle/mining/station
 	icon_state = "shuttle"
 #ifdef UNDERWATER_MAP
-	filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+	filler_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
 #endif
 
 /area/shuttle/mining/space
@@ -28,9 +28,9 @@
 	filler_turf = "/turf/space"
 	//sneaky
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
-	sound_loop_1_vol = -10
+	sound_loop_1_vol = -5
 	sound_loop_2 = 'sound/ambience/music/tane_loop_distorted.ogg'
-	sound_loop_2_vol = 50
+	sound_loop_2_vol = 25
 	sound_group = "diner" //the music's kind of everywhere isn't it
 	sound_group_varied = 1
 
@@ -100,7 +100,7 @@
 /area/shuttle/cargo/station
 	icon_state = "shuttle"
 #ifdef UNDERWATER_MAP
-	filler_turf = "/turf/space/fluid/noexplosion/nospawn"
+	filler_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
 #endif
 
 /area/shuttle/cargo/hub

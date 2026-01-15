@@ -39,6 +39,31 @@ TOILET
 				trunk.linked = src	// link the pipe trunk to self
 				plumbed = 1
 
+/obj/item/storage/toilet/engineering
+	refills = FALSE
+	color = "#fff4b5"
+	name = "engineering terlet"
+
+/obj/item/storage/toilet/engineering/flush_into(var/obj/disposalholder/D)
+	if(src.trunk)		//copypasted
+		D.set_loc(src.trunk)
+	else
+		D.set_loc(src)
+
+	if(!D.reagents)
+		D.reagents = new(1000)
+
+	if(src.reagents && src.reagents.total_volume)
+		var/wastewater = src.reagents.get_reagent_amount("water")
+		var/sewage_created = min(src.reagents.total_volume - wastewater, wastewater)
+		if(sewage_created)
+			src.reagents.remove_any(sewage_created)
+			src.reagents.add_reagent("sewage", sewage_created)
+
+		src.reagents.trans_to(D, src.reagents.total_volume)
+
+	for(var/atom/movable/AM in src)
+		AM.set_loc(D)
 
 /obj/item/storage/toilet/disposing()
 	STOP_TRACKING

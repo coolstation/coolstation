@@ -390,7 +390,7 @@
 					O.show_message("<span class='alert'><B>[src]</B> punches [tysontarget2]!</span>", 1)
 				tysontarget2.changeStatus("weakened", 10 SECONDS)
 				tysontarget2.changeStatus("stunned", 10 SECONDS)
-				playsound(src.loc, 'sound/impact_sounds/generic_hit_3.ogg', 50, 1, -1)
+				playsound(src.loc, 'sound/impact_sounds/generic_hit_3.ogg', 50, 1, SOUND_RANGE_STANDARD)
 				banproc()
 				return
 			else
@@ -402,7 +402,7 @@
 		// drsingh for various cannot read null.
 		for(var/mob/O in AIviewers(src, null))
 			O.show_message("<span class='alert'><B>[src]</B> bans [tysontarget2] in one punch!</span>", 1)
-		playsound(src.loc, 'sound/impact_sounds/generic_hit_3.ogg', 30, 1, -2)
+		playsound(src.loc, 'sound/impact_sounds/generic_hit_3.ogg', 30, 1, SOUND_RANGE_STANDARD)
 		if(tysontarget2?.client)
 			if(tysontarget2.client.holder)
 				boutput(tysontarget2, "Here is where you'd get banned.")
@@ -458,7 +458,7 @@
 					O.show_message("<span class='alert'><B>[src]</B> punches [tysontarget2]!</span>", 1)
 				tysontarget2.changeStatus("weakened", 10 SECONDS)
 				tysontarget2.changeStatus("stunned", 10 SECONDS)
-				playsound(src.loc, 'sound/impact_sounds/generic_hit_3.ogg', 50, 1, -1)
+				playsound(src.loc, 'sound/impact_sounds/generic_hit_3.ogg', 50, 1, SOUND_RANGE_STANDARD)
 				icon_state = "punch"
 				sleep(0.5 SECONDS)
 				icon_state = "idle"
@@ -474,7 +474,7 @@
 		if (get_dist(src, src.tysontarget2) <= 1)
 			for(var/mob/O in AIviewers(src, null))
 				O.show_message("<span class='alert'><B>[src]</B> KOs [tysontarget2] in one punch!</span>", 1)
-			playsound(src.loc, 'sound/impact_sounds/generic_hit_3.ogg', 30, 1, -2)
+			playsound(src.loc, 'sound/impact_sounds/generic_hit_3.ogg', 30, 1, SOUND_RANGE_STANDARD)
 			logTheThing("admin", callster:client, tysontarget2, "tysongibbed [constructTarget(tysontarget2,"admin")]")
 			logTheThing("diary", callster:client, tysontarget2, "tysongibbed [constructTarget(tysontarget2,"diary")]", "admin")
 			message_admins("<span class='internal'>[callster?.client?.ckey] has tysongibbed [tysontarget2] ([tysontarget2.ckey]).</span>")

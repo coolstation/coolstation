@@ -296,7 +296,7 @@
 							items += /obj/item/reagent_containers/food/snacks/plant/tomato/incendiary
 							item_amounts += 5
 						if(2)
-							items += /obj/item/clothing/ears/earmuffs/yeti
+							items += /obj/item/clothing/ears/yeti_warmers
 							item_amounts += 1
 						if(3)
 							items += /obj/item/device/light/zippo/gold
@@ -470,7 +470,7 @@
 			return
 
 	proc/inputter_check(var/mob/living/opener)
-		if (get_dist(holder.loc,opener.loc) > 2 && !opener.bioHolder.HasEffect("telekinesis"))
+		if (BOUNDS_DIST(holder.loc,opener.loc) > 0 && !opener.bioHolder.HasEffect("telekinesis"))
 			boutput(opener, "You try really hard to press the button all the way over there. Using your mind. Way to go, champ!")
 			return 0
 
@@ -499,7 +499,7 @@
 			return -1
 
 		if (!inputter_check(opener))
-			return
+			return -1
 
 		src.lastattempt = input
 
@@ -555,7 +555,7 @@
 			return -1
 
 		if (!inputter_check(opener))
-			return
+			return -1
 
 		if (length(input) == 1)
 			if (attempts_remaining <= 1)

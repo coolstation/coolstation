@@ -73,6 +73,7 @@
 	var/speech_color = null
 	var/maptext_speech = TRUE
 
+	///Actually a flag for infinite inventory, you still have to pay
 	var/freestuff = 0
 	var/obj/item/card/id/scan = null
 
@@ -194,6 +195,11 @@
 		src.current_receipt += "<i>Please keep this receipt for departmental records</i><br></center><hr><br>"
 		src.current_receipt_subtotal = 0
 		src.receipt_serv_chg_total   = 0
+
+		if(prob(5))
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad, 1)
+		else if(prob(5))
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/hotdogs, 1)
 
 	proc/addToReceipt(productName, productCost, serviceCharge)
 		if(!print_receipts)
@@ -335,6 +341,9 @@
 		else if (istype(over_object,/turf) && !over_object:density)
 			src.output_target = over_object
 			boutput(usr, "<span class='notice'>You set [src] to output to [over_object]!</span>")
+
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
@@ -493,243 +502,8 @@
 /obj/machinery/vending/proc/generate_vending_HTML()
 
 	var/list/html_parts = list()
-	html_parts += {"<style type="text/css">
-		body
-		{
-			background: #030602;
-			font-family: "Not Jam Mono Clean 16";
-			font-size: 12pt;
-			letter-spacing: 1px;
-			color: #52ff00;
-			padding = 5px;
-
-		}
-		hr{
-			border: 1px solid #fffe03;
-		}
-
-		@font-face {
-				font-family: "Not Jam Mono Clean 16";
-				font-style: normal;
-				src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
-			}
-			html { background: #0e0c05;
-					font-family: "Not Jam Mono Clean 16";
-					font-size: 16pt;
-					line-height: 1;
-					background: #030602;
-					animation-duration: 0.01s;
-					animation-name: textflicker;
-					animation-iteration-count: infinite;
-					animation-direction: alternate;
-					topmargin=0;
-					bottommargin=0;
-					leftmargin=0;
-					rightmargin=0
-					marginwidth=0;
-					marginheight=0;
-			}
-			h1 {
-				font-size: 32px;
-				text-transform: uppercase;
-				background-color: #0A3609;
-				color: #08FF03;
-				width: 100%;
-				font-weight: bold;
-				animation: run 4s linear infinite;
-				padding: 0px 5px 0px 5px ;
-
-			}
-			.container {
-				display: flex;
-				flex-direction: row;
-			}
-            .box{
-				border: 2px solid #08FF03;
-				background-color: #11F20C;
-				color: #011201;
-				padding: 3px;
-				font-size: 12pt;
-				animation-duration: 0.01s;
-				animation-name: boxflicker;
-				animation-iteration-count: infinite;
-				animation-direction: alternate;
-				width: fit-content;
-				display: inline;
-				line-height: 200%;
-				text-align: center;
-				font-weight: normal;
-            }
-            .box.button{
-            background-color: #020600;
-			color: #52ff00;
-			border: 2px solid #52ff00;
-			font-size: 12pt;
-            }
-			.box.blank{
-            background-color: #020600;
-			color: #020600;
-			border: 2px solid #52ff00;
-            }
-			.holder{
-			color: #171716;
-			}
-            .box.error{
-               border: 5px groove red;
-               padding: 3px;
-               color: red;
-               background-color: black ;
-            }
-			.box.warning{
-				border: 2px groove #c6ff00;
-				background-color: #0c1500;
-				color: #c6ff00;
-			}
-			a{
-				color:#fffe03;
-			}
-			    .crt::before {
-				content: " ";
-				display: block;
-				position: fixed;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				opacuty: 0.1;
-				background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-				z-index: 2;
-				background-size: 100% 2px, 3px 100%;
-				pointer-events: none;
-			}
-			.box.center{
-			max-width: fit-content;
-			margin-left: auto;
-			margin-right: auto;
-				}
-
-			@keyframes flicker {
-				0% {
-				opacity: 0.05;
-				}
-				5% {
-				opacity: 0.01;
-				}
-				10% {
-				opacity:0.05;
-				}
-				15% {
-				opacity: 0.001;
-				}
-				20% {
-				opacity: 0.05;
-				}
-				25% {
-				opacity: 0.005;
-				}
-				30% {
-				opacity: 0.05;
-				}
-				35% {
-				opacity:0.05;
-				}
-			}
-
-			.crt::after {
-				content: " ";
-				display: block;
-				position: fixed;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				background: rgba(18, 16, 16, 0.1);
-				opacity: 0.01;
-				z-index: 2;
-				pointer-events: none;
-				animation: flicker 0.15s infinite;
-			}
-		tbody td {
-			/* 1. Animate the background-color
-				from transparent to white on hover */
-			background-color: rgba(205, 168, 60, 0);
-			transition: all 0.2s linear;
-			transition-delay: 0.3s, 0s;
-			/* 2. Animate the opacity on hover */
-			opacity: 0.98;
-			}
-			tbody tr:hover td {
-			background-color: rgba(205, 168, 60, .2);
-			transition-delay: 0s, 0s;
-			opacity: 1;
-			}
-
-			.disclaimer{
-			text-align: center;
-			height: auto;
-			}
-
-			.header{
-			width: 100%;
-			display: flex;
-			white-space: nowrap ;
-			background-color: #0A3609;
-			overflow: hidden;
-			height:36px;
-			align-items: center;
-
-			}
-
-			@keyframes run {
-			from {
-				transform: translateX(0%);
-			}
-			/* Magic is here. This is the width of the elem with text after rendering the page */
-			to {
-				transform: translateX( -100% );
-			}
-			}
-
-
-
-
-			/* Codepen styling */
-			* { box-sizing: border-box }
-
-
-			th, td {
-			padding: 0.1em;
-			border-bottom: 1px solid #52ff00;
-			text-align: center;
-			}
-
-			.itemBox {
-			border: 2px solid #08FF03;
-			background-color: #11F20C;
-			color: #011201;
-			padding: 3px;
-			font-size: 12pt;
-			animation-duration: 0.01s;
-			animation-name: boxflicker;
-			animation-iteration-count: infinite;
-			animation-direction: alternate;
-			text-align: center;
-			font-weight: normal;
-			}
-
-			.blank:hover {
-				color:#52ff00;
-				background-color:#52ff00
-			}
-			.blank:active {
-				color:#ffffff;
-				background-color:#ffffff
-			}
-
-
-		</style>
-
-		<head><div class="crt"></div></head>"}
+	html_parts += {"<head><link rel="stylesheet" type="text/css" href="[resource("css/vendingMachine.css")]" />"}
+	html_parts += {"<div class='crt'></div></head>"}
 
 	html_parts += "<div class = 'header'><h1><b>[name]</b></h1> <h1><b>[name]</b></h1> <h1><b>[name]</b></h1> <h1><b>[name]</b></h1></div>"
 
@@ -764,12 +538,12 @@
 		html_parts += " | <a href='byond://?src=\ref[src];cancel_payfor=1;logout=1'><div class= 'box'>Cancel</b></div></a>"
 
 	else
-		html_parts += "<table style='width: 100%; border: none; border-collapse: collapse;'><thead><tr><th style = 'color: #020600;'>XXX</th><th>Product</th><th>Amt.</th><th>Price</th></tr></thead>"
+		html_parts += "<table style='width: 100%; border: none; border-collapse: collapse;'><thead><tr><th style = 'color: #020600;'>XXX</th><th>Product</th><th>[src.freestuff ? "" : "Amt."]</th><th>Price</th></tr></thead>"
 		for (var/datum/data/vending_product/R in src.product_list)
 			if (R.product_hidden && !src.extended_inventory)
 				continue
 			if (R.product_amount > 0)
-				html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [R.product_name]</td><td>[R.product_amount]</td><td> $[R.product_cost]</td></tr>"
+				html_parts += "<tr><td><a class = 'box blank' href='byond://?src=\ref[src];vend=\ref[R]'>X</a></td> <td> [R.product_name]</td><td>[src.freestuff ? "" : R.product_amount]</td><td> $[R.product_cost]</td></tr>"
 			else
 				html_parts += "<tr><td>[R.product_name]</a></td><td colspan='2' style='text-align: center;'><strong>SOLD OUT</strong></td></tr>"
 		if (player_list)
@@ -1233,11 +1007,11 @@
 		playsound(src, src.voice_sound, 40, 1)
 
 /obj/machinery/vending/proc/prevend_effect()
-	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, 0.1)
+	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, SOUND_RANGE_STANDARD)
 	return
 
 /obj/machinery/vending/proc/postvend_effect()
-	playsound(src.loc, 'sound/machines/ping.ogg', 20, 1, 0.1)
+	playsound(src.loc, 'sound/machines/ping.ogg', 20, 1, SOUND_RANGE_STANDARD)
 	return
 
 /obj/machinery/vending/power_change()
@@ -1273,6 +1047,8 @@
 	status |= BROKEN
 	var/turf/vicTurf = get_turf(victim)
 	src.icon_state = "[initial(icon_state)]-fallen"
+	if(src.has_glow)
+		src.UpdateOverlays(null, "glow")
 //	SPAWN_DBG(0)
 //		src.icon_state = "[initial(icon_state)]-fall"
 //		SPAWN_DBG(2 SECONDS)
@@ -1556,6 +1332,8 @@
 			src.vendor.anchored = ANCHORED
 			src.vendor.status &= ~BROKEN
 			src.vendor.power_change()
+			if(src.vendor.has_glow)
+				src.vendor.UpdateOverlays(src.vendor.glow, "glow")
 
 			for(var/mob/M in AIviewers(src.owner))
 				M.show_message("<span class='notice'><B>[src.owner] manages to stand \the [src.vendor] back upright!</B></span>", 1)
@@ -1572,7 +1350,7 @@
 	pay = 1
 	vend_delay = 25
 	icon_state = "coffee"
-	icon_vend = "coffee-vend" //TODO: resprite vend state (along with broken/tipped and tipped glow, other vending machines also require this)
+	icon_vend = "coffee-vend"
 	icon_panel = "coffee-panel"
 	light_r = 1
 	light_g = 0.88
@@ -1580,7 +1358,7 @@
 
 	//i'd love at some point for this fuckin' thing to rarely drop a cup wrong or out entirely and then it just spills on the floor (and do it more often if hacked)
 	prevend_effect()
-		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, 0.1)
+		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		return
 
 	create_products()
@@ -1676,11 +1454,13 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigarbox, 1, cost=PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/nicotine, 10, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/matchbook, 10, cost=PAY_UNTRAINED/20)
-		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 5, cost=PAY_TRADESMAN/10)
+		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 2, cost=PAY_TRADESMAN/4)
+		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo/cheap, 5, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/vape, 10, cost=PAY_TRADESMAN/2)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/ecig_refill_cartridge, 20, cost=PAY_TRADESMAN/5)
 
 		product_list += new/datum/data/vending_product(/obj/item/device/igniter, rand(1, 6), hidden=1, cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/luxury, 1, hidden=1, cost=1500)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(0, 1), hidden=1, cost=420)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), hidden=1, cost=69)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3),hidden=1, cost=PAY_UNTRAINED/5)
@@ -1950,6 +1730,29 @@
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/italian, 10, cost=PAY_UNTRAINED/6)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bottle/soda/bottledwater, 10, cost=PAY_UNTRAINED/4)
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/random, 10, cost=PAY_UNTRAINED/10)
+
+	splurt
+		name = "Mr. Splurt machine"
+		icon_state = "splurt"
+		icon_panel = "splurt-panel"
+		slogan_list = list("boire de mon nectar...",
+		"Je serai là longtemps après toi",
+		"Je suis comme l'arbre qui donne",
+		"je suis excellent")
+
+		light_r =0.1
+		light_g = 0.65
+		light_b = 0.39
+
+
+
+		create_products()
+			..()
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
 
 /obj/machinery/vending/electronics
 	name = "ElecTek Vendomaticotron"
@@ -2976,7 +2779,7 @@
 					src.generate_HTML(1)
 					updateUsrDialog()
 					sleep(20 SECONDS)
-					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, -1)
+					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, SOUND_RANGE_STANDARD)
 					var/obj/item/reagent_containers/food/snacks/pizza/P
 					if(emagged)
 						P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pineapple(src.loc)
@@ -3044,7 +2847,8 @@
 	icon_state = "monkey"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
-	acceptcard = 0
+	acceptcard = 1
+	pay = 1
 	mats = 0 // >:I
 	slogan_list = list("My monkeys are too strong for you, traveler!")
 	slogan_chance = 1
@@ -3055,7 +2859,7 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/mob/living/carbon/human/npc/monkey, rand(10, 15), logged_on_vend=TRUE)
+		product_list += new/datum/data/vending_product(/mob/living/carbon/human/npc/monkey, rand(10, 15), cost=100, logged_on_vend=TRUE)
 
 		product_list += new/datum/data/vending_product(/obj/item/clothing/mask/monkey_translator, rand(1,2), hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/banana, rand(1,20), hidden=1)
@@ -3066,7 +2870,8 @@
 	icon_state = "grub"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
-	acceptcard = 0
+	acceptcard = 1
+	pay = 1
 	mats = 0 // >:I
 	slogan_list = list("Free bug for your de bug!")
 	slogan_chance = 1
@@ -3077,7 +2882,7 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/mob/living/critter/grub/wildgrub, rand(10, 15), logged_on_vend=TRUE)
+		product_list += new/datum/data/vending_product(/mob/living/critter/grub/wildgrub, rand(10, 15), cost=10, logged_on_vend=TRUE)
 
 
 /obj/machinery/vending/magivend
@@ -3169,7 +2974,7 @@
 		product_list += new/datum/data/vending_product(/obj/decorative_pot, 5)
 		product_list += new/datum/data/vending_product(/obj/item/fishing_rod, 3)
 
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/water_pipe, 1, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/water_pipe, 1, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/seedplanter/hidden, 1, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/seed/grass, rand(3, 6), hidden=1)
 		if (prob(25))
@@ -3570,6 +3375,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/clothing/under/rank/bartender/tuxedo, 1, cost=PAY_IMPORTANT/5, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/shoes/dress_shoes, 1, cost=PAY_IMPORTANT/5, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/clothing/gloves/ring/gold, 2, cost=PAY_IMPORTANT, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/clothing/shoes/moffers, 1, cost=PAY_TRADESMAN, hidden=1)
 
 /obj/machinery/vending/janitor
 	name = "JaniTech Vendor"

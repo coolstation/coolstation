@@ -40,14 +40,14 @@
 	var/r_speed = 1.0
 	var/hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
 	var/stamina_damage = STAMINA_ITEM_DMG //amount of stamina removed from target per hit.
-	var/stamina_cost = STAMINA_ITEM_COST  //amount of stamina removed from USER per hit. This cant bring you below 10 points and you will not be able to attack if it would.
+//	var/stamina_cost = STAMINA_ITEM_COST  //amount of stamina removed from USER per hit. This cant bring you below 10 points and you will not be able to attack if it would.
 
-	var/stamina_crit_chance = STAMINA_CRIT_CHANCE //Crit chance when attacking with this. // kinda deprecated but maybe npcs will use stamina they dont people yknow?
+//	var/stamina_crit_chance = STAMINA_CRIT_CHANCE //Crit chance when attacking with this. // kinda deprecated but maybe npcs will use stamina they dont people yknow?
 	var/datum/item_special/special = null // Contains the datum which executes the items special, if it has one, when used beyond melee range.
 	var/hide_attack = 0 //If 1, hide the attack animation + particles. Used for hiding attacks with silenced .22 and sleepy pen
 						//If 2, play the attack animation but hide the attack particles.
 	var/click_delay = DEFAULT_CLICK_DELAY //Delay before next click after using this.
-	var/combat_click_delay = COMBAT_CLICK_DELAY
+	var/combat_click_delay = COMBAT_CLICK_DELAY //Delay before next click after using this in an attack.
 
 	var/rng_stun_rate = 0 // % chance to old-stun
 	var/rng_stun_time = 0 // how many ticks to old-stun
@@ -102,7 +102,6 @@
 	var/item_function_flags = null
 	var/force_use_as_tool = 0
 
-	var/block_hearing_when_worn = HEARING_NORMAL
 	//fuck me mbc why you do this | | ok i did it to reduce type checking in a proc that gets called A LOT and idk what else to do ok help
 	var/block_vision = 0 //cannot see when worn
 	var/needOnMouseMove = 0 //If 1, we check all the stuff required for onMouseMove for this. Leave this off unless required. Might cause extra lag.
@@ -149,7 +148,7 @@
 		if(rarity >= 4)
 			. += "<div><img src='[resource("images/tooltips/rare.gif")]' alt='' class='icon' /><span>Rare item</span></div>"
 		//combat stats
-		. += "<div><img src='[resource("images/tooltips/attack.png")]' alt='' class='icon' /><span>Damage: [src.force ? src.force : "0"] dmg[src.force ? "("+DAMAGE_TYPE_TO_STRING(src.hit_type)+")" : ""], [round((1 / (max(src.click_delay,src.combat_click_delay) / 10)), 0.1)] atk/s, [src.throwforce ? src.throwforce : "0"] thrown dmg</span></div>"
+		. += "<div><img src='[resource("images/tooltips/attack.png")]' alt='' class='icon' /><span>Damage: [src.force ? src.force : "0"] dmg[src.force ? "("+DAMAGE_TYPE_TO_STRING(src.hit_type)+")" : ""], [round((1 / (src.combat_click_delay / 10)), 0.1)] atk/s, [src.throwforce ? src.throwforce : "0"] thrown dmg</span></div>"
 		//if (src.stamina_cost || src.stamina_damage)
 		//	. += "<div><img src='[resource("images/tooltips/stamina.png")]' alt='' class='icon' /><span>Stamina: [src.stamina_damage ? src.stamina_damage : "0"] dmg, [stamina_cost] consumed per swing</span></div>"
 		if(src.rng_stun_rate)
@@ -1128,10 +1127,12 @@
 		boutput(user, "<span class='alert'>You cannot harm this person!</span>") //This message was previously sent to the attacking item. YEP.
 		return
 
+/*
 	if(user.traitHolder && !user.traitHolder.hasTrait("glasscannon"))
 		if (!user.process_stamina(src.stamina_cost))
 			logTheThing("combat", user, M, "tries to attack [constructTarget(M,"combat")] with [src] ([type], object name: [initial(name)]) but is out of stamina")
 			return
+*/
 
 	if (chokehold)
 		chokehold.attack(M, user, def_zone, is_special)
@@ -1152,9 +1153,9 @@
 	if(hasProperty("frenzy"))
 		SPAWN_DBG(0)
 			var/frenzy = getProperty("frenzy")
-			click_delay -= frenzy
+			combat_click_delay -= frenzy
 			sleep(3 SECONDS)
-			click_delay += frenzy
+			combat_click_delay += frenzy
 /*
 	if(hasProperty("Momentum"))
 		SPAWN_DBG(0)
@@ -1265,13 +1266,13 @@
 		block_spark(M,armor=1)
 		switch(hit_type)
 			if (DAMAGE_BLUNT)
-				playsound(M, 'sound/impact_sounds/block_blunt.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_blunt.ogg', 50, 1, SOUND_RANGE_STANDARD, pitch=1.5)
 			if (DAMAGE_CUT)
-				playsound(M, 'sound/impact_sounds/block_cut.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_cut.ogg', 50, 1, SOUND_RANGE_STANDARD, pitch=1.5)
 			if (DAMAGE_STAB)
-				playsound(M, 'sound/impact_sounds/block_stab.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_stab.ogg', 50, 1, SOUND_RANGE_STANDARD, pitch=1.5)
 			if (DAMAGE_BURN)
-				playsound(M, 'sound/impact_sounds/block_burn.ogg', 50, 1, -1, pitch=1.5)
+				playsound(M, 'sound/impact_sounds/block_burn.ogg', 50, 1, SOUND_RANGE_STANDARD, pitch=1.5)
 		if(power <= 0)
 			fuckup_attack_particle(user)
 			armor_blocked = 1
@@ -1519,7 +1520,8 @@
 	#ifdef COMSIG_ITEM_DROPPED
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 	#endif
-
+	if(length(src.fiddleActions))
+		user.closeContextActions()
 	if(src.material) src.material.triggerDrop(user, src)
 	if (islist(src.ability_buttons))
 		for(var/obj/ability_button/B in ability_buttons)
@@ -1530,6 +1532,9 @@
 		src.inventory_counter.hide_count()
 	if (special_grab || chokehold)
 		drop_grab()
+
+	if (src.sound_emitter)
+		src.sound_emitter.update_source(src)
 	return
 
 /obj/item/proc/pickup(mob/user)
@@ -1542,10 +1547,12 @@
 	src.material?.triggerPickup(user, src)
 	set_mob(user)
 	show_buttons()
-	if (src.inventory_counter)
+	if (src.inventory_counter && src.inventory_counter_enabled)
 		src.inventory_counter.show_count()
 	if (src.c_flags & EQUIPPED_WHILE_HELD)
 		src.equipped(user, user.get_slot_from_item(src))
+	if (src.sound_emitter)
+		src.sound_emitter.update_source(user)
 
 /obj/item/proc/intent_switch_trigger(mob/user)
 	return

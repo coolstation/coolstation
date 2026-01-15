@@ -132,7 +132,7 @@
 					boutput(user, "<span class='alert'>[target] is full.</span>")
 					return
 
-				if (target.is_open_container() != 1 && !ismob(target) && !istype(target,/obj/item/reagent_containers/food) && !istype(target,/obj/item/reagent_containers/patch))
+				if (!target.is_open_container() && !ismob(target) && !istype(target,/obj/item/reagent_containers/food) && !istype(target,/obj/item/reagent_containers/patch))
 					boutput(user, "<span class='alert'>You cannot directly fill this object.</span>")
 					return
 

@@ -12,9 +12,9 @@
 		user.lastattacked = src
 		src.visible_message("<B>[src]</B> screams!",1)
 		if (narrator_mode)
-			playsound(src, 'sound/vox/scream.ogg', 10, 1, -1, channel=VOLUME_CHANNEL_EMOTE)
+			playsound(src, 'sound/vox/scream.ogg', 10, 1, SOUND_RANGE_STANDARD, channel=VOLUME_CHANNEL_EMOTE)
 		else
-			playsound(src, 'sound/voice/screams/monkey_scream.ogg', 10, 1, -1, channel=VOLUME_CHANNEL_EMOTE)
+			playsound(src, 'sound/voice/screams/monkey_scream.ogg', 10, 1, SOUND_RANGE_STANDARD, channel=VOLUME_CHANNEL_EMOTE)
 		..()
 		return
 
@@ -341,7 +341,7 @@
 	force_fullbright = 1
 	is_atmos_simulated = TRUE
 	is_construction_allowed = TRUE
-	requires_power = TRUE
+	requires_power = FALSE
 
 /obj/machinery/power/solar_control/derelict_ai_sat
 	id = "derelict_ai_sat"

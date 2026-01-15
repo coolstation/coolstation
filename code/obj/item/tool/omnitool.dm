@@ -9,11 +9,13 @@
 	var/has_welding = 0
 	var/welding = 0
 
+	fiddleType = /datum/contextAction/fiddle/omnitool
+
 	custom_suicide = 1
 
 	var/omni_mode = "prying"
 
-	hint = "Use in hand to cycle modes."
+	hint = "Use in hand to cycle modes. Press X to fiddle to a specific mode."
 
 	New()
 		..()
@@ -78,8 +80,8 @@
 				src.throw_speed = 2
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 33/20
-				src.stamina_cost = STAMINA_ITEM_COST * 25/18
-				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 10/25
+//				src.stamina_cost = STAMINA_ITEM_COST * 25/18
+//				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 10/25
 				src.hit_type = DAMAGE_BLUNT
 				src.hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
 			if ("pulsing")
@@ -93,8 +95,8 @@
 				src.throw_speed = 3
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 5/20
-				src.stamina_cost = STAMINA_ITEM_COST * 5/18
-				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 1/25
+//				src.stamina_cost = STAMINA_ITEM_COST * 5/18
+//				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 1/25
 				src.hit_type = DAMAGE_BLUNT
 				src.hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
 			if ("screwing")
@@ -108,8 +110,8 @@
 				src.throw_speed = 3
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 10/20
-				src.stamina_cost = STAMINA_ITEM_COST * 10/18
-				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
+//				src.stamina_cost = STAMINA_ITEM_COST * 10/18
+//				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
 				src.hit_type = DAMAGE_STAB
 				src.hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 			if ("snipping")
@@ -123,8 +125,8 @@
 				src.throw_speed = 2
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 5/20
-				src.stamina_cost = STAMINA_ITEM_COST * 10/18
-				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
+//				src.stamina_cost = STAMINA_ITEM_COST * 10/18
+//				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
 				src.hit_type = DAMAGE_STAB
 				src.hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 			if ("wrenching")
@@ -138,8 +140,8 @@
 				src.throw_speed = 2
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 25/20
-				src.stamina_cost = STAMINA_ITEM_COST * 20/18
-				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 15/25
+//				src.stamina_cost = STAMINA_ITEM_COST * 20/18
+//				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 15/25
 				src.hit_type = DAMAGE_BLUNT
 				src.hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
 			if ("cutting")
@@ -153,8 +155,8 @@
 				src.throw_speed = 2
 				// taken from wirecutters because I don't know what's going on here
 				src.stamina_damage = STAMINA_ITEM_DMG * 5/20
-				src.stamina_cost = STAMINA_ITEM_COST * 10/18
-				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
+//				src.stamina_cost = STAMINA_ITEM_COST * 10/18
+//				src.stamina_crit_chance = min(STAMINA_CRIT_CHANCE * 30/25, 100)
 				src.hit_type = DAMAGE_CUT
 				src.hitsound = 'sound/impact_sounds/Flesh_Cut_1.ogg'
 			if("welding")
@@ -166,8 +168,8 @@
 				throw_range = 5
 				// using relative amounts in case the default changes
 				src.stamina_damage = STAMINA_ITEM_DMG * 30/20
-				src.stamina_cost = STAMINA_ITEM_COST * 30/18
-				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 5/25
+//				src.stamina_cost = STAMINA_ITEM_COST * 30/18
+//				src.stamina_crit_chance = STAMINA_CRIT_CHANCE * 5/25
 				src.hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
 				if(get_fuel())
 					set_icon_state("[prefix]-weldingtool-on")
@@ -255,7 +257,7 @@
 			if (O.reagents.total_volume)
 				O.reagents.trans_to(src, 20)
 				boutput(user, "<span class='notice'>Welder refueled</span>")
-				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 			else
 				boutput(user, "<span class='alert'>The [O.name] is empty!</span>")
 			return
@@ -284,3 +286,65 @@
 /obj/item/tool/omnitool/silicon
 	prefix = "silicon-omnitool"
 	desc = "A set of tools on telescopic arms. It's the robotic future!"
+
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/omnitool)
+/datum/contextAction/fiddle/omnitool
+	checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
+		return istype(target)
+
+	crowbar
+		name = "crowbar"
+		icon_state = "omni_prying"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("prying", user)
+
+	screwdriver
+		name = "screwdriver"
+		icon_state = "omni_screwing"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("screwing", user)
+
+	multitool
+		name = "multitool"
+		icon_state = "omni_pulsing"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("pulsing", user)
+
+	wirecutters
+		name = "wirecutters"
+		icon_state = "omni_snipping"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("snipping", user)
+
+	wrench
+		name = "wrench"
+		icon_state = "omni_wrenching"
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("wrenching", user)
+
+	cutting
+		name = "cutting"
+		icon_state = "omni_cutting"
+		checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
+			. = ..()
+			if(!.)
+				return
+			if(!target.has_cutting)
+				return FALSE
+			return TRUE
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("cutting", user)
+
+	welding
+		name = "welding"
+		icon_state = "omni_welding"
+		checkRequirements(var/obj/item/tool/omnitool/target, var/mob/user)
+			. = ..()
+			if(!.)
+				return
+			if(!target.has_welding)
+				return FALSE
+			return TRUE
+		execute(var/obj/item/tool/omnitool/target, var/mob/user)
+			target.change_mode("welding", user)

@@ -62,8 +62,9 @@ var/list/datum/contextAction/globalContextActions = null
 
 	showButtons(list/buttons, atom/target)
 		var/atom/screenCenter = get_turf(usr.client.virtual_eye)
-		var/screenX = ((screenCenter.x - target.x) * (-1)) * 32
-		var/screenY = ((screenCenter.y - target.y) * (-1)) * 32
+		var/turf/T = get_turf(target)
+		var/screenX = ((screenCenter.x - T.x) * (-1)) * 32
+		var/screenY = ((screenCenter.y - T.y) * (-1)) * 32
 		var/offX = 0
 		var/offY = spacingY
 
@@ -77,9 +78,9 @@ var/list/datum/contextAction/globalContextActions = null
 
 			var/matrix/trans = new()
 			trans = trans.Reset()
-			trans.Translate(offX, offY)
+			trans.Translate(offX + target.pixel_x, offY + target.pixel_y)
 
-			animate(C, alpha=255, transform=trans, easing=CUBIC_EASING, time=5)
+			animate(C, alpha=C.unfocus_alpha, transform=trans, easing=CUBIC_EASING, time=5)
 
 			offX += spacingX
 			if(offX >= spacingX * width)

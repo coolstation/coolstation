@@ -587,7 +587,7 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 	var/message = null
 
 	if (istype(actual_emote))
-		if (!emote_check(voluntary, actual_emote.return_cooldown(src, voluntary), 1, !(actual_emote.possible_while_dead)))
+		if (!emote_check(voluntary, actual_emote.return_cooldown(src, voluntary), 1, actual_emote.possible_while))
 			return
 		what_have_we_done= actual_emote.enact(src, voluntary, param)
 	if (islist(what_have_we_done))
@@ -627,10 +627,9 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 		for (var/mob/O in A.contents)
 			O.show_message("<span class='emote'>[message]</span>", m_type, group = (actual_emote.group ? actual_emote.group : "[src]_[act]_[custom]"), assoc_maptext = chat_text)
 
-/mob/proc/emote_check(var/voluntary = 1, var/time = 10, var/admin_bypass = 1, var/dead_check = 1)
+/mob/proc/emote_check(var/voluntary = 1, var/time = 10, var/admin_bypass = 1, var/possible_while = STAT_ALIVE)
 	if (src.emote_allowed)
-		if (dead_check && isdead(src))
-			src.emote_allowed = 0
+		if (src.stat > possible_while)
 			return 0
 		if (world.time >= (src.last_emote_time + src.last_emote_wait))
 			if (!no_emote_cooldowns && !(src.client && (src.client.holder && admin_bypass) && !src.client.player_mode) && voluntary)
@@ -966,7 +965,7 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 			else
 				msg = alt
 				type = alt_type
-		if ((type & 2) && !src.hearing_check(1))
+		if ((type & 2) && cant_hear(src))
 			check_failed = TRUE
 			if (!alt)
 				return

@@ -53,6 +53,7 @@ var/datum/explosion_controller/explosions
 		exploding = 1
 		RL_Suspend()
 
+		var/needrebuild = 0
 		var/p
 		var/last_touched
 		var/center
@@ -75,6 +76,8 @@ var/datum/explosion_controller/explosions
 				if(istype(O, /obj/overlay))
 					continue
 				O.ex_act(p, last_touched, center, !queued_turfs[T])
+				if (istype(O, /obj/cable)) // this is hacky, newcables should relieve the need for this
+					needrebuild = 1
 
 		LAGCHECK(LAG_HIGH)
 
@@ -110,7 +113,8 @@ var/datum/explosion_controller/explosions
 		defer_camnet_rebuild = 0
 		exploding = 0
 		RL_Resume()
-		CLEAR_PNET_BACKLOG_NOW
+		if (needrebuild)
+			makepowernets()
 
 		rebuild_camera_network()
 		world.updateCameraVisibility()
@@ -180,13 +184,18 @@ var/datum/explosion_controller/explosions
 
 		if(!src.no_effects)
 			if(power > 15)
+				var/list/client/clients_to_shake = list()
 				for(var/client/C in clients)
 					if(C.mob && (C.mob.z == epicenter.z))
 						shake_camera(C.mob, 8, 24) // remove if this is too laggy
 
-						playsound(C.mob, explosions.distant_sound, 100, 0)
+						clients_to_shake |= C
 
-			playsound(epicenter.loc, "explosion", 100, 1, round(power, 1) )
+				playsound_global(clients_to_shake, explosions.distant_sound, 100, 0)
+				SPAWN_DBG(0.1 SECONDS)
+					playsound(epicenter.loc, "explosion", 100, 1, SOUND_RANGE_STANDARD + floor(power * 0.5))
+			else
+				playsound(epicenter.loc, "explosion", 100, 1, SOUND_RANGE_STANDARD)
 			if(power > 10)
 				var/datum/effects/system/explosion/E = new/datum/effects/system/explosion()
 				E.set_up(epicenter)

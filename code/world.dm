@@ -12,7 +12,7 @@
 
 
 #ifdef UNDERWATER_MAP
-	turf = /turf/space/fluid
+	turf = /turf/space/fluid/ocean
 #else
 	turf = /turf/space
 #endif
@@ -50,9 +50,9 @@ var/global/map_currently_very_dusty = 0
 #endif
 
 #ifdef ABOVEWATER_MAP
-var/global/map_currently_abovewater = 1
+var/global/map_currently_above_magindara = 1
 #else
-var/global/map_currently_abovewater = 0
+var/global/map_currently_above_magindara = 0
 #endif
 
 //should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff
@@ -128,6 +128,13 @@ var/global/mob/twitch_mob = 0
 	fdel(F)
 	F << the_mode
 #endif
+
+/world/proc/set_map_tgs(var/the_string)
+
+	var/F = file("data/map.dm")
+	fdel(F)
+	F << the_string
+
 
 /world/proc/load_intra_round_value(var/field) //Currently for solarium effects, could also be expanded to that pickle jar idea.
 	var/path = "data/intra_round.sav"
@@ -522,7 +529,6 @@ var/f_color_selector_handler/F_Color_Selector
 	set background = 1
 	Z_LOG_DEBUG("World/Init", "init() - Lagcheck enabled")
 	lagcheck_enabled = 1
-	current_state = GAME_STATE_WORLD_INIT
 
 	game_start_countdown = new()
 	UPDATE_TITLE_STATUS("Initializing world")
@@ -697,9 +703,15 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Transferring manuf. icons to clients...")
 	sendItemIconsToAll()
 
-	UPDATE_TITLE_STATUS("Reticulating splines")
+	UPDATE_TITLE_STATUS("Initializing worldgen")
 	Z_LOG_DEBUG("World/Init", "Initializing worldgen...")
-	initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
+	worldgen_hold &= ~WORLDGEN_HOLD_WORLD_INIT
+	if(!worldgen_hold)
+		initialize_worldgen() //includes window geometry, which needs to be in place before FEA startup
+
+#ifdef DESERT_MAP
+	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_grubranch.dmm')
+#endif
 
 	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
 	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
@@ -726,7 +738,7 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Setting up a test transmission...")
 	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing)
 	//new /datum/directed_broadcast/testing_finite //this gets tracked it should be fine :)
-	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing_teevee)
+	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing_teevee, 1, -1, 1)
 
 #ifdef TWITCH_BOT_ALLOWED
 	for (var/client/C)
@@ -760,6 +772,8 @@ var/f_color_selector_handler/F_Color_Selector
 
 //Crispy fullban
 /proc/Reboot_server(var/retry)
+
+/* dont need this part anymore
 	//ohno the map switcher is in the midst of compiling a new map, we gotta wait for that to finish
 	if (mapSwitcher.locked)
 		//we're already holding and in the reboot retry loop, do nothing
@@ -773,7 +787,7 @@ var/f_color_selector_handler/F_Color_Selector
 			mapSwitcher.attemptReboot()
 
 		return
-
+*/
 #if defined(SERVER_SIDE_PROFILING) && (defined(SERVER_SIDE_PROFILING_FULL_ROUND) || defined(SERVER_SIDE_PROFILING_INGAME_ONLY))
 #if defined(SERVER_SIDE_PROFILING_INGAME_ONLY) || !defined(SERVER_SIDE_PROFILING_PREGAME)
 	// This is a profiler dump of only the in-game part of the round
@@ -885,7 +899,7 @@ var/f_color_selector_handler/F_Color_Selector
 	else
 		s += "SERVER NAME HERE</b> &#8212; "
 
-	s += "The [pick("hotdog","acab","vintage","jenkem","burnout")] SS13 experience. Now 516! (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
+	s += "The [pick("hotdog","acab","vintage","jenkem","burnout")] SS13 experience. [pick("Open for business!","Open 24/7","Spicy","It's Queer","Bigger than Jesus Christ","A solid 5/7")]! (<a href=\"https://discord.gg/Xh3yfs8KGn\">Discord</a>)<br>"
 	s += "[pick("Goon's <b>only</b> active downstream!","Italian: <b>[pick("as hell","kinda","not really","yes","no","very")]</b>","Style: [pick("Action","<b>ACTION</b>")] [pick("Roleplay","<b>ROLEPLAY</b>")]","Style: [pick("Roleplay","<b>ROLEPLAY</b>")] [pick("Action","<b>ACTION</b>")]","Smells: <b>[pick("Great","Bad")]</b>!","<br>Mouthfeel: <b>[pick("crunchy","chewy","moist","wet")]</b>","No ERP! 18+ Only!")]<br>"
 
 	if (map_settings)

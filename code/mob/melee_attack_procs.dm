@@ -31,7 +31,7 @@
 		src.shake_awake(M)
 
 /mob/proc/help_put_out_fire(var/mob/living/M)
-	playsound(M.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, 0 , 0.7)
+	playsound(M.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, SOUND_RANGE_STANDARD , 0.7)
 	src.visible_message("<span class='notice'>[src] pats down [M] wildly, trying to put out the fire!</span>")
 
 	if (ishuman(src))
@@ -68,7 +68,7 @@
 	target.changeStatus("paralysis", -5 SECONDS)
 	target.changeStatus("weakened", -5 SECONDS)
 
-	playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, -1)
+	playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 	if (src == target)
 		var/obj/stool/S = (locate(/obj/stool) in src.loc)
 		if (S)
@@ -217,7 +217,10 @@
 		block_begin(src)
 		src.next_click = world.time + (COMBAT_CLICK_DELAY)
 		*/
-		src.visible_message("<span class='alert'><B>[src] tweaks [his_or_her(src)] own nipples! That's [pick_string("tweak_yo_self.txt", "tweakadj")] [pick_string("tweak_yo_self.txt", "tweak")]!</B></span>")
+		if (src.gender == NEUTER)
+			src.visible_message("<span class='alert'><B>[src] grasps at [pick("nothing", "the air", "a feeling", "[his_or_her(src)] chest")]!</B></span>")
+		else
+			src.visible_message("<span class='alert'><B>[src] tweaks [his_or_her(src)] own nipples! That's [pick_string("tweak_yo_self.txt", "tweakadj")] [pick_string("tweak_yo_self.txt", "tweak")]!</B></span>")
 
 
 /mob/living/proc/grab_block() //this is sorta an ugly but fuck it!!!!
@@ -257,7 +260,7 @@
 		target.add_fingerprint(src) // Just put 'em on the mob itself, like pulling does. Simplifies forensic analysis a bit (Convair880).
 
 	if (check_target_immunity(target) == 1)
-		playsound(target.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, -1)
+		playsound(target.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		target.visible_message("<span class='alert'><B>[src] tries to grab [target], but can't get a good grip!</B></span>")
 		return
 
@@ -273,17 +276,17 @@
 		if (prob(20) && isrobot(target))
 			var/mob/living/silicon/robot/T = target
 			src.visible_message("<span class='alert'><B>[T] blocks [src]'s attempt to grab [him_or_her(T)]!</span>")
-			playsound(target.loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 25, 1, 1)
+			playsound(target.loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 25, 1, SOUND_RANGE_STANDARD)
 			return
 		else
 			var/obj/item/grab/block/B = target.check_block()
 			if (target.do_dodge(src, null, show_msg = 0))
 				src.visible_message("<span class='alert'><B>[target] dodges [src]'s attempt to grab [him_or_her(target)]!</span>")
-				playsound(target.loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 25, 1, 1)
+				playsound(target.loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 25, 1, SOUND_RANGE_STANDARD)
 				return
 			else if(B && !target.lying)
 				src.visible_message("<span class='alert'><B>[target] blocks [src]'s attempt to grab [him_or_her(target)]!</span>")
-				playsound(target.loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 25, 1, 1)
+				playsound(target.loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 25, 1, SOUND_RANGE_STANDARD)
 				qdel(B)
 				target.remove_stamina(STAMINA_DEFAULT_BLOCK_COST)
 				return
@@ -306,7 +309,7 @@
 	for (var/obj/item/grab/block/G in target.equipped_list(check_for_magtractor = 0)) //being grabbed breaks a block
 		qdel(G)
 
-	playsound(target.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, -1)
+	playsound(target.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 	if (!suppress_final_message) // Melee-focused roles (resp. their limb datums) grab the target aggressively (Convair880).
 		if (grab_item)
 			target.visible_message("<span class='alert'>[src] grabs hold of [target] with [grab_item]!</span>")
@@ -508,7 +511,7 @@
 	if (stance == "dodge")
 		if (show_msg)
 			visible_message("<span class='alert'><B>[src] narrowly dodges [attacker]'s attack!</span>")
-		playsound(loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 50, 1, 1)
+		playsound(loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 
 		add_stamina(STAMINA_FLIP_COST * 0.25) //Refunds some stamina if you successfully dodge.
 		stamina_stun()
@@ -517,7 +520,7 @@
 	else if (prob(src.get_passive_block()))
 		if (show_msg)
 			visible_message("<span class='alert'><B>[src] blocks [attacker]'s attack!</span>")
-		playsound(loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 50, 1, 1)
+		playsound(loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		fuckup_attack_particle(attacker)
 		return 1
 	return ..()
@@ -707,7 +710,7 @@
 		damage -= armor_mod
 		if(damage/pre_armor_damage <= 0.66)
 			block_spark(target,armor=1)
-			playsound(target, 'sound/impact_sounds/block_blunt.ogg', 50, 1, -1, pitch=1.5)
+			playsound(target, 'sound/impact_sounds/block_blunt.ogg', 50, 1, SOUND_RANGE_STANDARD, pitch=1.5)
 		if(damage <= 0)
 			fuckup_attack_particle(src)
 
@@ -739,7 +742,7 @@
 
 		if(pre_armor_damage > 0 && damage/pre_armor_damage <= 0.66)
 			block_spark(target,armor=1)
-			playsound(target, 'sound/impact_sounds/block_blunt.ogg', 50, 1, -1,pitch=1.5)
+			playsound(target, 'sound/impact_sounds/block_blunt.ogg', 50, 1, SOUND_RANGE_STANDARD, pitch=1.5)
 			if(damage <= 0)
 				fuckup_attack_particle(src)
 				armor_blocked = 1
@@ -780,7 +783,7 @@
 		return
 
 	if (check_target_immunity(target) == 1)
-		playsound(user.loc, "punch", 50, 1, 1)
+		playsound(user.loc, "punch", 50, 1, SOUND_RANGE_STANDARD)
 		user.visible_message("<span class='alert'><B>[user]'s attack bounces off [target] uselessly!</B></span>")
 		return
 
@@ -931,9 +934,9 @@
 			var/obj/item/grab/block/G = target.check_block()
 			if (G && G.can_block(damage_type) && damage > 0)
 				G.play_block_sound(damage_type)
-				playsound(owner.loc, played_sound, 15, 1, -1, 1.4)
+				playsound(owner.loc, played_sound, 15, 1, SOUND_RANGE_STANDARD, 1.4)
 			else
-				playsound(owner.loc, played_sound, 50, 1, -1)
+				playsound(owner.loc, played_sound, 50, 1, SOUND_RANGE_STANDARD)
 
 		if (!(suppress & SUPPRESS_BASE_MESSAGE) && base_attack_message)
 			owner.visible_message(base_attack_message)
@@ -1118,7 +1121,7 @@
 
 /mob/proc/melee_attack_test(var/mob/attacker, var/obj/item/I, var/def_zone, var/disarm_check = 0)
 	if (check_target_immunity(src) == 1)
-		playsound(loc, "punch", 50, 1, 1)
+		playsound(loc, "punch", 50, 1, SOUND_RANGE_STANDARD)
 		src.visible_message("<span class='alert'><B>[attacker]'s attack bounces off [src] uselessly!</B></span>")
 		return 0
 

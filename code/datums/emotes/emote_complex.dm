@@ -3,6 +3,7 @@
 //april fools start
 
 /datum/emote/inhale
+	possible_while = STAT_UNCONSCIOUS
 /datum/emote/inhale/enact(mob/living/user, voluntary = 0, param)
 	if (!istype(user))
 		return
@@ -21,6 +22,7 @@
 	user.show_text("You breathe in.")
 
 /datum/emote/exhale
+	possible_while = STAT_UNCONSCIOUS
 /datum/emote/exhale/enact(mob/living/user, voluntary = 0, param)
 	if (!istype(user))
 		return
@@ -104,9 +106,9 @@
 /datum/emote/uguu/enact(mob/user, voluntary = 0, param)
 	if (istype(user.wear_mask, /obj/item/clothing/mask/anime) && !user.stat)
 		if (narrator_mode)
-			playsound(user, 'sound/vox/uguu.ogg', 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user, 'sound/vox/uguu.ogg', 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else
-			playsound(user, 'sound/voice/uguu.ogg', 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user, 'sound/voice/uguu.ogg', 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		SPAWN_DBG(1 SECOND)
 			user.wear_mask.set_loc(user.loc)
 			user.wear_mask = null
@@ -321,13 +323,13 @@
 		return list("<B>[user]</B> [pre_message]", "<i>[pre_message]</i>", MESSAGE_VISIBLE)
 	else if (!ismuzzled(user))
 		if (narrator_mode)
-			playsound(user.loc, 'sound/vox/scream.ogg', 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user.loc, 'sound/vox/scream.ogg', 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else if (user.traitHolder && user.traitHolder.hasTrait("scienceteam"))
-			playsound(user.loc, pick(user.sound_list_scream), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user.loc, pick(user.sound_list_scream), 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else if (user.sound_list_scream && length(user.sound_list_scream))
-			playsound(user.loc, pick(user.sound_list_scream), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user.loc, pick(user.sound_list_scream), 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else
-			playsound(user, user.sound_scream, 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user, user.sound_scream, 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		#ifdef HALLOWEEN
 		spooktober_GH.change_points(user.ckey, 30)
 		#endif
@@ -353,9 +355,9 @@
 /datum/emote/scream/silicon //turns out the above wasn't ready for borgs
 /datum/emote/scream/silicon/enact(mob/living/silicon/user, voluntary = 0, param)
 	if (narrator_mode)
-		playsound(user.loc, 'sound/vox/scream.ogg', 50, 1, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+		playsound(user.loc, 'sound/vox/scream.ogg', 50, 1, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 	else
-		playsound(user, user.sound_scream, 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+		playsound(user, user.sound_scream, 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 	return list("<b>[user]</b> screams!", null, MESSAGE_AUDIBLE)
 
 /datum/emote/twerk // also shakebutt, shakebooty, shakeass
@@ -448,6 +450,7 @@
 
 
 /datum/emote/twitch
+	possible_while = STAT_UNCONSCIOUS
 	var/amplitude_x = 2
 	var/amplitude_y = 1
 	emote_string = "twitches"
@@ -457,14 +460,14 @@
 		emote_string = "twitches violently"
 /datum/emote/twitch/enact(mob/user, voluntary = 0, param)
 	. = list("<B>[user]</B> [emote_string].", null, MESSAGE_VISIBLE) //no return because of the sleep()
-	//The below used to be on a SPAWN but that's probably no longer needed
+	//The below used to be on a SPAWN but that's probably no longer needed // pretty sure it is
 	var/old_x = user.pixel_x
 	var/old_y = user.pixel_y
 	user.pixel_x += rand(-amplitude_x,amplitude_x)
 	user.pixel_y += rand(-amplitude_y,amplitude_y)
-	sleep(0.2 SECONDS)
-	user.pixel_x = old_x
-	user.pixel_y = old_y
+	SPAWN_DBG(0.2 SECONDS)
+		user.pixel_x = old_x
+		user.pixel_y = old_y
 
 
 /datum/emote/faint
@@ -474,7 +477,7 @@
 
 
 /datum/emote/deathgasp
-	possible_while_dead = TRUE
+	possible_while = STAT_DEAD
 /datum/emote/deathgasp/return_cooldown(mob/user, voluntary = 0)
 	return (voluntary ? 5 SECONDS : 0 SECONDS) //I *think* this replicates [if (!voluntary || user.emote_check(voluntary,50))]
 /datum/emote/deathgasp/enact(mob/user, voluntary = 0, param)
@@ -491,9 +494,9 @@
 			user.deathConfetti()
 
 		if (user.traitHolder && user.traitHolder.hasTrait("scienceteam"))
-			playsound(user, "sound/voice/scientist/sci_die[pick(1,2,3)].ogg", 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user, "sound/voice/scientist/sci_die[pick(1,2,3)].ogg", 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else
-			playsound(user, "sound/voice/death_[pick(1,2)].ogg", 40, 0, 0, user.get_age_pitch())
+			playsound(user, "sound/voice/death_[pick(1,2)].ogg", 40, 0, SOUND_RANGE_STANDARD, user.get_age_pitch())
 		return list("<span class='regular'><B>[user]</B> seizes up and falls limp, [his_or_her(user)] eyes dead and lifeless...</span>", null, MESSAGE_VISIBLE)
 
 
@@ -570,7 +573,7 @@
 /datum/emote/collapse/enact(mob/user, voluntary = 0, param)
 	if (!user.getStatusDuration("paralysis"))
 		user.changeStatus("paralysis", 3 SECONDS)
-	return list("<B>[user]</B> [emote_string]s!", null, MESSAGE_AUDIBLE) //was audible in the old code but IDK why
+	return list("<B>[user]</B> [emote_string]s!", null, MESSAGE_VISIBLE) //was audible in the old code but IDK why
 
 
 /datum/emote/burp
@@ -586,9 +589,9 @@
 			M.TakeDamage("chest", 0, 20, 0, DAMAGE_BURN)
 			user.charges -= 1
 			if (narrator_mode)
-				playsound(user.loc, 'sound/vox/bloop.ogg', 70, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user.loc, 'sound/vox/bloop.ogg', 70, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			else
-				playsound(user, user.sound_burp, 70, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, user.sound_burp, 70, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			return
 	else if ((user.charges >= 1) && (ismuzzled(user)))
 		for (var/mob/O in viewers(user, null))
@@ -598,12 +601,12 @@
 		return
 	else if ((user.charges < 1) && (!ismuzzled(user)))
 		if (narrator_mode)
-			playsound(user.loc, 'sound/vox/bloop.ogg', 70, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+			playsound(user.loc, 'sound/vox/bloop.ogg', 70, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		else
 			if (user.getStatusDuration("food_deep_burp"))
-				playsound(user, user.sound_burp, 70, 0, 0, user.get_age_pitch() * 0.5, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, user.sound_burp, 70, 0, SOUND_RANGE_STANDARD, user.get_age_pitch() * 0.5, channel=VOLUME_CHANNEL_EMOTE)
 			else
-				playsound(user, user.sound_burp, 70, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, user.sound_burp, 70, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 
 		var/datum/statusEffect/fire_burp/FB = user.hasStatus("food_fireburp")
 		if (!FB)
@@ -640,13 +643,13 @@
 				var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(terlet, user.poop_amount)
 				terlet.reagents.add_reagent("poo", user.poop_amount)
 				terlet.add_contents(shit)
-				playsound(user, user.sound_fart, 50, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, user.sound_fart, 50, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				break
 			user.wiped = 0
 			user.cleanhands = 0
 		else
 			message = "<B>[user]</B> unzips [his_or_her(user)] pants but, try as [he_or_she(user)] might, [he_or_she(user)] can't shit!"
-	else if (user.poops < 1)
+	else if (user.poops < 1 || !pooping_allowed)
 		message = "<B>[user]</B> grunts for a moment. [prob(1)?"something":"nothing"] happens."
 	else
 
@@ -661,6 +664,7 @@
 		user.recite_miranda()
 
 /datum/emote/suicide
+	possible_while = STAT_UNCONSCIOUS
 /datum/emote/suicide/enact(mob/user, voluntary = 0, param)
 	user.do_suicide()
 

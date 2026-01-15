@@ -20,6 +20,7 @@
 	var/restrain_wearer = 0
 	var/bloodoverlayimage = 0
 	var/team_num
+	var/cape = 0
 
 
 	setupProperties()
@@ -614,7 +615,6 @@
 	over_hair = 1
 	wear_layer = MOB_OVERLAY_BASE
 	var/eyeholes = 0 //Did we remember to cut eyes in the thing?
-	var/cape = 0
 	var/obj/stool/bed/Bed = null
 	var/bcolor = null
 	//cogwerks - burn vars
@@ -1338,8 +1338,8 @@
 /obj/item/clothing/suit/space/ntso
 	name = "NT-SO combat dress"
 	desc = "A Nanotrasen special forces combat dress system, pressurized for space travel."
-	icon_state = "ntso_specialist"
-	item_state = "ntso_specialist"
+	icon_state = "ntso"
+	item_state = "ntso"
 
 	setupProperties()
 		..()
@@ -1355,6 +1355,12 @@
 		desc = "A Nanotrasen special forces combat dress system, pressurized for space travel."
 		icon_state = "ntso_specialist-scout"
 		item_state = "ntso_specialist-scout"
+
+	rogue
+		name = "Old NT-SO combat suit"
+		desc = "A patched Nanotrasen special forces vacuum suit with armor plates missing, modified, and spray-painted."
+		icon_state = "ntso-rogue"
+		item_state = "ntso-rogue"
 
 /obj/item/clothing/suit/space/engineer
 	name = "engineering space suit"
@@ -1772,3 +1778,97 @@
 		setProperty("rangedprot", 0.5)
 		setProperty("movespeed", 0.5)
 		setProperty("disorient_resist", 15)
+
+///~-------------------- Cryogenic Coats -------------------~// For Summit
+
+/obj/item/clothing/suit/cryo
+	name = "cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures."
+	icon_state = "cryocoat"
+	item_state = "cryocoat"
+	body_parts_covered = TORSO|LEGS|ARMS
+
+	setupProperties()
+		..()
+		setProperty("coldprot", 60)
+		setProperty("meleeprot", 1)
+		setProperty("rangedprot", 0.2)
+		setProperty("movespeed", 0.7)
+
+/obj/item/clothing/suit/cryo/sec
+	name = "security cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for security, and has some kevlar in the lining."
+	icon_state = "cryocoat-sec"
+	item_state = "cryocoat-sec"
+
+	setupProperties()
+		..()
+		setProperty("coldprot", 60)
+		setProperty("meleeprot", 3)
+		setProperty("rangedprot", 0.7)
+
+/obj/item/clothing/suit/cryo/med
+	name = "medical cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for medical staff."
+	icon_state = "cryocoat-med"
+	item_state = "cryocoat-med"
+
+/obj/item/clothing/suit/cryo/med
+	name = "medical cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for medical staff."
+	icon_state = "cryocoat-med"
+	item_state = "cryocoat-med"
+
+/obj/item/clothing/suit/cryo/recon
+	name = "recon cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for the recon team."
+	icon_state = "cryocoat-sci"
+	item_state = "cryocoat-sci"
+
+	setupProperties()
+		..()
+		setProperty("coldprot", 70) //they're out there for a while.
+		setProperty("meleeprot", 1)
+		setProperty("rangedprot", 0.2)
+
+/obj/item/clothing/suit/cryo/eng
+	name = "engineering cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for engineering staff."
+	icon_state = "cryocoat-eng"
+	item_state = "cryocoat-eng"
+
+/obj/item/clothing/suit/cryo/log
+	name = "logistics cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for logistics staff."
+	icon_state = "cryocoat-log"
+	item_state = "cryocoat-log"
+
+/obj/item/clothing/suit/cryo/jan
+	name = "custodial cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for custodial staff."
+	icon_state = "cryocoat-cus"
+	item_state = "cryocoat-cus"
+
+/obj/item/clothing/suit/cryo/sd
+	name = "site director's cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for the site director, and has some kevlar in the lining."
+	icon_state = "cryocoat-sd"
+	item_state = "cryocoat-sd"
+
+	setupProperties()
+		..()
+		setProperty("coldprot", 70)
+		setProperty("meleeprot", 3)
+		setProperty("rangedprot", 0.7)
+
+/obj/item/clothing/suit/cryo/sg
+	name = "surveyor general's cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for the surveyor general, and has some kevlar in the lining."
+	icon_state = "cryocoat-sg"
+	item_state = "cryocoat-sg"
+
+	setupProperties()
+		..()
+		setProperty("coldprot", 70)
+		setProperty("meleeprot", 3)
+		setProperty("rangedprot", 0.7)

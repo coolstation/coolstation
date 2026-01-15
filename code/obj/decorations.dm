@@ -331,7 +331,7 @@
 
 //BUSH ANIMATION!!!!
 	proc/shake_bush(var/volume)
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", volume, 1, -1)
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", volume, 1, SOUND_RANGE_STANDARD)
 
 		var/wiggle = 6
 
@@ -360,7 +360,7 @@
 		user.lastattacked = src
 		hit_twitch(src)
 		attack_particle(user,src)
-		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, 0)
+		playsound(src, "sound/impact_sounds/Bush_Hit.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		src.take_damage(W.force)
 		user.visible_message("<span class='alert'><b>[user] hacks at [src] with [W]!</b></span>")
 
@@ -607,10 +607,16 @@
 	var/open = 1
 	var/id = null
 	var/obj/blind_switch/mySwitch = null
+	var/base_x = 0
+	var/base_y = 0
+	event_handler_flags = USE_HASENTERED
 
 	New()
 		. = ..()
 		START_TRACKING
+		base_x = pixel_x
+		base_y = pixel_y
+
 
 	disposing()
 		. = ..()
@@ -630,6 +636,40 @@
 	attackby(obj/item/W, mob/user)
 		src.toggle()
 		src.toggle_group()
+
+	proc/shake_blinds(var/volume)
+
+		playsound(src, "sound/impact_sounds/blind_rattle.ogg", volume, 1, SOUND_RANGE_STANDARD)
+
+		var/wiggle = 10
+
+		SPAWN_DBG(0) //need spawn, why would we sleep in attack_hand that's disgusting
+			while (wiggle > 0)
+				wiggle--
+				animate(src, pixel_x = rand(src.base_x-3,src.base_x+3), pixel_y = rand(src.base_y-3,src.base_y+3), time = 2, easing = EASE_IN)
+				sleep(0.1 SECONDS)
+				animate(src, pixel_x = src.base_x, pixel_y = src.base_y, time = 2, easing = EASE_OUT)
+
+
+
+	//This is reused from the
+	HasEntered(atom/movable/AM as mob|obj)
+		..()
+
+		if(!(ishuman(AM) || AM.throwing))
+			return
+
+		if(isnpc(AM)) //if its a monkey (a type of human NPC)
+			src.shake_blinds(10)
+			return
+
+		if (AM.throwing) //if its a thlrown item and not a human/monke
+			src.shake_blinds(20)
+			return
+		//humans are much louder than thrown items and mobs
+		//Only players will trigger this
+		src.shake_blinds(50)
+		AM.setStatus("slowed", 0.5 SECONDS, optional = 4)
 
 	proc/toggle(var/force_state as null|num)
 		if (!isnull(force_state))
@@ -1341,8 +1381,8 @@ obj/decoration/ceilingfan
 	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
 	item_state = "protopistol"
 	stamina_damage = 0
-	stamina_cost = 4
-	stamina_crit_chance = 0
+//	stamina_cost = 4
+//	stamina_crit_chance = 0
 	throwforce = 0
 
 	attack_hand(mob/user as mob)
@@ -1375,8 +1415,8 @@ obj/decoration/ceilingfan
 	w_class = W_CLASS_SMALL
 	flags = FPRINT | TABLEPASS
 	stamina_damage = 0
-	stamina_cost = 4
-	stamina_crit_chance = 0
+//	stamina_cost = 4
+//	stamina_crit_chance = 0
 	var/list/proj_impacts = list()
 	var/image/proj_image = null
 	var/last_proj_update_time = null
@@ -1543,11 +1583,16 @@ obj/decoration/ceilingfan
 	density = 0
 	mouse_opacity = 0
 	bound_height = 64
-	plane = PLANE_NOSHADOW_BELOW
-	layer = TURF_LAYER - 0.1
+	plane = PLANE_FLOOR
+	layer = TURF_OVERLAY_LAYER
+
 	//Grabs turf color set in gehenna.dm for sand
 	New()
 		..()
+		STANDARD_WORLDGEN_HOLD
+
+	generate_worldgen()
+		. = ..()
 		var/turf/T = get_turf(src)
 		src.color = T.color
 
@@ -1559,9 +1604,9 @@ obj/decoration/ceilingfan
 
 /obj/decoration/railbed/trans
 	icon_state = "railbedtrans"
-	New()
-		..()
-		src.color = null
+
+	generate_worldgen()
+		return
 
 /obj/decoration/railbed/trans/cracked1
 	icon_state = "railbedcracked1trans"
@@ -1794,3 +1839,34 @@ obj/decoration/ceilingfan
 	light_r = 0.94
 	light_g = 0.98
 	light_b = 0.02
+
+/obj/decoration/broken_airlock
+	name = "broken airlock"
+	desc = "Rust has rendered this airlock useless."
+	icon = 'icons/misc/hstation.dmi'
+	icon_state = "bloodydoor"
+	anchored = 1
+	layer = 5
+
+	classic
+		icon_state = "stuck_partway"
+
+	maint
+		icon = 'icons/misc/rstation.dmi'
+		icon_state = "maint-gap"
+
+	med
+		icon = 'icons/misc/rstation.dmi'
+		icon_state = "med-gap"
+
+	eng
+		icon = 'icons/misc/rstation.dmi'
+		icon_state = "eng-open"
+
+	external
+		icon_state = "bloodydoorext"
+
+		alt
+			icon = 'icons/misc/rstation.dmi'
+			icon_state = "ext-gap"
+

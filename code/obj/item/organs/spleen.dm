@@ -17,7 +17,7 @@
 				donor.reagents.add_reagent(src.blood_id, donor.ideal_blood_volume * BLOOD_SCALAR * mult, temp_new = donor.base_body_temp) // maybe get a little blood back ^
 			else if (src.robotic)  // garuanteed extra blood with robotic spleen
 				donor.reagents.add_reagent(src.blood_id, donor.ideal_blood_volume * BLOOD_SCALAR * 2 * mult, temp_new = donor.base_body_temp)
-		else if (donor.reagents.total_volume > donor.ideal_blood_volume * 1.01)
+		else if (donor.reagents.total_volume > donor.ideal_blood_volume * 1.05)
 			if (prob(66))
 				donor.reagents.remove_reagent(donor.blood_id, donor.ideal_blood_volume * BLOOD_SCALAR * mult)
 		if(emagged)

@@ -6,6 +6,7 @@
 	throwforce = 6
 	value = 70 //base commodity price
 	burn_type = 1
+	stack_type = /obj/item/raw_material/
 
 	var/material_name = "Ore" //text to display for this ore in manufacturers
 	var/initial_material_name = null // used to store what the ore is
@@ -51,7 +52,7 @@
 			stack_item(W)
 			if(!user.is_in_hands(src))
 				user.put_in_hand(src)
-			boutput(user, "<span class='notice'>You add the ores to the stack. It now has [src.amount] ores.</span>")
+			boutput(user, "<span class='notice'>You add the [initial(src.name)] to the stack. It now has [src.amount] pieces of [src.material].</span>")
 			return
 		if (istype(W, /obj/item/satchel/mining/))
 			var/obj/item/satchel/mining/satchel = W
@@ -583,6 +584,18 @@
 		src.setMaterial(getMaterial("ice"), appearance = FALSE, setname = FALSE)
 		return ..()
 
+/obj/item/raw_material/ice/nevicata
+	name = "cubic ice crystal"
+	desc = "A chunk of exotic ice. This is extremely cold."
+	icon_state = "ice"
+	material_name = "Ice"
+	crystal = 1
+	scoopable = 0
+
+	setup_material()
+		src.setMaterial(getMaterial("ice"), appearance = FALSE, setname = FALSE)
+		return ..()
+
 /obj/item/raw_material/scrap_metal
 	// this should only be spawned by the game, spawning it otherwise would just be dumb
 	name = "scrap"
@@ -612,8 +625,8 @@
 	g_amt = 3750
 	burn_type = 1
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	burn_possible = FALSE
 	value = 5
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
@@ -652,6 +665,11 @@
 				if((!H.shoes || (src.material && src.material.hasProperty("hard") && src.material.getProperty("hard") >= 70)) && !iscow(H))
 					boutput(H, "<span class='alert'><B>You step on [src]! Ouch!</B></span>")
 					step_on(H)
+
+			if(prob(5))
+				new /obj/decal/cleanable/grit/small(src.loc)
+				qdel(src)
+				return
 		..()
 
 	custom_suicide = 1
@@ -1037,6 +1055,9 @@
 		else if (istype(over_object,/turf/floor/))
 			src.output_location = over_object
 			boutput(usr, "<span class='notice'>You set the reclaimer to output to [over_object]!</span>")
+
+		else if(over_object == usr && HAS_ATOM_PROPERTY(usr, PROP_LIFT_ANYTHING))
+			return ..()
 
 		else
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")

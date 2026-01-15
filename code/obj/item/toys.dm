@@ -11,8 +11,8 @@
 	throw_range = 5
 	contraband = 3
 	stamina_damage = 1
-	stamina_cost = 7
-	stamina_crit_chance = 1
+//	stamina_cost = 7
+//	stamina_crit_chance = 1
 	var/bladecolor = "G"
 	var/sound_attackM1 = 'sound/weapons/male_toyattack.ogg'
 	var/sound_attackM2 = 'sound/weapons/male_toyattack2.ogg'
@@ -34,9 +34,9 @@
 		if (ishuman(user))
 			var/mob/living/carbon/human/U = user
 			if (U.gender == MALE)
-				playsound(U, pick(src.sound_attackM1, src.sound_attackM2), 100, 0, 0, U.get_age_pitch())
+				playsound(U, pick(src.sound_attackM1, src.sound_attackM2), 100, 0, SOUND_RANGE_STANDARD, U.get_age_pitch())
 			else
-				playsound(U, pick(src.sound_attackF1, src.sound_attackF2), 100, 0, 0, U.get_age_pitch())
+				playsound(U, pick(src.sound_attackF1, src.sound_attackF2), 100, 0, SOUND_RANGE_STANDARD, U.get_age_pitch())
 
 /obj/item/toy/judge_gavel
 	name = "judge's gavel"
@@ -47,8 +47,8 @@
 	force = 5
 	throwforce = 7
 	stamina_damage = 25
-	stamina_cost = 10
-	stamina_crit_chance = 5
+//	stamina_cost = 10
+//	stamina_crit_chance = 5
 
 	custom_suicide = 1
 	suicide(var/mob/user as mob)
@@ -73,8 +73,8 @@
 	throw_speed = 4
 	throw_range = 7
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	var/cooldown = 0
 
 /obj/item/toy/judge_block/attackby(obj/item/I, mob/user)
@@ -100,8 +100,8 @@
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	var/redeemer = null
 	var/receiver = null
 

@@ -15,8 +15,8 @@ var/sword_summoned_before = false
 	mats = 4
 	desc = "A disemboweled remote signaller, ready for further modifications."
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (build_stage >= 4)														//If build_stage is 4 or higher, which shouldn't be possible, alert the player to in turt alert coders.
@@ -98,7 +98,7 @@ var/sword_summoned_before = false
 							desc = "Oh shit, it's overloading!"
 							tooltip_rebuild = 1
 							is_exploding = true
-							spawn(2 SECONDS)
+							SPAWN_DBG(2 SECONDS)
 								logTheThing("combat", user, null, "has summoned the Syndicate Weapon: Orion Retribution Device. It will become active in about 1 minute.")
 								message_admins("[key_name(user)] has summoned the Syndicate Weapon: Orion Retribution Device. It will become active in about 1 minute.")
 								elecflash(src.loc)

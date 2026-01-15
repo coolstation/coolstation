@@ -827,7 +827,7 @@ ABSTRACT_TYPE(/datum/supply_packs/construction)
 		desc = "An additional ABCU Unit, for large construction projects."
 		contents = "1x ABCU and Blueprint Marker"
 		contains = list(/obj/machinery/abcu, /obj/item/blueprint_marker)
-		cost = 5000
+		cost = 2500
 		containertype = /obj/storage/secure/crate
 		containername = "ABCU Unit Crate (Cardlocked \[Engineering])"
 		access = access_engineering
@@ -1619,6 +1619,15 @@ ABSTRACT_TYPE(/datum/supply_packs/misc)
 		cost = 2000
 		containertype = /obj/storage/crate/packing
 		containername = "Animal Import Kit"
+
+	mothroach
+		name = "Mothroach Import Kit"
+		desc = "Gnab a few mothroaches for your department and find out what true cuteness looks like."
+		category = "Civilian Department"
+		contains = list(/mob/living/critter/small_animal/mothroach = 3)
+		cost = 3000
+		containertype = /obj/storage/crate/packing
+		containername = "Mothroach Import Kit"
 
 	takeout_chinese
 		name = "Golden Gannet Delivery"

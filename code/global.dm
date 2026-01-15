@@ -34,6 +34,7 @@ var/global
 
 	atom/movable/screen/renderSourceHolder
 	obj/overlay/zamujasa/round_start_countdown/game_start_countdown	// Countdown clock for round start
+	obj/overlay/zamujasa/round_start_countdown/timer/title_countdown	// Likewise
 	list/globalImages = list() //List of images that are always shown to all players. Management procs at the bottom of the file.
 	list/image/globalRenderSources = list() //List of images that are always attached invisibly to all player screens. This makes sure they can be used as rendersources.
 	list/aiImages = list() //List of images that are shown to all AIs. Management procs at the bottom of the file.
@@ -58,7 +59,7 @@ var/global
 	server_start_time = 0
 	round_time_check = 0			// set to world.timeofday when round starts, then used to calculate round time
 	defer_powernet_rebuild = 0		// true if net rebuild will be called manually after an event
-	machines_may_use_wired_power = 0
+	machines_may_use_wired_power = TRUE // fuck it, we ball? - mylie
 	regex/url_regex = null
 	force_random_names = 0			// for the pre-roundstart thing
 	force_random_looks = 0			// same as above
@@ -102,8 +103,6 @@ var/global
 	area_list_is_up_to_date = 0
 
 	already_a_dominic = 0 // no just shut up right now, I don't care
-
-	footstep_extrarange = 0 // lol same (modified hackily in mobs.dm to avoid lag from sound at high player coutns)
 
 	list/cursors_selection = list("Default" = 'icons/cursors/target/default.dmi',
 	"Red" = 'icons/cursors/target/red.dmi',
@@ -282,6 +281,7 @@ var/global
 	debug_mixed_forced_wraith = 0
 	debug_mixed_forced_blob = 0
 	farting_allowed = 1
+	pooping_allowed = 1
 	resonance_fertscade = 0
 	random_emotesounds = 1
 	blood_system = 1
@@ -304,10 +304,12 @@ var/global
 	shipyardship_pre_densitymap = list()
 	shipyardship_post_densitymap = list()
 	shipyard_scrapwall_prob = 40
+	shipyard_underway = 0
 	toggles_enabled = 1
 	announce_banlogin = 1
 	announce_jobbans = 0
 	channel_open = 0 // is the channel collapsed or is it open?
+	json_enabled = 0 //disabling this for now, I don't think I intended to leave this on
 
 
 	outpost_destroyed = 0

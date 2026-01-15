@@ -15,8 +15,8 @@
 	var/datum/projectile/ammo_type
 	var/caliber = null
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 5
+//	stamina_cost = 0
+//	stamina_crit_chance = 5
 	inventory_counter_enabled = 1
 
 	proc
@@ -952,6 +952,8 @@
 		if(SEND_SIGNAL(src, COMSIG_CELL_CHECK_CHARGE, ret) & CELL_RETURNED_LIST)
 			. += "There are [ret["charge"]]/[ret["max_charge"]] PU left!"
 
+/obj/item/ammo/power_cell/dead
+	charge = 0.0 //might be useful!
 
 /obj/item/ammo/power_cell/med_power
 	name = "Power Cell - 200"

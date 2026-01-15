@@ -39,6 +39,7 @@
 #define INTERJECTION (1<<7)
 #define NUMBER (1<<8)
 #define LETTER (1<<9)
+#define NONSENSE (1<<10)
 
 #define WORD NOUN | ADJECTIVE | VERB | ADVERB
 
@@ -61,7 +62,8 @@ var/global/
 		"$int" = INTERJECTION,
 		"$num" = NUMBER,
 		"$letter" = LETTER,
-		"$word" = WORD
+		"$word" = WORD,
+		"$nonsense" = NONSENSE
 	)
 
 	// HLvox
@@ -1605,7 +1607,6 @@ proc/init_vox()
 	"hissound" = new/datum/VOXsound("hissound", "sound/vox/hissound.ogg", FX),
 	"hisssound" = new/datum/VOXsound("hisssound", "sound/vox/hisssound.ogg", FX),
 	"hit" = new/datum/VOXsound("hit", "sound/vox/hit.ogg", VERB | NOUN),
-	"hitler" = new/datum/VOXsound("hitler", "sound/vox/hitler.ogg", NOUN | ADJECTIVE),
 	"hits" = new/datum/VOXsound("hits", "sound/vox/hits.ogg", VERB),
 	"hobbits" = new/datum/VOXsound("hobbits", "sound/vox/hobbits.ogg", NOUN),
 	"hodor" = new/datum/VOXsound("hodor", "sound/vox/hodor.ogg", NOUN | INTERJECTION | FX),
@@ -2434,7 +2435,6 @@ proc/init_vox()
 	"shipment" = new/datum/VOXsound("shipment", "sound/vox/shipment.ogg", NOUN),
 	"shit" = new/datum/VOXsound("shit", "sound/vox/shit.ogg", NOUN | VERB),
 	"shitcurity" = new/datum/VOXsound("shitcurity", "sound/vox/shitcurity.ogg", NOUN),
-	"shitler" = new/datum/VOXsound("shitler", "sound/vox/shitler.ogg", NOUN | ADJECTIVE | VERB),
 	"shiv" = new/datum/VOXsound("shiv", "sound/vox/shiv.ogg", NOUN | VERB),
 	"shock" = new/datum/VOXsound("shock", "sound/vox/shock.ogg", VERB),
 	"shoe" = new/datum/VOXsound("shoe", "sound/vox/shoe.ogg", NOUN),
@@ -2938,7 +2938,36 @@ proc/init_vox()
 	"zone" = new/datum/VOXsound("zone", "sound/vox/zone.ogg", NOUN | VERB),
 	"zoo" = new/datum/VOXsound("zoo", "sound/vox/zoo.ogg", NOUN),
 	"zorato" = new/datum/VOXsound("zorato", "sound/vox/zorato.ogg", NOUN),
-	"zulu" = new/datum/VOXsound("zulu", "sound/vox/zulu.ogg", LETTER | NOUN)
+	"zulu" = new/datum/VOXsound("zulu", "sound/vox/zulu.ogg", LETTER | NOUN),
+	//now starts some random shits for coded messages
+	"scot1" = new/datum/VOXsound("scot1", "sound/vox/scot1.ogg", NONSENSE),
+	"scot2" = new/datum/VOXsound("scot2", "sound/vox/scot2.ogg", NONSENSE),
+	"scot3" = new/datum/VOXsound("scot3", "sound/vox/scot3.ogg", NONSENSE),
+	"scot4" = new/datum/VOXsound("scot4", "sound/vox/scot4.ogg", NONSENSE),
+	"scot5" = new/datum/VOXsound("scot5", "sound/vox/scot5.ogg", NONSENSE),
+	"scot6" = new/datum/VOXsound("scot6", "sound/vox/scot6.ogg", NONSENSE),
+	"scot7" = new/datum/VOXsound("scot7", "sound/vox/scot7.ogg", NONSENSE),
+	"scot8" = new/datum/VOXsound("scot8", "sound/vox/scot8.ogg", NONSENSE),
+	"scot9" = new/datum/VOXsound("scot9", "sound/vox/scot9.ogg", NONSENSE),
+	"scot10" = new/datum/VOXsound("scot10", "sound/vox/scot10.ogg", NONSENSE),
+	"scot11" = new/datum/VOXsound("scot11", "sound/vox/scot11.ogg", NONSENSE),
+	"scot12" = new/datum/VOXsound("scot12", "sound/vox/scot12.ogg", NONSENSE),
+	"scot13" = new/datum/VOXsound("scot13", "sound/vox/scot13.ogg", NONSENSE),
+	"scot14" = new/datum/VOXsound("scot14", "sound/vox/scot14.ogg", NONSENSE),
+	"scot15" = new/datum/VOXsound("scot15", "sound/vox/scot15.ogg", NONSENSE),
+	"scot16" = new/datum/VOXsound("scot16", "sound/vox/scot16.ogg", NONSENSE),
+	"scot17" = new/datum/VOXsound("scot17", "sound/vox/scot17.ogg", NONSENSE),
+	"scot18" = new/datum/VOXsound("scot18", "sound/vox/scot18.ogg", NONSENSE),
+	"scot19" = new/datum/VOXsound("scot19", "sound/vox/scot19.ogg", NONSENSE),
+	"scot20" = new/datum/VOXsound("scot20", "sound/vox/scot20.ogg", NONSENSE),
+	"scot21" = new/datum/VOXsound("scot21", "sound/vox/scot21.ogg", NONSENSE),
+	"scot22" = new/datum/VOXsound("scot22", "sound/vox/scot22.ogg", NONSENSE),
+	"scot23" = new/datum/VOXsound("scot23", "sound/vox/scot23.ogg", NONSENSE),
+	"scot24" = new/datum/VOXsound("scot24", "sound/vox/scot24.ogg", NONSENSE),
+	"scot25" = new/datum/VOXsound("scot25", "sound/vox/scot25.ogg", NONSENSE),
+	"scot26" = new/datum/VOXsound("scot26", "sound/vox/scot26.ogg", NONSENSE),
+	"scot27" = new/datum/VOXsound("scot27", "sound/vox/scot27.ogg", NONSENSE),
+	"scot28" = new/datum/VOXsound("scot28", "sound/vox/scot28.ogg", NONSENSE)
 	)
 
 	SPAWN_DBG(0.1 SECONDS)

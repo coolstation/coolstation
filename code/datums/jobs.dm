@@ -96,7 +96,7 @@
 						if (D)
 							var/datum/computer/file/clone/R = locate(/datum/computer/file/clone/) in D.root.contents
 							if (R)
-								R.fields["imp"] = "\ref[I]"
+								R.imp = "\ref[I]"
 
 			var/give_access_implant = ismobcritter(M)
 			if(!spawn_id && (access.len > 0 || access.len == 1 && access[1] != access_fuck_all))
@@ -287,12 +287,20 @@ ABSTRACT_TYPE(/datum/job/command)
 	items_in_backpack = list(/obj/item/device/flash)
 
 	//hos can spawn with everything, no big deal
+//#ifdef MAP_OVERRIDE_BAYOUBEND
+	slot_back = list(/obj/item/storage/backpack/satchel/withO2)
+	slot_jump = list(/obj/item/clothing/under/rank/security/suit)
+	slot_glov = list(/obj/item/clothing/gloves/latex)
+/*
+#else
 	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_jump = list(/obj/item/clothing/under/rank/head_of_securityold)
+	slot_suit = list(/obj/item/clothing/suit/armor/vest)
+#endif
+*/
 	slot_belt = list(/obj/item/storage/belt/security/HoS)
 	slot_poc1 = list(/obj/item/device/pda2/hos)
 	slot_poc2 = list(/obj/item/instrument/whistle) //replaces sec starter kit
-	slot_jump = list(/obj/item/clothing/under/rank/head_of_securityold)
-	slot_suit = list(/obj/item/clothing/suit/armor/vest)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
 	slot_head = list(/obj/item/clothing/head/hos_hat)
 	slot_ears = list(/obj/item/device/radio/headset/command/hos)
@@ -528,10 +536,19 @@ ABSTRACT_TYPE(/datum/job/security)
 	cant_spawn_as_con = 1
 	cant_spawn_as_rev = 1
 	receives_badge = 1
+//#ifdef MAP_OVERRIDE_BAYOUBEND
+	slot_back = list(/obj/item/storage/backpack/satchel/withO2)
+	slot_jump = list(/obj/item/clothing/under/rank/security/suit)
+	slot_head = list(/obj/item/clothing/head/sec)
+	slot_glov = list(/obj/item/clothing/gloves/latex)
+/*
+#else
 	slot_back = list(/obj/item/storage/backpack/withO2)
-	slot_belt = list(/obj/item/storage/belt/security/enhanced)
 	slot_jump = list(/obj/item/clothing/under/rank/security)
-	//slot_suit = list(/obj/item/clothing/suit/armor/vest)
+#endif
+*/
+	//slot_suit = list(/obj/item/clothing/suit/armor/vest) they get a badge
+	slot_belt = list(/obj/item/storage/belt/security/enhanced)
 	slot_foot = list(/obj/item/clothing/shoes/swat)
 	slot_ears = list(/obj/item/device/radio/headset/security)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses/sechud)
@@ -2588,12 +2605,32 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 		M.traitHolder.addTrait("training_security")
 		M.show_text("<b>Hostile assault force incoming! Defend the crew from the attacking Syndicate Special Operatives!</b>", "blue")
 
+/datum/job/special/ntso_rogue
+	linkcolor = "#1f276d"
+	name = "Rogue Nanotrasen Security Operative"
+	limit = 0
+	wages = 0
+	slot_ears = list()
+	slot_card = null
+	slot_glov = list()
+	slot_foot = list()
+	slot_back = list()
+	slot_belt = list()
+	spawn_id = 0
+
+	special_setup(var/mob/living/carbon/human/H)
+		..()
+		if (!H)
+			return
+		antagify(H, "Rogue NTSO", 0)
+		equip_rogue(H)
+		return
 
 // Use this one for late respawns to dael with existing antags. they are weaker cause they dont get a laser rifle or frags
 /datum/job/special/ntso_specialist_weak
 	linkcolor = "#3348ff"
 	name = "Nanotrasen Security Operative"
-	limit = 1 // backup during HELL WEEK. players will probably like it
+	limit = 0 // backup during HELL WEEK. players will probably like it
 	wages = PAY_TRADESMAN
 	requires_whitelist = 1
 	requires_supervisor_job = "Head of Security"

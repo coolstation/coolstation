@@ -13,8 +13,8 @@
 	var/obj/item/plutonium_core/payload = null
 	var/impactsound = 'sound/items/bball_bounce.ogg'
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 5
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 	custom_suicide = 1
 
 /obj/item/basketball/attack_hand(mob/user as mob)

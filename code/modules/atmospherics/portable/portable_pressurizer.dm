@@ -189,7 +189,7 @@
 			if (user)
 				user.show_text("You short out the material processor on [src].", "red")
 			src.audible_message("<span class='combat'><B>[src] buzzes oddly!</B></span>")
-			playsound(src.loc, "sparks", 50, 1, -1)
+			playsound(src.loc, "sparks", 50, 1, SOUND_RANGE_STANDARD)
 			whitelist += blacklist
 			src.emagged = TRUE
 			return 1

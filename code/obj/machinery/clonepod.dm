@@ -800,7 +800,7 @@
 	proc/look_busy(var/big = 0)
 		if (big)
 			animate_shake(src,5,rand(3,8),rand(3,8))
-			playsound(src.loc, pick(src.sounds_function), 50, 2)
+			playsound(src.loc, pick(src.sounds_function), 40, 2)
 		else
 			animate_shake(src,3,rand(1,4),rand(1,4))
 

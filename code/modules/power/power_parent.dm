@@ -11,31 +11,22 @@
 
 /obj/machinery/power/New(var/new_loc)
 	..()
-	if (netnum != -1)
-		if (worldgen_hold || makingpowernets)
-			worldgen_candidates[worldgen_generation+1] += src // generated along with cables in a prefab, the cables need to trigger first
-		else
-			generate_worldgen()
-
-/obj/machinery/power/generate_worldgen()
-	src.netnum = 0
-	if(makingpowernets)
-		return // TODO queue instead
-	for(var/obj/cable/C in src.get_connections())
-		src.netnum = C.get_netnumber()
-		break
-	/*
-	if(src.netnum == 0)
-		src.netnum = C.get_netnumber()
-	else if(C.netnum != 0 && C.netnum != src.netnum) // could be a join instead but this won't happen often so screw it
-		makepowernets()
-		return*/
-	if(src.netnum)
-		src.powernet = powernets[src.netnum]
-		src.powernet.nodes += src
-		if(src.use_datanet)
-			src.powernet.data_nodes += src
-
+	if (current_state > GAME_STATE_PREGAME)
+		SPAWN_DBG(0.1 SECONDS) // aaaaaaaaaaaaaaaa
+			src.netnum = 0
+			if(makingpowernets)
+				return // TODO queue instead
+			for(var/obj/cable/C in src.get_connections())
+				if(src.netnum == 0 && C.netnum != 0)
+					src.netnum = C.netnum
+				else if(C.netnum != 0 && C.netnum != src.netnum) // could be a join instead but this won't happen often so screw it
+					makepowernets()
+					return
+			if(src.netnum)
+				src.powernet = powernets[src.netnum]
+				src.powernet.nodes += src
+				if(src.use_datanet)
+					src.powernet.data_nodes += src
 
 /obj/machinery/power/disposing()
 	if(src.powernet)
@@ -43,9 +34,7 @@
 		src.powernet.data_nodes -= src
 	if(src.directwired) // it can bridge gaps in the powernet :/
 		if(!defer_powernet_rebuild)
-			CLEAR_PNET_BACKLOG_NOW
-			//for(var/datum/powernet_graph_node/node as anything in dirty_pnet_nodes)
-			//	node.validate()
+			makepowernets()
 		else
 			defer_powernet_rebuild = 2
 	. = ..()
@@ -92,7 +81,6 @@
 // rebuild all power networks from scratch
 var/makingpowernets = 0
 var/makingpowernetssince = 0
-//var/list/obj/cable/all_cables = list()
 /proc/makepowernets()
 	if (makingpowernets)
 		logTheThing("debug", null, null, "makepowernets was called while it was already running! oh no!")
@@ -110,81 +98,44 @@ var/makingpowernetssince = 0
 	powernets = list()
 
 	for_by_tcl(PC, /obj/cable)
-		if (PC.is_a_link) continue
-		if (PC.is_a_node) continue
-		makepowernet_from_cable(PC, netcount)
-		netcount++
+		PC.netnum = 0
+	LAGCHECK(LAG_MED)
 
+	for(var/obj/machinery/power/M as anything in machine_registry[MACHINES_POWER])
+		if(M.netnum >=0)
+			M.netnum = 0
+	LAGCHECK(LAG_MED)
+
+	for_by_tcl(PC, /obj/cable)
+		if(!PC.netnum)
+			if (powernet_nextlink(PC, netcount))
+				netcount++
+		LAGCHECK(LAG_MED)
+
+	for(var/L = 1 to netcount)
+		var/datum/powernet/PN = new()
+		//PN.tag = "powernet #[L]"
+		powernets += PN
+		PN.number = L
+
+	for_by_tcl(C, /obj/cable)
+		if(!C.netnum) continue
+		var/datum/powernet/PN = powernets[C.netnum]
+		PN.cables += C
+		LAGCHECK(LAG_MED)
+
+	for(var/obj/machinery/power/M as anything in machine_registry[MACHINES_POWER])
+		if(M.netnum<=0)		// APCs have netnum=-1 so they don't count as network nodes directly
+			continue
+
+		M.powernet = powernets[M.netnum]
+		M.powernet.nodes += M
+		if(M.use_datanet)
+			M.powernet.data_nodes += M
 		LAGCHECK(LAG_MED)
 
 	makingpowernets = 0
 	DEBUG_MESSAGE("rebuilding powernets end")
-
-/proc/makepowernet_from_cable(obj/cable/C, num)
-	var/datum/powernet/PN = new
-	PN.number = num
-	powernets += PN
-	var/list/nodes = list()
-	var/list/nodes_2_visit = list()
-
-	if (length(C.get_connections()) == 2)
-		C.link_crawl()
-		if (C.is_a_link)
-			nodes |= C.is_a_link.adjacent_nodes
-			nodes_2_visit |= C.is_a_link.adjacent_nodes
-		else
-			nodes |= C.is_a_node
-			nodes_2_visit |= C.is_a_node
-	else
-		C.is_a_node = new
-		C.is_a_node.physical_node = C
-		nodes |= C.is_a_node
-		nodes_2_visit |= C.is_a_node
-
-	while (length(nodes_2_visit))
-		var/datum/powernet_graph_node/next_node = nodes_2_visit[1]
-		nodes_2_visit -= next_node
-		var/obj/cable/next_cable = next_node.physical_node
-		for(var/obj/cable/next_next_cable in next_cable.get_connections()) //IDK what to call these things either anymore
-			if (next_next_cable.is_a_link) continue
-			if (next_next_cable.is_a_node)
-				if (next_node in next_next_cable.is_a_node.adjacent_nodes)
-					if (islist(next_next_cable.is_a_node.adjacent_nodes[next_next_cable.is_a_node]))
-						var/list/lissed = next_node.adjacent_nodes[next_next_cable.is_a_node]
-						lissed += null
-						next_node.adjacent_nodes[next_next_cable.is_a_node] = lissed
-						lissed = next_next_cable.is_a_node.adjacent_nodes[next_node]
-						lissed += null
-						next_next_cable.is_a_node.adjacent_nodes[next_node] += lissed
-					else
-						next_node.adjacent_nodes[next_next_cable.is_a_node] = list(next_node.adjacent_nodes[next_next_cable.is_a_node], null)
-						next_next_cable.is_a_node.adjacent_nodes[next_node] = list(next_next_cable.is_a_node.adjacent_nodes[next_node], null)
-				else
-					next_node.adjacent_nodes += next_next_cable.is_a_node
-					next_node.adjacent_nodes[next_next_cable.is_a_node] = null
-					next_next_cable.is_a_node.adjacent_nodes += next_node
-					next_next_cable.is_a_node.adjacent_nodes[next_node] = null
-				continue
-
-			if (length(next_next_cable.get_connections()) == 2)
-				var/datum/powernet_graph_link/next_next_link = next_next_cable.link_crawl()
-				if (!(next_next_link.adjacent_nodes[1] in nodes))
-					nodes_2_visit |= next_next_link.adjacent_nodes[1]
-				if (!(next_next_link.adjacent_nodes[2] in nodes))
-					nodes_2_visit |= next_next_link.adjacent_nodes[2]
-				nodes |= next_next_link.adjacent_nodes
-
-			else
-				next_next_cable.is_a_node = new
-				next_next_cable.is_a_node.physical_node = next_next_cable
-				nodes |= next_next_cable.is_a_node
-				nodes_2_visit |= next_next_cable.is_a_node
-
-
-	for(var/datum/powernet_graph_node/net_node as anything in nodes)
-		//net_node.netnum = netcount
-		net_node.pnet = PN
-	PN.all_graph_nodes = nodes
 
 /proc/unfuck_makepowernets()
 	makingpowernets = 0
@@ -220,9 +171,42 @@ var/makingpowernetssince = 0
 	for(var/obj/cable/C in T)
 		if(C.open_circuit) continue
 		if(C.d1 == fdir || C.d2 == fdir)
-			. += C
+			if(!unmarked || !C.netnum)
+				. += C
 
 	. -= source
+
+
+/obj/cable/proc/get_connections(unmarked = 0)
+	. = list()	// this will be a list of all connected power objects
+	var/turf/T = get_step(src, d1)
+	. += power_list(T, src , d1, unmarked)
+	T = get_step(src, d2)
+	. += power_list(T, src, d2, unmarked)
+
+	//var/straight = d1 == turn(d2, 180)
+	for(var/obj/cable/C in src.loc)
+		if(C != src && (C.d1 == d2 || C.d2 == d2 || (d1 && (C.d1 == d1 || C.d2 == d1))) && (!unmarked || !C.netnum) && !C.open_circuit) // my turf, sharing a direction
+			/*
+			(straight && C.d1 == 0) || // straight line connects to knots
+			(!d1 && C.d1 == turn(C.d2, 180))) // knots connect to straight lines
+			*/
+			. += C
+
+/obj/cable/proc/get_connections_one_dir(is_it_d2, unmarked = 0)
+	. = list()	// this will be a list of all connected power objects
+	var/d = is_it_d2 ? d2 : d1
+	var/turf/T = get_step(src, d)
+	. += power_list(T, src , d, unmarked)
+
+	//var/straight = d1 == turn(d2, 180)
+	for(var/obj/cable/C in src.loc)
+		if(C != src && (d && (C.d1 == d || C.d2 == d)) && (!unmarked || !C.netnum)) // my turf, sharing a direction
+			/*
+			(straight && C.d1 == 0) || // straight line connects to knots
+			(!d1 && C.d1 == turn(C.d2, 180))) // knots connect to straight lines
+			*/
+			. += C
 
 /obj/machinery/power/proc/get_connections(unmarked = 0)
 
@@ -238,7 +222,7 @@ var/makingpowernetssince = 0
 
 		for(var/obj/cable/C in T)
 
-			if(C.open_circuit)
+			if((C.netnum && unmarked) || C.open_circuit)
 				continue
 
 			if(C.d1 == cdir || C.d2 == cdir)
@@ -250,12 +234,14 @@ var/makingpowernetssince = 0
 
 	for(var/obj/cable/C in src.loc)
 
+		if(C.netnum && unmarked)
+			continue
+
 		if(C.d1 == 0)
 			. += C
 
 //LummoxJR patch:
 ///I think this proc is for collecting power cables/machinery under netnumber [num] starting from [O]. I've added it returning TRUE when it finishes, or FALSE when it cuts of early (so makepowernets can reuse the netnum) - Bat
-/*
 /proc/powernet_nextlink(var/obj/O, var/num)
     var/list/P
     var/list/more
@@ -309,10 +295,9 @@ var/makingpowernetssince = 0
                     X:netnum = -1
                 more += P.Copy(2)
 // cut a powernet at this cable object
-*/
+
 /datum/powernet/proc/cut_cable(var/obj/cable/C)
-	qdel(C)
-/*
+
 	var/turf/T1 = C.loc
 	if(C.d1)
 		T1 = get_step(C, C.d1)
@@ -393,8 +378,8 @@ var/makingpowernetssince = 0
 		//there is a loop, so nothing to be done
 		return
 
-	return*/
-/*
+	return
+
 /datum/powernet/proc/join_to(var/datum/powernet/PN) // maybe pool powernets someday
 	for(var/obj/cable/C as anything in src.cables)
 		C.netnum = PN.number
@@ -405,7 +390,7 @@ var/makingpowernetssince = 0
 		M.powernet = PN
 		PN.nodes += M
 		if (M.use_datanet)
-			PN.data_nodes += M*/
+			PN.data_nodes += M
 
 /datum/powernet/proc/reset()
 	load = newload

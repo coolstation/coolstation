@@ -51,6 +51,7 @@ mob/new_player
 		new_player_panel()
 		src.set_loc(pick_landmark(LANDMARK_NEW_PLAYER, locate(1,1,1)))
 		src.sight |= SEE_TURFS
+		src.sight |= SEE_THRU
 
 
 		// byond members get a special join message :]
@@ -152,18 +153,19 @@ mob/new_player
 			if (client) winset(src, "joinmenu.button_ready", "is-disabled=true;is-visible=false")
 			if (client) winset(src, "joinmenu.button_cancel", "is-disabled=false;is-visible=true")
 			if (client) winset(src, "joinmenu.button_ready_antag", "is-disabled=true")
-		//show new player disclaimer to new players
+		/*show new player disclaimer to new players
 		if (client?.player.rounds_participated < 10)
 			winshow(client, "pregameBrowser", 1)
-			client << browse(newplayerHTML, "window=pregameBrowser")
+			client << browse(newplayerHTML, "window=pregameBrowser") */
 		//show pregameHTML if it's available
-		else if(pregameHTML && client)
-			winshow(client, "pregameBrowser", 1)
-			client << browse(pregameHTML, "window=pregameBrowser")
-		//if pregameHTML is not available, show blank screen until pregameHTML is generated (which will send a new command to browse upon completion)
-		else if(client)
-			winshow(src.last_client, "pregameBrowser", 0)
-			src.last_client << browse("", "window=pregameBrowser")
+		if(!ticker.did_lobbymusic)
+			if(pregameHTML && client)
+				winshow(client, "pregameBrowser", 1)
+				client << browse(pregameHTML, "window=pregameBrowser")
+			//if pregameHTML is not available, show blank screen until pregameHTML is generated (which will send a new command to browse upon completion)
+			else if(client)
+				winshow(src.last_client, "pregameBrowser", 0)
+				src.last_client << browse("", "window=pregameBrowser")
 
 	Stat()
 		..()
@@ -809,6 +811,10 @@ a.latejoin-card:hover {
 				traitor.special_role = ROLE_WEREWOLF
 				objective_set_path = /datum/objective_set/werewolf
 				traitormob.make_werewolf()
+
+			if (ROLE_ROGUENTSO)
+				traitor.special_role = ROLE_ROGUENTSO
+				objective_set_path = /datum/objective_set/traitor //make unique ones
 
 			if (ROLE_WRAITH)
 				traitor.special_role = ROLE_WRAITH

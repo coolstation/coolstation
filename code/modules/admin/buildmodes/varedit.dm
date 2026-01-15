@@ -162,7 +162,7 @@ Hold down CTRL, ALT or SHIFT to modify, call or reset variable bound to those ke
 				object.vars[varn2use] = varv2use
 			object.onVarChanged(varn2use, ov, object.vars[varn2use])
 			boutput(usr, "<span class='notice'>Set [object].[varn2use] to [varv2use].</span>")
-			blink(get_turf(object))
+			//blink(get_turf(object))
 		else
 			boutput(usr, "<span class='alert'>[object] has no var named [varn2use].</span>")
 
@@ -188,6 +188,6 @@ Hold down CTRL, ALT or SHIFT to modify, call or reset variable bound to those ke
 			object.vars[varn2use] = initial(object.vars[varn2use])
 			object.onVarChanged(varn2use, ov, object.vars[varn2use])
 			boutput(usr, "<span class='notice'>Reset [object].[varn2use] to initial value ([object.vars[varn2use]]).</span>")
-			blink(get_turf(object))
+			//blink(get_turf(object))
 		else
 			boutput(usr, "<span class='alert'>[object] has no var named [varn2use].</span>")

@@ -32,13 +32,13 @@
 	proc/railing_break(obj/railing/The_Railing)
 		if(!(railing_is_broken(The_Railing)))
 			The_Railing.broken = 1
-			The_Railing.density = 0
+			The_Railing.set_density(0)
 			var/random_sprite = rand(1, 4)
 			The_Railing.icon_state = "railing-broken-" + "[random_sprite]"
 
 	proc/railing_fix(obj/railing/The_Railing)
 		if(railing_is_broken(The_Railing))
-			The_Railing.density = 1
+			The_Railing.set_density(1)
 			The_Railing.broken = 0
 
 
@@ -302,14 +302,14 @@
 			if (istype(ownerMob, /mob/living))
 				if (!ownerMob.hasStatus("weakened"))
 					ownerMob.changeStatus("weakened", 4 SECONDS)
-					playsound(the_railing, 'sound/impact_sounds/Metal_Clang_3.ogg', 50, 1, -1)
+					playsound(the_railing, 'sound/impact_sounds/Metal_Clang_3.ogg', 50, 1, SOUND_RANGE_STANDARD)
 					for(var/mob/O in AIviewers(ownerMob))
 						O.show_text("[ownerMob] tries to climb straight into \the [obstacle].[prob(30) ? pick(" What a goof!!", " A silly [ownerMob.name].", " <b>HE HOO HE HA</b>", " Good thing [he_or_she(ownerMob)] didn't bump [his_or_her(ownerMob)] head!") : null]", "red", group = "[ownerMob]-vault_railing")
 				// chance for additional head bump damage
 				if (prob(25))
 					ownerMob.changeStatus("weakened", 4 SECONDS)
 					ownerMob.TakeDamage("head", 10, 0, 0, DAMAGE_BLUNT)
-					playsound(the_railing, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1, -1)
+					playsound(the_railing, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 					for(var/mob/O in AIviewers(ownerMob))
 						O.show_text("[ownerMob] bumps [his_or_her(ownerMob)] head on \the [obstacle].[prob(30) ? pick(" Oof, that looked like it hurt!", " Is [he_or_she(ownerMob)] okay?", " Maybe that wasn't the wisest idea...", " Don't do that!") : null]", "red", group = "[ownerMob]-vault_railing")
 			return TRUE

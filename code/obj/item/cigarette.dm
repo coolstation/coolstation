@@ -31,10 +31,7 @@
 	use_bloodoverlay = 0
 
 	setupProperties()
-		..()
-		setProperty("coldprot", 0)
-		setProperty("heatprot", 0)
-		setProperty("meleeprot", 0)
+		return
 
 	New()
 		..()
@@ -357,6 +354,8 @@
 		// Added (Convair880).
 		if (ismob(src.loc))
 			logTheThing("bombing", null, src.loc, "A trick cigarette (held/equipped by [constructTarget(src.loc,"bombing")]) explodes at [log_loc(src)].")
+			var/mob/M = src.loc
+			JOB_XP_FORCE(M,"CIGARETTE",15)
 		else
 			logTheThing("bombing", src.fingerprintslast, null, "A trick cigarette explodes at [log_loc(src)]. Last touched by [src.fingerprintslast ? "[src.fingerprintslast]" : "*null*"].")
 
@@ -396,6 +395,21 @@
 	name = "greasy cigarette"
 	desc = "A cigarette that appears to have been ... dipped in grease? It's almost dripping!"
 	flavor = "grease"
+
+/obj/item/clothing/mask/cigarette/luxury
+	name = "Excelsior Luxury cigarette"
+	desc = "This single cigarette costs more than your entire paycheck."
+	icon_state = "ciglx"
+	item_state = "ciglx"
+	litstate = "ciglxlit"
+	buttstate = "ciglxbutt"
+	buttdesc = "It's not a butt. Don't call it a butt."
+	buttname = "Excelsior Luxury Stub"
+	//need to find an 'expensive' flavor
+	New()
+		src.on = TRUE
+		src.setMaterial(getMaterial("gold"), appearance = 0, setname = 0)
+		return ..()
 
 /obj/item/clothing/mask/cigarette/ilgallo
 	name = "Il Gallo cigarette"
@@ -544,9 +558,6 @@
 		src.reagents.maximum_volume = 600
 		src.reagents.clear_reagents()
 
-	is_open_container()
-		return 1
-
 /* ================================================= */
 /* -------------------- Packets -------------------- */
 /* ================================================= */
@@ -565,7 +576,7 @@
 	var/package_style = "cigpacket"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigpacket/nicofree
@@ -595,6 +606,68 @@
 	cigtype = /obj/item/clothing/mask/cigarette/random
 	icon_state = "cigpacket-p"
 	package_style = "cigpacket-p"
+
+/obj/item/cigpacket/luxury
+	name = "Excelsior Luxury cigarette packet"
+	desc = "The most expensive cigarette for the most expensive taste. Excelsior Luxury. Accept no substitution.<br>This packet has a self-lighting match mechanism built into every cigarette. It's the fanciest thing you've seen in your entire life."
+	cigtype = /obj/item/clothing/mask/cigarette/luxury
+	icon_state = "cigpacket-lx"
+	package_style = "cigpacket-lx"
+
+	//fuck it, sparkle
+	New()
+		src.setMaterial(getMaterial("gold"), appearance = 0, setname = 0)
+		return ..()
+
+	update_icon()
+		src.overlays = null
+		if (src.cigcount <= 0)
+			src.icon_state = "[src.package_style]0"
+			src.desc = "The entire complement of cigarettes in this packet has been exhausted."
+		else
+			src.icon_state = "[src.package_style]o"
+			src.overlays += "ciglx[src.cigcount]"
+		return
+
+	attack_hand(mob/user as mob)
+		if (user.find_in_hand(src))//r_hand == src || user.l_hand == src)
+			if (src.cigcount == 0)
+				user.show_text("Alas, it appears there are no cigarettes remaining in this packet. What a pity.", "red")
+				return
+			else
+				var/obj/item/clothing/mask/cigarette/W = new src.cigtype(user)
+				user.put_in_hand_or_drop(W)
+				playsound(user.loc, 'sound/items/matchstick_light.ogg', 50, 1)
+				W.light(user)
+				user.visible_message("[user]'s [src] automatically lights [W] as it's pulled out of the packet. Now <em>that</em> is fancy.", "You pull a cigarette from [src] and the friction causes it to light itself. The perks of fabulous wealth.")
+				if (src.cigcount != -1)
+					src.cigcount--
+			src.update_icon()
+		else
+			return ..()
+		return
+
+	attack_self(var/mob/user as mob)
+		if (src.cigcount == 0)
+			user.show_text("Alas, it appears there are no cigarettes remaining in this packet. What a pity", "red")
+			return
+		else
+			var/obj/item/clothing/mask/cigarette/W = new src.cigtype(user)
+
+			if (src.cigcount != -1)
+				src.cigcount--
+
+			W.light(user)
+
+			if (user.put_in_hand(W))
+				playsound(user.loc, 'sound/items/matchstick_light.ogg', 50, 1)
+				user.visible_message("[user] flicks a cigarette out of [src] into [his_or_her(user)] empty hand, automatically lighting it in the process. Now <em>that</em> is fancy.", "You stylishly flick a cig out of [src] into your other hand. It ignites as it leaves the packet. You are the most important person alive.")
+			else
+				playsound(user.loc, 'sound/items/matchstick_light.ogg', 50, 1)
+				W.set_loc(get_turf(user))
+				user.show_text("You flick a cigarette out of [src], igniting as it exits the packet and falls to the ground.", "red")
+
+			src.update_icon()
 
 /obj/item/cigpacket/greasy
 	name = "greasy cigarette packet"
@@ -680,7 +753,7 @@
 	w_class = W_CLASS_TINY
 	throwforce = 1
 	stamina_damage = 0
-	stamina_cost = 0
+//	stamina_cost = 0
 	rand_pos = 8
 
 /obj/item/cigarbox
@@ -697,7 +770,7 @@
 	var/package_style = "cigarbox"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigarbox/New()
@@ -761,7 +834,7 @@
 	package_style = "cigarbox"
 	flags = ONBELT | TABLEPASS | FPRINT
 	stamina_damage = 3
-	stamina_cost = 3
+//	stamina_cost = 3
 	rand_pos = 8
 
 /obj/item/cigarbox/gold/update_icon()
@@ -842,8 +915,8 @@
 	throwforce = 1
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	burn_point = 220
 	burn_output = 900
 	burn_possible = TRUE
@@ -921,8 +994,8 @@
 	throwforce = 1
 	flags = FPRINT | TABLEPASS | SUPPRESSATTACK
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	burn_point = 220
 	burn_output = 600
 	burn_possible = TRUE
@@ -999,7 +1072,7 @@
 			src.icon_state = "match-broken"
 			src.name = "broken match"
 			if (user)
-				playsound(user, "sound/impact_sounds/Flesh_Crush_1.ogg", 60, 1, 0, 2)
+				playsound(user, "sound/impact_sounds/Flesh_Crush_1.ogg", 60, 1, SOUND_RANGE_STANDARD, 2)
 		else
 			src.icon_state = "match-burnt"
 			src.name = "burnt-out match"
@@ -1140,20 +1213,26 @@
 	item_function_flags = ATTACK_SELF_DELAY
 	click_delay = 0.7 SECONDS
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 5
+	var/lighter_sound = 'sound/items/zippo_open.ogg'
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 	icon_off = "zippo"
 	icon_on = "zippoon"
 	brightness = 0.4
 	col_r = 0.94
 	col_g = 0.69
 	col_b = 0.27
+	var/alt_message = 0 //toggles more generic messages for non zippoey lighters
 	var/infinite_fuel = 0 //1 is infinite fuel. Borgs use this apparently.
+	var/fuel_amount = 10
+	var/lighter_animated = 1
+	var/anim_open = "zippo_open"
+	var/anim_close = "zippo_close"
 
 	New()
 		..()
-		src.create_reagents(10)
-		reagents.add_reagent("fuel", 10)
+		src.create_reagents(fuel_amount)
+		reagents.add_reagent("fuel", fuel_amount)
 
 		src.setItemSpecial(/datum/item_special/flame)
 		return
@@ -1183,8 +1262,13 @@
 		processing_items |= src
 		src.tool_flags |= TOOL_OPENFLAME
 		if (user != null)
-			user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
-			playsound(user, 'sound/items/zippo_open.ogg', 30, 1)
+			if(!alt_message && (user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker")))
+				user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights \the [src] in one smooth movement.</span>")
+			else
+				user.visible_message("<span class='alert'>[user] lights \the [src].</span>")
+			playsound(user, lighter_sound, 30, 1)
+			if(lighter_animated)
+				flick(anim_open, src)
 			user.update_inhands()
 
 	proc/deactivate(mob/user as mob)
@@ -1196,8 +1280,14 @@
 		processing_items.Remove(src)
 		src.tool_flags &= ~TOOL_OPENFLAME
 		if (user != null)
-			user.visible_message("<span class='alert'>You hear a quiet click, as [user] shuts off [src] without even looking what they're doing. Wow.</span>")
+			if(!alt_message && (user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker")))
+				user.visible_message("<span class='alert'>You hear a quiet click, as [user] shuts off \the [src] without even looking what they're doing. Wow.</span>")
+			else
+				user.visible_message("<span class='alert'>[user] shuts off \the [src].</span>")
+
 			playsound(user, 'sound/items/zippo_close.ogg', 30, 1)
+			if(lighter_animated)
+				flick(anim_close, src)
 			user.update_inhands()
 
 	attack(mob/target, mob/user as mob)
@@ -1210,9 +1300,9 @@
 						fella.TakeDamage("chest",0,10)
 						fella.limbs.l_arm_bleed = max(0,fella.limbs.l_arm_bleed-5)
 						if (fella.limbs.l_arm_bleed == 0)
-							user.visible_message("<span class='alert'>[user] completely cauterises [fella]'s left stump with [src]!</span>")
+							user.visible_message("<span class='alert'>[user] completely cauterises [fella]'s left stump with \the [src]!</span>")
 						else
-							user.visible_message("<span class='alert'>[user] partially cauterises [fella]'s left stump with [src]!</span>")
+							user.visible_message("<span class='alert'>[user] partially cauterises [fella]'s left stump with \the [src]!</span>")
 						return
 
 				if (user.zone_sel.selecting == "r_arm")
@@ -1220,14 +1310,14 @@
 						fella.TakeDamage("chest",0,10)
 						fella.limbs.r_arm_bleed = max(0,fella.limbs.r_arm_bleed-5)
 						if (fella.limbs.r_arm_bleed == 0)
-							user.visible_message("<span class='alert'>[user] completely cauterises [fella]'s right stump with [src]!</span>")
+							user.visible_message("<span class='alert'>[user] completely cauterises [fella]'s right stump with \the [src]!</span>")
 						else
-							user.visible_message("<span class='alert'>[user] partially cauterises [fella]'s right stump with [src]!</span>")
+							user.visible_message("<span class='alert'>[user] partially cauterises [fella]'s right stump with \the [src]!</span>")
 						return
 
 				if (fella.wear_mask && istype(fella.wear_mask, /obj/item/clothing/mask/cigarette))
 					var/obj/item/clothing/mask/cigarette/smoke = fella.wear_mask // aaaaaaa
-					smoke.light(user, "<span class='alert'><b>[user]</b> lights [fella]'s [smoke] with [src].</span>")
+					smoke.light(user, "<span class='alert'><b>[user]</b> lights [fella]'s [smoke] with \the [src].</span>")
 					fella.set_clothing_icon_dirty()
 					return
 
@@ -1235,7 +1325,7 @@
 				if (src.cautery_surgery(target, user, 10, src.on))
 					return
 
-		user.visible_message("<span class='alert'><b>[user]</b> waves [src] around in front of [target]'s face! OoOo, are ya scared?![src.on ? "" : " No, probably not, since [src] is closed."]</span>")
+		user.visible_message("<span class='alert'><b>[user]</b> waves \the [src] around in front of [target]'s face! OoOo, are ya scared?![src.on ? "" : " No, probably not, since \the [src] is out."]</span>")
 		return
 
 	afterattack(atom/O, mob/user as mob)
@@ -1244,17 +1334,17 @@
 				return
 
 			if (infinite_fuel)
-				user.show_text("You can't seem to find any way to add more fuel to [src]. It's probably fine.", "blue")
+				user.show_text("You can't seem to find any way to add more fuel to \the [src]. It's probably fine.", "blue")
 				return
 
 			if (reagents.get_reagent_amount("fuel") >= src.reagents.maximum_volume) //this could be == but just in case...
-				boutput(user, "<span class='alert'>[src] is full!</span>")
+				boutput(user, "<span class='alert'>\the [src] is full!</span>")
 				return
 
 			if (O.reagents.total_volume)
 				O.reagents.trans_to(src, src.reagents.maximum_volume - src.reagents.get_reagent_amount("fuel"))
-				boutput(user, "<span class='notice'>[src] has been refueled.</span>")
-				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+				boutput(user, "<span class='notice'>\the [src] has been refueled.</span>")
+				playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 			else
 				user.show_text("[O] is empty.", "red")
 			return
@@ -1306,7 +1396,11 @@
 			user.suiciding = 0
 			return 0
 		if (!src.on) // don't need to do more than just show the message since the lighter is deleted in a moment anyway
-			user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
+			if(!alt_message && (user.traitHolder.hasTrait("hardcore") || user.traitHolder.hasTrait("smoker")))
+				user.visible_message("<span class='alert'>Without even breaking stride, [user] flips open and lights \the [src] in one smooth movement.</span>")
+			else
+				user.visible_message("<span class='alert'>[user] lights \the [src].</span>")
+
 		user.visible_message("<span class='alert'><b>[user] swallows the on [src.name]!</b></span>")
 		user.take_oxygen_deprivation(75)
 		user.TakeDamage("chest", 0, 100)
@@ -1322,6 +1416,111 @@
 	icon_state = "gold_zippo"
 	icon_off = "gold_zippo"
 	icon_on = "gold_zippoon"
+	anim_open = "gold_open"
+	anim_close = "gold_close"
+
+
+/obj/item/device/light/zippo/cheap
+	name = "disposable lighter"
+	desc = "a cheap, disposable lighter"
+	alt_message = 1
+	lighter_sound = 'sound/effects/spark_lighter.ogg'
+	icon_state = "lighter_cheap"
+	icon_off = "lighter_cheap"
+	icon_on = "cheap_on"
+	lighter_animated = 0
+	fuel_amount = 5
+
+
+	New()
+		..()
+		var/lightercolor
+		if(prob(90))
+			switch(rand(1, 5))
+				if(1) lightercolor = "cheap_green"
+				if(2) lightercolor = "cheap_blue"
+				if(3) lightercolor = "cheap_red"
+				if(4) lightercolor = "cheap_yellow"
+				if(5) lightercolor = "cheap_purple"
+		else
+			lightercolor = "rare_[rand(1,3)]"
+			if(lightercolor == "rare_2")
+				name = "baby Ginch lighter"
+				desc = "A commemorative lighter for the experimental Bulgarian indie film, Бебе Гинч: Изкупление"
+
+		src.overlays += image(src.icon, lightercolor)
+
+	attack_self(mob/user)
+		if(user.traitHolder.hasTrait("hardcore"))
+			boutput(user, "<span class='alert'>You feel WAY too cool to use \the [src].</span>")
+			return
+
+		if(user.find_in_hand(src))
+			if (src.on)
+				return
+		if(reagents.get_reagent_amount("fuel") > 0 && prob(50))
+			..()
+
+			if((user.traitHolder.hasTrait("clutz") && prob(30)) || prob(5))
+				var/prot = 0
+				var/mob/living/carbon/human/H = user
+
+				if(istype(H))
+
+					if(H.gloves)
+						var/obj/item/clothing/gloves/G = H.gloves
+						prot = (G.getProperty("heatprot") >= 5)	//You'll get burnt wearing thin gloves like latex, thicker ones give protection
+				else
+					prot = 1 //skipping this check on non humans, better for the edge cases I can imagine
+
+				if (prot == 0 && !user.is_heat_resistant())
+					SPAWN_DBG(0.5 SECONDS)
+						user.TakeDamage(user.hand == 1 ? "l_arm": "r_arm", 0, 3, 0, DAMAGE_BURN)
+						user.visible_message("<span class='alert'><b>[user] gets burnt on the [src.name]!</b></span>")
+						playsound(src, "sound/impact_sounds/burn_sizzle.ogg", 50, 1)
+
+						sleep(0.5 SECONDS)
+						user.drop_item()
+
+			SPAWN_DBG(rand(0.8 SECONDS, 1.7 SECONDS))
+				deactivate()
+		else
+			playsound(user, lighter_sound, 30, 1)
+			flick("cheap_fail",src)
+			violent_twitch(src)
+			if(prob(2) || user.traitHolder.hasTrait("clutz") && prob(30))
+				user.visible_message("<span class='alert'><b>[user] fumbles \the [src.name]!</b></span>")
+				user.drop_item()
+			else
+				user.visible_message("<span class='alert'><b>\the [src.name] fails to light.</b></span>")
+
+	dropped(mob/user as mob)
+		..()
+		deactivate()
+
+
+
+
+
+
+
+
+
+/obj/item/device/light/zippo/gun
+	name = "novelty gun lighter"
+	icon_state = "gun"
+	icon_off = "gun"
+	icon_on = "gun_on"
+	lighter_sound = 'sound/effects/spark_lighter.ogg'
+	anim_open = "gun_open"
+	anim_close = "gun_close"
+	alt_message = 1
+
+	dropped(mob/user as mob)
+		..()
+		deactivate()
+
+
 
 /obj/item/device/light/zippo/brighter
 	name = "\improper Zippo brighter"
@@ -1343,3 +1542,20 @@
 
 /obj/item/device/light/zippo/borg
 	infinite_fuel = 1
+
+/* ================================================== */
+/* --------------------- Pipes ---------------------- */
+/* ================================================== */
+
+/obj/item/clothing/mask/pipe
+	name = "pipe"
+	icon = 'icons/obj/items/cigarettes.dmi'
+	wear_image_icon = 'icons/mob/mask.dmi'
+	icon_state = "pipe"
+	uses_multiple_icon_states = 1
+	item_state = "pipe"
+	force = 2
+	hit_type = DAMAGE_BLUNT
+	throw_speed = 1
+	w_class = W_CLASS_TINY
+

@@ -31,8 +31,8 @@ Handsaw
 	force = 8
 	throwforce = 7
 	stamina_damage = 35
-	stamina_cost = 12
-	stamina_crit_chance = 10
+//	stamina_cost = 12
+//	stamina_crit_chance = 10
 
 	m_amt = 50
 	rand_pos = 8
@@ -83,13 +83,14 @@ Handsaw
 	tool_flags = TOOL_SCREWING
 	w_class = W_CLASS_TINY
 
-	force = 5
+	force = 3
 	throwforce = 5
+	combat_click_delay = 0.4 * COMBAT_CLICK_DELAY
 	throw_speed = 3
-	throw_range = 5
+	throw_range = 8
 	stamina_damage = 10
-	stamina_cost = 5
-	stamina_crit_chance = 30
+//	stamina_cost = 5
+//	stamina_crit_chance = 30
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 
@@ -132,15 +133,16 @@ Handsaw
 	tool_flags = TOOL_SNIPPING
 	w_class = W_CLASS_SMALL
 
-	force = 6
+	force = 13
+	combat_click_delay = 1.8 * COMBAT_CLICK_DELAY
 	throw_speed = 2
 	throw_range = 9
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 	m_amt = 80
 	stamina_damage = 15
-	stamina_cost = 10
-	stamina_crit_chance = 30
+//	stamina_cost = 10
+//	stamina_crit_chance = 30
 	rand_pos = 8
 
 	New()
@@ -161,16 +163,16 @@ Handsaw
 			fail_chance = 100
 		if (prob(fail_chance))
 			user.visible_message("<span class='alert'><b>[user.name]</b> accidentally cuts [himself_or_herself(user)] while fooling around with [src] and drops them!</span>")
-			playsound(src.loc, "sound/impact_sounds/Flesh_Stab_1.ogg", 50, 1, -6)
+			playsound(src.loc, "sound/impact_sounds/Flesh_Stab_1.ogg", 50, 1, SOUND_RANGE_MODERATE)
 			user.TakeDamage(user.zone_sel.selecting, 3, 0)
 			take_bleeding_damage(user, user, 3, DAMAGE_CUT)
 			user.drop_item()
 			return
 		else
 			user.visible_message("<b>[user.name]</b> snips [src].")
-			playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1, -6)
+			playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1, SOUND_RANGE_MODERATE)
 			sleep(0.3 SECONDS)
-			playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1, -6)
+			playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1, SOUND_RANGE_MODERATE)
 		return
 
 /obj/item/wirecutters/vr
@@ -197,10 +199,11 @@ Handsaw
 	w_class = W_CLASS_SMALL
 
 	force = 5
-	throwforce = 7
+	throwforce = 10
+	throw_range = 8
 	stamina_damage = 40
-	stamina_cost = 14
-	stamina_crit_chance = 15
+//	stamina_cost = 14
+//	stamina_crit_chance = 15
 
 	m_amt = 150
 	rand_pos = 8

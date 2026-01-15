@@ -121,6 +121,10 @@
 		M.changeStatus("stunned", 2 SECONDS)
 		random_brute_damage(M, rand(2,5),1)
 
+/obj/critter/bear/dead/New()
+  . = ..()
+  src.CritterDeath() //dies in the same way as its parent does, but on creation
+
 obj/critter/bear/care
 	name = "space carebear"
 	desc = "I love you!"
@@ -185,7 +189,7 @@ obj/critter/bear/care
 
 	ChaseAttack(mob/M)
 		..()
-		playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 40, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 40, 1, SOUND_RANGE_STANDARD)
 		M.changeStatus("stunned", 10 SECONDS)
 		M.changeStatus("weakened", 10 SECONDS)
 
@@ -209,7 +213,7 @@ obj/critter/bear/care
 		src.attacking = 1
 		src.visible_message("<span class='combat'><B>[src]</B> devours the rest of [M] in one bite!</span>")
 		logTheThing("combat", M, null, "was devoured by [src] at [log_loc(src)].") // Some logging for instakill critters would be nice (Convair880).
-		playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, -2)
+		playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, SOUND_RANGE_STANDARD)
 		M.death(1)
 		var/atom/movable/overlay/animation = null
 		M.transforming = 1
@@ -314,7 +318,7 @@ obj/critter/bear/care
 
 	ChaseAttack(mob/M)
 		..()
-		playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 50, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 		M.changeStatus("stunned", 2 SECONDS)
 		M.changeStatus("weakened", 2 SECONDS)
 
@@ -322,7 +326,7 @@ obj/critter/bear/care
 		if (isdead(M))
 			src.visible_message("<span class='combat'><B>[src]</B> gibs [M] in one bite!</span>")
 			logTheThing("combat", M, null, "was gibbed by [src] at [log_loc(src)].") // Some logging for instakill critters would be nice (Convair880).
-			playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, -2)
+			playsound(src.loc, "sound/items/eatfood.ogg", 30, 1, SOUND_RANGE_STANDARD)
 			M.gib()
 			SPAWN_DBG(3 SECONDS) playsound(src.loc, "sound/voice/burp_alien.ogg", 50, 0)
 			src.task = "thinking"

@@ -12,6 +12,9 @@
 
 	//AI Vars
 
+	// mylies replacement for having a ton of booleans
+	var/ai_flags = MOB_AI_PICKUP_WEAPONS
+
 	var/ai_busy = 0
 	var/ai_laststep = 0
 	var/ai_state = 0
@@ -121,7 +124,7 @@
 	var/stamina = STAMINA_MAX
 	var/stamina_max = STAMINA_MAX
 	var/stamina_regen = STAMINA_REGEN
-	var/stamina_crit_chance = STAMINA_CRIT_CHANCE
+//	var/stamina_crit_chance = STAMINA_CRIT_CHANCE
 	var/list/stamina_mods_regen = list()
 	var/list/stamina_mods_max = list()
 
@@ -137,6 +140,18 @@
 	can_lie = 1
 
 	var/const/singing_prefix = "%"
+
+	/// emotes played when on stimulants
+	var/static/list/stimulant_emotes = list("blink_r","choke","cry","flinch","gasp","quiver","shake","shiver","sneeze","twitch","twitch_v","wheeze")
+	/// emotes played when REALLY fucked up on stimulants
+	var/static/list/stimulant_emotes_high = list("blink_r","choke","cry","flinch","gasp","quiver","shake","shiver","sneeze","twitch","twitch_v","wheeze","clap","collapse","freakout","gasp","retch","scream")
+	/// emotes played when on sedatives
+	var/static/list/sedative_emotes = list("drool","groan","grumble","moan","mumble","sigh","smile","yawn")
+	/// emotes played hwen REALLY fucked up on sedatives
+	var/static/list/sedative_emotes_high = list("drool","groan","grumble","moan","mumble","sigh","smile","yawn","faint","gasp","retch","trip")
+
+
+
 /mob/living/New()
 	..()
 	vision = new()
@@ -153,7 +168,9 @@
 
 	if(src.ai_type)
 		src.is_npc = TRUE
-		src.ai = new ai_type(src)
+		if(istext(src.ai_type))
+			src.ai_type = text2path(src.ai_type)
+		src.ai = new src.ai_type(src)
 
 	SPAWN_DBG(0)
 		src.get_static_image()
@@ -161,6 +178,8 @@
 
 
 /mob/living/flash(duration)
+	if(src.client?.preferences && src.client?.preferences.photosensitive)
+		return
 	vision.flash(duration)
 
 /mob/living/disposing()
@@ -467,6 +486,10 @@
 				else
 					src.hasStatus("resting") ? src.delStatus("resting") : src.setStatus("resting", INFINITE_STATUS)
 					src.force_laydown_standup()
+		if ("fiddle")
+			var/obj/item/W = src.equipped()
+			if(W)
+				src.fiddle_with(W)
 		if ("togglepoint")
 			src.toggle_point_mode()
 		if ("say_radio")
@@ -509,7 +532,7 @@
 			return
 
 		if (src.in_point_mode || (src.client && src.client.check_key(KEY_POINT)))
-			src.point(target)
+			src.point_at(target, text2num(params["icon-x"]), text2num(params["icon-y"]))
 			if (src.in_point_mode)
 				src.toggle_point_mode()
 			return
@@ -540,10 +563,10 @@
 		if (target == equipped)
 			equipped.attack_self(src, params, location, control)
 			if(equipped.item_function_flags & ATTACK_SELF_DELAY)
-				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
+				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 		else if (params["ctrl"])
 			var/atom/movable/movable = target
-			if (istype(movable))
+			if (istype(movable) && IN_RANGE(target.loc, src.loc, 1))
 				if (src.pulling && src.pulling == movable)
 					unpull_particle(src,src.pulling)
 					src.set_pulling(null)
@@ -562,7 +585,7 @@
 				equipped = src.equipped() //might have changed from successful modify
 			if (reach || (equipped && equipped.special) || (equipped && (equipped.flags & EXTRADELAY))) //Fuck you, magic number prickjerk //MBC : added bit to get weapon_attack->pixelaction to work for itemspecial
 				if (use_delay)
-					src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay)
+					src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 
 				if (src.invisibility > 0 && (isturf(target) || (target != src && isturf(target.loc)))) // dont want to check for a cloaker every click if we're not invisible
 					SEND_SIGNAL(src, COMSIG_CLOAKING_DEVICE_DEACTIVATE)
@@ -574,14 +597,14 @@
 
 				//If lastattacked was set, this must be a combat action!! Use combat click delay ||  the other condition is whether a special attack was just triggered.
 				if ((lastattacked != null && (src.lastattacked == target || src.lastattacked == equipped || src.lastattacked == src) && use_delay) || (equipped && equipped.special && equipped.special.last_use >= world.time - src.click_delay))
-					src.next_click = world.time + (equipped ? max(equipped.click_delay,src.combat_click_delay) : src.combat_click_delay)
+					src.next_click = world.time + (equipped ? equipped.combat_click_delay : src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 					src.lastattacked = null
 
 			else if (!equipped)
 				hand_range_attack(target, params, location, control)
 
 				if (lastattacked != null && (src.lastattacked == target || src.lastattacked == equipped || src.lastattacked == src) && use_delay)
-					src.next_click = world.time + src.combat_click_delay
+					src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 					src.lastattacked = null
 
 		//Don't think I need the above, this should work here.
@@ -639,7 +662,7 @@
 	src.in_point_mode = !(src.in_point_mode)
 	src.update_cursor()
 
-/mob/living/point_at(var/atom/target)
+/mob/living/point_at(var/atom/target, var/pixel_x, var/pixel_y)
 	if (!isturf(src.loc) || !isalive(src) || src.restrained())
 		return
 
@@ -661,8 +684,7 @@
 			src.visible_message("<span class='emote'><b>[src]</b> points to [target].</span>")
 		else
 			src.visible_message("<span style='font-weight:bold;color:#f00;font-size:120%;'>[src] points \the [G] at [target]!</span>")
-
-	make_point(get_turf(target), pixel_x=target.pixel_x, pixel_y=target.pixel_y, color=src.bioHolder.mobAppearance.customization_first_color)
+	make_point(target, pixel_x=pixel_x, pixel_y=pixel_y, color=src.bioHolder.mobAppearance.customization_first_color, pointer = src)
 
 
 /mob/living/proc/set_burning(var/new_value)
@@ -901,18 +923,18 @@
 					speech_bubble.icon_state = "notebad"
 				else if (src.bioHolder?.HasEffect("quiet_voice"))
 					singing |= SOFT_SINGING
-			playsound(src, sounds_speak["[VT]"],  55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
+			playsound(src, sounds_speak["[VT]"],  55, 0.01, SOUND_RANGE_LARGE, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 		else if (ending == "?")
-			playsound(src, sounds_speak["[VT]?"], 55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
+			playsound(src, sounds_speak["[VT]?"], 55, 0.01, SOUND_RANGE_LARGE, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "?"
 		else if (ending == "!")
-			playsound(src, sounds_speak["[VT]!"], 55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
+			playsound(src, sounds_speak["[VT]!"], 55, 0.01, SOUND_RANGE_LARGE, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "!"
 		else if (VT == "spaceradio")
-			playsound(src, sounds_speak["[VT]"], 55, 0, 8, pitch = 1, ignore_flag = SOUND_SPEECH)
+			playsound(src, sounds_speak["[VT]"], 55, 0, SOUND_RANGE_LARGE, pitch = 1, ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "speech"
 		else
-			playsound(src, sounds_speak["[VT]"],  55, 0.01, 8, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
+			playsound(src, sounds_speak["[VT]"],  55, 0.01, SOUND_RANGE_LARGE, src.get_age_pitch_for_talk(), ignore_flag = SOUND_SPEECH)
 			speech_bubble.icon_state = "speech"
 
 		last_voice_sound = world.time
@@ -1572,21 +1594,21 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			if(move_dir & last_move_dir)
 				if (sustained_moves < SUSTAINED_RUN_REQ+1 && sustained_moves + steps >= SUSTAINED_RUN_REQ+1 && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 					sprint_particle_small(src,get_step(NewLoc,turn(move_dir,180)),move_dir)
-					playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.5)
+					playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,range = SOUND_RANGE_TINY, pitch=2.5)
 				sustained_moves += steps
 			else
 				if (sustained_moves >= SUSTAINED_RUN_REQ+1 && !isFlying && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 					sprint_particle_small(src,get_step(NewLoc,turn(move_dir,180)),turn(move_dir,180))
-					playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.8)
+					playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,range = SOUND_RANGE_TINY, pitch=2.8)
 				else if (move_dir == turn(last_move_dir,180) && !isFlying)
 					if(!HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 						sprint_particle_tiny(src,get_step(NewLoc,turn(move_dir,180)),turn(move_dir,180))
-						playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.9)
+						playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,range = SOUND_RANGE_TINY, pitch=2.9)
 					if(src.bioHolder.HasEffect("magnets_pos") || src.bioHolder.HasEffect("magnets_neg"))
 						var/datum/bioEffect/hidden/magnetic/src_effect = src.bioHolder.GetEffect("magnets_pos")
 						if(src_effect == null) src_effect = src.bioHolder.GetEffect("magnets_neg")
 						if(src_effect.update_charge(1))
-							playsound(src, "sound/effects/sparks[rand(1,6)].ogg", 25, 1,extrarange = -25)
+							playsound(src, "sound/effects/sparks[rand(1,6)].ogg", 25, 1,range = SOUND_RANGE_TINY)
 
 
 				sustained_moves = 0
@@ -1603,10 +1625,10 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /mob/living/Move(var/turf/NewLoc, direct)
 	. = ..()
-	if (. && move_dir && !(direct & move_dir) && src.use_stamina)
+	if (. && src.use_stamina && move_dir && !(direct & move_dir))
 		if (sustained_moves >= SUSTAINED_RUN_REQ+1 && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS))
 			sprint_particle_small(src,get_step(NewLoc,turn(move_dir,180)),turn(move_dir,180))
-			playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,extrarange = -25, pitch=2.8)
+			playsound(src.loc,"sound/effects/sprint_puff.ogg", 9, 1,range = SOUND_RANGE_TINY, pitch=2.8)
 		sustained_moves = 0
 
 
@@ -1664,7 +1686,11 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	if (src.drowsyness > 0)
 		. += 5
 
-	var/health_deficiency = (src.max_health - src.health) + health_deficiency_adjustment // cogwerks // let's treat this like pain
+	var/pain_felt = src.health
+	var/fake_health_max = GET_ATOM_PROPERTY(src, PROP_FAKEHEALTH_MAX)
+	if(fake_health_max)
+		pain_felt = max(src.health, fake_health_max)
+	var/health_deficiency = (src.max_health - pain_felt) + health_deficiency_adjustment // cogwerks // let's treat this like pain // mylie // lets make it care about painkillers!
 
 	if (health_deficiency >= 30)
 		. += (health_deficiency / 35)
@@ -1790,7 +1816,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				if ((src.loc != last || force_puff) && !HAS_ATOM_PROPERTY(src, PROP_NO_MOVEMENT_PUFFS)) //ugly check to prevent stationary sprint weirds
 					sprint_particle(src, last)
 					if (!isFlying)
-						playsound(src.loc,"sound/effects/sprint_puff.ogg", 29, 1,extrarange = -4)*/
+						playsound(src.loc,"sound/effects/sprint_puff.ogg", 29, 1,range = SOUND_RANGE_STANDARD)*/
 
 // cogwerks - fix for soulguard and revive
 /mob/living/proc/remove_ailments()
@@ -1799,6 +1825,8 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			src.cure_disease(D)
 		for (var/datum/ailment_data/malady/M in src.ailments)
 			src.cure_disease(M)
+		for (var/datum/ailment_data/addiction/A in src.ailments)
+			src.cure_disease(A)
 
 
 /mob/living/proc/was_harmed(var/mob/M as mob, var/obj/item/weapon = 0, var/special = 0, var/intent = null)
@@ -1844,7 +1872,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		var/obj/projectile/Q = shoot_reflected_to_sender(P, src)
 		P.die()
 		src.visible_message("<span class='alert'>[src] reflected [Q.name] with [equipped]!</span>")
-		playsound(src.loc, 'sound/impact_sounds/Energy_Hit_1.ogg',80, 0.1, 0, 3)
+		playsound(src.loc, 'sound/impact_sounds/Energy_Hit_1.ogg',80, 0.1, SOUND_RANGE_STANDARD, 3)
 		return 0
 
 	if (P?.proj_data?.is_magical  && src?.traitHolder?.hasTrait("training_chaplain"))
@@ -2107,9 +2135,26 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		var/did_any_dive_hit = FALSE
 		if(!target_dir)
 			target_dir = src.dir
+
+		// copied from input.dm with doubled chances
+		var/misstep_angle = 0
+		if (src.traitHolder && prob(10) && src.traitHolder.hasTrait("leftfeet"))
+			misstep_angle += 45
+		if (prob(DISORIENT_MISSTEP_CHANCE * 2) && src.getStatusDuration("disorient"))
+			misstep_angle += 45
+		if (prob(src.misstep_chance * 2))
+			misstep_angle += rand(0,src.misstep_chance*1.5)
+
+		if(misstep_angle)
+			misstep_angle = min(misstep_angle,90)
+			var/move_angle = dir2angle(target_dir)
+			move_angle += pick(-misstep_angle,misstep_angle)
+			target_dir = angle2dir(move_angle)
+		// yea
+
 		var/slidekick_range = max(1 + min(GET_ATOM_PROPERTY(src, PROP_SLIDEKICK_BONUS), GET_DIST(src,target) - 1), 1)
 		if (!T.throw_unlimited && target_dir)
-			src.next_click = world.time + src.combat_click_delay
+			src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 			if (!HAS_ATOM_PROPERTY(src, PROP_SLIDEKICK_TURBO))
 				src.changeStatus("weakened", max(src.movement_delay()*2, (0.4 + 0.1 * slidekick_range) SECONDS))
 				src.force_laydown_standup()
@@ -2156,7 +2201,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 						if (dive_attack_hit)
 							dive_attack_hit.TakeDamageAccountArmor("chest", damage, 0, 0, DAMAGE_BLUNT)
 							dive_attack_hit.was_harmed(src, special = "slidekick")
-							playsound(src, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, -1)
+							playsound(src, 'sound/impact_sounds/Generic_Hit_2.ogg', 50, 1, SOUND_RANGE_STANDARD)
 							for (var/mob/O in AIviewers(src))
 								O.show_message("<span class='alert'><B>[src] slides into [dive_attack_hit]!</B></span>", 1)
 							logTheThing("combat", src, dive_attack_hit, "slides into [dive_attack_hit] at [log_loc(dive_attack_hit)].")
@@ -2279,7 +2324,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			var/mob/M = I
 			M.inertia_dir = get_dir(src,target)
 
-		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, 0.1)
+		playsound(src.loc, 'sound/effects/throw.ogg', 40, 1, SOUND_RANGE_STANDARD)
 		if(istype(I,/mob/living/carbon/human))
 			how_to_throw = THROW_KNOCKDOWN
 		I.throw_at(target, I.throw_range, I.throw_speed, params, thrown_from, throw_type=how_to_throw, allow_anchored=TRUE)
@@ -2295,7 +2340,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 			for(var/obj/item/grab/gunpoint/G in grabbed_by)
 				G.shoot()
 
-		src.next_click = world.time + src.combat_click_delay
+		src.next_click = world.time + src.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 
 /mob/living/hitby(atom/movable/AM, datum/thrown_thing/thr)
 	. = 'sound/impact_sounds/Generic_Hit_2.ogg'
@@ -2384,15 +2429,24 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		for(var/datum/targetable/ability in src.abilityHolder.abilities)
 			if(ability.attack_mobs && dist <= ability.ai_range && ability.cooldowncheck() && !ability.handleCast(target, params))
 				return 1
+
+		if(istype(src.abilityHolder, /datum/abilityHolder/composite))
+			var/datum/abilityHolder/composite/composite_holder = src.abilityHolder
+			for(var/datum/abilityHolder/subordinate_holder in composite_holder.holders)
+				for(var/datum/targetable/ability in subordinate_holder.abilities)
+					if(ability.attack_mobs && dist <= ability.ai_range && ability.cooldowncheck() && !ability.handleCast(target, params))
+						return 1
 	return 0
 
 /// a "valid target" is POSSIBLE to attack - this should return true for anything you want it to defend itself from, as well
 /mob/living/proc/ai_is_valid_target(mob/M)
-	return M != src
+	if(!istype(M))
+		return TRUE
+	return (M.stat < STAT_DEAD && M != src)
 
 /// the higher the returned value, the better the target is. assume that the target is valid.
 /mob/living/proc/ai_rate_target(mob/M)
-	return 1
+	return !isdead(M)
 
 /mob/living/proc/reduce_lifeprocess_on_death() //used for AI mobs we dont give a dang about them after theyre dead
 	remove_lifeprocess(/datum/lifeprocess/blood)
@@ -2408,6 +2462,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 /mob/living/full_heal()
 	..()
+	src.remove_ailments()
 	if (src.uses_blood)
 		src.reagents.clear_reagents()
 		src.reagents.add_reagent(src.blood_id, src.ideal_blood_volume, temp_new = src.base_body_temp)
@@ -2420,3 +2475,126 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		src.organHolder.spleen.blood_id = new_blood
 	all_blood_reagents |= new_blood
 	src.reagents.add_reagent(src.blood_id, blood_replaced, temp_new = src.reagents.total_temperature)
+
+/mob/living/stimulants_and_sedatives(mult)
+	var/emote_in_upper = pick(TRUE, FALSE) // if true, the emote chance is in drug_upper, if false, its in drug_downer
+
+	switch(src.drug_upper)
+		if(-INFINITY to 0.5) // remove the stimulant effects
+			REMOVE_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "stimulants_combat_click")
+			REMOVE_ATOM_PROPERTY(src, PROP_CLUTZ, "stimulants_clutz")
+
+		if(0.5 to 5) // safe stimulant range
+			REMOVE_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "stimulants_combat_click")
+			REMOVE_ATOM_PROPERTY(src, PROP_CLUTZ, "stimulants_clutz")
+
+			if(emote_in_upper && prob(src.drug_upper * 2))
+				src.emote(pick(src.stimulant_emotes))
+
+			if(src.jitteriness <= 80)
+				src.make_jittery(src.drug_upper)
+			src.change_misstep_chance(-0.25 * mult)
+
+		if(5 to 10) // not quite safe stimulant range
+			APPLY_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "stimulants_combat_click", src.drug_upper * 0.01)
+			// intentionally allow clutziness to linger from higher stimulant states
+
+			if(emote_in_upper && prob(src.drug_upper * 2))
+				src.emote(pick(src.stimulant_emotes))
+
+			if(src.jitteriness <= 200)
+				src.make_jittery(src.drug_upper * 2)
+			if(src.dizziness <= 80)
+				src.make_dizzy((src.drug_upper + src.drug_downer) * mult)
+
+			if(src.organHolder && prob(2))
+				src.organHolder.damage_organs(0, 0, round(0.1 * src.drug_upper * mult, 0.1), list("heart", "left_lung", "right_lung"), 30)
+
+		if(10 to 17.5) // bad for you, hurts cardiorespiratory system over time
+			APPLY_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "stimulants_combat_click", src.drug_upper * 0.01)
+			APPLY_ATOM_PROPERTY(src, PROP_CLUTZ, "stimulants_clutz", 0.2 * src.drug_upper)
+
+			src.stuttering += rand(0,1)
+
+			if(emote_in_upper && prob(src.drug_upper * 2))
+				src.emote(pick(src.stimulant_emotes_high))
+
+			src.make_jittery(src.drug_upper * 1.5)
+			if(src.dizziness <= 250)
+				src.make_dizzy((src.drug_upper + src.drug_downer) * mult)
+
+			if(src.organHolder && prob(src.drug_upper * 0.5))
+				src.organHolder.damage_organs(0, 0, round(0.1 * src.drug_upper * mult, 0.1), list("heart", "left_lung", "right_lung"), 40)
+
+		if(17.5 to INFINITY) // immediately dangerous to cardiorespiratory
+			APPLY_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "stimulants_combat_click", min(src.drug_upper * 0.0125, 0.5))
+			APPLY_ATOM_PROPERTY(src, PROP_CLUTZ, "stimulants_clutz", 5)
+
+			src.stuttering += rand(0,2)
+
+			if(emote_in_upper && prob(src.drug_upper * 2)) // emotes that are loud and obnoxious
+				src.emote(pick(src.stimulant_emotes_high))
+
+			src.make_dizzy((src.drug_upper + src.drug_downer) * mult)
+			src.make_jittery(0.5 * src.drug_upper * mult)
+			src.change_misstep_chance(0.3 * src.drug_upper * mult)
+
+			if(src.organHolder && prob(10))
+				src.organHolder.damage_organs(0, 0, round(0.1 * src.drug_upper * mult, 0.1), list("heart", "left_lung", "right_lung"), 45)
+
+	switch(src.drug_downer)
+		if(-INFINITY to 0.5) // remove the sedative effects
+			REMOVE_ATOM_PROPERTY(src, PROP_FAKEHEALTH_MAX, "sedatives_painkilling")
+			REMOVE_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "sedatives_combat_click")
+
+		if(0.5 to 5) // safe sedative range
+			// intentionally allow painkilling to linger from higher sedation states
+			REMOVE_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "sedatives_combat_click")
+
+			if(!emote_in_upper && prob(src.drug_downer * 2))
+				src.emote(pick(src.sedative_emotes))
+
+			src.make_jittery(-0.8 * src.drug_downer * mult)
+			src.change_eye_blurry(-0.25 * mult)
+
+		if(5 to 10) // not quite safe sedative range
+			APPLY_ATOM_PROPERTY(src, PROP_FAKEHEALTH_MAX, "sedatives_painkilling", src.drug_downer * 3)
+			APPLY_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "sedatives_combat_click", src.drug_downer * 0.01)
+
+			if(!emote_in_upper && prob(src.drug_downer * 2))
+				src.emote(pick(src.sedative_emotes))
+
+			src.make_jittery(-0.7 * src.drug_downer * mult)
+
+			if(prob(2))
+				src.lose_breath(2 * mult)
+
+		if(10 to 17.5) // bad for you, hurts brain over time
+			APPLY_ATOM_PROPERTY(src, PROP_FAKEHEALTH_MAX, "sedatives_painkilling", src.drug_downer * 3)
+			APPLY_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "sedatives_combat_click", src.drug_downer * 0.015)
+
+			src.make_jittery(-0.6 * src.drug_downer * mult)
+			if (prob(src.drug_downer))
+				src.take_brain_damage(0.2 * mult)
+				src.change_misstep_chance(5 * mult)
+				if(!emote_in_upper)
+					src.emote(pick(src.sedative_emotes_high))
+
+				if(prob(20))
+					src.lose_breath(2.5 * mult)
+
+		if(17.5 to INFINITY) // immediately dangerous to respiration and brain
+			APPLY_ATOM_PROPERTY(src, PROP_FAKEHEALTH_MAX, "sedatives_painkilling", 60)
+			APPLY_ATOM_PROPERTY(src, PROP_COMBAT_CLICK_DELAY_SLOWDOWN, "sedatives_combat_click", 0.4)
+
+			src.make_jittery(-0.5 * src.drug_downer * mult)
+			src.change_misstep_chance(0.15 * src.drug_downer * mult)
+			if (prob(src.drug_downer) * 2)
+				src.take_brain_damage(0.5 * mult)
+				if(!emote_in_upper)
+					src.emote(pick(src.sedative_emotes_high))
+
+				if(prob(40))
+					src.lose_breath(2.5 * mult)
+
+	return

@@ -23,8 +23,8 @@ Custom Books
 	//
 
 	stamina_damage = 2
-	stamina_cost = 2
-	stamina_crit_chance = 0
+//	stamina_cost = 2
+//	stamina_crit_chance = 0
 
 	attack_self(mob/user)
 		return user.examine_verb(src)
@@ -447,6 +447,12 @@ Custom Books
 	icon_state = "book0"
 	file_path = "strings/books/oldwoman.txt"
 
+/obj/item/paper/book/from_file/hosenscheissen
+	name = "die Hosen scheißen"
+	desc = "Seems to be written in Austrian."
+	icon_state = "paper"
+	file_path = "strings/books/die_hosen_scheissen.txt"
+
 /obj/item/paper/book/ratbook
 	name = "chewed and mangled book"
 	desc = "Huh, what is this?"
@@ -473,6 +479,17 @@ soon the light of the unwaking will rise and the shining ones will not be prepar
 	desc = "It looks eclesiastical."
 	icon_state = "book0"
 	file_path = "strings/books/clergy_diary.txt"
+
+/obj/item/paper/charge_sequence
+	name = "Paper- Charge Initial Procedure"
+	desc = "A firm, thick piece of cardstock that describes the nuclear charge connection procedure."
+	icon_state = "paper-stamped"
+	info = {"<center><b>CONNECTION PROCEDURE:</b></center><ul>
+			<li>Step One: Ensure what you are doing is worth it, and authorized by command.</li>
+			<li>Step Two: Lift demarcated charge disconnect panel and close breaker.</li>
+			<li>Step Three: Insert tape marked ███████ out of the provided.</li>
+			<li>Step Four: Refer to document 45-C 'NUKEMAN USAGE AND BEST PRACTICES'</li></ul>
+			<b>DEVICES MAY NEED TO BE RESET BEFORE THEY ARE SEEN BY THE OPERATING SYSTEM</b>"}
 
 /obj/item/paper/book/sillytexts
 	name = "THE ANCIENT TEXTS"

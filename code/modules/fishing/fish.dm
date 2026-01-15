@@ -23,7 +23,7 @@
 			JOB_XP(user, "Clown", 1)
 			return
 		else
-			playsound(src.loc, pick('sound/impact_sounds/Slimy_Hit_1.ogg', 'sound/impact_sounds/Slimy_Hit_2.ogg'), 50, 1, -1)
+			playsound(src.loc, pick('sound/impact_sounds/Slimy_Hit_1.ogg', 'sound/impact_sounds/Slimy_Hit_2.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 			user.visible_message("<span class='alert'><b>[user] slaps [M] with \the [src]!</b>.</span>")
 
 	attackby(var/obj/item/W as obj, var/mob/user as mob)

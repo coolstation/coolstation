@@ -1,6 +1,6 @@
 
 /* -------------------- Standard Toolboxes -------------------- */
-
+ABSTRACT_TYPE(/obj/item/storage/toolbox)
 /obj/item/storage/toolbox
 	name = "toolbox"
 	icon = 'icons/obj/items/storage.dmi'
@@ -8,8 +8,9 @@
 	icon_state = "red"
 	item_state = "toolbox-red"
 	flags = FPRINT | TABLEPASS | CONDUCT | NOSPLASH
-	force = 6.0
-	throwforce = 10.0
+	force = 12
+	combat_click_delay = 1.2 * COMBAT_CLICK_DELAY
+	throwforce = 8
 	throw_speed = 1
 	throw_range = 7
 	w_class = W_CLASS_BULKY
@@ -23,14 +24,11 @@
 	burn_output = 4800
 	burn_type = 1
 	stamina_damage = 47
-	stamina_cost = 20
-	stamina_crit_chance = 10
+//	stamina_cost = 20
+//	stamina_crit_chance = 10
 
 	New()
 		..()
-		if (src.type == /obj/item/storage/toolbox)
-			message_admins("BAD: [src] ([src.type]) spawned at [showCoords(src.x, src.y, src.z)]")
-			qdel(src)
 		BLOCK_SETUP(BLOCK_ROD)
 
 	custom_suicide = 1

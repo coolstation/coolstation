@@ -6,6 +6,12 @@
  */
 
 #include "__build.dm"							// this controls how a lot of our defines and macros and code is compiled, so it absolutely needs to be the first
+
+
+#if fexists("_map.dm") && !defined(FASTDMM) && !defined(DISABLE_SECRETS) // for ingame map loading
+#include "_map.dm"
+#endif
+
 #include "macros\_metamacros.dm"	// this has some structural helpers that a lot of other macros/defines use, so it needs to be near the start
 #include "_spaceman_dmm.dm"				// linter stuff is used in other macros
 #include "mapDefines.dm"					// knowing if we're underwater is important for some later macros
@@ -104,7 +110,6 @@
 #include "macros\mob_status.dm"
 #include "macros\movable.dm"
 #include "macros\movement_modifiers.dm"
-#include "macros\power.dm"
 #include "macros\procs.dm"
 #include "macros\qdel.dm"
 #include "macros\spawn.dm"

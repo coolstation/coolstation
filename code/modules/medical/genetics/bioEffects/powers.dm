@@ -884,7 +884,7 @@
 				owner.unequip_all()
 
 			spell_invisibility(owner, 50)
-			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, -1)
+			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, SOUND_RANGE_STANDARD)
 
 
 	cast_misfire()
@@ -912,7 +912,7 @@
 					boutput(owner, "<span class='alert'>\The [I] you were carrying falls away as you dissolve!</span>")
 
 			spell_invisibility(owner, 50)
-			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, -1)
+			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, SOUND_RANGE_STANDARD)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1678,7 +1678,7 @@
 		playsound(owner.loc, 'sound/musical_instruments/WeirdHorn_0.ogg', 50, 0)
 		var/count = 0
 		for (var/mob/living/L in range(7,owner))
-			if (L.hearing_check(1))
+			if (!cant_hear(L))
 				if(count++ > (src.linked_power.power ? 10 : 7)) break
 				if(locate(/obj/item/storage/bible) in get_turf(L))
 					owner.visible_message("<span class='alert'><b>A mysterious force smites [owner.name] for inciting blasphemy!</b></span>")
@@ -1991,6 +1991,7 @@
 	icon_state = "bigpuke"
 	targeted = 1
 	has_misfire = 0
+	var/descriptor = ""
 
 	cast(atom/target)
 		if (..())
@@ -1999,33 +2000,52 @@
 		var/turf/T = get_turf(target)
 		var/list/affected_turfs = getline(owner, T)
 		var/datum/bioEffect/power/bigpuke/BP = linked_power
-		var/range = BP.range
+		var/vom_range = BP.range
 		if (BP.power)
-			range *= 2
-		owner.visible_message("<span class='alert'><b>[owner] horfs up a huge stream of puke!</b></span>")
-		logTheThing("combat", owner, target, "power-pukes [log_reagents(owner)] at [log_loc(owner)].")
+			vom_range *= 2
+		owner.visible_message("<span class='alert'><b>[owner] horfs up a huge stream of[descriptor] puke!</b></span>")
 		playsound(owner.loc, "sound/misc/meat_plop.ogg", 50, 0)
-		owner.reagents.add_reagent("vomit",20)
+
+		var/datum/reagents/vomit_reagents = new /datum/reagents(160 + BP.power * 80)
+
+		if(isliving(owner))
+			var/mob/living/L = owner
+			if(L.organHolder && L.organHolder.stomach)
+				L.organHolder.stomach.reagents.trans_to_direct(vomit_reagents, 80)
+
+		src.add_gross(vomit_reagents)
+		logTheThing("combat", owner, target, "power-pukes [log_reagents(vomit_reagents)] at [log_loc(owner)].")
+
 		var/turf/currentturf
 		var/turf/previousturf
+		var/amt_per_turf = vomit_reagents.total_volume / clamp((length(affected_turfs) - 1),1,vom_range) // account for skipping the first turf
+		var/amt_removed = 0
 		for(var/turf/F in affected_turfs)
 			previousturf = currentturf
 			currentturf = F
-			if(currentturf.density || istype(currentturf, /turf/space))
+			if(currentturf.density)
+				if(previousturf)
+					vomit_reagents.reaction(previousturf, TOUCH, vomit_reagents.total_volume - amt_removed)
 				break
 			if(previousturf && LinkBlocked(previousturf, currentturf))
+				vomit_reagents.reaction(previousturf, TOUCH, vomit_reagents.total_volume - amt_removed)
 				break
-			if (F == get_turf(owner))
+			if(GET_DIST(holder.owner,F) > vom_range)
+				break
+			if (F == get_turf(holder.owner) || istype(currentturf, /turf/space))
 				continue
-			if (get_dist(owner,F) > range)
-				continue
-			owner.reagents.reaction(F,TOUCH)
 			for(var/mob/living/L in F.contents)
-				owner.reagents.reaction(L,TOUCH)
+				vomit_reagents.reaction(L,TOUCH, amt_per_turf, FALSE)
 			for(var/obj/O in F.contents)
-				owner.reagents.reaction(O,TOUCH)
-		owner.reagents.clear_reagents()
+				vomit_reagents.reaction(O,TOUCH, amt_per_turf, FALSE)
+			vomit_reagents.reaction(F, TOUCH, amt_per_turf, TRUE)
+			amt_removed += amt_per_turf
+		qdel(vomit_reagents)
+
 		return 0
+
+	proc/add_gross(var/datum/reagents/vomit_reagents)
+		vomit_reagents.add_reagent("vomit",max(15,vomit_reagents.total_volume)) // add up to 80, at least 15 vomit, trying for half and half
 
 /datum/bioEffect/power/bigpuke/acidpuke
 	name = "Acidic Mass Emesis"
@@ -2039,40 +2059,13 @@
 	icon_state = "bigpuke"
 	targeted = 1
 	has_misfire = 0
+	descriptor = " acidic"
 
-	cast(atom/target)
-		if (..())
-			return 1
+	add_gross(var/datum/reagents/vomit_reagents)
+		vomit_reagents.add_reagent("gvomit",max(20,vomit_reagents.total_volume - 15)) // add up to 65, at least 20 gvomit, leaving space for acid and radium
+		vomit_reagents.add_reagent("pacid",10)
+		vomit_reagents.add_reagent("radium",5)
 
-		var/turf/T = get_turf(target)
-		var/list/affected_turfs = getline(owner, T)
-		var/range = 3
-		owner.visible_message("<span class='alert'><b>[owner] horfs up a huge stream of acidic puke!</b></span>")
-		logTheThing("combat", owner, target, "power-pukes [log_reagents(owner)] at [log_loc(owner)].")
-		playsound(owner.loc, "sound/misc/meat_plop.ogg", 50, 0)
-		owner.reagents.add_reagent("gvomit",20)
-		owner.reagents.add_reagent("pacid",10)
-		owner.reagents.add_reagent("radium",5)
-		var/turf/currentturf
-		var/turf/previousturf
-		for(var/turf/F in affected_turfs)
-			previousturf = currentturf
-			currentturf = F
-			if(currentturf.density || istype(currentturf, /turf/space))
-				break
-			if(previousturf && LinkBlocked(previousturf, currentturf))
-				break
-			if (F == get_turf(owner))
-				continue
-			if (get_dist(owner,F) > range)
-				continue
-			owner.reagents.reaction(F,TOUCH)
-			for(var/mob/living/L in F.contents)
-				owner.reagents.reaction(L,TOUCH)
-			for(var/obj/O in F.contents)
-				owner.reagents.reaction(O,TOUCH)
-		owner.reagents.clear_reagents()
-		return 0
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2229,7 +2222,43 @@
 						if (thrown_limb)
 							thrown_limb.throwforce = tmp_force
 
-////////////////
+
+/// Comedy Powers /////
+
+
+/datum/targetable/press_x_to_shaun
+	name = "SHAUN"
+	desc = "Call for your son, Shaun."
+	icon = 'icons/ui/misc.dmi'
+	icon_state = "shaunButton"
+	targeted = 0
+	cooldown = 20
+
+	cast()
+		var/shaun = 0
+		pick (
+			prob(30); shaun = 1,
+			prob(30); shaun = 2,
+			prob(20); shaun = 3,
+			prob(20); shaun = 4,
+		)
+		if(shaun == 1)
+			usr.say("SHAUN!")
+			playsound(usr.loc, "sound/misc/funny/Shaun1.ogg", 75, 0, SOUND_RANGE_LARGE)
+		else if(shaun == 2)
+			usr.say("SHAUN!!")
+			playsound(usr.loc, "sound/misc/funny/Shaun2.ogg", 75, 0, SOUND_RANGE_LARGE)
+		else if(shaun == 3)
+			usr.say("SHAAAAAAAAAUN!!!")
+			playsound(usr.loc, "sound/misc/funny/Shaun3.ogg", 75, 0, SOUND_RANGE_LARGE)
+		else if(shaun == 4)
+			usr.say("SHAUN WHERE ARE YOU?!")
+			playsound(usr.loc, "sound/misc/funny/Shaun4.ogg", 75, 0, SOUND_RANGE_LARGE)
+
+
+
+
+/// ////////////////
 // Admin Only //
 ////////////////
 

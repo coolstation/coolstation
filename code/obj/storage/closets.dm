@@ -5,6 +5,8 @@
 	soundproofing = 3
 	can_flip_bust = 1
 	p_class = 3
+	open_sound = "sound/impact_sounds/locker_open2.ogg"
+	close_sound = "sound/impact_sounds/lockerclose.ogg"
 
 	New()
 		. = ..()
@@ -20,6 +22,8 @@
 	icon_state = "emergency"
 	icon_closed = "emergency"
 	icon_opened = "emergency-open"
+	open_sound = "sound/impact_sounds/locker_open.ogg"
+	close_sound = "sound/impact_sounds/lockerslam.ogg"
 
 	make_my_stuff() // cogwerks: adjusted probabilities a bit
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
@@ -50,6 +54,8 @@
 	icon_state = "fire"
 	icon_closed = "fire"
 	icon_opened = "fire-open"
+	open_sound = "sound/impact_sounds/locker_open.ogg"
+	close_sound = "sound/impact_sounds/lockerslam.ogg"
 
 	make_my_stuff()
 		if (..()) // make_my_stuff is called multiple times due to lazy init, so the parent returns 1 if it actually fired and 0 if it already has
@@ -73,6 +79,8 @@
 /obj/storage/closet/janitor
 	name = "custodial supplies closet"
 	desc = "It's a closet! This one can be opened AND closed. Comes with janitor's clothes and biohazard gear."
+	open_sound = "sound/impact_sounds/locker_open.ogg"
+	close_sound = "sound/impact_sounds/lockerclose.ogg"
 	spawn_contents = list(/obj/item/storage/box/biohazard_bags,
 							/obj/item/storage/box/trash_bags = 2,
 							/obj/item/clothing/suit/bio_suit,
@@ -105,6 +113,9 @@
 	icon_opened = "coffin-open"
 	layer = 2.5
 	icon_welded = "welded-coffin"
+	open_sound = "sound/impact_sounds/coffin_open.ogg"
+	close_sound = "sound/impact_sounds/coffin_close.ogg"
+
 
 	nt
 		icon_closed = "ntcoffin"
@@ -363,7 +374,7 @@
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
-		playsound(src.loc, 'sound/effects/cargodoor.ogg', 15, 1, -3)
+		playsound(src.loc, 'sound/effects/cargodoor.ogg', 15, 1, SOUND_RANGE_STANDARD)
 		return 1
 
 	close(var/entangleLogic)
@@ -417,7 +428,7 @@
 			entangled.open(1)
 
 		src.update_icon()
-		playsound(src.loc, "sound/effects/cargodoor.ogg", 15, 1, -3)
+		playsound(src.loc, "sound/effects/cargodoor.ogg", 15, 1, SOUND_RANGE_STANDARD)
 		return 1
 
 	attackby(obj/item/W as obj, mob/user as mob)

@@ -555,7 +555,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 		if (HH.can_attack)
 			var/obj/item/equipped = src.equipped()
 			if(equipped && src.next_click <= world.time)
-				src.next_click = world.time + max(equipped.click_delay,src.combat_click_delay)
+				src.next_click = world.time + max(equipped.click_delay,src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 				target.Attackby(equipped, src, params)
 			else
 				L.attack_hand(target, src)
@@ -1056,7 +1056,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 	full_heal()
 		..()
 		icon_state = icon_state_alive ? icon_state_alive : initial(icon_state)
-		density = initial(density)
+		set_density(initial(density))
 		src.can_implant = initial(src.can_implant)
 
 	does_it_metabolize()
@@ -1076,25 +1076,25 @@ ABSTRACT_TYPE(/mob/living/critter)
 					ret += S.getProperty("exploprot")
 		return ret/100
 
-	ex_act(var/severity)
+	ex_act(severity, last_touched, epicenter, turf_safe)
 		..() // Logs.
 		var/ex_res = get_explosion_resistance()
 		if (ex_res >= 0.35 && prob(ex_res * 100))
-			severity++
+			severity = severity * 0.4
 		if (ex_res >= 0.80 && prob(ex_res * 75))
-			severity++
+			severity = severity * 0.4
 		switch(severity)
-			if (1)
+			if (OLD_EX_SEVERITY_1)
 				SPAWN_DBG(0)
 					gib()
-			if (2)
+			if (OLD_EX_SEVERITY_2)
 				if (health < max_health * 0.35 && prob(50))
 					SPAWN_DBG(0)
 						gib()
 				else
 					TakeDamage("All", rand(10, 30), rand(10, 30))
-			if (3)
-				TakeDamage("All", rand(20, 20))
+			if (OLD_EX_SEVERITY_3)
+				TakeDamage("All", rand(10, 15))
 
 	ghostize()
 		var/ghost_icon = src.icon
@@ -1125,7 +1125,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 		return O
 
 	drop_item()
-		..()
+		. = ..()
 		src.update_inhands()
 
 	proc/on_sleep()
@@ -1163,6 +1163,10 @@ ABSTRACT_TYPE(/mob/living/critter)
 			var/obj/item/W = src.equipped()
 			if (W)
 				src.click(W, list())
+		if ("fiddle")
+			var/obj/item/W = src.equipped()
+			if(W)
+				src.fiddle_with(W)
 		if ("togglethrow")
 			src.toggle_throw_mode()
 		else

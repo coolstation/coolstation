@@ -46,12 +46,13 @@ MATERIAL
 	w_class = W_CLASS_NORMAL
 	max_stack = 50
 	stamina_damage = 42
-	stamina_cost = 23
-	stamina_crit_chance = 10
+//	stamina_cost = 23
+//	stamina_crit_chance = 10
 	var/datum/material/reinforcement = null
 	rand_pos = 8
 	inventory_counter_enabled = 1
 	value = 7 //for now. 7 is about what the base commodity market calls for. adding this value in as-is while i start to migrate commodity pricing over to a multiplier-and-offset model rather than a strict price for all that goes up and down.
+	stack_type = /obj/item/sheet
 	// TODO: holy fuck we've never touched sheet in hand construction since ever, maybe we should reconsider?
 	//also re: construction but 1 mauxite/molitz per sheet is a really long throwback. changing out the economy makes me feel like these full sheets are more... an 8x8 sheet.
 	//this also relegates them to walls specifically, ideally with a cart to make it easier. we'd want to make constructing objects out of metal not come from fukken... origami'ing a sheet of metal bigger than you are into a chair somehow. fabricators or stampers or whatever, buddy!!!!
@@ -218,29 +219,19 @@ MATERIAL
 		boutput(user, "<span class='notice'>You finish gathering sheets.</span>")
 
 	check_valid_stack(atom/movable/O as obj)
-		if (!istype(O,/obj/item/sheet/))
-			//boutput(world, "check valid stack check 1 failed")
-			return 0
-		var/obj/item/sheet/S = O
-		if (!S.material || !src.material)
-			return 0
-		if (S.material.type != src.material.type)
-			//boutput(world, "check valid stack check 2 failed")
-			return 0
-		if (S.material && src.material && !isSameMaterial(S.material, src.material))
-			//boutput(world, "check valid stack check 3 failed")
-			return 0
-		if ((src.reinforcement && !S.reinforcement) || (S.reinforcement && !src.reinforcement))
-			//boutput(world, "check valid stack check 4 failed")
-			return 0
-		if (src.reinforcement && S.reinforcement)
-			if (src.reinforcement.type != S.reinforcement.type)
-				//boutput(world, "check valid stack check 5 failed")
+		. = ..()
+		if (.)
+			var/obj/item/sheet/S = O
+			if ((src.reinforcement && !S.reinforcement) || (S.reinforcement && !src.reinforcement))
+				//boutput(world, "check valid stack check 4 failed")
 				return 0
-			if (!isSameMaterial(S.reinforcement, src.reinforcement))
-				//boutput(world, "check valid stack check 6 failed")
-				return 0
-		return 1
+			if (src.reinforcement && S.reinforcement)
+				if (src.reinforcement.type != S.reinforcement.type)
+					//boutput(world, "check valid stack check 5 failed")
+					return 0
+				if (!isSameMaterial(S.reinforcement, src.reinforcement))
+					//boutput(world, "check valid stack check 6 failed")
+					return 0
 
 	examine()
 		. = ..()
@@ -343,7 +334,7 @@ MATERIAL
 					a_amount = rodsinput * 2
 					a_cost = rodsinput
 					a_icon = 'icons/obj/items/metal.dmi'
-					a_icon_state = "rods_1"
+					a_icon_state = "rods_[floor(a_amount/10)]"
 					a_name = "rods"
 					duration_alt = 1.7 SECONDS
 
@@ -357,7 +348,7 @@ MATERIAL
 					a_amount = tileinput * 4
 					a_cost = tileinput
 					a_icon = 'icons/obj/items/metal.dmi'
-					a_icon_state = "tile_1"
+					a_icon_state = "tile_[floor(a_amount/10)]"
 					a_name = "floor tiles"
 					duration_alt = 2 SECONDS
 
@@ -408,7 +399,7 @@ MATERIAL
 					a_type = /obj/stool
 					a_amount = 1
 					a_cost = 1
-					a_icon = 'icons/obj/objects.dmi'
+					a_icon = 'icons/obj/furniture/chairs.dmi'
 					a_icon_state = "stool"
 					a_name = "a stool"
 
@@ -424,7 +415,7 @@ MATERIAL
 					a_type = /obj/stool/chair
 					a_amount = 1
 					a_cost = 1
-					a_icon = 'icons/obj/objects.dmi'
+					a_icon = 'icons/obj/furniture/chairs.dmi'
 					a_icon_state = "chair"
 					a_name = "a chair"
 
@@ -489,7 +480,7 @@ MATERIAL
 					a_type = /obj/stool/bed
 					a_amount = 1
 					a_cost = 2
-					a_icon = 'icons/obj/objects.dmi'
+					a_icon = 'icons/obj/furniture/chairs.dmi'
 					a_icon_state = "bed"
 					a_name = "a bed"
 
@@ -689,28 +680,17 @@ MATERIAL
 	m_amt = 1875
 	max_stack = 50
 	stamina_damage = 20
-	stamina_cost = 16
-	stamina_crit_chance = 30
+//	stamina_cost = 16
+//	stamina_crit_chance = 30
 	rand_pos = 8
 	inventory_counter_enabled = 1
+	stack_type = /obj/item/rods
 
 	New()
 		..()
 		SPAWN_DBG(0)
 			update_stack_appearance()
 		BLOCK_SETUP(BLOCK_ROD)
-
-	check_valid_stack(atom/movable/O as obj)
-		if (!istype(O,/obj/item/rods/))
-			return 0
-		var/obj/item/rods/S = O
-		if (!S.material || !src.material)
-			return 0
-		if (S.material.type != src.material.type)
-			return 0
-		if (!isSameMaterial(S.material, src.material))
-			return 0
-		return 1
 
 	update_stack_appearance()
 		if (amount <= 10)
@@ -1027,10 +1007,11 @@ MATERIAL
 	throwforce = 5.0
 	max_stack = 80
 	stamina_damage = 25
-	stamina_cost = 15
-	stamina_crit_chance = 15
+//	stamina_cost = 15
+//	stamina_crit_chance = 15
 	tooltip_flags = REBUILD_DIST
 	inventory_counter_enabled = 1
+	stack_type = /obj/item/tile
 
 	New(make_amount = 0)
 		..()
@@ -1040,16 +1021,6 @@ MATERIAL
 			update_stack_appearance()
 			src.inventory_counter?.update_number(amount)
 		return
-
-	check_valid_stack(atom/movable/O as obj)
-		if (!istype(O,/obj/item/tile/))
-			return 0
-		var/obj/item/tile/S = O
-		if (!S.material || !src.material)
-			return 0
-		if (!isSameMaterial(S.material, src.material))
-			return 0
-		return 1
 
 	update_stack_appearance()
 		if (amount <= 10)

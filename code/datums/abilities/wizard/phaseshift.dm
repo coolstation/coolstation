@@ -26,7 +26,7 @@
 			SPtime = 50
 		else
 			boutput(holder.owner, "<span class='alert'>Your spell doesn't last as long without a staff to focus it!</span>")
-		playsound(holder.owner.loc, "sound/effects/mag_phase.ogg", 25, 1, -1)
+		playsound(holder.owner.loc, "sound/effects/mag_phase.ogg", 25, 1, SOUND_RANGE_STANDARD)
 		spell_invisibility(holder.owner, SPtime, 0, 1)
 
 // Merged some stuff from wizard and vampire phaseshift for easy of use (Convair880).
@@ -248,7 +248,7 @@
 		var/turf/T = get_turf(owner)
 		if (T)
 			var/area/A = get_area(T)
-			if (T.turf_flags & CAN_BE_SPACE_SAMPLE || A.name == "Emergency Shuttle" || A.name == "Space" || A.name == "Ocean")
+			if (T.turf_flags & IS_SPACE || A.name == "Emergency Shuttle" || A.name == "Space" || A.name == "Ocean")
 				src.set_cloaked(0)
 
 			else

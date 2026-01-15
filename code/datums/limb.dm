@@ -8,6 +8,7 @@
 /datum/limb
 	var/mob/owner
 	var/name
+	var/max_wclass = W_CLASS_BUBSIAN
 
 	var/special_next = 0
 	var/datum/item_special/disarm_special = null //Contains the datum which executes the items special, if it has one, when used beyond melee range.
@@ -836,7 +837,7 @@
 
 				playsound(user.loc, pick('sound/voice/animal/werewolf_attack1.ogg', 'sound/voice/animal/werewolf_attack2.ogg', 'sound/voice/animal/werewolf_attack3.ogg'), 50, 1)
 				SPAWN_DBG(0.1 SECONDS)
-					if (user) playsound(user.loc, "sound/impact_sounds/Flesh_Tear_3.ogg", 40, 1, -1)
+					if (user) playsound(user.loc, "sound/impact_sounds/Flesh_Tear_3.ogg", 40, 1, SOUND_RANGE_STANDARD)
 
 				user.visible_message("<span class='alert'><B>[user] slashes viciously at [victim]!</B></span>")
 				victim.health -= rand(4,8) * victim.brutevuln
@@ -852,7 +853,7 @@
 					user.visible_message("<span class='alert'><B>[user] savagely slashes [victim]!</span>")
 					victim.health -= 4 * victim.brutevuln
 
-				playsound(user.loc, 'sound/misc/hastur/tentacle_hit.ogg', 25, 1, -1)
+				playsound(user.loc, 'sound/misc/hastur/tentacle_hit.ogg', 25, 1, SOUND_RANGE_STANDARD)
 
 			else
 				var/turf/T = get_edge_target_turf(user, user.dir)
@@ -865,7 +866,7 @@
 					user.visible_message("<span class='alert'><B>[user] punches [victim]!</span>")
 					victim.health -= 4 * victim.brutevuln
 
-				playsound(user.loc, "punch", 25, 1, -1)
+				playsound(user.loc, "punch", 25, 1, SOUND_RANGE_STANDARD)
 
 			if (victim?.alive && victim.health <= 0)
 				victim.CritterDeath()
@@ -1312,7 +1313,7 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 /datum/limb/small_critter
 	name = "paw"
 
-	var/max_wclass = 1 // biggest thing we can carry
+	max_wclass = W_CLASS_TINY // biggest thing we can carry
 	var/dam_low = 1
 	var/dam_high = 1
 	var/actions = list("scratches", "baps", "slashes", "paws")
@@ -1358,7 +1359,7 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 			if (C.ghost_spawned)
 				if (max_wclass < 3)
 					user.visible_message("<span class='alert'><b>[user] tries to help [target], but [hes_or_shes(user)] worse than useless!</b></span>", "<span class='alert'><b>You try to help [target], but your spectral will can only manage a poke!</b></span>")
-					playsound(user.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 25, 1, -1)
+					playsound(user.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 25, 1, SOUND_RANGE_STANDARD)
 					return
 		..()
 
@@ -1406,7 +1407,7 @@ var/list/ghostcritter_blocked = ghostcritter_blocked_objects()
 					var/target_stamina = target.get_stamina()
 					if (target_stamina && target_stamina > 5)
 						target.remove_stamina(rand(1,4))
-					playsound(user.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 25, 1, -1)
+					playsound(user.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 25, 1, SOUND_RANGE_STANDARD)
 					return
 		..()
 

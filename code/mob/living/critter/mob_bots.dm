@@ -11,7 +11,6 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 	speechverb_stammer = "bleeps"
 	speechverb_exclaim = "boops"
 	speechverb_ask = "bloops"
-	stepsound = "step_plating"
 	robot_talk_understand = TRUE
 	hand_count = 1
 	density = FALSE
@@ -88,6 +87,9 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 		desc = "A little cleaning robot, it looks so excited!"
 		icon_state = "cleanbot1"
 		icon_state_base = "cleanbot"
+		add_abilities = list(/datum/targetable/critter/bot/mop_floor,\
+			/datum/targetable/critter/bot/reagent_scan_self,\
+			/datum/targetable/critter/bot/dump_reagents)
 
 		New()
 			. = ..()
@@ -105,9 +107,6 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 
 			src.create_reagents(60)
 			src.reagents.add_reagent("cleaner", 10)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/mop_floor)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/reagent_scan_self)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/dump_reagents)
 
 		emag_act(mob/user, obj/item/card/emag/E)
 			. = ..()
@@ -123,10 +122,11 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 
 		emagged
 			emagged = TRUE
-			New()
-				. = ..()
-				src.abilityHolder.addAbility(/datum/targetable/critter/bot/fill_with_chem/lube)
-				src.abilityHolder.addAbility(/datum/targetable/critter/bot/fill_with_chem/phlogiston_dust)
+			add_abilities = list(/datum/targetable/critter/bot/mop_floor,\
+				/datum/targetable/critter/bot/reagent_scan_self,\
+				/datum/targetable/critter/bot/dump_reagents,\
+				/datum/targetable/critter/bot/fill_with_chem/lube,\
+				/datum/targetable/critter/bot/fill_with_chem/phlogiston_dust)
 
 ABSTRACT_TYPE(/datum/targetable/critter/bot)
 /datum/targetable/critter/bot/mop_floor
@@ -155,7 +155,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		if(!holder?.owner?.reagents)
 			return TRUE
 		holder.owner.reagents.add_reagent(reagent_id, 30)
-		playsound(holder.owner.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+		playsound(holder.owner.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 	lube
 		name = "Synthesize Space Lube"
 		desc = "Fill yourself will space lube. Creates a slipping hazard, but it makes those floors shine so well that you can see yourself in them!"
@@ -260,6 +260,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	desc = "A little fire-fighting robot! It looks so darn chipper."
 	icon_state = "firebot1"
 	icon_state_base = "firebot"
+	add_abilities = list(/datum/targetable/critter/bot/spray_foam)
 
 	New()
 		. = ..()
@@ -270,9 +271,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			list(0.923407,0.489071,0.0133575,0,0.416634,0.00596684,0.0659536,0,0.151125,0.954365,0.946033,0,0,0,0,1,0,0,0,0),\
 			list(0.34802,0.586676,0.382593,0,0.265555,0.208964,0.409951,0,0.395675,0.227339,0.498367,0,0,0,0,1,0,0,0,0),
 		))
-
-		src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam)
-
 
 	emag_act(mob/user, obj/item/card/emag/E)
 		. = ..()
@@ -285,11 +283,9 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 
 	emagged
 		emagged = TRUE
-		New()
-			. = ..()
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam/fuel)
-			src.abilityHolder.addAbility(/datum/targetable/critter/bot/spray_foam/throw_humans)
-
+		add_abilities = list(/datum/targetable/critter/bot/spray_foam,\
+			/datum/targetable/critter/bot/spray_foam/fuel,\
+			/datum/targetable/critter/bot/spray_foam/throw_humans)
 
 /datum/targetable/critter/bot/spray_foam
 	name = "Spray Foam"
@@ -313,7 +309,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		if(!holder?.owner)
 			return TRUE
 		flick("firebot-c", holder.owner)
-		playsound(get_turf(holder.owner), "sound/effects/spray.ogg", 50, 1, -3)
+		playsound(get_turf(holder.owner), "sound/effects/spray.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 		var/direction = get_dir(holder.owner,target)
 
@@ -384,6 +380,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	ai_type = /datum/aiHolder/patroller/packet_based/securitron
 	uses_blood = TRUE // yes :3
 	ideal_blood_volume = 20
+	add_abilities = list(/datum/targetable/critter/bot/handcuff)
 	var/random_name = TRUE
 	var/control_freq = FREQ_BOT_CONTROL
 	var/chase_speed_bonus = 0.3
@@ -428,8 +425,6 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	var/obj/item/implant/access/infinite/secoff/O = new /obj/item/implant/access/infinite/secoff(src)
 	O.owner = src
 	O.implanted = 1
-
-	src.abilityHolder.addAbility(/datum/targetable/critter/bot/handcuff)
 
 	APPLY_MOVEMENT_MODIFIER(src, /datum/movement_modifier/robot_base, "robot_health_slow_immunity")
 
@@ -564,19 +559,19 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	switch (emote)
 		if ("laugh")
 			src.say("YOU CAN'T OUTRUN A RADIO.")
-			playsound(src, 'sound/voice/bradio.ogg', 50, FALSE, 0, 1)
+			playsound(src, 'sound/voice/bradio.ogg', 50, FALSE, SOUND_RANGE_STANDARD, 1)
 		if ("fart")
 			src.say("YOUR MOVE, CREEP.")
-			playsound(src, 'sound/voice/bcreep.ogg', 50, FALSE, 0, 1)
+			playsound(src, 'sound/voice/bcreep.ogg', 50, FALSE, SOUND_RANGE_STANDARD, 1)
 		if ("salute")
 			src.say("HAVE A SECURE DAY.")
-			playsound(src, 'sound/voice/bsecureday.ogg', 50, FALSE, 0, 1)
+			playsound(src, 'sound/voice/bsecureday.ogg', 50, FALSE, SOUND_RANGE_STANDARD, 1)
 		if ("snap")
 			src.say("GOD MADE TOMORROW FOR THE CROOKS WE DON'T CATCH TODAY.")
-			playsound(src, 'sound/voice/bgod.ogg', 50, FALSE, 0, 1)
+			playsound(src, 'sound/voice/bgod.ogg', 50, FALSE, SOUND_RANGE_STANDARD, 1)
 		if ("flex")
 			src.say("I AM THE LAW.")
-			playsound(src, 'sound/voice/biamthelaw.ogg', 50, FALSE, 0, 1)
+			playsound(src, 'sound/voice/biamthelaw.ogg', 50, FALSE, SOUND_RANGE_STANDARD, 1)
 	return
 
 /mob/living/critter/robotic/bot/securitron/proc/accuse_perp(atom/target, threat = 4)
@@ -585,13 +580,13 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	switch(rand(1,3))
 		if(1)
 			src.say("CRIMINAL DETECTED.")
-			playsound(src, 'sound/voice/bcriminal.ogg', 50, FALSE, 0, 1)
+			playsound(src, 'sound/voice/bcriminal.ogg', 50, FALSE, SOUND_RANGE_STANDARD, 1)
 		if(2)
 			src.say("PREPARE FOR JUSTICE.")
-			playsound(src, 'sound/voice/bjustice.ogg', 50, FALSE, 0, 1)
+			playsound(src, 'sound/voice/bjustice.ogg', 50, FALSE, SOUND_RANGE_STANDARD, 1)
 		if(3)
 			src.say("FREEZE. SCUMBAG.")
-			playsound(src, 'sound/voice/bfreeze.ogg', 50, FALSE, 0, 1)
+			playsound(src, 'sound/voice/bfreeze.ogg', 50, FALSE, SOUND_RANGE_STANDARD, 1)
 
 /mob/living/critter/robotic/bot/securitron/proc/siren()
 	if(siren_active)
@@ -782,9 +777,8 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			return 1
 	return 0
 
-/mob/living/critter/robotic/bot/securitron/hand_attack(mob/target)
+/mob/living/critter/robotic/bot/securitron/weapon_attack(atom/target, obj/item/I, reach, params)
 	EXTEND_COOLDOWN(target, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
-	var/obj/item/I = src.equipped()
 	if(!I)
 		return FALSE
 	if (istype(I,/obj/item/gun))
@@ -800,13 +794,13 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 			if(!batong.is_active)
 				batong.attack_self(src)
 	src.hud.update_intent()
-	..(target)
+	. = ..(target, I, reach, params)
 	var/bonus_hits = src.emagged - 1
 	SPAWN_DBG(0)
 		while(bonus_hits >= 1)
 			sleep(2)
 			src.next_click = 0
-			..(target)
+			. = ..(target, I, reach, params)
 			bonus_hits--
 	return TRUE
 
@@ -856,21 +850,21 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 	if (user)
 		if(!src.emagged)
 			boutput(user, SPAN_ALERT("You short out [src]'s contraband assessment circuits!"))
-			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 3 SECONDS) // just enough time to book it
+			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 2 SECONDS) // just enough time to book it
 		else if(src.emagged == 1)
 			boutput(user, SPAN_ALERT("You scramble [src]'s target verification circuits!"))
 			OVERRIDE_COOLDOWN(user, "ARRESTED_BY_SECURITRON_\ref[src]", 0.3 SECONDS) // run fast
 			src.AddComponent(/datum/component/waddling)
 		else
 			boutput(user, SPAN_ALERT("You mess with \the [src] a bit more, just for kicks."))
-	playsound(src, 'sound/effects/sparks4.ogg', 50, FALSE, 0, 1)
+	playsound(src, 'sound/effects/sparks4.ogg', 50, FALSE, SOUND_RANGE_STANDARD, 1)
 	src.audible_message(SPAN_ALERT("<B>[src] buzzes oddly!</B>"))
 
 	src.emagged++
 	src.set_power(TRUE)
 
 	if (src.emagged > 5)
-		playsound(src, 'sound/effects/glitchy1.ogg', 50, FALSE, 0, 1)
+		playsound(src, 'sound/effects/glitchy1.ogg', 50, FALSE, SOUND_RANGE_STANDARD, 1)
 		src.say("I WAS THE LAW.")
 		SPAWN_DBG(5 DECI SECONDS)
 			src.blowthefuckup(3)
@@ -939,7 +933,7 @@ ABSTRACT_TYPE(/datum/targetable/critter/bot/fill_with_chem)
 		interrupt(INTERRUPT_ALWAYS)
 		return
 	..()
-	playsound(master, 'sound/weapons/handcuffs.ogg', 30, TRUE, -2)
+	playsound(master, 'sound/weapons/handcuffs.ogg', 30, TRUE, SOUND_RANGE_MODERATE)
 	master.visible_message("<span class='alert'><B>[master] is trying to put handcuffs on [target]!</B></span>")
 
 /datum/action/bar/icon/mob_secbot_cuff/onEnd()

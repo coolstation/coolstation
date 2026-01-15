@@ -364,7 +364,7 @@
 			for (var/turf/T in range(radius,new_center))
 				//covered_points += new/datum/hotspot_point(T.x,T.y,T.z)
 				//T.color = "#FFCCCC"
-				var/turf/space/fluid/S = T
+				var/turf/space/fluid/ocean/S = T
 				if (istype(S) && S.captured)
 					vent_capture_amt += 1
 
@@ -432,9 +432,9 @@
 			explosion(src, phenomena_point, -1, -1, 2, 3)
 
 		if ((phenomena_flags & PH_EX) || (phenomena_flags & PH_FIRE_WEAK) || (phenomena_flags & PH_FIRE))
-			playsound(phenomena_point, 'sound/misc/ground_rumble_big.ogg', 65, 1, 0.1, 0.7)
+			playsound(phenomena_point, 'sound/misc/ground_rumble_big.ogg', 65, 1, SOUND_RANGE_STANDARD, 0.7)
 		else if (found)
-			playsound(phenomena_point, 'sound/misc/ground_rumble.ogg', 70, 1, 0.1, 1)
+			playsound(phenomena_point, 'sound/misc/ground_rumble.ogg', 70, 1, SOUND_RANGE_STANDARD, 1)
 
 		//hey recurse at this arbitrary heat value, thanks
 		if (heat > 8000 + (8000 * recursion))
@@ -459,7 +459,7 @@
 
 	proc/poll_capture_amt(var/turf/center)
 		vent_capture_amt = 0
-		for (var/turf/space/fluid/T in range(radius,center))
+		for (var/turf/space/fluid/ocean/T in range(radius,center))
 			if (T.captured)
 				vent_capture_amt += 1
 			LAGCHECK(LAG_HIGH)
@@ -477,7 +477,7 @@
 	proc/color_ping(var/setcolor = "#FF0011")
 		if (world.time + 10 SECONDS > last_colorping)
 
-			for (var/turf/space/fluid/T in range(radius,center))
+			for (var/turf/space/fluid/ocean/T in range(radius,center))
 				var/lastcolor = T.color
 				T.color = setcolor
 				animate(T, color = lastcolor, time = 3 SECONDS, easing = SINE_EASING)
@@ -522,8 +522,8 @@
 	throw_speed = 4
 	throw_range = 5
 	stamina_damage = 30
-	stamina_cost = 15
-	stamina_crit_chance = 1
+//	stamina_cost = 15
+//	stamina_crit_chance = 1
 	//two_handed = 1
 	var/static/image/speech_bubble = image('icons/mob/mob.dmi', "speech")
 	var/static/dowse_dist_fuzz = 3
@@ -615,7 +615,7 @@
 
 
 					if (true_center) //stomper does this anywya, lets let them dowse for the true center instead of accidntally stomping and being annoying
-						playsound(src, "sound/machines/twobeep.ogg", 50, 1,0.1,0.7)
+						playsound(src, "sound/machines/twobeep.ogg", 50, 1,SOUND_RANGE_STANDARD,0.7)
 						if (true_center > 1)
 							for (var/mob/O in hearers(src, null))
 								O.show_message("<span class='subtle'><span class='game say'><span class='name'>[src]</span> beeps, \"[true_center] centers have been located!\"</span></span>", 2)
@@ -660,18 +660,18 @@
 		placed = 1
 		process()
 		usr.next_click = world.time + 1
-		playsound(src.loc, 'sound/effects/shovel2.ogg', 50, 1, 0.3)
+		playsound(src.loc, 'sound/effects/shovel2.ogg', 50, 1, SOUND_RANGE_STANDARD)
 
 		//maybe later
 		//hotspot_controller.colorping_at_turf(src.loc)
 
 
-/turf/space/fluid/attack_hand(var/mob/user)
+/turf/space/fluid/ocean/attack_hand(var/mob/user)
 	var/obj/item/heat_dowsing/H = locate() in src
 	if (H)
 		H.Attackhand(user)
 
-/turf/space/fluid/attackby(var/obj/item/W, var/mob/user)
+/turf/space/fluid/ocean/attackby(var/obj/item/W, var/mob/user)
 	if (istype(W,/obj/item/shovel) || istype(W,/obj/item/slag_shovel))
 		actions.start(new/datum/action/bar/icon/dig_sea_hole(src), user)
 		return
@@ -784,8 +784,8 @@
 	New()
 		..()
 		START_TRACKING
-		if (istype(src.loc,/turf/space/fluid))
-			var/turf/space/fluid/T = src.loc
+		if (istype(src.loc,/turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = src.loc
 			T.captured = 1
 			update_capture()
 
@@ -798,8 +798,8 @@
 	disposing()
 		..()
 		STOP_TRACKING
-		if (istype(src.loc,/turf/space/fluid))
-			var/turf/space/fluid/T = src.loc
+		if (istype(src.loc,/turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = src.loc
 			T.captured = 0
 			update_capture()
 
@@ -814,15 +814,15 @@
 		qdel(src)
 
 	Move(NewLoc,Dir=0,step_x=0,step_y=0)
-		if (istype(src.loc,/turf/space/fluid))
-			var/turf/space/fluid/T = src.loc
+		if (istype(src.loc,/turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = src.loc
 			T.captured = 0
 			update_capture()
 
 		. = ..(NewLoc,Dir,step_x,step_y)
 
-		if (istype(src.loc,/turf/space/fluid))
-			var/turf/space/fluid/T = src.loc
+		if (istype(src.loc,/turf/space/fluid/ocean))
+			var/turf/space/fluid/ocean/T = src.loc
 			T.captured = 1
 			update_capture()
 
@@ -936,7 +936,7 @@
 		else
 			activate()
 
-			playsound(src.loc, 'sound/machines/engine_alert3.ogg', 50, 1, 0.1, on ? 1 : 0.6)
+			playsound(src.loc, 'sound/machines/engine_alert3.ogg', 50, 1, SOUND_RANGE_SMALL, on ? 1 : 0.6)
 			update_icon()
 			user.visible_message("<span class='notice'>[user] switches [on ? "on" : "off"] the [src].</span>","<span class='notice'>You switch [on ? "on" : "off"] the [src].</span>")
 
@@ -1012,7 +1012,7 @@
 
 		if (hotspot_controller.stomp_turf(get_turf(src))) //we didn't stomped center, do an additional SFX
 			SPAWN_DBG(0.4 SECONDS)
-				playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 99, 1, 0.1, 0.7)
+				playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Heavy_1.ogg', 99, 1, SOUND_RANGE_STANDARD, 0.7)
 
 		for (var/datum/sea_hotspot/H in hotspot_controller.get_hotspots_list(get_turf(src)))
 			if (get_dist(src,H.center.turf()) <= 1)
@@ -1020,7 +1020,7 @@
 				for (var/mob/O in hearers(src, null))
 					O.show_message("<span class='subtle'><span class='game say'><span class='name'>[src]</span> beeps, \"Hotspot pinned.\"</span></span>", 2)
 
-		playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Lowfi_1.ogg', 99, 1, 0.1, 0.7)
+		playsound(src.loc, 'sound/impact_sounds/Metal_Hit_Lowfi_1.ogg', 99, 1, SOUND_RANGE_STANDARD, 0.7)
 
 		for (var/mob/M in src.loc)
 			random_brute_damage(M, 55, 1)
@@ -1122,7 +1122,7 @@
 	New(Turf)
 		T = Turf
 		..()
-		playsound(T, 'sound/effects/shovel1.ogg', 50, 1, 0.3)
+		playsound(T, 'sound/effects/shovel1.ogg', 50, 1, SOUND_RANGE_MODERATE)
 
 	onUpdate()
 		..()
@@ -1150,7 +1150,7 @@
 		if (!found)
 			new /obj/venthole(T)
 
-		playsound(T, 'sound/effects/shovel3.ogg', 50, 1, 0.3)
+		playsound(T, 'sound/effects/shovel3.ogg', 50, 1, SOUND_RANGE_MODERATE)
 
 
 	fast

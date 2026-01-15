@@ -173,6 +173,12 @@
 	desc = "A backpack that looks like a green turtleshell. Cowabunga!"
 	icon_state = "bp_turtle_green"
 
+/obj/item/storage/backpack/snacker
+	name = "backpack"
+	desc = "A thick, wearable container made of synthetic fibers. This one smells sugary and stale."
+	icon_state = "backpackbr"
+	spawn_contents = list(/obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn)
+
 /obj/item/storage/backpack/satchel
 	name = "satchel"
 	desc = "A thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on a crewmember's shoulder."
@@ -195,6 +201,9 @@
 		icon_state = "satchelg"
 		item_state = "satchelg"
 
+	withO2
+		spawn_contents = list(/obj/item/storage/box/starter/withO2)
+
 /obj/item/storage/backpack/satchel/syndie
 	name = "\improper Syndicate Satchel"
 	desc = "A stylish red, evil, thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on an operative's shoulder."
@@ -207,6 +216,11 @@
 	desc = "A stylish blue, thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on a crewmember's shoulder."
 	icon_state = "NTsatchel"
 	item_state = "NTsatchel"
+	spawn_contents = list(/obj/item/storage/box/starter/withO2)
+
+/obj/item/storage/backpack/satchel/NT/rogue
+	name = "\improper Old NT Satchel"
+	desc = "A faded Nanotrasen bag with the logo covered by a strip of tape and red paint." //ive been at this for 15+ hours i'll make a sprite later
 	spawn_contents = list(/obj/item/storage/box/starter/withO2)
 
 /obj/item/storage/backpack/satchel/captain
@@ -321,8 +335,8 @@
 	max_wclass = 3
 	does_not_open_in_pocket = 0
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 5
+//	stamina_cost = 0
+//	stamina_crit_chance = 5
 	spawn_contents = list(/obj/item/storage/box/starter)
 
 	New()
@@ -361,8 +375,8 @@
 	max_wclass = 2
 	does_not_open_in_pocket = 0
 	stamina_damage = 10
-	stamina_cost = 5
-	stamina_crit_chance = 5
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 	w_class = W_CLASS_BULKY
 
 	New()
@@ -413,10 +427,16 @@
 	can_hold = list(/obj/item/mop,
 		/obj/item/chem_grenade,
 		/obj/item/clothing/under/trash_bag,
-		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/glass,
 		/obj/item/spraybottle,
+		/obj/item/sponge,
+		/obj/item/material_piece/cloth/rag,
+		/obj/item/device/light/flashlight,
+		/obj/item/caution,
+		/obj/item/handheld_vacuum,
+		/obj/item/clothing/under/trash_bag
 	)
-	spawn_contents = /obj/item/spraybottle/cleaner
+	spawn_contents = list(/obj/item/spraybottle/cleaner)
 	in_list_or_max = 0
 
 /obj/item/storage/belt/utility/prepared/ceshielded
@@ -642,6 +662,11 @@
 	tasersmg
 		spawn_contents = list(/obj/item/gun/modular/NT/pistol, //energy/tasersmg,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/rifle/capacitive/burst/five, /obj/item/stackable_ammo/pistol/capacitive/five)
+
+	rogue
+		name = "ratty duty belt"
+		desc = "the buckle doesn't click anymore."
+		//if the baton ends up being a problem, I'll yoink the power cell from it
 
 //////////////////////////////
 // ~Nuke Ops Class Storage~ //

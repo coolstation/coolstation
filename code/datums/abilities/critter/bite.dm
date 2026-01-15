@@ -29,7 +29,7 @@
 		if (get_dist(holder.owner, target) > 1)
 			boutput(holder.owner, __red("That is too far away to bite."))
 			return 1
-		playsound(target, src.sound_bite, 50, 1, -1)
+		playsound(target, src.sound_bite, 50, 1, SOUND_RANGE_STANDARD)
 		var/mob/MT = target
 		MT.TakeDamageAccountArmor("All", src.brute_damage, 0, 0, DAMAGE_CRUSH)
 		MT.changeStatus("stunned", 2 SECONDS)
@@ -46,7 +46,7 @@
 	cast(atom/target)
 		if (..())
 			return 1
-		playsound(target, src.sound_bite, 100, 1, -1)
+		playsound(target, src.sound_bite, 100, 1, SOUND_RANGE_STANDARD)
 		var/mob/MT = target
 		MT.TakeDamageAccountArmor("All", src.brute_damage, 0, 0, DAMAGE_CRUSH)
 		holder.owner.visible_message("<span class='combat'><b>[holder.owner] savagely bites [MT]!</b></span>", "<span class='combat'>You savagely bite [MT]!</span>")

@@ -208,7 +208,7 @@ WET FLOOR SIGN
 
 	if(src.reagents.has_reagent("water") || src.reagents.has_reagent("cleaner"))
 		JOB_XP(user, "Janitor", 2)
-	playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+	playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 	// Make sure we clean an item that was sprayed directly in case it is in contents
 	if (!isturf(A.loc))
 		if (istype(A, /obj/item))
@@ -270,8 +270,8 @@ WET FLOOR SIGN
 	w_class = W_CLASS_NORMAL
 	flags = FPRINT | TABLEPASS
 	stamina_damage = 40
-	stamina_cost = 15
-	stamina_crit_chance = 10
+//	stamina_cost = 15
+//	stamina_crit_chance = 10
 
 /obj/item/mop/orange
 	desc = "The world of janitalia wouldn't be complete without a mop. This one comes in orange!"
@@ -530,15 +530,22 @@ WET FLOOR SIGN
 
 // SPONGES? idk
 
-/datum/reagents/sponge
+/datum/reagents/resize_sponge
+	var/initial_size = 1
+	var/extra_size = 0.6
+
+	New(maximum, init_size, ex_size)
+		. = ..()
+		src.initial_size = init_size
+		src.extra_size = ex_size
+
 	update_total()
 		..()
-		var/obj/item/sponge/S = src.my_atom
-		if (S)
-			var/size = 1
+		if (src.my_atom)
+			var/size = src.initial_size
 			if (src.total_volume > 0)
-				size += (src.total_volume / src.maximum_volume) * 0.6
-			sponge_size(S, size)
+				size += (src.total_volume / src.maximum_volume) * src.extra_size
+			sponge_size(src.my_atom, size)
 		return 0
 
 /obj/item/sponge
@@ -559,7 +566,7 @@ WET FLOOR SIGN
 /obj/item/sponge/New()
 	..()
 	// We use this instead of create_reagents because sponges need a special reagent holder to grow in size
-	reagents = new/datum/reagents/sponge(50)
+	reagents = new/datum/reagents/resize_sponge(50, 1, 0.6)
 	reagents.my_atom = src
 	processing_items |= src
 
@@ -790,8 +797,8 @@ WET FLOOR SIGN
 	w_class = W_CLASS_SMALL
 	flags = FPRINT | TABLEPASS
 	stamina_damage = 15
-	stamina_cost = 4
-	stamina_crit_chance = 10
+//	stamina_cost = 4
+//	stamina_crit_chance = 10
 
 	New()
 		..()
@@ -1080,9 +1087,9 @@ WET FLOOR SIGN
 			return
 		new/obj/effect/suck(T, get_dir(T, user))
 		if(src.suck(user, T))
-			playsound(T, "sound/effects/suck.ogg", 20, TRUE, 0, 1.5)
+			playsound(T, "sound/effects/suck.ogg", 20, TRUE, SOUND_RANGE_STANDARD, 1.5)
 		else
-			playsound(T, "sound/effects/brrp.ogg", 20, TRUE, 0, 0.8)
+			playsound(T, "sound/effects/brrp.ogg", 20, TRUE, SOUND_RANGE_STANDARD, 0.8)
 
 	pickup(mob/M)
 		RegisterSignal(M, COMSIG_MOVABLE_MOVED, PROC_REF(suck))
@@ -1289,7 +1296,7 @@ WET FLOOR SIGN
 					break
 
 			afterUse(user)
-			playsound(master, "sound/effects/suck.ogg", 40, TRUE, 0, 0.5)
+			playsound(master, "sound/effects/suck.ogg", 40, TRUE, SOUND_RANGE_STANDARD, 0.5)
 
 /obj/effect/suck
 	anchored = ANCHORED_TECHNICAL

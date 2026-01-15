@@ -112,10 +112,10 @@
 		if (owner.stuttering)
 			owner.stuttering = max(owner.stuttering - mult, 0)
 
-		if (owner.get_ear_damage(1)) // Temporary deafness.
+		if (owner.ear_tempdeaf) // Temporary deafness.
 			owner.take_ear_damage(-mult, 1)
 
-		if (owner.get_ear_damage() && (owner.get_ear_damage() <= owner.get_ear_damage_natural_healing_threshold()))
+		if (owner.ear_damage && (owner.ear_damage <= EAR_DAMAGE_NATURAL_HEALING_THRESHOLD))
 			owner.take_ear_damage(-0.05*mult)
 
 		if (owner.get_eye_blurry())
