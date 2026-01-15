@@ -31,7 +31,7 @@
 
 	generate_worldgen()
 		. = ..()
-		if(src.cares_bout_turf_change)
+		if(src.cares_bout_turf_change && src.visual_turf)
 			var/x_off = trunc((src.pixel_x - 16) / 32)
 			var/y_off = trunc((src.pixel_y - 16) / 32)
 			var/turf/T = locate(src.visual_turf.x + x_off, src.visual_turf.y + y_off, src.visual_turf.z)
