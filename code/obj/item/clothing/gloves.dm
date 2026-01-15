@@ -305,7 +305,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 /obj/item/clothing/gloves/crafted
 	name = "gloves"
 	icon_state = "latex"
-	item_state = "lglosves"
+	item_state = "lgloves"
 	desc = "Custom made gloves."
 	scramble_prints = 1
 
