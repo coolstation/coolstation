@@ -219,7 +219,8 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	icon_state = "fgloves"
 	item_state = "finger-"
 	hide_prints = 0
-		setupProperties()
+
+	setupProperties()
 		..()
 		setProperty("conductivity", 1)
 
