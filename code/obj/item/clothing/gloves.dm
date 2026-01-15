@@ -220,6 +220,10 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	item_state = "finger-"
 	hide_prints = 0
 
+	setupProperties()
+		..()
+		setProperty("conductivity", 1)
+
 /obj/item/clothing/gloves/black
 	desc = "These gloves are fire-resistant."
 	name = "Black Gloves"
@@ -235,16 +239,26 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 /obj/item/clothing/gloves/black/attackby(obj/item/W, mob/user)
 	if (istool(W, TOOL_CUTTING | TOOL_SNIPPING))
 		user.visible_message("<span class='notice'>[user] cuts off the fingertips from [src].</span>")
+		playsound(src.loc, "sound/items/Scissor.ogg", 50, 1, SOUND_RANGE_SMALL)
 		if(src.loc == user)
 			user.u_equip(src)
+			if (ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(src == H.gloves)
+					H.force_equip(new /obj/item/clothing/gloves/fingerless, H.slot_gloves)
+					qdel(src)
+					return
+
 		qdel(src)
 		user.put_in_hand_or_drop(new /obj/item/clothing/gloves/fingerless)
 	else . = ..()
+
 /obj/item/clothing/gloves/cyborg
 	desc = "beep boop borp"
 	name = "cyborg gloves"
 	icon_state = "black"
 	item_state = "r_hands"
+
 	setupProperties()
 		..()
 		setProperty("conductivity", 1)
@@ -257,9 +271,43 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	desc = "Thin gloves that offer minimal protection."
 	protective_temperature = 310
 	scramble_prints = 1
+
 	setupProperties()
 		..()
 		setProperty("conductivity", 0.3)
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istool(W, TOOL_CUTTING | TOOL_SNIPPING))
+			user.visible_message("<span class='notice'>[user] cuts off the fingertips from [src]. What an asshole.</span>", "<span class='notice'>[user] snip off the fingertips from [src]. You feel really badass.</span>")
+			playsound(src.loc, "sound/items/Scissor.ogg", 50, 1, SOUND_RANGE_SMALL)
+			if(src.loc == user)
+				user.u_equip(src)
+				if (ishuman(user))
+					var/mob/living/carbon/human/H = user
+					if(src == H.gloves)
+						H.force_equip(new /obj/item/clothing/gloves/latex/fingerless, H.slot_gloves)
+						qdel(src)
+						return
+
+			qdel(src)
+			user.put_in_hand_or_drop(new /obj/item/clothing/gloves/latex/fingerless)
+		else . = ..()
+
+
+
+/obj/item/clothing/gloves/latex/fingerless
+	name = "Fingerless Latex Gloves"
+	icon_state = "flatex"
+	item_state = "flgloves"
+	permeability_coefficient = 0.02
+	desc = "Latex gloves that have been made utterly useless due to some asshole cutting off the tips on the fingers. Looks badass though."
+	protective_temperature = 310
+	scramble_prints = 0
+	setupProperties()
+		..()
+		setProperty("conductivity", 1)
+		setProperty("viralprot", 0)
+
 
 /obj/item/clothing/gloves/latex/blue
 	color = "#91d5e9"
