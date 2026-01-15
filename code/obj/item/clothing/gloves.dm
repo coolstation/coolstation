@@ -240,17 +240,18 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 	if (istool(W, TOOL_CUTTING | TOOL_SNIPPING))
 		user.visible_message("<span class='notice'>[user] cuts off the fingertips from [src].</span>")
 		playsound(src.loc, "sound/items/Scissor.ogg", 50, 1, SOUND_RANGE_SMALL)
+		var/obj/item/clothing/gloves/fingerless/craft = new(src.loc)
 		if(src.loc == user)
 			user.u_equip(src)
 			if (ishuman(user))
 				var/mob/living/carbon/human/H = user
 				if(src == H.gloves)
-					H.force_equip(new /obj/item/clothing/gloves/fingerless, H.slot_gloves)
+					H.force_equip(craft, H.slot_gloves)
 					qdel(src)
 					return
 
 		qdel(src)
-		user.put_in_hand_or_drop(new /obj/item/clothing/gloves/fingerless)
+		user.put_in_hand_or_drop(craft)
 	else . = ..()
 
 /obj/item/clothing/gloves/cyborg
@@ -264,7 +265,7 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 		setProperty("conductivity", 1)
 
 /obj/item/clothing/gloves/latex
-	name = "Latex Gloves"
+	name = "latex gloves"
 	icon_state = "latex"
 	item_state = "lgloves"
 	permeability_coefficient = 0.02
@@ -280,23 +281,25 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 		if (istool(W, TOOL_CUTTING | TOOL_SNIPPING))
 			user.visible_message("<span class='notice'>[user] cuts off the fingertips from [src]. What an asshole.</span>", "<span class='notice'>[user] snip off the fingertips from [src]. You feel really badass.</span>")
 			playsound(src.loc, "sound/items/Scissor.ogg", 50, 1, SOUND_RANGE_SMALL)
+			var/obj/item/clothing/gloves/latex/fingerless/craft = new(src.loc)
+			craft.color = src.color
 			if(src.loc == user)
 				user.u_equip(src)
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
 					if(src == H.gloves)
-						H.force_equip(new /obj/item/clothing/gloves/latex/fingerless, H.slot_gloves)
+						H.force_equip(craft, H.slot_gloves)
 						qdel(src)
 						return
 
 			qdel(src)
-			user.put_in_hand_or_drop(new /obj/item/clothing/gloves/latex/fingerless)
+			user.put_in_hand_or_drop(craft)
 		else . = ..()
 
 
 
 /obj/item/clothing/gloves/latex/fingerless
-	name = "Fingerless Latex Gloves"
+	name = "fingerless latex gloves"
 	icon_state = "flatex"
 	item_state = "flgloves"
 	permeability_coefficient = 0.02
