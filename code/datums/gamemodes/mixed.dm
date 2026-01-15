@@ -2,7 +2,7 @@
 	name = "mixed (action)"
 	config_tag = "mixed"
 	latejoin_antag_compatible = 1
-	latejoin_antag_roles = list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_VAMPIRE, ROLE_WRESTLER, ROLE_WEREWOLF, ROLE_ROGUENTSO)
+	latejoin_antag_roles = list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_VAMPIRE, ROLE_WRESTLER, ROLE_WEREWOLF)
 
 	var/const/traitors_possible = 8 // cogwerks - lowered from 10
 	var/const/werewolf_players_req = 15
