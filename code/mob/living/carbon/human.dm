@@ -2913,11 +2913,16 @@
 	src.update_body()
 	logTheThing("combat", src, null, "drops the items they were juggling")
 
-/mob/living/carbon/human/proc/add_juggle(var/obj/thing as obj)
+/mob/living/carbon/human/proc/add_juggle(var/obj/thing as obj, dontspin = FALSE)
 	if (!thing || src.stat)
 		return
 	if (istype(thing, /obj/item/grab))
 		return
+	if (isitem(thing) && !dontspin)
+		var/obj/item/i = thing
+		i.on_spin_emote(src)
+		if(i.loc != src)
+			return
 	src.u_equip(thing)
 	if (thing.loc != src)
 		thing.set_loc(src)
@@ -2935,9 +2940,7 @@
 	else
 		src.visible_message("<b>[src]</b> starts juggling [thing]!")
 	src.juggling += thing
-	if (isitem(thing))
-		var/obj/item/i = thing
-		i.on_spin_emote(src)
+
 	src.update_body()
 	logTheThing("combat", src, null, "juggles [thing]")
 

@@ -409,9 +409,9 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			r_glowstick = user.r_hand
 		if ((left_glowstick && l_glowstick.on) || (right_glowstick && r_glowstick.on))
 			if (left_glowstick)
-				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc))
+				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc, rgb(l_glowstick.col_r, l_glowstick.col_g, l_glowstick.col_b)))
 			if (right_glowstick)
-				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc))
+				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc, rgb(r_glowstick.col_r, r_glowstick.col_g, r_glowstick.col_b)))
 			var/dancemove = rand(1,6)
 			switch(dancemove)
 				if (1)
