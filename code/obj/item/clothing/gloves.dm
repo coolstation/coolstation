@@ -267,8 +267,12 @@ ABSTRACT_TYPE(/obj/item/clothing/gloves)
 		if (istool(W, TOOL_SNIPPING))
 			boutput(user, "You snip off the tips of your latex gloves. You feel really cool all of a sudden.")
 			playsound(src.loc, "sound/items/Scissor.ogg", 50, 1, -6)
-			var/obj/item/clothing/gloves/latex/fingerless/craft = new()
-			craft.set_loc(get_turf(src))
+			var/obj/item/clothing/gloves/latex/fingerless/craft = new(get_turf(src))
+			if (ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(src == H.gloves)
+					H.u_equip(src)
+					H.force_equip(craft, H.slot_gloves)
 			qdel(src)
 
 
