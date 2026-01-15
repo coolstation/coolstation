@@ -43,21 +43,18 @@
 		if(src.spinning)
 			. = "<B>[user]</B> [pick("keeps going stupid with", "does more damn swirls of", "keeps the crap up and flips")] [src] around in [his_or_her(user)] hand."
 			return
-		if(src.active)
-			src.spinning = TRUE
-			var/hex_color = src.get_hex_color_from_blade(src.bladecolor)
-			. = SPAN_COMBAT("<B>[user]</B> [pick("starts going stupid spinning", "gets to play fuckin' swirling", "does a dumbass cyborg style spin of")] [src] around in [his_or_her(user)] hand.")
-			SPAWN_DBG(0)
-				for(var/i in 1 to rand(15,20))
-					if(!user || src.loc != user)
-						break
-					particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc, hex_color))
-					sleep(0.3 SECONDS)
-				src.spinning = FALSE
-				if(user)
-					user.visible_message(SPAN_NOTICE("<B>[user]</B> stops spinning [src]."), SPAN_NOTICE("You stop spinning [src]."))
-		else
-			. = ..()
+		src.spinning = TRUE
+		var/hex_color = src.get_hex_color_from_blade(src.bladecolor)
+		. = SPAN_COMBAT("<B>[user]</B> [pick("starts going stupid spinning", "gets to play fuckin' swirling", "does a dumbass cyborg style spin of")] [src] around in [his_or_her(user)] hand.")
+		SPAWN_DBG(0)
+			for(var/i in 1 to rand(15,20))
+				if(!user || src.loc != user)
+					break
+				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc, hex_color))
+				sleep(0.3 SECONDS)
+			src.spinning = FALSE
+			if(user)
+				user.visible_message(SPAN_NOTICE("<B>[user]</B> stops spinning [src]."), SPAN_NOTICE("You stop spinning [src]."))
 
 	proc/get_hex_color_from_blade(var/C as text)
 		switch(C)
