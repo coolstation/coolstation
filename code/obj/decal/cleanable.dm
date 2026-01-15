@@ -6,17 +6,16 @@
 //WHO KNOWS, MAYBE THIS SHOULDN'T BE THE DEFAULT BEHAVIOUR FOR SAMPLE REAGENTS BUT WHAT DO I KNOW!
 ////////////////
 
-////////////////
+//////////////// a relic of pooling. should be removed eventually, when someone has time to convert every make_cleanable call to a new
 proc/make_cleanable(var/type,var/loc,var/list/viral_list)
-	var/obj/decal/cleanable/C = new type()
-	C.name = initial(C.name) // ugh
-	C.setup(loc,viral_list)
+	var/obj/decal/cleanable/C = new type(loc, viral_list)
 	.= C
 
 /obj/decal/cleanable
 	density = 0
 	anchored = ANCHORED
 	pass_unstable = PRESERVE_CACHE
+	cares_bout_turf_change = TRUE
 	var/can_sample = 0
 	var/sampled = 0
 	var/sample_amt = 10
@@ -46,18 +45,6 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 
 	New(var/loc,var/list/viral_list)
 		..()
-		if (!pooled)
-			setup(loc,viral_list)
-		if (isturf(src.loc) && src.reagents)
-			var/twoluckywinners = 0
-			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
-				if (twoluckywinners <= 2)
-					src.reagents.trans_to(snack,1)
-				else
-					break
-
-	setup(var/L,var/list/viral_list)
-		..()
 		src.real_name = src.name
 
 		if (length(viral_list))
@@ -84,6 +71,14 @@ proc/make_cleanable(var/type,var/loc,var/list/viral_list)
 			if (istype(src.loc, /turf/floor))
 				var/turf/T = src.loc
 				T.cleanable_fluid_react()
+
+		if (isturf(src.loc) && src.reagents)
+			var/twoluckywinners = 0
+			for (var/obj/item/reagent_containers/food/snacks/snack in src.loc)
+				if (twoluckywinners <= 2)
+					src.reagents.trans_to(snack,1)
+				else
+					break
 
 	disposing()
 		if (can_dry)
@@ -565,20 +560,11 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	#ifdef IN_MAP_EDITOR
 	color = DEFAULT_BLOOD_COLOR
 	#endif
+
 	New()
 		src.create_reagents(reagents_max)
 		src.reagents.add_reagent("blood", 10)
 		..()
-
-	setup()
-		if (!src.reagents)
-			src.create_reagents(reagents_max)
-		else
-			src.reagents.clear_reagents()
-		src.reagents.add_reagent("blood", 10)
-
-		..()
-
 		SPAWN_DBG(0)
 			if(src.loc && !src.disposed)
 				var/counter = 0
@@ -835,7 +821,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 /obj/decal/cleanable/writing/maptext_dummy
 	icon_state = ""
 
-	setup(var/L,var/list/viral_list)
+	New(var/L,var/list/viral_list)
 		. = ..()
 		icon_state = initial(icon_state)
 		maptext_width = 16
@@ -1666,9 +1652,6 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			qdel(light)
 		..()
 
-	setup()
-		..()
-
 /obj/decal/cleanable/saltpile
 	name = "salt pile"
 	desc = "Bad luck, that."
@@ -1683,14 +1666,6 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	New()
 		..()
 		src.updateIcon()
-		var/turf/T = get_turf(src)
-		if (T)
-			updateSurroundingSalt(T)
-
-	setup()
-		..()
-		src.updateIcon()
-		health = 30
 		var/turf/T = get_turf(src)
 		if (T)
 			updateSurroundingSalt(T)
@@ -1782,11 +1757,6 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	gross = 1
 
 	New()
-		..()
-		src.updateIcon()
-		updateSurroundingMagnesium(get_turf(src))
-
-	setup()
 		..()
 		src.updateIcon()
 		updateSurroundingMagnesium(get_turf(src))
@@ -1946,12 +1916,6 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			if(T.owners == src.owners && T != src) qdel(T)
 
 	New()
-		..()
-		for(var/obj/decal/cleanable/gangtag/T in get_turf(src))
-			T.layer = 3
-		src.layer = 4
-
-	setup()
 		..()
 		for(var/obj/decal/cleanable/gangtag/T in get_turf(src))
 			T.layer = 3
@@ -2183,14 +2147,6 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 
 	New()
 		src.create_reagents(reagents_max)
-		src.reagents.add_reagent("poo", 10)
-		..()
-
-	setup()
-		if (!src.reagents)
-			src.create_reagents(reagents_max)
-		else
-			src.reagents.clear_reagents()
 		src.reagents.add_reagent("poo", 10)
 		..()
 

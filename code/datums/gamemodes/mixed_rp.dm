@@ -2,7 +2,7 @@
 	name = "mixed (mild)"
 	config_tag = "mixed_rp"
 	latejoin_antag_compatible = 1
-	latejoin_antag_roles = list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_VAMPIRE, ROLE_WRESTLER, ROLE_ROGUENTSO)
+	latejoin_antag_roles = list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_VAMPIRE, ROLE_WRESTLER)
 	traitor_types = list(ROLE_TRAITOR, ROLE_CHANGELING, ROLE_VAMPIRE, ROLE_SPY_THIEF, ROLE_ROGUENTSO)
 
 	has_wizards = 0
