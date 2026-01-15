@@ -491,7 +491,6 @@
 		return
 
 /turf/proc/ReplaceWith(var/what, var/keep_old_material = 1, var/handle_air = 1, handle_dir = 1, force = 0)
-	SEND_SIGNAL(src, COMSIG_TURF_REPLACED, what)
 	if (!can_replace_with_stuff && !force) //(for some rare turfs)
 		return //..(what, keep_old_material = keep_old_material, handle_air = handle_air)
 
@@ -549,6 +548,8 @@
 		new_turf = new new_type(src, src.turf_persistent)
 		if (!isturf(new_turf))
 			message_coders("Turf replacement at [showCoords(src.x,src.y,src.z)] tried to replace a turf with not a turf.")
+
+	SEND_SIGNAL(src.turf_persistent, COMSIG_TURF_REPLACED, new_turf)
 
 	if(keep_old_material && oldmat && !istype(new_turf, /turf/space)) new_turf.setMaterial(oldmat)
 

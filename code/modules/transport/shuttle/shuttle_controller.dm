@@ -190,7 +190,7 @@ datum/shuttle_controller
 							L.shuttle_pathlights()
 
 						processScheduler.enableProcess("Fluid_Turfs")
-
+						mapSwitcher.locked = 1 // no more switching
 						world.TgsTriggerDeployment() //round is guaranteed to end in 3:30 or less now- builds take about 60 seconds.
 
 						return 1
