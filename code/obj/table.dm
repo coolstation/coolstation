@@ -371,6 +371,13 @@
 						shake_camera(N, 4, 8, 0.5)
 			if(ismonkey(H)) // monkey table jump
 				actions.start(new /datum/action/bar/icon/railing_jump/table_jump(user, src), user)
+
+		// open drawer specifically in this zone
+		if (islist(params) && params["icon-y"])
+			if (text2num(params["icon-y"]) <= (8 + src.pixel_y))
+				playsound(src.loc, 'sound/machines/door_open.ogg', 50, 1, SOUND_RANGE_STANDARD) //needs better sound
+				return ..()
+
 		if (src.has_brakes)
 			if (!anchored)
 				boutput(user, "You apply \the [name]'s brake.")
@@ -378,12 +385,6 @@
 				boutput(user, "You release \the [name]'s brake.")
 			anchored = !anchored
 			return
-
-		// open drawer specifically in this zone
-		if (islist(params) && params["icon-y"])
-			if (text2num(params["icon-y"]) <= (8 + src.pixel_y))
-				playsound(src.loc, 'sound/machines/door_open.ogg', 50, 1, SOUND_RANGE_STANDARD) //needs better sound
-				return ..()
 
 	CanPass(atom/movable/mover, turf/target)
 		if (!src.density || (mover.flags & TABLEPASS || istype(mover, /obj/newmeteor)) )
