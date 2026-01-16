@@ -546,7 +546,9 @@
 /obj/item/proc/update_stack_appearance()
 	return
 
-/obj/item/proc/change_stack_amount(var/diff)
+/obj/item/proc/change_stack_amount(var/diff, mob/owner)
+	if(!usr) // SINFUL
+		usr = owner
 	if ((amount + diff) < 0)
 		return 0
 	amount += diff
