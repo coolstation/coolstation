@@ -184,7 +184,7 @@
 			src.statusEffects = null
 		atom_properties = null
 
-		src.remove_storage()
+		src.remove_storage(src.storage?.drop_on_dispose)
 		..()
 
 	proc/Turn(var/rot)

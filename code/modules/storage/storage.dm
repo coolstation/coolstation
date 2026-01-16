@@ -10,13 +10,18 @@
 	var/list/previous_storage = list()
 	for (var/obj/item/I as anything in src.storage?.get_contents())
 		previous_storage += I
-	src.remove_storage()
+	src.remove_storage(FALSE)
 	src.storage = new storage_type(src, spawn_contents, can_hold, can_hold_exact, prevent_holding, check_wclass, max_wclass, slots, sneaky, opens_if_worn, params)
 	for (var/obj/item/I as anything in previous_storage)
 		src.storage.add_contents(I)
 
 /// remove atom's storage
-/atom/proc/remove_storage()
+/atom/proc/remove_storage(drop_items = FALSE)
+	if(!src.storage)
+		return
+	if(drop_items)
+		for (var/obj/item/I as anything in src.storage.get_contents())
+			src.storage.transfer_stored_item(I, get_turf(src))
 	qdel(src.storage)
 	src.storage = null
 
@@ -46,9 +51,11 @@
 	var/atom/linked_item = null
 	/// All items stored
 	var/list/stored_items = null
+	/// Does this storage dump on the floor if the linked_item is disposed of
+	var/drop_on_dispose = FALSE
 
 /datum/storage/New(atom/storage_item, list/spawn_contents, list/can_hold, list/can_hold_exact, list/prevent_holding, check_wclass, max_wclass, \
-		slots, sneaky, opens_if_worn, list/params)
+		slots, sneaky, opens_if_worn, drop_on_dispose, list/params)
 	..()
 	src.stored_items = list()
 
@@ -62,6 +69,7 @@
 	src.slots = slots
 	src.sneaky = sneaky
 	src.opens_if_worn = opens_if_worn
+	src.drop_on_dispose = drop_on_dispose
 
 	if (istype(src.linked_item, /obj/item))
 		var/obj/item/I = src.linked_item
