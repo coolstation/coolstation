@@ -253,6 +253,7 @@
 					return
 				src.print_text(transmit_message)
 				generate_signal(comm_net_id, "command", "transmit", "acc_code", netpass_heads, "title", src.transmit_title, "data", transmit_message, "user", usr.real_name)
+				discord_send("**Incoming message to Central Command:** \n # [src.transmit_title] \n [transmit_message]","ss13chat")
 				logTheThing("admin", usr, null,  "attempted to contanct CentCom (title: [src.transmit_title], message: [transmit_message])")
 				logTheThing("diary", usr, null, "attempted to contanct CentCom (title: [src.transmit_title], message: [transmit_message])", "admin")
 

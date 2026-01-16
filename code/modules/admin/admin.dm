@@ -4601,7 +4601,7 @@ var/global/noir = 0
 
 		var/key = (usr?.client) ? usr.client.key : "NULL"
 		var/name = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
-		discord_send("[name] ([key]) has delayed the server restart.", "event")
+		discord_send("[name] ([key]) has delayed the server restart.", "centcom")
 
 	else if (game_end_delayed == 1)
 		game_end_delayed = 0
@@ -4612,7 +4612,7 @@ var/global/noir = 0
 
 		var/key = (usr?.client) ? usr.client.key : "NULL"
 		var/name = (usr?.real_name) ? stripTextMacros(usr.real_name) : "NULL"
-		discord_send("[name] ([key]) has removed the server restart delay.", "event")
+		discord_send("[name] ([key]) has removed the server restart delay.", "centcom")
 
 /mob/proc/revive()
 	if(ishuman(src))
