@@ -369,6 +369,8 @@
 /datum/storage/proc/transfer_stored_item(obj/item/I, atom/location, add_to_storage = FALSE, mob/user = null)
 	if (!(I in src.get_contents()))
 		return
+	if(I.anchored)
+		return
 	src.stored_items -= I
 	src.hud.remove_item(I, user)
 	I.stored = null
