@@ -6,6 +6,7 @@
 	wear_image_icon = 'icons/mob/jumpsuits/worn_js_gimmick.dmi'
 	inhand_image_icon = 'icons/mob/inhand/jumpsuit/hand_js_gimmick.dmi'
 	icon_state = "trashbag-f"
+	wear_image = "trashbag"
 	uses_multiple_icon_states = 1
 	item_state = ""
 	w_class = W_CLASS_TINY
@@ -30,7 +31,7 @@
 		if (!(W in src.storage.get_contents()))
 			return
 		var/mob/living/carbon/human/H = src.loc
-		if (prob(66) && istype(H) && H.w_uniform == src)
+		if (prob(25) && istype(H) && H.w_uniform == src)
 			src.remove_random_item(H)
 
 	attack_hand(mob/user)
