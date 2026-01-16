@@ -940,7 +940,7 @@
 /obj/item/proc/AfterAttack(atom/target, mob/user, reach, params)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, reach, params)
-	. = src.AfterAttack(target, user, reach, params)
+	. = src.afterattack(target, user, reach, params)
 
 /**
  * DO NOT CALL THIS PROC - Call AfterAttack(...) Instead!
