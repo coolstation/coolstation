@@ -247,7 +247,8 @@ ABSTRACT_TYPE(/obj/vehicle)
 	var/bat_warning = 10 // battery percentage at which warning plays
 	var/playing = FALSE //movement sound cooldown
 	var/bumpin = FALSE //Same as playing but for the bump animation
-	var/last_alert = 101
+	var/unresponsive_cooldown = FALSE //holy shit how many of these do I need to make
+	var/last_alert = 101 //this is the "baseline" for resetting the battery alert
 
 	soundproofing = 0
 	throw_dropped_items_overboard = 1
@@ -293,7 +294,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 		var/sound/siren = sound()
 		siren.file = "sound/machines/siren_police.ogg"
 		siren.repeat = 1
-		siren.volume = 100
+		siren.volume = 30
 		sound_emitter.add(siren, "siren_loop")
 
 
@@ -305,6 +306,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 		cell = C
 		playsound(src, "sound/machines/click.ogg", 50, 1)
 		src.visible_message("[user] inserts the [cell.name] into the [src]", "<span class='notice'>You insert the [cell.name] into the [src]</span>")
+		last_alert = 101
 
 	else if (isscrewingtool(I)) //It wasn't a cell? if it was a screwdriver, open or close the cover
 		open = !open
@@ -322,6 +324,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 		user.put_in_hand_or_drop(src.cell)
 		src.visible_message("[user] removes the [cell.name] from the [src]", "<span class='notice'>You remove the [cell.name] from the [src]</span>")
 		src.cell = null
+		last_alert = 101
 		playsound(src, "sound/machines/click.ogg", 50, 1)
 		src.weeoo_off()
 
@@ -351,7 +354,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/vehicle/segway/relaymove()
 	if(!cell || cell.charge < 1)
-		src.rider.show_message("<span class='notice'>The [src.name] doesn't respond.</span>")
+		unresponsive_message()
 		src.stop()
 		return
 	. = ..()
@@ -367,15 +370,26 @@ ABSTRACT_TYPE(/obj/vehicle)
 		return
 
 /obj/vehicle/segway/proc/segway_bump_animation()
-	if(bumpin == FALSE)
+	if(bumpin == FALSE && rider)
 		bump_twitch(src)
-		playsound(src.loc, "sound/impact_sounds/Metal_Hit_Heavy_1.ogg", 10, 1)
+		playsound(src.loc, "sound/impact_sounds/Metal_Clang_3.ogg", 25, 1)
 		bumpin = TRUE
 		SPAWN_DBG(0.7 SECONDS)
 			bumpin = FALSE
 			return
 	else
 		return
+
+/obj/vehicle/segway/proc/unresponsive_message()
+	if(unresponsive_cooldown == FALSE)
+		src.rider.show_message("<span class='notice'>The [src.name] doesn't respond.</span>")
+		unresponsive_cooldown = TRUE
+		SPAWN_DBG(0.7 SECONDS)
+			unresponsive_cooldown = FALSE
+			return
+	else
+		return
+
 
 
 /obj/vehicle/segway/proc/weeoo()
@@ -384,7 +398,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 		return
 
 	if(cell.charge > 1)
-		weeoo_in_progress = 500
+		weeoo_in_progress = 100
 		SPAWN_DBG(0)
 			src.sound_emitter.play("siren_loop")
 			light.enable()
