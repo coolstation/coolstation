@@ -387,7 +387,7 @@
 			anchored = !anchored
 			return
 
-		return ..()
+		return
 
 	CanPass(atom/movable/mover, turf/target)
 		if (!src.density || (mover.flags & TABLEPASS || istype(mover, /obj/newmeteor)) )
