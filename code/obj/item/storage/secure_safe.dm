@@ -584,20 +584,25 @@
 		var/loot = rand(1,2)
 		switch (loot)
 			if (1)
-				new /obj/item/storage/firstaid/brain(src)
-				new /obj/item/storage/firstaid/toxin(src)
-				new /obj/item/storage/firstaid/old(src)
-				new /obj/item/parts/robot_parts/head(src)
+				src.storage.add_contents(new /obj/item/storage/firstaid/brain(src))
+				src.storage.add_contents(new /obj/item/storage/firstaid/toxin(src))
+				src.storage.add_contents(new /obj/item/storage/firstaid/old(src))
+				src.storage.add_contents(new /obj/item/parts/robot_parts/head(src))
 			if (2)
-				new /obj/item/injector_belt(src)
-				new /obj/item/reagent_containers/glass/bottle/morphine(src)
-				new /obj/item/reagent_containers/syringe(src)
+				src.storage.add_contents(new /obj/item/injector_belt(src))
+				src.storage.add_contents(new /obj/item/reagent_containers/glass/bottle/morphine(src))
+				src.storage.add_contents(new /obj/item/reagent_containers/syringe(src))
 
 /obj/item/storage/secure/ssafe/vonricken
 	configure_mode = 0
 	random_code = 1
-	spawn_contents = list(/obj/item/clothing/shoes/cyborg, /obj/item/clothing/suit/cyborg_suit, /obj/item/clothing/gloves/cyborg, /obj/item/paper/thevonricken)
 
+	New()
+		..()
+		src.storage.add_contents(new /obj/item/clothing/shoes/cyborg(src))
+		src.storage.add_contents(new /obj/item/clothing/suit/cyborg_suit(src))
+		src.storage.add_contents(new /obj/item/clothing/gloves/cyborg(src))
+		src.storage.add_contents(new /obj/item/paper/thevonricken(src))
 
 /obj/item/paper/thevonricken
 	name = "This is hell! Oh god!"
@@ -632,18 +637,18 @@
 		var/loot = rand(1,2)
 		switch (loot)
 			if (1)
-				new /obj/item/storage/pill_bottle/cyberpunk(src)
-				new /obj/item/storage/pill_bottle/ipecac(src)
-				new /obj/item/gun/modular/italian/revolver/basic(src)
-				new /obj/item/stackable_ammo/pistol/NT/five(src)
-				new /obj/item/paper/orangeroomsafe(src)
+				src.storage.add_contents(new /obj/item/storage/pill_bottle/cyberpunk(src))
+				src.storage.add_contents(new /obj/item/storage/pill_bottle/ipecac(src))
+				src.storage.add_contents(new /obj/item/gun/modular/italian/revolver/basic(src))
+				src.storage.add_contents(new /obj/item/stackable_ammo/pistol/NT/five(src))
+				src.storage.add_contents(new /obj/item/paper/orangeroomsafe(src))
 			if (2)
-				new /obj/item/storage/pill_bottle/bathsalts(src)
-				new /obj/item/reagent_containers/pill/crank(src)
-				new /obj/item/reagent_containers/patch/LSD(src)
-				new /obj/item/paint_can/random(src)
+				src.storage.add_contents(new /obj/item/storage/pill_bottle/bathsalts(src))
+				src.storage.add_contents(new /obj/item/reagent_containers/pill/crank(src))
+				src.storage.add_contents(new /obj/item/reagent_containers/patch/LSD(src))
+				src.storage.add_contents(new /obj/item/paint_can/random(src))
 				var/obj/item/spacecash/random/tourist/S = new()
-				S.setup(src)
+				S.setup(src, try_add_to_storage = TRUE)
 
 /obj/item/paper/orangeroomsafe
 	name = "Bon voyage!"
@@ -675,17 +680,17 @@
 		var/loot = rand(1,4)
 		switch (loot)
 			if (1)
-				new /obj/item/reagent_containers/food/drinks/moonshine(src)
-				new /obj/item/skull(src)
+				src.storage.add_contents(new /obj/item/reagent_containers/food/drinks/moonshine(src))
+				src.storage.add_contents(new /obj/item/skull(src))
 			if (2)
-				new /obj/item/material_piece/gold(src)
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
 				var/obj/item/spacecash/random/tourist/S = new()
-				S.setup(src)
+				S.setup(src, try_add_to_storage = TRUE)
 			if (3)
-				new /obj/item/gun/modular/NT/shotty(src)
-				new /obj/item/stackable_ammo/shotgun/slug_rubber/ten(src)
+				src.storage.add_contents(new /obj/item/gun/modular/NT/shotty(src))
+				src.storage.add_contents(new /obj/item/stackable_ammo/shotgun/slug_rubber/ten(src))
 			if (4)
-				new /obj/item/paper/freeze(src)
+				src.storage.add_contents(new /obj/item/paper/freeze(src))
 
 /obj/item/paper/freeze
 	name = "paper-'Recipe for Freeze'"
@@ -701,23 +706,39 @@
 /obj/item/storage/secure/ssafe/martian
 	configure_mode = 0
 	random_code = 1
-	spawn_contents = list(/obj/item/device/key/lead,\
-	/obj/item/paper/intelligence_report,\
-	/obj/item/material_piece/gold = 2)
+
+	New()
+		..()
+		src.storage.add_contents(new /obj/item/device/key/lead(src))
+		src.storage.add_contents(new /obj/item/paper/intelligence_report(src))
+		src.storage.add_contents(new /obj/item/material_piece/gold(src))
+		src.storage.add_contents(new /obj/item/material_piece/gold(src))
 
 /obj/item/storage/secure/ssafe/icemoon
 	configure_mode = 0
 	random_code = 1
-	spawn_contents = list(/obj/item/gun/modular/italian/revolver/improved,
-	/obj/item/chilly_orb, // a thing to confuse people
-	/obj/item/spacecash/thousand = 3)
+
+	New()
+		..()
+		src.storage.add_contents(new /obj/item/gun/modular/italian/revolver/improved(src))
+		src.storage.add_contents(new /obj/item/chilly_orb(src))
+		var/obj/item/spacecash/thousand/S = new()
+		S.setup(src, try_add_to_storage = TRUE)
+		S = new()
+		S.setup(src, try_add_to_storage = TRUE)
+		S = new()
+		S.setup(src, try_add_to_storage = TRUE)
 
 /obj/item/storage/secure/ssafe/candy_shop
 	configure_mode = 0
 	random_code = 1
-	spawn_contents = list(/obj/item/robot_foodsynthesizer,\
-	/obj/item/spacecash/thousand,\
-	/obj/item/stackable_ammo/rifle/tranq/three)
+
+	New()
+		..()
+		src.storage.add_contents(new /obj/item/robot_foodsynthesizer(src))
+		var/obj/item/spacecash/thousand/S = new()
+		S.setup(src, try_add_to_storage = TRUE)
+		src.storage.add_contents(new /obj/item/stackable_ammo/rifle/tranq/three)
 
 /obj/item/storage/secure/ssafe/shooting_range //prefab safe
 	configure_mode = 0
@@ -739,47 +760,46 @@
 		var/loot = rand(1,5)
 		switch (loot)
 			if (1)
-				new /obj/item/material_piece/gold(src)
-				new /obj/item/material_piece/gold(src)
-				new /obj/item/scrap(src)
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
+				src.storage.add_contents(new /obj/item/scrap(src))
 			if (2)
-				new /obj/item/material_piece/gold(src)
-				new /obj/item/skull(src)
-				new /obj/item/parts/human_parts/arm/left(src)
-				new /obj/item/parts/human_parts/leg/right(src)
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
+				src.storage.add_contents(new /obj/item/skull(src))
+				src.storage.add_contents(new /obj/item/parts/human_parts/arm/left(src))
+				src.storage.add_contents(new /obj/item/parts/human_parts/leg/right(src))
 				var/obj/item/spacecash/thousand/S = new()
-				S.setup(src)
+				S.setup(src, try_add_to_storage = TRUE)
 				S = new()
-				S.setup(src)
-
+				S.setup(src, try_add_to_storage = TRUE)
 			if (3)
-				new /obj/item/material_piece/gold(src)
-				new /obj/item/material_piece/gold(src)
-				new /obj/item/football(src)
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
+				src.storage.add_contents(new /obj/item/football(src))
 				var/obj/item/spacecash/thousand/S = new()
-				S.setup(src)
+				S.setup(src, try_add_to_storage = TRUE)
 				S = new()
-				S.setup(src)
+				S.setup(src, try_add_to_storage = TRUE)
 
 			if (4)
-				new /obj/item/material_piece/gold(src)
-				new /obj/item/material_piece/gold(src)
-				new	/obj/item/instrument/saxophone(src)
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
+				src.storage.add_contents(new /obj/item/instrument/saxophone(src))
 				var/obj/item/spacecash/thousand/S = new()
-				S.setup(src)
+				S.setup(src, try_add_to_storage = TRUE)
 				S = new()
-				S.setup(src)
+				S.setup(src, try_add_to_storage = TRUE)
 
 			if (5)
-				new /obj/item/material_piece/gold(src)
-				new /obj/item/material_piece/gold(src)
-				new /obj/item/skull(src)
-				new /obj/item/skull(src)
-				new /obj/item/skull(src)
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
+				src.storage.add_contents(new /obj/item/material_piece/gold(src))
+				src.storage.add_contents(new /obj/item/skull(src))
+				src.storage.add_contents(new /obj/item/skull(src))
+				src.storage.add_contents(new /obj/item/skull(src))
 				var/obj/item/spacecash/thousand/S = new()
-				S.setup(src)
+				S.setup(src, try_add_to_storage = TRUE)
 				S = new()
-				S.setup(src)
+				S.setup(src, try_add_to_storage = TRUE)
 
 	disposing()
 		. = ..()
