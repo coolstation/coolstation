@@ -39,7 +39,7 @@
 			colorcache = src.color
 		..()
 		if (src.has_drawer)
-			src.create_storage(/datum/storage/unholdable, spawn_contents = src.drawer_contents, slots = 13, max_wclass = W_CLASS_SMALL)
+			src.create_storage(/datum/storage/unholdable, spawn_contents = src.drawer_contents, slots = 15, max_wclass = W_CLASS_SMALL)
 
 		//Surgery tray copy paste
 		if (!islist(src.attached_objs))
@@ -373,10 +373,11 @@
 				actions.start(new /datum/action/bar/icon/railing_jump/table_jump(user, src), user)
 
 		// open drawer specifically in this zone
-		if (islist(params) && params["icon-y"])
+		if (islist(params) && params["icon-y"] && src.storage)
 			if (text2num(params["icon-y"]) <= (8 + src.pixel_y))
 				playsound(src.loc, 'sound/machines/door_open.ogg', 50, 1, SOUND_RANGE_STANDARD) //needs better sound
-				return ..()
+				src.MouseDrop(user) // handles the whole "drawer" thang
+				return
 
 		if (src.has_brakes)
 			if (!anchored)
@@ -385,6 +386,8 @@
 				boutput(user, "You release \the [name]'s brake.")
 			anchored = !anchored
 			return
+
+		return ..()
 
 	CanPass(atom/movable/mover, turf/target)
 		if (!src.density || (mover.flags & TABLEPASS || istype(mover, /obj/newmeteor)) )
