@@ -205,8 +205,7 @@ This is because if one 'square' element was used to cover the entire space, you 
 		offset_x = tg_layout ? (i%slots_per_group) : round(i/slots_per_group)
 		offset_y = tg_layout ? round(i/slots_per_group) : (i%slots_per_group)
 		empty_obj_loc =  "[pos_x+offset_x],[pos_y+offset_y]:[pixel_y_adjust]"
-		if(isitem(master))
-			I.tooltip_rebuild = 1
+		master.linked_item?.update_icon()
 		src.update_box_icons(user)
 
 	proc/add_item(obj/item/I, mob/user = usr)

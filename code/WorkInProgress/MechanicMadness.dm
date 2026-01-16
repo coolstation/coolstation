@@ -170,7 +170,7 @@
 		close_storage_menus() // still ugly but probably quite better performing
 			for(var/mob/chump in src.users)
 				for(var/datum/hud/storage/hud in chump.huds)
-					if(hud.master==src) hud.close.clicked()
+					if(hud.master.linked_item == src) hud.close_button.clicked()
 			src.users = list() // gee golly i hope garbage collection does its job
 			return 1
 		destroy_outside_connections()
