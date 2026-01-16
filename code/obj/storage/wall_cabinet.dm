@@ -22,7 +22,7 @@
 	New()
 		..()
 		// these can't move so I guess we may as well let them store more stuff?
-		src.create_storage(/datum/storage/unholdable, slots = 13, max_wclass = W_CLASS_BULKY)
+		src.create_storage(/datum/storage/unholdable, slots = 15, max_wclass = W_CLASS_BULKY)
 		update_icon()
 
 	disposing()
