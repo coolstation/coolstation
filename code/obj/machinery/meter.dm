@@ -12,10 +12,15 @@
 
 /obj/machinery/meter/New()
 	..()
+	AddComponent(/datum/component/mechanics_holder)
 	SPAWN_DBG(1 SECOND)
 		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 	net_id = generate_net_id(src)
 	MAKE_SENDER_RADIO_PACKET_COMPONENT(net_id, frequency)
+
+/obj/machinery/meter/disposing()
+	SEND_SIGNAL(src, COMSIG_MECHCOMP_RM_ALL_CONNECTIONS)
+	..()
 
 /obj/machinery/meter/process()
 	if(!target)
@@ -65,6 +70,8 @@
 		signal.data["pressure"] = round(env_pressure)
 
 		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
+
+	SEND_SIGNAL(src, COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "[round(env_pressure)]")
 
 /obj/machinery/meter/attackby(obj/item/I, mob/user)
 	if(ispulsingtool(I))
