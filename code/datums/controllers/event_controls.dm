@@ -66,8 +66,8 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 	var/datum/random_event/sets/lunchtime/lunch_event = null
 
 	var/next_lunch_event = LUNCH_TIME_BEGIN
-	var/time_between_lunch_event_lower = 100 SECONDS
-	var/time_between_lunch_event_upper = 300 SECONDS
+	var/time_between_lunch_event_lower = 300 SECONDS
+	var/time_between_lunch_event_upper = 500 SECONDS
 
 	var/time_lock = 1
 	var/list/special_events = list()
