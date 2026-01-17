@@ -238,8 +238,8 @@
 	/obj/item/reagent_containers/food/drinks/bottle/tequila)
 
 	update_icon()
-		var/list/my_contents = src.storage.get_contents()
-		if (my_contents.len <= 0)
+		var/list/my_contents = src.storage?.get_contents()
+		if (my_contents?.len <= 0)
 			src.icon_state = "bottlerack-empty"
 		else
 			src.icon_state = "bottlerack"

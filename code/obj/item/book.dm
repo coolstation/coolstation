@@ -531,6 +531,49 @@ soon the light of the unwaking will rise and the shining ones will not be prepar
 		onclose(user, "[id]")
 
 		return
+/******************** PAPERWORKS ********************/
+/*
+To encourage paperwork rp. More to come as I make them- I plan to have at least four for every department. These can be found in the appropriate paper bins
+or in administrative suite disks.
+*/
+
+//HOP
+
+/obj/item/paper/from_file/cf001
+	name = "CF001 Occupation Change Request"
+	desc = "For occupation change requests at the HoP office."
+	icon_state = "paper"
+	file_path = "strings/klushyforms/CF001.txt"
+
+/obj/item/paper/from_file/cf002
+	name = "CF002 Access Change Request"
+	desc = "For access change requests at the HoP office."
+	icon_state = "paper"
+	file_path = "strings/klushyforms/CF002.txt"
+
+/obj/item/paper/from_file/cf003
+	name = "CF003 Promotion Form"
+	desc = "For staff promotion documentation."
+	icon_state = "paper"
+	file_path = "strings/klushyforms/CF003.txt"
+
+//CARGO
+
+/obj/item/paper/from_file/lg001
+	name = "LG001 Cargo Requisition"
+	desc = "For requests at the Cargo office."
+	icon_state = "paper"
+	file_path = "strings/klushyforms/LG001.txt"
+
+//GENERAL
+
+/obj/item/paper/from_file/gf001
+	name = "GF001 General Request Form"
+	desc = "For misc. requests of a Head of Staff."
+	icon_state = "paper"
+	file_path = "strings/klushyforms/GF001.txt"
+
+
 
 /******************** CUSTOM BOOKS ********************/
 
