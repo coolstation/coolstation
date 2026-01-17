@@ -92,6 +92,13 @@ var/global/map_crappy_power = 1
 var/global/map_crappy_power = 0
 #endif
 
+//will people spawn with lit cigarettes in their mouth/hand??
+#ifdef EVERYONE_SPAWNS_SMOKING
+var/global/crew_gets_complimentary_smoke = 1
+#else
+var/global/crew_gets_complimentary_smoke = 0
+#endif
+
 #ifdef TWITCH_BOT_ALLOWED
 var/global/mob/twitch_mob = 0
 #endif
