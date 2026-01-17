@@ -73,7 +73,15 @@ obj/machinery/atmospherics/valve
 
 		New()
 			..()
+			AddComponent(/datum/component/mechanics_holder)
+			SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"toggle", "mechToggle")
+			SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"open", "mechOpen")
+			SEND_SIGNAL(src,COMSIG_MECHCOMP_ADD_INPUT,"close", "mechClose")
 			MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, frequency)
+
+		disposing()
+			SEND_SIGNAL(src, COMSIG_MECHCOMP_RM_ALL_CONNECTIONS)
+			..()
 
 		receive_signal(datum/signal/signal)
 			if(signal.data["tag"] && (signal.data["tag"] != id))
@@ -93,6 +101,23 @@ obj/machinery/atmospherics/valve
 						close()
 					else
 						open()
+
+		proc/mechToggle()
+			if(open)
+				close()
+			else
+				open()
+			return
+
+		proc/mechOpen()
+			if(!open)
+				open()
+			return
+
+		proc/mechClose()
+			if(open)
+				close()
+			return
 
 	network_disposing(datum/pipe_network/reference)
 		if (network_node1 == reference)

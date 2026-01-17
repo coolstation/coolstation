@@ -1468,8 +1468,6 @@ proc/get_colosseum_message(var/name, var/message)
 				explosion_new(src, T, 5)
 			for(T in range(src,1))
 				make_cleanable(/obj/decal/cleanable/machine_debris, T)
-				var/obj/decal/cleanable/machine_debris/C = new()
-				C.setup(T)
 
 			qdel(src)
 

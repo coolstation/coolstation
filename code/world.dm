@@ -92,6 +92,13 @@ var/global/map_crappy_power = 1
 var/global/map_crappy_power = 0
 #endif
 
+//will people spawn with lit cigarettes in their mouth/hand??
+#ifdef EVERYONE_SPAWNS_SMOKING
+var/global/crew_gets_complimentary_smoke = 1
+#else
+var/global/crew_gets_complimentary_smoke = 0
+#endif
+
 #ifdef TWITCH_BOT_ALLOWED
 var/global/mob/twitch_mob = 0
 #endif
@@ -128,6 +135,13 @@ var/global/mob/twitch_mob = 0
 	fdel(F)
 	F << the_mode
 #endif
+
+/world/proc/set_map_tgs(var/the_string)
+
+	var/F = file("data/map.dm")
+	fdel(F)
+	F << the_string
+
 
 /world/proc/load_intra_round_value(var/field) //Currently for solarium effects, could also be expanded to that pickle jar idea.
 	var/path = "data/intra_round.sav"
@@ -731,7 +745,7 @@ var/f_color_selector_handler/F_Color_Selector
 	Z_LOG_DEBUG("World/Init", "Setting up a test transmission...")
 	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing)
 	//new /datum/directed_broadcast/testing_finite //this gets tracked it should be fine :)
-	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing_teevee)
+	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing_teevee, 1, -1, 1)
 
 #ifdef TWITCH_BOT_ALLOWED
 	for (var/client/C)
@@ -765,6 +779,8 @@ var/f_color_selector_handler/F_Color_Selector
 
 //Crispy fullban
 /proc/Reboot_server(var/retry)
+
+/* dont need this part anymore
 	//ohno the map switcher is in the midst of compiling a new map, we gotta wait for that to finish
 	if (mapSwitcher.locked)
 		//we're already holding and in the reboot retry loop, do nothing
@@ -778,7 +794,7 @@ var/f_color_selector_handler/F_Color_Selector
 			mapSwitcher.attemptReboot()
 
 		return
-
+*/
 #if defined(SERVER_SIDE_PROFILING) && (defined(SERVER_SIDE_PROFILING_FULL_ROUND) || defined(SERVER_SIDE_PROFILING_INGAME_ONLY))
 #if defined(SERVER_SIDE_PROFILING_INGAME_ONLY) || !defined(SERVER_SIDE_PROFILING_PREGAME)
 	// This is a profiler dump of only the in-game part of the round
@@ -1203,8 +1219,8 @@ var/f_color_selector_handler/F_Color_Selector
 								for (var/obj/item/I in H.contents)
 									if (istype(I,/obj/item/organ) || istype(I,/obj/item/skull) || istype(I,/obj/item/parts) || istype(I,/atom/movable/screen/hud)) continue //FUCK
 									hudlist += I
-									if (istype(I,/obj/item/storage))
-										hudlist += I.contents
+									if (I.storage)
+										hudlist += I.storage.get_contents()
 
 							var/list/close_match = list()
 							for (var/obj/item/I in view(1,twitch_mob) + hudlist)

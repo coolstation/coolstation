@@ -1554,38 +1554,6 @@
 			onclose(user, "guardbot")
 			return
 
-		update_icon()
-			var/emotion_image = null
-
-			if(!src.on)
-				src.icon_state = "robuddy0"
-
-			else if(src.stunned)
-				src.icon_state = "robuddya"
-
-			else if(src.idle)
-				src.icon_state = "robuddy_idle"
-
-			else
-				if (src.emotion)
-					emotion_image = image(src.icon, "face-[src.emotion]")
-				src.icon_state = "robuddy1"
-
-			src.overlays = list( emotion_image, src.bedsheet ? image(src.icon, "bhat-ghost[src.bedsheet]") : null, src.costume_icon ? costume_icon : null)
-
-			if (src.hat && !src.hat_shown)
-				var/image/hat_image = image(src.hat_icon, "bhat-[src.hat.icon_state]",,layer = 9.5) //TODO LAYER
-				hat_image.pixel_x = hat_x_offset
-				hat_image.pixel_y = hat_y_offset
-				src.underlays = list(hat_image)
-				src.hat_shown = 1
-
-			if (src.budgun)
-				src.overlays += image(budgun.icon, budgun.icon_state, layer = 10, pixel_x = src.gun_x_offset, pixel_y = src.gun_y_offset)
-
-			src.icon_needs_update = 0
-			return
-
 		set_beacon_freq(var/newfreq)
 			if (!newfreq) return
 			newfreq = sanitize_frequency(newfreq)
@@ -1654,6 +1622,39 @@
 		if (clear_frustration)
 			src.frustration = 0
 		. = ..()
+
+
+	update_icon()
+		var/emotion_image = null
+
+		if(!src.on)
+			src.icon_state = "robuddy0"
+
+		else if(src.stunned)
+			src.icon_state = "robuddya"
+
+		else if(src.idle)
+			src.icon_state = "robuddy_idle"
+
+		else
+			if (src.emotion)
+				emotion_image = image(src.icon, "face-[src.emotion]")
+			src.icon_state = "robuddy1"
+
+		src.overlays = list( emotion_image, src.bedsheet ? image(src.icon, "bhat-ghost[src.bedsheet]") : null, src.costume_icon ? costume_icon : null)
+
+		if (src.hat && !src.hat_shown)
+			var/image/hat_image = image(src.hat_icon, "bhat-[src.hat.icon_state]",,layer = 9.5) //TODO LAYER
+			hat_image.pixel_x = hat_x_offset
+			hat_image.pixel_y = hat_y_offset
+			src.underlays = list(hat_image)
+			src.hat_shown = 1
+
+		if (src.budgun)
+			src.overlays += image(budgun.icon, budgun.icon_state, layer = 10, pixel_x = src.gun_x_offset, pixel_y = src.gun_y_offset)
+
+		src.icon_needs_update = 0
+		return
 
 //Buddy handcuff bar thing
 /datum/action/bar/icon/buddy_cuff

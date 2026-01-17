@@ -97,14 +97,6 @@
 	UpdateName()
 		src.name = "[name_prefix(null, 1)][src.real_name ? src.real_name : initial(src.name)][name_suffix(null, 1)]"
 
-	proc/move_trigger(var/mob/M, var/kindof)
-		var/atom/movable/x = loc
-		while (x && !isarea(x) && x != M)
-			x = x.loc
-		if (!x || isarea(x))
-			return 0
-		return 1
-
 	proc/onDestroy()
 		qdel(src)
 		return

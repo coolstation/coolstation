@@ -432,7 +432,7 @@
 	dir = EAST
 
 	// Added ex_act and meteorhit handling here (Convair880).
-	proc/update_icon()
+	update_icon()
 		if (!src) return
 		src.set_dir(NORTHEAST)
 		src.destroyed = 1
@@ -519,7 +519,7 @@
 	var/destroyed = 0
 
 	// stole all of this from the captain's shrub lol
-	proc/update_icon()
+	update_icon()
 		if (!src) return
 		src.destroyed = 1
 		src.desc = "The scattered remains of a once-beautiful ship in a bottle."
@@ -682,7 +682,7 @@
 		if (istype(src.mySwitch))
 			src.mySwitch.toggle()
 
-	proc/update_icon()
+	update_icon()
 		if (src.open)
 			src.icon_state = "[src.base_state]-c"
 			src.opacity = 1
@@ -1083,7 +1083,7 @@ obj/decoration/ceilingfan
 		light.set_color(col_r, col_g, col_b)
 		light.attach(src)
 
-	proc/update_icon()
+	update_icon()
 		if (src.lit == 1)
 			src.icon_state = src.icon_on
 			light.enable()
@@ -1474,7 +1474,7 @@ obj/decoration/ceilingfan
 		update_icon()
 		light.attach(src)
 
-	proc/update_icon()
+	update_icon()
 		if (src.lit == 1)
 			src.icon_state = src.icon_on
 			light.enable()

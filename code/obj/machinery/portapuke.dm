@@ -194,7 +194,7 @@
 			O.set_loc(get_turf(src))
 
 
-	proc/update_icon()
+	update_icon()
 		icon_state = src.n_occupants > 0 ? "puke_1" : "puke_0"
 
 

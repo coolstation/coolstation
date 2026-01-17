@@ -231,7 +231,7 @@
 			return src.Attackby(W, user)
 		return ..()
 
-	proc/update_icon()
+	update_icon()
 		if(src.beaker)
 			src.overlays += image(src.icon, "ice_creamer_beaker")
 		else
@@ -399,7 +399,7 @@
 			return src.Attackby(W, user)
 		return ..()
 
-	proc/update_icon()
+	update_icon()
 		if(src.beaker)
 			src.overlays += image(src.icon, "ice_creamer_beaker")
 		else
@@ -1259,7 +1259,7 @@ table#cooktime a#start {
 			W.dropped()
 			return
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		..()
 		if (get_dist(src, usr) > 1 || !isliving(usr) || iswraith(usr) || isintangible(usr))
 			return
@@ -1510,7 +1510,7 @@ var/list/mixer_recipes = list()
 			src.updateUsrDialog()
 			return
 
-	proc/update_icon()
+	update_icon()
 		if (!src || !istype(src))
 			return
 

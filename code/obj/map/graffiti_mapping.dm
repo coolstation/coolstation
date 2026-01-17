@@ -35,24 +35,24 @@
 	generate_worldgen()
 		//var/olddir = src.dir
 		src.icon = 'icons/obj/decals/graffiti.dmi'
-		var/obj/decal/cleanable/gang_graffiti/other_piece = new()
+		var/obj/decal/cleanable/gang_graffiti/other_piece
 		//Only after rebuilding and importing all the graffitis did I realise their ordering is kinda wack
 		//SOUTH and NORTH are graffitis that extend eastwards, EAST AND WEST extend north.
 		switch(src.dir)
 			if (NORTH)
-				other_piece.set_loc(get_step(src, EAST))
+				other_piece = new(get_step(src, EAST))
 				other_piece.icon_state = src.icon_state + "-1"
 				src.icon_state = src.icon_state + "-2"
 			if (SOUTH)
-				other_piece.set_loc(get_step(src, EAST))
+				other_piece = new(get_step(src, EAST))
 				other_piece.icon_state = src.icon_state + "-2"
 				src.icon_state = src.icon_state + "-1"
 			if (WEST)
-				other_piece.set_loc(get_step(src, NORTH))
+				other_piece = new(get_step(src, NORTH))
 				other_piece.icon_state = src.icon_state + "-1"
 				src.icon_state = src.icon_state + "-2"
 			if (EAST)
-				other_piece.set_loc(get_step(src, NORTH))
+				other_piece = new(get_step(src, NORTH))
 				other_piece.icon_state = src.icon_state + "-2"
 				src.icon_state = src.icon_state + "-1"
 		other_piece.set_dir(src.dir)

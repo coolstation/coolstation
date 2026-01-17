@@ -154,12 +154,11 @@ Contains:
 			range = min(range, 10)		// was 8 // is 8 again // nope its 10
 
 			if(src in bible_contents)
-				for_by_tcl(B, /obj/item/storage/bible)//world)
+				for_by_tcl(B, /obj/item/bible)//world)
 					var/turf/T = get_turf(B.loc)
 					if(T)
 						logTheThing("bombing", src, null, "exploded at [showCoords(T.x, T.y, T.z)], range: [range], last touched by: [src.fingerprintslast]")
 						explosion(src, T, round(range*0.25), round(range*0.5), round(range), round(range*1.5))
-				bible_contents.Remove(src)
 				qdel(src)
 				return
 			var/turf/epicenter = get_turf(loc)
@@ -442,12 +441,11 @@ Contains:
 
 		if(src in bible_contents)
 			strength = fuel_moles/20
-			for_by_tcl(B, /obj/item/storage/bible)//world)
+			for_by_tcl(B, /obj/item/bible)//world)
 				var/turf/T = get_turf(B.loc)
 				if(T)
 					explosion(src, T, 0, strength, strength*2, strength*3)
 			if(src.master) qdel(src.master)
-			bible_contents.Remove(src)
 			qdel(src)
 			return
 

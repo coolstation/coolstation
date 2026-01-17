@@ -72,6 +72,9 @@
 #define Z3_IS_CAVES
 #define RAILWAY_Y 163
 
+#elif defined(MAP_OVERRIDE_SUMMIT)
+#define SNOW_MAP
+
 #elif defined(MAP_OVERRIDE_CHUNK)
 
 #elif defined(MAP_OVERRIDE_BAYOUBEND)

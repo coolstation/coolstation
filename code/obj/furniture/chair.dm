@@ -194,7 +194,7 @@
 					user.unlock_medal("Leave no man behind!", 1)
 		return
 
-	MouseDrop(atom/over_object as mob|obj)
+	mouse_drop(atom/over_object as mob|obj)
 		if(get_dist(src,usr) <= 1)
 			src.rotate(get_dir(get_turf(src),get_turf(over_object)))
 		..()
@@ -380,7 +380,7 @@
 				C.set_dir(dir)
 		return
 
-	proc/update_icon()
+	update_icon()
 		if (src.dir == NORTH)
 			src.layer = FLY_LAYER+1
 		else

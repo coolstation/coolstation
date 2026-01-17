@@ -842,14 +842,6 @@
 		return
 
 
-	if (issilicon(user) && !isghostdrone(user))
-		return
-		/*if (isghostdrone(user))
-			return src.Attackhand(user)
-		else
-			return*/
-
-
 	// see if there's a magtractor involved and if so save it for later as mag
 	var/obj/item/magtractor/mag
 	if (istype(W, /obj/item/magtractor))

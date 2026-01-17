@@ -58,7 +58,7 @@
 	MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, "[alarm_frequency]")
 
 	update_icon()
-	setup_sound()
+	//setup_sound()
 
 /obj/machinery/firealarm/setup_sound()
 	sound_emitter = new(src)
@@ -69,7 +69,7 @@
 		alarm.volume = 60
 		sound_emitter.add(alarm, "alarm") // played by area/firealert
 
-/obj/machinery/firealarm/proc/update_icon()
+/obj/machinery/firealarm/update_icon()
 	switch(icon_state)
 		if("fire0")
 			src.UpdateOverlays(fire0, "fire0")
@@ -80,7 +80,6 @@
 		else
 			src.UpdateOverlays(null, "fire0")
 			src.UpdateOverlays(null, "fire1")
-	MAKE_DEFAULT_RADIO_PACKET_COMPONENT(null, alarm_frequency)
 
 /obj/machinery/firealarm/disposing()
 	STOP_TRACKING
@@ -203,11 +202,10 @@
 	post_alert(1)
 
 	SEND_SIGNAL(src,COMSIG_MECHCOMP_TRANSMIT_SIGNAL,"alertTriggered")
-/*
+
 	if (!src.ringlimiter)
 		src.ringlimiter = 1
 		playsound(src.loc, "sound/machines/firealarm.ogg", 50, 1)
-*/
 
 	update_icon()
 	src.dont_spam = 1

@@ -20,9 +20,6 @@
 	inventory_counter_enabled = 1
 
 	proc
-		update_icon()
-			return
-
 		swap(var/obj/item/ammo/A)
 			return
 
@@ -909,7 +906,7 @@
 	New()
 		..()
 		AddComponent(/datum/component/power_cell, max_charge, charge, recharge_rate)
-		RegisterSignal(src, COMSIG_UPDATE_ICON, PROC_REF(update_icon))
+		RegisterSignal(src, COMSIG_UPDATE_ICON, /atom/proc/update_icon)
 		desc = "A power cell that holds a max of [src.max_charge]PU. Can be inserted into any energy gun, even tasers!"
 		update_icon()
 

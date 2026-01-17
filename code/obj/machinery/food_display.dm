@@ -31,7 +31,7 @@
 		return
 	use_power(power_usage)
 
-/obj/machinery/food_display/proc/update_icon()
+/obj/machinery/food_display/update_icon()
 	if (status & BROKEN)
 		ClearAllOverlays()
 		return

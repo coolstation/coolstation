@@ -107,20 +107,29 @@
 				S.satchel_updateicon()
 				user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
 				return
-		if (istype(I,/obj/item/storage/) && I.contents.len)
+		if (length(I.storage?.get_contents()))
 			var/action = input(user, "What do you want to do with [I]?") as null|anything in list("Place it in the Chute","Empty it into the chute","Never Mind")
 			if (!action || action == "Never Mind")
 				return
 			if (!in_interact_range(src, user))
 				boutput(user, "<span class='alert'>You need to be closer to the chute to do that.</span>")
 				return
-			if (action == "Empty it into the chute")
-				var/obj/item/storage/S = I
-				for(var/obj/item/O in S)
-					O.set_loc(src)
-					S.hud.remove_object(O)
-				user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
-				return
+			if(istype(I, /obj/item/storage/secure))
+				var/obj/item/storage/secure/secS = I
+				if(secS.locked)
+					user.visible_message("[user.name] places \the [secS] into \the [src].",\
+						"You place \the [secS] into \the [src].")
+					user.drop_item()
+					secS.set_loc(src)
+					actions.interrupt(user, INTERRUPT_ACT)
+					src.update()
+					return
+			for(var/obj/item/O in I.storage.get_contents())
+				I.storage.transfer_stored_item(O, src, user = user)
+			user.visible_message("<b>[user.name]</b> dumps out [I] into [src].")
+			actions.interrupt(user, INTERRUPT_ACT)
+			src.update()
+			return
 		if (istype(I,/obj/item/decoration/ashtray/) && I:butts)
 			var/action = input(user, "What do you want to do with [I]?") as null|anything in list("Place it in the Chute","Empty it into the chute","Never Mind")
 			if (!action || action == "Never Mind")

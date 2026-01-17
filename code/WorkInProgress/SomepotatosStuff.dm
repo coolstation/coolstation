@@ -190,7 +190,7 @@
 	set name = "GPS"
 	set category = "Commands"
 	set desc = "Find your way around with ease!"
-	if(ON_COOLDOWN(src, "gps", 10 SECONDS))
+	if(ON_COOLDOWN(src, "gps", 10 SECONDS) && !src.client.holder)
 		boutput(src, "Verb on cooldown for [time_to_text(ON_COOLDOWN(src, "gps", 0))].")
 		return
 	DoGPS(src.get_id())
@@ -198,7 +198,7 @@
 	set name = "GPS"
 	set category = "Commands"
 	set desc = "Find your way around with ease!"
-	if(ON_COOLDOWN(src, "gps", 10 SECONDS))
+	if(ON_COOLDOWN(src, "gps", 10 SECONDS) && !src.client.holder)
 		boutput(src, "Verb on cooldown for [time_to_text(ON_COOLDOWN(src, "gps", 0 SECONDS))].")
 		return
 	DoGPS(src.botcard)

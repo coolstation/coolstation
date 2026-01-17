@@ -36,8 +36,14 @@
 		..(loc)
 		src.update_stack_appearance()
 
-	proc/setup(var/atom/L, var/amt = 1 as num)
-		set_loc(L)
+	proc/setup(var/atom/L, var/amt = 1 as num, try_add_to_storage = FALSE)
+		if (!try_add_to_storage)
+			set_loc(L)
+		else
+			if (L.storage)
+				L.storage.add_contents(src)
+			else
+				src.set_loc(L)
 		set_amt(amt)
 
 	proc/set_amt(var/amt = 1 as num)
@@ -224,6 +230,10 @@
 // That's what tourists spawn with.
 /obj/item/spacecash/random/tourist
 	default_min_amount = 500
+	default_max_amount = 1500
+
+/obj/item/spacecash/random/medium
+	default_min_amount = 1000
 	default_max_amount = 1500
 
 // for couches

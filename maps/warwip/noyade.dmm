@@ -1707,6 +1707,9 @@
 /obj/machinery/cell_charger{
 	pixel_y = 1
 	},
+/obj/disposalpipe/segment/ejection{
+	icon_state = "pipe-c"
+	},
 /turf/floor,
 /area/station/engine/core)
 "bPE" = (
@@ -4017,8 +4020,12 @@
 	},
 /area/station/hallway/primary/east)
 "efe" = (
-/obj/table/reinforced/auto,
-/obj/random_item_spawner/med_kit/one,
+/obj/item/storage/toilet/engineering{
+	dir = 8
+	},
+/obj/disposalpipe/trunk{
+	dir = 4
+	},
 /turf/floor/industrial,
 /area/station/engine/core)
 "efn" = (
@@ -9011,6 +9018,9 @@
 	desc = "hot radiator inlet valve";
 	name = "hot radiator inlet valve"
 	},
+/obj/disposalpipe/segment/ejection{
+	dir = 4
+	},
 /turf/floor,
 /area/station/engine/core)
 "jhg" = (
@@ -11369,6 +11379,12 @@
 	},
 /turf/floor/plating,
 /area/listeningpost/power)
+"lCw" = (
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/floor/plating,
+/area/station/engine/core)
 "lCG" = (
 /obj/cable/orange{
 	icon_state = "2-8"
@@ -15271,6 +15287,9 @@
 /obj/machinery/atmospherics/valve{
 	desc = "hot radiator outlet valve";
 	name = "hot radiator outlet valve"
+	},
+/obj/disposalpipe/segment/ejection{
+	dir = 4
 	},
 /turf/floor,
 /area/station/engine/core)
@@ -20004,6 +20023,11 @@
 /obj/disposalpipe/switch_junction/left/north,
 /turf/floor,
 /area/station/hallway/primary/east)
+"tUo" = (
+/obj/wingrille_spawn/reinforced,
+/obj/disposalpipe/segment/ejection,
+/turf/floor/plating,
+/area/station/engine/core)
 "tUL" = (
 /obj/cable/hotpink{
 	icon_state = "2-4"
@@ -21647,6 +21671,10 @@
 /obj/landmark/start/latejoin,
 /turf/floor/grey,
 /area/station/hallway/secondary/oshan_arrivals)
+"vrG" = (
+/obj/random_item_spawner/med_kit/one,
+/turf/floor/grey,
+/area/station/engine/gas)
 "vtw" = (
 /obj/cable/hotpink{
 	icon_state = "1-4"
@@ -24201,6 +24229,9 @@
 /obj/table/reinforced/auto,
 /obj/machinery/light/fluorescent,
 /obj/item/storage/firstaid/oxygen,
+/obj/disposalpipe/segment/ejection{
+	dir = 4
+	},
 /turf/floor/industrial,
 /area/station/engine/core)
 "xPb" = (
@@ -49024,7 +49055,7 @@ wxm
 aeE
 bff
 ttm
-ttm
+vrG
 vIb
 vWG
 iAq
@@ -51141,8 +51172,8 @@ fgs
 rFL
 pRJ
 bOl
-vjI
-oWV
+tUo
+lCw
 wfP
 aiO
 xpz

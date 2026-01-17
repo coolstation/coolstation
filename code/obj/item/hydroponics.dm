@@ -72,7 +72,7 @@
 		src.check_health()
 		return
 
-	proc/update_icon()
+	update_icon()
 		set_icon_state("[src.base_state][src.active ? null : "_off"]")
 		return
 
@@ -423,7 +423,7 @@
 	name = "garden trowel"
 	desc = "A tool to uproot plants and transfer them to decorative pots"
 	icon = 'icons/obj/hydroponics/items_hydroponics.dmi'
-	inhand_image_icon = 'icons/obj/items/tools/tools.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "trowel"
 
 	flags = FPRINT | TABLEPASS | ONBELT
@@ -609,9 +609,154 @@
 	initial_volume = 250
 	initial_reagents = list("saltpetre"=50, "ammonia"=50, "potash"=50, "poo"=50, "space_fungus"=50)
 
-/obj/item/reagent_containers/glass/water_pipe
+/obj/item/reagent_containers/glass/bowlpiece
+	name = "bong bowlpiece"
+	icon = 'icons/obj/chemical.dmi' //placeholder mini vial icon until bowlpieces can be sprited
+	icon_state = "minivial"
+	var/max_hit_count = 6 //number of hits until cleared
+	var/reagent_per_rip = 0 //amount_per_transfer_from_this =
+	var/loaded_with = "empty" //what herb is loaded in the bowl
+	var/is_loaded = 0
+	var/hits_left = 0
+
+	//Basic bowl piece for water pipes, loading it behaves sort of like rolling a joint code wise
+	New()
+		..()
+
+
+	proc/pack_a_bowl(obj/item/W as obj, mob/user as mob)
+		if(is_loaded == 1)
+			boutput(user, "<span class='alert'>This bowl is already packed, finish smoking it!.</span>")
+			return
+		else
+			if(istype(W, /obj/item/plant/herb/cannabis/black))
+				loaded_with = "weed-black"
+			else if(istype(W, /obj/item/plant/herb/cannabis/white))
+				loaded_with = "weed-white"
+			else if(istype(W, /obj/item/plant/herb/cannabis/mega))
+				loaded_with = "weed-mega"
+			else if(istype(W, /obj/item/plant/herb/cannabis/omega))
+				loaded_with = "weed-omega"
+			else
+				loaded_with = "weed"   //weed and tobacco can share loaded bowl a sprite for now
+
+			src.reagents.maximum_volume = W.reagents.total_volume
+			W.reagents.trans_to(src, W.reagents.total_volume)
+			reagent_per_rip = round(src.reagents.total_volume / max_hit_count)
+			is_loaded = 1
+			hits_left = max_hit_count
+			boutput(user, "<span class='notice'>You pack the bowl piece with [W.name].</span>")
+			W.force_drop(user)
+			qdel(W)
+
+		return
+
+/obj/item/reagent_containers/food/drinks/water_pipe
 	name = "water pipe"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bong"
+	incompatible_with_chem_dispensers = 1
+	//need something to sort of behave like a bong bowl piece
+	var/obj/item/reagent_containers/glass/bowlpiece/bowl
+	var/image/fluid_image
+	var/image/bowl_image
 
-	filled
+	//handle filling the water pipe with reagents i.e. water
+	New()
+		..()
+		fluid_image = image(src.icon, "fluid-[src.icon_state]")
+		bowl_image = "null"
+		src.bowl = new(src)
+
+
+	on_reagent_change()
+		src.update_icon()
+
+	update_icon()
+		src.underlays = null
+
+		if (reagents.total_volume)
+			var/fluid_state = round(clamp((src.reagents.total_volume / src.reagents.maximum_volume * 5 + 1), 1, 5))
+			src.icon_state = "bong[fluid_state]"
+			var/datum/color/average = reagents.get_average_color()
+			src.fluid_image.color = average.to_rgba()
+			src.fluid_image.icon_state = "fluid-bong[fluid_state]"
+			src.underlays += src.fluid_image
+
+
+		else
+			src.icon_state = initial(src.icon_state)
+
+		if (bowl && bowl.is_loaded == 1)
+			bowl_image = image(src.icon, "bong-[bowl.loaded_with]")
+			src.underlays += bowl_image
+
+	//handle loading bong with smokable herb reagents i.e. cannabis, tobacco, etc.
+    //handle smoking from the water pipe. hiting it, clearing it, adding ash to water, etc.
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (isweldingtool(W) && W:try_weld(user,0,-1,0,0))
+			hit_da_bong(user)
+			return
+		else if (istype(W, /obj/item/sword) && W:active)
+			hit_da_bong(user)
+			return
+		else if (istype(W, /obj/item/clothing/head/cakehat) && W:on)
+			hit_da_bong(user)
+			return
+		else if (istype(W, /obj/item/device/igniter))
+			hit_da_bong(user)
+			return
+		else if (istype(W, /obj/item/device/light/zippo) && W:on)
+			hit_da_bong(user)
+			return
+		else if ((istype(W, /obj/item/match) || istype(W, /obj/item/clothing/mask/cigarette) || istype(W, /obj/item/device/light/candle)) && W:on)
+			hit_da_bong(user)
+			return
+		else if (W.burning)
+			hit_da_bong(user)
+			return
+		else if (W.firesource)
+			hit_da_bong(user)
+			W.firesource_interact()
+			return
+		else if (istype(W, /obj/item/plant/herb/cannabis/) || istype(W, /obj/item/plant/herb/tobacco))	//just weade and tobacco for now
+			//load bowl with the good good
+			src.bowl.pack_a_bowl(W, user)
+			src.update_icon()
+			return
+		else
+			return ..()
+	proc/hit_da_bong(mob/user as mob)
+		if(src.bowl.is_loaded == 1)
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				if(H.bodytemperature < H.base_body_temp)
+					H.bodytemperature += 1
+				if (prob(1))
+					H.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
+				src.bowl.reagents.trans_to(src, (src.bowl.reagent_per_rip/2)) //water gets some sauce
+				src.bowl.reagents.trans_to(H, (src.bowl.reagent_per_rip/2))
+				src.bowl.reagents.reaction(H, INGEST, (src.bowl.reagent_per_rip/2))
+			else
+				src.bowl.reagents.trans_to(src, (src.bowl.reagent_per_rip/2))
+				src.bowl.reagents.trans_to(user, (src.bowl.reagent_per_rip/2))
+				src.bowl.reagents.reaction(user, INGEST, (src.bowl.reagent_per_rip/2))
+
+			if(src.bowl.hits_left > 1)
+				boutput(user, "<span class='notice'>You take a hit from the [src]. You feel the effects of the whatever's in the bowl starting to kick in.</span>")
+			else
+				boutput(user, "<span class='notice'>You take the last hit from the [src], clearing the bowl.</span>")
+				src.reagents.add_reagent("ash", 5)
+				src.bowl.reagents.clear_reagents()
+				src.bowl.is_loaded = 0
+				src.bowl.loaded_with = "null"
+				src.update_icon()
+
+			src.bowl.hits_left -= 1
+			//play the bong hit noise
+			//old bong hit sound effect must have also been in the .secret, need to add a new one eventually use bubbles_short for not
+			playsound(user.loc, 'sound/effects/bubbles_short.ogg', 50, 1)
+			particleMaster.SpawnSystem(new /datum/particleSystem/blow_cig_smoke(user.loc, user.dir))
+		else
+			boutput(user, "<span class='alert'>The bowl is empty! Load it with something to smoke first.</span>")
+		return

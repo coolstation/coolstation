@@ -191,7 +191,7 @@ proc/razorwave_assess_threat(mob/living/carbon/human/target)
 #define RAZORWAVE_OVERLAY_OVERLOAD "razorwave-overloaded"
 #define RAZORWAVE_OVERLAY_ANTENNA "razorwave-antenna"
 
-/obj/machinery/razorwave/proc/update_icon()
+/obj/machinery/razorwave/update_icon()
 	if(status & (NOPOWER))
 		UpdateOverlays(null, RAZORWAVE_OVERLAY_POWER)
 		UpdateOverlays(null, RAZORWAVE_OVERLAY_OVERLOAD)

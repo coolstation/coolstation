@@ -303,6 +303,7 @@
 /obj/item/electronics/frame/proc/deploy(mob/user)
 	var/turf/T = get_turf(src)
 	var/obj/O = null
+	src.stored?.transfer_stored_item(src, T, user = user)
 	if (deconstructed_thing)
 		O = deconstructed_thing
 		O.set_loc(T)
@@ -918,7 +919,7 @@
 	MouseDrop_T(atom/target, mob/user)
 		if (!isobj(target))
 			return
-		src.afterattack(target,user)
+		src.AfterAttack(target,user)
 		..()
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)

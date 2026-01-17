@@ -48,7 +48,7 @@
 		if (master && (!master.click_check || (usr in master.mobs)))
 			master.scrolled(src.id, dx, dy, usr, parms, src)
 
-	MouseDrop(atom/over_object, src_location, over_location, over_control, params)
+	mouse_drop(atom/over_object, src_location, over_location, over_control, params)
 		if (master && (!master.click_check || (usr in master.mobs)))
 			master.MouseDrop(src, over_object, src_location, over_location, over_control, params)
 
@@ -59,7 +59,6 @@
 	disposing()
 		src.screen_loc = null // idk if this is necessary but im writing it anyways so there
 		..()
-
 
 /datum/hud
 	var/list/mob/living/mobs = list()
@@ -72,7 +71,7 @@
 	*
 	* list(
 	*
-	*	"zone_alias" = list(
+*	"zone_alias" = list(
 	*
 	*		"coords" = list( // list of 2 coordinate pairs for the lower left corner and the upper right corner of the hud zone
 	*			x_low = num, y_low = num, x_high = num, y_high = num
@@ -151,7 +150,8 @@
 
 	proc/add_object(atom/movable/A, layer = HUD_LAYER, loc)
 		if (loc)
-			A.screen_loc = loc
+			//A.screen_loc = loc
+			A.screen_loc = do_hud_offset_thing(A, loc)
 		A.layer = layer
 		A.plane = PLANE_HUD
 		if (!(A in src.objects))

@@ -346,6 +346,7 @@ SYNDICATE DRONE FACTORY AREAS
 	layer = OBJ_LAYER
 	icon = 'icons/misc/exploration.dmi'
 	icon_state = "mushroom7"
+	cares_bout_turf_change = TRUE
 
 /obj/decal/mushrooms/type1
 	icon_state = "mushroom1"

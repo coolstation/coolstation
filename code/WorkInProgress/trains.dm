@@ -41,6 +41,10 @@
 			conductor.active = TRUE
 			conductor.train_loop()
 
+			if(prob(70))//is this stupid? yes
+				SPAWN_DBG(rand(3,9) MINUTES)
+					random_events.force_event("Train", "Follow-up Train")
+
 /* ----------- THE TRAIN SPOTTER, FOR CONTROLLING TRAINS ----------- */
 
 var/datum/train_controller/train_spotter

@@ -385,8 +385,8 @@
 
 /datum/aiTask/sequence/goalbased/rummage/get_targets()
 	. = list()
-	for(var/obj/item/storage/I in view(max_dist, holder.owner))
-		if(length(I.contents) && I.loc != holder.owner && I.does_not_open_in_pocket)
+	for(var/obj/item/storage/I in view(max_dist, holder.owner)) // flock can only see /obj/item/storage
+		if(length(I.storage.get_contents()) && I.loc != holder.owner)
 			// if we can get a valid path to the target, include it for consideration
 			if(cirrAstar(get_turf(holder.owner), get_turf(I), 1, 10))
 				. += I
@@ -406,7 +406,7 @@
 /datum/aiTask/succeedable/rummage/succeeded()
 	var/obj/item/storage/container_target = holder.target
 	if(container_target) // fix runtime Cannot read null.contents
-		return container_target.contents.len <= 0
+		return container_target.storage.get_contents().len <= 0
 	else
 		return 0
 
@@ -427,7 +427,7 @@
 				return
 			else
 				// we've opened a HUD, do a fake HUD click, because i am dedicated to this whole puppetry schtick
-				container_target.hud.relay_click("boxes", F, dummy_params)
+				container_target.storage.hud.relay_click("boxes", F, dummy_params)
 				if(isitem(F.equipped()))
 					// we got an item from the thing, THROW IT
 					// we can't actually fake a throw command because we don't have a client (no, so do a bit more trickery to simulate it)

@@ -1,7 +1,7 @@
 #define PAPER_MODE_READING 0
 #define PAPER_MODE_WRITING 1
 #define PAPER_MODE_STAMPING 2
-#define PAPER_MAX_LENGTH 5000
+#define PAPER_MAX_LENGTH 10000 //im going to go ahead and raise this because i want people to write stuff for the library.
 #define PAPER_MAX_STAMPS 30
 #define PAPER_MAX_STAMPS_OVERLAYS 4
 
@@ -199,7 +199,6 @@
 			else
 				boutput(usr, "There is no where else you can stamp!")
 			. = TRUE
-
 		if("save")
 			if (src.icon_state == "paper_blank" && params["text"])
 				src.icon_state = "paper"
@@ -477,6 +476,22 @@ ASC: Aux. Solar Control<BR>
 	</ol>
 	The cryogenics chamber will automatically eject patients once their health is back to normal, but post-cryo evaluation is recommended nevertheless.
 	"}
+
+/obj/item/paper/sgletter
+	name = "'Strongly Worded Letter'"
+	info = {"<h4><span style='font-family: Special Elite, cursive;'>DEAR SITE DIRECTOR,</span></h4>
+	<p>
+    The matter of your refusal to co-operate with <i>contract binding</i> orders regarding my departments has once again been brought to my attention. Your unwillingness to come to a single compromise with any items of my various, very important, and pressing affairs is simply unacceptable. I, once again, writing to voice my dissatisfaction with your lacklustre, negligent, and misguided management of the Security, Civilian, and Engineering departments. Your blatant and flippant refusal to work with my departments sets a poor example for your underlings to follow-at the detriment of the entire instillation. Need I remind you that your authority does not extend past the 51/49 station line.
+    Any further incursion upon my authority, refusal to co-operate, bothering of my staff, or impeding of my dutiful survey responsibilities will result in legal action.<br>
+	<br>
+	Consider your future actions with my dissatisfaction and the sake of the outpost in mind, Director.
+	<br>
+	Sincerely,<br>
+    Nevicata Survey Instillation 13 Surveyor General,<br>
+	Director of Medical, Logistics, Reconnaissance and Research departments,<br>
+	PhD. MD. MFA.
+	_________
+	</P>"}
 
 /obj/item/paper/cargo_instructions
 	name = "'Cargo Bay Setup Instructions'"
@@ -1119,7 +1134,7 @@ as it may become compromised.
 	src.icon_state = "paper_bin[(src.amount || locate(/obj/item/paper, src)) ? "1" : null]"
 	return
 
-/obj/item/paper_bin/MouseDrop(mob/user as mob)
+/obj/item/paper_bin/mouse_drop(mob/user as mob)
 	if (user == usr && !user.restrained() && !user.stat && (user.contents.Find(src) || in_interact_range(src, user)))
 		if (!user.put_in_hand(src))
 			return ..()

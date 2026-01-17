@@ -91,12 +91,12 @@
 				if(ishuman(M)) H.implant.Add(I)
 				I.implanted(M)
 				if (src.receives_disk && ishuman(M))
-					if (istype(H.back, /obj/item/storage))
-						var/obj/item/disk/data/floppy/D = locate(/obj/item/disk/data/floppy) in H.back
+					if (H.back?.storage)
+						var/obj/item/disk/data/floppy/D = locate(/obj/item/disk/data/floppy) in H.back.storage.get_contents()
 						if (D)
 							var/datum/computer/file/clone/R = locate(/datum/computer/file/clone/) in D.root.contents
 							if (R)
-								R.fields["imp"] = "\ref[I]"
+								R.imp = "\ref[I]"
 
 			var/give_access_implant = ismobcritter(M)
 			if(!spawn_id && (access.len > 0 || access.len == 1 && access[1] != access_fuck_all))
@@ -152,6 +152,17 @@
 			if (M.traitHolder && !M.traitHolder.hasTrait("loyalist"))
 				cant_spawn_as_rev = 1 //Why would an NT Loyalist be a revolutionary?
 				// i dont know but its a fucking stupid trait anyway
+
+#ifdef EVERYONE_SPAWNS_SMOKING
+			if (ishuman(M)) // we do this after equipment is added in case the map has different/no uniforms etc
+				var/mob/living/carbon/human/H = M
+				var/obj/item/clothing/mask/cigarette/cig = new /obj/item/clothing/mask/cigarette(M)
+				if(!H.wear_mask)
+					H.equip_if_possible(cig,H.slot_wear_mask)
+				else
+					H.put_in_hand_or_drop(cig)
+				cig.light()
+#endif
 
 			M.department = department
 /*
@@ -1234,7 +1245,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_belt = list(/obj/item/device/pda2/chaplain)
 	slot_foot = list(/obj/item/clothing/shoes/black)
 	slot_ears = list(/obj/item/device/radio/headset/civilian)
-	slot_lhan = list(/obj/item/storage/bible)
+	slot_lhan = list(/obj/item/bible)
 
 	New()
 		..()
@@ -1677,10 +1688,8 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 		var/obj/item/storage/secure/sbriefcase/B = M.find_type_in_hand(/obj/item/storage/secure/sbriefcase)
 		if (B && istype(B))
-			var/obj/item/material_piece/gold/G = new()
-			G.set_loc(B)
-			G = new /obj/item/material_piece/gold()
-			G.set_loc(B)
+			for (var/i in 1 to 2)
+				B.storage.add_contents(new /obj/item/material_piece/gold(B))
 
 		return
 
@@ -1713,8 +1722,8 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 		var/obj/item/storage/briefcase/B = M.find_type_in_hand(/obj/item/storage/briefcase)
 		if (B && istype(B))
-			new /obj/item/instrument/whistle(B)
-			new /obj/item/clipboard/with_pen(B)
+			B.storage.add_contents(new /obj/item/instrument/whistle(B))
+			B.storage.add_contents(new /obj/item/clipboard/with_pen(B))
 
 		return
 
@@ -1792,7 +1801,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 		var/obj/item/storage/briefcase/B = M.find_type_in_hand(/obj/item/storage/briefcase)
 		if (B && istype(B))
-			new /obj/item/clipboard/with_pen(B)
+			B.storage.add_contents(new /obj/item/clipboard/with_pen(B))
 
 		return
 
@@ -1818,10 +1827,8 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 		var/obj/item/storage/briefcase/B = M.find_type_in_hand(/obj/item/storage/briefcase)
 		if (B && istype(B))
-			var/obj/item/material_piece/gold/G = new()
-			G.set_loc(B)
-			G = new()
-			G.set_loc(B)
+			for (var/i in 1 to 2)
+				B.storage.add_contents(new /obj/item/material_piece/gold(B))
 
 		return
 
@@ -1853,10 +1860,10 @@ ABSTRACT_TYPE(/datum/job/civilian)
 
 		var/obj/item/storage/briefcase/B = M.find_type_in_hand(/obj/item/storage/briefcase)
 		if (B && istype(B))
-			new /obj/item/device/camera_viewer(B)
-			new /obj/item/clothing/head/helmet/camera(B)
-			new /obj/item/device/audio_log(B)
-			new /obj/item/clipboard/with_pen(B)
+			B.storage.add_contents(new /obj/item/device/camera_viewer(B))
+			B.storage.add_contents(new /obj/item/clothing/head/helmet/camera(B))
+			B.storage.add_contents(new /obj/item/device/audio_log(B))
+			B.storage.add_contents(new /obj/item/clipboard/with_pen(B))
 
 		return
 
@@ -2630,7 +2637,7 @@ ABSTRACT_TYPE(/datum/job/special/halloween)
 /datum/job/special/ntso_specialist_weak
 	linkcolor = "#3348ff"
 	name = "Nanotrasen Security Operative"
-	limit = 1 // backup during HELL WEEK. players will probably like it
+	limit = 0 // backup during HELL WEEK. players will probably like it
 	wages = PAY_TRADESMAN
 	requires_whitelist = 1
 	requires_supervisor_job = "Head of Security"

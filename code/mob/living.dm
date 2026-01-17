@@ -178,6 +178,8 @@
 
 
 /mob/living/flash(duration)
+	if(src.client?.preferences && src.client?.preferences.photosensitive)
+		return
 	vision.flash(duration)
 
 /mob/living/disposing()
@@ -413,9 +415,9 @@
 		if (pixelable)
 			if (!W.pixelaction(target, params, src, reach))
 				if (W)
-					W.afterattack(target, src, reach, params)
+					W.AfterAttack(target, src, reach, params)
 		else if (!pixelable && W)
-			W.afterattack(target, src, reach, params)
+			W.AfterAttack(target, src, reach, params)
 
 /mob/living/onMouseDrag(src_object,over_object,src_location,over_location,src_control,over_control,params)
 	if (!src.restrained() && !is_incapacitated(src))
@@ -564,7 +566,7 @@
 				src.next_click = world.time + (equipped ? equipped.click_delay : src.click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 		else if (params["ctrl"])
 			var/atom/movable/movable = target
-			if (istype(movable))
+			if (istype(movable) && IN_RANGE(target.loc, src.loc, 1))
 				if (src.pulling && src.pulling == movable)
 					unpull_particle(src,src.pulling)
 					src.set_pulling(null)

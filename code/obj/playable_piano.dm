@@ -153,7 +153,7 @@
 		else //just in case
 			return
 
-	MouseDrop(obj/player_piano/O, null)//, var/src_location, var/control_orig, var/control_new, var/params)
+	mouse_drop(obj/player_piano/O, null)//, var/src_location, var/control_orig, var/control_new, var/params)
 		if (!istype(usr, /mob/living))
 			return
 		if (usr.stat)
@@ -296,7 +296,7 @@
 		linked_pianos = list()
 		update_icon(0)
 
-	proc/update_icon(var/active) //1: active, 0: inactive
+	update_icon(var/active) //1: active, 0: inactive
 		if (panel_exposed)
 			icon_state = "player_piano_open"
 			return

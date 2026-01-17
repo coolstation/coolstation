@@ -59,7 +59,7 @@
 		if(cell_type)
 			cell = new cell_type
 		AddComponent(/datum/component/cell_holder, cell, TRUE, INFINITY, can_swap_cell)
-		RegisterSignal(src, COMSIG_UPDATE_ICON, PROC_REF(update_icon))
+		RegisterSignal(src, COMSIG_UPDATE_ICON, /atom/proc/update_icon)
 		processing_items |= src
 		src.update_icon()
 		src.setItemSpecial(/datum/item_special/spark)
@@ -83,7 +83,7 @@
 		src.process_charges(-INFINITY)
 		return
 
-	proc/update_icon()
+	update_icon()
 		if (!src || !istype(src))
 			return
 

@@ -271,6 +271,7 @@
 		F["auto_capitalization"] << src.auto_capitalization
 		F["local_deachat"] << src.local_deadchat
 		F["hidden_spiders"] << src.hidden_spiders
+		F["photosensitive"] << src.photosensitive
 
 		if (returnSavefile)
 			return F
@@ -453,6 +454,7 @@
 		F["auto_capitalization"] >> src.auto_capitalization
 		F["local_deachat"] >> src.local_deadchat
 		F["hidden_spiders"] >> src.hidden_spiders
+		F["photosensitive"] >> src.photosensitive
 
 
 		if (isnull(src.name_first) || !length(src.name_first) || isnull(src.name_last) || !length(src.name_last))

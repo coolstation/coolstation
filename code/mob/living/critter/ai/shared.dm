@@ -299,7 +299,7 @@
 /datum/aiTask/endless/pickup/New(parentHolder)
 	. = ..()
 	SPAWN_DBG(3 SECONDS)
-		if(src.holder.owner)
+		if(src.holder?.owner)
 			var/datum/limb/active_limb = src.holder.owner.equipped_limb()
 			if(active_limb)
 				src.max_wclass = active_limb.max_wclass

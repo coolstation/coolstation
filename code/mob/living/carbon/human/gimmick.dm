@@ -284,8 +284,8 @@ proc/empty_mouse_params()//TODO MOVE THIS!!!
 	for (var/obj/item/I in src.contents)
 		if (istype(I,/obj/item/organ) || istype(I,/obj/item/skull) || istype(I,/obj/item/parts)) continue //FUCK
 		hudlist += I
-		if (istype(I,/obj/item/storage))
-			hudlist += I.contents
+		if (I.storage)
+			hudlist += I.storage.get_contents()
 	hudlist += src.item_abilities
 
 	var/list/close_match = list()
@@ -435,7 +435,7 @@ proc/empty_mouse_params()//TODO MOVE THIS!!!
 		return illusion_expire(user)
 	attackby(obj/item/W, mob/user)
 		return illusion_expire(user)
-	MouseDrop(mob/M)
+	mouse_drop(mob/M)
 		if(iscarbon(M) && !M.hasStatus("handcuffed"))
 			return illusion_expire(M)
 
@@ -674,7 +674,7 @@ proc/empty_mouse_params()//TODO MOVE THIS!!!
 
 
 /mob/living/carbon/human/gunsemanne
-	is_npc = 1
+	//is_npc = 1
 	//uses_mobai = 1
 	real_name = "Pingin' \"Grand\" Thum"
 	gender = NEUTER

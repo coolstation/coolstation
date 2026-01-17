@@ -14,6 +14,7 @@
 	var/cat = "poster" //reuse windows, define differently if you want a separate/persistent category
 	layer = EFFECTS_LAYER_BASE
 	plane = PLANE_NOSHADOW_ABOVE
+	cares_bout_turf_change = TRUE
 
 	examine()
 		if (usr.client && src.popup_win)
@@ -1368,7 +1369,7 @@
 			else C.setMaterial(getMaterial("cotton")) // In case the material is null
 			qdel(src)
 
-	MouseDrop(atom/over_object, src_location, over_location)
+	mouse_drop(atom/over_object, src_location, over_location)
 		..()
 		if (usr.stat || usr.restrained() || !can_reach(usr, src))
 			return
