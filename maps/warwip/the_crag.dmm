@@ -633,6 +633,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northeast,
 /turf/floor/plating,
 /area/station/maintenance/southeast)
+"bN" = (
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "bO" = (
 /obj/table/surgery_tray,
 /obj/item/circular_saw{
@@ -2273,6 +2278,10 @@
 	},
 /turf/floor,
 /area/station/medical/medbay/lobby)
+"fS" = (
+/obj/random_item_spawner/junk/one,
+/turf/space/gehenna/desert,
+/area/gehenna)
 "fT" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/yellow,
@@ -2790,6 +2799,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
+"he" = (
+/obj/random_item_spawner/junk/one,
+/turf/space/gehenna/desert/beaten,
+/area/gehenna)
 "hf" = (
 /obj/machinery/light/fluorescent{
 	dir = 8
@@ -4393,6 +4406,12 @@
 /obj/window_blinds,
 /turf/floor/plating,
 /area/station/medical/head)
+"lx" = (
+/obj/railing/cool,
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "ly" = (
 /obj/disposalpipe/junction/right/north,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -4575,7 +4594,9 @@
 /obj/machinery/atmospherics/unary/furnace_connector{
 	dir = 8
 	},
-/obj/machinery/power/furnace/thermo,
+/obj/machinery/power/furnace/thermo{
+	fuel = 100
+	},
 /turf/floor,
 /area/station/engine/core)
 "ma" = (
@@ -5664,8 +5685,8 @@
 /turf/floor/plating,
 /area/station/atmos/hookups/west)
 "oO" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/north,
-/turf/space/gehenna/desert/plating,
+/obj/railing/cool,
+/turf/space/gehenna/desert,
 /area/gehenna)
 "oP" = (
 /obj/table/wood/auto,
@@ -7789,6 +7810,12 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/southeast)
+"uq" = (
+/obj/random_item_spawner/junk/one,
+/turf/space/gehenna/desert/corner{
+	dir = 6
+	},
+/area/gehenna)
 "ur" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/item/device/radio/intercom/cargo{
@@ -13406,6 +13433,10 @@
 /obj/shitty_radio/ceiling,
 /turf/floor,
 /area/station/hallway/primary/north)
+"Jg" = (
+/obj/storage/crate/furnacefuel,
+/turf/space/gehenna/desert/beaten,
+/area/gehenna)
 "Jh" = (
 /obj/machinery/door/airlock/external,
 /turf/floor/plating,
@@ -14076,6 +14107,10 @@
 	mail_tag = "Cargo Bay";
 	name = "Cargo Bay"
 	})
+"KY" = (
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/space/gehenna/desert,
+/area/gehenna)
 "KZ" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -18540,6 +18575,12 @@
 /obj/machinery/atmospherics/pipe/simple/overfloor/vertical,
 /turf/floor/plating,
 /area/station/atmos/hookups/west)
+"WK" = (
+/obj/random_item_spawner/junk/one,
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "WL" = (
 /obj/table/reinforced/auto,
 /turf/floor/sanitary/blue,
@@ -67985,7 +68026,7 @@ Cl
 Cl
 XN
 qx
-oO
+cR
 Cl
 Cl
 Cl
@@ -68253,12 +68294,12 @@ Zu
 Dn
 ZX
 Dn
-Cl
-Cl
-Cl
-Cl
-Cl
-Cl
+he
+SW
+SW
+SW
+he
+Jg
 Kt
 fP
 Dy
@@ -68557,10 +68598,10 @@ hd
 Dn
 Cl
 Cl
+fS
 Cl
-Cl
-Cl
-Cl
+tS
+xe
 bT
 kl
 Dy
@@ -68857,12 +68898,12 @@ pV
 Dn
 hd
 Dn
+KY
 Cl
 Cl
 Cl
 Cl
-Cl
-Cl
+tS
 Un
 Ae
 zg
@@ -69779,7 +69820,7 @@ lz
 hh
 hh
 Vr
-Cl
+fS
 GY
 Cl
 Dn
@@ -70385,7 +70426,7 @@ cK
 hW
 Rv
 GY
-Cl
+fS
 Dn
 hd
 Dk
@@ -70971,12 +71012,12 @@ XT
 WZ
 hd
 Dn
-Cl
-Cl
-Cl
+bN
+WK
+lx
 Cl
 RV
-Cl
+VX
 Kt
 hv
 hs
@@ -71273,12 +71314,12 @@ XT
 WZ
 hd
 Dn
-Cl
-Cl
-Cl
+bN
+bN
+lx
 Cl
 RV
-Cl
+SW
 bT
 VS
 Wx
@@ -71575,12 +71616,12 @@ CT
 WZ
 hd
 Dn
-Cl
-Cl
-Cl
+bN
+bN
+lx
 Cl
 RV
-Cl
+uq
 Kt
 iD
 Bv
@@ -71592,7 +71633,7 @@ pI
 aq
 Kt
 Cl
-Cl
+fS
 Cl
 Dn
 sB
@@ -77599,7 +77640,7 @@ LD
 Pl
 ck
 Pq
-Cl
+oO
 Cl
 Cl
 Fn
@@ -77901,7 +77942,7 @@ TR
 ck
 NI
 Pq
-Cl
+oO
 Cl
 Cl
 Fn
@@ -78203,7 +78244,7 @@ NI
 NI
 WM
 Xu
-Cl
+oO
 Cl
 Cl
 Fn
@@ -79109,7 +79150,7 @@ NI
 Lj
 VX
 MD
-Cl
+oO
 Cl
 Cl
 Fn
@@ -79411,7 +79452,7 @@ NI
 NI
 Lj
 VX
-Cl
+oO
 Cl
 Cl
 Fn
@@ -79713,7 +79754,7 @@ NI
 NI
 NI
 Lj
-Cl
+oO
 Cl
 Cl
 Fn
@@ -80015,7 +80056,7 @@ wa
 pR
 NI
 WM
-Cl
+oO
 Cl
 Cl
 Fn
@@ -80317,7 +80358,7 @@ MD
 tS
 YQ
 Xu
-Cl
+oO
 Cl
 Cl
 Fn
@@ -80619,7 +80660,7 @@ Cl
 Cl
 oC
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -80921,7 +80962,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -81223,7 +81264,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -81525,7 +81566,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -81827,7 +81868,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -82129,7 +82170,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -82431,7 +82472,7 @@ Cl
 fg
 fg
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -82733,7 +82774,7 @@ fg
 fg
 fg
 fg
-Cl
+oO
 Cl
 Cl
 Fn
