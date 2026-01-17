@@ -12,7 +12,7 @@ var/datum/event_controller/random_events
 #define MINOR_EVENTS_BEGIN 10 MINUTES
 #define SPAWN_EVENTS_BEGIN 23 MINUTES
 #define MAINT_EVENTS_BEGIN 15 MINUTES
-#define LUNCH_TIME_BEGIN 35 MINUTES
+#define LUNCH_TIME_BEGIN 5 MINUTES //adds at least first one at at least 25 minutes to 45 Minutes
 
 ABSTRACT_TYPE(/datum/random_event/major/player_spawn)
 ABSTRACT_TYPE(/datum/random_event/major/antag)
@@ -66,8 +66,8 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 	var/datum/random_event/sets/lunchtime/lunch_event = null
 
 	var/next_lunch_event = LUNCH_TIME_BEGIN
-	var/time_between_lunch_event_lower = 300 SECONDS
-	var/time_between_lunch_event_upper = 500 SECONDS
+	var/time_between_lunch_event_lower = 20 MINUTES
+	var/time_between_lunch_event_upper = 40 MINUTES
 
 	var/time_lock = 1
 	var/list/special_events = list()
