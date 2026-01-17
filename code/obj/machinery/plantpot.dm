@@ -816,7 +816,7 @@
 			boutput(user, "The solution seems to contain [reag_list].")
 		return
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		..()
 		if(!isliving(usr)) return // ghosts killing plants fix
 		if(get_dist(src, usr) > 1)
@@ -924,7 +924,7 @@
 		UpdateOverlays(src.water_sprite, "water_fluid")
 		UpdateOverlays(src.water_meter, "water_meter")
 
-	proc/update_icon() //plant icon stuffs
+	update_icon() //plant icon stuffs
 		src.water_meter = image('icons/obj/hydroponics/machines_hydroponics.dmi',"ind-wat-[src.water_level]")
 		UpdateOverlays(water_meter, "water_meter")
 		if(!src.current)
@@ -2053,7 +2053,7 @@ proc/HYPmutationcheck_sub(var/lowerbound,var/upperbound,var/checkedvariable)
 			poor_sod.TakeDamage("head", brute = 14)
 
 	///Let people orient rakes
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		var/to_face = get_dir(over_location, get_turf(src)) //Arguments reversed because the rake head faces back
 		if (to_face in cardinal) //rakes can't go diagonal
 			src.set_dir(to_face)

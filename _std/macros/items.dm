@@ -23,3 +23,4 @@
 ///play item-appropriate pickup sound
 #define MAKE_PICKUP_SOUND(_item, _loc) playsound(_loc, _item.pickup_sfx ? _item.pickup_sfx : "sound/items/pickup_[max(min(_item.w_class,3),1)].ogg", 56, vary=0.2)\
 
+#define src_exists_inside_user_or_user_storage (src.loc == user || src.stored?.linked_item.loc == user)

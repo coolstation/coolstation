@@ -495,7 +495,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if(!target_gun.load_ammo(owner, donor_ammo))
 				interrupt(INTERRUPT_ALWAYS)
 
-			donor_ammo.change_stack_amount(-1)
+			donor_ammo.change_stack_amount(-1, owner)
 		eat_twitch(target_gun) //om nom nom
 
 		var/stored_ammo_left = target_gun.ammo_reserve()

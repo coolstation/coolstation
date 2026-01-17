@@ -63,7 +63,7 @@
 			src.reagents.total_temperature = src.reagents.temperature_min
 
 
-	proc/update_icon()
+	update_icon()
 		src.underlays = null
 		if (src.reagents && src.reagents.total_volume)
 			icon_state = "[src.style]1"
@@ -437,11 +437,9 @@
 				if (ismob(target.loc))
 					var/mob/U = target.loc
 					U.u_equip(target)
-				else if (istype(target.loc, /obj/item/storage))
-					var/obj/item/storage/U = target.loc
-					U.contents -= target
-					if (U.hud)
-						U.hud.update()
+				else if (istype(target, /obj/item))
+					var/obj/item/I = target
+					I.stored?.transfer_stored_item(I, src, user = user)
 				target.set_loc(src)
 				patches += target
 				update_overlay()
@@ -503,7 +501,7 @@
 	proc/can_operate_on(atom/A)
 		.= (iscarbon(A) || ismobcritter(A))
 
-	proc/update_icon()
+	update_icon()
 		if (reagents.total_volume)
 			if (!src.fluid_image)
 				src.fluid_image = image('icons/obj/chemical.dmi', "mender-fluid", -1)
@@ -694,7 +692,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers/mender_refill_cartridge)
 		..()
 		update_icon()
 
-	proc/update_icon()
+	update_icon()
 		if (reagents.total_volume)
 			var/fluid_state = round(clamp((src.reagents.total_volume / src.reagents.maximum_volume * 4), 1, 4))
 			if (!src.fluid_image)

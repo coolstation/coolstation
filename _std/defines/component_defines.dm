@@ -85,6 +85,10 @@
 #define COMSIG_ATOM_ENTERED "atom_entered"
 /// when this atom has clean_forensic called, send this signal.
 #define COMSIG_ATOM_CLEANED "atom_cleaned"
+/// when this atom is dragged onto something (usr, over_object, src_location, over_location, src_control, over_control, params)
+#define COMSIG_ATOM_MOUSEDROP "atom_mousedrop"
+/// when something is dragged onto this atom (object, usr, src_location, over_location, over_control, params)
+#define COMSIG_ATOM_MOUSEDROP_T "atom_mousedrop_t"
 
 // ---- turf signals ----
 
@@ -154,6 +158,8 @@
 #define COMSIG_ITEM_PROCESS "itm_process"
 /// When an item is twirled
 #define COMSIG_ITEM_TWIRLED "itm_twirled"
+/// after an item is used to attack (target, user, reach, params)
+#define COMSIG_ITEM_AFTERATTACK "itm_after_atk"
 
 // ---- cloaking device signal ----
 /// Make cloaking devices turn off

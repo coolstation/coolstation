@@ -407,7 +407,7 @@
 		if (my_item && istype(my_item))
 			target.Attackby(my_item, user, params, location, control)
 			if (target)
-				my_item.afterattack(target, src, reach)
+				my_item.AfterAttack(target, src, reach)
 
 /datum/limb/bear
 	name = "claws"

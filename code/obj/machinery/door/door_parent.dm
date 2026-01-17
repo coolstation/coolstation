@@ -467,7 +467,7 @@
 			take_damage(damage/4)
 	return
 
-/obj/machinery/door/proc/update_icon(var/toggling = 0)
+/obj/machinery/door/update_icon(var/toggling = 0)
 	if(toggling? !density : density)
 		icon_state = "[icon_base]1"
 	else

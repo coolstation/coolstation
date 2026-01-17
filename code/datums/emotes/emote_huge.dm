@@ -104,8 +104,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 								game_stats.Increment("clownabuse")
 						fart_on_other = 1
 						break
-					else if (istype(A,/obj/item/storage/bible))
-						var/obj/item/storage/bible/B = A
+					else if (istype(A,/obj/item/bible))
+						var/obj/item/bible/B = A
 						B.farty_heresy(user)
 						fart_on_other = 1
 						break
@@ -206,7 +206,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						var/found_bible = 0
 						for (var/atom/A as anything in H.loc)
 							if (A.event_handler_flags & IS_FARTABLE)
-								if (istype(A,/obj/item/storage/bible))
+								if (istype(A,/obj/item/bible))
 									found_bible = 1
 						if (found_bible)
 							user.visible_message("<span class='alert'><b>A mysterious force smites [user.name] for inciting blasphemy!</b></span>")
@@ -963,7 +963,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			dab_id?.brain_damage_count += 10
 			if(user.get_brain_damage() > 60)
 				user.show_text("<span class='alert'>Your head hurts!</span>")
-		if(locate(/obj/item/storage/bible) in user.loc)
+		if(locate(/obj/item/bible) in user.loc)
 			if(H.limbs.l_arm)
 				user.limbs.l_arm.sever()
 				dab_id?.arm_count++

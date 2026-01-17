@@ -10,7 +10,7 @@
 	w_class = W_CLASS_TINY
 	max_wclass = 1
 	slots = 5
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	can_hold = list(/obj/item/stackable_ammo)
 
 /*
@@ -94,7 +94,7 @@
 	w_class = W_CLASS_TINY
 	slots = 6
 	can_hold = list(/obj/item/old_grenade, /obj/item/chem_grenade)
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 
 	frag
 		name = "frag grenade pouch"
@@ -137,7 +137,7 @@
 	icon_state = "ammopouch-medic"
 	w_class = W_CLASS_TINY
 	slots = 4
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	spawn_contents = list(/obj/item/reagent_containers/mender/brute/high_capacity,
 	/obj/item/reagent_containers/mender/burn/high_capacity)
 
@@ -147,7 +147,7 @@
 	icon_state = "ammopouch-sec"
 	w_class = W_CLASS_SMALL
 	slots = 6
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	spawn_contents = list(/obj/item/handcuffs = 4,\
 	/obj/item/device/flash,\
 	/obj/item/instrument/whistle)
@@ -165,7 +165,7 @@
 	icon_state = "ammopouch-large"
 	w_class = W_CLASS_SMALL
 	slots = 5
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	spawn_contents = list(/obj/item/handcuffs/ = 1,
 	/obj/item/handcuffs/guardbot = 2,
 	/obj/item/device/flash,
@@ -177,7 +177,7 @@
 	icon_state = "ammopouch-emp"
 	w_class = W_CLASS_SMALL
 	slots = 5
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	spawn_contents = list(/obj/item/old_grenade/emp = 5)
 
 /obj/item/storage/tactical_grenade_pouch
@@ -186,7 +186,7 @@
 	icon_state = "ammopouch-grenade"
 	w_class = W_CLASS_SMALL
 	slots = 7
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	spawn_contents = list(/obj/item/chem_grenade/incendiary = 2,\
 	/obj/item/chem_grenade/shock,\
 	/obj/item/old_grenade/smoke = 1,\
@@ -200,7 +200,7 @@
 	icon_state = "ammopouch-sonic"
 	w_class = W_CLASS_SMALL
 	slots = 6
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	spawn_contents = list(/obj/item/old_grenade/sonic = 5,\
 	/obj/item/clothing/ears/earmuffs/earplugs)
 
@@ -210,5 +210,5 @@
 	icon_state = "ammopouch-banana"
 	w_class = W_CLASS_SMALL
 	slots = 7 //bonus two slots for the banana grenade kit
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	spawn_contents = list(/obj/item/old_grenade/banana = 5)

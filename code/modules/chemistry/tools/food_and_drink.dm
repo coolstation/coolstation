@@ -406,7 +406,7 @@
 						src.set_loc(null)
 						if(ishuman(M))
 							var/mob/living/carbon/human/H = M
-							H.force_equip(I,item_slot) // mobs don't have force_equip
+							H.force_equip(I,item_slot, TRUE) // mobs don't have force_equip
 							return
 			drop.set_loc(get_turf(src.loc))
 
@@ -524,7 +524,7 @@
 			src.reagents.reaction(get_turf(user), TOUCH)
 			src.reagents.clear_reagents()
 
-	MouseDrop(atom/over_object)
+	mouse_drop(atom/over_object)
 		..()
 		if(!(usr == over_object)) return
 		if(!istype(usr, /mob/living/carbon)) return
@@ -954,7 +954,7 @@
 			return 1
 		else return ..()
 
-	proc/update_icon()
+	update_icon()
 		src.underlays = null
 		if (src.broken)
 			src.reagents.clear_reagents()
@@ -1199,7 +1199,7 @@
 	on_reagent_change()
 		src.update_icon()
 
-	proc/update_icon()
+	update_icon()
 		src.underlays = null
 		if (reagents.total_volume)
 			var/fluid_state = round(clamp((src.reagents.total_volume / src.reagents.maximum_volume * 3 + 1), 1, 3))
@@ -1844,7 +1844,7 @@
 	on_reagent_change()
 		src.update_icon()
 
-	proc/update_icon()
+	update_icon()
 		if (src.reagents.total_volume == 0)
 			icon_state = "duo"
 		if (src.reagents.total_volume > 0)
@@ -1931,7 +1931,7 @@
 	on_reagent_change()
 		src.update_icon()
 
-	proc/update_icon() //updates icon based on fluids inside
+	update_icon() //updates icon based on fluids inside
 		icon_state = "[glass_style]"
 
 		var/datum/color/average = reagents.get_average_color()
@@ -1954,7 +1954,7 @@
 	on_reagent_change()
 		src.update_icon()
 
-	proc/update_icon() //updates icon based on fluids inside
+	update_icon() //updates icon based on fluids inside
 		if (src.reagents && src.reagents.total_volume)
 			var/datum/color/average = reagents.get_average_color()
 			var/average_rgb = average.to_rgba()

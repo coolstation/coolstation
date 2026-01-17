@@ -96,7 +96,7 @@
 		src.broken = 0
 		src.repairstate = 0
 
-	proc/update_icon()
+	update_icon()
 		if (src.open == 1)
 			src.icon_state = src.iconopen
 

@@ -314,10 +314,6 @@ var/list/forensic_IDs = new/list() //Global list of all guns, based on bioholder
 		return list("You have no idea what the hell this thing is!")
 	return ..()
 
-/obj/item/gun/proc/update_icon()
-	return 0
-
-
 /obj/item/gun/proc/do_camera_recoil(mob/user, turf/start, turf/target, POX, POY)
 	// calculate the mob's position relative to the target location
 	// this is backwards so that the output angle is the angle we knock the camera back

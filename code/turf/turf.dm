@@ -789,7 +789,7 @@
 	icon_state = "howlingsun"
 	desc = "Looks normal."
 
-/turf/space/proc/update_icon(starlight_alpha=255)
+/turf/space/update_icon(starlight_alpha=255)
 	if(!isnull(space_color) && !istype(src, /turf/space/fluid/ocean) && !istype(src, /turf/space/gehenna))
 		src.color = space_color
 

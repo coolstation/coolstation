@@ -141,7 +141,7 @@ ABSTRACT_TYPE(/obj/item/mine) //To be safe I guess
 		src.triggered(AM)
 		return
 
-	proc/update_icon()
+	update_icon()
 		if (!src || !istype(src))
 			return
 

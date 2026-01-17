@@ -681,7 +681,7 @@ CONTAINS:
 			defib = null
 		..()
 
-	proc/update_icon()
+	update_icon()
 		if (defib && defib.loc == src)
 			icon_state = "defib1"
 		else
@@ -876,7 +876,7 @@ CONTAINS:
 		else
 			return ..()
 
-	proc/update_icon()
+	update_icon()
 		switch (src.uses)
 			if (-INFINITY to 0)
 				src.icon_state = "bandage-item-0"
@@ -1112,7 +1112,7 @@ CONTAINS:
 		else
 			return ..()
 
-	proc/update_icon()
+	update_icon()
 		var/iv_state = max(min(round(src.volume, 10) / 10, 100), 0)
 		icon_state = "bloodbag-[iv_state]"
 /*		switch (src.volume)
@@ -1288,7 +1288,7 @@ CONTAINS:
 					src.visible_message("<span class='alert'>[src] gushes a torrent of blood from every seam!</span>")
 					playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
 
-	proc/update_icon()
+	update_icon()
 		if (src.open && src.open_image)
 			src.overlays += src.open_image
 			src.icon_state = "bodybag-open"
@@ -1338,7 +1338,7 @@ CONTAINS:
 		src.open()
 		src.visible_message("<span class='alert'><b>[user]</b> unzips themselves from [src]!</span>")
 
-	MouseDrop(atom/over_object)
+	mouse_drop(atom/over_object)
 		if (!over_object) return
 		if(isturf(over_object))
 			..() //Lets it do the turf-to-turf slide

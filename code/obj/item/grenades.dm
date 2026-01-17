@@ -705,7 +705,8 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 		if (get_dist(user, target) <= 1 || (!isturf(target) && !isturf(target.loc)) || !isturf(user.loc))
 			return
-		if (istype(target, /obj/item/storage)) return ..()
+		if (target.storage)
+			return ..()
 		if (src.state == 0)
 			message_admins("Grenade ([src]) primed in [get_area(src)] [log_loc(src)] by [key_name(user)].")
 			logTheThing("combat", user, null, "primes a grenade ([src.type]) at [log_loc(user)].")
@@ -1264,7 +1265,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 		if (user.equipped() == src)
 			if (!src.state)
-				if (istype(target, /obj/item/storage)) // no blowing yourself up if you have full backpack
+				if (!src.check_placeable_target(target)) // no blowing yourself up if you have full backpack
 					return
 				if (user.bioHolder && user.bioHolder.HasEffect("clumsy"))
 					boutput(user, "<span class='alert'>Huh? How does this thing work?!</span>")
@@ -1344,6 +1345,13 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 		qdel(src)
 		return
 
+	proc/check_placeable_target(atom/A)
+		if (!istype(A, /obj/item))
+			return TRUE
+		if (A.storage) // no blowing yourself up if you have full storage
+			return FALSE
+		return A.density
+
 /obj/item/breaching_charge/NT
 	name = "NanoTrasen Experimental EDF-7 Breaching Charge"
 	expl_devas = 0
@@ -1361,35 +1369,6 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 	flags = ONBELT
 	w_class = W_CLASS_TINY
 	expl_range = 2
-
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-		if (user.equipped() == src)
-			if (!src.state)
-				if (istype(target, /obj/item/storage)) // no blowing yourself up if you have full backpack
-					return
-				if (user.bioHolder && user.bioHolder.HasEffect("clumsy"))
-					boutput(user, "<span class='alert'>Huh? How does this thing work?!</span>")
-					logTheThing("combat", user, null, "accidentally triggers [src] (clumsy bioeffect) at [log_loc(user)].")
-					SPAWN_DBG(0.5 SECONDS)
-						user.u_equip(src)
-						src.boom()
-						return
-				else
-					boutput(user, "<span class='alert'>You slap the charge on [target], [det_time/10] seconds!</span>")
-					user.visible_message("<span class='alert'>[user] has attached [src] to [target].</span>")
-					src.icon_state = "bcharge2"
-					user.u_equip(src)
-					src.set_loc(get_turf(target))
-					src.anchored = ANCHORED
-					src.state = 1
-
-					// Yes, please (Convair880).
-					logTheThing("combat", user, null, "attaches a [src] to [target] at [log_loc(target)].")
-
-					SPAWN_DBG (src.det_time)
-						if (src)
-							src.boom()
-		return
 
 	boom()
 		if (!src || !istype(src))

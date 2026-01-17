@@ -1677,7 +1677,7 @@ DEFINE_FLOORS(techfloor/green,
 	name_old = name
 	. = ..()
 
-/turf/floor/proc/update_icon()
+/turf/floor/update_icon()
 
 /turf/attack_hand(mob/user as mob)
 	if (src.density == 1)
