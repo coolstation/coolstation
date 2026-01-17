@@ -63,7 +63,7 @@
 			for (var/i = 0, i < 9, i++) // ugly hack
 				reagents.temperature_reagents(exposed_temperature, exposed_volume)
 
-	MouseDrop(atom/over_object as obj)
+	mouse_drop(atom/over_object as obj)
 		if (!istype(over_object, /obj/item/reagent_containers/glass) && !istype(over_object, /obj/item/reagent_containers/food/drinks) && !istype(over_object, /obj/item/spraybottle) && !istype(over_object, /obj/machinery/plantpot) && !istype(over_object, /obj/mopbucket) && !istype(over_object, /obj/machinery/hydro_mister) && !istype(over_object, /obj/item/tank/jetpack/backtank))
 			return ..()
 
@@ -179,6 +179,95 @@
 		..()
 		reagents.add_reagent("water",capacity)
 
+/obj/reagent_dispensers/powerbank
+	name = "powerbank"
+	desc = "A fire hazard filled with lithium that stores large amounts of power." //right now it's just filled with lithium that does nothing. Battery chemistry is another project.
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "powerbank-dead"
+	amount_per_transfer_from_this = 0
+	capacity = 500
+	can_break = TRUE
+	var/charge = 500
+	var/max_charge = 500
+	var/cable_active = FALSE
+	var/obj/connected_device
+
+	New()
+		..()
+		reagents.add_reagent("lithium",capacity)
+		update_indicator()
+
+	attack_hand(mob/user)
+		. = ..()
+		if (user.a_intent == INTENT_HELP)
+			for (var/obj/machinery/floor_charger/c in get_turf(src))
+				c.pb_toggle_connect(src,user)
+
+
+	proc/connected(var/obj/item/device)
+		cable_active = TRUE
+		var/atom/movable/cable_line = new /atom/movable(src.loc)
+		connected_device = device
+		draw_cable(device, cable_line)
+		update_indicator()
+		return
+
+	proc/disconnected()
+		connected_device = null
+		update_indicator()
+		return
+
+	proc/lose_charge(var/amount)
+		src.charge = max(0,src.charge - amount)
+		update_indicator()
+
+	proc/gain_charge(var/amount)
+		src.charge = min(src.max_charge,src.charge + amount)
+		update_indicator()
+
+	proc/update_indicator(var/override)
+		if(!override)
+			if (charge <= 0)
+				icon_state = "powerbank-dead"
+			else if (charge > 0 && charge <= max_charge / 2)
+				icon_state = "powerbank-low"
+			else if (charge > max_charge / 2)
+				icon_state = "powerbank-charged"
+
+	proc/draw_cable(var/obj/item/device, atom/movable/cable_line) //pretty much the same as the phone
+		cable_line.mouse_opacity = 0
+		cable_line.appearance_flags = 0
+		cable_line.color = src.color
+		cable_line.pixel_x = src.pixel_x
+		cable_line.pixel_y = src.pixel_y
+		cable_line.icon = 'icons/obj/objects.dmi'
+		cable_line.icon_state = "cable"
+		animate(cable_line, alpha=255, time=1 SECOND)
+		SPAWN_DBG(0)
+			while(cable_active)
+				if(src.qdeled || !device || !connected_device)
+					qdel(cable_line)
+					device = null
+					src.cable_active = FALSE
+					break
+				var/dist = GET_DIST(src,device)
+				src.set_dir(get_dir(src,device))
+				if(cable_line)
+					cable_line.loc = src.loc
+					var/ang = get_angle(get_turf(src), get_turf(device))
+					var/cable_line_dist = 8 + 40 / (1 + 3 ** (3 - dist / 10))
+					var/matrix/M = matrix()
+					var/cable_line_scale = (1.1 * dist)
+					M = M.Scale(1, cable_line_scale * 2)
+					M = M.Turn(ang)
+					M = M.Translate(cable_line_dist * sin(ang), cable_line_dist * cos(ang))
+					animate(cable_line, transform=M, time=0.2 SECONDS, flags=ANIMATION_PARALLEL)
+
+				sleep(0.2 SECONDS)
+	//by pretty much the same I mean literally copy pasted. Might want to make this a helper function if we want more things to use cables.
+
+
+
 /obj/reagent_dispensers/watertank/big
 	name = "high-capacity watertank"
 	desc = "A specialised high-pressure water tank for holding large amounts of water."
@@ -239,7 +328,7 @@
 	//on_reagent_change()
 	//	src.update_icon()
 
-	proc/update_icon()
+	update_icon()
 		if (src.has_tank)
 			if (src.reagents.total_volume)
 				var/datum/color/average = reagents.get_average_color()
@@ -655,7 +744,7 @@
 	on_reagent_change()
 		src.update_icon()
 
-	proc/update_icon()
+	update_icon()
 		src.underlays = null
 		if (reagents.total_volume)
 			var/fluid_state = round(clamp((src.reagents.total_volume / src.reagents.maximum_volume * 5 + 1), 1, 5))

@@ -196,6 +196,7 @@ var/global/lastStationNameChange = 0 //timestamp
 			logTheThing("admin", user, null, "changed the station name to: [name]")
 			logTheThing("diary", user, null, "changed the station name to: [name]", "admin")
 			message_admins("[key_name(user)] changed the station name to: [name]")
+			discord_send("[user.key] changed the station name to: [name]", "centcom")
 
 			var/ircmsg[] = new()
 			ircmsg["key"] = user.client.key

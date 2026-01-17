@@ -59,7 +59,7 @@
 		if(cell_type)
 			cell = new cell_type
 		AddComponent(/datum/component/cell_holder, cell, TRUE, INFINITY, can_swap_cell)
-		RegisterSignal(src, COMSIG_UPDATE_ICON, PROC_REF(update_icon))
+		RegisterSignal(src, COMSIG_UPDATE_ICON, /atom/proc/update_icon)
 		processing_items |= src
 		src.update_icon()
 		src.setItemSpecial(/datum/item_special/spark)
@@ -83,7 +83,7 @@
 		src.process_charges(-INFINITY)
 		return
 
-	proc/update_icon()
+	update_icon()
 		if (!src || !istype(src))
 			return
 
@@ -552,6 +552,12 @@
 		src.process_charges(-INFINITY)
 
 		return
+
+	old
+		name = "dead extendable stun baton"
+		desc = "The battery is completely corroded, but it can still bludgeon perfectly fine."
+		cell_type = /obj/item/ammo/power_cell/dead
+
 
 #undef CLOSED_AND_OFF
 #undef OPEN_AND_ON

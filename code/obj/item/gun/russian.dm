@@ -40,7 +40,10 @@
 			playsound(user, "sound/weapons/Gunclick.ogg", 80, 1)
 			for(var/mob/O in AIviewers(user, null))
 				if (O.client)
-					O.show_message("<span class='alert'>[user] points the gun at [his_or_her(user)] head. Click!</span>", 1, "<span class='alert'>Click!</span>", 2)
+					if (user.traitHolder && user.traitHolder.hasTrait("hardcore"))
+						O.show_message("<span class='alert'>Unflinchingly, [user] points the gun at [his_or_her(user)] head and pulls the trigger. Holy shit dude. Click!</span>", 1, "<span class='alert'>Click!</span>", 2)
+					else
+						O.show_message("<span class='alert'>[user] points the gun at [his_or_her(user)] head. Click!</span>", 1, "<span class='alert'>Click!</span>", 2)
 
 			inventory_counter.update_number(1)
 			return 0
@@ -48,7 +51,10 @@
 			src.shotsLeft = 0
 			playsound(user, "sound/weapons/Gunshot.ogg", 100, 1)
 			for(var/mob/O in AIviewers(user, null))
-				if (O.client)	O.show_message("<span class='alert'><B>BOOM!</B> [user]'s head explodes.</span>", 1, "<span class='alert'>You hear someone's head explode.</span>", 2)
+				if (O.client)
+					if (user.traitHolder && user.traitHolder.hasTrait("hardcore"))
+						O.show_message("<span class='alert'>Unflinchingly, [user] points the gun at [his_or_her(user)] head a- <b>OH FUCK!</b>", 1)
+					O.show_message("<span class='alert'><B>BOOM!</B> [user]'s head explodes.</span>", 1, "<span class='alert'>You hear someone's head explode.</span>", 2)
 				user.TakeDamage("head", 300, 0)
 				take_bleeding_damage(user, null, 500, DAMAGE_STAB)
 			inventory_counter.update_number(0)

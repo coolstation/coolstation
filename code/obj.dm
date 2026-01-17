@@ -97,14 +97,6 @@
 	UpdateName()
 		src.name = "[name_prefix(null, 1)][src.real_name ? src.real_name : initial(src.name)][name_suffix(null, 1)]"
 
-	proc/move_trigger(var/mob/M, var/kindof)
-		var/atom/movable/x = loc
-		while (x && !isarea(x) && x != M)
-			x = x.loc
-		if (!x || isarea(x))
-			return 0
-		return 1
-
 	proc/onDestroy()
 		qdel(src)
 		return
@@ -302,6 +294,7 @@
 	icon_state = "lattice" //shiny blue-grey (also lattice-dir and lattice-dir-b)
 	//Old-style sprites are also available (icon states lattice_grey, lattice_grey-dir and lattice_grey-dir-b)
 	//Seems like all existing lattices are varedited to get the other icon states
+	var/connect = TRUE //manual override for autoconnect
 
 	var/icon_base = "lattice"
 
@@ -385,6 +378,7 @@
 		..()
 
 /obj/lattice/proc/autoconnect(propagate = FALSE)
+	if(!connect) return
 	var/connect_dirs = 0
 	for(var/D in cardinal)
 		var/turf/T = get_step(src, D)

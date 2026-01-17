@@ -19,12 +19,12 @@
 		L.on()
 		L.set_dir(holder.dir)
 		L.onVarChanged("dir", SOUTH, L.dir)
-		blink(L.loc)
+		//blink(L.loc)
 		L.setup_light()
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
 		if (istype(object, /obj/adventurepuzzle/triggerable/light))
-			blink(get_turf(object))
+			//blink(get_turf(object))
 			qdel(object)
 
 	selected()

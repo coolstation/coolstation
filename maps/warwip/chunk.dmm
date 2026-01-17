@@ -5467,6 +5467,10 @@
 /obj/disposalpipe/segment/vertical,
 /turf/floor/sanitary/white,
 /area/station/medical/crematorium)
+"eNr" = (
+/obj/item/chair/folded/stepladder,
+/turf/floor/black,
+/area/station/hangar/main)
 "eNL" = (
 /obj/wingrille_spawn/reinforced,
 /obj/decal/wreath/ephemeral,
@@ -7151,6 +7155,7 @@
 	name = "Septic Shuttle APC";
 	pixel_y = 24
 	},
+/obj/item/chair/folded/stepladder,
 /turf/floor/plating,
 /area/station/maintenance/west)
 "gjl" = (
@@ -10074,15 +10079,6 @@
 	},
 /area/station/hallway/primary/northwest)
 "iYw" = (
-/obj/disposalpipe/segment/mail{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/obj/machinery/computer/announcement{
-	name = "QM Announcement Computer";
-	req_access_txt = "31"
-	},
-/obj/decal/cleanable/dirt/random,
 /obj/disposalpipe/segment/mail{
 	dir = 4;
 	icon_state = "pipe-c"
@@ -15472,6 +15468,13 @@
 	},
 /turf/floor/grey,
 /area/station/crew_quarters/kitchen)
+"nPx" = (
+/obj/disposalpipe/segment/ejection{
+	dir = 4
+	},
+/obj/item/chair/folded/stepladder,
+/turf/floor,
+/area/station/engine/storage)
 "nPT" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -18281,6 +18284,10 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/floor/plating,
 /area/station/science/lab)
+"qpz" = (
+/obj/item/chair/folded/stepladder,
+/turf/floor/plating,
+/area/station/hallway/secondary/construction2)
 "qpH" = (
 /obj/disposalpipe/segment/morgue{
 	dir = 4
@@ -20545,7 +20552,7 @@
 /obj/table/regal/auto{
 	name = "solemn table"
 	},
-/obj/item/storage/bible,
+/obj/item/bible,
 /turf/floor/carpet/blue/standard/edge/nw,
 /area/station/chapel/sanctuary)
 "soH" = (
@@ -24813,7 +24820,7 @@
 	dir = 4
 	},
 /obj/table/auto,
-/obj/item/reagent_containers/glass/water_pipe{
+/obj/item/reagent_containers/food/drinks/water_pipe{
 	pixel_x = 8;
 	pixel_y = 6
 	},
@@ -64543,7 +64550,7 @@ icX
 sZs
 uuZ
 ego
-xOc
+nPx
 qTr
 qTr
 qTr
@@ -66991,7 +66998,7 @@ vcM
 alg
 bda
 wJT
-vVw
+qpz
 vVw
 wJT
 enj
@@ -86583,7 +86590,7 @@ fii
 huZ
 huZ
 huA
-nus
+eNr
 oAG
 baZ
 wbe

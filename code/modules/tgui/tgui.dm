@@ -87,10 +87,16 @@
 		window.send_message("ping")
 	for(var/datum/asset/asset in src_object.ui_assets(user))
 		send_asset(asset)
-	window.send_message("update", get_payload(
-		with_data = TRUE,
-		with_static_data = TRUE))
-	tgui_process.on_open(src)
+	SPAWN_DBG(5) /*Repeat after me:
+				I do not know why it works
+				I do not know a better way to make it work
+				I accept this, and I move on..
+				Im coder.
+				~warc*/
+		window.send_message("update", get_payload(
+			with_data = TRUE,
+			with_static_data = TRUE))
+		tgui_process.on_open(src)
 
 /**
  * public

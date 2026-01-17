@@ -839,7 +839,7 @@
 
 		if (robot_override != 1)
 			switch (M.special_role)
-				if (ROLE_TRAITOR, ROLE_HARDMODE_TRAITOR, ROLE_SLEEPER_AGENT)
+				if (ROLE_TRAITOR, ROLE_HARDMODE_TRAITOR, ROLE_SLEEPER_AGENT, ROLE_ROGUENTSO)
 					if (see_everything || see_traitors)
 						if (M.current)
 							if (!see_everything && isobserver(M.current)) continue

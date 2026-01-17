@@ -170,6 +170,11 @@ var/global/datum/mapSwitchHandler/mapSwitcher
 		else
 			mapName = getMapNameFromID(mapID)
 
+		//Write to a file that the TGS precompile script will read. That's it.
+		var/da_string = "#define MAP_OVERRIDE_[mapID]"
+		world.set_map_tgs(da_string)
+
+/*
 		//tell jenkins, via goonhub, to compile with a new map
 		var/list/params = list(
 			"cause" = "[trigger] within Byond",
@@ -189,7 +194,7 @@ var/global/datum/mapSwitchHandler/mapSwitcher
 
 		if (data["response"] != "201")
 			throw EXCEPTION("Incorrect response code from jenkins: [data["response"]]")
-
+*/
 		//we can assume jenkins is compiling the new map
 		//when it's done, jenkins will tell us so via world/Topic()
 
@@ -212,9 +217,9 @@ var/global/datum/mapSwitchHandler/mapSwitcher
 		else
 			src.next = null
 
-		src.lock(mapID)
+		//src.lock(mapID)
 
-
+/*
 	//we're stuck waiting for a map compile so we can reboot. try again
 	proc/attemptReboot()
 		src.currentRebootAttempt++
@@ -225,7 +230,7 @@ var/global/datum/mapSwitchHandler/mapSwitcher
 		else
 			Reboot_server(1)
 
-
+*/
 	//start a vote to change the map
 	proc/startMapVote(duration = 0)
 		if (!src.votingAllowed)
@@ -326,8 +331,8 @@ var/global/datum/mapSwitchHandler/mapSwitcher
 
 		//trigger map switch using voteChosenMap
 		if (src.locked)
-			//welp we're already compiling something, queue this compilation for when it finishes
-			src.queuedVoteCompile = 1
+			//welp we're already compiling something, TOO BAD
+			return
 		else
 			if (src.voteChosenMap == src.current)
 				//dont trigger a recompile of the current map for no reason
@@ -430,7 +435,7 @@ var/global/datum/mapSwitchHandler/mapSwitcher
 
 /proc/isMapSwitcherBusted()
 	if (!mapSwitcher || !mapSwitcher.active)
-		return "The map switcher is apparently broken right now. Yell at Wire I guess"
+		return "The map switcher is apparently broken right now. Yell at Warc I guess"
 
 	if (!config.allow_map_switching)
 		return "Map switching is disabled on this server, sorry."
@@ -447,7 +452,7 @@ var/global/datum/mapSwitchHandler/mapSwitcher
 	map_vote_holder.show_window(usr.client)
 
 /datum/map_vote_holder
-	var/list/client/vote_map = list() // a map of ckeys to (a map of map_names to the ckey's current vote)
+	var/list/list/client/vote_map = list() // a map of ckeys to (a map of map_names to the ckey's current vote)
 	var/voters = 0
 
 	disposing()

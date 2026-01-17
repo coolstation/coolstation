@@ -2499,7 +2499,7 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 		return
 
 //forklift to other atom
-/obj/vehicle/forklift/MouseDrop(atom/over_object)
+/obj/vehicle/forklift/mouse_drop(atom/over_object)
 	if(get_dist(src.loc,over_object) >1)
 		boutput(usr, "<span class='notice'><B>That's too far.</B></span>")
 		return ..()

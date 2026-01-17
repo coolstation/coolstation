@@ -32,6 +32,8 @@
 
 	var/list/hidden_categories = null
 
+	var/ghost_interaction = FALSE
+
 	New()
 		..()
 		src.hidden_categories = list()

@@ -150,6 +150,7 @@ var/list/datum/bioEffect/mutini_effects = list()
 								 "fart4" = 'sound/voice/farts/fart4.ogg', \
 								 "fart5" = 'sound/voice/farts/fart5.ogg')
 
+	//Wilhelm is treated as a special case in datum/preferences/copy_to()
 	var/list/screamsounds = list("male" = 'sound/voice/screams/male_scream.ogg',\
 								 "female" = 'sound/voice/screams/female_scream.ogg', \
 								  "femalescream1" = 'sound/voice/screams/fescream1.ogg', \
@@ -160,7 +161,8 @@ var/list/datum/bioEffect/mutini_effects = list()
 								  "malescream4" = 'sound/voice/screams/mascream4.ogg', \
 								  "malescream5" = 'sound/voice/screams/mascream5.ogg', \
 								  "malescream6" = 'sound/voice/screams/mascream6.ogg', \
-								  "malescream7" = 'sound/voice/screams/mascream7.ogg' )
+								  "malescream7" = 'sound/voice/screams/mascream7.ogg', \
+								  "wilhelm" = 'sound/voice/screams/wilhelm/Wilhelm_1.ogg' )
 
 	var/list/voicetypes = list("One" = "1","Two" = "2","Three" = "3","Four" = "4")
 

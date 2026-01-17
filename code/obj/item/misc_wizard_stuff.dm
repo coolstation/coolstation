@@ -134,10 +134,7 @@
 		if (ismob(src.loc))
 			var/mob/HH = src.loc
 			HH.u_equip(src)
-		if (istype(src.loc, /obj/item/storage))
-			var/obj/item/storage/S_temp = src.loc
-			var/datum/hud/storage/H_temp = S_temp.hud
-			H_temp.remove_object(src)
+		src.stored?.transfer_stored_item(src, get_turf(src))
 		if(istype(src.loc, /obj/critter/snake))
 			var/atom/movable/snake = src
 			while(istype(snake.loc, /obj/critter/snake))
@@ -203,7 +200,7 @@
 		..()
 		return
 
-	MouseDrop(atom/over_object, src_location, over_location, over_control, params)
+	mouse_drop(atom/over_object, src_location, over_location, over_control, params)
 		if (iswizard(usr) || check_target_immunity(usr))
 			. = ..()
 		else if(isliving(usr))

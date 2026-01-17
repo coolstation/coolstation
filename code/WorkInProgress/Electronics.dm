@@ -30,6 +30,18 @@
 	src.icon_state = pick("batt1", "batt2", "batt3")
 	randompix()
 	..()
+
+/obj/item/electronics/battery/attack(mob/M as mob, mob/user as mob) //eating a battery
+	if (iscarbon(M) && M == user)
+		M.visible_message("<span class='notice'>[M] puts [src] in [his_or_her(M)] mouth and eats it.</span>")
+		playsound(M,"sound/misc/gulp.ogg", 30, 1)
+		eat_twitch(M)
+		var/obj/item/electronics/battery/P = src
+		user.u_equip(P)
+		qdel(P)
+	else
+		..()
+
 ////////////////////////////////////////////////////////////////up
 /obj/item/electronics/board
 	name = "board"
@@ -291,6 +303,7 @@
 /obj/item/electronics/frame/proc/deploy(mob/user)
 	var/turf/T = get_turf(src)
 	var/obj/O = null
+	src.stored?.transfer_stored_item(src, T, user = user)
 	if (deconstructed_thing)
 		O = deconstructed_thing
 		O.set_loc(T)
@@ -906,7 +919,7 @@
 	MouseDrop_T(atom/target, mob/user)
 		if (!isobj(target))
 			return
-		src.afterattack(target,user)
+		src.AfterAttack(target,user)
 		..()
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)

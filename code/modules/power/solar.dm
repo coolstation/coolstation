@@ -272,6 +272,14 @@
 	diner
 		id = "diner"
 
+/obj/machinery/power/solar_control/get_desc(dist)
+	. = ..()
+	if(status & (NOPOWER | BROKEN))
+		return
+	else
+		. += "<br> Generated power : [round(lastgen)] W"
+
+
 /obj/machinery/power/solar_control/New()
 	..()
 	SPAWN_DBG(1.5 SECONDS)

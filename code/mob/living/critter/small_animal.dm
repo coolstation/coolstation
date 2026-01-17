@@ -2910,7 +2910,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			if ("fart")
 				if (src.emote_check(voluntary, 50))
 					playsound(src, 'sound/voice/farts/poo2.ogg', 40, 1, SOUND_RANGE_STANDARD, 3, channel=VOLUME_CHANNEL_EMOTE)
-					var/obj/item/storage/bible/B = locate(/obj/item/storage/bible) in get_turf(src)
+					var/obj/item/bible/B = locate(/obj/item/bible) in get_turf(src)
 					if(B)
 						SPAWN_DBG(0.1 SECONDS) // so that this message happens second
 							playsound(src, 'sound/voice/farts/poo2.ogg', 7, 0, SOUND_RANGE_STANDARD, src.get_age_pitch() * 0.4, channel=VOLUME_CHANNEL_EMOTE)

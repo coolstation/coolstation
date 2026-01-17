@@ -637,19 +637,19 @@
 					var/turf/terf = get_turf(user)
 					terf.fluid_react_single("miasma", 5, airborne = 1)
 					var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(terlet, user.poop_amount)
-					terlet.add_contents(shit)
+					terlet.storage.add_contents(shit)
 					terlet.reagents.add_reagent("miasma", 5)
 				terlet.clogged += load
 				var/obj/item/reagent_containers/food/snacks/ingredient/mud/shit = new(terlet, user.poop_amount)
 				terlet.reagents.add_reagent("poo", user.poop_amount)
-				terlet.add_contents(shit)
+				terlet.storage.add_contents(shit)
 				playsound(user, user.sound_fart, 50, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				break
 			user.wiped = 0
 			user.cleanhands = 0
 		else
 			message = "<B>[user]</B> unzips [his_or_her(user)] pants but, try as [he_or_she(user)] might, [he_or_she(user)] can't shit!"
-	else if (user.poops < 1)
+	else if (user.poops < 1 || !pooping_allowed)
 		message = "<B>[user]</B> grunts for a moment. [prob(1)?"something":"nothing"] happens."
 	else
 

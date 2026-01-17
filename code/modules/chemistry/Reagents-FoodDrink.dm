@@ -2255,10 +2255,10 @@ datum
 			on_mob_life(var/mob/M, var/mult = 1)
 				..()
 				if(prob(80))
-					M.reagents.add_reagent("cattail_fluff", rand(2,5) * mult)
-					M.reagents.trans_to(M.loc, rand(15,20) * mult) //some spillage + barf
+					//M.reagents.add_reagent("cattail_fluff", rand(2,5) * mult)
+					//M.reagents.trans_to(M.loc, rand(15,20) * mult) //some spillage + barf
 					M.take_oxygen_deprivation(rand(8,20)) // grrk gghfg glugg ghrkjhhrrk
-					playsound(M, "sound/misc/meat_plop.ogg", 50,1)
+					M.vomit()
 					boutput(M, "<span class='alert'>The cattail fluff explodes in your mouth!</span>")
 
 

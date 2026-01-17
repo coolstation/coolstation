@@ -5,15 +5,22 @@
 	var/obj/machinery/atmospherics/pipe/target = null
 	plane = PLANE_NOSHADOW_BELOW
 	anchored = ANCHORED
-	var/frequency = 0
-	var/id
+	var/frequency = FREQ_ATMOS
+	var/net_id
 	var/noiselimiter = 0
+	var/label
 
 /obj/machinery/meter/New()
 	..()
+	AddComponent(/datum/component/mechanics_holder)
 	SPAWN_DBG(1 SECOND)
 		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
-	MAKE_SENDER_RADIO_PACKET_COMPONENT(null, frequency)
+	net_id = generate_net_id(src)
+	MAKE_SENDER_RADIO_PACKET_COMPONENT(net_id, frequency)
+
+/obj/machinery/meter/disposing()
+	SEND_SIGNAL(src, COMSIG_MECHCOMP_RM_ALL_CONNECTIONS)
+	..()
 
 /obj/machinery/meter/process()
 	if(!target)
@@ -58,12 +65,30 @@
 		signal.source = src
 		signal.transmission_method = 1
 
-		signal.data["tag"] = id
+		signal.data["tag"] = label
 		signal.data["device"] = "AM"
 		signal.data["pressure"] = round(env_pressure)
 
 		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
 
+	SEND_SIGNAL(src, COMSIG_MECHCOMP_TRANSMIT_SIGNAL, "[round(env_pressure)]")
+
+/obj/machinery/meter/attackby(obj/item/I, mob/user)
+	if(ispulsingtool(I))
+		var/new_label = input(usr, "Input a label up to 12 characters.", "Label", "") as text
+		new_label = copytext(new_label, 1, 12)
+		src.label = sanitize(strip_html(new_label))
+		return
+	else if (iswrenchingtool(I))
+		playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
+		SETUP_GENERIC_ACTIONBAR(user, src, 3 SECONDS, PROC_REF(deconstruct), list(user), 'icons/ui/actions.dmi', "decon", null, null)
+		return
+	else ..()
+
+/obj/machinery/meter/proc/deconstruct(mob/user)
+	user.visible_message("[user] detaches \the [src] from the pipe.", "You detach \the [src] from the pipe.")
+	new/obj/item/pipe_meter(src.loc)
+	qdel(src)
 
 /obj/machinery/meter/examine()
 	. = list("A gas flow meter. ")
@@ -78,7 +103,27 @@
 	else
 		. += "The connect error light is blinking."
 
+/obj/item/pipe_meter
+	name = "meter"
+	desc = "A meter that can be wrenched onto an atmospheric pipe."
+	icon = 'icons/obj/atmospherics/meter.dmi'
+	icon_state = "meter0"
+	item_state = "buildpipe"
+	flags = TABLEPASS|FPRINT
+	w_class = W_CLASS_NORMAL
 
+/obj/item/pipe_meter/attackby(var/obj/item/I as obj, var/mob/user as mob)
+	if (iswrenchingtool(I))
+		if(locate(/obj/machinery/atmospherics/pipe, src.loc))
+			new/obj/machinery/meter( src.loc )
+			playsound(src.loc, "sound/items/Ratchet.ogg", 50, 1)
+			boutput(user, "You have fastened \the [src] to the pipe")
+			qdel(src)
+		else
+			boutput(user, "You need to fasten it to a pipe")
+	return
+
+/*
 /obj/machinery/meter/Click()
 
 	if(status & (NOPOWER|BROKEN))
@@ -99,3 +144,4 @@
 
 	boutput(usr, t)
 	return
+*/

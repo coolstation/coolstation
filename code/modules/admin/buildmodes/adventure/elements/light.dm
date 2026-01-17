@@ -25,7 +25,7 @@
 		src.light.set_brightness(on_brig)
 		if(src.is_on)
 			src.light.enable()
-			blink(src.loc)
+			//blink(src.loc)
 
 	proc/on()
 		if (!is_on)

@@ -153,12 +153,12 @@ mob/new_player
 			if (client) winset(src, "joinmenu.button_ready", "is-disabled=true;is-visible=false")
 			if (client) winset(src, "joinmenu.button_cancel", "is-disabled=false;is-visible=true")
 			if (client) winset(src, "joinmenu.button_ready_antag", "is-disabled=true")
-		//show new player disclaimer to new players
+		/*show new player disclaimer to new players
 		if (client?.player.rounds_participated < 10)
 			winshow(client, "pregameBrowser", 1)
-			client << browse(newplayerHTML, "window=pregameBrowser")
+			client << browse(newplayerHTML, "window=pregameBrowser") */
 		//show pregameHTML if it's available
-		else if(!ticker.did_lobbymusic)
+		if(!ticker.did_lobbymusic)
 			if(pregameHTML && client)
 				winshow(client, "pregameBrowser", 1)
 				client << browse(pregameHTML, "window=pregameBrowser")
@@ -811,6 +811,10 @@ a.latejoin-card:hover {
 				traitor.special_role = ROLE_WEREWOLF
 				objective_set_path = /datum/objective_set/werewolf
 				traitormob.make_werewolf()
+
+			if (ROLE_ROGUENTSO)
+				traitor.special_role = ROLE_ROGUENTSO
+				objective_set_path = /datum/objective_set/traitor //make unique ones
 
 			if (ROLE_WRAITH)
 				traitor.special_role = ROLE_WRAITH

@@ -88,7 +88,7 @@
 
 /obj/item/extinguisher/pixelaction(atom/target, params, mob/user, reach)
 	..()
-	//src.afterattack(target, user)
+	//src.AfterAttack(target, user)
 
 /obj/item/extinguisher/afterattack(atom/target, mob/user , flag)
 	//TODO; Add support for reagents in water.
@@ -105,7 +105,7 @@
 		user.lastattacked = target
 		return
 
-	if (!safety && !istype(target, /obj/item/storage) && !istype(target, /obj/item/storage/secure))
+	if (!safety && !target.storage)
 		if (src.reagents.total_volume < 1)
 			boutput(user, "<span class='alert'>The extinguisher is empty.</span>")
 			return

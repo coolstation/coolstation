@@ -107,7 +107,7 @@ var/list/stinkThingies = list("ass","taint","armpit","excretions","leftovers","a
 	if(BOUNDS_DIST(source, user) == 0 || (IN_RANGE(source, user, 1))) // IN_RANGE is for general stuff, bounds_dist is for large sprites, presumably
 		return TRUE
 	else if (source in bible_contents)
-		for_by_tcl(B, /obj/item/storage/bible) // o coder past, quieten your rage
+		for_by_tcl(B, /obj/item/bible) // o coder past, quieten your rage
 			if(IN_RANGE(user,B,1))
 				return TRUE
 	else
@@ -162,7 +162,7 @@ var/obj/item/dummy/click_dummy = new
 
 /proc/can_reach(mob/user, atom/target)
 	if (target in bible_contents)
-		target = locate(/obj/item/storage/bible) in range(1, user) // fuck bibles
+		target = locate(/obj/item/bible) in range(1, user) // fuck bibles
 		if (!target)
 			return 0
 	var/turf/UT = get_turf(user)
@@ -657,12 +657,13 @@ var/obj/item/dummy/click_dummy = new
 
 		if(T?.loc != A) continue
 
-		if (istype(S, turftoleave) && consider_filler_as_empty)
-			var/obj/CATWALK = locate(/obj/grille/catwalk) in S
-			if (!CATWALK) //turfless elevator platforms, sorry for the direct typecheck in a proc this basic >>;
-				continue //There's no platform to carry them up, so don't move any of the contents either
-			else
-				CATWALK.set_loc(T) //load bearing that these move first
+		if (istype(S, turftoleave))
+			if(consider_filler_as_empty)
+				var/obj/CATWALK = locate(/obj/grille/catwalk) in S
+				if (!CATWALK) //turfless elevator platforms, sorry for the direct typecheck in a proc this basic >>;
+					continue //There's no platform to carry them up, so don't move any of the contents either
+				else
+					CATWALK.set_loc(T) //load bearing that these move first
 		else
 			T.ReplaceWith(S.type, keep_old_material = 0, force=1, handle_air=0)
 			T.appearance = S.appearance

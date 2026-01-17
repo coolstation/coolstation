@@ -1020,7 +1020,7 @@
 				src.scan = null
 		return 0
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		if(!isliving(usr))
 			boutput(usr, "<span class='alert'>Only living mobs are able to set the manufacturer's output target.</span>")
 			return
@@ -2487,7 +2487,8 @@
 	/datum/manufacture/pizzabox,
 	/datum/manufacture/wooden,
 	/datum/manufacture/medical,
-	/datum/manufacture/biohazard)
+	/datum/manufacture/biohazard,
+	/datum/manufacture/bluebin)
 
 	hidden = list(/datum/manufacture/classcrate)
 
@@ -2534,7 +2535,8 @@
 	/datum/manufacture/atmos_module/vent,
 	/datum/manufacture/atmos_module/vent_pump,
 	/datum/manufacture/atmos_module/vent_scrubber,
-	/datum/manufacture/atmos_module/volume_pump)
+	/datum/manufacture/atmos_module/volume_pump,
+	/datum/manufacture/atmos_module/meter)
 /*	,
 	/datum/manufacture/RCDammo,
 	/datum/manufacture/RCDammomedium)

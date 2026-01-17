@@ -19,7 +19,7 @@
 	set_loops - how often you want this to loop, leave on 0 to not change, -1 loops infinitely and any other negative number IDK
 	process_immediately - runs the broadcast process immediately, which might give slightly funky timing (it's probably fine though) but sends out a message at once.
 */
-/datum/broadcast_controller/proc/broadcast_start(datum/directed_broadcast/broadcast, reset_to_start = TRUE, set_loops = 0, process_immediately = FALSE)
+/datum/broadcast_controller/proc/broadcast_start(datum/directed_broadcast/broadcast, reset_to_start = TRUE, set_loops = 1, process_immediately = FALSE)
 	if (!istype(broadcast))
 		for_by_tcl(candidate, /datum/directed_broadcast) //see if we can find it by ID instead
 			if (candidate.id == broadcast)

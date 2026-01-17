@@ -792,7 +792,7 @@
 	ex_act(severity)
 		return //nah
 
-	proc/update_icon()
+	update_icon()
 		icon_state = icon_state = "hydrovent_[built]"
 
 	disposing()
@@ -920,7 +920,7 @@
 			O.show_message("<span class='subtle'><span class='game say'><span class='name'>[src]</span> beeps, \"Safety restrictions disabled.\"</span></span>", 2)
 		..()
 
-	proc/update_icon()
+	update_icon()
 		icon_state = "stomper[on]"
 
 	attack_hand(var/mob/living/carbon/human/user as mob)

@@ -36,7 +36,7 @@
 		src.sauce_color = src.reagents.get_average_rgb()
 		update_icon()
 
-	proc/update_icon()
+	update_icon()
 		if(src.reagents.total_volume)
 			src.sauce_image = SafeGetOverlayImage("sauce", 'icons/obj/foodNdrink/food_ingredient.dmi', "pizzasauce")
 			src.sauce_image.appearance_flags = RESET_COLOR | PIXEL_SCALE
@@ -402,7 +402,7 @@
 		src.quality = 1
 		src.update_icon()
 
-	proc/update_icon()
+	update_icon()
 		if(src.sauce_color)
 			src.sauce_image = SafeGetOverlayImage("sauce", 'icons/obj/foodNdrink/food_meals.dmi', "pizzasauceslice")
 			src.sauce_image.appearance_flags = RESET_COLOR | PIXEL_SCALE

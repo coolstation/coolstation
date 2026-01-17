@@ -918,12 +918,12 @@ DEFINE_FLOORS(marble/border_wb,
 	event_handler_flags = IMMUNE_SINGULARITY_INACTIVE
 
 /turf/floor/engine/oxygen
-	oxygen = MOLES_N2STANDARD * 200
+	oxygen = MOLES_N2STANDARD * 300
 	nitrogen = 0
 
 /turf/floor/engine/nitrogen
 	oxygen = 0
-	nitrogen = MOLES_N2STANDARD * 200
+	nitrogen = MOLES_N2STANDARD * 300
 
 /turf/floor/engine/plasma
 	oxygen = 0
@@ -941,8 +941,8 @@ DEFINE_FLOORS(marble/border_wb,
 	carbon_dioxide = MOLES_N2STANDARD * 200
 
 /turf/floor/engine/air_tank
-	oxygen = MOLES_O2STANDARD * 100
-	nitrogen = MOLES_N2STANDARD * 100
+	oxygen = MOLES_O2STANDARD * 200
+	nitrogen = MOLES_N2STANDARD * 200
 
 /turf/floor/engine/vacuum
 	name = "vacuum floor"
@@ -1677,7 +1677,7 @@ DEFINE_FLOORS(techfloor/green,
 	name_old = name
 	. = ..()
 
-/turf/floor/proc/update_icon()
+/turf/floor/update_icon()
 
 /turf/attack_hand(mob/user as mob)
 	if (src.density == 1)

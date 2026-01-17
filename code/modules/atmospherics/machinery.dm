@@ -120,6 +120,3 @@ obj/machinery/atmospherics
 			return null
 			// Find a suitable atmos machine to connect to
 			// Replaces the many identical for loops across atmos machine code + needed for constructable atmos
-
-		update_icon()
-			return null

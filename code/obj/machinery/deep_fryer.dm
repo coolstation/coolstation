@@ -85,7 +85,7 @@ var/list/fryer_recipes
 
 			return
 
-		if (W.w_class > src.max_wclass || istype(W, /obj/item/storage) || istype(W, /obj/item/storage/secure) || istype(W, /obj/item/plate))
+		if (W.w_class > src.max_wclass || W.storage || istype(W, /obj/item/plate))
 			boutput(user, "<span class='alert'>There is no way that could fit!</span>")
 			return
 

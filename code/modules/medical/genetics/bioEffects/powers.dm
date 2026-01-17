@@ -1011,7 +1011,7 @@
 				owner.gib()
 
 			// Superfarted on ol' bib? Off to hell.
-			for (var/obj/item/storage/bible/B in owner.loc)
+			for (var/obj/item/bible/B in owner.loc)
 				owner.damn()
 				break
 		else
@@ -1680,7 +1680,7 @@
 		for (var/mob/living/L in range(7,owner))
 			if (!cant_hear(L))
 				if(count++ > (src.linked_power.power ? 10 : 7)) break
-				if(locate(/obj/item/storage/bible) in get_turf(L))
+				if(locate(/obj/item/bible) in get_turf(L))
 					owner.visible_message("<span class='alert'><b>A mysterious force smites [owner.name] for inciting blasphemy!</b></span>")
 					owner.gib()
 				else

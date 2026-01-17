@@ -286,6 +286,9 @@ SHARDS
 				H.weakened = max(3, H.weakened)
 				affecting.take_damage(5, 0)
 				H.UpdateDamageIcon()
+			if(prob(5))
+				new /obj/decal/cleanable/grit/small(src.loc)
+				qdel(src)
 	..()
 
 // CRYSTAL

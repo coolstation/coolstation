@@ -41,6 +41,10 @@
 			conductor.active = TRUE
 			conductor.train_loop()
 
+			if(prob(70))//is this stupid? yes
+				SPAWN_DBG(rand(3,9) MINUTES)
+					random_events.force_event("Train", "Follow-up Train")
+
 /* ----------- THE TRAIN SPOTTER, FOR CONTROLLING TRAINS ----------- */
 
 var/datum/train_controller/train_spotter
@@ -70,7 +74,7 @@ var/datum/train_controller/train_spotter
 
 	dat += "<a class='buttan' style='background: #20B142; color:#FFFFFF; position: absolute; left: 2%; font-weight: bold;' href='byond://?src=\ref[src];create=1'>Create New Train</a> "
 	dat += "<a class='buttan' style='background: #DB2828; color: #FBD608; position: absolute; left: 34%; font-weight: bold;' href='byond://?src=\ref[src];fucku=1'>Fuck This Y<br>In Particular</a> "
-	dat += "<a class='buttan' style='background: #7E5AC9; color: #FFFFFF; position: absolute; right: 2%; font-weight:bold;'  href='byond://?src=\ref[src];RandomTrainEvent=1'>Random Train<br>(TODO)</a><small><div style='position: absolute; top: 4cm; width: 95%; margin:auto;'>"
+	dat += "<a class='buttan' style='background: #7E5AC9; color: #FFFFFF; position: absolute; right: 2%; font-weight:bold;'  href='byond://?src=\ref[src];randomtrain=1'>Random Train<br>(TODO)</a><small><div style='position: absolute; top: 4cm; width: 95%; margin:auto;'>"
 
 	for (var/datum/train_conductor/conductor in src.conductors)
 		dat += "<div style='height: 3cm; background: #676457; border: 2px; border-radius: 5px; padding: 3px; position: relative; width: 90%;'>"
@@ -173,6 +177,17 @@ var/datum/train_controller/train_spotter
 		the_fckr.movement_delay = 0.25 // hard n fast
 		the_fckr.active=TRUE
 		the_fckr.train_loop()
+
+	if (href_list["randomtrain"])
+		var/datum/train_conductor/tc = new()
+		if(istype(tc))
+			tc.cars.Add(/obj/traincar/NT_engine) // Need an engine
+			var/count = abs(pick(40;3, 40;6, 40;9, 25;15, 5;25, 3;30) + rand(1,4))
+			for(count; count>0; count--)
+				tc.cars.Add(pick(/obj/traincar/NT_shipping, /obj/traincar/NT_hopper, /obj/traincar/NT_tanker, 2;/obj/traincar/NT_engine))
+			tc.movement_delay = 3 + rand(-0.5, 1)
+			tc.active=TRUE
+			tc.train_loop()
 
 	src.config()
 
@@ -494,7 +509,8 @@ ABSTRACT_TYPE(/datum/train_preset)
 /datum/train_conductor/proc/sound_horn()
 	if(!src.horn_sound || !src.train_z || !src.train_front_y)
 		return
-	playsound(locate(clamp(src.train_front_x, src.train_unload_x, src.train_not_yet_loaded_x), src.train_front_y, src.train_z), pick(src.horn_sound), 50, 1, SOUND_RANGE_LARGE)
+	if(locate(/obj/traincar/NT_engine) in src.cars)
+		playsound(locate(clamp(src.train_front_x, src.train_unload_x, src.train_not_yet_loaded_x), src.train_front_y, src.train_z), pick(src.horn_sound), 50, 1, SOUND_RANGE_LARGE)
 
 /datum/train_conductor/proc/train_loop()
 	if(QDELETED(src)) // ah hell nah

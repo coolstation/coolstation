@@ -138,6 +138,10 @@
 		..()
 		setProperty("disorient_resist_eye", 20)
 
+	rogue
+		name = "Old NT-SO gas mask"
+		desc = "A poorly maintained CBRN mask with a yellowed lense and dirty filters, once designed to protect no longer loyal death squads."
+
 /obj/item/clothing/mask/moustache
 	name = "fake moustache"
 	desc = "Nobody will know who you are if you put this on. Nobody."

@@ -91,6 +91,10 @@
 		)
 	icon_override = "nt"
 
+/obj/item/device/radio/headset/command/nt/rogue
+	name = "Hacked NT Headset"
+	desc = "An old jailbroken NT headset. The headset is still capable of accessing secure frequencies."
+
 /obj/item/device/radio/headset/command/captain
 	name = "Captain's Headset"
 	icon_state = "captain headset"

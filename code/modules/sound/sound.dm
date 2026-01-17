@@ -347,10 +347,11 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 			for (var/mob/M in src.observers)
 				if (CLIENT_IGNORES_SOUND(M.client))
 					continue
-					M.client.sound_playing[ S.channel ][1] = ourvolume
-					M.client.sound_playing[ S.channel ][2] = channel
+				M.client.sound_playing[ S.channel ][1] = ourvolume
+				M.client.sound_playing[ S.channel ][2] = channel
 
-					M << S
+				M << S
+
 	if (returnchannel)
 		return (S.channel)
 
@@ -414,6 +415,11 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 
 		if (!S) S = generate_sound(source, soundin, vol, pitch_var, range=SOUND_RANGE_STANDARD, pitch=pitch)
 		if (!S) CRASH("Did not manage to generate sound \"[soundin]\" with source [source].")
+		S.channel = C.next_playsound_channel
+		C.next_playsound_channel++
+		if(C.next_playsound_channel > SOUNDCHANNEL_PLAYSOUND_MAX)
+			C.next_playsound_channel = SOUNDCHANNEL_PLAYSOUND_MIN
+
 		C.sound_playing[ S.channel ][1] = storedVolume
 		C.sound_playing[ S.channel ][2] = channel
 
@@ -709,6 +715,8 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 			sound('sound/ambience/station/Station_VocalNoise5.ogg'),
 			sound('sound/ambience/station/Station_VocalNoise6.ogg'),
 			sound('sound/ambience/station/Station_VocalNoise7.ogg'),
+			sound('sound/ambience/station/Station_VocalNoise8.ogg'),
+			sound('sound/ambience/station/Station_VocalNoise9.ogg'),
 			sound('sound/ambience/station/Station_MechanicalThrum1.ogg'),
 			sound('sound/ambience/station/Station_MechanicalThrum2.ogg'),
 			sound('sound/ambience/station/Station_MechanicalThrum3.ogg'),

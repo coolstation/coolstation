@@ -573,6 +573,8 @@ proc/is_teleportation_allowed(var/turf/T)
 				processbadeffect(pick("flash","buzz","scatter","ignite","chill"))
 		if(prob(5) && !locate(/obj/dfissure_to) in get_step(src, EAST))
 			new/obj/dfissure_to(get_step(src, EAST))
+		else if(prob(3) && !locate(/obj/channel_fragment_portal) in get_step(src, WEST))
+			new/obj/channel_fragment_portal(get_step(src, WEST))
 		else
 			start_portal = makeportal(src.loc, target)
 			if (start_portal)

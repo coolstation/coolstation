@@ -686,7 +686,7 @@
 
 		csaber //no stun and less damage than normal csaber hit ( see sword/attack() )
 
-			damageMult = 0.54
+			damageMult = 0.6
 
 			onAdd()
 				if(master)

@@ -103,21 +103,21 @@
 		loc = "on your belt"
 	if (!R && istype(traitor_mob.l_hand, /obj/item/storage))
 		var/obj/item/storage/S = traitor_mob.l_hand
-		var/list/L = S.get_contents()
+		var/list/L = S.storage.get_contents()
 		for (var/obj/item/device/radio/foo in L)
 			R = foo
 			loc = "in the [S.name] in your left hand"
 			break
 	if (!R && istype(traitor_mob.r_hand, /obj/item/storage))
 		var/obj/item/storage/S = traitor_mob.r_hand
-		var/list/L = S.get_contents()
+		var/list/L = S.storage.get_contents()
 		for (var/obj/item/device/radio/foo in L)
 			R = foo
 			loc = "in the [S.name] in your right hand"
 			break
 	if (!R && istype(traitor_mob.back, /obj/item/storage))
 		var/obj/item/storage/S = traitor_mob.back
-		var/list/L = S.get_contents()
+		var/list/L = S.storage.get_contents()
 		for (var/obj/item/device/radio/foo in L)
 			R = foo
 			loc = "in the [S.name] in your backpack"
@@ -208,28 +208,28 @@
 	else
 		if (istype(traitor_mob.l_hand, /obj/item/storage))
 			var/obj/item/storage/S = traitor_mob.l_hand
-			var/list/L = S.get_contents()
+			var/list/L = S.storage.get_contents()
 			for (var/obj/item/device/pda2/foo in L)
 				R = foo
 				loc = "in the [S.name] in your left hand"
 				break
 		if (istype(traitor_mob.r_hand, /obj/item/storage))
 			var/obj/item/storage/S = traitor_mob.r_hand
-			var/list/L = S.get_contents()
+			var/list/L = S.storage.get_contents()
 			for (var/obj/item/device/pda2/foo in L)
 				R = foo
 				loc = "in the [S.name] in your right hand"
 				break
 		if (istype(traitor_mob.back, /obj/item/storage))
 			var/obj/item/storage/S = traitor_mob.back
-			var/list/L = S.get_contents()
+			var/list/L = S.storage.get_contents()
 			for (var/obj/item/device/pda2/foo in L)
 				R = foo
 				loc = "in the [S.name] on your back"
 				break
 		if (istype(traitor_mob.belt, /obj/item/storage))
 			var/obj/item/storage/S = traitor_mob.belt
-			var/list/L = S.get_contents()
+			var/list/L = S.storage.get_contents()
 			for (var/obj/item/device/pda2/foo in L)
 				R = foo
 				loc = "in the [S.name] on your belt"
@@ -254,6 +254,20 @@
 	else
 		boutput(traitor_mob, "Something is BUGGED and we couldn't find you a PDA. Tell a coder.")
 
+/proc/equip_rogue(mob/living/carbon/human/rogue)
+	if (!ishuman(rogue))
+		return
+	rogue.equip_if_possible(new /obj/item/clothing/under/misc/turds/rogue(rogue), rogue.slot_w_uniform)
+	rogue.equip_if_possible(new /obj/item/clothing/shoes/swat(rogue), rogue.slot_shoes)
+	rogue.equip_if_possible(new /obj/item/clothing/glasses/sunglasses(rogue), rogue.slot_glasses)
+	rogue.equip_if_possible(new /obj/item/tank/emergency_oxygen(rogue), rogue.slot_l_store)
+
+	var/obj/item/card/id/ntso/I = new /obj/item/card/id/ntso(rogue)
+	I.icon_state = "faded"
+	I.icon = 'icons/obj/items/card.dmi'
+	rogue.equip_if_possible(I, rogue.slot_wear_id)
+
+	SHOW_NTSO_TIPS(rogue)
 
 /proc/equip_syndicate(mob/living/carbon/human/synd_mob, var/leader = 0)
 	if (!ishuman(synd_mob))

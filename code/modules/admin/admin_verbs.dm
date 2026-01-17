@@ -65,6 +65,7 @@ var/list/admin_verbs = alist(
 		/datum/admins/proc/startnow,
 		/datum/admins/proc/delay_start,
 		/datum/admins/proc/delay_end,
+		/datum/admins/proc/trains,
 
 		/client/proc/toggle_station_name_changing,
 		/client/proc/cmd_admin_remove_all_labels,
@@ -150,6 +151,7 @@ var/list/admin_verbs = alist(
 
 		//toggles
 		/datum/admins/proc/toggle_farting,
+		/datum/admins/proc/toggle_pooping,
 		/datum/admins/proc/toggle_emote_random_pitch,
 		/datum/admins/proc/toggle_blood_system,
 		/datum/admins/proc/toggle_traitor_scaling,
@@ -413,6 +415,7 @@ var/list/admin_verbs = alist(
 		/client/proc/toggle_literal_disarm,
 		/datum/admins/proc/toggle_emote_cooldowns,
 		/client/proc/implant_all,
+		/client/proc/cmd_belt_floors,
 		/client/proc/cmd_crusher_walls,
 		/client/proc/cmd_disco_lights,
 		/client/proc/cmd_blindfold_monkeys,
@@ -522,6 +525,8 @@ var/list/admin_verbs = alist(
 		// /client/proc/remove_camera_paths_verb,
 		// /client/proc/dbg_itemspecial,
 		// /client/proc/dbg_objectprop,
+
+		/verb/adminDumpBlueprint,
 
 		//big debugging
 		/client/proc/grant_webview_devtools,
@@ -722,7 +727,7 @@ var/list/special_pa_observing_verbs = list(
 	//	src.mob.mind.observing = 1
 		update_admins(rank)
 
-	blink(get_turf(src.mob))
+	//blink(get_turf(src.mob))
 	if(!istype(src.mob, /mob/dead/observer) && !istype(src.mob, /mob/dead/target_observer))
 		src.mob.mind?.damned = 0
 		src.mob.ghostize()
@@ -744,7 +749,7 @@ var/list/special_pa_observing_verbs = list(
 	//	src.mob.mind.observing = 0
 		update_admins(rank)
 
-	blink(get_turf(src.mob))
+	//blink(get_turf(src.mob))
 	if(istype(src.mob, /mob/dead/observer))
 		src.mob:reenter_corpse()
 		boutput(src, "<span class='notice'>You are now playing</span>")
@@ -1016,6 +1021,7 @@ var/list/fun_images = list()
 
 	var/icon/I = input("Pick an icon:","Icon") as null|icon
 	if (I)
+		I = icon(I)
 		var/datum/hud/funimage/fun_image = new(I)
 		fun_images += fun_image
 		for (var/client/C in clients)
@@ -1372,7 +1378,7 @@ var/list/fun_images = list()
 		del(bgObj)
 
 	var/start_x = (viewport_width / 2) + 1
-	var/start_y = (viewport_height / 2) + 1
+//	var/start_y = (viewport_height / 2) + 1
 
 	boutput(src, "<span class='notice'><B>Begining mapping.</B></span>")
 
@@ -1381,7 +1387,7 @@ var/list/fun_images = list()
 		for (var/curZ = 1; curZ <= world.maxz; curZ++)
 			if (safeAllZ && (curZ == 2 || curZ == 4))
 				continue //Skips centcom
-			for (var/y = start_y; y <= world.maxy; y += viewport_height)
+			for (var/y = (world.maxy - (viewport_height * 0.5)); y >= 0; y -= viewport_height)
 				for (var/x = start_x; x <= world.maxx; x += viewport_width)
 					src.mob.x = x
 					src.mob.y = y
@@ -1396,7 +1402,7 @@ var/list/fun_images = list()
 					return
 	//Or just one level I GUESS
 	else
-		for (var/y = start_y; y <= world.maxy; y += viewport_height)
+		for (var/y = (world.maxy - (viewport_height * 0.5)); y >= 0; y -= viewport_height)
 			for (var/x = start_x; x <= world.maxx; x += viewport_width)
 				src.mob.x = x
 				src.mob.y = y
@@ -1407,6 +1413,10 @@ var/list/fun_images = list()
 				sleep(delay)
 
 	alert("Mapping complete!", "Yay!", "Ok")
+
+        // If you are planning on stitching these images together using imagemagick, you probably
+        // want something like the following:
+        // montage -border 0 -geometry +0+0 -tile 10 <screenshot files> <outputfile>
 
 /client/proc/view_cid_list(var/C as text)
 	set name = "View CompID List"

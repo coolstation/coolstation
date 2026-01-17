@@ -370,7 +370,7 @@
 						V.throw_at(target, 8, 3, throw_type = THROW_GUNIMPACT)
 				var/go2hell
 				src.transform = oldtransform
-				for (var/obj/item/storage/bible/B in src.loc)
+				for (var/obj/item/bible/B in src.loc)
 					go2hell = 1
 					var/turf/oldloc = get_turf(src)
 					src.visible_message("<span class='alert'>[src] blasts its ass all over ol' bib.<br><b>Beelzebubs <u>is not pleased</u>!</b></span>")
@@ -419,7 +419,7 @@
 					game_stats.Increment("clownabuse")
 				src.fart_memory += A
 				break
-			else if(istype(A,/obj/item/storage/bible))
+			else if(istype(A,/obj/item/bible))
 				src.visible_message("<span class='alert'>[src] farts on ol' bib.<br><b>Something happens!</b></span>")
 				fart_on_other = 1
 				src.fart_memory += A

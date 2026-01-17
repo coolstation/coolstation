@@ -33,6 +33,7 @@
 	wear_image_icon = 'icons/mob/head.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_books.dmi'
 	item_state = "paper"
+	hitsound = null //need a very weak paper paff type sound
 	var/info = ""
 	var/stampable = 1
 	throwforce = 0
@@ -477,6 +478,22 @@ ASC: Aux. Solar Control<BR>
 	The cryogenics chamber will automatically eject patients once their health is back to normal, but post-cryo evaluation is recommended nevertheless.
 	"}
 
+/obj/item/paper/sgletter
+	name = "'Strongly Worded Letter'"
+	info = {"<h4><span style='font-family: Special Elite, cursive;'>DEAR SITE DIRECTOR,</span></h4>
+	<p>
+    The matter of your refusal to co-operate with <i>contract binding</i> orders regarding my departments has once again been brought to my attention. Your unwillingness to come to a single compromise with any items of my various, very important, and pressing affairs is simply unacceptable. I, once again, writing to voice my dissatisfaction with your lacklustre, negligent, and misguided management of the Security, Civilian, and Engineering departments. Your blatant and flippant refusal to work with my departments sets a poor example for your underlings to follow-at the detriment of the entire instillation. Need I remind you that your authority does not extend past the 51/49 station line.
+    Any further incursion upon my authority, refusal to co-operate, bothering of my staff, or impeding of my dutiful survey responsibilities will result in legal action.<br>
+	<br>
+	Consider your future actions with my dissatisfaction and the sake of the outpost in mind, Director.
+	<br>
+	Sincerely,<br>
+    Nevicata Survey Instillation 13 Surveyor General,<br>
+	Director of Medical, Logistics, Reconnaissance and Research departments,<br>
+	PhD. MD. MFA.
+	_________
+	</P>"}
+
 /obj/item/paper/cargo_instructions
 	name = "'Cargo Bay Setup Instructions'"
 	info = "In order to properly set up the cargo computer, both the incoming and outgoing supply pads must be directly or diagonally adjacent to the computer."
@@ -656,6 +673,19 @@ as it may become compromised.
 	name = "strange note"
 	desc = "What's this doing here?"
 	info = "<i>On the other side... 232 09</i>"
+
+/obj/item/paper/rtfm
+	name = "angrily scribed FOSS missive"
+	info = {"Wow! I cannot BELIEVE the numbers of operatives we have that do not know how to RTFM (Read The FREAKIN' Manual)<br>
+	Primarily, our sophisticated weaponry has many interesting capabilities for bringing order to the chaos of draconian software licensing.<br>
+	Secondarily, the more times you crank, the more powerful the emitted laser will be. Or, in the flywheel model, the more charges you will have stored up.<br>
+	Tertiarily, the more of a charge the capacitors have, the more damage it will do to the bulb. Big shots means faster burnout.<br>
+	Quaternarily, the flywheel laser does not gain more powerful shots, but it does fire multiple times without needing to re-crank.<br>
+	<s>Pent</s>Quinarily, there is a SAFETY mechanism to avoid overcranking that can be toggled with any screwdriver for higher damage and more risk.<br>
+	That's it! You'd have known these things if you simply took a few hours of your time to read the 96 man pages we prepared.<br>
+	<br>
+	Unbelievable.<br>
+	-RT"}
 
 /obj/item/paper/torn
 	name = "torn note"
@@ -1105,7 +1135,7 @@ as it may become compromised.
 	src.icon_state = "paper_bin[(src.amount || locate(/obj/item/paper, src)) ? "1" : null]"
 	return
 
-/obj/item/paper_bin/MouseDrop(mob/user as mob)
+/obj/item/paper_bin/mouse_drop(mob/user as mob)
 	if (user == usr && !user.restrained() && !user.stat && (user.contents.Find(src) || in_interact_range(src, user)))
 		if (!user.put_in_hand(src))
 			return ..()

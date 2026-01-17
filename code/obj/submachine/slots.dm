@@ -91,7 +91,9 @@
 				return TRUE // jerks doing that "hide in a chute to glitch auto-update windows out" exploit caused a wall of runtime errors
 			src.accessed_record["current_money"] += src.available_funds
 			src.available_funds = 0
-			src.scan = null
+			if(src.scan)
+				src.scan.set_loc(src.loc)
+				src.scan = null
 			src.accessed_record = null
 			src.working = FALSE
 			src.icon_state = "[icon_base]-off" // just in case, some fucker broke it earlier

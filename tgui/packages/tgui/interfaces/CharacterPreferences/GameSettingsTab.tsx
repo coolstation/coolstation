@@ -44,7 +44,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.listenOoc}
               onClick={() => act("update-listenOoc")}
-              tooltip="Out-of-Character chat. This mostly just shows up on the RP server and at the end of rounds."
             >
               Display OOC chat
             </Button.Checkbox>
@@ -53,7 +52,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.listenLooc}
               onClick={() => act("update-listenLooc")}
-              tooltip="Local Out-of-Character is OOC chat, but only appears for nearby players. This is basically only used on the RP server."
             >
               Display LOOC chat
             </Button.Checkbox>
@@ -62,7 +60,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={!data.flyingChatHidden}
               onClick={() => act("update-flyingChatHidden")}
-              tooltip="Chat messages will appear over characters as they're talking."
             >
               See chat above people&apos;s heads
             </Button.Checkbox>
@@ -71,7 +68,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.autoCapitalization}
               onClick={() => act("update-autoCapitalization")}
-              tooltip="Chat messages you send will be automatically capitalized."
             >
               Auto-capitalize your messages
             </Button.Checkbox>
@@ -80,7 +76,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.localDeadchat}
               onClick={() => act("update-localDeadchat")}
-              tooltip="You'll only hear chat messages from living people on your screen as a ghost."
             >
               Local ghost hearing
             </Button.Checkbox>
@@ -189,8 +184,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.viewChangelog}
               onClick={() => act("update-viewChangelog")}
-              tooltip="The changelog can be shown at any time by using the 'Changelog' command, under the Commands tab in the top right."
-              tooltipPosition="top"
             >
               Auto-open changelog
             </Button.Checkbox>
@@ -199,8 +192,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.viewScore}
               onClick={() => act("update-viewScore")}
-              tooltip="The end-of-round scoring shows various stats on how the round went. If this option is off, you won't be able to see it."
-              tooltipPosition="top"
             >
               Auto-open end-of-round score
             </Button.Checkbox>
@@ -209,8 +200,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.viewTickets}
               onClick={() => act("update-viewTickets")}
-              tooltip="The end-of-round ticketing summary shows the various tickets and fines that were handed out. If this option is off, you can still see them on Goonhub (goonhub.com)."
-              tooltipPosition="top"
             >
               Auto-open end-of-round ticket summary
             </Button.Checkbox>
@@ -224,8 +213,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.useClickBuffer}
               onClick={() => act("update-useClickBuffer")}
-              tooltip="There is a cooldown after clicking on things in-game. When enabled, if you click something during this cooldown, the game will apply that click after the cooldown. Otherwise, the click is ignored."
-              tooltipPosition="top"
             >
               Queue Combat Clicks
             </Button.Checkbox>
@@ -234,8 +221,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.useWasd}
               onClick={() => act("update-useWasd")}
-              tooltip="Enabling this allows you to use WASD to move instead of the arrow keys, and enables a few other hotkeys."
-              tooltipPosition="top"
             >
               Use WASD Mode
             </Button.Checkbox>
@@ -244,8 +229,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.useAzerty}
               onClick={() => act("update-useAzerty")}
-              tooltip="If you have an AZERTY keyboard, enable this. Yep. This sure is a tooltip."
-              tooltipPosition="top"
             >
               Use AZERTY Keyboard Layout
             </Button.Checkbox>
@@ -265,7 +248,6 @@ export const GameSettingsTab = (_props, context) => {
             <Button.Checkbox
               checked={data.skipLobbyMusic}
               onClick={() => act("update-lobbymusic")}
-              tooltip="Toggles whether lobby music plays close to the start of a new round."
             >
               Skip Lobby Music
             </Button.Checkbox>

@@ -7,6 +7,40 @@ var/weadegrowne = 0
 var/doinkssparked = 0
 //var/clownabuse = 0
 
+/obj/landmark/channel_fragment
+	name = "channel fragment"
+
+/obj/channel_fragment_portal
+	name = "channel fragment"
+	desc = "remnants of a collapsed wormhole..."
+	opacity = 0
+	density = 1
+	anchored = ANCHORED
+	alpha = 200
+	icon = 'icons/obj/adventurezones/void.dmi'
+	icon_state = "fissure"
+	var/turf/target
+
+	New()
+		..()
+		target = pick_landmark("channel fragment")
+
+	Bumped(atom/movable/AM)
+
+		if(!target)
+			return
+
+		var/area/srcar = AM.loc.loc
+		srcar.Exited(AM)
+		var/area/trgar = target.loc
+		trgar.Entered(AM, AM.loc)
+
+		AM.set_loc(target)
+
+		if(prob(5))
+			src.visible_message("the fissure collapses...")
+			qdel(src)
+
 /obj/death_button/immersive
 	name = "Button that simulates the Coolstation Experience"
 	desc = "A button which, if you press it, will fill you with the sense that you had a pretty good round."

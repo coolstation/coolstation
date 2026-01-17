@@ -210,9 +210,10 @@ var/global/list/job_start_locations = list()
 		"shitty_bill" = /mob/living/carbon/human/biker,
 		"john_bill" = /mob/living/carbon/human/john,
 		"big_yank" = /mob/living/carbon/human/big_yank,
-		"father_jack" = /mob/living/carbon/human/fathergraham,
+		"father_jack" = /mob/living/carbon/human/father,
 		"don_glab" = /mob/living/carbon/human/don_glab,
 		"gunsemanne" = /mob/living/carbon/human/gunsemanne,
+		"pizzeriamaenne" = /mob/living/carbon/human/giuseppe,
 
 		"monkeyspawn_normal" = /mob/living/carbon/human/npc/monkey,
 		"monkeyspawn_albert" = /mob/living/carbon/human/npc/monkey/albert,

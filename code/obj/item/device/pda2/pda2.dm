@@ -729,7 +729,7 @@
 
 	return
 
-/obj/item/device/pda2/MouseDrop(atom/over_object, src_location, over_location)
+/obj/item/device/pda2/mouse_drop(atom/over_object, src_location, over_location)
 	..()
 	if (over_object == usr && src.loc == usr && isliving(usr) && !usr.stat)
 		src.attack_self(usr)
@@ -1131,12 +1131,11 @@
 			return
 
 		if(src in bible_contents)
-			for_by_tcl(B, /obj/item/storage/bible)
+			for_by_tcl(B, /obj/item/bible)
 				var/turf/T = get_turf(B.loc)
 				if(T)
 					T.hotspot_expose(700,125)
 					explosion(src, T, -1, -1, 2, 3)
-			bible_contents.Remove(src)
 			qdel(src)
 			return
 
