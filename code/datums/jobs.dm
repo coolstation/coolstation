@@ -153,6 +153,17 @@
 				cant_spawn_as_rev = 1 //Why would an NT Loyalist be a revolutionary?
 				// i dont know but its a fucking stupid trait anyway
 
+#ifdef EVERYONE_SPAWNS_SMOKING
+			if (ishuman(M)) // we do this after equipment is added in case the map has different/no uniforms etc
+				var/mob/living/carbon/human/H = M
+				var/obj/item/clothing/mask/cigarette/cig = new /obj/item/clothing/mask/cigarette(M)
+				if(!H.wear_mask)
+					H.equip_if_possible(cig,H.slot_wear_mask)
+				else
+					H.put_in_hand_or_drop(cig)
+				cig.light()
+#endif
+
 			M.department = department
 /*
 			if (src.do_not_save_gun && !isnull(M.mind))
