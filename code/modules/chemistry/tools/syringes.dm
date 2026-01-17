@@ -138,7 +138,7 @@
 
 				if (iscarbon(target) || ismobcritter(target))
 					if (target != user)
-						if (user.a_intent == INTENT_HARM)
+						if (user.a_intent == INTENT_HARM && !src.cant_drop)
 							logTheThing("combat", user, target, "jabs [constructTarget(target,"combat")] with a syringe [log_reagents(src)] at [log_loc(user)].")
 							random_brute_damage(target, 5)
 							attack_particle(user, target)
