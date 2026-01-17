@@ -206,6 +206,7 @@ var/list/admin_verbs = alist(
 		/client/proc/cmd_admin_hlvox_announce_freq,
 		/client/proc/cmd_admin_hlvox_help,
 		/client/proc/cmd_admin_create_centcom_report,
+		/client/proc/cmd_admin_create_command_announcement,
 		/client/proc/cmd_admin_create_advanced_centcom_report,
 		/client/proc/cmd_admin_advanced_centcom_report_help,
 		/client/proc/cmd_dectalk,

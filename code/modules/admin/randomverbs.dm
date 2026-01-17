@@ -503,6 +503,27 @@
 		logTheThing("diary", src, null, "has created a command report: [input]", "admin")
 		message_admins("[key_name(src)] has created a command report")
 
+/client/proc/cmd_admin_create_command_announcement()
+	SET_ADMIN_CAT(ADMIN_CAT_FUN)
+	set name = "Create Command Announcement"
+	ADMIN_ONLY
+	var/input = input(usr, "Please enter anything you want for the body of the message. Headline comes next.", "What?", "") as null|message
+	if(!input)
+		return
+	var/input2 = input(usr, "Add a headline for this announcement?", "What?", "") as null|text
+
+	if (alert(src, "Headline: [input2 ? "\"[input2]\"" : "None"]\nBody: \"[input]\"", "Confirmation", "Send Report", "Cancel") == "Send Report")
+		for_by_tcl(C, /obj/machinery/communications_dish)
+			C.add_centcom_report("[command_name()] Update", input)
+
+		var/sound_to_play = "sound/misc/announcement_chime.ogg"
+		if (!input2) command_announcement(input, "", sound_to_play);
+		else command_announcement(input, input2, sound_to_play);
+
+		logTheThing("admin", src, null, "has created a command announcement: [input]")
+		logTheThing("diary", src, null, "has created a command announcement: [input]", "admin")
+		message_admins("[key_name(src)] has created a command announcement")
+
 /client/proc/cmd_admin_create_advanced_centcom_report()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	set name = "Adv. Command Report"
