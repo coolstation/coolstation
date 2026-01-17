@@ -297,7 +297,10 @@
 
 
 	attack_hand(mob/user)
-		src.fiddle(user)
+		if(src.my_carafe && src.my_carafe.reagents.total_volume < src.my_carafe.reagents.maximum_volume)
+			src.fiddle(user)
+		else
+			remove_carafe(user)
 
 	ex_act(severity)
 		switch(severity)
