@@ -150,7 +150,6 @@
 			update_icon()
 
 /obj/machinery/firealarm/attack_hand(mob/user as mob)
-	playsound(src, "sound/misc/handle_click.ogg", 50, 1, pitch = 2)
 	if(user.stat || status & (NOPOWER|BROKEN))
 		return
 
