@@ -625,23 +625,12 @@
 		else
 			if (src.ID_card)
 				boutput(user, "<span class='notice'>You swap [ID] and [src.ID_card].</span>")
-				var/original_icon_state = src.icon_state
-				animate(src, time=2, icon_state=original_icon_state)
-				animate(time=2, transform=matrix(null, 0, -1, MATRIX_TRANSLATE))
-				animate(time=3, transform=null)
-				playsound(src, "sound/items/penclick.ogg", 30, 1, pitch = 0.8)
 				src.eject_id_card(user)
 				src.insert_id_card(ID, user)
 				return
 			else if (!src.ID_card)
 				src.insert_id_card(ID, user)
 				boutput(user, "<span class='notice'>You insert [ID] into [src].</span>")
-				var/original_icon_state = src.icon_state
-				animate(src, time=2, icon_state=original_icon_state)
-				animate(time=2, transform=matrix(null, 0, -1, MATRIX_TRANSLATE))
-				animate(time=3, transform=null)
-				playsound(src, "sound/items/penclick.ogg", 30, 1, pitch = 0.8)
-
 
 	else if (istype(C, /obj/item/uplink_telecrystal))
 		if (src.uplink && src.uplink.active)
@@ -918,7 +907,6 @@
 			animate(time=2, icon_state=original_icon_state)
 			animate(time=2, transform=matrix(null, 0, -1, MATRIX_TRANSLATE))
 			animate(time=3, transform=null)
-			playsound(src, "sound/items/penclick.ogg", 30, 1)
 			boutput(user, "<span class='notice'>You insert [insertedPen] into [src].</span>")
 
 /*
