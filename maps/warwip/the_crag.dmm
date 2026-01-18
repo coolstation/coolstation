@@ -341,6 +341,10 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/engine/substation/east)
+"ba" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/northwest,
+/turf/space/gehenna/desert,
+/area/gehenna)
 "bb" = (
 /obj/machinery/light/small/red{
 	dir = 1
@@ -2790,6 +2794,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/southeast)
+"he" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/northeast,
+/turf/space/gehenna/desert,
+/area/gehenna)
 "hf" = (
 /obj/machinery/light/fluorescent{
 	dir = 8
@@ -4274,6 +4282,14 @@
 	},
 /turf/floor/black/side,
 /area/station/hallway/primary/north)
+"lh" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 10
+	},
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "li" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -4393,6 +4409,12 @@
 /obj/window_blinds,
 /turf/floor/plating,
 /area/station/medical/head)
+"lx" = (
+/obj/railing/cool,
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "ly" = (
 /obj/disposalpipe/junction/right/north,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
@@ -4575,7 +4597,9 @@
 /obj/machinery/atmospherics/unary/furnace_connector{
 	dir = 8
 	},
-/obj/machinery/power/furnace/thermo,
+/obj/machinery/power/furnace/thermo{
+	fuel = 100
+	},
 /turf/floor,
 /area/station/engine/core)
 "ma" = (
@@ -4610,6 +4634,15 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/crew_quarters/cafeteria)
+"me" = (
+/obj/railing/cool,
+/obj/machinery/atmospherics/pipe/simple/junction{
+	dir = 1
+	},
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "mf" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /obj/decal/cleanable/dirt/dirt2,
@@ -5664,8 +5697,8 @@
 /turf/floor/plating,
 /area/station/atmos/hookups/west)
 "oO" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/north,
-/turf/space/gehenna/desert/plating,
+/obj/railing/cool,
+/turf/space/gehenna/desert,
 /area/gehenna)
 "oP" = (
 /obj/table/wood/auto,
@@ -5975,6 +6008,10 @@
 /obj/machinery/light/fluorescent/ceiling,
 /turf/floor/cautionblack,
 /area/station/engine/core)
+"pE" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
+/turf/space/gehenna/desert/beaten,
+/area/gehenna)
 "pF" = (
 /obj/submachine/laundry_machine,
 /turf/floor,
@@ -7158,6 +7195,10 @@
 /obj/disposalpipe/segment,
 /turf/floor/plating,
 /area/station/hydroponics/lobby)
+"sI" = (
+/obj/random_item_spawner/junk/one,
+/turf/space/gehenna/desert,
+/area/gehenna)
 "sJ" = (
 /obj/machinery/vending/grub,
 /turf/floor/sanitary,
@@ -8316,6 +8357,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
+"vJ" = (
+/obj/machinery/atmospherics/pipe/manifold/overfloor/north,
+/turf/space/gehenna/desert,
+/area/gehenna)
 "vK" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -8604,6 +8649,11 @@
 	},
 /turf/floor/sanitary,
 /area/station/medical/morgue)
+"wx" = (
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "wy" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
@@ -10136,6 +10186,10 @@
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/plating,
 /area/station/science/chemistry)
+"Aw" = (
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/space/gehenna/desert,
+/area/gehenna)
 "Ax" = (
 /obj/cable{
 	d2 = 2;
@@ -11282,6 +11336,14 @@
 /obj/access_spawn/engineering_atmos,
 /turf/floor/plating,
 /area/station/atmos/hookups/east)
+"DH" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 6
+	},
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "DI" = (
 /obj/cable{
 	icon_state = "0-8"
@@ -11692,6 +11754,10 @@
 /obj/machinery/manufacturer/engineering,
 /turf/floor,
 /area/station/engine/elect)
+"EM" = (
+/obj/random_item_spawner/junk/one,
+/turf/space/gehenna/desert/beaten,
+/area/gehenna)
 "EN" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon15,
 /turf/floor,
@@ -12705,6 +12771,12 @@
 /obj/machinery/manufacturer/robotics,
 /turf/floor/black,
 /area/station/medical/robotics)
+"Ht" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging,
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "Hu" = (
 /obj/disposalpipe/segment/bent{
 	dir = 2
@@ -13406,6 +13478,11 @@
 /obj/shitty_radio/ceiling,
 /turf/floor,
 /area/station/hallway/primary/north)
+"Jg" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/atmospherics/valve/vertical,
+/turf/space/gehenna/desert/plating,
+/area/gehenna)
 "Jh" = (
 /obj/machinery/door/airlock/external,
 /turf/floor/plating,
@@ -13850,6 +13927,13 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/central)
+"Ks" = (
+/obj/random_item_spawner/junk/one,
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging,
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "Kt" = (
 /turf/wall,
 /area/station/engine/core)
@@ -15470,6 +15554,14 @@
 	dir = 9
 	},
 /area/listeningpost)
+"OI" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 4
+	},
+/turf/space/gehenna/desert/plating/thermal{
+	icon_state = "plating_dusty2"
+	},
+/area/gehenna)
 "OJ" = (
 /obj/machinery/light/fluorescent{
 	dir = 8
@@ -16354,6 +16446,10 @@
 	dir = 8
 	},
 /area/station/medical/medbay/lobby)
+"QT" = (
+/obj/storage/crate/furnacefuel,
+/turf/space/gehenna/desert/beaten,
+/area/gehenna)
 "QU" = (
 /obj/machinery/door/airlock,
 /obj/access_spawn/kitchen,
@@ -17063,6 +17159,11 @@
 /obj/item/parts/robot_parts/head,
 /turf/floor/grime,
 /area/station/medical/robotics)
+"SR" = (
+/obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
+/turf/floor/plating,
+/area/station/engine/core)
 "SS" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -18242,10 +18343,10 @@
 /turf/floor/plating,
 /area/station/science/chemistry)
 "VS" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/decal/tile_edge/floorguide/arrow_w{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /turf/floor,
 /area/station/engine/core)
 "VT" = (
@@ -18740,6 +18841,12 @@
 /obj/item/storage/toolbox/mechanical/empty,
 /turf/floor/plating,
 /area/station/atmos/hookups/west)
+"Xp" = (
+/obj/random_item_spawner/junk/one,
+/turf/space/gehenna/desert/corner{
+	dir = 6
+	},
+/area/gehenna)
 "Xq" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/morgue{
@@ -67985,7 +68092,7 @@ Cl
 Cl
 XN
 qx
-oO
+cR
 Cl
 Cl
 Cl
@@ -68253,12 +68360,12 @@ Zu
 Dn
 ZX
 Dn
-Cl
-Cl
-Cl
-Cl
-Cl
-Cl
+EM
+SW
+SW
+SW
+EM
+QT
 Kt
 fP
 Dy
@@ -68557,10 +68664,10 @@ hd
 Dn
 Cl
 Cl
+sI
 Cl
-Cl
-Cl
-Cl
+tS
+xe
 bT
 kl
 Dy
@@ -68857,12 +68964,12 @@ pV
 Dn
 hd
 Dn
+Aw
 Cl
 Cl
 Cl
 Cl
-Cl
-Cl
+tS
 Un
 Ae
 zg
@@ -69779,7 +69886,7 @@ lz
 hh
 hh
 Vr
-Cl
+sI
 GY
 Cl
 Dn
@@ -70385,7 +70492,7 @@ cK
 hW
 Rv
 GY
-Cl
+sI
 Dn
 hd
 Dk
@@ -70971,12 +71078,12 @@ XT
 WZ
 hd
 Dn
-Cl
-Cl
-Cl
-Cl
+DH
+Ks
+me
+he
 RV
-Cl
+VX
 Kt
 hv
 hs
@@ -71273,13 +71380,13 @@ XT
 WZ
 hd
 Dn
-Cl
-Cl
-Cl
-Cl
-RV
-Cl
-bT
+OI
+wx
+lx
+vJ
+Jg
+pE
+SR
 VS
 Wx
 YN
@@ -71575,12 +71682,12 @@ CT
 WZ
 hd
 Dn
-Cl
-Cl
-Cl
-Cl
+lh
+Ht
+me
+ba
 RV
-Cl
+Xp
 Kt
 iD
 Bv
@@ -71592,7 +71699,7 @@ pI
 aq
 Kt
 Cl
-Cl
+sI
 Cl
 Dn
 sB
@@ -77599,7 +77706,7 @@ LD
 Pl
 ck
 Pq
-Cl
+oO
 Cl
 Cl
 Fn
@@ -77901,7 +78008,7 @@ TR
 ck
 NI
 Pq
-Cl
+oO
 Cl
 Cl
 Fn
@@ -78203,7 +78310,7 @@ NI
 NI
 WM
 Xu
-Cl
+oO
 Cl
 Cl
 Fn
@@ -79109,7 +79216,7 @@ NI
 Lj
 VX
 MD
-Cl
+oO
 Cl
 Cl
 Fn
@@ -79411,7 +79518,7 @@ NI
 NI
 Lj
 VX
-Cl
+oO
 Cl
 Cl
 Fn
@@ -79713,7 +79820,7 @@ NI
 NI
 NI
 Lj
-Cl
+oO
 Cl
 Cl
 Fn
@@ -80015,7 +80122,7 @@ wa
 pR
 NI
 WM
-Cl
+oO
 Cl
 Cl
 Fn
@@ -80317,7 +80424,7 @@ MD
 tS
 YQ
 Xu
-Cl
+oO
 Cl
 Cl
 Fn
@@ -80619,7 +80726,7 @@ Cl
 Cl
 oC
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -80921,7 +81028,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -81223,7 +81330,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -81525,7 +81632,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -81827,7 +81934,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -82129,7 +82236,7 @@ Cl
 Cl
 Cl
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -82431,7 +82538,7 @@ Cl
 fg
 fg
 Cl
-Cl
+oO
 Cl
 Cl
 Fn
@@ -82733,7 +82840,7 @@ fg
 fg
 fg
 fg
-Cl
+oO
 Cl
 Cl
 Fn

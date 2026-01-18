@@ -1853,6 +1853,9 @@
 /area/station/chapel/sanctuary)
 "caf" = (
 /obj/disposaloutlet/west,
+/obj/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/floor,
 /area/station/crew_quarters/kitchen)
 "cap" = (
@@ -2952,6 +2955,10 @@
 /obj/submachine/chem_extractor,
 /turf/floor,
 /area/station/hydroponics/lobby)
+"dgw" = (
+/obj/machinery/bot/guardbot/safety,
+/turf/floor/plating,
+/area/gehenna)
 "dhG" = (
 /obj/item/rods/steel,
 /turf/space/gehenna/desert/plating{
@@ -14622,6 +14629,7 @@
 "pMz" = (
 /obj/table/regal/auto,
 /obj/disposalpipe/segment/horizontal,
+/obj/item/reagent_containers/food/drinks/bottle/vintage,
 /turf/floor/carpet/blue/fancy/edge/west,
 /area/station/bridge/conference)
 "pMZ" = (
@@ -70778,7 +70786,7 @@ rBT
 sOK
 xQh
 xOA
-cGl
+dgw
 cGl
 cGl
 cGl

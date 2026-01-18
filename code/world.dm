@@ -92,6 +92,13 @@ var/global/map_crappy_power = 1
 var/global/map_crappy_power = 0
 #endif
 
+//will people spawn with lit cigarettes in their mouth/hand??
+#ifdef EVERYONE_SPAWNS_SMOKING
+var/global/crew_gets_complimentary_smoke = 1
+#else
+var/global/crew_gets_complimentary_smoke = 0
+#endif
+
 #ifdef TWITCH_BOT_ALLOWED
 var/global/mob/twitch_mob = 0
 #endif
@@ -483,6 +490,10 @@ var/f_color_selector_handler/F_Color_Selector
 	if(TgsAvailable())
 		var/datum/tgs_revision_information/rev = TgsRevision()
 		vcs_revision = rev.commit
+
+		var/datum/tgs_api/v5/api = TGS_READ_GLOBAL(tgs)
+		if(api)
+			api.reboot_mode = TGS_REBOOT_MODE_RESTART
 
 
 	lobby_titlecard = new /datum/titlecard()

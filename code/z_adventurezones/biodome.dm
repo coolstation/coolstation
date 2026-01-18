@@ -730,21 +730,6 @@ SYNDICATE DRONE FACTORY AREAS
 	return
 /////////////////////////////// GRAVEYARD stuff
 
-/obj/item/shovel
-	name = "rusty old shovel"
-	desc = "It's seen better days."
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "shovel"
-	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
-	item_state = "shovel"
-	w_class = W_CLASS_NORMAL
-	flags = ONBELT
-	force = 15
-	hitsound = 'sound/impact_sounds/Metal_Hit_1.ogg'
-
-	New()
-		..()
-		BLOCK_SETUP(BLOCK_ROD)
 
 /obj/graveyard/lightning_trigger
 	icon = 'icons/map-editing/mark.dmi'
