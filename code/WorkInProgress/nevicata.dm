@@ -20,7 +20,7 @@ var/global/nevicata_time = NEVICATA_TIME
 //
 //todo: make some nevicata audio loops and whatnot
 
-/turf/space/nevicata
+/turf/floor/nevicata
 	name = "the moon Nevicata"
 	desc = "it seems reality has broken down."
 	opacity = 0
@@ -102,7 +102,7 @@ var/global/nevicata_time = NEVICATA_TIME
 
 
 
-/turf/space/nevicata/wastes
+/turf/floor/nevicata/wastes
 	pathable = 1
 	name = "frozen wastes"
 	desc = "Crunchy ice and ash underfoot."
@@ -112,7 +112,7 @@ var/global/nevicata_time = NEVICATA_TIME
 	oxygen = NEVICATA_02
 	nitrogen = NEVICATA_N2
 	temperature = NEVICATA_TEMP
-	plane = PLANE_FLOOR //will this break shit?
+	intact = TRUE
 
 	luminosity = 1
 
@@ -143,18 +143,10 @@ var/global/nevicata_time = NEVICATA_TIME
 		SPAWN_DBG(0.1)
 			light.enable()
 
-	attackby(obj/item/W, mob/user)
-		if(istype(W, /obj/item/shovel) && user.a_intent == INTENT_HELP)
-			//play a good shovel sound
-			if(istype(src,/turf/space/nevicata/wastes/dug))
-				actions.start(new/datum/action/bar/icon/snow_fill(src),user)
-			else
-				actions.start(new/datum/action/bar/icon/snow_dig(src),user)
-		..()
-
-
-
-
+	levelupdate()
+		for(var/obj/O in src)
+			if(O.level == 1)
+				O.hide(src.intact)
 
 	plating
 		name = "snow-covered plating"
@@ -180,21 +172,6 @@ var/global/nevicata_time = NEVICATA_TIME
 		icon = 'icons/turf/floors.dmi'
 		icon_state = "snow_beat"
 
-	dug
-		name = "dug up ice"
-		desc = "someone dug a dang hole in the ice."
-		icon = 'icons/turf/floors.dmi'
-		icon_state = "snow_beat" //replace with hole
-		layer = PLATING_LAYER
-		plane = PLANE_SPACE //this will absolutely break things
-
-	filled
-		name = "filled trench"
-		desc = "a filled in trench."
-		icon_state = "snow_beat" //replace with filled trench
-		generateLight = 0
-		//todo: hide small items under here
-
 /area/nevicata
 	requires_power = 0
 	icon_state = "dither_b"
@@ -209,42 +186,5 @@ var/global/nevicata_time = NEVICATA_TIME
 
 	New()
 		..()
-		for(var/turf/space/nevicata/wastes/T in src)
+		for(var/turf/floor/nevicata/wastes/T in src)
 			T.temperature = (T.temperature + WASTELAND_MIN_TEMP)
-
-/datum/action/bar/icon/snow_fill
-	duration = 3 SECONDS
-	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
-	var/turf/space/nevicata/wastes/t
-
-	New(var/turf/tu)
-		t = tu
-		..()
-
-	onStart()
-		..()
-		boutput(owner,"<span class='notice'>You start to fill in the trench.</span>")
-		//play shovel sound
-
-	onEnd()
-		..()
-		t.ReplaceWith(/turf/space/nevicata/wastes/beaten)
-
-/datum/action/bar/icon/snow_dig
-	duration = 3 SECONDS
-	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
-	var/turf/space/nevicata/wastes/t
-
-	New(var/turf/tu)
-		t = tu
-		..()
-
-	onStart()
-		..()
-		boutput(owner,"<span class='notice'>You start to dig a trench.</span>")
-		//play shovel sound
-
-	onEnd()
-		..()
-		t.ReplaceWith(/turf/space/nevicata/wastes/dug)
-
