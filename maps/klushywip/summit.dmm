@@ -161,6 +161,11 @@
 /obj/window_blinds,
 /turf/floor/plating,
 /area/space)
+"aH" = (
+/obj/morgue,
+/obj/machinery/power/apc/autoname/west,
+/turf/floor/sanitary/white,
+/area/station/medical/morgue)
 "aI" = (
 /obj/decal/tile_edge/line/black{
 	dir = 4;
@@ -1230,6 +1235,10 @@
 /obj/stool/chair/blue,
 /turf/floor/bluewhite,
 /area/station/medical/medbay)
+"eW" = (
+/obj/machinery/power/apc/autoname/east,
+/turf/floor/grey,
+/area/station/science/chemistry)
 "eY" = (
 /obj/decal/tile_edge/line/blue{
 	dir = 1;
@@ -1775,6 +1784,7 @@
 /area/station/medical/research)
 "ho" = (
 /obj/machinery/disposal,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/black,
 /area/station/medical/cdc)
 "hp" = (
@@ -2545,6 +2555,7 @@
 	dir = 5;
 	icon_state = "xtra_bigstripe-corner2"
 	},
+/obj/machinery/power/apc/autoname/south,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "kX" = (
@@ -3355,6 +3366,7 @@
 	dir = 9;
 	icon_state = "line1"
 	},
+/obj/machinery/power/apc/autoname/west,
 /turf/floor,
 /area/station/medical/research)
 "os" = (
@@ -3579,6 +3591,7 @@
 /area/station/security/main)
 "pv" = (
 /obj/machinery/vending/medical_public,
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/white,
 /area/station/medical/medbay/lobby)
 "px" = (
@@ -7184,6 +7197,7 @@
 "CX" = (
 /obj/machinery/disposal,
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/power/apc/autoname/north,
 /turf/floor/darkblue,
 /area/station/medical/medbay/pharmacy)
 "CZ" = (
@@ -7534,6 +7548,10 @@
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/floor/grey,
 /area/station/medical/robotics)
+"Ex" = (
+/obj/machinery/power/apc/autoname/south,
+/turf/floor/blue/checker,
+/area/station/medical/medbay)
 "Ey" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/light/small/warm{
@@ -8597,6 +8615,7 @@
 /area/station/medical/medbay/treatment)
 "IC" = (
 /obj/storage/secure/closet,
+/obj/machinery/power/apc/autoname/east,
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
 "ID" = (
@@ -10219,6 +10238,7 @@
 /obj/submachine/cargopad{
 	name = "Robotics Workshop Pad"
 	},
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/plating,
 /area/station/medical/robotics)
 "OS" = (
@@ -12203,6 +12223,11 @@
 	requires_power = 0;
 	name = "Clown Cave"
 	})
+"WO" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/power/apc/autoname/south,
+/turf/floor/darkblue,
+/area/station/medical/medbay/treatment)
 "WR" = (
 /obj/table/auto,
 /obj/item/storage/box/ic_cones{
@@ -52752,7 +52777,7 @@ pF
 Bh
 YA
 hl
-Pf
+aH
 Pf
 Bh
 pF
@@ -59088,7 +59113,7 @@ Tl
 bT
 Tl
 JW
-Tl
+Ex
 jY
 pF
 pF
@@ -59096,7 +59121,7 @@ OJ
 vL
 fP
 tX
-Qs
+eW
 NQ
 lr
 RM
@@ -60895,7 +60920,7 @@ It
 IB
 nQ
 BE
-Cc
+WO
 Ma
 uJ
 ZE

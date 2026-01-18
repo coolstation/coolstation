@@ -188,6 +188,13 @@ var/global/nevicata_time = NEVICATA_TIME
 		layer = PLATING_LAYER
 		plane = PLANE_SPACE //this will absolutely break things
 
+	filled
+		name = "filled trench"
+		desc = "a filled in trench."
+		icon_state = "snow_beat" //replace with filled trench
+		generateLight = 0
+		//todo: hide small items under here
+
 /area/nevicata
 	requires_power = 0
 	icon_state = "dither_b"
