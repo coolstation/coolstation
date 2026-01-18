@@ -12,7 +12,7 @@ var/datum/event_controller/random_events
 #define MINOR_EVENTS_BEGIN 10 MINUTES
 #define SPAWN_EVENTS_BEGIN 23 MINUTES
 #define MAINT_EVENTS_BEGIN 15 MINUTES
-#define LUNCH_TIME_BEGIN 5 MINUTES //adds at least first one at at least 25 minutes to 45 Minutes
+#define LUNCH_TIME_BEGIN 30 MINUTES //adds at least first one at at least 25 minutes to 45 Minutes
 
 ABSTRACT_TYPE(/datum/random_event/major/player_spawn)
 ABSTRACT_TYPE(/datum/random_event/major/antag)
@@ -44,6 +44,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 
 	var/major_event_timer = 0
 	var/minor_event_timer = 0
+	var/already_lunched = 0
 
 	//timestamps for when the next events happen
 	var/next_major_event = MAJOR_EVENTS_BEGIN
@@ -66,8 +67,8 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 	var/datum/random_event/sets/lunchtime/lunch_event = null
 
 	var/next_lunch_event = LUNCH_TIME_BEGIN
-	var/time_between_lunch_event_lower = 20 MINUTES
-	var/time_between_lunch_event_upper = 40 MINUTES
+	var/time_between_lunch_event_lower = 5 MINUTES
+	var/time_between_lunch_event_upper = 10 MINUTES
 
 	var/time_lock = 1
 	var/list/special_events = list()
@@ -156,8 +157,10 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			next_maint_event = TIME + rand(time_between_maint_events_lower,time_between_maint_events_upper)
 
 		if (ticker.round_elapsed_ticks >= next_lunch_event)
-			lunch_event.event_effect("Lots of hard work!")
-			next_lunch_event = TIME + rand(time_between_lunch_event_lower, time_between_lunch_event_upper)
+			if(!already_lunched)
+				lunch_event.event_effect("Lots of hard work!")
+				next_lunch_event = TIME + rand(time_between_lunch_event_lower, time_between_lunch_event_upper)
+				already_lunched = 1
 
 	proc/event_cycle()
 		event_cycle_count++
