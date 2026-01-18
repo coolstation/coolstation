@@ -8,6 +8,9 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/stool/chair/green{
+	dir = 4
+	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
 "aaE" = (
@@ -25,7 +28,11 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/networked/ai_governor/airlocks,
+/obj/machinery/computer3/terminal/zeta{
+	dir = 8;
+	name = "DWAINE Terminal - ZETA";
+	setup_os_string = "ZETA_MAINFRAME"
+	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "abd" = (
@@ -47,13 +54,6 @@
 	icon_state = "4-8"
 	},
 /turf/floor/darkblue,
-/area/allowGenerate/caves)
-"abM" = (
-/obj/storage/closet/wardrobe/blue,
-/obj/item/clothing/under/scrub/blue,
-/obj/item/clothing/under/scrub/flower,
-/obj/item/clothing/under/scrub/teal,
-/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "abU" = (
 /obj/stool/chair/comfy/green{
@@ -409,6 +409,10 @@
 /obj/item/clothing/suit/bedsheet/captain,
 /turf/floor/carpet/nicebrown,
 /area/allowGenerate/caves)
+"awx" = (
+/obj/table/wood/auto,
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "awS" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -437,6 +441,12 @@
 	icon_state = "0-2"
 	},
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"axO" = (
+/obj/stool/chair{
+	dir = 1
+	},
+/turf/floor/white,
 /area/allowGenerate/caves)
 "axS" = (
 /obj/decal/cleanable/dirt/random,
@@ -580,6 +590,13 @@
 	icon_old = "diamondtile"
 	},
 /area/allowGenerate/caves)
+"aHz" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/drinks/rum_spaced{
+	pixel_y = 8
+	},
+/turf/floor/carpet/green,
+/area/allowGenerate/caves)
 "aHW" = (
 /turf/floor/yellowblack{
 	dir = 4
@@ -661,6 +678,11 @@
 	},
 /turf/floor/black,
 /area/station/science/artifact)
+"aLJ" = (
+/obj/table/auto,
+/obj/item/storage/box/beer,
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "aLS" = (
 /obj/disposalpipe/segment/horizontal,
 /turf/floor,
@@ -687,14 +709,6 @@
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
-/area/allowGenerate/caves)
-"aOo" = (
-/obj/machinery/computer/security/wooden_tv{
-	name = "TeeVEE";
-	pixel_x = 1;
-	pixel_y = 1
-	},
-/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "aPm" = (
 /obj/disposalpipe/segment/sewage,
@@ -1097,6 +1111,14 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"blx" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/table/reinforced/industrial/auto,
+/obj/item_dispenser/towel,
+/turf/floor/industrial,
+/area/allowGenerate/caves)
 "blC" = (
 /obj/cable{
 	d1 = 1;
@@ -1221,19 +1243,14 @@
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/terminal/zeta{
 	dir = 8;
+	name = "DWAINE Terminal - ZETA";
 	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/floor/black,
 /area/station/science/chemistry)
-"bsL" = (
-/obj/decal/stage_edge{
-	layer = 2
-	},
-/obj/table/reinforced/industrial/auto,
-/obj/machinery/camera/television{
-	pixel_y = 13
-	},
-/turf/floor/industrial,
+"bsI" = (
+/obj/storage/closet/wardrobe/specialty_janitor,
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "bsU" = (
 /obj/disposalpipe/segment/sewage,
@@ -1252,6 +1269,11 @@
 	},
 /turf/floor/black,
 /area/station/science/teleporter)
+"btA" = (
+/obj/table/wood/auto,
+/obj/item/spacecash/random/medium,
+/turf/floor/carpet/green,
+/area/allowGenerate/caves)
 "buk" = (
 /obj/cable{
 	d1 = 4;
@@ -1335,16 +1357,6 @@
 	dir = 1
 	},
 /area/allowGenerate/caves)
-"byG" = (
-/obj/machinery/power/data_terminal,
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/computer3/terminal/zeta{
-	setup_os_string = "ZETA_MAINFRAME"
-	},
-/turf/floor/plating/random,
-/area/allowGenerate/caves)
 "byH" = (
 /obj/disposalpipe/junction/right/south,
 /turf/floor/black,
@@ -1414,6 +1426,14 @@
 /obj/machinery/networked/telepad,
 /turf/floor/black,
 /area/station/science/teleporter)
+"bAB" = (
+/obj/table/wood/auto,
+/obj/item/pen/fancy,
+/obj/item/pen/red{
+	pixel_x = -5
+	},
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "bAN" = (
 /obj/disposalpipe/junction/right/east,
 /turf/floor/white,
@@ -1479,6 +1499,13 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
 /turf/floor/airless/engine/glow,
 /area/allowGenerate/caves)
+"bDD" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/stool/bar,
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "bDL" = (
 /obj/disposalpipe/segment/horizontal,
 /obj/machinery/door/airlock/classic,
@@ -1531,6 +1558,15 @@
 /obj/machinery/door/airlock/gannets/glass/chemistry/alt,
 /turf/floor/purple,
 /area/station/science/lobby)
+"bGj" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "bHm" = (
 /obj/cable{
 	d1 = 1;
@@ -1623,16 +1659,33 @@
 	dir = 9
 	},
 /area/station/science/lobby)
+"bOD" = (
+/obj/landmark/random_room/size3x3,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "bOH" = (
 /obj/storage/closet/wardrobe/white/research,
 /turf/floor/purple/side{
 	dir = 1
 	},
 /area/station/science/lobby)
+"bPl" = (
+/obj/storage/crate/bin/lostandfound,
+/turf/floor,
+/area/allowGenerate/caves)
 "bPu" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/science/storage)
+"bPU" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/drinks/bottle/wine{
+	pixel_x = 16;
+	pixel_y = 17
+	},
+/turf/floor/carpet/green,
+/area/allowGenerate/caves)
 "bQm" = (
 /obj/storage/closet/biohazard,
 /turf/floor/purple/side{
@@ -1665,6 +1718,18 @@
 	},
 /turf/floor/black,
 /area/station/science/artifact)
+"bRM" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/computer3/terminal/zeta{
+	dir = 8;
+	name = "DWAINE Terminal - COM";
+	setup_os_string = "COM_MAINFRAME"
+	},
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "bRN" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/grille/catwalk/bob,
@@ -1775,6 +1840,15 @@
 /obj/disposalpipe/segment/horizontal,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"bWn" = (
+/obj/stool/chair{
+	dir = 4;
+	tag = "icon-chair (EAST)"
+	},
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/allowGenerate/caves)
 "bWN" = (
 /obj/cable{
 	icon_state = "4-8"
@@ -1836,6 +1910,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/terminal/zeta{
+	name = "DWAINE Terminal - ZETA";
 	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/floor/black/side,
@@ -1975,12 +2050,6 @@
 	},
 /turf/floor/carpet/grime3,
 /area/station/science/lobby)
-"ckR" = (
-/obj/stool/chair/boxingrope_corner{
-	dir = 6
-	},
-/turf/floor/specialroom/gym,
-/area/allowGenerate/caves)
 "clv" = (
 /obj/machinery/vending/coffee,
 /turf/floor/carpet/grime3,
@@ -2162,6 +2231,10 @@
 	},
 /turf/floor/yellow/side,
 /area/allowGenerate/caves)
+"cwv" = (
+/obj/stool/chair,
+/turf/floor/white,
+/area/allowGenerate/caves)
 "cAD" = (
 /obj/cable{
 	d1 = 1;
@@ -2246,6 +2319,10 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"cKV" = (
+/obj/machinery/vending/snack_freezer,
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "cMs" = (
 /obj/cable{
 	d1 = 1;
@@ -2278,19 +2355,6 @@
 	icon_state = "0-2"
 	},
 /turf/floor/plating,
-/area/allowGenerate/caves)
-"cOx" = (
-/obj/table/wood/auto,
-/obj/item/reagent_containers/food/drinks/mug/random_color,
-/obj/item/coin{
-	pixel_x = -10;
-	pixel_y = 12
-	},
-/obj/item/coin{
-	pixel_x = -3;
-	pixel_y = 13
-	},
-/turf/floor/carpet/green,
 /area/allowGenerate/caves)
 "cOC" = (
 /obj/storage/closet/wardrobe/green,
@@ -2394,6 +2458,12 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"cVf" = (
+/obj/machinery/door/airlock/gannets/glass,
+/turf/floor/black/side{
+	dir = 8
+	},
+/area/allowGenerate/caves)
 "cVl" = (
 /obj/machinery/portable_atmospherics/canister/air/large,
 /obj/machinery/light/fluorescent/harsh/very{
@@ -2401,6 +2471,10 @@
 	},
 /obj/window/west,
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"cWo" = (
+/obj/landmark/random_room/size5x3,
+/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "cYt" = (
 /obj/disposalpipe/segment{
@@ -2417,9 +2491,9 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
-"daK" = (
-/obj/storage/closet/wardrobe/mixed,
-/turf/floor/grey,
+"daN" = (
+/obj/storage/closet/medicalclothes,
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "dbA" = (
 /obj/machinery/atmospherics/valve/horizontal{
@@ -2527,6 +2601,12 @@
 	dir = 8
 	},
 /area/allowGenerate/caves)
+"dpF" = (
+/obj/landmark/random_room/size5x3,
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/allowGenerate/caves)
 "dpG" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -2536,14 +2616,11 @@
 	icon_old = "diamondtile"
 	},
 /area/allowGenerate/caves)
-"dqh" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/table/wood/auto,
-/obj/item/reagent_containers/food/drinks/bottle/wine{
-	pixel_x = 16;
-	pixel_y = 17
-	},
-/turf/floor/carpet/green,
+"dqp" = (
+/obj/machinery/power/data_terminal,
+/obj/cable,
+/obj/storage/closet/office,
+/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "dqJ" = (
 /obj/machinery/door/airlock/glass,
@@ -2592,13 +2669,6 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /obj/machinery/meter,
 /turf/floor/plating,
-/area/allowGenerate/caves)
-"dxF" = (
-/obj/table/reinforced/auto,
-/obj/machinery/microwave{
-	pixel_y = 4
-	},
-/turf/floor,
 /area/allowGenerate/caves)
 "dxN" = (
 /obj/decal/tile_edge/floorguide/command{
@@ -2686,12 +2756,6 @@
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
-/area/allowGenerate/caves)
-"dCt" = (
-/obj/stool/chair{
-	dir = 8
-	},
-/turf/floor/grey,
 /area/allowGenerate/caves)
 "dCw" = (
 /obj/disposalpipe/segment/sewage{
@@ -2843,6 +2907,11 @@
 	dir = 4
 	},
 /area/allowGenerate/caves)
+"dPz" = (
+/obj/table/wood/auto,
+/obj/item/card_box/tarot,
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "dPG" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -2854,13 +2923,6 @@
 "dRS" = (
 /turf/floor/yellowblack/corner,
 /area/allowGenerate/caves)
-"dRW" = (
-/obj/disposalpipe/segment{
-	dir = 4
-	},
-/obj/stool/bar,
-/turf/floor/specialroom/bar,
-/area/allowGenerate/caves)
 "dSL" = (
 /obj/disposalpipe/segment/sewage,
 /turf/floor/industrial,
@@ -2868,6 +2930,13 @@
 "dWM" = (
 /turf/wall/gehenna,
 /area/gehenna/underground)
+"dWO" = (
+/obj/storage/closet/wardrobe/white,
+/obj/item/clothing/under/scrub,
+/obj/item/clothing/under/scrub/pink,
+/obj/item/clothing/under/shirt_pants,
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "dXr" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -2909,6 +2978,13 @@
 	dir = 4
 	},
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"dZa" = (
+/obj/table/wood/auto,
+/obj/item/paper_bin{
+	pixel_y = 6
+	},
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "dZu" = (
 /turf/floor/yellowblack/corner{
@@ -2966,11 +3042,6 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
-"egv" = (
-/obj/table/wood/auto,
-/obj/item/card_box/tarot,
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "eho" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/stairs/wide{
@@ -3014,6 +3085,17 @@
 /turf/floor/plating{
 	icon_old = "diamondtile"
 	},
+/area/allowGenerate/caves)
+"eiT" = (
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/computer3/terminal/zeta{
+	name = "DWAINE Terminal - COM";
+	setup_os_string = "COM_MAINFRAME"
+	},
+/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "ejk" = (
 /obj/machinery/atmospherics/portables_connector/east,
@@ -3067,13 +3149,11 @@
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"enF" = (
-/obj/cable,
-/obj/machinery/power/data_terminal,
-/obj/decal/fakeobjects/broken_governor{
-	name = "busted AI governor (killswitch)"
+"eoh" = (
+/obj/decal/boxingrope{
+	dir = 8
 	},
-/turf/floor/plating,
+/turf/floor/specialroom/gym,
 /area/allowGenerate/caves)
 "eoi" = (
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -3111,10 +3191,6 @@
 	},
 /turf/floor/carpet/green,
 /area/allowGenerate/caves)
-"eqB" = (
-/obj/machinery/door/airlock/gannets/glass,
-/turf/floor/grey,
-/area/allowGenerate/caves)
 "ers" = (
 /obj/item/device/radio/beacon,
 /turf/floor/black,
@@ -3138,10 +3214,6 @@
 	},
 /obj/decal/tile_edge/floorguide/security,
 /turf/floor/white,
-/area/allowGenerate/caves)
-"evQ" = (
-/obj/table/wood/auto,
-/turf/floor/specialroom/bar,
 /area/allowGenerate/caves)
 "ewK" = (
 /turf/wall/asteroid/gehenna/tough/z3,
@@ -3177,13 +3249,6 @@
 	pixel_y = 32
 	},
 /turf/floor/plating,
-/area/allowGenerate/caves)
-"eAo" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/stool/chair{
-	dir = 1
-	},
-/turf/floor/white,
 /area/allowGenerate/caves)
 "eAJ" = (
 /obj/machinery/drainage/big,
@@ -3241,6 +3306,17 @@
 /obj/wingrille_spawn/crystal,
 /turf/floor/plating,
 /area/station/science/lab)
+"eHk" = (
+/obj/machinery/power/data_terminal,
+/obj/cable,
+/obj/table/wood/auto,
+/obj/machinery/networked/printer{
+	name = "Printer - NetCafe";
+	pixel_y = 5;
+	print_id = "NetCafe"
+	},
+/turf/floor/plating/random,
+/area/allowGenerate/caves)
 "eHQ" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/decal/tile_edge/floorguide/medbay{
@@ -3314,13 +3390,6 @@
 	},
 /obj/wingrille_spawn/crystal,
 /turf/floor/plating,
-/area/allowGenerate/caves)
-"eMn" = (
-/obj/decal/stage_edge{
-	layer = 2
-	},
-/obj/machinery/vending/medical_public,
-/turf/floor/industrial,
 /area/allowGenerate/caves)
 "eMK" = (
 /obj/cable{
@@ -3411,11 +3480,6 @@
 	},
 /turf/floor/plating,
 /area/station/science/bot_storage)
-"eXY" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/pink,
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "eYx" = (
 /obj/stool/chair/couch/blue{
 	dir = 8
@@ -3519,10 +3583,6 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /turf/floor,
 /area/station/science/lab)
-"fij" = (
-/obj/machinery/vending/snack_freezer,
-/turf/floor/grey,
-/area/allowGenerate/caves)
 "fiA" = (
 /obj/disposalpipe/junction/right/west,
 /turf/floor/purple/side{
@@ -3554,6 +3614,10 @@
 	dir = 8
 	},
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"fkT" = (
+/obj/table/wood/auto,
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "fmV" = (
 /turf/wall/r_wall,
@@ -3616,16 +3680,6 @@
 /obj/machinery/atmospherics/portables_connector/south,
 /turf/floor/black/side,
 /area/station/science/lab)
-"fre" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/grey/side{
-	dir = 8
-	},
-/area/allowGenerate/caves)
 "frz" = (
 /obj/stool,
 /obj/disposalpipe/segment{
@@ -3749,10 +3803,6 @@
 /obj/machinery/light_switch/north,
 /turf/floor/black,
 /area/allowGenerate/caves)
-"fEa" = (
-/obj/machinery/door/airlock,
-/turf/floor,
-/area/allowGenerate/caves)
 "fEA" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/floor/airless/engine/glow/blue,
@@ -3794,6 +3844,10 @@
 	dir = 1
 	},
 /turf/floor/black,
+/area/allowGenerate/caves)
+"fJp" = (
+/obj/stool/chair,
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "fKg" = (
 /obj/machinery/door/airlock/glass,
@@ -3851,6 +3905,14 @@
 /obj/machinery/bot/guardbot/bootleg,
 /turf/floor,
 /area/station/science/bot_storage)
+"fOm" = (
+/obj/table/wood/auto,
+/obj/decoration/decorativeplant/plant3{
+	pixel_x = -15;
+	pixel_y = 25
+	},
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "fOZ" = (
 /obj/decal/poster/wallsign/security_wall,
 /turf/wall,
@@ -3866,6 +3928,10 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/south,
 /turf/floor/plating,
 /area/station/science/lab)
+"fQE" = (
+/obj/fitness/speedbag/wizard,
+/turf/floor/industrial,
+/area/allowGenerate/caves)
 "fQU" = (
 /obj/landmark{
 	icon_state = "x3";
@@ -3909,14 +3975,14 @@
 	},
 /turf/floor,
 /area/station/science/lab)
-"fUX" = (
-/obj/stool/chair,
-/turf/floor/white,
-/area/allowGenerate/caves)
 "fVk" = (
 /obj/table/wood/round/auto,
 /obj/item/decoration/ashtray,
 /turf/floor/carpet/grime4,
+/area/allowGenerate/caves)
+"fVK" = (
+/obj/storage/closet/wardrobe/mixed,
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "fVY" = (
 /obj/disposalpipe/segment/sewage,
@@ -3946,6 +4012,13 @@
 	},
 /turf/floor/carpet/grime3,
 /area/station/science/lobby)
+"fYx" = (
+/obj/decal/stage_edge{
+	layer = 2
+	},
+/obj/machinery/vending/medical_public,
+/turf/floor/industrial,
+/area/allowGenerate/caves)
 "fZr" = (
 /obj/machinery/incubator,
 /turf/floor/bluegreen,
@@ -3958,13 +4031,6 @@
 /area/allowGenerate/caves)
 "gad" = (
 /obj/disposalpipe/segment/bent/north,
-/turf/floor/grey,
-/area/allowGenerate/caves)
-"gaJ" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/stool/chair,
 /turf/floor/grey,
 /area/allowGenerate/caves)
 "gaU" = (
@@ -3985,6 +4051,10 @@
 /obj/machinery/door/airlock/gannets/command,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"ghm" = (
+/obj/decal/boxingrope,
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "gio" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -4000,6 +4070,13 @@
 /obj/item/paper/book/from_file/dwainedummies,
 /turf/floor/carpet/office/other,
 /area/station/science/research_director)
+"gjk" = (
+/obj/machinery/power/apc/autoname/north,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "gjS" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/bluewhite{
@@ -4144,6 +4221,10 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"gwZ" = (
+/obj/table/auto,
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "gxf" = (
 /obj/storage/crate{
 	name = "Spare Parts"
@@ -4187,10 +4268,6 @@
 	},
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/floor/plating,
-/area/allowGenerate/caves)
-"gAc" = (
-/obj/decal/boxingrope,
-/turf/floor/grey,
 /area/allowGenerate/caves)
 "gCA" = (
 /obj/ladder/auto,
@@ -4247,11 +4324,6 @@
 	},
 /turf/floor/black,
 /area/station/science/artifact)
-"gKv" = (
-/turf/floor/grey/side{
-	dir = 8
-	},
-/area/allowGenerate/caves)
 "gKP" = (
 /obj/cable{
 	d1 = 1;
@@ -4304,6 +4376,17 @@
 /obj/machinery/vending/cigarette,
 /turf/floor/black,
 /area/allowGenerate/caves)
+"gUw" = (
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/computer3/terminal/zeta{
+	name = "DWAINE Terminal - ZETA";
+	setup_os_string = "ZETA_MAINFRAME"
+	},
+/turf/floor/plating/random,
+/area/allowGenerate/caves)
 "gVr" = (
 /obj/machinery/autoclave,
 /turf/floor/white,
@@ -4343,7 +4426,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/computer3/terminal/zeta{
-	setup_os_string = "ZETA_MAINFRAME"
+	name = "DWAINE Terminal - COM";
+	setup_os_string = "COM_MAINFRAME"
 	},
 /turf/floor/carpet/green,
 /area/allowGenerate/caves)
@@ -4393,6 +4477,10 @@
 /obj/decal/tile_edge/floorguide/hop,
 /turf/floor/white,
 /area/allowGenerate/caves)
+"hcQ" = (
+/obj/stool/bar,
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "hdL" = (
 /obj/machinery/door/airlock/gannets/glass/alt,
 /obj/disposalpipe/segment{
@@ -4431,14 +4519,13 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"hgd" = (
+/obj/machinery/door/airlock/gannets/glass,
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "hhI" = (
 /obj/cryotron,
 /turf/floor/grey,
-/area/allowGenerate/caves)
-"hib" = (
-/obj/table/wood/auto,
-/obj/item/spacecash/random/medium,
-/turf/floor/carpet/green,
 /area/allowGenerate/caves)
 "hiW" = (
 /obj/machinery/conveyor/east{
@@ -4498,6 +4585,13 @@
 	icon_state = "4-8"
 	},
 /turf/floor/carpet/green,
+/area/allowGenerate/caves)
+"hnx" = (
+/obj/table/wood/auto,
+/obj/item/plate{
+	pixel_y = 4
+	},
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "hnI" = (
 /obj/table/auto,
@@ -4589,18 +4683,6 @@
 	},
 /turf/floor,
 /area/allowGenerate/caves)
-"htO" = (
-/obj/table/wood/auto,
-/obj/item/pen/fancy,
-/obj/item/pen/red{
-	pixel_x = -5
-	},
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
-"htR" = (
-/obj/stool/chair,
-/turf/floor/grey,
-/area/allowGenerate/caves)
 "hug" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/wingrille_spawn/reinforced,
@@ -4655,6 +4737,12 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"hzG" = (
+/obj/stool/chair/boxingrope_corner{
+	dir = 6
+	},
+/turf/floor/specialroom/gym,
+/area/allowGenerate/caves)
 "hAH" = (
 /obj/disposalpipe/segment/bent/south,
 /obj/cable{
@@ -4698,15 +4786,6 @@
 /obj/machinery/door/airlock/glass/engineering,
 /obj/machinery/door/firedoor/border_only,
 /obj/access_spawn/engineering_engine,
-/turf/floor/grey,
-/area/allowGenerate/caves)
-"hCh" = (
-/obj/machinery/door/unpowered/wood/stall,
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
 "hCk" = (
@@ -4754,10 +4833,6 @@
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"hJj" = (
-/obj/machinery/vending/cigarette/noknobs,
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "hJM" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -4774,6 +4849,10 @@
 /obj/machinery/atmospherics/pipe/vent/west,
 /turf/floor/airless/engine/vacuum,
 /area/station/science/lab)
+"hKK" = (
+/obj/storage/crate/bin/dumpster,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "hLf" = (
 /obj/disposalpipe/segment/sewage,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -4846,16 +4925,6 @@
 "hQb" = (
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/floor/black,
-/area/allowGenerate/caves)
-"hQS" = (
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal/zeta{
-	setup_os_string = "COM_MAINFRAME"
-	},
-/turf/floor/plating,
 /area/allowGenerate/caves)
 "hRe" = (
 /obj/disposalpipe/segment/bent/south,
@@ -4930,10 +4999,6 @@
 /obj/disposalpipe/junction/middle/east,
 /turf/floor/purplewhite,
 /area/allowGenerate/caves)
-"hYh" = (
-/obj/table/wood/round/auto,
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "icg" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/machinery/atmospherics/valve/purge/horizontal{
@@ -4979,6 +5044,13 @@
 	dir = 2
 	},
 /turf/floor/black,
+/area/allowGenerate/caves)
+"igO" = (
+/obj/disposalpipe/segment/sewage{
+	dir = 4
+	},
+/obj/machinery/door/unpowered/wood/stall,
+/turf/floor/grime,
 /area/allowGenerate/caves)
 "iho" = (
 /obj/cable/yellow{
@@ -5060,10 +5132,20 @@
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"ipI" = (
+/obj/machinery/door/unpowered/wood/pyro{
+	dir = 4
+	},
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "ipO" = (
 /turf/floor/stairs/wide{
 	dir = 8
 	},
+/area/allowGenerate/caves)
+"isp" = (
+/obj/machinery/door/airlock,
+/turf/floor,
 /area/allowGenerate/caves)
 "itf" = (
 /obj/disposalpipe/trunk{
@@ -5116,6 +5198,31 @@
 	icon_state = "1-4"
 	},
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"iyb" = (
+/obj/machinery/power/data_terminal,
+/obj/cable,
+/obj/machinery/networked/storage/tape_drive{
+	bank_id = "Cafe";
+	locked = 0;
+	setup_drive_type = null;
+	setup_spawn_with_tape = 0
+	},
+/turf/floor/plating/random,
+/area/allowGenerate/caves)
+"iyj" = (
+/obj/machinery/vending/cigarette/noknobs,
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
+"iyK" = (
+/obj/machinery/power/data_terminal,
+/obj/cable,
+/obj/table/wood/auto,
+/obj/machinery/networked/storage/scanner{
+	bank_id = "cafe";
+	pixel_y = 3
+	},
+/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "iyR" = (
 /turf/floor/plating,
@@ -5284,13 +5391,6 @@
 	},
 /turf/floor/carpet/office/other,
 /area/station/science/research_director)
-"iMV" = (
-/obj/disposalpipe/segment/sewage{
-	dir = 4
-	},
-/obj/machinery/door/unpowered/wood/stall,
-/turf/floor/grime,
-/area/allowGenerate/caves)
 "iMW" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/horizontal,
@@ -5323,6 +5423,13 @@
 	},
 /obj/machinery/space_heater,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"iPz" = (
+/obj/table/wood/round/auto,
+/obj/item/reagent_containers/food/drinks/bottle/beer/papist{
+	pixel_y = 5
+	},
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "iQz" = (
 /obj/cable{
@@ -5360,15 +5467,10 @@
 	},
 /turf/floor/industrial,
 /area/allowGenerate/caves)
-"iVE" = (
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal/zeta{
-	setup_os_string = "ZETA_MAINFRAME"
-	},
-/turf/floor/plating,
+"iVh" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet,
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "iVV" = (
 /obj/machinery/atmospherics/valve/horizontal{
@@ -5396,6 +5498,13 @@
 /obj/machinery/atmospherics/portables_connector/east,
 /turf/floor,
 /area/station/science/lab)
+"iWt" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/stool/chair,
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "iWG" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/camera{
@@ -5457,6 +5566,14 @@
 	},
 /turf/floor/white,
 /area/allowGenerate/caves)
+"jcU" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/networked/ai_governor/APCs,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "jcW" = (
 /turf/floor,
 /area/station/science/lab)
@@ -5508,6 +5625,12 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/north,
 /turf/floor/airless/engine/vacuum,
 /area/station/science/lab)
+"jgT" = (
+/obj/stool/chair{
+	dir = 4
+	},
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "jjT" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/breathable{
 	dir = 4
@@ -5568,12 +5691,6 @@
 	dir = 1
 	},
 /area/station/science/lab)
-"jmE" = (
-/obj/stool/chair{
-	dir = 1
-	},
-/turf/floor/white,
-/area/allowGenerate/caves)
 "jmY" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/door/poddoor/blast{
@@ -5616,16 +5733,6 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/table/wood/auto,
 /turf/floor/grey,
-/area/allowGenerate/caves)
-"jqh" = (
-/obj/machinery/power/data_terminal,
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/computer3/terminal/zeta{
-	setup_os_string = "COM_MAINFRAME"
-	},
-/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "jql" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -5727,6 +5834,12 @@
 "jwf" = (
 /obj/disposalpipe/switch_junction/right/east,
 /turf/floor,
+/area/allowGenerate/caves)
+"jwC" = (
+/obj/fitness/weightlifter,
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
 /area/allowGenerate/caves)
 "jyg" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
@@ -5890,14 +6003,6 @@
 	dir = 4
 	},
 /area/station/science/lab)
-"jSd" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/table/reinforced/industrial/auto,
-/obj/item/reagent_containers/food/drinks/water,
-/turf/floor/plating{
-	icon_old = "diamondtile"
-	},
-/area/allowGenerate/caves)
 "jSh" = (
 /obj/machinery/light/small/warm{
 	dir = 1
@@ -6179,15 +6284,6 @@
 	},
 /turf/floor/airless/engine/vacuum,
 /area/station/science/lab)
-"krS" = (
-/obj/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/table/wood/auto,
-/turf/floor/specialroom/bar,
-/area/allowGenerate/caves)
 "ksv" = (
 /obj/cable{
 	d1 = 4;
@@ -6200,14 +6296,6 @@
 	icon_state = "2-8"
 	},
 /turf/floor/black,
-/area/allowGenerate/caves)
-"ksE" = (
-/obj/table/wood/auto,
-/obj/decoration/decorativeplant/plant3{
-	pixel_x = -15;
-	pixel_y = 25
-	},
-/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "ksK" = (
 /obj/disposalpipe/segment/horizontal,
@@ -6246,6 +6334,12 @@
 "kwy" = (
 /obj/machinery/door/airlock/classic,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"kxK" = (
+/obj/cable,
+/obj/machinery/power/data_terminal,
+/obj/machinery/networked/ai_governor/viewports,
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "kxN" = (
@@ -6299,6 +6393,10 @@
 "kCZ" = (
 /obj/machinery/vending/pathology,
 /turf/floor/white,
+/area/allowGenerate/caves)
+"kEd" = (
+/obj/stool,
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "kFv" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -6485,13 +6583,6 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
-"lbM" = (
-/obj/table/wood/auto,
-/obj/decoration/decorativeplant/plant2{
-	pixel_y = 8
-	},
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "lbP" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/sewage{
@@ -6509,17 +6600,6 @@
 	icon_state = "6-8"
 	},
 /turf/floor/plating,
-/area/allowGenerate/caves)
-"lcU" = (
-/obj/machinery/power/data_terminal,
-/obj/cable,
-/obj/machinery/networked/storage/tape_drive{
-	bank_id = "Cafe";
-	locked = 0;
-	setup_drive_type = null;
-	setup_spawn_with_tape = 0
-	},
-/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "lda" = (
 /obj/cable{
@@ -6585,10 +6665,6 @@
 	},
 /turf/floor,
 /area/station/science/bot_storage)
-"lke" = (
-/obj/table/wood/auto,
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "llX" = (
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/floor/black,
@@ -6697,6 +6773,12 @@
 /obj/plasticflaps,
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"lvc" = (
+/obj/cable,
+/obj/machinery/power/data_terminal,
+/obj/machinery/networked/ai_governor/department_radio,
+/turf/floor/plating,
+/area/allowGenerate/caves)
 "lvV" = (
 /obj/grille/catwalk/bob,
 /obj/disposalpipe/segment/mail/vertical,
@@ -6780,11 +6862,9 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
 /turf/floor/plating,
 /area/station/science/lab)
-"lGc" = (
-/obj/table/wood/auto,
-/obj/item/plate{
-	pixel_y = 4
-	},
+"lGm" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/black,
 /turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "lGv" = (
@@ -6825,6 +6905,10 @@
 	},
 /turf/floor/airless/engine/vacuum,
 /area/station/science/lab)
+"lOp" = (
+/obj/storage/closet/wrestling,
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "lPL" = (
 /obj/grille/catwalk/bob,
 /obj/disposalpipe/segment/mail/vertical,
@@ -6862,6 +6946,11 @@
 /obj/table/wood/auto,
 /turf/floor/carpet/green,
 /area/allowGenerate/caves)
+"lRi" = (
+/obj/table/auto,
+/obj/item/reagent_containers/food/drinks/juicer,
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "lSQ" = (
 /obj/cable{
 	d1 = 1;
@@ -6880,14 +6969,6 @@
 "lTO" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /turf/floor/airless/engine/glow/blue,
-/area/allowGenerate/caves)
-"lUY" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/table/wood/auto,
-/obj/item/reagent_containers/food/drinks/bottle/fancy_beer{
-	pixel_y = 9
-	},
-/turf/floor/carpet/green,
 /area/allowGenerate/caves)
 "lVh" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -7059,11 +7140,6 @@
 	},
 /turf/floor/white,
 /area/allowGenerate/caves)
-"mne" = (
-/obj/disposalpipe/segment/bent/east,
-/obj/stool/chair,
-/turf/floor/white,
-/area/allowGenerate/caves)
 "mom" = (
 /obj/table/reinforced/industrial/auto,
 /turf/floor,
@@ -7089,6 +7165,12 @@
 	dir = 9
 	},
 /area/allowGenerate/caves)
+"mrF" = (
+/obj/stool/chair{
+	dir = 8
+	},
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "msP" = (
 /obj/machinery/button/elevator/med{
 	pixel_x = 32
@@ -7102,12 +7184,9 @@
 /obj/table/auto,
 /turf/floor/white,
 /area/allowGenerate/caves)
-"msT" = (
-/obj/storage/closet/wardrobe/white,
-/obj/item/clothing/under/scrub,
-/obj/item/clothing/under/scrub/pink,
-/obj/item/clothing/under/shirt_pants,
-/turf/floor/carpet/grime,
+"muU" = (
+/obj/fitness/speedbag/clown,
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "mvn" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
@@ -7128,10 +7207,6 @@
 	dir = 4
 	},
 /area/station/science/lab)
-"mwl" = (
-/obj/decal/boxingrope,
-/turf/floor/specialroom/gym,
-/area/allowGenerate/caves)
 "mxH" = (
 /obj/cable/yellow{
 	icon_state = "4-8"
@@ -7139,6 +7214,10 @@
 /obj/grille/catwalk/bob,
 /obj/stool,
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"mxP" = (
+/obj/table/folding/bin,
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "mym" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -7237,10 +7316,6 @@
 	},
 /obj/cable,
 /turf/floor/plating,
-/area/allowGenerate/caves)
-"mFs" = (
-/obj/stool,
-/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "mFy" = (
 /obj/disposalpipe/segment{
@@ -7442,16 +7517,6 @@
 /obj/wingrille_spawn/crystal,
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"mTu" = (
-/obj/stool/chair/boxingrope_corner{
-	dir = 9
-	},
-/turf/floor/grey,
-/area/allowGenerate/caves)
-"mUL" = (
-/obj/railing/boxing,
-/turf/floor/specialroom/gym,
-/area/allowGenerate/caves)
 "mWa" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -7506,6 +7571,16 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"ndD" = (
+/obj/disposalpipe/segment{
+	dir = 2
+	},
+/obj/grille/catwalk/bob,
+/obj/fitness/stacklifter,
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/allowGenerate/caves)
 "nei" = (
 /obj/disposalpipe/segment/bent/west,
 /turf/floor/carpet/blue/standard/edge/ne,
@@ -7551,6 +7626,13 @@
 /obj/stool,
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"niz" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/stool/chair{
+	dir = 8
+	},
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "niI" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/submachine/ATM/atm_alt{
@@ -7561,6 +7643,15 @@
 "niU" = (
 /obj/machinery/light/fluorescent/harsh/very,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"niW" = (
+/obj/machinery/door/unpowered/wood/stall,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "njS" = (
 /obj/grille/catwalk/bob,
@@ -7704,19 +7795,6 @@
 /obj/disposalpipe/segment/sewage,
 /turf/floor,
 /area/allowGenerate/caves)
-"nBf" = (
-/obj/table/wood/auto,
-/obj/item/paper_bin{
-	pixel_y = 6
-	},
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
-"nBr" = (
-/obj/machinery/door/unpowered/wood/pyro{
-	dir = 4
-	},
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "nBL" = (
 /obj/machinery/door/airlock,
 /turf/floor/black,
@@ -7725,20 +7803,10 @@
 /obj/machinery/vending/monkey,
 /turf/floor/white,
 /area/allowGenerate/caves)
-"nDG" = (
-/obj/stool/chair{
-	dir = 4
-	},
-/turf/floor/specialroom/bar,
-/area/allowGenerate/caves)
 "nEi" = (
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/black,
 /area/station/science/chemistry)
-"nEm" = (
-/obj/stool/bar,
-/turf/floor/specialroom/bar,
-/area/allowGenerate/caves)
 "nEv" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/plating/random,
@@ -7868,14 +7936,6 @@
 /obj/table/wood/round/auto,
 /turf/floor/carpet/nicebrown,
 /area/allowGenerate/caves)
-"nVZ" = (
-/obj/disposalpipe/segment{
-	dir = 2
-	},
-/obj/table/reinforced/industrial/auto,
-/obj/item_dispenser/towel,
-/turf/floor/industrial,
-/area/allowGenerate/caves)
 "nWM" = (
 /obj/table/wood/auto,
 /obj/machinery/power/data_terminal,
@@ -7925,6 +7985,14 @@
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
+/area/allowGenerate/caves)
+"obQ" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/table/reinforced/auto{
+	icon_state = "12"
+	},
+/obj/window/reinforced/south,
+/turf/floor/black,
 /area/allowGenerate/caves)
 "ocA" = (
 /obj/machinery/door/airlock/glass,
@@ -8049,13 +8117,6 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
-"oke" = (
-/obj/machinery/power/apc/autoname/north,
-/obj/cable{
-	icon_state = "0-2"
-	},
-/turf/floor/grey,
-/area/allowGenerate/caves)
 "okk" = (
 /obj/machinery/drainage,
 /turf/floor,
@@ -8082,6 +8143,16 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor/plating{
 	icon_old = "fullblack"
+	},
+/area/allowGenerate/caves)
+"oom" = (
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/grey/side{
+	dir = 8
 	},
 /area/allowGenerate/caves)
 "ooM" = (
@@ -8118,6 +8189,15 @@
 	pixel_y = 8
 	},
 /turf/floor/sanitary,
+/area/allowGenerate/caves)
+"oqK" = (
+/obj/table/reinforced/industrial/auto,
+/obj/item/clothing/under/towel{
+	pixel_y = 8
+	},
+/turf/floor/plating{
+	icon_old = "fullblack"
+	},
 /area/allowGenerate/caves)
 "ora" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -8233,6 +8313,14 @@
 	},
 /turf/floor/white,
 /area/allowGenerate/caves)
+"oDi" = (
+/obj/table/wood/auto,
+/obj/machinery/computer/security/wooden_tv{
+	pixel_x = 1;
+	pixel_y = 7
+	},
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "oDP" = (
 /obj/disposalpipe/segment/mineral{
 	dir = 8
@@ -8274,11 +8362,6 @@
 /obj/landmark/artifact,
 /turf/floor/plating,
 /area/station/science/lab)
-"oIJ" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet,
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "oIQ" = (
 /obj/decal/poster/wallsign/security{
 	pixel_y = 35
@@ -8380,12 +8463,6 @@
 	},
 /turf/floor/darkblue,
 /area/allowGenerate/caves)
-"oSB" = (
-/obj/fitness/weightlifter,
-/turf/floor/plating{
-	icon_old = "diamondtile"
-	},
-/area/allowGenerate/caves)
 "oTg" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor/carpet/blue/standard/edge/north,
@@ -8469,6 +8546,13 @@
 /turf/floor/stairs/wide{
 	dir = 8
 	},
+/area/allowGenerate/caves)
+"pbg" = (
+/obj/storage/closet/wardrobe/blue,
+/obj/item/clothing/under/scrub/blue,
+/obj/item/clothing/under/scrub/flower,
+/obj/item/clothing/under/scrub/teal,
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "pbm" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -8644,21 +8728,10 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/floor/airless/engine/glow/blue,
 /area/allowGenerate/caves)
-"pwi" = (
-/obj/stool/chair/boxingrope_corner{
-	dir = 10
-	},
-/turf/floor/specialroom/gym,
-/area/allowGenerate/caves)
 "pwB" = (
 /obj/machinery/door/airlock,
 /obj/disposalpipe/segment/sewage,
 /turf/floor,
-/area/allowGenerate/caves)
-"pwN" = (
-/obj/table/auto,
-/obj/item/storage/box/beer,
-/turf/floor/grey,
 /area/allowGenerate/caves)
 "pyn" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
@@ -8721,6 +8794,12 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"pFL" = (
+/obj/stool/chair/boxingrope_corner{
+	dir = 10
+	},
+/turf/floor/specialroom/gym,
+/area/allowGenerate/caves)
 "pFO" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /obj/machinery/meter,
@@ -8741,8 +8820,8 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
-"pIe" = (
-/obj/storage/closet/medicalclothes,
+"pJI" = (
+/obj/storage/closet/wardrobe/white,
 /turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "pKh" = (
@@ -8766,6 +8845,19 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
+"pMH" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/drinks/mug/random_color,
+/obj/item/coin{
+	pixel_x = -10;
+	pixel_y = 12
+	},
+/obj/item/coin{
+	pixel_x = -3;
+	pixel_y = 13
+	},
+/turf/floor/carpet/green,
+/area/allowGenerate/caves)
 "pNY" = (
 /obj/table/reinforced/bar/auto,
 /turf/floor/black/side{
@@ -8782,6 +8874,14 @@
 	pixel_x = 8
 	},
 /turf/wall,
+/area/allowGenerate/caves)
+"pPY" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/table/reinforced/industrial/auto,
+/obj/item/reagent_containers/food/drinks/water,
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
 /area/allowGenerate/caves)
 "pSi" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -8827,17 +8927,6 @@
 	name = "Gas Feed 2"
 	},
 /turf/floor/plating,
-/area/allowGenerate/caves)
-"pWD" = (
-/obj/machinery/power/data_terminal,
-/obj/cable,
-/obj/table/wood/auto,
-/obj/machinery/networked/printer{
-	name = "Printer - NetCafe";
-	pixel_y = 5;
-	print_id = "NetCafe"
-	},
-/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "pYx" = (
 /obj/wingrille_spawn/reinforced,
@@ -8975,6 +9064,12 @@
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"qmb" = (
+/obj/stool/chair/comfy/blue{
+	dir = 4
+	},
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "qmj" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/door/airlock/glass,
@@ -8984,11 +9079,6 @@
 /turf/floor/plating{
 	icon_old = "fullblack"
 	},
-/area/allowGenerate/caves)
-"qmA" = (
-/obj/table/auto,
-/obj/item/reagent_containers/food/drinks/juicer,
-/turf/floor/grey,
 /area/allowGenerate/caves)
 "qmO" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -9006,12 +9096,6 @@
 	icon_state = "1-8"
 	},
 /turf/floor/black,
-/area/allowGenerate/caves)
-"qrc" = (
-/obj/machinery/door/airlock/gannets/glass,
-/turf/floor/black/side{
-	dir = 8
-	},
 /area/allowGenerate/caves)
 "qrM" = (
 /obj/grille/catwalk/bob,
@@ -9053,6 +9137,13 @@
 	icon_old = "diamondtile"
 	},
 /area/allowGenerate/caves)
+"qud" = (
+/obj/table/reinforced/auto,
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/turf/floor,
+/area/allowGenerate/caves)
 "quR" = (
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
@@ -9064,6 +9155,7 @@
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/terminal/zeta{
 	dir = 4;
+	name = "DWAINE Terminal - ZETA";
 	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/floor/plating{
@@ -9277,10 +9369,6 @@
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"qKZ" = (
-/obj/storage/closet/wardrobe/white,
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "qLd" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -9298,6 +9386,14 @@
 "qMC" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/floor/plating,
+/area/allowGenerate/caves)
+"qNe" = (
+/obj/machinery/computer/security/wooden_tv{
+	name = "TeeVEE";
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "qNW" = (
 /obj/rack,
@@ -9346,6 +9442,10 @@
 "qSO" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/wall,
+/area/allowGenerate/caves)
+"qTm" = (
+/obj/decal/boxingrope,
+/turf/floor/specialroom/gym,
 /area/allowGenerate/caves)
 "qTB" = (
 /obj/disposalpipe/segment/bent/south,
@@ -9492,6 +9592,13 @@
 	icon_old = "diamondtile"
 	},
 /area/allowGenerate/caves)
+"riS" = (
+/obj/table/wood/auto,
+/obj/decoration/decorativeplant/plant2{
+	pixel_y = 8
+	},
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "rjF" = (
 /obj/cable{
 	d1 = 1;
@@ -9532,13 +9639,6 @@
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/floor/black,
 /area/station/science/artifact)
-"rnr" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/stool/chair{
-	dir = 8
-	},
-/turf/floor/specialroom/bar,
-/area/allowGenerate/caves)
 "rnV" = (
 /obj/decal/poster/wallsign/security_right,
 /turf/wall/r_wall,
@@ -9577,16 +9677,6 @@
 /obj/access_spawn/engineering_control,
 /turf/floor/grey,
 /area/allowGenerate/caves)
-"rqi" = (
-/obj/machinery/power/data_terminal,
-/obj/cable,
-/obj/table/wood/auto,
-/obj/machinery/networked/storage/scanner{
-	bank_id = "cafe";
-	pixel_y = 3
-	},
-/turf/floor/plating/random,
-/area/allowGenerate/caves)
 "rqL" = (
 /obj/reagent_dispensers/foamtank,
 /turf/floor/grey,
@@ -9600,6 +9690,12 @@
 	icon_state = "4-8"
 	},
 /turf/floor/bluegreen,
+/area/allowGenerate/caves)
+"rrf" = (
+/obj/cable,
+/obj/machinery/power/data_terminal,
+/obj/machinery/networked/ai_governor/cameras,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "rrp" = (
 /obj/table/reinforced/auto{
@@ -9638,6 +9734,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/terminal/zeta{
+	name = "DWAINE Terminal - ZETA";
 	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/floor/carpet/grime3,
@@ -9645,13 +9742,6 @@
 "rtO" = (
 /obj/stool/chair,
 /turf/floor,
-/area/allowGenerate/caves)
-"ruM" = (
-/obj/stool/chair{
-	dir = 4;
-	tag = "icon-chair (EAST)"
-	},
-/turf/floor/grey,
 /area/allowGenerate/caves)
 "ruZ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
@@ -9712,6 +9802,12 @@
 	},
 /turf/floor/carpet/grime3,
 /area/allowGenerate/caves)
+"rAy" = (
+/obj/table/folding/bin,
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/allowGenerate/caves)
 "rBa" = (
 /obj/cable{
 	d1 = 1;
@@ -9722,10 +9818,6 @@
 /turf/floor/purple/side{
 	dir = 1
 	},
-/area/allowGenerate/caves)
-"rBL" = (
-/obj/stool/chair/comfy/blue,
-/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "rEp" = (
 /obj/machinery/door/airlock/classic,
@@ -9765,12 +9857,6 @@
 	pixel_y = 4
 	},
 /turf/floor/bluegreen,
-/area/allowGenerate/caves)
-"rIn" = (
-/obj/decal/boxingrope{
-	dir = 8
-	},
-/turf/floor/specialroom/gym,
 /area/allowGenerate/caves)
 "rKw" = (
 /obj/cable{
@@ -9819,6 +9905,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/computer3/terminal/zeta{
+	name = "DWAINE Terminal - ZETA";
 	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/floor/black,
@@ -9917,6 +10004,7 @@
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/terminal/zeta{
 	dir = 4;
+	name = "DWAINE Terminal - ZETA";
 	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/floor/black,
@@ -9949,10 +10037,6 @@
 /obj/machinery/drainage/big,
 /turf/floor/plating,
 /area/allowGenerate/caves)
-"rWH" = (
-/obj/table/auto,
-/turf/floor/grey,
-/area/allowGenerate/caves)
 "rWP" = (
 /obj/grille/catwalk/bob,
 /obj/cable{
@@ -9980,20 +10064,17 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
-"rYg" = (
-/obj/disposalpipe/segment{
-	dir = 2
-	},
-/obj/grille/catwalk/bob,
-/obj/fitness/stacklifter,
-/turf/floor/plating{
-	icon_old = "diamondtile"
-	},
-/area/allowGenerate/caves)
 "rYG" = (
 /obj/landmark/gps_waypoint,
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/horizontal,
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"rZj" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/stool/chair{
+	dir = 1
+	},
+/turf/floor/white,
 /area/allowGenerate/caves)
 "sac" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -10002,6 +10083,18 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/south,
 /turf/floor,
+/area/allowGenerate/caves)
+"sdD" = (
+/obj/storage/crate/bin/dumpster/full,
+/turf/floor/plating,
+/area/allowGenerate/caves)
+"sef" = (
+/obj/stool/chair{
+	dir = 1
+	},
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
 /area/allowGenerate/caves)
 "sej" = (
 /turf/floor/plating/gehenna,
@@ -10046,6 +10139,10 @@
 /turf/floor/plating{
 	icon_old = "diamondtile"
 	},
+/area/allowGenerate/caves)
+"sgh" = (
+/obj/storage/closet/wardrobe/black/formalwear,
+/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "sgO" = (
 /obj/wingrille_spawn/crystal,
@@ -10096,11 +10193,6 @@
 /obj/wingrille_spawn/crystal,
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
 /turf/floor/plating,
-/area/allowGenerate/caves)
-"slm" = (
-/obj/stool/bed,
-/obj/item/clothing/suit/bedsheet/black,
-/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "smC" = (
 /obj/table/wood/auto,
@@ -10185,6 +10277,10 @@
 	icon_old = "diamondtile"
 	},
 /area/allowGenerate/caves)
+"swS" = (
+/obj/table/wood/round/auto,
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "sxC" = (
 /obj/machinery/atmospherics/portables_connector/west,
 /turf/floor/plating,
@@ -10252,14 +10348,6 @@
 /area/allowGenerate/caves)
 "sFL" = (
 /obj/machinery/door/airlock/maintenance,
-/turf/floor/industrial,
-/area/allowGenerate/caves)
-"sGa" = (
-/obj/decal/stage_edge{
-	layer = 2
-	},
-/obj/reagent_dispensers/watertank/fountain,
-/obj/decal/cleanable/water,
 /turf/floor/industrial,
 /area/allowGenerate/caves)
 "sGp" = (
@@ -10481,9 +10569,13 @@
 	dir = 1
 	},
 /area/allowGenerate/caves)
-"taZ" = (
-/obj/storage/closet/wrestling,
-/turf/floor/grey,
+"tbI" = (
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/machinery/networked/ai_governor/airlocks,
+/turf/floor/plating,
 /area/allowGenerate/caves)
 "tbK" = (
 /obj/decal/tile_edge/line/grey{
@@ -10587,6 +10679,10 @@
 	},
 /turf/floor/carpet/grime3,
 /area/station/science/artifact)
+"tld" = (
+/obj/stool/chair/comfy/blue,
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "tnn" = (
 /obj/cable{
 	d1 = 4;
@@ -10609,10 +10705,21 @@
 	},
 /turf/floor/carpet/green,
 /area/allowGenerate/caves)
+"toG" = (
+/obj/landmark/random_room/size3x3,
+/turf/floor/plating/random,
+/area/allowGenerate/caves)
 "toN" = (
 /obj/disposalpipe/junction/right/north,
 /obj/stool/bar,
 /turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
+"toX" = (
+/obj/stool/chair{
+	dir = 4;
+	tag = "icon-chair (EAST)"
+	},
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "toZ" = (
 /obj/disposalpipe/segment/bent/south,
@@ -10632,14 +10739,6 @@
 	icon_state = "1-2"
 	},
 /obj/grille/catwalk/bob,
-/turf/floor/plating,
-/area/allowGenerate/caves)
-"tpU" = (
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/data_terminal,
-/obj/machinery/networked/ai_governor/cameras,
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "tqc" = (
@@ -10674,12 +10773,6 @@
 "trv" = (
 /obj/table/wood/round/auto,
 /turf/floor/white,
-/area/allowGenerate/caves)
-"tsp" = (
-/obj/stool/chair/boxingrope_corner{
-	dir = 5
-	},
-/turf/floor/grey,
 /area/allowGenerate/caves)
 "tsu" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/vertical,
@@ -10821,6 +10914,10 @@
 	},
 /turf/floor/plating,
 /area/allowGenerate/caves)
+"tJl" = (
+/obj/machinery/door/airlock,
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "tJz" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -10910,7 +11007,6 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/networked/ai_governor/APCs,
 /turf/floor/plating,
 /area/allowGenerate/caves)
 "tPj" = (
@@ -10979,6 +11075,18 @@
 	},
 /obj/disposalpipe/segment/sewage,
 /turf/floor/black,
+/area/allowGenerate/caves)
+"tXx" = (
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/table/wood/auto,
+/obj/machinery/computer3/generic/personal{
+	pixel_y = 7;
+	setup_drive_type = /obj/item/disk/data/fixed_disk/techcomputer3
+	},
+/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "tYj" = (
 /obj/disposalpipe/trunk{
@@ -11074,6 +11182,11 @@
 "uhV" = (
 /turf/floor/airless/engine/glow/blue,
 /area/allowGenerate/caves)
+"uim" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/pink,
+/turf/floor/carpet/grime,
+/area/allowGenerate/caves)
 "uip" = (
 /obj/cable{
 	icon_state = "0-2"
@@ -11092,6 +11205,14 @@
 	},
 /obj/machinery/disposal,
 /turf/floor/white,
+/area/allowGenerate/caves)
+"uld" = (
+/obj/decal/stage_edge{
+	layer = 2
+	},
+/obj/reagent_dispensers/watertank/fountain,
+/obj/decal/cleanable/water,
+/turf/floor/industrial,
 /area/allowGenerate/caves)
 "umh" = (
 /obj/disposalpipe/switch_junction/right/east,
@@ -11170,10 +11291,6 @@
 	},
 /turf/floor/carpet/grime,
 /area/allowGenerate/caves)
-"urz" = (
-/obj/fitness/speedbag/clown,
-/turf/floor/industrial,
-/area/allowGenerate/caves)
 "urF" = (
 /turf/floor/purpleblack,
 /area/station/science/chemistry)
@@ -11196,10 +11313,6 @@
 	tag = "icon-xtra_bigstripe-edge (WEST)"
 	},
 /turf/floor/industrial,
-/area/allowGenerate/caves)
-"uvF" = (
-/obj/machinery/door/airlock,
-/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "uwh" = (
 /obj/table/auto,
@@ -11268,12 +11381,6 @@
 	},
 /turf/floor/black,
 /area/allowGenerate/caves)
-"uEr" = (
-/obj/stool/chair/comfy/blue{
-	dir = 4
-	},
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "uEJ" = (
 /obj/cable{
 	d1 = 4;
@@ -11315,9 +11422,25 @@
 	},
 /turf/floor/airless/engine/glow/blue,
 /area/allowGenerate/caves)
+"uHL" = (
+/obj/decal/stage_edge{
+	layer = 2
+	},
+/obj/table/reinforced/industrial/auto,
+/obj/machinery/camera/television{
+	pixel_y = 13
+	},
+/turf/floor/industrial,
+/area/allowGenerate/caves)
 "uIa" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/white,
+/area/allowGenerate/caves)
+"uIb" = (
+/obj/stool/chair/boxingrope_corner{
+	dir = 5
+	},
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "uIG" = (
 /obj/cable{
@@ -11451,13 +11574,6 @@
 	},
 /turf/floor,
 /area/station/science/lab)
-"uUB" = (
-/obj/table/wood/round/auto,
-/obj/item/reagent_containers/food/drinks/bottle/beer/papist{
-	pixel_y = 5
-	},
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "uUZ" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/decal/tile_edge/floorguide/arrow_n,
@@ -11540,6 +11656,12 @@
 	dir = 4
 	},
 /area/station/science/lobby)
+"vbC" = (
+/obj/decal/boxingrope{
+	dir = 4
+	},
+/turf/floor/specialroom/gym,
+/area/allowGenerate/caves)
 "vce" = (
 /obj/cable{
 	d1 = 4;
@@ -11625,6 +11747,15 @@
 	},
 /turf/floor/grey,
 /area/allowGenerate/caves)
+"viz" = (
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/table/wood/auto,
+/turf/floor/specialroom/bar,
+/area/allowGenerate/caves)
 "viO" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/yellow,
@@ -11638,6 +11769,11 @@
 	icon_state = "1-4"
 	},
 /turf/floor/white,
+/area/allowGenerate/caves)
+"vjY" = (
+/turf/floor/grey/side{
+	dir = 8
+	},
 /area/allowGenerate/caves)
 "vkg" = (
 /obj/cable{
@@ -11734,6 +11870,13 @@
 	dir = 1
 	},
 /area/allowGenerate/caves)
+"vpK" = (
+/obj/table/folding,
+/obj/item/card_box/plain,
+/turf/floor/plating{
+	icon_old = "diamondtile"
+	},
+/area/allowGenerate/caves)
 "vpZ" = (
 /obj/machinery/atmospherics/binary/volume_pump{
 	on = 1;
@@ -11748,6 +11891,11 @@
 	dir = 8
 	},
 /turf/floor/grey,
+/area/allowGenerate/caves)
+"vqS" = (
+/obj/disposalpipe/segment/bent/east,
+/obj/stool/chair,
+/turf/floor/white,
 /area/allowGenerate/caves)
 "vrL" = (
 /obj/item/storage/toilet/goldentoilet,
@@ -11901,6 +12049,10 @@
 	},
 /turf/floor/carpet/green,
 /area/allowGenerate/caves)
+"vCX" = (
+/obj/landmark/random_room/size3x5,
+/turf/floor/plating/random,
+/area/allowGenerate/caves)
 "vDS" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -11926,6 +12078,7 @@
 /obj/cable,
 /obj/machinery/computer3/terminal/zeta{
 	dir = 4;
+	name = "DWAINE Terminal - ZETA";
 	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/floor/carpet/green,
@@ -12074,14 +12227,6 @@
 	dir = 1
 	},
 /area/allowGenerate/caves)
-"vUO" = (
-/obj/disposalpipe/segment/mail/vertical,
-/obj/table/reinforced/auto{
-	icon_state = "12"
-	},
-/obj/window/reinforced/south,
-/turf/floor/black,
-/area/allowGenerate/caves)
 "vVZ" = (
 /obj/cable{
 	d1 = 4;
@@ -12135,6 +12280,14 @@
 /obj/machinery/door/window/westleft,
 /turf/floor/carpet/nicebrown,
 /area/allowGenerate/caves)
+"wdS" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/drinks/bottle/fancy_beer{
+	pixel_y = 9
+	},
+/turf/floor/carpet/green,
+/area/allowGenerate/caves)
 "wee" = (
 /turf/floor/redblack{
 	dir = 1
@@ -12144,13 +12297,6 @@
 /obj/table/reinforced/auto,
 /turf/floor/plating/gehenna,
 /area/allowGenerate/caves)
-"wfi" = (
-/obj/table/auto,
-/obj/machinery/microwave{
-	pixel_y = 4
-	},
-/turf/floor/grey,
-/area/allowGenerate/caves)
 "wfP" = (
 /obj/cable,
 /obj/machinery/power/data_terminal,
@@ -12158,18 +12304,6 @@
 /area/allowGenerate/caves)
 "wfY" = (
 /turf/floor/specialroom/gym,
-/area/allowGenerate/caves)
-"wic" = (
-/obj/machinery/power/data_terminal,
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/table/wood/auto,
-/obj/machinery/computer3/generic/personal{
-	pixel_y = 7;
-	setup_drive_type = /obj/item/disk/data/fixed_disk/techcomputer3
-	},
-/turf/floor/plating/random,
 /area/allowGenerate/caves)
 "wiM" = (
 /obj/table/auto,
@@ -12287,12 +12421,6 @@
 	icon_old = "fullblack"
 	},
 /area/allowGenerate/caves)
-"wuQ" = (
-/obj/cable,
-/obj/machinery/power/data_terminal,
-/obj/machinery/networked/ai_governor/department_radio,
-/turf/floor/plating,
-/area/allowGenerate/caves)
 "wvT" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating/random,
@@ -12394,13 +12522,6 @@
 	dir = 4
 	},
 /area/station/science/lobby)
-"wJJ" = (
-/obj/table/wood/auto,
-/obj/item/reagent_containers/food/drinks/rum_spaced{
-	pixel_y = 8
-	},
-/turf/floor/carpet/green,
-/area/allowGenerate/caves)
 "wKF" = (
 /turf/floor/grey/blackgrime,
 /area/allowGenerate/caves)
@@ -12503,18 +12624,6 @@
 "wRU" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
-/area/allowGenerate/caves)
-"wSs" = (
-/obj/cable,
-/obj/machinery/power/data_terminal,
-/obj/machinery/networked/ai_governor/viewports,
-/turf/floor/plating,
-/area/allowGenerate/caves)
-"wSE" = (
-/obj/decal/boxingrope{
-	dir = 4
-	},
-/turf/floor/specialroom/gym,
 /area/allowGenerate/caves)
 "wTG" = (
 /obj/cable/yellow{
@@ -12699,15 +12808,6 @@
 "xge" = (
 /turf/floor/red,
 /area/allowGenerate/caves)
-"xik" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/cable{
-	icon_state = "1-4"
-	},
-/turf/floor/grey,
-/area/allowGenerate/caves)
 "xkn" = (
 /obj/decal/poster/wallsign/fire,
 /turf/wall/r_wall,
@@ -12760,12 +12860,6 @@
 	dir = 1
 	},
 /area/station/science/chemistry)
-"xou" = (
-/obj/machinery/power/data_terminal,
-/obj/cable,
-/obj/storage/closet/office,
-/turf/floor/plating/random,
-/area/allowGenerate/caves)
 "xoL" = (
 /obj/machinery/conveyor/south{
 	name = "garbo belt";
@@ -12786,10 +12880,6 @@
 /obj/machinery/door/airlock/glass/command,
 /turf/floor/grey,
 /area/allowGenerate/caves)
-"xrC" = (
-/obj/fitness/speedbag/wizard,
-/turf/floor/industrial,
-/area/allowGenerate/caves)
 "xsb" = (
 /obj/cable/blue{
 	icon_state = "1-2"
@@ -12797,10 +12887,6 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/science/teleporter)
-"xtp" = (
-/obj/storage/closet/wardrobe/specialty_janitor,
-/turf/floor/carpet/grime,
-/area/allowGenerate/caves)
 "xtv" = (
 /turf/floor/sandytile,
 /area/allowGenerate/caves)
@@ -12887,6 +12973,12 @@
 "xBt" = (
 /obj/disposalpipe/segment/mail/vertical,
 /turf/floor,
+/area/allowGenerate/caves)
+"xBO" = (
+/obj/stool/chair/boxingrope_corner{
+	dir = 9
+	},
+/turf/floor/grey,
 /area/allowGenerate/caves)
 "xBX" = (
 /obj/cable{
@@ -12992,6 +13084,10 @@
 /obj/machinery/door/airlock/gannets/command/alt,
 /turf/floor/carpet/grime4,
 /area/station/science/research_director)
+"xIU" = (
+/obj/railing/boxing,
+/turf/floor/specialroom/gym,
+/area/allowGenerate/caves)
 "xJb" = (
 /turf/floor/plating/random,
 /area/allowGenerate/caves)
@@ -13002,14 +13098,6 @@
 	dir = 4
 	},
 /turf/floor,
-/area/allowGenerate/caves)
-"xJG" = (
-/obj/table/wood/auto,
-/obj/machinery/computer/security/wooden_tv{
-	pixel_x = 1;
-	pixel_y = 7
-	},
-/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "xJX" = (
 /turf/floor/carpet/blue/standard/edge/ne,
@@ -13105,6 +13193,13 @@
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
 /turf/floor/plating,
 /area/station/science/lab)
+"xRw" = (
+/obj/table/auto,
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/turf/floor/grey,
+/area/allowGenerate/caves)
 "xSl" = (
 /obj/table/reinforced/bar/auto,
 /turf/floor/black/side{
@@ -13141,6 +13236,17 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /turf/floor,
 /area/allowGenerate/caves)
+"xXO" = (
+/obj/machinery/power/data_terminal,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/table/wood/auto,
+/obj/machinery/computer3/generic/personal{
+	pixel_y = 7
+	},
+/turf/floor/plating/random,
+/area/allowGenerate/caves)
 "xXZ" = (
 /turf/floor/white/grime,
 /area/allowGenerate/caves)
@@ -13154,6 +13260,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/computer3/terminal/zeta{
+	name = "DWAINE Terminal - ZETA";
 	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/floor/yellowblack{
@@ -13186,17 +13293,6 @@
 "ybt" = (
 /turf/floor/carpet/grime3,
 /area/allowGenerate/caves)
-"ybE" = (
-/obj/machinery/power/data_terminal,
-/obj/cable{
-	icon_state = "0-2"
-	},
-/obj/table/wood/auto,
-/obj/machinery/computer3/generic/personal{
-	pixel_y = 7
-	},
-/turf/floor/plating/random,
-/area/allowGenerate/caves)
 "ycE" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/southeast,
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
@@ -13221,10 +13317,6 @@
 /area/allowGenerate/caves)
 "yeC" = (
 /turf/floor,
-/area/allowGenerate/caves)
-"ygJ" = (
-/obj/storage/closet/wardrobe/black/formalwear,
-/turf/floor/carpet/grime,
 /area/allowGenerate/caves)
 "ygM" = (
 /turf/floor/carpet/grime4,
@@ -13299,15 +13391,6 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/carpet/office/other,
 /area/station/science/research_director)
-"ykZ" = (
-/obj/table/reinforced/industrial/auto,
-/obj/item/clothing/under/towel{
-	pixel_y = 8
-	},
-/turf/floor/plating{
-	icon_old = "fullblack"
-	},
-/area/allowGenerate/caves)
 "ylx" = (
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/southwest,
@@ -36131,8 +36214,8 @@ yeC
 yjL
 yjL
 yjL
-hTf
-hTf
+yjL
+yjL
 twZ
 twZ
 twZ
@@ -36431,10 +36514,10 @@ yeC
 eke
 yeC
 yjL
-hTf
-hTf
-hTf
-hTf
+xJb
+xJb
+cWo
+yjL
 twZ
 twZ
 twZ
@@ -36733,10 +36816,10 @@ yeC
 eke
 yeC
 yjL
-hTf
-hTf
-hTf
-hTf
+xJb
+xJb
+xJb
+yjL
 hTf
 twZ
 twZ
@@ -37034,11 +37117,11 @@ wRU
 yeC
 fes
 yeC
+lxt
+xJb
+xJb
+xJb
 yjL
-hTf
-hTf
-hTf
-hTf
 hTf
 hTf
 twZ
@@ -37337,10 +37420,10 @@ yeC
 htp
 yeC
 yjL
-hTf
-hTf
-hTf
-hTf
+xJb
+xJb
+xJb
+yjL
 hTf
 hTf
 twZ
@@ -37639,10 +37722,10 @@ yeC
 htp
 yeC
 yjL
-hTf
-hTf
-hTf
-hTf
+xJb
+xJb
+xJb
+yjL
 hTf
 hTf
 hTf
@@ -37941,14 +38024,14 @@ yeC
 htp
 yeC
 yjL
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-twZ
+yjL
+xJb
+yjL
+yjL
+yjL
+yjL
+yjL
+yjL
 hTf
 twZ
 sej
@@ -38243,14 +38326,14 @@ yeC
 htp
 yeC
 yjL
+xJb
+xJb
+toG
+yjL
+xJb
+xJb
+toG
 hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-twZ
 hTf
 twZ
 sej
@@ -38545,13 +38628,13 @@ yeC
 htp
 yeC
 yjL
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+xJb
+xJb
+xJb
+xJb
+xJb
+xJb
+xJb
 hTf
 twZ
 twZ
@@ -38847,13 +38930,13 @@ yeC
 htp
 yeC
 yjL
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+xJb
+xJb
+xJb
+yjL
+xJb
+xJb
+xJb
 hTf
 hTf
 twZ
@@ -39149,14 +39232,14 @@ yeC
 htp
 yeC
 yjL
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
-hTf
+yjL
+yjL
+yjL
+yjL
+yjL
+yjL
+yjL
+yjL
 hTf
 twZ
 twZ
@@ -41852,12 +41935,12 @@ foJ
 xaO
 uOY
 agx
-tOK
+jcU
 eKA
 tqc
 cQy
 tqc
-wuQ
+lvc
 yjL
 ylz
 ylz
@@ -42154,12 +42237,12 @@ foJ
 xaO
 uOY
 agx
-hQS
+tbI
 tqc
 tqc
 aJV
 tqc
-wSs
+kxK
 agx
 agx
 agx
@@ -42456,12 +42539,12 @@ dCw
 xfY
 uGZ
 agx
-iVE
+tOK
 aac
 tqc
 mOO
 cTP
-enF
+rrf
 agx
 jZt
 tez
@@ -42758,7 +42841,7 @@ foJ
 xaO
 uOY
 agx
-tpU
+bRM
 aaW
 agx
 agx
@@ -42804,10 +42887,10 @@ xZo
 agC
 jSO
 xyp
-fUX
+cwv
 reF
 reF
-jmE
+axO
 uIa
 hAH
 jGK
@@ -43063,9 +43146,9 @@ agx
 agx
 agx
 agx
-gKv
-fre
-gKv
+vjY
+oom
+vjY
 agx
 agx
 agx
@@ -43106,10 +43189,10 @@ xZo
 agC
 tMy
 xyp
-mne
+vqS
 msS
 msS
-eAo
+rZj
 wOJ
 cvO
 oEC
@@ -45801,7 +45884,7 @@ xJb
 xJb
 xJb
 xJb
-xJb
+vCX
 yjL
 yjL
 kyR
@@ -46072,7 +46155,7 @@ ylz
 vHU
 pgM
 lVh
-dqh
+bPU
 khR
 gkV
 tRj
@@ -46085,7 +46168,7 @@ gfJ
 kOT
 kOT
 rVn
-vUO
+obQ
 szW
 qVh
 lnx
@@ -46379,7 +46462,7 @@ lQP
 gkV
 tfw
 lVh
-lUY
+wdS
 qgJ
 lok
 lok
@@ -46983,7 +47066,7 @@ yjL
 nJu
 xDY
 yjL
-wJJ
+aHz
 xDY
 iFI
 udU
@@ -47285,8 +47368,8 @@ aTg
 gNI
 xDY
 yjL
-cOx
-hib
+pMH
+btA
 abU
 cRH
 agx
@@ -47294,7 +47377,7 @@ oev
 oev
 oev
 agx
-yeC
+bPl
 yeC
 yeC
 qhN
@@ -48534,13 +48617,13 @@ imw
 imw
 imw
 agx
-abM
-msT
+pbg
+dWO
 yhL
-mFs
-egv
-nBf
-mFs
+kEd
+dPz
+dZa
+kEd
 yhL
 yjL
 ouj
@@ -48831,7 +48914,7 @@ hTf
 hTf
 hTf
 yjL
-pIe
+daN
 yhL
 yhL
 yhL
@@ -48839,10 +48922,10 @@ yhL
 yhL
 yhL
 yhL
-mFs
-htO
-ksE
-mFs
+kEd
+bAB
+fOm
+kEd
 yhL
 yjL
 oAE
@@ -49133,7 +49216,7 @@ hTf
 hTf
 hTf
 yjL
-pIe
+daN
 yhL
 yhL
 yhL
@@ -49142,8 +49225,8 @@ yhL
 yhL
 yhL
 yhL
-mFs
-mFs
+kEd
+kEd
 yhL
 yhL
 yjL
@@ -49441,7 +49524,7 @@ imw
 imw
 yjL
 eBn
-lGc
+hnx
 eYx
 yhL
 yhL
@@ -49746,7 +49829,7 @@ yjL
 yjL
 cBu
 yhL
-aOo
+qNe
 yjL
 yjL
 yjL
@@ -50650,12 +50733,12 @@ xXZ
 xXZ
 xXZ
 yjL
-iMV
+igO
 yjL
-iMV
+igO
 yjL
 yjL
-iMV
+igO
 yjL
 mYo
 wQv
@@ -53374,7 +53457,7 @@ yjL
 yjL
 yjL
 yjL
-dxF
+qud
 mYo
 wQv
 fZK
@@ -53975,9 +54058,9 @@ cCt
 yjL
 fGP
 tNL
-rYg
+ndD
 bbN
-nVZ
+blx
 fUB
 oBG
 ftp
@@ -54270,16 +54353,16 @@ twZ
 twZ
 twZ
 yjL
-wic
+tXx
 uqS
 ykr
-pWD
+eHk
 yjL
 fGP
 imt
 imt
 ovz
-jSd
+pPY
 lVh
 mvt
 ubP
@@ -54572,14 +54655,14 @@ twZ
 hTf
 hTf
 yjL
-ybE
+xXO
 uqS
 ykr
-lcU
+iyb
 yjL
 ybl
 ybl
-oSB
+jwC
 xMt
 xMt
 yjL
@@ -54874,12 +54957,12 @@ hTf
 hTf
 hTf
 yjL
-jqh
+eiT
 uqS
 ykr
-xou
+dqp
 yjL
-xrC
+fQE
 xMt
 ybl
 xMt
@@ -55157,7 +55240,7 @@ opH
 yjL
 ylz
 ylz
-ylz
+bOD
 yjL
 hTf
 hTf
@@ -55176,16 +55259,16 @@ hTf
 hTf
 hTf
 yjL
-byG
+gUw
 uqS
 ykr
-rqi
+iyK
 yjL
 ybl
 ybl
 ybl
 ybl
-urz
+muU
 agx
 mYo
 sHO
@@ -55480,7 +55563,7 @@ hTf
 yjL
 yjL
 glJ
-eqB
+hgd
 yjL
 yjL
 yjL
@@ -55496,7 +55579,7 @@ tcy
 agx
 agx
 yjL
-fEa
+isp
 yjL
 agx
 tSl
@@ -55795,9 +55878,9 @@ jvK
 wFT
 wYn
 wLW
-nDG
-nDG
-nDG
+jgT
+jgT
+jgT
 xzv
 xzv
 wXC
@@ -56062,8 +56145,8 @@ fjn
 rUY
 yjL
 yjL
+rAy
 yjL
-ylz
 yjL
 yjL
 hTf
@@ -56080,10 +56163,10 @@ hTf
 hTf
 hTf
 yjL
-oke
-hCh
+gjk
+niW
 snZ
-xik
+bGj
 ygU
 ygU
 ygU
@@ -56097,9 +56180,9 @@ jvK
 uZW
 xQK
 wLW
-evQ
-evQ
-evQ
+awx
+awx
+awx
 xzv
 xzv
 yjL
@@ -56365,8 +56448,8 @@ opH
 yjL
 xMt
 xMt
-xMt
-xMt
+dpF
+bWn
 yjL
 twZ
 twZ
@@ -56384,14 +56467,14 @@ hTf
 yjL
 yjL
 yjL
-taZ
-gaJ
-mTu
-rIn
-rIn
-rIn
-pwi
-sGa
+lOp
+iWt
+xBO
+eoh
+eoh
+eoh
+pFL
+uld
 ygU
 uqa
 tFk
@@ -56399,9 +56482,9 @@ jGQ
 uZW
 xQK
 ldd
-krS
-krS
-krS
+viz
+viz
+viz
 uQB
 blC
 szg
@@ -56664,11 +56747,11 @@ agx
 eiE
 qtp
 opH
+amq
 xMt
 xMt
 xMt
-xMt
-xMt
+yjL
 yjL
 twZ
 twZ
@@ -56686,13 +56769,13 @@ hTf
 hTf
 hTf
 yjL
-htR
+fJp
 igi
-gAc
+ghm
 wfY
 wfY
 wfY
-mUL
+xIU
 fMK
 ygU
 foJ
@@ -56701,9 +56784,9 @@ xzv
 vsk
 bha
 bHr
-rnr
-rnr
-rnr
+niz
+niz
+niz
 jra
 oTg
 oMY
@@ -56966,13 +57049,13 @@ agx
 eiE
 qtp
 opH
+amq
 xMt
 xMt
 xMt
-xMt
-xMt
-yjL
-hTf
+vpK
+sef
+sej
 sej
 sej
 hTf
@@ -56988,14 +57071,14 @@ twZ
 hTf
 hTf
 yjL
-ruM
+toX
 igi
-gAc
+ghm
 wfY
 wfY
 wfY
-mwl
-bsL
+qTm
+uHL
 tgT
 aFn
 vnr
@@ -57272,7 +57355,7 @@ yjL
 xMt
 xMt
 xMt
-xMt
+yjL
 yjL
 hTf
 sej
@@ -57291,12 +57374,12 @@ hTf
 hTf
 yjL
 ygU
-gaJ
-gAc
+iWt
+ghm
 wfY
 wfY
 wfY
-mUL
+xIU
 fMK
 igi
 foJ
@@ -57304,9 +57387,9 @@ agx
 xzv
 uZW
 xQK
-nEm
-nEm
-nEm
+hcQ
+hcQ
+hcQ
 xzv
 xzv
 xzv
@@ -57574,7 +57657,7 @@ yjL
 xMt
 xMt
 xMt
-xMt
+rAy
 yjL
 hTf
 sej
@@ -57593,13 +57676,13 @@ twZ
 hTf
 yjL
 aGh
-gaJ
-tsp
-wSE
-wSE
-wSE
-ckR
-eMn
+iWt
+uIb
+vbC
+vbC
+vbC
+hzG
+fYx
 igi
 foJ
 wXC
@@ -57610,7 +57693,7 @@ xSl
 nqF
 nqF
 wRU
-qrc
+cVf
 yjL
 yjL
 uAB
@@ -57894,7 +57977,7 @@ hTf
 hTf
 hTf
 yjL
-ykZ
+oqK
 xkM
 tgT
 snZ
@@ -57907,7 +57990,7 @@ foJ
 wXC
 xzv
 uZW
-dRW
+bDD
 xCF
 xZo
 xZo
@@ -58197,11 +58280,11 @@ hTf
 hTf
 yjL
 aGh
-daK
+fVK
 nRe
-dCt
-dCt
-dCt
+mrF
+mrF
+mrF
 ygU
 uqa
 fVY
@@ -58209,7 +58292,7 @@ huW
 agx
 xzv
 uZW
-dRW
+bDD
 xCF
 xZo
 oLn
@@ -58523,8 +58606,8 @@ ygU
 ygU
 ygU
 ygU
-pwN
-qmA
+aLJ
+lRi
 ygU
 ygU
 ygU
@@ -58822,14 +58905,14 @@ xZo
 jku
 yjL
 wRU
-nBr
-nBr
+ipI
+ipI
 yjL
 yjL
 yjL
 agx
 agx
-rWH
+gwZ
 ygU
 ygU
 yjL
@@ -59129,9 +59212,9 @@ yhL
 yhL
 yhL
 yhL
-lbM
+riS
 agx
-rWH
+gwZ
 ygU
 ygU
 unm
@@ -59425,21 +59508,21 @@ xZo
 xZo
 vkE
 wRU
-xJG
+oDi
 yhL
 yhL
 yhL
 yhL
 yhL
-lke
+fkT
 agx
-wfi
+xRw
 ygU
 ygU
 yjL
 ylz
 ylz
-ylz
+hKK
 yjL
 hTf
 hTf
@@ -59727,15 +59810,15 @@ qHg
 qHg
 dhO
 wRU
-lke
+fkT
 yhL
-uEr
+qmb
 yjL
 yjL
-uvF
+tJl
 yjL
 agx
-fij
+cKV
 ygU
 ygU
 yjL
@@ -60029,13 +60112,13 @@ xZo
 xZo
 xZo
 yjL
-hJj
-rBL
-hYh
+iyj
+tld
+swS
 yjL
-slm
+lGm
 yhL
-oIJ
+iVh
 agx
 agx
 yjL
@@ -60637,9 +60720,9 @@ kuG
 wHt
 gDT
 yjL
-ygJ
-uUB
-qKZ
+sgh
+iPz
+pJI
 yjL
 ylz
 ylz
@@ -60899,7 +60982,7 @@ bdR
 ovz
 sMQ
 yjL
-ybl
+mxP
 ybl
 ybl
 ybl
@@ -62764,7 +62847,7 @@ ylz
 ylz
 ylz
 yjL
-ylz
+sdD
 ylz
 ylz
 hTf
@@ -63353,7 +63436,7 @@ sQu
 omB
 yjL
 eCd
-xtp
+bsI
 byL
 bsj
 yeC
@@ -63654,7 +63737,7 @@ hAP
 hAP
 cGr
 yjL
-hYh
+swS
 yhL
 uro
 qVh
@@ -63956,7 +64039,7 @@ nkx
 dcf
 dcf
 yjL
-eXY
+uim
 yhL
 bzd
 aLS
