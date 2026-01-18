@@ -747,7 +747,7 @@
 	item_state = "shovel"
 	w_class = W_CLASS_NORMAL
 	flags = ONBELT
-	force = 7 // 15 puts it significantly above most other weapons
+	force = 10 // a shovel fucking hurts man
 	hitsound = 'sound/impact_sounds/Metal_Hit_1.ogg'
 
 	New()
