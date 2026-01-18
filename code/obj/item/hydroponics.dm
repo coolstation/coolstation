@@ -744,8 +744,12 @@
 
 			if(src.bowl.hits_left > 1)
 				boutput(user, "<span class='notice'>You take a hit from the [src]. You feel the effects of the whatever's in the bowl starting to kick in.</span>")
+				for(var/mob/O in AIviewers(user, null))
+					O.show_message("<span class='notice'>[user] takes a hit from the [src].</span>")
 			else
 				boutput(user, "<span class='notice'>You take the last hit from the [src], clearing the bowl.</span>")
+				for(var/mob/O in AIviewers(user, null))
+					O.show_message("<span class='notice'>[user] takes the last hit from the [src], clearing the bowl.</span>")
 				src.reagents.add_reagent("ash", 5)
 				src.bowl.reagents.clear_reagents()
 				src.bowl.is_loaded = 0
