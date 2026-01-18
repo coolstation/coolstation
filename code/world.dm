@@ -491,6 +491,10 @@ var/f_color_selector_handler/F_Color_Selector
 		var/datum/tgs_revision_information/rev = TgsRevision()
 		vcs_revision = rev.commit
 
+		var/datum/tgs_api/v5/api = TGS_READ_GLOBAL(tgs)
+		if(api)
+			api.reboot_mode = TGS_REBOOT_MODE_RESTART
+
 
 	lobby_titlecard = new /datum/titlecard()
 

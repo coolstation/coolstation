@@ -5,7 +5,7 @@
 //Todo - merge with MAP_SPAWN_SHUTTLE, maps need retrofits
 #define MAP_SPAWN_SHUTTLE_DYNAMIC 4 //(most) crew spawns on the arrivals shuttle, which docks with the station at some point
 
-#define GEHENNA_MUSIC list()//list('sound/radio_station/lobby/sundown.ogg')
+#define GEHENNA_MUSIC list('sound/radio_station/lobby/bette_davis_space.ogg','sound/radio_station/lobby/bette_davis_space.ogg')
 
 #define MAP_NAME_RANDOM 1
 
