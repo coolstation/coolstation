@@ -628,8 +628,8 @@
 	hit_type = DAMAGE_BLUNT
 	burn_type = 1
 	stamina_damage = 30
-	stamina_cost = 15
-	stamina_crit_chance = 50
+//	stamina_cost = 15
+//	stamina_crit_chance = 50
 	cant_self_remove = 1
 	cant_other_remove = 1
 	cant_drop = 1		//if they drop it, we'll just try to find the ability holder, otherwise, destroy itself. Non-kudzumen shouldn't see this item.

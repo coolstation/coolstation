@@ -1,4 +1,4 @@
-var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
+var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 
 /client/proc/play_sound_real(S as sound, var/vol as num, var/freq as num)
 	if (!config.allow_admin_sounds)
@@ -6,7 +6,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 		return
 
 	var/admin_key = admin_key(src)
-	vol = max(min(vol, 100), 0)
+	vol = clamp(vol, 0, 100)
 
 	var/sound/uploaded_sound = new()
 	uploaded_sound.file = S
@@ -28,7 +28,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 		for (var/client/C in clients)
 			C.sound_playing[ admin_sound_channel ][1] = vol
 			C.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
-			uploaded_sound.volume = vol * C.getVolume( VOLUME_CHANNEL_ADMIN ) / 100
+			uploaded_sound.volume = vol * C.getVolume( VOLUME_CHANNEL_ADMIN )
 			C << uploaded_sound
 
 			//DEBUG_MESSAGE("Playing sound for [C] on channel [uploaded_sound.channel]")
@@ -58,7 +58,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 		var/admin_key = admin_key(src)
 		for (var/client/C in clients)
 			LAGCHECK(LAG_LOW)
-			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
+			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 
 			if (src.djmode || src.non_admin_dj)
 				boutput(C, "<span class=\"medal\"><b>[admin_key] played (your volume: [client_vol ? "[client_vol]" : "muted"]):</b></span> <span class='notice'>[S]</span>")
@@ -66,7 +66,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 			if (!client_vol)
 				continue
 
-			C.sound_playing[ admin_sound_channel ][1] = 1
+			C.sound_playing[ admin_sound_channel ][1] = 100
 			C.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
 
 			music_sound.volume = client_vol
@@ -84,19 +84,19 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 	music_sound.wait = 0
 	music_sound.repeat = 0
 	music_sound.priority = 254
-	music_sound.channel = 1013 // This probably works?
+	music_sound.channel = SOUNDCHANNEL_RESERVED_INGAME_RADIO
 	music_sound.environment = -1
 	music_sound.echo = -1
 	SPAWN_DBG(0)
 		for (var/client/C in clients)
 			LAGCHECK(LAG_LOW)
 			C.verbs += /client/verb/stop_the_radio
-			var/client_vol = C.getVolume(VOLUME_CHANNEL_RADIO)
+			var/client_vol = C.getVolume(VOLUME_CHANNEL_RADIO) * 100
 
 			if (!client_vol)
 				continue
 
-			C.sound_playing[ music_sound.channel ][1] = 1
+			C.sound_playing[ music_sound.channel ][1] = 100
 			C.sound_playing[ music_sound.channel ][2] = VOLUME_CHANNEL_RADIO
 
 			music_sound.volume = client_vol
@@ -123,7 +123,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 		for (var/client/C in clients)
 			LAGCHECK(LAG_LOW)
 			C.verbs += /client/verb/stop_the_music
-			var/vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
+			var/vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 
 			var/ismuted
 			if (!vol) ismuted = 1
@@ -156,8 +156,9 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 	var/channel_id = audio_channel_name_to_id[channel_name]
 	if(isnull(channel_id))
 		alert(usr, "Invalid channel.")
-	var/vol = input("Goes from 0-100. Default is [getDefaultVolume(channel_id) * 100]", "[channel_name] Volume", src.getRealVolume(channel_id) * 100) as num
-	vol = max(0,min(vol,100))
+	var/max_vol = getDefaultVolume(channel_id) * 150
+	var/vol = input("Goes from 0-[max_vol]. Default is [getDefaultVolume(channel_id) * 100]", "[channel_name] Volume", src.getRealVolume(channel_id) * 100) as num
+	vol = clamp(vol, 0, max_vol)
 	src.setVolume(channel_id, vol/100 )
 	boutput(usr, "<span class='notice'>You have changed [channel_name] Volume to [vol].</span>")
 
@@ -178,7 +179,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 
 	ehjax.send(src, "browseroutput", "stopaudio") //For client-side audio
 
-	var/mute_channel = 1014
+	var/mute_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 	var/sound/stopsound = sound(null,wait = 0,channel=mute_channel)
 	for (var/i = 1 to 10)
 		//DEBUG_MESSAGE("Muting sound channel [stopsound.channel] for [src]")
@@ -197,7 +198,7 @@ var/global/admin_sound_channel = 1014 //Ranges from 1014 to 1024
 	ehjax.send(src, "browseroutput", "stopaudio") //For client-side audio
 
 	src.verbs -= /client/verb/stop_the_radio
-	var/mute_channel = 1013
+	var/mute_channel = SOUNDCHANNEL_RESERVED_INGAME_RADIO
 	var/sound/stopsound = sound(null,wait = 0,channel=mute_channel)
 	//DEBUG_MESSAGE("Muting sound channel [stopsound.channel] for [src]")
 	stopsound.channel = mute_channel

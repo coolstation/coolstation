@@ -5,6 +5,8 @@
 //Todo - merge with MAP_SPAWN_SHUTTLE, maps need retrofits
 #define MAP_SPAWN_SHUTTLE_DYNAMIC 4 //(most) crew spawns on the arrivals shuttle, which docks with the station at some point
 
+#define GEHENNA_MUSIC list('sound/radio_station/lobby/bette_davis_space.ogg','sound/radio_station/lobby/bette_davis_space.ogg')
+
 #define MAP_NAME_RANDOM 1
 
 var/global/map_setting = null
@@ -13,38 +15,41 @@ var/global/datum/map_settings/map_settings = null
 //id corresponds to the name of the /obj/landmark/map
 //playerPickable defines whether the map can be chosen by players when voting on a new map. Setting to ASS_JAM should allow it on the 13th only, and not on RP.
 var/global/list/mapNames = list(
-	"Clarion" = 		list("id" = "CLARION", 		"settings" = "destiny/clarion", "playerPickable" = 1,		"MaxPlayersAllowed" = 80),
+	"Clarion" = 		list("id" = "CLARION", 		"settings" = "destiny/clarion", "playerPickable" = 0,		"MaxPlayersAllowed" = 80),
 #ifdef RP_MODE
-	"Cogmap 1" = 		list("id" = "COGMAP", 		"settings" = "cogmap", 			"playerPickable" = 1, 	"MinPlayersAllowed" = 14),
+	"Cogmap 1" = 		list("id" = "COGMAP", 		"settings" = "cogmap", 			"playerPickable" = 1, 	"MinPlayersAllowed" = 10),
 #else
 	"Cogmap 1" = 		list("id" = "COGMAP", 		"settings" = "cogmap", 			"playerPickable" = 1,		"MaxPlayersAllowed" = 80),
 #endif
 	//"Construction" = 	list("id" = "CONSTRUCTION", "settings" = "construction"),
 	"Cogmap 1 (Old)" = 	list("id" = "COGMAP_OLD", 	"settings" = "cogmap_old"),
-	"Cogmap 2" = 		list("id" = "COGMAP2", 		"settings" = "cogmap2", 		"playerPickable" = 1, 		"MinPlayersAllowed" = 40),
-	"Destiny" = 		list("id" = "DESTINY", 		"settings" = "destiny", 		"playerPickable" = 1,		"MaxPlayersAllowed" = 80),
-	"Donut 2" = 		list("id" = "DONUT2", 		"settings" = "donut2",			"playerPickable" = 1),
+	"Cogmap 2" = 		list("id" = "COGMAP2", 		"settings" = "cogmap2", 		"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
+	"Destiny" = 		list("id" = "DESTINY", 		"settings" = "destiny", 		"playerPickable" = 0,		"MaxPlayersAllowed" = 80),
+	"Donut 2" = 		list("id" = "DONUT2", 		"settings" = "donut2",			"playerPickable" = 0),
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"The Crag"=			list("id" = "CRAG",			"settings" = "crag", 			"playerPickable" = 1),
-	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
+	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 0),
 	"La Noyade" = 		list("id" = "NOYADE",		"settings" = "noyade",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
+	"Altbox" 	=		list("id" = "ALTBOX",		"settings" = "altbox",			"playerPickable" = 1),
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
+	"Summit Outpost" =  list("id" = "SUMMIT",		"settings" = "summit", 			"playerPickable" = 0,		"MaxPlayersAllowed" = 75),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
 	"Spirit" =			list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
 	//"Trunkmap" = 		list("id" = "TRUNKMAP", 	"settings" = "trunkmap",		"playerPickable" = ASS_JAM),
-	"Oshan Laboratory"= list("id" = "OSHAN", 		"settings" = "oshan", 			"playerPickable" = 1),
-	"Perduta Oil Spar" = list("id" = "PERDUTA",	"settings" = "perduta", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
+	"Oshan Laboratory"= list("id" = "OSHAN", 		"settings" = "oshan", 			"playerPickable" = 0),
+	"Perduta Oil Spar"= list("id" = "PERDUTA",	"settings" = "perduta", 	"playerPickable" = 0,		"MaxPlayersAllowed" = 60),
+	"Cookie" = 			list("id" = "COOKIE",	"settings" = "cookie", 	"playerPickable" = 0),
 	//"1 pamgoC" = 		list("id" = "PAMGOC", 		"settings" = "pamgoc", 			"playerPickable" = ASS_JAM),
 	//"Kondaru" = 		list("id" = "KONDARU", 		"settings" = "kondaru", 		"playerPickable" = 1,		"MaxPlayersAllowed" = 80),
 	//"Ozymandias" = 	list("id" = "OZYMANDIAS", 	"settings" = "ozymandias", 		"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
 	//"Bellerophon Fleet" = list("id" = "FLEET", 	"settings" = "fleet", 			"playerPickable" = ASS_JAM),
 	//"Icarus" = 		list("id" = "ICARUS",		"settings" = "icarus",			"playerPickable" = ASS_JAM),
 	//"Density" = 		list("id" = "DENSITY", 		"settings" = "density", 		"playerPickable" = ASS_JAM,	"MaxPlayersAllowed" = 30),
-	"Atlas" = 			list("id" = "ATLAS", 		"settings" = "atlas", 			"playerPickable" = 1,		"MaxPlayersAllowed" = 30),
+	"Atlas" = 			list("id" = "ATLAS", 		"settings" = "atlas", 			"playerPickable" = 0,		"MaxPlayersAllowed" = 30),
 	"Wrestlemap" = 		list("id" = "WRESTLEMAP", 	"settings" = "wrestlemap", 		"playerPickable" = ASS_JAM),
 	"pod_wars" = 		list("id" = "POD_WARS", 	"settings" = "pod_wars", 		"playerPickable" = 0),
 	"blank" = 			list("id" = "BLANK", 		"settings" = "", 				"playerPickable" = 0),
@@ -117,6 +122,9 @@ var/global/list/mapNames = list(
 	var/shuttle_map_turf = /turf/space
 	var/qm_supply_type = "space" //can also be "shuttle"!
 
+	//these songs get added to the pool of possible songs, not replaced.
+	var/list/map_specific_musics = list()
+
 	var/merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom
 	var/merchant_left_station = /area/shuttle/merchant_shuttle/left_station
 	var/merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom
@@ -172,9 +180,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/donut2
@@ -203,9 +211,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
@@ -242,13 +250,63 @@ var/global/list/mapNames = list(
 	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
+/datum/map_settings/altbox
+	name = "ALTBOX"
+	walls = /turf/wall/
+	rwalls = /turf/wall/r_wall/
+	auto_walls = 0
+	job_limits_from_landmarks = TRUE
+	goonhub_map = "https://coolstation.space/maps/altbox/"
+
+	windows = /obj/window/classic
+	windows_thin = /obj/window/classic
+	rwindows = /obj/window/reinforced/classic
+	rwindows_thin = /obj/window/reinforced/classic
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
+	auto_windows = 1
+	qm_supply_type = "shuttle"
+
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	escape_centcom = /area/shuttle/escape/centcom/donut2
+	escape_outpost = /area/shuttle/escape/outpost/donut2
+	escape_transit = /area/shuttle/escape/transit/donut2
+	escape_station = /area/shuttle/escape/station/donut2
+	escape_def = SHUTTLE_NORTH
+	escape_dir = NORTH
+
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main, /area/station/security/secwing, /area/station/security/quarters),
+		"the central research sector hub" = list(/area/station/science/lobby),
+		"the cargo bay" = list(/area/station/quartermaster/cargobay),
+		"the engineering control room" = list(/area/station/engine/inner, /area/station/engine/power),
+		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/recovery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment1 ),
+		"the bar" = list(/area/station/crew_quarters/bar),
+		"the EVA storage" = list(/area/station/ai_monitored/storage/eva, /area/station/storage/emergency),
+		"the robotics lab" = list(/area/station/medical/robotics),
+		"the bridge" = list(/area/station/bridge, /area/station/bridge/conference, /area/station/bridge/captain),
+		"the escape arm" = list(/area/station/hallway/secondary/exit),
+		"the library" = list(/area/station/library),
+		"the septic tank" = list(/area/station/maintenance/disposal/sewage),
+		"the chapel" = list(/area/station/chapel/sanctuary))
+
 /datum/map_settings/chunk
 	name = "CHUNK"
 	walls = /turf/wall/
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
-	goonhub_map = "https://wiki.coolstation.space/wiki/Chunk"
+	goonhub_map = "https://play.coolstation.space/maps/chunk/"
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -256,9 +314,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced
 	windows_crystal = /obj/window/crystal
 	windows_rcrystal = /obj/window/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 	qm_supply_type = "shuttle"
 
@@ -278,10 +336,12 @@ var/global/list/mapNames = list(
 	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
-	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+	job_limits_override = list(/datum/job/medical/pathologist = 0)
+
+	valid_nuke_targets = list("the security department" = list(/area/station/security/main, /area/station/security/checkpoint/customs),
 		"the central research sector hub" = list(/area/station/science/lobby),
 		"the cargo bay" = list(/area/station/quartermaster/cargobay),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the singularity" = list(/area/station/engine/singcore, /area/station/engine/inner),
 		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
 		"the bar" = list(/area/station/crew_quarters/bar),
 		"the EVA storage" = list(/area/station/ai_monitored/storage/eva),
@@ -291,14 +351,14 @@ var/global/list/mapNames = list(
 		"the dank ass observatory" = list(/area/station/crew_quarters/observatory),
 		"the chapel" = list(/area/station/chapel/sanctuary))
 
-/datum/map_settings/bayoubend
-	name = "BAYOUBEND"
-	walls = /turf/wall/
-	rwalls = /turf/wall/r_wall/
-	auto_walls = 0
+/datum/map_settings/summit
+	name = "SUMMIT"
+	walls = /turf/wall/auto
+	rwalls = /turf/wall/auto/reinforced
+	auto_walls = 1
 	job_limits_from_landmarks = TRUE
 	arrivals_type = MAP_SPAWN_CRYO
-	goonhub_map = "https://wiki.coolstation.space/wiki/File:Bayoubendmapimage.png"
+
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -309,6 +369,39 @@ var/global/list/mapNames = list(
 	window_layer_full = COG2_WINDOW_LAYER
 	window_layer_north = GRILLE_LAYER+0.1
 	window_layer_south = FLY_LAYER+1
+	auto_windows = 1
+	qm_supply_type = "shuttle" //todo: replace this with.. a TRAINNNN
+
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	//all of the escape shuttle stuff to, to be replaced with... train
+	escape_centcom = /area/shuttle/escape/centcom/donut2
+	escape_outpost = /area/shuttle/escape/outpost/donut2
+	escape_transit = /area/shuttle/escape/transit/donut2
+	escape_station = /area/shuttle/escape/station/donut2
+	escape_def = SHUTTLE_WEST
+	escape_dir = WEST
+
+/datum/map_settings/bayoubend
+	name = "BAYOUBEND"
+	walls = /turf/wall/
+	rwalls = /turf/wall/r_wall/
+	auto_walls = 0
+	job_limits_from_landmarks = TRUE
+	arrivals_type = MAP_SPAWN_CRYO
+	goonhub_map = "https://play.coolstation.space/maps/bayou/"
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 	qm_supply_type = "shuttle"
 	//shuttle_map_turf = /turf/floor/airless/engine/caution
@@ -332,12 +425,12 @@ var/global/list/mapNames = list(
 	escape_dir = WEST
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
-		"research sector" = list(/area/station/science/lobby),
+		"the research lobby" = list(/area/station/science/lobby),
 		"the logistics bay" = list(/area/station/quartermaster/cargobay),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/engineering/breakroom),
 		"the robotics workshop" = list(/area/station/medical/robotics),
 		"the bridge" = list(/area/station/bridge),
-		"the departures wing" = list(/area/station/hallway/secondary/exit),
+		"the departures wing" = list(/area/station/hallway/secondary/exit, /area/station/maintenance/outer/ne),
 		"the chapel" = list(/area/station/chapel/sanctuary),
 		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
 		"the cafeteria" = list(/area/station/crew_quarters/bar))
@@ -349,7 +442,7 @@ var/global/list/mapNames = list(
 		/datum/job/medical/pathologist = 0,
 		/datum/job/logistics/janitor = 1
 	)
-
+	/*
 	init()
 		..()
 		SPAWN_DBG(10) // this sucks so much ass but it just- idk.
@@ -366,7 +459,7 @@ var/global/list/mapNames = list(
 			var/area/t_shuttle_l = locate(/area/shuttle/merchant_shuttle/left_station)
 			if(t_shuttle_l)
 				t_shuttle_l.filler_turf = "/turf/floor/airless/engine/caution"
-
+	*/
 
 /datum/map_settings/cogmap
 	name = "COGMAP"
@@ -381,9 +474,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced
 	windows_crystal = /obj/window/crystal
 	windows_rcrystal = /obj/window/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/external
@@ -433,9 +526,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -526,9 +619,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
@@ -561,9 +654,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -630,9 +723,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	escape_centcom = /area/shuttle/escape/centcom/cogmap2
@@ -706,9 +799,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -765,9 +858,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -813,9 +906,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -857,9 +950,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -895,9 +988,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -939,9 +1032,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -979,9 +1072,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -1030,9 +1123,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced
 	windows_crystal = /obj/window/crystal
 	windows_rcrystal = /obj/window/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 	qm_supply_type = "shuttle"
 
@@ -1048,10 +1141,10 @@ var/global/list/mapNames = list(
 	merchant_right_station = /area/shuttle/merchant_shuttle/left_station/destiny
 	*/
 
-	escape_centcom = /area/shuttle/escape/centcom/donut2
-	escape_outpost = /area/shuttle/escape/outpost/donut2
-	escape_transit = /area/shuttle/escape/transit/donut2
-	escape_station = /area/shuttle/escape/station/donut2
+	escape_centcom = /area/shuttle/escape/centcom/perduta
+	escape_outpost = /area/shuttle/escape/outpost/perduta
+	escape_transit = /area/shuttle/escape/transit/perduta
+	escape_station = /area/shuttle/escape/station/perduta
 	escape_def = SHUTTLE_WEST
 	escape_dir = WEST
 
@@ -1062,19 +1155,56 @@ var/global/list/mapNames = list(
 	valid_nuke_targets = list("the medbay" = list(/area/station/medical/staff, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ))
 
 	init()
-		..()
-		for(var/turf/space/magindara/pitfall_turf)
-			pitfall_turf.initialise_component()
-			LAGCHECK(LAG_HIGH)
+		. = ..()
 		var/turf/herd_turf = pick_landmark(LANDMARK_HERD_ANIMAL_SPAWN, locate(150,150,3))
 		for(var/turf/space/fluid/magindara/ocean_floor_turf in range(9, herd_turf))
 			if(prob(7))
 				new /mob/living/critter/magindaran_horse/ai_controlled(ocean_floor_turf)
 
 
+/datum/map_settings/cookie
+	name = "COOKIE"
+	walls = /turf/wall/
+	rwalls = /turf/wall/r_wall/
+	auto_walls = 0
+	job_limits_from_landmarks = TRUE
+	goonhub_map = ""
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
+	auto_windows = 1
+	qm_supply_type = "shuttle"
+
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	escape_centcom = /area/shuttle/escape/centcom/destiny
+	escape_outpost = /area/shuttle/escape/outpost/destiny
+	escape_transit = /area/shuttle/escape/transit/destiny
+	escape_station = /area/shuttle/escape/station/destiny
+	escape_def = SHUTTLE_NORTH
+	escape_dir = NORTH
+
+/*
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
+*/
+
+	valid_nuke_targets = list("the bridge" = list(/area/station/bridge))
+
 /datum/map_settings/noyade
 	name = "NOYADE"
-	goonhub_map = "https://goonhub.com/maps/oshan"
+	goonhub_map = "https://play.coolstation.space/maps/noyade/"
 
 	arrivals_type = MAP_SPAWN_MISSILE
 
@@ -1092,9 +1222,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced
 	windows_crystal = /obj/window/crystal
 	windows_rcrystal = /obj/window/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -1113,8 +1243,17 @@ var/global/list/mapNames = list(
 	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
-	valid_nuke_targets = list()
-	//job_limits_override = list()
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+		"the cargo office (QM)" = list(/area/station/quartermaster/cargooffice, /area/station/quartermaster/cargobay),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/monitoring),
+		"the hospital" = list(/area/station/medical/medbay, /area/station/medical/medbay/pharmacy, /area/station/medical/robotics, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby, /area/station/medical/medbay/treatment),
+		"the bar" = list(/area/station/crew_quarters/bar),
+		"the bridge" = list(/area/station/bridge),
+		"the escape arm" = list(/area/station/hallway/secondary/exit),
+		"the chapel" = list(/area/station/chapel/sanctuary))
+
+
+	job_limits_override = list(/datum/job/medical/pathologist = 0)
 
 	init()
 		..()
@@ -1152,9 +1291,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -1201,9 +1340,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -1224,11 +1363,13 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/gehenna
 	name = "GEHENNA"
-	goonhub_map = "https://wiki.coolstation.space/wiki/Gehenna"
+	goonhub_map = "https://play.coolstation.space/maps/gehenna/"
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
 	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+
+	map_specific_musics = GEHENNA_MUSIC
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1239,9 +1380,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced
 	windows_crystal = /obj/window/crystal
 	windows_rcrystal = /obj/window/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -1300,11 +1441,13 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/crag
 	name = "CRAG"
-	goonhub_map = "https://wiki.coolstation.space/wiki/Gehenna"
+	goonhub_map = "https://play.coolstation.space/maps/crag/" //what do we do for multi z shite
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
 	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+
+	map_specific_musics = GEHENNA_MUSIC
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1315,9 +1458,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced
 	windows_crystal = /obj/window/crystal
 	windows_rcrystal = /obj/window/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -1337,13 +1480,13 @@ var/global/list/mapNames = list(
 	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
 	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
-		"the cargo office (QM)" = list(/area/station/quartermaster/office, /area/station/quartermaster/cargooffice/storefront),
-		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/power),
-		"the hospital" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
+		"the cargo office (QM)" = list(/area/station/quartermaster/cargooffice/idk_another_one, /area/station/quartermaster/cargooffice/storefront),
+		"the engineering hot loop" = list(/area/station/engine/hotloop),
+		"the hospital" = list(/area/station/medical/medbay/treatment, /area/station/medical/medbay/surgery, /area/station/medical/medbay/lobby),
 		"the bar" = list(/area/station/crew_quarters/bar),
-		"the bridge" = list(/area/station/bridge, /area/station/bridge/conference),
+		"the bridge" = list(/area/station/bridge),
 		"the chapel" = list(/area/station/chapel/sanctuary),
-		"somewhere in the main tunnels, whatever" = list(/area/station/maintenance/west, /area/station/maintenance/inner/north, /area/station/maintenance/central, /area/station/maintenance/inner/ne, /area/station/maintenance/outer/east, /area/station/maintenance/south, /area/station/maintenance/inner/nw))
+		"somewhere in the main tunnels, whatever" = list(/area/station/maintenance/inner/south, /area/station/maintenance/inner/north, /area/station/crew_quarters/fitness))
 
 	//job_limits_override = list()
 
@@ -1378,9 +1521,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced
 	windows_crystal = /obj/window/crystal
 	windows_rcrystal = /obj/window/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/external
@@ -1416,11 +1559,13 @@ var/global/list/mapNames = list(
 /// currently a crag copy
 /datum/map_settings/saxum
 	name = "SAXUM"
-	goonhub_map = "https://wiki.coolstation.space/wiki/Gehenna"
+	goonhub_map = "https://play.coolstation.space/maps/gehenna"
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
 	shuttle_map_turf = /turf/space/gehenna/desert/beaten
+
+	map_specific_musics = GEHENNA_MUSIC
 
 	arrivals_type = MAP_SPAWN_CRYO
 	qm_supply_type = "shuttle"
@@ -1431,9 +1576,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced
 	windows_crystal = /obj/window/crystal
 	windows_rcrystal = /obj/window/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -1493,9 +1638,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced
 	windows_crystal = /obj/window/crystal
 	windows_rcrystal = /obj/window/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/external
@@ -1528,9 +1673,9 @@ var/global/list/mapNames = list(
 	rwindows_thin = /obj/window/reinforced/pyro
 	windows_crystal = /obj/window/auto/crystal
 	windows_rcrystal = /obj/window/auto/crystal/reinforced
-	window_layer_full = COG2_WINDOW_LAYER
-	window_layer_north = GRILLE_LAYER+0.1
-	window_layer_south = FLY_LAYER+1
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
 	auto_windows = 1
 
 	ext_airlocks = /obj/machinery/door/airlock/pyro/external
@@ -1559,8 +1704,8 @@ var/global/list/mapNames = list(
 		icon_state = "shuttle_escape-dest"
 	sealab
 		icon_state = "shuttle_escape-sealab"
-	donut3
-		icon_state = "shuttle_escape-dnt3"
+	perduta
+		icon_state = "shuttle_escape-cog1"
 
 /area/shuttle/escape/outpost
 	icon_state = "shuttle_escape"
@@ -1576,8 +1721,8 @@ var/global/list/mapNames = list(
 		icon_state = "shuttle_escape-dest"
 	sealab
 		icon_state = "shuttle_escape-sealab"
-	donut3
-		icon_state = "shuttle_escape-dnt3"
+	perduta
+		icon_state = "shuttle_escape-cog1"
 
 /area/shuttle/escape/station
 	#ifdef UNDERWATER_MAP
@@ -1596,6 +1741,8 @@ var/global/list/mapNames = list(
 		icon_state = "shuttle_escape-dest"
 	sealab
 		icon_state = "shuttle_escape-sealab"
+	perduta
+		icon_state = "shuttle_escape-cog1"
 
 /area/shuttle/escape/transit
 	icon_state = "shuttle_escape"
@@ -1618,6 +1765,10 @@ var/global/list/mapNames = list(
 	battle_shuttle
 		icon_state = "shuttle_escape-battle-shuttle"
 		warp_dir = EAST
+	perduta
+		icon_state = "shuttle_escape-cog1"
+		warp_dir = NORTH
+
 /area/shuttle/merchant_shuttle/left_centcom
 	icon_state = "shuttle_merch_l"
 	donut2
@@ -1701,3 +1852,6 @@ var/global/list/mapNames = list(
 			return map
 
 	return 0
+
+
+#undef GEHENNA_MUSIC

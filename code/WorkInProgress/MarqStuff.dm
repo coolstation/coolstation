@@ -418,7 +418,7 @@
 		if (isliving(target))
 			if (prob(50))
 				user.visible_message("<span class='alert'><b>[user] tries to stab [target] with [src] but misses!</b></span>")
-				playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 25, 1, 1)
+				playsound(user, 'sound/impact_sounds/Generic_Swing_1.ogg', 25, 1, SOUND_RANGE_STANDARD)
 				return
 			user.visible_message("<span class='alert'><b>[user] stabs [target] with [src]!</b></span>")
 			user.u_equip(src)
@@ -534,11 +534,11 @@
 			return
 		..()
 
-	MouseDrop(atom/over_object, src_location, over_location)
+	mouse_drop(atom/over_object, src_location, over_location)
 		..()
 		var/atom/movable/screen/hud/S = over_object
 		if (istype(S))
-			playsound(src.loc, "rustle", 50, 1, -5)
+			playsound(src.loc, "rustle", 50, 1, SOUND_RANGE_MODERATE)
 			if (!usr.restrained() && !usr.stat && src.loc == usr)
 				if (S.id == "rhand")
 					if (!usr.r_hand)
@@ -662,7 +662,7 @@
 	//absolutely useless as an attack but removing it causes bugs, replaced fire point blank which had issues with the way arrow damage is calculated.
 		if(isliving(target))
 			if(loaded)
-				if(loaded.afterattack(target,user,1))
+				if(loaded.AfterAttack(target,user,1))
 					loaded =null;//arrow isnt consumed otherwise, for some inexplicable reason.
 			else
 				boutput(user, "<span class='alert'>Nothing is loaded in the bow!</span>")

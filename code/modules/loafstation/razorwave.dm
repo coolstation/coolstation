@@ -179,7 +179,7 @@ proc/razorwave_assess_threat(mob/living/carbon/human/target)
 	var/obj/item/paper/result = new()
 	result.info = report_text
 	result.set_loc(get_turf(src))
-	playsound(src, "sparks", 75, 1, -1)
+	playsound(src, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 
 
 /obj/machinery/razorwave/power_change()
@@ -191,7 +191,7 @@ proc/razorwave_assess_threat(mob/living/carbon/human/target)
 #define RAZORWAVE_OVERLAY_OVERLOAD "razorwave-overloaded"
 #define RAZORWAVE_OVERLAY_ANTENNA "razorwave-antenna"
 
-/obj/machinery/razorwave/proc/update_icon()
+/obj/machinery/razorwave/update_icon()
 	if(status & (NOPOWER))
 		UpdateOverlays(null, RAZORWAVE_OVERLAY_POWER)
 		UpdateOverlays(null, RAZORWAVE_OVERLAY_OVERLOAD)

@@ -13,8 +13,8 @@
 	w_class = W_CLASS_SMALL
 	mats = 8
 	stamina_damage = 40
-	stamina_cost = 10
-	stamina_crit_chance = 0
+//	stamina_cost = 10
+//	stamina_crit_chance = 0
 	hitsound = 0
 
 	can_disarm = 1
@@ -35,7 +35,7 @@
 			B.setProperty("exploprot", 10)
 			. = ..()
 
-	proc/update_icon()
+	update_icon()
 		icon_state = status ? "barrier_1" : "barrier_0"
 		item_state = status ? "barrier1" : "barrier0"
 
@@ -45,7 +45,7 @@
 		if (!use_two_handed || setTwoHanded(!src.status))
 			src.status = !src.status
 
-			playsound(src, "sparks", 75, 1, -1)
+			playsound(src, "sparks", 75, 1, SOUND_RANGE_STANDARD)
 			if (src.status)
 				w_class = W_CLASS_BULKY
 				flags &= ~ONBELT //haha NO
@@ -89,7 +89,7 @@
 
 	attack(mob/M as mob, mob/user as mob)
 		..()
-		playsound(src, 'sound/impact_sounds/Energy_Hit_1.ogg', 30, 0.1, 0, 2)
+		playsound(src, 'sound/impact_sounds/Energy_Hit_1.ogg', 30, 0.1, SOUND_RANGE_STANDARD, 2)
 
 	dropped(mob/M)
 		..()
@@ -126,8 +126,8 @@
 	throwforce = 6
 	w_class = W_CLASS_SMALL
 	stamina_damage = 30
-	stamina_cost = 10
-	stamina_crit_chance = 0
+//	stamina_cost = 10
+//	stamina_crit_chance = 0
 	hitsound = 0
 
 	setupProperties()

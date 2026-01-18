@@ -36,19 +36,19 @@
 			if (C.player_mode && !C.player_mode_ahelp)
 				continue
 			else
-				boutput(C, "<span class='ahelp'><font size='3'><b><span class='alert'>HELP: </span>[key_name(client.mob,0,0)][(client.mob.real_name ? "/"+client.mob.real_name : "")] <A HREF='byond://?src=\ref[C.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [msg]</font></span>")
+				boutput(C, "<span class='ahelp'><font size='3'><b><span class='alert'>HELP: </span>[key_name(client.mob,0,0)][(client.mob.real_name ? "/"+client.mob.real_name : "")] <A HREF='byond://?src=\ref[C.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: [msg]</font></span>", admin = TRUE)
 				switch(C.holder.audible_ahelps)
 					if(PM_AUDIBLE_ALERT)
 						C.mob.playsound_local(C.mob.loc, "sound/misc/newsting.ogg", 50, 1)
 					if(PM_DECTALK_ALERT)
 						var/audio = dectalk(msg)
-						var/vol = C.getVolume(VOLUME_CHANNEL_ADMIN)
+						var/vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 						if(vol)
 							C.chatOutput.playDectalk(audio["audio"], "Admin Help from [src] ([src.ckey]) to [C.mob.ckey]", vol)
 
 	game_stats.Increment("adminhelps")
 	game_stats.ScanText(msg)
-	boutput(client.mob, "<span class='ahelp'><font size='3'><b><span class='alert'>HELP: </span> You</b>: [msg]</font></span>")
+	boutput(client.mob, "<span class='ahelp'><font size='3'><b><span class='alert'>HELP: </span> You</b>: [msg]</font></span>", admin = TRUE)
 	logTheThing("admin_help", client.mob, null, "HELP: [msg]")
 	logTheThing("diary", client.mob, null, "HELP: [msg]", "ahelp")
 
@@ -67,6 +67,8 @@
 	ircmsg["name"] = stripTextMacros(client.mob.real_name)
 	ircmsg["msg"] = html_decode(msg)
 	ircbot.export("help", ircmsg)
+
+	discord_send("**ADMINHELP** \n([client.key]): [msg]","centcom")
 
 /mob/verb/mentorhelp()
 	set category = "Commands"
@@ -123,15 +125,15 @@
 				continue
 			else
 				var/rendered = "<span class='mhelp'><b>MENTORHELP: [key_name(client.mob,0,0,1)]<span class='name text-normal' data-ctx='\ref[src.mind]'>[(client.mob.real_name ? "/"+client.mob.real_name : "")]</span> <A HREF='byond://?src=\ref[C.holder];action=adminplayeropts;targetckey=[client.ckey]' class='popt'><i class='icon-info-sign'></i></A></b>: <span class='message'>[msg]</span></span>"
-				boutput(C,  "<span class='adminHearing' data-ctx='[C.chatOutput.ctxFlag]'>[rendered]</span>")
+				boutput(C,  "<span class='adminHearing' data-ctx='[C.chatOutput.ctxFlag]'>[rendered]</span>", admin = TRUE)
 		else if (C?.can_see_mentor_pms())
 			if(istype(C.mob, /mob/dead/observer) || C.mob.type == /mob/dead/target_observer || C.mob.type == /mob/dead/target_observer/mentor_mouse_observer || istype(C.mob, /mob/living/critter/small_animal/mouse/weak/mentor))
 				var/rendered = "<span class='mhelp'><b>MENTORHELP: [key_name(client.mob,0,0,1)]<span class='name text-normal' data-ctx='\ref[src.mind]'>[(client.mob.real_name ? "/"+client.mob.real_name : "")]</span></b>: <span class='message'>[msg]</span></span>"
-				boutput(C, "<span class='adminHearing' data-ctx='[C.chatOutput.ctxFlag]'>[rendered]</span>")
+				boutput(C, "<span class='adminHearing' data-ctx='[C.chatOutput.ctxFlag]'>[rendered]</span>", admin = TRUE)
 			else
-				boutput(C, "<span class='mhelp'><b>MENTORHELP: [key_name(client.mob,0,0,1)]</b>: <span class='message'>[msg]</span></span>")
+				boutput(C, "<span class='mhelp'><b>MENTORHELP: [key_name(client.mob,0,0,1)]</b>: <span class='message'>[msg]</span></span>", admin = TRUE)
 
-	boutput(client.mob, "<span class='mhelp'><b>MENTORHELP: You</b>: [msg]</span>")
+	boutput(client.mob, "<span class='mhelp'><b>MENTORHELP: You</b>: [msg]</span>", admin = TRUE)
 	logTheThing("mentor_help", client.mob, null, "MENTORHELP: [msg]")
 	logTheThing("diary", client.mob, null, "MENTORHELP: [msg]", "mhelp")
 	game_stats.Increment("mentorhelps")
@@ -141,6 +143,8 @@
 	ircmsg["name"] = client.mob.job ? "[stripTextMacros(client.mob.real_name)] \[[dead] [client.mob.job]]" : (dead ? "[stripTextMacros(client.mob.real_name)] \[[dead]\]" : stripTextMacros(client.mob.real_name))
 	ircmsg["msg"] = html_decode(msg)
 	ircbot.export("mentorhelp", ircmsg)
+
+	discord_send("**MENTORHELP** \n([client.key]): [msg]","mentors")
 
 /mob/verb/pray(msg as text)
 	set category = "Commands"
@@ -214,7 +218,7 @@
 				else if(M.client.holder.audible_prayers == 2) // this is a terrible idea
 					if(!audio)
 						audio = dectalk(msg)
-					var/vol = M.client.getVolume(VOLUME_CHANNEL_ADMIN)
+					var/vol = M.client.getVolume(VOLUME_CHANNEL_ADMIN) * 100
 					if(vol)
 						M.client.chatOutput.playDectalk(audio["audio"], "prayer by [src] ([src.ckey]) to [M.ckey]", vol)
 
@@ -272,6 +276,7 @@
 
 		logTheThing("admin_help", user, M, "<b>PM'd [constructTarget(M,"admin_help")]</b>: [t]")
 		logTheThing("diary", user, M, "PM'd [constructTarget(M,"diary")]: [t]", "ahelp")
+		discord_send("**Admin PM** ([user.key]) -> ([M.key]): [t]","centcom")
 
 		var/ircmsg[] = new()
 		ircmsg["key"] = user?.client ? user.client.key : ""

@@ -1993,6 +1993,22 @@ datum
 			name = "Thermite"
 			id = "thermite"
 			result = "thermite"
+			required_reagents = list("aluminium" = 1, "iron" = 1, "oxygen" = 1)
+			result_amount = 3
+			mix_phrase = "The solution mixes into a reddish-brown powder."
+
+		thermite2
+			name = "Thermite"
+			id = "thermite2"
+			result = "thermite"
+			required_reagents = list("iron" = 1, "iron_oxide" = 1)
+			result_amount = 3
+			mix_phrase = "The solution mixes into a reddish-brown powder."
+
+		thermite3
+			name = "Thermite"
+			id = "thermite3"
+			result = "thermite"
 			required_reagents = list("aluminium" = 1, "iron_oxide" = 1)
 			result_amount = 3
 			mix_phrase = "The solution mixes into a reddish-brown powder."
@@ -2591,7 +2607,7 @@ datum
 					for (var/mob/living/M in all_hearers(world.view, location))
 						if (isintangible(M))
 							continue
-						if (!M.ears_protected_from_sound())
+						if (!cant_hear(M))
 							boutput(M, "<span class='alert'><b>[hootmode ? "HOOT" : "BANG"]</b></span>")
 
 						var/checkdist = get_dist(M, location)
@@ -2620,7 +2636,7 @@ datum
 						for (var/mob/living/M in all_hearers(world.view, location))
 							if (isintangible(M))
 								continue
-							if (!M.ears_protected_from_sound())
+							if (!cant_hear(M))
 								boutput(M, "<span class='alert'><b>[hootmode ? "HOOT" : "BANG"]</b></span>")
 
 							var/checkdist = get_dist(M, location)

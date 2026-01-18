@@ -467,7 +467,7 @@
 					continue
 			if (nerds.len >= 1)
 				POT.visible_message("<span class='alert'><b>[POT.name]</b> slaps [pick(nerds)] with a fish!</span>")
-				playsound(POT, pick('sound/impact_sounds/Slimy_Hit_1.ogg', 'sound/impact_sounds/Slimy_Hit_2.ogg'), 50, 1, -1)
+				playsound(POT, pick('sound/impact_sounds/Slimy_Hit_1.ogg', 'sound/impact_sounds/Slimy_Hit_2.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 
 // Cannabis Mutations
 
@@ -677,7 +677,7 @@
 
 		if (POT.growth > (P.growtime + DNA.growtime) && prob(5))
 			POT.visible_message("<span class='combat'><b>[POT.name]</b> [pick("howls","bays","whines","barks","croons")]!</span>")
-			playsound(POT, pick("sound/voice/animal/howl1.ogg","sound/voice/animal/howl2.ogg","sound/voice/animal/howl3.ogg","sound/voice/animal/howl4.ogg","sound/voice/animal/howl5.ogg","sound/voice/animal/howl6.ogg"), 30, 1,-1)
+			playsound(POT, pick("sound/voice/animal/howl1.ogg","sound/voice/animal/howl2.ogg","sound/voice/animal/howl3.ogg","sound/voice/animal/howl4.ogg","sound/voice/animal/howl5.ogg","sound/voice/animal/howl6.ogg"), 30, 1, SOUND_RANGE_STANDARD)
 
 	HYPattacked_proc_M(var/obj/machinery/plantpot/POT,var/mob/user)
 		..()
@@ -686,7 +686,7 @@
 		var/datum/plantgenes/DNA = POT.plantgenes
 
 		if (POT.growth < (P.growtime + DNA.growtime)) return 0
-		playsound(POT, pick("sound/voice/animal/howl1.ogg","sound/voice/animal/howl2.ogg","sound/voice/animal/howl3.ogg","sound/voice/animal/howl4.ogg","sound/voice/animal/howl5.ogg","sound/voice/animal/howl6.ogg"), 30, 1,-1)
+		playsound(POT, pick("sound/voice/animal/howl1.ogg","sound/voice/animal/howl2.ogg","sound/voice/animal/howl3.ogg","sound/voice/animal/howl4.ogg","sound/voice/animal/howl5.ogg","sound/voice/animal/howl6.ogg"), 30, 1, SOUND_RANGE_STANDARD)
 		boutput(user, "<span class='alert'>[POT.name] angrily bites you!</span>")
 		random_brute_damage(user, 3)
 		return prob(50) // fights back, but doesn't always succeed

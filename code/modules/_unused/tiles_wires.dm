@@ -21,8 +21,8 @@ TILES
 	throwforce = 7.0
 	max_stack = 80
 	stamina_damage = 25
-	stamina_cost = 25
-	stamina_crit_chance = 15
+//	stamina_cost = 25
+//	stamina_crit_chance = 15
 
 	New()
 

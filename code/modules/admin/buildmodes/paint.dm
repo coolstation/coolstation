@@ -14,8 +14,8 @@ Right Mouse Button on buildmode    = Select color<br>
 
 	click_left(atom/object, var/ctrl, var/alt, var/shift)
 		object.color = paintcolor
-		blink(get_turf(object))
+		//blink(get_turf(object))
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
 		object.color = null
-		blink(get_turf(object))
+		//blink(get_turf(object))

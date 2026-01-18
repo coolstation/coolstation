@@ -110,7 +110,7 @@
 		if (reward_was_spawned) return
 
 		var/turf/pda_turf = get_turf(hostpda)
-		playsound(pda_turf, "warp", 15, 1, 0.2, 1.2)
+		playsound(pda_turf, "warp", 15, 1, SOUND_RANGE_SMALL, 1.2)
 		animate_portal_tele(hostpda)
 
 		if (user.mind)

@@ -298,7 +298,7 @@
 			occupant = null
 		..()
 
-	proc/update_icon()
+	update_icon()
 		ENSURE_IMAGE(src.image_lid, src.icon, "sleeperlid[!isnull(occupant)]")
 		src.UpdateOverlays(src.image_lid, "lid")
 		return
@@ -369,18 +369,22 @@
 			user.show_text("[src] is already occupied!", "red")
 			return
 
-		var/mob/living/carbon/human/H = G.affecting
-		H.set_loc(src)
-		src.occupant = H
-		src.update_icon()
-		game_stats.Increment("sleeper")
-		for (var/obj/O in src)
-			if (O == src.our_console) // don't barf out the internal sleeper console tia
-				continue
-			O.set_loc(src.loc)
+		shove_in(G.affecting, user)
 		qdel(G)
-		playsound(src.loc, "sound/machines/sleeper_close.ogg", 30, 1)
 		return
+
+	proc/shove_in(var/mob/target as mob, mob/user)
+		if (can_operate(user))
+			var/mob/living/carbon/human/H = target
+			H.set_loc(src)
+			src.occupant = H
+			src.update_icon()
+			game_stats.Increment("sleeper")
+			for (var/obj/O in src)
+				if (O == src.our_console)
+					continue
+				O.set_loc(src.loc)
+			playsound(src.loc, "sound/machines/sleeper_close.ogg", 30, 1)
 
 	// Makes sense, I suppose. They're on the shuttles too.
 	powered()
@@ -393,7 +397,7 @@
 		return
 
 	// Called by sleeper console once per tick when occupant is asleep/hibernating.
-	alter_health(var/mob/living/M as mob)
+	proc/alter_health(var/mob/living/M as mob)
 		if (!M || !isliving(M))
 			return
 		if (!ishuman(M))
@@ -564,6 +568,8 @@
 				if (can_operate(user))
 					if (istype(user.equipped(), /obj/item/grab))
 						src.Attackby(user.equipped(), user)
+					else if (issilicon(user))
+						shove_in(target, user)
 		return
 
 	proc/can_operate(var/mob/M)
@@ -575,8 +581,9 @@
 			boutput(M, "<span class='notice'><B>The scanner is already occupied!</B></span>")
 			return FALSE
 		if (!ishuman(M))
-			boutput(usr, "<span class='alert'>You can't seem to fit into \the [src].</span>")
-			return FALSE
+			if(!issilicon(M))
+				boutput(usr, "<span class='alert'>You can't seem to fit into \the [src].</span>")
+				return FALSE
 		if (src.occupant)
 			usr.show_text("The [src.name] is already occupied!", "red")
 			return FALSE
@@ -590,6 +597,8 @@
 		if (!src) return
 
 		if (!can_operate(usr)) return
+		if (issilicon(usr))
+			boutput(usr,"<span class='alert'>You're far too blocky to fit into \the [src].</span>")
 
 		usr.pulling = null
 		usr.set_loc(src)
@@ -606,7 +615,7 @@
 		..()
 		eject_occupant(user)
 
-	MouseDrop(mob/user as mob)
+	mouse_drop(mob/user as mob)
 		if (can_operate(user))
 			eject_occupant(user)
 		else
@@ -716,7 +725,7 @@
 		. += "Home turf: [get_area(src.homeloc)]."
 
 	// Could be useful (Convair880).
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		if (src.occupant)
 			..()
 			return

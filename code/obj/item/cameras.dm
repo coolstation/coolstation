@@ -3,13 +3,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "album"
 	item_state = "briefcase"
-
-/obj/item/storage/photo_album/attackby(obj/item/W as obj, mob/user as mob, obj/item/storage/T)
-	if (!istype(W,/obj/item/photo))
-		boutput(user, "<span class='alert'>You can only put photos in a photo album.</span>")
-		return
-
-	return ..()
+	can_hold = list(/obj/item/photo)
 
 /obj/item/camera
 	name = "camera"
@@ -106,11 +100,11 @@
 	New()
 		var/cell = new/obj/item/ammo/power_cell/self_charging/medium{recharge_rate = 10}
 		AddComponent(/datum/component/cell_holder,cell, FALSE, 200, FALSE)
-		RegisterSignal(src, COMSIG_UPDATE_ICON, PROC_REF(update_icon))
+		RegisterSignal(src, COMSIG_UPDATE_ICON, /atom/proc/update_icon)
 		..()
 		update_icon()
 
-	proc/update_icon()
+	update_icon()
 		if (!src.flash_mode)
 			inventory_counter.update_text("")
 		else
@@ -313,7 +307,7 @@
 		return
 
 	src.create_photo(target)
-	playsound(src, "sound/items/polaroid[rand(1,2)].ogg", 75, 1, -3)
+	playsound(src, "sound/items/polaroid[rand(1,2)].ogg", 75, 1, SOUND_RANGE_STANDARD)
 
 	if (src.pictures_left > 0)
 		src.pictures_left = max(0, src.pictures_left - 1)

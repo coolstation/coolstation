@@ -64,7 +64,7 @@
 				user.put_in_hand(src)
 			boutput(user, "<span class='notice'>You add the material to the stack. It now has [src.amount] pieces.</span>")
 
-	MouseDrop(over_object, src_location, over_location) //src dragged onto over_object
+	mouse_drop(over_object, src_location, over_location) //src dragged onto over_object
 		if (isobserver(usr))
 			boutput(usr, "<span class='alert'>Quit that! You're dead!</span>")
 			return
@@ -389,6 +389,15 @@
 	value = 5000 //holy shit man
 	setup_material()
 		src.setMaterial(getMaterial("kingbrullbarhide"), appearance = 0, setname = 0)
+		..()
+
+/obj/item/material_piece/cloth/mothroachhide
+	name = "mothroach hide"
+	desc = "The hide of a mothroach"
+	icon_state = "mothroachhide"
+	value = 1000 //was it worth it?
+	setup_material()
+		src.setMaterial(getMaterial("mothroachhide"), appearance = 0, setname = 0)
 		..()
 
 /obj/item/material_piece/cloth/carbon

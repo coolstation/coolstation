@@ -6,6 +6,7 @@
 	throwforce = 6
 	value = 70 //base commodity price
 	burn_type = 1
+	stack_type = /obj/item/raw_material/
 
 	var/material_name = "Ore" //text to display for this ore in manufacturers
 	var/initial_material_name = null // used to store what the ore is
@@ -51,7 +52,7 @@
 			stack_item(W)
 			if(!user.is_in_hands(src))
 				user.put_in_hand(src)
-			boutput(user, "<span class='notice'>You add the ores to the stack. It now has [src.amount] ores.</span>")
+			boutput(user, "<span class='notice'>You add the [initial(src.name)] to the stack. It now has [src.amount] pieces of [src.material].</span>")
 			return
 		if (istype(W, /obj/item/satchel/mining/))
 			var/obj/item/satchel/mining/satchel = W
@@ -92,7 +93,7 @@
 		else
 			return
 
-	MouseDrop(over_object, src_location, over_location) //src dragged onto over_object
+	mouse_drop(over_object, src_location, over_location) //src dragged onto over_object
 		if (isobserver(usr))
 			boutput(usr, "<span class='alert'>Quit that! You're dead!</span>")
 			return
@@ -583,6 +584,18 @@
 		src.setMaterial(getMaterial("ice"), appearance = FALSE, setname = FALSE)
 		return ..()
 
+/obj/item/raw_material/ice/nevicata
+	name = "cubic ice crystal"
+	desc = "A chunk of exotic ice. This is extremely cold."
+	icon_state = "ice"
+	material_name = "Ice"
+	crystal = 1
+	scoopable = 0
+
+	setup_material()
+		src.setMaterial(getMaterial("ice"), appearance = FALSE, setname = FALSE)
+		return ..()
+
 /obj/item/raw_material/scrap_metal
 	// this should only be spawned by the game, spawning it otherwise would just be dumb
 	name = "scrap"
@@ -612,8 +625,8 @@
 	g_amt = 3750
 	burn_type = 1
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	burn_possible = FALSE
 	value = 5
 	event_handler_flags = USE_HASENTERED | USE_FLUID_ENTER
@@ -652,6 +665,11 @@
 				if((!H.shoes || (src.material && src.material.hasProperty("hard") && src.material.getProperty("hard") >= 70)) && !iscow(H))
 					boutput(H, "<span class='alert'><B>You step on [src]! Ouch!</B></span>")
 					step_on(H)
+
+			if(prob(5))
+				new /obj/decal/cleanable/grit/small(src.loc)
+				qdel(src)
+				return
 		..()
 
 	custom_suicide = 1
@@ -950,30 +968,27 @@
 	proc/load_reclaim(obj/item/W as obj, mob/user as mob)
 		. = FALSE
 		if (istype(W,/obj/item/raw_material/) || istype(W,/obj/item/sheet/) || istype(W,/obj/item/rods/) || istype(W,/obj/item/tile/) || istype(W,/obj/item/cable_coil) || istype(W,/obj/item/wizard_crystal))
-			W.set_loc(src)
-			if (user) user.u_equip(W)
-			W.dropped()
+			if (W.stored)
+				W.stored.transfer_stored_item(W, src, user = user)
+			else
+				W.set_loc(src)
+				if (user) user.u_equip(W)
+			W.dropped(user)
 			. = TRUE
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (W.cant_drop) //For borg held items
 			boutput(user, "<span class='alert'>You can't put that in [src] when it's attached to you!</span>")
 			return ..()
-		if (istype(W,/obj/item/storage/) || istype(W,/obj/item/satchel/))
-			var/obj/item/storage/S = W
-			var/obj/item/satchel/B = W
+		if (W.storage || istype(W, /obj/item/satchel))
 			var/items = W
-			if(istype(S))
-				items = S.get_contents()
+			if (W.storage)
+				items = W.storage.get_contents()
 			for(var/obj/item/O in items)
 				if (load_reclaim(O))
 					. = TRUE
-					if (istype(S))
-						S.hud.remove_object(O)
-					else
-						B.curitems -= O.amount
-			if (istype(B) && .)
-				B.satchel_updateicon()
+			if (istype(W, /obj/item/satchel) && .)
+				W.update_icon()
 			//Users loading individual items would make an annoying amount of messages
 			//But loading a container is more noticable and there should be less
 			if (.)
@@ -987,7 +1002,7 @@
 		else
 			. = ..()
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		if(!isliving(usr))
 			boutput(usr, "<span class='alert'>Get your filthy dead fingers off that!</span>")
 			return

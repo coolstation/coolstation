@@ -134,22 +134,26 @@ var/global/datum/transit_controller/transit_controls
 		SPAWN_DBG(0)
 			//Was hoping suspending lighting would make crag shuttles not lagspike. Didn't work, but maybe still computationally cleaner.
 			RL_Suspend()
-			worldgen_hold = TRUE
+			worldgen_hold |= WORLDGEN_HOLD_SHUTTLE_MOVEMENT
 			vehicle.departing(stop)
 			var/area/start_location = locate(current.target_area)
 			var/area/end_location = locate(stop.target_area)
 			var/filler_turf_start = text2path(start_location.filler_turf)
-			var/filler_turf_end = text2path(end_location.filler_turf)
+			//var/filler_turf_end = text2path(end_location.filler_turf)
 			if (!filler_turf_start)
-				filler_turf_start = "space"
+				filler_turf_start = /turf/space
 			//need to figure out how to not hardcode the elevators into this
 			start_location.move_contents_to(end_location, filler_turf_start, ignore_fluid = FALSE, consider_filler_as_empty = (istype(start_location, /area/transit_vehicle/elevator)))
 			//I think this might be kinda superfluous now
+			/*
 			for (var/turf/P in end_location)
 				if (istype(P, filler_turf_start))
 					P.ReplaceWith(filler_turf_end, keep_old_material = 0, force=1)
+			*/
 			SEND_SIGNAL(src, COMSIG_TRANSIT_VEHICLE_MOVED, vehicle)
-			initialize_worldgen()
+			worldgen_hold &= ~WORLDGEN_HOLD_SHUTTLE_MOVEMENT
+			if(!worldgen_hold)
+				initialize_worldgen()
 			RL_Resume()
 			vehicle.arriving(stop) //This may sleep, intentionally holding up this code
 			vehicle.current_location = stop
@@ -454,8 +458,8 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 			if (!our_vehicle) //RIP
 				status |= BROKEN //Safety permabrick ourselves
 			else
-				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_MOVED, PROC_REF(update_icon))
-				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_READY, PROC_REF(update_icon))
+				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_MOVED, /atom/proc/update_icon)
+				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_READY, /atom/proc/update_icon)
 			update_icon()
 
 	attack_hand(mob/user)
@@ -474,7 +478,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 	attackby(obj/item/I, mob/user) //smack in the button with yer loot, food, or thing to shoot
 		attack_hand(user)
 
-	proc/update_icon(dummy = null, datum/transit_vehicle/vehicle = null ,direction = null) //The first argument ends up being the transit controller and IDK signals well enough to know what to do about it
+	update_icon(dummy = null, datum/transit_vehicle/vehicle = null, direction = null) //The first argument ends up being the transit controller and IDK signals well enough to know what to do about it
 		if (status & (NOPOWER|BROKEN))
 			icon_state = "elev_offline"
 			UpdateOverlays(null, "glow")

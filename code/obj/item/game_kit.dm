@@ -15,8 +15,8 @@ THAT STUPID GAME KIT
 	w_class = W_CLASS_HUGE
 	desc = "Play chess or checkers. Or don't. Probably don't."
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 5
+//	stamina_cost = 5
+//	stamina_crit_chance = 5
 
 /obj/item/game_kit/New()
 	..()
@@ -24,7 +24,7 @@ THAT STUPID GAME KIT
 	src.selected = "CR"
 	BLOCK_SETUP(BLOCK_BOOK)
 
-/obj/item/game_kit/MouseDrop(mob/user as mob)
+/obj/item/game_kit/mouse_drop(mob/user as mob)
 	if (user == usr && !user.restrained() && !user.stat && (user.contents.Find(src) || in_interact_range(src, user)))
 		if (!user.put_in_hand(src))
 			return ..()

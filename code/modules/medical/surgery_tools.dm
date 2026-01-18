@@ -37,8 +37,8 @@ CONTAINS:
 	m_amt = 10000
 	g_amt = 5000
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	var/mob/Poisoner = null
 	move_triggered = 1
 
@@ -127,8 +127,8 @@ CONTAINS:
 	m_amt = 20000
 	g_amt = 10000
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	var/mob/Poisoner = null
 	move_triggered = 1
 
@@ -205,8 +205,8 @@ CONTAINS:
 	m_amt = 10000
 	g_amt = 5000
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	var/mob/Poisoner = null
 	move_triggered = 1
 
@@ -265,8 +265,8 @@ CONTAINS:
 	var/datum/projectile/staple = new/datum/projectile/bullet/staple
 	var/ammo = 20
 	stamina_damage = 15
-	stamina_cost = 7
-	stamina_crit_chance = 15
+//	stamina_cost = 7
+//	stamina_crit_chance = 15
 
 	// Every bit of usability helps (Convair880).
 	examine()
@@ -681,7 +681,7 @@ CONTAINS:
 			defib = null
 		..()
 
-	proc/update_icon()
+	update_icon()
 		if (defib && defib.loc == src)
 			icon_state = "defib1"
 		else
@@ -755,8 +755,8 @@ CONTAINS:
 	throw_range = 20
 	m_amt = 5000
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	var/uses = 20
 	var/in_use = 0
 	hide_attack = 2
@@ -830,8 +830,8 @@ CONTAINS:
 	throw_speed = 4
 	throw_range = 20
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	var/uses = 6
 	var/in_use = 0
 	hide_attack = 2
@@ -876,7 +876,7 @@ CONTAINS:
 		else
 			return ..()
 
-	proc/update_icon()
+	update_icon()
 		switch (src.uses)
 			if (-INFINITY to 0)
 				src.icon_state = "bandage-item-0"
@@ -1029,8 +1029,8 @@ CONTAINS:
 	throw_speed = 4
 	throw_range = 20
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	var/volume = 100 // aaa why did they hold SO MUCH BLOOD??  500 IS THE SAME AS A PERSON WHY DID THEY HAVE A PERSON WORTH OF BLOOD IN THEM
 	var/in_use = 0
 
@@ -1112,7 +1112,7 @@ CONTAINS:
 		else
 			return ..()
 
-	proc/update_icon()
+	update_icon()
 		var/iv_state = max(min(round(src.volume, 10) / 10, 100), 0)
 		icon_state = "bloodbag-[iv_state]"
 /*		switch (src.volume)
@@ -1157,8 +1157,8 @@ CONTAINS:
 	throw_speed = 4
 	throw_range = 20
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 	var/open = 0
 	var/image/open_image = null
 	var/sound_zipper = 'sound/items/zipper.ogg'
@@ -1288,7 +1288,7 @@ CONTAINS:
 					src.visible_message("<span class='alert'>[src] gushes a torrent of blood from every seam!</span>")
 					playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
 
-	proc/update_icon()
+	update_icon()
 		if (src.open && src.open_image)
 			src.overlays += src.open_image
 			src.icon_state = "bodybag-open"
@@ -1338,7 +1338,7 @@ CONTAINS:
 		src.open()
 		src.visible_message("<span class='alert'><b>[user]</b> unzips themselves from [src]!</span>")
 
-	MouseDrop(atom/over_object)
+	mouse_drop(atom/over_object)
 		if (!over_object) return
 		if(isturf(over_object))
 			..() //Lets it do the turf-to-turf slide
@@ -1358,7 +1358,7 @@ CONTAINS:
 			src.Attackhand(usr)
 
 	proc/open()
-		playsound(src, src.sound_zipper, 100, 1, , 6)
+		playsound(src, src.sound_zipper, 100, 1, SOUND_RANGE_STANDARD, 6)
 		for (var/obj/O in src)
 			O.set_loc(get_turf(src))
 		for (var/mob/M in src)
@@ -1369,7 +1369,7 @@ CONTAINS:
 		src.update_icon()
 
 	proc/close()
-		playsound(src, src.sound_zipper, 100, 1, , 6)
+		playsound(src, src.sound_zipper, 100, 1, SOUND_RANGE_STANDARD, 6)
 		for (var/obj/O in get_turf(src))
 			if (O.density || O.anchored || O == src)
 				continue
@@ -1403,8 +1403,8 @@ CONTAINS:
 	m_amt = 7000
 	g_amt = 3500
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 15
+//	stamina_cost = 0
+//	stamina_crit_chance = 15
 	hide_attack = 2
 
 	attack(mob/M as mob, mob/user as mob)
@@ -1514,8 +1514,8 @@ CONTAINS:
 	force = 0
 	throwforce = 1
 	stamina_damage = 1
-	stamina_cost = 1
-	stamina_crit_chance = 1
+//	stamina_cost = 1
+//	stamina_crit_chance = 1
 
 	New()
 		..()
@@ -1568,7 +1568,7 @@ CONTAINS:
 			var/mob/living/carbon/human/H = M
 
 			if (!H.blinded) // can't see the light if you can't see shit else!!
-				H.vision.flash(src.anim_duration)
+				H.flash(src.anim_duration)
 
 			if (istype(H.glasses) && !istype(H.glasses, /obj/item/clothing/glasses/regular) && H.glasses.c_flags & COVERSEYES) // check all the normal things that could cover eyes
 				results_msg = "&emsp;<span class='alert'>It's hard to accurately judge how [H]'s eyes reacted through [his_or_her(H)] [H.glasses.name]!</span>"
@@ -1678,7 +1678,7 @@ CONTAINS:
 
 		else if (isliving(M)) // other mooooooobs
 			var/mob/living/L = M
-			L.vision.flash(src.anim_duration)
+			L.flash(src.anim_duration)
 
 		M.tri_message("[user] shines [src] in [M == user ? "[his_or_her(user)] own" : "[M]'s"] eyes.[results_msg ? "<br>[results_msg]" : null]",\
 		user, "You shine [src] in [M == user ? "your own" : "[M]'s"] eyes.[(M != user && results_msg) ? "<br>[results_msg]" : null]",\
@@ -1698,7 +1698,7 @@ CONTAINS:
 	icon_state = "tray_parts"
 	force = 3
 	stamina_damage = 7
-	stamina_cost = 7
+//	stamina_cost = 7
 	furniture_type = /obj/table/surgery_tray
 	furniture_name = "tray"
 	build_duration = 30
@@ -1719,8 +1719,8 @@ CONTAINS:
 	tool_flags = TOOL_SNIPPING
 	force = 8.0
 	stamina_damage = 5
-	stamina_cost = 5
-	stamina_crit_chance = 35
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
 	w_class = W_CLASS_TINY
 	hit_type = DAMAGE_STAB
 	hitsound = 'sound/impact_sounds/Flesh_Cut_1.ogg'

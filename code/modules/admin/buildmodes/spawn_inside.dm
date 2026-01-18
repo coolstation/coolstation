@@ -18,9 +18,20 @@ Right Mouse Button + Shift             = Set object type to selected mob/obj typ
 			boutput(usr, "<span class='alert'>No object path!</span>")
 			return
 		var/atom/movable/M = object
-		if(istype(M) && objpath)
-			new objpath(object)
-			blink(get_turf(object))
+		if(istype(M))
+			if (M.storage)
+				if (!M.storage.is_full())
+					M.storage.add_contents(new objpath(M))
+				else
+					new objpath(get_turf(M))
+			else
+				new objpath(M)
+		else if(istype(object, /turf/floor))
+			var/turf/floor/floor = object
+			var/atom/movable/AM = new objpath(floor)
+			if(istype(AM))
+				floor.hide_inside(AM)
+
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
 		if (shift)

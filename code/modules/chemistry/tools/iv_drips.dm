@@ -31,7 +31,7 @@
 		if (src.stand)
 			src.stand.update_icon()
 
-	proc/update_icon()
+	update_icon()
 		if (src.reagents && src.reagents.total_volume)
 			var/iv_state = max(min(round((src.reagents.total_volume / src.reagents.maximum_volume) * 100, 10) / 10, 100), 0) //Look away, you fool! Like the sun, this section of code is harmful for your eyes if you look directly at it
 			if (!src.fluid_image)
@@ -236,7 +236,7 @@
 		else
 			hint = "Click-drag onto a person to insert or remove IV. Click-drag onto chairs, beds and operating tables to attach [src]."
 
-	proc/update_icon()
+	update_icon()
 		if (!src.IV)
 			src.icon_state = "IVstand"
 			src.name = "\improper IV stand"
@@ -275,7 +275,7 @@
 			return
 		else if (src.IV)
 			//src.IV.Attackby(W, user)
-			W.afterattack(src.IV, user)
+			W.AfterAttack(src.IV, user)
 			return
 		else
 			return ..()
@@ -293,7 +293,7 @@
 		else
 			return ..()
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		if (usr && !usr.restrained() && !usr.stat && in_interact_range(src, usr) && in_interact_range(over_object, usr))
 			if (src.IV && ishuman(over_object))
 				src.IV.attack(over_object, usr)
@@ -371,7 +371,7 @@
 	icon_state = "IVstand_parts"
 	force = 2
 	stamina_damage = 10
-	stamina_cost = 8
+//	stamina_cost = 8
 	furniture_type = /obj/iv_stand
 	furniture_name = "\improper IV stand"
 	build_duration = 25

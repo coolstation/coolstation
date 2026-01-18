@@ -47,12 +47,9 @@
 			HH.u_equip(target)
 			var/atom/movable/AM = target
 			AM.set_loc(get_turf(target))
-		if (istype(target.loc, /obj/item/storage))
-			var/obj/item/storage/S_temp = target.loc
-			var/datum/hud/storage/H_temp = S_temp.hud
-			H_temp.remove_object(target)
-			var/atom/movable/AM = target
-			AM.set_loc(get_turf(target))
+		if (istype(target, /obj/item))
+			var/obj/item/I = target
+			I.stored?.transfer_stored_item(I, get_turf(I))
 
 		if(!stick)
 			boutput(holder.owner, "<span class='alert'>You must target an item or a person holding one.</span>")
@@ -73,4 +70,4 @@
 		snake.start_expiration(2 MINUTES)
 
 		holder.owner.visible_message("<span class='alert'>[holder.owner] turns [stick] into [snake]!</span>")
-		playsound(holder.owner.loc, "sound/effects/mag_golem.ogg", 25, 1, -1)
+		playsound(holder.owner.loc, "sound/effects/mag_golem.ogg", 25, 1, SOUND_RANGE_STANDARD)

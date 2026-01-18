@@ -11,13 +11,14 @@
 	throw_range = 5
 	contraband = 3
 	stamina_damage = 1
-	stamina_cost = 7
-	stamina_crit_chance = 1
+//	stamina_cost = 7
+//	stamina_crit_chance = 1
 	var/bladecolor = "G"
 	var/sound_attackM1 = 'sound/weapons/male_toyattack.ogg'
 	var/sound_attackM2 = 'sound/weapons/male_toyattack2.ogg'
 	var/sound_attackF1 = 'sound/weapons/female_toyattack.ogg'
 	var/sound_attackF2 = 'sound/weapons/female_toyattack2.ogg'
+	var/spinning = FALSE
 
 	New()
 		..()
@@ -34,9 +35,48 @@
 		if (ishuman(user))
 			var/mob/living/carbon/human/U = user
 			if (U.gender == MALE)
-				playsound(U, pick(src.sound_attackM1, src.sound_attackM2), 100, 0, 0, U.get_age_pitch())
+				playsound(U, pick(src.sound_attackM1, src.sound_attackM2), 100, 0, SOUND_RANGE_STANDARD, U.get_age_pitch())
 			else
-				playsound(U, pick(src.sound_attackF1, src.sound_attackF2), 100, 0, 0, U.get_age_pitch())
+				playsound(U, pick(src.sound_attackF1, src.sound_attackF2), 100, 0, SOUND_RANGE_STANDARD, U.get_age_pitch())
+
+	on_spin_emote(mob/user as mob)
+		if(src.spinning)
+			. = "<B>[user]</B> [pick("keeps going stupid with", "does more damn swirls of", "keeps the crap up and flips")] [src] around in [his_or_her(user)] hand."
+			return
+		src.spinning = TRUE
+		var/hex_color = src.get_hex_color_from_blade(src.bladecolor)
+		. = SPAN_COMBAT("<B>[user]</B> [pick("starts going stupid spinning", "gets to play fuckin' swirling", "does a dumbass cyborg style spin of")] [src] around in [his_or_her(user)] hand.")
+		SPAWN_DBG(0)
+			for(var/i in 1 to rand(15,20))
+				if(!user || src.loc != user)
+					break
+				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc, hex_color))
+				sleep(0.3 SECONDS)
+			src.spinning = FALSE
+			if(user)
+				user.visible_message(SPAN_NOTICE("<B>[user]</B> stops spinning [src]."), SPAN_NOTICE("You stop spinning [src]."))
+
+	proc/get_hex_color_from_blade(var/C as text)
+		switch(C)
+			if("R")
+				return "#FF0000"
+			if("O")
+				return "#FF9A00"
+			if("Y")
+				return "#FFFF00"
+			if("G")
+				return "#00FF78"
+			if("C")
+				return "#00FFFF"
+			if("B")
+				return "#0081DF"
+			if("P")
+				return "#CC00FF"
+			if("Pi")
+				return "#FFCCFF"
+			if("W")
+				return "#EBE6EB"
+		return "RAND"
 
 /obj/item/toy/judge_gavel
 	name = "judge's gavel"
@@ -47,8 +87,8 @@
 	force = 5
 	throwforce = 7
 	stamina_damage = 25
-	stamina_cost = 10
-	stamina_crit_chance = 5
+//	stamina_cost = 10
+//	stamina_crit_chance = 5
 
 	custom_suicide = 1
 	suicide(var/mob/user as mob)
@@ -73,8 +113,8 @@
 	throw_speed = 4
 	throw_range = 7
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	var/cooldown = 0
 
 /obj/item/toy/judge_block/attackby(obj/item/I, mob/user)
@@ -100,8 +140,8 @@
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 1
+//	stamina_cost = 0
+//	stamina_crit_chance = 1
 	var/redeemer = null
 	var/receiver = null
 

@@ -352,7 +352,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 
 
 	// Could be useful (Convair880).
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		..()
 		if (isobserver(usr) || isintangible(usr))
 			return
@@ -564,7 +564,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 		return
 
 	// Could be useful (Convair880).
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		..()
 		if (isobserver(usr) || isintangible(usr))
 			return
@@ -702,7 +702,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 
 	// This thing isn't z-level-restricted except for the homeloc.
 	// Somebody WILL find an exploit otherwise (Convair880).
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		..()
 		if (isobserver(usr) || isintangible(usr))
 			return
@@ -890,7 +890,7 @@ var/global/list/portable_machinery = list() // stop looping through world for th
 		. += "Home turf: [get_area(src.homeloc)]."
 
 	// Could be useful (Convair880).
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		..()
 		if (isobserver(usr) || isintangible(usr))
 			return

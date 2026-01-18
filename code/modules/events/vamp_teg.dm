@@ -72,7 +72,7 @@
 		smoke.set_up(1, 0, generator.loc)
 		smoke.attach(generator)
 		smoke.start()
-		playsound(generator, pick(spooky_sounds), 30, 0, -1)
+		playsound(generator, pick(spooky_sounds), 30, 0, SOUND_RANGE_STANDARD)
 
 		src.circulators_to_relube = list(generator.circ1, generator.circ2)
 		for(var/obj/machinery/atmospherics/binary/circulatorTemp/C in circulators_to_relube)
@@ -128,7 +128,7 @@
 					return
 
 				if(prob(50))
-					playsound(generator, pick(spooky_sounds), 30, 0, -1)
+					playsound(generator, pick(spooky_sounds), 30, 0, SOUND_RANGE_STANDARD)
 					switch(rand(1,5))
 						if(1)
 							animate_flash_color_fill_inherit(pick(generator,generator.circ1,generator.circ2),"#e13333",2, 2 SECONDS)
@@ -269,7 +269,7 @@ datum/teg_transformation/vampire
 		if(length(targets))
 			if(probmult(30))
 				if( !ON_COOLDOWN(src.teg,"blood", 30 SECONDS) )
-					playsound(src.teg, "sound/effects/blood.ogg", rand(10,20), 0, -1)
+					playsound(src.teg, "sound/effects/blood.ogg", rand(10,20), 0, SOUND_RANGE_STANDARD)
 
 			var/mob/living/carbon/target = pick(targets)
 
@@ -326,7 +326,7 @@ datum/teg_transformation/vampire
 					src.health -= 5
 					C.reagents.remove_reagent("water_holy", 8)
 					if (!(locate(/datum/effects/system/steam_spread) in C.loc))
-						playsound(C.loc, "sound/effects/bubbles3.ogg", 80, 1, -3, pitch=0.7)
+						playsound(C.loc, "sound/effects/bubbles3.ogg", 80, 1, SOUND_RANGE_STANDARD, pitch=0.7)
 						var/datum/effects/system/steam_spread/steam = new()
 						steam.set_up(1, 0, get_turf(C))
 						steam.attach(C)
@@ -335,7 +335,7 @@ datum/teg_transformation/vampire
 					src.health -= 5
 					C.reagents.remove_reagent("garlic", 8)
 					if (!(locate(/datum/effects/system/steam_spread) in C.loc))
-						playsound(C.loc, "sound/effects/bubbles3.ogg", 80, 1, -3, pitch=0.7)
+						playsound(C.loc, "sound/effects/bubbles3.ogg", 80, 1, SOUND_RANGE_STANDARD, pitch=0.7)
 						var/datum/effects/system/steam_spread/steam = new()
 						steam.set_up(1, 0, get_turf(C))
 						steam.attach(C)
@@ -347,7 +347,7 @@ datum/teg_transformation/vampire
 	// Implement attackby to handle objects and attacks to Generator and Circulators
 	proc/attackby(obj/T, obj/item/I as obj, mob/user as mob)
 		var/force = I.force
-		if(istype(I,/obj/item/storage/bible) && user.traitHolder.hasTrait("training_chaplain"))
+		if(istype(I,/obj/item/bible) && user.traitHolder.hasTrait("training_chaplain"))
 			force = 60
 
 		switch (force)
@@ -417,13 +417,13 @@ datum/teg_transformation/vampire
 		var/obj/itemspecialeffect/glare/E = new()
 		E.color = "#FFFFFF"
 		E.setup(O.loc)
-		playsound(O.loc,"sound/effects/glare.ogg", 50, 1, pitch = 1, extrarange = -4)
+		playsound(O.loc,"sound/effects/glare.ogg", 50, 1, pitch = 1, range = SOUND_RANGE_STANDARD)
 
 		SPAWN_DBG(1 DECI SECOND)
 			var/obj/itemspecialeffect/glare/EE = new()
 			EE.color = "#FFFFFF"
 			EE.setup(target.loc)
-			playsound(target.loc,"sound/effects/glare.ogg", 50, 1, pitch = 0.8, extrarange = -4)
+			playsound(target.loc,"sound/effects/glare.ogg", 50, 1, pitch = 0.8, range = SOUND_RANGE_STANDARD)
 
 		target.apply_flash(30, rand(1,5), stamina_damage = 350)
 

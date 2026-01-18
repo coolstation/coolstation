@@ -555,7 +555,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 		if (HH.can_attack)
 			var/obj/item/equipped = src.equipped()
 			if(equipped && src.next_click <= world.time)
-				src.next_click = world.time + max(equipped.click_delay,src.combat_click_delay)
+				src.next_click = world.time + max(equipped.click_delay,src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 				target.Attackby(equipped, src, params)
 			else
 				L.attack_hand(target, src)
@@ -665,7 +665,10 @@ ABSTRACT_TYPE(/mob/living/critter)
 				if(I.w_class > L.max_wclass && !istype(I,/obj/item/grab)) //shitty grab check
 					return 0
 			HH.item = I
-			I.set_loc(src)
+			if (I.stored)
+				I.stored.transfer_stored_item(I, src, user = src)
+			else
+				I.set_loc(src)
 			hud.add_object(I, HUD_LAYER+2, HH.screenObj.screen_loc)
 			update_inhands()
 			I.pickup(src) // attempted fix for flashlights not working - cirr
@@ -1125,7 +1128,7 @@ ABSTRACT_TYPE(/mob/living/critter)
 		return O
 
 	drop_item()
-		..()
+		. = ..()
 		src.update_inhands()
 
 	proc/on_sleep()
@@ -1163,6 +1166,10 @@ ABSTRACT_TYPE(/mob/living/critter)
 			var/obj/item/W = src.equipped()
 			if (W)
 				src.click(W, list())
+		if ("fiddle")
+			var/obj/item/W = src.equipped()
+			if(W)
+				src.fiddle_with(W)
 		if ("togglethrow")
 			src.toggle_throw_mode()
 		else

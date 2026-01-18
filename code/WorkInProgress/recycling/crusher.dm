@@ -66,7 +66,7 @@
 		return
 
 	if (world.time > last_sfx + 5)
-		playsound(src.loc, 'sound/items/mining_drill.ogg', 40, 1,0,0.8)
+		playsound(src.loc, 'sound/items/mining_drill.ogg', 40, 1,SOUND_RANGE_STANDARD,0.8)
 		last_sfx = world.time
 
 	var/obj/item/scrap/S = new(get_turf(src))

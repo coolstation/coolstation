@@ -419,7 +419,7 @@
 			..()
 		src.update_icon()
 
-	proc/update_icon()
+	update_icon()
 		if (src.overlays)
 			src.overlays = null
 		if (src.generic && src.color)
@@ -957,7 +957,7 @@
 
 			cleaned = 1
 			W.reagents.clear_reagents()
-			playsound(src, "sound/effects/bubbles2.ogg", 80, 1, -3)
+			playsound(src, "sound/effects/bubbles2.ogg", 80, 1, SOUND_RANGE_STANDARD)
 			user.visible_message("<span class='notice'><b>[user]</b> washes [src]!</span>", "<span class='notice'>You clean the HECK out of [src]!</span>")
 			src.visible_message("<span class='notice'>[src] bumbles really happily!  Also, a little squeakily.</span>")
 			//todo: splash visual effect
@@ -1805,7 +1805,7 @@
 		return ..()
 
 
-	proc/update_icon()
+	update_icon()
 		if (open)
 			src.icon_state = "petbee_carton[ourEgg != null]"
 		else

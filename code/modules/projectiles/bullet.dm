@@ -320,7 +320,7 @@ toxic - poisons
 		..()
 		if(ismob(hit))
 			var/mob/M = hit
-			playsound(M.loc, "sound/effects/sparks6.ogg", 50, TRUE, -5)
+			playsound(M.loc, "sound/effects/sparks6.ogg", 50, TRUE, SOUND_RANGE_STANDARD)
 			var/severity = src.code_severity + M.robot_talk_understand * src.robotic_severity
 			if(!severity)
 				return
@@ -332,7 +332,7 @@ toxic - poisons
 					for(var/i in 1 to severity)
 						if(QDELETED(L))
 							break
-						playsound(L.loc, "sound/effects/electric_shock_short.ogg", 35, 0, -23, 1.8)
+						playsound(L.loc, "sound/effects/electric_shock_short.ogg", 35, 0, SOUND_RANGE_SMALL, 1.8)
 						L.handle_random_emotes()
 						if(prob(30))
 							break
@@ -848,7 +848,7 @@ toxic - poisons
 	casing = /obj/item/casing/cannon
 	pierces = 4
 	time_between_same_mob_hit = 2 SECONDS
-	shot_sound_extrarange = 1
+	shot_sound_range = SOUND_RANGE_LARGE
 
 	on_launch(obj/projectile/proj)
 		proj.AddComponent(/datum/component/sniper_wallpierce, 4) //pierces 4 walls/lockers/doors/etc. Does not function on restricted Z, rwalls and blast doors use 2 pierces

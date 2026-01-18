@@ -194,7 +194,7 @@
 					user.unlock_medal("Leave no man behind!", 1)
 		return
 
-	MouseDrop(atom/over_object as mob|obj)
+	mouse_drop(atom/over_object as mob|obj)
 		if(get_dist(src,usr) <= 1)
 			src.rotate(get_dir(get_turf(src),get_turf(over_object)))
 		..()
@@ -274,6 +274,7 @@
 
 	proc/maybe_unbuckle(source, turf/oldloc)
 		// unbuckle if the guy is not on a turf, or if their chair is out of range and it's not a shuttle situation
+		if(!stool_user) return
 		if(!isturf(stool_user.loc) || (!IN_RANGE(src, oldloc, 1) && (!istype(get_area(src), /area/shuttle || !istype(get_area(oldloc), /area/shuttle)))))
 			UnregisterSignal(stool_user, COMSIG_MOVABLE_SET_LOC)
 			unbuckle()
@@ -379,7 +380,7 @@
 				C.set_dir(dir)
 		return
 
-	proc/update_icon()
+	update_icon()
 		if (src.dir == NORTH)
 			src.layer = FLY_LAYER+1
 		else
@@ -684,8 +685,8 @@
 	flags = FPRINT | TABLEPASS | CONDUCT
 	force = 5
 	stamina_damage = 45
-	stamina_cost = 21
-	stamina_crit_chance = 10
+//	stamina_cost = 21
+//	stamina_crit_chance = 10
 	var/c_color = null
 
 	New()
@@ -710,10 +711,10 @@
 		return
 
 /obj/item/chair/folded/attack(atom/target, mob/user as mob)
-	var/oldcrit = src.stamina_crit_chance
-	if(iswrestler(user))
-		src.stamina_crit_chance = 100
+//	var/oldcrit = src.stamina_crit_chance
+//	if(iswrestler(user))
+//		src.stamina_crit_chance = 100
 	if (ishuman(target))
 		playsound(src.loc, pick(sounds_punch), 100, 1)
 	..()
-	src.stamina_crit_chance = oldcrit
+//	src.stamina_crit_chance = oldcrit

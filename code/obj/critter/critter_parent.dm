@@ -298,9 +298,9 @@
 		if(W.hasProperty("frenzy"))
 			SPAWN_DBG(0)
 				var/frenzy = W.getProperty("frenzy")
-				W.click_delay -= frenzy
+				W.combat_click_delay -= frenzy
 				sleep(3 SECONDS)
-				W.click_delay += frenzy
+				W.combat_click_delay += frenzy
 		///////////////////////////
 
 		if (!attack_force)
@@ -918,7 +918,7 @@
 		if (isliving(M))
 			var/mob/living/H = M
 			H.was_harmed(src)
-		//playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, -1)
+		//playsound(src.loc, "sound/impact_sounds/Generic_Hit_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 	proc/CritterAttack(mob/M)
 		src.attacking = 1
@@ -1123,7 +1123,7 @@
 			return
 
 /obj/critter/proc/revive_critter()
-	usr_admin_only
+	USR_ADMIN_ONLY
 	var/obj/critter/C = src
 	if (!istype(C, /obj/critter))
 		boutput(src, "[C] isn't a critter! How did you even get here?!")
@@ -1143,7 +1143,7 @@
 		return
 
 /obj/critter/proc/kill_critter()
-	usr_admin_only
+	USR_ADMIN_ONLY
 	var/obj/critter/C = src
 	if (!istype(C, /obj/critter))
 		boutput(src, "[C] isn't a critter! How did you even get here?!")

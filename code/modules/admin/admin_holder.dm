@@ -32,6 +32,8 @@
 
 	var/list/hidden_categories = null
 
+	var/ghost_interaction = FALSE
+
 	New()
 		..()
 		src.hidden_categories = list()
@@ -312,7 +314,7 @@
 /client/proc/change_admin_prefs()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)
 	set name = "Change Admin Preferences"
-	admin_only
+	ADMIN_ONLY
 
 	src.holder.show_pref_window(src.mob)
 

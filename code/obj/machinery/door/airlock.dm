@@ -1876,7 +1876,7 @@ obj/machinery/door/airlock
 	if(src.welded && !src.locked)
 		audible_message("<span class='alert'>[src] lets out a loud whirring and grinding noise!</span>")
 		animate_shake(src, 5, 2, 2, src.pixel_x, src.pixel_y)
-		playsound(src, 'sound/items/mining_drill.ogg', 25, 1, 0, 0.8)
+		playsound(src, 'sound/items/mining_drill.ogg', 25, 1, SOUND_RANGE_STANDARD, 0.8)
 		src.take_damage(src.health * 0.8)
 
 /obj/machinery/door/airlock/receive_silicon_hotkey(var/mob/user)
@@ -1889,7 +1889,9 @@ obj/machinery/door/airlock
 		boutput(user, "<span class='alert'>You have lost the ability to interface with airlocks.</span>" )
 		return
 
-	if (src.aiControlDisabled) return
+	if (src.aiControlDisabled)
+		boutput(user, "<span class='alert'>AI Control is disabled on this airlock.</span>" )
+		return
 
 	if (user.client.check_key(KEY_OPEN) && user.client.check_key(KEY_BOLT))
 		. = 1

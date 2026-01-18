@@ -61,9 +61,9 @@ ABSTRACT_TYPE(/obj/item/circuitboard)
 /obj/item/circuitboard/atmospherealerts
 	name = "Circuit board (Atmosphere alerts)"
 	computertype = "/obj/machinery/computer/atmosphere/alerts"
-/obj/item/circuitboard/atmospheresiphonswitch
+/*/obj/item/circuitboard/atmospheresiphonswitch
 	name = "Circuit board (Atmosphere siphon control)"
-	computertype = "/obj/machinery/computer/atmosphere/siphonswitch"
+	computertype = "/obj/machinery/computer/atmosphere/siphonswitch"*/
 /obj/item/circuitboard/air_management
 	name = "Circuit board (Atmospheric monitor)"
 	computertype = "/obj/machinery/computer/general_air_control"

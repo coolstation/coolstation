@@ -199,27 +199,35 @@ mob/living/carbon/human/cluwne/satan/megasatan //someone can totally use this fo
 		W.transition_task = W
 		default_task = W
 
-/mob/living/carbon/human/fathergraham
+/datum/aiHolder/wanderers
+	New()
+		. = ..()
+		var/datum/aiTask/timed/wander/s/W =  get_instance(/datum/aiTask/timed/wander/s, list(src))
+		W.transition_task = W
+		default_task = W
+
+/mob/living/carbon/human/father
 	New()
 		..()
-		src.equip_new_if_possible(/obj/item/clothing/shoes/red, slot_shoes)
+		src.equip_new_if_possible(/obj/item/clothing/shoes/pink, slot_shoes)
 		src.equip_new_if_possible(/obj/item/clothing/under/misc/chaplain, slot_w_uniform)
+		src.equip_new_if_possible(/obj/item/clothing/glasses/sunglasses, slot_glasses)
 
 	initializeBioholder()
 		. = ..()
 		bioHolder.mobAppearance.gender = "male"
-		src.real_name = "Father Graham"
-		bioHolder.bloodType = "B+"
+		src.real_name = "Father Relaxe"
+		bioHolder.bloodType = "😎"
 
 	Life(datum/controller/process/mobs/parent)
 		if (..(parent))
 			return 1
 
-		if(prob(1) && !src.stat)
-			if(prob(50))
-				SPAWN_DBG(0) src.say(pick("My wife left me...","My wife left me!","MY WIFE, SHE LEFT ME.", "But, the bathrooms...", "Just wait until the mothers mailing list hears of this...", "They took my programme...", "You remember \"The Tech Storage Guys\" right? I wrote that.", "I'm just thinking about the bathrooms... the pee...", "Why won't my kids call?", "I'm just really out of steam right now..."))
+		if(prob(2) && !src.stat)
+			if(prob(60))
+				SPAWN_DBG(0) src.say("[RELAXE_PICK("flow")]")
 			else
-				emote(pick("sigh","cry","sob","whimper","pout"))
+				SPAWN_DBG(0) src.say("[RELAXE_PICK("advice")]")
 	/*
 	attackby(obj/item/W, mob/M)
 		if (istype(W, /obj/item/paper/postcard/owlery))
@@ -276,8 +284,8 @@ proc/empty_mouse_params()//TODO MOVE THIS!!!
 	for (var/obj/item/I in src.contents)
 		if (istype(I,/obj/item/organ) || istype(I,/obj/item/skull) || istype(I,/obj/item/parts)) continue //FUCK
 		hudlist += I
-		if (istype(I,/obj/item/storage))
-			hudlist += I.contents
+		if (I.storage)
+			hudlist += I.storage.get_contents()
 	hudlist += src.item_abilities
 
 	var/list/close_match = list()
@@ -427,7 +435,7 @@ proc/empty_mouse_params()//TODO MOVE THIS!!!
 		return illusion_expire(user)
 	attackby(obj/item/W, mob/user)
 		return illusion_expire(user)
-	MouseDrop(mob/M)
+	mouse_drop(mob/M)
 		if(iscarbon(M) && !M.hasStatus("handcuffed"))
 			return illusion_expire(M)
 
@@ -666,7 +674,7 @@ proc/empty_mouse_params()//TODO MOVE THIS!!!
 
 
 /mob/living/carbon/human/gunsemanne
-	is_npc = 1
+	//is_npc = 1
 	//uses_mobai = 1
 	real_name = "Pingin' \"Grand\" Thum"
 	gender = NEUTER

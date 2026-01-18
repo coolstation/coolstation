@@ -234,7 +234,7 @@ var/mutable_appearance/fluid_ma
 		if (istype(W,/obj/item/rcd) || istype(W,/obj/item/tile) || istype(W,/obj/item/sheet) || ispryingtool(W) || istype(W,/obj/item/pen))
 			var/turf/T = get_turf(src)
 			T.Attackby(W,user)
-			W.afterattack(T,user)
+			W.AfterAttack(T,user)
 			return
 
 		.= ..()
@@ -441,7 +441,7 @@ var/mutable_appearance/fluid_ma
 						step_away(push_thing,src)
 
 		if (spawned_any && prob(40))
-			playsound( src.loc, 'sound/misc/waterflow.ogg', 30,0.7,7)
+			playsound( src.loc, 'sound/misc/waterflow.ogg', 30,0.7,SOUND_RANGE_LARGE)
 
 
 	//kind of like a breadth-first search
@@ -578,7 +578,7 @@ var/mutable_appearance/fluid_ma
 						step_towards(M,F.loc)
 						break
 	*/
-	proc/update_icon(var/neighbor_was_removed = 0)  //BE WARNED THIS PROC HAS A REPLICA UP ABOVE IN FLUID GROUP UPDATE_LOOP. DO NOT CHANGE THIS ONE WITHOUT MAKING THE SAME CHANGES UP THERE OH GOD I HATE THIS
+	update_icon(var/neighbor_was_removed = 0)  //BE WARNED THIS PROC HAS A REPLICA UP ABOVE IN FLUID GROUP UPDATE_LOOP. DO NOT CHANGE THIS ONE WITHOUT MAKING THE SAME CHANGES UP THERE OH GOD I HATE THIS
 		if (!src.group || !src.group.reagents) return
 
 		src.name = src.group.master_reagent_name ? src.group.master_reagent_name : src.group.reagents.get_master_reagent_name() //maybe obscure later?
@@ -773,13 +773,13 @@ var/mutable_appearance/fluid_ma
 					src.pulling = null
 					src.changeStatus("weakened", 3.5 SECONDS)
 					boutput(src, "<span class='notice'>You slipped on [F]!</span>")
-					playsound(T, "sound/misc/slip.ogg", 50, 1, -3)
+					playsound(T, "sound/misc/slip.ogg", 50, 1, SOUND_RANGE_STANDARD)
 					var/atom/target = get_edge_target_turf(src, src.dir)
 					src.throw_at(target, 12, 1, throw_type = THROW_SLIP)
 				if(-2) //superlibe
 					src.pulling = null
 					src.changeStatus("weakened", 6 SECONDS)
-					playsound(T, "sound/misc/slip.ogg", 50, 1, -3)
+					playsound(T, "sound/misc/slip.ogg", 50, 1, SOUND_RANGE_STANDARD)
 					boutput(src, "<span class='notice'>You slipped on [F]!</span>")
 					var/atom/target = get_edge_target_turf(src, src.dir)
 					src.throw_at(target, 30, 1, throw_type = THROW_SLIP)

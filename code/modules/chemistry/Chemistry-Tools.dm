@@ -94,7 +94,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 		. = "<br><span class='notice'>[reagents.get_description(user,rc_flags)]</span>"
 		return
 
-	MouseDrop(atom/over_object as obj)
+	mouse_drop(atom/over_object as obj)
 		if (!src.is_open_container())
 			boutput(usr, "<span class='alert'>The [src] is closed!</span>")
 			return ..()
@@ -238,7 +238,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 				var/trans = src.reagents.trans_to(T, src.splash_all_contents ? src.reagents.total_volume : src.amount_per_transfer_from_this)
 				boutput(user, "<span class='notice'>You transfer [trans] units of the solution to [T].</span>")
 
-			playsound(src.loc, 'sound/impact_sounds/Liquid_Slosh_1.ogg', 25, 1, 0.3)
+			playsound(src.loc, 'sound/impact_sounds/Liquid_Slosh_1.ogg', 25, 1, SOUND_RANGE_STANDARD)
 
 		else if (istype(target, /obj/reagent_dispensers) || /*(target.is_open_container() == -1 && target.reagents) ||*/ ((istype(target, /obj/fluid) && !istype(target, /obj/fluid/airborne)) && !src.reagents.total_volume)) //A dispenser. Transfer FROM it TO us.
 			if (target.reagents && !target.reagents.total_volume)
@@ -253,7 +253,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			var/trans = target.reagents.trans_to(src, transferamt)
 			boutput(user, "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>")
 
-			playsound(src.loc, 'sound/misc/pourdrink2.ogg', 50, 1, 0.1)
+			playsound(src.loc, 'sound/misc/pourdrink2.ogg', 50, 1, SOUND_RANGE_STANDARD)
 
 		else if (target.is_open_container() && target.reagents) //Something like a glass. Player probably wants to transfer TO it.
 			if (!reagents.total_volume)
@@ -268,7 +268,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			var/trans = src.reagents.trans_to(target, 10)
 			boutput(user, "<span class='notice'>You transfer [trans] units of the solution to [target].</span>")
 
-			playsound(src.loc, 'sound/misc/pourdrink2.ogg', 50, 1, 0.1)
+			playsound(src.loc, 'sound/misc/pourdrink2.ogg', 50, 1, SOUND_RANGE_STANDARD)
 
 		else if (istype(target, /obj/item/sponge)) // dump contents onto it
 			if (!reagents.total_volume)

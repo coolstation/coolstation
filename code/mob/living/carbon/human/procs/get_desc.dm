@@ -13,11 +13,15 @@
 		return // heh
 
 	. = list()
+
+
 	if (isalive(usr))
 		. += "<br><span class='notice'>You look closely at <B>[src.name]</B>.</span>"
+/*
 		sleep(get_dist(usr.client.eye, src) + 1)
 		if (!usr.client.eye)
 			return // heh heh
+*/
 
 	if (!istype(usr, /mob/dead/target_observer))
 		if (!ignore_checks && (get_dist(usr.client.eye, src) > 7 && (!usr.client || !usr.client.eye || !usr.client.holder || usr.client.holder.state != 2)))
@@ -305,7 +309,7 @@
 			if (src.get_brain_damage() >= 60)
 				. += "<br><span class='alert'>[src.name] has a blank expression on [his_or_her(src)] face.</span>"
 
-			if (!src.client && !src.ai_active)
+			if (!src.client && !src.ai)
 				. += "<br>[src.name] seems to be staring blankly into space."
 
 	switch (src.decomp_stage)

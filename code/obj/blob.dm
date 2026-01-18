@@ -450,7 +450,7 @@
 		src.update_icon()
 		healthbar.onUpdate()
 
-	proc/update_icon()
+	update_icon()
 		if (!src)
 			return
 

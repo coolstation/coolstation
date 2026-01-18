@@ -389,7 +389,7 @@
 			hand_range_attack(target, params)
 
 		if (src.lastattacked == target && use_delay) //If lastattacked was set, this must be a combat action!! Use combat click delay.
-			src.next_click = world.time + (equipped ? max(equipped.click_delay,src.combat_click_delay) : src.combat_click_delay)
+			src.next_click = world.time + (equipped ? equipped.combat_click_delay : src.combat_click_delay) * GET_COMBAT_CLICK_DELAY_SCALE(src)
 			src.lastattacked = null
 
 	Stat()
@@ -536,7 +536,7 @@
 		if(!user.stat)
 			switch(user.a_intent)
 				if(INTENT_HELP) //Friend person
-					playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, -2)
+					playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 50, 1, SOUND_RANGE_STANDARD)
 					user.visible_message("<span class='notice'>[user] gives [src] a [pick_string("descriptors.txt", "borg_pat")] pat on the [pick("back", "head", "shoulder")].</span>")
 				if(INTENT_DISARM) //Shove
 					SPAWN_DBG(0) playsound(src.loc, 'sound/impact_sounds/Generic_Swing_1.ogg', 40, 1)
@@ -548,7 +548,7 @@
 						user.visible_message("<b>[user]</b> pulls the sheet off [src]!", "You pull the sheet off [src]!")
 						src.takeoffSheet()
 				if(INTENT_GRAB) //Shake
-					playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 30, 1, -2)
+					playsound(src.loc, 'sound/impact_sounds/Generic_Shove_1.ogg', 30, 1, SOUND_RANGE_STANDARD)
 					user.visible_message("<span class='alert'>[user] shakes [src] [pick_string("descriptors.txt", "borg_shake")]!</span>")
 				if(INTENT_HARM) //Dumbo
 					playsound(src.loc, 'sound/impact_sounds/Metal_Clang_3.ogg', 60, 1)
@@ -818,9 +818,9 @@
 			if ("scream")
 				if (src.emote_check(voluntary, 50))
 					if (narrator_mode)
-						playsound(src, 'sound/vox/scream.ogg', 50, 1, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						playsound(src, 'sound/vox/scream.ogg', 50, 1, SOUND_RANGE_STANDARD, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 					else
-						playsound(src, src.sound_scream, 80, 0, 0, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						playsound(src, src.sound_scream, 80, 0, SOUND_RANGE_STANDARD, src.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 					message = "<b>[src]</b> screams!"
 
 			if ("johnny")

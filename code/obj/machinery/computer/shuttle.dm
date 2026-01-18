@@ -142,26 +142,17 @@
 		SPAWN_DBG(10 SECONDS)
 			call_client()
 
-/obj/machinery/computer/shipyard_control/proc/call_client()  //this proc is a huge mess and will be cleaned up once I stop tacking crap on there.
-
+/obj/machinery/computer/shipyard_control/proc/call_client()
+	var/area/stagearea = locate(/area/shuttle/bayou/stagearea)
+	var/area/shipyard = locate(/area/shuttle/bayou/shipyard)
 	if(shipyardship_location == 0) //staging area -> station
 		shipyard_scrapwall_prob = rand(30, 50) //would like for this to be higher on exploded ships but no luck atm
-		buildRandomShips()
-		var/area/start_location = locate(/area/shuttle/bayou/stagearea)
-		var/area/end_location = locate(/area/shuttle/bayou/shipyard)
-		prepShips(start_location, start_location, end_location) //the move is handled in here for various reasons
+		prepShips(stagearea, shipyard, src)
 
 	else if(shipyardship_location == 1) //station -> staging area
-		var/area/start_location = locate(/area/shuttle/bayou/shipyard)
-		var/area/end_location = locate(/area/shuttle/bayou/stagearea)
-		processShips(start_location)
-		SPAWN_DBG(15 SECONDS)
-			start_location.move_contents_to(end_location, move_ghosts = FALSE, move_mobs = FALSE)
-			clear_area(locate(/area/shuttle/bayou/stagearea),null,/obj/landmark)
-			shipyardship_location = 0
+		processShips(stagearea,shipyard,src)
 
 	for(var/obj/machinery/computer/shipyard_control/C in machine_registry[MACHINES_SHUTTLECOMPS])
-		active = 0
 		C.visible_message("<span class='alert'>The client is en route!</span>")
 
 	return

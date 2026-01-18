@@ -107,20 +107,29 @@
 				S.satchel_updateicon()
 				user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
 				return
-		if (istype(I,/obj/item/storage/) && I.contents.len)
+		if (length(I.storage?.get_contents()))
 			var/action = input(user, "What do you want to do with [I]?") as null|anything in list("Place it in the Chute","Empty it into the chute","Never Mind")
 			if (!action || action == "Never Mind")
 				return
 			if (!in_interact_range(src, user))
 				boutput(user, "<span class='alert'>You need to be closer to the chute to do that.</span>")
 				return
-			if (action == "Empty it into the chute")
-				var/obj/item/storage/S = I
-				for(var/obj/item/O in S)
-					O.set_loc(src)
-					S.hud.remove_object(O)
-				user.visible_message("<b>[user.name]</b> dumps out [S] into [src].")
-				return
+			if(istype(I, /obj/item/storage/secure))
+				var/obj/item/storage/secure/secS = I
+				if(secS.locked)
+					user.visible_message("[user.name] places \the [secS] into \the [src].",\
+						"You place \the [secS] into \the [src].")
+					user.drop_item()
+					secS.set_loc(src)
+					actions.interrupt(user, INTERRUPT_ACT)
+					src.update()
+					return
+			for(var/obj/item/O in I.storage.get_contents())
+				I.storage.transfer_stored_item(O, src, user = user)
+			user.visible_message("<b>[user.name]</b> dumps out [I] into [src].")
+			actions.interrupt(user, INTERRUPT_ACT)
+			src.update()
+			return
 		if (istype(I,/obj/item/decoration/ashtray/) && I:butts)
 			var/action = input(user, "What do you want to do with [I]?") as null|anything in list("Place it in the Chute","Empty it into the chute","Never Mind")
 			if (!action || action == "Never Mind")
@@ -157,7 +166,7 @@
 		else
 			if (istype(mag))
 				actions.stopId("magpickerhold", user)
-			else if (!user.drop_item())
+			else if (!user.drop_item(I) || QDELETED(I))
 				return
 			I.set_loc(src)
 			user.visible_message("[user.name] places \the [I] into \the [src].",\
@@ -191,26 +200,27 @@
 			var/obj/item/I = MO
 
 			if(prob(20)) //It might land!
-				I.set_loc(get_turf(src))
 				if(prob(30)) //It landed cleanly!
-					I.set_loc(src)
+					SPAWN_DBG(0)
+						I.set_loc(src)
 					src.visible_message("<span class='alert'>\The [I] lands cleanly in \the [src]!</span>")
 				else	//Aaaa the tension!
 					src.visible_message("<span class='alert'>\The [I] teeters on the edge of \the [src]!</span>")
 					var/delay = rand(5, 15)
 					SPAWN_DBG(0)
+						I.set_loc(get_turf(src))
 						var/in_x = I.pixel_x
 						for(var/d = 0; d < delay; d++)
 							if(I) I.pixel_x = in_x + rand(-1, 1)
 							sleep(0.1 SECONDS)
 						if(I) I.pixel_x = in_x
-					sleep(delay)
-					if(I && I.loc == src.loc)
-						if(prob(40)) //It goes in!
-							src.visible_message("<span class='alert'>\The [I] slips into \the [src]!</span>")
-							I.set_loc(src)
-						else
-							src.visible_message("<span class='alert'>\The [I] slips off of the edge of \the [src]!</span>")
+						sleep(delay)
+						if(I && I.loc == src.loc)
+							if(prob(40)) //It goes in!
+								src.visible_message("<span class='alert'>\The [I] slips into \the [src]!</span>")
+								I.set_loc(src)
+							else
+								src.visible_message("<span class='alert'>\The [I] slips off of the edge of \the [src]!</span>")
 
 		else if (ishuman(MO))
 			var/mob/living/carbon/human/H = MO
@@ -218,22 +228,18 @@
 			if(prob(30))
 				H.visible_message("<span class='alert'><B>[H] falls into the disposal outlet!</B></span>")
 				logTheThing("combat", H, null, "is thrown into a [src.name] at [log_loc(src)].")
-				H.set_loc(src)
-				if(prob(20))
-					src.visible_message("<span class='alert'><B><I>...accidentally hitting the handle!</I></B></span>")
-					H.show_text("<B><I>...accidentally hitting the handle!</I></B>", "red")
-					flush = 1
-					if (!is_processing)
-						SubscribeToProcess()
-						is_processing = 1
-					update()
+				SPAWN_DBG(0)
+					H.set_loc(src)
+					if(prob(20))
+						src.visible_message("<span class='alert'><B><I>...accidentally hitting the handle!</I></B></span>")
+						H.show_text("<B><I>...accidentally hitting the handle!</I></B>", "red")
+						flush = 1
+						if (!is_processing)
+							SubscribeToProcess()
+							is_processing = 1
+						update()
 		else
 			return ..()
-
-
-	// can breath normally in the disposal
-	alter_health()
-		return get_turf(src)
 
 	// attempt to move while inside
 	relaymove(mob/user as mob)
@@ -448,7 +454,7 @@
 		air_contents.zero()
 
 		sleep(1 SECOND)
-		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
+		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, SOUND_RANGE_STANDARD)
 		sleep(0.5 SECONDS) // wait for animation to finish
 
 
@@ -475,7 +481,7 @@
 	proc/expel(var/obj/disposalholder/H)
 
 		var/turf/target
-		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
+		playsound(src, 'sound/machines/hiss.ogg', 50, 0, SOUND_RANGE_STANDARD)
 		for(var/atom/movable/AM in H)
 			target = get_offset_target_turf(src.loc, rand(5)-rand(5), rand(5)-rand(5))
 

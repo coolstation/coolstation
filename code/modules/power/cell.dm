@@ -25,8 +25,8 @@
 	var/specialicon = 0	// used for autoprocess shit
 	var/unusualCell = 0
 	stamina_damage = 10
-	stamina_cost = 10
-	stamina_crit_chance = 10
+//	stamina_cost = 10
+//	stamina_crit_chance = 10
 
 	disposing()
 		if (istype(src.loc,/obj/machinery/power/apc))
@@ -240,12 +240,11 @@
 
 /obj/item/cell/proc/explode()
 	if(src in bible_contents)
-		for_by_tcl(B, /obj/item/storage/bible)
+		for_by_tcl(B, /obj/item/bible)
 			var/turf/T = get_turf(B.loc)
 			if(T)
 				T.hotspot_expose(700,125)
 				explosion(src, T, -1, -1, 2, 3)
-		bible_contents.Remove(src)
 		qdel(src)
 		return
 	var/turf/T = get_turf(src.loc)

@@ -12,6 +12,7 @@ var/datum/event_controller/random_events
 #define MINOR_EVENTS_BEGIN 10 MINUTES
 #define SPAWN_EVENTS_BEGIN 23 MINUTES
 #define MAINT_EVENTS_BEGIN 15 MINUTES
+#define LUNCH_TIME_BEGIN 30 MINUTES //adds at least first one at at least 25 minutes to 45 Minutes
 
 ABSTRACT_TYPE(/datum/random_event/major/player_spawn)
 ABSTRACT_TYPE(/datum/random_event/major/antag)
@@ -43,6 +44,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 
 	var/major_event_timer = 0
 	var/minor_event_timer = 0
+	var/already_lunched = 0
 
 	//timestamps for when the next events happen
 	var/next_major_event = MAJOR_EVENTS_BEGIN
@@ -61,6 +63,12 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 	var/time_between_maint_events_lower = 400 SECONDS //6m 40s
 	var/time_between_maint_events_upper = 800 SECONDS //13m 20s
 	//To disable the machinery maintenance system, just disable the event itself.
+
+	var/datum/random_event/sets/lunchtime/lunch_event = null
+
+	var/next_lunch_event = LUNCH_TIME_BEGIN
+	var/time_between_lunch_event_lower = 5 MINUTES
+	var/time_between_lunch_event_upper = 10 MINUTES
 
 	var/time_lock = 1
 	var/list/special_events = list()
@@ -90,6 +98,11 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			minor_events += RE
 			if (istype(RE, /datum/random_event/minor/maintenance/maintenance_breakdown))
 				maintenance_event = RE
+
+		for (var/X in childrentypesof(/datum/random_event/sets))
+			var/datum/random_event/RE = new X
+			if (istype(RE, /datum/random_event/sets/lunchtime))
+				lunch_event = RE
 
 		for (var/X in childrentypesof(/datum/random_event/special))
 			var/datum/random_event/RE = new X
@@ -142,6 +155,12 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 		if (ticker.round_elapsed_ticks >= next_maint_event)
 			maintenance_event.event_effect("Routine Lack of Maintenance", rand(1,3))
 			next_maint_event = TIME + rand(time_between_maint_events_lower,time_between_maint_events_upper)
+
+		if (ticker.round_elapsed_ticks >= next_lunch_event)
+			if(!already_lunched)
+				lunch_event.event_effect("Lots of hard work!")
+				next_lunch_event = TIME + rand(time_between_lunch_event_lower, time_between_lunch_event_upper)
+				already_lunched = 1
 
 	proc/event_cycle()
 		event_cycle_count++
@@ -239,6 +258,7 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 		dat += "Next minor event at <a href='byond://?src=\ref[src];ScheduleMinor=1'>[floor(next_minor_event / 600)] minutes</a> into the round.<br>"
 		dat += "Next spawn event at <a href='byond://?src=\ref[src];ScheduleSpawn=1'>[floor(next_spawn_event / 600)] minutes</a> into the round.<br>"
 		dat += "Next maintenance event at <a href='byond://?src=\ref[src];ScheduleMaint=1'>[floor(next_maint_event / 600)] minutes</a> into the round.<br>"
+		dat += "Next lunch event at <a href='byond://?src=\ref[src];ScheduleLunch=1'>[floor(next_lunch_event / 600)] minutes</a> into the round.<br>"
 
 		dat += "<b><a href='byond://?src=\ref[src];EnableEvents=1'>Random Events Enabled:</a></b> [events_enabled ? "Yes" : "No"]<br>"
 		dat += "<b><a href='byond://?src=\ref[src];EnableMEvents=1'>Minor Events Enabled:</a></b> [minor_events_enabled ? "Yes" : "No"]<br>"
@@ -456,6 +476,14 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 			logTheThing("admin", usr, null, "set next maintenance event to occur at [time] minutes")
 			logTheThing("diary", usr, null, "set next maintenance event to occur at [time] minutes", "admin")
 
+		else if(href_list["ScheduleLunch"])
+			var/time = input("At how many minutes should the next mahlzeit event occur?","Random Events") as num
+			next_lunch_event = time MINUTES
+
+			message_admins("Admin [key_name(usr)] set next lunch event to occur at [time] minutes")
+			logTheThing("admin", usr, null, "set next lunch event to occur at [time] minutes")
+			logTheThing("diary", usr, null, "set next lunch event to occur at [time] minutes", "admin")
+
 		else if(href_list["EnableEvents"])
 			events_enabled = !events_enabled
 			message_admins("Admin [key_name(usr)] [events_enabled ? "enabled" : "disabled"] random events")
@@ -551,3 +579,4 @@ ABSTRACT_TYPE(/datum/random_event/major/antag)
 #undef MINOR_EVENTS_BEGIN
 #undef SPAWN_EVENTS_BEGIN
 #undef MAINT_EVENTS_BEGIN
+#undef LUNCH_TIME_BEGIN

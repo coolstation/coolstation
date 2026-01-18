@@ -211,6 +211,7 @@
 			A.remove_light(src)
 		if (light)
 			light.dispose()
+			light = null
 		..()
 
 	//auto position these lights so i don't have to mess with dirs in the map editor that's annoying!!!
@@ -839,14 +840,6 @@
 		if (!isghostdrone(user)) // Same as ghostdrone RCDs, no sparks
 			elecflash(user)
 		return
-
-
-	if (issilicon(user) && !isghostdrone(user))
-		return
-		/*if (isghostdrone(user))
-			return src.Attackhand(user)
-		else
-			return*/
 
 
 	// see if there's a magtractor involved and if so save it for later as mag

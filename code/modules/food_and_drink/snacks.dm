@@ -1446,7 +1446,7 @@
 	on_reagent_change()
 		src.update_icon()
 
-	proc/update_icon()
+	update_icon()
 		src.overlays.len = 0
 		if (src.reagents.has_reagent("juice_tomato"))
 			src.overlays += image(src.icon, "corndog-k")
@@ -1619,7 +1619,7 @@
 			..()
 		return
 
-	proc/update_icon()
+	update_icon()
 		if(!(src.GetOverlayImage("bun")))
 			switch(src.bun)
 				if(1)
@@ -2074,7 +2074,7 @@
 				boutput(user, "<span class='alert'>A wrapped wrapper? That's ridiculous.</span>")
 				return
 
-			else if (W.w_class > src.maximum_wrapped_size || istype(W, /obj/item/storage) || istype(W, /obj/item/storage/secure))
+			else if (W.w_class > src.maximum_wrapped_size || W.storage)
 				boutput(user, "<span class='alert'>There is no way that could fit!</span>")
 				return
 
@@ -2690,7 +2690,7 @@
 	real_name = "cheesewheel"
 	throw_speed = 2
 	throw_range = 5
-	stamina_cost = 5
+//	stamina_cost = 5
 	stamina_damage = 2
 	var/slice_amount = 4
 	var/slice_product = /obj/item/reagent_containers/food/snacks/ingredient/cheese

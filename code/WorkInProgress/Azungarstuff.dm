@@ -476,8 +476,8 @@
 	desc = "TEMP"
 	pickup_sfx = "sound/items/blade_pull.ogg"
 	stamina_damage = 15
-	stamina_cost = 15
-	stamina_crit_chance = 50
+//	stamina_cost = 15
+//	stamina_crit_chance = 50
 
 //MOVE TO SMALL_ANIMALS.DM LATER//
 
@@ -686,7 +686,7 @@
 	attack_hand(mob/user as mob)
 		if (can_reach(user,src))
 			boutput(user, "<span class='alert'>You attempt to open the container but its doors are sealed tight. It doesn't look like you'll be able to open it.</span>")
-			playsound(src.loc, "sound/machines/door_locked.ogg", 50, 1, -2)
+			playsound(src.loc, "sound/machines/door_locked.ogg", 50, 1, SOUND_RANGE_STANDARD)
 
 	yellow
 		icon_state = "mantayellow"
@@ -727,7 +727,7 @@
 	get_desc()
 		return last_result_text ? "<br>The ball is currently on [last_result_text]." : ""
 
-	proc/update_icon()
+	update_icon()
 		if (running == 0)
 			src.icon_state = "roulette_w0"
 		else if (running == 1)

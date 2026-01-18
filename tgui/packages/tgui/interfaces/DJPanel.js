@@ -24,7 +24,6 @@ export const DJPanel = (props, context) => {
               icon={loadedSound ? 'file-audio' : 'upload'}
               selected={!loadedSound}
               content={loadedSound ? truncate(loadedSound, 38) : "Upload"}
-              tooltip={loadedSound}
               onClick={() => act('set-file')}
             />
           </Box>

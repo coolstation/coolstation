@@ -415,7 +415,6 @@ obj/machinery/embedded_controller
 
 		..()
 
-	proc/update_icon()
 	proc/return_text()
 
 	proc/post_signal(datum/signal/signal, comm_line)

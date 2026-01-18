@@ -52,7 +52,7 @@ Right Mouse Button                     = Select area to copy with two clicks<br>
 			R.set_dir(CBT.turf_dir)
 			for (var/obj/O in CBT.objects)
 				O.clone(R)
-			blink(R)
+			//blink(R)
 		update_button_text("Ready to paste.")
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
@@ -88,7 +88,7 @@ Right Mouse Button                     = Select area to copy with two clicks<br>
 						CBT.objects += O.clone()
 					clipboard += CBT
 					workgroup++
-					blink(Q)// NO. NO MORE LAG.
+					//blink(Q)// NO. NO MORE LAG.
 					if (workgroup > 8)
 						workgroup = 0
 						sleep(0.1 SECONDS)

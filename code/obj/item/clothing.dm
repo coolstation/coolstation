@@ -26,8 +26,8 @@
 	/// we want to use Z rather than Y incase anything gets rotated, it would look all jank
 
 	stamina_damage = 0
-	stamina_cost = 0
-	stamina_crit_chance = 0
+//	stamina_cost = 0
+//	stamina_crit_chance = 0
 
 	flags = FPRINT | TABLEPASS
 	var/can_stain = 1

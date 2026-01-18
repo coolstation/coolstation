@@ -126,13 +126,13 @@
 	var/open = 0
 
 	attack_hand(mob/user as mob)
-		if (src.loc == user && (!does_not_open_in_pocket || src == user.l_hand || src == user.r_hand))
+		if (src.loc == user && (opens_if_worn || src == user.l_hand || src == user.r_hand))
 			if(src.open)
 				..()
 			else
 				src.open = 1
 				src.icon_state = "sparkler_box-open"
-				playsound(src.loc, "sound/impact_sounds/Generic_Snap_1.ogg", 20, 1, -2)
+				playsound(src.loc, "sound/impact_sounds/Generic_Snap_1.ogg", 20, 1, SOUND_RANGE_STANDARD)
 				boutput(user, "<span class='notice'>You snap open the child-protective safety tape on [src].</span>")
 		else
 			..()
@@ -143,10 +143,10 @@
 		else
 			src.open = 1
 			src.icon_state = "sparkler_box-open"
-			playsound(src.loc, "sound/impact_sounds/Generic_Snap_1.ogg", 20, 1, -2)
+			playsound(src.loc, "sound/impact_sounds/Generic_Snap_1.ogg", 20, 1, SOUND_RANGE_STANDARD)
 			boutput(user, "<span class='notice'>You snap open the child-protective safety tape on [src].</span>")
 
-	MouseDrop(atom/over_object, src_location, over_location)
+	mouse_drop(atom/over_object, src_location, over_location)
 		if(!src.open)
 			if (over_object == usr && in_interact_range(src, usr) && isliving(usr) && !usr.stat)
 				return

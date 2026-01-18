@@ -137,7 +137,7 @@
 	icon_state = use_skin
 	UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "medibot-arm"), "arm")
 
-/obj/machinery/bot/medbot/proc/update_icon(var/stun = 0, var/heal = 0)
+/obj/machinery/bot/medbot/update_icon(var/stun = 0, var/heal = 0)
 	//AFAIK a medbot can never be healing and stunned at the same time so this should work
 	if (stun)
 		UpdateOverlays(image('icons/obj/bots/medbots.dmi', icon_state = "[icon_state]-light-stun"), "light")
@@ -810,15 +810,15 @@
 
 /obj/item/storage/firstaid/attackby(var/obj/item/parts/robot_parts/S, mob/user as mob)
 	if (!istype(S, /obj/item/parts/robot_parts/arm/))
-		if (src.contents.len >= 7)
+		if (src.storage.is_full())
 			return
-		if ((S.w_class >= W_CLASS_SMALL || istype(S, /obj/item/storage)))
+		if (S.w_class >= W_CLASS_SMALL || S.storage)
 			if (!istype(S,/obj/item/storage/pill_bottle))
 				return
 		..()
 		return
 
-	if (src.contents.len >= 1)
+	if (length(src.storage.get_contents()))
 		boutput(user, "<span class='alert'>You need to empty [src] out first!</span>")
 		return
 	else

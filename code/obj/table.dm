@@ -16,31 +16,30 @@
 	var/auto = 0
 	var/status = null //1=weak|welded, 2=strong|unwelded
 	var/image/working_image = null
-	///Spawn a drawer when made. After that, this keeps track of whether the drawer is accessible
-	var/has_storage = 0
-	var/obj/item/storage/desk_drawer/desk_drawer = null
 	var/slaps = 0
 	var/colorcache = null
 	var/scrapes_floor = FALSE //if this table moves, and doesn't have wheels, make a scraping noise
 
 	///Moving the table with more than this risks stuff dropping off. Transferred from surgery trays
 	var/max_to_move = 10
-	///Folks can (un)anchor this at will
+	///Folks can (un)anchor this at will, also important for the moving-shit-with it attached_objs
 	var/has_brakes = FALSE
-	//Also important for the moving-shit-with is attached_objs
 
-	New(loc, obj/a_drawer)
+	/// has a drawer storage
+	var/has_drawer = FALSE
+	/// list of contents to add to storage
+	var/drawer_contents = null
+	/// whether the storage can be accessed or not
+	var/drawer_locked = FALSE
+	/// id for key checks, keys with the same id can lock it
+	var/lock_id = FALSE
+
+	New(loc)
 		if(src.color)
 			colorcache = src.color
 		..()
-		if (src.has_storage)
-			if (a_drawer)
-				src.desk_drawer = a_drawer
-				src.desk_drawer.set_loc(src)
-			else
-				src.desk_drawer = new(src)
-		else if (a_drawer)
-			a_drawer.set_loc(get_turf(src))
+		if (src.has_drawer)
+			src.create_storage(/datum/storage/unholdable, spawn_contents = src.drawer_contents, slots = 15, max_wclass = W_CLASS_SMALL)
 
 		//Surgery tray copy paste
 		if (!islist(src.attached_objs))
@@ -156,20 +155,19 @@
 
 		//see if drawer is accessible
 		//Only drawers on south-free tables are visible, and so only those are accessible. It's be weird to click on the lower bit of a table surface and the item going into the drawer.
-		if (src.desk_drawer)
+		if (src.has_drawer)
 			if(ST)
-				has_storage = FALSE
+				has_drawer = FALSE
 				//Dump otherwise inaccessible contents if someone put a thing into it.
 				//Not bothering to lazy init spawn contents cause that might be weird to someone not expecting anything to come out.
-				if (src.desk_drawer.contents)
+				if (length(src.storage.get_contents()))
 					var/turf/T = get_turf(src)
-					for (var/obj/item/I as anything in src.desk_drawer)
+					for (var/obj/item/I as anything in src.storage.get_contents())
 						I.set_loc(T)
 						I.pixel_y = rand(-8,8)
 						I.pixel_x = rand(-8,8)
 						attach(I)
-			else has_storage = TRUE
-		else has_storage = FALSE
+			else has_drawer = TRUE
 
 
 	proc/deconstruct() //feel free to burn me alive because im stupid and couldnt figure out how to properly do it- Ze // im helping - haine
@@ -178,10 +176,6 @@
 			P = new src.parts_type(src.loc)
 		else
 			P = new (src.loc)
-		if (src.desk_drawer) // this shouldn't happen but I wanna be careful
-			P.contained_storage = src.desk_drawer
-			src.desk_drawer.set_loc(P)
-			src.desk_drawer = null
 		if (P && src.material)
 			P.setMaterial(src.material)
 		if (P && src.color)
@@ -238,15 +232,8 @@
 
 	disposing()
 		var/turf/OL = get_turf(src)
-		if (src.desk_drawer && length(src.desk_drawer.contents))
-			for (var/atom/movable/A in src.desk_drawer)
-				A.set_loc(OL)
-			var/obj/O = src.desk_drawer
-			src.desk_drawer = null
-			qdel(O)
-
 		if (!OL)
-			return
+			return ..()
 		if (!(locate(/obj/table) in OL) && !(locate(/obj/rack) in OL))
 			var/area/Ar = OL.loc
 			for (var/obj/item/I in OL)
@@ -264,6 +251,9 @@
 		deconstruct()
 
 	attackby(obj/item/W as obj, mob/user as mob, params)
+		if (src.has_drawer && src.storage.hud_shown(user))
+			return ..()
+
 		if (istype(W, /obj/item/grab))
 			var/obj/item/grab/G = W
 			if (!G.affecting || G.affecting.buckled)
@@ -319,7 +309,7 @@
 			return
 
 		else if (isscrewingtool(W) && user.a_intent == INTENT_HARM)
-			if (src.desk_drawer && src.desk_drawer.locked)
+			if (src.has_drawer && src.drawer_locked)
 				actions.start(new /datum/action/bar/icon/table_tool_interact(src, W, TABLE_LOCKPICK), user)
 				return
 			else if (src.auto && ispath(src.auto_type))
@@ -338,14 +328,15 @@
 			B.smash_on_thing(user, src)
 			return
 
-		else if (istype(W, /obj/item/lifted_thing))
+		else if (istype(W, /obj/item/device/key/filing_cabinet) && src.has_drawer)
+			var/obj/item/device/key/K = W
+			if (src.lock_id && src.lock_id == K.id)
+				src.drawer_locked = !src.drawer_locked
+				user.visible_message("[user] [!src.drawer_locked ? "un" : null]locks [src].")
+				playsound(src, 'sound/items/Screwdriver2.ogg', 50, 1)
+			else
+				boutput(user, "<span class='alert'>[K] doesn't seem to fit in [src]'s desk drawer lock.</span>")
 			return
-
-		else if (has_storage && src.desk_drawer)
-			if (islist(params) && params["icon-y"])
-				if (text2num(params["icon-y"]) <= 8)
-					src.desk_drawer.Attackby(W, user)
-					return
 
 		if (istype(W) && src.place_on(W, user, params))
 			src.attach(W)
@@ -360,11 +351,7 @@
 			if (prob(40))
 				playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 50, 1)
 			deconstruct()
-		if (has_storage && src.desk_drawer)
-			if (islist(params) && params["icon-y"])
-				if (text2num(params["icon-y"]) <= 8)
-					playsound(src.loc, 'sound/machines/door_open.ogg', 50, 1, -2) //needs better sound
-					desk_drawer.MouseDrop(user) //Might seem weird but Attackhand just has user take out the entire drawer
+			return
 		if (ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if (istype(H.w_uniform, /obj/item/clothing/under/misc/lawyer))
@@ -384,12 +371,22 @@
 						shake_camera(N, 4, 8, 0.5)
 			if(ismonkey(H)) // monkey table jump
 				actions.start(new /datum/action/bar/icon/railing_jump/table_jump(user, src), user)
+
+		// open drawer specifically in this zone
+		if (islist(params) && params["icon-y"] && src.storage)
+			if (text2num(params["icon-y"]) <= (8 + src.pixel_y))
+				playsound(src.loc, 'sound/machines/door_open.ogg', 50, 1, SOUND_RANGE_STANDARD) //needs better sound
+				src.MouseDrop(user) // handles the whole "drawer" thang
+				return
+
 		if (src.has_brakes)
 			if (!anchored)
 				boutput(user, "You apply \the [name]'s brake.")
 			else
 				boutput(user, "You release \the [name]'s brake.")
 			anchored = !anchored
+			return
+
 		return
 
 	CanPass(atom/movable/mover, turf/target)
@@ -416,10 +413,7 @@
 			return
 		if(I.equipped_in_slot && I.cant_self_remove)
 			return
-		if(istype(O.loc, /obj/item/storage))
-			var/obj/item/storage/storage = O.loc
-			I.set_loc(get_turf(O))
-			storage.hud.remove_item(O)
+		I.stored?.transfer_stored_item(I, get_turf(I), user = user)
 		if (istype(I,/obj/item/satchel))
 			var/obj/item/satchel/S = I
 			if (S.contents.len < 1)
@@ -439,9 +433,10 @@
 			step(I, get_dir(I, src))
 		return
 
-	MouseDrop(atom/over_object, src_location, over_location)
-		if (usr && usr == over_object && src.desk_drawer && has_storage)
-			return src.desk_drawer.MouseDrop(over_object, src_location, over_location)
+	mouse_drop(atom/over_object, src_location, over_location)
+		if (usr == over_object && src.has_drawer && src.drawer_locked)
+			boutput(usr, "<span class='alert'>[src]'s desk drawer is locked!</span>")
+			return
 		..()
 
 	Bumped(atom/AM)
@@ -533,7 +528,7 @@
 	desc = "A desk with a little drawer to store things in!"
 	icon = 'icons/obj/furniture/table_desk.dmi'
 	parts_type = /obj/item/furniture_parts/table/desk
-	has_storage = 1
+	has_drawer = TRUE
 
 /obj/table/round
 	icon = 'icons/obj/furniture/table_round.dmi'
@@ -558,7 +553,7 @@
 	desc = "A desk made of wood with a little drawer to store things in!"
 	icon = 'icons/obj/furniture/table_wood_desk.dmi'
 	parts_type = /obj/item/furniture_parts/table/wood/desk
-	has_storage = 1
+	has_drawer = TRUE
 
 /obj/table/wood/round
 	icon = 'icons/obj/furniture/table_wood_round.dmi'
@@ -684,20 +679,15 @@
 	icon = 'icons/obj/furniture/table_chemistry.dmi'
 	auto_type = /obj/table/reinforced/chemistry/auto
 	parts_type = /obj/item/furniture_parts/table/reinforced/chemistry
-	has_storage = 1
-
+	has_drawer = TRUE
 	auto
 		auto = 1
 
 /obj/table/reinforced/chemistry/beakers //starts with 7 :B:eakers inside it, wow!!
-	var/list/stuff = list()
 	name = "beaker storage"
-
-	New()
-		..()
-		desc += " This one holds beakers in it! Wow!!"
-		for (var/B=0, B<=7, B++)
-			new /obj/item/reagent_containers/glass/beaker(src.desk_drawer)
+	desc = "A labratory countertop made from a paper composite, which is very heat resistant. This one holds beakers in it! Wow!!"
+	has_drawer = TRUE
+	drawer_contents = list(/obj/item/reagent_containers/glass/beaker = 7)
 
 /* ---------------------- Medical Cabinets and Counters --------------------- */
 /obj/table/reinforced/medical
@@ -706,7 +696,7 @@
 	icon = 'icons/obj/furniture/table_medical.dmi'
 	auto_type = /obj/table/reinforced/medical/auto
 	parts_type = /obj/item/furniture_parts/table/reinforced/medical
-	has_storage = 1
+	has_drawer = 1
 
 	auto
 		auto = 1
@@ -717,7 +707,7 @@
 		icon = 'icons/obj/furniture/table_medical_solid.dmi'
 		auto_type = /obj/table/reinforced/medical/auto
 		parts_type = /obj/item/furniture_parts/table/reinforced/medical/solid
-		has_storage = 0
+		has_drawer = 0
 
 		auto
 			auto = 1
@@ -729,21 +719,40 @@
 	icon = 'icons/obj/furniture/table_kitchen.dmi'
 	auto_type = /obj/table/reinforced/kitchen/auto
 	parts_type = /obj/item/furniture_parts/table/reinforced/kitchen
-	has_storage = 1
+	has_drawer = 1
 
 	tools
-		New(loc, obj/a_drawer)
-			..(loc, new /obj/item/storage/desk_drawer/kitchen_tools(src)) //thanks batelite i am using your toolcart template (basic kitchen tools)
+		drawer_contents = list(/obj/item/kitchen/utensil/knife/cleaver,
+			/obj/item/kitchen/utensil/knife/pizza_cutter,
+			/obj/item/kitchen/utensil/knife/bread,
+			/obj/item/kitchen/rollingpin,
+			/obj/item/kitchen/sushi_roller,
+			/obj/item/soup_pot,
+			/obj/item/ladle,
+			/obj/item/cigpacket,
+			/obj/item/clothing/gloves/latex) //thanks batelite i am using your toolcart template (basic kitchen tools)
 
 	sink
 		name = "kitchen sink cabinet"
-		New(loc, obj/a_drawer)
-			..(loc, new /obj/item/storage/desk_drawer/kitchen_sink(src)) //cleaning supplies, not for putting in food
+		drawer_contents = list(/obj/item/spraybottle/cleaner,
+			/obj/item/reagent_containers/glass/bottle/cleaner,
+			/obj/item/reagent_containers/glass/bottle/ammonia/janitors,
+			/obj/item/sponge,
+			/obj/item/storage/box/mousetraps,
+			/obj/item/clothing/gloves/long,
+			/obj/item/decoration/ashtray,
+			/obj/item/wrench) //cleaning supplies, not for putting in food
 
 	plate
 		name = "kitchen dish cabinet"
-		New(loc, obj/a_drawer)
-			..(loc, new /obj/item/storage/desk_drawer/kitchen_plate(src)) //just a buncha plates
+		drawer_contents = list(/obj/item/platestack,
+			/obj/item/platestack,
+			/obj/item/platestack,
+			/obj/item/platestack,
+			/obj/item/plate/tray,
+			/obj/item/plate/tray,
+			/obj/item/plate/tray,
+			/obj/item/plate/tray)
 
 	auto
 		auto = 1
@@ -754,7 +763,7 @@
 		icon = 'icons/obj/furniture/table_kitchen_solid.dmi'
 		auto_type = /obj/table/reinforced/kitchen/solid/auto
 		parts_type = /obj/item/furniture_parts/table/reinforced/kitchen/solid
-		has_storage = 0
+		has_drawer = 0
 
 		auto
 			auto = 1
@@ -1188,17 +1197,17 @@
 		if (istype(source) && the_tool != source.equipped())
 			interrupt(INTERRUPT_ALWAYS)
 			return
-		else if (interaction == TABLE_DISASSEMBLE && the_table.desk_drawer)
-			if (the_table.desk_drawer.locked)
+		else if (interaction == TABLE_DISASSEMBLE && the_table.has_drawer)
+			if (the_table.drawer_locked)
 				boutput(owner, "<span class='alert'>You can't disassemble [the_table] when its drawer is locked!</span>")
 				interrupt(INTERRUPT_ALWAYS)
 				return
-			else if (the_table.desk_drawer.contents.len)
+			else if (length(the_table.storage.get_contents()))
 				boutput(owner, "<span class='alert'>You can't disassemble [the_table] while its drawer has stuff in it!</span>")
 				interrupt(INTERRUPT_ALWAYS)
 				return
 		else if (interaction == TABLE_LOCKPICK)
-			if (!the_table.desk_drawer || !the_table.desk_drawer.locked)
+			if (!the_table.has_drawer || !the_table.drawer_locked)
 				interrupt(INTERRUPT_ALWAYS)
 				return
 			else if (prob(8))
@@ -1247,8 +1256,8 @@
 				the_table.set_up()
 			if (TABLE_LOCKPICK)
 				verbens = "picks the lock on"
-				if (the_table.desk_drawer)
-					the_table.desk_drawer.locked = 0
+				if (the_table.has_drawer)
+					the_table.drawer_locked = FALSE
 				playsound(the_table, "sound/items/Screwdriver2.ogg", 50, 1)
 		owner.visible_message("<span class='notice'>[owner] [verbens] [the_table].</span>")
 
@@ -1311,7 +1320,7 @@
 	icon = 'icons/obj/furniture/table_industrial.dmi' //All the furniture dmis are set up for autotiling and this has no place anywhere, but a tool cart is *sorta* a table for industrial purposes
 	icon_state = "tool_cart"
 	mechanics_type_override = /obj/table/tool_cart //In case someone scans a prepared cart
-	has_storage = TRUE
+	has_drawer = TRUE
 	has_brakes = TRUE
 	anchored = FALSE
 	p_class = 1.5 //easier to pull
@@ -1319,9 +1328,20 @@
 
 //prefilled
 /obj/table/tool_cart/prepared //typepath following belt precedent
-
-	New(loc, obj/a_drawer)
-		..(loc, new /obj/item/storage/desk_drawer/prepared_tool_cart(src)) //Might be a hack, buuuut
+	//Got some spares just in case, no welders cause I figure these'll be in podbays which have welding closets
+	drawer_contents = list(/obj/item/crowbar,
+		/obj/item/crowbar,
+		/obj/item/wirecutters,
+		/obj/item/wirecutters,
+		/obj/item/screwdriver,
+		/obj/item/screwdriver,
+		/obj/item/wrench,
+		/obj/item/wrench,
+		/obj/item/reagent_containers/glass/oilcan,
+		/obj/item/clothing/gloves/black,
+		/obj/item/cable_coil/white, //approximately the neutral/live/earth wiring colours for the US
+		/obj/item/cable_coil/black, //don't ask why the cart contents reference that of all things, I thought it'd be a cute thing to do :P
+		/obj/item/cable_coil/green) //anyway we got slots to fill, so
 
 /obj/table/kitchen_island
 	name = "kitchen island"

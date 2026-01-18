@@ -15,6 +15,8 @@
 			if (owner.metabolizes && owner.reagents)//idk it runtimes)
 				owner.reagents.metabolize(owner, multiplier = reagent_time_multiplier * (HAS_ATOM_PROPERTY(owner, PROP_METABOLIC_RATE) ? GET_ATOM_PROPERTY(owner, PROP_METABOLIC_RATE) : 1))
 
+			owner.stimulants_and_sedatives(reagent_time_multiplier)
+
 			if(HAS_ATOM_PROPERTY(owner, PROP_CHEM_PURGE))
 				owner.reagents.remove_any_except(GET_ATOM_PROPERTY(owner, PROP_CHEM_PURGE) * reagent_time_multiplier, owner.blood_id)
 

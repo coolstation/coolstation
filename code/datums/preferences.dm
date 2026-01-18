@@ -32,6 +32,7 @@ datum/preferences
 	var/be_wizard = 0
 	var/be_werewolf = 0
 	var/be_vampire = 0
+	var/be_roguentso = 0
 
 	var/be_wraith = 0
 	var/be_blob = 0
@@ -55,6 +56,7 @@ datum/preferences
 	var/auto_capitalization = 0
 	var/local_deadchat = 0
 	var/hidden_spiders = 0
+	var/photosensitive = 0
 	var/use_wasd = 1
 	var/use_azerty = 0 // do they have an AZERTY keyboard?
 	var/spessman_direction = SOUTH
@@ -960,6 +962,7 @@ datum/preferences
 				be_blob = 0
 				be_conspirator = 0
 				be_flock = 0
+				be_roguentso = 0
 				be_misc = 0
 				tooltip_option = TOOLTIP_ALWAYS
 				tgui_fancy = TRUE
@@ -1381,6 +1384,7 @@ datum/preferences
 			src.be_wizard = 0
 			src.be_werewolf = 0
 			src.be_vampire = 0
+			src.be_roguentso = 0
 
 			src.be_wraith = 0
 			src.be_blob = 0
@@ -1401,7 +1405,7 @@ datum/preferences
 			<a href="byond://?src=\ref[src];preferences=1;b_wraith=1" class="[src.be_wraith ? "yup" : "nope"]">[crap_checkbox(src.be_wraith)] Wraith</a>
 			<a href="byond://?src=\ref[src];preferences=1;b_blob=1" class="[src.be_blob ? "yup" : "nope"]">[crap_checkbox(src.be_blob)] Blob</a>
 			<a href="byond://?src=\ref[src];preferences=1;b_conspirator=1" class="[src.be_conspirator ? "yup" : "nope"]">[crap_checkbox(src.be_conspirator)] Conspirator</a>
-			<a href="byond://?src=\ref[src];preferences=1;b_flock=1" class="[src.be_flock ? "yup" : "nope"]">[crap_checkbox(src.be_flock)] Flockmind</a>
+			<a href="byond://?src=\ref[src];preferences=1;b_roguentso=1" class="[src.be_roguentso ? "yup" : "nope"]">[crap_checkbox(src.be_roguentso)] Rogue NTSO</a>
 			<a href="byond://?src=\ref[src];preferences=1;b_misc=1" class="[src.be_misc ? "yup" : "nope"]">[crap_checkbox(src.be_misc)] Other Foes</a>
 		"}
 
@@ -1637,6 +1641,10 @@ datum/preferences
 			src.SetChoices(user)
 			return
 
+		if (link_tags["b_roguentso"])
+			src.be_roguentso = !( src.be_roguentso)
+			src.SetChoices(user)
+			return
 
 
 		if (link_tags["b_wraith"])
@@ -1714,6 +1722,12 @@ datum/preferences
 			//H.desc = src.flavor_text
 			if (H?.organHolder?.head?.donor_appearance) // aaaa
 				H.organHolder.head.donor_appearance.CopyOther(AH)
+
+			//Sorry this is hardcoded but I don't have other sets of screams to warrant making this
+			//also no worries about setting sound_scream below, this takes precedence.
+			if (AH.screamsound == "wilhelm")
+				//Wilhelm_actual excluded on purpose :3
+				H.sound_list_scream = list('sound/voice/screams/wilhelm/Wilhelm_1.ogg', 'sound/voice/screams/wilhelm/Wilhelm_2.ogg', 'sound/voice/screams/wilhelm/Wilhelm_3.ogg', 'sound/voice/screams/wilhelm/Wilhelm_4.ogg', 'sound/voice/screams/wilhelm/Wilhelm_5.ogg')
 
 		if (traitPreferences.isValid() && character.traitHolder)
 			for (var/T in traitPreferences.traits_selected)

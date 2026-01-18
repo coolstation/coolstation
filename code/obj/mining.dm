@@ -420,7 +420,7 @@
 			if (!target)
 				return
 
-			worldgen_hold = TRUE
+			worldgen_hold |= WORLDGEN_HOLD_MINING_MAGNET
 
 			if (!wall_bits.len)
 				wall_bits = target.generate_walls()
@@ -436,7 +436,7 @@
 				damage(rand(2,6))
 
 			last_used = world.time + cooldown_time
-			playsound(src.loc, sound_activate, 100, 0, 3, 0.25)
+			playsound(src.loc, sound_activate, 100, 0, SOUND_RANGE_LARGE, 0.25)
 			build_icon()
 
 			target.erase_area()
@@ -473,9 +473,14 @@
 					M.invisibility = 1
 				active = 0
 				boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
+				worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+				if(!worldgen_hold)
+					initialize_worldgen()
 				return
 
-			initialize_worldgen()
+			worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+			if(!worldgen_hold)
+				initialize_worldgen()
 
 			sleep(sleep_time)
 			if (malfunctioning && prob(20))
@@ -656,7 +661,7 @@
 					mining_apc.zapStuff()
 
 	proc/pull_new_source(var/selectable_encounter_id = null)
-		worldgen_hold = TRUE
+		worldgen_hold |= WORLDGEN_HOLD_MINING_MAGNET
 
 		for (var/obj/forcefield/mining/M in mining_controls.magnet_shields)
 			M.opacity = 1
@@ -669,7 +674,7 @@
 			damage(rand(2,6))
 
 		last_used = world.time + cooldown_time
-		playsound(src.loc, sound_activate, 100, 0, 3, 0.25)
+		playsound(src.loc, sound_activate, 100, 0, SOUND_RANGE_LARGE, 0.25)
 		build_icon()
 
 		for (var/obj/O in mining_controls.magnet_area.contents)
@@ -714,8 +719,14 @@
 				M.invisibility = 1
 			active = 0
 			boutput(usr, "Uh oh, something's gotten really fucked up with the magnet system. Please report this to a coder! (ERROR: NO ENCOUNTER)")
+			worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+			if(!worldgen_hold)
+				initialize_worldgen()
 			return
-		initialize_worldgen()
+
+		worldgen_hold &= ~WORLDGEN_HOLD_MINING_MAGNET
+		if(!worldgen_hold)
+			initialize_worldgen()
 
 		sleep(sleep_time)
 		if (malfunctioning && prob(20))
@@ -1650,7 +1661,7 @@
 		return
 
 
-	proc/update_icon()
+	update_icon()
 		return
 
 obj/item/clothing/gloves/concussive
@@ -2030,17 +2041,18 @@ obj/item/clothing/gloves/concussive
 			user.show_text("The [T.name] is securely bolted to your chassis.", "red")
 			return
 
-		boutput(user, "<span class='notice'>Teleporting [T]...</span>")
-		playsound(user.loc, "sound/machines/click.ogg", 50, 1)
+		boutput(user, "<span class='notice'>Teleporting [T] to [src.target]...</span>")
+		playsound(user.loc, 'sound/machines/click.ogg', 50, 1)
+		SETUP_GENERIC_ACTIONBAR(user, src, 3 SECONDS, .proc/finish_teleport, list(T, user), null, null, null, null)
+		return TRUE
 
-		if(do_after(user, 5 SECONDS))
-			// And these too (Convair880).
-			if (ismob(T.loc) && T.loc == user)
-				user.u_equip(T)
-			if (istype(T.loc, /obj/item/storage))
-				var/obj/item/storage/S_temp = T.loc
-				var/datum/hud/storage/H_temp = S_temp.hud
-				H_temp.remove_object(T)
+
+	proc/finish_teleport(var/obj/T, var/mob/user)
+		if (ismob(T.loc) && T.loc == user)
+			user.u_equip(T)
+		if (istype(T, /obj/item))
+			var/obj/item/I = T
+			I.stored?.transfer_stored_item(I, get_turf(I), user = user)
 
 			// And logs for good measure (Convair880).
 			var/is_locked = 0

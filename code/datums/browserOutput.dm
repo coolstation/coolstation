@@ -205,6 +205,7 @@ var/global
 				message_admins("[key_name(src.owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
 				logTheThing("debug", src.owner, null, "has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
 				logTheThing("diary", src.owner, null, "has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])", "debug")
+				discord_send("[src.owner.key] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])", "centcom")
 
 				//Irc message too
 				if(owner)
@@ -388,7 +389,7 @@ var/global
 
 		return "<img style='position: relative; left: -1px; bottom: -3px;' class='icon' src='data:image/png;base64,[baseData]' />"
 
-/proc/boutput(target = 0, message = "", group = "")
+/proc/boutput(target = 0, message = "", group = "", admin = FALSE)
 	if (target == world)
 		for (var/client/C in clients)
 			boutput(C, message)
@@ -418,6 +419,9 @@ var/global
 			C = target:client
 		else if (ismind(target) && target:current)
 			C = target:current:client
+
+		if(C?.crab && !admin)
+			message = "<span class='alert'> A CRAB IS PINCHING YOUR PENIS! </span>"
 
 		if (C?.chatOutput && !C.chatOutput.loaded && C.chatOutput.messageQueue && islist(C.chatOutput.messageQueue))
 			//Client sucks at loading things, put their messages in a queue

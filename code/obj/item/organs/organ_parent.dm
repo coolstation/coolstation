@@ -20,7 +20,7 @@
 	throw_speed = 3
 	throw_range = 5
 	stamina_damage = 5
-	stamina_cost = 5
+//	stamina_cost = 5
 	edible = 1	// currently overridden by material settings
 	var/well_known = FALSE // do connoisseurs know this organ? 35% chance to be set to TRUE in New(), if not already true from mapping
 	var/mob/living/carbon/human/donor = null // if I can't use "owner" I can at least use this
@@ -108,11 +108,12 @@
 			attack_particle(user,src)
 			hit_twitch(src)
 			playsound(src, "sound/impact_sounds/Flesh_Stab_2.ogg", 100, 1)
-			src.splat(get_turf(src))
-			if(W.hit_type == DAMAGE_BURN)
-				src.take_damage(0, W.force, 0, W.hit_type)
-			else
-				src.take_damage(W.force, 0, 0, W.hit_type)
+			if(W.force)
+				src.splat(get_turf(src))
+				if(W.hit_type == DAMAGE_BURN)
+					src.take_damage(0, W.force, 0, W.hit_type)
+				else
+					src.take_damage(W.force, 0, 0, W.hit_type)
 
 		..()
 

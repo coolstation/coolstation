@@ -973,7 +973,7 @@ ABSTRACT_TYPE(/obj/loot_spawner/random/short_tall)
 	bong
 		spawn_loot(var/C,var/datum/loot_spawner_info/I)
 			spawn_item(C,I,/obj/item/plant/herb/cannabis/spawnable,scale_x=0.8,scale_y=0.8)
-			spawn_item(C,I,/obj/item/reagent_containers/glass/water_pipe,scale_x=0.8,scale_y=0.8)
+			spawn_item(C,I,/obj/item/reagent_containers/food/drinks/water_pipe,scale_x=0.8,scale_y=0.8)
 	booze
 		weight=6
 		spawn_loot(var/C,var/datum/loot_spawner_info/I)

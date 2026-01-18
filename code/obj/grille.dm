@@ -582,7 +582,7 @@
 					damage_blunt(W.force * 0.5)
 		return
 
-	proc/update_icon(var/special_icon_state)
+	update_icon(var/special_icon_state)
 		if (ruined)
 			return
 

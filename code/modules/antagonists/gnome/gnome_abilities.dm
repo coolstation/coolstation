@@ -131,7 +131,7 @@
 			for (var/mob/M in src.contents)
 				boutput(M, SPAN_COMBAT("[user] punches at you!"))
 			src.last_interacted = world.time
-			user.next_click = world.time + user.combat_click_delay
+			user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
 			attack_twitch(user)
 			hit_twitch(src)
 
@@ -163,7 +163,7 @@
 			boutput(M, SPAN_COMBAT("[user] attacks you with \the [W]!"))
 
 		src.last_interacted = world.time
-		user.next_click = world.time + W.combat_click_delay
+		user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)
 		attack_twitch(user)
 		hit_twitch(src)
 		. = ..()
@@ -393,7 +393,7 @@
 			target.emote("scream")
 			src.holder.owner.visible_message(SPAN_COMBAT("[src.holder.owner] bites [target] with dozens of needlelike fangs!"), SPAN_COMBAT("You sink your full fangs into [target]!"))
 
-		playsound(target, "sound/impact_sounds/Flesh_Stab_1.ogg", 45, 1, -1)
+		playsound(target, "sound/impact_sounds/Flesh_Stab_1.ogg", 45, 1, SOUND_RANGE_MODERATE)
 		target.TakeDamageAccountArmor("All", isnull(disguise) ? rand(5, 15) : rand(disguise.disguise_scaling / 2, disguise.disguise_scaling), 0, 0, DAMAGE_STAB)
 		target.changeStatus("disorient", 3 SECONDS)
 

@@ -153,7 +153,7 @@
 		else //just in case
 			return
 
-	MouseDrop(obj/player_piano/O, null)//, var/src_location, var/control_orig, var/control_new, var/params)
+	mouse_drop(obj/player_piano/O, null)//, var/src_location, var/control_orig, var/control_new, var/params)
 		if (!istype(usr, /mob/living))
 			return
 		if (usr.stat)
@@ -277,7 +277,7 @@
 			sleep((timing * 10)) //to get delay into 10ths of a second
 			var/sound_name = "sound/piano/"
 			sound_name += "[compiled_notes[curr_note]].ogg"
-			playsound(src, sound_name, note_volumes[curr_note],0,10,0)
+			playsound(src, sound_name, note_volumes[curr_note],0,SOUND_RANGE_LARGE,0)
 
 	proc/reset_piano(var/disposing) //so i dont have to have duplicate code for multiool pulsing and piano key
 		if (is_looping != 2 || disposing)
@@ -296,7 +296,7 @@
 		linked_pianos = list()
 		update_icon(0)
 
-	proc/update_icon(var/active) //1: active, 0: inactive
+	update_icon(var/active) //1: active, 0: inactive
 		if (panel_exposed)
 			icon_state = "player_piano_open"
 			return

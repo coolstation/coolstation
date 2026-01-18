@@ -59,6 +59,7 @@
 	icon = 'icons/obj/railway.dmi'
 	icon_state = "1-2"
 	var/indestructible = 0
+	anchored = 1
 
 	New()
 		..()

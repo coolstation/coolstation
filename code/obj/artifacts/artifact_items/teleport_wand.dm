@@ -66,7 +66,7 @@
 		user.set_loc(T)
 
 		var/turf/start_loc = get_turf(user)
-		playsound(start_loc, wand_sound, 50, 1, -1)
+		playsound(start_loc, wand_sound, 50, 1, SOUND_RANGE_STANDARD)
 		particleMaster.SpawnSystem(new /datum/particleSystem/tele_wand(T,particle_sprite,particle_color))
 		O.ArtifactFaultUsed(user)
 		return

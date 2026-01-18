@@ -98,7 +98,7 @@
 			do new thing(src)	//Two lines! I TOLD YOU I COULD DO IT!!!
 			while (--amt > 0)
 
-	proc/update_icon()
+	update_icon()
 		if (src.open)
 			flick(src.opening_anim,src)
 			src.icon_state = src.icon_opened
@@ -114,10 +114,10 @@
 	proc/locker_sound() //I COULDNT THINK OF A BETTER WAY TO DO THIS BUT ITS FUCKING ANNOYING THE OLD WAY
 		if (src.secure)
 			if (src.locked && !src.open)
-				playsound(src,"sound/machines/bweep.ogg",50,0,0,0.7)
+				playsound(src.loc,"sound/machines/bweep.ogg",15,0,SOUND_RANGE_SMALL,0.7)
 				return
 			else
-				playsound(src,"sound/machines/bweep.ogg",50)
+				playsound(src.loc,"sound/machines/bweep.ogg",15,0,SOUND_RANGE_SMALL)
 
 	emp_act()
 		if (!src.open && length(src.contents))
@@ -128,9 +128,10 @@
 				if (isitem(A))
 					var/obj/item/I = A
 					I.emp_act()
-
-	alter_health()
-		. = get_turf(src)
+	Move(NewLoc, direct)
+		. = ..()
+		if(!src.throwing && prob(75))
+			playsound(src, "sound/misc/chair/normal/scoot[rand(1,5)].ogg", 40, 1)
 
 	relaymove(mob/user as mob)
 		if (is_incapacitated(user))
@@ -382,10 +383,9 @@
 			user.u_equip(O)
 			O.set_loc(get_turf(user))
 
-		else if(istype(O.loc, /obj/item/storage))
-			var/obj/item/storage/storage = O.loc
-			O.set_loc(get_turf(O))
-			storage.hud.remove_item(O)
+		else if(istype(O, /obj/item))
+			var/obj/item/I = O
+			I.stored?.transfer_stored_item(I, get_turf(I), user = user)
 
 		SPAWN_DBG(0.5 SECONDS)
 			var/stuffed = FALSE
@@ -440,9 +440,6 @@
 	attack_ai(mob/user)
 		if (can_reach(user, src) <= 1 && (isrobot(user) || isshell(user)))
 			. = src.Attackhand(user)
-
-	alter_health()
-		. = get_turf(src)
 
 	CanPass(atom/movable/mover, turf/target)
 		. = open
@@ -510,7 +507,7 @@
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
-		playsound(src.loc, src.open_sound, 50, 1, -3)
+		playsound(src.loc, src.open_sound, 50, 1, SOUND_RANGE_STANDARD)
 		return 1
 
 	proc/close(var/entangleLogic)
@@ -569,7 +566,7 @@
 			entangled.open(1)
 
 		src.update_icon()
-		playsound(src.loc, src.close_sound, 50, 1, -3)
+		playsound(src.loc, src.close_sound, 50, 1, SOUND_RANGE_STANDARD)
 		return 1
 
 	proc/recalcPClass()

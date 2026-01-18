@@ -1,22 +1,23 @@
 /proc/command_alert(var/text, var/title = "", var/sound_to_play = "", var/do_sanitize = 1, var/override_big_title=null)
 	var/big_title = override_big_title ? override_big_title : "[command_name()] Update"
-	boutput(world, "<h1 class='alert'>[big_title]</h1>")
+	boutput(world, "<h1 style='color: white; background-color: #DB4B4B; text-align: center; border: 5px outset #DB4B4B;'>[big_title]</h1>")
 
 	if (title && length(title) > 0)
-		boutput(world, "<h2 class='alert'>[title]</h2>")
+		boutput(world, "<h2 class='alert' style='text-align:center;'>[title]</h2>")
 
 	boutput(world, "<span class='alert'>[replacetext(text, "\n", "<br>\n")]</span>")
-	boutput(world, "<br>")
+	boutput(world, "<hr style='height: 3px; background-color: #DB4B4B;'><br>")
 	if (sound_to_play && length(sound_to_play) > 0)
 		playsound_global(world, sound_to_play, 50)
 
-/proc/command_announcement(var/text, var/title, var/sound_to_play = "", var/css_class = "alert", var/do_sanitize = 1) //Slightly less conspicuous, but requires a title.
+/proc/command_announcement(var/text, var/title, var/sound_to_play = "sound/misc/announcement_chime.ogg", var/css_class = "alert", var/do_sanitize = 1)
+	//Slightly less conspicuous, but requires a title.
 	if(!title || !text) return
 
-	boutput(world, "<h2 class='alert'>[title]</h2>")
+	boutput(world, "<h2 style='color: white; background-color: #222B32; text-align: center; border: 5px outset #222B32;'>[title]</h2>")
 
-	boutput(world, "<span class='[css_class]'>[text]</span>")
-	boutput(world, "<br>")
+	boutput(world, "<span class='[css_class]'>[text]</s9gpan>")
+	boutput(world, "<hr style='height: 3px; background-color: #222B32;'><br>")
 	if (sound_to_play && length(sound_to_play) > 0)
 		playsound_global(world, sound_to_play, 50)
 

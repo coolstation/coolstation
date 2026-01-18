@@ -43,19 +43,19 @@
 	contraband = 5
 	desc = "An illegal weapon that, when activated, uses cyalume to create an extremely dangerous saber. Can be concealed when deactivated."
 	stamina_damage = 35 // This gets applied by obj/item/attack, regardless of if the saber is active.
-	stamina_cost = 5
-	stamina_crit_chance = 35
-	var/active_force = 60
+//	stamina_cost = 5
+//	stamina_crit_chance = 35
+	var/active_force = 50
 	var/active_stamina_dmg = 40
-	var/active_stamina_cost = 40
+//	var/active_stamina_cost = 40
 	var/inactive_stamina_dmg = 35
-	var/inactive_force = 1
-	var/inactive_stamina_cost = 5
+	var/inactive_force = 3
+//	var/inactive_stamina_cost = 5
 	var/state_name = "sword"
 	var/off_w_class = W_CLASS_SMALL
 	var/datum/component/holdertargeting/simple_light/light_c
 	var/do_stun = 0
-
+	var/spinning = FALSE
 
 
 
@@ -106,7 +106,7 @@
 		light_c = src.AddComponent(/datum/component/holdertargeting/simple_light, r, g, b, 150)
 		light_c.update(0)
 		src.setItemSpecial(/datum/item_special/swipe/csaber)
-		AddComponent(/datum/component/itemblock/saberblock)
+		//AddComponent(/datum/component/itemblock/saberblock)
 		BLOCK_SETUP(BLOCK_SWORD)
 
 /obj/item/sword/attack(mob/target, mob/user, def_zone, is_special = 0)
@@ -121,8 +121,8 @@
 			var/mob/living/carbon/human/H = user
 			age_modifier = 30 - H.bioHolder.age
 
-		if(user.gender == MALE) playsound(user, pick('sound/weapons/male_cswordattack1.ogg','sound/weapons/male_cswordattack2.ogg'), 70, 5, 0, max(0.7, min(1.2, 1.0 + age_modifier/60)))
-		else playsound(user, pick('sound/weapons/female_cswordattack1.ogg','sound/weapons/female_cswordattack2.ogg'), 70, 5, 0, max(0.7, min(1.4, 1.0 + age_modifier/50)))
+		if(user.gender == MALE) playsound(user, pick('sound/weapons/male_cswordattack1.ogg','sound/weapons/male_cswordattack2.ogg'), 70, 5, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + age_modifier/60)))
+		else playsound(user, pick('sound/weapons/female_cswordattack1.ogg','sound/weapons/female_cswordattack2.ogg'), 70, 5, SOUND_RANGE_STANDARD, max(0.7, min(1.4, 1.0 + age_modifier/50)))
 		..()
 	else
 		if (user.a_intent == INTENT_HELP)
@@ -179,8 +179,8 @@
 			S = H.find_type_in_hand(/obj/item/sword, "left")
 		if (S && S.active && !(H.lying || isdead(H) || H.hasStatus("stunned", "weakened", "paralysis")))
 			var/obj/itemspecialeffect/clash/C = new()
-			if(target.gender == MALE) playsound(target, pick('sound/weapons/male_cswordattack1.ogg','sound/weapons/male_cswordattack2.ogg'), 70, 0, 5, max(0.7, min(1.2, 1.0 + (30 - H.bioHolder.age)/60)))
-			else playsound(target, pick('sound/weapons/female_cswordattack1.ogg','sound/weapons/female_cswordattack2.ogg'), 70, 0, 5, max(0.7, min(1.4, 1.0 + (30 - H.bioHolder.age)/50)))
+			if(target.gender == MALE) playsound(target, pick('sound/weapons/male_cswordattack1.ogg','sound/weapons/male_cswordattack2.ogg'), 70, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + (30 - H.bioHolder.age)/60)))
+			else playsound(target, pick('sound/weapons/female_cswordattack1.ogg','sound/weapons/female_cswordattack2.ogg'), 70, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.4, 1.0 + (30 - H.bioHolder.age)/50)))
 			C.setup(H.loc)
 			var/matrix/m = matrix()
 			m.Turn(rand(0,360))
@@ -197,6 +197,30 @@
 
 			return 1
 	return 0
+
+/obj/item/sword/on_spin_emote(mob/user as mob)
+	if(src.spinning)
+		. = "<B>[user]</B> [pick("keeps going crazy with", "does more fuckin' swirls of", "keeps the badassery up and flips")] [src] around in [his_or_her(user)] hand."
+		return
+	if(src.active)
+		src.setProperty("reflection", 1)
+		src.setProperty("disorient_resist", 75)
+		src.spinning = TRUE
+		var/hex_color = src.get_hex_color_from_blade(src.bladecolor)
+		. = SPAN_COMBAT("<B>[user]</B> [pick("starts going stupid crazy spinning", "gets to work fuckin' swirling", "does an insane cyborg style spin of")] [src] around in [his_or_her(user)] hand.")
+		SPAWN_DBG(0)
+			for(var/i in 1 to rand(35,40))
+				if(!user || src.loc != user || !src.active)
+					break
+				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc, hex_color))
+				sleep(0.2 SECONDS)
+			src.spinning = FALSE
+			src.setProperty("reflection", 0)
+			src.setProperty("disorient_resist", 0)
+			if(user)
+				user.visible_message(SPAN_NOTICE("<B>[user]</B> stops spinning [src]."), SPAN_NOTICE("You stop spinning [src]."))
+	else
+		. = ..()
 
 
 /obj/item/sword/attack_self(mob/user as mob)
@@ -230,10 +254,10 @@
 		stamina_damage = active_stamina_dmg
 		if(ishuman(user) && !ON_COOLDOWN(src, "playsound_on", 2 SECONDS))
 			var/mob/living/carbon/human/U = user
-			if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordstart.ogg", 70, 0, 5, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
-			else playsound(U,"sound/weapons/female_cswordturnon.ogg" , 100, 0, 5, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
+			if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordstart.ogg", 70, 0, SOUND_RANGE_LARGE, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
+			else playsound(U,"sound/weapons/female_cswordturnon.ogg" , 100, 0, SOUND_RANGE_LARGE, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
 		src.force = active_force
-		src.stamina_cost = active_stamina_cost
+//		src.stamina_cost = active_stamina_cost
 		if (src.bladecolor)
 			if (!(src.bladecolor in src.valid_colors))
 				src.bladecolor = null
@@ -250,10 +274,10 @@
 		stamina_damage = inactive_stamina_dmg
 		if(ishuman(user) && !ON_COOLDOWN(src, "playsound_off", 2 SECONDS))
 			var/mob/living/carbon/human/U = user
-			if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordturnoff.ogg", 70, 0, 5, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
-			else playsound(U,"sound/weapons/female_cswordturnoff.ogg", 100, 0, 5, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
+			if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordturnoff.ogg", 70, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
+			else playsound(U,"sound/weapons/female_cswordturnoff.ogg", 100, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
 		src.force = inactive_force
-		src.stamina_cost = inactive_stamina_cost
+//		src.stamina_cost = inactive_stamina_cost
 		src.icon_state = "[state_name]0"
 		src.item_state = "[state_name]0"
 		src.w_class = off_w_class
@@ -458,8 +482,8 @@
 			hit_type = DAMAGE_BLUNT
 			if(ishuman(user))
 				var/mob/living/carbon/human/U = user
-				if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordturnoff.ogg", 70, 0, 0, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
-				else playsound(U,"sound/weapons/female_cswordturnoff.ogg", 100, 0, 0, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
+				if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordturnoff.ogg", 70, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
+				else playsound(U,"sound/weapons/female_cswordturnoff.ogg", 100, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
 			active = 0
 			force = inactive_force
 			icon_state = "[state_name]0"
@@ -485,8 +509,8 @@
 	desc = "Gets the blood to run out juuuuuust right. Looks like this could be nasty when thrown."
 	burn_type = 1
 	stamina_damage = 15
-	stamina_cost = 5
-	stamina_crit_chance = 50
+//	stamina_cost = 5
+//	stamina_crit_chance = 50
 	pickup_sfx = "sound/items/blade_pull.ogg"
 
 	New()
@@ -534,7 +558,7 @@
 	icon_state = "combat_knife"
 	force = 15
 	throwforce = 20
-	stamina_cost = 5
+//	stamina_cost = 5
 	c_flags = EQUIPPED_WHILE_HELD
 
 
@@ -621,8 +645,8 @@
 	desc = "An ancient and questionably effective weapon."
 	burn_type = 0
 	stamina_damage = 45
-	stamina_cost = 20
-	stamina_crit_chance = 60
+//	stamina_cost = 20
+//	stamina_crit_chance = 60
 	// pickup_sfx = "sound/items/blade_pull.ogg"
 
 	New()
@@ -693,8 +717,8 @@
 	c_flags = EQUIPPED_WHILE_HELD
 	desc = "An ancient and effective weapon. It's not just a stick alright!"
 	stamina_damage = 65
-	stamina_cost = 22
-	stamina_crit_chance = 60
+//	stamina_cost = 22
+//	stamina_crit_chance = 60
 	// pickup_sfx = "sound/items/blade_pull.ogg"
 	// can_disarm = 1
 	two_handed = 0
@@ -748,8 +772,9 @@
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "knife_b"
 	item_state = "knife_b"
-	force = 5.0
-	throwforce = 15.0
+	force = 5 // most damage done in attack proc bonus, now indicated in hint
+	combat_click_delay = 1.25 * COMBAT_CLICK_DELAY
+	throwforce = 15
 	throw_speed = 4
 	throw_range = 8
 	w_class = W_CLASS_SMALL
@@ -757,6 +782,8 @@
 	tool_flags = TOOL_CUTTING
 	hit_type = DAMAGE_STAB
 	var/makemeat = 1
+
+	hint = "Does 25 extra damage to living meat."
 
 /obj/item/knife/butcher/New()
 	..()
@@ -775,6 +802,8 @@
 		take_bleeding_damage(C, null, 10, DAMAGE_CUT)
 
 		playsound(src, 'sound/impact_sounds/Flesh_Stab_3.ogg', 40, 1)
+	else
+		..()
 
 /obj/item/knife/butcher/attack(target as mob, mob/user as mob)
 	if (!istype(src,/obj/item/knife/butcher/predspear) && ishuman(target) && ishuman(user))
@@ -786,7 +815,7 @@
 	if (iscarbon(target))
 		var/mob/living/carbon/C = target
 		if (!isdead(C))
-			random_brute_damage(C, 20,1)//no more AP butcher's knife, jeez
+			random_brute_damage(C, 25, 1)//no more AP butcher's knife, jeez
 			take_bleeding_damage(C, user, 10, DAMAGE_STAB)
 		else
 			if (src.makemeat)
@@ -831,6 +860,7 @@
 	inhand_image_icon = 'icons/mob/inhand/hand_food.dmi'
 	item_state = "knife_b"
 	force = 8.0
+	combat_click_delay = 1.4 SECONDS
 	throwforce = 35.0
 	throw_speed = 6
 	throw_range = 10
@@ -856,8 +886,8 @@
 	flags = FPRINT | CONDUCT | NOSHIELD | TABLEPASS | USEDELAY
 	tool_flags = TOOL_CUTTING
 	stamina_damage = 50
-	stamina_cost = 45
-	stamina_crit_chance = 5
+//	stamina_cost = 45
+//	stamina_crit_chance = 5
 
 
 	New()
@@ -911,37 +941,36 @@
 	flags = FPRINT | CONDUCT | TABLEPASS | USEDELAY | ONBELT
 	tool_flags = TOOL_CUTTING | TOOL_CHOPPING //TOOL_CHOPPING flagged items do 5 times as much damage to doors.
 	hit_type = DAMAGE_CUT
-	click_delay = 10
 	two_handed = 0
 
 	w_class = W_CLASS_NORMAL
+	combat_click_delay = COMBAT_CLICK_DELAY * 1.1
 	force = 20
-	throwforce = 10
-	throw_speed = 2
-	throw_range = 4
+	throwforce = 18 //axe throwing is cool and fun
+	throw_speed = 1
+	throw_range = 6
 	stamina_damage = 25
-	stamina_cost = 15
-	stamina_crit_chance = 5
+
+//	stamina_cost = 15
+//	stamina_crit_chance = 5
 
 	proc/set_values()
 		if(two_handed)
-			src.click_delay = COMBAT_CLICK_DELAY * 1.5
-			force = 40
+			src.combat_click_delay = COMBAT_CLICK_DELAY * 1.5
+			force = 35
 			throwforce = 25
-			throw_speed = 4
-			throw_range = 8
+			throw_range = 12
 			stamina_damage = 45
-			stamina_cost = 25
-			stamina_crit_chance = 10
+//			stamina_cost = 25
+//			stamina_crit_chance = 10
 		else
-			src.click_delay = COMBAT_CLICK_DELAY
+			src.combat_click_delay = COMBAT_CLICK_DELAY * 1.1
 			force = 20
-			throwforce = 10
-			throw_speed = 2
-			throw_range = 4
+			throwforce = 18
+			throw_range = 6
 			stamina_damage = 25
-			stamina_cost = 15
-			stamina_crit_chance = 5
+//			stamina_cost = 15
+//			stamina_crit_chance = 5
 		tooltip_rebuild = 1
 		return
 
@@ -980,8 +1009,8 @@
 	force = 10
 	throwforce = 7
 	stamina_damage = 24
-	stamina_cost = 30
-	stamina_crit_chance = 30
+//	stamina_cost = 30
+//	stamina_crit_chance = 30
 	mats = list("wood" = 8)
 
 
@@ -1004,8 +1033,8 @@
 	force = 10
 	throwforce = 7
 	stamina_damage = 35
-	stamina_cost = 25
-	stamina_crit_chance = 35
+//	stamina_cost = 25
+//	stamina_crit_chance = 35
 
 	New()
 		..()
@@ -1126,7 +1155,7 @@
 		var/mob/living/carbon/human/H = target
 		if (H.find_type_in_hand(/obj/item/katana, "right") || H.find_type_in_hand(/obj/item/katana, "left"))
 			var/obj/itemspecialeffect/clash/C = new /obj/itemspecialeffect/clash
-			playsound(target, pick('sound/effects/sword_clash1.ogg','sound/effects/sword_clash2.ogg','sound/effects/sword_clash3.ogg'), 70, 0, 0)
+			playsound(target, pick('sound/effects/sword_clash1.ogg','sound/effects/sword_clash2.ogg','sound/effects/sword_clash3.ogg'), 70, 0, SOUND_RANGE_STANDARD)
 			C.setup(H.loc)
 			var/matrix/m = matrix()
 			m.Turn(rand(0,360))
@@ -1300,7 +1329,7 @@
 			user.update_clothing()
 			src.sword_inside = W //katana SHOULD be in the sheath now.
 			boutput(user, "<span class='notice'>You sheathe [W] in [src].</span>")
-			playsound(user, "sound/effects/sword_sheath.ogg", 50, 0, 0)
+			playsound(user, "sound/effects/sword_sheath.ogg", 50, 0, SOUND_RANGE_STANDARD)
 		else
 			..()
 			if(W.cant_drop == 1)
@@ -1311,7 +1340,7 @@
 		if (!user.r_hand || !user.l_hand)
 			sword_inside.clean_forensic()
 			boutput(user, "You draw [sword_inside] from your sheath.")
-			playsound(user, pick("sound/effects/sword_unsheath1.ogg","sound/effects/sword_unsheath2.ogg"), 50, 0, 0)
+			playsound(user, pick("sound/effects/sword_unsheath1.ogg","sound/effects/sword_unsheath2.ogg"), 50, 0, SOUND_RANGE_STANDARD)
 			icon_state = sheath_state
 			item_state = ih_sheath_state
 			user.put_in_hand_or_drop(sword_inside)
@@ -1424,8 +1453,8 @@
 	force = 0
 	throwforce = 5
 	stamina_damage = 25
-	stamina_cost = 25
-	stamina_crit_chance = 15
+//	stamina_cost = 25
+//	stamina_crit_chance = 15
 	two_handed = 1
 	pickup_sfx = "sound/items/blade_pull.ogg"
 
@@ -1466,8 +1495,8 @@ obj/item/fragile_sword
 	force = 60
 	throwforce = 60
 	stamina_damage = 25
-	stamina_cost = 25
-	stamina_crit_chance = 15
+//	stamina_cost = 25
+//	stamina_crit_chance = 15
 	pickup_sfx = "sound/items/blade_pull.ogg"
 
 	var/minimum_force = 5
@@ -1528,8 +1557,8 @@ obj/item/whetstone
 	force = 25
 	throwforce = 25
 	stamina_damage = 25
-	stamina_cost = 20
-	stamina_crit_chance = 15
+//	stamina_cost = 20
+//	stamina_crit_chance = 15
 	pickup_sfx = "sound/weapons/hadar-pickup.ogg"
 	hitsound = 'sound/impact_sounds/Blade_Small_Bloody.ogg'
 	two_handed = 1
@@ -1604,11 +1633,11 @@ obj/item/whetstone
 	flags = FPRINT | TABLEPASS | ONBACK
 
 	two_handed = 1
-	click_delay = 3 SECONDS
+	combat_click_delay = 3 * COMBAT_CLICK_DELAY
 
 	force = 30 //this number is multiplied by 5 when attacking doors.
 	stamina_damage = 60
-	stamina_cost = 30
+//	stamina_cost = 30
 
 	New()
 		..()
@@ -1642,7 +1671,7 @@ obj/item/whetstone
 	hit_type = DAMAGE_CUT
 	flags = USEDELAY | FPRINT
 	force = 20
-	click_delay = 16 DECI SECONDS //unbalanced blade
+	combat_click_delay = 1.7 * COMBAT_CLICK_DELAY
 	throwforce = 6
 	throw_speed = 1
 	throw_range = 5
@@ -1668,10 +1697,10 @@ obj/item/whetstone
 	force = 3
 	throwforce = 7
 	stamina_damage = 5
-	stamina_cost = 1
+//	stamina_cost = 1
 	event_handler_flags = USE_GRAB_CHOKE
 	special_grab = /obj/item/grab
-	stamina_crit_chance = 5
+//	stamina_crit_chance = 5
 	var/active = FALSE
 	w_class = W_CLASS_SMALL
 
@@ -1694,8 +1723,9 @@ obj/item/whetstone
 			//src.setItemSpecial(/datum/item_special/simple/bloodystab)
 			icon_state = "switchblade-open"
 			hit_type = DAMAGE_CUT
-			force = 10
-			stamina_crit_chance = 33
+			force = 7
+			combat_click_delay = 0.5 * COMBAT_CLICK_DELAY
+//			stamina_crit_chance = 33
 			playsound(user, 'sound/items/blade_pull.ogg', 60, TRUE)
 		else if (!chokehold)
 			hitsound = 'sound/impact_sounds/Generic_Hit_1.ogg'
@@ -1707,8 +1737,9 @@ obj/item/whetstone
 			//src.setItemSpecial(/datum/item_special/simple)
 			icon_state = "switchblade-close"
 			hit_type = DAMAGE_BLUNT
-			stamina_crit_chance = 5
+//			stamina_crit_chance = 5
 			force = 3
+			combat_click_delay = COMBAT_CLICK_DELAY
 			playsound(user, 'sound/machines/heater_off.ogg', 40, TRUE)
 		user.update_inhands()
 		tooltip_rebuild = TRUE

@@ -1,6 +1,6 @@
 var/list/obj/overlay/magindara_fog/magindara_global_fog
 var/global/magindara_surface_loop = 'sound/ambience/loop/magindarawind.ogg' //Z1
-var/global/magindara_surface_loop_volume = 80
+var/global/magindara_surface_loop_volume = 40
 
 /turf/space/magindara
 	name = "ocean below"
@@ -16,7 +16,8 @@ var/global/magindara_surface_loop_volume = 80
 	throw_unlimited = 0
 	color = "#ffffff"
 	special_volume_override = -1
-	turf_flags = MINE_MAP_PRESENTS_EMPTY
+	turf_flags = MINE_MAP_PRESENTS_EMPTY | IS_ATMOSPHERE
+	groups_to_atmosphere = 0
 #ifdef MAGINDARA_MAP
 	oxygen = MOLES_O2MAGINDARA
 	nitrogen = MOLES_N2MAGINDARA
@@ -29,20 +30,17 @@ var/global/magindara_surface_loop_volume = 80
 #endif
 
 	var/datum/light/point/light = null
-	var/light_atten_con = -0.08
+	var/light_atten_con = -0.11
 	var/light_r = 0.55
 	var/light_g = 0.4
 	var/light_b = 0.6
-	var/light_brightness = 0.9
+	var/light_brightness = 1
 	var/light_height = 3
 	var/generateLight = 1
 
 	New()
 		..()
-		if (src.generateLight)
-			src.make_light()
-		if (current_state > GAME_STATE_PREGAME)
-			src.initialise_component()
+		STANDARD_WORLDGEN_HOLD
 		if(!magindara_global_fog)
 			update_magindaran_weather()
 		vis_contents += magindara_global_fog[1 + (src.x % 2) + (src.y % 2) * 2]
@@ -50,8 +48,18 @@ var/global/magindara_surface_loop_volume = 80
 		if(skylight)
 			qdel(skylight)
 
-	/// Adds the pitfall, handled in a portion of map setup if game isnt setup yet, to prevent freezes
-	proc/initialise_component()
+	generate_worldgen()
+		. = ..()
+		if(src.generateLight)
+			if (!light)
+				light = new
+				light.attach(src)
+			light.set_atten_con(light_atten_con)
+			light.set_brightness(light_brightness)
+			light.set_color(light_r, light_g, light_b)
+			light.set_height(light_height)
+			SPAWN_DBG(1 DECI SECOND)
+				light?.enable()
 		src.AddComponent(/datum/component/pitfall/target_coordinates/nonstation,\
 			BruteDamageMax = 6,\
 			AnchoredAllowed = TRUE,\
@@ -59,17 +67,6 @@ var/global/magindara_surface_loop_volume = 80
 			FallTime = 1.2 SECONDS,\
 			DepthScale = 0.4,\
 			TargetZ = 3)
-
-	make_light()
-		if (!light)
-			light = new
-			light.attach(src)
-		light.set_atten_con(light_atten_con)
-		light.set_brightness(light_brightness)
-		light.set_color(light_r, light_g, light_b)
-		light.set_height(light_height)
-		SPAWN_DBG(1 DECI SECOND)
-			light?.enable()
 
 	ReplaceWith(what, keep_old_material, handle_air, handle_dir, force)
 		. = ..()
@@ -103,9 +100,7 @@ var/global/magindara_surface_loop_volume = 80
 
 	New()
 		. = ..()
-		if (worldgen_hold)
-			worldgen_candidates[worldgen_generation] += src
-		else generate_worldgen()
+		STANDARD_WORLDGEN_HOLD
 
 	make_light()
 		if(prob(40)) // only a 40% chance, for lag and also a dappled effect
@@ -153,11 +148,11 @@ var/global/magindara_surface_loop_volume = 80
 	desc = "hidden decal to show the light and/or weather of Magindara on any turf"
 	anchored = ANCHORED_TECHNICAL
 	var/datum/light/point/light = null
-	var/light_atten_con = -0.08
+	var/light_atten_con = -0.11
 	var/light_r = 0.55
 	var/light_g = 0.4
 	var/light_b = 0.6
-	var/light_brightness = 0.9
+	var/light_brightness = 1
 	var/light_height = 3
 
 	New()
@@ -219,7 +214,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 /client/proc/change_magindaran_weather()
 	set name = "Change Magindaran Weather"
 	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
-	admin_only
+	ADMIN_ONLY
 
 	var/change_time = input(usr, "Please enter the animation time in deciseconds:","Animation Time", "50") as num
 	var/fog_alpha = input(usr, "Please enter the fog alpha:","Fog Alpha", "128") as num
@@ -235,7 +230,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 /client/proc/strike_lightning_here()
 	set name = "Strike Lightning Here"
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
-	admin_only
+	ADMIN_ONLY
 
 	var/power = input(usr, "Please enter the power:","Power", "10") as num
 	var/warning_time = input(usr, "Please enter the warning time (deciseconds):","Warning Time", "60") as num
@@ -281,7 +276,7 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 		sleep(sleep_time)
 		if(QDELETED(target))
 			return
-		playsound(target, 'sound/effects/thunder.ogg', 80, 1, floor(power))
+		playsound(target, 'sound/effects/thunder.ogg', 80, 1, SOUND_RANGE_LARGE)
 		new /obj/decal/lightning(target, rodded ? 64 : 0, color)
 		if(!rodded)
 			explosion_new(target, target, power, turf_safe = is_turf_safe, no_effects = TRUE)
@@ -459,12 +454,14 @@ proc/update_magindaran_weather(change_time = 5 SECONDS, fog_alpha=0,fog_color="#
 	attackby(obj/item/I, mob/user)
 		. = src.myhorse.attackby(I, user)
 		user.lastattacked = src.myhorse
-		user.next_click = world.time + max(I.click_delay,I.combat_click_delay)
+		user.next_click = world.time + I.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)
+		user.lastattacked = null
 
 	attack_hand(mob/user, params, location, control)
 		. = src.myhorse.attack_hand(user, params, location, control)
 		if(user.lastattacked == src.myhorse)
-			user.next_click = world.time + max(user.click_delay,user.combat_click_delay)
+			user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)
+			user.lastattacked = null
 		else
 			user.next_click = world.time + user.click_delay
 

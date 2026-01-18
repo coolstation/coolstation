@@ -68,7 +68,7 @@
 				// NOT EVEN IF THERE'S A FIRE
 
 		RL_Suspend() //overkill, maybe? these shuttles aren't that big
-		worldgen_hold = TRUE
+		worldgen_hold |= WORLDGEN_HOLD_SHUTTLE_MOVEMENT
 
 		for (var/turf/P in start_location)
 			if (istype(P, centcom_turf))
@@ -78,7 +78,9 @@
 
 		start_location.move_contents_to(end_location, centcom_turf)
 
-		worldgen_hold = FALSE
+		worldgen_hold &= ~WORLDGEN_HOLD_SHUTTLE_MOVEMENT
+		if(!worldgen_hold)
+			initialize_worldgen()
 		RL_Resume()
 
 		SPAWN_DBG(rand(3000,6000))
@@ -98,7 +100,7 @@
 					// get_hiding_jerk(O)
 
 			RL_Suspend()
-			worldgen_hold = TRUE
+			worldgen_hold |= WORLDGEN_HOLD_SHUTTLE_MOVEMENT
 
 			for (var/turf/O in end_location)
 				if (istype(O, map_turf))
@@ -106,7 +108,9 @@
 
 			end_location.move_contents_to(start_location, map_turf)
 
-			worldgen_hold = FALSE
+			worldgen_hold &= ~WORLDGEN_HOLD_SHUTTLE_MOVEMENT
+			if(!worldgen_hold)
+				initialize_worldgen()
 			RL_Resume()
 
 			#ifdef UNDERWATER_MAP

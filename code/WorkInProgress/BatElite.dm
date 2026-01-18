@@ -525,6 +525,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 			switch(length(gene_groups))
 				if (0 to 1) //empty or only one group, which a transfer syringe can handle.
 					boutput(user, "<span class='alert'>No point in slicing [src] at the moment.</span>")
+					return
 				if (2) //halve
 					var/image/img
 					var/obj/item/reagent_containers/agarose/chunk1 = new/obj/item/reagent_containers/agarose// {initial_volume = 30} ()
@@ -618,7 +619,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		else
 			..()
 
-/obj/item/reagent_containers/agarose/proc/update_icon()
+/obj/item/reagent_containers/agarose/update_icon()
 	if (!length(gene_groups))
 		development_img.icon_state = "blank"
 	else if (!time_to_finish || !time_spent)
@@ -861,6 +862,69 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
             <br><b>Total Charge:</b> 9,233 paid in full with novelty jumbo hotdog-esques.
             <br>Big Yank's Cheap Tug"}
 
+//Here's some bullshit to soothe the soul
+/obj/item/parts/human_parts/arm/mutant/capitalist
+	name = "invisible hand of the market"
+	desc = "You know, I don't this was ever thought to be a literal, physical hand."
+	alpha = 128
+	limb_type = /datum/limb/capitalist
+	skintoned = TRUE
+	partIcon = null
+	handlistPart = null
+
+/obj/item/parts/human_parts/arm/mutant/capitalist/left
+	name = "invisible left hand of the market"
+	item_state = "arm-left"
+	slot = "l_arm"
+
+
+/obj/item/parts/human_parts/arm/mutant/capitalist/right
+	name = "invisible right hand of the market"
+	item_state = "arm-right"
+	slot = "r_arm"
+	side = "right"
+
+/datum/limb/capitalist
+	name = "cold, dead hand"
+
+	harm(mob/target, var/mob/living/user, var/no_logs = 0)
+		//This is a hideous amount of typechecking but it's also an admin gimmick so *shrug*
+		var/obj/item/spacecash/money = target.find_type_in_hand(/obj/item/spacecash)
+		if (!istype(money)) //1
+			money = target.find_in_equipment(/obj/item/spacecash)
+			if (!istype(money)) //2
+				if (ishuman(target)) //deep search
+					var/mob/living/carbon/human/H = target
+					if (H.back)
+						for(var/obj/item/thing in H.back)
+							if (istype(thing, /obj/item/storage))
+								money = locate(/obj/item/spacecash) in thing
+								if (istype(money))
+									break
+							else if (istype(thing, /obj/item/spacecash))
+								money = thing
+								break
+
+					if (!istype(money)) //3
+						if (H.belt)
+							money = locate(/obj/item/spacecash) in H.belt
+
+						if (!istype(money)) //4
+							if (H.l_store) //I don't think we use the storage pouches but I'm already in this deep
+								money = locate(/obj/item/spacecash) in H.l_store
+							if (!istype(money)) //5
+								if (H.r_store)
+									money = locate(/obj/item/spacecash) in H.r_store
+								if (!istype(money)) //6 layers!
+									if (istype(H.chest_item, /obj/item/spacecash)) //fucken, did you sew cash into your chest cavity???
+										money = H.chest_item
+										H.chest_item = null
+
+		..()
+		if (istype(money))
+			user.visible_message("The invisible hand of the market liberates [money]! [pick(95;"God bless", 5;"Viva")] capital!")
+			target.drop_item_throw(money)
+
 /*
 /obj/spawn_all_the_dragon_shit
 	New()
@@ -882,7 +946,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 /area/proc/Force_Ambience(mob/M)
 		if (M?.client)
 			src.pickAmbience()
-			M.client.playAmbience(src, AMBIENCE_FX_1, 18)
+			M.client.playAmbience(src, AMBIENCE_FX_1, 10)
 
 /client/proc/admin_force_ambience()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)

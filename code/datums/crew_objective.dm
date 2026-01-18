@@ -442,7 +442,6 @@ ABSTRACT_TYPE(/datum/objective/crew/chef)
 	check_completion()
 		return completed
 
-
 //	engineer
 ABSTRACT_TYPE(/datum/objective/crew/engineer)
 /datum/objective/crew/engineer

@@ -173,7 +173,7 @@ WET FLOOR SIGN
 	var/lastUse = null
 
 	afterattack(atom/A as mob|obj, mob/user as mob)
-		if (istype(A, /obj/item/storage))
+		if (A.storage)
 			return
 		if (!isturf(user.loc))
 			return
@@ -198,7 +198,7 @@ WET FLOOR SIGN
 	return
 
 /obj/item/spraybottle/afterattack(atom/A as mob|obj, mob/user as mob)
-	if (istype(A, /obj/item/storage))
+	if (A.storage)
 		return
 	if (!isturf(user.loc)) // Hi, I'm hiding in a closet like a wuss while spraying people with death chems risk-free.
 		return
@@ -208,7 +208,7 @@ WET FLOOR SIGN
 
 	if(src.reagents.has_reagent("water") || src.reagents.has_reagent("cleaner"))
 		JOB_XP(user, "Janitor", 2)
-	playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, -6)
+	playsound(src.loc, "sound/effects/zzzt.ogg", 50, 1, SOUND_RANGE_MODERATE)
 	// Make sure we clean an item that was sprayed directly in case it is in contents
 	if (!isturf(A.loc))
 		if (istype(A, /obj/item))
@@ -270,8 +270,8 @@ WET FLOOR SIGN
 	w_class = W_CLASS_NORMAL
 	flags = FPRINT | TABLEPASS
 	stamina_damage = 40
-	stamina_cost = 15
-	stamina_crit_chance = 10
+//	stamina_cost = 15
+//	stamina_crit_chance = 10
 
 /obj/item/mop/orange
 	desc = "The world of janitalia wouldn't be complete without a mop. This one comes in orange!"
@@ -530,15 +530,22 @@ WET FLOOR SIGN
 
 // SPONGES? idk
 
-/datum/reagents/sponge
+/datum/reagents/resize_sponge
+	var/initial_size = 1
+	var/extra_size = 0.6
+
+	New(maximum, init_size, ex_size)
+		. = ..()
+		src.initial_size = init_size
+		src.extra_size = ex_size
+
 	update_total()
 		..()
-		var/obj/item/sponge/S = src.my_atom
-		if (S)
-			var/size = 1
+		if (src.my_atom)
+			var/size = src.initial_size
 			if (src.total_volume > 0)
-				size += (src.total_volume / src.maximum_volume) * 0.6
-			sponge_size(S, size)
+				size += (src.total_volume / src.maximum_volume) * src.extra_size
+			sponge_size(src.my_atom, size)
 		return 0
 
 /obj/item/sponge
@@ -559,7 +566,7 @@ WET FLOOR SIGN
 /obj/item/sponge/New()
 	..()
 	// We use this instead of create_reagents because sponges need a special reagent holder to grow in size
-	reagents = new/datum/reagents/sponge(50)
+	reagents = new/datum/reagents/resize_sponge(50, 1, 0.6)
 	reagents.my_atom = src
 	processing_items |= src
 
@@ -790,8 +797,8 @@ WET FLOOR SIGN
 	w_class = W_CLASS_SMALL
 	flags = FPRINT | TABLEPASS
 	stamina_damage = 15
-	stamina_cost = 4
-	stamina_crit_chance = 10
+//	stamina_cost = 4
+//	stamina_crit_chance = 10
 
 	New()
 		..()
@@ -1041,18 +1048,16 @@ WET FLOOR SIGN
 			special.pixelaction(target, params, user, reach) // a hack to let people disarm when clicking at close range
 		else if(istype(target, /obj/storage) && src.trashbag)
 			var/obj/storage/storage = target
-			for(var/obj/item/I in src.trashbag)
+			for(var/obj/item/I in src.trashbag.storage.get_contents())
 				I.set_loc(storage)
-			src.trashbag.calc_w_class(null)
 			boutput(user, "<span class='notice'>You empty \the [src] into \the [target].</span>")
 			src.tooltip_rebuild = 1
 			return
 		else if(istype(target, /obj/machinery/disposal))
 			var/obj/machinery/disposal/disposal = target
 			if(src.trashbag)
-				for(var/obj/item/I in src.trashbag)
+				for(var/obj/item/I in src.trashbag.storage.get_contents())
 					I.set_loc(disposal)
-				src.trashbag.calc_w_class(null)
 				boutput(user, "<span class='notice'>You empty \the [src] into \the [target].</span>")
 				src.tooltip_rebuild = 1
 				disposal.update()
@@ -1080,9 +1085,9 @@ WET FLOOR SIGN
 			return
 		new/obj/effect/suck(T, get_dir(T, user))
 		if(src.suck(user, T))
-			playsound(T, "sound/effects/suck.ogg", 20, TRUE, 0, 1.5)
+			playsound(T, "sound/effects/suck.ogg", 20, TRUE, SOUND_RANGE_STANDARD, 1.5)
 		else
-			playsound(T, "sound/effects/brrp.ogg", 20, TRUE, 0, 0.8)
+			playsound(T, "sound/effects/brrp.ogg", 20, TRUE, SOUND_RANGE_STANDARD, 0.8)
 
 	pickup(mob/M)
 		RegisterSignal(M, COMSIG_MOVABLE_MOVED, PROC_REF(suck))
@@ -1134,24 +1139,25 @@ WET FLOOR SIGN
 			if(isnull(src.trashbag))
 				boutput(user, "<span class='alert'>\The [src] tries to suck up [item_desc] but has no trashbag!</span>")
 				. = FALSE
-			else if(src.trashbag.current_stuff >= src.trashbag.max_stuff)
+			else if(src.trashbag.storage.is_full())
 				boutput(user, "<span class='alert'>\The [src] tries to suck up [item_desc] but its [src.trashbag] is full!</span>")
 				. = FALSE
 			else
 				if (T != get_turf(user))
 					for(var/obj/item/I as anything in items_to_suck)
-						I.set_loc(get_turf(user))
+						if(!I.anchored)
+							I.set_loc(get_turf(user))
 					SPAWN_DBG(0.5 SECONDS)
 						for(var/obj/item/I as anything in items_to_suck) // yes, this can go over capacity of the bag, that's intended
-							I.set_loc(src.trashbag)
-						src.trashbag.calc_w_class(null)
-						if(src.trashbag.current_stuff >= src.trashbag.max_stuff)
+							if(!I.anchored)
+								src.trashbag.storage.add_contents(I)
+						if(src.trashbag.storage.is_full())
 							boutput(user, "<span class='notice'>[src]'s [src.trashbag] is now full.</span>")
-				else //do it immediately if it's our own turf
+				else
 					for(var/obj/item/I as anything in items_to_suck) // yes, this can go over capacity of the bag, that's intended
-						I.set_loc(src.trashbag)
-					src.trashbag.calc_w_class(null)
-					if(src.trashbag.current_stuff >= src.trashbag.max_stuff)
+						if(!I.anchored)
+							src.trashbag.storage.add_contents(I)
+					if(src.trashbag.storage.is_full())
 						boutput(user, "<span class='notice'>[src]'s [src.trashbag] is now full.</span>")
 				success = TRUE
 
@@ -1193,7 +1199,7 @@ WET FLOOR SIGN
 		else
 			. = ..()
 
-/obj/item/handheld_vacuum/proc/update_icon()
+/obj/item/handheld_vacuum/update_icon()
 	if (trashbag)
 		var/image/I = image(src.icon, "handvac-bag")
 		I.color = istype(trashbag, /obj/item/clothing/under/trash_bag/biohazard) ? "#ff4459" : "#777777"
@@ -1289,7 +1295,7 @@ WET FLOOR SIGN
 					break
 
 			afterUse(user)
-			playsound(master, "sound/effects/suck.ogg", 40, TRUE, 0, 0.5)
+			playsound(master, "sound/effects/suck.ogg", 40, TRUE, SOUND_RANGE_STANDARD, 0.5)
 
 /obj/effect/suck
 	anchored = ANCHORED_TECHNICAL

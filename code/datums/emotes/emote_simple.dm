@@ -37,16 +37,21 @@
 	blink
 		emote_string = "blinks"
 	drool
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "drools"
 	shrug
 		emote_string = "shrugs"
 	tremble
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "trembles"
 	quiver
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "quivers"
 	shiver
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "shivers"
 	shudder
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "shudders"
 	shake
 		emote_string = "shakes"
@@ -69,7 +74,7 @@
 		emote_string = "flinches"
 		enact(mob/living/carbon/human/user, voluntary = 0, param)
 			if (istype(user) && user.traitHolder && user.traitHolder.hasTrait("scienceteam") && !ismuzzled(user))
-				playsound(user.loc, pick(user.sound_list_laugh), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user.loc, pick(user.sound_list_laugh), 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			. = ..()
 	blink_r
 		emote_string = "blinks rapidly"
@@ -165,7 +170,7 @@
 		enact(mob/living/carbon/human/user, voluntary = 0, param) //Tommy Wiseau exclusive bullshit
 			if (!istype(user)) return //sound_list_flap
 			if (!user.restrained() && user.sound_list_flap && length(user.sound_list_flap))
-				playsound(user.loc, pick(user.sound_list_flap), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user.loc, pick(user.sound_list_flap), 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			if (istype(user.w_uniform, /obj/item/clothing/under/gimmick/owl)) //owlsuit has wings, just my imo (but oh this feels like a bad way for me to shoehorn this in)
 				if (angry)
 					emote_string_trailing = "wings ANGRILY!"
@@ -189,7 +194,7 @@
 		emote_fail = "starts writhing around in manic terror!"
 		enact(mob/living/carbon/human/user, voluntary = 0, param)
 			if (istype(user) && user.traitHolder && user.traitHolder.hasTrait("scienceteam") && ismuzzled(user))
-				playsound(user.loc, pick(user.sound_list_laugh), 80, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user.loc, pick(user.sound_list_laugh), 80, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			. = ..()
 	smug
 		enact(mob/user, voluntary = 0, param) //fuck you for having non-matching strings you piece of shit
@@ -237,6 +242,7 @@
 	sniff
 		emote_string = "sniffs"
 	snore
+		possible_while = STAT_UNCONSCIOUS
 		emote_string = "snores"
 	whimper
 		emote_string = "whimpers"
@@ -286,7 +292,7 @@
 		if (ishuman(user)) //sound_list_laugh is human specific
 			var/mob/living/carbon/human/H = user
 			if (H.sound_list_laugh && length(H.sound_list_laugh))
-				playsound(H.loc, pick(H.sound_list_laugh), 80, 0, 0, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(H.loc, pick(H.sound_list_laugh), 80, 0, SOUND_RANGE_STANDARD, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			if (H.traitHolder && H.traitHolder.hasTrait("scienceteam"))
 				return list("[H] [emote_string] nervously.", "<I>[emote_string] worriedly</I>", MESSAGE_AUDIBLE)
 		return list("[user] [emote_string].", emote_string, MESSAGE_AUDIBLE)
@@ -374,9 +380,9 @@
 	if (!ismuzzled(user))
 		if (user.health <= 0)
 			var/dying_gasp_sfx = "sound/voice/gasps/[pick("male","female")]_gasp_[pick(1,5)].ogg" // this is funnier than adding 5 new gasp sounds for neuters, just pick. for everyone. why not?
-			playsound(user, dying_gasp_sfx, 100, 0, 0, user.get_age_pitch())
+			playsound(user, dying_gasp_sfx, 100, 0, SOUND_RANGE_STANDARD, user.get_age_pitch())
 		else
-			playsound(user, user.sound_gasp, 15, 0, 0, user.get_age_pitch())
+			playsound(user, user.sound_gasp, 30, 0, SOUND_RANGE_SMALL, user.get_age_pitch())
 	. = ..()
 
 //I'm shoving a bunch of these under oneoff purely for the navigability of the object tree
@@ -393,6 +399,7 @@
 */
 //maptext differs
 /datum/emote/pale
+	possible_while = STAT_UNCONSCIOUS
 /datum/emote/pale/enact(mob/user, voluntary = 0, param)
 	return list("<B>[user]</B> goes pale for a second.", "<I>goes pale...</I>", MESSAGE_VISIBLE)
 

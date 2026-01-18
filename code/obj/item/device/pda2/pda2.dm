@@ -11,6 +11,7 @@
 	rand_pos = 0
 	flags = FPRINT | TABLEPASS | ONBELT
 	wear_layer = MOB_BELT_LAYER
+	fiddleType = /datum/contextAction/fiddle/pda2
 	var/obj/item/card/id/ID_card = null // slap an ID card into that thang
 	var/obj/item/pen = null // slap a pen into that thang
 	var/registered = null // so we don't need to replace all the dang checks for ID cards
@@ -624,12 +625,21 @@
 		else
 			if (src.ID_card)
 				boutput(user, "<span class='notice'>You swap [ID] and [src.ID_card].</span>")
+				animate(src, time=2)
+				animate(time=2, transform=matrix(null, 0, -1, MATRIX_TRANSLATE))
+				animate(time=3, transform=null)
+				playsound(src, "sound/items/penclick.ogg", 30, 1, pitch = 0.8)
 				src.eject_id_card(user)
 				src.insert_id_card(ID, user)
 				return
 			else if (!src.ID_card)
 				src.insert_id_card(ID, user)
 				boutput(user, "<span class='notice'>You insert [ID] into [src].</span>")
+				animate(src, time=2)
+				animate(time=2, transform=matrix(null, 0, -1, MATRIX_TRANSLATE))
+				animate(time=3, transform=null)
+				playsound(src, "sound/items/penclick.ogg", 30, 1, pitch = 0.8)
+
 
 	else if (istype(C, /obj/item/uplink_telecrystal))
 		if (src.uplink && src.uplink.active)
@@ -717,7 +727,7 @@
 
 	return
 
-/obj/item/device/pda2/MouseDrop(atom/over_object, src_location, over_location)
+/obj/item/device/pda2/mouse_drop(atom/over_object, src_location, over_location)
 	..()
 	if (over_object == usr && src.loc == usr && isliving(usr) && !usr.stat)
 		src.attack_self(usr)
@@ -906,6 +916,7 @@
 			animate(time=2, icon_state=original_icon_state)
 			animate(time=2, transform=matrix(null, 0, -1, MATRIX_TRANSLATE))
 			animate(time=3, transform=null)
+			playsound(src, "sound/items/penclick.ogg", 30, 1)
 			boutput(user, "<span class='notice'>You insert [insertedPen] into [src].</span>")
 
 /*
@@ -1118,12 +1129,11 @@
 			return
 
 		if(src in bible_contents)
-			for_by_tcl(B, /obj/item/storage/bible)
+			for_by_tcl(B, /obj/item/bible)
 				var/turf/T = get_turf(B.loc)
 				if(T)
 					T.hotspot_expose(700,125)
 					explosion(src, T, -1, -1, 2, 3)
-			bible_contents.Remove(src)
 			qdel(src)
 			return
 
@@ -1194,3 +1204,33 @@ Enter the file browser and copy the file you want to send.  Now enter the messen
 ThinkOS 7 supports a wide variety of software solutions, ranging from robot interface systems to forensic and medical scanners.<br>
 <font size=1>This technology produced by Thinktronic Systems, LTD for the NanoTrasen Corporation</font>
 "}
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
+/datum/contextAction/fiddle/pda2
+
+	checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+		return istype(target)
+
+	eject_id
+		name = "eject ID"
+		icon_state = "pda2_eject_id"
+
+		checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+			if(..(target, user))
+				return !isnull(target.ID_card)
+			return FALSE
+
+		execute(var/obj/item/device/pda2/target, var/mob/user)
+			target.eject_id_card(user)
+
+	eject_pen
+		name = "eject pen"
+		icon_state = "pda2_eject_pen"
+
+		checkRequirements(var/obj/item/device/pda2/target, var/mob/user)
+			if(..(target, user))
+				return !isnull(target.pen)
+			return FALSE
+
+		execute(var/obj/item/device/pda2/target, var/mob/user)
+			target.eject_pen(user)
