@@ -1555,7 +1555,7 @@
 			else
 				glass.reagents.trans_to(target, min(glass.reagents.total_volume, glass.gulp_size))
 			glass.reagents.reaction(target, INGEST, min(glass.reagents.total_volume, glass.gulp_size, (target.reagents?.maximum_volume-target.reagents?.total_volume)))
-			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
+			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1, SOUND_RANGE_MODERATE)
 			eat_twitch(target)
 
 		if(glass.reagents.total_volume <= 0)

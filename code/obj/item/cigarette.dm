@@ -395,6 +395,7 @@
 	name = "greasy cigarette"
 	desc = "A cigarette that appears to have been ... dipped in grease? It's almost dripping!"
 	flavor = "grease"
+	flags = FPRINT | TABLEPASS| OPENCONTAINER
 
 /obj/item/clothing/mask/cigarette/luxury
 	name = "Excelsior Luxury cigarette"
@@ -406,6 +407,9 @@
 	buttdesc = "It's not a butt. Don't call it a butt."
 	buttname = "Excelsior Luxury Stub"
 	//need to find an 'expensive' flavor
+	//how bout this <3
+	flavor = "platinum"
+
 	New()
 		src.on = TRUE
 		src.setMaterial(getMaterial("gold"), appearance = 0, setname = 0)
@@ -481,6 +485,7 @@
 	buttstate = "cigarillobutt"
 	buttdesc = "Tarry, smelly."
 	buttname = "cigarillo roach"
+	flags = FPRINT | TABLEPASS| OPENCONTAINER
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if((W.tool_flags & TOOL_CUTTING) || (W.hit_type & DAMAGE_CUT) || (W.hit_type & DAMAGE_STAB))
@@ -551,7 +556,7 @@
 // WHY
 /obj/item/clothing/mask/cigarette/custom
 	desc = "There could be anything in this."
-	flags = FPRINT|TABLEPASS|OPENCONTAINER
+	flags = FPRINT | TABLEPASS| OPENCONTAINER
 
 	New()
 		..()
