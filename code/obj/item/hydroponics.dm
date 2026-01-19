@@ -701,6 +701,14 @@
 			src.bowl = null
 		. = ..()
 
+	get_desc(dist, mob/user)
+		. = ..()
+		if(dist <= 2)
+			if(src.bowl)
+				. += "<br>The bowlpiece is missing."
+			else
+				. += "<br>You can wrench the bowlpiece out."
+
 	on_reagent_change()
 		..()
 		src.update_icon()
