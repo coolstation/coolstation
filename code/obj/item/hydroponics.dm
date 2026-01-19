@@ -637,11 +637,11 @@
 			return FALSE
 		else
 			if(istype(W, /obj/item/plant/herb/cannabis/black))
-				loaded_with = "weed-black"
+				loaded_with = "weed-death"
 			else if(istype(W, /obj/item/plant/herb/cannabis/white))
-				loaded_with = "weed-white"
+				loaded_with = "weed-life"
 			else if(istype(W, /obj/item/plant/herb/cannabis/mega))
-				loaded_with = "weed-mega"
+				loaded_with = "weed-rainbow"
 			else if(istype(W, /obj/item/plant/herb/cannabis/omega))
 				loaded_with = "weed-omega"
 			else
