@@ -488,6 +488,7 @@
 	icon_state = null
 	flags = FPRINT | TABLEPASS | OPENCONTAINER | SUPPRESSATTACK
 	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
+	object_flags = POUR_INTO
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
 	var/splash_all_contents = 0 //making an executive decision to *not* splash everything out by default just because you clicked your beer on something else by accident
 	doants = 0

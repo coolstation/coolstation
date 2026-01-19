@@ -15,6 +15,8 @@
 #define SPECIAL_PENALTY_ON_SALE (1<<5)
 /// object isn't an item but can be lifted in two hands via a wrapper item. stuff like appliances and large bins
 #define CAN_BE_LIFTED (1<<6)
+/// movable can be mouse_drop poured into by reagent containers
+#define POUR_INTO (1<<7)
 
 /// At which alpha do opague objects become see-through?
 #define MATERIAL_ALPHA_OPACITY 190
