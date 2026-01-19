@@ -633,7 +633,7 @@
 	proc/pack_a_bowl(obj/item/W as obj, mob/user as mob)
 		if(src.reagents.total_volume >= CHEM_EPSILON)
 			boutput(user, "<span class='alert'>This bowl is already packed, finish smoking it!.</span>")
-			return
+			return FALSE
 		else
 			if(istype(W, /obj/item/plant/herb/cannabis/black))
 				loaded_with = "weed-black"
@@ -656,7 +656,7 @@
 			W.force_drop(user)
 			qdel(W)
 
-		return
+		return TRUE
 
 /obj/item/reagent_containers/bowlpiece/cigarette
 	name = "ashtray bowlpiece"
@@ -670,9 +670,10 @@
 	allowed_types_list = list(/obj/item/reagent_containers/food/snacks/ingredient/meat, /obj/item/organ)
 
 	pack_a_bowl(obj/item/W, mob/user)
-		src.reagents.maximum_volume = 10
-		src.reagents.add_reagent(pick("beff", "MRSA", "salmonella", "enriched_msg", "porktonium"), 10)
 		. = ..()
+		if(.)
+			src.reagents.maximum_volume += 10
+			src.reagents.add_reagent(pick("bloodc", "beff", "MRSA", "salmonella", "enriched_msg", "porktonium"), 10)
 
 /obj/item/reagent_containers/food/drinks/water_pipe
 	name = "water pipe"
@@ -727,9 +728,8 @@
 			// ive decided to take "for now" to mean "you can smoke glass shards when someone adds that", and have done so - mylie
 			if (!W.cant_drop && length(src.bowl.allowed_types_list)) //just weade and tobacco for now - hexphire
 				for(var/allowed_type in src.bowl.allowed_types_list)
-					if(istype(W, allowed_type))
+					if(istype(W, allowed_type) && src.bowl.pack_a_bowl(W, user))
 						//load bowl with the good good
-						src.bowl.pack_a_bowl(W, user)
 						src.update_icon()
 						return
 
