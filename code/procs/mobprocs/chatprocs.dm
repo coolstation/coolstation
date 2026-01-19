@@ -979,7 +979,7 @@ param: Uhhh I think this is related to targeted emotes? I'm not sure
 			//if ((type & 1) && !src.sight_check(1))
 			//	return
 
-	if (!deafened && !just_maptext && (isunconscious(src) || src.sleeping || src.getStatusDuration("paralysis")))
+	if (!just_maptext && (isunconscious(src) || src.sleeping || src.getStatusDuration("paralysis")))
 		if (prob(20))
 			boutput(src, "<I>... You can almost hear something ...</I>")
 			if (isliving(src))
