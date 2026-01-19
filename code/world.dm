@@ -729,6 +729,10 @@ var/f_color_selector_handler/F_Color_Selector
 #ifdef DESERT_MAP
 	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_grubranch.dmm')
 #endif
+#ifdef SNOW_MAP
+	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_depot.dmm')
+#endif
+
 
 	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
 	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
