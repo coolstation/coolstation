@@ -618,6 +618,7 @@
 	flags = FPRINT | TABLEPASS
 	object_flags = 0
 	incompatible_with_chem_dispensers = 1
+	value = 20
 	//var/max_hit_count = 6 //number of hits until cleared // mylie thinks max hits should be kinda based on reagent count, like cigs?
 	var/base_reagent_per_rip = 5 // amount transferred from this, for anything with less than 50 units in it
 	var/scaling_past_fifty = 0.05 // additional units transferred per unit past 50 in the herb
@@ -680,6 +681,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bong"
 	incompatible_with_chem_dispensers = 1
+	value = 420
 	//need something to sort of behave like a bong bowl piece
 	var/obj/item/reagent_containers/bowlpiece/bowl
 	var/image/fluid_image
