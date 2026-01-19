@@ -647,8 +647,9 @@
 			else
 				loaded_with = "weed"   //weed and everything else can share loaded bowl a sprite for now
 
-			src.reagents.maximum_volume = src.reagents.total_volume + W.reagents.total_volume
-			W.reagents.trans_to(src, W.reagents.total_volume)
+			src.reagents.maximum_volume = src.reagents.total_volume + W.reagents?.total_volume
+			if(W.reagents)
+				W.reagents.trans_to(src, W.reagents.total_volume)
 			//reagent_per_rip = round(src.reagents.total_volume / max_hit_count)
 			src.reagent_per_rip = src.base_reagent_per_rip
 			if(src.reagents.total_volume > 50)
@@ -728,7 +729,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(src.bowl)
 			// ive decided to take "for now" to mean "you can smoke glass shards when someone adds that", and have done so - mylie
-			if (!W.cant_drop && length(src.bowl.allowed_types_list)) //just weade and tobacco for now - hexphire
+			if (src.bowl.reagents.total_volume < CHEM_EPSILON && !W.cant_drop && length(src.bowl.allowed_types_list)) //just weade and tobacco for now - hexphire
 				for(var/allowed_type in src.bowl.allowed_types_list)
 					if(istype(W, allowed_type) && src.bowl.pack_a_bowl(W, user))
 						//load bowl with the good good
