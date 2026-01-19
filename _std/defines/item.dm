@@ -36,8 +36,8 @@
 #define IS_PERSPECTIVE_FLUID (1<<16)
 /// specifically note this object as solid
 #define ALWAYS_SOLID_FLUID	 (1<<17)
-///FREE
-//#define (1<<18)
+/// does not ever fit into a storage crate
+#define CANT_FIT_IN_CRATES (1<<18)
 /// Has the possibility for a TGUI interface
 #define TGUI_INTERACTIVE		 (1<<19)
 ///FREE

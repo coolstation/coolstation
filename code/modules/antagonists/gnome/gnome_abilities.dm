@@ -59,7 +59,7 @@
 	real_name = "squishy mass"
 	real_desc = "It faintly wriggles. This thing is alive."
 	burn_point = T0C + 350
-	cannot_be_stored = TRUE
+	flags = TABLEPASS | CANT_FIT_IN_CRATES
 	p_class = 2
 	pickup_sfx = "sound/impact_sounds/Slimy_Cut_1.ogg"
 	_max_health = 25

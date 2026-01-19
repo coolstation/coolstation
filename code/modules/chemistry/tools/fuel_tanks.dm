@@ -46,7 +46,7 @@
 	icon_state = "chemtank-closed"
 	item_state = "chemtank"
 	initial_volume = 10 LITRES
-	flags = OPENCONTAINER
+	flags = FPRINT | OPENCONTAINER | CANT_FIT_IN_CRATES
 	w_class = W_CLASS_HUGE
 	incompatible_with_chem_dispensers = 1
 	throw_speed = 0.33
@@ -55,7 +55,6 @@
 	can_chug = FALSE
 	two_handed = TRUE
 	p_class = 2
-	cannot_be_stored = TRUE
 	c_flags = EQUIPPED_WHILE_HELD
 
 	New()
