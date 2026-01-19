@@ -704,7 +704,7 @@
 	get_desc(dist, mob/user)
 		. = ..()
 		if(dist <= 2)
-			if(src.bowl)
+			if(!src.bowl)
 				. += "<br>The bowlpiece is missing."
 			else
 				. += "<br>You can wrench the bowlpiece out."
