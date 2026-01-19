@@ -1,22 +1,27 @@
 #define NEVICATA_TIME (((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR)) * 2)
-//#define NEVICATA_TIME 90 //set this define to whatever to test different times of day
+//#define NEVICATA_TIME 270 //set this define to whatever to test different times of day
 
-#define NEVICATA_PRESSURE ONE_ATMOSPHERE * 0.8
-#define WASTES_MIN_TEMP 125 //only marginally warmer than the real life Triton
-#define WASTES_MAX_TEMP 170 //hell is still well beyond frozen over
+#define NEVICATA_PRESSURE ONE_ATMOSPHERE * 0.85 //a little easier to breathe
+#define WASTES_MIN_TEMP 180 //for reference triton is about ~70k under this.
+#define WASTES_MAX_TEMP 210 //hell is still well beyond frozen over
 #define NEVICATA_CO2 NEVICATA_PRESSURE * 0.07
 #define NEVICATA_N2 MOLES_N2STANDARD * 1.7
 #define NEVICATA_02 MOLES_O2STANDARD * 2.1
 #define NEVICATA_TEMP ((WASTES_MAX_TEMP - WASTES_MIN_TEMP)/2) * sin(NEVICATA_TIME-20) + ((WASTES_MAX_TEMP + WASTES_MIN_TEMP) / 2)
+#define NEVICATA_SKY_BRIGHT 0.7*(sin(NEVICATA_TIME)+0.8) + 0.25
+#define NEVICATA_SKY_RED 0.23*(sin(NEVICATA_TIME)+1.1)
+#define NEVICATA_SKY_GREEN 0.15*(sin(NEVICATA_TIME)+1.1)
+#define NEVICATA_SKY_BLUE 0.2*(sin(NEVICATA_TIME)) + 0.3
 
 var/global/nevicata_time = NEVICATA_TIME
 
 // 10 - dark and cold
 // 30 - little, slightly warmer sunrise
 // 70 - About as bright as twilight and as cold as Titan.
-// 90 - The brightest it will get; you can barely see anything.
+// 90 - Midday, still warming up a bit.
 // 110 -The warmest it will be, which is still lethal.
 // 150 -Amica is beginning to set, and the bone chilling cold is creeping back(more bone chilling, rather.)
+// 270 -You can't see your hands before your face, either because it's too dark or they snapped off. It is midnight.
 //
 //todo: make some nevicata audio loops and whatnot
 
@@ -117,10 +122,11 @@ var/global/nevicata_time = NEVICATA_TIME
 	luminosity = 1
 
 	var/datum/light/point/light = null
-	var/light_r = 0.25*(sin(NEVICATA_TIME)+1.1)
-	var/light_g = 0.15*(sin(NEVICATA_TIME)+1.1)
-	var/light_b = 0.2*(sin(NEVICATA_TIME)) + 0.3
-	var/light_brightness = 0.6*(sin(NEVICATA_TIME)) + 0.62
+	var/light_atten_con = -0.1
+	var/light_r = NEVICATA_SKY_RED
+	var/light_g = NEVICATA_SKY_GREEN
+	var/light_b = NEVICATA_SKY_BLUE
+	var/light_brightness = NEVICATA_SKY_BRIGHT
 	var/light_height = 3
 	var/generateLight = 1
 	var/stone_color
@@ -137,6 +143,7 @@ var/global/nevicata_time = NEVICATA_TIME
 		if (!light)
 			light = new
 			light.attach(src)
+		light.set_atten_con(light_atten_con)
 		light.set_brightness(light_brightness)
 		light.set_color(light_r, light_g, light_b)
 		light.set_height(light_height)
@@ -147,6 +154,12 @@ var/global/nevicata_time = NEVICATA_TIME
 		for(var/obj/O in src)
 			if(O.level == 1)
 				O.hide(src.intact)
+
+	Del()
+		if (src.light)
+			qdel(src.light)
+			src.light = null
+		..()
 
 	plating
 		name = "snow-covered plating"
