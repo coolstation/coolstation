@@ -55,6 +55,12 @@ var/global/map_currently_above_magindara = 1
 var/global/map_currently_above_magindara = 0
 #endif
 
+#ifdef SNOW_MAP
+var/global/map_currently_very_cold = 1
+#else
+var/global/map_currently_very_cold = 0
+#endif
+
 //should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff
 #ifdef SCARCE_MAP
 var/global/map_currently_experiencing_shortages = 1
@@ -723,6 +729,10 @@ var/f_color_selector_handler/F_Color_Selector
 #ifdef DESERT_MAP
 	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_grubranch.dmm')
 #endif
+#ifdef SNOW_MAP
+	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_depot.dmm')
+#endif
+
 
 	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
 	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
