@@ -30699,6 +30699,7 @@
 /obj/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/machinery/door/airlock/security,
 /obj/access_spawn/forensics,
 /turf/floor/wood/eight,
 /area/station/security/detectives_office)
@@ -32031,6 +32032,17 @@
 /area/station/crew_quarters/bathroom{
 	name = "Locker Room"
 	})
+"pIF" = (
+/obj/table/reinforced/kitchen/solid/auto,
+/obj/disposalpipe/segment/bent{
+	dir = 4
+	},
+/obj/item/storage/box/togo{
+	pixel_y = 4
+	},
+/obj/item/storage/box/togo,
+/turf/floor/specialroom/cafeteria,
+/area/station/crew_quarters/kitchen)
 "pIN" = (
 /obj/machinery/light/fluorescent/cool,
 /turf/floor/black,
@@ -100234,7 +100246,7 @@ oLW
 iow
 eHT
 one
-bfj
+pIF
 dKi
 dKi
 oMI
