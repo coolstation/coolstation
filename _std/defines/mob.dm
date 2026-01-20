@@ -50,6 +50,8 @@
 #define BURNING_LV2 200
 /// Burning Lv3 starts at this duration.
 #define BURNING_LV3 400
+/// Units of burn damage above which a mob gives cooked meat.
+#define WELL_DONE_THRESHOLD 200
 
 //cooldowns
 #define REST_TOGGLE_COOLDOWN 0.1 SECONDS
