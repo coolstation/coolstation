@@ -626,7 +626,16 @@ input:checked + div { display: block; }
 				var/atom/item_path = R.item4
 				tmp2 += "<div class='item' title=\"[html_encode(initial(item_path.name))]\">[bicon(R.item4)][R.amt4 > 1 ? "<span>x[R.amt4]</span>" : ""]</div>"
 
-			tmp2 += " (Prep time: [R.cookbonus]s)</td></tr>"
+			if(R.cookbonus > 10)	//need to convert to oven UI format or people might get a little confused.
+				var/cooktemp = "High"
+				var/cooktime = round(R.cookbonus / 2)
+				tmp2 += " (Prep time: [cooktime]s on [cooktemp])</td></tr>"
+			else
+				var/cooktemp = "Low"
+				var/cooktime = R.cookbonus
+				tmp2 += " (Prep time: [cooktime]s on [cooktemp])</td></tr>"
+
+
 
 			if (!recipies[R.category])
 				recipies[R.category] = list("<hr><b><label for='[R.category]'>[R.category]</label></b><input type='checkbox' id='[R.category]'><div><table>")
