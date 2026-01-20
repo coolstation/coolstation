@@ -501,8 +501,10 @@ var/f_color_selector_handler/F_Color_Selector
 		if(api)
 			api.reboot_mode = TGS_REBOOT_MODE_RESTART
 
-
-	lobby_titlecard = new /datum/titlecard()
+	if (config && (config.env == "pud"))
+		lobby_titlecard = new /datum/titlecard/dev()
+	else
+		lobby_titlecard = new /datum/titlecard()
 
 	lobby_titlecard.set_agreement_html() //only need to do this here i think, it's otherwise pretty static
 	lobby_titlecard.set_pregame_html()
