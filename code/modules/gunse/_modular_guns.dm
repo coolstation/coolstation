@@ -252,9 +252,11 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		boutput(user,"<span class='notice'><b>What are you doing to that [I]?.... you can't be serious..</b></span>")
 		//get butt details to transfer to gun part
 		var/color = I.color
+		var/icon_state = I.icon_state //carry over cyberbutt or synthbutt icon.
 		user.u_equip(I)
 		I = new /obj/item/gun_parts/accessory/butt()
 		I.color = color
+		I.icon_state = icon_state
 		user.put_in_hand_or_drop(I)
 		return
 

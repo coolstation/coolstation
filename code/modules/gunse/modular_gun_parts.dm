@@ -1193,8 +1193,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	contraband = 5 //Hey do you have a tax stamp for that thing?
 	jam_frequency = 3 //you didn't really clean this too well before attaching it did you? disgusting.
 
-
-	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
+	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user) //muffle the shot just enough to where the fart is louder
 		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.50
 		P.proj_data.shot_sound_range = max(P.proj_data.shot_sound_range - SOUND_RANGE_MODERATE, SOUND_RANGE_SMALL)
 		playsound(src.my_gun.loc, pick('sound/voice/farts/fart1.ogg', 'sound/voice/farts/fart2.ogg', 'sound/voice/farts/fart3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
