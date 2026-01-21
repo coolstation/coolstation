@@ -1180,7 +1180,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	// grenade launcher!!
 	// a horn!!
 
-/obj/item/gun_parts/accessory/butt  //IM LAUGHING SO HARD AT THIS PLEASE HELP - Hex
+/obj/item/gun_parts/accessory/butt  //fully expect variations on this, there's a lot of funny potential here.
 	name = "butt"
 	desc = "Makeshift muzzle device, made from an.....ass?"
 	icon = 'icons/obj/surgery.dmi'
@@ -1189,6 +1189,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	overlay_y = -1
 	part_DRM = GUN_ALL | GUN_NANO
 	call_alter_projectile = TRUE
+	contraband = 5 //Hey do you have a tax stamp for that thing?
 	jam_frequency = 3 //you didn't really clean this too well before attaching it did you? disgusting.
 
 
