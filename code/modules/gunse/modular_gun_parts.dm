@@ -1180,15 +1180,16 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	// grenade launcher!!
 	// a horn!!
 
-/obj/item/gun_parts/accessory/butt  //fully expect variations on this, there's a lot of funny potential here.
+/obj/item/gun_parts/accessory/butt  //most muzzle device like effects are barrel related. Just make this a fun accessory.
 	name = "butt"
 	desc = "Makeshift muzzle device, made from an.....ass?"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "butt-nc"
-	overlay_x = 19     //muzzle device so needs to be far right
+	overlay_x = 15     //muzzle device so needs to be far right but needs to still match snub/short barrels
 	overlay_y = -1
 	part_DRM = GUN_ALL | GUN_NANO
 	call_alter_projectile = TRUE
+	spread_angle = 3 //no chance that round is NOT tumbling coming out of this thing.
 	contraband = 5 //Hey do you have a tax stamp for that thing?
 	jam_frequency = 3 //you didn't really clean this too well before attaching it did you? disgusting.
 
