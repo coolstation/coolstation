@@ -1179,9 +1179,28 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	// flashlight!!
 	// grenade launcher!!
 	// a horn!!
+
+/obj/item/gun_parts/accessory/butt  //IM LAUGHING SO HARD AT THIS PLEASE HELP - Hex
+	name = "butt"
+	desc = "Makeshift muzzle device, made from an.....ass?"
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "butt-nc"
+	overlay_x = 19     //muzzle device so needs to be far right
+	overlay_y = -1
+	part_DRM = GUN_ALL | GUN_NANO
+	call_alter_projectile = TRUE
+	jam_frequency = 3 //you didn't really clean this too well before attaching it did you? disgusting.
+
+
+	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
+		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.50
+		P.proj_data.shot_sound_range = max(P.proj_data.shot_sound_range - SOUND_RANGE_MODERATE, SOUND_RANGE_SMALL)
+		playsound(src.my_gun.loc, pick('sound/voice/farts/fart1.ogg', 'sound/voice/farts/fart2.ogg', 'sound/voice/farts/fart3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
+		return ..()
+
 /obj/item/gun_parts/accessory/horn
 	name = "tactical alerter"
-	desc = "Efficiently alerts your squadron within miliseconds of target engagement, using cutting edge over-the-airwaves technology"
+	desc = "Efficiently alerts your squadron within milliseconds of target engagement, using cutting edge over-the-airwaves technology"
 	call_alter_projectile = TRUE
 	add_prefix = "tactical"
 	icon_state = "alerter"
