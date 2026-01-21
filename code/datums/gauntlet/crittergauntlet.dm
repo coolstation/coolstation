@@ -400,7 +400,7 @@
 			staging = locate() in world
 			for (var/area/G in world)
 				LAGCHECK(LAG_LOW)
-				if (G.type == /area/gauntlet)
+				if (istype_exact(G, /area/gauntlet))
 					gauntlet = G
 					break
 			if (!gauntlet) return //unit teeeests
