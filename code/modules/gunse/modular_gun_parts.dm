@@ -1215,8 +1215,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user) //muffle the shot just enough to where the fart is louder
 		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.50
 		P.proj_data.shot_sound_range = max(P.proj_data.shot_sound_range - SOUND_RANGE_MODERATE, SOUND_RANGE_SMALL)
-		//bigger guns make lower farts
-		var/pitchChange = 2/gun.w_class //byond pitch range is 0.5 to 2.0 so we do some math to make w_class fit that
+		//use bulk to help determine pitch. low bulk = higher pitch, high bulk = lower pitch with a little middle ground. adjust according to feedback
+		var/pitchChange = 0
+		if(gun.bulk > 6)
+			pitchChange = (1/gun.bulk) + 0.4
+		else if (gun.bulk < 5)
+			pitchChange = (2/gun.bulk) + 0.8
 		playsound(src.my_gun.loc, pick('sound/voice/farts/fart1.ogg', 'sound/voice/farts/fart2.ogg', 'sound/voice/farts/fart3.ogg'), 50, 1, SOUND_RANGE_STANDARD, pitchChange)
 		return ..()
 
