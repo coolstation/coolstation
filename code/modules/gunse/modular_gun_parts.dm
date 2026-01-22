@@ -1185,13 +1185,32 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Makeshift muzzle device, made from an.....ass?"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "butt-nc"
-	overlay_x = 15     //muzzle device so needs to be far right but needs to still match snub/short barrels
-	overlay_y = -1
-	part_DRM = GUN_ALL | GUN_NANO
+	overlay_x = 3
+	part_DRM = GUN_ALL
 	call_alter_projectile = TRUE
 	spread_angle = 3 //no chance that round is NOT tumbling coming out of this thing.
 	contraband = 5 //Hey do you have a tax stamp for that thing?
 	jam_frequency = 3 //you didn't really clean this too well before attaching it did you? disgusting.
+
+	//need to handle the overlay in a custom way since it's a muzzle device, we are reusing the sprite, and we need the skin color.
+	//This works but might not be the cleanest way to do it, what I'm trying to do is account for barrels of different visual length. -Hexphire
+	add_part_to_gun(var/obj/item/gun/modular/gun)
+		if(gun.barrel)
+			overlay_x += gun.barrel.overlay_x
+			overlay_y += gun.barrel.overlay_y
+		..()
+
+	add_overlay_to_gun(obj/item/gun/modular/gun, correctly, layer_override)
+		var/image/I = image(icon, icon_state)
+		I.pixel_x = overlay_x
+		I.pixel_y = overlay_y
+		I.color = src.color
+		I.layer = gun.layer - 0.01
+		var/matrix/M = matrix()
+		M.Scale(0.75,1.15) //stretch it a little to help account for different barrels (and because well, what the heck we are doing to it)
+		I.transform = M
+		I.transform = turn(I.transform, 90) //north facing butt was funny but aligned with the barrel makes more sense and is also funny.
+		gun.UpdateOverlays(I, "[part_type]")
 
 	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user) //muffle the shot just enough to where the fart is louder
 		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.50
