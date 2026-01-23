@@ -22,6 +22,12 @@
 /area/gehenna/wasteland)
 "abF" = (
 /obj/storage/secure/closet/kitchen,
+/obj/machinery/door_control{
+	name = "Kitchen Shutters Control";
+	pixel_x = -2;
+	pixel_y = 23;
+	id = "kitchen"
+	},
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
 "abI" = (
@@ -1359,6 +1365,9 @@
 	icon_state = "12"
 	},
 /obj/machinery/door/window/southright,
+/obj/machinery/cashreg{
+	pixel_x = 4
+	},
 /turf/floor,
 /area/station/crew_quarters/kitchen)
 "bhH" = (
@@ -2821,7 +2830,7 @@
 /turf/floor/grey,
 /area/station/hangar/sec)
 "cCs" = (
-/obj/submachine/italian_ice_dispenser,
+/obj/decal/slipmat,
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
 "cCK" = (
@@ -2857,10 +2866,7 @@
 /turf/wall,
 /area/station/crew_quarters/courtroom)
 "cDW" = (
-/obj/table/reinforced/auto,
-/obj/machinery/microwave{
-	pixel_y = 5
-	},
+/obj/machinery/deep_fryer,
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
 "cEb" = (
@@ -4287,6 +4293,13 @@
 	},
 /turf/floor/grey,
 /area/station/hallway/primary/east)
+"dSD" = (
+/obj/machinery/disposal/mail/autoname/kitchen,
+/obj/disposalpipe/trunk{
+	dir = 2
+	},
+/turf/floor/grey/checker,
+/area/station/crew_quarters/kitchen)
 "dSH" = (
 /obj/disposalpipe/trunk{
 	dir = 4
@@ -4925,6 +4938,10 @@
 /obj/access_spawn/security,
 /turf/floor,
 /area/station/security/brig/cell_block_control)
+"evu" = (
+/obj/table/reinforced/auto,
+/turf/floor/grey/checker,
+/area/station/crew_quarters/kitchen)
 "evI" = (
 /obj/decal/fakeobjects/smallrocks,
 /turf/space/gehenna/desert,
@@ -6953,6 +6970,10 @@
 	dir = 1
 	},
 /area/station/medical/medbay/lobby)
+"gDe" = (
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grey/checker,
+/area/station/crew_quarters/kitchen)
 "gDp" = (
 /obj/stool/chair/couch{
 	dir = 4
@@ -8864,10 +8885,11 @@
 /turf/floor/carpet/red/fancy/edge/ne,
 /area/radiostation)
 "imd" = (
-/obj/machinery/deep_fryer,
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
+/obj/table/reinforced/auto,
+/obj/item/platestack,
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
 "imp" = (
@@ -8982,6 +9004,10 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/chapel/office)
+"irW" = (
+/obj/decal/slipmat/torn,
+/turf/floor/grey/checker,
+/area/station/crew_quarters/kitchen)
 "isE" = (
 /turf/space/gehenna/desert,
 /area/gehenna/wasteland)
@@ -9740,6 +9766,17 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/north)
+"jbv" = (
+/obj/stove,
+/obj/item/soup_pot{
+	pixel_y = 12
+	},
+/obj/item/ladle{
+	pixel_x = 6;
+	pixel_y = 10
+	},
+/turf/floor/grey/checker,
+/area/station/crew_quarters/kitchen)
 "jbV" = (
 /obj/disposalpipe/segment/bent/south,
 /turf/floor/plating{
@@ -10141,6 +10178,11 @@
 /obj/access_spawn/syndie_shuttle,
 /turf/floor,
 /area/listeningpost)
+"jtP" = (
+/obj/disposalpipe/segment/vertical,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grey/checker,
+/area/station/crew_quarters/kitchen)
 "juS" = (
 /obj/decal/sink,
 /turf/floor/wood,
@@ -10182,6 +10224,14 @@
 /obj/decal/gehenna/warning,
 /turf/floor/plating,
 /area/station/engine/monitoring)
+"jxI" = (
+/obj/disposalpipe/segment/produce,
+/obj/machinery/light/fluorescent/cool/very{
+	dir = 4
+	},
+/obj/table/reinforced/auto,
+/turf/floor/grey/checker,
+/area/station/crew_quarters/kitchen)
 "jxR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/grille/catwalk/jen,
@@ -10580,11 +10630,16 @@
 /turf/floor/plating,
 /area/station/engine/engineering/ce)
 "jPf" = (
-/obj/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/machinery/disposal/mail/autoname/kitchen,
 /obj/machinery/light/fluorescent/cool/very,
+/obj/table/reinforced/auto,
+/obj/machinery/phone{
+	pixel_y = 2;
+	pixel_x = 9
+	},
+/obj/item/paper/book/from_file/cookbook{
+	pixel_x = -11;
+	pixel_y = 6
+	},
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
 "jPn" = (
@@ -11175,6 +11230,9 @@
 	icon_state = "line1"
 	},
 /obj/disposalpipe/segment/vertical,
+/obj/machinery/door/poddoor/shutters/left{
+	id = "kitchen"
+	},
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
 "koq" = (
@@ -11318,6 +11376,7 @@
 /area/gehenna)
 "ktU" = (
 /obj/disposalpipe/segment/vertical,
+/obj/machinery/drainage,
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
 "ktV" = (
@@ -11710,6 +11769,10 @@
 	},
 /turf/floor/carpet/red/standard/edge/east,
 /area/station/crew_quarters/stockex)
+"kLd" = (
+/obj/table/kitchen_island,
+/turf/floor/grey/checker,
+/area/station/crew_quarters/kitchen)
 "kLA" = (
 /obj/machinery/camera{
 	c_tag = "autotag";
@@ -14069,6 +14132,11 @@
 	},
 /turf/floor/plating,
 /area/station/medical/head)
+"nfv" = (
+/obj/disposalpipe/segment/mail/vertical,
+/obj/decal/cleanable/dirt/random,
+/turf/floor/grey/checker,
+/area/station/crew_quarters/kitchen)
 "nge" = (
 /obj/cable,
 /obj/machinery/power/data_terminal,
@@ -14933,6 +15001,9 @@
 /obj/decal/tile_edge/line/black{
 	dir = 1;
 	icon_state = "line1"
+	},
+/obj/machinery/door/poddoor/shutters/center{
+	id = "kitchen"
 	},
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
@@ -20808,6 +20879,14 @@
 	},
 /turf/floor/industrial,
 /area/station/quartermaster/cargobay)
+"tfg" = (
+/obj/disposalpipe/segment/produce,
+/obj/table/reinforced/auto,
+/obj/machinery/microwave{
+	pixel_y = 5
+	},
+/turf/floor/grey/checker,
+/area/station/crew_quarters/kitchen)
 "tfx" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/purge/southwest,
 /turf/floor/red,
@@ -21090,6 +21169,12 @@
 	icon_state = "line1"
 	},
 /obj/disposalpipe/segment/mail/vertical,
+/obj/machinery/door/poddoor/shutters/right{
+	id = "kitchen"
+	},
+/obj/machinery/cashreg{
+	pixel_x = 4
+	},
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
 "trM" = (
@@ -21811,6 +21896,7 @@
 /area/station/engine/core)
 "tYM" = (
 /obj/disposalpipe/segment/produce,
+/obj/decal/cleanable/dirt/random,
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
 "tZx" = (
@@ -23485,6 +23571,10 @@
 /obj/submachine/mixer{
 	pixel_x = 6;
 	pixel_y = 5
+	},
+/obj/item/material_piece/cloth/rag{
+	pixel_x = -8;
+	pixel_y = 4
 	},
 /turf/floor/grey/checker,
 /area/station/crew_quarters/kitchen)
@@ -69879,7 +69969,7 @@ ceW
 ayJ
 rrg
 cDW
-ocC
+cCs
 lYi
 obg
 fsF
@@ -70180,7 +70270,7 @@ ceW
 ceW
 pTr
 koi
-ktU
+jtP
 ktU
 qsc
 aGe
@@ -71093,7 +71183,7 @@ jJX
 dQJ
 uJz
 qtT
-buA
+gDe
 rrg
 gMw
 tPP
@@ -71388,14 +71478,14 @@ gDx
 fkG
 lUK
 rrg
-cCs
+iVo
 ocC
 aAg
-aYD
-aYD
-aYD
+nfv
 aYD
 xWq
+buA
+jbv
 rrg
 bUf
 jCU
@@ -71695,9 +71785,9 @@ buA
 buA
 buA
 buA
-buA
-buA
 boq
+cCs
+evu
 rrg
 hHK
 jCU
@@ -71994,10 +72084,10 @@ nGp
 ejO
 uLV
 tYM
-tYM
-uLV
+tfg
+jxI
 caf
-buA
+boq
 buA
 jPf
 rrg
@@ -72298,8 +72388,8 @@ gkY
 jSM
 gkY
 gkY
-jJX
-buA
+dSD
+qsc
 buA
 rrg
 rrg
@@ -73205,8 +73295,8 @@ yhC
 wEy
 rrg
 smp
-buA
-buA
+irW
+kLd
 aev
 www
 fFz

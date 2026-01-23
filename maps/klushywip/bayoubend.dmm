@@ -3441,6 +3441,15 @@
 	},
 /turf/space,
 /area/station/shipyard)
+"cvZ" = (
+/obj/machinery/door_control{
+	name = "Kitchen Shutters Control";
+	pixel_x = -2;
+	pixel_y = -22;
+	id = "kitchen"
+	},
+/turf/floor/specialroom/cafeteria,
+/area/station/crew_quarters/kitchen)
 "cww" = (
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk{
@@ -5450,11 +5459,22 @@
 /area/station/maintenance/southeast)
 "ebM" = (
 /obj/rack,
-/obj/storage/crate/pizza,
-/obj/storage/crate/pizza,
-/obj/storage/crate/pizza,
 /obj/machinery/alarm{
 	pixel_x = 32
+	},
+/obj/item/reagent_containers/food/snacks/condiment/ketchup{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/snacks/condiment/ketchup{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/flour{
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/flour{
+	pixel_y = 5
 	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
@@ -7290,20 +7310,11 @@
 /area/station/maintenance/oldstation)
 "frb" = (
 /obj/table/reinforced/auto,
-/obj/item/shaker/mustard{
-	pixel_x = -6
-	},
-/obj/item/shaker/ketchup,
-/obj/item/shaker/parmesan{
-	pixel_x = 15;
-	pixel_y = 12
-	},
-/obj/item/shaker/redpepper{
-	pixel_x = 13
-	},
-/obj/firedoor_spawn,
 /obj/item/kitchen/utensil/knife/steak{
 	pixel_x = -14
+	},
+/obj/machinery/door/poddoor/shutters/center{
+	id = "kitchen"
 	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
@@ -11010,12 +11021,6 @@
 /obj/machinery/phone{
 	pixel_y = 13
 	},
-/obj/item/storage/box/cutlery{
-	pixel_x = -7
-	},
-/obj/item/storage/box/ic_cones{
-	pixel_x = 4
-	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "hQI" = (
@@ -11998,8 +12003,9 @@
 	pixel_x = 10;
 	pixel_y = 4
 	},
-/obj/window/reinforced/west,
-/obj/firedoor_spawn,
+/obj/machinery/door/poddoor/shutters/left{
+	id = "kitchen"
+	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "iFh" = (
@@ -12345,10 +12351,6 @@
 /obj/item/kitchen/utensil/fork{
 	pixel_x = 10;
 	pixel_y = 4
-	},
-/obj/item/reagent_containers/food/snacks/italian_ice{
-	pixel_x = -13;
-	pixel_y = 14
 	},
 /obj/item/decoration/ashtray{
 	pixel_x = 1;
@@ -15635,6 +15637,10 @@
 /obj/item/reagent_containers/food/snacks/spaghetti/sauce{
 	pixel_y = 9
 	},
+/obj/item/shaker/ketchup,
+/obj/item/shaker/mustard{
+	pixel_x = -6
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "lim" = (
@@ -18273,8 +18279,9 @@
 	pixel_x = 10;
 	pixel_y = 4
 	},
-/obj/window/reinforced/east,
-/obj/firedoor_spawn,
+/obj/machinery/door/poddoor/shutters/right{
+	id = "kitchen"
+	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "ndU" = (
@@ -21870,6 +21877,12 @@
 /area/station/crew_quarters/bathroom)
 "pHG" = (
 /obj/table/surgery_tray,
+/obj/item/storage/box/ic_cones{
+	pixel_x = 4
+	},
+/obj/item/storage/box/cutlery{
+	pixel_x = -7
+	},
 /turf/floor/black,
 /area/station/crew_quarters/catering)
 "pHS" = (
@@ -22665,14 +22678,6 @@
 	pixel_x = -6;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/snacks/condiment/ketchup{
-	pixel_x = 8;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/snacks/condiment/ketchup{
-	pixel_x = 8;
-	pixel_y = 2
-	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "qer" = (
@@ -23148,12 +23153,6 @@
 "qvA" = (
 /obj/table/auto,
 /obj/table/auto,
-/obj/item/reagent_containers/food/snacks/ingredient/flour{
-	pixel_y = 14
-	},
-/obj/item/reagent_containers/food/snacks/ingredient/flour{
-	pixel_y = 5
-	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "qwf" = (
@@ -27086,7 +27085,9 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/poddoor/shutters/center{
+	id = "kitchen"
+	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "tcz" = (
@@ -80511,7 +80512,7 @@ fXU
 vPY
 nOD
 qrX
-izD
+cvZ
 aDM
 nES
 wSy

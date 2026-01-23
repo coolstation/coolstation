@@ -2169,6 +2169,17 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/medical/staff)
+"bAJ" = (
+/obj/machinery/power/apc/autoname/east,
+/obj/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/microwave{
+	pixel_y = 4
+	},
+/obj/table/auto,
+/turf/floor/grey,
+/area/station/crew_quarters/baroffice)
 "bAN" = (
 /obj/disposalpipe/junction/right/east,
 /turf/floor/white,
@@ -3690,7 +3701,13 @@
 	},
 /area/station/hallway/secondary/southwest)
 "cPi" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
 /obj/table/auto,
+/obj/item/storage/box/glassbox{
+	pixel_y = 5
+	},
 /turf/floor/grey,
 /area/station/crew_quarters/baroffice)
 "cQe" = (
@@ -9097,13 +9114,10 @@
 /turf/floor/black,
 /area/station/engine/coldloop)
 "iPz" = (
-/obj/table/wood/round/auto,
-/obj/item/reagent_containers/food/drinks/bottle/beer/papist{
-	pixel_y = 5
-	},
 /obj/machinery/light/fluorescent/warm{
 	dir = 4
 	},
+/obj/storage/closet/wardrobe/white,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "iQx" = (
@@ -10654,6 +10668,10 @@
 /obj/table/wood/round/auto,
 /obj/item/decoration/ashtray,
 /obj/machinery/light/fluorescent/warm,
+/obj/item/reagent_containers/food/drinks/bottle/beer/papist{
+	pixel_y = 9;
+	pixel_x = -11
+	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
 "kqG" = (
@@ -15280,9 +15298,16 @@
 /turf/floor/industrial,
 /area/station/maintenance/inner/north)
 "pJI" = (
-/obj/storage/closet/wardrobe/white,
-/turf/floor/carpet/grime,
-/area/station/crew_quarters/baroffice)
+/obj/table/reinforced/bar/auto,
+/obj/item_dispenser/icedispenser{
+	dir = 8;
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/turf/floor/black/side{
+	dir = 1
+	},
+/area/station/crew_quarters/bar)
 "pKh" = (
 /obj/cable{
 	d2 = 4;
@@ -21991,9 +22016,9 @@
 /area/station/bridge/basement)
 "wYm" = (
 /obj/cable{
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
-/obj/machinery/power/apc/autoname/east,
+/obj/machinery/chem_dispenser/chef,
 /turf/floor/grey,
 /area/station/crew_quarters/baroffice)
 "wYn" = (
@@ -22851,10 +22876,7 @@
 /turf/floor/plating,
 /area/station/science/lab)
 "xRw" = (
-/obj/table/auto,
-/obj/machinery/microwave{
-	pixel_y = 4
-	},
+/obj/submachine/italian_ice_dispenser,
 /turf/floor/grey,
 /area/station/crew_quarters/baroffice)
 "xSl" = (
@@ -68416,7 +68438,7 @@ cyU
 aLJ
 lRi
 ozU
-wYm
+cAg
 cHO
 jzE
 aZr
@@ -68718,8 +68740,8 @@ iws
 iws
 iws
 cih
-cih
-gwZ
+wYm
+cHO
 cje
 bvA
 iws
@@ -69008,7 +69030,7 @@ uZW
 xzv
 xzv
 xzv
-xyN
+pJI
 faB
 faB
 yhN
@@ -69017,11 +69039,11 @@ qED
 jwJ
 jwJ
 jwJ
-jwJ
 iiC
 riS
 cih
 cPi
+cHO
 ulu
 ruR
 xvA
@@ -69320,10 +69342,10 @@ jwJ
 jwJ
 jwJ
 jwJ
-jwJ
 fkT
 cih
-xRw
+bAJ
+cHO
 cHO
 cHO
 iws
@@ -69621,13 +69643,13 @@ fkT
 jwJ
 qmb
 iws
-iws
 tJl
 iws
 cih
+cih
 cKV
-cHO
-cHO
+gwZ
+xRw
 iws
 bXl
 gLd
@@ -69923,9 +69945,9 @@ iyj
 tld
 kqE
 iws
-lGm
 jwJ
-iVh
+jwJ
+sgh
 cih
 cih
 iws
@@ -70527,9 +70549,9 @@ kuG
 wHt
 gDT
 iws
-sgh
+lGm
 iPz
-pJI
+iVh
 aqL
 gLd
 bXl
