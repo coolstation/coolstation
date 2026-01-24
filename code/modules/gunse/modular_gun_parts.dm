@@ -1185,19 +1185,19 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Makeshift muzzle device, made from an.....ass?"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "butt-nc"
-	overlay_x = 3
+	overlay_x = 6 //if we don't have a barrel adjust towards the end of reciever by default.
 	part_DRM = GUN_ALL
 	call_alter_projectile = TRUE
 	spread_angle = 3 //no chance that round is NOT tumbling coming out of this thing.
 	contraband = 5 //Hey do you have a tax stamp for that thing?
 	jam_frequency = 3 //you didn't really clean this too well before attaching it did you? disgusting.
 
-	//need to handle the overlay in a custom way since it's a muzzle device, we are reusing the sprite, and we need the skin color.
-	//This works but might not be the cleanest way to do it, what I'm trying to do is account for barrels of different visual length. -Hexphire
+	//need to handle the overlay in a custom way since it's a muzzle device, we are reusing the sprite, and we need the color.
+	//This works but might not be the cleanest way to do it, but barrel overlay_x * 1.5 seems to cover all current barrels well
 	add_part_to_gun(var/obj/item/gun/modular/gun)
 		if(gun.barrel)
-			overlay_x += gun.barrel.overlay_x
-			overlay_y += gun.barrel.overlay_y
+			overlay_x = (gun.barrel.overlay_x * 1.5)
+			overlay_y = gun.barrel.overlay_y
 		..()
 
 	add_overlay_to_gun(obj/item/gun/modular/gun, correctly, layer_override)
@@ -1207,7 +1207,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		I.color = src.color
 		I.layer = gun.layer - 0.01
 		var/matrix/M = matrix()
-		M.Scale(0.75,1.15) //stretch it a little to help account for different barrels (and because well, what the heck we are doing to it)
+		M.Scale(0.75, 0.75) //don't need to strech anymore since approxiamtion is better now, but lets still shrink it a bit.
 		I.transform = M
 		I.transform = turn(I.transform, 90) //north facing butt was funny but aligned with the barrel makes more sense and is also funny.
 		gun.UpdateOverlays(I, "[part_type]")
@@ -1218,7 +1218,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 		//use bulk to help determine pitch. low bulk = higher pitch, high bulk = lower pitch with a little middle ground. adjust according to feedback
 		var/pitchChange = 0
 		if(gun.bulk > 6)
-			pitchChange = (1/gun.bulk) + 0.4
+			pitchChange = (1/gun.bulk) + 0.2
 		else if (gun.bulk < 5)
 			pitchChange = (2/gun.bulk) + 0.8
 		playsound(src.my_gun.loc, pick('sound/voice/farts/fart1.ogg', 'sound/voice/farts/fart2.ogg', 'sound/voice/farts/fart3.ogg'), 50, 1, SOUND_RANGE_STANDARD, pitchChange)
