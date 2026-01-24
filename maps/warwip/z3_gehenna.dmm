@@ -3566,6 +3566,7 @@
 /obj/grille/catwalk/bob/side{
 	dir = 4
 	},
+/obj/machinery/light/fluorescent/cool/very,
 /turf/floor/plating,
 /area/station/engine/elect)
 "cGX" = (
@@ -7052,6 +7053,17 @@
 /obj/decal/cleanable/rust/jen/grime,
 /turf/floor/bluegreen,
 /area/station/hallway/secondary/north)
+"gCK" = (
+/obj/disposalpipe/segment{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/white,
+/area/station/hallway/secondary/southwest)
 "gCM" = (
 /obj/wingrille_spawn/reinforced,
 /obj/cable{
@@ -7762,6 +7774,7 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
+/obj/window/reinforced/east,
 /turf/floor/black,
 /area/station/security/equipment)
 "hxX" = (
@@ -8432,6 +8445,7 @@
 /obj/grille/catwalk/bob/side{
 	dir = 8
 	},
+/obj/machinery/light/fluorescent/cool/very,
 /turf/floor/plating,
 /area/station/engine/elect)
 "ihA" = (
@@ -9332,6 +9346,12 @@
 /obj/machinery/disposal,
 /turf/floor/white,
 /area/station/hallway/secondary/southwest)
+"jba" = (
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/white,
+/area/station/hallway/secondary/southwest)
 "jbi" = (
 /obj/cable/blue{
 	icon_state = "4-8"
@@ -9966,13 +9986,14 @@
 /turf/floor/plating,
 /area/station/hallway/secondary/north)
 "jDF" = (
-/obj/machinery/conveyor/east{
-	name = "garbo belt";
-	operating = 1
+/obj/disposalpipe/segment/morgue,
+/obj/vehicle/segway,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
 	},
-/obj/machinery/light/fluorescent/cool/very,
-/turf/floor/plating,
-/area/station/maintenance/disposal/crusher)
+/obj/window/reinforced/north,
+/turf/floor/black,
+/area/station/security/equipment)
 "jEb" = (
 /obj/disposalpipe/segment/sewage{
 	dir = 4
@@ -10669,8 +10690,8 @@
 /obj/item/decoration/ashtray,
 /obj/machinery/light/fluorescent/warm,
 /obj/item/reagent_containers/food/drinks/bottle/beer/papist{
-	pixel_y = 9;
-	pixel_x = -11
+	pixel_x = -11;
+	pixel_y = 9
 	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/baroffice)
@@ -10746,9 +10767,6 @@
 /obj/grille/catwalk/bob,
 /obj/disposalpipe/trunk,
 /obj/machinery/disposal,
-/obj/machinery/light/small/warm{
-	dir = 8
-	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
 "kuQ" = (
@@ -10826,6 +10844,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/light/fluorescent/cool/very,
 /turf/floor/purplewhite/corner{
 	dir = 4
 	},
@@ -10953,6 +10972,11 @@
 	},
 /turf/floor/plating,
 /area/station/security/equipment)
+"kGW" = (
+/obj/disposalpipe/segment/mail/horizontal,
+/obj/machinery/computer3/generic/secure_data,
+/turf/floor/carpet/grime,
+/area/station/security/detectives_office)
 "kHf" = (
 /obj/machinery/atmospherics/binary/volume_pump{
 	dir = 8;
@@ -11597,6 +11621,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
 	},
+/obj/item/sheet/steel/fullstack,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -13122,6 +13147,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
+/obj/item/sheet/steel/fullstack,
 /turf/floor/plating,
 /area/station/engine/elect)
 "nkU" = (
@@ -13815,8 +13841,11 @@
 /turf/floor/plating,
 /area/station/security/beepsky)
 "odD" = (
-/obj/machinery/light/fluorescent/cool/very,
-/turf/floor/blackwhite,
+/obj/cable,
+/obj/machinery/power/data_terminal/cable_tray{
+	target_z = 1
+	},
+/turf/floor/plating,
 /area/station/hallway/secondary/southwest)
 "odG" = (
 /obj/storage/secure/closet/civilian/bartender,
@@ -16822,8 +16851,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/data_terminal,
-/obj/machinery/computer3/terminal/zeta{
-	name = "DWAINE Terminal - ZETA";
+/obj/machinery/computer3/terminal/zeta/amber{
 	setup_os_string = "ZETA_MAINFRAME"
 	},
 /turf/floor/carpet/grime3,
@@ -17046,6 +17074,10 @@
 /obj/disposalpipe/segment/bent/north,
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
+	},
+/obj/vehicle/segway,
+/obj/decal/tile_edge/stripe/extra_big{
+	icon_state = "delivery2"
 	},
 /turf/floor/black,
 /area/station/security/equipment)
@@ -17848,6 +17880,9 @@
 "swX" = (
 /obj/cable{
 	icon_state = "1-8"
+	},
+/obj/cable{
+	icon_state = "1-4"
 	},
 /turf/floor/white,
 /area/station/hallway/secondary/southwest)
@@ -19767,6 +19802,7 @@
 /turf/floor/white,
 /area/station/hallway/secondary/southwest)
 "uzY" = (
+/obj/ladder/auto,
 /turf/floor/yellow,
 /area/station/maintenance/outer/nw)
 "uAo" = (
@@ -21882,6 +21918,15 @@
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon8,
 /turf/floor,
 /area/station/science/lobby)
+"wTj" = (
+/obj/item/sheet/steel/fullstack,
+/turf/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/station/mining/cargo_staff_room{
+	mail_tag = "Logistics Staff Room";
+	name = "Logistics Staff Room"
+	})
 "wTz" = (
 /obj/ladder/auto,
 /obj/decal/tile_edge/stripe/extra_big{
@@ -21959,6 +22004,10 @@
 	},
 /turf/floor/carpet/red/standard,
 /area/station/security/detectives_office)
+"wVs" = (
+/obj/vehicle/segway,
+/turf/floor/plating,
+/area/station/security/beepsky)
 "wVR" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -53627,7 +53676,7 @@ bUx
 fSa
 fSa
 jqT
-fcY
+pzQ
 fcY
 kyd
 mHD
@@ -53929,9 +53978,9 @@ bgu
 jBh
 jBh
 qEx
-fcY
-fcY
-rln
+jba
+ryv
+gCK
 odD
 mHD
 mHD
@@ -68984,7 +69033,7 @@ xGJ
 qga
 qga
 saq
-cCp
+kGW
 gDo
 uCj
 mng
@@ -70793,7 +70842,7 @@ uQR
 jlh
 trG
 lnX
-trG
+jDF
 rHS
 bPO
 hTf
@@ -71156,7 +71205,7 @@ jrR
 jWH
 jWH
 jWH
-jrR
+jWH
 tBT
 kei
 wdE
@@ -72366,7 +72415,7 @@ aTl
 aTl
 aTl
 rWk
-jDF
+hiW
 wdE
 oaM
 oMA
@@ -74719,7 +74768,7 @@ naN
 lik
 rnl
 sZc
-sZc
+wVs
 ufh
 hTf
 hTf
@@ -77197,7 +77246,7 @@ hZq
 ybd
 tcl
 lvP
-tcl
+wTj
 fwk
 klB
 ijP
