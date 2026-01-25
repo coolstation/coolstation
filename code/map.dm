@@ -29,7 +29,7 @@ var/global/list/mapNames = list(
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"The Crag"=			list("id" = "CRAG",			"settings" = "crag", 			"playerPickable" = 1),
-	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 0),
+	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
 	"La Noyade" = 		list("id" = "NOYADE",		"settings" = "noyade",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
 	"Altbox" 	=		list("id" = "ALTBOX",		"settings" = "altbox",			"playerPickable" = 1),
