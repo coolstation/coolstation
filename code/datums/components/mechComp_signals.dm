@@ -252,6 +252,12 @@
 		boutput(user, "<span class='alert'>Components need to be within a range of 14 meters to connect.</span>")
 		return
 
+	if(istype(user.find_tool_in_hand(TOOL_PULSING), /obj/item/device/multitool))
+		var/obj/item/device/multitool/multitool_used = user.find_tool_in_hand(TOOL_PULSING)
+		if(multitool_used.mechComp_connect_mode != TRUE)
+			boutput(user, "<span class='alert'>Multitool is not in connect mode!</span>")
+			return
+
 	var/typesel = input(user, "Use [parent] as:", "Connection Type") in list("Trigger", "Receiver", "*CANCEL*")
 	switch(typesel)
 		if("Trigger")
@@ -334,6 +340,12 @@
 		var/obj/machinery/vending/hacked_vendor = comsig_target
 		if(hacked_vendor.panel_open)
 			return
+	if(user.find_tool_in_hand(TOOL_PULSING))
+		if(istype(user.find_tool_in_hand(TOOL_PULSING), /obj/item/device/multitool))
+			var/obj/item/device/multitool/multitool_used = user.find_tool_in_hand(TOOL_PULSING)
+			if(multitool_used.mechComp_configure_mode != TRUE)
+				boutput(user, "<span class='alert'>Multitool not in configure mode!</span>")
+				return
 	if(!ispulsingtool(W) || !isliving(user) || user.stat)
 		return 0
 	if(length(src.configs))

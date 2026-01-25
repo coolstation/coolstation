@@ -250,10 +250,15 @@ Handsaw
 	icon = 'icons/obj/items/tools/tools.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "multitool"
+	fiddleType = /datum/contextAction/fiddle/multitool
 
 	flags = FPRINT | TABLEPASS| CONDUCT | ONBELT
 	tool_flags = TOOL_PULSING
 	w_class = W_CLASS_SMALL
+
+	var/standard_mode = TRUE
+	var/mechComp_configure_mode = FALSE
+	var/mechComp_connect_mode = FALSE
 
 	force = 5
 	throwforce = 5
@@ -263,6 +268,8 @@ Handsaw
 	m_amt = 50
 	g_amt = 20
 	mats = list("CRY-1", "CON-2")
+
+
 
 	New()
 		..()
@@ -324,6 +331,60 @@ Handsaw
 	if (test_link)
 		if (length(test_link.powernet.cables) < 1)
 			boutput(user, "<span class='alert'>ERR#NOTATERM</span>")
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
+/datum/contextAction/fiddle/multitool
+
+	standard_mode
+		name = "Normal mode"
+		desc = "Use the multitool in normal mode."
+		icon_state = "eject"
+
+		checkRequirements(var/obj/item/device/multitool/target, var/mob/user)
+			if(!target.standard_mode)
+				return TRUE
+			return FALSE
+
+		execute(var/obj/item/device/multitool/target, var/mob/user)
+			target.mechComp_connect_mode = FALSE
+			target.mechComp_configure_mode = FALSE
+			target.standard_mode = TRUE
+			user.show_message("Multitool set to normal mode.")
+			return TRUE
+
+	mechComp_configure_mode
+		name = "MechComp configuration mode"
+		desc = "Use the multitool in MechComp configuration mode."
+		icon_state = "omni_pulsing"
+
+		checkRequirements(var/obj/item/device/multitool/target, var/mob/user)
+			if(!target.mechComp_configure_mode)
+				return TRUE
+			return FALSE
+
+		execute(var/obj/item/device/multitool/target, var/mob/user)
+			target.standard_mode = FALSE
+			target.mechComp_connect_mode = FALSE
+			target.mechComp_configure_mode = TRUE
+			user.show_message("Multitool set to MechComp configuration mode.")
+			return TRUE
+
+	mechComp_connect_mode
+		name = "MechComp connect mode"
+		desc = "Use the multitool in MechComp connect mode."
+		icon_state = "radio_start_listening"
+
+		checkRequirements(var/obj/item/device/multitool/target, var/mob/user)
+			if(!target.mechComp_connect_mode)
+				return TRUE
+			return FALSE
+
+		execute(var/obj/item/device/multitool/target, var/mob/user)
+			target.mechComp_configure_mode = FALSE
+			target.standard_mode = FALSE
+			target.mechComp_connect_mode = TRUE
+			user.show_message("Multitool set to MechComp connect mode.")
+			return TRUE
 
 
 
