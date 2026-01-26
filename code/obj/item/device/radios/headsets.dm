@@ -90,6 +90,7 @@
 
 /obj/item/device/radio/headset/command/sd
 	name = "Site Director's Headset"
+	icon_override = "sd"
 	secure_frequencies = list(
 		"h" = R_FREQ_COMMAND,
 		"g" = R_FREQ_SECURITY,
@@ -105,6 +106,7 @@
 
 /obj/item/device/radio/headset/command/sg
 	name = "Surveyor General's Headset"
+	icon_override = "sg"
 	secure_frequencies = list(
 		"h" = R_FREQ_COMMAND,
 		"r" = R_FREQ_RESEARCH,

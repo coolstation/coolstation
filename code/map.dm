@@ -34,7 +34,7 @@ var/global/list/mapNames = list(
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
 	"Altbox" 	=		list("id" = "ALTBOX",		"settings" = "altbox",			"playerPickable" = 1),
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
-	"Summit Outpost" =  list("id" = "SUMMIT",		"settings" = "summit", 			"playerPickable" = 0,		"MaxPlayersAllowed" = 75),
+	"Summit Outpost" =  list("id" = "SUMMIT",		"settings" = "summit", 			"playerPickable" = 0,		"MaxPlayersAllowed" = 35),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
 	"Spirit" =			list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),

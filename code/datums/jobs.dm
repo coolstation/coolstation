@@ -1403,7 +1403,7 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_jump = list(/obj/item/clothing/under/rank)
 	slot_foot = list(/obj/item/clothing/shoes/black)
 #ifdef MAP_OVERRIDE_SUMMIT
-	slot_suit = list(/obj/item/clothing/suit/cryo/log)
+	slot_suit = list(/obj/item/clothing/suit/cryo)
 #endif
 
 	New()

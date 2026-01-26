@@ -291,6 +291,15 @@
 	},
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
+"aT" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/item/clothing/shoes/winterboots,
+/turf/floor/grime,
+/area/station/crew_quarters/quartersA{
+	name = "Laundry Room"
+	})
 "aU" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
@@ -371,6 +380,7 @@
 /obj/item/clothing/suit/cryo/sec,
 /obj/item/clothing/suit/cryo/sec,
 /obj/item/clothing/suit/cryo/sec,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor,
 /area/station/security/secoffquarters)
 "bk" = (
@@ -778,6 +788,9 @@
 /obj/decal/poster/wallsign/stencil/right/c{
 	pixel_y = -17
 	},
+/obj/decal/slipmat{
+	dir = 4
+	},
 /turf/floor/carpet/grime3,
 /area/station/hallway/secondary/north)
 "cn" = (
@@ -900,6 +913,7 @@
 "cy" = (
 /obj/storage/secure/closet/security/equipment,
 /obj/item/clothing/suit/cryo/sec,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor,
 /area/station/security/secoffquarters)
 "cz" = (
@@ -999,6 +1013,7 @@
 "cN" = (
 /obj/storage/secure/closet/personal,
 /obj/item/clothing/suit/cryo,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quarters_north)
 "cP" = (
@@ -1440,7 +1455,7 @@
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/red,
 /obj/landmark/start{
-	name = "Assistant"
+	name = "Staff Assistant"
 	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quarters_south)
@@ -1605,6 +1620,7 @@
 	icon_state = "0-2"
 	},
 /obj/random_item_spawner/hat/one_or_zero,
+/obj/item/clothing/suit/cryo,
 /turf/floor/grime,
 /area/station/crew_quarters/quartersA{
 	name = "Laundry Room"
@@ -2130,6 +2146,12 @@
 "fR" = (
 /turf/wall/auto/reinforced,
 /area/station/maintenance/disposal/sewage)
+"fS" = (
+/obj/decal/slipmat{
+	dir = 4
+	},
+/turf/floor/carpet/grime3,
+/area/station/hallway/secondary/north)
 "fT" = (
 /obj/disposalpipe/segment/sewage/bent/south,
 /obj/cable{
@@ -2984,6 +3006,9 @@
 /obj/stool/chair{
 	dir = 4
 	},
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/grime,
 /area/station/hallway/secondary/central)
 "im" = (
@@ -3500,7 +3525,7 @@
 "jQ" = (
 /obj/stool/chair,
 /obj/landmark/start{
-	name = "Assistant"
+	name = "Staff Assistant"
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
@@ -4123,6 +4148,9 @@
 "lv" = (
 /obj/stool/chair{
 	dir = 8
+	},
+/obj/landmark/start{
+	name = "Staff Assistant"
 	},
 /turf/floor/grime,
 /area/station/hallway/secondary/central)
@@ -5219,6 +5247,9 @@
 	icon_state = "line1"
 	},
 /obj/storage/closet/wardrobe/mixed,
+/obj/item/clothing/shoes/winterboots,
+/obj/item/clothing/shoes/winterboots,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/lounge)
 "on" = (
@@ -6118,6 +6149,7 @@
 	icon_state = "4-8"
 	},
 /obj/item/clothing/suit/cryo,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/black/side,
 /area/station/crew_quarters/quarters_west{
 	name = "Hydroponics Crew Quarters"
@@ -6408,6 +6440,10 @@
 /area/station/medical/medbay/recovery)
 "rz" = (
 /obj/decal/slipmat,
+/obj/item/clothing/shoes/winterboots{
+	pixel_y = 4;
+	pixel_x = 9
+	},
 /turf/floor/grime,
 /area/station/crew_quarters/bar)
 "rA" = (
@@ -6766,6 +6802,7 @@
 /obj/item/stackable_ammo/rifle/tranq/five,
 /obj/item/stackable_ammo/rifle/NT/ten,
 /obj/item/clothing/suit/cryo/head,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/carpet/nicebrown,
 /area/station/bridge/surveyorgeneral)
 "sw" = (
@@ -7699,7 +7736,7 @@
 	pixel_x = 30
 	},
 /obj/landmark/start{
-	name = "Assistant"
+	name = "Staff Assistant"
 	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quarters_south)
@@ -8206,6 +8243,9 @@
 /obj/stool/chair{
 	dir = 4
 	},
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "wd" = (
@@ -8229,6 +8269,9 @@
 	dir = 8
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quarters_south)
 "wj" = (
@@ -8917,6 +8960,7 @@
 /obj/storage/secure/closet/security/equipment,
 /obj/item/clothing/suit/cryo/sec,
 /obj/disposalpipe/segment/sewage/vertical,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/grime,
 /area/station/security/secoffquarters)
 "yg" = (
@@ -10601,6 +10645,9 @@
 /obj/item/clothing/suit/cryo,
 /obj/item/clothing/suit/cryo,
 /obj/item/clothing/suit/cryo,
+/obj/item/clothing/shoes/winterboots,
+/obj/item/clothing/shoes/winterboots,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/lounge)
 "CD" = (
@@ -11374,6 +11421,9 @@
 /obj/machinery/light/small/warm{
 	dir = 1
 	},
+/obj/item/clothing/shoes/winterboots{
+	pixel_y = 4
+	},
 /turf/floor/grime,
 /area/station/hallway/secondary/central)
 "EA" = (
@@ -11389,7 +11439,7 @@
 	icon_state = "chair"
 	},
 /obj/landmark/start{
-	name = "Assistant"
+	name = "Staff Assistant"
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
@@ -12152,6 +12202,9 @@
 /obj/stool/chair{
 	dir = 4
 	},
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/nevicata/wastes/plating,
 /area/nevicata{
 	name = "Director Quarter"
@@ -12374,6 +12427,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/item/clothing/suit/cryo,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quarters_north)
 "Hd" = (
@@ -12623,6 +12677,7 @@
 "HE" = (
 /obj/storage/secure/closet/civilian/hydro,
 /obj/item/clothing/suit/cryo,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/black/side{
 	dir = 6
 	},
@@ -12692,6 +12747,9 @@
 	},
 /obj/cable{
 	icon_state = "2-8"
+	},
+/obj/decal/slipmat/torn{
+	dir = 4
 	},
 /turf/floor/grime,
 /area/station/hallway/secondary/central)
@@ -12767,6 +12825,7 @@
 /obj/item/clothing/suit/cryo,
 /obj/item/clothing/suit/cryo,
 /obj/item/clothing/suit/cryo,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/black/side{
 	dir = 10
 	},
@@ -13390,6 +13449,7 @@
 /obj/storage/secure/closet/security/equipment,
 /obj/item/clothing/suit/cryo/sec,
 /obj/disposalpipe/segment,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/grime,
 /area/station/security/secoffquarters)
 "JC" = (
@@ -13465,7 +13525,7 @@
 	dir = 8
 	},
 /obj/landmark/start{
-	name = "Assistant"
+	name = "Staff Assistant"
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_south)
@@ -13688,6 +13748,9 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /obj/decal/cleanable/cobweb2,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "Kt" = (
@@ -13937,6 +14000,7 @@
 	dir = 1
 	},
 /obj/item/clothing/suit/cryo,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quarters_north)
 "Lb" = (
@@ -14002,12 +14066,12 @@
 	dir = 8
 	},
 /obj/decal/cleanable/dirt/random,
-/obj/landmark/start{
-	name = "Assistant"
-	},
 /obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
+	},
+/obj/landmark/start{
+	name = "Staff Assistant"
 	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quarters_north)
@@ -15020,6 +15084,9 @@
 	name = "old wooden chair"
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
 "NS" = (
@@ -15189,7 +15256,7 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /obj/landmark/start{
-	name = "Assistant"
+	name = "Staff Assistant"
 	},
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_south)
@@ -15298,6 +15365,7 @@
 	dir = 1
 	},
 /obj/item/clothing/suit/cryo,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quarters_north)
 "OG" = (
@@ -16779,6 +16847,9 @@
 "SH" = (
 /obj/decal/slipmat,
 /obj/decal/cleanable/dirt/random,
+/obj/item/clothing/shoes/winterboots{
+	pixel_x = 6
+	},
 /turf/floor,
 /area/station/crew_quarters/quarters_north)
 "SI" = (
@@ -16859,6 +16930,9 @@
 	pixel_x = -23;
 	pixel_y = 8
 	},
+/obj/landmark/start{
+	name = "Staff Assistant"
+	},
 /turf/floor/wood/five,
 /area/nevicata{
 	name = "Director Quarter"
@@ -16884,7 +16958,7 @@
 /obj/item/clothing/suit/bedsheet/random,
 /obj/machinery/light/small/cool,
 /obj/landmark/start{
-	name = "Assistant"
+	name = "Staff Assistant"
 	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quarters_north)
@@ -17976,7 +18050,7 @@
 /obj/item/clothing/suit/bedsheet/random,
 /obj/random_item_spawner/snacks/one,
 /obj/landmark/start{
-	name = "Assistant"
+	name = "Staff Assistant"
 	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quarters_south)
@@ -18209,7 +18283,7 @@
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/black,
 /obj/landmark/start{
-	name = "Assistant"
+	name = "Staff Assistant"
 	},
 /turf/floor/carpet/grime3,
 /area/station/crew_quarters/quarters_north)
@@ -18225,6 +18299,7 @@
 	icon_state = "0-8"
 	},
 /obj/item/clothing/suit/cryo,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/black/side,
 /area/station/crew_quarters/quarters_west{
 	name = "Hydroponics Crew Quarters"
@@ -18325,7 +18400,7 @@
 	dir = 8
 	},
 /obj/landmark/start{
-	name = "Assistant"
+	name = "Staff Assistant"
 	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/lounge)
@@ -18423,6 +18498,10 @@
 	requires_power = 0;
 	name = "Clown Cave"
 	})
+"WO" = (
+/obj/decal/slipmat,
+/turf/floor/grime,
+/area/station/hallway/secondary/central)
 "WP" = (
 /obj/machinery/door/airlock/gannets/glass/medical,
 /obj/disposalpipe/segment,
@@ -18563,6 +18642,7 @@
 /obj/item/stackable_ammo/rifle/NT/ten,
 /obj/item/stackable_ammo/rifle/capacitive/burst/five,
 /obj/item/clothing/suit/cryo/head,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor/carpet/darkcarpet,
 /area/station/bridge/sitedirector)
 "Xj" = (
@@ -18596,6 +18676,7 @@
 /obj/storage/secure/closet/security/equipment,
 /obj/item/clothing/suit/cryo/sec,
 /obj/blind_switch/area/west,
+/obj/item/clothing/shoes/winterboots,
 /turf/floor,
 /area/station/security/secoffquarters)
 "Xm" = (
@@ -19291,11 +19372,11 @@
 /obj/stool/chair{
 	dir = 4
 	},
-/obj/landmark/start{
-	name = "Assistant"
-	},
 /obj/cable{
 	icon_state = "2-5"
+	},
+/obj/landmark/start{
+	name = "Staff Assistant"
 	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/lounge)
@@ -68709,7 +68790,7 @@ QT
 FV
 YX
 al
-YT
+fS
 GG
 Ar
 eN
@@ -70234,7 +70315,7 @@ BL
 xc
 xc
 LO
-LX
+WO
 FS
 gy
 LX
@@ -70243,7 +70324,7 @@ LX
 LX
 FS
 LX
-LX
+WO
 Cs
 BL
 BL
@@ -71765,7 +71846,7 @@ hI
 zQ
 xJ
 VO
-ki
+aT
 VB
 hQ
 oX
