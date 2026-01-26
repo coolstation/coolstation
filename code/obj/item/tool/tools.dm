@@ -246,7 +246,7 @@ Handsaw
 
 /obj/item/device/multitool
 	name = "multitool"
-	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires. Use X while holding it to access advanced functions."
+	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires. Press X while holding it to access advanced functions."
 	icon = 'icons/obj/items/tools/tools.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "multitool"
@@ -333,12 +333,13 @@ Handsaw
 		if (length(test_link.powernet.cables) < 1)
 			boutput(user, "<span class='alert'>ERR#NOTATERM</span>")
 
-ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
+//fiddle for multitool modes Standard(non-mechcomp), MechComp Configure, MechComp Connect, Clear Stored Component.
+ABSTRACT_TYPE(/datum/contextAction/fiddle/multitool)
 /datum/contextAction/fiddle/multitool
 
 	standard_mode
-		name = "Normal mode"
-		desc = "Use the multitool in normal mode."
+		name = "Standard mode"
+		desc = "Return the multitool to standard mode."
 		icon_state = "eject"
 
 		checkRequirements(var/obj/item/device/multitool/target, var/mob/user)
@@ -350,12 +351,12 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
 			target.mechComp_connect_mode = FALSE
 			target.mechComp_configure_mode = FALSE
 			target.standard_mode = TRUE
-			user.show_message("Multitool set to normal mode.")
+			user.show_message("Multitool set to standard mode.")
 			return TRUE
 
 	mechComp_configure_mode
 		name = "MechComp configuration mode"
-		desc = "Use the multitool in MechComp configuration mode."
+		desc = "Set the multitool to MechComp configuration mode."
 		icon_state = "omni_pulsing"
 
 		checkRequirements(var/obj/item/device/multitool/target, var/mob/user)
@@ -372,7 +373,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
 
 	mechComp_connect_mode
 		name = "MechComp connect mode"
-		desc = "Use the multitool in MechComp connect mode."
+		desc = "Set the multitool to MechComp connect mode."
 		icon_state = "radio_start_listening"
 
 		checkRequirements(var/obj/item/device/multitool/target, var/mob/user)
