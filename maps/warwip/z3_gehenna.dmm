@@ -7335,6 +7335,10 @@
 	},
 /turf/floor/industrial,
 /area/station/mining/refinery)
+"gdI" = (
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/neutral,
+/area/station/hallway/secondary/southwest)
 "gfk" = (
 /obj/disposalpipe/segment{
 	dir = 2
@@ -7868,8 +7872,13 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 1
 	},
-/obj/machinery/computer/secure_data,
 /obj/decal/cleanable/rust/jen/grime,
+/obj/machinery/computer3/generic/secure_data,
+/obj/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
 /turf/floor/black,
 /area/station/security/checkpoint/medical)
 "gHT" = (
@@ -9297,6 +9306,9 @@
 	},
 /obj/stool,
 /obj/decal/cleanable/rust/jen/grime,
+/obj/cable{
+	icon_state = "4-8"
+	},
 /turf/floor/black,
 /area/station/security/checkpoint/medical)
 "ieX" = (
@@ -17200,6 +17212,15 @@
 	},
 /turf/floor/black,
 /area/station/crew_quarters/hor)
+"pKk" = (
+/obj/decal/cleanable/rust/jen/grime,
+/obj/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/floor/black,
+/area/station/security/checkpoint/medical)
 "pKn" = (
 /turf/wall/asteroid/gehenna/tough/z3,
 /area/station/maintenance/disposal)
@@ -18932,6 +18953,9 @@
 /obj/machinery/light/emergency{
 	dir = 8
 	},
+/obj/machinery/button/elevator/sec{
+	pixel_x = -25
+	},
 /turf/floor/black,
 /area/station/security/equipment)
 "rwG" = (
@@ -19372,8 +19396,10 @@
 /turf/floor/white,
 /area/station/medical/cdc)
 "rSy" = (
-/turf/wall/asteroid/gehenna/tough/z3,
-/area/station/security/checkpoint/medical)
+/obj/decal/cleanable/rust/jen/grime,
+/obj/ladder/auto,
+/turf/floor/neutral,
+/area/station/hallway/secondary/southwest)
 "rSO" = (
 /obj/machinery/manufacturer/robotics,
 /obj/decal/cleanable/rust/jen/grime,
@@ -23112,6 +23138,9 @@
 "vpv" = (
 /obj/table/reinforced/bar/auto,
 /obj/disposalpipe/segment/bent/west,
+/obj/shitty_radio/shitty_tv{
+	pixel_y = 6
+	},
 /turf/floor/black/side{
 	dir = 5
 	},
@@ -57128,9 +57157,9 @@ fcY
 fcY
 rln
 sKQ
-xAz
-rSy
-rSy
+mHD
+nNV
+nNV
 mHD
 eKv
 eGr
@@ -57430,9 +57459,9 @@ aRD
 vXy
 cpR
 sKQ
-xAz
-rSy
-rSy
+mHD
+nNV
+nNV
 mHD
 eKv
 eGr
@@ -57732,9 +57761,9 @@ xAz
 vNc
 fcY
 sKQ
-xAz
-rSy
-rSy
+mHD
+mHD
+mHD
 mHD
 wVR
 eGr
@@ -58034,10 +58063,10 @@ xAz
 jJI
 wxD
 lyw
-xAz
-rSy
-rSy
 mHD
+rSy
+gdI
+gdI
 eKv
 eGr
 wao
@@ -58336,9 +58365,9 @@ xAz
 jlL
 buV
 jlL
-xAz
-rSy
-rSy
+mHD
+mHD
+mHD
 mHD
 bLM
 eGr
@@ -58640,7 +58669,7 @@ dgw
 dgw
 xAz
 xAz
-rSy
+nNV
 mHD
 eKv
 eGr
@@ -58938,7 +58967,7 @@ mHD
 qMV
 xAz
 gDZ
-dgw
+pKk
 dgw
 fhM
 xAz
