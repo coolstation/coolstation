@@ -34,6 +34,7 @@
 	var/receives_security_disk = 0
 	var/receives_badge = 0
 	var/announce_on_join = 0 // that's the head of staff announcement thing
+	var/summit_exclusive = 0
 	var/radio_announcement = 1 // that's the latejoin announcement thing
 	var/list/alt_names = list()
 	var/slot_card = /obj/item/card/id
@@ -538,6 +539,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	cant_spawn_as_rev = 1
 	announce_on_join = 1
 	allow_spy_theft = 0
+	summit_exclusive = 1
 
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_card = /obj/item/card/id/command
@@ -567,6 +569,7 @@ ABSTRACT_TYPE(/datum/job/command)
 	cant_spawn_as_rev = 1
 	announce_on_join = 1
 	allow_spy_theft = 0
+	summit_exclusive = 1
 
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_card = /obj/item/card/id/command

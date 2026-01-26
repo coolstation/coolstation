@@ -291,15 +291,6 @@
 	},
 /turf/floor/blue,
 /area/station/medical/medbay/lobby)
-"aT" = (
-/obj/cable{
-	icon_state = "4-8"
-	},
-/obj/item/clothing/shoes/winterboots,
-/turf/floor/grime,
-/area/station/crew_quarters/quartersA{
-	name = "Laundry Room"
-	})
 "aU" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
@@ -2146,12 +2137,6 @@
 "fR" = (
 /turf/wall/auto/reinforced,
 /area/station/maintenance/disposal/sewage)
-"fS" = (
-/obj/decal/slipmat{
-	dir = 4
-	},
-/turf/floor/carpet/grime3,
-/area/station/hallway/secondary/north)
 "fT" = (
 /obj/disposalpipe/segment/sewage/bent/south,
 /obj/cable{
@@ -8646,6 +8631,11 @@
 /obj/machinery/chem_heater,
 /turf/floor/darkblue,
 /area/station/medical/medbay/pharmacy)
+"xr" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/obj/machinery/atmospherics/valve/horizontal,
+/turf/floor,
+/area/station/engine/core)
 "xt" = (
 /turf/floor/grass,
 /area/station/hydroponics/bay)
@@ -14861,6 +14851,12 @@
 /obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor,
 /area/station/quartermaster/cargobay)
+"Nl" = (
+/obj/decal/slipmat{
+	dir = 4
+	},
+/turf/floor/carpet/grime3,
+/area/station/hallway/secondary/north)
 "Nm" = (
 /obj/disposalpipe/segment,
 /obj/disposalpipe/segment/sewage/horizontal,
@@ -15180,6 +15176,10 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay)
+"Og" = (
+/obj/decal/slipmat,
+/turf/floor/grime,
+/area/station/hallway/secondary/central)
 "Oh" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/grime,
@@ -18498,10 +18498,6 @@
 	requires_power = 0;
 	name = "Clown Cave"
 	})
-"WO" = (
-/obj/decal/slipmat,
-/turf/floor/grime,
-/area/station/hallway/secondary/central)
 "WP" = (
 /obj/machinery/door/airlock/gannets/glass/medical,
 /obj/disposalpipe/segment,
@@ -19419,7 +19415,11 @@
 /area/station/security/main)
 "Zj" = (
 /obj/machinery/atmospherics/mixer{
-	dir = 8
+	dir = 8;
+	frequency = 1225;
+	id_tag = "engine_combust";
+	master_id = "engine_combust_control";
+	name = "Gas Mixer (Combustion Chamber)"
 	},
 /turf/floor,
 /area/station/engine/monitoring)
@@ -19438,6 +19438,15 @@
 /turf/floor/nevicata/wastes/beaten,
 /area/nevicata{
 	name = "Director Quarter"
+	})
+"Zo" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/item/clothing/shoes/winterboots,
+/turf/floor/grime,
+/area/station/crew_quarters/quartersA{
+	name = "Laundry Room"
 	})
 "Zp" = (
 /obj/disposalpipe/segment/morgue/vertical,
@@ -56133,7 +56142,7 @@ LU
 Uu
 AS
 ob
-XA
+xr
 mT
 lj
 fh
@@ -68790,7 +68799,7 @@ QT
 FV
 YX
 al
-fS
+Nl
 GG
 Ar
 eN
@@ -70315,7 +70324,7 @@ BL
 xc
 xc
 LO
-WO
+Og
 FS
 gy
 LX
@@ -70324,7 +70333,7 @@ LX
 LX
 FS
 LX
-WO
+Og
 Cs
 BL
 BL
@@ -71846,7 +71855,7 @@ hI
 zQ
 xJ
 VO
-aT
+Zo
 VB
 hQ
 oX
