@@ -544,9 +544,9 @@ ABSTRACT_TYPE(/datum/job/command)
 	slot_poc2 = list(/obj/item/spacecash/fivehundred)
 	slot_belt = list(/obj/item/device/pda2/heads)
 	slot_jump = list(/obj/item/clothing/under/shirt_pants_b/redtie)
-	slot_foot = list(/obj/item/clothing/shoes/swat)
-	slot_suit = list(/obj/item/clothing/suit/cryo/sd)
-	slot_ears = list(/obj/item/device/radio/headset/command/sd)
+	slot_foot = list(/obj/item/clothing/shoes/winterboots)
+	slot_suit = list(/obj/item/clothing/suit/cryo/head)
+	slot_ears = list(/obj/item/device/radio/headset/command/head)
 	slot_head = list(/obj/item/clothing/head/bighat/czako)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
 	slot_glov = list(/obj/item/clothing/gloves/black)
@@ -573,8 +573,8 @@ ABSTRACT_TYPE(/datum/job/command)
 	slot_poc2 = list(/obj/item/spacecash/fivehundred)
 	slot_belt = list(/obj/item/device/pda2/heads)
 	slot_jump = list(/obj/item/clothing/under/shirt_pants_b/bluetie)
-	slot_foot = list(/obj/item/clothing/shoes/swat)
-	slot_suit = list(/obj/item/clothing/suit/cryo/sg)
+	slot_foot = list(/obj/item/clothing/shoes/winterboots)
+	slot_suit = list(/obj/item/clothing/suit/cryo/head)
 	slot_ears = list(/obj/item/device/radio/headset/command/sg)
 	slot_head = list(/obj/item/clothing/head/bighat/shako)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
@@ -611,6 +611,9 @@ ABSTRACT_TYPE(/datum/job/security)
 	slot_jump = list(/obj/item/clothing/under/rank/security/suit)
 	slot_head = list(/obj/item/clothing/head/sec)
 	slot_glov = list(/obj/item/clothing/gloves/latex)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/sec)
+#endif
 /*
 #else
 	slot_back = list(/obj/item/storage/backpack/withO2)
@@ -656,7 +659,9 @@ ABSTRACT_TYPE(/datum/job/security)
 		wages = PAY_UNTRAINED
 		slot_jump = list(/obj/item/clothing/under/rank/security/assistant)
 		slot_belt = list()
-		slot_suit = list()
+	#ifdef MAP_OVERRIDE_SUMMIT
+		slot_suit = list(/obj/item/clothing/suit/cryo/sec)
+	#endif
 		slot_glov = list(/obj/item/clothing/gloves/fingerless)
 		slot_head = list(/obj/item/clothing/head/red)
 		slot_foot = list(/obj/item/clothing/shoes/brown)
@@ -762,6 +767,9 @@ ABSTRACT_TYPE(/datum/job/research)
 	wages = PAY_DOCTORATE
 	slot_belt = list(/obj/item/device/pda2/toxins)
 	slot_jump = list(/obj/item/clothing/under/rank/scientist)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo)
+#endif
 	slot_foot = list(/obj/item/clothing/shoes/white)
 	slot_ears = list(/obj/item/device/radio/headset/research)
 	slot_eyes = list(/obj/item/clothing/glasses/spectro)
@@ -794,7 +802,11 @@ ABSTRACT_TYPE(/datum/job/medical)
 	slot_back = list(/obj/item/storage/backpack/medic)
 	slot_belt = list(/obj/item/storage/belt/medical)
 	slot_jump = list(/obj/item/clothing/under/rank/medical)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/med)
+#else
 	slot_suit = list(/obj/item/clothing/suit/labcoat)
+#endif
 	slot_foot = list(/obj/item/clothing/shoes/red)
 	slot_lhan = list(/obj/item/storage/firstaid/regular/doctor_spawn)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
@@ -840,7 +852,11 @@ ABSTRACT_TYPE(/datum/job/medical)
 	slot_belt = list(/obj/item/device/pda2/medical)
 	slot_back = list(/obj/item/storage/backpack/medic)
 	slot_jump = list(/obj/item/clothing/under/rank/medical)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/med)
+#else
 	slot_suit = list(/obj/item/clothing/suit/labcoat)
+#endif
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_lhan = list(/obj/item/storage/firstaid/docbag)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
@@ -867,7 +883,11 @@ ABSTRACT_TYPE(/datum/job/medical)
 	slot_card = /obj/item/card/id/research
 	slot_back = list(/obj/item/storage/backpack/medic)
 	slot_jump = list(/obj/item/clothing/under/shirt_pants)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/med)
+#else
 	slot_suit = list(/obj/item/clothing/suit/labcoat)
+#endif
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
 	slot_belt = list(/obj/item/device/pda2/medical)
@@ -901,6 +921,9 @@ ABSTRACT_TYPE(/datum/job/medical)
 	#else
 	slot_ears = list(/obj/item/device/radio/headset/medical)
 	#endif
+#ifdef MAP_OVERRIDE_SUMMIT
+	items_in_backpack = list(/obj/item/clothing/suit/cryo/med)
+#endif
 
 	New()
 		..()
@@ -921,6 +944,11 @@ ABSTRACT_TYPE(/datum/job/medical)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
 	slot_poc1 = list(/obj/item/reagent_containers/mender/brute)
 	items_in_backpack = list(/obj/item/crowbar)
+#ifdef MAP_OVERRIDE_SUMMIT
+	items_in_backpack = list(/obj/item/crowbar,/obj/item/clothing/suit/cryo/med)
+#else
+	items_in_backpack = list(/obj/item/crowbar)
+#endif
 
 	New()
 		..()
@@ -943,6 +971,9 @@ ABSTRACT_TYPE(/datum/job/medical)
 	slot_jump = list(/obj/item/clothing/under/rank/geneticist)
 	slot_foot = list(/obj/item/clothing/shoes/white)
 	slot_suit = list(/obj/item/clothing/suit/labcoat/genetics)
+#ifdef MAP_OVERRIDE_SUMMIT
+	items_in_backpack = list(/obj/item/crowbar,/obj/item/clothing/suit/cryo/med)
+#endif
 	slot_ears = list(/obj/item/device/radio/headset/medical)
 
 	New()
@@ -964,6 +995,9 @@ ABSTRACT_TYPE(/datum/job/medical)
 	/obj/item/clothing/under/scrub/pink=1,\
 	/obj/item/clothing/under/scrub/flower=1)
 	slot_ears = list(/obj/item/device/radio/headset/medical)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/med)
+#endif
 
 	New()
 		..()
@@ -977,7 +1011,9 @@ ABSTRACT_TYPE(/datum/job/medical)
 	low_priority_job = 1
 	slot_foot = list(/obj/item/clothing/shoes/white)
 	slot_jump = list(/obj/item/clothing/under/color/white)
-
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/med)
+#endif
 	New()
 		..()
 		src.access = get_access("Nurse")
@@ -1015,7 +1051,9 @@ ABSTRACT_TYPE(/datum/job/engineering)
 	slot_poc1 = list(/obj/item/device/pda2/engine)
 	slot_ears = list(/obj/item/device/radio/headset/engineer)
 	items_in_backpack = list(/obj/item/paper/book/from_file/pocketguide/engineering, /obj/item/old_grenade/oxygen)
-
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/eng)
+#endif
 	special_setup(var/mob/living/carbon/human/M)
 		..()
 		if (!M)
@@ -1050,6 +1088,9 @@ ABSTRACT_TYPE(/datum/job/engineering)
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/storage/belt/utility/prepared)
 	slot_jump = list(/obj/item/clothing/under/rank/mechanic)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/eng)
+#endif
 	slot_foot = list(/obj/item/clothing/shoes/black)
 	slot_lhan = list(/obj/item/storage/toolbox/electrical/mechanic_spawn)
 	slot_glov = list(/obj/item/clothing/gloves/yellow = 95, /obj/item/clothing/gloves/yellow/unsulated = 5)
@@ -1069,6 +1110,9 @@ ABSTRACT_TYPE(/datum/job/engineering)
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/storage/belt/utility/prepared)
 	slot_jump = list(/obj/item/clothing/under/rank/mechanic)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/eng)
+#endif
 	slot_foot = list(/obj/item/clothing/shoes/black)
 	slot_lhan = list(/obj/item/storage/toolbox/electrical/mechanic_spawn)
 	slot_glov = list(/obj/item/clothing/gloves/yellow)
@@ -1086,6 +1130,9 @@ ABSTRACT_TYPE(/datum/job/engineering)
 	wages = PAY_TRADESMAN
 	slot_belt = list(/obj/item/device/pda2/atmos)
 	slot_jump = list(/obj/item/clothing/under/misc/atmospheric_technician)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/eng)
+#endif
 	slot_foot = list(/obj/item/clothing/shoes/black)
 	slot_lhan = list(/obj/item/storage/toolbox/mechanical)
 	slot_poc1 = list(/obj/item/device/analyzer/atmospheric)
@@ -1114,6 +1161,9 @@ ABSTRACT_TYPE(/datum/job/logistics)
 	slot_glov = list(/obj/item/clothing/gloves/black)
 	slot_foot = list(/obj/item/clothing/shoes/black)
 	slot_jump = list(/obj/item/clothing/under/rank/cargo)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/log)
+#endif
 	slot_belt = list(/obj/item/device/pda2/cargo_tech)
 	slot_ears = list(/obj/item/device/radio/headset/shipping)
 	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/quartermaster)
@@ -1132,6 +1182,9 @@ ABSTRACT_TYPE(/datum/job/logistics)
 	slot_back = list(/obj/item/storage/backpack/withO2)
 	slot_belt = list(/obj/item/device/pda2/mining)
 	slot_jump = list(/obj/item/clothing/under/rank/overalls)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/log)
+#endif
 	slot_foot = list(/obj/item/clothing/shoes/orange)
 	slot_glov = list(/obj/item/clothing/gloves/black)
 	slot_ears = list(/obj/item/device/radio/headset/shipping)
@@ -1173,6 +1226,9 @@ ABSTRACT_TYPE(/datum/job/logistics)
 	wages = PAY_TRADESMAN
 	limit = 1
 	slot_jump = list(/obj/item/clothing/under/misc/mail/syndicate)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/log)
+#endif
 	slot_head = list(/obj/item/clothing/head/mailcap)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_back = list(/obj/item/storage/backpack/satchel)
@@ -1191,6 +1247,9 @@ ABSTRACT_TYPE(/datum/job/logistics)
 	wages = PAY_TRADESMAN
 	slot_poc1 = list(/obj/item/device/pda2/janitor)
 	slot_jump = list(/obj/item/clothing/under/rank/janitor)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/log)
+#endif
 	slot_belt = list(/obj/item/storage/belt/utility/janitor)
 	slot_foot = list(/obj/item/clothing/shoes/galoshes)
 	slot_ears = list(/obj/item/device/radio/headset/shipping)
@@ -1218,7 +1277,11 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_head = list(/obj/item/clothing/head/chefhat)
 	slot_suit = list(/obj/item/clothing/suit/chef)
 	slot_ears = list(/obj/item/device/radio/headset/civilian)
+#ifdef MAP_OVERRIDE_SUMMIT
+	items_in_backpack = list(/obj/item/clothing/suit/cryo,/obj/item/kitchen/rollingpin)
+#else
 	items_in_backpack = list(/obj/item/kitchen/rollingpin)
+#endif
 
 	New()
 		..()
@@ -1240,7 +1303,11 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_belt = list(/obj/item/device/pda2/bartender)
 	slot_jump = list(/obj/item/clothing/under/rank/bartender)
 	slot_foot = list(/obj/item/clothing/shoes/black)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/log)
+#else
 	slot_suit = list(/obj/item/clothing/suit/armor/vest)
+#endif
 	slot_ears = list(/obj/item/device/radio/headset/civilian)
 	slot_poc1 = list(/obj/item/paper/book/from_file/pocketguide/bartending)
 	slot_lhan = list(/obj/item/reagent_containers/food/drinks/cocktailshaker) // bartenders buddy ammo is broken i think
@@ -1267,6 +1334,9 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	wages = PAY_TRADESMAN
 	slot_belt = list(/obj/item/device/pda2/botanist)
 	slot_jump = list(/obj/item/clothing/under/rank/hydroponics)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/log)
+#endif
 	slot_foot = list(/obj/item/clothing/shoes/brown)
 	slot_glov = list(/obj/item/clothing/gloves/black)
 	slot_poc1 = list(/obj/item/paper/botany_guide)
@@ -1301,6 +1371,9 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	limit = 1
 	wages = PAY_UNTRAINED
 	slot_jump = list(/obj/item/clothing/under/rank/chaplain)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/log)
+#endif
 	slot_belt = list(/obj/item/device/pda2/chaplain)
 	slot_foot = list(/obj/item/clothing/shoes/black)
 	slot_ears = list(/obj/item/device/radio/headset/civilian)
@@ -1329,13 +1402,16 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	map_can_autooverride = 0
 	slot_jump = list(/obj/item/clothing/under/rank)
 	slot_foot = list(/obj/item/clothing/shoes/black)
+#ifdef MAP_OVERRIDE_SUMMIT
+	slot_suit = list(/obj/item/clothing/suit/cryo/log)
+#endif
 
 	New()
 		..()
 		src.access = get_access("Staff Assistant")
 		return
 
-/datum/job/civilian/clown
+/datum/job/civilian/clown //todo: sprite a clown cryosuit
 	name = "Clown"
 	limit = 1
 	wages = PAY_DUMBCLOWN

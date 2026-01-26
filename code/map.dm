@@ -398,6 +398,7 @@ var/global/list/mapNames = list(
 		/datum/job/command/surveyorgeneral = 1,
 		/datum/job/security/security_officer = 4,
 		/datum/job/logistics/miner = 2,
+		/datum/job/research/scientist = 0,
 	)
 
 /datum/map_settings/bayoubend

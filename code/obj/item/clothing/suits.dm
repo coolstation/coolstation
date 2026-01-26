@@ -1813,17 +1813,11 @@
 	icon_state = "cryocoat-med"
 	item_state = "cryocoat-med"
 
-/obj/item/clothing/suit/cryo/med
-	name = "medical cryogenic coat"
-	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for medical staff."
-	icon_state = "cryocoat-med"
-	item_state = "cryocoat-med"
-
 /obj/item/clothing/suit/cryo/recon
 	name = "recon cryogenic coat"
 	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for the recon team."
-	icon_state = "cryocoat-sci"
-	item_state = "cryocoat-sci"
+	icon_state = "cryocoat-recon"
+	item_state = "cryocoat-recon"
 
 	setupProperties()
 		..()
@@ -1843,29 +1837,11 @@
 	icon_state = "cryocoat-log"
 	item_state = "cryocoat-log"
 
-/obj/item/clothing/suit/cryo/jan
-	name = "custodial cryogenic coat"
-	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for custodial staff."
-	icon_state = "cryocoat-cus"
-	item_state = "cryocoat-cus"
-
-/obj/item/clothing/suit/cryo/sd
-	name = "site director's cryogenic coat"
-	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for the site director, and has some kevlar in the lining."
-	icon_state = "cryocoat-sd"
-	item_state = "cryocoat-sd"
-
-	setupProperties()
-		..()
-		setProperty("coldprot", 70)
-		setProperty("meleeprot", 3)
-		setProperty("rangedprot", 0.7)
-
-/obj/item/clothing/suit/cryo/sg
-	name = "surveyor general's cryogenic coat"
-	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for the surveyor general, and has some kevlar in the lining."
-	icon_state = "cryocoat-sg"
-	item_state = "cryocoat-sg"
+/obj/item/clothing/suit/cryo/head
+	name = "command cryogenic coat"
+	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for command, and has some kevlar in the lining."
+	icon_state = "cryocoat-head"
+	item_state = "cryocoat-head"
 
 	setupProperties()
 		..()

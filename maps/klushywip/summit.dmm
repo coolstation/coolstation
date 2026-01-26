@@ -1999,6 +1999,13 @@
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
+"fs" = (
+/obj/item/clothing/suit/cryo,
+/turf/floor/carpet/clowncarpet,
+/area/station/crew_quarters/clown{
+	requires_power = 0;
+	name = "Clown Cave"
+	})
 "ft" = (
 /obj/decal/slipmat/torn{
 	dir = 4
@@ -2278,6 +2285,10 @@
 /area/station/medical/medbay/pharmacy)
 "gl" = (
 /obj/machinery/light/small/ceiling/harsh,
+/obj/item/hand_warmer{
+	pixel_x = 11;
+	pixel_y = 8
+	},
 /turf/floor/carpet/clowncarpet,
 /area/station/crew_quarters/clown{
 	requires_power = 0;
@@ -4450,11 +4461,8 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "delivery2"
 	},
-/obj/storage/crate/packing{
-	icon_state = "woodencrate9"
-	},
-/obj/random_item_spawner/prosthetics,
-/obj/item/clothing/gloves/black,
+/obj/storage/secure/closet/logistics/cargo,
+/obj/item/clothing/suit/cryo/log,
 /turf/floor/plating,
 /area/station/quartermaster/cargooffice)
 "mw" = (
@@ -6098,6 +6106,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/item/clothing/suit/cryo,
 /turf/floor/black/side,
 /area/station/crew_quarters/quarters_west{
 	name = "Hydroponics Crew Quarters"
@@ -6739,13 +6748,13 @@
 	})
 "sv" = (
 /obj/storage/secure/closet/command,
-/obj/item/clothing/suit/cryo/sg,
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/item/gun/modular/NT/rifle,
 /obj/item/storage/backpack/satchel/blue,
 /obj/item/stackable_ammo/rifle/anti_mutant/three,
 /obj/item/stackable_ammo/rifle/tranq/five,
 /obj/item/stackable_ammo/rifle/NT/ten,
+/obj/item/clothing/suit/cryo/head,
 /turf/floor/carpet/nicebrown,
 /area/station/bridge/surveyorgeneral)
 "sw" = (
@@ -7666,8 +7675,8 @@
 /area/station/engine/engineering/breakroom)
 "uH" = (
 /obj/storage/secure/closet/logistics/janitor,
-/obj/item/clothing/suit/cryo/jan,
-/obj/item/clothing/suit/cryo/jan,
+/obj/item/clothing/suit/cryo/log,
+/obj/item/clothing/suit/cryo/log,
 /turf/floor/purple/side{
 	dir = 1
 	},
@@ -10269,6 +10278,8 @@
 /obj/machinery/light/small/reddish{
 	dir = 1
 	},
+/obj/storage/secure/closet/logistics/cargo,
+/obj/item/clothing/suit/cryo/log,
 /turf/floor/plating,
 /area/station/quartermaster/cargooffice)
 "BO" = (
@@ -11534,6 +11545,7 @@
 /area/station/engine/gas)
 "EY" = (
 /obj/storage/secure/closet/engineering/engineer,
+/obj/item/clothing/suit/cryo/eng,
 /turf/floor/cautionblack/side{
 	dir = 9
 	},
@@ -12589,6 +12601,7 @@
 /area/station/hallway/secondary/north)
 "HE" = (
 /obj/storage/secure/closet/civilian/hydro,
+/obj/item/clothing/suit/cryo,
 /turf/floor/black/side{
 	dir = 6
 	},
@@ -15297,6 +15310,7 @@
 /area/station/crew_quarters/lounge)
 "OL" = (
 /obj/storage/secure/closet/engineering/atmos,
+/obj/item/clothing/suit/cryo/eng,
 /turf/floor/cautionblack/side{
 	dir = 10
 	},
@@ -17346,6 +17360,7 @@
 /area/station/engine/core)
 "Uf" = (
 /obj/storage/secure/closet/engineering/engineer,
+/obj/item/clothing/suit/cryo/eng,
 /turf/floor/cautionblack/side{
 	dir = 8
 	},
@@ -17423,6 +17438,7 @@
 "Uq" = (
 /obj/storage/secure/closet/engineering/engineer,
 /obj/decal/cleanable/dirt/random,
+/obj/item/clothing/suit/cryo/eng,
 /turf/floor/cautionblack/side{
 	dir = 8
 	},
@@ -18187,6 +18203,7 @@
 /obj/cable{
 	icon_state = "0-8"
 	},
+/obj/item/clothing/suit/cryo,
 /turf/floor/black/side,
 /area/station/crew_quarters/quarters_west{
 	name = "Hydroponics Crew Quarters"
@@ -18519,12 +18536,12 @@
 "Xi" = (
 /obj/storage/secure/closet/command,
 /obj/item/storage/backpack/satchel/red,
-/obj/item/clothing/suit/cryo/sd,
 /obj/machinery/light_switch/east,
 /obj/item/gun/modular/NT/rifle,
 /obj/item/stackable_ammo/rifle/NT/ten,
 /obj/item/stackable_ammo/rifle/NT/ten,
 /obj/item/stackable_ammo/rifle/capacitive/burst/five,
+/obj/item/clothing/suit/cryo/head,
 /turf/floor/carpet/darkcarpet,
 /area/station/bridge/sitedirector)
 "Xj" = (
@@ -18979,7 +18996,7 @@
 /area/station/engine/gas)
 "Yn" = (
 /obj/machinery/door/airlock/gannets/maintenance,
-/obj/access_spawn/maint,
+/obj/access_spawn/cargo,
 /turf/floor/plating,
 /area/station/quartermaster/cargooffice)
 "Yp" = (
@@ -19141,6 +19158,23 @@
 /turf/floor/nevicata/wastes/plating,
 /area/nevicata{
 	name = "Director Quarter"
+	})
+"YL" = (
+/obj/item/hand_warmer{
+	pixel_x = -3
+	},
+/obj/item/hand_warmer{
+	pixel_x = 8;
+	pixel_y = 10
+	},
+/obj/item/hand_warmer/dead{
+	pixel_y = 3;
+	pixel_x = 6
+	},
+/turf/floor/carpet/clowncarpet,
+/area/station/crew_quarters/clown{
+	requires_power = 0;
+	name = "Clown Cave"
 	})
 "YM" = (
 /obj/disposalpipe/segment{
@@ -58462,7 +58496,7 @@ xT
 BM
 nO
 qu
-Bv
+fs
 Bv
 yK
 WN
@@ -58762,7 +58796,7 @@ xT
 xT
 PH
 pd
-Bv
+YL
 gl
 mw
 hD
