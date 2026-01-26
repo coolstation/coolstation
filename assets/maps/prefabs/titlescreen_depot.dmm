@@ -131,6 +131,15 @@
 /obj/railing/cool,
 /turf/floor/nevicata/wastes/beaten,
 /area/titlescreen)
+"hV" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter/extra,
+/turf/floor/nevicata/wastes/plating,
+/area/titlescreen)
+"ji" = (
+/obj/railing/cool,
+/obj/decal/cleanable/tracked_reagents/blood/splatter/extra,
+/turf/floor/nevicata/wastes/path,
+/area/titlescreen)
 "jr" = (
 /turf/floor/nevicata/wastes/plating,
 /area/titlescreen)
@@ -158,6 +167,10 @@
 	dir = 10
 	},
 /turf/floor/nevicata/wastes,
+/area/titlescreen)
+"nH" = (
+/obj/decal/skeleton,
+/turf/floor/nevicata/wastes/beaten,
 /area/titlescreen)
 "pc" = (
 /turf/floor/tangerineblack{
@@ -219,6 +232,10 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/grime,
 /area/titlescreen)
+"tB" = (
+/obj/dialogueobj/securitycorpse3,
+/turf/floor/nevicata/wastes/plating,
+/area/titlescreen)
 "tC" = (
 /obj/stool/chair{
 	dir = 4
@@ -233,6 +250,10 @@
 	dir = 4
 	},
 /turf/floor/industrial,
+/area/titlescreen)
+"tG" = (
+/obj/dialogueobj/securitycorpse7,
+/turf/floor/nevicata/wastes/plating,
 /area/titlescreen)
 "ug" = (
 /obj/decal/slipmat/torn,
@@ -290,6 +311,12 @@
 /obj/item/raw_material/ice/nevicata,
 /turf/floor/nevicata/wastes/plating,
 /area/titlescreen)
+"xH" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/turf/floor/nevicata/wastes/path,
+/area/titlescreen)
 "xJ" = (
 /obj/machinery/door/airlock/gannets/glass/toxins{
 	name = "glass recon airlock"
@@ -321,6 +348,10 @@
 "zY" = (
 /turf/floor/nevicata/wastes/path,
 /area/titlescreen)
+"AB" = (
+/obj/item/casing/small,
+/turf/floor/nevicata/wastes/plating,
+/area/titlescreen)
 "AP" = (
 /obj/table/reinforced/auto,
 /obj/item/plate{
@@ -347,6 +378,10 @@
 /area/titlescreen)
 "Cp" = (
 /obj/storage/crate/bin/dumpster/full,
+/turf/floor/nevicata/wastes/plating,
+/area/titlescreen)
+"Cw" = (
+/obj/decal/cleanable/tracked_reagents/blood/splatter,
 /turf/floor/nevicata/wastes/plating,
 /area/titlescreen)
 "Dd" = (
@@ -380,6 +415,18 @@
 	dir = 10
 	},
 /area/titlescreen)
+"Dp" = (
+/obj/decal/cleanable/tracked_reagents/blood/gibs/body,
+/turf/floor/nevicata/wastes/plating,
+/area/titlescreen)
+"Dr" = (
+/obj/item/body_bag/deployed,
+/turf/floor/nevicata/wastes,
+/area/titlescreen)
+"Fo" = (
+/obj/decal/skeleton/decomposed_corpse,
+/turf/floor/nevicata/wastes/plating,
+/area/titlescreen)
 "Fw" = (
 /obj/decal/tile_edge/line/black{
 	dir = 4;
@@ -392,9 +439,18 @@
 /obj/decal/cleanable/dirt/random,
 /turf/floor/carpet/grime,
 /area/titlescreen)
+"Gr" = (
+/obj/railing/cool,
+/obj/decal/cleanable/tracked_reagents/blood/gibs,
+/turf/floor/nevicata/wastes/path,
+/area/titlescreen)
 "GF" = (
 /obj/decal/cleanable/mess/sodacan,
 /turf/floor/nevicata/wastes/beaten,
+/area/titlescreen)
+"HZ" = (
+/obj/decal/cleanable/tracked_reagents/blood/drip/high,
+/turf/floor/nevicata/wastes/path,
 /area/titlescreen)
 "Il" = (
 /turf/wall,
@@ -416,6 +472,23 @@
 	pixel_y = 37
 	},
 /turf/floor/nevicata/wastes/beaten,
+/area/titlescreen)
+"KD" = (
+/obj/dialogueobj/engineerscorpse,
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/turf/floor/nevicata/wastes/path,
+/area/titlescreen)
+"KX" = (
+/obj/head_on_spike,
+/turf/floor/nevicata/wastes/plating,
+/area/titlescreen)
+"Lh" = (
+/obj/item/gun/modular/NT/pistol_sec,
+/obj/item/casing,
+/obj/item/casing/small,
+/turf/floor/nevicata/wastes/plating,
 /area/titlescreen)
 "Lq" = (
 /obj/wingrille_spawn/reinforced,
@@ -511,14 +584,37 @@
 /obj/chainlink_fence,
 /turf/floor/nevicata/wastes/beaten,
 /area/titlescreen)
+"Vz" = (
+/obj/item/gun/modular/NT/pistol_sec,
+/turf/floor/nevicata/wastes/plating,
+/area/titlescreen)
 "VF" = (
 /obj/chainlink_fence{
 	dir = 5
 	},
 /turf/floor/nevicata/wastes/beaten,
 /area/titlescreen)
+"Wj" = (
+/obj/item/casing/small,
+/obj/item/casing/small{
+	pixel_y = -5;
+	pixel_x = -5
+	},
+/turf/floor/nevicata/wastes/plating,
+/area/titlescreen)
 "Wr" = (
 /turf/floor/black,
+/area/titlescreen)
+"Ww" = (
+/obj/railing/cool,
+/obj/decal/cleanable/tracked_reagents/blood/drip/med,
+/turf/floor/nevicata/wastes,
+/area/titlescreen)
+"WE" = (
+/obj/decal/cleanable/tracked_reagents/blood/tracks{
+	dir = 4
+	},
+/turf/floor/nevicata/wastes/beaten,
 /area/titlescreen)
 "WN" = (
 /obj/landmark{
@@ -652,7 +748,7 @@ vn
 hw
 jr
 jr
-zY
+KD
 pk
 Dd
 xA
@@ -669,7 +765,7 @@ hw
 hw
 jr
 jr
-zY
+xH
 Lq
 Dd
 Wr
@@ -684,8 +780,8 @@ jr
 jr
 jr
 jr
-jr
-jr
+Cw
+Lh
 zY
 pk
 rD
@@ -700,10 +796,10 @@ er
 jr
 jr
 jr
+tG
 jr
-jr
-jr
-zY
+Wj
+HZ
 Lq
 zs
 LC
@@ -717,7 +813,7 @@ Il
 Il
 NP
 hw
-hw
+WE
 jr
 jr
 zY
@@ -734,9 +830,9 @@ Ma
 Lq
 fV
 ao
-hw
+WE
 Ti
-jr
+Fo
 zY
 pk
 pk
@@ -751,7 +847,7 @@ Tr
 Lq
 bP
 Je
-hw
+WE
 jr
 jr
 zY
@@ -769,7 +865,7 @@ Il
 bP
 hA
 hw
-jr
+KX
 jr
 uA
 bP
@@ -786,11 +882,11 @@ bP
 hw
 hw
 hw
-jr
+hV
 jr
 uA
 bP
-bP
+Dr
 MV
 Mp
 BC
@@ -805,7 +901,7 @@ hw
 hw
 jr
 jr
-uA
+Gr
 bP
 bP
 Mp
@@ -819,11 +915,11 @@ dj
 hw
 hw
 Je
-hw
-jr
+nH
+Vz
 jr
 uA
-bP
+Dr
 Mp
 Mp
 BC
@@ -835,11 +931,11 @@ xE
 VF
 bP
 bP
-Je
+Ww
 hw
 jr
-jr
-uA
+tB
+ji
 bP
 Mp
 Mp
@@ -854,8 +950,8 @@ bP
 bP
 Je
 hw
-jr
-jr
+Dp
+AB
 uA
 bP
 Mp
@@ -888,7 +984,7 @@ MV
 bP
 Je
 hw
-jr
+Cw
 jr
 uA
 bP

@@ -1999,13 +1999,6 @@
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
-"fs" = (
-/obj/item/clothing/suit/cryo,
-/turf/floor/carpet/clowncarpet,
-/area/station/crew_quarters/clown{
-	requires_power = 0;
-	name = "Clown Cave"
-	})
 "ft" = (
 /obj/decal/slipmat/torn{
 	dir = 4
@@ -2662,6 +2655,23 @@
 /obj/access_spawn/medlab,
 /turf/floor/plating,
 /area/station/medical/research)
+"hn" = (
+/obj/item/hand_warmer{
+	pixel_x = -3
+	},
+/obj/item/hand_warmer{
+	pixel_x = 8;
+	pixel_y = 10
+	},
+/obj/item/hand_warmer/dead{
+	pixel_y = 3;
+	pixel_x = 6
+	},
+/turf/floor/carpet/clowncarpet,
+/area/station/crew_quarters/clown{
+	requires_power = 0;
+	name = "Clown Cave"
+	})
 "ho" = (
 /obj/machinery/disposal,
 /obj/machinery/power/apc/autoname/west,
@@ -2682,6 +2692,7 @@
 /obj/machinery/light/beacon{
 	pixel_y = 9
 	},
+/obj/railing/cool,
 /turf/floor/nevicata/wastes/plating,
 /area/nevicata{
 	name = "Director Quarter"
@@ -4297,8 +4308,8 @@
 /turf/floor/blue/checker,
 /area/station/medical/medbay)
 "lW" = (
-/obj/railing/yellow,
 /obj/disposalpipe/segment/sewage/horizontal,
+/obj/railing/cool,
 /turf/floor/nevicata/wastes/beaten,
 /area/nevicata{
 	name = "Director Quarter"
@@ -6030,8 +6041,8 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/obj/railing/yellow,
 /obj/disposalpipe/segment/sewage/horizontal,
+/obj/railing/cool,
 /turf/floor/nevicata/wastes/beaten,
 /area/nevicata{
 	name = "Director Quarter"
@@ -8496,8 +8507,8 @@
 /turf/floor/carpet/nicebrown,
 /area/station/bridge/surveyorgeneral)
 "wZ" = (
-/obj/railing/yellow,
 /obj/disposalpipe/segment/sewage/horizontal,
+/obj/railing/cool,
 /turf/floor/nevicata/wastes/plating,
 /area/nevicata{
 	name = "Director Quarter"
@@ -8770,6 +8781,10 @@
 /obj/item/camera{
 	pixel_y = 8;
 	pixel_x = 5
+	},
+/obj/item/clothing/suit/cryo/sec{
+	pixel_x = 13;
+	pixel_y = 5
 	},
 /turf/floor/carpet/grime,
 /area/station/security/detectives_office{
@@ -10097,6 +10112,12 @@
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
+"Bn" = (
+/obj/railing/cool,
+/turf/floor/nevicata/wastes/plating,
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "Bo" = (
 /obj/machinery/clonepod,
 /turf/floor/darkblue,
@@ -13556,10 +13577,10 @@
 	})
 "Ka" = (
 /obj/storage/crate/wooden,
-/obj/railing/reinforced,
 /obj/item/reagent_containers/food/snacks/ingredient/dough,
 /obj/item/reagent_containers/food/snacks/ingredient/dough,
 /obj/item/reagent_containers/food/snacks/ingredient/dough/semolina,
+/obj/railing/cool,
 /turf/floor/nevicata/wastes/plating,
 /area/nevicata{
 	name = "Director Quarter"
@@ -13819,10 +13840,10 @@
 /turf/floor/plating,
 /area/station/medical/staff)
 "KM" = (
-/obj/railing/yellow{
+/obj/disposalpipe/segment/sewage/horizontal,
+/obj/railing/cool{
 	dir = 8
 	},
-/obj/disposalpipe/segment/sewage/horizontal,
 /turf/floor/nevicata/wastes/beaten,
 /area/nevicata{
 	name = "Director Quarter"
@@ -13966,10 +13987,11 @@
 /turf/floor/grey/side,
 /area/station/bridge)
 "Li" = (
-/obj/railing/yellow,
-/turf/floor/nevicata/wastes/beaten,
-/area/nevicata{
-	name = "Surveyor Quarter"
+/obj/item/clothing/suit/cryo,
+/turf/floor/carpet/clowncarpet,
+/area/station/crew_quarters/clown{
+	requires_power = 0;
+	name = "Clown Cave"
 	})
 "Lj" = (
 /obj/decal/tile_edge/line/black{
@@ -14002,7 +14024,6 @@
 /area/station/engine/elect)
 "Lm" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/horizontal,
-/obj/railing/yellow,
 /turf/floor/nevicata/wastes/plating,
 /area/nevicata{
 	name = "Director Quarter"
@@ -16417,7 +16438,6 @@
 	})
 "RE" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/northeast,
-/obj/railing/yellow,
 /turf/floor/nevicata/wastes/plating,
 /area/nevicata{
 	name = "Director Quarter"
@@ -17875,6 +17895,7 @@
 /area/station/medical/medbay)
 "Vy" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/vertical,
+/obj/railing/cool,
 /turf/floor/nevicata/wastes/plating,
 /area/nevicata{
 	name = "Director Quarter"
@@ -19159,23 +19180,6 @@
 /area/nevicata{
 	name = "Director Quarter"
 	})
-"YL" = (
-/obj/item/hand_warmer{
-	pixel_x = -3
-	},
-/obj/item/hand_warmer{
-	pixel_x = 8;
-	pixel_y = 10
-	},
-/obj/item/hand_warmer/dead{
-	pixel_y = 3;
-	pixel_x = 6
-	},
-/turf/floor/carpet/clowncarpet,
-/area/station/crew_quarters/clown{
-	requires_power = 0;
-	name = "Clown Cave"
-	})
 "YM" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -19348,6 +19352,12 @@
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/janitor/office)
+"Zn" = (
+/obj/railing/cool,
+/turf/floor/nevicata/wastes/beaten,
+/area/nevicata{
+	name = "Director Quarter"
+	})
 "Zp" = (
 /obj/disposalpipe/segment/morgue/vertical,
 /turf/floor/yellow/side{
@@ -58496,7 +58506,7 @@ xT
 BM
 nO
 qu
-fs
+Li
 Bv
 yK
 WN
@@ -58796,7 +58806,7 @@ xT
 xT
 PH
 pd
-YL
+hn
 gl
 mw
 hD
@@ -62997,7 +63007,7 @@ hI
 BL
 xc
 BL
-BL
+Zn
 BL
 BL
 fX
@@ -64198,7 +64208,7 @@ Vy
 ih
 BL
 xc
-OY
+lW
 BL
 iK
 hI
@@ -68685,8 +68695,8 @@ TO
 RP
 FC
 Ra
-Li
-Ra
+pF
+Bn
 pq
 Po
 zr
