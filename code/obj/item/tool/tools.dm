@@ -246,7 +246,7 @@ Handsaw
 
 /obj/item/device/multitool
 	name = "multitool"
-	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
+	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires. Use X while holding it to access advanced functions."
 	icon = 'icons/obj/items/tools/tools.dmi'
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "multitool"
@@ -259,6 +259,7 @@ Handsaw
 	var/standard_mode = TRUE
 	var/mechComp_configure_mode = FALSE
 	var/mechComp_connect_mode = FALSE
+	var/atom/stored_component = null
 
 	force = 5
 	throwforce = 5
@@ -384,6 +385,21 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/pda2)
 			target.standard_mode = FALSE
 			target.mechComp_connect_mode = TRUE
 			user.show_message("Multitool set to MechComp connect mode.")
+			return TRUE
+
+	mechComp_connect_mode_clear
+		name = "Clear stored component"
+		desc = "Clear the stored component in connect mode."
+		icon_state = "radio_stop_listening"
+
+		checkRequirements(var/obj/item/device/multitool/target, var/mob/user)
+			if(target.mechComp_connect_mode && target.stored_component && target.mechComp_connect_mode)
+				return TRUE
+			return FALSE
+
+		execute(var/obj/item/device/multitool/target, var/mob/user)
+			target.stored_component = null
+			user.show_message("Cleared stored component.")
 			return TRUE
 
 

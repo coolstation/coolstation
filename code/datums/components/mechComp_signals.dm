@@ -270,7 +270,7 @@
 
 //We are in the scope of the receiver-component, our argument is the trigger
 //This feels weird/backwards, but it results in fewer SEND_SIGNALS & var/lists
-/datum/component/mechanics_holder/proc/link_devices(var/atom/comsig_target, atom/trigger, mob/user)
+/datum/component/mechanics_holder/proc/link_devices(atom/comsig_target, atom/trigger, mob/user)
 	var/atom/receiver = parent
 	if(trigger in src.connected_outgoing)
 		boutput(user, "<span class='alert'>Can not create a direct loop between 2 components.</span>")
@@ -335,6 +335,8 @@
 
 //If it's a multi-tool, let the user configure the device.
 /datum/component/mechanics_holder/proc/attackby(var/comsig_target, obj/item/W as obj, mob/user)
+	if(!ispulsingtool(W) || !isliving(user) || user.stat)
+		return 0
 	if(istype(comsig_target, /obj/machinery/door))
 		var/obj/machinery/door/hacked_door = comsig_target
 		if(hacked_door.p_open)
@@ -346,11 +348,20 @@
 	if(user.find_tool_in_hand(TOOL_PULSING))
 		if(istype(user.find_tool_in_hand(TOOL_PULSING), /obj/item/device/multitool))
 			var/obj/item/device/multitool/multitool_used = user.find_tool_in_hand(TOOL_PULSING)
-			if(multitool_used.mechComp_configure_mode != TRUE)
+			if(multitool_used.mechComp_connect_mode)
+				if(!multitool_used.stored_component)
+					multitool_used.stored_component = comsig_target
+					boutput(user, "<span class='alert'>Target component stored!.</span>")
+					return
+				else
+					src.link_devices(comsig_target, multitool_used.stored_component, user)
+					boutput(user, "<span class='alert'>Connecting [W] to [src.parent] as Trigger!.</span>")
+					return
+
+			if(!multitool_used.mechComp_configure_mode)
 				boutput(user, "<span class='alert'>Multitool not in configure mode!</span>")
 				return
-	if(!ispulsingtool(W) || !isliving(user) || user.stat)
-		return 0
+
 	if(length(src.configs))
 		var/selected_config = input("Select a config to modify!", "Config", null) as null|anything in src.configs
 		if(selected_config && in_interact_range(parent, user))
