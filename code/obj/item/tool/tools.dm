@@ -394,7 +394,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/multitool)
 		icon_state = "radio_stop_listening"
 
 		checkRequirements(var/obj/item/device/multitool/target, var/mob/user)
-			if(target.mechComp_connect_mode && target.stored_component && target.mechComp_connect_mode)
+			if(target.mechComp_connect_mode && target.stored_component)
 				return TRUE
 			return FALSE
 

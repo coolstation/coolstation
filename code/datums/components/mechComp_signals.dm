@@ -254,7 +254,7 @@
 
 	if(istype(user.find_tool_in_hand(TOOL_PULSING), /obj/item/device/multitool))
 		var/obj/item/device/multitool/multitool_used = user.find_tool_in_hand(TOOL_PULSING)
-		if(multitool_used.mechComp_connect_mode != TRUE)
+		if(!multitool_used.mechComp_connect_mode)
 			boutput(user, "<span class='alert'>Multitool is not in connect mode!</span>")
 			return
 
@@ -337,6 +337,7 @@
 /datum/component/mechanics_holder/proc/attackby(var/comsig_target, obj/item/W as obj, mob/user)
 	if(!ispulsingtool(W) || !isliving(user) || user.stat)
 		return 0
+
 	if(istype(comsig_target, /obj/machinery/door))
 		var/obj/machinery/door/hacked_door = comsig_target
 		if(hacked_door.p_open)
@@ -345,21 +346,22 @@
 		var/obj/machinery/vending/hacked_vendor = comsig_target
 		if(hacked_vendor.panel_open)
 			return
+
 	if(user.find_tool_in_hand(TOOL_PULSING))
 		if(istype(user.find_tool_in_hand(TOOL_PULSING), /obj/item/device/multitool))
 			var/obj/item/device/multitool/multitool_used = user.find_tool_in_hand(TOOL_PULSING)
 			if(multitool_used.mechComp_connect_mode)
-				if(!multitool_used.stored_component)
+				if(!multitool_used.stored_component) //no stored component, store target.
 					multitool_used.stored_component = comsig_target
 					boutput(user, "<span class='alert'>Target component stored!.</span>")
 					return
 				else
-					src.link_devices(comsig_target, multitool_used.stored_component, user)
 					boutput(user, "<span class='alert'>Connecting [W] to [src.parent] as Trigger!.</span>")
+					src.link_devices(comsig_target, multitool_used.stored_component, user) //stored compnent link as trigger.
 					return
 
-			if(!multitool_used.mechComp_configure_mode)
-				boutput(user, "<span class='alert'>Multitool not in configure mode!</span>")
+			if(multitool_used.standard_mode)
+				boutput(user, "<span class='alert'>Multitool not in a mechComp mode! Press X to fiddle to one!</span>")
 				return
 
 	if(length(src.configs))
