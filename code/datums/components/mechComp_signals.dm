@@ -263,7 +263,7 @@
 		if("Trigger")
 			SEND_SIGNAL(A, _COMSIG_MECHCOMP_LINK, parent, user)
 		if("Receiver")
-			link_devices(null, A, user) //What do you want, an invitation? No signal needed!
+			link_devices(comsig_target, A, user) //What do you want, an invitation? No signal needed!
 		if("*CANCEL*")
 			return
 	return
@@ -274,6 +274,9 @@
 	var/atom/receiver = parent
 	if(trigger in src.connected_outgoing)
 		boutput(user, "<span class='alert'>Can not create a direct loop between 2 components.</span>")
+		return
+	if(trigger == comsig_target)
+		boutput(user, "<span class='alert'>Component cannot be connected to itself.</span>")
 		return
 	if(trigger.loc != comsig_target.loc)
 		var/obj/item/storage/mechanics/cabinet = null
