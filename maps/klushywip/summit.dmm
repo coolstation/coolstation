@@ -256,6 +256,10 @@
 /area/station/hydroponics/bay)
 "aM" = (
 /obj/table/wood/auto,
+/obj/machinery/phone{
+	pixel_y = 3;
+	pixel_x = -5
+	},
 /turf/floor/industrial,
 /area/station/crew_quarters/bar)
 "aN" = (
@@ -2818,10 +2822,16 @@
 /area/station/medical/research)
 "hN" = (
 /obj/table/wood/round,
-/obj/item/plant/herb/cannabis,
 /obj/item/device/light/zippo{
-	pixel_x = 11;
-	pixel_y = 3
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/plant/herb/cannabis{
+	pixel_x = 2
+	},
+/obj/item/reagent_containers/food/drinks/water_pipe{
+	pixel_x = 16;
+	pixel_y = 4
 	},
 /turf/floor/wood/five,
 /area/station/hydroponics/bay)
@@ -3342,9 +3352,6 @@
 /area/station/ai_monitored/armory)
 "jy" = (
 /obj/table/reinforced/bar/auto,
-/obj/item/paper/book/from_file/moby_dick{
-	pixel_x = 4
-	},
 /turf/floor/black,
 /area/station/crew_quarters/bar)
 "jA" = (
@@ -3645,6 +3652,10 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 9;
 	icon_state = "xtra_bigstripe-corner2"
+	},
+/obj/machinery/phone/wall{
+	pixel_y = -26;
+	pixel_x = -4
 	},
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
@@ -4862,6 +4873,15 @@
 /area/station/crew_quarters/quarters_west{
 	name = "Hydroponics Crew Quarters"
 	})
+"ny" = (
+/obj/decal/tile_edge/line/blue{
+	icon_state = "line1"
+	},
+/obj/machinery/phone/wall{
+	pixel_x = -28
+	},
+/turf/floor/black,
+/area/station/medical/cdc)
 "nA" = (
 /obj/stool/chair/red,
 /obj/disposalpipe/segment{
@@ -5363,7 +5383,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/access_spawn/captain,
+/obj/access_spawn/heads,
 /turf/floor/sanitary,
 /area/station/bridge/sitedirector)
 "oI" = (
@@ -5566,7 +5586,6 @@
 /area/station/engine/combustion_chamber)
 "pm" = (
 /obj/table/wood/auto/desk,
-/obj/machinery/phone,
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
@@ -5762,7 +5781,7 @@
 /obj/machinery/espresso_machine,
 /obj/table/wood/auto,
 /obj/cup_rack{
-	pixel_x = 25
+	pixel_y = -27
 	},
 /turf/floor/black,
 /area/station/crew_quarters/bar)
@@ -6240,10 +6259,6 @@
 	pixel_y = 11;
 	pixel_x = -22
 	},
-/obj/item/clothing/head/bighat/czako{
-	pixel_y = 7;
-	pixel_x = -11
-	},
 /obj/machinery/phone,
 /obj/item/pen/fancy{
 	pixel_y = 7;
@@ -6447,11 +6462,6 @@
 	},
 /obj/item/disk/data/floppy/read_only/communications{
 	pixel_y = -8
-	},
-/obj/item/reagent_containers/food/drinks/mug{
-	pixel_x = 32;
-	pixel_y = -11;
-	name = "To the Fairest"
 	},
 /turf/floor/carpet/blue/fancy/edge{
 	dir = 8
@@ -6731,6 +6741,11 @@
 /obj/storage/secure/closet/command,
 /obj/item/clothing/suit/cryo/sg,
 /obj/disposalpipe/segment/sewage/horizontal,
+/obj/item/gun/modular/NT/rifle,
+/obj/item/storage/backpack/satchel/blue,
+/obj/item/stackable_ammo/rifle/anti_mutant/three,
+/obj/item/stackable_ammo/rifle/tranq/five,
+/obj/item/stackable_ammo/rifle/NT/ten,
 /turf/floor/carpet/nicebrown,
 /area/station/bridge/surveyorgeneral)
 "sw" = (
@@ -6956,6 +6971,9 @@
 /obj/decal/tile_edge/line/black{
 	dir = 9;
 	icon_state = "line1"
+	},
+/obj/machinery/phone/wall{
+	pixel_y = 31
 	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quarters_south)
@@ -7548,6 +7566,9 @@
 /obj/item/folder{
 	pixel_y = 7
 	},
+/obj/machinery/phone{
+	pixel_y = -18
+	},
 /turf/floor/carpet/blue/decal/innercross,
 /area/station/bridge)
 "ux" = (
@@ -7681,8 +7702,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/access_spawn/captain,
-/turf/floor/sanitary,
+/obj/access_spawn/heads,
+/turf/floor/carpet/red,
 /area/station/bridge/surveyorgeneral)
 "uM" = (
 /obj/machinery/light_switch/west,
@@ -7801,7 +7822,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/access_spawn/captain,
+/obj/access_spawn/heads,
 /turf/floor/wood/six,
 /area/station/bridge/sitedirector)
 "va" = (
@@ -9058,6 +9079,9 @@
 	name = "Surveyor Quarter"
 	})
 "yD" = (
+/obj/machinery/phone/wall{
+	pixel_x = -28
+	},
 /turf/floor/cautionblack/side{
 	dir = 8
 	},
@@ -9286,10 +9310,6 @@
 "zh" = (
 /obj/stool/chair/couch{
 	dir = 8
-	},
-/obj/item/reagent_containers/food/drinks/water_pipe{
-	pixel_x = 8;
-	pixel_y = 6
 	},
 /turf/floor/wood/five,
 /area/station/hydroponics/bay)
@@ -9712,16 +9732,16 @@
 	})
 "Aq" = (
 /obj/table/auto,
-/obj/item/clothing/gloves/latex{
-	pixel_x = -4;
-	pixel_y = 2
-	},
-/obj/item/kitchen/utensil/knife,
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/item/clothing/gloves/latex{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/kitchen/utensil/knife,
 /turf/floor,
 /area/station/medical/research)
 "Ar" = (
@@ -11134,6 +11154,13 @@
 	},
 /turf/floor/grass,
 /area/station/hydroponics/bay)
+"DY" = (
+/obj/shitty_radio/shitty_tv{
+	icon_state = "small_wall";
+	pixel_x = 3
+	},
+/turf/wall/auto,
+/area/station/crew_quarters/bar)
 "DZ" = (
 /obj/machinery/light/beacon,
 /turf/floor/nevicata/wastes,
@@ -12109,6 +12136,10 @@
 	icon_state = "line1"
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/machinery/phone/wall{
+	pixel_x = -27;
+	pixel_y = 4
+	},
 /turf/floor,
 /area/station/medical/research)
 "Gz" = (
@@ -12763,9 +12794,6 @@
 /obj/item/paper/sgletter,
 /obj/item/pen/fancy{
 	pixel_x = -10
-	},
-/obj/item/clothing/head/bighat/shako{
-	pixel_x = 10
 	},
 /obj/disposalpipe/segment/sewage/horizontal,
 /turf/floor/carpet/nicebrown,
@@ -13610,7 +13638,7 @@
 	})
 "Kp" = (
 /obj/machinery/door/airlock/gannets/command,
-/obj/access_spawn/captain,
+/obj/access_spawn/heads,
 /turf/floor/carpet/darkcarpet,
 /area/station/bridge/sitedirector)
 "Kq" = (
@@ -15254,6 +15282,7 @@
 /area/station/storage/tech)
 "OI" = (
 /obj/table/reinforced/auto,
+/obj/machinery/phone,
 /turf/floor/grey,
 /area/station/security/secoffquarters)
 "OJ" = (
@@ -15898,6 +15927,10 @@
 "Qn" = (
 /obj/submachine/chem_extractor{
 	dir = 1
+	},
+/obj/machinery/phone/wall{
+	pixel_y = 32;
+	pixel_x = 8
 	},
 /turf/floor/grey,
 /area/station/science/chemistry)
@@ -17195,7 +17228,7 @@
 	density = 1;
 	glass_amt = 30;
 	pixel_y = 9;
-	pixel_x = 14
+	pixel_x = 17
 	},
 /turf/floor/black,
 /area/station/crew_quarters/bar)
@@ -17798,7 +17831,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/access_spawn/captain,
+/obj/access_spawn/heads,
 /turf/floor/carpet/nicebrown,
 /area/station/bridge/surveyorgeneral)
 "Vx" = (
@@ -18184,7 +18217,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/obj/access_spawn/captain,
+/obj/access_spawn/heads,
 /turf/floor/sanitary,
 /area/station/bridge/surveyorgeneral)
 "Ww" = (
@@ -18488,6 +18521,10 @@
 /obj/item/storage/backpack/satchel/red,
 /obj/item/clothing/suit/cryo/sd,
 /obj/machinery/light_switch/east,
+/obj/item/gun/modular/NT/rifle,
+/obj/item/stackable_ammo/rifle/NT/ten,
+/obj/item/stackable_ammo/rifle/NT/ten,
+/obj/item/stackable_ammo/rifle/capacitive/burst/five,
 /turf/floor/carpet/darkcarpet,
 /area/station/bridge/sitedirector)
 "Xj" = (
@@ -19374,7 +19411,11 @@
 /area/space)
 "ZD" = (
 /obj/table/wood/auto/desk,
-/obj/machinery/phone,
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = 4;
+	pixel_y = 6;
+	name = "To the Fairest"
+	},
 /turf/floor/carpet/blue/fancy/edge{
 	dir = 8
 	},
@@ -67119,7 +67160,7 @@ GG
 Bf
 eY
 Mh
-sd
+ny
 tF
 sg
 pF
@@ -67437,7 +67478,7 @@ jy
 iq
 uA
 mc
-Uy
+DY
 oY
 xW
 jV
@@ -82018,8 +82059,8 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
+SS
+SS
 SS
 SS
 SS
@@ -82320,7 +82361,7 @@ Wj
 Wj
 Wj
 Wj
-Wj
+SS
 SS
 SS
 SS
@@ -82620,10 +82661,10 @@ Wj
 Wj
 Wj
 Wj
-Wj
 SS
 SS
-Wj
+SS
+SS
 SS
 SS
 SS
@@ -82922,7 +82963,7 @@ Wj
 Wj
 Wj
 Wj
-Wj
+SS
 SS
 SS
 SS
@@ -83219,13 +83260,13 @@ Wj
 Wj
 Wj
 Wj
+SS
 Wj
+SS
 Wj
+SS
 Wj
-Wj
-Wj
-Wj
-Wj
+SS
 SS
 SS
 SS
@@ -83518,14 +83559,14 @@ Wj
 Wj
 Wj
 Wj
+SS
+SS
+SS
+SS
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
+SS
 Wj
 SS
 SS
@@ -83819,17 +83860,17 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
 SS
 SS
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 Wj
 SS
 SS
@@ -84123,9 +84164,9 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
+SS
+SS
+SS
 Wj
 Wj
 SS
@@ -84420,18 +84461,18 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
+SS
+SS
 SS
 Wj
-Wj
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
 Wj
 SS
 SS
@@ -84720,24 +84761,24 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
 SS
 SS
 Wj
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -85020,18 +85061,15 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
+SS
+SS
+SS
 Wj
 Wj
 SS
+Wj
 Wj
 SS
 SS
@@ -85039,7 +85077,10 @@ SS
 SS
 SS
 SS
-Wj
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -85322,22 +85363,22 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
+SS
+SS
 SS
 Wj
 SS
 SS
+SS
+SS
 Wj
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -85621,17 +85662,8 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
 Wj
 SS
 Wj
@@ -85639,9 +85671,18 @@ SS
 SS
 Wj
 SS
+Wj
 SS
-Wj
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -85924,21 +85965,21 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
 Wj
 SS
 SS
 Wj
-SS
 Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -86225,27 +86266,27 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
 Wj
 Wj
 SS
+Wj
 Wj
 Wj
 SS
 SS
 SS
+Wj
 SS
 SS
 Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -86528,22 +86569,22 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
 SS
-Wj
-Wj
 SS
-Wj
 SS
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -86828,29 +86869,29 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
 Wj
 Wj
 SS
 SS
 SS
 SS
-Wj
-SS
-SS
-Wj
 SS
 SS
 SS
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -87129,21 +87170,21 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
 SS
 Wj
-Wj
-Wj
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -87432,20 +87473,10 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
 SS
 SS
 SS
 Wj
-SS
 SS
 Wj
 SS
@@ -87456,7 +87487,17 @@ SS
 SS
 SS
 SS
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -87731,22 +87772,22 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
 SS
 Wj
 SS
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -88030,31 +88071,20 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-SS
 SS
 Wj
 Wj
+SS
 Wj
 SS
 SS
 SS
 SS
 SS
+Wj
+SS
+SS
+Wj
 SS
 SS
 SS
@@ -88072,6 +88102,17 @@ SS
 SS
 SS
 SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+Wj
 SS
 SS
 xT
@@ -88336,17 +88377,36 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 SS
@@ -88355,25 +88415,6 @@ SS
 SS
 SS
 Wj
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-Wj
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
 SS
 xT
 xT
@@ -88638,44 +88679,44 @@ Wj
 Wj
 Wj
 Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
 xT
 xT
 SS
@@ -88938,45 +88979,45 @@ Wj
 Wj
 Wj
 Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-SS
-SS
-SS
-SS
-Wj
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
 xT
 xT
 xT
@@ -89239,17 +89280,11 @@ Wj
 Wj
 Wj
 Wj
+SS
+SS
+SS
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
 SS
 Wj
 SS
@@ -89279,6 +89314,12 @@ SS
 SS
 SS
 SS
+SS
+SS
+SS
+SS
+Wj
+Wj
 xT
 xT
 SS
@@ -89538,16 +89579,16 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
 Wj
 Wj
 Wj
 Wj
 SS
+SS
+SS
+SS
+SS
 Wj
 SS
 SS
@@ -89578,8 +89619,8 @@ SS
 SS
 SS
 SS
-SS
-SS
+Wj
+Wj
 xT
 xT
 SS
@@ -89845,42 +89886,42 @@ Wj
 Wj
 Wj
 Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 Wj
 Wj
 Wj
 Wj
-SS
-SS
-SS
-SS
 Wj
 SS
 SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
 Wj
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
 xT
 xT
 xT
@@ -90144,45 +90185,45 @@ Wj
 Wj
 Wj
 Wj
+SS
+SS
+SS
+SS
+SS
 Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 Wj
-Wj
-SS
-Wj
-Wj
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
 xT
 xT
 xT
-SS
-SS
-SS
-SS
+Wj
+Wj
+Wj
+Wj
 xT
 xT
 xT
@@ -90445,11 +90486,7 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
 Wj
 SS
 SS
@@ -90479,12 +90516,16 @@ SS
 SS
 SS
 SS
+SS
+SS
+Wj
+Wj
 xT
 xT
 xT
 xT
 xT
-SS
+Wj
 xT
 xT
 xT
@@ -90746,12 +90787,7 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
 SS
 Wj
 SS
@@ -90783,6 +90819,11 @@ SS
 SS
 SS
 SS
+SS
+SS
+Wj
+Wj
+Wj
 xT
 xT
 xT
@@ -91045,16 +91086,11 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
 SS
 Wj
-SS
+Wj
 Wj
 SS
 SS
@@ -91063,13 +91099,6 @@ SS
 Wj
 SS
 SS
-SS
-SS
-SS
-SS
-SS
-SS
-Wj
 SS
 SS
 Wj
@@ -91084,8 +91113,20 @@ SS
 SS
 SS
 SS
+Wj
 SS
 SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+Wj
+Wj
+Wj
+Wj
 xT
 xT
 xT
@@ -91347,18 +91388,6 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-SS
-Wj
-Wj
-SS
-Wj
 SS
 Wj
 SS
@@ -91369,13 +91398,8 @@ SS
 SS
 Wj
 Wj
-Wj
-SS
 SS
 Wj
-SS
-SS
-SS
 SS
 Wj
 SS
@@ -91384,12 +91408,29 @@ SS
 SS
 SS
 SS
+Wj
+Wj
 SS
 SS
 SS
 SS
 SS
 SS
+SS
+SS
+Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+Wj
+Wj
+Wj
 xT
 xT
 xT
@@ -91651,45 +91692,45 @@ Wj
 Wj
 Wj
 Wj
+SS
+SS
+SS
+SS
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
 SS
 SS
 Wj
 SS
 Wj
-SS
-Wj
-Wj
-Wj
-Wj
-SS
 SS
 Wj
 Wj
 SS
 Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 Wj
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-SS
 xT
 xT
 xT
@@ -91947,15 +91988,15 @@ Wj
 Wj
 Wj
 Wj
+SS
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
 Wj
 Wj
 SS
@@ -91966,32 +92007,32 @@ Wj
 SS
 SS
 SS
-Wj
-SS
-SS
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-SS
 SS
 SS
 SS
 Wj
+SS
 Wj
+Wj
+SS
+Wj
+SS
 Wj
 SS
 SS
 SS
 SS
 Wj
+Wj
+Wj
 SS
 SS
 SS
+SS
+Wj
+Wj
+Wj
+Wj
 xT
 xT
 hW
@@ -92246,28 +92287,6 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-SS
-SS
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-SS
-SS
-SS
-SS
-SS
-SS
-SS
-Wj
-Wj
 SS
 Wj
 SS
@@ -92280,6 +92299,28 @@ SS
 SS
 Wj
 Wj
+Wj
+SS
+SS
+SS
+SS
+SS
+SS
+SS
+Wj
+SS
+SS
+SS
+SS
+SS
+Wj
+SS
+SS
+Wj
+SS
+SS
+Wj
+Wj
 SS
 SS
 SS
@@ -92291,8 +92332,8 @@ Wj
 Wj
 Wj
 Wj
-SS
-xT
+Wj
+Wj
 xT
 xT
 xT
@@ -92547,15 +92588,7 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
 SS
-SS
-SS
-Wj
-SS
-Wj
 Wj
 Wj
 SS
@@ -92563,22 +92596,16 @@ SS
 SS
 SS
 SS
-SS
-SS
-Wj
-SS
-SS
-Wj
-Wj
-Wj
 Wj
 SS
 Wj
-Wj
-Wj
 SS
-Wj
-Wj
+SS
+SS
+SS
+SS
+SS
+SS
 Wj
 SS
 SS
@@ -92587,6 +92614,20 @@ Wj
 SS
 SS
 SS
+Wj
+Wj
+Wj
+SS
+Wj
+Wj
+Wj
+SS
+SS
+Wj
+Wj
+SS
+SS
+SS
 SS
 Wj
 Wj
@@ -92594,7 +92635,7 @@ SS
 SS
 SS
 Wj
-SS
+Wj
 xT
 xT
 SS
@@ -92841,26 +92882,26 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
 SS
-SS
-SS
-SS
-Wj
 Wj
 Wj
 SS
 Wj
 SS
 Wj
+SS
+SS
+SS
+SS
+SS
+SS
+Wj
+SS
+SS
+SS
+SS
+SS
+SS
 SS
 SS
 Wj
@@ -93142,14 +93183,14 @@ Wj
 Wj
 Wj
 Wj
+SS
+Wj
+SS
 Wj
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
+SS
+SS
 SS
 SS
 Wj
@@ -93442,12 +93483,12 @@ Wj
 Wj
 Wj
 Wj
+SS
+SS
+SS
+SS
 Wj
-Wj
-Wj
-Wj
-Wj
-Wj
+SS
 Wj
 SS
 SS
@@ -93741,8 +93782,8 @@ Wj
 Wj
 Wj
 Wj
-Wj
-Wj
+SS
+SS
 Wj
 Wj
 Wj

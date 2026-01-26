@@ -384,6 +384,22 @@ var/global/list/mapNames = list(
 	escape_def = SHUTTLE_WEST
 	escape_dir = WEST
 
+	job_limits_override = list(
+		/datum/job/civilian/rancher = 0,
+		/datum/job/logistics/janitor = 1,
+		/datum/job/command/head_of_personnel = 0,
+		/datum/job/command/head_of_security = 0,
+		/datum/job/command/captain = 0,
+		/datum/job/command/chief_engineer = 0,
+		/datum/job/command/research_director = 0,
+		/datum/job/command/quartermaster = 0,
+		/datum/job/command/medical_director = 0,
+		/datum/job/command/sitedirector = 1,
+		/datum/job/command/surveyorgeneral = 1,
+		/datum/job/security/security_officer = 4,
+		/datum/job/logistics/miner = 2,
+	)
+
 /datum/map_settings/bayoubend
 	name = "BAYOUBEND"
 	walls = /turf/wall/

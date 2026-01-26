@@ -528,6 +528,65 @@ ABSTRACT_TYPE(/datum/job/command)
 		src.access = get_access("VIP")
 		return
 
+/datum/job/command/sitedirector
+	name = "Site Director"
+	limit = 0 //summit overrides
+	wages = PAY_EXECUTIVE
+	//department = "command"
+	high_priority_job = 1
+	recieves_miranda = 1
+	cant_spawn_as_rev = 1
+	announce_on_join = 1
+	allow_spy_theft = 0
+
+	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_card = /obj/item/card/id/command
+	slot_poc2 = list(/obj/item/spacecash/fivehundred)
+	slot_belt = list(/obj/item/device/pda2/heads)
+	slot_jump = list(/obj/item/clothing/under/shirt_pants_b/redtie)
+	slot_foot = list(/obj/item/clothing/shoes/swat)
+	slot_suit = list(/obj/item/clothing/suit/cryo/sd)
+	slot_ears = list(/obj/item/device/radio/headset/command/sd)
+	slot_head = list(/obj/item/clothing/head/bighat/czako)
+	slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
+	slot_glov = list(/obj/item/clothing/gloves/black)
+	items_in_backpack = list(/obj/item/device/flash)
+
+	New()
+		..()
+		src.access = get_access("Security Officer") + get_access("Chief Engineer") + list(access_heads)
+		return
+
+/datum/job/command/surveyorgeneral
+	name = "Surveyor General"
+	limit = 0 //summit overrides
+	wages = PAY_EXECUTIVE
+	//department = "command"
+	high_priority_job = 1
+	recieves_miranda = 1
+	cant_spawn_as_rev = 1
+	announce_on_join = 1
+	allow_spy_theft = 0
+
+	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_card = /obj/item/card/id/command
+	slot_poc2 = list(/obj/item/spacecash/fivehundred)
+	slot_belt = list(/obj/item/device/pda2/heads)
+	slot_jump = list(/obj/item/clothing/under/shirt_pants_b/bluetie)
+	slot_foot = list(/obj/item/clothing/shoes/swat)
+	slot_suit = list(/obj/item/clothing/suit/cryo/sg)
+	slot_ears = list(/obj/item/device/radio/headset/command/sg)
+	slot_head = list(/obj/item/clothing/head/bighat/shako)
+	slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
+	slot_glov = list(/obj/item/clothing/gloves/black)
+	items_in_backpack = list(/obj/item/device/flash)
+
+	New()
+		..()
+		src.access = get_access("Medical Director") + get_access("Quartermaster") + get_access("Research Director") + list(access_heads)
+		return
+
+
 // Security Jobs
 
 ABSTRACT_TYPE(/datum/job/security)
