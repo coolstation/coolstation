@@ -3347,7 +3347,10 @@
 	},
 /area/gehenna)
 "cOj" = (
-/obj/ladder/auto,
+/obj/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/autoname/west,
 /turf/floor/plating,
 /area/station/maintenance/southwest)
 "cOk" = (
@@ -17396,10 +17399,7 @@
 /turf/floor/grey,
 /area/station/crew_quarters/courtroom)
 "oQS" = (
-/obj/cable/yellow{
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc/autoname/west,
+/obj/ladder/auto,
 /turf/floor/plating,
 /area/station/maintenance/southwest)
 "oRq" = (
@@ -60850,9 +60850,9 @@ ldl
 tzF
 ccm
 ipa
-cOj
+bWU
 oQS
-qHb
+cOj
 hUw
 czk
 czk
