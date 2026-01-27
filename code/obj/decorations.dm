@@ -1870,3 +1870,46 @@ obj/decoration/ceilingfan
 			icon = 'icons/misc/rstation.dmi'
 			icon_state = "ext-gap"
 
+/obj/decoration/weldseam
+	name = "weld seam"
+	icon = 'icons/obj/decals/misc.dmi'
+	icon_state = "weld"
+	plane = PLANE_NOSHADOW_BELOW
+
+	New()
+		..()
+		var/image/I = image(src, dir=src.dir, pixel_x = src.pixel_x, pixel_y = src.pixel_y)
+		I.appearance_flags = RESET_COLOR
+		var/turf/T = src.loc
+		T.UpdateOverlays(I, "weldseam_[dir]") // we make this an overlay so it is removed with the wall
+		qdel(src)
+
+	color
+		north
+			dir = NORTH
+			pixel_y = 11
+		south
+			dir = SOUTH
+			pixel_y = -11
+		east
+			dir = EAST
+			pixel_x = 11
+		west
+			dir = WEST
+			pixel_x = -11
+
+	grey
+		color = "#585858"
+		north
+			dir = NORTH
+			pixel_y = 11
+		south
+			dir = SOUTH
+			pixel_y = -11
+		east
+			dir = EAST
+			pixel_x = 11
+		west
+			dir = WEST
+			pixel_x = -11
+
