@@ -62,6 +62,7 @@
 /turf/floor/plating,
 /area/station/library/reading1)
 "ai" = (
+/obj/machinery/atmospherics/valve/horizontal,
 /turf/floor/plating,
 /area/station/engine/combustion_chamber)
 "aj" = (
@@ -246,12 +247,6 @@
 	},
 /turf/floor/grey,
 /area/station/security/secoffquarters)
-"aK" = (
-/obj/machinery/light/small/frostedred{
-	dir = 4
-	},
-/turf/floor/nevicata/wastes/beaten,
-/area/space)
 "aL" = (
 /obj/stool/chair/green{
 	dir = 4
@@ -358,15 +353,6 @@
 /obj/machinery/vending/snack,
 /turf/floor/grime,
 /area/station/security/brig)
-"bg" = (
-/obj/disposalpipe/segment/sewage/vertical,
-/obj/machinery/light/small/frostedred{
-	dir = 8
-	},
-/turf/floor/nevicata/wastes,
-/area/nevicata{
-	name = "Director Quarter"
-	})
 "bh" = (
 /obj/machinery/ignition_switch{
 	id = "teg_ignition1";
@@ -750,11 +736,9 @@
 	},
 /area/station/engine/storage)
 "cg" = (
-/obj/disposalpipe/segment/morgue/horizontal,
-/turf/floor/nevicata/wastes/plating,
-/area/nevicata{
-	name = "Surveyor Quarter"
-	})
+/obj/machinery/light/small/frostedred,
+/turf/floor/nevicata/wastes,
+/area/space)
 "ch" = (
 /obj/decal/snowbits,
 /turf/floor/specialroom/bar,
@@ -1053,10 +1037,16 @@
 	name = "Surveyor Quarter"
 	})
 "cS" = (
-/obj/machinery/light/small/frostedred{
-	dir = 8
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/floor/nevicata/wastes/plating,
+/obj/machinery/light/small/frostedred{
+	dir = 1;
+	pixel_x = 10
+	},
+/turf/floor/nevicata/wastes/beaten,
 /area/nevicata{
 	name = "Surveyor Quarter"
 	})
@@ -1166,6 +1156,12 @@
 /obj/cable,
 /turf/floor/sanitary/white,
 /area/station/crew_quarters/bathroom)
+"dh" = (
+/obj/railing/cool{
+	dir = 8
+	},
+/turf/floor/wood/five,
+/area/space)
 "di" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/carpet/grime,
@@ -1293,6 +1289,12 @@
 	},
 /turf/floor/grime,
 /area/station/ai_monitored/storage/emergency)
+"dD" = (
+/obj/machinery/light/small/frostedred,
+/turf/floor/nevicata/wastes/beaten,
+/area/nevicata{
+	name = "Director Quarter"
+	})
 "dE" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/red/checker{
@@ -1335,20 +1337,6 @@
 	},
 /turf/floor/industrial,
 /area/station/engine/power)
-"dJ" = (
-/obj/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/light/small/frostedred{
-	dir = 1;
-	pixel_x = 10
-	},
-/turf/floor/nevicata/wastes/beaten,
-/area/nevicata{
-	name = "Surveyor Quarter"
-	})
 "dK" = (
 /obj/stool/bar,
 /obj/decal/cleanable/rust,
@@ -1574,6 +1562,13 @@
 /obj/machinery/disposal,
 /turf/floor/industrial,
 /area/station/engine/core)
+"ej" = (
+/obj/machinery/door/airlock/gannets/maintenance,
+/obj/access_spawn/maint,
+/turf/floor/plating,
+/area/station/chapel/sanctuary{
+	do_not_irradiate = 1
+	})
 "ek" = (
 /obj/decal/poster/wallsign/poster_human{
 	pixel_y = 28
@@ -1593,9 +1588,11 @@
 /turf/floor/plating,
 /area/station/engine/storage)
 "em" = (
-/obj/wingrille_spawn/reinforced_crystal,
-/turf/floor/plating,
-/area/station/medical/medbay/recovery)
+/obj/machinery/light/small/frostedred{
+	dir = 4
+	},
+/turf/floor/nevicata/wastes/beaten,
+/area/space)
 "en" = (
 /obj/disposalpipe/segment/morgue/horizontal,
 /turf/floor/blue/checker,
@@ -1897,6 +1894,12 @@
 	},
 /turf/floor/carpet/grime3,
 /area/station/hallway/secondary/north)
+"eX" = (
+/obj/railing/cool{
+	dir = 8
+	},
+/turf/floor/nevicata/wastes/plating,
+/area/space)
 "eY" = (
 /obj/decal/tile_edge/line/blue{
 	dir = 1;
@@ -1908,11 +1911,14 @@
 /turf/floor/black,
 /area/station/medical/cdc)
 "eZ" = (
-/obj/machinery/light/small/reddish{
-	dir = 1
+/obj/stool/chair/office/lblue{
+	dir = 8
 	},
-/turf/floor/plating,
-/area/station/maintenance/disposal)
+/obj/landmark/start{
+	name = "Medical Doctor"
+	},
+/turf/floor/white,
+/area/station/medical/medbay/cloner)
 "fa" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/northeast,
 /obj/machinery/meter,
@@ -1967,12 +1973,11 @@
 /turf/floor/grime,
 /area/station/engine/core)
 "fi" = (
-/obj/machinery/light/small/frostedred{
-	dir = 1;
-	pixel_x = 10
-	},
+/obj/burning_barrel,
 /turf/floor/nevicata/wastes,
-/area/space)
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "fj" = (
 /obj/cable{
 	d1 = 4;
@@ -2083,6 +2088,12 @@
 /obj/machinery/hydro_growlamp,
 /turf/floor/grass,
 /area/station/hydroponics/bay)
+"fz" = (
+/obj/machinery/light/small/frostedred,
+/turf/floor/nevicata/wastes/plating,
+/area/nevicata{
+	name = "Director Quarter"
+	})
 "fA" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/east,
 /turf/floor/nevicata/wastes/plating,
@@ -2140,9 +2151,9 @@
 	do_not_irradiate = 1
 	})
 "fI" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/southeast,
-/turf/floor/airless/engine/vacuum,
-/area/station/engine/combustion_chamber)
+/obj/railing/cool,
+/turf/floor/nevicata/wastes/beaten,
+/area/space)
 "fJ" = (
 /obj/decal/cleanable/dirt/random,
 /obj/decal/snowbits,
@@ -2157,8 +2168,8 @@
 /turf/wall/auto/reinforced,
 /area/station/ai_monitored/armory)
 "fL" = (
-/obj/wingrille_spawn/reinforced_crystal,
 /obj/window_blinds,
+/obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
 /area/station/medical/medbay/recovery)
 "fN" = (
@@ -2775,6 +2786,10 @@
 /obj/access_spawn/medical,
 /turf/floor/blue/checker,
 /area/station/medical/medbay/lobby)
+"hw" = (
+/obj/machinery/atmospherics/binary/volume_pump,
+/turf/floor,
+/area/station/engine/monitoring)
 "hx" = (
 /turf/wall/auto,
 /area/station/medical/medbay/pharmacy)
@@ -2953,10 +2968,6 @@
 	},
 /turf/floor/red,
 /area/station/security/checkpoint/customs)
-"hV" = (
-/obj/railing/cool,
-/turf/floor/nevicata/wastes/beaten,
-/area/space)
 "hW" = (
 /obj/item/material_piece/bone,
 /turf/floor/nevicata/wastes/beaten,
@@ -2965,6 +2976,15 @@
 /obj/machinery/autoclave,
 /turf/floor/darkblue,
 /area/station/medical/cdc)
+"hY" = (
+/obj/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc/autoname/east,
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/grime,
+/area/station/hallway/secondary/central)
 "hZ" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/southwest,
 /turf/floor,
@@ -3103,18 +3123,6 @@
 /obj/access_spawn/morgue,
 /turf/floor/sanitary/white,
 /area/station/medical/morgue)
-"is" = (
-/obj/wingrille_spawn/reinforced_crystal,
-/obj/machinery/atmospherics/binary/pump{
-	dir = 8;
-	frequency = 1229;
-	icon_state = "intact_on";
-	id = "Cold Loop Supply 1";
-	on = 1;
-	target_pressure = 1000
-	},
-/turf/floor/plating,
-/area/station/engine/combustion_chamber)
 "it" = (
 /obj/machinery/door/airlock/gannets/maintenance,
 /turf/floor/plating,
@@ -3415,6 +3423,11 @@
 "js" = (
 /obj/cable{
 	icon_state = "5-8"
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/floor/carpet/grime3,
 /area/station/hallway/secondary/north)
@@ -3830,12 +3843,11 @@
 /area/station/science/recon)
 "kw" = (
 /obj/machinery/light/small/frostedred{
-	dir = 4
+	dir = 1;
+	pixel_x = 10
 	},
-/turf/floor/nevicata/wastes/plating,
-/area/nevicata{
-	name = "Director Quarter"
-	})
+/turf/floor/nevicata/wastes,
+/area/space)
 "kx" = (
 /obj/machinery/door/airlock/gannets/medical,
 /obj/access_spawn/medical,
@@ -4074,11 +4086,9 @@
 /turf/floor/nevicata/wastes/beaten,
 /area/space)
 "la" = (
-/obj/machinery/door/airlock/gannets/glass/engineering,
-/obj/machinery/door/airlock/gannets/glass/engineering,
-/obj/access_spawn/engineering_storage,
-/turf/floor/plating,
-/area/station/engine/gas)
+/obj/machinery/light/small/frostedred,
+/turf/floor/nevicata/wastes/plating,
+/area/space)
 "lb" = (
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/light_switch/west,
@@ -4560,6 +4570,13 @@
 /obj/decal/poster/wallsign/stencil/right/i,
 /turf/wall/auto,
 /area/station/library/reading1)
+"mt" = (
+/obj/railing/cool,
+/obj/railing/cool{
+	dir = 8
+	},
+/turf/floor/nevicata/wastes/plating,
+/area/space)
 "mu" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "delivery2"
@@ -4682,7 +4699,6 @@
 /turf/floor/grime,
 /area/station/maintenance/disposal)
 "mM" = (
-/obj/machinery/light_switch/west,
 /turf/floor/carpet/blue/fancy/edge{
 	dir = 10
 	},
@@ -5092,11 +5108,16 @@
 	dir = 4
 	},
 /area/station/security/main)
+"nM" = (
+/obj/railing/cool,
+/turf/floor/nevicata/wastes,
+/area/space)
 "nN" = (
 /obj/machinery/computer/security{
 	dir = 4
 	},
 /obj/machinery/light/fluorescent/ceiling/cool,
+/obj/machinery/light_switch/west,
 /turf/floor/grey/side{
 	dir = 8
 	},
@@ -5590,6 +5611,15 @@
 	},
 /turf/floor/industrial,
 /area/station/quartermaster/cargooffice)
+"oS" = (
+/obj/machinery/light/small/frostedred{
+	dir = 1;
+	pixel_x = 10
+	},
+/turf/floor/nevicata/wastes/plating,
+/area/nevicata{
+	name = "Director Quarter"
+	})
 "oT" = (
 /obj/decal/cleanable/tracked_reagents/blood/splatter,
 /obj/machinery/light_switch/west,
@@ -5639,10 +5669,17 @@
 /turf/floor/carpet/grime,
 /area/station/library)
 "pc" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
-/turf/floor/grime,
-/area/station/engine/monitoring)
+/obj/disposalpipe/segment{
+	dir = 8
+	},
+/obj/machinery/light/small/frostedred{
+	dir = 1;
+	pixel_x = 10
+	},
+/turf/floor/nevicata/wastes/plating,
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "pd" = (
 /turf/wall/auto/rivet,
 /area/station/crew_quarters/clown{
@@ -6151,6 +6188,15 @@
 /obj/disposalpipe/segment/sewage/horizontal,
 /obj/railing/cool,
 /turf/floor/nevicata/wastes/beaten,
+/area/nevicata{
+	name = "Director Quarter"
+	})
+"qz" = (
+/obj/disposalpipe/segment/sewage/vertical,
+/obj/machinery/light/small/frostedred{
+	dir = 8
+	},
+/turf/floor/nevicata/wastes,
 /area/nevicata{
 	name = "Director Quarter"
 	})
@@ -7044,13 +7090,10 @@
 /turf/floor/industrial,
 /area/station/ai_monitored/bunker)
 "sQ" = (
-/obj/machinery/light/small/frostedred{
-	dir = 4
-	},
-/turf/floor/nevicata/wastes/beaten,
-/area/nevicata{
-	name = "Director Quarter"
-	})
+/obj/wingrille_spawn/reinforced,
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/vertical,
+/turf/floor/plating,
+/area/station/engine/monitoring)
 "sR" = (
 /obj/storage/crate/packing{
 	icon_state = "woodencrate9"
@@ -7631,6 +7674,10 @@
 /obj/item/device/gps,
 /turf/floor/black,
 /area/station/science/recon)
+"un" = (
+/obj/decal/slipmat/torn,
+/turf/floor/grime,
+/area/station/hallway/secondary/central)
 "uo" = (
 /obj/decal/cleanable/dirt/random,
 /obj/decal/poster/wallsign/cdnp{
@@ -8014,6 +8061,9 @@
 /area/station/maintenance/south)
 "ve" = (
 /obj/morgue/with_bodybag/corpse,
+/obj/machinery/light/small/reddish{
+	dir = 4
+	},
 /turf/floor/sanitary/white,
 /area/station/medical/morgue)
 "vf" = (
@@ -8093,6 +8143,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
+/obj/access_spawn/hos,
 /turf/floor/black,
 /area/station/ai_monitored/armory)
 "vw" = (
@@ -8104,7 +8155,7 @@
 "vx" = (
 /obj/disposalpipe/segment,
 /obj/disposalpipe/segment/morgue/horizontal,
-/turf/floor/nevicata/wastes/plating,
+/turf/floor/nevicata/wastes/beaten,
 /area/nevicata{
 	name = "Surveyor Quarter"
 	})
@@ -8277,6 +8328,12 @@
 /obj/disposalpipe/segment/sewage/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/disposal)
+"vV" = (
+/obj/burning_barrel,
+/turf/floor/nevicata/wastes/plating,
+/area/nevicata{
+	name = "Director Quarter"
+	})
 "vW" = (
 /obj/table/reinforced/industrial/auto,
 /obj/machinery/coffeemaker/generic{
@@ -8391,8 +8448,8 @@
 /turf/wall/auto,
 /area/station/crew_quarters/baroffice)
 "wo" = (
-/obj/cable{
-	icon_state = "4-8"
+/obj/machinery/light/small/frostedred{
+	dir = 4
 	},
 /turf/floor/nevicata/wastes,
 /area/nevicata{
@@ -8503,6 +8560,7 @@
 /turf/floor/wood/five,
 /area/space)
 "wE" = (
+/obj/machinery/atmospherics/pipe/vent/east,
 /turf/floor/airless/engine/glow/blue,
 /area/station/engine/combustion_chamber)
 "wF" = (
@@ -8572,6 +8630,12 @@
 "wO" = (
 /turf/floor,
 /area/station/medical/research)
+"wP" = (
+/obj/burning_barrel,
+/turf/floor/nevicata/wastes/beaten,
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "wQ" = (
 /turf/floor/black,
 /area/station/crew_quarters/catering)
@@ -8624,6 +8688,9 @@
 /obj/grille/catwalk/jen,
 /obj/cable{
 	icon_state = "6-8"
+	},
+/obj/machinery/light/small/reddish{
+	dir = 1
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
@@ -8739,13 +8806,13 @@
 /turf/floor,
 /area/station/engine/core)
 "xs" = (
-/obj/machinery/atmospherics/binary/volume_pump{
-	dir = 1;
-	on = 1;
-	transfer_rate = 1000
+/obj/machinery/light/small/frostedred{
+	dir = 4
 	},
-/turf/floor,
-/area/station/engine/monitoring)
+/turf/floor/nevicata/wastes/plating,
+/area/nevicata{
+	name = "Director Quarter"
+	})
 "xt" = (
 /turf/floor/grass,
 /area/station/hydroponics/bay)
@@ -9838,6 +9905,7 @@
 "Af" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northwest,
 /obj/machinery/light_switch/east,
+/obj/machinery/meter,
 /turf/floor,
 /area/station/engine/core)
 "Ag" = (
@@ -9947,9 +10015,9 @@
 	dir = 1;
 	pixel_x = 10
 	},
-/turf/floor/nevicata/wastes/plating,
+/turf/floor/nevicata/wastes/beaten,
 /area/nevicata{
-	name = "Surveyor Quarter"
+	name = "Director Quarter"
 	})
 "Aw" = (
 /obj/disposalpipe/segment/morgue/vertical,
@@ -10095,7 +10163,11 @@
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_south)
 "AP" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/vertical,
+/obj/machinery/atmospherics/binary/volume_pump{
+	dir = 1;
+	on = 1;
+	transfer_rate = 1000
+	},
 /turf/floor/airless/engine/vacuum,
 /area/station/engine/combustion_chamber)
 "AQ" = (
@@ -10331,6 +10403,11 @@
 /obj/item/gun/modular/NT/pistol_sec,
 /turf/floor/nevicata/wastes/beaten,
 /area/space)
+"Bu" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/cold,
+/obj/machinery/meter,
+/turf/floor,
+/area/station/engine/core)
 "Bv" = (
 /turf/floor/carpet/clowncarpet,
 /area/station/crew_quarters/clown{
@@ -10347,6 +10424,12 @@
 /obj/disposalpipe/segment/sewage/bent/north,
 /turf/floor/grey/side,
 /area/station/security/secoffquarters)
+"By" = (
+/obj/machinery/light/small/frostedred,
+/turf/floor/nevicata/wastes,
+/area/nevicata{
+	name = "Director Quarter"
+	})
 "Bz" = (
 /obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment{
@@ -10496,12 +10579,6 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
-"BS" = (
-/obj/machinery/light/small/frostedred,
-/turf/floor/nevicata/wastes,
-/area/nevicata{
-	name = "Director Quarter"
-	})
 "BT" = (
 /turf/floor/grey,
 /area/station/quartermaster/cargooffice/gunsmithing)
@@ -10636,7 +10713,6 @@
 "Co" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
 /obj/decal/cleanable/dirt/random,
-/obj/blind_switch/area/west,
 /turf/floor/carpet/blue/fancy/edge{
 	dir = 9
 	},
@@ -10962,14 +11038,19 @@
 /area/station/chapel/sanctuary{
 	do_not_irradiate = 1
 	})
-"Db" = (
-/obj/machinery/light/small/frostedred{
-	dir = 4
+"Da" = (
+/obj/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/floor/nevicata/wastes/beaten,
 /area/nevicata{
 	name = "Surveyor Quarter"
 	})
+"Db" = (
+/obj/machinery/atmospherics/pipe/vent/north,
+/turf/floor/nevicata/wastes,
+/area/space)
 "Dc" = (
 /obj/disposalpipe/segment{
 	dir = 4
@@ -11202,9 +11283,9 @@
 	},
 /area/station/security/checkpoint/customs)
 "DD" = (
-/obj/landmark/start,
-/turf/floor/specialroom/bar,
-/area/station/crew_quarters/bar)
+/obj/railing/cool,
+/turf/floor/nevicata/wastes/plating,
+/area/space)
 "DE" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
 /obj/stool/chair/comfy,
@@ -11262,6 +11343,10 @@
 /obj/stool/chair/blue,
 /turf/floor/plating,
 /area/station/ai_monitored/bunker)
+"DM" = (
+/obj/landmark/start,
+/turf/floor/specialroom/bar,
+/area/station/crew_quarters/bar)
 "DN" = (
 /obj/table,
 /obj/item/device/appraisal{
@@ -11439,6 +11524,7 @@
 "Ei" = (
 /obj/machinery/door/airlock/gannets/glass/engineering,
 /obj/access_spawn/engineering_engine,
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
 /turf/floor/plating,
 /area/station/engine/combustion_chamber)
 "Ej" = (
@@ -11584,14 +11670,13 @@
 /turf/floor/plating,
 /area/station/maintenance/southeast)
 "EE" = (
-/obj/machinery/light/small/frostedred{
-	dir = 1;
-	pixel_x = 10
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/floor/nevicata/wastes/beaten,
-/area/nevicata{
-	name = "Director Quarter"
-	})
+/turf/floor/grime,
+/area/station/hallway/secondary/central)
 "EF" = (
 /obj/decal/poster/wallsign/biohazard{
 	pixel_y = 32
@@ -11668,6 +11753,14 @@
 	},
 /turf/floor/grime,
 /area/station/hallway/secondary/central)
+"EO" = (
+/obj/machinery/light/small/frostedred{
+	dir = 4
+	},
+/turf/floor/nevicata/wastes/beaten,
+/area/nevicata{
+	name = "Director Quarter"
+	})
 "EP" = (
 /obj/decal/cleanable/dirt/random,
 /turf/floor/greenblack{
@@ -11727,6 +11820,19 @@
 	},
 /turf/floor/industrial,
 /area/station/crew_quarters/catering)
+"EU" = (
+/obj/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "4-9"
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/carpet/grime3,
+/area/station/hallway/secondary/north)
 "EW" = (
 /obj/decal/cleanable/dirt/random,
 /obj/storage/secure/closet/brig,
@@ -11929,14 +12035,10 @@
 /turf/floor/grey,
 /area/station/science/chemistry)
 "Ft" = (
-/obj/machinery/light/small/frostedred{
-	dir = 1;
-	pixel_x = 10
-	},
-/turf/floor/nevicata/wastes/plating,
-/area/nevicata{
-	name = "Director Quarter"
-	})
+/obj/machinery/door/airlock/gannets/maintenance,
+/obj/access_spawn/maint,
+/turf/floor/plating,
+/area/space)
 "Fu" = (
 /obj/machinery/door/airlock/gannets/glass/engineering,
 /obj/access_spawn/engineering_engine,
@@ -12067,18 +12169,6 @@
 /obj/access_spawn/kitchen,
 /turf/floor/black,
 /area/station/crew_quarters/bar)
-"FL" = (
-/obj/disposalpipe/segment{
-	dir = 8
-	},
-/obj/machinery/light/small/frostedred{
-	dir = 1;
-	pixel_x = 10
-	},
-/turf/floor/nevicata/wastes/plating,
-/area/nevicata{
-	name = "Surveyor Quarter"
-	})
 "FM" = (
 /obj/stool/bed/brig,
 /turf/floor/white,
@@ -12095,9 +12185,11 @@
 	name = "Clown Cave"
 	})
 "FO" = (
-/obj/machinery/light/small/frostedred,
-/turf/floor/nevicata/wastes,
-/area/space)
+/obj/disposalpipe/segment,
+/turf/floor/nevicata/wastes/beaten,
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "FP" = (
 /obj/fluid_spawner/polluted_filth,
 /turf/floor/white/grime,
@@ -12326,7 +12418,7 @@
 /area/station/crew_quarters/catering)
 "Gs" = (
 /obj/disposalpipe/segment/morgue/bent/west,
-/turf/floor/nevicata/wastes/beaten,
+/turf/floor/nevicata/wastes/plating,
 /area/nevicata{
 	name = "Surveyor Quarter"
 	})
@@ -12370,12 +12462,9 @@
 /turf/floor,
 /area/station/medical/research)
 "Gy" = (
-/obj/decal/poster/wallsign/medbay{
-	pixel_x = 30;
-	pixel_y = 4
-	},
 /obj/machinery/light/small/frostedred{
-	dir = 4
+	dir = 1;
+	pixel_x = 10
 	},
 /turf/floor/nevicata/wastes/plating,
 /area/nevicata{
@@ -12875,6 +12964,18 @@
 /area/nevicata{
 	name = "Surveyor Quarter"
 	})
+"HL" = (
+/obj/decal/poster/wallsign/medbay{
+	pixel_x = 30;
+	pixel_y = 4
+	},
+/obj/machinery/light/small/frostedred{
+	dir = 4
+	},
+/turf/floor/nevicata/wastes/plating,
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "HM" = (
 /obj/machinery/door/airlock/gannets/maintenance,
 /obj/disposalpipe/segment/sewage/horizontal,
@@ -12956,7 +13057,7 @@
 	dir = 8
 	},
 /obj/disposalpipe/segment/morgue/vertical,
-/turf/floor/nevicata/wastes/beaten,
+/turf/floor/nevicata/wastes/plating,
 /area/nevicata{
 	name = "Surveyor Quarter"
 	})
@@ -13090,6 +13191,15 @@
 	},
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quarters_south)
+"Im" = (
+/obj/machinery/light/small/frostedred{
+	dir = 1;
+	pixel_x = 10
+	},
+/turf/floor/nevicata/wastes,
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "In" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
 /obj/table/reinforced/auto,
@@ -13469,15 +13579,16 @@
 /turf/floor/circuit/vintage,
 /area/station/turret_protected/ai_upload)
 "Ji" = (
-/obj/disposalpipe/segment/morgue/horizontal,
-/obj/machinery/light/small/frostedred{
-	dir = 1;
-	pixel_x = 10
+/obj/machinery/atmospherics/binary/pump{
+	dir = 4;
+	frequency = 1404;
+	icon_state = "intact_on";
+	id = "Chamber Purge";
+	on = 1;
+	target_pressure = 1000
 	},
-/turf/floor/nevicata/wastes/plating,
-/area/nevicata{
-	name = "Director Quarter"
-	})
+/turf/floor/grime,
+/area/station/engine/monitoring)
 "Jj" = (
 /obj/table/regal/auto,
 /obj/decal/poster/wallsign/pope_portrait{
@@ -13821,6 +13932,16 @@
 /obj/decal/cleanable/mess/sodacan,
 /turf/floor/carpet/grime,
 /area/station/crew_quarters/quarters_north)
+"Ke" = (
+/obj/disposalpipe/segment/sewage/horizontal,
+/obj/machinery/light/small/frostedred{
+	dir = 1;
+	pixel_x = 10
+	},
+/turf/floor/nevicata/wastes/beaten,
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "Kf" = (
 /obj/decal/cleanable/dirt/random,
 /obj/shrub{
@@ -13839,11 +13960,9 @@
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
 "Kh" = (
-/obj/railing/cool{
-	dir = 8
-	},
-/turf/floor/wood/five,
-/area/space)
+/obj/machinery/door/airlock/gannets/maintenance,
+/turf/floor/grime,
+/area/station/hallway/secondary/central)
 "Ki" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
 /obj/cable{
@@ -13865,6 +13984,9 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/light/fluorescent/ceiling/cool,
+/obj/cable{
+	icon_state = "1-6"
+	},
 /turf/floor/carpet/grime3,
 /area/station/hallway/secondary/north)
 "Kl" = (
@@ -14871,12 +14993,6 @@
 /area/station/chapel/sanctuary{
 	do_not_irradiate = 1
 	})
-"MS" = (
-/obj/machinery/light/small/frostedred,
-/turf/floor/nevicata/wastes/beaten,
-/area/nevicata{
-	name = "Director Quarter"
-	})
 "MT" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
@@ -15035,11 +15151,10 @@
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "Nl" = (
-/obj/decal/slipmat{
-	dir = 4
-	},
-/turf/floor/carpet/grime3,
-/area/station/hallway/secondary/north)
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
+/turf/floor/grime,
+/area/station/engine/monitoring)
 "Nm" = (
 /obj/disposalpipe/segment,
 /obj/disposalpipe/segment/sewage/horizontal,
@@ -15102,6 +15217,10 @@
 /obj/machinery/printing_press,
 /turf/floor/wood/five,
 /area/station/library)
+"Nv" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/southeast,
+/turf/floor/airless/engine/vacuum,
+/area/station/engine/combustion_chamber)
 "Nw" = (
 /obj/decal/tile_edge/line/black{
 	dir = 8;
@@ -15855,7 +15974,7 @@
 /area/station/medical/medbay/surgery)
 "Pv" = (
 /obj/disposalpipe/junction/middle/north,
-/turf/floor/nevicata/wastes/plating,
+/turf/floor/nevicata/wastes/beaten,
 /area/nevicata{
 	name = "Surveyor Quarter"
 	})
@@ -16664,6 +16783,11 @@
 /area/nevicata{
 	name = "Surveyor Quarter"
 	})
+"RA" = (
+/obj/machinery/door/airlock/gannets/maintenance,
+/obj/access_spawn/maint,
+/turf/floor/plating,
+/area/station/maintenance/disposal)
 "RB" = (
 /obj/decal/poster/wallsign/escape_right,
 /turf/wall/auto,
@@ -16892,15 +17016,10 @@
 /turf/floor/plating,
 /area/station/engine/engineering/breakroom)
 "Sg" = (
-/obj/disposalpipe/segment/sewage/horizontal,
-/obj/machinery/light/small/frostedred{
-	dir = 1;
-	pixel_x = 10
-	},
-/turf/floor/nevicata/wastes/beaten,
-/area/nevicata{
-	name = "Director Quarter"
-	})
+/obj/machinery/atmospherics/pipe/simple/insulated/cold/southwest,
+/obj/machinery/meter,
+/turf/floor/grime,
+/area/station/engine/monitoring)
 "Si" = (
 /obj/cable{
 	icon_state = "1-4"
@@ -17034,6 +17153,14 @@
 	dir = 4
 	},
 /area/station/medical/robotics)
+"SG" = (
+/obj/machinery/light/small/frostedred{
+	dir = 4
+	},
+/turf/floor/nevicata/wastes/beaten,
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "SH" = (
 /obj/decal/slipmat,
 /obj/decal/cleanable/dirt/random,
@@ -17379,14 +17506,25 @@
 	requires_power = 0
 	})
 "Ty" = (
-/obj/stool/chair/office/lblue{
-	dir = 8
+/obj/disposalpipe/segment/sewage/horizontal,
+/obj/machinery/light/small/frostedred{
+	dir = 1;
+	pixel_x = 10
 	},
-/obj/landmark/start{
-	name = "Medical Doctor"
+/turf/floor/nevicata/wastes/beaten,
+/area/nevicata{
+	name = "Director Quarter"
+	})
+"Tz" = (
+/obj/disposalpipe/segment/morgue/horizontal,
+/obj/machinery/light/small/frostedred{
+	dir = 1;
+	pixel_x = 10
 	},
-/turf/floor/white,
-/area/station/medical/medbay/cloner)
+/turf/floor/nevicata/wastes/plating,
+/area/nevicata{
+	name = "Director Quarter"
+	})
 "TA" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/insulated/vertical,
@@ -17490,6 +17628,10 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal)
+"TM" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
+/turf/floor/airless/engine/vacuum,
+/area/station/engine/combustion_chamber)
 "TN" = (
 /obj/random_item_spawner/junk/one,
 /turf/floor/nevicata/wastes,
@@ -17570,11 +17712,7 @@
 /obj/cable/brown{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/binary/volume_pump{
-	dir = 1;
-	on = 1;
-	transfer_rate = 1000
-	},
+/obj/machinery/atmospherics/binary/volume_pump,
 /turf/floor/grime,
 /area/station/engine/core)
 "TV" = (
@@ -17969,6 +18107,17 @@
 	dir = 1
 	},
 /area/station/bridge)
+"Va" = (
+/obj/machinery/door/airlock/gannets/medical,
+/obj/access_spawn/medical,
+/obj/access_spawn/research,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/carpet/grime3,
+/area/station/hallway/secondary/north)
 "Vb" = (
 /obj/stool/bed/brig,
 /obj/window/reinforced/south,
@@ -18043,13 +18192,21 @@
 /turf/floor/grime,
 /area/station/crew_quarters/quarters_south)
 "Vh" = (
-/obj/machinery/light/small/frostedred{
-	dir = 8
+/obj/table/folding,
+/obj/item/hand_warmer{
+	pixel_y = 4;
+	pixel_x = -3
 	},
-/turf/floor/nevicata/wastes/beaten,
-/area/nevicata{
-	name = "Surveyor Quarter"
-	})
+/obj/item/hand_warmer{
+	pixel_y = 4;
+	pixel_x = 1
+	},
+/obj/item/hand_warmer{
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/turf/floor/grime,
+/area/station/hallway/secondary/central)
 "Vi" = (
 /obj/decal/cleanable/dirt/random,
 /obj/cable{
@@ -18229,7 +18386,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/access_spawn/maint,
 /turf/floor/plating,
 /area/station/chapel/office)
 "VH" = (
@@ -18396,6 +18552,14 @@
 	},
 /turf/floor,
 /area/station/engine/elect)
+"Wf" = (
+/obj/machinery/light/small/frostedred{
+	dir = 8
+	},
+/turf/floor/nevicata/wastes,
+/area/nevicata{
+	name = "Director Quarter"
+	})
 "Wg" = (
 /obj/decal/tile_edge/line/yellow{
 	dir = 1;
@@ -18693,6 +18857,14 @@
 	requires_power = 0;
 	name = "Clown Cave"
 	})
+"WO" = (
+/obj/machinery/light/small/frostedred{
+	dir = 4
+	},
+/turf/floor/nevicata/wastes/plating,
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "WP" = (
 /obj/machinery/door/airlock/gannets/glass/medical,
 /obj/disposalpipe/segment,
@@ -18914,13 +19086,10 @@
 /turf/floor/grime,
 /area/station/engine/monitoring)
 "Xp" = (
-/obj/machinery/light/small/frostedred{
-	dir = 8
-	},
-/turf/floor/nevicata/wastes,
-/area/nevicata{
-	name = "Director Quarter"
-	})
+/obj/machinery/door/airlock/gannets/command/alt,
+/obj/access_spawn/heads,
+/turf/floor/grime,
+/area/station/bridge)
 "Xq" = (
 /obj/machinery/light/fluorescent/ceiling/cool,
 /obj/cable{
@@ -19078,10 +19247,6 @@
 	dir = 8
 	},
 /area/station/engine/storage)
-"XN" = (
-/obj/machinery/atmospherics/pipe/simple/insulated/horizontal,
-/turf/floor/airless/engine/vacuum,
-/area/station/engine/combustion_chamber)
 "XO" = (
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
@@ -19188,14 +19353,6 @@
 	},
 /turf/floor/white,
 /area/station/science/chemistry)
-"XZ" = (
-/obj/machinery/light/small/frostedred{
-	dir = 4
-	},
-/turf/floor/nevicata/wastes,
-/area/nevicata{
-	name = "Surveyor Quarter"
-	})
 "Ya" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/nb,
@@ -19547,16 +19704,6 @@
 	},
 /turf/floor/white,
 /area/station/medical/medbay/cloner)
-"YW" = (
-/obj/disposalpipe/segment/sewage/horizontal,
-/obj/machinery/light/small/frostedred{
-	dir = 1;
-	pixel_x = 10
-	},
-/turf/floor/nevicata/wastes/beaten,
-/area/nevicata{
-	name = "Surveyor Quarter"
-	})
 "YX" = (
 /turf/wall/auto,
 /area/station/medical/medbay/surgery)
@@ -19692,9 +19839,13 @@
 /turf/floor/grime,
 /area/station/hallway/secondary/central)
 "Zr" = (
-/obj/machinery/atmospherics/binary/volume_pump,
-/turf/floor,
-/area/station/engine/core)
+/obj/machinery/light/small/frostedred{
+	dir = 8
+	},
+/turf/floor/nevicata/wastes/beaten,
+/area/nevicata{
+	name = "Surveyor Quarter"
+	})
 "Zs" = (
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk{
@@ -19756,6 +19907,7 @@
 	pixel_y = 6;
 	pixel_x = 3
 	},
+/obj/blind_switch/area/west,
 /turf/floor/grey/side{
 	dir = 9
 	},
@@ -52421,11 +52573,11 @@ pn
 pn
 pn
 pn
-pn
-pn
-pn
-pn
-pn
+he
+he
+he
+he
+he
 pn
 pn
 pn
@@ -52723,11 +52875,11 @@ pn
 pn
 pn
 pn
-pn
-pn
-pn
-pn
-pn
+he
+Oe
+Oe
+Xh
+he
 pn
 pn
 pn
@@ -53025,11 +53177,11 @@ pn
 pn
 pn
 pn
-pn
-pn
-pn
-pn
-pn
+he
+Oe
+Oe
+Oe
+dn
 pn
 pn
 pn
@@ -53327,11 +53479,11 @@ pn
 pn
 pn
 pn
-pn
-pn
-pn
-pn
-pn
+he
+Oe
+Oe
+Oe
+he
 pn
 pn
 pn
@@ -53621,19 +53773,19 @@ pn
 pn
 pn
 pn
-pn
-Cb
-Cb
-Cb
-pn
-pn
+nM
+eX
+eX
+mt
 pn
 pn
 pn
 pn
-pn
-pn
-pn
+he
+he
+Ft
+he
+he
 pn
 pn
 pn
@@ -53923,18 +54075,18 @@ pn
 pn
 pn
 pn
-pn
+nM
 Cb
 PF
+DD
 Cb
-Cb
 pn
 pn
 pn
 pn
 pn
-pn
-pn
+xT
+xT
 pn
 pn
 pn
@@ -54225,18 +54377,18 @@ pn
 pn
 pn
 pn
-Cb
+DD
 Cb
 hz
+DD
 Cb
-Cb
 pn
 pn
 pn
 pn
 pn
-pn
-pn
+xT
+xT
 pn
 pn
 pn
@@ -54507,7 +54659,7 @@ pn
 pn
 pn
 pn
-aK
+em
 xT
 pn
 pn
@@ -54537,7 +54689,7 @@ pn
 pn
 pn
 pn
-pn
+xT
 pn
 pn
 pn
@@ -54839,7 +54991,7 @@ pn
 pn
 pn
 pn
-pn
+xT
 pn
 pn
 pn
@@ -54881,7 +55033,7 @@ Cu
 mY
 Cu
 Cu
-fi
+kw
 pn
 pn
 pn
@@ -55140,8 +55292,8 @@ pn
 pn
 pn
 pn
-pn
-pn
+xT
+xT
 pn
 pr
 pn
@@ -55442,8 +55594,8 @@ pn
 pn
 pn
 pn
-pn
-pn
+xT
+xT
 pn
 EA
 EA
@@ -55479,7 +55631,7 @@ ES
 Yg
 Rq
 MI
-fI
+Nv
 eC
 hj
 VD
@@ -55744,8 +55896,8 @@ pn
 pn
 pn
 pn
-pn
-pn
+pr
+xT
 pn
 EA
 ST
@@ -56047,7 +56199,7 @@ iB
 iB
 vM
 vM
-vM
+ej
 vM
 EA
 uc
@@ -56083,7 +56235,7 @@ Xr
 UT
 uB
 MI
-XN
+TM
 Cu
 tw
 Cu
@@ -56384,14 +56536,14 @@ zq
 Nt
 XH
 If
-is
-XN
+MI
+TM
 uz
 yd
 Cu
 ai
 Cu
-fi
+kw
 pn
 pn
 pn
@@ -56668,7 +56820,7 @@ LJ
 vq
 vq
 vq
-la
+MG
 Bb
 To
 Lp
@@ -56679,7 +56831,7 @@ gY
 fa
 QE
 aU
-Zr
+cJ
 Pp
 Lk
 cC
@@ -56987,13 +57139,13 @@ In
 hJ
 nX
 ts
-xs
+hw
 go
 qB
 Xo
-pc
+Nl
 vm
-Xo
+Ji
 ES
 pn
 pn
@@ -57295,9 +57447,9 @@ bn
 rS
 VQ
 PE
-Xo
-ES
-pn
+Sg
+sQ
+Db
 pn
 pn
 pn
@@ -57581,7 +57733,7 @@ da
 GR
 iV
 zt
-zt
+Bu
 cJ
 Af
 gZ
@@ -57829,8 +57981,8 @@ pn
 pn
 pn
 pn
-Mj
-eZ
+RA
+Hy
 BR
 hR
 eG
@@ -57839,7 +57991,7 @@ ni
 bw
 At
 HQ
-pF
+wP
 GQ
 TQ
 kC
@@ -58130,7 +58282,7 @@ pn
 pn
 pn
 pn
-pn
+cg
 Mj
 PL
 Hr
@@ -58166,13 +58318,13 @@ Gw
 Gw
 Ws
 Ws
-Xp
+Wf
 Ii
 vk
 ZJ
 ZJ
 Do
-bg
+qz
 Do
 Do
 Do
@@ -58430,7 +58582,7 @@ pn
 pn
 pn
 pn
-pn
+cg
 Ge
 Ge
 Ge
@@ -58450,7 +58602,7 @@ qA
 pF
 jF
 pF
-Vh
+Zr
 bd
 pF
 pF
@@ -58463,7 +58615,7 @@ pF
 pF
 pF
 pF
-Vh
+Zr
 pF
 pF
 pF
@@ -59091,7 +59243,7 @@ bv
 iK
 iK
 iK
-kw
+xs
 iK
 iK
 hI
@@ -59409,7 +59561,7 @@ OO
 AY
 AY
 AY
-fi
+kw
 pn
 pn
 pn
@@ -60242,7 +60394,7 @@ pn
 pn
 pn
 pn
-FO
+cg
 Pb
 Pb
 Pb
@@ -60254,7 +60406,7 @@ be
 be
 be
 be
-FL
+pc
 Ra
 pF
 Ws
@@ -60277,7 +60429,7 @@ Jw
 yg
 yg
 Bh
-Ws
+Im
 pF
 Ra
 iK
@@ -60582,7 +60734,7 @@ Bh
 Ws
 pF
 Ra
-iK
+fz
 fD
 Qy
 PO
@@ -61207,7 +61359,7 @@ Am
 Am
 Am
 Am
-Ji
+Tz
 hI
 yi
 OO
@@ -62054,7 +62206,7 @@ pn
 pn
 pn
 pn
-FO
+cg
 Pb
 Pb
 Pb
@@ -62127,7 +62279,7 @@ OO
 AY
 AY
 AY
-fi
+kw
 pn
 pn
 pn
@@ -62684,8 +62836,8 @@ yW
 li
 Qv
 Pv
-Ra
-cg
+pF
+zH
 hx
 hx
 rK
@@ -62694,7 +62846,7 @@ Kj
 oM
 hx
 hx
-Ra
+pF
 Ra
 iK
 xc
@@ -62977,7 +63129,7 @@ Ra
 Ra
 Ra
 Ra
-Gy
+HL
 Ra
 op
 Ra
@@ -62986,17 +63138,17 @@ Ra
 Ra
 FC
 XS
-yW
+FO
 vx
-yW
-yW
-yW
-uf
-Ra
-GV
-cS
-Ra
-Ra
+FO
+FO
+FO
+Da
+pF
+dQ
+Zr
+pF
+pF
 Ra
 iK
 BL
@@ -63287,18 +63439,18 @@ SJ
 pF
 me
 HV
-gI
-gI
+hO
+hO
 Gs
-pF
-pF
-pF
-bd
-pF
-dQ
-pF
-pF
-pF
+Ra
+Ra
+Ra
+RY
+Ra
+GV
+Ra
+Ra
+Ra
 Ra
 iK
 iK
@@ -63321,7 +63473,7 @@ aG
 Kp
 Fv
 CT
-Ft
+oS
 hI
 BL
 xc
@@ -63589,18 +63741,18 @@ qS
 pF
 zH
 HQ
-pF
-Db
-pF
-pF
-Ws
-Ws
-TE
-Ws
-wo
-Ws
-pF
-pF
+Ra
+WO
+Ra
+Ra
+Ra
+Ra
+RY
+Ra
+GV
+Ra
+Ra
+Ra
 Ra
 iK
 BL
@@ -63635,7 +63787,7 @@ fX
 vc
 Ex
 vo
-fi
+kw
 pn
 pn
 pn
@@ -63898,10 +64050,10 @@ Ws
 Ws
 Ws
 TE
-Ws
-wo
-Ws
-Ws
+pF
+dQ
+pF
+pF
 pF
 Ra
 iK
@@ -64197,13 +64349,13 @@ LN
 KI
 pF
 pF
-Db
+SG
 pF
 bd
 pF
 dQ
 pF
-Db
+SG
 pF
 Ra
 iK
@@ -65673,7 +65825,7 @@ pn
 pn
 pn
 pn
-FO
+cg
 Jv
 Jv
 Jv
@@ -65689,7 +65841,7 @@ Jv
 Jv
 Jv
 bm
-YW
+Ke
 FC
 Ra
 Qk
@@ -66319,7 +66471,7 @@ GG
 GG
 GG
 GG
-Av
+Gy
 iK
 BL
 BL
@@ -66579,7 +66731,7 @@ pn
 pn
 pn
 pn
-FO
+cg
 Jv
 Jv
 Jv
@@ -66601,7 +66753,7 @@ Ra
 yF
 io
 cj
-Ty
+eZ
 cE
 Qk
 lI
@@ -66624,7 +66776,7 @@ GG
 EF
 iK
 BL
-MS
+dD
 Uy
 vG
 vG
@@ -68151,7 +68303,7 @@ ed
 nq
 vH
 oY
-Sg
+Ty
 fW
 kt
 nj
@@ -68165,7 +68317,7 @@ jZ
 nL
 EM
 HX
-fi
+kw
 pn
 pn
 pn
@@ -68174,7 +68326,7 @@ pn
 pn
 xT
 xT
-Kh
+dh
 AW
 zi
 oa
@@ -68424,7 +68576,7 @@ No
 bc
 xw
 Kk
-YT
+uQ
 GG
 GG
 GG
@@ -68441,7 +68593,7 @@ vG
 Dl
 vl
 Fj
-DD
+DM
 Fj
 Fj
 vl
@@ -68459,7 +68611,7 @@ iK
 hI
 BL
 xc
-iK
+vV
 iK
 HX
 HX
@@ -68726,7 +68878,7 @@ Kg
 kn
 YX
 MU
-YT
+EU
 GG
 xu
 qI
@@ -68777,7 +68929,7 @@ pn
 pn
 pn
 xT
-hV
+fI
 bU
 bU
 Tx
@@ -69028,7 +69180,7 @@ QT
 FV
 YX
 al
-Nl
+uQ
 GG
 Ar
 eN
@@ -69079,7 +69231,7 @@ pn
 pn
 pn
 xT
-hV
+fI
 bU
 wD
 oa
@@ -69302,7 +69454,7 @@ pn
 pn
 pn
 pn
-FO
+cg
 tA
 tA
 TO
@@ -69313,7 +69465,7 @@ TO
 TO
 TO
 TO
-dJ
+cS
 FC
 Ra
 pF
@@ -69330,7 +69482,7 @@ tU
 YX
 YX
 rG
-HD
+Va
 GG
 hX
 sq
@@ -69381,7 +69533,7 @@ pn
 pn
 xT
 xT
-hV
+fI
 IW
 VR
 Tx
@@ -69630,21 +69782,21 @@ pF
 pF
 pF
 pF
-pF
-pF
-pF
+wy
+gy
+EE
 GG
 sg
 sg
 sg
-sg
+GG
 GG
 pF
 pF
 Ra
 iK
 BL
-BS
+By
 Uy
 Uy
 ha
@@ -69932,15 +70084,15 @@ pF
 pF
 Ws
 Ws
-pF
+wy
+LX
+EE
+LX
+LX
+LX
+Vh
+wy
 Ws
-pF
-pF
-pF
-pF
-pF
-pF
-pF
 pF
 pF
 Ra
@@ -70234,14 +70386,14 @@ zO
 pF
 Ws
 Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
-Ws
+Kh
+un
+hY
+gy
+LX
+FS
+Og
+Kh
 Ws
 Ws
 pF
@@ -70513,7 +70665,7 @@ pn
 pn
 pn
 pn
-em
+qw
 Qh
 cv
 db
@@ -70539,7 +70691,7 @@ YG
 YG
 YG
 Ju
-Ju
+Xp
 pj
 pj
 Ju
@@ -70815,7 +70967,7 @@ pn
 pn
 pn
 pn
-em
+qw
 iu
 Zg
 Gz
@@ -72020,7 +72172,7 @@ pn
 pn
 pn
 pn
-FO
+cg
 tA
 tA
 tA
@@ -72380,7 +72532,7 @@ Ja
 HB
 lQ
 wn
-EE
+Av
 iK
 hI
 nE
@@ -72393,7 +72545,7 @@ aN
 VB
 Wk
 Ic
-fi
+kw
 xT
 xT
 xT
@@ -72663,7 +72815,7 @@ pF
 pF
 iK
 iK
-MS
+dD
 Mx
 fE
 fE
@@ -72935,7 +73087,7 @@ Iu
 kV
 xl
 kV
-Ws
+fi
 pF
 po
 FC
@@ -73863,7 +74015,7 @@ pF
 pF
 HQ
 pF
-Db
+SG
 pF
 pF
 pF
@@ -73874,7 +74026,7 @@ BL
 BL
 BL
 BL
-sQ
+EO
 BL
 eJ
 Sj
@@ -73905,7 +74057,7 @@ jS
 Ic
 Ic
 Ic
-fi
+kw
 pn
 pn
 pn
@@ -74157,7 +74309,7 @@ pZ
 fm
 Ws
 Ws
-XZ
+wo
 pF
 pF
 pF
@@ -74736,7 +74888,7 @@ pn
 pn
 pn
 pn
-FO
+cg
 kV
 kV
 kV
@@ -79018,8 +79170,8 @@ xT
 pn
 pn
 pn
-pn
-pn
+xT
+xT
 pn
 pn
 pn
@@ -79320,8 +79472,8 @@ pn
 pn
 pn
 pn
-pn
-pn
+xT
+xT
 pn
 pn
 xT
@@ -79611,7 +79763,7 @@ kY
 pn
 Cb
 Cb
-Cb
+la
 Et
 Et
 Et
@@ -79622,7 +79774,7 @@ pn
 pn
 pn
 pn
-pn
+xT
 pn
 pn
 pn
@@ -79924,7 +80076,7 @@ pn
 pn
 pn
 pn
-pn
+xT
 pn
 pn
 pn
@@ -80225,8 +80377,8 @@ pn
 pn
 pn
 pn
-pn
-pn
+pr
+xT
 pn
 pn
 pn

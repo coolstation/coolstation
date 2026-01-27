@@ -1838,7 +1838,7 @@
 	item_state = "cryocoat-log"
 
 /obj/item/clothing/suit/cryo/head
-	name = "command cryogenic coat"
+	name = "site director's cryogenic coat"
 	desc = "A very thick coat designed to insulate the wearer from the absolute coldest of temperatures. This one is for command, and has some kevlar in the lining."
 	icon_state = "cryocoat-head"
 	item_state = "cryocoat-head"
@@ -1848,3 +1848,8 @@
 		setProperty("coldprot", 70)
 		setProperty("meleeprot", 3)
 		setProperty("rangedprot", 0.7)
+
+	sg
+		name = "surveyor general's cryogenic coat"
+		icon_state = "cryocoat-sg"
+		item_state = "cryocoat-sg"

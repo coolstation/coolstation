@@ -541,11 +541,12 @@ ABSTRACT_TYPE(/datum/job/command)
 	allow_spy_theft = 0
 	summit_exclusive = 1
 
-	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_back = list(/obj/item/storage/backpack/satchel/withO2)
 	slot_card = /obj/item/card/id/command
 	slot_poc2 = list(/obj/item/spacecash/fivehundred)
-	slot_belt = list(/obj/item/device/pda2/heads)
-	slot_jump = list(/obj/item/clothing/under/shirt_pants_b/redtie)
+	slot_poc1 = list(/obj/item/device/pda2/heads)
+	slot_belt = list(/obj/item/storage/belt/security/baton)
+	slot_jump = list(/obj/item/clothing/under/rank/security/suit)
 	slot_foot = list(/obj/item/clothing/shoes/winterboots)
 	slot_suit = list(/obj/item/clothing/suit/cryo/head)
 	slot_ears = list(/obj/item/device/radio/headset/command/sd)
@@ -556,7 +557,7 @@ ABSTRACT_TYPE(/datum/job/command)
 
 	New()
 		..()
-		src.access = get_access("Security Officer") + get_access("Chief Engineer") + list(access_heads)
+		src.access = get_access("Head of Security") + get_access("Chief Engineer")
 		return
 
 /datum/job/command/surveyorgeneral
@@ -571,13 +572,13 @@ ABSTRACT_TYPE(/datum/job/command)
 	allow_spy_theft = 0
 	summit_exclusive = 1
 
-	slot_back = list(/obj/item/storage/backpack/withO2)
+	slot_back = list(/obj/item/storage/backpack/satchel/withO2)
 	slot_card = /obj/item/card/id/command
 	slot_poc2 = list(/obj/item/spacecash/fivehundred)
 	slot_belt = list(/obj/item/device/pda2/heads)
 	slot_jump = list(/obj/item/clothing/under/shirt_pants_b/bluetie)
 	slot_foot = list(/obj/item/clothing/shoes/winterboots)
-	slot_suit = list(/obj/item/clothing/suit/cryo/head)
+	slot_suit = list(/obj/item/clothing/suit/cryo/head/sg)
 	slot_ears = list(/obj/item/device/radio/headset/command/sg)
 	slot_head = list(/obj/item/clothing/head/bighat/shako)
 	slot_eyes = list(/obj/item/clothing/glasses/sunglasses)
