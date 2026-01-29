@@ -1,6 +1,7 @@
 /obj/decal
 	pass_unstable = PRESERVE_CACHE
 	text = ""
+	flags = FPRINT | CANT_FIT_IN_CRATES
 	var/list/random_icon_states = list()
 	var/random_dir = 0
 	var/cares_bout_turf_change = FALSE
@@ -26,19 +27,19 @@
 
 	disposing()
 		if(src.visual_turf)
-			UnregisterSignal(src.visual_turf.turf_persistent, COMSIG_TURF_REPLACED)
+			UnregisterSignal(src.visual_turf.turf_persistent, COMSIG_TURF_POST_REPLACE)
 		..()
 
 	generate_worldgen()
 		. = ..()
-		if(src.cares_bout_turf_change)
+		if(src.cares_bout_turf_change && src.visual_turf)
 			var/x_off = trunc((src.pixel_x - 16) / 32)
 			var/y_off = trunc((src.pixel_y - 16) / 32)
 			var/turf/T = locate(src.visual_turf.x + x_off, src.visual_turf.y + y_off, src.visual_turf.z)
 			if(T)
 				src.visual_turf = T
 			src.old_turf_density = src.visual_turf.density
-			RegisterSignal(src.visual_turf.turf_persistent, COMSIG_TURF_REPLACED, PROC_REF(turf_changed))
+			RegisterSignal(src.visual_turf.turf_persistent, COMSIG_TURF_POST_REPLACE, PROC_REF(turf_changed))
 
 	proc/turf_changed(datum/turf_persistent/visual_turf_persistent, new_turf)
 		if(src.old_turf_density != src.visual_turf.density)
@@ -81,9 +82,11 @@
 /obj/decal/skeleton
 	name = "skeleton"
 	desc = "The remains of a human."
+	flags = FPRINT
 	opacity = 0
 	density = 0
 	anchored = ANCHORED
+	flags = FPRINT
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "skeleton_l"
 

@@ -599,7 +599,7 @@ This is basically useless for anyone but miners.
 
 /datum/syndicate_buylist/traitor/minibible
 	name = "Miniature Bib"
-	item = /obj/item/storage/bible/mini
+	item = /obj/item/bible/mini
 	cost = 1
 	desc = "We understand it can be difficult to carry out some of our missions. Here is some spiritual counsel in a small package."
 	job = list("Assistant","Technical Assistant","Medical Assistant","Staff Assistant", "Chaplain", "Clown")
@@ -619,7 +619,7 @@ This is basically useless for anyone but miners.
 	run_on_spawn(var/obj/item/storage/briefcase/satan/Q,var/mob/living/owner, in_surplus_crate)
 		if (istype(Q) && owner)
 			owner.make_merchant() //give them the power to summon more contracts
-			Q.merchant = owner
+			Q.set_merchant(owner)
 			owner.mind.diabolical = 1 //can't sell souls to ourselves now can we?
 
 /datum/syndicate_buylist/traitor/mailsuit

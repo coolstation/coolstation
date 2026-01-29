@@ -1503,7 +1503,7 @@
 		var/mob/M = owner
 		if(istype(M))
 			M.thermoregulation_mult /= 3
-
+//a
 /datum/statusEffect/maxhealth/decreased/hungry
 	id = "hungry"
 	name = "Hungry"
@@ -1511,13 +1511,19 @@
 	icon_state = "heart-"
 	duration = INFINITE_STATUS
 	maxDuration = null
-	change = -20
+	change = -10
 
 	onAdd(optional=null)
 		. = ..(change)
 
 	onChange(optional=null)
 		. = ..(change)
+
+	onUpdate(optional=null)
+		..()
+		var/mob/M = owner
+		if (!M.nutrition || M.nutrition >= 100)
+			M.delStatus("hungry")
 
 /datum/statusEffect/staminaregen/thirsty
 	id = "thirsty"

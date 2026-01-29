@@ -96,7 +96,7 @@
 			return
 	..()
 
-/obj/machinery/dispenser/proc/update_icon()
+/obj/machinery/dispenser/update_icon()
 	if (TOTAL_O2_TANKS > 0 && TOTAL_PL_TANKS > 0)
 		icon_state = "dispenser-both"
 	else

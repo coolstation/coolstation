@@ -50,6 +50,8 @@
 #define BURNING_LV2 200
 /// Burning Lv3 starts at this duration.
 #define BURNING_LV3 400
+/// Units of burn damage above which a mob gives cooked meat.
+#define WELL_DONE_THRESHOLD 200
 
 //cooldowns
 #define REST_TOGGLE_COOLDOWN 0.1 SECONDS
@@ -62,5 +64,7 @@
 //multiplies all blood regen, 0.002 is because humans have 500 units ideally and get 1 unit back usually
 #define BLOOD_SCALAR 0.002
 
-// No natural ear damage healing can occur if ear damage is above this threshold.
+/// No natural ear damage healing can occur if ear damage is above this threshold.
 #define EAR_DAMAGE_NATURAL_HEALING_THRESHOLD 25
+/// A deaf mob gets this percentage of characters visible in things they "hear"
+#define DEAF_LIPREADING_LEGIBLE_PERCENT 8

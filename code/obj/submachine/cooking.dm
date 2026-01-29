@@ -231,7 +231,7 @@
 			return src.Attackby(W, user)
 		return ..()
 
-	proc/update_icon()
+	update_icon()
 		if(src.beaker)
 			src.overlays += image(src.icon, "ice_creamer_beaker")
 		else
@@ -399,7 +399,7 @@
 			return src.Attackby(W, user)
 		return ..()
 
-	proc/update_icon()
+	update_icon()
 		if(src.beaker)
 			src.overlays += image(src.icon, "ice_creamer_beaker")
 		else
@@ -626,7 +626,16 @@ input:checked + div { display: block; }
 				var/atom/item_path = R.item4
 				tmp2 += "<div class='item' title=\"[html_encode(initial(item_path.name))]\">[bicon(R.item4)][R.amt4 > 1 ? "<span>x[R.amt4]</span>" : ""]</div>"
 
-			tmp2 += " (Prep time: [R.cookbonus]s)</td></tr>"
+			if(R.cookbonus > 10)	//need to convert to oven UI format or people might get a little confused.
+				var/cooktemp = "High"
+				var/cooktime = round(R.cookbonus / 2)
+				tmp2 += " (Prep time: [cooktime]s on [cooktemp])</td></tr>"
+			else
+				var/cooktemp = "Low"
+				var/cooktime = R.cookbonus
+				tmp2 += " (Prep time: [cooktime]s on [cooktemp])</td></tr>"
+
+
 
 			if (!recipies[R.category])
 				recipies[R.category] = list("<hr><b><label for='[R.category]'>[R.category]</label></b><input type='checkbox' id='[R.category]'><div><table>")
@@ -1259,7 +1268,7 @@ table#cooktime a#start {
 			W.dropped()
 			return
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		..()
 		if (get_dist(src, usr) > 1 || !isliving(usr) || iswraith(usr) || isintangible(usr))
 			return
@@ -1510,7 +1519,7 @@ var/list/mixer_recipes = list()
 			src.updateUsrDialog()
 			return
 
-	proc/update_icon()
+	update_icon()
 		if (!src || !istype(src))
 			return
 

@@ -1,7 +1,7 @@
 #define PAPER_MODE_READING 0
 #define PAPER_MODE_WRITING 1
 #define PAPER_MODE_STAMPING 2
-#define PAPER_MAX_LENGTH 5000
+#define PAPER_MAX_LENGTH 10000 //im going to go ahead and raise this because i want people to write stuff for the library.
 #define PAPER_MAX_STAMPS 30
 #define PAPER_MAX_STAMPS_OVERLAYS 4
 
@@ -199,7 +199,6 @@
 			else
 				boutput(usr, "There is no where else you can stamp!")
 			. = TRUE
-
 		if("save")
 			if (src.icon_state == "paper_blank" && params["text"])
 				src.icon_state = "paper"
@@ -1135,7 +1134,7 @@ as it may become compromised.
 	src.icon_state = "paper_bin[(src.amount || locate(/obj/item/paper, src)) ? "1" : null]"
 	return
 
-/obj/item/paper_bin/MouseDrop(mob/user as mob)
+/obj/item/paper_bin/mouse_drop(mob/user as mob)
 	if (user == usr && !user.restrained() && !user.stat && (user.contents.Find(src) || in_interact_range(src, user)))
 		if (!user.put_in_hand(src))
 			return ..()

@@ -673,7 +673,7 @@
 	var/list/tags_double
 	var/list/tags_triple
 
-	proc/update_icon()
+	update_icon()
 		if (charges > 0 )
 			inventory_counter?.update_number(charges)
 		else
@@ -1217,7 +1217,7 @@
 		SPAWN_DBG(1 SECOND)
 			src.UpdateOverlays(default_screen_overlay, "screen")
 
-	proc/update_icon()
+	update_icon()
 		if(health <= 0)
 			src.UpdateOverlays(null, "light")
 			src.UpdateOverlays(null, "screen")
@@ -1585,12 +1585,19 @@
 	spawn_contents = list(/obj/item/gang_flyer = 7)
 	var/datum/gang/gang = null
 
-	make_my_stuff()
-		..() //spawn the flyers
+	New(turf/newloc, datum/gang/gang)
+		src.name = "[gang.gang_name] recruitment material"
+		src.desc = "A briefcase full of flyers advertising the [gang.gang_name] gang."
+		src.gang = gang
+		..()
 
-		for(var/obj/item/gang_flyer/flyer in contents)
-			flyer.name = "[gang.gang_name] recruitment flyer"
-			flyer.desc = "A flyer offering membership in the [gang.gang_name] gang."
+	make_my_stuff()
+		..()
+
+		for(var/obj/item/gang_flyer/flyer in src.storage.get_contents())
+			var/gang_name = gang?.gang_name || "C0D3R"
+			flyer.name = "[gang_name] recruitment flyer"
+			flyer.desc = "A flyer offering membership in the [gang_name] gang."
 			flyer.gang = gang
 
 proc/get_gang_gear(var/mob/living/carbon/human/user)

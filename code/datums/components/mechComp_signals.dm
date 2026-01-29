@@ -235,10 +235,14 @@
 	//Need to use comsig_target instead of parent, to access .loc
 	if(A.loc != comsig_target.loc) //If these aren't sharing a container
 		var/obj/item/storage/mechanics/cabinet = null
-		if(istype(comsig_target.loc, /obj/item/storage/mechanics))
-			cabinet = comsig_target.loc
-		if(istype(A.loc, /obj/item/storage/mechanics))
-			cabinet = A.loc
+		if(istype(comsig_target, /obj/item))
+			var/obj/item/I = comsig_target
+			if (istype(I.stored?.linked_item, /obj/item/storage/mechanics))
+				cabinet = I.stored.linked_item
+		if(istype(A, /obj/item))
+			var/obj/item/I = A
+			if (istype(I.stored?.linked_item, /obj/item/storage/mechanics))
+				cabinet = I.stored.linked_item
 		if(cabinet)
 			if(!cabinet.anchored)
 				boutput(user,"<span class='alert'>Cannot create connection through an unsecured component housing</span>")
@@ -260,10 +264,35 @@
 
 //We are in the scope of the receiver-component, our argument is the trigger
 //This feels weird/backwards, but it results in fewer SEND_SIGNALS & var/lists
-/datum/component/mechanics_holder/proc/link_devices(var/comsig_target, atom/trigger, mob/user)
+/datum/component/mechanics_holder/proc/link_devices(var/atom/comsig_target, atom/trigger, mob/user)
 	var/atom/receiver = parent
 	if(trigger in src.connected_outgoing)
 		boutput(user, "<span class='alert'>Can not create a direct loop between 2 components.</span>")
+		return
+	if(trigger.loc != comsig_target.loc)
+		var/obj/item/storage/mechanics/cabinet = null
+		if(istype(comsig_target, /obj/item))
+			var/obj/item/I = comsig_target
+			if (istype(I.stored?.linked_item, /obj/item/storage/mechanics))
+				cabinet = I.stored.linked_item
+		if(istype(trigger, /obj/item))
+			var/obj/item/I = trigger
+			if (istype(I.stored?.linked_item, /obj/item/storage/mechanics))
+				cabinet = I.stored.linked_item
+		if(cabinet)
+			if(!cabinet.anchored)
+				boutput(user,"<span class='alert'>Cannot create connection through an unsecured component housing</span>")
+				return
+	if(!IN_RANGE(receiver, trigger, WIDE_TILE_WIDTH))
+		boutput(user, "<span class='alert'>These two components are too far apart to connect.</span>")
+		return
+	var/atom/movable/moveable_target = comsig_target
+	if(istype(moveable_target) && !moveable_target.anchored)
+		boutput(user, "<span class='alert'>[moveable_target] must be anchored to connect it.</span>")
+		return
+	var/atom/movable/moveable_trigger = trigger
+	if(istype(moveable_trigger) && !moveable_trigger.anchored)
+		boutput(user, "<span class='alert'>[moveable_trigger] must be anchored to connect it.</span>")
 		return
 	if(!src.inputs.len)
 		boutput(user, "<span class='alert'>[receiver.name] has no input slots. Can not connect [trigger.name] as Trigger.</span>")

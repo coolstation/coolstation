@@ -176,64 +176,66 @@
 				toggle = 1
 
 	process()
+
+	update_icon()
+		//blank slate
+		src.overlays = new/list()
+		src.underlays = new/list()
+		src.wear_image = image(wear_image_icon, "valve")
+
+		if(!tank_one && !tank_two && !attached_device && !(flags & ONBACK))
+			icon_state = "valve_1"
+			return
+
+		icon_state = "valve"
+		var/tank_one_icon = ""
+		var/tank_two_icon = ""
+
+		if(tank_one)
+			tank_one_icon = tank_one.icon_state
+
+			var/image/I = new(src.icon, icon_state = "[tank_one_icon]")
+			//var/obj/overlay/tank_one_overlay = new
+			//tank_one_overlay.icon = src.icon
+			//tank_one_overlay.icon_state = tank_one_icon
+			src.underlays += I
+
+			var/image/tank1 = new(src.wear_image_icon, icon_state = "[tank_one_icon]1")
+			var/image/tank1_under = new(src.wear_image_icon, icon_state = "[tank_one_icon]_under")
+			src.wear_image.overlays += tank1
+			src.wear_image.underlays += tank1_under
+
+		if(tank_two)
+			tank_two_icon = tank_two.icon_state
+
+			var/image/J = new(src.icon, icon_state = "[tank_two_icon]")
+			if(istype(tank_two, /obj/item/clothing/head/butt))
+				J.transform = matrix(J.transform, -180, MATRIX_ROTATE | MATRIX_MODIFY)
+				J.pixel_y = -10
+				J.pixel_x = 1
+			else
+				J.pixel_x = -13
+			//var/obj/underlay/tank_two_overlay = new
+			//tank_two_overlay.icon = I
+			src.underlays += J
+
+			var/image/tank2 = new(src.wear_image_icon, icon_state = "[tank_two_icon]2")
+			var/image/tank2_under = new(src.wear_image_icon, icon_state = "[tank_two_icon]_under")
+			src.wear_image.overlays += tank2
+			src.wear_image.underlays += tank2_under
+
+		if(attached_device)
+			var/image/K = new(src.icon, icon_state = "device")
+			//var/obj/overlay/device_overlay = new
+			//device_overlay.icon = src.icon
+			//device_overlay.icon_state = device_icon
+			src.overlays += K
+
+		if(flags & ONBACK)
+			var/image/straps = new(src.icon, icon_state = "wire_straps")
+			src.underlays += straps
+
 	proc
-		update_icon()
-			//blank slate
-			src.overlays = new/list()
-			src.underlays = new/list()
-			src.wear_image = image(wear_image_icon, "valve")
-
-			if(!tank_one && !tank_two && !attached_device && !(flags & ONBACK))
-				icon_state = "valve_1"
-				return
-
-			icon_state = "valve"
-			var/tank_one_icon = ""
-			var/tank_two_icon = ""
-
-			if(tank_one)
-				tank_one_icon = tank_one.icon_state
-
-				var/image/I = new(src.icon, icon_state = "[tank_one_icon]")
-				//var/obj/overlay/tank_one_overlay = new
-				//tank_one_overlay.icon = src.icon
-				//tank_one_overlay.icon_state = tank_one_icon
-				src.underlays += I
-
-				var/image/tank1 = new(src.wear_image_icon, icon_state = "[tank_one_icon]1")
-				var/image/tank1_under = new(src.wear_image_icon, icon_state = "[tank_one_icon]_under")
-				src.wear_image.overlays += tank1
-				src.wear_image.underlays += tank1_under
-
-			if(tank_two)
-				tank_two_icon = tank_two.icon_state
-
-				var/image/J = new(src.icon, icon_state = "[tank_two_icon]")
-				if(istype(tank_two, /obj/item/clothing/head/butt))
-					J.transform = matrix(J.transform, -180, MATRIX_ROTATE | MATRIX_MODIFY)
-					J.pixel_y = -10
-					J.pixel_x = 1
-				else
-					J.pixel_x = -13
-				//var/obj/underlay/tank_two_overlay = new
-				//tank_two_overlay.icon = I
-				src.underlays += J
-
-				var/image/tank2 = new(src.wear_image_icon, icon_state = "[tank_two_icon]2")
-				var/image/tank2_under = new(src.wear_image_icon, icon_state = "[tank_two_icon]_under")
-				src.wear_image.overlays += tank2
-				src.wear_image.underlays += tank2_under
-
-			if(attached_device)
-				var/image/K = new(src.icon, icon_state = "device")
-				//var/obj/overlay/device_overlay = new
-				//device_overlay.icon = src.icon
-				//device_overlay.icon_state = device_icon
-				src.overlays += K
-
-			if(flags & ONBACK)
-				var/image/straps = new(src.icon, icon_state = "wire_straps")
-				src.underlays += straps
 
 		/*
 		Exadv1: I know this isn't how it's going to work, but this was just to check

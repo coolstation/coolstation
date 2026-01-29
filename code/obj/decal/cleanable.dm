@@ -1452,7 +1452,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			src.amount += rand(1,2)
 			src.update_icon()
 */
-	proc/update_icon()
+	update_icon()
 		src.icon_state = "fungus[max(1,min(3, amount))]"
 
 	Sample(var/obj/item/W as obj, var/mob/user as mob)

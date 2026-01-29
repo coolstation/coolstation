@@ -248,6 +248,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		user.put_in_hand_or_drop(I)
 		return
 
+	if(istype(I,/obj/item/clothing/head/butt))
+		boutput(user,"<span class='notice'><b>What are you doing to that [I]?.... you can't be serious..</b></span>")
+		//get butt details to transfer to gun part
+		var/color = I.color
+		var/icon_state = I.icon_state //carry over cyberbutt or synthbutt icon.
+		user.u_equip(I)
+		I = new /obj/item/gun_parts/accessory/butt()
+		I.color = color
+		I.icon_state = icon_state
+		user.put_in_hand_or_drop(I)
+		return
+
 	if(istype(I,/obj/item/gun_parts/))
 		if(built)
 			boutput(user,"<span class='notice'><b>You cannot place parts onto an assembled gun.</b></span>")
@@ -495,7 +507,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if(!target_gun.load_ammo(owner, donor_ammo))
 				interrupt(INTERRUPT_ALWAYS)
 
-			donor_ammo.change_stack_amount(-1)
+			donor_ammo.change_stack_amount(-1, owner)
 		eat_twitch(target_gun) //om nom nom
 
 		var/stored_ammo_left = target_gun.ammo_reserve()

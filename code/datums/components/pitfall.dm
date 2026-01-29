@@ -44,7 +44,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		var/turf/T = src.parent
 		RegisterSignal(src.parent, COMSIG_ATOM_ENTERED, PROC_REF(start_fall))
 		RegisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN, PROC_REF(start_fall_no_coyote))
-		RegisterSignal(T.turf_persistent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
+		RegisterSignal(T.turf_persistent, COMSIG_TURF_PRE_REPLACE, PROC_REF(RemoveComponent))
 		if(src.CreateUpdraft)
 			var/datum/component/updraft/bottom = src.get_turf_to_fall().AddComponent(/datum/component/updraft)
 			bottom.TargetTurf = src.typecasted_parent()
@@ -56,7 +56,7 @@ ABSTRACT_TYPE(/datum/component/pitfall)
 		var/turf/T = src.parent
 		UnregisterSignal(src.parent, COMSIG_ATOM_ENTERED)
 		UnregisterSignal(src.parent, COMSIG_TURF_LANDIN_THROWN)
-		UnregisterSignal(T.turf_persistent, COMSIG_TURF_REPLACED)
+		UnregisterSignal(T.turf_persistent, COMSIG_TURF_PRE_REPLACE)
 
 	/// returns the .parent but typecasted as a turf
 	proc/typecasted_parent()

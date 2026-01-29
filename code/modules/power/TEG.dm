@@ -59,6 +59,7 @@
 	desc = "It's the gas circulator of a thermoeletric generator."
 	icon = 'icons/obj/machines/new_grey_teg.dmi'
 	icon_state = "circ1-off"
+	object_flags = POUR_INTO
 	var/obj/machinery/power/generatorTemp/generator = null
 
 	var/side = 1 // 1=left 2=right

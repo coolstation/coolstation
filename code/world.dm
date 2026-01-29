@@ -55,6 +55,12 @@ var/global/map_currently_above_magindara = 1
 var/global/map_currently_above_magindara = 0
 #endif
 
+#ifdef SNOW_MAP
+var/global/map_currently_very_cold = 1
+#else
+var/global/map_currently_very_cold = 0
+#endif
+
 //should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff
 #ifdef SCARCE_MAP
 var/global/map_currently_experiencing_shortages = 1
@@ -90,6 +96,13 @@ var/global/map_scarce_beakers = 0
 var/global/map_crappy_power = 1
 #else
 var/global/map_crappy_power = 0
+#endif
+
+//will people spawn with lit cigarettes in their mouth/hand??
+#ifdef EVERYONE_SPAWNS_SMOKING
+var/global/crew_gets_complimentary_smoke = 1
+#else
+var/global/crew_gets_complimentary_smoke = 0
 #endif
 
 #ifdef TWITCH_BOT_ALLOWED
@@ -485,7 +498,10 @@ var/f_color_selector_handler/F_Color_Selector
 		vcs_revision = rev.commit
 
 
-	lobby_titlecard = new /datum/titlecard()
+	if (config && (config.env == "pud"))
+		lobby_titlecard = new /datum/titlecard/dev()
+	else
+		lobby_titlecard = new /datum/titlecard()
 
 	lobby_titlecard.set_agreement_html() //only need to do this here i think, it's otherwise pretty static
 	lobby_titlecard.set_pregame_html()
@@ -712,6 +728,10 @@ var/f_color_selector_handler/F_Color_Selector
 #ifdef DESERT_MAP
 	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_grubranch.dmm')
 #endif
+#ifdef SNOW_MAP
+	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_depot.dmm')
+#endif
+
 
 	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
 	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
@@ -885,8 +905,9 @@ var/f_color_selector_handler/F_Color_Selector
 		world.Reboot()
 
 /world/Reboot()
-	TgsReboot()
+	//TgsReboot()
 	shutdown_logging()
+	world.TgsEndProcess()
 	return ..()
 
 /world/proc/update_status()
@@ -1212,8 +1233,8 @@ var/f_color_selector_handler/F_Color_Selector
 								for (var/obj/item/I in H.contents)
 									if (istype(I,/obj/item/organ) || istype(I,/obj/item/skull) || istype(I,/obj/item/parts) || istype(I,/atom/movable/screen/hud)) continue //FUCK
 									hudlist += I
-									if (istype(I,/obj/item/storage))
-										hudlist += I.contents
+									if (I.storage)
+										hudlist += I.storage.get_contents()
 
 							var/list/close_match = list()
 							for (var/obj/item/I in view(1,twitch_mob) + hudlist)

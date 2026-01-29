@@ -472,6 +472,7 @@ var/list/headset_channel_lookup
 
 		// sure why NOT copy paste - cirr
 		// TODO: datumise this to cut down on all the damn copy paste - cirr
+		/*
 		if (length(heard_flock))
 			rendered = "[part_a][radioGarbleText(real_name ? real_name : M.real_name, 10)][part_b][M.say_quote(radioGarbleText(messages[1], 40))][part_c]"
 			for (var/mob/R in heard_flock)
@@ -480,7 +481,7 @@ var/list/headset_channel_lookup
 				if (R.client && R.client.holder && ismob(M) && M.mind)
 					thisR = "<span class='adminHearing' data-ctx='[R.client.chatOutput.getContextFlags()]'>[thisR]</span>"
 				R.show_message(thisR, 2)
-
+		*/
 
 /obj/item/device/radio/hear_talk(mob/M as mob, msgs, real_name, lang_id)
 	if (src.broadcasting)

@@ -4247,6 +4247,26 @@ datum
 			id = "poor_concrete"
 			description = "A low quality blend of chemical agents, water, an aggregate and cement."
 			concrete_strength = 1
+
+		/// THE EVIL JUICE THING TO MAKE NERD CHEMS EASIER FOR TRAITORS
+		traitor_catalyst
+			name = "kerogrist"
+			id = "traitor_catalyst_kerogrist"
+			description = "A highly illegal petrochemical used as a building block for a great deal of nasty chemicals."
+			reagent_state = LIQUID
+			viscosity = 0.9
+			fluid_r = 6
+			fluid_g = 6
+			fluid_b = 6
+			hygiene_value = -0.8
+			transparency = 255
+			taste = "disgustingly greasy"
+			random_chem_blacklisted = TRUE
+			contraband = 10
+			color_multiplier = 4
+			smoke_spread_mod = 30
+			blocks_sight_gas = TRUE
+
 /*
 /obj/badman/ //I really don't know a good spot to put this guy so im putting him here, fuck you.
 	name = "Senator Death Badman"

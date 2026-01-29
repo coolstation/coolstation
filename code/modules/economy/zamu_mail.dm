@@ -38,8 +38,17 @@
 			var/dna = M?.bioHolder?.Uid
 
 			if (!dna || dna != src.target_dna)
-				boutput(M, SPAN_NOTICE("This isn't addressed to you! Opening it would be <em>illegal!</em> Also, the DNA lock won't open."))
-				return
+				switch(alert("This isn't addressed to you! Opening it would be illegal!", "Seriously?", "Yes", "No"))
+					if("Yes")
+						boutput(M, SPAN_NOTICE("You feel your sins crawling on your back."))
+						var/datum/db_record/sec_record = data_core.security.find_record("name", M.name)
+						if(sec_record && sec_record["criminal"] != "*Arrest*")
+							sec_record["criminal"] = "*Arrest*"
+							sec_record["mi_crim"] = "Mail Fraud."
+						M.add_karma(-10)
+					if("No")
+						boutput(M, SPAN_NOTICE("It's probably for the best."))
+						return
 
 		if (!src.spawn_type)
 			boutput(M, SPAN_NOTICE("[src] was empty! What a rip!"))
@@ -71,7 +80,7 @@
 		qdel(src)
 		return
 
-
+/*
 	attackby(obj/item/I, mob/user)
 		// You know, like a letter opener. It opens letters.
 		if (istype(I, /obj/item/kitchen/utensil/knife) && src.target_dna)
@@ -138,7 +147,7 @@
 			if(sec_record && sec_record["criminal"] != "*Arrest*")
 				sec_record["criminal"] = "*Arrest*"
 				sec_record["mi_crim"] = "Mail fraud."
-
+*/
 
 // Creates a bunch of random mail for crewmembers
 // Check shippingmarket.dm for the part that actually calls this.
@@ -458,7 +467,7 @@ var/global/mail_types_by_job = list(
 
 
 	/datum/job/civilian/chaplain = list(
-		/obj/item/storage/bible = 2,
+		/obj/item/bible = 2,
 		/obj/item/device/light/candle = 4,
 		/obj/item/device/light/candle/small = 5,
 		/obj/item/device/light/candle/spooky = 2,

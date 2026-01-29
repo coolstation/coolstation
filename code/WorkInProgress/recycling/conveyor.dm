@@ -622,6 +622,6 @@
 					C.move_lag = max(initial(C.move_lag) - speedup, 0.1)
 				break
 
-	proc/update_icon()
+	update_icon()
 		var/ico = clamp(((speedup / speedup_max) * icon_levels), 0, 6)
 		icon_state = "[icon_base][floor(ico)]"

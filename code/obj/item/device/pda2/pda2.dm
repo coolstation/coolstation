@@ -625,12 +625,21 @@
 		else
 			if (src.ID_card)
 				boutput(user, "<span class='notice'>You swap [ID] and [src.ID_card].</span>")
+				animate(src, time=2)
+				animate(time=2, transform=matrix(null, 0, -1, MATRIX_TRANSLATE))
+				animate(time=3, transform=null)
+				playsound(src, "sound/items/penclick.ogg", 30, 1, pitch = 0.8)
 				src.eject_id_card(user)
 				src.insert_id_card(ID, user)
 				return
 			else if (!src.ID_card)
 				src.insert_id_card(ID, user)
 				boutput(user, "<span class='notice'>You insert [ID] into [src].</span>")
+				animate(src, time=2)
+				animate(time=2, transform=matrix(null, 0, -1, MATRIX_TRANSLATE))
+				animate(time=3, transform=null)
+				playsound(src, "sound/items/penclick.ogg", 30, 1, pitch = 0.8)
+
 
 	else if (istype(C, /obj/item/uplink_telecrystal))
 		if (src.uplink && src.uplink.active)
@@ -718,7 +727,7 @@
 
 	return
 
-/obj/item/device/pda2/MouseDrop(atom/over_object, src_location, over_location)
+/obj/item/device/pda2/mouse_drop(atom/over_object, src_location, over_location)
 	..()
 	if (over_object == usr && src.loc == usr && isliving(usr) && !usr.stat)
 		src.attack_self(usr)
@@ -907,6 +916,7 @@
 			animate(time=2, icon_state=original_icon_state)
 			animate(time=2, transform=matrix(null, 0, -1, MATRIX_TRANSLATE))
 			animate(time=3, transform=null)
+			playsound(src, "sound/items/penclick.ogg", 30, 1)
 			boutput(user, "<span class='notice'>You insert [insertedPen] into [src].</span>")
 
 /*
@@ -1119,12 +1129,11 @@
 			return
 
 		if(src in bible_contents)
-			for_by_tcl(B, /obj/item/storage/bible)
+			for_by_tcl(B, /obj/item/bible)
 				var/turf/T = get_turf(B.loc)
 				if(T)
 					T.hotspot_expose(700,125)
 					explosion(src, T, -1, -1, 2, 3)
-			bible_contents.Remove(src)
 			qdel(src)
 			return
 

@@ -211,6 +211,7 @@ A Flamethrower in various states of assembly
 	icon_state = "syndflametank"
 	desc = "A back mounted fueltank/jetpack system for use with a tactical flamethrower."
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBACK | OPENCONTAINER
+	object_flags = POUR_INTO
 	var/obj/item/gun/flamethrower/backtank/linkedflamer
 	inventory_counter_enabled = 1
 	move_triggered = 1
@@ -261,7 +262,7 @@ A Flamethrower in various states of assembly
 			boutput(usr, "<span class='notice'>The fuelpack's integrated jetpack is now off</span>")
 		return
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		..()
 		if(!isliving(usr))
 			return

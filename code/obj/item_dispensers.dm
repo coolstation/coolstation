@@ -66,7 +66,7 @@
 		else
 			boutput(user, "<span class='alert'>There's nothing in \the [src] to take!</span>")
 
-	proc/update_icon()
+	update_icon()
 		if (src.amount <= 0)
 			src.icon_state = src.empty_icon_state
 		else
@@ -140,6 +140,40 @@ ABSTRACT_TYPE(/obj/item_dispenser/wallmounted)
 		if (!src.cant_withdraw && src.amount >= 1)
 			playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 25, 1)
 		..()
+
+/obj/item_dispenser/wallmounted/paperworkdispenser
+	name = "\improper general request dispenser"
+	desc = "A small printer that produces general request forms. It can be refilled with paper."
+	icon_state = "dispenser_paper"
+	filled_icon_state = "dispenser_paper"
+	deposit_type = /obj/item/paper
+	withdraw_type = /obj/item/paper/from_file/gf001
+	amount = 15
+
+	attack_hand(mob/user as mob)
+		if (!src.cant_withdraw && src.amount >= 1)
+			playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 25, 1)
+		..()
+	//HOP forms
+	cf001
+		name = "\improper CF001 occupation change request printer"
+		desc = "A small printer that produces occupation request forms. It can be refilled with paper."
+		withdraw_type = /obj/item/paper/from_file/cf001
+
+	cf002
+		name = "\improper CF002 access change request printer"
+		desc = "A small printer that produces access request forms. It can be refilled with paper."
+		withdraw_type = /obj/item/paper/from_file/cf002
+
+	cf003
+		name = "\improper CF001 promotion form printer"
+		desc = "A small printer that produces promotion forms. It can be refilled with paper."
+		withdraw_type = /obj/item/paper/from_file/cf003
+	//Cargo forms
+	lg001
+		name = "\improper LG001 requisition form printer"
+		desc = "A small printer that produces cargo requisition forms. It can be refilled with paper."
+		withdraw_type = /obj/item/paper/from_file/lg001
 
 /obj/item_dispenser/bedsheet
 	name = "linen bin"

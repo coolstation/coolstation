@@ -192,8 +192,7 @@ var/datum/explosion_controller/explosions
 						clients_to_shake |= C
 
 				playsound_global(clients_to_shake, explosions.distant_sound, 100, 0)
-				SPAWN_DBG(0.1 SECONDS)
-					playsound(epicenter.loc, "explosion", 100, 1, SOUND_RANGE_STANDARD + floor(power * 0.5))
+				playsound(epicenter.loc, "explosion", 100, 1, SOUND_RANGE_STANDARD + floor(power * 0.5))
 			else
 				playsound(epicenter.loc, "explosion", 100, 1, SOUND_RANGE_STANDARD)
 			if(power > 10)

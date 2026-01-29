@@ -1747,7 +1747,7 @@
 		..()
 		flags |= NOSPLASH
 
-	proc/update_icon()
+	update_icon()
 		src.overlays -= src.icon_beaker
 		if (src.target)
 			src.overlays += src.icon_beaker

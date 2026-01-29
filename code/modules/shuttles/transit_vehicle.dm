@@ -458,8 +458,8 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 			if (!our_vehicle) //RIP
 				status |= BROKEN //Safety permabrick ourselves
 			else
-				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_MOVED, PROC_REF(update_icon))
-				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_READY, PROC_REF(update_icon))
+				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_MOVED, /atom/proc/update_icon)
+				RegisterSignal(transit_controls, COMSIG_TRANSIT_VEHICLE_READY, /atom/proc/update_icon)
 			update_icon()
 
 	attack_hand(mob/user)
@@ -478,7 +478,7 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 	attackby(obj/item/I, mob/user) //smack in the button with yer loot, food, or thing to shoot
 		attack_hand(user)
 
-	proc/update_icon(dummy = null, datum/transit_vehicle/vehicle = null ,direction = null) //The first argument ends up being the transit controller and IDK signals well enough to know what to do about it
+	update_icon(dummy = null, datum/transit_vehicle/vehicle = null, direction = null) //The first argument ends up being the transit controller and IDK signals well enough to know what to do about it
 		if (status & (NOPOWER|BROKEN))
 			icon_state = "elev_offline"
 			UpdateOverlays(null, "glow")

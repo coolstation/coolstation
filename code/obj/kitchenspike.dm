@@ -6,6 +6,7 @@
 	density = 1
 	anchored = ANCHORED
 	var/meat = 0
+	var/well_done = FALSE
 	var/occupied = 0
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR
 
@@ -22,6 +23,7 @@
 		src.icon_state = "spikebloody"
 		src.occupied = 1
 		src.meat = 5
+		well_done = (G.affecting.get_burn_damage() > WELL_DONE_THRESHOLD)
 		var/mob/dead/observer/newmob
 		src.visible_message("<span class='alert'>[user] has forced [G.affecting] onto the spike, killing them instantly!</span>")
 		if (G.affecting.client)
@@ -39,13 +41,15 @@
 	if(..())
 		return
 	if(src.occupied)
-		if(src.meat > 1)
-			src.meat--
+		src.meat--
+		if (well_done)
+			var/obj/item/reagent_containers/food/snacks/steak_m/meat = new /obj/item/reagent_containers/food/snacks/steak_m( src.loc )
+			meat.quality = rand()
+		else
 			new /obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat( src.loc )
-			boutput(user, "You remove some meat from the monkey.")
-		else if(src.meat == 1)
-			src.meat--
-			new /obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat(src.loc)
+		if (!meat)
 			boutput(user, "You remove the last piece of meat from the monkey!")
 			src.icon_state = "spike"
 			src.occupied = 0
+		else
+			boutput(user, "You remove some meat from the monkey.")

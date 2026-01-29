@@ -85,14 +85,14 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 				lobby_music()
 				did_lobbymusic = 1
 				//latecomers should be handled by client.dm in the sound section
-
-				pregameHTML = null // clear the pregame html
-				for(var/client/C)
-					try
-						C<< browse("", "window=pregameBrowser")
-						if(C)
-							winshow(C, "pregameBrowser", 0)
-					catch()
+				if (config && (config.env != "pud")) // skip this on fusilli
+					pregameHTML = null // clear the pregame html
+					for(var/client/C)
+						try
+							C<< browse("", "window=pregameBrowser")
+							if(C)
+								winshow(C, "pregameBrowser", 0)
+						catch()
 
 			if (pregame_timeleft <= 60 && !did_mapvote)
 				// do it here now instead of before the countdown
