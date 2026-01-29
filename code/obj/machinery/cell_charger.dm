@@ -15,6 +15,14 @@
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WIRECUTTERS | DECON_MULTITOOL
 	power_usage = 50
 
+
+/obj/machinery/cell_charger/ex_act()
+	charging.explode()
+	if(charging?.disposed)
+		src.charging = null
+		src.ClearAllOverlays()
+		UpdateOverlays(image('icons/obj/machines/power.dmi', "ccharger_empty"), "wires")
+
 /obj/machinery/cell_charger/attackby(obj/item/W, mob/user)
 	if(status & BROKEN)
 		return

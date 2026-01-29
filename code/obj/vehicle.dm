@@ -273,6 +273,12 @@ ABSTRACT_TYPE(/obj/vehicle)
 		src.cell = null
 	. = ..()
 
+/obj/vehicle/segway/ex_act()
+	eject_rider(1)
+	if(cell?.disposed)
+		cell = null
+	..()
+
 /obj/vehicle/segway/eject_other_stuff()
 	for(var/atom/movable/AM in src)
 		if(AM != src.cell)
