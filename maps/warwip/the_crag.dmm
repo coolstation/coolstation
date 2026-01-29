@@ -100,6 +100,7 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/west{
 	target_z = 3
 	},
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -148,6 +149,7 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/south{
 	target_z = 3
 	},
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
@@ -201,6 +203,7 @@
 "aF" = (
 /obj/disposalpipe/segment/mail/horizontal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/maintenance/north)
 "aG" = (
@@ -402,6 +405,11 @@
 /obj/cable{
 	icon_state = "2-8"
 	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor,
 /area/station/hallway/primary/south)
 "bk" = (
@@ -546,8 +554,8 @@
 /area/station/engine/core)
 "bB" = (
 /obj/disposalpipe/switch_junction/right/west,
-/obj/grille/catwalk/jen,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/north)
 "bC" = (
@@ -1057,8 +1065,8 @@
 /turf/floor/sanitary,
 /area/station/medical/morgue)
 "cO" = (
-/obj/grille/catwalk/jen,
 /obj/machinery/chem_master,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/maintenance/north)
 "cP" = (
@@ -1099,6 +1107,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/data_terminal,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/engine/elect)
 "cV" = (
@@ -1207,9 +1216,8 @@
 /area/station/engine/elect)
 "di" = (
 /obj/disposalpipe/junction/right/north,
-/turf/floor/specialroom/bar{
-	icon_state = "floor"
-	},
+/obj/grille/catwalk/bob/tiled/grey,
+/turf/floor/plating,
 /area/station/crew_quarters/cafeteria)
 "dj" = (
 /obj/machinery/plantpot,
@@ -1320,6 +1328,7 @@
 	dir = 2;
 	target_z = 3
 	},
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/engine/engineering{
 	name = "Exhaust";
@@ -1602,6 +1611,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/engine/elect)
 "ei" = (
@@ -2216,8 +2226,8 @@
 	},
 /area/station/chapel/office)
 "fJ" = (
-/obj/grille/catwalk/jen,
 /obj/submachine/chem_extractor,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/maintenance/north)
 "fK" = (
@@ -2259,10 +2269,10 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/east{
 	target_z = 3
 	},
-/obj/grille/catwalk/jen,
 /obj/machinery/phone/wall{
 	pixel_y = 32
 	},
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -3301,11 +3311,11 @@
 /obj/machinery/atmospherics/pipe/vertical_pipe/west{
 	target_z = 3
 	},
-/obj/grille/catwalk/jen,
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_y = 32
 	},
 /obj/machinery/light_switch/east,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -3439,8 +3449,8 @@
 /turf/floor/carpet/nicebrown,
 /area/station/hydroponics/lobby)
 "iW" = (
-/obj/grille/catwalk/jen,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/engine/core)
 "iX" = (
@@ -5631,7 +5641,7 @@
 	name = "Freezer APC";
 	pixel_y = 24
 	},
-/obj/grille/catwalk/jen,
+/obj/grille/catwalk/bob/tiled/black,
 /turf/floor/plating,
 /area/station/crew_quarters/bar)
 "oH" = (
@@ -6916,7 +6926,11 @@
 /turf/floor/cautionblack,
 /area/station/engine/core)
 "rY" = (
-/obj/grille/catwalk/jen,
+/obj/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/data_terminal,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/hallway/primary/south)
 "rZ" = (
@@ -7244,7 +7258,7 @@
 /area/station/maintenance/north)
 "sP" = (
 /obj/machinery/atmospherics/unary/vent_pump/east,
-/obj/grille/catwalk/jen,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/engine/core)
 "sQ" = (
@@ -8012,10 +8026,8 @@
 /area/station/crew_quarters/cafeteria)
 "uQ" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/obj/grille/catwalk/jen{
-	pixel_x = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/grille/catwalk/jen,
 /turf/floor/plating,
 /area/station/maintenance/north)
 "uR" = (
@@ -8631,7 +8643,7 @@
 	dir = 2;
 	target_z = 3
 	},
-/obj/grille/catwalk/jen,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/hallway/primary/south)
 "wv" = (
@@ -8888,8 +8900,8 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/autoname/north,
-/obj/grille/catwalk/jen,
 /obj/decal/cleanable/dirt/random,
+/obj/grille/catwalk/bob/tiled/black,
 /turf/floor/plating,
 /area/station/crew_quarters/bar)
 "xd" = (
@@ -13020,7 +13032,7 @@
 /obj/machinery/power/data_terminal/cable_tray{
 	target_z = 3
 	},
-/obj/grille/catwalk/jen,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -13448,6 +13460,7 @@
 /obj/decal/poster/wallsign/hazard_caution{
 	pixel_y = 32
 	},
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/maintenance/north)
 "Jd" = (
@@ -15691,8 +15704,8 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/grille/catwalk/jen,
 /obj/decal/cleanable/dirt/random,
+/obj/grille/catwalk/bob/tiled/black,
 /turf/floor/plating,
 /area/station/crew_quarters/bar)
 "OZ" = (
@@ -17005,6 +17018,7 @@
 	},
 /obj/machinery/power/data_terminal,
 /obj/storage/secure/closet/engineering/mechanic,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating,
 /area/station/engine/elect)
 "Sx" = (
@@ -17378,7 +17392,7 @@
 	target_z = 3
 	},
 /obj/reagent_dispensers/foamtank,
-/obj/grille/catwalk/jen,
+/obj/grille/catwalk/bob/tiled/grey,
 /turf/floor/plating{
 	icon_state = "panelscorched"
 	},
@@ -17919,7 +17933,8 @@
 	dir = 4
 	},
 /obj/disposalpipe/segment,
-/turf/floor/grime,
+/obj/grille/catwalk/bob/tiled/grey,
+/turf/floor/plating,
 /area/station/crew_quarters/cafeteria)
 "UP" = (
 /obj/disposalpipe/segment/bent{

@@ -1,5 +1,5 @@
 #define NEVICATA_TIME (((BUILD_TIME_DAY * 24)+(BUILD_TIME_HOUR)) * 2)
-//#define NEVICATA_TIME 270 //set this define to whatever to test different times of day
+//#define NEVICATA_TIME 90 //set this define to whatever to test different times of day
 
 #define NEVICATA_PRESSURE ONE_ATMOSPHERE * 0.85 //a little easier to breathe
 #define WASTES_MIN_TEMP 180 //for reference triton is about ~70k under this.
@@ -8,7 +8,7 @@
 #define NEVICATA_N2 MOLES_N2STANDARD * 1.7
 #define NEVICATA_02 MOLES_O2STANDARD * 2.1
 #define NEVICATA_TEMP ((WASTES_MAX_TEMP - WASTES_MIN_TEMP)/2) * sin(NEVICATA_TIME-20) + ((WASTES_MAX_TEMP + WASTES_MIN_TEMP) / 2)
-#define NEVICATA_SKY_BRIGHT 0.7*(sin(NEVICATA_TIME)+0.8) + 0.25
+#define NEVICATA_SKY_BRIGHT 0.45*(sin(NEVICATA_TIME)+0.8) + 0.1
 #define NEVICATA_SKY_RED 0.23*(sin(NEVICATA_TIME)+1.1)
 #define NEVICATA_SKY_GREEN 0.15*(sin(NEVICATA_TIME)+1.1)
 #define NEVICATA_SKY_BLUE 0.2*(sin(NEVICATA_TIME)) + 0.3
@@ -122,7 +122,7 @@ var/global/nevicata_time = NEVICATA_TIME
 	luminosity = 1
 
 	var/datum/light/point/light = null
-	var/light_atten_con = -0.1
+	var/light_atten_con = -0.08
 	var/light_r = NEVICATA_SKY_RED
 	var/light_g = NEVICATA_SKY_GREEN
 	var/light_b = NEVICATA_SKY_BLUE
