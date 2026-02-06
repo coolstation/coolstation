@@ -24,6 +24,10 @@
 /obj/decal/tile_edge/stripe/extra_big,
 /turf/floor/industrial,
 /area/station/engine/engineering)
+"abi" = (
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel,
+/turf/wall/r_wall,
+/area/station/engine/core)
 "abP" = (
 /obj/machinery/light/fluorescent,
 /obj/disposalpipe/trunk{
@@ -3002,6 +3006,14 @@
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/floor/plating,
 /area/station/crew_quarters/clown)
+"dfP" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
+/obj/machinery/meter,
+/turf/floor/industrial,
+/area/station/engine/core)
 "dgk" = (
 /obj/table/wood/auto,
 /obj/machinery/cashreg,
@@ -3551,7 +3563,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/obj/machinery/atmospherics/portables_connector/north,
+/obj/machinery/atmospherics/portables_connector/south,
 /turf/floor/industrial,
 /area/station/engine/core)
 "dHr" = (
@@ -3854,6 +3866,10 @@
 /obj/machinery/light/small,
 /turf/floor/industrial,
 /area/station/quartermaster/cargooffice)
+"dXI" = (
+/obj/machinery/atmospherics/pipe/tank/south,
+/turf/floor,
+/area/station/engine/core)
 "dXZ" = (
 /turf/wall,
 /area/station/hallway/primary/central)
@@ -4617,7 +4633,10 @@
 /obj/cable/hotpink{
 	icon_state = "2-4"
 	},
-/obj/reagent_dispensers/watertank,
+/obj/decal/oven{
+	icon_state = "oldoven_off";
+	name = "broken oven"
+	},
 /turf/floor/plating,
 /area/station/maintenance/outer/nw)
 "eJH" = (
@@ -8190,7 +8209,7 @@
 /turf/floor/grey,
 /area/station/medical/robotics)
 "iqW" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/grey,
 /area/station/engine/gas)
 "ire" = (
@@ -8391,13 +8410,13 @@
 /turf/floor,
 /area/station/mining/lobby)
 "iAZ" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
+/obj/machinery/power/data_terminal,
+/obj/cable/hotpink{
+	icon_state = "0-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/overfloor,
-/obj/machinery/meter,
-/turf/floor/industrial,
-/area/station/engine/core)
+/obj/reagent_dispensers/watertank,
+/turf/floor/plating,
+/area/station/maintenance/outer/nw)
 "iBh" = (
 /obj/wingrille_spawn/reinforced_crystal,
 /obj/machinery/atmospherics/pipe/simple/insulated/fuel/horizontal,
@@ -11564,14 +11583,12 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/decal/oven{
-	icon_state = "oldoven_off"
-	},
 /obj/machinery/camera{
 	c_tag = "autotag";
 	dir = 6;
 	name = "autoname - SS13"
 	},
+/obj/submachine/chef_oven,
 /turf/floor/specialroom/bar{
 	icon_state = "floorgrime_gb2"
 	},
@@ -15842,6 +15859,10 @@
 /obj/decal/mule/beacon/no_auto_dropoff_spawn,
 /turf/floor/grey,
 /area/station/science/lobby)
+"pEu" = (
+/obj/machinery/atmospherics/pipe/vent/north,
+/turf/floor/industrial,
+/area/station/engine/core)
 "pEx" = (
 /obj/cable/hotpink{
 	icon_state = "1-2"
@@ -19795,7 +19816,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 5
 	},
-/obj/machinery/atmospherics/portables_connector/south,
+/obj/machinery/atmospherics/portables_connector/west,
 /turf/floor/industrial,
 /area/station/engine/core)
 "tHK" = (
@@ -21405,6 +21426,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 1
 	},
+/obj/machinery/atmospherics/portables_connector/east,
 /turf/floor/industrial,
 /area/station/engine/core)
 "vgB" = (
@@ -21560,6 +21582,10 @@
 	},
 /turf/space/fluid/ocean/noexplosion/nospawn,
 /area/space)
+"vme" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/floor/plating,
+/area/station/maintenance/outer/sw)
 "vmq" = (
 /obj/cable/hotpink{
 	icon_state = "0-8"
@@ -23590,6 +23616,10 @@
 /obj/disposalpipe/segment/sewage,
 /turf/floor/black,
 /area/station/security/armory)
+"xfK" = (
+/obj/machinery/atmospherics/portables_connector/south,
+/turf/floor,
+/area/station/engine/core)
 "xfV" = (
 /obj/machinery/dispenser{
 	o2tanks = 5;
@@ -24232,6 +24262,7 @@
 /obj/disposalpipe/segment/ejection{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/insulated/fuel,
 /turf/floor/industrial,
 /area/station/engine/core)
 "xPb" = (
@@ -48754,7 +48785,7 @@ fAH
 vWG
 evV
 iqW
-oCk
+iqW
 vWG
 pIf
 cNk
@@ -49960,7 +49991,7 @@ qcM
 uXL
 uFe
 rFL
-vgd
+dfP
 oWV
 oWV
 efe
@@ -50263,11 +50294,11 @@ uXL
 uFe
 rFL
 tHE
-iAZ
+mav
 dHb
 xOG
-obl
-oWV
+abi
+pEu
 bov
 aiO
 ibk
@@ -50561,7 +50592,7 @@ qTA
 xEl
 dLJ
 qcM
-uXL
+dXI
 uFe
 qpD
 wUL
@@ -51467,7 +51498,7 @@ vaJ
 csq
 pmQ
 vlF
-uXL
+xfK
 uFe
 rFL
 kPV
@@ -54475,7 +54506,7 @@ tWi
 pak
 dhC
 tWi
-aeE
+vme
 nhY
 gKe
 jfc
@@ -62302,7 +62333,7 @@ mZF
 mjl
 mZF
 nOU
-oOP
+iAZ
 oOP
 edG
 qJd
