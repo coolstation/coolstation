@@ -155,7 +155,7 @@
 								world << sound('sound/machines/bomb_planted.ogg')
 								//This is the most straightforward spot to do this, but yes it is silly that the bomb itself is sending out the emergency alert
 								var/datum/directed_broadcast/emergency/broadcast = new(station_name, prob(95) ? "Nuclear Detonation" : "Open-Source Aggression", "Ten Minutes")
-								broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
+								broadcast_controls.broadcast_start(broadcast, TRUE, set_loops = -1, process_immediately = TRUE)
 								nuclear_countdown = get_singleton(/datum/hud/roundend)
 								nuclear_countdown.countdown_text = "Your employment contract will end in"
 								for (var/client/C in clients)

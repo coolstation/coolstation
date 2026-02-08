@@ -96,7 +96,7 @@ var/global/meteor_shower_active = 0
 				S.update_icon()
 
 		var/datum/directed_broadcast/emergency/broadcast = new(station_name, "[comsev] [shower_name]", "[commins] Seconds", "Deploy shielding and seek cover immediately. Stay away from windows.")
-		broadcast_controls.broadcast_start(broadcast, TRUE, -1, 1)
+		broadcast_controls.broadcast_start(broadcast, TRUE, set_loops = -1, process_immediately = TRUE)
 
 		SPAWN_DBG(warning_delay)
 			if (random_events.announce_events)
