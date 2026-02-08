@@ -790,7 +790,7 @@
 		if (map_setting)
 			src.update_neighbors()
 
-	proc/update_icon()
+	update_icon()
 		if (!src.anchored)
 			icon_state = "[mod]0"
 			return
@@ -956,7 +956,7 @@
 		if (map_setting)
 			src.update_neighbors()
 
-	proc/update_icon()
+	update_icon()
 		if (!src.anchored)
 			icon_state = "[mod]15"
 			density = 0

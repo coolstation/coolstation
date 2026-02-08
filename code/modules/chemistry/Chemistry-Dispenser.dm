@@ -165,13 +165,13 @@
 			src.accounts += new_account
 			src.current_account = new_account
 
-	proc/update_icon()
+	update_icon()
 		if (!beaker)
 			src.icon_state = src.icon_base
 		else
 			src.icon_state = "[src.icon_base][rand(1,5)]"
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		if(!isliving(usr))
 			boutput(usr, "<span class='alert'>Only living mobs are able to set the dispenser's output target.</span>")
 			return
@@ -285,7 +285,7 @@
 				beaker.reagents.add_reagent(params["reagentId"], isnum(amount) ? amount : 10)
 				beaker.reagents.handle_reactions()
 				src.update_icon()
-				playsound(src.loc, dispense_sound, 50, 1, 0.3)
+				playsound(src.loc, dispense_sound, 50, 1, SOUND_RANGE_STANDARD)
 				use_power(10)
 				. = TRUE
 			if ("eject")
@@ -375,7 +375,7 @@
 							beaker.reagents.handle_reactions()
 					src.update_icon()
 					use_power(length(group.reagents) * 10)
-				playsound(src.loc, dispense_sound, 50, 1, 0.3)
+				playsound(src.loc, dispense_sound, 50, 1, SOUND_RANGE_STANDARD)
 				. = TRUE
 			if ("card")
 				if (src.user_id)

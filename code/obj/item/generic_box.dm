@@ -168,7 +168,7 @@
 					next_use = world.timeofday + use_delay
 					var/obj/item/sticker/stikur = take_from()
 					if(!stikur) return
-					var/ret = stikur.afterattack(A, user, reach, params)
+					var/ret = stikur.AfterAttack(A, user, reach, params)
 					if(!ret)
 						qdel(stikur)
 					return
@@ -304,6 +304,12 @@
 		icon_open = "heart_box-open"
 		icon_empty = "heart_box-empty"
 
+	tobacco
+		name = "box of tobacco leaves"
+		contained_item = /obj/item/plant/herb/tobacco
+		item_amount = 10
+		max_item_amount = 10
+
 	New()
 		..()
 		if (src.contained_items_proc)
@@ -363,7 +369,7 @@
 		else
 			return ..()
 
-	MouseDrop(atom/over_object, src_location, over_location)
+	mouse_drop(atom/over_object, src_location, over_location)
 		..()
 		if (usr?.is_in_hands(src))
 			if (!src.open)
@@ -472,7 +478,7 @@
 				boutput(user, "<span class='alert'>You can't seem to make [I] fit into [src].</span>")
 			return 0
 
-	proc/update_icon()
+	update_icon()
 		src.inventory_counter.update_number(src.item_amount)
 		if (src.open && !src.item_amount)
 			src.icon_state = src.icon_empty

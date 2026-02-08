@@ -45,17 +45,17 @@
 	stamina_damage = 35 // This gets applied by obj/item/attack, regardless of if the saber is active.
 //	stamina_cost = 5
 //	stamina_crit_chance = 35
-	var/active_force = 60
+	var/active_force = 50
 	var/active_stamina_dmg = 40
 //	var/active_stamina_cost = 40
 	var/inactive_stamina_dmg = 35
-	var/inactive_force = 1
+	var/inactive_force = 3
 //	var/inactive_stamina_cost = 5
 	var/state_name = "sword"
 	var/off_w_class = W_CLASS_SMALL
 	var/datum/component/holdertargeting/simple_light/light_c
 	var/do_stun = 0
-
+	var/spinning = FALSE
 
 
 
@@ -106,7 +106,7 @@
 		light_c = src.AddComponent(/datum/component/holdertargeting/simple_light, r, g, b, 150)
 		light_c.update(0)
 		src.setItemSpecial(/datum/item_special/swipe/csaber)
-		AddComponent(/datum/component/itemblock/saberblock)
+		//AddComponent(/datum/component/itemblock/saberblock)
 		BLOCK_SETUP(BLOCK_SWORD)
 
 /obj/item/sword/attack(mob/target, mob/user, def_zone, is_special = 0)
@@ -121,8 +121,8 @@
 			var/mob/living/carbon/human/H = user
 			age_modifier = 30 - H.bioHolder.age
 
-		if(user.gender == MALE) playsound(user, pick('sound/weapons/male_cswordattack1.ogg','sound/weapons/male_cswordattack2.ogg'), 70, 5, 0, max(0.7, min(1.2, 1.0 + age_modifier/60)))
-		else playsound(user, pick('sound/weapons/female_cswordattack1.ogg','sound/weapons/female_cswordattack2.ogg'), 70, 5, 0, max(0.7, min(1.4, 1.0 + age_modifier/50)))
+		if(user.gender == MALE) playsound(user, pick('sound/weapons/male_cswordattack1.ogg','sound/weapons/male_cswordattack2.ogg'), 70, 5, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + age_modifier/60)))
+		else playsound(user, pick('sound/weapons/female_cswordattack1.ogg','sound/weapons/female_cswordattack2.ogg'), 70, 5, SOUND_RANGE_STANDARD, max(0.7, min(1.4, 1.0 + age_modifier/50)))
 		..()
 	else
 		if (user.a_intent == INTENT_HELP)
@@ -179,8 +179,8 @@
 			S = H.find_type_in_hand(/obj/item/sword, "left")
 		if (S && S.active && !(H.lying || isdead(H) || H.hasStatus("stunned", "weakened", "paralysis")))
 			var/obj/itemspecialeffect/clash/C = new()
-			if(target.gender == MALE) playsound(target, pick('sound/weapons/male_cswordattack1.ogg','sound/weapons/male_cswordattack2.ogg'), 70, 0, 5, max(0.7, min(1.2, 1.0 + (30 - H.bioHolder.age)/60)))
-			else playsound(target, pick('sound/weapons/female_cswordattack1.ogg','sound/weapons/female_cswordattack2.ogg'), 70, 0, 5, max(0.7, min(1.4, 1.0 + (30 - H.bioHolder.age)/50)))
+			if(target.gender == MALE) playsound(target, pick('sound/weapons/male_cswordattack1.ogg','sound/weapons/male_cswordattack2.ogg'), 70, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + (30 - H.bioHolder.age)/60)))
+			else playsound(target, pick('sound/weapons/female_cswordattack1.ogg','sound/weapons/female_cswordattack2.ogg'), 70, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.4, 1.0 + (30 - H.bioHolder.age)/50)))
 			C.setup(H.loc)
 			var/matrix/m = matrix()
 			m.Turn(rand(0,360))
@@ -197,6 +197,30 @@
 
 			return 1
 	return 0
+
+/obj/item/sword/on_spin_emote(mob/user as mob)
+	if(src.spinning)
+		. = "<B>[user]</B> [pick("keeps going crazy with", "does more fuckin' swirls of", "keeps the badassery up and flips")] [src] around in [his_or_her(user)] hand."
+		return
+	if(src.active)
+		src.setProperty("reflection", 1)
+		src.setProperty("disorient_resist", 75)
+		src.spinning = TRUE
+		var/hex_color = src.get_hex_color_from_blade(src.bladecolor)
+		. = SPAN_COMBAT("<B>[user]</B> [pick("starts going stupid crazy spinning", "gets to work fuckin' swirling", "does an insane cyborg style spin of")] [src] around in [his_or_her(user)] hand.")
+		SPAWN_DBG(0)
+			for(var/i in 1 to rand(35,40))
+				if(!user || src.loc != user || !src.active)
+					break
+				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc, hex_color))
+				sleep(0.2 SECONDS)
+			src.spinning = FALSE
+			src.setProperty("reflection", 0)
+			src.setProperty("disorient_resist", 0)
+			if(user)
+				user.visible_message(SPAN_NOTICE("<B>[user]</B> stops spinning [src]."), SPAN_NOTICE("You stop spinning [src]."))
+	else
+		. = ..()
 
 
 /obj/item/sword/attack_self(mob/user as mob)
@@ -230,8 +254,8 @@
 		stamina_damage = active_stamina_dmg
 		if(ishuman(user) && !ON_COOLDOWN(src, "playsound_on", 2 SECONDS))
 			var/mob/living/carbon/human/U = user
-			if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordstart.ogg", 70, 0, 5, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
-			else playsound(U,"sound/weapons/female_cswordturnon.ogg" , 100, 0, 5, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
+			if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordstart.ogg", 70, 0, SOUND_RANGE_LARGE, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
+			else playsound(U,"sound/weapons/female_cswordturnon.ogg" , 100, 0, SOUND_RANGE_LARGE, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
 		src.force = active_force
 //		src.stamina_cost = active_stamina_cost
 		if (src.bladecolor)
@@ -250,8 +274,8 @@
 		stamina_damage = inactive_stamina_dmg
 		if(ishuman(user) && !ON_COOLDOWN(src, "playsound_off", 2 SECONDS))
 			var/mob/living/carbon/human/U = user
-			if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordturnoff.ogg", 70, 0, 5, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
-			else playsound(U,"sound/weapons/female_cswordturnoff.ogg", 100, 0, 5, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
+			if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordturnoff.ogg", 70, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
+			else playsound(U,"sound/weapons/female_cswordturnoff.ogg", 100, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
 		src.force = inactive_force
 //		src.stamina_cost = inactive_stamina_cost
 		src.icon_state = "[state_name]0"
@@ -458,8 +482,8 @@
 			hit_type = DAMAGE_BLUNT
 			if(ishuman(user))
 				var/mob/living/carbon/human/U = user
-				if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordturnoff.ogg", 70, 0, 0, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
-				else playsound(U,"sound/weapons/female_cswordturnoff.ogg", 100, 0, 0, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
+				if(U.gender == MALE) playsound(U,"sound/weapons/male_cswordturnoff.ogg", 70, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.2, 1.0 + (30 - U.bioHolder.age)/60)))
+				else playsound(U,"sound/weapons/female_cswordturnoff.ogg", 100, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.4, 1.0 + (30 - U.bioHolder.age)/50)))
 			active = 0
 			force = inactive_force
 			icon_state = "[state_name]0"
@@ -802,11 +826,19 @@
 					sourcejob = C.mind.assigned_role
 				else if (C.ghost && C.ghost.mind && C.ghost.mind.assigned_role)
 					sourcejob = C.ghost.mind.assigned_role
-				for (var/i=0, i<3, i++)
-					var/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/meat = new /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat(get_turf(C))
-					meat.name = sourcename + meat.name
-					meat.subjectname = sourcename
-					meat.subjectjob = sourcejob
+				if (C.get_burn_damage() > WELL_DONE_THRESHOLD)
+					for (var/i in 1 to 3)
+						var/obj/item/reagent_containers/food/snacks/steak_h/meat = new /obj/item/reagent_containers/food/snacks/steak_h(get_turf(C))
+						meat.name = sourcename + meat.name
+						meat.hname = sourcename
+						meat.job = sourcejob
+						meat.quality = rand()
+				else
+					for (var/i in 1 to 3)
+						var/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/meat = new /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat(get_turf(C))
+						meat.name = sourcename + meat.name
+						meat.subjectname = sourcename
+						meat.subjectjob = sourcejob
 				if (C.mind)
 					C.ghostize()
 					qdel(C)
@@ -1131,7 +1163,7 @@
 		var/mob/living/carbon/human/H = target
 		if (H.find_type_in_hand(/obj/item/katana, "right") || H.find_type_in_hand(/obj/item/katana, "left"))
 			var/obj/itemspecialeffect/clash/C = new /obj/itemspecialeffect/clash
-			playsound(target, pick('sound/effects/sword_clash1.ogg','sound/effects/sword_clash2.ogg','sound/effects/sword_clash3.ogg'), 70, 0, 0)
+			playsound(target, pick('sound/effects/sword_clash1.ogg','sound/effects/sword_clash2.ogg','sound/effects/sword_clash3.ogg'), 70, 0, SOUND_RANGE_STANDARD)
 			C.setup(H.loc)
 			var/matrix/m = matrix()
 			m.Turn(rand(0,360))
@@ -1305,7 +1337,7 @@
 			user.update_clothing()
 			src.sword_inside = W //katana SHOULD be in the sheath now.
 			boutput(user, "<span class='notice'>You sheathe [W] in [src].</span>")
-			playsound(user, "sound/effects/sword_sheath.ogg", 50, 0, 0)
+			playsound(user, "sound/effects/sword_sheath.ogg", 50, 0, SOUND_RANGE_STANDARD)
 		else
 			..()
 			if(W.cant_drop == 1)
@@ -1316,7 +1348,7 @@
 		if (!user.r_hand || !user.l_hand)
 			sword_inside.clean_forensic()
 			boutput(user, "You draw [sword_inside] from your sheath.")
-			playsound(user, pick("sound/effects/sword_unsheath1.ogg","sound/effects/sword_unsheath2.ogg"), 50, 0, 0)
+			playsound(user, pick("sound/effects/sword_unsheath1.ogg","sound/effects/sword_unsheath2.ogg"), 50, 0, SOUND_RANGE_STANDARD)
 			icon_state = sheath_state
 			item_state = ih_sheath_state
 			user.put_in_hand_or_drop(sword_inside)

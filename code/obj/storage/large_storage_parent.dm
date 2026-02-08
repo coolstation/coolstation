@@ -11,7 +11,7 @@
 /obj/storage
 	name = "storage"
 	desc = "this is a parent item you shouldn't see!!"
-	flags = FPRINT | NOSPLASH | FLUID_SUBMERGE
+	flags = FPRINT | NOSPLASH | FLUID_SUBMERGE | CANT_FIT_IN_CRATES
 	event_handler_flags = USE_FLUID_ENTER | USE_CANPASS | NO_MOUSEDROP_QOL
 	icon = 'icons/obj/large_storage.dmi'
 	icon_state = "closed"
@@ -60,6 +60,8 @@
 
 	var/grab_stuff_on_spawn = TRUE
 
+	var/scrapes_floor = TRUE
+
 	///Controls items that are 'inside' the crate, even when it's open. These will be dragged around with the crate until removed.
 	var/datum/vis_storage_controller/vis_controller
 
@@ -98,7 +100,7 @@
 			do new thing(src)	//Two lines! I TOLD YOU I COULD DO IT!!!
 			while (--amt > 0)
 
-	proc/update_icon()
+	update_icon()
 		if (src.open)
 			flick(src.opening_anim,src)
 			src.icon_state = src.icon_opened
@@ -114,10 +116,10 @@
 	proc/locker_sound() //I COULDNT THINK OF A BETTER WAY TO DO THIS BUT ITS FUCKING ANNOYING THE OLD WAY
 		if (src.secure)
 			if (src.locked && !src.open)
-				playsound(src.loc,"sound/machines/bweep.ogg",10,0,-10,0.7)
+				playsound(src.loc,"sound/machines/bweep.ogg",15,0,SOUND_RANGE_SMALL,0.7)
 				return
 			else
-				playsound(src.loc,"sound/machines/bweep.ogg",10,0,-10)
+				playsound(src.loc,"sound/machines/bweep.ogg",15,0,SOUND_RANGE_SMALL)
 
 	emp_act()
 		if (!src.open && length(src.contents))
@@ -129,8 +131,10 @@
 					var/obj/item/I = A
 					I.emp_act()
 
-	alter_health()
-		. = get_turf(src)
+	Move(NewLoc, direct)
+		. = ..()
+		if(src.scrapes_floor && src.loc == NewLoc && !src.throwing && prob(75))
+			playsound(src, "sound/misc/chair/normal/scoot[rand(1,5)].ogg", 40, 1)
 
 	relaymove(mob/user as mob)
 		if (is_incapacitated(user))
@@ -382,10 +386,9 @@
 			user.u_equip(O)
 			O.set_loc(get_turf(user))
 
-		else if(istype(O.loc, /obj/item/storage))
-			var/obj/item/storage/storage = O.loc
-			O.set_loc(get_turf(O))
-			storage.hud.remove_item(O)
+		else if(istype(O, /obj/item))
+			var/obj/item/I = O
+			I.stored?.transfer_stored_item(I, get_turf(I), user = user)
 
 		SPAWN_DBG(0.5 SECONDS)
 			var/stuffed = FALSE
@@ -441,9 +444,6 @@
 		if (can_reach(user, src) <= 1 && (isrobot(user) || isshell(user)))
 			. = src.Attackhand(user)
 
-	alter_health()
-		. = get_turf(src)
-
 	CanPass(atom/movable/mover, turf/target)
 		. = open
 		if (src.is_short)
@@ -478,14 +478,10 @@
 			qdel(src)
 		return
 
-	proc/is_acceptable_content(var/atom/A)
-		. = TRUE
-		if (!A || !(isobj(A) || ismob(A)))
-			return 0
-		if (istype(A, /obj/decal/skeleton)) // uuuuuuugh
-			return 1
-		if (isobj(A) && ((A.density && !istype(A, /obj/critter)) || A:anchored || A:cannot_be_stored || A == src || istype(A, /obj/decal) || istype(A, /atom/movable/screen) || istype(A, /obj/storage)))
-			return 0
+	proc/is_acceptable_content(var/atom/movable/A)
+		if (!istype(A) || A.flags & (TECHNICAL_ATOM | CANT_FIT_IN_CRATES) || A.density || A.anchored || A == src)
+			return FALSE
+		return TRUE
 
 	var/obj/storage/entangled
 	proc/open(var/entangleLogic, var/mob/user)
@@ -510,7 +506,7 @@
 		src.open = 1
 		src.update_icon()
 		p_class = initial(p_class)
-		playsound(src.loc, src.open_sound, 50, 1, -3)
+		playsound(src.loc, src.open_sound, 50, 1, SOUND_RANGE_STANDARD)
 		return 1
 
 	proc/close(var/entangleLogic)
@@ -521,7 +517,7 @@
 			visible_message("<span class='alert'>[src] can't close; looks like it's too full!</span>")
 			return 0
 		if (!src.intact_frame())
-			visible_message("<span class='alter'>[src] can't close; the door is completely bend out of shape!</span>")
+			visible_message("<span class='alter'>[src] can't close; the door is completely bent out of shape!</span>")
 			return 0
 
 		if(entangled && !entangleLogic && !entangled.can_open())
@@ -569,7 +565,7 @@
 			entangled.open(1)
 
 		src.update_icon()
-		playsound(src.loc, src.close_sound, 50, 1, -3)
+		playsound(src.loc, src.close_sound, 50, 1, SOUND_RANGE_STANDARD)
 		return 1
 
 	proc/recalcPClass()

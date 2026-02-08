@@ -25,7 +25,7 @@
 		fluidtank = new/obj/item/reagent_containers/food/drinks/fueltank/chlorine/mostly_water(src)
 		update_icon()
 
-	proc/update_icon()
+	update_icon()
 		var/image/under = image(src.icon, "waterslidepump-under", dir=src.dir) // very hacky way to show dir on the icon
 		var/image/endpiece = image(src.icon, "waterslide-end", dir=turn(src.dir, 180))
 		src.ClearAllOverlays()
@@ -280,7 +280,7 @@
 						M.pulling = null
 						M.changeStatus("weakened", 3 SECONDS)
 						boutput(M, "<span class='notice'>You slipped on [src]!</span>")
-						playsound(src.loc, "sound/misc/slip.ogg", 50, 1, -3)
+						playsound(src.loc, "sound/misc/slip.ogg", 50, 1, SOUND_RANGE_STANDARD)
 						M.throw_at(target, distance, 2, throw_type = THROW_SLIP)
 				else
 					if (M.slip(ignore_actual_delay = 1))

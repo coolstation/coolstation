@@ -5,7 +5,7 @@
  */
 
 import { storage } from 'common/storage';
-import { vecAdd, vecInverse, vecMultiply, vecScale } from 'common/vector';
+import { vecAdd, vecSubtract, vecMultiply, vecScale } from 'common/vector';
 import { createLogger } from './logging';
 
 const logger = createLogger('drag');
@@ -25,13 +25,13 @@ export const setWindowKey = key => {
 };
 
 export const getWindowPosition = () => [
-  window.screenLeft,
-  window.screenTop,
+  window.screenLeft * window.devicePixelRatio,
+  window.screenTop * window.devicePixelRatio,
 ];
 
 export const getWindowSize = () => [
-  window.innerWidth,
-  window.innerHeight,
+  window.innerWidth * window.devicePixelRatio,
+  window.innerHeight * window.devicePixelRatio,
 ];
 
 export const setWindowPosition = vec => {
@@ -53,8 +53,8 @@ export const getScreenPosition = () => [
 ];
 
 export const getScreenSize = () => [
-  window.screen.availWidth,
-  window.screen.availHeight,
+  window.screen.availWidth * window.devicePixelRatio,
+  window.screen.availHeight * window.devicePixelRatio,
 ];
 
 /**
@@ -108,13 +108,11 @@ export const recallWindowGeometry = async (options = {}) => {
   }
   let pos = geometry?.pos || options.pos;
   let size = options.size;
+  size = [size[0] * window.devicePixelRatio, size[1] * window.devicePixelRatio];
+  window.document.body.style['zoom'] = `${100 / window.devicePixelRatio}%`;
   // Wait until screen offset gets resolved
   await screenOffsetPromise;
-  const areaAvailable = [
-    window.screen.availWidth,
-    window.screen.availHeight,
-  ];
-  window.document.body.style['zoom'] = `${100 / window.devicePixelRatio}%`;
+  const areaAvailable = getScreenSize();
   // Set window size
   if (size) {
     // Constraint size to not exceed available screen area.
@@ -144,10 +142,11 @@ export const recallWindowGeometry = async (options = {}) => {
 
 export const setupDrag = async () => {
   // Calculate screen offset caused by the windows taskbar
+  let windowPosition = getWindowPosition();
   screenOffsetPromise = Byond.winget(window.__windowId__, 'pos')
     .then(pos => [
-      pos.x - window.screenLeft,
-      pos.y - window.screenTop,
+      pos.x - windowPosition[0],
+      pos.y - windowPosition[1],
     ]);
   screenOffset = await screenOffsetPromise;
   logger.debug('screen offset', screenOffset);
@@ -180,10 +179,10 @@ const constraintPosition = (pos, size) => {
 export const dragStartHandler = event => {
   logger.log('drag start');
   dragging = true;
-  dragPointOffset = [
-    (window.screenLeft - event.screenX) * window.devicePixelRatio,
-    (window.screenTop - event.screenY) * window.devicePixelRatio,
-  ];
+  let windowPosition = getWindowPosition();
+  dragPointOffset = vecSubtract([event.screenX * window.devicePixelRatio, event.screenY * window.devicePixelRatio],
+    getWindowPosition(),
+  );
   document.addEventListener('mousemove', dragMoveHandler);
   document.addEventListener('mouseup', dragEndHandler);
   dragMoveHandler(event);
@@ -203,7 +202,7 @@ const dragMoveHandler = event => {
     return;
   }
   event.preventDefault();
-  setWindowPosition(vecAdd(
+  setWindowPosition(vecSubtract(
     [event.screenX * window.devicePixelRatio, event.screenY * window.devicePixelRatio],
     dragPointOffset));
 };
@@ -212,14 +211,11 @@ export const resizeStartHandler = (x, y) => event => {
   resizeMatrix = [x, y];
   logger.log('resize start', resizeMatrix);
   resizing = true;
-  dragPointOffset = [
-    (window.screenLeft - event.screenX) * window.devicePixelRatio,
-    (window.screenTop - event.screenY) * window.devicePixelRatio,
-  ];
-  initialSize = [
-    window.innerWidth,
-    window.innerHeight,
-  ];
+  let windowPosition = getWindowPosition();
+  dragPointOffset = vecSubtract([event.screenX * window.devicePixelRatio, event.screenY * window.devicePixelRatio],
+    getWindowPosition(),
+  );
+  initialSize = getWindowSize();
   document.addEventListener('mousemove', resizeMoveHandler);
   document.addEventListener('mouseup', resizeEndHandler);
   resizeMoveHandler(event);
@@ -239,13 +235,18 @@ const resizeMoveHandler = event => {
     return;
   }
   event.preventDefault();
-  size = vecAdd(initialSize, vecMultiply(resizeMatrix, vecAdd(
-    [event.screenX, event.screenY],
-    vecInverse([window.screenLeft, window.screenTop]),
-    dragPointOffset,
-    [1, 1])));
+  let windowPosition = getWindowPosition();
+  size = vecAdd(initialSize,
+    vecMultiply(resizeMatrix,
+      vecSubtract(
+        vecSubtract(
+          [event.screenX * window.devicePixelRatio,
+            event.screenY * window.devicePixelRatio],
+          getWindowPosition()),
+        dragPointOffset)),
+    [1, 1]);
   // Sane window size values
-  size[0] = Math.max(size[0], 150);
-  size[1] = Math.max(size[1], 50);
+  size[0] = Math.max(size[0], 150 * window.devicePixelRatio);
+  size[1] = Math.max(size[1], 50 * window.devicePixelRatio);
   setWindowSize(size);
 };

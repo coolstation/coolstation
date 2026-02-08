@@ -85,11 +85,17 @@
 #define COMSIG_ATOM_ENTERED "atom_entered"
 /// when this atom has clean_forensic called, send this signal.
 #define COMSIG_ATOM_CLEANED "atom_cleaned"
+/// when this atom is dragged onto something (usr, over_object, src_location, over_location, src_control, over_control, params)
+#define COMSIG_ATOM_MOUSEDROP "atom_mousedrop"
+/// when something is dragged onto this atom (object, usr, src_location, over_location, over_control, params)
+#define COMSIG_ATOM_MOUSEDROP_T "atom_mousedrop_t"
 
 // ---- turf signals ----
 
-/// when a turf is replaced by another turf (what)
-#define COMSIG_TURF_REPLACED "turf_replaced"
+/// sent to the turf_persistent before a turf is replaced by another turf (new_type)
+#define COMSIG_TURF_PRE_REPLACE "turf_replaced_pre"
+/// sent to the turf_persistent when a turf is replaced by another turf (new_turf)
+#define COMSIG_TURF_POST_REPLACE "turf_replaced_post"
 /// when a movable lands in a turf (thing, /datum/thrown_thing)
 #define COMSIG_TURF_LANDIN_THROWN "turf_landin"
 
@@ -152,6 +158,8 @@
 #define COMSIG_ITEM_PROCESS "itm_process"
 /// When an item is twirled
 #define COMSIG_ITEM_TWIRLED "itm_twirled"
+/// after an item is used to attack (target, user, reach, params)
+#define COMSIG_ITEM_AFTERATTACK "itm_after_atk"
 
 // ---- cloaking device signal ----
 /// Make cloaking devices turn off

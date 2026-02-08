@@ -591,7 +591,7 @@
 	..()
 
 /mob/living/carbon/human/death(gibbed, deathgasp = TRUE, decompose = TRUE)
-	if (ticker.mode)
+	if (ticker?.mode)
 		ticker.mode.on_human_death(src)
 	if(src.mind && src.mind.damned) // Ha you arent getting out of hell that easy.
 		src.hell_respawn()
@@ -943,6 +943,10 @@
 				var/obj/ladder/L = locate() in src.loc.contents // warc says this is probably shitty but maybe you can do better
 				if(L)											// warc hits commit anyways
 					L.climb(src)
+		if ("fiddle")
+			var/obj/item/W = src.equipped()
+			if(W)
+				src.fiddle_with(W)
 		if ("equip")
 			src.hud.relay_click("invtoggle", src, list()) // this is incredibly dumb, it's also just as dumb as what was here previously
 		if ("togglethrow")
@@ -1268,7 +1272,7 @@
 	return
 	//	<BR><A href='byond://?src=\ref[src];item=pockets'>Empty Pockets</A>
 
-/mob/living/carbon/human/MouseDrop(mob/M as mob)
+/mob/living/carbon/human/mouse_drop(mob/M as mob)
 	..()
 	if (M != usr) return
 	if (usr == src) return
@@ -1383,7 +1387,7 @@
 		return
 
 	if (src.bioHolder.HasEffect("revenant"))
-		src.visible_message("<span class='alert'>[src] makes some [pick("eldritch", "eerie", "otherworldly", "netherly", "spooky", "demonic", "haunting")] noises!</span>")
+		src.audible_message("<span class='alert'>[src] makes some [pick("eldritch", "eerie", "otherworldly", "netherly", "spooky", "demonic", "haunting")] noises!</span>")
 		src.say_language = original_language
 		return
 
@@ -1813,12 +1817,6 @@
 		hud.remove_item(I)
 		hud.add_object(I, HUD_LAYER+2, hud.layouts[hud.layout_style]["twohand"])
 
-		var/icon/IC = new/icon(I.icon)
-		var/width = IC.Width()
-		var/regex/locfinder = new(@"^(CENTER[+-]\d:)(\d+)(.*)$") //matches screen placement of the 2handed spot (e.g.: "CENTER-1:31, SOUTH:5"), saves the pixel offset of the east-west component separate from the rest
-		if(locfinder.Find("[I.screen_loc]")) //V offsets the screen loc of the item by half the difference of the sprite width and the default sprite width (32), to center the sprite in the box V
-			I.screen_loc = "[locfinder.group[1]][text2num(locfinder.group[2])-(width-32)/2][locfinder.group[3]]"
-
 		src.l_hand = I
 		src.r_hand = I
 	else //Object is 1-hand, remove ui elements, set item to proper location.
@@ -1874,12 +1872,6 @@
 		hud.set_visible(hud.rhand, 0)
 		hud.set_visible(hud.twohandl, 1)
 		hud.set_visible(hud.twohandr, 1)
-
-		var/icon/IC = new/icon(I.icon)
-		var/width = IC.Width()
-		var/regex/locfinder = new(@"^(CENTER[+-]\d:)(\d+)(.*)$") //matches screen placement of the 2handed spot (e.g.: "CENTER-1:31, SOUTH:5"), saves the pixel offset of the east-west component separate from the rest
-		if(locfinder.Find("[I.screen_loc]")) //V offsets the screen loc of the item by half the difference of the sprite width and the default sprite width (32), to center the sprite in the box V
-			I.screen_loc = "[locfinder.group[1]][text2num(locfinder.group[2])-(width-32)/2][locfinder.group[3]]"
 
 		if (I.w_class > SWIMMING_UPPER_W_CLASS_BOUND)
 			delStatus("swimming")
@@ -1960,7 +1952,7 @@
 		if (slot_r_store)
 			return src.r_store
 
-/mob/living/carbon/human/proc/force_equip(obj/item/I, slot)
+/mob/living/carbon/human/proc/force_equip(obj/item/I, slot, role_equipped = FALSE)
 	//warning: icky code
 	var/equipped = 0
 	switch(slot)
@@ -2053,19 +2045,32 @@
 			if (!src.l_store)
 				src.l_store = I
 				hud.add_object(I, HUD_LAYER+2, hud.layouts[hud.layout_style]["storage1"])
+				if (I.storage && !I.storage.opens_if_worn) // from item/proc/equipped()
+					I.storage.hide_hud(src)
 				equipped = 1
 		if (slot_r_store)
 			if (!src.r_store)
 				src.r_store = I
 				hud.add_object(I, HUD_LAYER+2, hud.layouts[hud.layout_style]["storage2"])
+				if (I.storage && !I.storage.opens_if_worn)
+					I.storage.hide_hud(src)
 				equipped = 1
 		if (slot_in_backpack)
-			if (src.back && istype(src.back, /obj/item/storage))
-				I.set_loc(src.back)
-				equipped = 1
+			if (src.back?.storage)
+				if (role_equipped)
+					src.back.storage.add_contents(I, src, FALSE)
+					equipped = TRUE
+				else
+					src.back.storage.add_contents_safe(I, src)
+					equipped = (I in src.back.storage.get_contents())
 		if (slot_in_belt)
-			if (src.belt && istype(src.belt, /obj/item/storage))
-				I.set_loc(src.belt)
+			if (src.belt?.storage)
+				if (role_equipped)
+					src.belt.storage.add_contents(I, src, FALSE)
+					equipped = TRUE
+				else
+					src.belt.storage.add_contents_safe(I, src)
+					equipped = (I in src.belt.storage.get_contents())
 				equipped = 1
 
 	if (equipped)
@@ -2181,15 +2186,11 @@
 				else
 					return 1
 		if (slot_in_backpack) // this slot is stupid
-			if (src.back && istype(src.back, /obj/item/storage))
-				var/obj/item/storage/S = src.back
-				if (S.contents.len < 7 && I.w_class <= W_CLASS_NORMAL)
-					return 1
+			if (src.back?.storage?.check_can_hold(I) == STORAGE_CAN_HOLD)
+				return 1
 		if (slot_in_belt) // this slot is also stupid
-			if (src.belt && istype(src.belt, /obj/item/storage))
-				var/obj/item/storage/S = src.belt
-				if (S.contents.len < 7 && I.w_class <= W_CLASS_NORMAL)
-					return 1
+			if (src.belt?.storage?.check_can_hold(I) == STORAGE_CAN_HOLD)
+				return 1
 	return 0
 
 /mob/living/carbon/human/proc/equip_new_if_possible(path, slot)
@@ -2200,9 +2201,9 @@
 		return 0
 	return 1
 
-/mob/living/carbon/human/proc/equip_if_possible(obj/item/I, slot)
+/mob/living/carbon/human/proc/equip_if_possible(obj/item/I, slot, role_equipped = TRUE)
 	if (can_equip(I, slot))
-		force_equip(I, slot)
+		force_equip(I, slot, role_equipped)
 		return 1
 	else
 		return 0
@@ -2909,11 +2910,16 @@
 	src.update_body()
 	logTheThing("combat", src, null, "drops the items they were juggling")
 
-/mob/living/carbon/human/proc/add_juggle(var/obj/thing as obj)
+/mob/living/carbon/human/proc/add_juggle(var/obj/thing as obj, dontspin = FALSE)
 	if (!thing || src.stat)
 		return
 	if (istype(thing, /obj/item/grab))
 		return
+	if (isitem(thing) && !dontspin)
+		var/obj/item/i = thing
+		i.on_spin_emote(src)
+		if(i.loc != src)
+			return
 	src.u_equip(thing)
 	if (thing.loc != src)
 		thing.set_loc(src)
@@ -2931,9 +2937,7 @@
 	else
 		src.visible_message("<b>[src]</b> starts juggling [thing]!")
 	src.juggling += thing
-	if (isitem(thing))
-		var/obj/item/i = thing
-		i.on_spin_emote(src)
+
 	src.update_body()
 	logTheThing("combat", src, null, "juggles [thing]")
 
@@ -3168,14 +3172,14 @@
 					else
 						src.footstep += steps
 					if (src.footstep == 0)
-						playsound(NewLoc, NewLoc.active_liquid.step_sound, 50, 1, extrarange = footstep_extrarange)
+						playsound(NewLoc, NewLoc.active_liquid.step_sound, 50, 1, range = SOUND_RANGE_MODERATE)
 				else
 					if (src.footstep >= 2)
 						src.footstep = 0
 					else
 						src.footstep += steps
 					if (src.footstep == 0)
-						playsound(NewLoc, NewLoc.active_liquid.step_sound, 20, 1, extrarange = footstep_extrarange)
+						playsound(NewLoc, NewLoc.active_liquid.step_sound, 20, 1, range = SOUND_RANGE_MODERATE)
 		else if (src.shoes && src.shoes.step_sound && src.shoes.step_lots)
 			if (src.m_intent == "run")
 				if (src.footstep >= 2)
@@ -3183,9 +3187,9 @@
 				else
 					src.footstep += steps
 				if (src.footstep == 0)
-					playsound(NewLoc, src.shoes.step_sound, 50, 1, extrarange = footstep_extrarange)
+					playsound(NewLoc, src.shoes.step_sound, 50, 1, range = SOUND_RANGE_MODERATE)
 			else
-				playsound(NewLoc, src.shoes.step_sound, 20, 1, extrarange = footstep_extrarange, pitch = 0.9)
+				playsound(NewLoc, src.shoes.step_sound, 20, 1, range = SOUND_RANGE_MODERATE, pitch = 0.9)
 
 		else
 			src.footstep += steps
@@ -3211,7 +3215,7 @@
 						else if (priority < 0)
 							priority = src.shoes ? src.shoes.step_sound : (src.mutantrace && src.mutantrace.step_override ? src.mutantrace.step_override : "step_barefoot")
 
-						playsound(NewLoc, priority, src.m_intent == "run" ? 65 : 40, 1, extrarange = 3, pitch = src.m_intent == "run" ? 1 : 0.9)
+						playsound(NewLoc, priority, src.m_intent == "run" ? 65 : 40, 1, range = SOUND_RANGE_STANDARD, pitch = src.m_intent == "run" ? 1 : 0.9)
 
 	//STEP SOUND HANDLING OVER
 
@@ -3405,7 +3409,7 @@
 		H.job = "Cluwne"
 		H.contract_disease(/datum/ailment/disability/clumsy/cluwne,null,null,1)
 		H.contract_disease(/datum/ailment/disease/cluwneing_around/cluwne,null,null,1)
-		playsound(H, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, 0, max(0.7, min(1.4, 1.0 + (30 - H.bioHolder.age)/50)))
+		playsound(H, pick("sound/voice/cluwnelaugh1.ogg","sound/voice/cluwnelaugh2.ogg","sound/voice/cluwnelaugh3.ogg"), 35, 0, SOUND_RANGE_STANDARD, max(0.7, min(1.4, 1.0 + (30 - H.bioHolder.age)/50)))
 		H.change_misstep_chance(60)
 
 		animate_clownspell(H)

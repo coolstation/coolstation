@@ -106,7 +106,7 @@
 				return
 			boutput(user, "<span class='notice'>Removing fitting...</span>")
 			playsound(user, "sound/machines/click.ogg", 50, 1)
-			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/item/lamp_manufacturer/proc/remove_light, list(A, user), null, null, null, null)
+			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/item/lamp_manufacturer/proc/remove_light, list(A, user), null, null, null, INTERRUPT_MOVE)
 
 
 		if (!issimulatedturf(A) && !istype(A, /obj/window) || !check_ammo(user, cost_fitting))
@@ -116,7 +116,7 @@
 		if (istype(A, /turf/floor))
 			boutput(user, "<span class='notice'>Installing a floor bulb...</span>")
 			playsound(user, "sound/machines/click.ogg", 50, 1)
-			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/item/lamp_manufacturer/proc/add_floor_light, list(A, user), null, null, null, null)
+			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/item/lamp_manufacturer/proc/add_floor_light, list(A, user), null, null, null, INTERRUPT_MOVE)
 
 
 		else if (istype(A, /turf/wall) || istype(A, /obj/window))
@@ -129,7 +129,7 @@
 				return
 			boutput(user, "<span class='notice'>Installing a wall [dispensing_fitting == /obj/machinery/light/small ? "bulb" : "tube"]...</span>")
 			playsound(user, "sound/machines/click.ogg", 50, 1)
-			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/item/lamp_manufacturer/proc/add_wall_light, list(A, B, user), null, null, null, null)
+			SETUP_GENERIC_ACTIONBAR(user, src, 2 SECONDS, /obj/item/lamp_manufacturer/proc/add_wall_light, list(A, B, user), null, null, null, INTERRUPT_MOVE)
 
 
 /obj/item/lamp_manufacturer/attackby(obj/item/W, mob/user)

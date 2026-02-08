@@ -196,6 +196,11 @@
 		src.current_receipt_subtotal = 0
 		src.receipt_serv_chg_total   = 0
 
+		if(prob(5))
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad, 1)
+		else if(prob(5))
+			broadcast_controls.broadcast_start(new /datum/directed_broadcast/ad/hotdogs, 1)
+
 	proc/addToReceipt(productName, productCost, serviceCharge)
 		if(!print_receipts)
 			return
@@ -307,7 +312,7 @@
 		thing.set_loc(freezie)
 		return freezie
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		if(!istype(usr,/mob/living/))
 			boutput(usr, "<span class='alert'>Only living mobs are able to set the output target for [src].</span>")
 			return
@@ -1002,11 +1007,11 @@
 		playsound(src, src.voice_sound, 40, 1)
 
 /obj/machinery/vending/proc/prevend_effect()
-	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, 0.1)
+	playsound(src.loc, 'sound/machines/driveclick.ogg', 30, 1, SOUND_RANGE_STANDARD)
 	return
 
 /obj/machinery/vending/proc/postvend_effect()
-	playsound(src.loc, 'sound/machines/ping.ogg', 20, 1, 0.1)
+	playsound(src.loc, 'sound/machines/ping.ogg', 20, 1, SOUND_RANGE_STANDARD)
 	return
 
 /obj/machinery/vending/power_change()
@@ -1353,7 +1358,7 @@
 
 	//i'd love at some point for this fuckin' thing to rarely drop a cup wrong or out entirely and then it just spills on the floor (and do it more often if hacked)
 	prevend_effect()
-		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, 0.1)
+		playsound(src.loc, 'sound/misc/pourdrink.ogg', 50, 1, SOUND_RANGE_STANDARD)
 		return
 
 	create_products()
@@ -1449,11 +1454,13 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigarbox, 1, cost=PAY_TRADESMAN)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/patch/nicotine, 10, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/matchbook, 10, cost=PAY_UNTRAINED/20)
-		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 5, cost=PAY_TRADESMAN/10)
+		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 2, cost=PAY_TRADESMAN/4)
+		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo/cheap, 5, cost=PAY_TRADESMAN/10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/vape, 10, cost=PAY_TRADESMAN/2)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/ecig_refill_cartridge, 20, cost=PAY_TRADESMAN/5)
 
 		product_list += new/datum/data/vending_product(/obj/item/device/igniter, rand(1, 6), hidden=1, cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/cigpacket/luxury, 1, hidden=1, cost=1500)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(0, 1), hidden=1, cost=420)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), hidden=1, cost=69)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3),hidden=1, cost=PAY_UNTRAINED/5)
@@ -1490,6 +1497,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 5, cost=PAY_UNTRAINED/4)
 
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(1,3), hidden=1, cost=420)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/bowlpiece/cigarette, 1, hidden=1, cost=PAY_UNTRAINED)
 
 	noknobs
 		desc = "Higher tech, but really doesn't have the same vibe."
@@ -2553,9 +2561,13 @@
 		else
 			UpdateOverlays(null, "screen", 0, 1)
 
-	proc/addProduct(obj/item/target, mob/user)
-		var/obj/item/storage/targetContainer = target
-		if (!istype(targetContainer))
+	proc/addProduct(obj/item/target, mob/user, quiet = FALSE)
+		if (target.cant_drop)
+			if(!quiet)
+				boutput(user, "<span class='alert'>You can't put [target] into a vending machine while it's attached to you!</span>")
+			return
+		var/obj/item/targetContainer = target
+		if (!targetContainer.storage && !istype(targetContainer, /obj/item/satchel))
 			productListUpdater(target, user)
 			user.visible_message("<b>[user.name]</b> loads [target] into [src].")
 			return
@@ -2569,11 +2581,14 @@
 			return
 		else if (cantuse || !action)
 			return
-		user.visible_message("<b>[user.name]</b> dumps out [targetContainer] into [src].")
-		for (var/obj/item/R in targetContainer)
-			targetContainer.hud.remove_object(R)
-			productListUpdater(R, user)
+		if(!quiet)
+			user.visible_message("<b>[user.name]</b> dumps out [targetContainer] into [src].")
+
+		for (var/obj/item/I as anything in targetContainer.storage.get_contents())
+			targetContainer.storage.transfer_stored_item(I, src, user = user)
+			productListUpdater(I, user)
 		generate_HTML(1, 0)
+
 
 	proc/productListUpdater(obj/item/target, mob/user)
 		if (!target)
@@ -2619,26 +2634,33 @@
 		if ((status & BROKEN) || status & NOPOWER)
 			updateAppearance()
 
-	generate_wire_HTML()
-		. = ..()
-		var/list/html_parts = list()
-		html_parts += "<table border=\"1\" style=\"width:100%\"><tbody><tr><td><small>"
-		html_parts += "Registered Owner: "
-		if (!owner)
-			html_parts += "<a href='byond://?src=\ref[src];unlock=true'>Unregistered (locked)</a></br>"
-		else
-			html_parts += "<a href='byond://?src=\ref[src];unlock=true'>[src.cardname] "
-			if (!unlocked) html_parts += "(locked) </a></br>"
-			else html_parts += "(unlocked) </a></br>"
-		html_parts += "Loading Chute:  "
-		if (loading)
-			html_parts += "<a href='byond://?src=\ref[src];loading=false'>Open</a></br> "
-		else
-			html_parts += "<a href='byond://?src=\ref[src];loading=true'>Closed</a></br> "
-		html_parts += "Vendor Name:  "
-		html_parts += "<a href='byond://?src=\ref[src];rename=true'>[src.name]</a> "
-		html_parts += "</small></td></tr></tbody></table></TT><br>"
-		src.wire_HTML += jointext(html_parts, "")
+	MouseDrop_T(atom/movable/dropped, mob/user)
+		..()
+		if (!dropped || !user || !isliving(user) || isintangible(user) || BOUNDS_DIST(dropped, user) > 0 || !in_interact_range(src, user) || !can_act(user))
+			return
+
+		if (istype(dropped, /obj/storage/crate) || istype(dropped, /obj/storage/cart))
+			if(!loading || !panel_open)
+				boutput(user, "<span class='alert'>\The [src]'s chute is not open to load stuff in!</span>")
+				return
+
+			var/obj/storage/store = dropped
+			if(istype(store) && (store.welded || store.locked))
+				boutput(user, "<span class='alert'>You cannot load from a [store] that cannot open!</span>")
+				return
+
+			var/num_loaded = 0
+			for (var/obj/item/I in (dropped.storage?.get_contents() || dropped.contents))
+				addProduct(I, user, quiet=TRUE)
+				if(I.loc == src)
+					num_loaded++
+			if(num_loaded)
+				boutput(user, "<span class='notice'>You load [num_loaded] item\s from \the [dropped] into \the [src].</span>")
+				update_static_data(user)
+			else if(length(dropped.contents))
+				boutput(user, "<span class='alert'>\The [dropped] is empty!</span>")
+			else
+				boutput(user, "<span class='alert'>No items were loaded from \the [dropped] into \the [src]!</span>")
 
 	attackby(obj/item/target, mob/user)
 		if (loading && panel_open)
@@ -2699,6 +2721,27 @@
 		if (href_list["vend"])
 			//Vends can change the name of list entries so generate HTML
 			src.generate_HTML(1, 0)
+
+	generate_wire_HTML()
+		. = ..()
+		var/list/html_parts = list()
+		html_parts += "<table border=\"1\" style=\"width:100%\"><tbody><tr><td><small>"
+		html_parts += "Registered Owner: "
+		if (!owner)
+			html_parts += "<a href='byond://?src=\ref[src];unlock=true'>Unregistered (locked)</a></br>"
+		else
+			html_parts += "<a href='byond://?src=\ref[src];unlock=true'>[src.cardname] "
+			if (!unlocked) html_parts += "(locked) </a></br>"
+			else html_parts += "(unlocked) </a></br>"
+		html_parts += "Loading Chute:  "
+		if (loading)
+			html_parts += "<a href='byond://?src=\ref[src];loading=false'>Open</a></br> "
+		else
+			html_parts += "<a href='byond://?src=\ref[src];loading=true'>Closed</a></br> "
+		html_parts += "Vendor Name:  "
+		html_parts += "<a href='byond://?src=\ref[src];rename=true'>[src.name]</a> "
+		html_parts += "</small></td></tr></tbody></table></TT><br>"
+		src.wire_HTML += jointext(html_parts, "")
 
 /obj/machinery/vending/player/fallen
 	New()
@@ -2772,7 +2815,7 @@
 					src.generate_HTML(1)
 					updateUsrDialog()
 					sleep(20 SECONDS)
-					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, -1)
+					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, SOUND_RANGE_STANDARD)
 					var/obj/item/reagent_containers/food/snacks/pizza/P
 					if(emagged)
 						P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pineapple(src.loc)
@@ -2840,7 +2883,8 @@
 	icon_state = "monkey"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
-	acceptcard = 0
+	acceptcard = 1
+	pay = 1
 	mats = 0 // >:I
 	slogan_list = list("My monkeys are too strong for you, traveler!")
 	slogan_chance = 1
@@ -2851,7 +2895,7 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/mob/living/carbon/human/npc/monkey, rand(10, 15), logged_on_vend=TRUE)
+		product_list += new/datum/data/vending_product(/mob/living/carbon/human/npc/monkey, rand(10, 15), cost=100, logged_on_vend=TRUE)
 
 		product_list += new/datum/data/vending_product(/obj/item/clothing/mask/monkey_translator, rand(1,2), hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/plant/banana, rand(1,20), hidden=1)
@@ -2862,7 +2906,8 @@
 	icon_state = "grub"
 	icon_panel = "standard-panel"
 	// monkey vendor has slightly special broken/etc sprites so it doesn't just inherit the standard set  :)
-	acceptcard = 0
+	acceptcard = 1
+	pay = 1
 	mats = 0 // >:I
 	slogan_list = list("Free bug for your de bug!")
 	slogan_chance = 1
@@ -2873,7 +2918,7 @@
 
 	create_products()
 		..()
-		product_list += new/datum/data/vending_product(/mob/living/critter/grub/wildgrub, rand(10, 15), logged_on_vend=TRUE)
+		product_list += new/datum/data/vending_product(/mob/living/critter/grub/wildgrub, rand(10, 15), cost=10, logged_on_vend=TRUE)
 
 
 /obj/machinery/vending/magivend
@@ -2965,7 +3010,7 @@
 		product_list += new/datum/data/vending_product(/obj/decorative_pot, 5)
 		product_list += new/datum/data/vending_product(/obj/item/fishing_rod, 3)
 
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/glass/water_pipe, 1, hidden=1)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/water_pipe, 1, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/seedplanter/hidden, 1, hidden=1)
 		product_list += new/datum/data/vending_product(/obj/item/seed/grass, rand(3, 6), hidden=1)
 		if (prob(25))

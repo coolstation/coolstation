@@ -480,6 +480,17 @@ soon the light of the unwaking will rise and the shining ones will not be prepar
 	icon_state = "book0"
 	file_path = "strings/books/clergy_diary.txt"
 
+/obj/item/paper/charge_sequence
+	name = "Paper- Charge Initial Procedure"
+	desc = "A firm, thick piece of cardstock that describes the nuclear charge connection procedure."
+	icon_state = "paper-stamped"
+	info = {"<center><b>CONNECTION PROCEDURE:</b></center><ul>
+			<li>Step One: Ensure what you are doing is worth it, and authorized by command.</li>
+			<li>Step Two: Lift demarcated charge disconnect panel and close breaker.</li>
+			<li>Step Three: Insert tape marked ███████ out of the provided.</li>
+			<li>Step Four: Refer to document 45-C 'NUKEMAN USAGE AND BEST PRACTICES'</li></ul>
+			<b>DEVICES MAY NEED TO BE RESET BEFORE THEY ARE SEEN BY THE OPERATING SYSTEM</b>"}
+
 /obj/item/paper/book/sillytexts
 	name = "THE ANCIENT TEXTS"
 	desc = "How to manifest an orgonic domain, and other party tricks. Published by Dantom Universal Nature Guides."
@@ -520,6 +531,49 @@ soon the light of the unwaking will rise and the shining ones will not be prepar
 		onclose(user, "[id]")
 
 		return
+/******************** PAPERWORKS ********************/
+/*
+To encourage paperwork rp. More to come as I make them- I plan to have at least four for every department. These can be found in the appropriate paper bins
+or in administrative suite disks.
+*/
+
+//HOP
+
+/obj/item/paper/from_file/cf001
+	name = "CF001 Occupation Change Request"
+	desc = "For occupation change requests at the HoP office."
+	icon_state = "paper"
+	file_path = "strings/klushyforms/CF001.txt"
+
+/obj/item/paper/from_file/cf002
+	name = "CF002 Access Change Request"
+	desc = "For access change requests at the HoP office."
+	icon_state = "paper"
+	file_path = "strings/klushyforms/CF002.txt"
+
+/obj/item/paper/from_file/cf003
+	name = "CF003 Promotion Form"
+	desc = "For staff promotion documentation."
+	icon_state = "paper"
+	file_path = "strings/klushyforms/CF003.txt"
+
+//CARGO
+
+/obj/item/paper/from_file/lg001
+	name = "LG001 Cargo Requisition"
+	desc = "For requests at the Cargo office."
+	icon_state = "paper"
+	file_path = "strings/klushyforms/LG001.txt"
+
+//GENERAL
+
+/obj/item/paper/from_file/gf001
+	name = "GF001 General Request Form"
+	desc = "For misc. requests of a Head of Staff."
+	icon_state = "paper"
+	file_path = "strings/klushyforms/GF001.txt"
+
+
 
 /******************** CUSTOM BOOKS ********************/
 

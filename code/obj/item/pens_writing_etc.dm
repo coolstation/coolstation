@@ -38,7 +38,8 @@
 	var/clicknoise = 1
 	var/spam_flag_sound = 0
 	var/spam_flag_message = 0 // one message appears for every five times you click the pen if you're just sitting there jamming on it
-	var/spam_timer = 20
+	var/last_sound = 0
+	var/sound_range = SOUND_RANGE_TINY
 	var/symbol_setting = null
 	var/material_uses = 10
 	var/static/list/c_default = list("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
@@ -71,18 +72,15 @@
 
 	attack_self(mob/user as mob)
 		..()
-		if (!src.spam_flag_sound && src.clicknoise)
-			src.spam_flag_sound = 1
-			playsound(user, "sound/items/penclick.ogg", 50, 1)
+		if (src.clicknoise && src.last_sound < world.time)
+			playsound(user, "sound/items/penclick.ogg", 50, 1, src.sound_range)
 			if (!src.spam_flag_message)
 				src.spam_flag_message = 1
 				user.visible_message("<span style='color:#888888;font-size:80%'>[user] clicks [src].</span>")
-				SPAWN_DBG((src.spam_timer * 5))
+				SPAWN_DBG((0.5 SECONDS))
 					if (src)
 						src.spam_flag_message = 0
-			SPAWN_DBG(src.spam_timer)
-				if (src)
-					src.spam_flag_sound = 0
+			last_sound = world.time
 
 	proc/apply_material_to_drawing(obj/decal/cleanable/writing/drawing, mob/user)
 		if(src.material)
@@ -1267,7 +1265,7 @@
 		else
 			. = ..()
 
-	proc/update_icon()
+	update_icon()
 		if(src.stored_paper)
 			src.icon_state = "portable_typewriter-full"
 		else

@@ -159,7 +159,7 @@ proc/maximal_subtype(var/list/L)
 // by_type and by_cat stuff
 
 // sometimes we want to have all objects of a certain type stored (bibles, staffs of cthulhu, ...)
-// to do that add START_TRACKING to New (or unpooled) and STOP_TRACKING to disposing, then use by_type[/obj/item/storage/bible] to access the list of things
+// to do that add START_TRACKING to New (or unpooled) and STOP_TRACKING to disposing, then use by_type[/obj/item/bible] to access the list of things
 
 #ifdef SPACEMAN_DMM // just don't ask
 #define START_TRACKING
@@ -221,6 +221,7 @@ var/list/list/by_cat = list()
 #define TR_CAT_SOUL_TRACKING_ITEMS "soul_tracking_items"
 #define TR_CAT_CLOWN_DISBELIEF_MOBS "clown_disbelief_mobs"
 #define TR_CAT_SPIDER_FILTER_MOBS "spider_filter_mobs"
+#define TR_CAT_PHOTOSENSITIVE_MOBS "photosensitive_mobs"
 #define TR_CAT_RADIO_BROADCAST_RECEIVERS "radio_receivers" //default radio channel
 #define TR_CAT_RADIO_ALT_BROADCAST_RECEIVERS "radio2_receivers" //second radio channel
 //#define TR_CAT_FINITE_BROADCAST_RECEIVERS "finite_radio_receivers" //demo channel
@@ -313,3 +314,11 @@ proc/get_type_typeinfo(type)
 	RETURN_TYPE(/typeinfo/datum) // change to /typeinfo if we ever implement /typeinfo for non-datums for some reason
 	var/datum/type_dummy = type
 	return get_singleton(initial(type_dummy.typeinfo_type))
+
+/// istype but for checking a list of types
+proc/istypes(datum/dat, list/types)
+	// based on the size of the types list this could be optimizable later by pre-generating and caching a concatenation of typesof() of them
+	for(var/type in types)
+		if(istype(dat, type))
+			return TRUE
+	return FALSE

@@ -163,16 +163,16 @@ Handsaw
 			fail_chance = 100
 		if (prob(fail_chance))
 			user.visible_message("<span class='alert'><b>[user.name]</b> accidentally cuts [himself_or_herself(user)] while fooling around with [src] and drops them!</span>")
-			playsound(src.loc, "sound/impact_sounds/Flesh_Stab_1.ogg", 50, 1, -6)
+			playsound(src.loc, "sound/impact_sounds/Flesh_Stab_1.ogg", 50, 1, SOUND_RANGE_MODERATE)
 			user.TakeDamage(user.zone_sel.selecting, 3, 0)
 			take_bleeding_damage(user, user, 3, DAMAGE_CUT)
 			user.drop_item()
 			return
 		else
 			user.visible_message("<b>[user.name]</b> snips [src].")
-			playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1, -6)
+			playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1, SOUND_RANGE_MODERATE)
 			sleep(0.3 SECONDS)
-			playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1, -6)
+			playsound(src.loc, "sound/items/Wirecutter.ogg", 50, 1, SOUND_RANGE_MODERATE)
 		return
 
 /obj/item/wirecutters/vr
@@ -362,4 +362,20 @@ Handsaw
 	force = 4 //despite being sharp I can't imagine it being an easy thing to maim someone with, no hard opinion though.
 	throwforce = 5
 	hit_type = DAMAGE_CUT
+
+/obj/item/shovel //moved from biodome.dm
+	name = "rusty old shovel"
+	desc = "It's seen better days."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "shovel"
+	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
+	item_state = "shovel"
+	w_class = W_CLASS_NORMAL
+	flags = ONBELT
+	force = 15
+	hitsound = 'sound/impact_sounds/Metal_Hit_1.ogg'
+
+	New()
+		..()
+		BLOCK_SETUP(BLOCK_ROD)
 

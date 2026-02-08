@@ -501,7 +501,9 @@
 						src.ignite()
 				qdel(W)
 
-	attack_hand(mob/user as mob)
+	attack_hand(mob/user)
+		if (src.stored)
+			return ..()
 		if(length(cakeActions))
 			user.showContextActions(cakeActions, src)
 		else

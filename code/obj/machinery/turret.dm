@@ -528,3 +528,15 @@
 
 		sleep(rand(1, 10) * 10)
 	while(emagged)
+
+
+/obj/machinery/turret/antidrone
+	stun = new/datum/projectile/laser/heavy // always lethal, only targets drones
+	var/seekrange = 11
+
+	get_target_list()
+		.= list()
+
+		for(var/obj/critter/gunbot/drone/D in view(src.seekrange,src))
+			if(!D.alive) continue
+			. += D

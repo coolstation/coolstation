@@ -10,6 +10,8 @@
 
 #define JOHN_PICK(WHAT) pick_string("johnbill.txt", WHAT)
 #define SPACER_PICK(WHAT) pick_string("spacers.txt", WHAT)
+#define BILL_PICK(WHAT) pick_string("shittybill.txt", WHAT)
+#define RELAXE_PICK(WHAT) pick_string("fatherrelaxe.txt", WHAT)
 
 #define sha256_string(x) rustg_hash_string(RUSTG_HASH_SHA256, (x))
 #define sha256_file(x) rustg_hash_file(RUSTG_HASH_SHA256, (x))

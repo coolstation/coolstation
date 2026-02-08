@@ -104,20 +104,21 @@
 
 //----------------- Maps that are being maintained and fully playable -----------------//
 //#define MAP_OVERRIDE_BAYOUBEND 	            // low to midpop scrapping map by Klushy225
-#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
+//#define MAP_OVERRIDE_CHUNK				// Warcrimes tiny map (not Atlas levels of tiny, but usable tiny)
 //#define MAP_OVERRIDE_DONUT2 			// Un-Updated Donut2
 //#define MAP_OVERRIDE_COGMAP 			// Cogmap
-//#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do use
 //#define MAP_OVERRIDE_CRAG				// secret >:)
 //#define MAP_OVERRIDE_CLARION			// Destiny/Alt RP
 //#define MAP_OVERRIDE_NOYADE				// how many maps does this slime bitch even have??
+//#define MAP_OVERRIDE_ALTBOX				// a series of bad choices
 
 //----------------- Maps that are work in progress and not feature complete -----------------//
 //#define MAP_OVERRIDE_BOBMAP 			// "to be renamed" map by ReginaldHJ
 //#define MAP_OVERRIDE_COOKIE				// Wackalope's spess staions
 //#define MAP_OVERRIDE_PERDUTA			// Mylie's oceanic oil platform
 //#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
-//#define MAP_OVERRIDE_ALTBOX				// a series of bad choices (very unfinished atm)
+//#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use (very unfinished atm)
+//#define MAP_OVERRIDE_SUMMIT				// klushy snow map (please do not use)
 
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION			// Construction mode
@@ -198,9 +199,9 @@ var/global/ci_dm_version_minor = "100"
 #define BUILD_TIME_MONTH 12
 #define BUILD_TIME_DAY 24 //SET ME TO 13 TO TEST YOUR ASS_JAM CONTENT!!
 #define BUILD_TIME_HOUR 18
-#define BUILD_TIME_MINUTE 31
+#define BUILD_TIME_MINUTE 18
 #define BUILD_TIME_SECOND 30
 #define BUILD_TIME_UNIX 1234567890 // Unix epoch, second precision
 
 // Uncomment and set to a URL with a zip of the RSC to offload RSC sending to an external webserver/CDN.
-#define PRELOAD_RSC_URL "https://cdn.coolstation.space/coolstation.rsc.zip"
+#define PRELOAD_RSC_URL 1

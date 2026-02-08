@@ -262,22 +262,22 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 	id = "demo_teevee"
 	speakers = list("hank" = list("Hank", "#A2DD77"), "rachelle" = list("Rachelle", "#DDA277"), "administrator" = list("NT Administrator", "#6969BF"))
 	messages = list(\
-		list("Colstatio...", 10 SECONDS, "hank", "test-A"),\
-		list("The universe where you can say 'penis' on TV.", 10 SECONDS, "hank", "test-A"),\
+		list("It's another beautiful day in paradise.", 10 SECONDS, "hank", "test-A"),\
+		list("You're listening to a broadcast on TV.", 10 SECONDS, "hank", "test-A"),\
 		list("Oh Hank, isn't it wonderful?", 8 SECONDS, "rachelle", "test-B"),\
-		list("I love saying words like that.", 8 SECONDS, "rachelle", "test-B"),\
+		list("I have absolutely no idea what to do with myself.", 8 SECONDS, "rachelle", "test-B"),\
 		list("We interrupt this programming for an important announcement:", 13 SECONDS, null, "test-C"),\
-		list("To the owner of the golden pod: I smashed in your windshield. Fuck you.", 10 SECONDS, null, "test-C"),\
+		list("DO NOT EAT THE FOOD. It's gone off. Something's gone off.", 10 SECONDS, null, "test-C"),\
 		list("*laugh track*", 10 SECONDS, null, "test-D"),\
 		list("The following program is brought to you by Cigarettes.", 6 SECONDS, null, "cigarettes-B"),\
 		list("Do you know where the fire exists are located?", 10 SECONDS, "administrator", "emergency-B"),\
 		list("Often, ten seconds is all it takes to make the difference...", 10 SECONDS, "administrator", "emergency-B"),\
 		list("Between life and death.", 5 SECONDS, "administrator", "emergency-B"),\
 		list("Speak to your safety officer today.", 10 SECONDS, "administrator", "emergency-B"),\
-		list("*static*", 4 SECONDS, null, "test-D"),\
+		list("*static*", 4 SECONDS, null, "test"),\
 		list("The tape will now rewind.", 7 SECONDS, "administrator", "emergency-A"),\
-		list("*static*", 10 SECONDS, null, "test-D"),\
-	)//test-D doesn't exist, which is intentional for testing here
+		list("*static*", 10 SECONDS, null, "test"),\
+	)//test doesn't exist, which is intentional for testing here
 	group_messages = TRUE
 	broadcast_channels = TR_CAT_TEEVEE_BROADCAST_RECEIVERS
 
@@ -292,11 +292,12 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 
 	speakers = list("announcer" = list("Announcer", "#d600d6"), "consumer" = list("Consumer", "#003eb3"))
 	messages = list(\
-		list("*static*", 2 SECONDS, null, "test-D"),\
+		list("*static*", 2 SECONDS, null, "test"),\
 		list("Have you considered...", 6 SECONDS, "announcer", "cigarettes-A"),\
 		list("Buying product?", 6 SECONDS, "announcer", "cigarettes-A"),\
 		list("Oh, I'd love to do that! I'll go do that right now!", 8 SECONDS, "consumer", "cigarettes-B"),\
 		list("Products. Available wherever goods are sold.", 10 SECONDS, "announcer", "cigarettes-B"),\
+		list("*static*", 2 SECONDS, null, "test"),\
 	)
 
 
@@ -318,25 +319,27 @@ ABSTRACT_TYPE(/datum/directed_broadcast)
 	id = "cigarette_ad"
 	speakers = list("hank" = list("Thank", "#A2DD77"), "rachelle" = list("Grachelle", "#DDA277"))
 	messages = list(\
-		list("*static*", 2 SECONDS, null, "test-D"),\
+		list("*static*", 2 SECONDS, null, "test"),\
 		list("Smoke...", 6 SECONDS, "hank", "cigarettes-A"),\
 		list("Smoke cigarettes today!", 6 SECONDS, "hank", "cigarettes-A"),\
 		list("Oh, they're so smooth! I love smoking cigarettes!", 8 SECONDS, "rachelle", "cigarettes-B"),\
 		list("Cigarettes- available at your nearest cigarette vending machine.", 10 SECONDS, "hank", "cigarettes-B"),\
+		list("*static*", 2 SECONDS, null, "test"),\
 	)
 
 /datum/directed_broadcast/ad/hotdogs
 	id = "hotdog_ad"
 	speakers = list("Frank" = list("Frank", "#d3374c"))
 	messages = list(\
-		list("*static*", 2 SECONDS, null, "test-D"),\
+		list("*static*", 2 SECONDS, null, "test"),\
 		list("Hey...", 6 SECONDS, "Frank", "hotdogs-A"),\
 		list("Uh, d'you like hotdogs?", 6 SECONDS, "Frank", "hotdogs-A"),\
 		list("If you like hot dogs come to the mall, we're a restaurant that specializes in hot dogs.", 10 SECONDS, "Frank", "hotdogs-A"),\
 		list("It's pretty much all we got. You'd need to bring your own soda or something to drink.", 10 SECONDS, "Frank", "hotdogs-A"),\
 		list("You're not really supposed to do that either but it's whatever.", 7 SECONDS, "Frank", "hotdogs-A"),\
 		list("Come down and get some dogs in you.", 8 SECONDS, "Frank", "hotdogs-B"),\
-		list("Probably safe!", 4 SECONDS, "Frank", "hotdogs-B"),\
+		list("Probably safe!", 4 SECONDS, "Frank", "test-D"),\
+		list("*static*", 2 SECONDS, null, "test"),\
 	)
 
 /datum/directed_broadcast/ad/radio_only
@@ -416,9 +419,9 @@ ABSTRACT_TYPE(/datum/directed_broadcast/programme/tv_only)
 		list("ABLE!", 5 SECONDS, "doctorwhitman", "test-C"),\
 		list("Yes Doctor?", 5 SECONDS, "able", "emergency-B"),\
 		list("Can you trace where this came from?", 10 SECONDS, "doctorwhitman", "test-C"),\
-		list("Please transport the specimen to my upload, so I may interface with the object", 15 SECONDS, "able", "test-B"),\
+		list("Please transport the specimen to my upload, so I may interface with the object", 15 SECONDS, "able", "test-D"),\
 		list("The Good Doctor and their trusty assistant rushed to the AI's upload room", 15 SECONDS, "narrator", "test-B"),\
-		list("After placing the virus in a safe containment unit, and inserting it into the AI's mainframe", 15 SECONDS, "narrator", "test-B"),\
+		list("After placing the virus in a safe containment unit, and inserting it into the AI's mainframe", 15 SECONDS, "narrator", "test-D"),\
 		list("Suddenly...", 5 SECONDS, "narrator", "emergency-B"),\
 		list("*sparking noises*", 5 SECONDS, null, "test-C"),\
 		list("Able, ABLE! Are you alright Able?!", 7 SECONDS, "specialistvirgil", "emergency-A"),\

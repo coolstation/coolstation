@@ -72,7 +72,7 @@
 		src.check_health()
 		return
 
-	proc/update_icon()
+	update_icon()
 		set_icon_state("[src.base_state][src.active ? null : "_off"]")
 		return
 
@@ -423,7 +423,7 @@
 	name = "garden trowel"
 	desc = "A tool to uproot plants and transfer them to decorative pots"
 	icon = 'icons/obj/hydroponics/items_hydroponics.dmi'
-	inhand_image_icon = 'icons/obj/items/tools/tools.dmi'
+	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	icon_state = "trowel"
 
 	flags = FPRINT | TABLEPASS | ONBELT
@@ -609,9 +609,217 @@
 	initial_volume = 250
 	initial_reagents = list("saltpetre"=50, "ammonia"=50, "potash"=50, "poo"=50, "space_fungus"=50)
 
-/obj/item/reagent_containers/glass/water_pipe
+/obj/item/reagent_containers/bowlpiece
+	name = "bong bowlpiece"
+	desc = "Don't tell security."
+	icon = 'icons/obj/chemical.dmi' //placeholder mini vial icon until bowlpieces can be sprited
+	icon_state = "minivial"
+	contraband = 1
+	flags = FPRINT | TABLEPASS
+	object_flags = 0
+	incompatible_with_chem_dispensers = 1
+	value = 20
+	//var/max_hit_count = 6 //number of hits until cleared // mylie thinks max hits should be kinda based on reagent count, like cigs?
+	var/base_reagent_per_rip = 5 // amount transferred from this, for anything with less than 50 units in it
+	var/scaling_past_fifty = 0.05 // additional units transferred per unit past 50 in the herb
+	var/reagent_per_rip = 0
+	var/loaded_with = "empty" //what herb is loaded in the bowl
+	var/list/allowed_types_list = list(/obj/item/plant/herb)
+
+	//Basic bowl piece for water pipes, loading it behaves sort of like rolling a joint code wise
+	New()
+		..()
+
+
+	proc/pack_a_bowl(obj/item/W as obj, mob/user as mob)
+		if(src.reagents.total_volume >= CHEM_EPSILON)
+			boutput(user, "<span class='alert'>This bowl is already packed, finish smoking it!.</span>")
+			return FALSE
+		else
+			if(istype(W, /obj/item/plant/herb/cannabis/black))
+				loaded_with = "weed-death"
+			else if(istype(W, /obj/item/plant/herb/cannabis/white))
+				loaded_with = "weed-life"
+			else if(istype(W, /obj/item/plant/herb/cannabis/mega))
+				loaded_with = "weed-rainbow"
+			else if(istype(W, /obj/item/plant/herb/cannabis/omega))
+				loaded_with = "weed-omega"
+			else
+				loaded_with = "weed"   //weed and everything else can share loaded bowl a sprite for now
+
+			src.reagents.maximum_volume = src.reagents.total_volume + W.reagents?.total_volume
+			if(W.reagents)
+				W.reagents.trans_to(src, W.reagents.total_volume)
+			//reagent_per_rip = round(src.reagents.total_volume / max_hit_count)
+			src.reagent_per_rip = src.base_reagent_per_rip
+			if(src.reagents.total_volume > 50)
+				src.reagent_per_rip += src.scaling_past_fifty * (src.reagents.total_volume - 50)
+			boutput(user, "<span class='notice'>You pack the bowl piece with [W.name].</span>")
+			W.force_drop(user)
+			qdel(W)
+
+		return TRUE
+
+/obj/item/reagent_containers/bowlpiece/cigarette
+	name = "ashtray bowlpiece"
+	desc = "There's a ton of stubbed out cigarettes in it. Why?"
+	allowed_types_list = list(/obj/item/plant/herb, /obj/item/clothing/mask/cigarette)
+
+/obj/item/reagent_containers/bowlpiece/meat
+	name = "\proper bowl that hungers"
+	desc = "It needs to eat or it will die."
+	contraband = 5
+	allowed_types_list = list(/obj/item/reagent_containers/food/snacks/ingredient/meat, /obj/item/organ)
+
+	pack_a_bowl(obj/item/W, mob/user)
+		. = ..()
+		if(.)
+			src.reagents.maximum_volume += 10
+			src.reagents.add_reagent(pick("bloodc", "beff", "MRSA", "salmonella", "enriched_msg", "porktonium"), 10)
+
+/obj/item/reagent_containers/food/drinks/water_pipe
 	name = "water pipe"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bong"
+	incompatible_with_chem_dispensers = 1
+	value = 420
+	//need something to sort of behave like a bong bowl piece
+	var/obj/item/reagent_containers/bowlpiece/bowl
+	var/image/fluid_image
+	var/image/bowl_image
 
-	filled
+	//handle filling the water pipe with reagents i.e. water
+	New()
+		..()
+		fluid_image = image(src.icon, "fluid-[src.icon_state]")
+		bowl_image = "null"
+		src.bowl = new(src)
+
+	disposing()
+		if(src.bowl)
+			qdel(src.bowl)
+			src.bowl = null
+		. = ..()
+
+	get_desc(dist, mob/user)
+		. = ..()
+		if(dist <= 2)
+			if(!src.bowl)
+				. += "<br>The bowlpiece is missing."
+			else
+				. += "<br>You can wrench the bowlpiece out."
+
+	on_reagent_change()
+		..()
+		src.update_icon()
+
+	update_icon()
+		src.underlays = null
+
+		if (reagents.total_volume)
+			var/fluid_state = round(clamp((src.reagents.total_volume / src.reagents.maximum_volume * 5 + 1), 1, 5))
+			src.icon_state = "bong[fluid_state]"
+			var/datum/color/average = reagents.get_average_color()
+			src.fluid_image.color = average.to_rgba()
+			src.fluid_image.icon_state = "fluid-bong[fluid_state]"
+			src.underlays += src.fluid_image
+
+
+		else
+			src.icon_state = initial(src.icon_state)
+
+		if (bowl && src.bowl.reagents.total_volume >= CHEM_EPSILON)
+			bowl_image = image(src.icon, "bong-[bowl.loaded_with]")
+			src.underlays += bowl_image
+
+	//handle loading bong with smokable herb reagents i.e. cannabis, tobacco, etc.
+    //handle smoking from the water pipe. hiting it, clearing it, adding ash to water, etc.
+	attackby(obj/item/W as obj, mob/user as mob)
+		if(src.bowl)
+			// ive decided to take "for now" to mean "you can smoke glass shards when someone adds that", and have done so - mylie
+			if (src.bowl.reagents.total_volume < CHEM_EPSILON && !W.cant_drop && length(src.bowl.allowed_types_list)) //just weade and tobacco for now - hexphire
+				for(var/allowed_type in src.bowl.allowed_types_list)
+					if(istype(W, allowed_type) && src.bowl.pack_a_bowl(W, user))
+						//load bowl with the good good
+						src.update_icon()
+						return
+
+			if (iswrenchingtool(W))
+				playsound(src.loc, "sound/items/Ratchet.ogg", 40, 1, SOUND_RANGE_SMALL)
+				user.put_in_hand_or_drop(src.bowl)
+				src.bowl = null
+			if (isweldingtool(W) && W:try_weld(user,0,-1,0,0))
+				hit_da_bong(user)
+				return
+			else if (istype(W, /obj/item/sword) && W:active)
+				hit_da_bong(user)
+				return
+			else if (istype(W, /obj/item/clothing/head/cakehat) && W:on)
+				hit_da_bong(user)
+				return
+			else if (istype(W, /obj/item/device/igniter))
+				hit_da_bong(user)
+				return
+			else if (istype(W, /obj/item/device/light/zippo) && W:on)
+				hit_da_bong(user)
+				return
+			else if ((istype(W, /obj/item/match) || istype(W, /obj/item/clothing/mask/cigarette) || istype(W, /obj/item/device/light/candle)) && W:on)
+				hit_da_bong(user)
+				return
+			else if (W.burning)
+				hit_da_bong(user)
+				return
+			else if (W.firesource)
+				hit_da_bong(user)
+				W.firesource_interact()
+				return
+		else if (istype(W, /obj/item/reagent_containers/bowlpiece) && !W.cant_drop)
+			src.bowl = W
+			user.u_equip(W)
+			W.set_loc(src)
+		return ..()
+
+	proc/hit_da_bong(mob/user as mob)
+		if(src.reagents.total_volume < (src.reagents.maximum_volume / 2))
+			boutput(user, "<span class='alert'>Aw hell, it's dry! Pour some water in first.</span>")
+			return
+
+		if(!src.bowl)
+			boutput(user, "<span class='alert'>Shit, where's the bowlpiece?</span>")
+			return
+
+		if(src.bowl.reagents.total_volume < CHEM_EPSILON)
+			boutput(user, "<span class='alert'>The bowl is empty! Load it with something to smoke first.</span>")
+			return
+
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if (prob(1))
+				H.contract_disease(/datum/ailment/malady/heartdisease,null,null,1)
+
+		if(user.bodytemperature < user.base_body_temp)
+			user.bodytemperature += 1
+
+		if((user.bioHolder && user.bioHolder.HasEffect("clumsy") && prob(42)) || prob(10)) // ypou DWEEB you done slurped up bongwater oh my gawd you biffed it
+			playsound(user.loc, "sound/items/drink.ogg", 45, 1, SOUND_RANGE_LARGE) // we are alerting the neighborhood for this one
+			src.reagents.reaction(user, INGEST, (src.reagents.total_volume/8))
+			src.reagents.trans_to(user, (src.reagents.total_volume/8))
+			user.emote("burp")
+
+		src.bowl.reagents.trans_to(src, (src.bowl.reagent_per_rip * 0.25)) //water gets some sauce
+		src.bowl.reagents.reaction(user, INGEST, (src.bowl.reagent_per_rip * 0.75))
+		src.bowl.reagents.trans_to(user, (src.bowl.reagent_per_rip * 0.75))
+
+		if(src.bowl.reagents.total_volume >= CHEM_EPSILON)
+			user.visible_message("[user] takes a hit from the [src] and exhales smoke.", "<span class='notice'>You take a hit from the [src]. You feel the effects of the whatever's in the bowl starting to kick in.</span>", "You hear the distinct burbling of a water pipe.")
+		else
+			user.visible_message("[user] takes the last hit from the [src], then clears the bowl.", "<span class='notice'>You take the last hit from the [src], clearing the bowl.</span>", "You hear the distinct burbling of a water pipe, then some tapping on glass.")
+			src.reagents.add_reagent("ash", 5)
+			src.bowl.reagents.clear_reagents()
+			src.bowl.loaded_with = "null"
+			src.update_icon()
+
+		//play the bong hit noise
+		//old bong hit sound effect must have also been in the .secret, need to add a new one eventually use bubbles_short for not
+		playsound(user.loc, 'sound/effects/bubbles_short.ogg', 50, 1, SOUND_RANGE_MODERATE)
+		particleMaster.SpawnSystem(new /datum/particleSystem/blow_cig_smoke(user.loc, user.dir))

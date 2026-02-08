@@ -884,7 +884,7 @@
 				owner.unequip_all()
 
 			spell_invisibility(owner, 50)
-			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, -1)
+			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, SOUND_RANGE_STANDARD)
 
 
 	cast_misfire()
@@ -912,7 +912,7 @@
 					boutput(owner, "<span class='alert'>\The [I] you were carrying falls away as you dissolve!</span>")
 
 			spell_invisibility(owner, 50)
-			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, -1)
+			playsound(owner.loc, "sound/effects/mag_phase.ogg", 25, 1, SOUND_RANGE_STANDARD)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1011,7 +1011,7 @@
 				owner.gib()
 
 			// Superfarted on ol' bib? Off to hell.
-			for (var/obj/item/storage/bible/B in owner.loc)
+			for (var/obj/item/bible/B in owner.loc)
 				owner.damn()
 				break
 		else
@@ -1678,9 +1678,9 @@
 		playsound(owner.loc, 'sound/musical_instruments/WeirdHorn_0.ogg', 50, 0)
 		var/count = 0
 		for (var/mob/living/L in range(7,owner))
-			if (L.hearing_check(1))
+			if (!cant_hear(L))
 				if(count++ > (src.linked_power.power ? 10 : 7)) break
-				if(locate(/obj/item/storage/bible) in get_turf(L))
+				if(locate(/obj/item/bible) in get_turf(L))
 					owner.visible_message("<span class='alert'><b>A mysterious force smites [owner.name] for inciting blasphemy!</b></span>")
 					owner.gib()
 				else
@@ -2244,16 +2244,16 @@
 		)
 		if(shaun == 1)
 			usr.say("SHAUN!")
-			playsound(usr.loc, "sound/misc/funny/Shaun1.ogg", 75, 0, 2)
+			playsound(usr.loc, "sound/misc/funny/Shaun1.ogg", 75, 0, SOUND_RANGE_LARGE)
 		else if(shaun == 2)
 			usr.say("SHAUN!!")
-			playsound(usr.loc, "sound/misc/funny/Shaun2.ogg", 75, 0, 2)
+			playsound(usr.loc, "sound/misc/funny/Shaun2.ogg", 75, 0, SOUND_RANGE_LARGE)
 		else if(shaun == 3)
 			usr.say("SHAAAAAAAAAUN!!!")
-			playsound(usr.loc, "sound/misc/funny/Shaun3.ogg", 75, 0, 2)
+			playsound(usr.loc, "sound/misc/funny/Shaun3.ogg", 75, 0, SOUND_RANGE_LARGE)
 		else if(shaun == 4)
 			usr.say("SHAUN WHERE ARE YOU?!")
-			playsound(usr.loc, "sound/misc/funny/Shaun4.ogg", 75, 0, 2)
+			playsound(usr.loc, "sound/misc/funny/Shaun4.ogg", 75, 0, SOUND_RANGE_LARGE)
 
 
 

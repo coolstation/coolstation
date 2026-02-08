@@ -81,15 +81,48 @@
 
 /obj/item/device/radio/headset/command/nt
 	name = "NT Headset"
+
 	secure_frequencies = list(
 		"h" = R_FREQ_COMMAND,
 		"g" = R_FREQ_SECURITY,
+	)
+	icon_override = "nt"
+
+/obj/item/device/radio/headset/command/sd
+	name = "Site Director's Headset"
+	icon_override = "sd"
+	secure_frequencies = list(
+		"h" = R_FREQ_COMMAND,
+		"g" = R_FREQ_SECURITY,
+		"e" = R_FREQ_ENGINEERING,
+		"c" = R_FREQ_CIVILIAN,
 		)
 	secure_classes = list(
 		"h" = RADIOCL_COMMAND,
 		"g" = RADIOCL_SECURITY,
+		"e" = RADIOCL_ENGINEERING,
+		"c" = RADIOCL_CIVILIAN,
 		)
-	icon_override = "nt"
+
+/obj/item/device/radio/headset/command/sg
+	name = "Surveyor General's Headset"
+	icon_override = "sg"
+	secure_frequencies = list(
+		"h" = R_FREQ_COMMAND,
+		"r" = R_FREQ_RESEARCH,
+		"m" = R_FREQ_MEDICAL,
+		"l" = R_FREQ_LOGISTICS,
+	)
+	secure_classes = list(
+		"h" = RADIOCL_COMMAND,
+		"r" = RADIOCL_RESEARCH,
+		"m" = RADIOCL_MEDICAL,
+		"l" = RADIOCL_LOGISTICS,
+	)
+
+/obj/item/device/radio/headset/command/nt/rogue
+	name = "Hacked NT Headset"
+	desc = "An old jailbroken NT headset. The headset is still capable of accessing secure frequencies."
 
 /obj/item/device/radio/headset/command/captain
 	name = "Captain's Headset"
@@ -342,7 +375,22 @@
 	desc = "A radio headset that interfaces with the ear canal, allowing the deaf to hear."
 	icon_state = "deaf headset"
 	item_state = "headset"
-	block_hearing_when_worn = HEARING_ANTIDEAF
+
+	equipped(mob/user, slot)
+		. = ..()
+		if(slot == SLOT_EARS)
+			user.ear_protected--
+
+	unequipped(mob/user)
+		if(src.equipped_in_slot == SLOT_EARS)
+			user.ear_protected++
+		. = ..()
+
+	disposing()
+		if(src.equipped_in_slot == SLOT_EARS && ismob(src.loc))
+			var/mob/M = src.loc
+			M.ear_protected++
+		. = ..()
 
 /obj/item/device/radio/headset/gang
 	name = "Radio Headset"

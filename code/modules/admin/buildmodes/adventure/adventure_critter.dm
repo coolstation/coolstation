@@ -5,13 +5,13 @@
 
 	click_left(atom/object, var/ctrl, var/alt, var/shift)
 		var/obj/critter/C = new crittertype(get_turf(object))
-		blink(get_turf(object))
+		//blink(get_turf(object))
 		for (var/varname in critter_vars)
 			C.vars[varname] = critter_vars[varname]
 
 	click_right(atom/object, var/ctrl, var/alt, var/shift)
 		if (istype(object, /obj/critter))
-			blink(get_turf(object))
+			//blink(get_turf(object))
 			qdel(object)
 
 	selected()

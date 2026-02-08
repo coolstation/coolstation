@@ -61,6 +61,7 @@ datum
 		var/can_crack = 0 // used by organic chems
 		var/contraband = 0 // bastards hate this shit
 		var/evaporates_cleanly = FALSE // vanishes on evaporation
+		var/charge_capacity = 0
 
 		var/overdose = 0 // if reagents are at or above this in a mob, it's an overdose - if double this, it's a major overdose
 		var/upper = 0 // mobs get this much "upper" (generic stimulant stuffs) value from it
@@ -95,14 +96,14 @@ datum
 */
 
 		proc/on_add()
-			if (stun_resist > 0 && ismob(holder?.my_atom))
+			if (stun_resist > 0 && !holder?.external && ismob(holder?.my_atom))
 				var/mob/M = holder.my_atom
 				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_[src.id]", stun_resist)
 				APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_[src.id]", stun_resist)
 			return
 
 		proc/on_remove()
-			if (stun_resist > 0 && ismob(holder?.my_atom))
+			if (stun_resist > 0 && !holder?.external && ismob(holder?.my_atom))
 				var/mob/M = holder.my_atom
 				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_[src.id]")
 				REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST_MAX, "reagent_[src.id]")

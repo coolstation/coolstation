@@ -43,13 +43,13 @@
 		var/obj/itemspecialeffect/glare/E = new()
 		E.color = "#FFFFFF"
 		E.setup(M.loc)
-		playsound(M.loc,"sound/effects/glare.ogg", 50, 1, pitch = 1, extrarange = -4)
+		playsound(M.loc,"sound/effects/glare.ogg", 50, 1, pitch = 1, range = SOUND_RANGE_MODERATE)
 
 		SPAWN_DBG(1 DECI SECOND)
 			var/obj/itemspecialeffect/glare/EE = new()
 			EE.color = "#FFFFFF"
 			EE.setup(target.loc)
-			playsound(target.loc,"sound/effects/glare.ogg", 50, 1, pitch = 0.8, extrarange = -4)
+			playsound(target.loc,"sound/effects/glare.ogg", 50, 1, pitch = 0.8, range = SOUND_RANGE_MODERATE)
 
 		if (target.bioHolder && target.traitHolder.hasTrait("training_chaplain"))
 			boutput(target, __blue("[M]'s foul gaze falters as it stares upon your righteousness!"))

@@ -12,7 +12,7 @@
 	var/has_blobs = 1
 
 	//2025-2-4: bumped the chances for traitors so we hopefully see em more
-	var/list/traitor_types = list(ROLE_TRAITOR, ROLE_TRAITOR, ROLE_CHANGELING, ROLE_VAMPIRE, ROLE_SPY_THIEF, ROLE_WEREWOLF)
+	var/list/traitor_types = list(ROLE_TRAITOR, ROLE_TRAITOR, ROLE_CHANGELING, ROLE_VAMPIRE, ROLE_SPY_THIEF, ROLE_WEREWOLF, ROLE_ROGUENTSO)
 
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
@@ -51,6 +51,7 @@
 	var/num_blobs = 0
 	var/num_spy_thiefs = 0
 	var/num_werewolves = 0
+	var/num_roguentso = 0
 
 #ifdef XMAS
 	src.traitor_types += ROLE_GRINCH
@@ -76,6 +77,7 @@
 				if(ROLE_GRINCH) num_grinches++
 				if(ROLE_SPY_THIEF) num_spy_thiefs++
 				if(ROLE_WEREWOLF) num_werewolves++
+				if(ROLE_ROGUENTSO) num_roguentso++
 
 
 	token_players = antag_token_list()
@@ -122,6 +124,11 @@
 				traitors += tplayer
 				token_players.Remove(tplayer)
 				tplayer.special_role = ROLE_WEREWOLF
+			if(ROLE_ROGUENTSO)
+				traitors += tplayer
+				token_players.Remove(tplayer)
+				tplayer.assigned_role = "MODE"
+				tplayer.special_role = ROLE_ROGUENTSO
 
 
 		logTheThing("admin", tplayer.current, null, "successfully redeemed an antag token.")
@@ -200,6 +207,15 @@
 			wolf.special_role = ROLE_WEREWOLF
 			possible_werewolves.Remove(wolf)
 
+	if(num_roguentso)
+		var/list/possible_roguentso = get_possible_enemies(ROLE_ROGUENTSO,num_roguentso)
+		var/list/chosen_roguentso = antagWeighter.choose(pool = possible_roguentso, role = ROLE_ROGUENTSO, amount = num_roguentso, recordChosen = 1)
+		for (var/datum/mind/rogue in chosen_roguentso)
+			traitors += rogue
+			rogue.assigned_role = "MODE"
+			rogue.special_role = ROLE_ROGUENTSO
+			possible_roguentso.Remove(rogue)
+
 
 
 	if(!traitors) return 0
@@ -231,6 +247,18 @@
 			if (ROLE_CHANGELING)
 				objective_set_path = /datum/objective_set/changeling
 				traitor.current.make_changeling()
+
+			if (ROLE_ROGUENTSO)
+				objective_set_path = /datum/objective_set/traitor
+				traitor.current.unequip_all(1)
+
+				if (!job_start_locations["Rogue Nanotrasen Security Operative"])
+					boutput(traitor.current, "<B><span class='alert'>A starting location for you could not be found, please report this bug!</span></B>")
+				else
+					traitor.current.set_loc(pick(job_start_locations["Rogue Nanotrasen Security Operative"]))
+
+				equip_rogue(traitor.current)
+
 
 			if (ROLE_WIZARD)
 				objective_set_path = pick(typesof(/datum/objective_set/traitor/rp_friendly))
@@ -344,11 +372,13 @@
 					if(player.client.preferences.be_spy) candidates += player.mind
 				if(ROLE_WEREWOLF)
 					if(player.client.preferences.be_werewolf) candidates += player.mind
+				if(ROLE_ROGUENTSO)
+					if(player.client.preferences.be_roguentso) candidates += player.mind
 				else
 					if(player.client.preferences.be_misc) candidates += player.mind
 
 	if(candidates.len < number)
-		if(type in list(ROLE_WIZARD, ROLE_TRAITOR, ROLE_CHANGELING, ROLE_WRAITH, ROLE_BLOB, ROLE_WEREWOLF))
+		if(type in list(ROLE_WIZARD, ROLE_TRAITOR, ROLE_CHANGELING, ROLE_WRAITH, ROLE_BLOB, ROLE_WEREWOLF, ROLE_ROGUENTSO))
 			logTheThing("debug", null, null, "<b>Enemy Assignment</b>: Only [candidates.len] players with be_[type] set to yes were ready. We need [number] so including players who don't want to be [type]s in the pool.")
 		else
 			logTheThing("debug", null, null, "<b>Enemy Assignment</b>: Not enough players with be_misc set to yes, including players who don't want to be misc enemies in the pool for [type] assignment.")

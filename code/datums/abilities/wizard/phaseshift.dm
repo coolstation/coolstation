@@ -26,7 +26,7 @@
 			SPtime = 50
 		else
 			boutput(holder.owner, "<span class='alert'>Your spell doesn't last as long without a staff to focus it!</span>")
-		playsound(holder.owner.loc, "sound/effects/mag_phase.ogg", 25, 1, -1)
+		playsound(holder.owner.loc, "sound/effects/mag_phase.ogg", 25, 1, SOUND_RANGE_STANDARD)
 		spell_invisibility(holder.owner, SPtime, 0, 1)
 
 // Merged some stuff from wizard and vampire phaseshift for easy of use (Convair880).

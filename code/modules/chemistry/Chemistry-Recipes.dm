@@ -352,6 +352,14 @@ datum
 			result_amount = 12
 			mix_phrase = "The mixture reduces into a fine crystalline powder and an unbelievably delicious smell wafts upwards."
 
+		enriched_msg_tck
+			name = "Catalyzed Enriched MSG"
+			id = "enriched_msg_tck"
+			result = "enriched_msg"
+			required_reagents = list("msg" = 9, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 10
+			mix_phrase = "The oil wafts off into an unbelievably delicious smell."
+
 /*		argine
 			name = "Argine"
 			id = "argine"
@@ -1013,6 +1021,16 @@ datum
 			//Replaced cleaner (propylene glycol) with teporone (antifreeze) and juice_tomato with bloody_scary for red dye.
 			result_amount = 10
 			mix_phrase = "The substance mixes together, emitting a rank piratey odor and seemingly dissolving some of the container..."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+			drinkrecipe = 1
+
+		cocktail_grog_tck
+			name = "Catalyzed Grog"
+			id = "grog_tck"
+			result = "grog"
+			required_reagents = list("rum" = 1, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 2
+			mix_phrase = "A tiny puff of smoke erupts as the booze and oil exchange blows before settling into a nasty green solution."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 			drinkrecipe = 1
 
@@ -1922,6 +1940,14 @@ datum
 			required_temperature = T0C + 130
 			result_amount = 2 // 40% yield
 
+		hemotoxin_tck
+			name = "Catalyzed Hemotoxin"
+			id = "hemotoxin_tck"
+			result = "hemotoxin"
+			required_reagents = list("phosphorus" = 4, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 5
+			mix_phrase = "The oil pales to a sickly yellow serum as the powder melts in."
+
 		sarin // oh god why am i adding this
 			name = "Sarin"
 			id = "sarin"
@@ -1992,6 +2018,22 @@ datum
 		thermite
 			name = "Thermite"
 			id = "thermite"
+			result = "thermite"
+			required_reagents = list("aluminium" = 1, "iron" = 1, "oxygen" = 1)
+			result_amount = 3
+			mix_phrase = "The solution mixes into a reddish-brown powder."
+
+		thermite2
+			name = "Thermite"
+			id = "thermite2"
+			result = "thermite"
+			required_reagents = list("iron" = 1, "iron_oxide" = 1)
+			result_amount = 3
+			mix_phrase = "The solution mixes into a reddish-brown powder."
+
+		thermite3
+			name = "Thermite"
+			id = "thermite3"
 			result = "thermite"
 			required_reagents = list("aluminium" = 1, "iron_oxide" = 1)
 			result_amount = 3
@@ -2175,6 +2217,14 @@ datum
 			result_amount = 3
 			mix_phrase = "This pungent odor could probably melt steel."
 
+		kerosene_tck
+			name = "Catalyzed Kerosene"
+			id = "kerosene_tck"
+			result = "kerosene"
+			required_reagents = list("acetone" = 5, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 6
+			mix_phrase = "This pungent odor could probably melt steel."
+
 		formaldehyde
 			name = "Embalming fluid"
 			id = "formaldehyde"
@@ -2303,6 +2353,14 @@ datum
 			mix_phrase = "The mixture forms a salt which rapidly precipitates."
 			//mix_sound = 'sound/misc/drinkfizz.ogg'
 
+		pentobarbital_tck
+			name = "Catalyzed Pentobarbital"
+			id = "pentobarbitol_tck"
+			result = "pentobarbital"
+			required_reagents = list("urine" = 4, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 5
+			mix_phrase = "The mixture crystallizes into a salt that reeks of gas station urinal cakes."
+
 		styptic_powder // COGWERKS CHEM REVISION PROJECT: no idea, probably a magic drug
 			name = "Styptic Powder"
 			id = "styptic_powder"
@@ -2353,6 +2411,14 @@ datum
 			required_temperature = T0C + 450
 			mix_phrase = "The neurotoxin breaks down, bubbling violently."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
+
+		vertigo_tck
+			name = "Catalyzed Vertigo"
+			id = "vertigo_tck"
+			result = "vertigo"
+			required_reagents = list("sugar" = 5, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 6
+			mix_phrase = "The oil rapidly froths and bubbles as it ferments."
 
 		mutadone // // COGWERKS CHEM REVISION PROJECT: magic bullshit drug, make it involve mutagen
 			name = "Mutadone"
@@ -2591,7 +2657,7 @@ datum
 					for (var/mob/living/M in all_hearers(world.view, location))
 						if (isintangible(M))
 							continue
-						if (!M.ears_protected_from_sound())
+						if (!cant_hear(M))
 							boutput(M, "<span class='alert'><b>[hootmode ? "HOOT" : "BANG"]</b></span>")
 
 						var/checkdist = get_dist(M, location)
@@ -2620,7 +2686,7 @@ datum
 						for (var/mob/living/M in all_hearers(world.view, location))
 							if (isintangible(M))
 								continue
-							if (!M.ears_protected_from_sound())
+							if (!cant_hear(M))
 								boutput(M, "<span class='alert'><b>[hootmode ? "HOOT" : "BANG"]</b></span>")
 
 							var/checkdist = get_dist(M, location)
@@ -2716,6 +2782,15 @@ datum
 				else
 					reaction_loc.visible_message("<span class='alert'>[bicon(my_atom)] The mixture turns into pure energy which quickly disperses. It needs to be channeled somehow.</span>")
 				return
+
+		anima_tck
+			name = "Catalyzed Anima"
+			id = "anima_tck"
+			result = "anima"
+			required_reagents = list("ectoplasm" = 1, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 1
+			mix_phrase = null
+			mix_sound = 'sound/effects/ghostbreath.ogg'
 
 		phlogiston
 			name = "Phlogiston"
@@ -2828,6 +2903,14 @@ datum
 			mix_phrase = "The mixture yields a granular black powder."
 			mix_sound = 'sound/misc/fuse.ogg'
 
+		blackpower_tck // oh yes
+			name = "Catalyzed Black Powder"
+			id = "blackpowder_tck"
+			result = "blackpowder"
+			required_reagents = list("carbon" = 20, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 20
+			mix_phrase = "The oil saturates the dust into a granular black powder."
+			mix_sound = 'sound/misc/fuse.ogg'
 
 		stabiliser
 			name = "Stabilising Agent"
@@ -3186,6 +3269,15 @@ datum
 			mix_phrase = "Tiny cubic crystals precipitate out of the mixture. Huh."
 			mix_sound = 'sound/misc/fuse.ogg'
 
+		bathsalts_tck
+			name = "Catalyzed Bath Salts"
+			id = "bathsalts_tck"
+			result = "bathsalts"
+			required_reagents = list("yuck" = 2, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 3
+			mix_phrase = "Tiny cubic crystals crackle and sizzle out of the sludge. Guh."
+			mix_sound = 'sound/misc/fuse.ogg'
+
 		itching // cogwerks
 			name = "Itching Powder"
 			id = "itching"
@@ -3498,6 +3590,14 @@ datum
 			mix_phrase = "The solution settles into a liquid form of electricity."
 			mix_sound = 'sound/effects/elec_bigzap.ogg'
 
+		voltagen_tck
+			name = "Catalyzed Voltagen"
+			id = "voltagen_tck"
+			result = "voltagen"
+			required_reagents = list("radium" = 3, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 4
+			mix_phrase = "The tar crackles with blue energy as it absorbs the radiation."
+
 		energydrink
 			name = "Energy Drink"
 			id = "energydrink"
@@ -3505,6 +3605,14 @@ datum
 			required_reagents = list("voltagen" = 1, "coffee" = 1, "cola" = 3)
 			result_amount = 5
 			mix_phrase = "The solution emits a tutti frutti stench."
+
+		energydrink_tck
+			name = "Catalyzed Energy Drink"
+			id = "energydrink_tck"
+			result = "energydrink"
+			required_reagents = list("cola" = 4, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 5
+			mix_phrase = "The thick black tar gets lost in the stench of artificial flavoring."
 
 		voltagen_arc
 			name = "Voltagen Arc"
@@ -3687,6 +3795,15 @@ datum
 			mix_phrase = "The reagents combine with an audible hoot."
 			mix_sound = "sound/voice/animal/hoot.ogg"
 
+		hootagen_stable_tck
+			name = "Catalyzed Stable Hootagen"
+			id = "hootagen_stable_tck"
+			result = "hootagen_stable"
+			required_reagents = list("egg" = 3, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 4
+			mix_phrase = "The reagents combine with an sludgy hoot."
+			mix_sound = "sound/voice/animal/hoot.ogg"
+
 		colors
 			name = "colorful reagent"
 			id = "colors"
@@ -3794,6 +3911,14 @@ datum
 			result_amount = 3
 			mix_phrase = "The substance gives off a terrible stench. Are those maggots?"
 
+		rotting_tck
+			name = "Catalyzed Rotting"
+			id = "rotting_tck"
+			result = "rotting"
+			required_reagents = list("poo" = 9, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 10
+			mix_phrase = "The substance gives off a terrible stench. Are those larvae?"
+
 		love
 			name = "pure love"
 			id = "love"
@@ -3842,6 +3967,15 @@ datum
 			mix_phrase = "The mixture forms a clear greenish liquid, emitting a nauseating smell reminiscent of chlorophyll and rubbing alcohol."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
+		madness_toxin_tck
+			name = "Catalyzed Rajaijah"
+			id = "madness_toxin"
+			result = "madness_toxin"
+			required_reagents = list("mercury" = 3, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 4
+			mix_phrase = "The oil rapidly loses viscosity, emitting a nauseating reek of chlorophyll as it turns clear and green."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+
 		strychnine
 			name = "Strychnine"
 			id = "strychnine"
@@ -3849,6 +3983,15 @@ datum
 			required_reagents = list("cyanide" = 1, "phenol" = 1, "pacid" = 1, "acetic_acid" = 1, "aluminium" = 1, "iodine" = 1, "nickel" = 1)
 			result_amount = 6
 			mix_phrase = "The mixture congeals into an off-white crystalline powder."
+			mix_sound = 'sound/misc/drinkfizz.ogg'
+
+		strychnine_tck
+			name = "Catalyzed Strychnine"
+			id = "strychnine_tck"
+			result = "strychnine"
+			required_reagents = list("iodine" = 5, "traitor_catalyst_kerogrist" = 1)
+			result_amount = 6
+			mix_phrase = "The mixture hisses as it crystallizes into an off-white powder."
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 
 		spiders // can also be made by eating unstable mutagen and ants and dancing - see human.dm

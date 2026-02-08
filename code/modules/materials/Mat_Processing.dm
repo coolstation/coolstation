@@ -160,7 +160,7 @@
 
 		return
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		if(!isliving(usr))
 			boutput(usr, "<span class='alert'>Get your filthy dead fingers off that!</span>")
 			return
@@ -747,7 +747,7 @@
 	item_state = "shovel"
 	w_class = W_CLASS_NORMAL
 	flags = ONBELT
-	force = 7 // 15 puts it significantly above most other weapons
+	force = 10 // a shovel fucking hurts man
 	hitsound = 'sound/impact_sounds/Metal_Hit_1.ogg'
 
 	New()

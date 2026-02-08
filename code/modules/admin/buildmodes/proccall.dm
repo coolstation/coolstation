@@ -106,7 +106,7 @@ Hold down CTRL, ALT or SHIFT to modify, call or view proc bound to those keys.<b
 					returnval = call(object,proc2call)(arglist(args2use))
 				else
 					returnval = call(object,proc2call)()
-				blink(get_turf(object))
+				//blink(get_turf(object))
 			else
 				boutput(usr, "<span class='notice'>Calling '[proc2call]' with [islist(args2use) ? args2use.len : "0"] arguments</span>")
 				if (islist(args2use) && length(args2use))

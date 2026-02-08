@@ -301,7 +301,7 @@
 		// animate_bumble(src)
 		src.is_dancing = 0
 
-	proc/update_icon()
+	update_icon()
 		if (src.has_color_overlay && src.color)
 			src.icon_color = src.color
 			src.color = null
@@ -510,7 +510,7 @@
 		if (!ismob(target))
 			return 1
 		var/mob/MT = target
-		playsound(target, src.sound_bite, 100, 1, -1)
+		playsound(target, src.sound_bite, 100, 1, SOUND_RANGE_STANDARD)
 		MT.TakeDamageAccountArmor("All", src.brute_damage, 0, 0, DAMAGE_CRUSH)
 		holder.owner.visible_message("<span class='combat'><b>[holder.owner] bites [MT] with [his_or_her(holder.owner)] [pick(src.bite_adjectives)] [prob(50) ? "mandibles" : "bee-teeth"]!</b></span>")
 		return 0

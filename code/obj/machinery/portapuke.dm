@@ -159,7 +159,7 @@
 		if (iswrenchingtool(I))
 			anchored = !anchored
 			user.show_text("You [anchored ? "attach" : "release"] \the [src]'s floor clamps", "red")
-			playsound(src, "sound/items/Ratchet.ogg", 40, 0, 0)
+			playsound(src, "sound/items/Ratchet.ogg", 40, 0, SOUND_RANGE_STANDARD)
 			return
 
 		. = ..()
@@ -194,7 +194,7 @@
 			O.set_loc(get_turf(src))
 
 
-	proc/update_icon()
+	update_icon()
 		icon_state = src.n_occupants > 0 ? "puke_1" : "puke_0"
 
 

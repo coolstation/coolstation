@@ -10,7 +10,8 @@
 	var/override_player_pref = 0
 	var/lock = 0
 	var/admin_override = 0
-	var/signal_intro = 'sound/misc/sleeper_agent_hello.ogg'
+	var/list/signal_intro = list('sound/misc/sleeper_agent_hello.ogg','sound/misc/sleeper_agent_hello1.ogg','sound/misc/sleeper_agent_hello2.ogg')
+	var/list/signal_ountro = list('sound/misc/sleeper_agent_goodbye.ogg','sound/misc/sleeper_agent_goodbye1.ogg','sound/misc/sleeper_agent_goodbye2.ogg')
 	var/frequency = R_FREQ_DEFAULT //this was already 1459 so i figured,
 	var/sound_channel = 174
 	var/list/numbers = list(0,0,0,0,0,0)
@@ -84,10 +85,10 @@
 					num_agents = 0
 
 		SPAWN_DBG(1 SECOND)
-			broadcast_sound(signal_intro)
-			sleep(8 SECONDS)
+			broadcast_sound(pick(signal_intro))
+			sleep(6 SECONDS)
 			play_all_numbers()
-			broadcast_sound(signal_intro)
+			broadcast_sound(pick(signal_ountro))
 
 			sleep(2 SECONDS)
 			if (length(candidates))
@@ -197,87 +198,30 @@
 					if (M.client.ignore_sound_flags & SOUND_ALL)
 						continue
 				M.playsound_local(M, soundfile, 30, 0, flags = SOUND_IGNORE_SPACE)
-		sleep(1 SECOND)
+		sleep(0.8 SECONDS)
 
 	proc/play_all_numbers()
-		var/batch = 0
-		var/period = get_vox_by_string(".")
+
 		for (var/number in numbers)
 			play_number(number)
-			broadcast_sound(period)
-			batch++
-			if (batch >= 3)
-				sleep(0.1 SECONDS)
 
-	proc/get_tens(var/n)
+
+	proc/get_tens(var/n) //jankily changing how this works to get a weird sounding order
 		if (n >= 20)
 			var/tens = round(n / 10)
-			switch (tens)
-				if (2)
-					return "twenty"
-				if (3)
-					return "thirty"
-				if (4)
-					return "fourty"
-				if (5)
-					return "fifty"
-				if (6)
-					return "sixty"
-				if (7)
-					return "seventy"
-				if (8)
-					return "eighty"
-				if (9)
-					return "ninety"
+			return "scot[tens+19]" //scot21 to scot28
 		return null
 
 	proc/get_ones(var/n)
 		if (n == 0)
-			return "zero"
+			return "scot20"
 		if (n >= 10 && n < 20)
-			switch (n)
-				if (10)
-					return "ten"
-				if (11)
-					return "eleven"
-				if (12)
-					return "twelve"
-				if (13)
-					return "thirteen"
-				if (14)
-					return "fourteen"
-				if (15)
-					return "fifteen"
-				if (16)
-					return "sixteen"
-				if (17)
-					return "seventeen"
-				if (18)
-					return "eighteen"
-				if (19)
-					return "nineteen"
+			return "scot[n]" //scot10 to scot19
 		else
 			var/ones = n % 10
-			switch (ones)
-				if (1)
-					return "one"
-				if (2)
-					return "two"
-				if (3)
-					return "three"
-				if (4)
-					return "four"
-				if (5)
-					return "five"
-				if (6)
-					return "six"
-				if (7)
-					return "seven"
-				if (8)
-					return "eight"
-				if (9)
-					return "nine"
-		return null
+			return "scot[ones]"//scot1 to scot9
+
+		//return null
 
 	proc/get_vox_by_string(var/vt)
 		if (!vt)

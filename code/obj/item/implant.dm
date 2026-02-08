@@ -163,14 +163,10 @@ THROWING DARTS
 					user.show_text("[Imp] already has an implant loaded.")
 					return
 				else
-					var/obj/item/storage/store
-					if(istype(src.loc, /obj/item/storage))
-						store = src.loc
 					src.set_loc(Imp)
 					Imp.imp = src
 					Imp.update()
 					user.u_equip(src)
-					store?.hud.remove_item(src)
 					user.show_text("You insert [src] into [Imp].")
 				return
 			else if (istype(I, /obj/item/implantcase))
@@ -437,7 +433,7 @@ THROWING DARTS
 				H.visible_message("<span class='alert'><b>[H] resists the loyalty implant!</b></span>")
 				H.changeStatus("weakened", 1 SECOND)
 				H.force_laydown_standup()
-				playsound(H.loc, "sound/effects/electric_shock.ogg", 60, 0,0,pitch = 2.4)
+				playsound(H.loc, "sound/effects/electric_shock.ogg", 60, 0,SOUND_RANGE_STANDARD,pitch = 2.4)
 				//src.on_remove(H)
 				//H.implant.Remove(src)
 				//src.set_loc(get_turf(H))
@@ -446,7 +442,7 @@ THROWING DARTS
 				H.changeStatus("weakened", 1 SECOND)
 				H.force_laydown_standup()
 				H.emote("scream")
-				playsound(H.loc, "sound/effects/electric_shock.ogg", 60, 0,0,pitch = 1.6)
+				playsound(H.loc, "sound/effects/electric_shock.ogg", 60, 0,SOUND_RANGE_STANDARD,pitch = 1.6)
 
 	do_process(var/mult = 1)
 		if (ticker?.mode && istype(ticker.mode, /datum/game_mode/revolution))
@@ -468,7 +464,7 @@ THROWING DARTS
 				else
 					if (prob(30))
 						H.show_text("<B>The [src] burns and rattles inside your chest! It's attempting to force your loyalty!</B>", "blue")
-						playsound(H.loc, "sound/effects/electric_shock_short.ogg", 60, 0,0,pitch = 0.8)
+						playsound(H.loc, "sound/effects/electric_shock_short.ogg", 60, 0,SOUND_RANGE_STANDARD,pitch = 0.8)
 						H.emote("twitch_v")
 
 		..()
@@ -843,7 +839,7 @@ THROWING DARTS
 			if(src.owner && (!ON_COOLDOWN(src.owner, "malware_implant_effects", rand(15, 40) SECONDS) || prob(5))) // multiple implants are only a bit worse
 				if (isliving(src.owner))
 					var/mob/living/L = src.owner
-					playsound(L.loc, "sound/effects/electric_shock_short.ogg", 40, 0, -23, 1.8)
+					playsound(L.loc, "sound/effects/electric_shock_short.ogg", 40, 0, SOUND_RANGE_SMALL, 1.8)
 					L.changeStatus("disorient", rand(10, 40) * mult)
 					L.change_misstep_chance((1 + L.robot_talk_understand) * mult)
 					SPAWN_DBG(rand(2,12))

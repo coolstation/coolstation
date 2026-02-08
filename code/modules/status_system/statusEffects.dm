@@ -877,7 +877,7 @@
 			counter += timePassed
 			if (counter >= count && owner && !owner.hasStatus(list("weakened", "paralysis")) )
 				counter -= count
-				playsound(owner, sound, 17, 1, 0.4, 1.6)
+				playsound(owner, sound, 17, 1, SOUND_RANGE_MODERATE, 1.6)
 				violent_twitch(owner)
 			. = ..(timePassed)
 
@@ -898,7 +898,7 @@
 			counter += timePassed
 			if (counter >= count && owner)
 				counter -= count
-				playsound(owner, sound, 17, 1, 0.4, 1.6)
+				playsound(owner, sound, 17, 1, SOUND_RANGE_MODERATE, 1.6)
 				violent_twitch(owner)
 			. = ..(timePassed)
 
@@ -1503,7 +1503,7 @@
 		var/mob/M = owner
 		if(istype(M))
 			M.thermoregulation_mult /= 3
-
+//a
 /datum/statusEffect/maxhealth/decreased/hungry
 	id = "hungry"
 	name = "Hungry"
@@ -1511,13 +1511,19 @@
 	icon_state = "heart-"
 	duration = INFINITE_STATUS
 	maxDuration = null
-	change = -20
+	change = -10
 
 	onAdd(optional=null)
 		. = ..(change)
 
 	onChange(optional=null)
 		. = ..(change)
+
+	onUpdate(optional=null)
+		..()
+		var/mob/M = owner
+		if (!M.nutrition || M.nutrition >= 100)
+			M.delStatus("hungry")
 
 /datum/statusEffect/staminaregen/thirsty
 	id = "thirsty"
@@ -1699,6 +1705,32 @@
 		else
 			P.create_overlay("smear2", "#ff8820", direct, 'icons/obj/decals/blood.dmi')
 
+
+/client/var/crab
+
+/datum/statusEffect/crab
+	id = "crab"
+	name = "Crabbed"
+	desc = "A CRAB IS PINCHING YOUR PENIS!"
+	icon_state = "crab"
+	unique = TRUE
+	maxDuration = 30 MINUTES
+
+	onAdd(optional)
+		. = ..()
+		if (!ishuman(owner)) return
+		boutput(owner,"Oh fuck. OH CHRIST.")
+		var/client/C = owner:client
+		if(istype(C))
+			C.crab = TRUE
+
+	onRemove()
+		. = ..()
+		var/client/C = owner:client
+		if(istype(C))
+			C.crab = FALSE
+		boutput(owner,"Oh thank god that's over with.")
+
 /datum/statusEffect/magnetized
 	id = "magnetized"
 	name = "Magnetized"
@@ -1854,9 +1886,30 @@
 			if (prob(10) && ismob(owner))
 				var/mob/victim = owner
 				victim.emote(pick("cough", "blink"))
-			playsound(owner, sound, 17, TRUE, 0.4, 1.6)
+			playsound(owner, sound, 17, TRUE, SOUND_RANGE_MODERATE, 1.6)
 			violent_twitch(owner)
 		. = ..(timePassed)
+
+/datum/statusEffect/hand_warmer
+	id = "hand_warmer"
+	name = "warm (hand warmer)"
+	desc = "A hand warmer is heating you up."
+	icon_state = "warm"
+	maxDuration = 6000
+	unique = 1
+
+	var/tickCount = 0
+	var/tickSpacing = 20
+
+	onUpdate(timePassed)
+		tickCount += timePassed
+		var/times = (tickCount / tickSpacing)
+		if(times >= 1 && ismob(owner))
+			tickCount -= (round(times) * tickSpacing)
+			var/mob/M = owner
+			if (M.bodytemperature < M.base_body_temp + 10)
+				for(var/i in 1 to times)
+					M.bodytemperature += 6
 
 ///give lings a timer to look at on this. The ability cooldown already functioned as such, but this is more explicit.
 /datum/statusEffect/regenerative_stasis

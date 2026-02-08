@@ -180,7 +180,7 @@ datum
 
 			reaction_turf(var/turf/T, var/amount)
 				// adding a slight delay solely to make silver fulminate foam way more fun
-				spawn(rand(0, 5))
+				SPAWN_DBG(rand(0, 5))
 					if (src && T)
 						pop(T, amount)
 
@@ -231,7 +231,7 @@ datum
 			taste = "tingly"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp", 15)
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
@@ -239,7 +239,7 @@ datum
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "aranesp")
 					M.remove_stam_mod_max("aranesp")
@@ -294,14 +294,14 @@ datum
 			taste = "bitter"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine", 50)
 					M.add_stam_mod_max("omegazine", 50)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "omegazine")
 					M.remove_stam_mod_max("omegazine")
@@ -1341,7 +1341,7 @@ datum
 					M.setStatus("paralysis", max(M.getStatusDuration("paralysis"), 3 SECONDS * mult))
 					M.visible_message("<B>[M]</B> seizes up and falls limp, [his_or_her(M)] eyes dead and lifeless...")
 					M.setStatus("resting", INFINITE_STATUS)
-					playsound(M, "sound/voice/death_[pick(1,2)].ogg", 40, 0, 0, M.get_age_pitch())
+					playsound(M, "sound/voice/death_[pick(1,2)].ogg", 40, 0, SOUND_RANGE_STANDARD, M.get_age_pitch())
 					fakedeathed = 1
 				..()
 
@@ -1375,7 +1375,7 @@ datum
 				if (counter >= 19 && !fakedeathed)
 					M.visible_message("<B>[M]</B> seizes up and falls limp, [his_or_her(M)] eyes dead and lifeless...")
 					M.setStatus("resting", INFINITE_STATUS)
-					playsound(M, "sound/voice/death_[pick(1,2)].ogg", 40, 0, 0, M.get_age_pitch())
+					playsound(M, "sound/voice/death_[pick(1,2)].ogg", 40, 0, SOUND_RANGE_STANDARD, M.get_age_pitch())
 					fakedeathed = 1
 				..()
 
@@ -1479,7 +1479,7 @@ datum
 			taste = "powdery"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					M.say("yes")
 				..()
@@ -2086,7 +2086,7 @@ datum
 
 
 			on_add()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder.my_atom))
 					var/mob/M = holder.my_atom
 					if (ismartian(M))
 						APPLY_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_martian_flesh", 15)
@@ -2094,7 +2094,7 @@ datum
 				..()
 
 			on_remove()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder.my_atom))
 					var/mob/M = holder.my_atom
 					if (ismartian(M))
 						REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "reagent_martian_flesh")
@@ -2285,13 +2285,13 @@ datum
 					DEBUG_MESSAGE("<span class='notice'><b>Spun [O]: [dir_temp], [speed_temp]</b></span>")
 */
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip", 2)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_flip")
 				if (istype(holder) && istype(holder.my_atom))
@@ -2415,13 +2415,13 @@ datum
 				animate_spin(O, dir_temp, speed_temp)
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip", 4)
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_glowing_flip")
 				if (istype(holder) && istype(holder.my_atom))
@@ -2641,7 +2641,7 @@ datum
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 						if (H.sound_list_flap && length(H.sound_list_flap))
-							playsound(H, pick(H.sound_list_flap), 80, 0, 0, H.get_age_pitch())
+							playsound(H, pick(H.sound_list_flap), 80, 0, SOUND_RANGE_STANDARD, H.get_age_pitch())
 				..()
 				return
 
@@ -3165,7 +3165,7 @@ datum
 			minimum_reaction_temperature = T0C + 50
 
 			reaction_temperature(exposed_temperature, exposed_volume)
-				if(ismob(holder.my_atom))
+				if(!holder?.external && ismob(holder.my_atom))
 					return
 				var/list/covered = holder.covered_turf()
 				if(length(covered) < 9 || prob(2)) // no spam pls
@@ -3911,11 +3911,11 @@ datum
 			taste = "gross"
 
 			on_add()
-				if (holder && ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.setStatus("miasma", duration = INFINITE_STATUS)
 
 			on_remove()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					holder.my_atom.delStatus("miasma")
 
 			on_plant_life(var/obj/machinery/plantpot/P)
@@ -3932,7 +3932,7 @@ datum
 
 				on_add()
 					..()
-					if (holder && ismob(holder.my_atom))
+					if (!holder?.external && ismob(holder?.my_atom))
 						var/mob/bipbip = holder.my_atom
 						bipbip.playsound_local(bipbip.loc, "sound/musical_instruments/Vuvuzela_1.ogg", 60, 1)
 
@@ -4247,6 +4247,26 @@ datum
 			id = "poor_concrete"
 			description = "A low quality blend of chemical agents, water, an aggregate and cement."
 			concrete_strength = 1
+
+		/// THE EVIL JUICE THING TO MAKE NERD CHEMS EASIER FOR TRAITORS
+		traitor_catalyst
+			name = "kerogrist"
+			id = "traitor_catalyst_kerogrist"
+			description = "A highly illegal petrochemical used as a building block for a great deal of nasty chemicals."
+			reagent_state = LIQUID
+			viscosity = 0.9
+			fluid_r = 6
+			fluid_g = 6
+			fluid_b = 6
+			hygiene_value = -0.8
+			transparency = 255
+			taste = "disgustingly greasy"
+			random_chem_blacklisted = TRUE
+			contraband = 10
+			color_multiplier = 4
+			smoke_spread_mod = 30
+			blocks_sight_gas = TRUE
+
 /*
 /obj/badman/ //I really don't know a good spot to put this guy so im putting him here, fuck you.
 	name = "Senator Death Badman"

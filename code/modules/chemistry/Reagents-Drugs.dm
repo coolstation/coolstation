@@ -71,7 +71,7 @@ datum
 			)
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					//APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts", 3)
 					APPLY_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "r_bathsalts", 0.4)
@@ -81,7 +81,7 @@ datum
 				return
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					//REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_bathsalts")
 					REMOVE_ATOM_PROPERTY(M, PROP_COMBAT_CLICK_DELAY_SPEEDUP, "r_bathsalts")
@@ -439,7 +439,7 @@ datum
 
 			on_remove()
 				. = ..()
-				if (ismob(holder.my_atom))
+				if (!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					if (M.client)
 						animate(M.client, color = null, time = 2 SECONDS, easing = SINE_EASING) // gotta come down sometime
@@ -872,7 +872,7 @@ datum
 
 			on_remove()
 				src.fake_health = 40
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_FAKEHEALTH_MAX, "krokodil")
 				..()
@@ -1013,10 +1013,10 @@ datum
 				M.druggy = max(M.druggy, 15)
 				if(probmult(11))
 					M.visible_message("<span class='notice'><b>[M.name]</b> screeches!</span>")
-					playsound(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, 2)
+					playsound(M.loc, 'sound/voice/animal/batsqueak.ogg', 40, 1, SOUND_RANGE_STANDARD)
 				if(probmult(9))
 					M.visible_message("<span class='notice'><b>[M.name]</b> squeaks! What the fuck?</span>")
-					playsound(M.loc, "sound/voice/animal/batsqueak.ogg", 40, 1, 2)
+					playsound(M.loc, "sound/voice/animal/batsqueak.ogg", 40, 1, SOUND_RANGE_STANDARD)
 
 				var/image/imagekey = pick(bat_halluc)
 				if(probmult(40)) //get attacked
@@ -1058,7 +1058,7 @@ datum
 			taste = "like meth, like meth, and like meth"
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "triplemeth")
 					REMOVE_ATOM_PROPERTY(M, PROP_STUN_RESIST, "triplemeth")
@@ -1145,7 +1145,7 @@ datum
 			taste = "like meth"
 
 			on_add()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					APPLY_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine", 3)
 					APPLY_MOVEMENT_MODIFIER(M, /datum/movement_modifier/reagent/energydrink, "r_methamphetamine")
@@ -1156,7 +1156,7 @@ datum
 				..()
 
 			on_remove()
-				if(ismob(holder?.my_atom))
+				if(!holder?.external && ismob(holder?.my_atom))
 					var/mob/M = holder.my_atom
 					holder.del_reagent("triplemeth")
 					REMOVE_ATOM_PROPERTY(M, PROP_STAMINA_REGEN_BONUS, "r_methamphetamine")

@@ -116,6 +116,12 @@ datum/mind
 
 		if(current.client)
 			addOverlaysClient(current.client, current)
+			if (current.client.listener_context)
+				// results in sounds restarting when switching mobs... not great, not terrible
+				var/slc = current.client.listener_context
+				qdel(slc) // dont ask me why its like this. i dont know.
+				current.client.listener_context = null
+			current.client.listener_context = new /datum/sound_listener_context(current.client, current, SOUND_BUCKET_SIZE)
 
 		Z_LOG_DEBUG("Mind/TransferTo", "Mind swapped, moving verbs")
 

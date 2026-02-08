@@ -69,17 +69,17 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			if (iscluwne(user))
 				playsound(user, "sound/voice/farts/poo.ogg", fart_loudness, 1, channel=VOLUME_CHANNEL_EMOTE)
 			else if (user.organ_istype("butt", /obj/item/clothing/head/butt/cyberbutt))
-				playsound(user, "sound/voice/farts/poo2_robot.ogg", fart_loudness, 1, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user, "sound/voice/farts/poo2_robot.ogg", fart_loudness, 1, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 			else if (user.reagents && user.reagents.has_reagent("honk_fart"))
-				playsound(user.loc, 'sound/musical_instruments/Bikehorn_1.ogg', fart_loudness, 1, -1, channel=VOLUME_CHANNEL_EMOTE)
+				playsound(user.loc, 'sound/musical_instruments/Bikehorn_1.ogg', fart_loudness, 1, SOUND_RANGE_STANDARD, channel=VOLUME_CHANNEL_EMOTE)
 			else
 				if (narrator_mode)
-					playsound(user, 'sound/vox/fart.ogg', fart_loudness, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+					playsound(user, 'sound/vox/fart.ogg', fart_loudness, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 				else
 					if (user.getStatusDuration("food_deep_fart"))
-						playsound(user, user.sound_fart, fart_loudness, 0, 0, user.get_age_pitch() - 0.3, channel=VOLUME_CHANNEL_EMOTE)
+						playsound(user, user.sound_fart, fart_loudness, 0, SOUND_RANGE_STANDARD, user.get_age_pitch() - 0.3, channel=VOLUME_CHANNEL_EMOTE)
 					else
-						playsound(user, user.sound_fart, fart_loudness, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						playsound(user, user.sound_fart, fart_loudness, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 
 			var/fart_on_other = 0
 			for (var/atom/A as anything in user.loc)
@@ -104,8 +104,8 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 								game_stats.Increment("clownabuse")
 						fart_on_other = 1
 						break
-					else if (istype(A,/obj/item/storage/bible))
-						var/obj/item/storage/bible/B = A
+					else if (istype(A,/obj/item/bible))
+						var/obj/item/bible/B = A
 						B.farty_heresy(user)
 						fart_on_other = 1
 						break
@@ -119,7 +119,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						M = V.cursed_dude
 						if (!M || !M.lying)
 							continue
-						playsound(M, user.sound_fart, 20, 0, 0, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+						playsound(M, user.sound_fart, 20, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 						switch(rand(1, 7))
 							if (1) M.visible_message("<span class='emote'><b>[M]</b> suddenly radiates an unwelcoming odor.</span>")
 							if (2) M.visible_message("<span class='emote'><b>[M]</b> is visited by ethereal incontinence.</span>")
@@ -206,7 +206,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 						var/found_bible = 0
 						for (var/atom/A as anything in H.loc)
 							if (A.event_handler_flags & IS_FARTABLE)
-								if (istype(A,/obj/item/storage/bible))
+								if (istype(A,/obj/item/bible))
 									found_bible = 1
 						if (found_bible)
 							user.visible_message("<span class='alert'><b>A mysterious force smites [user.name] for inciting blasphemy!</b></span>")
@@ -285,7 +285,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 
 /datum/emote/fart/silicon
 /datum/emote/fart/silicon/enact(mob/living/silicon/user, voluntary = 0, param)
-	if (farting_allowed && user.emote_check(voluntary))
+	if (farting_allowed)
 		var/fart_on_other = 0
 		var/message
 		for (var/mob/living/M in user.loc)
@@ -409,9 +409,9 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			r_glowstick = user.r_hand
 		if ((left_glowstick && l_glowstick.on) || (right_glowstick && r_glowstick.on))
 			if (left_glowstick)
-				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc))
+				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc, rgb(l_glowstick.col_r, l_glowstick.col_g, l_glowstick.col_b)))
 			if (right_glowstick)
-				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc))
+				particleMaster.SpawnSystem(new /datum/particleSystem/glow_stick_dance(user.loc, rgb(r_glowstick.col_r, r_glowstick.col_g, r_glowstick.col_b)))
 			var/dancemove = rand(1,6)
 			switch(dancemove)
 				if (1)
@@ -667,9 +667,9 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				flipped_a_guy = TRUE
 				var/suplex_result = user.do_suplex(G)
 				if(suplex_result)
-					combatflipped |= TRUE
+					combatflipped |= M
 					message = suplex_result
-				if(!combatflipped)
+				if(!length(combatflipped))
 					var/turf/oldloc = user.loc
 					var/turf/newloc = G.affecting.loc
 					if(istype(oldloc) && istype(newloc))
@@ -963,7 +963,7 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 			dab_id?.brain_damage_count += 10
 			if(user.get_brain_damage() > 60)
 				user.show_text("<span class='alert'>Your head hurts!</span>")
-		if(locate(/obj/item/storage/bible) in user.loc)
+		if(locate(/obj/item/bible) in user.loc)
 			if(H.limbs.l_arm)
 				user.limbs.l_arm.sever()
 				dab_id?.arm_count++

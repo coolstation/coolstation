@@ -47,7 +47,7 @@ var/global/icon/wanted_poster_unknown = icon('icons/obj/decals/posters.dmi', "wa
 	if (p_l3)
 		preview_np.line_b3 = p_l3
 	preview_np.generate_poster()
-	preview_np.show_popup_win(usr)
+	preview_np.show_popup_win(usr.client)
 
 	var/print_or_place = alert(usr, "Print out at all printers or place on your tile?", "Selection", "Place", "Print")
 	if (alert(usr, "Confirm poster creation", "Confirmation", "OK", "Cancel") == "OK")
@@ -151,7 +151,7 @@ var/global/icon/wanted_poster_unknown = icon('icons/obj/decals/posters.dmi', "wa
 	if (w_notes)
 		preview_wp.line_b3 = w_notes
 	preview_wp.generate_poster()
-	preview_wp.show_popup_win(usr)
+	preview_wp.show_popup_win(usr.client)
 
 	var/print_or_place = alert(usr, "Print out at all printers or place on your tile?", "Selection", "Place", "Print")
 	if (alert(usr, "Confirm poster creation", "Confirmation", "OK", "Cancel") == "OK")
@@ -255,7 +255,7 @@ var/global/icon/wanted_poster_unknown = icon('icons/obj/decals/posters.dmi', "wa
 
 	examine(mob/user)
 		if (src.popup_win)
-			src.show_popup_win(user)
+			src.show_popup_win(user.client)
 			return list()
 		else
 			return ..()

@@ -27,7 +27,7 @@
 
 */
 
-/obj/effects/foam/proc/update_icon()
+/obj/effects/foam/update_icon()
 
 	src.overlays.len = 0
 	icon_state = metal ? "mfoam" : "foam"

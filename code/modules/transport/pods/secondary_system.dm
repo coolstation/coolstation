@@ -955,8 +955,8 @@
 			rewind.plane = PLANE_SELFILLUM
 			src.ship.UpdateOverlays(rewind, "rewind")
 
-			spawn(5 SECONDS)
-				spawn(1 SECONDS)
+			SPAWN_DBG(5 SECONDS)
+				SPAWN_DBG(1 SECONDS)
 					src.ship.UpdateOverlays(null, "rewind")
 				playsound(ship.loc, "sound/machines/bweep.ogg", 75, 1)
 				if(ship.health < health_snapshot)

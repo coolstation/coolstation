@@ -39,7 +39,7 @@
 	the_tuff_stuff
 		explosion_resistance = 7
 	// ty to somepotato for assistance with making this proc actually work right :I
-	proc/update_icon()
+	update_icon()
 		var/builtdir = 0
 		if (connect_overlay && !islist(connects_with_overlay))
 			connects_with_overlay = list()
@@ -593,6 +593,43 @@
 	connects_to = list(/turf/wall/auto/gannets, /turf/wall/false_wall)
 	the_tuff_stuff
 		explosion_resistance = 7
+	dark1
+		color = "#dddddd"
+
+	dark2
+		color = "#bbbbbb"
+
+	dark3
+		color = "#999999"
+
+	dark4
+		color = "#777777"
+
+	red
+		color = "#ff9999"
+
+	orange
+		color = "#ffc599"
+
+	brown
+		color = "#d4ab8c"
+
+	green
+		color = "#9ec09e"
+
+	yellow
+		color = "#fff5a7"
+
+	cyan
+		color = "#86fbff"
+
+	purple
+		color = "#c5a8cc"
+
+	blue
+		color = "#87befd"
+
+
 /turf/wall/auto/marsoutpost
 	icon = 'icons/turf/walls_marsoutpost.dmi'
 	light_mod = "wall-"
@@ -662,7 +699,7 @@
 		..()
 
 
-	proc/update_icon()
+	update_icon()
 		var/builtdir = 0
 		var/overlaydir = 0
 		if (connect_overlay && !islist(connects_with_overlay))

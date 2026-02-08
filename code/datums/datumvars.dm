@@ -409,49 +409,49 @@
 
 /client/Topic(href, href_list, hsrc)
 	if (href_list["Pause"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		src.refresh_varedit_onchange = !src.refresh_varedit_onchange
 		return
 	if (href_list["Refresh"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		src.debug_variables(locate(href_list["Refresh"]))
 		return
 	if (href_list["Refresh-Global-Var"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		src.debug_global_variable(href_list["Refresh-Global-Var"])
 		// src.debug_variable(S, V, V, 0)
 		return
 	if (href_list["JumpToThing"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		var/atom/A = locate(href_list["JumpToThing"])
 		if (istype(A))
 			src.jumptoturf(get_turf(A))
 		return
 	if (href_list["GetThing"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		var/atom/A = locate(href_list["GetThing"])
 		if (ismob(A) || isobj(A))
 			src.cmd_admin_get_mobject(A)
 		return
 	if (href_list["DebugOverlays"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		var/atom/A = locate(href_list["DebugOverlays"])
 		debug_overlays(A, src)
 		return
 	if (href_list["GetThing_Insert"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		var/atom/A = locate(href_list["GetThing_Insert"])
 		if (ismob(A) || isobj(A))
 			src.cmd_admin_get_mobject_loc(A)
 		return
 	if (href_list["PlayerOptions"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		var/mob/M = locate(href_list["PlayerOptions"])
 		if (istype(M))
 			src.holder.playeropt(M)
 		return
 	if (href_list["SetDirection"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		var/atom/A = locate(href_list["SetDirection"])
 		if (istype(A))
 			var/new_dir = href_list["DirectionToSet"]
@@ -475,7 +475,7 @@
 					boutput(src, "Set [A]'s direction to [new_dir]")
 		return
 	if (href_list["CallProc"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_ADMIN)
 			var/target = href_list["CallProc"] == "global" ? null : locate(href_list["CallProc"])
 			if("proc_ref" in href_list)
@@ -486,7 +486,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to call a proc on something all rude-like.")
 		return
 	if (href_list["ListProcs"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_ADMIN)
 			var/target = href_list["CallProc"] == "global" ? null : locate(href_list["ListProcs"])
 			src.show_proc_list(target)
@@ -494,14 +494,14 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to call a proc on something all rude-like.")
 		return
 	if (href_list["AddComponent"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			debugAddComponent(locate(href_list["AddComponent"]))
 		else
 			audit(AUDIT_ACCESS_DENIED, "tried to add a component to something all rude-like.")
 		return
 	if (href_list["Delete"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/datum/D = locate(href_list["Delete"])
 			if(alert(src, "Are you sure you want to delete [D] of type [D.type]?",,"Yes","No") == "Yes")
@@ -510,7 +510,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to delete something all rude-like.")
 		return
 	if (href_list["HardDelete"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/datum/D = locate(href_list["HardDelete"])
 			if(alert(src, "Are you sure you want to delete [D] of type [D.type]?",,"Yes","No") == "Yes")
@@ -519,7 +519,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to delete something all rude-like.")
 		return
 	if (href_list["Display"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/fname = "varview_preview_[href_list["Display"]]_[world.timeofday].png"
 			src << browse_rsc(getFlatIcon(locate(href_list["Display"])), fname)
@@ -529,7 +529,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to display a flat icon of something all rude-like.")
 		return
 	if (href_list["ReplaceExplosive"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/obj/O = locate(href_list["ReplaceExplosive"])
 			O.replace_with_explosive()
@@ -537,7 +537,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to replace explosive replica all rude-like.")
 		return
 	if (href_list["ViewReferences"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_CODER)
 			var/datum/D = locate(href_list["ViewReferences"])
 			usr.client.view_references(D, href_list["window_name"])
@@ -545,7 +545,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to view references.")
 		return
 	if (href_list["AddPathogen"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/obj/O = locate(href_list["AddPathogen"])
 			O.addpathogens()
@@ -553,7 +553,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to add random pathogens all rude-like.")
 		return
 	if (href_list["KillCritter"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/obj/critter/O = locate(href_list["KillCritter"])
 			O.kill_critter()
@@ -561,7 +561,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to kill critter all rude-like.")
 		return
 	if (href_list["ReviveCritter"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/obj/critter/O = locate(href_list["ReviveCritter"])
 			O.revive_critter()
@@ -569,7 +569,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to revive critter all rude-like.")
 		return
 	if (href_list["GiveProperty"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/obj/item/I = locate(href_list["GiveProperty"])
 			I.dbg_objectprop()
@@ -577,7 +577,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to give property all rude-like.")
 		return
 	if (href_list["GiveSpecial"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/obj/item/I = locate(href_list["GiveSpecial"])
 			I.dbg_itemspecial()
@@ -585,7 +585,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to give special all rude-like.")
 		return
 	if (href_list["CheckReactions"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/atom/A = locate(href_list["CheckReactions"])
 			A.debug_check_possible_reactions()
@@ -593,7 +593,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to check reactions all rude-like.")
 		return
 	if (href_list["CreatePoster"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/atom/A = locate(href_list["CreatePoster"])
 			src.generate_poster(A)
@@ -601,7 +601,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to create poster all rude-like.")
 		return
 	if (href_list["AdminInteract"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_SA)
 			var/atom/A = locate(href_list["AdminInteract"])
 			src.mob.admin_interact(A, list())
@@ -609,7 +609,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to admin-interact all rude-like.")
 		return
 	if (href_list["Possess"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(holder && src.holder.level >= LEVEL_PA)
 			var/obj/O = locate(href_list["Possess"])
 			possess(O)
@@ -617,7 +617,7 @@
 			audit(AUDIT_ACCESS_DENIED, "tried to Possess all rude-like.")
 		return
 	if (href_list["Vars"])
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if (href_list["varToEdit"])
 			modify_variable(locate(href_list["Vars"]), href_list["varToEdit"])
 		else if (href_list["varToEditAll"])

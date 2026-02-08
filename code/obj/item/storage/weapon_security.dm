@@ -243,7 +243,7 @@
 	name = "bowling bag"
 	icon_state = "bowling_bag"
 	item_state = "bowling"
-	in_list_or_max = TRUE
+	check_wclass = TRUE
 	can_hold = list(/obj/item/clothing/under/gimmick/bowling,\
 		/obj/item/bowling_ball)
 	spawn_contents = list(/obj/item/clothing/under/gimmick/bowling,\
@@ -257,7 +257,7 @@
 	name = "space-american football kit"
 	desc = "This kit contains everything you need to become a great football player. Wearing all of the equipment inside will grant you the ability to rush down and tackle anyone who stands in your way!"
 	icon_state = "box"
-	in_list_or_max = TRUE
+	check_wclass = TRUE
 	can_hold = list(/obj/item/clothing/suit/armor/football,/obj/item/clothing/head/helmet/football,\
 		/obj/item/clothing/under/football,/obj/item/clothing/shoes/cleats, /obj/item/football)
 	spawn_contents = list(/obj/item/clothing/suit/armor/football,/obj/item/clothing/head/helmet/football,\
@@ -357,6 +357,11 @@
 /*
 /obj/item/storage/box/costume/safari
 	name = "safari costume"
+	check_wclass = TRUE
+	can_hold = list(/obj/item/boomerang,
+	/obj/item/clothing/under,
+	/obj/item/ammo/bullets/tranq_darts)
+
 	spawn_contents = list(/obj/item/clothing/head/safari,\
 	/obj/item/clothing/under/gimmick/safari,\
 	/obj/item/boomerang,\

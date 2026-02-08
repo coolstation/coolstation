@@ -6,9 +6,9 @@
 	icon_state = "mopbucket"
 	density = 1
 	pass_unstable = FALSE
-	flags = FPRINT
 	pressure_resistance = ONE_ATMOSPHERE
-	flags = FPRINT | TABLEPASS | OPENCONTAINER
+	flags = FPRINT | TABLEPASS | OPENCONTAINER | FLUID_SUBMERGE
+	object_flags = POUR_INTO
 	var/rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
 	var/image/fluid_image
 	p_class = 1.2
@@ -17,7 +17,7 @@
 		. = ..()
 		src.fluid_image = image(src.icon, "fluid", -1)
 
-	proc/update_icon()
+	update_icon()
 		if (reagents.total_volume)
 			var/datum/color/average = reagents.get_average_color()
 			src.fluid_image.color = average.to_rgba()
@@ -63,7 +63,7 @@
 	else
 		return ..()
 
-/obj/mopbucket/MouseDrop(atom/over_object as obj)
+/obj/mopbucket/mouse_drop(atom/over_object as obj)
 	if (!istype(over_object, /obj/item/reagent_containers/glass) && !istype(over_object, /obj/item/reagent_containers/food/drinks) && !istype(over_object, /obj/item/spraybottle) && !istype(over_object, /obj/machinery/plantpot) && !istype(over_object, /obj/mopbucket))
 		return ..()
 
@@ -105,7 +105,7 @@
 			if (M.bioHolder && M.bioHolder.HasEffect("clumsy") && prob(40))
 				user.visible_message("<span class='alert'><b>[user]</b> trips over [src]!</span>",\
 				"<span class='alert'>You trip over [src]!</span>")
-				playsound(user.loc, 'sound/impact_sounds/Generic_Hit_2.ogg', 15, 1, -3)
+				playsound(user.loc, 'sound/impact_sounds/Generic_Hit_2.ogg', 15, 1, SOUND_RANGE_STANDARD)
 				user.set_loc(src.loc)
 				user.changeStatus("weakened", 1 SECOND)
 				JOB_XP(user, "Clown", 1)

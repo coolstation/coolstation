@@ -525,6 +525,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 			switch(length(gene_groups))
 				if (0 to 1) //empty or only one group, which a transfer syringe can handle.
 					boutput(user, "<span class='alert'>No point in slicing [src] at the moment.</span>")
+					return
 				if (2) //halve
 					var/image/img
 					var/obj/item/reagent_containers/agarose/chunk1 = new/obj/item/reagent_containers/agarose// {initial_volume = 30} ()
@@ -618,7 +619,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 		else
 			..()
 
-/obj/item/reagent_containers/agarose/proc/update_icon()
+/obj/item/reagent_containers/agarose/update_icon()
 	if (!length(gene_groups))
 		development_img.icon_state = "blank"
 	else if (!time_to_finish || !time_spent)
@@ -945,7 +946,7 @@ obj/machinery/vending/kitchen/oven_debug //Good luck finding them though
 /area/proc/Force_Ambience(mob/M)
 		if (M?.client)
 			src.pickAmbience()
-			M.client.playAmbience(src, AMBIENCE_FX_1, 18)
+			M.client.playAmbience(src, AMBIENCE_FX_1, 10)
 
 /client/proc/admin_force_ambience()
 	SET_ADMIN_CAT(ADMIN_CAT_SELF)

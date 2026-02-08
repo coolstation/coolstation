@@ -56,11 +56,11 @@
 	CritterAttack(mob/M)
 		..()
 		var/S = pick("sound/impact_sounds/Generic_Hit_2.ogg", "sound/impact_sounds/Wood_Hit_Small_1.ogg")
-		playsound(src.loc, S, 30, 1, -1)
+		playsound(src.loc, S, 30, 1, SOUND_RANGE_STANDARD)
 
 	ChaseAttack(mob/M)
 		..()
-		playsound(src.loc, "sound/impact_sounds/Wood_Hit_1.ogg", 20, 1, -1)
+		playsound(src.loc, "sound/impact_sounds/Wood_Hit_1.ogg", 20, 1, SOUND_RANGE_STANDARD)
 		M.changeStatus("stunned", 3 SECONDS)
 
 	on_grump()
@@ -368,7 +368,7 @@
 			return 1
 		return 0
 
-	MouseDrop(atom/over_object as mob|obj)
+	mouse_drop(atom/over_object as mob|obj)
 		if (over_object == usr && ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if (in_interact_range(src, H))
@@ -377,7 +377,7 @@
 		..()
 
 	//I'm sorry sylvester... I'll fix this later when I have time, I promise. - Kyle
-	proc/update_icon()
+	update_icon()
 		if (src.alive)
 			if (src.wearing_beret)
 				if (istype(wearing_beret, /obj/item/clothing/head/hos_hat))

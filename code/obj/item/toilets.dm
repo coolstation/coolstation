@@ -39,6 +39,10 @@ TOILET
 				trunk.linked = src	// link the pipe trunk to self
 				plumbed = 1
 
+/obj/item/storage/toilet/engineering
+	refills = FALSE
+	color = "#fff4b5"
+	name = "engineering terlet"
 
 /obj/item/storage/toilet/disposing()
 	STOP_TRACKING
@@ -80,7 +84,7 @@ TOILET
 			var/turf/source = get_turf(src)
 			if (source && source.z == Z_LEVEL_STATION && !(src.plumbed && src.trunk))
 				var/turf/target = locate(source.x,source.y,5)
-				for (var/thing in contents)
+				for (var/thing in src.storage.get_contents())
 					var/atom/movable/A = thing
 					A.set_loc(target)
 #endif
@@ -91,7 +95,7 @@ TOILET
 				D.start(src) // not a disposaloutlet but lets see if that matters:)
 
 			else
-				for (var/item in src.contents)
+				for (var/item in src.storage.get_contents())
 					qdel(item)
 					src.hud?.remove_item(item)
 				src.reagents.clear_reagents()
@@ -99,7 +103,7 @@ TOILET
 
 	return ..()
 
-/obj/item/storage/toilet/MouseDrop(atom/over_object, src_location, over_location)
+/obj/item/storage/toilet/mouse_drop(atom/over_object, src_location, over_location)
 	if (usr && over_object == usr && in_interact_range(src, usr) && iscarbon(usr) && !usr.stat)
 		usr.visible_message("<span class='alert'>[usr] [pick("shoves", "sticks", "stuffs")] [his_or_her(usr)] hand into [src]!</span>")
 		playsound(src.loc, "sound/impact_sounds/Liquid_Slosh_1.ogg", 25, 1)
@@ -186,7 +190,7 @@ TOILET
 		if(src.needs_plunged)
 			boutput(user, SPAN_NOTICE("Oh thank fuck."))
 			src.needs_plunged = FALSE
-		else if(src.clogged + src.contents.len >= 3 && (src.clogged + src.contents.len >= 10 || prob((src.clogged + src.contents.len) * 10)))
+		else if(src.clogged + length(src.storage.get_contents()) >= 3 && (src.clogged + length(src.storage.get_contents()) >= 10 || prob((src.clogged + length(src.storage.get_contents())) * 10)))
 			src.needs_plunged = TRUE
 			boutput(user, SPAN_ALERT("The toilet clogs!"))
 			user.unlock_medal("Where's the poop knife?",1)
@@ -203,7 +207,7 @@ TOILET
 		var/turf/source = get_turf(src)
 		if (source && source.z == Z_LEVEL_STATION && !(src.plumbed && src.trunk))
 			var/turf/target = locate(source.x,source.y,5)
-			for (var/thing in contents)
+			for (var/thing in src.storage.get_contents())
 				var/atom/movable/A = thing
 				A.set_loc(target)
 #endif
@@ -214,7 +218,7 @@ TOILET
 			D.start(src) // not a disposaloutlet but lets see if that matters:)
 
 		else
-			for (var/item in src.contents)
+			for (var/item in src.storage.get_contents())
 				qdel(item)
 				src.hud?.remove_item(item)
 			src.reagents.clear_reagents()
@@ -244,11 +248,12 @@ TOILET
 			src.reagents.add_reagent("sewage", sewage_created)
 
 		src.reagents.trans_to(D, src.reagents.total_volume)
-		SPAWN_DBG(src.tank_refill_time)
-			if(!QDELETED(src))
-				src.reagents.add_reagent("water", clamp(150 - ceil(src.reagents.total_volume), 5, 120))
+		if(src.refills)
+			SPAWN_DBG(src.tank_refill_time)
+				if(!QDELETED(src))
+					src.reagents.add_reagent("water", clamp(150 - ceil(src.reagents.total_volume), 5, 120))
 
-	for(var/atom/movable/AM in src)
+	for(var/atom/movable/AM in src.storage.get_contents())
 		AM.set_loc(D)
 
 /obj/item/storage/toilet/custom_suicide = 1
@@ -297,7 +302,7 @@ TOILET
 		if (prob(1))
 			var/something = pick(trinket_safelist)
 			if (ispath(something))
-				new something(src)
+				src.storage.add_contents(new something(src))
 
 /obj/item/storage/toilet/random/gold // important!!
 	New()
@@ -305,10 +310,13 @@ TOILET
 		src.setMaterial(getMaterial("gold"))
 
 /obj/item/storage/toilet/random/escapetools
-	spawn_contents = list(/obj/item/wirecutters,\
-	/obj/item/screwdriver,\
-	/obj/item/wrench,\
-	/obj/item/crowbar,)
+	New()
+		..()
+		src.storage.add_contents(new /obj/item/wirecutters(src))
+		src.storage.add_contents(new /obj/item/screwdriver(src))
+		src.storage.add_contents(new /obj/item/wrench(src))
+		src.storage.add_contents(new /obj/item/crowbar(src))
+
 
 /obj/item/storage/toilet/goldentoilet
 	name = "golden toilet"

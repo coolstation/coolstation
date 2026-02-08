@@ -103,11 +103,12 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 	proc/alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
 		return call_alter_projectile
 
-	proc/add_overlay_to_gun(var/obj/item/gun/modular/gun, var/correctly = 0)
+	proc/add_overlay_to_gun(var/obj/item/gun/modular/gun, var/correctly = 0, var/layer_override = 0)
 		var/image/I = image(icon, icon_state)//"[icon_state]-built")
 		if(correctly) //proper assembly?
 			I.pixel_x = overlay_x
 			I.pixel_y = overlay_y
+
 		else // to be tightened
 			if (part_type & GUN_PART_BARREL)
 				I.pixel_x = overlay_x + 3
@@ -118,7 +119,10 @@ ABSTRACT_TYPE(/obj/item/gun_parts)
 			if (part_type & GUN_PART_GRIP)
 				I.pixel_y = overlay_y - 3
 				I.pixel_x = overlay_x - 1
-		I.layer = gun.layer - 0.01
+		if(!layer_override)
+			I.layer = gun.layer - 0.01
+		else
+			I.layer = gun.layer + layer_override
 		gun.UpdateOverlays(I, "[part_type]")
 
 	proc/remove_part_from_gun()
@@ -372,7 +376,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	name = "standard barrel"
 	desc = "A cylindrical barrel, unrifled."
 	spread_angle = 4 // decent stabilisation
-	part_DRM = GUN_NANO
+	part_DRM = GUN_NANO_FRIENDLY
 	icon_state = "nt_blue_short"
 	length = 10
 	overlay_x = 5
@@ -513,7 +517,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	icon_state = "juicer_blunderbuss"
 	length = 16
 	bulkiness = 1
-	w_class = W_CLASS_TINY
+	overlay_x = 13
 	caliber = CALIBER_WIDE
 	//absolutely needs a quiet fucked up vuvuzela honk
 
@@ -522,10 +526,22 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	desc = "Sawn-off shotgun barrel, hot-rodded with paint and donkey grease."
 	spread_angle = 6
 	length = 11
+	overlay_x = 7
 	icon_state = "juicer_chub"
 	add_prefix = "BUSTA"
 	bulkiness = 1
-	w_class = W_CLASS_TINY
+
+/obj/item/gun_parts/barrel/juicer/soup
+	name = "\improper Souplencer"
+	desc = "Sounds like a fuckin soup can, what did you expect?"
+	part_DRM = GUN_JUICE | GUN_NANO
+	spread_angle = 6
+	length = 11
+	overlay_x = 11
+	icon_state = "juicer_soup"
+	add_prefix = "Souper"
+	bulkiness = 1
+	silenced = TRUE
 
 /obj/item/gun_parts/barrel/juicer/ribbed
 	name = "\improper KNOBBIN barrel"
@@ -533,6 +549,7 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	spread_angle = 4
 	jam_frequency = 8
 	length = 17
+	overlay_x = 14
 	icon_state = "juicer_ribbed"
 	add_prefix = "Genthlemaenne's"
 	bulkiness = 2
@@ -545,9 +562,11 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	jam_frequency = 15 //but very!!!!!!! poorly built
 	add_prefix = "BLITZINNNNNNN'"
 	icon_state = "juicer_long"
+	overlay_x = 13
 	bulkiness = 3
 	w_class = W_CLASS_SMALL
 	length = 28
+
 
 //TODO: names and lengths
 //average laser
@@ -723,8 +742,8 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 
 	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
 		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.25
-		P.proj_data.shot_sound_extrarange = P.proj_data.shot_sound_extrarange - 11 // this magic number is one third of MAX_SOUND_RANGE
-		playsound(get_turf(gun), 'sound/weapons/silencedshot.ogg', 40 + P.proj_data.shot_volume, extrarange = P.proj_data.shot_sound_extrarange)
+		P.proj_data.shot_sound_range = max(P.proj_data.shot_sound_range - SOUND_RANGE_SMALL, SOUND_RANGE_TINY)
+		playsound(get_turf(gun), 'sound/weapons/silencedshot.ogg', 40 + P.proj_data.shot_volume, range = P.proj_data.shot_sound_range)
 		return ..()
 
 /obj/item/gun_parts/barrel/italian/grenade
@@ -1065,6 +1084,15 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	overlay_x = 0
 	caliber = CALIBER_TINY // barely a stock at all
 
+/obj/item/gun_parts/stock/juicer/wire
+	name = "My First Stock"
+	desc ="A stock made out of lightweight materials, suited for ages 2+"
+	add_suffix = "JR™"
+	bulkiness = 1
+	overlay_x = -9
+	caliber = CALIBER_TINY // barely a stock at all
+	icon_state = "juicer_wire"
+
 //Free and Open Source Cranked-Up Springs/Capacitors/Etc.
 //One second per crank just imo, the spam was getting bad
 //Allow a disableable crank safety- with it on, you have a smaller level of cranking available.
@@ -1151,15 +1179,60 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	// flashlight!!
 	// grenade launcher!!
 	// a horn!!
+
+/obj/item/gun_parts/accessory/butt  //most muzzle device like effects are barrel related. Just make this a fun accessory.
+	name = "butt"
+	desc = "Makeshift muzzle device, made from an.....ass?"
+	icon = 'icons/obj/surgery.dmi'
+	icon_state = "butt-nc"
+	overlay_x = 6 //if we don't have a barrel adjust towards the end of reciever by default.
+	part_DRM = GUN_ALL
+	call_alter_projectile = TRUE
+	spread_angle = 3 //no chance that round is NOT tumbling coming out of this thing.
+	contraband = 5 //Hey do you have a tax stamp for that thing?
+	jam_frequency = 3 //you didn't really clean this too well before attaching it did you? disgusting.
+
+	//need to handle the overlay in a custom way since it's a muzzle device, we are reusing the sprite, and we need the color.
+	//This works but might not be the cleanest way to do it, but barrel overlay_x * 1.5 seems to cover all current barrels well
+	add_part_to_gun(var/obj/item/gun/modular/gun)
+		if(gun.barrel)
+			overlay_x = (gun.barrel.overlay_x * 1.5)
+			overlay_y = gun.barrel.overlay_y
+		..()
+
+	add_overlay_to_gun(obj/item/gun/modular/gun, correctly, layer_override)
+		var/image/I = image(icon, icon_state)
+		I.pixel_x = overlay_x
+		I.pixel_y = overlay_y
+		I.color = src.color
+		I.layer = gun.layer - 0.01
+		var/matrix/M = matrix()
+		M.Scale(0.75, 0.75) //don't need to strech anymore since approxiamtion is better now, but lets still shrink it a bit.
+		I.transform = M
+		I.transform = turn(I.transform, 90) //north facing butt was funny but aligned with the barrel makes more sense and is also funny.
+		gun.UpdateOverlays(I, "[part_type]")
+
+	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user) //muffle the shot just enough to where the fart is louder
+		P.proj_data.shot_volume = P.proj_data.shot_volume * 0.50
+		P.proj_data.shot_sound_range = max(P.proj_data.shot_sound_range - SOUND_RANGE_MODERATE, SOUND_RANGE_SMALL)
+		//use bulk to help determine pitch. low bulk = higher pitch, high bulk = lower pitch with a little middle ground. adjust according to feedback
+		var/pitchChange = 0
+		if(gun.bulk > 6)
+			pitchChange = (1/gun.bulk) + 0.2
+		else if (gun.bulk < 5)
+			pitchChange = (2/gun.bulk) + 0.8
+		playsound(src.my_gun.loc, pick('sound/voice/farts/fart1.ogg', 'sound/voice/farts/fart2.ogg', 'sound/voice/farts/fart3.ogg'), 50, 1, SOUND_RANGE_STANDARD, pitchChange)
+		return ..()
+
 /obj/item/gun_parts/accessory/horn
 	name = "tactical alerter"
-	desc = "Efficiently alerts your squadron within miliseconds of target engagement, using cutting edge over-the-airwaves technology"
+	desc = "Efficiently alerts your squadron within milliseconds of target engagement, using cutting edge over-the-airwaves technology"
 	call_alter_projectile = TRUE
 	add_prefix = "tactical"
 	icon_state = "alerter"
 
 	alter_projectile(var/obj/item/gun/modular/gun, var/obj/projectile/P, var/mob/user)
-		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
+		playsound(src.my_gun.loc, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 		return ..()
 
 	attack_self(mob/user as mob)
@@ -1262,12 +1335,20 @@ ABSTRACT_TYPE(/obj/item/gun_parts/accessory)
 	built_focused = "nt_flash-focused"
 
 ABSTRACT_TYPE(/obj/item/gun_parts/accessory/magazine)
+/obj/item/gun_parts/accessory/magazine
+	add_overlay_to_gun(obj/item/gun/modular/gun, correctly)
+
+		. = ..(gun,correctly,0.01)
+
+
 
 /obj/item/gun_parts/accessory/magazine/juicer
 	name = "\improper HOTT SHOTTS MAG"
 	desc = "Holds 3 rounds, and 30,000 followers."
 	max_ammo_capacity = 3
 	jam_frequency = 8
+	overlay_x = 3
+	overlay_y = 5
 	part_DRM = GUN_JUICE_FRIENDLY
 	add_suffix = "LARGE"
 	icon = 'icons/obj/items/modular_guns/magazines.dmi'

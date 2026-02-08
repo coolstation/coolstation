@@ -681,7 +681,7 @@ CONTAINS:
 			defib = null
 		..()
 
-	proc/update_icon()
+	update_icon()
 		if (defib && defib.loc == src)
 			icon_state = "defib1"
 		else
@@ -876,7 +876,7 @@ CONTAINS:
 		else
 			return ..()
 
-	proc/update_icon()
+	update_icon()
 		switch (src.uses)
 			if (-INFINITY to 0)
 				src.icon_state = "bandage-item-0"
@@ -1112,7 +1112,7 @@ CONTAINS:
 		else
 			return ..()
 
-	proc/update_icon()
+	update_icon()
 		var/iv_state = max(min(round(src.volume, 10) / 10, 100), 0)
 		icon_state = "bloodbag-[iv_state]"
 /*		switch (src.volume)
@@ -1288,7 +1288,7 @@ CONTAINS:
 					src.visible_message("<span class='alert'>[src] gushes a torrent of blood from every seam!</span>")
 					playsound(src.loc, "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
 
-	proc/update_icon()
+	update_icon()
 		if (src.open && src.open_image)
 			src.overlays += src.open_image
 			src.icon_state = "bodybag-open"
@@ -1338,7 +1338,7 @@ CONTAINS:
 		src.open()
 		src.visible_message("<span class='alert'><b>[user]</b> unzips themselves from [src]!</span>")
 
-	MouseDrop(atom/over_object)
+	mouse_drop(atom/over_object)
 		if (!over_object) return
 		if(isturf(over_object))
 			..() //Lets it do the turf-to-turf slide
@@ -1358,7 +1358,7 @@ CONTAINS:
 			src.Attackhand(usr)
 
 	proc/open()
-		playsound(src, src.sound_zipper, 100, 1, , 6)
+		playsound(src, src.sound_zipper, 100, 1, SOUND_RANGE_STANDARD, 6)
 		for (var/obj/O in src)
 			O.set_loc(get_turf(src))
 		for (var/mob/M in src)
@@ -1369,7 +1369,7 @@ CONTAINS:
 		src.update_icon()
 
 	proc/close()
-		playsound(src, src.sound_zipper, 100, 1, , 6)
+		playsound(src, src.sound_zipper, 100, 1, SOUND_RANGE_STANDARD, 6)
 		for (var/obj/O in get_turf(src))
 			if (O.density || O.anchored || O == src)
 				continue
@@ -1568,7 +1568,7 @@ CONTAINS:
 			var/mob/living/carbon/human/H = M
 
 			if (!H.blinded) // can't see the light if you can't see shit else!!
-				H.vision.flash(src.anim_duration)
+				H.flash(src.anim_duration)
 
 			if (istype(H.glasses) && !istype(H.glasses, /obj/item/clothing/glasses/regular) && H.glasses.c_flags & COVERSEYES) // check all the normal things that could cover eyes
 				results_msg = "&emsp;<span class='alert'>It's hard to accurately judge how [H]'s eyes reacted through [his_or_her(H)] [H.glasses.name]!</span>"
@@ -1678,7 +1678,7 @@ CONTAINS:
 
 		else if (isliving(M)) // other mooooooobs
 			var/mob/living/L = M
-			L.vision.flash(src.anim_duration)
+			L.flash(src.anim_duration)
 
 		M.tri_message("[user] shines [src] in [M == user ? "[his_or_her(user)] own" : "[M]'s"] eyes.[results_msg ? "<br>[results_msg]" : null]",\
 		user, "You shine [src] in [M == user ? "your own" : "[M]'s"] eyes.[(M != user && results_msg) ? "<br>[results_msg]" : null]",\

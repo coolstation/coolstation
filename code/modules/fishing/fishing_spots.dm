@@ -98,7 +98,7 @@ ABSTRACT_TYPE(/datum/fishing_spot)
 	/obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat = 25,\
 	/obj/item/reagent_containers/food/snacks/ingredient/meatpaste = 25,\
 	/mob/living/carbon/human/biker = 1,\
-	/mob/living/carbon/human/fathergraham = 1,\
+	/mob/living/carbon/human/father = 1,\
 	/mob/living/carbon/human/don_glab = 1,\
 	/mob/living/carbon/human/spacer = 1,\
 	/mob/living/carbon/human/tommy = 1,\

@@ -61,7 +61,7 @@
 		load(C)
 		src.visible_message("<b>[user]</b> loads [C] onto [src].")
 
-	MouseDrop(obj/over_object as obj, src_location, over_location)
+	mouse_drop(obj/over_object as obj, src_location, over_location)
 		..()
 		var/turf/T = get_turf(over_location)
 		var/mob/user = usr
@@ -316,12 +316,12 @@
 		switch (M.a_intent)
 			if ("harm", "disarm")
 				if (prob(60))
-					playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, -1)
+					playsound(src.loc, "sound/impact_sounds/Generic_Shove_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
 					src.visible_message("<span class='alert'><B>[M] has shoved [rider] off of [src]!</B></span>")
 					rider.changeStatus("weakened", 2 SECONDS)
 					eject_rider()
 				else
-					playsound(src.loc, "sound/impact_sounds/Generic_Swing_1.ogg", 25, 1, -1)
+					playsound(src.loc, "sound/impact_sounds/Generic_Swing_1.ogg", 25, 1, SOUND_RANGE_STANDARD)
 					src.visible_message("<span class='alert'><B>[M] has attempted to shove [rider] off of [src]!</B></span>")
 		return
 

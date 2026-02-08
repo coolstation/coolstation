@@ -34,7 +34,7 @@
 			holder.chest = null
 		..()
 
-	proc/update_icon()
+	update_icon()
 		if (!src.donor || !src.donor_appearance)
 			return // vOv
 

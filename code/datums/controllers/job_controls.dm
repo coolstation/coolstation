@@ -24,7 +24,16 @@ var/datum/job_controller/job_controls
 			new /datum/job/civilian/chef (),
 			new /datum/job/civilian/bartender (),
 			new /datum/job/civilian/chaplain ())
-
+		else if(map_currently_very_cold) //change this to specifically summit if we want more snow maps in the future
+			src.staple_jobs += new /datum/job/command/sitedirector()
+			src.staple_jobs += new /datum/job/command/surveyorgeneral()
+			for (var/A in concrete_typesof(/datum/job/security)) src.staple_jobs += new A(src)
+			src.staple_jobs += new /datum/job/research/chemist()
+			for (var/A in concrete_typesof(/datum/job/medical)) src.staple_jobs += new A(src)
+			for (var/A in concrete_typesof(/datum/job/engineering)) src.staple_jobs += new A(src)
+			for (var/A in concrete_typesof(/datum/job/logistics)) src.staple_jobs += new A(src)
+			for (var/A in concrete_typesof(/datum/job/civilian)) src.staple_jobs += new A(src)
+			for (var/A in concrete_typesof(/datum/job/special)) src.special_jobs += new A(src)
 		else
 			for (var/A in concrete_typesof(/datum/job/command)) src.staple_jobs += new A(src)
 			for (var/A in concrete_typesof(/datum/job/security)) src.staple_jobs += new A(src)
@@ -186,7 +195,7 @@ var/datum/job_controller/job_controls
 
 	Topic(href, href_list[])
 		// JOB CONFIG COMMANDS
-		usr_admin_only
+		USR_ADMIN_ONLY
 		if(href_list["AlterCap"])
 			var/list/alljobs = src.staple_jobs | src.special_jobs
 			var/datum/job/JOB = locate(href_list["AlterCap"]) in alljobs

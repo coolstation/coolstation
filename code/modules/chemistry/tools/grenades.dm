@@ -171,7 +171,7 @@
 		boutput(user, "<span class='alert'>You prime the grenade! 3 seconds!</span>")
 		src.state = 1
 		src.icon_state = icon_state_armed
-		playsound(src, "sound/weapons/armbomb.ogg", 75, 1, -3)
+		playsound(src, "sound/weapons/armbomb.ogg", 75, 1, SOUND_RANGE_STANDARD)
 		SPAWN_DBG(3 SECONDS)
 			if (src && !src.disposed)
 				a = get_area(src)
@@ -377,7 +377,7 @@
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 						var/safety = 0
-						if (H.eyes_protected_from_light() && H.ears_protected_from_sound())
+						if (H.eyes_protected_from_light() && cant_hear(H))
 							safety = 1
 
 						if (safety == 0)
@@ -397,7 +397,7 @@
 								H.implant.Remove(found_imp)
 								qdel(found_imp)
 
-								playsound(H.loc, 'sound/impact_sounds/Crystal_Shatter_1.ogg', 50, 0.1, 0, 0.9)
+								playsound(H.loc, 'sound/impact_sounds/Crystal_Shatter_1.ogg', 50, 0.1, SOUND_RANGE_STANDARD, 0.9)
 								H.visible_message("<span class='notice'>The loyalty implant inside [H] shatters into one million pieces!</span>")
 
 							if (can_convert && !(H.mind in R.revolutionaries))

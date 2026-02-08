@@ -290,6 +290,31 @@
 				icon_state = "catwalk_bob-corroded"
 			melted
 				icon_state = "catwalk_bob-melted"
+			tiled // arb sneaking this in here
+				var/colortype = null
+				New()
+					..()
+					if(colortype)
+						var/image/tile = image(src.icon,"tiled_[colortype]", layer=src.layer + 0.1)
+						UpdateOverlays(tile,"tile")
+
+				grey
+					colortype = "grey"
+					#ifdef IN_MAP_EDITOR
+					icon_state = "tiled_grey-map"
+					#endif
+
+				white
+					colortype = "white"
+					#ifdef IN_MAP_EDITOR
+					icon_state = "tiled_white-map"
+					#endif
+
+				black
+					colortype = "black"
+					#ifdef IN_MAP_EDITOR
+					icon_state = "tiled_black-map"
+					#endif
 
 	onMaterialChanged()
 		..()
@@ -582,7 +607,7 @@
 					damage_blunt(W.force * 0.5)
 		return
 
-	proc/update_icon(var/special_icon_state)
+	update_icon(var/special_icon_state)
 		if (ruined)
 			return
 

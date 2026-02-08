@@ -40,15 +40,17 @@ TYPEINFO(/datum/component/updraft)
 
 	RegisterWithParent()
 		. = ..()
-		RegisterSignal(src.parent, COMSIG_ATOM_ENTERED, PROC_REF(attempt_rise))
-		RegisterSignal(src.parent, COMSIG_TURF_REPLACED, PROC_REF(RemoveComponent))
+		var/turf/T = src.parent
+		RegisterSignal(T, COMSIG_ATOM_ENTERED, PROC_REF(attempt_rise))
+		RegisterSignal(T.turf_persistent, COMSIG_TURF_PRE_REPLACE, PROC_REF(RemoveComponent))
 		for(var/atom/movable/AM in src.parent)
 			src.attempt_rise(AM,AM)
 
 	UnregisterFromParent()
 		. = ..()
-		UnregisterSignal(src.parent, COMSIG_ATOM_ENTERED)
-		UnregisterSignal(src.parent, COMSIG_TURF_REPLACED)
+		var/turf/T = src.parent
+		UnregisterSignal(T, COMSIG_ATOM_ENTERED)
+		UnregisterSignal(T.turf_persistent, COMSIG_TURF_PRE_REPLACE)
 
 	/// checks if an atom can fall in.
 	proc/test_rise(var/atom/movable/AM)

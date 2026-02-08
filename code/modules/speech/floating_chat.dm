@@ -31,6 +31,7 @@
 	var/unique_id
 	var/measured_height = 8
 
+/*
 	unpooled(var/pooltype)
 		..()
 		// for optimization purposes some of these could probably be left out if necessary because they *shouldn't* ever change
@@ -50,6 +51,7 @@
 			C.images -= src
 		src.visible_to = list()
 		src.unique_id = TIME
+*/
 
 	disposing()
 		if(istype(src.loc, /obj/chat_maptext_holder))

@@ -415,7 +415,7 @@
 		return !open && cell?.charge>0 && (wires & wire_power1) && (wires & wire_power2)
 
 	// mousedrop the bot to unload the bot
-	MouseDrop(var/turf/T)
+	mouse_drop(var/turf/T)
 		if(!istype(T))
 			T = get_turf(T)
 
@@ -665,9 +665,6 @@
 					M.changeStatus("weakened", 5 SECONDS)
 					M.force_laydown_standup()
 		..()
-
-	alter_health()
-		return get_turf(src)
 
 	// called from mob/living/carbon/human/HasEntered()
 	// when mulebot is in the same loc

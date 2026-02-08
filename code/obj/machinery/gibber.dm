@@ -1,8 +1,8 @@
 /obj/machinery/gibber
-	name = "Gibber"
+	name = "gibber"
 	desc = "The name isn't descriptive enough?"
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
-	icon_state = "grinder"
+	icon_state = "grinder_mapping" //has directional arrows on it
 	density = 1
 	anchored = ANCHORED
 	var/operating = 0 //Is it on?
@@ -13,18 +13,20 @@
 	mats = 15
 	deconstruct_flags =  DECON_WRENCH | DECON_WELDER
 
+	//2026-1-20 - superfluous now that you map them directionally to set output dir, but not removed from all the maps
 	output_north
-		output_direction = "N"
+		dir = NORTH
 	output_east
-		output_direction = "E"
+		dir = EAST
 	output_west
-		output_direction = "W"
+		dir = WEST
 	output_south
-		output_direction = "S"
+		dir = SOUTH
 
 /obj/machinery/gibber/New()
 	..()
-	//src.overlays += image('icons/obj/foodNdrink/kitchen.dmi', "grindnotinuse") what the fuck this isn't an icon
+	output_direction = src.dir
+	icon_state = "grinder"
 	UnsubscribeProcess()
 
 /obj/machinery/gibber/custom_suicide = 1
@@ -67,6 +69,12 @@
 		M.set_loc(src)
 		src.occupant = M
 		qdel(G)
+
+/obj/machinery/gibber/mouse_drop(over_object, src_location, over_location)
+	..()
+	if (IN_RANGE(src, over_object, 1))
+		src.output_direction = get_dir(src, over_object)
+		boutput(usr, "[src] now aims [dir2text(output_direction)].")
 
 /obj/machinery/gibber/verb/eject()
 	set src in oview(1)
@@ -113,6 +121,7 @@
 		else
 			sourcejob = "Stowaway"
 
+		var/well_done = (src.occupant.get_burn_damage() > WELL_DONE_THRESHOLD)
 		var/decomp = 0
 		if(ishuman(src.occupant))
 			decomp = src.occupant:decomp_stage
@@ -125,131 +134,56 @@
 			message_admins("[key_name(src.occupant, 1)] is ground up in a gibber by [key_name(user)] at [log_loc(src)].")
 		src.occupant.death(1)
 
-		if (src.occupant.mind)
-			src.occupant.ghostize()
-			qdel(src.occupant)
-		else
-			qdel(src.occupant)
+		src.occupant.remove()
 		src.occupant = null
 
-		var/turf/T1
-		var/turf/T2
-		var/turf/T3
-
-		switch (src.output_direction)
-			if ("N")
-				T1 = locate(src.x, src.y + 1, src.z)
-				T2 = locate(src.x, src.y + 2, src.z)
-				T3 = locate(src.x, src.y + 3, src.z)
-			if ("E")
-				T1 = locate(src.x + 1, src.y, src.z)
-				T2 = locate(src.x + 2, src.y, src.z)
-				T3 = locate(src.x + 3, src.y, src.z)
-			if ("S")
-				T1 = locate(src.x, src.y - 1, src.z)
-				T2 = locate(src.x, src.y - 2, src.z)
-				T3 = locate(src.x, src.y - 3, src.z)
-			if ("W")
-				T1 = locate(src.x - 1, src.y, src.z)
-				T2 = locate(src.x - 2, src.y, src.z)
-				T3 = locate(src.x - 3, src.y, src.z)
-
-		var/blocked = 0
-		if (T1)
-			if (T1.density)
-				T1 = null
-				blocked = 1
+		var/product_type = /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat
+		if (decomp)
+			//2026-1-20 - light decomp gives bone instead of more gibs, and I guess you get 3 molten things now
+			//but that's just so it can fit into this loop. I don't think anyone really cares about keeping strict equity.
+			if (decomp > 2)
+				product_type = /obj/decal/cleanable/molten_item
 			else
-				for (var/obj/O in T1.contents)
-					if (!ismob(O) && O.density && !(O.flags & ON_BORDER))
-						T1 = null
-						blocked = 1
-						break
-		if (T2)
-			if (T2.density || blocked != 0)
-				T2 = null
-				blocked = 1
-			else
-				for (var/obj/O2 in T2.contents)
-					if (!ismob(O2) && O2.density && !(O2.flags & ON_BORDER))
-						T2 = null
-						blocked = 1
-						break
-		if (T3)
-			if (T3.density || blocked != 0)
-				T3 = null
-			else
-				for (var/obj/O3 in T3.contents)
-					if (!ismob(O3) && O3.density && !(O3.flags & ON_BORDER))
-						T3 = null
-						break
-
-		src.dirty += 1
-		if(decomp)
-			SPAWN_DBG(src.gibtime)
-				playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-				operating = 0
-				var/obj/decal/cleanable/tracked_reagents/blood/B1 = null // For forensics (Convair880).
-				var/obj/decal/cleanable/tracked_reagents/blood/gibs/G1 = null
-				if (decomp > 2)
-					if (T1 && isturf(T1))
-						make_cleanable( /obj/decal/cleanable/molten_item,T1)
-						B1 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,T1)
-						if (bdna && btype)
-							B1.blood_DNA = bdna
-							B1.blood_type = btype
-				else
-					if (T1 && isturf(T1))
-						G1 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,T1)
-						if (bdna && btype)
-							G1.blood_DNA = bdna
-							G1.blood_type = btype
-					if (T2 && isturf(T2))
-						B1 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,T2)
-						if (bdna && btype)
-							B1.blood_DNA = bdna
-							B1.blood_type = btype
-			return
-		var/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/newmeat1 = new /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/
-		var/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/newmeat2 = new /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/
-		var/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/newmeat3 = new /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/
-		newmeat1.name = sourcename + newmeat1.name
-		newmeat1.subjectname = sourcename
-		newmeat1.subjectjob = sourcejob
-		newmeat2.name = sourcename + newmeat2.name
-		newmeat2.subjectname = sourcename
-		newmeat2.subjectjob = sourcejob
-		newmeat3.name = sourcename + newmeat3.name
-		newmeat3.subjectname = sourcename
-		newmeat3.subjectjob = sourcejob
+				product_type = /obj/item/material_piece/bone
+		else if (well_done)
+			product_type = /obj/item/reagent_containers/food/snacks/steak_h
+		var/obj/item/product
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gibbes = null // For forensics (Convair880).
+		src.dirty += 1 // at 1 the gibber gets a blood overlay, and I guess we're just gonna keep incrementing to not stack em?
 		SPAWN_DBG(src.gibtime)
 			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-			operating = 0
-			var/obj/decal/cleanable/tracked_reagents/blood/gibs/G2 = null // For forensics (Convair880).
+			var/blocked = FALSE
+			var/cur_T = get_turf(src)
+			for(var/i in 1 to 3)
+				if (!blocked) //Does it really matter to avoid canpass loops if we're only ever doing 3 total? Probably not, but here we are anyway.
+					var/turf/new_T = get_step(cur_T, output_direction)
+					if (!new_T.canpass())
+						blocked = TRUE
+					else
+						cur_T = new_T
+					//slightly strange spot to put this, but it's to make sure that gibs appear on the last unblocked turf too.
+					if (decomp <= 2)
+						gibbes = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,cur_T)
+						if (bdna && btype)
+							gibbes.blood_DNA = bdna
+							gibbes.blood_type = btype
 
-			if (T1 && isturf(T1))
-				G2 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,T1)
-				if (bdna && btype)
-					G2.blood_DNA = bdna
-					G2.blood_type = btype
-				newmeat1.set_loc(T1)
-			if (T2 && isturf(T2))
-				G2 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,T2)
-				if (bdna && btype)
-					G2.blood_DNA = bdna
-					G2.blood_type = btype
-				newmeat2.set_loc(T2)
-			else
-				newmeat2.set_loc(T1)
-			if (T3 && isturf(T3))
-				G2 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,T3)
-				if (bdna && btype)
-					G2.blood_DNA = bdna
-					G2.blood_type = btype
-				newmeat3.set_loc(T3)
-			else
-				newmeat3.set_loc(T1)
+				if (product_type)
+					product = new product_type (cur_T)
+					//woop woop names and stuff
+					switch(product_type)
+						if (/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat)
+							var/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/meat = product
+							meat.name = sourcename + meat.name
+							meat.subjectname = sourcename
+							meat.subjectjob = sourcejob
+						if (/obj/item/reagent_containers/food/snacks/steak_h)
+							var/obj/item/reagent_containers/food/snacks/steak_h/steak = product
+							steak.name = sourcename + steak.name
+							steak.hname = sourcename
+							steak.job = sourcejob
+							steak.quality = rand() //hmmmmmmmmmmmm
+
+			operating = FALSE
 			if (src.dirty == 1)
 				src.overlays += image('icons/obj/foodNdrink/kitchen.dmi', "grbloody")
-
-		src.operating = 0

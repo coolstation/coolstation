@@ -232,7 +232,7 @@ TRAYS
 	suicide(var/mob/user as mob)
 		user.visible_message("<span style=\"color:red\"><b>[user] tries to jab [src] straight through [his_or_her(user)] eye and into [his_or_her(user)] brain!</b></span>")
 		src.break_utensil(user)
-		spawn(100)
+		SPAWN_DBG(100)
 			if (user)
 				user.suiciding = 0
 		return 1
@@ -262,7 +262,7 @@ TRAYS
 	suicide(var/mob/user as mob)
 		user.visible_message("<span style=\"color:red\"><b>[user] tries to stab [src] right into [his_or_her(user)] heart!</b></span>")
 		src.break_utensil(user)
-		spawn(100)
+		SPAWN_DBG(100)
 			if (user)
 				user.suiciding = 0
 		return 1
@@ -681,7 +681,7 @@ TRAYS
 				src.update()
 			else return ..()
 
-	MouseDrop(mob/user as mob) // no I ain't even touchin this mess it can keep doin whatever it's doin
+	mouse_drop(mob/user as mob) // no I ain't even touchin this mess it can keep doin whatever it's doin
 		// I finally came back and touched that mess because it was broke - Haine
 		if(user == usr && !user.restrained() && !user.stat && (user.contents.Find(src) || in_interact_range(src, user)))
 			if(!user.put_in_hand(src))
@@ -753,7 +753,7 @@ TRAYS
 		..()
 		BLOCK_SETUP(BLOCK_BOOK)
 
-	proc/update_icon()
+	update_icon()
 		return
 
 	/// Attempts to add an item to the plate, if there's space. Returns TRUE if food is successfully added.
@@ -935,7 +935,7 @@ TRAYS
 		src.update_icon()
 		boutput(user, "You put [W] on \the [src]")
 
-	MouseDrop(atom/over_object, src_location, over_location)
+	mouse_drop(atom/over_object, src_location, over_location)
 		if(over_object == usr && get_dist(src, usr) <=1 && isliving(usr) && !usr.stat && !usr.restrained())
 			var/mob/M = over_object
 			if(ordered_contents.len == 0)
@@ -1332,7 +1332,7 @@ TRAYS
 	var/platemax = 8
 
 
-	proc/update_icon(mob/user as mob)
+	update_icon(mob/user as mob)
 		src.icon_state = "platestack[src.platenum]"
 		src.item_state = "platestack[src.platenum]"
 		user.update_inhands()

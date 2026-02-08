@@ -904,6 +904,38 @@ proc/filter_trait_hats(var/type)
 	w_class = W_CLASS_BULKY
 	blocked_from_petasusaphilic = TRUE
 
+/obj/item/clothing/head/bighat/shako
+	name = "Surveyor General's Shako"
+	desc = "A tall and very audacious hat."
+	icon_state = "shako"
+	item_state = "shako"
+
+	get_desc(var/dist, var/mob/user)
+		var/extra
+		if(user.mind && user.mind.assigned_role == "Surveyor General")
+			extra = "It tells everyone that you're in charge around here."
+		else if(user.mind && user.mind.assigned_role == "Site Director")
+			extra = "This is a frivolous piece of garbage. Your hat is clearly better."
+		else
+			extra = "Where did they even find this thing?"
+		return extra
+
+/obj/item/clothing/head/bighat/czako
+	name = "Site Director's Czako"
+	desc = "A tall and very bold hat."
+	icon_state = "czako"
+	item_state = "czako"
+
+	get_desc(var/dist, var/mob/user)
+		var/extra
+		if(user.mind && user.mind.assigned_role == "Surveyor General")
+			extra = "Why if this isn't the most senseless waste of good quality fabric you've ever seen..."
+		else if(user.mind && user.mind.assigned_role == "Site Director")
+			extra = "This tasteful piece gives you an air of authority."
+		else
+			extra = "Where did they even find this thing?"
+		return extra
+
 /obj/item/clothing/head/bighat/syndicate
 	name = "syndicate hat"
 	desc = "A commitment."
@@ -1251,6 +1283,12 @@ proc/filter_trait_hats(var/type)
 	wear_image_icon = 'icons/mob/fruithat.dmi'
 	icon_state = "headsprout"
 	item_state = "headsprout"
+
+/obj/item/clothing/head/sec
+	name = "Security Hat"
+	desc = "There are some stains on this."
+	icon_state = "sec"
+	item_state = "sec"
 
 /obj/item/clothing/head/hos_hat
 	name = "HoS Hat"

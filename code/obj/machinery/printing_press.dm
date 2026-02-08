@@ -56,24 +56,25 @@
 //Appearance stuff//
 ////////////////////
 
-	proc/update_icon() //this runs every time something would change the amt of paper, or if its working or done working, handles paper overlay and work animation
-		if (paper_amt || was_paper)
-			if (GetOverlayImage("paper"))
-				ClearSpecificOverlays("paper")
-			var/image/I = SafeGetOverlayImage("paper", src.icon, "paper-[round(paper_amt / 10)]")
-			src.UpdateOverlays(I, "paper")
-			was_paper = 0
-		if (ink_level)
-			if (GetOverlayImage("ink"))
-				ClearSpecificOverlays("ink")
-			var/ink_num = round(ink_level / 100) //idk, this should probably work
-			var/image/I = SafeGetOverlayImage("ink", src.icon, "ink-[ink_num]")
-			src.UpdateOverlays(I, "ink")
-		if (is_running)
-			flick("printing_press-work", src)
-			sleep(2.4 SECONDS)
-			return
-		icon_state = "printing_press-idle"
+	update_icon() //this runs every time something would change the amt of paper, or if its working or done working, handles paper overlay and work animation
+		SPAWN_DBG(0)
+			if (paper_amt || was_paper)
+				if (GetOverlayImage("paper"))
+					ClearSpecificOverlays("paper")
+				var/image/I = SafeGetOverlayImage("paper", src.icon, "paper-[round(paper_amt / 10)]")
+				src.UpdateOverlays(I, "paper")
+				was_paper = 0
+			if (ink_level)
+				if (GetOverlayImage("ink"))
+					ClearSpecificOverlays("ink")
+				var/ink_num = round(ink_level / 100) //idk, this should probably work
+				var/image/I = SafeGetOverlayImage("ink", src.icon, "ink-[ink_num]")
+				src.UpdateOverlays(I, "ink")
+			if (is_running)
+				flick("printing_press-work", src)
+				sleep(2.4 SECONDS)
+				return
+			icon_state = "printing_press-idle"
 
 	get_desc(var/dist)
 		if (dist > 6)

@@ -172,10 +172,12 @@
 			if(active)
 				dat += "Status: Active ([(target_temp > R.total_temperature) ? "Heating" : "Cooling"])<BR>"
 				dat += "Current Temperature: [R.total_temperature]<BR>"
+				dat += "Current Charge: [R.total_charge]<BR>"
 				dat += "<A href='byond://?src=\ref[src];stop=1'>Deactivate</A><BR><BR>"
 			else
 				dat += "Status: Inactive<BR>"
 				dat += "Current Temperature: [R.total_temperature]<BR>"
+				dat += "Current Charge: [R.total_charge]<BR>"
 				dat += "<A href='byond://?src=\ref[src];start=1'>Activate</A><BR><BR>"
 
 			for(var/reagent_id in R.reagent_list)
@@ -249,7 +251,7 @@
 		update_icon()
 		updateUsrDialog()
 
-	proc/update_icon()
+	update_icon()
 		src.overlays -= src.icon_beaker
 		if (src.beaker)
 			src.overlays += src.icon_beaker
@@ -265,7 +267,7 @@
 		else
 			src.icon_state = "heater"
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		if(!isliving(usr))
 			boutput(usr, "<span class='alert'>Only living mobs are able to set the Reagent Heater/Cooler's output target.</span>")
 			return
@@ -647,7 +649,7 @@
 			P.overlays += P.color_overlay
 			return
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		if(!isliving(usr))
 			boutput(usr, "<span class='alert'>Only living mobs are able to set the CheMaster 3000's output target.</span>")
 			return

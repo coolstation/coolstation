@@ -11,7 +11,7 @@
 	w_class = W_CLASS_BULKY
 	max_wclass = 3
 	wear_image_icon = 'icons/mob/back.dmi'
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	spawn_contents = list(/obj/item/storage/box/starter)
 
 	blue
@@ -173,6 +173,12 @@
 	desc = "A backpack that looks like a green turtleshell. Cowabunga!"
 	icon_state = "bp_turtle_green"
 
+/obj/item/storage/backpack/snacker
+	name = "backpack"
+	desc = "A thick, wearable container made of synthetic fibers. This one smells sugary and stale."
+	icon_state = "backpackbr"
+	spawn_contents = list(/obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn, /obj/item/reagent_containers/food/snacks/candy/candy_corn)
+
 /obj/item/storage/backpack/satchel
 	name = "satchel"
 	desc = "A thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on a crewmember's shoulder."
@@ -195,6 +201,9 @@
 		icon_state = "satchelg"
 		item_state = "satchelg"
 
+	withO2
+		spawn_contents = list(/obj/item/storage/box/starter/withO2)
+
 /obj/item/storage/backpack/satchel/syndie
 	name = "\improper Syndicate Satchel"
 	desc = "A stylish red, evil, thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on an operative's shoulder."
@@ -207,6 +216,11 @@
 	desc = "A stylish blue, thick, wearable container made of synthetic fibers, able to carry a number of objects comfortably on a crewmember's shoulder."
 	icon_state = "NTsatchel"
 	item_state = "NTsatchel"
+	spawn_contents = list(/obj/item/storage/box/starter/withO2)
+
+/obj/item/storage/backpack/satchel/NT/rogue
+	name = "\improper Old NT Satchel"
+	desc = "A faded Nanotrasen bag with the logo covered by a strip of tape and red paint." //ive been at this for 15+ hours i'll make a sprite later
 	spawn_contents = list(/obj/item/storage/box/starter/withO2)
 
 /obj/item/storage/backpack/satchel/captain
@@ -319,7 +333,7 @@
 	w_class = W_CLASS_BULKY
 	slots = 5
 	max_wclass = 3
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	stamina_damage = 0
 //	stamina_cost = 0
 //	stamina_crit_chance = 5
@@ -359,7 +373,7 @@
 	item_state = "belt"
 	flags = FPRINT | TABLEPASS | ONBELT | NOSPLASH
 	max_wclass = 2
-	does_not_open_in_pocket = 0
+	opens_if_worn = TRUE
 	stamina_damage = 10
 //	stamina_cost = 5
 //	stamina_crit_chance = 5
@@ -376,7 +390,7 @@
 
 
 
-	MouseDrop(obj/over_object as obj, src_location, over_location)
+	mouse_drop(obj/over_object as obj, src_location, over_location)
 		var/mob/M = usr
 		if (istype(over_object,/obj/item) || istype(over_object,/mob/)) // covers pretty much all the situations we're trying to prevent; namely transferring storage and opening while on ground
 			if(!can_use())
@@ -391,7 +405,7 @@
 			return
 		return ..()
 
-	attackby(obj/item/W as obj, mob/user as mob, obj/item/storage/T)
+	attackby(obj/item/W as obj, mob/user as mob)
 		if(!can_use())
 			boutput(user, "<span class='alert'>You need to wear [src] for that.</span>")
 			return
@@ -403,7 +417,7 @@
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	can_hold = list(/obj/item/deconstructor)
-	in_list_or_max = 1
+	check_wclass = 1
 
 /obj/item/storage/belt/utility/janitor
 	name = "janitor belt"
@@ -413,11 +427,17 @@
 	can_hold = list(/obj/item/mop,
 		/obj/item/chem_grenade,
 		/obj/item/clothing/under/trash_bag,
-		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/glass,
 		/obj/item/spraybottle,
+		/obj/item/sponge,
+		/obj/item/material_piece/cloth/rag,
+		/obj/item/device/light/flashlight,
+		/obj/item/caution,
+		/obj/item/handheld_vacuum,
+		/obj/item/clothing/under/trash_bag
 	)
 	spawn_contents = list(/obj/item/spraybottle/cleaner)
-	in_list_or_max = 0
+	check_wclass = 1
 
 /obj/item/storage/belt/utility/prepared/ceshielded
 	name = "aurora MKII utility belt"
@@ -435,7 +455,7 @@
 	can_hold = list(/obj/item/rcd,
 	/obj/item/rcd_ammo,
 	/obj/item/deconstructor)
-	in_list_or_max = 1
+	check_wclass = 1
 
 	New()
 		..()
@@ -555,7 +575,7 @@
 	can_hold = list(
 		/obj/item/robodefibrillator
 	)
-	in_list_or_max = 1
+	check_wclass = 1
 
 /obj/item/storage/belt/mining
 	name = "miner's belt"
@@ -566,7 +586,7 @@
 		/obj/item/mining_tool,
 		/obj/item/mining_tools
 	)
-	in_list_or_max = 1
+	check_wclass = 1
 
 /obj/item/storage/belt/hunter
 	name = "trophy belt"
@@ -585,7 +605,7 @@
 	/obj/item/clothing/mask/gas/NTSO,
 	/obj/item/device/prisoner_scanner,
 	/obj/item/gun/modular ) // in the future this migh be the only gun who knows)
-	in_list_or_max = 1
+	check_wclass = 1
 
 // kiki's detective shoulder (holster)
 // get it? like kiki's delivery service? ah, i'll show myself out.
@@ -643,6 +663,11 @@
 		spawn_contents = list(/obj/item/gun/modular/NT/pistol, //energy/tasersmg,
 			/obj/item/baton, /obj/item/barrier, /obj/item/stackable_ammo/rifle/capacitive/burst/five, /obj/item/stackable_ammo/pistol/capacitive/five)
 
+	rogue
+		name = "ratty duty belt"
+		desc = "the buckle doesn't click anymore."
+		//if the baton ends up being a problem, I'll yoink the power cell from it
+
 //////////////////////////////
 // ~Nuke Ops Class Storage~ //
 //////////////////////////////
@@ -655,7 +680,7 @@
 	icon_state = "minerbelt"
 	item_state = "utility"
 	can_hold = list(/obj/item/ammo/bullets)
-	in_list_or_max = 0
+	check_wclass = 0
 
 /*
 /obj/item/storage/belt/revolver
@@ -664,7 +689,7 @@
 	icon_state = "revolver_belt"
 	item_state = "revolver_belt"
 	slots = 3
-	in_list_or_max = 0
+	check_wclass = 0
 	can_hold = list(/obj/item/gun/kinetic/revolver, /obj/item/ammo/bullets/a357)
 	spawn_contents = list(/obj/item/gun/kinetic/revolver, /obj/item/ammo/bullets/a357 = 2)
 
@@ -674,7 +699,7 @@
 	icon_state = "pistol_belt"
 	item_state = "pistol_belt"
 	slots = 5
-	in_list_or_max = 0
+	check_wclass = 0
 	can_hold = list(/obj/item/gun/kinetic/pistol, /obj/item/ammo/bullets/bullet_9mm)
 	spawn_contents = list(/obj/item/gun/kinetic/pistol, /obj/item/ammo/bullets/bullet_9mm = 4)
 
@@ -684,7 +709,7 @@
 	icon_state = "smartgun_belt"
 	item_state = "smartgun_belt"
 	slots = 5
-	in_list_or_max = 0
+	check_wclass = 0
 	can_hold = list(/obj/item/gun/kinetic/pistol/smart/mkII, /obj/item/ammo/bullets/bullet_9mm/smartgun)
 	spawn_contents = list(/obj/item/gun/kinetic/pistol/smart/mkII, /obj/item/ammo/bullets/bullet_9mm/smartgun = 4)
 */
@@ -700,7 +725,7 @@
 	/obj/item/chem_grenade,
 	/obj/item/storage/grenade_pouch,
 	/obj/item/ammo/bullets/grenade_round)
-	in_list_or_max = 0
+	check_wclass = 0
 
 // combat medic storage 7 slot
 

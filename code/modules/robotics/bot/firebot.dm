@@ -300,10 +300,10 @@
 
 	flick("firebot-c", src)
 	if (src.setup_party)
-		playsound(src.loc, "sound/musical_instruments/Bikehorn_1.ogg", 75, 1, -3)
+		playsound(src.loc, "sound/musical_instruments/Bikehorn_1.ogg", 75, 1, SOUND_RANGE_STANDARD)
 
 	else
-		playsound(src.loc, "sound/effects/spray.ogg", 30, 1, -3)
+		playsound(src.loc, "sound/effects/spray.ogg", 30, 1, SOUND_RANGE_STANDARD)
 
 	for(var/a in 0 to 5)
 		var/obj/effects/water/W = new()
@@ -374,7 +374,7 @@
 		new /obj/item/parts/robot_parts/arm/left(Tsec)
 
 	var/obj/item/storage/toolbox/emergency/emptybox = new /obj/item/storage/toolbox/emergency(Tsec)
-	for(var/obj/item/I in emptybox.contents) //Empty the toolbox so we don't have infinite crowbars or whatever
+	for(var/obj/item/I in emptybox.storage.get_contents()) //Empty the toolbox so we don't have infinite crowbars or whatever
 		qdel(I)
 
 	elecflash(src, radius=1, power=3, exclude_center = 0)

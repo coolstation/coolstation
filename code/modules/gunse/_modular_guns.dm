@@ -235,7 +235,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 
 	if(istype(I,/obj/item/instrument/bikehorn))
 		boutput(user,"<span class='notice'><b>You first radicalize [I] by telling it all about The Man.</b></span>")
-		playsound(src, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, -1)
+		playsound(src, pick('sound/musical_instruments/Bikehorn_bonk1.ogg', 'sound/musical_instruments/Bikehorn_bonk2.ogg', 'sound/musical_instruments/Bikehorn_bonk3.ogg'), 50, 1, SOUND_RANGE_STANDARD)
 		user.u_equip(I)
 		I = new /obj/item/gun_parts/accessory/horn()
 		user.put_in_hand_or_drop(I)
@@ -245,6 +245,18 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		boutput(user,"<span class='notice'><b>You first radicalize [I] telling it all about The Man.</b></span>")
 		user.u_equip(I)
 		I = new /obj/item/gun_parts/accessory/flashlight()
+		user.put_in_hand_or_drop(I)
+		return
+
+	if(istype(I,/obj/item/clothing/head/butt))
+		boutput(user,"<span class='notice'><b>What are you doing to that [I]?.... you can't be serious..</b></span>")
+		//get butt details to transfer to gun part
+		var/color = I.color
+		var/icon_state = I.icon_state //carry over cyberbutt or synthbutt icon.
+		user.u_equip(I)
+		I = new /obj/item/gun_parts/accessory/butt()
+		I.color = color
+		I.icon_state = icon_state
 		user.put_in_hand_or_drop(I)
 		return
 
@@ -380,7 +392,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if (src.sound_type)
 				playsound(src.loc, "sound/weapons/modular/[src.sound_type]-load[rand(1,2)].ogg", 10, 1)
 			else
-				playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, 0, 0.8)
+				playsound(src.loc, "sound/weapons/gunload_light.ogg", 10, 1, SOUND_RANGE_STANDARD, 0.8)
 				src.ammo_list += donor_ammo.projectile_type
 
 		buildTooltipContent()
@@ -452,7 +464,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		boutput(owner, "<span class='notice'>You start loading [istype(donor_ammo, /obj/item/stackable_ammo/flashbulb) ? "a flashtube" : "rounds"] into [target_gun].</span>")
 
 		if (target_gun.flashbulb_only) //Apparently our joke on FOSS standards goes so deep even the real code for them has to be fucking bespoke
-			playsound(target_gun.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, 0, 0.8)
+			playsound(target_gun.loc, "sound/weapons/casings/casing-0[rand(1,9)].ogg", 10, 0.1, SOUND_RANGE_STANDARD, 0.8)
 		else
 			if (target_gun.sound_type)
 				playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-startload.ogg", 60, 1)
@@ -486,7 +498,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				M.u_equip(donor_ammo)
 				donor_ammo.dropped(owner)
 				donor_ammo.set_loc(target_gun)
-				playsound(target_gun.loc, "sound/items/Screwdriver.ogg", 30, 0.1, 0, 0.8)
+				playsound(target_gun.loc, "sound/items/Screwdriver.ogg", 30, 0.1, SOUND_RANGE_STANDARD, 0.8)
 				if(!target_gun.flashbulb_health)
 					target_gun.flash_process_ammo(owner)
 				boutput(owner, "<span class='notice'>You finish loading a flashtube into [target_gun].</span>")
@@ -495,7 +507,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if(!target_gun.load_ammo(owner, donor_ammo))
 				interrupt(INTERRUPT_ALWAYS)
 
-			donor_ammo.change_stack_amount(-1)
+			donor_ammo.change_stack_amount(-1, owner)
 		eat_twitch(target_gun) //om nom nom
 
 		var/stored_ammo_left = target_gun.ammo_reserve()
@@ -508,14 +520,14 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			if (target_gun.sound_type)
 				playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-stopload.ogg", 30, 1)
 			else
-				playsound(target_gun.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
+				playsound(target_gun.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, SOUND_RANGE_STANDARD, 0.8)
 			..()
 		else if (stored_ammo_left == target_gun.max_ammo_capacity)
 			boutput(owner, "<span class='notice'>The hold is now fully loaded.</span>")
 			if (target_gun.sound_type)
 				playsound(target_gun.loc, "sound/weapons/modular/[target_gun.sound_type]-stopload.ogg", 30, 1)
 			else
-				playsound(target_gun.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, 0, 0.8)
+				playsound(target_gun.loc, "sound/weapons/gunload_heavy.ogg", 30, 0.1, SOUND_RANGE_STANDARD, 0.8)
 			..()
 		else if (src.state == ACTIONSTATE_DELETE) //we jammed mid reload
 			..()
@@ -707,7 +719,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/waste = src.ammo_reserve() - max_ammo_capacity
 		ammo_list.Cut(1,(1 + waste))
 		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
-		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,0,0.8)
+		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,SOUND_RANGE_STANDARD,0.8)
 
 	processing_ammo = TRUE
 	var/obj/item/stackable_ammo/flashbulb/FB = ammo_list[src.ammo_reserve()]
@@ -764,7 +776,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		var/waste = ammo_left - max_ammo_capacity
 		src.ammo_list.Cut(1,(1 + waste))
 		boutput(user,"<span class='alert'><b>Error! Storage space low! Deleting [waste] ammunition...</b></span>")
-		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,0,0.8)
+		playsound(src.loc, "sound/items/mining_drill.ogg", 20, 1,SOUND_RANGE_STANDARD,0.8)
 
 	if(src.chamber_round(user)) //finally, attempt to load and cycle
 		if (sound_type)
@@ -810,7 +822,7 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 		boutput(user,"<span class='alert'><b>A cartridge gets wedged in wrong!</b></span>")
 		playsound(src.loc, "sound/weapons/trayhit.ogg", 30, 1)
 		return FALSE
-	playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 30, extrarange = -28)
+	playsound(src.loc, "sound/weapons/gunload_click.ogg", vol = 30, range = SOUND_RANGE_TINY)
 	var/ammotype = ammo_list[ammo_left]
 	if(istype(ammotype, /datum/projectile)) // stuff like grenades relies on existing in there
 		src.set_current_projectile(ammotype) // so just chamber
@@ -917,9 +929,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				else
 					//Electronic, Computer, Hard Drive - 1990s Compaq Hard Drive, Spooling Up, Turning Off.wav by jaegrover -- https://freesound.org/s/262870/ -- License: Creative Commons 0
 					if (crank_channel)
-						playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel)
+						playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, SOUND_RANGE_STANDARD, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel)
 					else
-						crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), returnchannel = TRUE)
+						crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, SOUND_RANGE_STANDARD, pitch = (0.65 + (crank_level * 0.02)), returnchannel = TRUE)
 			else
 				//need a good *sproing* noise
 				crank_level = 0
@@ -993,9 +1005,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 			else //no, still going, but at a new and slower speed
 				//Electronic, Computer, Hard Drive - 1990s Compaq Hard Drive, Spooling Up, Turning Off.wav by jaegrover -- https://freesound.org/s/262870/ -- License: Creative Commons 0
 				if (crank_channel)
-					playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel)
+					playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, SOUND_RANGE_STANDARD, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel)
 				else
-					crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), returnchannel = TRUE)
+					crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, SOUND_RANGE_STANDARD, pitch = (0.65 + (crank_level * 0.02)), returnchannel = TRUE)
 		else
 			flashbulb_health = max(0,(flashbulb_health - crank_level - (0.5 * (max(0,max_crank_level - crank_level))))) //subtract cranks from life, cranks over max crank level are cranks and a half for bulb lifetime purposes
 			crank_level = 0 // reset
@@ -1215,9 +1227,9 @@ ABSTRACT_TYPE(/obj/item/gun/modular)
 				playsound(src.loc, "sound/machines/twobeep.ogg", 55, 0, pitch = (0.65 + (crank_level * 0.02)))
 			//Electronic, Computer, Hard Drive - 1990s Compaq Hard Drive, Spooling Up, Turning Off.wav by jaegrover -- https://freesound.org/s/262870/ -- License: Creative Commons 0
 			if (crank_channel)
-				playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel)
+				playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level * 2)), 0, SOUND_RANGE_STANDARD, pitch = (0.65 + (crank_level * 0.02)), forcechannel = crank_channel)
 			else
-				crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, 3, pitch = (0.65 + (crank_level * 0.02)), returnchannel = TRUE)
+				crank_channel = playsound(src.loc, 'sound/weapons/modular/flywheel.ogg', (35 + (crank_level *2)), 0, SOUND_RANGE_STANDARD, pitch = (0.65 + (crank_level * 0.02)), returnchannel = TRUE)
 			currently_cranking_off = FALSE
 
 			return

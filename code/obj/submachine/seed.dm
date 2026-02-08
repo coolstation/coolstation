@@ -1036,7 +1036,7 @@
 			boutput(user, "<span class='notice'>You finish stuffing items into [src]!</span>")
 		src.update_icon()
 
-	MouseDrop(over_object, src_location, over_location)
+	mouse_drop(over_object, src_location, over_location)
 		if(!isliving(usr))
 			boutput(usr, "<span class='alert'>Only living mobs are able to set the extractor's output target.</span>")
 			return
@@ -1060,7 +1060,7 @@
 			boutput(usr, "<span class='alert'>You can't use that as an output target.</span>")
 		return
 
-/obj/submachine/chem_extractor/proc/update_icon()
+/obj/submachine/chem_extractor/update_icon()
 	if (src.ingredients.len)
 		src.icon_state = "reex-on"
 	else

@@ -91,11 +91,13 @@ ABSTRACT_TYPE(/obj/item/stackable_ammo/)
 				return TRUE
 		return FALSE
 
+/*
 	disposing()
 		if (usr)
 			usr.u_equip(src) //wonder if that will work?
 		amount = 1
 		..()
+*/
 
 	update_stack_appearance()
 		src.UpdateName()

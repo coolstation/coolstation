@@ -113,7 +113,7 @@
 
 /proc/buildContextActions()
 	globalContextActions = list()
-	for(var/datum/contextAction/A as anything in childrentypesof(/datum/contextAction))
+	for(var/datum/contextAction/A as anything in concrete_typesof(/datum/contextAction))
 		globalContextActions[A] = new A()
 
 /atom/movable/screen/contextButton
@@ -124,6 +124,7 @@
 	var/image/background = null
 	var/mob/user = null
 	var/atom/target = null
+	var/unfocus_alpha = 255
 
 	proc/setup(datum/contextAction/A, mob/U, atom/T)
 		if(!A || !U || !T)
@@ -134,10 +135,11 @@
 		icon = action.getIcon(target,user)
 		icon_state = action.getIconState(target, user)
 		name = action.getName(target, user)
+		src.unfocus_alpha = action.unfocus_alpha
 
 		var/matrix/trans = new()
 		trans = trans.Reset()
-		trans.Translate(8, 16)
+		trans.Translate(0, 16)
 		transform = trans
 
 		background = null
@@ -149,13 +151,14 @@
 			src.underlays += background
 
 		if(background == null)
-			background = image('icons/ui/context16x16.dmi', src, "[action.getBackground(target, user)]0")
-			background.appearance_flags = RESET_COLOR
+			background = image(src.icon, src, "[action.getBackground(target, user)]0")
+			background.appearance_flags = RESET_COLOR // intentionally doesnt have RESET_ALPHA
 			src.underlays += background
 
 	MouseEntered(location,control,params)
 		if (usr != user)
 			return
+		src.alpha = 255
 		src.underlays.Cut()
 		background.icon_state = "[action.getBackground(target, user)]1"
 		src.underlays += background
@@ -171,6 +174,7 @@
 	MouseExited(location,control,params)
 		if (usr != user)
 			return
+		src.alpha = src.unfocus_alpha
 		src.underlays.Cut()
 		background.icon_state = "[action.getBackground(target, user)]0"
 		src.underlays += background

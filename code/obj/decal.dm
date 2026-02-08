@@ -1,11 +1,15 @@
 /obj/decal
 	pass_unstable = PRESERVE_CACHE
 	text = ""
+	flags = FPRINT | CANT_FIT_IN_CRATES
 	var/list/random_icon_states = list()
 	var/random_dir = 0
+	var/cares_bout_turf_change = FALSE
+	var/turf/visual_turf
+	var/old_turf_density = null
 
-	New()
-		..()
+	New(turf/newLoc)
+		. = ..()
 		if (random_icon_states && length(src.random_icon_states) > 0)
 			src.icon_state = pick(src.random_icon_states)
 		if (src.random_dir)
@@ -16,27 +20,31 @@
 
 		if (!real_name)
 			real_name = name
-/*
-	pooled()
+
+		if(src.cares_bout_turf_change)
+			src.visual_turf = get_turf(newLoc)
+			STANDARD_WORLDGEN_HOLD
+
+	disposing()
+		if(src.visual_turf)
+			UnregisterSignal(src.visual_turf.turf_persistent, COMSIG_TURF_POST_REPLACE)
 		..()
 
+	generate_worldgen()
+		. = ..()
+		if(src.cares_bout_turf_change && src.visual_turf)
+			var/x_off = trunc((src.pixel_x - 16) / 32)
+			var/y_off = trunc((src.pixel_y - 16) / 32)
+			var/turf/T = locate(src.visual_turf.x + x_off, src.visual_turf.y + y_off, src.visual_turf.z)
+			if(T)
+				src.visual_turf = T
+			src.old_turf_density = src.visual_turf.density
+			RegisterSignal(src.visual_turf.turf_persistent, COMSIG_TURF_POST_REPLACE, PROC_REF(turf_changed))
 
-	unpooled()
-		..()
-*/
-	proc/setup(var/L,var/list/viral_list)
-		set_loc(L)
-
-		if (random_icon_states && length(src.random_icon_states) > 0)
-			src.icon_state = pick(src.random_icon_states)
-		if (src.random_dir)
-			if (random_dir >= 8)
-				src.set_dir(pick(alldirs))
-			else
-				src.set_dir(pick(cardinal))
-
-		if (!real_name)
-			real_name = name
+	proc/turf_changed(datum/turf_persistent/visual_turf_persistent, new_turf)
+		if(src.old_turf_density != src.visual_turf.density)
+			qdel(src)
+		return
 
 	meteorhit(obj/M as obj)
 		if (isrestrictedz(src.z))
@@ -74,9 +82,11 @@
 /obj/decal/skeleton
 	name = "skeleton"
 	desc = "The remains of a human."
+	flags = FPRINT
 	opacity = 0
 	density = 0
 	anchored = ANCHORED
+	flags = FPRINT
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "skeleton_l"
 
@@ -182,7 +192,7 @@
 	plane = PLANE_HUD
 	anchored = ANCHORED
 
-proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time=2 SECONDS, invisibility=INVIS_NONE, atom/movable/pointer)
+proc/make_point(atom/movable/target, pixel_x=16, pixel_y=16, color="#ffffff", time=2 SECONDS, invisibility=INVIS_NONE, atom/movable/pointer)
 	// note that `target` can also be a turf, but byond sux and I can't declare the var as atom because areas don't have vis_contents
 	if(QDELETED(target)) return
 	var/obj/decal/point/point = new
@@ -536,6 +546,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	icon = 'icons/obj/decals/misc.dmi'
 	icon_state = "blank"
 	layer = TURF_LAYER + 0.1 // Should basically be part of a turf.
+	cares_bout_turf_change = TRUE
 
 	beacon
 		name = "MULE delivery destination"
@@ -582,6 +593,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	real_name = "ball pit"
 	layer = 25
 	mouse_opacity = 0
+	cares_bout_turf_change = TRUE
 
 //Decals that glow.
 /obj/decal/glow
@@ -642,6 +654,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 	mouse_opacity = 0
 	plane = PLANE_FLOOR
 	layer = TURF_OVERLAY_LAYER
+	cares_bout_turf_change = TRUE
 
 	//Grabs turf color set in gehenna.dm for sand
 	New()
@@ -670,12 +683,12 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 		icon_state = "cragrock[rand(1,4)]"
 
 	Bumped(AM as mob|obj)
-		if(!ismob(AM))
+		if(!ishuman(AM))
 			return
 		var/mob/living/L = AM
 		if(prob(5))
 			take_bleeding_damage(L,null,5,DAMAGE_STAB)
-			random_brute_damage(L,10)
+			random_brute_damage(L,5)
 			L.visible_message("<span class='alert'>[L] stubs their toe on [src]!</span>","<span class='alert'>You stub your toe on [src]!</span>")
 
 /obj/decal/lightning
@@ -704,7 +717,7 @@ proc/make_point(atom/movable/target, pixel_x=0, pixel_y=0, color="#ffffff", time
 		src.color = color_in
 		src.pixel_y = abs(src.height * 32) + y_offset
 		if(src.volume)
-			playsound(src, pick(big_explosions), 50, TRUE, extrarange = 10, flags = SOUND_IGNORE_SPACE)
+			playsound(src, pick(big_explosions), 50, TRUE, range = SOUND_RANGE_LARGE, flags = SOUND_IGNORE_SPACE)
 		animate(src, time = src.strike_time / 8, pixel_y = abs(src.height * 16 - 8) + y_offset, flags = ANIMATION_PARALLEL)
 		animate(time = src.strike_time / 8, transform = matrix(1,src.height / 2,MATRIX_SCALE))
 		animate_ripple(src,3,shake_intensity,0.2)

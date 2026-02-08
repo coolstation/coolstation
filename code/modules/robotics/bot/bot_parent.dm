@@ -375,7 +375,7 @@
 						SPAWN_DBG(2 SECONDS)
 							if (I && !I.disposed) qdel(I)
 
-					step_to(master, master?.path[1])
+					step(master, get_dir(master, master?.path[1]))
 					if(isnull(master))
 						break
 					if(length(master?.path) && master.loc != master.path[1])

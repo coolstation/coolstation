@@ -539,11 +539,12 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	tooltip_flags = REBUILD_DIST | REBUILD_USER
 
 	get_desc(var/dist, var/mob/user)
+		var/extra
 		if (user.mind && user.mind.assigned_role == "Head of Security")
-			. = "They really make you look tough and respectable."
+			extra = "They really make you look tough and respectable."
 		else
-			. = "Must have been all the licking no doubt!"
-		. = ..()
+			extra = "Must have been all the licking no doubt!"
+		return extra
 
 /obj/item/clothing/shoes/swat/knight // so heavy you can't get shoved!
 	name = "combat sabatons"
@@ -563,6 +564,17 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	setupProperties()
 		..()
 		setProperty("coldprot", 15)
+
+/obj/item/clothing/shoes/winterboots
+	name = "winter boots"
+	desc = "Thick boots to keep your toes thawed."
+	icon_state = "winter"
+	step_sound = "step_military" //these boots are for walking or somethijng idk
+	step_priority = STEP_PRIORITY_LOW
+
+	setupProperties()
+		..()
+		setProperty("coldprot", 20)
 
 /obj/item/clothing/shoes/gogo
 	name = "go-go boots"

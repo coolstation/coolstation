@@ -238,8 +238,8 @@ proc/get_angle(atom/a, atom/b)
 
 
 /proc/get_bureau_name()
-	var/list/resource = list("Space Dolphin","Urine","Plasma","Paper","Tree","Human","Robot","AI","Asteroid","Ice","Lamp", "Bone", "Lotion", "Tissue", "Toilet Paper","Alien","Pants","Phasmid","Candy","Colored Pencil","Fish","Beer","Refrigerator","Furniture","Rat") //literally just throw whatever random shit you can think of
-	var/list/fields = list("Pest Control","Paperwork","HR","Rationing","Frontier Census","Middle Management","[pick(resource)] Conservation","[pick(resource)] Management","Cooperation","Integration","Alignment","Documentation","Time Management","[pick(resource)] Eradication")
+	var/list/resource = list("Space Dolphin","Urine","Plasma","Paper","Tree","Human","Robot","AI","Asteroid","Ice","Lamp", "Bone", "Lotion", "Tissue", "Toilet Paper","Alien","Pants","Phasmid","Candy","Colored Pencil","Fish","Beer","Refrigerator","Furniture","Rat","Hockey Stick Handle") //literally just throw whatever random shit you can think of
+	var/list/fields = list("Pest Control","Paperwork","HR","Rationing","Frontier Census","Middle Management","[pick(resource)] Conservation","[pick(resource)] Management","Cooperation","integration","Alignment","Documentation","Time Management","[pick(resource)] Eradication")
 	var/list/titles = list("Head of [pick(fields)]","[pick(fields)] Specialist","[pick(fields)] Director","[pick(fields)] Officer")
 	return(pick(titles))
 
@@ -2674,3 +2674,17 @@ proc/message_ghosts(var/message, show_wraith = FALSE)
 	if(!M || !M.client || !M.client.recoil_controller)
 		return
 	M.client.recoil_controller.recoil_camera(dir,strength,spread)
+
+/// adjusts a screen_loc to account for non-32px-width sprites, so they get centered in a HUD slot
+/proc/do_hud_offset_thing(atom/movable/A, new_screen_loc)
+	var/icon/IC = new/icon(A.icon)
+	var/width = IC.Width()
+	var/regex/locfinder = new(@"^(\w*)([+-]\d)?(:\d+)?(.*)$") //chops up X-axis of a screen_loc
+	if(width != 32 && locfinder.Find("[new_screen_loc]")) //if we're 32-width, just use the loc we're given
+		var/offset = 0
+		if(startswith(locfinder.group[3], ":"))
+			offset = text2num(copytext(locfinder.group[3], 2))
+		offset -= (width-32)/2 // offsets the screen loc of the item by half the difference of the sprite width and the default sprite width (32), to center the sprite in the box
+		return "[locfinder.group[1]][locfinder.group[2]][offset ? ":[offset]":""][locfinder.group[4]]"
+	else
+		return new_screen_loc //regex failed to match, just use what we got
