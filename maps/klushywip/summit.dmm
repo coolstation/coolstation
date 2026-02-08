@@ -9894,7 +9894,7 @@
 /area/station/medical/medbay/cloner)
 "Ad" = (
 /obj/table/reinforced/auto,
-/obj/shitty_radio,
+/obj/tuneable_receiver/radio,
 /obj/window/reinforced/west,
 /turf/floor/black,
 /area/station/science/recon)
@@ -11444,7 +11444,7 @@
 /turf/floor/grass,
 /area/station/hydroponics/bay)
 "DY" = (
-/obj/shitty_radio/shitty_tv{
+/obj/tuneable_receiver/teevee{
 	icon_state = "small_wall";
 	pixel_x = 3
 	},
@@ -12175,7 +12175,7 @@
 /area/station/medical/medbay/recovery)
 "FN" = (
 /obj/table/folding,
-/obj/shitty_radio/shitty_tv{
+/obj/tuneable_receiver/teevee{
 	pixel_y = 10
 	},
 /obj/decal/cleanable/dirt/random,
