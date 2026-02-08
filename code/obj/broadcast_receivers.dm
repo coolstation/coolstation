@@ -64,7 +64,7 @@ ABSTRACT_TYPE(/obj/tuneable_receiver)
 		update_icon()
 		updateDialog()
 
-/obj/tuneable_receiver/proc/update_icon()
+/obj/tuneable_receiver/update_icon()
 	if (video_dmi)
 		if (on)
 			if (!GetOverlayImage(BROADCAST_VIDEO_KEY))
