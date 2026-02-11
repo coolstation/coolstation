@@ -103,7 +103,7 @@ ABSTRACT_TYPE(/datum/game)
 		var/dat = replacetext(code, "{{HIGHSCORE}}", num2text(highscore))
 		dat = replacetext(dat, "{{TOPICURL}}", "'byond://?src=\ref[src];highscore='+this.ScoreCur;")
 
-		user.Browse(dat, "window=tetris;size=375x500")
+		user.Browse(dat, "window=tetris;size=440x550")
 		onclose(user, "tetris")
 		return
 
