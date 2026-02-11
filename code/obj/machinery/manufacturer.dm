@@ -1576,6 +1576,8 @@
 		"}
 //Custom materials from the nano forge aren't in the materails list. so there's heres a hacky temp fix.
 		for(var/mat_id in src.resource_amounts)
+			if(src.resource_amounts[mat_id] <= 0)
+				continue //if we have none of this material, skip it
 			var/datum/material/mat = getMaterial(mat_id)
 			if(!mat)//the hacky fix part starts
 				for(var/obj/item/I in src.contents)
