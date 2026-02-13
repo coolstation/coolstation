@@ -3563,7 +3563,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/obj/machinery/atmospherics/portables_connector/south,
+/obj/machinery/atmospherics/valve,
 /turf/floor/industrial,
 /area/station/engine/core)
 "dHr" = (
@@ -3655,9 +3655,9 @@
 /turf/floor/plating,
 /area/station/maintenance/inner/sw)
 "dNj" = (
-/obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/insulated,
-/turf/floor/plating,
+/obj/wingrille_spawn/crystal,
+/turf/floor/plating/airless,
 /area/station/engine/core)
 "dNT" = (
 /obj/machinery/door/airlock/glass,
@@ -4036,12 +4036,10 @@
 	},
 /area/station/hallway/primary/east)
 "efe" = (
-/obj/item/storage/toilet/engineering{
-	dir = 8
-	},
 /obj/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/machinery/disposal/ore,
 /turf/floor/industrial,
 /area/station/engine/core)
 "efn" = (
@@ -4966,6 +4964,10 @@
 /obj/machinery/vending/cigarette,
 /turf/floor,
 /area/station/hallway/primary/east)
+"eXI" = (
+/obj/wingrille_spawn/crystal,
+/turf/floor/plating/airless,
+/area/station/engine/core)
 "eYe" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -16442,6 +16444,13 @@
 /obj/machinery/optable,
 /turf/floor/white,
 /area/station/medical/medbay/surgery)
+"qhG" = (
+/obj/decal/tile_edge/stripe/extra_big{
+	dir = 4
+	},
+/obj/machinery/atmospherics/portables_connector/south,
+/turf/floor/industrial,
+/area/station/engine/core)
 "qii" = (
 /obj/machinery/door/airlock/gannets/glass/command/alt,
 /obj/disposalpipe/segment/mail{
@@ -20045,9 +20054,9 @@
 /turf/floor,
 /area/station/hallway/primary/east)
 "tUo" = (
-/obj/wingrille_spawn/reinforced,
 /obj/disposalpipe/segment/ejection,
-/turf/floor/plating,
+/obj/wingrille_spawn/crystal,
+/turf/floor/plating/airless,
 /area/station/engine/core)
 "tUL" = (
 /obj/cable/hotpink{
@@ -50294,7 +50303,7 @@ uXL
 uFe
 rFL
 tHE
-mav
+qhG
 dHb
 xOG
 abi
@@ -51505,9 +51514,9 @@ kPV
 rFL
 qpD
 mZC
-vjI
-vjI
-vjI
+eXI
+eXI
+eXI
 obl
 obl
 obl
