@@ -6,6 +6,7 @@ var/list/observers = list()
 	icon = null
 	event_handler_flags = 0
 	var/atom/target
+	var/is_respawnable = TRUE
 	var/mob/corpse = null
 	var/mob/dead/observer/my_ghost = null
 
