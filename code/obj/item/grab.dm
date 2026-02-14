@@ -389,7 +389,7 @@
 		else if (src.state == GRAB_PIN)
 			var/succ = 0
 
-			if (resist_count >= 8 && prob(7)) //after 8 resists, start rolling for breakage. this is to make sure people with stamina buffs cant infinite-pin someone
+			if ((resist_count >= 8 || src.assailant.lying) && prob(7)) //after 8 resists (or if the assailant is prone), start rolling for breakage. this is to make sure people with stamina buffs cant infinite-pin someone
 				succ = 1
 			else if (ishuman(src.assailant))
 				src.assailant.remove_stamina(19)
