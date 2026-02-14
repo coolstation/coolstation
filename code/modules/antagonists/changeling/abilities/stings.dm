@@ -16,6 +16,10 @@
 	cast(atom/target)
 		if (..())
 			return 1
+		// can't target self
+		if(isobj(target) && target == holder.owner)
+			boutput(holder.owner, __red("Our sting would not affect us."))
+			return 1
 
 		if (isobj(target) && (target.is_open_container() || istype(target,/obj/item/reagent_containers/food) || istype(target,/obj/item/reagent_containers/patch)))
 			if (get_dist(holder.owner, target) > 1)
