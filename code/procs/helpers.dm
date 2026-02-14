@@ -2656,9 +2656,9 @@ proc/message_ghosts(var/message, show_wraith = FALSE)
 		// // Skip forced-observers (hivemind, etc)
 		// @TODO this probably needs fixed.
 		if (istype(M, /mob/dead/target_observer))
-		 	var/mob/dead/target_observer/tobserver = M
-		 	if(!tobserver.is_respawnable)
-		 		continue
+			var/mob/dead/target_observer/tobserver = M
+			if(!tobserver.is_respawnable)
+				continue
 
 		// Skip the wraith if show_wraith is off
 		if (iswraith(M))
