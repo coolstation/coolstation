@@ -1688,7 +1688,7 @@
 			mob.blood_color = "#22EE99"
 			M.bioHolder.AddEffect("mattereater")
 			M.bioHolder.AddEffect("jumpy")
-			M.bioHolder.AddEffect("vowelitis")
+			//M.bioHolder.AddEffect("vowelitis")
 			M.bioHolder.AddEffect("accent_brummie")
 
 
@@ -1698,7 +1698,7 @@
 				mob.blood_color = original_blood_color
 				mob.bioHolder.RemoveEffect("mattereater")
 				mob.bioHolder.RemoveEffect("jumpy")
-				mob.bioHolder.RemoveEffect("vowelitis")
+				//mob.bioHolder.RemoveEffect("vowelitis")
 				mob.bioHolder.RemoveEffect("accent_brummie")
 		original_blood_color = null
 		..()
