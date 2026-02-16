@@ -1403,7 +1403,7 @@
 	icon_state = "2-4"
 	},
 /obj/disposalpipe/segment/horizontal,
-/turf/floor/white/checker,
+/turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "bda" = (
 /obj/stool/bench/auto,
@@ -1789,7 +1789,9 @@
 /area/station/hallway/primary/east)
 "bDJ" = (
 /obj/machinery/computer/genetics,
-/turf/floor/white/checker,
+/turf/floor/green/checker{
+	dir = 1
+	},
 /area/station/medical/medbay/cloner)
 "bDT" = (
 /obj/machinery/light/fluorescent/cool/very,
@@ -2276,7 +2278,7 @@
 	pixel_x = -1;
 	tag = ""
 	},
-/turf/floor/green,
+/turf/floor/white/checker,
 /area/station/medical/medbay/cloner)
 "bWU" = (
 /turf/floor/plating,
@@ -3661,7 +3663,7 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 4
 	},
-/turf/floor/green,
+/turf/floor/white/checker,
 /area/station/medical/medbay/cloner)
 "dbU" = (
 /obj/machinery/shower,
@@ -3775,7 +3777,7 @@
 /obj/landmark/start{
 	name = "Geneticist"
 	},
-/turf/floor/green,
+/turf/floor/white/checker,
 /area/station/medical/medbay/cloner)
 "dis" = (
 /turf/wall/r_wall,
@@ -4423,7 +4425,7 @@
 /obj/machinery/computer/cloning{
 	dir = 8
 	},
-/turf/floor/green,
+/turf/floor/white/checker,
 /area/station/medical/medbay/cloner)
 "dIh" = (
 /obj/disposalpipe/segment/vertical,
@@ -5153,7 +5155,8 @@
 "eqI" = (
 /obj/cable/yellow,
 /obj/machinery/power/apc/autoname/south,
-/turf/floor/green,
+/obj/storage/crate/gene_separators,
+/turf/floor/white/checker,
 /area/station/medical/medbay/cloner)
 "eqK" = (
 /obj/decal/gehennagrass,
@@ -10583,7 +10586,9 @@
 /obj/decal/poster/wallsign/testsubject{
 	pixel_x = 32
 	},
-/turf/floor/white/checker,
+/turf/floor/green/checker{
+	dir = 1
+	},
 /area/station/medical/medbay/cloner)
 "jeT" = (
 /turf/wall,
@@ -11950,7 +11955,7 @@
 /obj/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/floor/green,
+/turf/floor/white/checker,
 /area/station/medical/medbay/cloner)
 "kja" = (
 /turf/wall/r_wall,
@@ -13004,7 +13009,7 @@
 	},
 /obj/disposalpipe/segment/horizontal,
 /obj/access_spawn/medical,
-/turf/floor/white/checker,
+/turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "kXF" = (
 /obj/machinery/vehicle/pod_smooth/industrial,
@@ -14902,7 +14907,9 @@
 /area/station/crew_quarters/courtroom)
 "mMH" = (
 /obj/disposalpipe/segment/mail/horizontal,
-/turf/floor/white/checker,
+/turf/floor/green/checker{
+	dir = 1
+	},
 /area/station/medical/medbay/cloner)
 "mMT" = (
 /turf/space/gehenna/desert/corner{
@@ -14992,7 +14999,9 @@
 	name = "Geneticist"
 	},
 /obj/disposalpipe/switch_junction/left/east,
-/turf/floor/white/checker,
+/turf/floor/green/checker{
+	dir = 1
+	},
 /area/station/medical/medbay/cloner)
 "mRO" = (
 /obj/machinery/door/airlock/maintenance,
@@ -15813,7 +15822,7 @@
 /area/gehenna/south)
 "nAY" = (
 /obj/machinery/clonepod,
-/turf/floor/green,
+/turf/floor/white/checker,
 /area/station/medical/medbay/cloner)
 "nBj" = (
 /obj/disposalpipe/segment/horizontal,
@@ -16335,7 +16344,10 @@
 /obj/item/storage/box/genetic_syringes{
 	pixel_y = 9
 	},
-/turf/floor/white/checker,
+/obj/item/device/analyzer/genes,
+/turf/floor/green/checker{
+	dir = 1
+	},
 /area/station/medical/medbay/cloner)
 "nYs" = (
 /obj/landmark/gps_waypoint,
@@ -16660,7 +16672,7 @@
 /obj/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/floor/white/checker,
+/turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "omA" = (
 /turf/wall,
@@ -17264,7 +17276,7 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment/bent/west,
-/turf/floor/white/checker,
+/turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "oLQ" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -17342,7 +17354,9 @@
 /area/station/hallway/primary/north)
 "oOb" = (
 /obj/disposalpipe/segment/bent/east,
-/turf/floor/white/checker,
+/turf/floor/green/checker{
+	dir = 1
+	},
 /area/station/medical/medbay/cloner)
 "oOd" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -18430,7 +18444,9 @@
 /area/station/hallway/primary/north)
 "pGO" = (
 /obj/machinery/genetics_scanner,
-/turf/floor/white/checker,
+/turf/floor/green/checker{
+	dir = 1
+	},
 /area/station/medical/medbay/cloner)
 "pHg" = (
 /obj/cable/yellow{
@@ -19022,7 +19038,7 @@
 	},
 /obj/disposalpipe/segment/mail/vertical,
 /obj/disposalpipe/segment/horizontal,
-/turf/floor/white/checker,
+/turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "qjO" = (
 /mob/living/critter/small_animal/opossum/morty,
@@ -19462,7 +19478,7 @@
 	},
 /obj/disposalpipe/segment/horizontal,
 /obj/landmark/gps_waypoint,
-/turf/floor/white/checker,
+/turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "qBw" = (
 /turf/space/gehenna/desert/plating{
@@ -23288,7 +23304,9 @@
 	name = "Geneticist"
 	},
 /obj/disposalpipe/segment/horizontal,
-/turf/floor/white/checker,
+/turf/floor/green/checker{
+	dir = 1
+	},
 /area/station/medical/medbay/cloner)
 "tDr" = (
 /obj/stool/chair/blue,
@@ -24163,7 +24181,10 @@
 /obj/item/storage/box/agarose_separator{
 	pixel_x = 8
 	},
-/turf/floor/white/checker,
+/obj/item/device/analyzer/genes,
+/turf/floor/green/checker{
+	dir = 1
+	},
 /area/station/medical/medbay/cloner)
 "urq" = (
 /obj/cable{
@@ -26382,7 +26403,7 @@
 /obj/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/floor/white/checker,
+/turf/floor/bluegreen,
 /area/station/medical/medbay/cloner)
 "wlv" = (
 /obj/cable{
