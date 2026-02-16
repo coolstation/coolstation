@@ -280,9 +280,12 @@
 					if (src.material)
 						src.material.triggerOnAttacked(src, G.assailant, G.affecting, src)
 			else
-				if (!G.affecting.hasStatus("weakened"))
-					G.affecting.changeStatus("weakened", 2 SECONDS)
+				if (!G.affecting.hasStatus("resting"))
+					G.affecting.setStatus("resting", INFINITE_STATUS)
 					G.affecting.force_laydown_standup()
+					if (ishuman(G.affecting))
+						var/mob/living/carbon/human/H = G.affecting
+						H.hud.update_resting()
 				src.visible_message("<span class='alert'>[G.assailant] puts [G.affecting] on \the [src].</span>")
 			qdel(W)
 			return
