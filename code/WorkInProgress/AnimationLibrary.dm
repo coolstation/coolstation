@@ -604,8 +604,53 @@ proc/muzzle_flash_any(var/atom/movable/A, var/firing_angle, var/muzzle_anim, var
 		animate(pixel_x = ipx, pixel_y = ipy, time = 0.6,easing = EASE_IN)
 		animate(transform = M, time = 0.6, easing = EASE_IN)
 
+/proc/bump_twitch(var/atom/A) //a close relative of hit twitch, better for large objects
+	if (!istype(A) || istype(A, /mob/living/object))
+		return		//^ possessed objects use an animate loop that is important for readability. let's not interrupt that with this dumb animation
+	var/which = A.dir
 
+	SPAWN_DBG(0)
+		var/ipx = A.pixel_x
+		var/ipy = A.pixel_y
+		var/movepx = 0
+		var/movepy = 0
+		var/vertical = FALSE
+		switch(which)
+			if (NORTH)
+				movepy = 3
+				vertical = TRUE
+			if (WEST)
+				movepx = -3
+				vertical = FALSE
+			if (SOUTH)
+				movepy = -3
+				vertical = TRUE
+			if (EAST)
+				movepx = 3
+				vertical = FALSE
+			if (NORTHEAST)
+				movepx = 3
+			if (NORTHWEST)
+				movepy = 3
+			if (SOUTHEAST)
+				movepy = -3
+			if (SOUTHWEST)
+				movepx = -3
+			else
+				return
 
+		var/x = movepx + ipx
+		var/y = movepy + ipy
+		//Shift pixel offset
+		animate(A, pixel_x = x, pixel_y = y, time = 0.6,easing = EASE_OUT,flags=ANIMATION_PARALLEL)
+		var/matrix/M = matrix(A.transform)
+		if(!vertical)
+			animate(transform = turn(A.transform, (movepx - movepy) * 4), time = 0.6, easing = EASE_OUT)
+
+		animate(pixel_x = ipx, pixel_y = ipy, time = 0.6,easing = EASE_IN)
+
+		if(!vertical)
+			animate(transform = M, time = 0.6, easing = EASE_IN)
 
 /proc/hit_twitch(var/atom/A)
 	if (!A || istype(A, /mob/living/object) || ON_COOLDOWN(A, "hit_twitch", 0.1 SECONDS))

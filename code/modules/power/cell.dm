@@ -25,6 +25,7 @@
 	var/specialicon = 0	// used for autoprocess shit
 	var/unusualCell = 0
 	stamina_damage = 10
+	var/datum/effects/system/bad_smoke_spread/smoke
 //	stamina_cost = 10
 //	stamina_crit_chance = 10
 
@@ -33,6 +34,28 @@
 			var/obj/machinery/power/apc/APC = src.loc
 			APC.cell = null
 		..()
+
+	New()
+		src.smoke = new /datum/effects/system/bad_smoke_spread/
+		src.smoke.attach(src)
+		src.smoke.set_up(1, 0, src.loc)
+		..()
+
+/obj/item/cell/dan
+	name = "NiCad Dan's Economy Cell"
+	desc = "The first and last foray of Discount Dan's into the energy sector, probably for good reason..."
+	icon_state = "dancell"
+	hint = "why the fuck does it smell like that?"
+	specialicon = 1
+	charge = 750
+#ifdef POWER_IS_CRAPPY
+	charge = 5
+	maxcharge = 200
+#else
+	charge = 600
+	maxcharge = 750
+#endif
+
 
 /obj/item/cell/supercell
 #ifdef POWER_IS_CRAPPY
@@ -244,15 +267,35 @@
 			var/turf/T = get_turf(B.loc)
 			if(T)
 				T.hotspot_expose(700,125)
-				explosion(src, T, -1, -1, 2, 3)
+				charge = 0
+				playsound(src,"sound/effects/cell_explode.ogg", 50)
+				fireflash(src,0)
+				src.smoke.start()
+				explosion_new(src, T, 2, 1, 2, 360)
 		qdel(src)
 		return
 	var/turf/T = get_turf(src.loc)
+	charge = 0
+	explosion_new(src, T, 2, 1, 2, 360)
 
-	explosion(src, T, 0, 1, 2, 2)
-
-	SPAWN_DBG(1 DECI SECOND)
-		qdel(src)
+	SPAWN_DBG(0.5 SECONDS)
+		playsound(src,"sound/effects/cell_explode.ogg", 50)
+		fireflash(src,0)
+		src.smoke.start()
+		if(T)
+			var/obj/overlay/O = new/obj/overlay(T)
+			O.anchored = ANCHORED
+			O.name = "Explosion"
+			O.layer = NOLIGHT_EFFECTS_LAYER_BASE
+			O.pixel_x = -92
+			O.pixel_y = -96
+			O.icon = 'icons/effects/214x246.dmi'
+			O.icon_state = "explosion"
+			O.mouse_opacity = 0
+			SPAWN_DBG(3.5 SECONDS)
+				qdel(O)
+			SPAWN_DBG(1 DECI SECOND)
+				qdel(src)
 
 
 /obj/item/cell/proc/zap(mob/user as mob, var/ignores_gloves = 0)
@@ -265,8 +308,7 @@
 		return 1
 
 /obj/item/cell/ex_act(severity)
-	if (istype(src,/obj/item/cell/erebite)) src.explode()
-	else ..()
+	src.explode()
 
 /obj/item/cell/temperature_expose(null, temp, volume)
 	if (istype(src,/obj/item/cell/erebite))
