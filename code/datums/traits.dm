@@ -1294,6 +1294,17 @@ obj/trait/pilot
 	category = "species"
 	mutantRace = /datum/mutantrace/roach
 
+/obj/trait/rodentia
+	name = "Rodentia (0) \[Species\]"
+	cleanName = "Rodentia"
+	icon_state = "rodentiaT"
+	desc = "You are a rodent."
+	id = "rodentia"
+	points = 0
+	isPositive = FALSE
+	category = "species"
+	mutantRace = /datum/mutantrace/rodentia
+
 /obj/trait/species_roulette
 	name = "Species Roulette (0) \[Species\]"
 	cleanName = "Species Roulette"

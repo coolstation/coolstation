@@ -178,3 +178,13 @@
 	can_scramble = 0
 	curable_by_mutadone = 0
 	reclaim_fail = 100
+
+/datum/bioEffect/mutantrace/rodentia
+	name = "Rodentia Genetics"
+	desc = "The subject becomes rodent-like in form and nature."
+	id = "rodentia"
+	mutantrace_option = "Rodentia"
+	mutantrace_path = /datum/mutantrace/rodentia
+	msgGain = "You have a sudden urge to chew through copper wires."
+	msgLose = "You will no longer inherit the earth."
+	icon_state = "rodentia"
