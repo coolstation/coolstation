@@ -63,6 +63,34 @@
 			. = ..()
 			src.dir = pick(cardinal - SOUTH)
 
+/obj/tree1/desert_trees/
+		name = "desert tree"
+		plane = PLANE_NOSHADOW_ABOVE //  drop shadow looks stupid on these, esp. large
+
+/obj/tree1/desert_trees/big
+		desc = "A huge, gnarled desert tree."
+		icon = 'icons/effects/160x160.dmi'
+		icon_state = "large desert tree"
+		bound_width = 44
+		pixel_x = -44
+
+/obj/tree1/desert_trees/med
+		desc = "A many-trunked desert tree, bare of leaves."
+		icon = 'icons/effects/160x160.dmi'
+		icon_state = "med desert tree"
+		pixel_x = -64
+
+/obj/tree1/desert_trees/med2
+		icon = 'icons/effects/96x96.dmi'
+		icon_state = "med desert tree"
+		pixel_x = -30
+
+/obj/tree1/desert_trees/small
+		desc = "A scrubby little desert tree."
+		icon = 'icons/effects/64x64.dmi'
+		icon_state = "small desert tree"
+		pixel_x = -10
+
 // what the hell is all this and why wasn't it just using a big icon? the lighting system gets all fucked up with this stuff
 
 /*
