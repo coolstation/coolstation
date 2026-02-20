@@ -479,7 +479,7 @@
 		return
 
 	proc/is_acceptable_content(var/atom/movable/A)
-		if (!istype(A) || A.flags & (TECHNICAL_ATOM | CANT_FIT_IN_CRATES) || A.density || A.anchored || A == src)
+		if (!istype(A) || A.flags & (TECHNICAL_ATOM | CANT_FIT_IN_CRATES) || (A.density > 1) || A.anchored || A == src)
 			return FALSE
 		return TRUE
 
