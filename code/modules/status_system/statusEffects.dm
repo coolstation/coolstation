@@ -1080,7 +1080,15 @@
 
 		onAdd(optional=null)
 			. = ..()
-			ON_COOLDOWN(owner, "lying_bullet_dodge_cheese", 0.5 SECONDS)
+			//Dodge adjustment to coincide with changes to "resting" and dropping items.
+			//Old system: laying down let you dodge projectiles/throws, but a cooldown prevent it from being abusable.
+			//New system: laying down still lets you dodge bullets, but with much less consistency
+			//and the dodge has a cooldown that is randomized to still prevent abuse and autohotkey cheese.
+			//Goal: Balance the new hold things while lying down change and make lying down more deadly,
+			//without not straying from the original feel too far.
+			if(!GET_COOLDOWN(owner, "recently_attempted_dodge"))
+				ON_COOLDOWN(owner, "bullet_dodge_cheese", 2 SECONDS)
+				ON_COOLDOWN(owner, "recently_attempted_dodge", rand(2,6) SECONDS)
 			if (isliving(owner))
 				L = owner
 				if (L.getStatusDuration("burning"))
