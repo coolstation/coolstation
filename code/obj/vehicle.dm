@@ -231,8 +231,9 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/vehicle/segway
 	name = "\improper Space Segway"
-	desc = "Now you too can look like a complete tool in space!"
 	icon_state = "segway"
+	hint = "You can remove the battery cover with a screwdriver."
+	desc = "Now you too can look like a complete tool in space!"
 	event_handler_flags = USE_FLUID_ENTER | STAIR_ANIM
 	var/icon_base = "segway"
 	var/icon_rider_state = 1
@@ -241,35 +242,190 @@ ABSTRACT_TYPE(/obj/vehicle)
 	mats = 8
 	var/weeoo_in_progress = 0
 	var/icon_weeoo_state = 2
+	var/obj/item/cell/cell
+	var/open = 0 //Cell hatch
+	var/bat_warning = 10 // battery percentage at which warning plays
+	var/playing = FALSE //movement sound cooldown
+	var/bumpin = FALSE //Same as playing but for the bump animation
+	var/unresponsive_cooldown = FALSE //holy shit how many of these do I need to make
+	var/last_alert = 101 //this is the "baseline" for resetting the battery alert
+
 	soundproofing = 0
 	throw_dropped_items_overboard = 1
 	var/datum/light/light
 	ability_buttons_to_initialize = list(/obj/ability_button/weeoo)
 	var/obj/item/joustingTool = null // When jousting will be reference to lance being used
 
+
+/obj/vehicle/segway/get_desc(dist, mob/user)
+	if (dist > 2)
+		return
+	if (!cell)
+		. += "<br><span class='notice'>The display is blank.</span>"
+		return
+	. += "<br><span class='notice'>The battery indicator reads [floor((cell.charge / cell.maxcharge) * 100)]% remaining.</span>"
+	return
+
+
+/obj/vehicle/segway/disposing() //deletes ur cell cutely
+	if(cell)
+		qdel(src.cell)
+		src.cell = null
+	. = ..()
+
+/obj/vehicle/segway/ex_act()
+	eject_rider(1)
+	if(cell?.disposed)
+		cell = null
+	..()
+
+/obj/vehicle/segway/eject_other_stuff()
+	for(var/atom/movable/AM in src)
+		if(AM != src.cell)
+			AM.set_loc(src.loc)
+
+
 /obj/vehicle/segway/New()
 	..()
 	light = new /datum/light/point
 	light.set_brightness(0.7)
 	light.attach(src)
+	cell = new /obj/item/cell/dan(src) //puts the shitty dan cell in on new
+	setup_sound()
+
+
+/obj/vehicle/segway/setup_sound()
+	sound_emitter = new(src)
+	if (sound_emitter)
+		var/sound/siren = sound()
+		siren.file = "sound/machines/siren_police.ogg"
+		siren.repeat = 1
+		siren.volume = 30
+		sound_emitter.add(siren, "siren_loop")
+
+
+/obj/vehicle/segway/attackby(var/obj/item/I, var/mob/user) //cell addition
+	if(istype(I,/obj/item/cell) && open && !cell) //If the player is holding a cell and slaps it on the segway, check if cover is closed, puts the cell in if its not
+		var/obj/item/cell/C = I
+		usr.drop_item()
+		C.set_loc(src) // puts the cell physically inside the segway
+		cell = C
+		playsound(src, "sound/machines/click.ogg", 50, 1)
+		src.visible_message("[user] inserts the [cell.name] into the [src]", "<span class='notice'>You insert the [cell.name] into the [src]</span>")
+		last_alert = 101
+
+	else if (isscrewingtool(I)) //It wasn't a cell? if it was a screwdriver, open or close the cover
+		open = !open
+		if(open)
+			src.visible_message("[user] opens the cell cover of [src]", "<span class='notice'>You open [src]'s cell cover.</span>")
+			playsound(src.loc, "sound/items/screwdriver.ogg", 50, 1)
+		else
+			src.visible_message("[user] closes the cell cover of [src]", "<span class='notice'>You close [src]'s cell cover.</span>")
+			playsound(src.loc, "sound/items/screwdriver.ogg", 50, 1)
+		return
+	return
+
+/obj/vehicle/segway/attack_hand(var/mob/user) //cell removal
+	if(open && cell)
+		user.put_in_hand_or_drop(src.cell)
+		src.visible_message("[user] removes the [cell.name] from the [src]", "<span class='notice'>You remove the [cell.name] from the [src]</span>")
+		src.cell = null
+		last_alert = 101
+		playsound(src, "sound/machines/click.ogg", 50, 1)
+		src.weeoo_off()
+
+	else if(open && !cell)
+		src.visible_message("<span class='notice'>You notice the cell slot is empty, its cover is open and unscrewed</span>")
+	else
+		src.visible_message("<span class='notice'>You fail to open the cell cover, it is screwed shut</span>")
+
+
+/obj/vehicle/segway/Move()
+	. = ..()
+	if(!cell)
+		return
+	if(src.rider)
+		cell.use(0.3)
+
+		drive_sound() //motor sounds have to be handled by a proc or diagonal movements play too many sounds
+		if(cell.charge < 1)
+			src.stop()
+			return
+		if(floor((cell.charge / cell.maxcharge) * 100) <= bat_warning && last_alert > bat_warning)
+			last_alert = floor((cell.charge / cell.maxcharge) * 100)
+			playsound(src, "sound/machines/phones/ringtones/ringtone1_short_01.ogg", 50, 0)
+			src.rider.show_message("<span class='notice'>The [src.name] displays a low battery warning, [floor((cell.charge / cell.maxcharge) * 100)]% remains.</span>")
+
+
+
+/obj/vehicle/segway/relaymove()
+	if(!cell || cell.charge < 1)
+		unresponsive_message()
+		src.stop()
+		return
+	. = ..()
+
+/obj/vehicle/segway/proc/drive_sound() //this just makes the sound have a cooldown so diagonals dont play 2x the sounds
+	if(playing == FALSE)
+		playsound(src, "sound/machines/motor_whir.ogg", 10, 0)
+		playing = TRUE
+		SPAWN_DBG(0.1 SECOND)
+			playing = FALSE
+			return
+	else
+		return
+
+/obj/vehicle/segway/proc/segway_bump_animation()
+	if(bumpin == FALSE && rider)
+		bump_twitch(src)
+		playsound(src.loc, "sound/impact_sounds/Metal_Clang_3.ogg", 25, 1)
+		bumpin = TRUE
+		SPAWN_DBG(0.7 SECONDS)
+			bumpin = FALSE
+			return
+	else
+		return
+
+/obj/vehicle/segway/proc/unresponsive_message()
+	if(unresponsive_cooldown == FALSE)
+		src.rider.show_message("<span class='notice'>The [src.name] doesn't respond.</span>")
+		unresponsive_cooldown = TRUE
+		SPAWN_DBG(0.7 SECONDS)
+			unresponsive_cooldown = FALSE
+			return
+	else
+		return
+
+
 
 /obj/vehicle/segway/proc/weeoo()
 	if (weeoo_in_progress)
+		src.weeoo_off()
 		return
 
-	weeoo_in_progress = 10
-	SPAWN_DBG(0)
-		playsound(src.loc, "sound/machines/siren_police.ogg", 50, 1)
-		light.enable()
-		src.icon_state = "[src.icon_base][src.icon_weeoo_state]"
-		while (weeoo_in_progress--)
-			light.set_color(0.9, 0.1, 0.1)
-			sleep(0.3 SECONDS)
-			light.set_color(0.1, 0.1, 0.9)
-			sleep(0.3 SECONDS)
-		light.disable()
-		src.update()
-		weeoo_in_progress = 0
+	if(cell.charge > 1)
+		weeoo_in_progress = 100
+		SPAWN_DBG(0)
+			src.sound_emitter.play("siren_loop")
+			light.enable()
+			src.icon_state = "[src.icon_base][src.icon_weeoo_state]"
+			while (weeoo_in_progress--)
+				if(cell.charge > 1)
+					cell.use(0.4)
+					light.set_color(0.9, 0.1, 0.1)
+					sleep(0.3 SECONDS)
+					light.set_color(0.1, 0.1, 0.9)
+					sleep(0.3 SECONDS)
+				else
+					src.weeoo_off()
+
+			src.weeoo_off()
+
+/obj/vehicle/segway/proc/weeoo_off()
+	light.disable()
+	src.sound_emitter.deactivate()
+	weeoo_in_progress = 0
+	src.update()
 
 /obj/ability_button/weeoo
 	name = "Police Siren"
@@ -304,7 +460,11 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/vehicle/segway/proc/update()
 	if (rider)
-		src.icon_state = "[src.icon_base][src.icon_rider_state]"
+		if(weeoo_in_progress)
+			src.icon_state = "[src.icon_base][src.icon_weeoo_state]"
+		else
+			src.icon_state = "[src.icon_base][src.icon_rider_state]"
+
 		if (!src.image_under)
 			src.image_under = image(icon = src.icon, icon_state = src.icon_base, layer = MOB_LAYER - 0.1)
 		else
@@ -315,15 +475,18 @@ ABSTRACT_TYPE(/obj/vehicle)
 		src.icon_state = src.icon_base
 		src.UpdateOverlays(null, "rider")
 		src.underlays = null
+		if(weeoo_in_progress)
+			src.icon_state = "[src.icon_base][src.icon_weeoo_state]_dismount"
 
 /obj/vehicle/segway/Bump(atom/AM as mob|obj|turf)
+	src.stop()
+	segway_bump_animation()
 	if(in_bump)
 		return
 	if(AM == rider || !rider)
 		return
 	if(world.timeofday - AM.last_bumped <= 100)
 		return
-	walk(src, 0)
 	update()
 	..()
 	in_bump = 1
@@ -1769,6 +1932,8 @@ obj/vehicle/clowncar/proc/log_me(var/mob/rider, var/mob/pax, var/action = "", va
 	clowncar
 		name = "Stop The Car"
 		mydelay = 2 SECONDS
+	segway
+		name = "Stop the segway"
 
 /obj/ability_button/togglespook
 	name = "Toggle Spook"
