@@ -1449,6 +1449,8 @@ var/global/iomoon_blowout_state = 0 //0: Hasn't occurred, 1: Moon is irradiated 
 			user.set_loc(get_turf(otherLadder))
 			return
 			//boutput(user, "You climb [src.icon_state == "ladder_wall" ? "up" : "down"] the ladder.")
+		if (istype(user, /mob/living/silicon/) && !IN_RANGE(src.loc, user.loc, 1)) //ladders don't have bluetooth
+			return
 		if (user.can_climb_ladder(silent = FALSE))
 			actions.start(new /datum/action/bar/icon/ladder_climb(user, src, otherLadder), user)
 		//user.set_loc(get_turf(otherLadder))
