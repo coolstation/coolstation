@@ -801,6 +801,25 @@ DEFINE_FLOORS(marble/border_wb,
 	clean = 1)
 
 /////////////////////////////////////////
+//Portuguese Pavement //
+DEFINE_FLOORS(pPavement,
+	icon = 'icons/turf/floors.dmi';\
+	icon_state = "redPpavement";\
+	clean = 1;\
+	step_priority = STEP_PRIORITY_MED)
+
+DEFINE_FLOORS(pPavement/green,
+	icon_state = "greenPpavement";\
+	clean = 1)
+
+DEFINE_FLOORS(pPavement/brown
+	icon_state = "brownPpavement";\
+	clean = 1)
+
+DEFINE_FLOORS(pPavement/blue,
+	icon_state = "bluPpavement";\
+	clean = 1)
+//////////////////////
 
 /turf/floor/specialroom
 
