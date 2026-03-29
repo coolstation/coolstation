@@ -217,7 +217,8 @@
 	density = 1
 	mats = 2
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_CROWBAR
-	flags = NOSPLASH
+	flags = FPRINT | NOSPLASH | FLUID_SUBMERGE
+	object_flags = POUR_INTO
 	processing_tier = PROCESSING_SIXTEENTH
 	machine_registry_idx = MACHINES_PLANTPOTS
 	power_usage = 25

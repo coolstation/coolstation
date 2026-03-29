@@ -284,7 +284,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 
 	newMat.value = round(mat1.value * ot + mat2.value * t)
 	newMat.name = getInterpolatedName(mat1.name, mat2.name, 0.5)
-	newMat.mat_id = "([mat1.mat_id]+[mat2.mat_id])"
+	newMat.mat_id = "([mat1.mat_id]_[mat2.mat_id])"
 	newMat.alpha = round(mat1.alpha * ot + mat2.alpha * t)
 	newMat.color = rgb(round(GetRedPart(mat1.color) * ot + GetRedPart(mat2.color) * t), round(GetGreenPart(mat1.color) * ot + GetGreenPart(mat2.color) * t), round(GetBluePart(mat1.color) * ot + GetBluePart(mat2.color) * t))
 	newMat.properties = mergeProperties(mat1.properties, mat2.properties, t)

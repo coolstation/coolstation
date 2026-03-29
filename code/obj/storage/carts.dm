@@ -11,6 +11,7 @@
 	health = 4
 	can_flip_bust = 1
 	p_class = 1.5
+	scrapes_floor = FALSE
 	var/obj/storage/cart/next_cart = null
 
 	recalcPClass()

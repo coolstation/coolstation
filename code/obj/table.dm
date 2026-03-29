@@ -1354,7 +1354,7 @@
 
 /obj/table/folding/bin
 	name = "bin"
-	desc = "A grody looking bin. You can store stuff in it, but it will be difficult to pull around."
+	desc = "A grody looking bin. You can store stuff in it, but it will be annoying to pull around."
 	icon = 'icons/obj/scrap.dmi'
 	icon_state = "hopper0"
 	p_class = 4

@@ -1039,10 +1039,15 @@
 
 	return 0
 
-/mob/proc/saylist(var/message, var/list/heard, var/list/olocs, var/thickness, var/italics, var/list/processed, var/use_voice_name = 0, var/image/chat_maptext/assoc_maptext = null)
+/mob/proc/saylist(var/message, var/list/heard, var/list/olocs, var/thickness, var/italics, var/list/processed, var/use_voice_name = 0, var/image/chat_maptext/assoc_maptext = null, var/deaf_message, var/image/chat_maptext/assoc_deaf_maptext = null)
 	var/message_a
 
 	message_a = src.say_quote(message)
+
+	var/deaf_message_a
+
+	if(deaf_message)
+		deaf_message_a = src.say_quote(deaf_message)
 
 	if (italics)
 		message_a = "<i>[message_a]</i>"
@@ -1051,16 +1056,23 @@
 	if (!use_voice_name)
 		my_name = src.get_heard_name()
 	var/rendered = "<span class='game say'>[my_name] <span class='message'>[message_a]</span></span>"
+	var/deaf_rendered
+	if(deaf_message_a)
+		deaf_rendered = "<span class='game say'>[my_name] <span class='message'>[deaf_message_a]</span></span>"
 
 	var/rendered_outside = null
+	var/deaf_rendered_outside = null
 	if (olocs.len)
 		var/atom/movable/OL = olocs[olocs.len]
 		if (thickness < 0)
 			rendered_outside = rendered
 		else if (thickness == 0)
 			rendered_outside = "<span class='game say'>[my_name] (on [bicon(OL)] [OL]) <span class='message'>[message_a]</span></span>"
+			deaf_rendered_outside = "<span class='game say'>[my_name] (on [bicon(OL)] [OL]) <span class='message'>[deaf_message_a]</span></span>"
 		else if (thickness < 10)
 			rendered_outside = "<span class='game say'>[my_name] (inside [bicon(OL)] [OL]) <span class='message'>[message_a]</span></span>"
+			if(prob(20))
+				deaf_rendered_outside = "<span class='game say'>[my_name] (inside [bicon(OL)] [OL]) says something.</span>"
 		else if (thickness < 20)
 			rendered_outside = "<span class='game say'>muffled <span class='name' data-ctx='\ref[src.mind]'>[src.voice_name]</span> (inside [bicon(OL)] [OL]) <span class='message'>[message_a]</span></span>"
 
@@ -1069,10 +1081,12 @@
 			continue
 		processed += M
 		var/thisR = rendered
+		var/thisR_deaf = deaf_rendered
 
 		if (olocs.len && !(M.loc in olocs))
 			if (rendered_outside)
 				thisR = rendered_outside
+				thisR_deaf = deaf_rendered_outside
 			else
 				continue
 		else
@@ -1082,7 +1096,7 @@
 		if (M.client && (istype(M, /mob/dead/observer)||M.client.holder) && src.mind)
 			thisR = "<span class='adminHearing' data-ctx='[M.client.chatOutput.getContextFlags()]'>[thisR]</span>"
 		M.heard_say(src, message)
-		M.show_message(thisR, 2, assoc_maptext = assoc_maptext)
+		M.show_message(thisR, 2, thisR_deaf, 1, assoc_maptext = assoc_maptext, assoc_deaf_maptext = assoc_deaf_maptext)
 
 	return processed
 

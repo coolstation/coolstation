@@ -135,6 +135,7 @@
 /world/TgsEndProcess()
 	var/datum/tgs_api/api = TGS_READ_GLOBAL(tgs)
 	if(api)
+		message_admins("Triggering TGS shutdown. (The server will auto-restart don't worry)")
 		api.EndProcess()
 
 /world/TgsChatChannelInfo()

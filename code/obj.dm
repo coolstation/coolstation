@@ -17,7 +17,6 @@
 
 	var/mechanics_type_override = null //Fix for children of scannable items being reproduced in mechanics
 	var/artifact = null
-	var/cannot_be_stored = FALSE
 	var/move_triggered = 0
 	var/w_class = W_CLASS_NORMAL
 //	var/object_flags = 0 // moved to atom/movable

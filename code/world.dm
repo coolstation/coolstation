@@ -55,6 +55,12 @@ var/global/map_currently_above_magindara = 1
 var/global/map_currently_above_magindara = 0
 #endif
 
+#ifdef SNOW_MAP
+var/global/map_currently_very_cold = 1
+#else
+var/global/map_currently_very_cold = 0
+#endif
+
 //should fabs start pre-filled and lockers be chocked full of extra goodies (default/goon style) or should they start empty/have less stuff
 #ifdef SCARCE_MAP
 var/global/map_currently_experiencing_shortages = 1
@@ -491,12 +497,11 @@ var/f_color_selector_handler/F_Color_Selector
 		var/datum/tgs_revision_information/rev = TgsRevision()
 		vcs_revision = rev.commit
 
-		var/datum/tgs_api/v5/api = TGS_READ_GLOBAL(tgs)
-		if(api)
-			api.reboot_mode = TGS_REBOOT_MODE_RESTART
 
-
-	lobby_titlecard = new /datum/titlecard()
+	if (config && (config.env == "pud"))
+		lobby_titlecard = new /datum/titlecard/dev()
+	else
+		lobby_titlecard = new /datum/titlecard()
 
 	lobby_titlecard.set_agreement_html() //only need to do this here i think, it's otherwise pretty static
 	lobby_titlecard.set_pregame_html()
@@ -723,6 +728,10 @@ var/f_color_selector_handler/F_Color_Selector
 #ifdef DESERT_MAP
 	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_grubranch.dmm')
 #endif
+#ifdef SNOW_MAP
+	load_custom_title_screen_baked_in('assets/maps/prefabs/titlescreen_depot.dmm')
+#endif
+
 
 	UPDATE_TITLE_STATUS("Lighting up 🚬") //aaa
 	Z_LOG_DEBUG("World/Init", "RobustLight2 init...")
@@ -745,11 +754,6 @@ var/f_color_selector_handler/F_Color_Selector
 	current_state = GAME_STATE_PREGAME
 	Z_LOG_DEBUG("World/Init", "Now in pre-game state.")
 
-	//Please delete this once broadcasting code has been proven to work and integrated into shit
-	Z_LOG_DEBUG("World/Init", "Setting up a test transmission...")
-	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing)
-	//new /datum/directed_broadcast/testing_finite //this gets tracked it should be fine :)
-	broadcast_controls.broadcast_start(new /datum/directed_broadcast/testing_teevee, 1, -1, 1)
 
 #ifdef TWITCH_BOT_ALLOWED
 	for (var/client/C)
@@ -896,8 +900,9 @@ var/f_color_selector_handler/F_Color_Selector
 		world.Reboot()
 
 /world/Reboot()
-	TgsReboot()
+	//TgsReboot()
 	shutdown_logging()
+	world.TgsEndProcess()
 	return ..()
 
 /world/proc/update_status()

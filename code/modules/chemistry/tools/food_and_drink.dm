@@ -488,6 +488,7 @@
 	icon_state = null
 	flags = FPRINT | TABLEPASS | OPENCONTAINER | SUPPRESSATTACK
 	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
+	object_flags = POUR_INTO
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
 	var/splash_all_contents = 0 //making an executive decision to *not* splash everything out by default just because you clicked your beer on something else by accident
 	doants = 0
@@ -518,7 +519,7 @@
 
 	on_spin_emote(var/mob/living/carbon/human/user as mob)
 		. = ..()
-		if (src.reagents && src.reagents.total_volume > 0)
+		if (src.is_open_container() &&src.reagents && src.reagents.total_volume > 0)
 			user.visible_message("<span class='alert'><b>[user] spills the contents of [src] all over [him_or_her(user)]self!</b></span>")
 			logTheThing("combat", user, null, "spills the contents of [src] [log_reagents(src)] all over [him_or_her(user)]self at [log_loc(user)].")
 			src.reagents.reaction(get_turf(user), TOUCH)
@@ -1554,7 +1555,7 @@
 			else
 				glass.reagents.trans_to(target, min(glass.reagents.total_volume, glass.gulp_size))
 			glass.reagents.reaction(target, INGEST, min(glass.reagents.total_volume, glass.gulp_size, (target.reagents?.maximum_volume-target.reagents?.total_volume)))
-			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
+			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1, SOUND_RANGE_MODERATE)
 			eat_twitch(target)
 
 		if(glass.reagents.total_volume <= 0)

@@ -28,7 +28,7 @@ datum/shuttle_controller
 				else
 					world << csound("sound/misc/shuttle_enroute.ogg")
 			if(prob(5))
-				broadcast_controls.broadcast_start(new /datum/directed_broadcast/eaglestoryone, 1)
+				broadcast_controls.broadcast_start(new /datum/directed_broadcast/programme/tv_only/eaglestoryone, 1)
 
 		if (online)
 			if(direction == -1)

@@ -887,3 +887,49 @@
 			sarin_filler = new /datum/loot_generator(2,2)
 			sarin_filler.fill_remaining_with_instance(src, new /obj/loot_spawner/short/two_sarin_grenades)
 			..()
+
+/obj/storage/crate/rusty
+	icon_state = "rustycrate1"
+	icon_opened = "rustycrate1-open"
+	icon_closed = "rustycrate1"
+
+	alt
+		icon_state = "rustycrate2"
+		icon_opened = "rustycrate2-open"
+		icon_closed = "rustycrate2"
+
+/obj/storage/crate/trunk
+	name = "trunk"
+	desc = "Some sort of footlocker or chest or something."
+	icon_state = "trunk1"
+	icon_opened = "trunk1-open"
+	icon_closed = "trunk1"
+	weld_image_offset_Y = -4
+
+	green
+		icon_state = "trunk2"
+		icon_opened = "trunk2-open"
+		icon_closed = "trunk2"
+
+	orange
+		icon_state = "trunk3"
+		icon_opened = "trunk3-open"
+		icon_closed = "trunk3"
+
+/obj/storage/crate/steel
+	name = "steel crate"
+	icon_state = "steelcrate"
+	icon_opened = "steelcrateopen"
+	icon_closed = "steelcrate"
+
+/obj/storage/crate/nt
+	name = "nanotrasen crate"
+	icon_state = "blueandtan"
+	icon_opened = "blueandtanopen"
+	icon_closed = "blueandtan"
+
+/obj/storage/crate/goopy
+	icon_state = "goopycrate"
+	icon_opened = "goopycrateopen"
+	icon_closed = "goopycrate"
+

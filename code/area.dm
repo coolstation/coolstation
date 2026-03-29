@@ -2285,6 +2285,16 @@ ABSTRACT_TYPE(/area/station/mining)
 	spy_secure_area = TRUE
 	mail_tag = "Captain's Office - Bridge"
 
+/area/station/bridge/sitedirector
+	name = "Site Director's Office"
+	icon_state = "CAPN"
+	spy_secure_area = TRUE
+
+/area/station/bridge/surveyorgeneral
+	name = "Surveyor General's Office"
+	icon_state = "CAPN"
+	spy_secure_area = TRUE
+
 /area/station/bridge/hos
 	name = "Head of Personnel's Office"
 	icon_state = "HOP"
@@ -3319,6 +3329,11 @@ ABSTRACT_TYPE(/area/station/science)
 	sound_environment = EAX_BATHROOM
 	workplace = 1
 
+/area/station/science/recon
+	name = "Recon"
+	icon_state = "red"
+	workplace = 1
+
 /area/station/science/testchamber
 	name = "Test Chamber"
 	icon_state = "yellow"
@@ -3862,6 +3877,13 @@ ABSTRACT_TYPE(/area/station/ai_monitored/storage/)
 	icon_state = "armory"
 	sound_environment = EAX_ROOM
 	teleport_blocked = 1
+	spy_secure_area = TRUE
+
+/area/station/ai_monitored/bunker
+	name = "Bunker"
+	icon_state = "armory"
+	sound_environment = EAX_ROOM
+	do_not_irradiate = 1
 	spy_secure_area = TRUE
 
 // // // // // //

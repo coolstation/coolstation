@@ -1520,7 +1520,6 @@
 		. = ..(change)
 
 	onUpdate(optional=null)
-		..()
 		var/mob/M = owner
 		if (!M.nutrition || M.nutrition >= 100)
 			M.delStatus("hungry")

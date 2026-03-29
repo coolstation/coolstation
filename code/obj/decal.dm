@@ -1,6 +1,7 @@
 /obj/decal
 	pass_unstable = PRESERVE_CACHE
 	text = ""
+	flags = FPRINT | CANT_FIT_IN_CRATES
 	var/list/random_icon_states = list()
 	var/random_dir = 0
 	var/cares_bout_turf_change = FALSE
@@ -81,9 +82,11 @@
 /obj/decal/skeleton
 	name = "skeleton"
 	desc = "The remains of a human."
+	flags = FPRINT
 	opacity = 0
 	density = 0
 	anchored = ANCHORED
+	flags = FPRINT
 	icon = 'icons/obj/adventurezones/void.dmi'
 	icon_state = "skeleton_l"
 

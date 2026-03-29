@@ -1387,7 +1387,7 @@
 		return
 
 	if (src.bioHolder.HasEffect("revenant"))
-		src.visible_message("<span class='alert'>[src] makes some [pick("eldritch", "eerie", "otherworldly", "netherly", "spooky", "demonic", "haunting")] noises!</span>")
+		src.audible_message("<span class='alert'>[src] makes some [pick("eldritch", "eerie", "otherworldly", "netherly", "spooky", "demonic", "haunting")] noises!</span>")
 		src.say_language = original_language
 		return
 

@@ -1497,6 +1497,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 5, cost=PAY_UNTRAINED/4)
 
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(1,3), hidden=1, cost=420)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/bowlpiece/cigarette, 1, hidden=1, cost=PAY_UNTRAINED)
 
 	noknobs
 		desc = "Higher tech, but really doesn't have the same vibe."

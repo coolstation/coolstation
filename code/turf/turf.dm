@@ -668,6 +668,9 @@
 				floor = ReplaceWith(/turf/floor/plating/gehenna, FALSE)
 			else
 				floor = ReplaceWith(/turf/space, FALSE)
+
+	else if (map_currently_very_cold)
+		floor = ReplaceWith(/turf/floor/nevicata/wastes, FALSE) //cratered snow space tile eventually
 	else
 		floor = ReplaceWith(/turf/space, FALSE)
 

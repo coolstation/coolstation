@@ -12,6 +12,7 @@
 	anchored = UNANCHORED
 	pass_unstable = FALSE
 	flags = FPRINT | FLUID_SUBMERGE
+	object_flags = POUR_INTO
 	pressure_resistance = 2*ONE_ATMOSPHERE
 	p_class = 1.5
 
