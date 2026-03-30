@@ -1432,14 +1432,7 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 				src.anchored = UNANCHORED
 			logTheThing("station", user, null, "[src.anchored ? "bolts" : "unbolts"] a [src.name] [src.anchored ? "to" : "from"] the floor at [log_loc(src)].") // Ditto (Convair880).
 	else if(istype(W, /obj/item/tank/plasma))
-		if(src.P)
-			boutput(user, "<span class='alert'>There appears to already be a plasma tank loaded!</span>")
-			return
-		src.P = W
-		W.set_loc(src)
-		user.u_equip(W)
-		CU?.updatecons()
-		updateicon()
+		src.load_plasma(W, user)
 	else if (ispryingtool(W))
 		if(!P)
 			return
@@ -1457,6 +1450,16 @@ for some reason I brought it back and tried to clean it up a bit and I regret ev
 		for(var/mob/M in AIviewers(src))
 			if(M == user)	continue
 			M.show_message("<span class='alert'>The [src.name] has been hit with the [W.name] by [user.name]!</span>")*/
+
+/obj/machinery/power/collector_array/proc/load_plasma(obj/item/tank/plasma/new_tank, mob/user)
+	if(src.P)
+		boutput(user, "<span class='alert'>There appears to already be a plasma tank loaded!</span>")
+		return
+	src.P = new_tank
+	new_tank.set_loc(src)
+	user.u_equip(new_tank)
+	CU?.updatecons()
+	updateicon()
 
 ////////////////////////// Collector array controller ////////////////////////////
 

@@ -557,7 +557,7 @@
 
 				mode = 6
 				SPAWN_DBG(0.2 SECONDS)
-					src.navigate_to(src.target, src.bot_move_delay, exclude = src.path[1])
+					src.navigate_to(src.target, src.bot_move_delay, exclude = src.path[1], max_dist = 180)
 					if(path)
 						blockcount = 0
 						src.visible_message("[src] makes a delighted ping!", "You hear a ping.")
@@ -595,7 +595,7 @@
 				reached_target = 0
 				mode = 2
 			KillPathAndGiveUp()
-			src.navigate_to(src.target, src.bot_move_delay)
+			src.navigate_to(src.target, src.bot_move_delay, max_dist = 180)
 			if(src.path)
 				icon_state = "mulebot[(wires & wire_mobavoid) == wire_mobavoid]"
 				return

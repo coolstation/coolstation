@@ -554,6 +554,13 @@ Contains:
 			//S = null
 			qdel(S)
 
+	mouse_drop(over_object)
+		if (!isliving(usr)) return
+		if (get_dist(src, usr) > 1 || get_dist(usr, over_object) > 1) return
+		if (istype(over_object, /obj/machinery/power/collector_array))
+			var/obj/machinery/power/collector_array/target_collector = over_object
+			target_collector.load_plasma(src, usr)
+
 /*/obj/item/tank/supersoaker
 	name = "Super Soaker"
 	icon_state = "jetpack0"
