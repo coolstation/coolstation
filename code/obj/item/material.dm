@@ -617,7 +617,7 @@
 	item_state = "shard-glass"
 	flags = TABLEPASS | FPRINT
 	tool_flags = TOOL_CUTTING
-	w_class = W_CLASS_NORMAL
+	w_class = W_CLASS_TINY
 	hit_type = DAMAGE_CUT
 	hitsound = 'sound/impact_sounds/Flesh_Stab_1.ogg'
 	force = 5.0
@@ -698,7 +698,10 @@
 	game_stats.Increment("workplacesafety")
 	H.changeStatus("weakened", 3 SECONDS)
 	H.force_laydown_standup()
+	if(!H.shoes)
+		bleed(H, 5, violent = TRUE)
 	var/obj/item/affecting = H.organs[pick("l_leg", "r_leg")]
+	playsound(H.loc, "sound/impact_sounds/Generic_Stab_1.ogg", 20, 1)
 	affecting.take_damage(force, 0)
 	H.UpdateDamageIcon()
 
