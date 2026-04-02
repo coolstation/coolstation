@@ -812,7 +812,7 @@ DEFINE_FLOORS(pPavement/green,
 	icon_state = "greenPpavement";\
 	clean = 1)
 
-DEFINE_FLOORS(pPavement/brown
+DEFINE_FLOORS(pPavement/brown,
 	icon_state = "brownPpavement";\
 	clean = 1)
 
