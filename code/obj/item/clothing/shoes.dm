@@ -369,6 +369,8 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/tripsalot, list(SLOT_SHOES))
 	AddComponent(/datum/component/wearertargeting/crayonwalk, list(SLOT_SHOES))
+	src.remove_storage() // just in case
+	src.create_storage(/datum/storage, spawn_contents = null, slots = 2, max_wclass = W_CLASS_NORMAL, sneaky = TRUE)
 
 /obj/item/clothing/shoes/moffers
 	name = "moffers"
