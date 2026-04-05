@@ -152,7 +152,8 @@
 					<div class='r'>
 						<a href='[playeropt_link(M, "checkreagent")]'>Check</a> &bull;
 						<a href='[playeropt_link(M, "addreagent")]'>Add</a> &bull;
-						<a href='[playeropt_link(M, "removereagent")]'>Remove</a>
+						<a href='[playeropt_link(M, "removereagent")]'>Remove</a> &bull;
+						<a href='[playeropt_link(M, "setbloodid")]'>Set Blood ID</a>
 					</div>
 					<div class='l'>Bioeffects<a href='byond://?src=\ref[src];action=secretsfun;type=bioeffect_help'>*</a></div>
 					<div class='r'>

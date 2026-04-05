@@ -88,7 +88,7 @@
 
 			"Gib",\
 			"Polymorph",\
-			"Modify Organs",\
+			"Set Blood ID",\
 			"Modify Parts",\
 			"Modify Module",\
 			"Swap Minds",\
