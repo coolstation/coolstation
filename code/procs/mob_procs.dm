@@ -1090,7 +1090,7 @@
 			else
 				continue
 		else
-			if (isghostdrone(M) && !isghostdrone(src) && !istype(M, /mob/living/silicon/ghostdrone/deluxe))
+			if (isghostdrone(M) && !isghostdrone(src) && !istype(M, /mob/living/silicon/ghostdrone))
 				thisR = "<span class='game say'><span class='name' data-ctx='\ref[src.mind]'>[src.voice_name]</span> <span class='message'>[message_a]</span></span>"
 
 		if (M.client && (istype(M, /mob/dead/observer)||M.client.holder) && src.mind)
