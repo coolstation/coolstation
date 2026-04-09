@@ -1320,8 +1320,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 	CritterDeath()
 		..()
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 75, 1)
-		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
-		gib = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,src.loc)
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = new(src.loc) //probably don't need to pass blood id or skintone here
 		gib.streak_cleanable(NORTH)
 		qdel(src)
 

@@ -1898,7 +1898,7 @@
 	New()
 		. = ..()
 		SPAWN_DBG(1 DECI SECOND) //sync with the organs spawn
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, src.loc)
+			new /obj/decal/cleanable/tracked_reagents/blood/gibs(src.loc)
 
 	one_to_three
 		min_amt2spawn = 1

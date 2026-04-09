@@ -2283,7 +2283,7 @@ datum
 				if(volume >= 5 && prob(10))
 					if(!locate(/obj/decal/cleanable/tracked_reagents/blood/gibs) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,T)
+						new /obj/decal/cleanable/tracked_reagents/blood/gibs(T)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				..() // call your parents  :(

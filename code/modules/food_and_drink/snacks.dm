@@ -863,8 +863,7 @@
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 
-						var/obj/decal/cleanable/tracked_reagents/blood/gibs/G = null // For forensics (Convair880).
-						G = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,M.loc)
+						var/obj/decal/cleanable/tracked_reagents/blood/gibs/G = new(H.loc, H.organHolder?.spleen?.blood_id, H.bioHolder?.mobAppearance?.s_tone) // For forensics (Convair880).
 						if (H.bioHolder.Uid && H.bioHolder.bloodType)
 							G.blood_DNA = H.bioHolder.Uid
 							G.blood_type = H.bioHolder.bloodType

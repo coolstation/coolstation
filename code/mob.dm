@@ -1768,7 +1768,7 @@
 		else
 			. = robogibs(src.loc, viral_list)
 	else
-		. = call(custom_gib_handler)(src.loc, viral_list, ejectables, bdna, btype)
+		. = call(custom_gib_handler)(src.loc, viral_list, ejectables, bdna, btype, source = src)
 
 	// splash our fluids around
 	if(src.reagents && src.reagents.total_volume)

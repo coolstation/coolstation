@@ -601,7 +601,7 @@ datum
 				if(volume >= 5)
 					if(!locate(/obj/decal/cleanable/tracked_reagents/blood/gibs) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,T)
+						new /obj/decal/cleanable/tracked_reagents/blood/gibs(T)
 			/*reaction_obj(var/obj/O, var/volume)
 				if(istype(O,/obj/item/parts/robot_parts/robot_frame))
 					if (O.check_completion() && volume >= 20)

@@ -6,58 +6,36 @@
 		location = usr
 	playsound(location, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 
-	// NORTH
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
-	gib.streak_cleanable(NORTH)
-	gib.diseases += diseases
-	gib.blood_DNA = blood_DNA
-	gib.blood_type = blood_type
-	if(source?.blood_id) gib.sample_reagent = source.blood_id
-	gibs.Add(gib)
+	var/_blood_id = null
+	var/_s_tone = null
+	if (source)
+		_blood_id = source.blood_id
+		_s_tone = source.bioHolder?.mobAppearance?.s_tone
 
-	// SOUTH
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
-	gib.streak_cleanable(SOUTH)
-	gib.diseases += diseases
-	gib.blood_DNA = blood_DNA
-	gib.blood_type = blood_type
-	if(source?.blood_id) gib.sample_reagent = source.blood_id
-	gibs.Add(gib)
 
-	// WEST
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
-	gib.streak_cleanable(WEST)
-	gib.diseases += diseases
-	gib.blood_DNA = blood_DNA
-	gib.blood_type = blood_type
-	if(source?.blood_id) gib.sample_reagent = source.blood_id
-	gibs.Add(gib)
-
-	// EAST
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
-	gib.streak_cleanable(EAST)
-	gib.diseases += diseases
-	gib.blood_DNA = blood_DNA
-	gib.blood_type = blood_type
-	if(source?.blood_id) gib.sample_reagent = source.blood_id
-	gibs.Add(gib)
+	//4 of em
+	for(var/direction in cardinal)
+		gib = new /obj/decal/cleanable/tracked_reagents/blood/gibs(location, _blood_id, _s_tone)
+		gib.streak_cleanable(direction)
+		gib.diseases += diseases
+		gib.blood_DNA = blood_DNA
+		gib.blood_type = blood_type
+		gibs.Add(gib)
 
 	if(headbits)
 		// RANDOM BODY
-		gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs/body,location)
+		gib = new /obj/decal/cleanable/tracked_reagents/blood/gibs/body(location, _blood_id, _s_tone)
 		gib.streak_cleanable()
 		gib.diseases += diseases
 		gib.blood_DNA = blood_DNA
 		gib.blood_type = blood_type
-		if(source?.blood_id) gib.sample_reagent = source.blood_id
 		gibs.Add(gib)
 
 	// CORE
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs/core,location)
+	gib = new /obj/decal/cleanable/tracked_reagents/blood/gibs/core(location, _blood_id, _s_tone)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
 	gib.blood_type = blood_type
-	if(source?.blood_id) gib.sample_reagent = source.blood_id
 	gibs.Add(gib)
 
 	handle_ejectables(location, ejectables)
