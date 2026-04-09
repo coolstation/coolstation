@@ -22,7 +22,7 @@
 	var/working = 0
 	var/mob/holder //this is hacky way to get the user without looping through all mobs in process
 	var/processHeld = 0
-	var/highpower = 0 //high power mode (holding during movement)
+	var/highpower = 1 //high power mode (holding during movement)
 
 	var/datum/action/holdAction
 
@@ -104,6 +104,7 @@
 
 			if (istype(target, /obj/item/magtractor))
 				return 0
+
 
 			//pick up item
 			actions.start(new/datum/action/bar/private/icon/magPicker(target, src), user)
@@ -211,8 +212,6 @@
 
 		src.UpdateOverlays(I, "magField")
 		src.updateHeldOverlay(W)
-
-		playsound(src.loc, "sound/machines/ping.ogg", 50, 1)
 
 		for (var/obj/ability_button/magtractor_drop/abil in src)
 			abil.icon_state = "mag_drop1"
