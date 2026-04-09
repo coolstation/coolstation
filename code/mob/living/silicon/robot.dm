@@ -2595,7 +2595,7 @@
 		if(!part) return
 
 		playsound(src, "sound/impact_sounds/Metal_Hit_Light_1.ogg", 40, 1)
-		if (istype(src.loc,/turf/)) make_cleanable(/obj/decal/cleanable/robot_debris, src.loc)
+		if (istype(src.loc,/turf/)) new /obj/decal/cleanable/robot_debris( src.loc)
 		elecflash(src,power = 2)
 
 		if (istype(part,/obj/item/parts/robot_parts/chest/))

@@ -1138,7 +1138,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 				R.compborg_lose_limb(R.part_chest)
 
 				for (var/I = 1, I <= 5 && chestpunt && step(chestpunt ,direction, 1), I++)
-					make_cleanable(/obj/decal/cleanable/oil,chestpunt.loc)
+					new /obj/decal/cleanable/oil(chestpunt.loc)
 					playsound(chestpunt,'sound/impact_sounds/Slimy_Splat_1.ogg', 50, 1)
 
 				did_it = 1
@@ -2523,7 +2523,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 				R.compborg_lose_limb(R.part_chest)
 
 				for (var/I = 1, I <= 5 && chestpunt && step(chestpunt ,direction, 1), I++)
-					make_cleanable(/obj/decal/cleanable/oil,chestpunt.loc)
+					new /obj/decal/cleanable/oil(chestpunt.loc)
 					playsound(chestpunt,'sound/impact_sounds/Slimy_Splat_1.ogg', 50, 1)
 
 				did_it = 1

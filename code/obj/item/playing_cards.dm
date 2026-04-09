@@ -1206,7 +1206,7 @@
 		..()
 		user.visible_message("<span class='green'><b>[user.name]</b> has thoroughly mutilated the StG Preconstructed Deck Box...</span>")
 		box.icon_state = "stg-box-torn"
-		var/obj/decal/cleanable/generic/decal = make_cleanable(/obj/decal/cleanable/generic,get_turf(user.loc))
+		var/obj/decal/cleanable/generic/decal = new /obj/decal/cleanable/generic(get_turf(user.loc))
 		decal.color = pick("#000000","#6f0a0a","#a0621b")
 
 /datum/action/bar/private/stg_pry

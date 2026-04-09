@@ -478,7 +478,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				if (src.on_fire)
 					src.visible_message("<span class='combat'>[src] burns down and collapses into a sad pile of ash. <b><i>Spacemas is ruined!!!</i></b></span>")
 					for (var/turf/floor/T in range(1,src))
-						make_cleanable( /obj/decal/cleanable/ash,T)
+						new  /obj/decal/cleanable/ash(T)
 					modify_christmas_cheer(-33)
 					qdel(src)
 					return
@@ -518,7 +518,7 @@ var/static/list/santa_snacks = list(/obj/item/reagent_containers/food/drinks/egg
 				src.visible_message("\The [src] vanishes into thin air, as its subatomic particles decay!")
 			else
 				src.visible_message("\The [src] melts!")
-				make_cleanable( /obj/decal/cleanable/water,get_turf(src))
+				new  /obj/decal/cleanable/water(get_turf(src))
 			qdel(src)
 
 	heal(var/mob/living/M)

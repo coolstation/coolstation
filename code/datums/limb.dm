@@ -746,7 +746,7 @@
 			var/obj/item/I = target
 			if(I.anchored)
 				return 0
-			var/obj/decal/cleanable/molten_item/I2 = make_cleanable(/obj/decal/cleanable/molten_item,I.loc)
+			var/obj/decal/cleanable/molten_item/I2 = new /obj/decal/cleanable/molten_item(I.loc)
 			user.visible_message("<span class='alert'>The [I] melts in [user]'s clutch</span>", "<span class='alert'>The [I] melts in your clutch!</span>")
 			qdel(target)
 			I2.desc = "Looks like this was \an [I], melted by someone who was too much."

@@ -338,4 +338,4 @@
 	CritterDeath()
 		..()
 		src.remove_simple_light("rad")
-		make_cleanable( /obj/decal/cleanable/greenglow,src.loc)
+		new  /obj/decal/cleanable/greenglow(src.loc)

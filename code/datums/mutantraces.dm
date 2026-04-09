@@ -1071,7 +1071,7 @@
 		blood_points = max(0,blood_points)
 		cleanable_tally += (prev_blood - blood_points)
 		if (cleanable_tally > 20)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,get_turf(mob))
+			new /obj/decal/cleanable/tracked_reagents/blood(get_turf(mob))
 			cleanable_tally = 0
 
 		mob.max_health = blood_points * blood_to_health_scalar

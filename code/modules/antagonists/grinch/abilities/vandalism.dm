@@ -45,7 +45,7 @@
 			if (locate(/obj/decal/cleanable/grinch_graffiti) in T)
 				continue
 			boutput(M, __blue("You scrawl graffiti all over the wall!"))
-			make_cleanable(/obj/decal/cleanable/grinch_graffiti,T)
+			new /obj/decal/cleanable/grinch_graffiti(T)
 			modify_christmas_cheer(-1)
 			objects_fucked_up++
 

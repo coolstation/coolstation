@@ -30,7 +30,7 @@
 				return
 			if (E.reagents.has_reagent(reagent))
 				the_mob.visible_message("<span class='alert'>[E] melts!</span>")
-				make_cleanable(/obj/decal/cleanable/molten_item,get_turf(the_mob))
+				new /obj/decal/cleanable/molten_item(get_turf(the_mob))
 				qdel(E)
 				return
 

@@ -979,7 +979,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 			SPAWN_DBG(0)
 				//Center tile
 				var/obj/effects/spray/S = spraybits[1]
-				make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,S.loc)
+				new /obj/decal/cleanable/tracked_reagents/mud(S.loc)
 				if(is_blocked_turf(S.loc))
 					spraybits -= S
 					qdel(S)
@@ -988,9 +988,9 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 				for(var/i=0, i<src.splashzone, i++)
 					for(var/obj/effects/spray/SP in spraybits)
 						SP.set_loc(get_step(SP.loc, SP.original_dir))
-						make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,SP.loc)
+						new /obj/decal/cleanable/tracked_reagents/mud(SP.loc)
 						if(is_blocked_turf(SP.loc))
-							make_cleanable(/obj/decal/cleanable/tracked_reagents/mud,SP.loc)
+							new /obj/decal/cleanable/tracked_reagents/mud(SP.loc)
 							spraybits -= SP
 							qdel(SP)
 
@@ -1174,7 +1174,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 			src.name = "empty [src.name]" // its empty now!
 			src.desc = "[src.desc] It has been cut open and emptied out."
 
-			make_cleanable(/obj/decal/cleanable/magnesiumpile, get_turf(src.loc)) // create magnesium pile
+			new /obj/decal/cleanable/magnesiumpile( get_turf(src.loc)) // create magnesium pile
 			src.reagents.clear_reagents() // remove magnesium from firework
 			return
 
@@ -1704,9 +1704,9 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 			//do mod effects : pre-explosion
 			if (glowsticks)
 				var/turf/T = get_turf(src.loc)
-				make_cleanable( /obj/decal/cleanable/generic,T)
+				new  /obj/decal/cleanable/generic(T)
 				for (var/turf/splat in view(1,src.loc))
-					make_cleanable( /obj/decal/cleanable/greenglow,splat)
+					new  /obj/decal/cleanable/greenglow(splat)
 				var/radium_amt = 6 * glowsticks
 				for (var/mob/M in view(3,src.loc))
 					if(iscarbon(M))
@@ -1731,7 +1731,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/projectile)
 				if (meat > 1)
 					gibs(src.loc)
 				for (var/turf/splat in view(meat,src.loc))
-					make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,splat)
+					new  /obj/decal/cleanable/tracked_reagents/blood(splat)
 			if (ghost) //throw objects towards bomb center
 				var/turf/T = get_turf(src.loc)
 				if (ghost > 1)

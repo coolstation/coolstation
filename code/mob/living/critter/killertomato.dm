@@ -70,7 +70,7 @@
 	death(var/gibbed)
 		if (!gibbed)
 			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
-			var/obj/decal/cleanable/tracked_reagents/blood/B = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,src.loc)
+			var/obj/decal/cleanable/tracked_reagents/blood/B = new /obj/decal/cleanable/tracked_reagents/blood(src.loc)
 			B.name = "ruined tomato"
 			ghostize()
 			qdel(src)

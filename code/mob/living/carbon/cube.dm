@@ -285,7 +285,7 @@
 								if (9) message = "<B>[src]</B> shows that it can fart just as good as any human."
 								if (10)
 									message = "<B>[src]</B> farts oil and debris out of one of its sides! That's kinda grody!"
-									var/obj/decal/cleanable/machine_debris/gib = make_cleanable(/obj/decal/cleanable/machine_debris, src.loc)
+									var/obj/decal/cleanable/machine_debris/gib = new /obj/decal/cleanable/machine_debris( src.loc)
 									gib.streak_cleanable()
 						playsound(src.loc, 'sound/voice/farts/poo2_robot.ogg', 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 						src.remove_stamina(STAMINA_DEFAULT_FART_COST)

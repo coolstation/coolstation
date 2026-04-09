@@ -177,7 +177,7 @@
 		if(!istype(T) || src.decal_done || !ispath(src.created_decal))
 			return FALSE
 		playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
-		var/obj/decal/cleanable/cleanable = make_cleanable(src.created_decal, T)
+		var/obj/decal/cleanable/cleanable = new src.created_decal( T)
 		cleanable.blood_DNA = src.blood_DNA
 		cleanable.blood_type = src.blood_type
 		if(istype(cleanable, /obj/decal/cleanable/tracked_reagents/blood))

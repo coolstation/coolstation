@@ -34,13 +34,13 @@
 	death(var/gibbed)
 		if (!gibbed)
 			playsound(src.loc, "sound/effects/splat.ogg", 100, 1)
-			make_cleanable(/obj/decal/cleanable/oil,src.loc)
+			new /obj/decal/cleanable/oil(src.loc)
 			gibs(src.loc)
 			ghostize()
 			qdel(src)
 		else
 			playsound(src.loc, "sound/effects/splat.ogg", 100, 1)
-			make_cleanable(/obj/decal/cleanable/oil,src.loc)
+			new /obj/decal/cleanable/oil(src.loc)
 			..()
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)

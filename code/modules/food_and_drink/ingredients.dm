@@ -29,7 +29,7 @@
 		if (src.blood <= 0) return ..()
 
 		if (istype(T))
-			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,T)
+			new  /obj/decal/cleanable/tracked_reagents/blood(T)
 			blood--
 		..()
 
@@ -141,7 +141,7 @@
 		if (src.cybermeat == 1)
 			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
 			if (istype(T))
-				make_cleanable(/obj/decal/cleanable/oil,T)
+				new /obj/decal/cleanable/oil(T)
 				..()
 			else
 				return..()
@@ -208,8 +208,8 @@
 		var/turf/T = get_turf(A)
 		src.visible_message("<span class='alert'>[src] splats onto the floor messily!</span>")
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
-		make_cleanable(/obj/decal/cleanable/eggsplat,T)
-		make_cleanable(/obj/decal/cleanable/eggshell,T)
+		new /obj/decal/cleanable/eggsplat(T)
+		new /obj/decal/cleanable/eggshell(T)
 		qdel (src)
 
 /obj/item/reagent_containers/food/snacks/ingredient/egg/hardboiled

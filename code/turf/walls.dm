@@ -85,7 +85,7 @@
 /turf/wall/New()
 	..()
 	if(!ticker && istype(src.loc, /area/station/maintenance) && prob(7))
-		make_cleanable( /obj/decal/cleanable/fungus,src)
+		new  /obj/decal/cleanable/fungus(src)
 
 // Made this a proc to avoid duplicate code (Convair880).
 /turf/wall/proc/attach_light_fixture_parts(var/mob/user, var/obj/item/W, var/instantly)

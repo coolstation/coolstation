@@ -847,7 +847,7 @@ datum
 				if(!istype(T, /turf/space))
 					//if(volume >= 5)
 					if(!locate(/obj/decal/cleanable/dirt) in T)
-						var/obj/decal/cleanable/dirt/D = make_cleanable(/obj/decal/cleanable/dirt,T)
+						var/obj/decal/cleanable/dirt/D = new /obj/decal/cleanable/dirt(T)
 						D.name = "black powder"
 						D.desc = "Uh oh. Someone better clean this up!"
 						if(!D.reagents) D.create_reagents(10)
@@ -915,7 +915,7 @@ datum
 
 			reaction_turf(var/turf/T, var/volume)
 				if(!istype(T, /turf/space) && volume >= 5 && !locate(/obj/decal/cleanable/nitrotriiodide) in T)
-					return make_cleanable(/obj/decal/cleanable/nitrotriiodide,T)
+					return new /obj/decal/cleanable/nitrotriiodide(T)
 
 			reaction_temperature(exposed_temperature, exposed_volume)
 				dry()

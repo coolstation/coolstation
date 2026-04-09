@@ -258,7 +258,7 @@
 			owner.filters -= filter
 			filter = null
 			if(src.leave_cleanable)
-				var/obj/decal/cleanable/molten_item/I = make_cleanable(/obj/decal/cleanable/molten_item,get_turf(owner))
+				var/obj/decal/cleanable/molten_item/I = new /obj/decal/cleanable/molten_item(get_turf(owner))
 				I.desc = "Looks like this was \an [owner] some time ago."
 
 			if(src.mob_owner && owner.loc == src.mob_owner)
@@ -1648,7 +1648,7 @@
 				S = locate(/obj/decal/cleanable/sand) in T
 			if	(!S)
 				if(prob(30))
-					S = make_cleanable(/obj/decal/cleanable/sand, T)
+					S = new /obj/decal/cleanable/sand( T)
 			var/list/states = M.get_step_image_states()
 			if(S)
 				if (states[1] || states[2])
@@ -1692,7 +1692,7 @@
 		if (T.messy > 0)
 			P = locate(/obj/decal/cleanable/paint) in T
 		if(!P)
-			P = make_cleanable(/obj/decal/cleanable/paint, T)
+			P = new /obj/decal/cleanable/paint( T)
 
 		var/list/states = M.get_step_image_states()
 

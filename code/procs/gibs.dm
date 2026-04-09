@@ -65,37 +65,37 @@
 	elecflash(location,power=2)
 
 	// NORTH
-	gib = make_cleanable( /obj/decal/cleanable/robot_debris,location)
+	gib = new  /obj/decal/cleanable/robot_debris(location)
 	if (prob(25))
 		gib.icon_state = "gibup1"
 	gib.streak_cleanable(NORTH)
 	gibs.Add(gib)
 
 	// SOUTH
-	gib = make_cleanable( /obj/decal/cleanable/robot_debris,location)
+	gib = new  /obj/decal/cleanable/robot_debris(location)
 	if (prob(25))
 		gib.icon_state = "gibdown1"
 	gib.streak_cleanable(SOUTH)
 	gibs.Add(gib)
 
 	// WEST
-	gib = make_cleanable( /obj/decal/cleanable/robot_debris,location)
+	gib = new  /obj/decal/cleanable/robot_debris(location)
 	gib.streak_cleanable(WEST)
 	gibs.Add(gib)
 
 	// EAST
-	gib = make_cleanable( /obj/decal/cleanable/robot_debris,location)
+	gib = new  /obj/decal/cleanable/robot_debris(location)
 	gib.streak_cleanable(EAST)
 	gibs.Add(gib)
 
 	// RANDOM
-	gib = make_cleanable( /obj/decal/cleanable/robot_debris,location)
+	gib = new  /obj/decal/cleanable/robot_debris(location)
 	gib.streak_cleanable()
 	gibs.Add(gib)
 
 	// RANDOM LIMBS
 	for (var/i = 0, i < pick(0, 1, 2), i++)
-		gib = make_cleanable( /obj/decal/cleanable/robot_debris/limb,location)
+		gib = new  /obj/decal/cleanable/robot_debris/limb(location)
 		gib.streak_cleanable()
 	gibs.Add(gib)
 
@@ -107,7 +107,7 @@
 	var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
 
 	// NORTH
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
+	gib = new  /obj/decal/cleanable/tracked_reagents/blood/gibs(location)
 	if (prob(30))
 		gib.icon_state = "gibup1"
 	gib.diseases += diseases
@@ -117,7 +117,7 @@
 	gib.streak_cleanable(NORTH)
 
 	// SOUTH
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
+	gib = new  /obj/decal/cleanable/tracked_reagents/blood/gibs(location)
 	if (prob(30))
 		gib.icon_state = "gibdown1"
 	gib.diseases += diseases
@@ -127,7 +127,7 @@
 	gib.streak_cleanable(SOUTH)
 
 	// WEST
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
+	gib = new  /obj/decal/cleanable/tracked_reagents/blood/gibs(location)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
 	gib.blood_type = blood_type
@@ -136,7 +136,7 @@
 
 
 	// EAST
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
+	gib = new  /obj/decal/cleanable/tracked_reagents/blood/gibs(location)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
 	gib.blood_type = blood_type
@@ -145,7 +145,7 @@
 
 
 	// RANDOM BODY
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs/body,location)
+	gib = new  /obj/decal/cleanable/tracked_reagents/blood/gibs/body(location)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
 	gib.blood_type = blood_type
@@ -161,7 +161,7 @@
 		gib.color = pick(party_colors)
 
 	// CORE
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs/core,location)
+	gib = new  /obj/decal/cleanable/tracked_reagents/blood/gibs/core(location)
 	gib.diseases += diseases
 	gib.blood_DNA = blood_DNA
 	gib.blood_type = blood_type
@@ -173,29 +173,29 @@
 	var/obj/decal/cleanable/martian_viscera/gib = null
 
 	// NORTH
-	gib = make_cleanable(/obj/decal/cleanable/martian_viscera,location)
+	gib = new /obj/decal/cleanable/martian_viscera(location)
 	gib.streak_cleanable(NORTH)
 
 	// SOUTH
-	gib = make_cleanable(/obj/decal/cleanable/martian_viscera,location)
+	gib = new /obj/decal/cleanable/martian_viscera(location)
 	gib.streak_cleanable(SOUTH)
 
 	// WEST
-	gib = make_cleanable(/obj/decal/cleanable/martian_viscera,location)
+	gib = new /obj/decal/cleanable/martian_viscera(location)
 	gib.streak_cleanable(WEST)
 
 	// EAST
-	gib = make_cleanable(/obj/decal/cleanable/martian_viscera,location)
+	gib = new /obj/decal/cleanable/martian_viscera(location)
 	gib.streak_cleanable(EAST)
 
 	// RANDOM
-	gib = make_cleanable( /obj/decal/cleanable/martian_viscera,location)
+	gib = new  /obj/decal/cleanable/martian_viscera(location)
 	gib.streak_cleanable()
 
 	// TODO: random martian organs?
 
 	// CORE SPLAT
-	gib = make_cleanable( /obj/decal/cleanable/martian_viscera/fluid,location)
+	gib = new  /obj/decal/cleanable/martian_viscera/fluid(location)
 
 /*
 /proc/flockdronegibs(atom/location, var/list/diseases, var/list/ejectables, var/blood_DNA, var/blood_type)
@@ -204,27 +204,27 @@
 	var/obj/decal/cleanable/flockdrone_debris/gib = null
 
 	// NORTH
-	gib = make_cleanable( /obj/decal/cleanable/flockdrone_debris,location)
+	gib = new  /obj/decal/cleanable/flockdrone_debris(location)
 	gib.streak_cleanable(NORTH)
 
 	// SOUTH
-	gib = make_cleanable( /obj/decal/cleanable/flockdrone_debris,location)
+	gib = new  /obj/decal/cleanable/flockdrone_debris(location)
 	gib.streak_cleanable(SOUTH)
 
 	// WEST
-	gib = make_cleanable( /obj/decal/cleanable/flockdrone_debris,location)
+	gib = new  /obj/decal/cleanable/flockdrone_debris(location)
 	gib.streak_cleanable(WEST)
 
 	// EAST
-	gib = make_cleanable( /obj/decal/cleanable/flockdrone_debris,location)
+	gib = new  /obj/decal/cleanable/flockdrone_debris(location)
 	gib.streak_cleanable(EAST)
 
 	// RANDOM
-	gib = make_cleanable( /obj/decal/cleanable/flockdrone_debris,location)
+	gib = new  /obj/decal/cleanable/flockdrone_debris(location)
 	gib.streak_cleanable()
 
 	handle_ejectables(location, ejectables)
 
 	// CORE SPLAT
-	gib = make_cleanable( /obj/decal/cleanable/flockdrone_debris/fluid,location)
+	gib = new  /obj/decal/cleanable/flockdrone_debris/fluid(location)
 */

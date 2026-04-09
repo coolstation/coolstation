@@ -394,7 +394,7 @@ this is already used where it needs to be used, you can probably ignore it.
 			B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
 
 		if (!B) // look for an existing dynamic blood decal and add to it if you find one
-			B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic,T)
+			B = new  /obj/decal/cleanable/tracked_reagents/dynamic(T)
 			B.set_sample_reagent_custom(H.blood_id, num_amount)
 		else
 			B.reagents.add_reagent(H.blood_id, num_amount, temp_new = H.base_body_temp)
@@ -422,7 +422,7 @@ this is already used where it needs to be used, you can probably ignore it.
 			B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
 
 		if (!B) // look for an existing dynamic blood decal and add to it if you find one
-			B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic,T)
+			B = new  /obj/decal/cleanable/tracked_reagents/dynamic(T)
 			B.set_sample_reagent_custom(H.blood_id, num_amount)
 
 		B.blood_DNA = some_idiot.bioHolder.Uid

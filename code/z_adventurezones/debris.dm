@@ -55,19 +55,19 @@
 	var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib2 = null
 
 	// NORTH
-	gib = make_cleanable( /obj/decal/cleanable/machine_debris,location)
+	gib = new  /obj/decal/cleanable/machine_debris(location)
 	if (prob(25))
 		gib.icon_state = "gibup1"
 	gib.streak_cleanable(NORTH)
 	LAGCHECK(LAG_LOW)
 
 	// SOUTH
-	gib2 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
+	gib2 = new  /obj/decal/cleanable/tracked_reagents/blood/gibs(location)
 	if (prob(25))
 		gib2.icon_state = "gibdown1"
 	gib2.streak_cleanable(SOUTH)
 	LAGCHECK(LAG_LOW)
 
 	// RANDOM
-	gib2 = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
+	gib2 = new  /obj/decal/cleanable/tracked_reagents/blood/gibs(location)
 	gib2.streak_cleanable(cardinal)

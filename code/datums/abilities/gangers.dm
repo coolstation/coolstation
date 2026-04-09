@@ -167,7 +167,7 @@
 
 		for(var/obj/decal/cleanable/gangtag/G in area)
 			if(G.owners == M.mind.gang) continue
-			var/obj/decal/cleanable/gangtag/T = make_cleanable(/obj/decal/cleanable/gangtag,G.loc)
+			var/obj/decal/cleanable/gangtag/T = new /obj/decal/cleanable/gangtag(G.loc)
 			T.icon_state = "gangtag[M.mind.gang.gang_tag]"
 			T.name = "[M.mind.gang.gang_name] tag"
 			T.owners = M.mind.gang

@@ -43,7 +43,7 @@
 	var/obj/item/raw_material/shard/S = new()
 	S.set_loc(T)
 	S.setMaterial(getMaterial("gnesisglass"))
-	make_cleanable( /obj/decal/cleanable/flockdrone_debris, T)
+	new  /obj/decal/cleanable/flockdrone_debris( T)
 	qdel(src)
 
 /obj/machinery/door/feather/open()

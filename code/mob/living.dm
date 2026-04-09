@@ -2103,7 +2103,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				boutput(src, "<span class='alert'><b>[origin] vaporizes you with a lethal arc of electricity!</b></span>")
 				if (H?.shoes)
 					H.drop_from_slot(H.shoes)
-				make_cleanable(/obj/decal/cleanable/ash,src.loc)
+				new /obj/decal/cleanable/ash(src.loc)
 				SPAWN_DBG(1 DECI SECOND)
 					src.elecgib()
 			else

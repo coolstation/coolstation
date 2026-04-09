@@ -1467,7 +1467,7 @@ proc/get_colosseum_message(var/name, var/message)
 				src.visible_message("<b>[src] explodes!</b>")
 				explosion_new(src, T, 5)
 			for(T in range(src,1))
-				make_cleanable(/obj/decal/cleanable/machine_debris, T)
+				new /obj/decal/cleanable/machine_debris( T)
 
 			qdel(src)
 

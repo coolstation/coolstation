@@ -41,7 +41,7 @@
 	playsound(src.loc, "sound/impact_sounds/Crystal_Hit_1.ogg", 100, 1)
 	if (T && !decal_made)
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 80, 1)
-		make_cleanable( /obj/decal/cleanable/flockdrone_debris/fluid,T)
+		new  /obj/decal/cleanable/flockdrone_debris/fluid(T)
 		decal_made = 1
 	..()
 */

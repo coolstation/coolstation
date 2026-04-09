@@ -18,4 +18,4 @@
     holder.owner.visible_message("<span class='notice'><b>[holder.owner]</b> drips a puddle of teardrops onto the floor!</span>",
                                  "<span class='notice'>You drip a puddle of tears onto the floor.</span>")
 
-    make_cleanable(/obj/decal/cleanable/water,holder.owner.loc)
+    new /obj/decal/cleanable/water(holder.owner.loc)

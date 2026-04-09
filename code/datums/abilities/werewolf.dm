@@ -245,7 +245,7 @@
 					HH.spread_blood_clothes(HH)
 					M.spread_blood_hands(HH)
 					var/obj/decal/cleanable/tracked_reagents/blood/gibs/G = null // For forensics.
-					G = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, HH.loc)
+					G = new /obj/decal/cleanable/tracked_reagents/blood/gibs( HH.loc)
 					if (HH.bioHolder && HH.bioHolder.Uid && HH.bioHolder.bloodType)
 						G.blood_DNA = HH.bioHolder.Uid
 						G.blood_type = HH.bioHolder.bloodType

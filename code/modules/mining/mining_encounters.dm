@@ -796,9 +796,9 @@
 					if (prob(round(current_chance / 2)))
 						switch(rand(1,6))
 							if(4)
-								make_cleanable(/obj/decal/cleanable/robot_debris/gib, locate(S.x, S.y, S.z),0)
+								new /obj/decal/cleanable/robot_debris/gib(locate(S.x, S.y, S.z))
 							if(5)
-								make_cleanable(/obj/decal/cleanable/machine_debris, locate(S.x, S.y, S.z),0)
+								new /obj/decal/cleanable/machine_debris(locate(S.x, S.y, S.z))
 							if(6)
 								new /obj/grille/steel/broken(locate(S.x, S.y, S.z),0)
 							else

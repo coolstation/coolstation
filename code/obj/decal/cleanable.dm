@@ -7,10 +7,6 @@
 ////////////////
 
 //////////////// a relic of pooling. should be removed eventually, when someone has time to convert every make_cleanable call to a new
-proc/make_cleanable(var/type,var/loc,var/list/viral_list)
-	var/obj/decal/cleanable/C = new type(loc, viral_list)
-	.= C
-
 /obj/decal/cleanable
 	density = 0
 	anchored = ANCHORED
@@ -2011,7 +2007,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 
 					if("MARTIAN")
 						if (prob(40))
-							var/obj/decal/cleanable/tracked_reagents/blood/b = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/splatter/extra,get_turf(src))
+							var/obj/decal/cleanable/tracked_reagents/blood/b = new  /obj/decal/cleanable/tracked_reagents/blood/splatter/extra(get_turf(src))
 							b.blood_DNA = src.blood_DNA
 							b.blood_type = src.blood_type
 							b.color = "#0b1f8f"
@@ -2019,10 +2015,10 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 							elecflash(src)
 /*
 					if("FLOCK")
-						make_cleanable( /obj/decal/cleanable/flockdrone_debris/fluid,src.loc)*/
+						new  /obj/decal/cleanable/flockdrone_debris/fluid(src.loc)*/
 					if("MACHINE", "ROBOT")
 						if (prob(40))
-							make_cleanable(/obj/decal/cleanable/oil/streak,src.loc)
+							new /obj/decal/cleanable/oil/streak(src.loc)
 						else if (prob(10))
 							elecflash(src)
 			sleep(0.1 SECONDS)
@@ -2087,7 +2083,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 				B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
 
 			if (!B) // look for an existing dynamic blood decal and add to it if you find one
-				B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic,T)
+				B = new  /obj/decal/cleanable/tracked_reagents/dynamic(T)
 
 			B.transfer_volume(src.reagents, src.reagents.total_volume, do_fluid_react = (src.reagents.total_volume >= 15))
 

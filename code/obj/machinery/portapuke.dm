@@ -72,9 +72,9 @@
 				if(T.density)
 					continue
 				if (prob(5))
-					make_cleanable(/obj/decal/cleanable/greenpuke, T)
+					new /obj/decal/cleanable/greenpuke( T)
 				else
-					make_cleanable(/obj/decal/cleanable/vomit, T)
+					new /obj/decal/cleanable/vomit( T)
 
 
 	proc/process_occupant(mob/living/occupant)
@@ -100,7 +100,7 @@
 			for (var/turf/T in range(src, rand(1, 3)))
 				if(T.density)
 					continue
-				make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs, T)
+				new /obj/decal/cleanable/tracked_reagents/blood/gibs( T)
 
 			if (prob(5) && occupant.organHolder?.heart)
 				occupant.organHolder.drop_organ("heart")

@@ -104,7 +104,7 @@
 			src.in_use = 0
 			return
 		phrase_log.log_phrase("floorpen", t)
-		var/obj/decal/cleanable/writing/G = make_cleanable( /obj/decal/cleanable/writing,T)
+		var/obj/decal/cleanable/writing/G = new  /obj/decal/cleanable/writing(T)
 		G.artist = user.key
 
 		logTheThing("station", user, null, "writes on [T] with [src][src.material ? " (material: [src.material.name])" : null] [log_loc(T)]: [t]")
@@ -496,9 +496,9 @@
 
 		var/obj/decal/cleanable/writing/G
 		if(src.maptext_crayon)
-			G = make_cleanable(/obj/decal/cleanable/writing/maptext_dummy, T)
+			G = new /obj/decal/cleanable/writing/maptext_dummy( T)
 		else
-			G = make_cleanable(/obj/decal/cleanable/writing, T)
+			G = new /obj/decal/cleanable/writing( T)
 		G.artist = user.key
 
 		logTheThing("station", user, null, "writes on [T] with [src][src.material ? " (material: [src.material.name])" : null] [log_loc(T)]: [t]")
@@ -641,7 +641,7 @@
 		if (!t || get_dist(T, user) > 1)
 			src.in_use = 0
 			return
-		var/obj/decal/cleanable/writing/infrared/G = make_cleanable(/obj/decal/cleanable/writing/infrared,T)
+		var/obj/decal/cleanable/writing/infrared/G = new /obj/decal/cleanable/writing/infrared(T)
 		G.artist = user.key
 
 		logTheThing("station", user, null, "writes on [T] with [src][src.material ? " (material: [src.material.name])" : null] [log_loc(T)]: [t]")
@@ -1192,7 +1192,7 @@
 			qdel(src)
 			return
 		var/turf/T = get_turf(A)
-		var/obj/decal/cleanable/writing/postit/P = make_cleanable(/obj/decal/cleanable/writing/postit ,T)
+		var/obj/decal/cleanable/writing/postit/P = new /obj/decal/cleanable/writing/postit (T)
 		if (params && islist(params) && params["icon-y"] && params["icon-x"])
 			// oh boy i can't wait to see people make huge post-it note trains across the station somehow!
 			P.pixel_x = text2num(params["icon-x"]) - 16 //round(A.bound_width/2)

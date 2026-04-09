@@ -75,7 +75,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		var/obj/decal/cleanable/imprint/I
 		I = locate(/obj/decal/cleanable/imprint) in src
 		if(!I)
-			I = make_cleanable(/obj/decal/cleanable/imprint, src)
+			I = new /obj/decal/cleanable/imprint( src)
 		var/list/states = M.get_step_image_states()
 		if (states[1] || states[2])
 			if(states[1])

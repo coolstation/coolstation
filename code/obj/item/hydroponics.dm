@@ -237,7 +237,7 @@
 			target.visible_message(
 				"<span class='alert'><b>[target]'s appendix is ripped out [pick("violently", "brutally", "ferociously", "fiercely")]!</span>"
 				)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,target.loc)
+			new /obj/decal/cleanable/tracked_reagents/blood/gibs(target.loc)
 			return ..()
 
 		if (H.organHolder.left_kidney)
@@ -246,7 +246,7 @@
 			target.visible_message(
 				"<span class='alert'><b>[target]'s kidney is torn out [pick("cruelly", "viciously", "atrociously", "fiercely")]!</span>"
 				)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,target.loc)
+			new /obj/decal/cleanable/tracked_reagents/blood/gibs(target.loc)
 			return ..()
 
 		if (H.organHolder.left_lung)
@@ -255,7 +255,7 @@
 			target.visible_message(
 				"<span class='alert'><b>[target]'s lung is gashed out [pick("tempestuously", "impetuously", "sorta meanly", "unpleasantly")]!</span>"
 				)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,target.loc)
+			new /obj/decal/cleanable/tracked_reagents/blood/gibs(target.loc)
 			return ..()
 
 		if (H.organHolder.right_kidney)
@@ -264,7 +264,7 @@
 			target.visible_message(
 				"<span class='alert'><b>[target]'s kidney is torn out [pick("cruelly", "viciously", "atrociously", "fiercely")]!</span>"
 				)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,target.loc)
+			new /obj/decal/cleanable/tracked_reagents/blood/gibs(target.loc)
 			return ..()
 
 		if (H.organHolder.right_lung)
@@ -273,7 +273,7 @@
 			target.visible_message(
 				"<span class='alert'><b>[target]'s lung is gashed out [pick("tempestuously", "impetuously", "sorta meanly", "unpleasantly")]!</span>"
 				)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,target.loc)
+			new /obj/decal/cleanable/tracked_reagents/blood/gibs(target.loc)
 			return ..()
 
 		if (H.organHolder.liver)
@@ -282,7 +282,7 @@
 			target.visible_message(
 				"<span class='alert'><b>[target]'s liver is gashed out [pick("unnecessarily", "stylishly", "viciously", "unethically")]!</span>"
 				)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,target.loc)
+			new /obj/decal/cleanable/tracked_reagents/blood/gibs(target.loc)
 
 			return ..()
 
@@ -292,7 +292,7 @@
 			target.visible_message(
 				"<span class='alert'><b>[target]'s heart is ripped clean out! [pick("HOLY MOLY", "FUCK", "JESUS CHRIST", "THAT'S GONNA LEAVE A MARK", "OH GOD", "OUCH", "DANG", "WOW", "woah")]!!</span>"
 				)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,target.loc)
+			new /obj/decal/cleanable/tracked_reagents/blood/gibs(target.loc)
 			return ..()
 
 
@@ -302,7 +302,7 @@
 			target.visible_message(
 				"<span class='alert'><b>[target]'s spleen is removed with [pick("conviction", "malice", "disregard for safety regulations", "contempt")]!</span>"
 				)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,target.loc)
+			new /obj/decal/cleanable/tracked_reagents/blood/gibs(target.loc)
 			return ..()
 
 		if (H.organHolder.pancreas)
@@ -311,7 +311,7 @@
 			target.visible_message(
 				"<span class='alert'><b>[target]'s pancreas is evicted with [pick("anger", "ill intent", "disdain")]!</span>"
 				)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,target.loc)
+			new /obj/decal/cleanable/tracked_reagents/blood/gibs(target.loc)
 			return ..()
 
 		if (H.health < -500) //gib if it can't take any more organs and target is very damaged
