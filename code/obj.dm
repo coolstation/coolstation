@@ -582,7 +582,7 @@
 
 /obj/proc/place_on(obj/item/W as obj, mob/user as mob, params)
 	. = 0
-	if (W && !issilicon(user)) // no ghost drones should not be able to do this either, not just borgs
+	if (W) // no ghost drones should not be able to do this either, not just borgs
 		if (user && !(W.cant_drop))
 			var/dirbuffer //*hmmpf* it's not like im a hacky coder or anything... (＃￣^￣)
 			dirbuffer = W.dir //though actually this will preserve item rotation when placed on tables so they don't rotate when placed. (this is a niche bug with silverware, but I thought I might as well stop it from happening with other things <3)

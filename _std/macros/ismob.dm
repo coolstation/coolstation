@@ -28,7 +28,7 @@
 
 #define isnanites(x) istype(x, /mob/living/critter/admin)
 #define issilicon(x) istype(x, /mob/living/silicon)
-#define isrobot(x) istype(x, /mob/living/silicon/robot)
+#define isrobot(x) (istype(x, /mob/living/silicon/robot) || istype(x, /mob/living/silicon/nubot))
 #define ishivebot(x) istype(x, /mob/living/silicon/hivebot)
 #define ismainframe(x) istype(x, /mob/living/silicon/hive_mainframe)
 #define isAI(x) (istype(x, /mob/living/silicon/ai) || istype (x, /mob/dead/aieye))

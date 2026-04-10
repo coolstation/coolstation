@@ -1258,7 +1258,7 @@ var/datum/action_controller/actions
 //Use this to start the action
 //actions.start(new/datum/action/bar/private/icon/magPicker(item, picker), usr)
 /datum/action/bar/private/icon/magPicker
-	duration = 30 //How long does this action take in ticks.
+	duration = 3 //How long does this action take in ticks.
 	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
 	id = "magpicker"
 	icon = 'icons/obj/items/items.dmi' //In these two vars you can define an icon you want to have on your little progress bar.
@@ -1285,7 +1285,7 @@ var/datum/action_controller/actions
 			return
 		else
 			picker.working = 1
-			playsound(picker.loc, "sound/machines/whistlebeep.ogg", 50, 1)
+			playsound(picker.loc, "sound/items/putback_defib.ogg", 50, 1)
 			out(owner, "<span class='notice'>\The [picker.name] starts to pick up \the [target].</span>")
 			if (picker.highpower && isghostdrone(owner))
 				var/mob/living/silicon/ghostdrone/our_drone = owner
@@ -1524,7 +1524,6 @@ var/datum/action_controller/actions
 		if(get_dist(owner, target) > 1 || target == null || owner == null)
 			interrupt(INTERRUPT_ALWAYS)
 			return
-		playsound(owner.loc, "sound/machines/click.ogg", 60, 1)
 
 	onEnd()
 		..()

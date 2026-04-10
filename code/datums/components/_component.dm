@@ -537,6 +537,18 @@ TYPEINFO(/datum/component)
 	SEND_SIGNAL(old_parent, COMSIG_COMPONENT_REMOVING, src)
 
 /**
+  * Calls RemoveComponent on all components of a given type that are attached to this datum
+  *
+  * Arguments:
+  * * c_type The component type path
+  */ //credit: goonstation
+
+/datum/proc/RemoveComponentsOfType(c_type)
+	var/list/datum/component/component_to_remove_list = src.GetComponents(c_type)
+	for (var/datum/component/component_to_remove as anything in component_to_remove_list)
+		component_to_remove.RemoveComponent()
+
+/**
   * Transfer this component to another parent
   *
   * Component is taken from source datum
