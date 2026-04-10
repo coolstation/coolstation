@@ -190,8 +190,12 @@
 	return 1
 
 /mob/living/carbon/human/sight_check(var/consciousness_check = 0)
-	if (consciousness_check && (src.hasStatus("paralysis") || src.sleeping || src.stat || src.hibernating))
-		return 0
+	if (consciousness_check)
+		if ((src.hasStatus("paralysis") || src.sleeping || src.stat || src.hibernating))
+			return 0
+		var/datum/abilityHolder/changeling/C = get_ability_holder(/datum/abilityHolder/changeling)
+		if (C?.in_fakedeath)
+			return 0
 
 	if (istype(src.glasses, /obj/item/clothing/glasses/))
 		var/obj/item/clothing/glasses/G = src.glasses
