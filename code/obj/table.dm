@@ -251,6 +251,10 @@
 		deconstruct()
 
 	attackby(obj/item/W as obj, mob/user as mob, params)
+		//son of a fucking bitch
+		if (istype(W, /obj/item/lifted_thing))
+			return
+
 		if (src.has_drawer && src.storage.hud_shown(user))
 			return ..()
 
