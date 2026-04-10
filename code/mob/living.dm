@@ -750,6 +750,11 @@
 		boutput(src, "<span class='alert'>You can not speak!</span>")
 		return
 
+	//I guess changelings don't get paralysis anymore? IDK
+	var/datum/abilityHolder/changeling/lingy = src.get_ability_holder(/datum/abilityHolder/changeling)
+	if (lingy?.in_fakedeath)
+		return
+
 	if (isdead(src))
 		if (dd_hasprefix(message, "*")) // no dead emote spam
 			return
