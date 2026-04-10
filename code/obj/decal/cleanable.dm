@@ -558,9 +558,10 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	#endif
 
 	New(loc, blood_id)
-		..()
+		//ugh I guess all tracked_reagents (previously blood) decals have a run condition about their reagents
 		src.create_reagents(reagents_max)
 		src.reagents.add_reagent(blood_id ? blood_id : (prob(95) ? "blood" : "ketchup"), 10) //stochastically default to blood if no id is provided
+		..()
 		if (blood_id)
 			sample_reagent = blood_id //save just a lil copypaste from the gibs proc
 		SPAWN_DBG(0)

@@ -200,7 +200,7 @@
 	if (possible_cleanable)
 		//2026-4-5: can_fluid_absorb check is to prevent gibs being absorbed in. That stuff is body parts and chunky salsa, not just liquid!
 		//will also prevent pathology puddles/decals but those are not in active use atm
-		if (possible_cleanable.qdeled || possible_cleanable.pooled || possible_cleanable.can_fluid_absorb == FALSE) return
+		if (possible_cleanable.qdeled || possible_cleanable.disposed || possible_cleanable.can_fluid_absorb == FALSE) return
 		if (istype(possible_cleanable, /obj/decal/cleanable/tracked_reagents))
 			var/obj/decal/cleanable/tracked_reagents/reagent_spill = possible_cleanable
 			var/blood_dna = reagent_spill.blood_DNA
