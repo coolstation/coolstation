@@ -231,7 +231,7 @@
 		if (C.qdeled || C.pooled) continue
 		if (C.dry) continue //this was commented out but i figure why not get crusty with it and see what happens
 		if (C.sampled) continue //beware recursion
-		if (istype(C,/obj/decal/cleanable/tracked_reagents/dynamic)) continue // handled above
+		if (istype(C,/obj/decal/cleanable/tracked_reagents)) continue // handled above
 		if (!C.can_fluid_absorb) continue
 		cleanables += C
 
