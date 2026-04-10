@@ -74,6 +74,10 @@
 	furniture_name = "folding table"
 	build_duration = 15
 
+	flags = ONBACK //Now with straps!!!
+	wear_image_icon = 'icons/mob/back.dmi'
+	wear_state = "table"
+
 /obj/item/furniture_parts/table/bin
 	name = "folded bin"
 	desc = "A collapsed bin that can be deployed quickly."
