@@ -1295,6 +1295,24 @@ proc/debug_map_apc_count(delim,zlim)
 			else
 				img.app.alpha = 0
 
+	explosion_resistance
+		name = "explosion resistance"
+		help = "Tells you how much explosion resistance is present on a turf. If non-turf atoms are contributing, the format is \[total (turf + sum from atoms)\]."
+
+		GetInfo(turf/theTurf, image/debugoverlay/img)
+			var/sum_of_atoms = 0
+			for (var/atom/A in theTurf.contents)
+				if (A.density)
+					sum_of_atoms += A.explosion_resistance
+			if (sum_of_atoms)
+				img.app.overlays = list(src.makeText("[theTurf.explosion_resistance + sum_of_atoms] ([theTurf.explosion_resistance] + [sum_of_atoms])"))
+				//img.app.desc = "[src.makeText(theTurf.explosion_resistance + sum_of_atoms] ([theTurf.explosion_resistance] + [sum_of_atoms])")
+			else
+				img.app.overlays = list(src.makeText(theTurf.explosion_resistance))
+			var/col = clamp(255 - (15 * (theTurf.explosion_resistance + sum_of_atoms)), 0, 255)
+			img.app.color = rgb(col,col,col)
+			img.app.alpha = 120
+
 
 
 /client/var/list/infoOverlayImages
