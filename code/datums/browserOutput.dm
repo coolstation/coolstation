@@ -389,7 +389,9 @@ var/global
 
 			baseData = icon2base64(icon, iconKey)
 
-		return "<img style='position: relative; vertical-align: middle; image-rendering: pixelated; min-width:[target_icon ? target_icon.Width() * mult : 32]px; min-height:[target_icon ? target_icon.Height() * mult : 32]px;' class='icon' src='data:image/png;base64,[baseData]' />"
+		var/render_mode = mult ? "pixelated" : "smooth" //leaving this seperate so its easier to tweak, the line below sucks eggs and is too long already
+
+		return "<img style='position: relative; vertical-align: middle; image-rendering:[render_mode]; min-width:[target_icon ? target_icon.Width() * mult : 32]px; min-height:[target_icon ? target_icon.Height() * mult : 32]px;' class='icon' src='data:image/png;base64,[baseData]' />"
 
 /proc/boutput(target = 0, message = "", group = "", admin = FALSE)
 	if (target == world)
