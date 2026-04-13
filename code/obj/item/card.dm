@@ -251,10 +251,11 @@ GAUNTLET CARDS
 		user.gib()
 
 /obj/item/card/id/attack_self(mob/user as mob)
-	user.visible_message("[user] shows you: [src.name]: [bicon(src, 3)]", "You show off your card: [src.name]: [bicon(src, 3)]")
+	user.visible_message("[user] shows you: [bicon(src)] [src.name]: assignment: [src.assignment]", "You show off your card: [bicon(src)] [src.name]: assignment: [src.assignment]")
 
 	src.add_fingerprint(user)
 	return
+
 
 /obj/item/card/id/emag_act(var/mob/user, var/obj/item/card/emag/E)
 	if (src.emagged)
