@@ -251,7 +251,7 @@ GAUNTLET CARDS
 		user.gib()
 
 /obj/item/card/id/attack_self(mob/user as mob)
-	user.visible_message("[user] shows you: [bicon(src)] [src.name]: assignment: [src.assignment]", "You show off your card: [bicon(src)] [src.name]: assignment: [src.assignment]")
+	user.visible_message("[user] shows you: [src.name]: [bicon(src, 3)]", "You show off your card: [src.name]: [bicon(src, 3)]")
 
 	src.add_fingerprint(user)
 	return
