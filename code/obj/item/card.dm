@@ -256,7 +256,6 @@ GAUNTLET CARDS
 	src.add_fingerprint(user)
 	return
 
-
 /obj/item/card/id/emag_act(var/mob/user, var/obj/item/card/emag/E)
 	if (src.emagged)
 		if (user && E)
