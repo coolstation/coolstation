@@ -1306,7 +1306,6 @@ proc/debug_map_apc_count(delim,zlim)
 					sum_of_atoms += A.explosion_resistance
 			if (sum_of_atoms)
 				img.app.overlays = list(src.makeText("[theTurf.explosion_resistance + sum_of_atoms] ([theTurf.explosion_resistance] + [sum_of_atoms])"))
-				//img.app.desc = "[src.makeText(theTurf.explosion_resistance + sum_of_atoms] ([theTurf.explosion_resistance] + [sum_of_atoms])")
 			else
 				img.app.overlays = list(src.makeText(theTurf.explosion_resistance))
 			var/col = clamp(255 - (15 * (theTurf.explosion_resistance + sum_of_atoms)), 0, 255)
