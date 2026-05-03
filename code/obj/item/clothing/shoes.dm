@@ -30,6 +30,8 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 		..()
 		setProperty("coldprot", 5)
 		setProperty("heatprot", 5)
+		src.create_storage(/datum/storage, spawn_contents = null, slots = 2, max_wclass = W_CLASS_TINY, sneaky = TRUE)
+
 
 	get_desc(dist)
 		..()
@@ -43,19 +45,14 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 					. += "The laces are cut."
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/raw_material/shard) && !length(src.contents))
-			if (W.amount > 1)
-				W = W.split_stack(1)
-			else
-				user.u_equip(W)
-			W.set_loc(src)
-			if (ishuman(user))
-				var/mob/living/carbon/human/H = user
-				if (H.shoes == src)
-					RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(shoe_debris))
-			boutput(user, "<span class='notice'>You drop [W] into [src].</span>")
 
-		else if (istype(W, /obj/item/tank/air) || istype(W, /obj/item/tank/oxygen) || istype(W, /obj/item/tank/emergency_oxygen) || istype(W, /obj/item/tank/jetpack))
+		if (ishuman(user)) //This is needed or else the glass steppy wont worky
+			var/mob/living/carbon/human/H = user
+			if (H.shoes == src)
+				RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(shoe_debris))
+
+
+		if (istype(W, /obj/item/tank/air) || istype(W, /obj/item/tank/oxygen) || istype(W, /obj/item/tank/emergency_oxygen) || istype(W, /obj/item/tank/jetpack))
 			var/uses = 0
 
 			if(istype(W, /obj/item/tank/emergency_oxygen)) uses = 2
@@ -76,14 +73,6 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 			tooltip_rebuild = 1
 
 		else ..()
-
-	attack_self(mob/user)
-		if (length(src.contents))
-			boutput(user, "<span class='notice'>You shake some stuff out of your [src.name].</span>")
-			for (var/atom/movable/AM as anything in src.contents)
-				AM.set_loc(get_turf(user))
-		else
-			..()
 
 	equipped(mob/user, slot)
 		if (length(src.contents))
@@ -380,6 +369,8 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	. = ..()
 	AddComponent(/datum/component/wearertargeting/tripsalot, list(SLOT_SHOES))
 	AddComponent(/datum/component/wearertargeting/crayonwalk, list(SLOT_SHOES))
+	src.remove_storage() // just in case
+	src.create_storage(/datum/storage, spawn_contents = null, slots = 2, max_wclass = W_CLASS_NORMAL, sneaky = TRUE)
 
 /obj/item/clothing/shoes/moffers
 	name = "moffers"
