@@ -200,7 +200,7 @@
 		return
 
 	var/obj/stool/S = (locate(/obj/stool) in src.loc)
-	if (S && !src.lying && !src.getStatusDuration("weakened") && !src.getStatusDuration("paralysis"))
+	if (S && !src.getStatusDuration("weakened") && !src.getStatusDuration("paralysis"))
 		// TODO remove this shit when stool code is in a better place
 		if(istype(S, /obj/stool/chair/stepladder))
 			S:stand_on(src)
