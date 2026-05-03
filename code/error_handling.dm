@@ -68,7 +68,8 @@ var/global/runtime_count = 0
 
 
 /client/Topic(href, href_list)
-
+	if (!usr || isnull(usr.client) || usr.client != src)
+		return
 	if (href_list["action"] == "getRuntimeData")
 		USR_ADMIN_ONLY
 		src << output(url_encode(json_encode(runtimeDetails)), "runtimeviewer.browser:refreshRuntimes")

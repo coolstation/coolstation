@@ -408,6 +408,8 @@
 	return html
 
 /client/Topic(href, href_list, hsrc)
+	if (!usr || isnull(usr.client) || usr.client != src)
+		return
 	if (href_list["Pause"])
 		USR_ADMIN_ONLY
 		src.refresh_varedit_onchange = !src.refresh_varedit_onchange
