@@ -1092,26 +1092,7 @@ TRAYS
 				src.item_state = "tray_6"
 
 	update_icon() //this is what builds the overlays, it looks at the ordered list of food in the tray and does magic
-		for (var/i = 1, i <= ordered_contents.len, i++)
-			var/obj/item/F = ordered_contents[i]
-			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, F.icon_state)
-			I.transform *= 0.75
-			if(i % 2) //i feel clever for this haha
-				I.pixel_x = -8
-			else
-				I.pixel_x = 8
-			y_counter++
-			if(y_counter == 3)
-				y_mod++
-				y_counter = 1
-			I.pixel_y = y_mod * 3 //food layers are 3px above eachother
-			I.layer = src.layer + 0.1
-			src.UpdateOverlays(I, "food_[i]", 0, 1)
-		for (var/i = ordered_contents.len + 1, i <= src.overlays.len, i++) //this is to clear up any funky ghost overlays
-			src.ClearSpecificOverlays("food_[i]")
-		y_counter = 0
-		y_mod = 0
-		src.update_inhand_icon() //update inhand sprite to match
+		..()
 		return
 
 	get_desc(dist)
