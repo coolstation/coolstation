@@ -143,7 +143,7 @@
 /obj/landmark/start{
 	name = "Botanist"
 	},
-/turf/floor/carpet/nicebrown,
+/turf/floor/pPavement/green,
 /area/station/hydroponics/lobby)
 "ax" = (
 /obj/machinery/atmospherics/pipe/vertical_pipe/south{
@@ -590,9 +590,7 @@
 	icon_state = "4-8"
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "bG" = (
 /obj/stool/bed,
@@ -629,7 +627,7 @@
 /area/station/maintenance/north)
 "bK" = (
 /obj/machinery/light,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "bL" = (
 /obj/cable{
@@ -638,7 +636,7 @@
 	icon_state = "6-9"
 	},
 /obj/reagent_dispensers/still,
-/turf/floor/carpet/nicebrown,
+/turf/floor/pPavement/green,
 /area/station/hydroponics/lobby)
 "bM" = (
 /obj/disposalpipe/segment,
@@ -689,9 +687,7 @@
 /obj/machinery/phone,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
 /obj/table/reinforced,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "bS" = (
 /obj/machinery/portable_atmospherics/scrubber,
@@ -932,7 +928,7 @@
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "cx" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/southeast,
@@ -1115,9 +1111,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "cW" = (
 /obj/cable{
@@ -1301,7 +1295,7 @@
 /obj/decal/poster/wallsign/poster_rand{
 	pixel_y = 32
 	},
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "dv" = (
 /obj/cable{
@@ -1358,7 +1352,7 @@
 	icon_state = "4-8"
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "dB" = (
 /obj/disposalpipe/segment{
@@ -1394,9 +1388,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "dG" = (
 /obj/cable{
@@ -1493,9 +1485,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/east,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "dS" = (
 /obj/table/wood/auto,
@@ -1514,7 +1504,7 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "dT" = (
 /turf/wall,
@@ -1587,7 +1577,7 @@
 /area/gehenna)
 "ed" = (
 /obj/machinery/atmospherics/unary/vent_pump/east,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "ef" = (
 /obj/table/wood/auto,
@@ -1740,7 +1730,7 @@
 	pixel_x = 32
 	},
 /obj/machinery/light_switch/south,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "ev" = (
 /obj/cable{
@@ -2208,9 +2198,7 @@
 /area/station/maintenance/north)
 "fG" = (
 /obj/disposalpipe/segment,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "fH" = (
 /obj/disposalpipe/segment{
@@ -2242,9 +2230,7 @@
 	dir = 8
 	},
 /obj/machinery/disposal,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "fM" = (
 /turf/floor,
@@ -2400,7 +2386,7 @@
 	},
 /obj/item/implant/projectile/bardart,
 /obj/item/implant/projectile/bardart,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "ge" = (
 /obj/disposalpipe/segment/morgue,
@@ -2421,7 +2407,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "gh" = (
 /turf/floor{
@@ -2617,7 +2603,7 @@
 /obj/landmark/start{
 	name = "Staff Assistant"
 	},
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "gH" = (
 /obj/machinery/light_switch/east,
@@ -2712,9 +2698,7 @@
 	dir = 8;
 	id = "bar"
 	},
-/turf/floor/specialroom/bar/edge{
-	dir = 5
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "gS" = (
 /obj/disposalpipe/segment{
@@ -2761,9 +2745,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "gY" = (
 /obj/decal/tile_edge/stripe/extra_big,
@@ -2957,9 +2939,7 @@
 "hA" = (
 /obj/submachine/ice_cream_dispenser,
 /obj/decal/cleanable/dirt/random,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "hB" = (
 /obj/disposalpipe/segment/bent{
@@ -3297,7 +3277,7 @@
 	name = "Staff Assistant"
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "iB" = (
 /obj/machinery/atmospherics/portables_connector/east,
@@ -3418,9 +3398,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "iS" = (
 /obj/decal/tile_edge/stripe/extra_big{
@@ -3446,7 +3424,7 @@
 /turf/floor/plating,
 /area/station/maintenance/north)
 "iV" = (
-/turf/floor/carpet/nicebrown,
+/turf/floor/pPavement/green,
 /area/station/hydroponics/lobby)
 "iW" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -3496,9 +3474,7 @@
 	},
 /area/station/medical/medbay/lobby)
 "jc" = (
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "jd" = (
 /obj/storage/closet/coffin,
@@ -3755,9 +3731,7 @@
 	layer = 3.5;
 	pixel_y = -24
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "jJ" = (
 /obj/wingrille_spawn/reinforced,
@@ -4101,7 +4075,7 @@
 	pixel_y = 25
 	},
 /obj/item/instrument/large/jukebox/schmancy,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "kJ" = (
 /obj/decal/tile_edge/stripe{
@@ -4368,9 +4342,7 @@
 /obj/decal/slipmat{
 	dir = 4
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "lq" = (
 /obj/disposalpipe/segment/bent{
@@ -4791,7 +4763,7 @@
 "mx" = (
 /obj/machinery/light/fluorescent/ceiling,
 /obj/blind_switch/area/south,
-/turf/floor/carpet/nicebrown,
+/turf/floor/pPavement/green,
 /area/station/hydroponics/lobby)
 "my" = (
 /obj/cable{
@@ -5334,9 +5306,7 @@
 /obj/cup_rack{
 	pixel_y = 34
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "nU" = (
 /obj/machinery/door/poddoor/blast/pyro/podbay_autoclose/qm_horizontal,
@@ -5544,7 +5514,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/turf/floor/carpet/green/standard/edge/nw,
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "ov" = (
 /obj/disposalpipe/switch_junction/left/south,
@@ -5558,9 +5528,7 @@
 /obj/machinery/door/poddoor/shutters/right{
 	id = "coffee"
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "ox" = (
 /obj/machinery/camera{
@@ -5599,7 +5567,7 @@
 	name = "Staff Assistant"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "oC" = (
 /obj/machinery/light/runway_light,
@@ -5665,9 +5633,7 @@
 /obj/machinery/chem_master{
 	dir = 8
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "oK" = (
 /obj/cable{
@@ -5687,7 +5653,7 @@
 	},
 /obj/decal/cleanable/dirt/random,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "oM" = (
 /obj/machinery/door/unpowered/wood/pyro{
@@ -5758,9 +5724,7 @@
 /obj/decal/poster/wallsign/chsl{
 	pixel_y = 32
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "oW" = (
 /obj/machinery/light/fluorescent{
@@ -5842,7 +5806,7 @@
 /area/station/crew_quarters/kitchen)
 "pg" = (
 /obj/disposalpipe/junction/right/north,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "ph" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
@@ -5965,9 +5929,7 @@
 	dir = 8
 	},
 /obj/decal/cleanable/cobweb2,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "px" = (
 /obj/machinery/power/apc{
@@ -6153,9 +6115,7 @@
 /obj/mug_rack{
 	pixel_y = 36
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "pV" = (
 /obj/machinery/manufacturer_attachment/canister_port{
@@ -6548,7 +6508,7 @@
 /area/station/crew_quarters/kitchen)
 "qY" = (
 /obj/decal/cleanable/mess/fries,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "qZ" = (
 /obj/stool/chair/couch{
@@ -6621,7 +6581,7 @@
 	icon_state = "1-2"
 	},
 /obj/access_spawn/hydro,
-/turf/floor/plating,
+/turf/floor/pPavement/green,
 /area/station/hydroponics/lobby)
 "rj" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -6988,9 +6948,7 @@
 	},
 /obj/ladder/auto,
 /obj/decal/cleanable/dirt/random,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "sh" = (
 /obj/submachine/tape_deck,
@@ -7088,7 +7046,7 @@
 /obj/table/wood/auto,
 /obj/decal/cleanable/dirt/random,
 /obj/item/material_piece/cloth/rag,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "st" = (
 /obj/wingrille_spawn/reinforced,
@@ -7359,7 +7317,7 @@
 	dir = 4
 	},
 /obj/landmark/gps_waypoint,
-/turf/floor/carpet/green/standard/edge/east,
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "tf" = (
 /obj/item/device/radio/intercom/medical{
@@ -7930,7 +7888,7 @@
 /area/station/medical/medbay/treatment)
 "uB" = (
 /obj/decal/cleanable/dirt/random,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "uC" = (
 /obj/machinery/door/airlock/gannets/glass/toxins,
@@ -8022,7 +7980,7 @@
 	pixel_y = -7
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "uQ" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -8042,9 +8000,7 @@
 /area/station/engine/core)
 "uT" = (
 /obj/machinery/chem_dispenser,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "uU" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/southeast,
@@ -8378,7 +8334,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/turf/floor/carpet/green/standard/edge/west,
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "vL" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -8535,9 +8491,7 @@
 	dir = 2
 	},
 /obj/decal/cleanable/dirt/jen,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "wh" = (
 /obj/item/device/radio/beacon,
@@ -8844,7 +8798,7 @@
 /obj/cable{
 	icon_state = "1-6"
 	},
-/turf/floor/carpet/nicebrown,
+/turf/floor/pPavement/green,
 /area/station/hydroponics/lobby)
 "wW" = (
 /obj/machinery/vending/kitchen/lite,
@@ -9050,7 +9004,7 @@
 /area/station/hallway/primary/south)
 "xw" = (
 /obj/decal/cleanable/dirt/jen,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "xx" = (
 /obj/machinery/light/fluorescent{
@@ -9678,7 +9632,7 @@
 	dir = 8
 	},
 /obj/machinery/disposal/mail/autoname/hydroponics,
-/turf/floor/carpet/nicebrown,
+/turf/floor/pPavement/green,
 /area/station/hydroponics/lobby)
 "zc" = (
 /obj/cable{
@@ -9803,9 +9757,7 @@
 	pixel_y = 32
 	},
 /obj/machinery/vending/minibar,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "zu" = (
 /obj/disposalpipe/segment/sewage{
@@ -10572,7 +10524,7 @@
 	name = "Staff Assistant"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "Bz" = (
 /obj/disposalpipe/segment/bent{
@@ -11303,7 +11255,7 @@
 	icon_state = "4-8"
 	},
 /obj/decal/cleanable/mess/chips,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "DA" = (
 /obj/disposalpipe/segment{
@@ -11443,7 +11395,7 @@
 /obj/dartboard{
 	pixel_y = 29
 	},
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "DS" = (
 /obj/machinery/light/fluorescent{
@@ -11662,9 +11614,7 @@
 /obj/machinery/door/poddoor/shutters/left{
 	id = "coffee"
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Ex" = (
 /obj/cable{
@@ -12080,7 +12030,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "FA" = (
 /obj/wingrille_spawn/reinforced,
@@ -12239,9 +12189,7 @@
 	id = "coffee"
 	},
 /obj/machinery/light/fluorescent/ceiling,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "FX" = (
 /obj/wingrille_spawn/reinforced,
@@ -12315,7 +12263,7 @@
 "Gh" = (
 /obj/machinery/vending/medical_public,
 /obj/decal/cleanable/dirt/random,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "Gi" = (
 /obj/disposalpipe/segment{
@@ -12960,7 +12908,7 @@
 /obj/cable{
 	icon_state = "1-8"
 	},
-/turf/floor/carpet/green/standard/edge/ne,
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "HP" = (
 /obj/machinery/door/airlock{
@@ -13002,9 +12950,7 @@
 	},
 /obj/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/east,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "HV" = (
 /obj/machinery/light{
@@ -13773,7 +13719,7 @@
 	pixel_y = 3
 	},
 /obj/item/surgical_spoon,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "JR" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -13956,18 +13902,14 @@
 	pixel_y = 8
 	},
 /obj/table/reinforced,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Kv" = (
 /turf/floor/carpet/purple,
 /area/station/crew_quarters/radio/lab)
 "Kw" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Kx" = (
 /obj/disposalpipe/segment{
@@ -14132,9 +14074,7 @@
 /obj/disposalpipe/segment/bent{
 	dir = 1
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "KS" = (
 /obj/disposalpipe/segment/bent{
@@ -14334,21 +14274,13 @@
 /obj/disposalpipe/segment/mail/horizontal,
 /turf/floor/plating,
 /area/station/maintenance/central)
-"Lw" = (
-/obj/cable{
-	icon_state = "1-2"
-	},
-/turf/floor/carpet/green/standard/edge/se,
-/area/station/crew_quarters/bar)
 "Lx" = (
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
 /obj/decal/cleanable/dirt/dirt2,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Ly" = (
 /obj/disposalpipe/segment/bent{
@@ -15071,7 +15003,7 @@
 /obj/decal/cleanable/dirt/random,
 /obj/item/decoration/flower_vase/vase7,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "Ns" = (
 /obj/machinery/light/fluorescent/auto/cool{
@@ -15121,9 +15053,7 @@
 	pixel_y = 32
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Nx" = (
 /obj/disposalpipe/junction/left/east,
@@ -15334,15 +15264,11 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	icon_state = "delivery2"
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Oc" = (
 /obj/decal/cleanable/dirt/random,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Od" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -15744,7 +15670,7 @@
 /area/listeningpost)
 "Pe" = (
 /obj/storage/secure/closet/civilian/hydro,
-/turf/floor/carpet/nicebrown,
+/turf/floor/pPavement/green,
 /area/station/hydroponics/lobby)
 "Pf" = (
 /obj/disposalpipe/segment/bent{
@@ -15764,9 +15690,7 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Ph" = (
 /turf/floor/carpet/blue/standard/edge/south,
@@ -15823,9 +15747,7 @@
 /obj/disposalpipe/segment/mail/vertical,
 /obj/machinery/light_switch/east,
 /obj/table/reinforced,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Pq" = (
 /turf/space/gehenna/desert/path,
@@ -15892,9 +15814,7 @@
 /obj/item/device/radio/intercom/catering{
 	dir = 1
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "PC" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
@@ -15928,7 +15848,7 @@
 	icon_state = "chair_couch-blue";
 	name = "ratty blue couch"
 	},
-/turf/floor/carpet/nicebrown,
+/turf/floor/pPavement/green,
 /area/station/hydroponics/lobby)
 "PH" = (
 /obj/railway/rusty,
@@ -15944,9 +15864,7 @@
 	tag = ""
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/vertical,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "PJ" = (
 /obj/submachine/chef_sink{
@@ -16501,9 +16419,7 @@
 	mail_tag = "bar";
 	name = "bar"
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Ra" = (
 /turf/space/gehenna/desert/corner{
@@ -16645,7 +16561,7 @@
 	icon_state = "4-8"
 	},
 /obj/disposalpipe/segment,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "Rv" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/northeast,
@@ -16656,7 +16572,7 @@
 	name = "Bartender"
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northwest,
-/turf/floor/carpet/green/standard/edge/sw,
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Rx" = (
 /obj/storage/crate/freezer/milk,
@@ -17033,7 +16949,7 @@
 	dir = 4
 	},
 /obj/machinery/disposal,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "SA" = (
 /obj/cable{
@@ -17069,7 +16985,7 @@
 "SF" = (
 /obj/machinery/door/airlock,
 /obj/access_spawn/hydro,
-/turf/floor/carpet/nicebrown,
+/turf/floor/pPavement/green,
 /area/station/hydroponics/lobby)
 "SG" = (
 /obj/machinery/firealarm{
@@ -17078,7 +16994,7 @@
 	pixel_y = -24
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "SH" = (
 /obj/table/reinforced/auto,
@@ -17131,7 +17047,7 @@
 /obj/neon_sign/beer{
 	pixel_x = 32
 	},
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "SN" = (
 /obj/item/reagent_containers/food/snacks/breadloaf,
@@ -17284,9 +17200,7 @@
 /area/station/science/lab)
 "Tj" = (
 /obj/disposalpipe/junction/left/east,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Tk" = (
 /obj/disposalpipe/segment{
@@ -17316,7 +17230,7 @@
 	name = "Staff Assistant"
 	},
 /obj/decal/cleanable/dirt/random,
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "To" = (
 /obj/disposalpipe/segment{
@@ -17357,9 +17271,7 @@
 	dir = 8;
 	id = "bar"
 	},
-/turf/floor/specialroom/bar/edge{
-	dir = 5
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Tt" = (
 /obj/storage/secure/closet/logistics/cargo,
@@ -17733,9 +17645,7 @@
 	id = "bar";
 	pixel_y = -30
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Uq" = (
 /obj/railway/rusty,
@@ -17821,7 +17731,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "UD" = (
 /obj/machinery/navbeacon/guardbotsecbot_circularpatrol/beacon14,
@@ -18312,9 +18222,7 @@
 	pixel_y = 5
 	},
 /obj/table/reinforced/kitchen/auto,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "VK" = (
 /obj/ladder/auto,
@@ -18392,7 +18300,7 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "VX" = (
 /turf/space/gehenna/desert/corner{
@@ -18522,9 +18430,7 @@
 	dir = 8;
 	id = "bar"
 	},
-/turf/floor/specialroom/bar/edge{
-	dir = 5
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "Ws" = (
 /obj/disposalpipe/segment/mail/vertical,
@@ -18722,9 +18628,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/drainage,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "WV" = (
 /obj/stool/chair/office/orange{
@@ -19031,9 +18935,7 @@
 	dir = 8;
 	id = "bar"
 	},
-/turf/floor/specialroom/bar/edge{
-	dir = 5
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "XK" = (
 /obj/storage/crate/packing,
@@ -19191,7 +19093,7 @@
 /obj/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "Yh" = (
 /obj/machinery/door/airlock/gannets/chemistry/alt,
@@ -19427,7 +19329,7 @@
 /turf/floor/plating,
 /area/station/maintenance/west)
 "YM" = (
-/turf/floor/pPavement/brown,
+/turf/floor/specialroom/bar,
 /area/station/crew_quarters/cafeteria)
 "YN" = (
 /obj/machinery/light/fluorescent/ceiling,
@@ -19510,9 +19412,7 @@
 	id = "coffee";
 	pixel_y = -22
 	},
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "YY" = (
 /obj/grille/catwalk/jen,
@@ -19737,9 +19637,7 @@
 	dir = 4
 	},
 /obj/item/reagent_containers/food/drinks/drinkingglass/pitcher,
-/turf/floor/specialroom/bar{
-	icon_state = "dark"
-	},
+/turf/floor/pPavement/brown,
 /area/station/crew_quarters/bar)
 "ZH" = (
 /obj/disposalpipe/segment/mail/horizontal,
@@ -73176,7 +73074,7 @@ Pg
 Pg
 HO
 te
-Lw
+Pg
 WU
 PB
 fe
@@ -73779,7 +73677,7 @@ Ec
 pw
 Ob
 oJ
-fe
+jc
 zt
 uT
 ZG
