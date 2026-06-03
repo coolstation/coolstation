@@ -26,6 +26,7 @@ var/global/list/chem_whitelist = list("antihol", "charcoal", "epinephrine", "ins
 	rc_flags = RC_SCALE | RC_VISIBLE | RC_SPECTRO
 	var/image/fluid_image
 	var/sound/sound_inject = 'sound/items/hypo.ogg'
+	var/sound/sound_fill = 'sound/items/mender_refill_juice.ogg'
 	hide_attack = 2
 	inventory_counter_enabled = 1
 
@@ -144,3 +145,26 @@ var/global/list/chem_whitelist = list("antihol", "charcoal", "epinephrine", "ins
 		playsound(M, src.sound_inject, 80, 0)
 
 		update_icon()
+
+	afterattack(obj/target, mob/user, flag)
+		..()
+		if(istype(target,/obj/item/reagent_containers/glass))
+			var/obj/item/reagent_containers/glass/g = target
+			if (!g.reagents.total_volume)
+				boutput(user,"<span class='alert'>[g] is empty.</span>")
+				return
+
+			if (src.reagents.is_full())
+				boutput(user,"<span class='notice'>[src] is full.</span>")
+				return
+
+			var/amt_prop = inj_amount == -1 ? src.reagents.total_volume : inj_amount
+
+			user.visible_message("<span class='notice'><b>[user] fills [src] with [amt_prop] units of [g.reagents.get_master_reagent_name()].</B></span>",\
+			"<span class='notice'>You fill [src] with [amt_prop] units of [g.reagents.get_master_reagent_name()]. [src] now contains [min(reagents.total_volume,reagents.maximum_volume)] units.</span>")
+			g.reagents.trans_to(src,amt_prop)
+
+			playsound(target, src.sound_fill, 40, 0)
+
+			update_icon()
+
