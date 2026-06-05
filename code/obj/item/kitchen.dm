@@ -162,6 +162,17 @@ TRAYS
 	fancy
 		icon_state = "fork-new"
 
+/obj/item/kitchen/utensil/spatula
+	name = "spatula"
+	icon_state = "spatula"
+	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
+	tool_flags = TOOL_PRYING //prying open the door with the spatula lmao
+	hit_type = DAMAGE_BLUNT
+	hitsound = 'sound/impact_sounds/Generic_Hit_2.ogg'
+	force = 3
+	throwforce = 5
+	desc = "A handy tool for the enterprising burger flipper, used for not burning the shit out of your hands trying to flip burgers. Like a dumbass."
+
 /obj/item/kitchen/utensil/knife
 	name = "knife"
 	icon_state = "knife"
@@ -886,7 +897,7 @@ TRAYS
 			return "<span style=\"color:orange\">There's a positively <i>indescribable</i> amount of food on \the [src]!</span>"
 		return "[food_desc]"
 
-	attackby(obj/item/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj, mob/user as mob,params)
 		if(istype(W, /obj/item/plate) && !istype(W, /obj/item/plate/tray) && W.type == src.type)
 			if(length(src.contents) || length(W.contents))
 				user.visible_message("<b>[user]</b> tries to stack plates but there's food on them.","You try to stack plates but there's food on them.")
@@ -930,7 +941,7 @@ TRAYS
 			return
 		user.drop_item()
 		W.set_loc(src)
-		src.add_contents(W)
+		src.add_contents(W,user,params)
 		src.ClearAllOverlays()
 		src.update_icon()
 		boutput(user, "You put [W] on \the [src]")

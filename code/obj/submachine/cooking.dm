@@ -655,6 +655,77 @@ input:checked + div { display: block; }
 
 	return oven_recipe_html
 
+/obj/machinery/griddle
+	name = "griddle"
+	desc = "A grease covered surface that, when turned on, cooks food placed on it."
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
+	icon_state = "griddle-off"
+	anchored = ANCHORED
+	density = 1
+	mats = 15
+	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
+
+	var/emagged = false
+	var/working = true
+	var/on = false
+	var/list/griddleitems = list()
+	var/max_items = 8
+
+	//looping sound here too
+
+	attackby(obj/item/I, mob/user,params)
+		//check for decon and all the shit whatever man
+		if (istype(I,/obj/item/reagent_containers/food))
+			src.add_contents(I,user,params)
+
+	attack_hand(mob/user)
+		if (status & MALFUNC && status & NOPOWER)
+			boutput(user,"<span class='alert'>[src] won't turn on!</span>")
+			on = false
+			icon_state = "griddle-off"
+			return
+		toggle_status()
+		//play switch sound or whatever
+
+	process(mult)
+		..()
+		if (on && working)
+			for (var/obj/item/reagent_containers/food/food in src.griddleitems)
+				food.griddle_cook(src)
+
+
+	proc/toggle_status()
+		if (on)
+			on = false
+			icon_state = "griddle-off"
+		else
+			on = true
+			icon_state = "griddle-on"
+
+	proc/add_contents(obj/item/reagent_containers/food/food,mob/user,params)
+		griddleitems += f
+		src.place_on(f,user,params)
+		f.set_loc(src)
+		src.vis_contents += food
+		food.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+		food.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
+		food.event_handler_flags |= NO_MOUSEDROP_QOL
+		src.update_icon()
+		boutput(user,"<span class='notice'>You place [food] on [src].</span>")
+		RegisterSignal(food, COMSIG_MOVABLE_SET_LOC, PROC_REF(remove_contents))
+		RegisterSignal(food, COMSIG_ATTACKHAND, PROC_REF(remove_contents))
+
+	proc/remove_contents(obj/item/food)
+		src.vis_contents -= food
+		food.appearance_flags = initial(food.appearance_flags)
+		food.vis_flags = initial(food.vis_flags)
+		food.event_handler_flags = initial(food.event_handler_flags)
+		src.update_icon()
+		UnregisterSignal(food, COMSIG_MOVABLE_SET_LOC)
+		UnregisterSignal(food, COMSIG_ATTACKHAND)
+
+
+
 /obj/submachine/chef_oven
 	name = "oven"
 	desc = "A multi-cooking unit featuring a hob, grill, oven and more."
