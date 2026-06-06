@@ -22,6 +22,7 @@
 	food_color = "#33302b"
 	initial_volume = 25
 	initial_reagents = "yuck"
+	can_griddle = false
 
 /obj/item/reagent_containers/food/snacks/shell
 	name = "incinerated embodiment of culinary disaster"
@@ -759,6 +760,7 @@
 	amount = 1
 	heal_amt = 2
 	food_color ="#006622"
+	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/reagent_containers/food/snacks/condiment/))

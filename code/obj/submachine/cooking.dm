@@ -673,6 +673,10 @@ input:checked + div { display: block; }
 
 	//looping sound here too
 
+	New()
+		setup_sound()
+		..()
+
 	attackby(obj/item/I, mob/user,params)
 		//check for decon and all the shit whatever man
 		if (istype(I,/obj/item/reagent_containers/food))
@@ -689,10 +693,26 @@ input:checked + div { display: block; }
 
 	process(mult)
 		if (on && working)
-			for (var/obj/item/reagent_containers/food/food in src.griddleitems)
-				food.griddle_cook(src)
+			if (griddleitems.len > 0)
+				for (var/obj/item/reagent_containers/food/food in src.griddleitems)
+					food.griddle_cook(src,mult)
+				if(!src.sound_emitter.active_sound)
+					src.sound_emitter.play("sizzle")
+			else
+				src.sound_emitter.deactivate
+		else
+			src.sound_emitter.deactivate
 		..()
 
+
+	setup_sound()
+		sound_emitter = new(src)
+		if (sound_emitter)
+			var/sound/sizzle = sound()
+			sizzle.file = "sound/misc/sizzleloop.ogg"
+			sizzle.repeat = 1
+			sizzle.volume = 20
+			sound_emitter.add(sizzle, "sizzle")
 
 	proc/toggle_status()
 		if (on)
@@ -717,6 +737,7 @@ input:checked + div { display: block; }
 
 	proc/remove_contents(obj/item/food)
 		src.vis_contents -= food
+		griddleitems -= food
 		food.appearance_flags = initial(food.appearance_flags)
 		food.vis_flags = initial(food.vis_flags)
 		food.event_handler_flags = initial(food.event_handler_flags)

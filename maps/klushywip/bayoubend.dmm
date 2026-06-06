@@ -2057,7 +2057,6 @@
 	dir = 6;
 	icon_state = "line2"
 	},
-/obj/bookshelf/persistent,
 /turf/floor/carpet/grime,
 /area/station/library)
 "bDU" = (
@@ -8146,12 +8145,11 @@
 /turf/floor/carpet/blue/fancy/edge/sw,
 /area/station/medical/staff)
 "fXU" = (
-/obj/table/auto,
-/obj/item/plate/tray,
 /obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
+/obj/machinery/griddle,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "fYl" = (
@@ -11038,6 +11036,7 @@
 /obj/machinery/phone{
 	pixel_y = 13
 	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/grub,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "hQI" = (
@@ -16745,14 +16744,14 @@
 /obj/item/shaker/salt{
 	pixel_x = -11
 	},
-/obj/item/kitchen/utensil/knife/pizza_cutter{
-	pixel_x = -9;
-	pixel_y = 15
-	},
 /obj/item/material_piece/cloth/rag,
 /obj/item/kitchen/rollingpin{
 	pixel_x = 4;
 	pixel_y = 2
+	},
+/obj/item/kitchen/utensil/knife/pizza_cutter{
+	pixel_x = -9;
+	pixel_y = 15
 	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
@@ -23182,6 +23181,7 @@
 "qvA" = (
 /obj/table/auto,
 /obj/table/auto,
+/obj/item/plate/tray,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "qwf" = (
@@ -25934,7 +25934,6 @@
 /obj/decal/tile_edge/line/black{
 	icon_state = "line1"
 	},
-/obj/bookshelf/persistent,
 /turf/floor/carpet/grime,
 /area/station/library)
 "snd" = (
