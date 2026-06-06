@@ -769,6 +769,8 @@ input:checked + div { display: block; }
 		src.update_icon()
 		if (user)
 			boutput(user,"<span class='notice'>You place [food] on [src].</span>")
+		if(!src.sound_emitter.active_sound)
+			src.sound_emitter.play("sizzle")
 		RegisterSignal(food, COMSIG_MOVABLE_SET_LOC, PROC_REF(remove_contents))
 		RegisterSignal(food, COMSIG_ATTACKHAND, PROC_REF(remove_contents))
 

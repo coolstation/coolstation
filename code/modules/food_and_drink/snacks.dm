@@ -13,7 +13,7 @@
 	initial_reagents = "yuck"
 
 /obj/item/reagent_containers/food/snacks/yuckburn
-	name = "smoldering mess"
+	name = "burn mess"
 	desc = "This looks more like charcoal than food..."
 	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
 	icon_state = "burnt"
@@ -21,7 +21,22 @@
 	heal_amt = 0
 	food_color = "#33302b"
 	initial_volume = 25
-	initial_reagents = "yuck"
+	initial_reagents = list("yuck"=10,"carbon"=15)
+	can_griddle = true
+	burn_possible = true
+	burn_point = 350
+	burn_output = 900
+	griddle_time = 10
+
+/obj/item/reagent_containers/food/snacks/yuckburn/smoldering
+	name = "smoldering mess"
+	desc = "this takes skill."
+	icon_state = "smoldering"
+	initial_volume = 25
+	initial_reagents = list("yuck"=5,"carbon"=20)
+	burn_possible = true
+	burn_point = 1
+	burn_output = 900
 	can_griddle = false
 
 /obj/item/reagent_containers/food/snacks/shell
