@@ -179,7 +179,7 @@
 /// when clicking the storage item with an empty hand
 /datum/storage/proc/storage_item_attack_hand(mob/user)
 	if (!src.sneaky)
-		playsound(src.linked_item.loc, "rustle", 50, TRUE, -2)
+		playsound(src.linked_item.loc, "rustle", 50, TRUE, SOUND_RANGE_SMALL)
 	// check if its in your inventory
 	if (src.linked_item.loc == user && (src.opens_if_worn || (src.linked_item in user.equipped_list(FALSE))))
 		// check if storage is attached as an arm
@@ -209,7 +209,7 @@
 	// if mouse dropping storage item onto a hand slot, attempt to hold it
 	if (istype(over_object, /atom/movable/screen/hud))
 		var/atom/movable/screen/hud/S = over_object
-		playsound(src.linked_item.loc, "rustle", 50, TRUE, -5)
+		playsound(src.linked_item.loc, "rustle", 50, TRUE, SOUND_RANGE_SMALL)
 		if (!user.restrained() && !is_incapacitated(user) && src.linked_item.loc == user)
 			if (S.id == "rhand" && !user.r_hand)
 				user.u_equip(src.linked_item)
@@ -367,7 +367,7 @@
 		if (!src.sneaky)
 			user.visible_message("<span class='notice'>[user] has added [I] to [src.linked_item]!</span>",
 				"<span class='notice'>You have added [I] to [src.linked_item].</span>")
-		playsound(src.linked_item.loc, "rustle", 50, TRUE, -5)
+		playsound(src.linked_item.loc, "rustle", 50, TRUE, SOUND_RANGE_SMALL)
 
 /// use this versus add_contents() if you also want extra safety checks
 /datum/storage/proc/add_contents_safe(obj/item/I, mob/user = null, visible = TRUE)

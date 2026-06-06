@@ -1654,7 +1654,7 @@
 		hatched = 1
 		src.visible_message("<span class='alert'>[src] splats onto the floor messily!</span>")
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
-		make_cleanable(/obj/decal/cleanable/eggsplat,T)
+		new /obj/decal/cleanable/eggsplat(T)
 		var/obj/critter/domestic_bee_larva/newLarva
 		if (larva_type)
 			newLarva = new larva_type(get_turf(src))
@@ -1740,7 +1740,7 @@
 		src.hatched = 1
 		src.visible_message("<span class='alert'>[src] splats onto the floor messily!</span>")
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
-		make_cleanable(/obj/decal/cleanable/eggsplat,T)
+		new /obj/decal/cleanable/eggsplat(T)
 		var/obj/critter/domestic_bee_larva/newLarva = new /obj/critter/domestic_bee_larva(get_turf(src))
 		if (bee_name)
 			newLarva.name = bee_name

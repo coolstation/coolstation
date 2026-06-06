@@ -36,7 +36,7 @@
 			user.visible_message("<b>[user]</b> tips out [src] onto the floor.",\
 			"You tip out [src] onto the floor.")
 			var/turf/T = get_turf(src)
-			make_cleanable( /obj/decal/cleanable/ash,T)
+			new  /obj/decal/cleanable/ash(T)
 			for (var/i = 0, i < src.butts, i++)
 				new /obj/item/cigbutt(T)
 			src.butts = 0 // pff
@@ -70,7 +70,7 @@
 		if (src.butts)
 			src.visible_message("[src] spills all over the place.")
 			var/turf/T = get_turf(src)
-			make_cleanable( /obj/decal/cleanable/ash,T)
+			new  /obj/decal/cleanable/ash(T)
 			for (var/i = 0, i < src.butts, i++)
 				new /obj/item/cigbutt(T)
 			src.butts = 0 // pff

@@ -331,7 +331,7 @@
 					var/obj/item/clothing/U = H.wear_suit
 					U.add_stain("piss-soaked")
 					//U.name = "piss-soaked [initial(U.name)]"
-			make_cleanable(/obj/decal/cleanable/urine,holder.owner.loc)
+			new /obj/decal/cleanable/urine(holder.owner.loc)
 
 	comfort
 		name = "comfort"

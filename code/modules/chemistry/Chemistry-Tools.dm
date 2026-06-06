@@ -94,7 +94,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 		. = "<br><span class='notice'>[reagents.get_description(user,rc_flags)]</span>"
 		return
 
-	mouse_drop(atom/over_object as obj)
+	mouse_drop(atom/movable/over_object)
 		if (!src.is_open_container())
 			boutput(usr, "<span class='alert'>The [src] is closed!</span>")
 			return ..()
@@ -118,8 +118,9 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 					ok = 0
 			if(!ok)
 				return
+
 		// First filter out everything we don't want to refill or empty quickly.
-		if (!istype(over_object, /obj/item/reagent_containers/glass) && !istype(over_object, /obj/item/reagent_containers/food/drinks) && !istype(over_object, /obj/reagent_dispensers) && !istype(over_object, /obj/item/spraybottle) && !istype(over_object, /obj/machinery/plantpot) && !istype(over_object, /obj/mopbucket) && !istype(over_object, /obj/item/reagent_containers/mender) && !istype(over_object, /obj/item/tank/jetpack/backtank))
+		if (!(over_object.object_flags & POUR_INTO))
 			return ..()
 
 		if (!istype(src, /obj/item/reagent_containers/glass) && !istype(src, /obj/item/reagent_containers/food/drinks))
@@ -162,6 +163,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 	icon_state = "null"
 	item_state = "null"
 	amount_per_transfer_from_this = 10
+	object_flags = POUR_INTO
 	var/can_recycle = TRUE //can this be put in a glass recycler?
 	var/splash_all_contents = 1
 	flags = FPRINT | TABLEPASS | OPENCONTAINER | SUPPRESSATTACK
@@ -332,6 +334,9 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 				return
 
 			boutput(user, "<span class='notice'>You crack [I] into [src].</span>")
+			playsound(I,"sound/effects/eggshell.ogg",30)
+			var/turf/T = get_turf(user)
+			new /obj/decal/cleanable/eggshell(T)
 
 			I.reagents.trans_to(src, I.reagents.total_volume)
 			user.u_equip(I)
@@ -368,6 +373,14 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			I.reagents.trans_to(src, I.reagents.total_volume)
 			user.u_equip(I)
 			qdel(I)
+
+		else if (istype(I,/obj/item/reagent_containers/food/snacks/ingredient/flour)) //i hate this. When i have the time I'm going to refactor flour and sugar to be beakers that just have the reagent inside
+			if (src.reagents.total_volume >= src.reagents.maximum_volume)
+				boutput(user, "<span class='alert'>[src] is full.</span>")
+				return
+			boutput(user, "<span class='notice>You pour 10 units from [I] into [src].</span>")
+
+			I.reagents.trans_to(src, 10)
 
 		else if (istype(I, /obj/item/reagent_containers/food/snacks/breadslice))
 			if (src.reagents.total_volume >= src.reagents.maximum_volume)

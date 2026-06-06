@@ -851,9 +851,9 @@ datum
 											"<span class='alert'><B>[M]</B> bleeds [pick("profusely", "like crazy")]!",\
 											"<span class='alert'><B>[M]</B>'s [pick("chest", "face", "whole body")] bleeds!"))
 					playsound(M, 'sound/impact_sounds/Slimy_Splat_1.ogg', 30, TRUE) //some bloody effects
-					make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter,M.loc)
+					new /obj/decal/cleanable/tracked_reagents/blood/splatter(M.loc)
 				else if (probmult(20))
-					make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter,M.loc) //some extra bloody effects
+					new /obj/decal/cleanable/tracked_reagents/blood/splatter(M.loc) //some extra bloody effects
 				if (probmult(10))
 					M.make_jittery(50)
 					M.setStatus("slowed", max(M.getStatusDuration("slowed"), 5 SECONDS))
@@ -1604,7 +1604,7 @@ datum
 					for(var/mob/O in AIviewers(M, null))
 						O.show_message("<span class='alert'>[M] vomits up some green goo.</span>", 1)
 					playsound(M.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-					make_cleanable( /obj/decal/cleanable/greenpuke,M.loc)
+					new  /obj/decal/cleanable/greenpuke(M.loc)
 				..()
 
 		harmful/bhjuice

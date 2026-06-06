@@ -124,31 +124,31 @@ ABSTRACT_TYPE(/obj/submachine)
 	elecflash(src, power = 3)
 
 	// NORTH
-	gib = make_cleanable( /obj/decal/cleanable/machine_debris,location)
+	gib = new  /obj/decal/cleanable/machine_debris(location)
 	if (prob(25))
 		gib.icon_state = "gibup1"
 	gib.streak_cleanable(NORTH)
 	LAGCHECK(LAG_LOW)
 
 	// SOUTH
-	gib = make_cleanable( /obj/decal/cleanable/machine_debris,location)
+	gib = new  /obj/decal/cleanable/machine_debris(location)
 	if (prob(25))
 		gib.icon_state = "gibdown1"
 	gib.streak_cleanable(SOUTH)
 	LAGCHECK(LAG_LOW)
 
 	// WEST
-	gib = make_cleanable( /obj/decal/cleanable/machine_debris,location)
+	gib = new  /obj/decal/cleanable/machine_debris(location)
 	gib.streak_cleanable(WEST)
 	LAGCHECK(LAG_LOW)
 
 	// EAST
-	gib = make_cleanable( /obj/decal/cleanable/machine_debris,location)
+	gib = new  /obj/decal/cleanable/machine_debris(location)
 	gib.streak_cleanable(EAST)
 	LAGCHECK(LAG_LOW)
 
 	// RANDOM
-	gib = make_cleanable( /obj/decal/cleanable/machine_debris,location)
+	gib = new  /obj/decal/cleanable/machine_debris(location)
 	gib.streak_cleanable(cardinal)
 
 /obj/machinery/Topic(href, href_list)

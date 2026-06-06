@@ -1497,6 +1497,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/device/light/zippo, 5, cost=PAY_UNTRAINED/4)
 
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(1,3), hidden=1, cost=420)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/bowlpiece/cigarette, 1, hidden=1, cost=PAY_UNTRAINED)
 
 	noknobs
 		desc = "Higher tech, but really doesn't have the same vibe."
@@ -2048,6 +2049,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/ladle, 1)
 		product_list += new/datum/data/vending_product(/obj/item/soup_pot, 1)
 		product_list += new/datum/data/vending_product(/obj/item/kitchen/rollingpin, 2)
+		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/spatula, 3)
 		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/knife/cleaver, 1)
 		product_list += new/datum/data/vending_product(/obj/item/kitchen/utensil/knife/pizza_cutter, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/bowl, 10)
@@ -2061,7 +2063,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/sugar, 20)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/butter, 10)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/ingredient/spaghetti, 10)
-		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/meatball, 5)
+		//product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/meatball, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5)

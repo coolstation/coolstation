@@ -81,15 +81,44 @@
 
 /obj/item/device/radio/headset/command/nt
 	name = "NT Headset"
+
 	secure_frequencies = list(
 		"h" = R_FREQ_COMMAND,
 		"g" = R_FREQ_SECURITY,
+	)
+	icon_override = "nt"
+
+/obj/item/device/radio/headset/command/sd
+	name = "Site Director's Headset"
+	icon_override = "sd"
+	secure_frequencies = list(
+		"h" = R_FREQ_COMMAND,
+		"g" = R_FREQ_SECURITY,
+		"e" = R_FREQ_ENGINEERING,
+		"c" = R_FREQ_CIVILIAN,
 		)
 	secure_classes = list(
 		"h" = RADIOCL_COMMAND,
 		"g" = RADIOCL_SECURITY,
+		"e" = RADIOCL_ENGINEERING,
+		"c" = RADIOCL_CIVILIAN,
 		)
-	icon_override = "nt"
+
+/obj/item/device/radio/headset/command/sg
+	name = "Surveyor General's Headset"
+	icon_override = "sg"
+	secure_frequencies = list(
+		"h" = R_FREQ_COMMAND,
+		"r" = R_FREQ_RESEARCH,
+		"m" = R_FREQ_MEDICAL,
+		"l" = R_FREQ_LOGISTICS,
+	)
+	secure_classes = list(
+		"h" = RADIOCL_COMMAND,
+		"r" = RADIOCL_RESEARCH,
+		"m" = RADIOCL_MEDICAL,
+		"l" = RADIOCL_LOGISTICS,
+	)
 
 /obj/item/device/radio/headset/command/nt/rogue
 	name = "Hacked NT Headset"

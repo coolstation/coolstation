@@ -988,7 +988,9 @@
 				if (load_reclaim(O))
 					. = TRUE
 			if (istype(W, /obj/item/satchel) && .)
-				W.update_icon()
+				var/obj/item/satchel/S = W
+				S.curitems = 0				//need to update the satchel's item count or it will be stuck thinking it's full or has things in it.
+				S.satchel_updateicon()
 			//Users loading individual items would make an annoying amount of messages
 			//But loading a container is more noticable and there should be less
 			if (.)

@@ -61,8 +61,8 @@
 
 	//a few assorted titlescreens (TODO: expand and make selectable)
 	dev //starfield
-
-		video_url = "images/titlecards/coolstation_dev_alt.mp4"
+		image_url = "images/titlecards/coolstation_dev_alt.gif"
+		video_url = "images/titlecards/coolstation_dev_alt.mp4" // videos dont work ?
 		is_video = TRUE
 
 	classic //signpost

@@ -511,7 +511,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/microwave)
 
 	eject_food
 		name = "eject contents"
-		icon_state = "microwave_eject_contents"
+		icon_state = "eject"
 
 		checkRequirements(var/obj/machinery/microwave/target, var/mob/user)
 			if(..(target, user))

@@ -258,7 +258,7 @@
 		if (T.active_liquid)
 			src.tracked_reagents.trans_to_direct(T.active_liquid.group.reagents, 1)
 			return
-		B = make_cleanable(/obj/decal/cleanable/tracked_reagents/dynamic/tracks,get_turf(src))
+		B = new /obj/decal/cleanable/tracked_reagents/dynamic/tracks(get_turf(src))
 
 	var/list/states = src.get_step_image_states()
 

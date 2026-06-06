@@ -148,7 +148,7 @@
 		S.set_loc(T)
 		S.setMaterial(getMaterial("gnesisglass"))
 		src.dump_contents()
-		make_cleanable( /obj/decal/cleanable/flockdrone_debris, T)
+		new  /obj/decal/cleanable/flockdrone_debris( T)
 		qdel(src)
 
 /obj/storage/closet/flock/attack_hand(mob/user as mob)

@@ -69,7 +69,7 @@
 		for(var/y_off = 0 to 2)
 			var/turf/T = locate(src.x + x_off,src.y + y_off,src.z)
 			if(T && prob(50))
-				make_cleanable( /obj/decal/cleanable/machine_debris,T)
+				new  /obj/decal/cleanable/machine_debris(T)
 
 	..()
 
@@ -570,7 +570,7 @@
 				L:sever_limb(limb)
 				L.visible_message("<b>The [src.name] slices off one of [L.name]'s limbs!</b>")
 		if(5e8+1 to 1e11) //you really fucked up this time buddy
-			make_cleanable( /obj/decal/cleanable/ash,src.loc)
+			new  /obj/decal/cleanable/ash(src.loc)
 			L.unlock_medal("For Your Ohm Good", 1)
 			L.visible_message("<b>[L.name] is vaporised by the [src]!</b>")
 			L.elecgib()

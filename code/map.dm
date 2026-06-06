@@ -5,7 +5,7 @@
 //Todo - merge with MAP_SPAWN_SHUTTLE, maps need retrofits
 #define MAP_SPAWN_SHUTTLE_DYNAMIC 4 //(most) crew spawns on the arrivals shuttle, which docks with the station at some point
 
-#define GEHENNA_MUSIC list()//list('sound/radio_station/lobby/sundown.ogg')
+#define GEHENNA_MUSIC list('sound/radio_station/lobby/bette_davis_space.ogg','sound/radio_station/lobby/bette_davis_space.ogg')
 
 #define MAP_NAME_RANDOM 1
 
@@ -29,12 +29,12 @@ var/global/list/mapNames = list(
 	"Donut 3" = 		list("id" = "DONUT3", 		"settings" = "donut3",			"playerPickable" = 0, 		"MinPlayersAllowed" = 40),
 	"Horizon" = 		list("id" = "HORIZON", 		"settings" = "horizon", 		"playerPickable" = 0),
 	"The Crag"=			list("id" = "CRAG",			"settings" = "crag", 			"playerPickable" = 1),
-	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 0),
+	"Gehenna Colony" = 	list("id" = "GEHENNA",		"settings" = "gehenna",			"playerPickable" = 1),
 	"La Noyade" = 		list("id" = "NOYADE",		"settings" = "noyade",			"playerPickable" = 1),
 	"The Chunk" =	 	list("id" = "CHUNK",		"settings" = "chunk",			"playerPickable" = 1),
 	"Altbox" 	=		list("id" = "ALTBOX",		"settings" = "altbox",			"playerPickable" = 1),
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
-	"Summit Outpost" =  list("id" = "SUMMIT",		"settings" = "summit", 			"playerPickable" = 0,		"MaxPlayersAllowed" = 75),
+	"Summit Outpost" =  list("id" = "SUMMIT",		"settings" = "summit", 			"playerPickable" = 0,		"MaxPlayersAllowed" = 35),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
 	"Spirit" =			list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
@@ -383,6 +383,23 @@ var/global/list/mapNames = list(
 	escape_station = /area/shuttle/escape/station/donut2
 	escape_def = SHUTTLE_WEST
 	escape_dir = WEST
+
+	job_limits_override = list(
+		/datum/job/civilian/rancher = 0,
+		/datum/job/logistics/janitor = 1,
+		/datum/job/command/head_of_personnel = 0,
+		/datum/job/command/head_of_security = 0,
+		/datum/job/command/captain = 0,
+		/datum/job/command/chief_engineer = 0,
+		/datum/job/command/research_director = 0,
+		/datum/job/command/quartermaster = 0,
+		/datum/job/command/medical_director = 0,
+		/datum/job/command/sitedirector = 1,
+		/datum/job/command/surveyorgeneral = 1,
+		/datum/job/security/security_officer = 4,
+		/datum/job/logistics/miner = 2,
+		/datum/job/research/scientist = 0,
+	)
 
 /datum/map_settings/bayoubend
 	name = "BAYOUBEND"

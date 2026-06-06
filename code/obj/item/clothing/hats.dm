@@ -911,13 +911,14 @@ proc/filter_trait_hats(var/type)
 	item_state = "shako"
 
 	get_desc(var/dist, var/mob/user)
+		var/extra
 		if(user.mind && user.mind.assigned_role == "Surveyor General")
-			. = "It tells everyone that you're in charge around here."
+			extra = "It tells everyone that you're in charge around here."
 		else if(user.mind && user.mind.assigned_role == "Site Director")
-			. = "This is a frivolous piece of garbage. Your hat is clearly better."
+			extra = "This is a frivolous piece of garbage. Your hat is clearly better."
 		else
-			. = "Where did they even find this thing?"
-		. = ..()
+			extra = "Where did they even find this thing?"
+		return extra
 
 /obj/item/clothing/head/bighat/czako
 	name = "Site Director's Czako"
@@ -926,13 +927,14 @@ proc/filter_trait_hats(var/type)
 	item_state = "czako"
 
 	get_desc(var/dist, var/mob/user)
+		var/extra
 		if(user.mind && user.mind.assigned_role == "Surveyor General")
-			. = "Why if this isn't the most senseless waste of good quality fabric you've ever seen..."
+			extra = "Why if this isn't the most senseless waste of good quality fabric you've ever seen..."
 		else if(user.mind && user.mind.assigned_role == "Site Director")
-			. = "This tasteful piece gives you an air of authority."
+			extra = "This tasteful piece gives you an air of authority."
 		else
-			. = "Where did they even find this thing?"
-		. = ..()
+			extra = "Where did they even find this thing?"
+		return extra
 
 /obj/item/clothing/head/bighat/syndicate
 	name = "syndicate hat"

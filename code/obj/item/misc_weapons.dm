@@ -826,11 +826,19 @@
 					sourcejob = C.mind.assigned_role
 				else if (C.ghost && C.ghost.mind && C.ghost.mind.assigned_role)
 					sourcejob = C.ghost.mind.assigned_role
-				for (var/i=0, i<3, i++)
-					var/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/meat = new /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat(get_turf(C))
-					meat.name = sourcename + meat.name
-					meat.subjectname = sourcename
-					meat.subjectjob = sourcejob
+				if (C.get_burn_damage() > WELL_DONE_THRESHOLD)
+					for (var/i in 1 to 3)
+						var/obj/item/reagent_containers/food/snacks/steak_h/meat = new /obj/item/reagent_containers/food/snacks/steak_h(get_turf(C))
+						meat.name = sourcename + meat.name
+						meat.hname = sourcename
+						meat.job = sourcejob
+						meat.quality = rand()
+				else
+					for (var/i in 1 to 3)
+						var/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat/meat = new /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat(get_turf(C))
+						meat.name = sourcename + meat.name
+						meat.subjectname = sourcename
+						meat.subjectjob = sourcejob
 				if (C.mind)
 					C.ghostize()
 					qdel(C)

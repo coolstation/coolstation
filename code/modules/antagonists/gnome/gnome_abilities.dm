@@ -53,13 +53,35 @@
 		src.gnome_holder = null
 		..()
 
+	proc/incapacitation_check(var/stunned_only_is_okay = 0)
+		if (!holder)
+			return 0
+
+		var/mob/living/M = holder.owner
+		if (!M || !ismob(M))
+			return 0
+
+		switch (stunned_only_is_okay)
+			if (0)
+				if (!isalive(M) || M.hasStatus(list("stunned", "paralysis", "weakened")))
+					return 0
+				else
+					return 1
+			if (1)
+				if (!isalive(M) || M.getStatusDuration("paralysis") > 0)
+					return 0
+				else
+					return 1
+			else
+				return 1
+
 /obj/item/gnome_disguise
 	name = "squishy mass"
 	desc = "mylie coded bad (you shouldnt see this)"
 	real_name = "squishy mass"
 	real_desc = "It faintly wriggles. This thing is alive."
 	burn_point = T0C + 350
-	cannot_be_stored = TRUE
+	flags = TABLEPASS | CANT_FIT_IN_CRATES
 	p_class = 2
 	pickup_sfx = "sound/impact_sounds/Slimy_Cut_1.ogg"
 	_max_health = 25
@@ -131,7 +153,7 @@
 			for (var/mob/M in src.contents)
 				boutput(M, SPAN_COMBAT("[user] punches at you!"))
 			src.last_interacted = world.time
-			user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(src)
+			user.next_click = world.time + user.combat_click_delay * GET_COMBAT_CLICK_DELAY_SCALE(user)
 			attack_twitch(user)
 			hit_twitch(src)
 
@@ -182,7 +204,6 @@
 			src.changeHealth(-30)
 
 	updateHealth(var/prevHealth)
-		..()
 		if(src.ability_holder_master)
 			src.ability_holder_master.disguise_health = _health
 		if(_health <= _max_health * 0.5)
@@ -192,18 +213,15 @@
 			src.cant_drop = FALSE
 		else
 			src.cant_drop = TRUE
+		..()
 
-	onDestroy()
-		var/turf/T = get_turf(src)
-		for (var/atom/movable/AM in src)
-			AM.set_loc(T)
-		src.ability_holder_master.owner.visible_message(SPAN_ALERT("[src] unfurls into a hideous little gnome!"))
-		return ..()
 
 	disposing()
 		var/turf/T = get_turf(src)
 		for (var/atom/movable/AM in src)
 			AM.set_loc(T)
+		src.cant_drop = FALSE
+		src.ability_holder_master.owner.visible_message(SPAN_ALERT("[src] unfurls into a hideous little gnome!"))
 		if(src.ability_holder_master)
 			src.ability_holder_master.removeAbility(/datum/targetable/gnome/shed_disguise)
 			src.ability_holder_master.disguised = FALSE
@@ -241,6 +259,19 @@
 	cooldown = 10 SECONDS
 	max_range = 3
 	var/minimum_visible_pixels = 35
+
+	castcheck()
+		if (!holder)
+			return 0
+
+		var/mob/living/M = holder.owner
+
+		if (!M)
+			return 0
+
+		if (incapacitation_check() != 1)
+			boutput(M, __red("You can't use this ability while incapacitated!"))
+			return 0
 
 	cast(var/obj/item/target)
 		if (..())

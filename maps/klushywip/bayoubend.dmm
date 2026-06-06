@@ -465,6 +465,9 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
+/obj/cable{
+	icon_state = "0-8"
+	},
 /turf/floor/plating,
 /area/station/storage/tools)
 "aqS" = (
@@ -2298,7 +2301,6 @@
 /area/station/hallway/primary/east)
 "bJX" = (
 /obj/blind_switch/area/south,
-/obj/bookshelf/long/end_left,
 /turf/floor/wood/seven,
 /area/station/library)
 "bKv" = (
@@ -2374,7 +2376,7 @@
 /turf/floor,
 /area/station/crew_quarters/quarters_west)
 "bLM" = (
-/obj/shitty_radio/shitty_tv{
+/obj/tuneable_receiver/teevee{
 	pixel_x = 32
 	},
 /turf/floor/carpet/grime,
@@ -2757,7 +2759,6 @@
 /area/station/crew_quarters/baroffice)
 "bWX" = (
 /obj/decal/cleanable/dirt/random,
-/obj/bookshelf/long/end_right,
 /turf/floor/wood/seven,
 /area/station/library)
 "bXa" = (
@@ -3441,6 +3442,15 @@
 	},
 /turf/space,
 /area/station/shipyard)
+"cvZ" = (
+/obj/machinery/door_control{
+	name = "Kitchen Shutters Control";
+	pixel_x = -2;
+	pixel_y = -22;
+	id = "kitchen"
+	},
+/turf/floor/specialroom/cafeteria,
+/area/station/crew_quarters/kitchen)
 "cww" = (
 /obj/machinery/disposal,
 /obj/disposalpipe/trunk{
@@ -5450,11 +5460,22 @@
 /area/station/maintenance/southeast)
 "ebM" = (
 /obj/rack,
-/obj/storage/crate/pizza,
-/obj/storage/crate/pizza,
-/obj/storage/crate/pizza,
 /obj/machinery/alarm{
 	pixel_x = 32
+	},
+/obj/item/reagent_containers/food/snacks/condiment/ketchup{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/snacks/condiment/ketchup{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/flour{
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/flour{
+	pixel_y = 5
 	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
@@ -7290,20 +7311,11 @@
 /area/station/maintenance/oldstation)
 "frb" = (
 /obj/table/reinforced/auto,
-/obj/item/shaker/mustard{
-	pixel_x = -6
-	},
-/obj/item/shaker/ketchup,
-/obj/item/shaker/parmesan{
-	pixel_x = 15;
-	pixel_y = 12
-	},
-/obj/item/shaker/redpepper{
-	pixel_x = 13
-	},
-/obj/firedoor_spawn,
 /obj/item/kitchen/utensil/knife/steak{
 	pixel_x = -14
+	},
+/obj/machinery/door/poddoor/shutters/center{
+	id = "kitchen"
 	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
@@ -7683,7 +7695,7 @@
 /obj/cable{
 	icon_state = "1-4"
 	},
-/obj/shitty_radio/shitty_tv{
+/obj/tuneable_receiver/teevee{
 	pixel_x = 33
 	},
 /turf/floor/bluewhite{
@@ -8133,12 +8145,12 @@
 /turf/floor/carpet/blue/fancy/edge/sw,
 /area/station/medical/staff)
 "fXU" = (
-/obj/table/auto,
-/obj/item/plate/tray,
 /obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
+/obj/machinery/griddle,
+/obj/item/kitchen/utensil/spatula,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "fYl" = (
@@ -8807,6 +8819,9 @@
 /area/station/security/interrogation)
 "gtE" = (
 /obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/plating,
 /area/station/medical/robotics)
 "gtF" = (
@@ -9307,6 +9322,13 @@
 	},
 /turf/space,
 /area/station/shipyard)
+"gIr" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/plating,
+/area/station/medical/robotics)
 "gIt" = (
 /obj/machinery/light/small/red{
 	dir = 1
@@ -9750,9 +9772,14 @@
 /turf/floor/black,
 /area/station/turret_protected/ai_upload)
 "gVv" = (
-/obj/bookshelf/long/end_left,
-/turf/floor/wood/seven,
-/area/station/library)
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
 "gVG" = (
 /obj/decal/poster/wallsign/space,
 /turf/wall/auto/rivet,
@@ -11010,12 +11037,7 @@
 /obj/machinery/phone{
 	pixel_y = 13
 	},
-/obj/item/storage/box/cutlery{
-	pixel_x = -7
-	},
-/obj/item/storage/box/ic_cones{
-	pixel_x = 4
-	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/grub,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "hQI" = (
@@ -11278,6 +11300,14 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/solar/north)
+"icg" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/floor/plating,
+/area/station/storage/tools)
 "icj" = (
 /obj/random_item_spawner/junk/one,
 /obj/cable{
@@ -11998,8 +12028,9 @@
 	pixel_x = 10;
 	pixel_y = 4
 	},
-/obj/window/reinforced/west,
-/obj/firedoor_spawn,
+/obj/machinery/door/poddoor/shutters/left{
+	id = "kitchen"
+	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "iFh" = (
@@ -12346,10 +12377,6 @@
 	pixel_x = 10;
 	pixel_y = 4
 	},
-/obj/item/reagent_containers/food/snacks/italian_ice{
-	pixel_x = -13;
-	pixel_y = 14
-	},
 /obj/item/decoration/ashtray{
 	pixel_x = 1;
 	pixel_y = 3
@@ -12661,7 +12688,7 @@
 	},
 /area/station/bridge/customs)
 "jdc" = (
-/obj/shitty_radio/shitty_tv,
+/obj/tuneable_receiver/teevee,
 /turf/floor/carpet{
 	icon_state = "fred2"
 	},
@@ -14666,7 +14693,7 @@
 /area/station/turret_protected/Zeta)
 "kwi" = (
 /obj/table/wood/auto/desk,
-/obj/shitty_radio/shitty_tv{
+/obj/tuneable_receiver/teevee{
 	pixel_y = 8
 	},
 /turf/floor/carpet/blue,
@@ -14694,6 +14721,9 @@
 	},
 /obj/cable{
 	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "2-4"
 	},
 /turf/floor,
 /area/station/hallway/primary/west)
@@ -15634,6 +15664,10 @@
 	},
 /obj/item/reagent_containers/food/snacks/spaghetti/sauce{
 	pixel_y = 9
+	},
+/obj/item/shaker/ketchup,
+/obj/item/shaker/mustard{
+	pixel_x = -6
 	},
 /turf/floor/specialroom/bar,
 /area/station/crew_quarters/bar)
@@ -16711,14 +16745,14 @@
 /obj/item/shaker/salt{
 	pixel_x = -11
 	},
-/obj/item/kitchen/utensil/knife/pizza_cutter{
-	pixel_x = -9;
-	pixel_y = 15
-	},
 /obj/item/material_piece/cloth/rag,
 /obj/item/kitchen/rollingpin{
 	pixel_x = 4;
 	pixel_y = 2
+	},
+/obj/item/kitchen/utensil/knife/pizza_cutter{
+	pixel_x = -9;
+	pixel_y = 15
 	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
@@ -18273,8 +18307,9 @@
 	pixel_x = 10;
 	pixel_y = 4
 	},
-/obj/window/reinforced/east,
-/obj/firedoor_spawn,
+/obj/machinery/door/poddoor/shutters/right{
+	id = "kitchen"
+	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "ndU" = (
@@ -21083,6 +21118,7 @@
 	dir = 10;
 	icon_state = "line2"
 	},
+/obj/bookshelf/persistent,
 /turf/floor/carpet/grime,
 /area/station/library)
 "pgk" = (
@@ -21870,6 +21906,12 @@
 /area/station/crew_quarters/bathroom)
 "pHG" = (
 /obj/table/surgery_tray,
+/obj/item/storage/box/ic_cones{
+	pixel_x = 4
+	},
+/obj/item/storage/box/cutlery{
+	pixel_x = -7
+	},
 /turf/floor/black,
 /area/station/crew_quarters/catering)
 "pHS" = (
@@ -22665,14 +22707,6 @@
 	pixel_x = -6;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/food/snacks/condiment/ketchup{
-	pixel_x = 8;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/snacks/condiment/ketchup{
-	pixel_x = 8;
-	pixel_y = 2
-	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "qer" = (
@@ -23148,12 +23182,7 @@
 "qvA" = (
 /obj/table/auto,
 /obj/table/auto,
-/obj/item/reagent_containers/food/snacks/ingredient/flour{
-	pixel_y = 14
-	},
-/obj/item/reagent_containers/food/snacks/ingredient/flour{
-	pixel_y = 5
-	},
+/obj/item/plate/tray,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "qwf" = (
@@ -24613,7 +24642,7 @@
 	layer = 2
 	},
 /obj/cable,
-/obj/shitty_radio/shitty_tv{
+/obj/tuneable_receiver/teevee{
 	pixel_y = 7
 	},
 /obj/table/auto,
@@ -26044,7 +26073,11 @@
 /turf/floor/orange,
 /area/station/engine/engineering)
 "ssu" = (
-/obj/machinery/vending/cards,
+/obj/stool/chair/wooden{
+	desc = "An antique chair.";
+	dir = 8;
+	name = "old wooden chair"
+	},
 /turf/floor/wood/seven,
 /area/station/library)
 "ssv" = (
@@ -26767,7 +26800,6 @@
 "sRX" = (
 /obj/decal/cleanable/mess/chips,
 /obj/machinery/light_switch/south,
-/obj/bookshelf/long/end_right,
 /turf/floor/wood/seven,
 /area/station/library)
 "sSd" = (
@@ -27086,7 +27118,9 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
-/obj/firedoor_spawn,
+/obj/machinery/door/poddoor/shutters/center{
+	id = "kitchen"
+	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "tcz" = (
@@ -28807,7 +28841,7 @@
 	dir = 4
 	},
 /obj/table/reinforced/bar/auto,
-/obj/shitty_radio/shitty_tv,
+/obj/tuneable_receiver/teevee,
 /turf/floor/grey/side{
 	dir = 4
 	},
@@ -28892,6 +28926,7 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
+/obj/machinery/vending/cards,
 /turf/floor/wood/seven,
 /area/station/library)
 "usL" = (
@@ -29974,6 +30009,13 @@
 /obj/storage/crate/loot_crate,
 /turf/floor/grime,
 /area/space)
+"vhW" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/plating,
+/area/station/medical/robotics)
 "viX" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 4;
@@ -33056,7 +33098,6 @@
 /turf/space,
 /area/space)
 "xuX" = (
-/obj/bookshelf/persistent,
 /obj/decal/cleanable/paper,
 /turf/floor/wood/seven,
 /area/station/library)
@@ -33111,6 +33152,12 @@
 	},
 /obj/firedoor_spawn,
 /obj/access_spawn/engineering_mechanic,
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
 /turf/floor/yellow,
 /area/station/storage/tools)
 "xwG" = (
@@ -68405,7 +68452,7 @@ jbX
 lHl
 myW
 lrg
-jbX
+gVv
 jbX
 jbX
 ncp
@@ -68707,13 +68754,13 @@ fDt
 fDt
 fDt
 fDt
+vhW
 gtE
 gtE
 gtE
 gtE
 gtE
-gtE
-gtE
+gIr
 qsS
 kiC
 ogS
@@ -69642,7 +69689,7 @@ smE
 uZx
 tcF
 rKl
-gFe
+icg
 dXU
 wbt
 dXU
@@ -77465,7 +77512,7 @@ ezE
 ldA
 tTN
 smS
-gVv
+cwD
 miD
 uop
 tzy
@@ -80511,7 +80558,7 @@ fXU
 vPY
 nOD
 qrX
-izD
+cvZ
 aDM
 nES
 wSy

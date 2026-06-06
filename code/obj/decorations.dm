@@ -63,6 +63,34 @@
 			. = ..()
 			src.dir = pick(cardinal - SOUTH)
 
+/obj/tree1/desert_trees/
+		name = "desert tree"
+		plane = PLANE_NOSHADOW_ABOVE //  drop shadow looks stupid on these, esp. large
+
+/obj/tree1/desert_trees/big
+		desc = "A huge, gnarled desert tree."
+		icon = 'icons/effects/160x160.dmi'
+		icon_state = "large desert tree"
+		bound_width = 44
+		pixel_x = -44
+
+/obj/tree1/desert_trees/med
+		desc = "A many-trunked desert tree, bare of leaves."
+		icon = 'icons/effects/160x160.dmi'
+		icon_state = "med desert tree"
+		pixel_x = -64
+
+/obj/tree1/desert_trees/med2
+		icon = 'icons/effects/96x96.dmi'
+		icon_state = "med desert tree"
+		pixel_x = -30
+
+/obj/tree1/desert_trees/small
+		desc = "A scrubby little desert tree."
+		icon = 'icons/effects/64x64.dmi'
+		icon_state = "small desert tree"
+		pixel_x = -10
+
 // what the hell is all this and why wasn't it just using a big icon? the lighting system gets all fucked up with this stuff
 
 /*
@@ -1869,4 +1897,47 @@ obj/decoration/ceilingfan
 		alt
 			icon = 'icons/misc/rstation.dmi'
 			icon_state = "ext-gap"
+
+/obj/decoration/weldseam
+	name = "weld seam"
+	icon = 'icons/obj/decals/misc.dmi'
+	icon_state = "weld"
+	plane = PLANE_NOSHADOW_BELOW
+
+	New()
+		..()
+		var/image/I = image(src, dir=src.dir, pixel_x = src.pixel_x, pixel_y = src.pixel_y)
+		I.appearance_flags = RESET_COLOR
+		var/turf/T = src.loc
+		T.UpdateOverlays(I, "weldseam_[dir]") // we make this an overlay so it is removed with the wall
+		qdel(src)
+
+	color
+		north
+			dir = NORTH
+			pixel_y = 11
+		south
+			dir = SOUTH
+			pixel_y = -11
+		east
+			dir = EAST
+			pixel_x = 11
+		west
+			dir = WEST
+			pixel_x = -11
+
+	grey
+		color = "#585858"
+		north
+			dir = NORTH
+			pixel_y = 11
+		south
+			dir = SOUTH
+			pixel_y = -11
+		east
+			dir = EAST
+			pixel_x = 11
+		west
+			dir = WEST
+			pixel_x = -11
 

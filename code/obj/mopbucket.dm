@@ -6,9 +6,9 @@
 	icon_state = "mopbucket"
 	density = 1
 	pass_unstable = FALSE
-	flags = FPRINT
 	pressure_resistance = ONE_ATMOSPHERE
-	flags = FPRINT | TABLEPASS | OPENCONTAINER
+	flags = FPRINT | TABLEPASS | OPENCONTAINER | FLUID_SUBMERGE
+	object_flags = POUR_INTO
 	var/rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
 	var/image/fluid_image
 	p_class = 1.2

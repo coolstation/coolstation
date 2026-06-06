@@ -400,7 +400,7 @@ ABSTRACT_TYPE(/obj/item/parts)
 		for (var/turf/T in linepath)
 			if(step_to(src, T, 0, 300) || num_splats-- >= 1)
 				if (ispath(streak_splatter))
-					make_cleanable(streak_splatter,src.loc)
+					new streak_splatter(src.loc)
 			sleep(0.1 SECONDS)
 
 

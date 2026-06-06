@@ -2161,19 +2161,22 @@ var/list/fun_images = list()
 	SET_ADMIN_CAT(ADMIN_CAT_FUN)
 	ADMIN_ONLY
 
-	if (!M)
+	//I think this bit is superfluous because BYOND will force a selection popup with [var/mob/M as mob in world]
+/*	if (!M)
 		M = input("Choose a target.", "Selection") as null|anything in mobs
 		if (!M)
-			return
+			return*/
 
 	if (!isliving(M))
-		boutput(usr, "<span class='alert'>Not a valid /mob/living (only those have blood_id's).</span>")
+		boutput(usr, "<span class='alert'>Not a valid living mob (or did they get gibbed?).</span>")
 		return
 
 	var/mob/living/poor_soul = M
 
 	var/list/L = list()
 	var/searchFor = input(usr, "Look for a part of the reagent name (or leave blank for all)", "Add reagent") as null|text
+	if (isnull(searchFor))
+		return
 	if(searchFor)
 		for(var/R in concrete_typesof(/datum/reagent))
 			if(findtext("[R]", searchFor)) L += R
@@ -2186,7 +2189,7 @@ var/list/fun_images = list()
 	else if(L.len > 1)
 		type = input(usr,"Select Reagent:","Reagents",null) as null|anything in L
 	else
-		usr.show_text("No reagents matching that name", "red")
+		usr.show_text("No reagents matching that id", "red")
 		return
 
 	if(!type) return
@@ -2199,7 +2202,7 @@ var/list/fun_images = list()
 	logTheThing("admin", src, poor_soul, "changed [poor_soul]'s blood to [reagent.id].")
 	logTheThing("diary", usr, poor_soul, "changed [poor_soul]'s blood to [reagent.id].", "admin")
 	if (poor_soul.key) // important!
-		message_admins("[key_name(src)] replaced the blood of [key_name(poor_soul.key)] with [reagent.id] at [log_loc(poor_soul)].")
+		message_admins("[key_name(src)] replaced the blood of [key_name(poor_soul.key)] with [reagent.name] (id:[reagent.id]) at [log_loc(poor_soul)].")
 
 	qdel(reagent)
 
@@ -2350,8 +2353,10 @@ var/list/fun_images = list()
 			C.cmd_admin_gib(A)
 		if("Polymorph")
 			C.cmd_admin_polymorph(A)
-		if("Modify Organs")
-			C.modify_organs(A)
+		/*if("Modify Organs")
+			C.modify_organs(A)*/
+		if ("Set Blood ID")
+			C.set_blood_id(A)
 		if("Modify Parts")
 			C.modify_parts(A)
 		if("Modify Module")

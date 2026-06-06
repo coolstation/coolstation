@@ -24,7 +24,7 @@ These should ideally not be disruptive, and are intended to encourage interactio
 			if (H.client) //idc if you already ate it's lunchtime pal
 				hungry += H
 		if (hungry.len)
-			var/wait = rand(6 MINUTES, 9 MINUTES)
+			var/wait = rand(8 MINUTES, 9 MINUTES)
 			for (var/mob/living/carbon/human/H in hungry)
 				SPAWN_DBG(wait)
 					H.nutrition = 50

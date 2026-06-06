@@ -110,7 +110,7 @@
 			B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
 
 		if (!B) // look for an existing dynamic blood decal and add to it if you find one
-			B = make_cleanable(/obj/decal/cleanable/tracked_reagents/dynamic,T)
+			B = new /obj/decal/cleanable/tracked_reagents/dynamic(T)
 
 		B.transfer_volume(src.reagents, 40, src.donor ? src.donor.bioHolder.Uid : null, src.donor ? src.donor.bioHolder.bloodType : null, violent = TRUE)
 

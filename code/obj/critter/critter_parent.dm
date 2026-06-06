@@ -1071,7 +1071,7 @@
 			return
 		if (src.warm_count <= 0 || shouldThrow)
 			if (shouldThrow && T)
-				make_cleanable( /obj/decal/cleanable/eggsplat,T)
+				new  /obj/decal/cleanable/eggsplat(T)
 				src.set_loc(T)
 			else
 				src.anchored = ANCHORED

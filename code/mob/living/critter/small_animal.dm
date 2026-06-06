@@ -1049,12 +1049,12 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			SPAWN_DBG(1 MINUTE)
 				src.visible_message("<span class='alert'><B>The [src] suddenly regurgitates something!</B></span>")
 				playsound(src, pick('sound/impact_sounds/Slimy_Splat_1.ogg','sound/misc/meat_plop.ogg'), 100, 1)
-				make_cleanable( /obj/decal/cleanable/greenpuke,src.loc)
+				new  /obj/decal/cleanable/greenpuke(src.loc)
 
 				for(var/turf/T in range(src, 2))
 					if(prob(20))
 						playsound(T, pick('sound/impact_sounds/Slimy_Splat_1.ogg','sound/misc/meat_plop.ogg'), 100, 1)
-						make_cleanable( /obj/decal/cleanable/greenpuke,T)
+						new  /obj/decal/cleanable/greenpuke(T)
 
 				//new /obj/item/power_stones/Owl(src.loc)
 		else
@@ -1084,12 +1084,12 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			SPAWN_DBG(1 MINUTE)
 				src.visible_message("<span class='alert'><B>The [src] suddenly regurgitates something!</B></span>")
 				playsound(src, pick('sound/impact_sounds/Slimy_Splat_1.ogg','sound/misc/meat_plop.ogg'), 100, 1)
-				make_cleanable( /obj/decal/cleanable/greenpuke,src.loc)
+				new  /obj/decal/cleanable/greenpuke(src.loc)
 
 				for(var/turf/T in range(src, 2))
 					if(prob(20))
 						playsound(src, pick('sound/impact_sounds/Slimy_Splat_1.ogg','sound/misc/meat_plop.ogg'), 100, 1)
-						make_cleanable( /obj/decal/cleanable/greenpuke,T)
+						new  /obj/decal/cleanable/greenpuke(T)
 
 				//new /obj/item/power_stones/Owl(src.loc)
 
@@ -2322,7 +2322,7 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 			if (locate(/obj/decal/cleanable/slime) in src.loc)
 				return
 			else
-				make_cleanable(/obj/decal/cleanable/slime,src.loc)
+				new /obj/decal/cleanable/slime(src.loc)
 
 /* -------------------- Snail -------------------- */
 

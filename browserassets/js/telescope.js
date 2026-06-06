@@ -30,6 +30,7 @@ var pings = [];
 var timerDelay = 33; //= 30fps , 1000ms / 33 = 30fps
 var ref;
 
+document.addEventListener("DOMContentLoaded", resizeCanvas);
 window.addEventListener("resize", resizeCanvas);
 canvas.addEventListener("click", clickMap);
 canvas.addEventListener("contextmenu", clearMap);

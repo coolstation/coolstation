@@ -13,6 +13,12 @@
 	var/festivity = 0
 	var/brewable = 0 // will hitting a still with it do anything?
 	var/brew_result = null // what will it make if it's brewable?
+	var/can_griddle = true //can this be cooked on the griddle
+	var/obj/item/reagent_containers/food/griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn // what will it turn into if griddled - default is to fucking burn it
+	var/obj/item/reagent_containers/food/rolling_result = null // rolling    pin :D
+	var/iscooking = false
+	var/griddle_time = 20 // how long this takes to cook. Subject to slight variation on New(), each tick seems to take about 3 seconds for some reason.
+	var/griddle_message = null
 	var/unlock_medal_when_eaten = null // Add medal name here in the format of e.g. "That tasted funny".
 	var/from_emagged_oven = 0 // to prevent re-rolling of food in emagged ovens
 	var/doants = 1
@@ -20,6 +26,8 @@
 	rc_flags = 0
 
 	New()
+		if (can_griddle)
+			griddle_time += rand(0,4)
 		..()
 /*
 	pooled()
@@ -28,6 +36,36 @@
 	unpooled()
 		made_ants = 0
 		..()*/
+	attack_hand(mob/user)
+		for (var/obj/o in get_turf(src))
+			if (istype(o,/obj/machinery/griddle))
+				iscooking = 1
+		if (iscooking)
+			if (user.traitHolder.hasTrait("hardcore"))
+				user.TakeDamage("All",0,10,0,DAMAGE_BURN,1)
+				boutput(user,"<span class='alert'>You sizzle your hands trying to pick [src] off of the scalding griddle, but since you're no sissy you don't even flinch.</span>")
+			else
+				user.TakeDamage("All",0,5,0,DAMAGE_BURN,1)
+				boutput(user,"<span class='alert'><B>you burn your hand trying to take [src] off of the scalding griddle like a dumbass. Use a spatula.</B></span>")
+				user.emote("scream")
+			playsound(src,"sound/impact_sounds/burn_sizzle.ogg",50)
+		iscooking = 0
+		..()
+
+	attackby(obj/item/I, mob/user)
+		if (istype(I,/obj/item/kitchen/utensil/spatula))
+			user.put_in_hand_or_drop(src)
+			return
+
+		if (istype(I,/obj/item/kitchen/rollingpin) && src.rolling_result)
+			var/obj/item/reagent_containers/food/f = new src.rolling_result
+			JOB_XP(user, "chef", 2)
+			f.set_loc(src.loc)
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			qdel(src)
+		..()
+
 
 	//the only table check is for avoiding doing ants so it might be better to rename this (later)
 	//if there's something else that spawns a food that shouldn't be considered on the floor/antsy add it here
@@ -38,6 +76,21 @@
 				return 1
 		return 0
 
+	proc/griddle_cook(var/obj/machinery/griddle/griddle,mult)
+		if (!src.can_griddle || !src.griddle_result)
+			return
+		griddle_time -= 2.5 * mult
+		if (src.griddle_time <= 0)
+			var/obj/item/reagent_containers/food/f = new src.griddle_result
+			f.set_loc(src.loc)
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			griddle.remove_contents(src)
+			griddle.add_contents(f)
+			if (griddle_message)
+				src.visible_message(griddle_message)
+			playsound(src,"sound/impact_sounds/burn_sizzle.ogg",30)
+			qdel(src)
 
 
 	proc/heal(var/mob/living/M)
@@ -488,6 +541,7 @@
 	icon_state = null
 	flags = FPRINT | TABLEPASS | OPENCONTAINER | SUPPRESSATTACK
 	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO
+	object_flags = POUR_INTO
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
 	var/splash_all_contents = 0 //making an executive decision to *not* splash everything out by default just because you clicked your beer on something else by accident
 	doants = 0
@@ -518,7 +572,7 @@
 
 	on_spin_emote(var/mob/living/carbon/human/user as mob)
 		. = ..()
-		if (src.reagents && src.reagents.total_volume > 0)
+		if (src.is_open_container() &&src.reagents && src.reagents.total_volume > 0)
 			user.visible_message("<span class='alert'><b>[user] spills the contents of [src] all over [him_or_her(user)]self!</b></span>")
 			logTheThing("combat", user, null, "spills the contents of [src] [log_reagents(src)] all over [him_or_her(user)]self at [log_loc(user)].")
 			src.reagents.reaction(get_turf(user), TOUCH)
@@ -1554,7 +1608,7 @@
 			else
 				glass.reagents.trans_to(target, min(glass.reagents.total_volume, glass.gulp_size))
 			glass.reagents.reaction(target, INGEST, min(glass.reagents.total_volume, glass.gulp_size, (target.reagents?.maximum_volume-target.reagents?.total_volume)))
-			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1)
+			playsound(target.loc,"sound/items/drink.ogg", rand(10,50), 1, SOUND_RANGE_MODERATE)
 			eat_twitch(target)
 
 		if(glass.reagents.total_volume <= 0)

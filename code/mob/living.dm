@@ -750,6 +750,11 @@
 		boutput(src, "<span class='alert'>You can not speak!</span>")
 		return
 
+	//I guess changelings don't get paralysis anymore? IDK
+	var/datum/abilityHolder/changeling/lingy = src.get_ability_holder(/datum/abilityHolder/changeling)
+	if (lingy?.in_fakedeath)
+		return
+
 	if (isdead(src))
 		if (dd_hasprefix(message, "*")) // no dead emote spam
 			return
@@ -1027,6 +1032,7 @@
 		return
 
 	var/list/messages = process_language(message, forced_language)
+	var/deaf_message = stars(messages[1], DEAF_LIPREADING_LEGIBLE_PERCENT)
 	var/lang_id = get_language_id(forced_language)
 
 	// Do they have a phone?
@@ -1137,6 +1143,7 @@
 	var/list/processed = list()
 
 	var/image/chat_maptext/chat_text = null
+	var/image/chat_maptext/chat_deaf_text = null
 	if (!message_range && speechpopups && src.chat_text)
 		//new /obj/maptext_junk/speech(src, msg = messages[1], style = src.speechpopupstyle) // sorry, Zamu
 		if(!last_heard_name || src.get_heard_name() != src.last_heard_name)
@@ -1167,10 +1174,11 @@
 			for(var/image/chat_maptext/I in src.chat_text.lines)
 				if(I != chat_text)
 					I.bump_up(chat_text.measured_height)
+		chat_deaf_text = make_chat_maptext(src, deaf_message, "color: [maptext_color];" + src.speechpopupstyle)
 
 	var/rendered = null
 	if (length(heard_a))
-		processed = saylist(messages[1], heard_a, olocs, thickness, italics, processed, assoc_maptext = chat_text)
+		processed = saylist(messages[1], heard_a, olocs, thickness, italics, processed, assoc_maptext = chat_text, deaf_message = deaf_message, assoc_deaf_maptext = chat_deaf_text)
 
 	if (length(heard_b))
 		processed = saylist(messages[2], heard_b, olocs, thickness, italics, processed, 1)
@@ -2100,7 +2108,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				boutput(src, "<span class='alert'><b>[origin] vaporizes you with a lethal arc of electricity!</b></span>")
 				if (H?.shoes)
 					H.drop_from_slot(H.shoes)
-				make_cleanable(/obj/decal/cleanable/ash,src.loc)
+				new /obj/decal/cleanable/ash(src.loc)
 				SPAWN_DBG(1 DECI SECOND)
 					src.elecgib()
 			else

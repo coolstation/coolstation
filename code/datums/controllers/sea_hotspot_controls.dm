@@ -1195,7 +1195,7 @@
 		var/turf/T = src.loc
 		user.visible_message("<span class='alert'><b>[user]</b> rips down [src] from [T]!</span>",\
 		"<span class='alert'>You rip down [src] from [T]!</span>")
-		var/obj/decal/cleanable/ripped_poster/decal = make_cleanable(/obj/decal/cleanable/ripped_poster, T)
+		var/obj/decal/cleanable/ripped_poster/decal = new /obj/decal/cleanable/ripped_poster( T)
 		decal.icon_state = "[src.icon_state]-rip2"
 		decal.pixel_x = src.pixel_x
 		decal.pixel_y = src.pixel_y
