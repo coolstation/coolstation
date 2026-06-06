@@ -709,6 +709,16 @@ input:checked + div { display: block; }
 				return
 		..()
 
+	reagent_act(reagent_id, volume)
+		if (reagent_id == "egg" && volume >= 5)
+			for(var/eggs in 1 to floor(volume) step 5)
+				var/obj/item/reagent_containers/food/snacks/ingredient/egg/raw/scrambled/egg = new()
+				egg.pixel_x = rand(16,-16)
+				egg.pixel_y = rand(16,-16)
+				add_contents(egg)
+			src.visible_message("<span class='notice'>The eggs begin to scramble on [src].</span>")
+		..()
+
 	process(mult)
 		if (on && working)
 			if (griddleitems.len > 0)
@@ -740,7 +750,7 @@ input:checked + div { display: block; }
 			on = true
 			icon_state = "griddle-on"
 
-	proc/add_contents(obj/item/reagent_containers/food/food,mob/user,params)
+	proc/add_contents(obj/item/reagent_containers/food/food,mob/user = null,params = null)
 		griddleitems += food
 		src.place_on(food,user,params,16)
 		food.set_loc(src)
@@ -749,7 +759,8 @@ input:checked + div { display: block; }
 		food.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
 		food.event_handler_flags |= NO_MOUSEDROP_QOL
 		src.update_icon()
-		boutput(user,"<span class='notice'>You place [food] on [src].</span>")
+		if (user)
+			boutput(user,"<span class='notice'>You place [food] on [src].</span>")
 		RegisterSignal(food, COMSIG_MOVABLE_SET_LOC, PROC_REF(remove_contents))
 		RegisterSignal(food, COMSIG_ATTACKHAND, PROC_REF(remove_contents))
 

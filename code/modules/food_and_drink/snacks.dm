@@ -2281,6 +2281,16 @@
 	griddle_time = 10
 	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn
 
+/obj/item/reagent_containers/food/snacks/scrambledegg
+	name = "scrambled eggs"
+	desc = "tastes great, hard to fuck up."
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "egg-cooked"
+	amount = 1
+	heal_amt = 1
+	food_color = "#d9db6c"
+	needfork = 1
+
 /obj/item/reagent_containers/food/snacks/eggsalad
 	name = "egg salad"
 	desc = "A meal of mostly egg. Good for eating eggs."

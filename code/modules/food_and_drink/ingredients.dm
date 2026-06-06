@@ -286,6 +286,36 @@
 		new /obj/decal/cleanable/eggsplat(T) //make eggsplats have the reagents of the egg. Egg bombs? maybe!
 		qdel (src)
 
+/obj/item/reagent_containers/food/snacks/ingredient/egg/raw/scrambled
+	name = "raw egg"
+	desc = "it's scrambled."
+	icon = 'icons/obj/foodNdrink/food_ingredient.dmi'
+	icon_state = "rawegg"
+	food_color = "#edf069"
+	initial_volume = 20
+	initial_reagents = list("egg"=5)
+	doants = 1
+	griddle_time = 7
+	griddle_result = /obj/item/reagent_containers/food/snacks/scrambledegg
+
+	New()
+		..()
+		RegisterSignal(src, COMSIG_ITEM_PICKUP, PROC_REF(splat))
+
+	throw_impact(atom/A, datum/thrown_thing/thr)
+		var/turf/T = get_turf(A)
+		src.visible_message("<span class='alert'>[src] splats onto the floor messily!</span>")
+		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
+		new /obj/decal/cleanable/eggsplat(T) //make eggsplats have the reagents of the egg. Egg bombs? maybe!
+		qdel (src)
+
+	proc/splat() //bad code whatever who cares
+		var/turf/T = get_turf(src)
+		src.visible_message("<span class='alert'>[src] splats onto the floor messily!</span>")
+		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
+		new /obj/decal/cleanable/eggsplat(T) //make eggsplats have the reagents of the egg. Egg bombs? maybe!
+		qdel (src)
+
 
 /obj/item/reagent_containers/food/snacks/ingredient/egg/hardboiled
 	name = "hard-boiled egg"
