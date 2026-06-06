@@ -755,15 +755,27 @@
 /obj/item/reagent_containers/food/snacks/meatball
 	name = "meatball"
 	desc = "A great meal all round."
-	icon_state = "meatball"
+	icon_state = "meatball-cooked"
 	amount = 1
 	heal_amt = 2
-	food_color ="#663300"
+	food_color ="#006622"
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/reagent_containers/food/snacks/condiment/))
 			src.amount += 1
 		else return ..()
+
+/obj/item/reagent_containers/food/snacks/meatball/grub
+	name = "grubball"
+	desc = "a horrible meal all around."
+	icon_state = "meatball-green-cooked"
+	food_color = "#04a038"
+
+/obj/item/reagent_containers/food/snacks/meatball/synth
+	name = "synthetic meatball"
+	desc = "this doesn't look like meat."
+	icon_state = "meatball-green-cooked"
+	food_color = "#04a038"
 
 /obj/item/reagent_containers/food/snacks/swedishmeatball
 	name = "swedish meatballs"

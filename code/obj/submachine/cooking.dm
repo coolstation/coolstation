@@ -688,10 +688,10 @@ input:checked + div { display: block; }
 		//play switch sound or whatever
 
 	process(mult)
-		..()
 		if (on && working)
 			for (var/obj/item/reagent_containers/food/food in src.griddleitems)
 				food.griddle_cook(src)
+		..()
 
 
 	proc/toggle_status()
@@ -703,9 +703,9 @@ input:checked + div { display: block; }
 			icon_state = "griddle-on"
 
 	proc/add_contents(obj/item/reagent_containers/food/food,mob/user,params)
-		griddleitems += f
-		src.place_on(f,user,params)
-		f.set_loc(src)
+		griddleitems += food
+		src.place_on(food,user,params)
+		food.set_loc(src)
 		src.vis_contents += food
 		food.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 		food.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
