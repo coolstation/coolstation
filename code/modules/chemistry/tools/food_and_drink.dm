@@ -81,14 +81,6 @@
 			return
 		griddle_time -= 2.5 * mult
 		if (src.griddle_time <= 0)
-			if (istype(src,/obj/item/reagent_containers/food/snacks/yuckburn))
-				griddle.remove_contents(src)
-				var/obj/item/reagent_containers/food/snacks/yuckburn/smoldering/s = new()
-				s.set_loc(src.loc)
-				s.pixel_x = src.pixel_x
-				s.pixel_y = src.pixel_y
-				s.combust()
-				qdel(src)
 			var/obj/item/reagent_containers/food/f = new src.griddle_result
 			f.set_loc(src.loc)
 			f.pixel_x = src.pixel_x

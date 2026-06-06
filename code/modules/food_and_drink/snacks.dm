@@ -22,7 +22,8 @@
 	food_color = "#33302b"
 	initial_volume = 25
 	initial_reagents = list("yuck"=10,"carbon"=15)
-	can_griddle = true
+	can_griddle = false
+	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn/smoldering
 	burn_possible = true
 	burn_point = 350
 	burn_output = 900
