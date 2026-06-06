@@ -15,7 +15,7 @@
 	var/brew_result = null // what will it make if it's brewable?
 	var/can_griddle = false //can this be cooked on the griddle
 	var/obj/item/reagent_containers/food/griddle_result = null // what will it turn into if griddled
-	var/griddle_time = 0 // how long in seconds this takes to cook. Subject to slight variation on New()
+	var/griddle_time = 0 // how long this takes to cook. Subject to slight variation on New(), each tick seems to take about 3 seconds for some reason.
 	var/griddle_message = null
 	var/unlock_medal_when_eaten = null // Add medal name here in the format of e.g. "That tasted funny".
 	var/from_emagged_oven = 0 // to prevent re-rolling of food in emagged ovens

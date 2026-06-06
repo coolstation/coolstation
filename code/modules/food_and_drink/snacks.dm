@@ -760,6 +760,8 @@
 	amount = 1
 	heal_amt = 2
 	food_color ="#006622"
+	griddle_time = 17
+	can_griddle = true
 	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn
 
 	attackby(obj/item/W as obj, mob/user as mob)

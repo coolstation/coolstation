@@ -178,7 +178,7 @@
 	initial_volume = 10
 	can_griddle = true
 	griddle_result = /obj/item/reagent_containers/food/snacks/meatball
-	griddle_time = 60
+	griddle_time = 25
 	griddle_message = "The smell of burgers fills the air."
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/grub
@@ -186,7 +186,7 @@
 	desc = "a somewhat revolting ball of ground grub meat."
 	icon_state = "meatball-green-raw"
 	griddle_message = "A stink eminates from the griddle."
-	griddle_time = 50
+	griddle_time = 20
 	griddle_result = /obj/item/reagent_containers/food/snacks/meatball/grub
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/synth
@@ -194,7 +194,7 @@
 	desc = "a slimy ball of synthmeat that tastes surprisingly good."
 	icon_state = "meatball-green-raw"
 	griddle_message = "The smell of beans and lard fills the air."
-	griddle_time = 30
+	griddle_time = 15
 	griddle_result = /obj/item/reagent_containers/food/snacks/meatball/synth
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat/nugget
