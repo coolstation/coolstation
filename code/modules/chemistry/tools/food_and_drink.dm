@@ -15,6 +15,7 @@
 	var/brew_result = null // what will it make if it's brewable?
 	var/can_griddle = false //can this be cooked on the griddle
 	var/obj/item/reagent_containers/food/griddle_result = null // what will it turn into if griddled
+	var/obj/item/reagent_containers/food/rolling_result = null // rolling    pin :D
 	var/iscooking = false
 	var/griddle_time = 0 // how long this takes to cook. Subject to slight variation on New(), each tick seems to take about 3 seconds for some reason.
 	var/griddle_message = null
@@ -55,6 +56,14 @@
 		if (istype(I,/obj/item/kitchen/utensil/spatula))
 			user.put_in_hand_or_drop(src)
 			return
+
+		if (istype(I,/obj/item/kitchen/rollingpin) && src.rolling_result)
+			var/obj/item/reagent_containers/food/f = new src.rolling_result
+			JOB_XP(user, "chef", 2)
+			f.set_loc(src.loc)
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			qdel(src)
 		..()
 
 

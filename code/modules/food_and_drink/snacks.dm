@@ -756,7 +756,7 @@
 	name = "meat patty"
 	desc = "(hopefully) fresh off the griddle. Likely not."
 	icon = 'icons/obj/foodNdrink/food.dmi'
-	icon_state = "patty"
+	icon_state = "patty-cooked"
 	amount = 1
 	heal_amt = 2
 	food_color ="#3d2c11"
@@ -772,13 +772,13 @@
 /obj/item/reagent_containers/food/snacks/patty/grub
 	name = "grub patty"
 	desc = "it's really tough and hard to chew."
-	icon_state = "patty-green"
+	icon_state = "patty-green-cooked"
 	food_color = "#04a038"
 
 /obj/item/reagent_containers/food/snacks/patty/synth
 	name = "synth patty"
 	desc = "it's weirdly stringy and smells like baked beans."
-	icon_state = "patty-green"
+	icon_state = "patty-green-cooked"
 	food_color = "#04a038"
 
 /obj/item/reagent_containers/food/snacks/meatball

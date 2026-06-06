@@ -176,7 +176,7 @@
 	amount = 1
 	initial_volume = 10
 	can_griddle = true
-	griddle_result = /obj/reagent_containers/food/snacks/patty
+	griddle_result = /obj/item/reagent_containers/food/snacks/patty
 	griddle_time = 20
 	griddle_message = "The smell of burgers fills the air."
 
@@ -201,6 +201,7 @@
 	initial_volume = 10
 	can_griddle = true
 	griddle_result = /obj/item/reagent_containers/food/snacks/meatball
+	rolling_result = /obj/item/reagent_containers/food/snacks/ingredient/meat/patty
 	griddle_time = 25
 	griddle_message = "The smell of burgers fills the air."
 
@@ -211,6 +212,7 @@
 	griddle_message = "A stink eminates from the griddle."
 	griddle_time = 20
 	griddle_result = /obj/item/reagent_containers/food/snacks/meatball/grub
+	rolling_result = /obj/item/reagent_containers/food/snacks/ingredient/meat/patty/grub
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/synth
 	name = "synthetic meatball"
@@ -219,6 +221,7 @@
 	griddle_message = "The smell of beans and lard fills the air."
 	griddle_time = 15
 	griddle_result = /obj/item/reagent_containers/food/snacks/meatball/synth
+	rolling_result = /obj/item/reagent_containers/food/snacks/ingredient/meat/patty/synth
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat/nugget
 	name = "chicken nugget"
@@ -455,6 +458,7 @@
 	initial_volume = 50
 	initial_reagents = list("meat_slurry"=15)
 	value = 40
+	fiddleType = /datum/contextAction/fiddle/meatpaste
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
 /datum/contextAction/fiddle/meatpaste
@@ -467,7 +471,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
 
 		execute(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/target, var/mob/user)
 			user.show_text("you mold the mound of meat into a ball.","blue")
-			var/obj/item/reagent_containers/food/snacks/ingredient/meatball/mb = null
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/mb = null
 			mb = new(user)
 			user.u_equip(target)
 			qdel(target)
@@ -478,6 +482,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
 	name = "grubpaste"
 	desc = "A grubby paste"
 	icon_state = "grubpaste"
+	fiddleType = /datum/contextAction/fiddle/meatpaste/grub
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
 /datum/contextAction/fiddle/meatpaste/grub
@@ -490,7 +495,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
 
 		execute(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/grub/target, var/mob/user)
 			user.show_text("you mold the mound of meat into a ball.","blue")
-			var/obj/item/reagent_containers/food/snacks/ingredient/meatball/grub/mb = null
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/grub/mb = null
 			mb = new(user)
 			user.u_equip(target)
 			qdel(target)
@@ -500,6 +505,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
 	name = "synthpaste"
 	desc = "A stringy paste"
 	icon_state = "grubpaste"
+	fiddleType = /datum/contextAction/fiddle/meatpaste/synth
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
 /datum/contextAction/fiddle/meatpaste/synth
@@ -512,7 +518,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
 
 		execute(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/synth/target, var/mob/user)
 			user.show_text("you mold the mound of synthmeat into a ball.","blue")
-			var/obj/item/reagent_containers/food/snacks/ingredient/meatball/synth/mb = null
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/synth/mb = null
 			mb = new(user)
 			user.u_equip(target)
 			qdel(target)
