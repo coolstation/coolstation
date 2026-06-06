@@ -13,11 +13,11 @@
 	var/festivity = 0
 	var/brewable = 0 // will hitting a still with it do anything?
 	var/brew_result = null // what will it make if it's brewable?
-	var/can_griddle = false //can this be cooked on the griddle
-	var/obj/item/reagent_containers/food/griddle_result = null // what will it turn into if griddled
+	var/can_griddle = true //can this be cooked on the griddle
+	var/obj/item/reagent_containers/food/griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn // what will it turn into if griddled - default is to fucking burn it
 	var/obj/item/reagent_containers/food/rolling_result = null // rolling    pin :D
 	var/iscooking = false
-	var/griddle_time = 0 // how long this takes to cook. Subject to slight variation on New(), each tick seems to take about 3 seconds for some reason.
+	var/griddle_time = 20 // how long this takes to cook. Subject to slight variation on New(), each tick seems to take about 3 seconds for some reason.
 	var/griddle_message = null
 	var/unlock_medal_when_eaten = null // Add medal name here in the format of e.g. "That tasted funny".
 	var/from_emagged_oven = 0 // to prevent re-rolling of food in emagged ovens

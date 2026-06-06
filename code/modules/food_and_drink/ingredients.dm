@@ -266,6 +266,27 @@
 		new /obj/decal/cleanable/eggshell(T)
 		qdel (src)
 
+/obj/item/reagent_containers/food/snacks/ingredient/egg/raw
+	name = "raw egg"
+	desc = "fitness influencers down these by the dozen!"
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "egg-raw"
+	food_color = "#edf069"
+	initial_volume = 20
+	initial_reagents = list("egg"=5)
+	doants = 1
+	can_griddle = true
+	griddle_time = 7
+	griddle_result = /obj/item/reagent_containers/food/snacks/friedegg
+
+	throw_impact(atom/A, datum/thrown_thing/thr)
+		var/turf/T = get_turf(A)
+		src.visible_message("<span class='alert'>[src] splats onto the floor messily!</span>")
+		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
+		new /obj/decal/cleanable/eggsplat(T) //make eggsplats have the reagents of the egg. Egg bombs? maybe!
+		qdel (src)
+
+
 /obj/item/reagent_containers/food/snacks/ingredient/egg/hardboiled
 	name = "hard-boiled egg"
 	desc = "You're a loose cannon, egg. I'm taking you off the menu."

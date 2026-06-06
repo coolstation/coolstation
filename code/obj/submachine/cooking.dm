@@ -689,8 +689,25 @@ input:checked + div { display: block; }
 
 	attackby(obj/item/I, mob/user,params)
 		//check for decon and all the shit whatever man
+		if (istype(I, /obj/item/reagent_containers/food/snacks/ingredient/egg))
+			playsound(src,"sound/effects/eggshell.ogg",30)
+			JOB_XP(user, "chef", 1)
+			var/obj/item/reagent_containers/food/snacks/ingredient/egg/raw/egg = new()
+			egg.set_loc(I.loc)
+			user.u_equip(I)
+			new /obj/decal/cleanable/eggshell(user.loc)
+			qdel(I)
+			add_contents(egg,user,params)
+			return
 		if (istype(I,/obj/item/reagent_containers/food))
 			src.add_contents(I,user,params)
+			return
+		if (istype(I,/obj/item/grab))
+			var/obj/item/grab/grab = I
+			if (grab.state >= 1)
+				actions.start(new/datum/action/bar/griddle_face(src,grab.affecting,grab.assailant,grab),grab.assailant)
+				return
+		..()
 
 	process(mult)
 		if (on && working)
@@ -747,6 +764,63 @@ input:checked + div { display: block; }
 		src.update_icon()
 		UnregisterSignal(food, COMSIG_MOVABLE_SET_LOC)
 		UnregisterSignal(food, COMSIG_ATTACKHAND)
+
+/datum/action/bar/griddle_face
+	duration = 3 SECONDS
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
+	var/obj/machinery/griddle/griddle
+	var/mob/victim
+	var/mob/source
+	var/obj/item/grab/grab
+	var/damage = 10
+
+	New(var/obj/machinery/griddle/gr,var/mob/vi,var/mob/so,var/obj/item/gra)
+		griddle = gr
+		victim = vi
+		source = so
+		grab = gra
+		..()
+
+	onStart()
+		if (!griddle.sound_emitter.active_sound)
+			griddle.sound_emitter.play("sizzle")
+		source.visible_message("<span class='alert'><b>[source] shoves [victim]'s face in [griddle]!</b></span>")
+		boutput(victim,"<span class='alert'><B>Your face is shoved into [griddle]!</B></span>")
+		victim.emote("scream")
+		victim.TakeDamage("head",0,damage,0,DAMAGE_BURN,1)
+		logTheThing("combat", source, victim, "shoves [constructTarget(victim,"combat")] into [griddle] at [log_loc(source)].")
+		..()
+
+
+	onUpdate()
+		if (get_dist(source,griddle) > 1 || griddle == null || victim == null)
+			interrupt(INTERRUPT_ALWAYS)
+		if (!istype(source.r_hand,/obj/item/grab) && !istype(source.l_hand,/obj/item/grab) || grab?.state < 1)
+			interrupt(INTERRUPT_ALWAYS)
+		if (!griddle.sound_emitter.active_sound)
+			griddle.sound_emitter.play("sizzle")
+		..()
+
+	onInterrupt(flag)
+		griddle.sound_emitter.deactivate()
+		..()
+
+	loopStart()
+		victim.emote("scream")
+		victim.TakeDamage("head",0,damage * 2,0,DAMAGE_BURN,1)
+		logTheThing("combat", source, victim, "shoves [constructTarget(victim,"combat")] into [griddle] at [log_loc(source)].")
+		boutput(victim,"<span class='alert'><B>[griddle] sears your face!</B></span>")
+		..()
+
+	onEnd()
+		if (get_dist(source,griddle) > 1 || griddle == null || victim == null || grab.state < 1)
+			..()
+			interrupt(INTERRUPT_ALWAYS)
+			griddle.sound_emitter.deactivate()
+			return
+		src.onRestart()
+
+
 
 
 
