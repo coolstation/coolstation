@@ -47,7 +47,7 @@
 	proc/griddle_cook(var/obj/machinery/griddle/griddle,mult)
 		if (!src.can_griddle || !src.griddle_result)
 			return
-		griddle_time -= 1 * mult
+		griddle_time -= 2.5 * mult
 		if (src.griddle_time <= 0)
 			var/obj/item/reagent_containers/food/f = new src.griddle_result
 			f.set_loc(src.loc)
