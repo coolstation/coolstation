@@ -659,7 +659,7 @@ input:checked + div { display: block; }
 	name = "griddle"
 	desc = "A grease covered surface that, when turned on, cooks food placed on it."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
-	icon_state = "griddle-off"
+	icon_state = "griddle-on"
 	anchored = ANCHORED
 	density = 1
 	mats = 15
@@ -667,29 +667,30 @@ input:checked + div { display: block; }
 
 	var/emagged = false
 	var/working = true
-	var/on = false
+	var/on = true
 	var/list/griddleitems = list()
 	var/max_items = 8
 
-	//looping sound here too
+	//todo: custom suicide
 
 	New()
 		setup_sound()
 		..()
 
+	attack_hand(mob/user as mob)
+		if (user.traitHolder.hasTrait("hardcore"))
+			user.TakeDamage("All",0,10,0,DAMAGE_BURN,1)
+			boutput(user,"<span class='alert'>You burn your hand, but since you're not a wuss you wince and keep your hand on the griddle.</span>")
+		else
+			user.TakeDamage("All",0,5,0,DAMAGE_BURN,1)
+			boutput(user,"<span class='alert'><B>you burn the shit out of your hand on the griddle!</B></span>")
+			user.emote("scream")
+		playsound(src,"sound/impact_sounds/burn_sizzle.ogg",50)
+
 	attackby(obj/item/I, mob/user,params)
 		//check for decon and all the shit whatever man
 		if (istype(I,/obj/item/reagent_containers/food))
 			src.add_contents(I,user,params)
-
-	attack_hand(mob/user)
-		if (status & MALFUNC && status & NOPOWER)
-			boutput(user,"<span class='alert'>[src] won't turn on!</span>")
-			on = false
-			icon_state = "griddle-off"
-			return
-		toggle_status()
-		//play switch sound or whatever
 
 	process(mult)
 		if (on && working)
@@ -699,9 +700,9 @@ input:checked + div { display: block; }
 				if(!src.sound_emitter.active_sound)
 					src.sound_emitter.play("sizzle")
 			else
-				src.sound_emitter.deactivate
+				src.sound_emitter.deactivate()
 		else
-			src.sound_emitter.deactivate
+			src.sound_emitter.deactivate()
 		..()
 
 
@@ -724,7 +725,7 @@ input:checked + div { display: block; }
 
 	proc/add_contents(obj/item/reagent_containers/food/food,mob/user,params)
 		griddleitems += food
-		src.place_on(food,user,params)
+		src.place_on(food,user,params,16)
 		food.set_loc(src)
 		src.vis_contents += food
 		food.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
@@ -741,6 +742,8 @@ input:checked + div { display: block; }
 		food.appearance_flags = initial(food.appearance_flags)
 		food.vis_flags = initial(food.vis_flags)
 		food.event_handler_flags = initial(food.event_handler_flags)
+		if (griddleitems.len <= 0)
+			src.sound_emitter.deactivate()
 		src.update_icon()
 		UnregisterSignal(food, COMSIG_MOVABLE_SET_LOC)
 		UnregisterSignal(food, COMSIG_ATTACKHAND)

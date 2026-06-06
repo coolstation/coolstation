@@ -15,6 +15,7 @@
 	var/brew_result = null // what will it make if it's brewable?
 	var/can_griddle = false //can this be cooked on the griddle
 	var/obj/item/reagent_containers/food/griddle_result = null // what will it turn into if griddled
+	var/obj/machinery/griddle/assigned_griddle = null
 	var/griddle_time = 0 // how long this takes to cook. Subject to slight variation on New(), each tick seems to take about 3 seconds for some reason.
 	var/griddle_message = null
 	var/unlock_medal_when_eaten = null // Add medal name here in the format of e.g. "That tasted funny".
@@ -51,12 +52,25 @@
 		if (src.griddle_time <= 0)
 			var/obj/item/reagent_containers/food/f = new src.griddle_result
 			f.set_loc(src.loc)
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
 			griddle.remove_contents(src)
 			griddle.add_contents(f)
 			if (griddle_message)
 				src.visible_message(griddle_message)
 			qdel(src)
 
+	proc/attack_hand(mob/user)
+		if (assigned_griddle)
+			if (user.traitHolder.hasTrait("hardcore"))
+				user.TakeDamage("All",0,10,0,DAMAGE_BURN,1)
+				boutput(user,"<span class='alert'>You sizzle your hands trying to pick [src] off of the scalding \the[assigned_griddle], but since you're no sissy you don't even flinch.</span>")
+			else
+				user.TakeDamage("All",0,5,0,DAMAGE_BURN,1)
+				boutput(user,"<span class='alert'><B>you burn your hand trying to take [src] off of the scalding \the[assigned_griddle] like a dumbass. Use a spatula.</B></span>")
+				user.emote("scream")
+			playsound(src,"sound/impact_sounds/burn_sizzle.ogg",50)
+		..()
 
 
 	proc/heal(var/mob/living/M)

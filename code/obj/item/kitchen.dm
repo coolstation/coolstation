@@ -167,6 +167,8 @@ TRAYS
 	icon_state = "spatula"
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
 	tool_flags = TOOL_PRYING //prying open the door with the spatula lmao
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
+	icon_state = "spatula"
 	hit_type = DAMAGE_BLUNT
 	hitsound = 'sound/impact_sounds/Generic_Hit_2.ogg'
 	force = 3
