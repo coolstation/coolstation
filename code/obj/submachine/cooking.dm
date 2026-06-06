@@ -717,6 +717,14 @@ input:checked + div { display: block; }
 				egg.pixel_y = rand(16,-16)
 				add_contents(egg)
 			src.visible_message("<span class='notice'>The eggs begin to scramble on [src].</span>")
+
+		if (reagent_id == "batter" && volume >= 5)
+			for(var/pancakes in 1 to floor(volume) step 5)
+				var/obj/item/reagent_containers/food/snacks/ingredient/rawpancake/pc = new()
+				pc.pixel_x = rand(16,-16)
+				pc.pixel_y = rand(16,-16)
+				add_contents(pc)
+			src.visible_message("<span class='notice'>The batter starts to cook on [src].</span>")
 		..()
 
 	process(mult)

@@ -4447,3 +4447,23 @@ datum
 			description = "A cocktail from the prohibition era, named after a popular expression."
 			reagent_state = LIQUID
 			taste = "like the bee's knees"
+
+		fooddrink/flour
+			name = "flour"
+			id = "flour"
+			fluid_r = 249
+			fluid_g = 249
+			fluid_b = 249
+			description = "multi-purpose flour to be used in baking."
+			reagent_state = SOLID
+			taste = "like sticky sand"
+
+		fooddrink/batter
+			name = "pancake batter"
+			id = "batter"
+			fluid_r = 249
+			fluid_g = 241
+			fluid_b = 231
+			description = "batter used to fry up pancakes. Or gulp down raw."
+			reagent_state = LIQUID
+			taste = "like sweet flour"

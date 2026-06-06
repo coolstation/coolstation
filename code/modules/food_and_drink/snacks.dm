@@ -1972,8 +1972,8 @@
 	desc = "<tt>BEE EGGS</tt> make this a delightful breakfast food."
 
 /obj/item/reagent_containers/food/snacks/pancake
-	name = "pancakes"
-	desc = "They seem to be lacking something"
+	name = "pancake"
+	desc = "it seems to be lacking something"
 	icon_state = "pancake"
 	amount = 3
 	heal_amt = 1
@@ -1984,7 +1984,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/reagent_containers/food/snacks/condiment/syrup))
 			boutput(user, "<span class='notice'>You add [W] to [src].</span>")
-			icon_state = "pancake_s"
+			icon_state = "pancake-s"
 			syrup = 1
 			heal_amt = 5
 			desc = "They look delicious!"

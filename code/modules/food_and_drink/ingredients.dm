@@ -168,6 +168,29 @@
 		icon_state = "bacon-raw"
 		amount = 1
 		real_name = "bacon"
+
+/obj/item/reagent_containers/food/snacks/ingredient/meat/hotdograw
+	name = "raw hotdog"
+	desc = "you used to eat these raw."
+	icon = 'icons/obj/foodNdrink/food_hotdog.dmi'
+	icon_state = "hotdog-raw"
+	amount = 1
+	initial_volume = 10
+	griddle_result = /obj/item/reagent_containers/food/snacks/hotdog
+	griddle_time = 20
+
+/obj/item/reagent_containers/food/snacks/ingredient/meat/hotdograw/grub
+	name = "raw grubdog"
+	desc = "necessity breeds innovation. In this case, it breeds salmonella."
+	icon_state = "hotdog-green-raw"
+	//seperate grubdog cooked later ig when i touch hotdogs (need)
+
+/obj/item/reagent_containers/food/snacks/ingredient/meat/hotdograw/synth
+	name = "raw synthdog"
+	desc = "this probably won't kill you if you eat it raw. Probably."
+	icon_state = "hotdog-green-raw"
+	//seperate synthdog cooked later ig when i touch hotdogs (need)
+
 /obj/item/reagent_containers/food/snacks/ingredient/meat/patty
 	name = "raw meat patty"
 	desc = "ready to grill."
@@ -351,6 +374,9 @@
 	food_color = "#FFFFFF"
 	value = 20
 	hint = "Add water at a sink to make dough."
+	brew_result = "beer"
+	initial_reagents = list("flour",50)
+	initial_volume = 50
 
 /obj/item/reagent_containers/food/snacks/ingredient/flour/semolina
 	name = "semolina"
@@ -499,6 +525,19 @@
 	amount = 1
 	food_color = "#FFFFFF"
 	value = 20
+	initial_reagents = list("batter"=25)
+	initial_volume = 50
+
+/obj/item/reagent_containers/food/snacks/ingredient/rawpancake
+	name = "raw pancake"
+	desc = "wait for the bubbles."
+	icon = 'icons/obj/foodNdrink/food.dmi'
+	icon_state = "pancake-raw"
+	amount =1
+	food_color = "#FFFFFF"
+	value = 20
+	griddle_result = /obj/item/reagent_containers/food/snacks/pancake
+	griddle_time = 20
 
 /obj/item/reagent_containers/food/snacks/ingredient/meatpaste
 	name = "meatpaste"
@@ -528,6 +567,17 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
 			qdel(target)
 			user.put_in_hand_or_drop(mb)
 
+	hotdog
+		name = "form a hotdog"
+		icon_state = "hotdog"
+
+		execute(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/target, var/mob/user)
+			user.show_text("you mold the mound of meat into a sausage.","blue")
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/hotdograw/hd = null
+			hd = new(user)
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(hd)
 
 /obj/item/reagent_containers/food/snacks/ingredient/meatpaste/grub
 	name = "grubpaste"
@@ -551,6 +601,18 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
 			user.u_equip(target)
 			qdel(target)
 			user.put_in_hand_or_drop(mb)
+	hotdog
+		name = "form a grubdog"
+		icon_state = "hotdog"
+
+		execute(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/target, var/mob/user)
+			user.show_text("you mold the mound of grub product into a sausage.","blue")
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/hotdograw/grub/hd = null
+			hd = new(user)
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(hd)
+
 
 /obj/item/reagent_containers/food/snacks/ingredient/meatpaste/synth
 	name = "synthpaste"
@@ -574,6 +636,19 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
 			user.u_equip(target)
 			qdel(target)
 			user.put_in_hand_or_drop(mb)
+
+	hotdog
+		name = "form a synthdog"
+		icon_state = "hotdog"
+
+		execute(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/target, var/mob/user)
+			user.show_text("you mold the mound of meat into a sausage.","blue")
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/hotdograw/synth/hd = null
+			hd = new(user)
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(hd)
+
 
 /obj/item/reagent_containers/food/snacks/ingredient/sticky_rice
 	name = "sticky rice"

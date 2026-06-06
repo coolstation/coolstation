@@ -1723,6 +1723,15 @@ datum
 			mix_sound = 'sound/misc/drinkfizz.ogg'
 			drinkrecipe = 1
 
+		batter
+			name = "batter"
+			id = "batter"
+			result = "batter"
+			required_reagents = list("sugar" = 1,"flour"=1,"egg"=1)
+			result_amount = 3
+			mix_phrase = "the dry ingredients combine with the egg to make a runny sludge."
+			mix_sound = 'sound/effects/bubbles.ogg'
+
 		squeeze
 			name = "Squeeze"
 			id = "squeeze"
