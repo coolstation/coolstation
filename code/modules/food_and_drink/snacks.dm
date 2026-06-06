@@ -752,6 +752,34 @@
 	needfork = 1
 	food_effects = list("food_energized_big", "food_hp_up")
 
+/obj/item/reagent_containers/food/snacks/patty
+	name = "meat patty"
+	desc = "(hopefully) fresh off the griddle. Likely not."
+	icon = 'icons/obj/foodNdrink/food.dmi'
+	icon_state = "patty"
+	amount = 1
+	heal_amt = 2
+	food_color ="#3d2c11"
+	griddle_time = 17
+	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn
+	can_griddle = true
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/reagent_containers/food/snacks/condiment/))
+			src.amount += 1
+		else return ..()
+
+/obj/item/reagent_containers/food/snacks/patty/grub
+	name = "grub patty"
+	desc = "it's really tough and hard to chew."
+	icon_state = "patty-green"
+	food_color = "#04a038"
+
+/obj/item/reagent_containers/food/snacks/patty/synth
+	name = "synth patty"
+	desc = "it's weirdly stringy and smells like baked beans."
+	icon_state = "patty-green"
+	food_color = "#04a038"
 
 /obj/item/reagent_containers/food/snacks/meatball
 	name = "meatball"
@@ -759,7 +787,7 @@
 	icon_state = "meatball-cooked"
 	amount = 1
 	heal_amt = 2
-	food_color ="#006622"
+	food_color ="#3d2c11"
 	griddle_time = 17
 	can_griddle = true
 	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn

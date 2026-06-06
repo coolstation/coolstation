@@ -736,7 +736,7 @@ input:checked + div { display: block; }
 		RegisterSignal(food, COMSIG_MOVABLE_SET_LOC, PROC_REF(remove_contents))
 		RegisterSignal(food, COMSIG_ATTACKHAND, PROC_REF(remove_contents))
 
-	proc/remove_contents(obj/item/food)
+	proc/remove_contents(obj/item/reagent_containers/food/food)
 		src.vis_contents -= food
 		griddleitems -= food
 		food.appearance_flags = initial(food.appearance_flags)

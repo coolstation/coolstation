@@ -164,7 +164,6 @@ TRAYS
 
 /obj/item/kitchen/utensil/spatula
 	name = "spatula"
-	icon_state = "spatula"
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
 	tool_flags = TOOL_PRYING //prying open the door with the spatula lmao
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'

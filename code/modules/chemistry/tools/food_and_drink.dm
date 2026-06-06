@@ -15,7 +15,7 @@
 	var/brew_result = null // what will it make if it's brewable?
 	var/can_griddle = false //can this be cooked on the griddle
 	var/obj/item/reagent_containers/food/griddle_result = null // what will it turn into if griddled
-	var/obj/machinery/griddle/assigned_griddle = null
+	var/iscooking = false
 	var/griddle_time = 0 // how long this takes to cook. Subject to slight variation on New(), each tick seems to take about 3 seconds for some reason.
 	var/griddle_message = null
 	var/unlock_medal_when_eaten = null // Add medal name here in the format of e.g. "That tasted funny".
@@ -35,6 +35,28 @@
 	unpooled()
 		made_ants = 0
 		..()*/
+	attack_hand(mob/user)
+		for (var/obj/o in get_turf(src))
+			if (istype(o,/obj/machinery/griddle))
+				iscooking = 1
+		if (iscooking)
+			if (user.traitHolder.hasTrait("hardcore"))
+				user.TakeDamage("All",0,10,0,DAMAGE_BURN,1)
+				boutput(user,"<span class='alert'>You sizzle your hands trying to pick [src] off of the scalding griddle, but since you're no sissy you don't even flinch.</span>")
+			else
+				user.TakeDamage("All",0,5,0,DAMAGE_BURN,1)
+				boutput(user,"<span class='alert'><B>you burn your hand trying to take [src] off of the scalding griddle like a dumbass. Use a spatula.</B></span>")
+				user.emote("scream")
+			playsound(src,"sound/impact_sounds/burn_sizzle.ogg",50)
+		iscooking = 0
+		..()
+
+	attackby(obj/item/I, mob/user)
+		if (istype(I,/obj/item/kitchen/utensil/spatula))
+			user.put_in_hand_or_drop(src)
+			return
+		..()
+
 
 	//the only table check is for avoiding doing ants so it might be better to rename this (later)
 	//if there's something else that spawns a food that shouldn't be considered on the floor/antsy add it here
@@ -59,18 +81,6 @@
 			if (griddle_message)
 				src.visible_message(griddle_message)
 			qdel(src)
-
-	proc/attack_hand(mob/user)
-		if (assigned_griddle)
-			if (user.traitHolder.hasTrait("hardcore"))
-				user.TakeDamage("All",0,10,0,DAMAGE_BURN,1)
-				boutput(user,"<span class='alert'>You sizzle your hands trying to pick [src] off of the scalding \the[assigned_griddle], but since you're no sissy you don't even flinch.</span>")
-			else
-				user.TakeDamage("All",0,5,0,DAMAGE_BURN,1)
-				boutput(user,"<span class='alert'><B>you burn your hand trying to take [src] off of the scalding \the[assigned_griddle] like a dumbass. Use a spatula.</B></span>")
-				user.emote("scream")
-			playsound(src,"sound/impact_sounds/burn_sizzle.ogg",50)
-		..()
 
 
 	proc/heal(var/mob/living/M)

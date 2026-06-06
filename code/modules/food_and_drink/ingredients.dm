@@ -168,6 +168,29 @@
 		icon_state = "bacon-raw"
 		amount = 1
 		real_name = "bacon"
+/obj/item/reagent_containers/food/snacks/ingredient/meat/patty
+	name = "raw meat patty"
+	desc = "ready to grill."
+	icon = 'icons/obj/foodNdrink/food.dmi'
+	icon_state = "patty-raw"
+	amount = 1
+	initial_volume = 10
+	can_griddle = true
+	griddle_result = /obj/reagent_containers/food/snacks/patty
+	griddle_time = 20
+	griddle_message = "The smell of burgers fills the air."
+
+/obj/item/reagent_containers/food/snacks/ingredient/meat/patty/grub
+	name = "raw grub patty"
+	desc = "ew. It's flat."
+	icon_state = "patty-green-raw"
+	griddle_result = /obj/item/reagent_containers/food/snacks/patty/grub
+
+/obj/item/reagent_containers/food/snacks/ingredient/meat/patty/synth
+	name = "raw synth patty"
+	desc = "it's bouncy, kind of like jello."
+	icon_state = "patty-green-raw"
+	griddle_result = /obj/item/reagent_containers/food/snacks/patty/synth
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball
 	name = "raw meatball"
@@ -432,6 +455,68 @@
 	initial_volume = 50
 	initial_reagents = list("meat_slurry"=15)
 	value = 40
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
+/datum/contextAction/fiddle/meatpaste
+	checkRequirements(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/target, var/mob/user)
+		return istype(target)
+
+	meatball
+		name = "form a meatball"
+		icon_state = "meatball"
+
+		execute(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/target, var/mob/user)
+			user.show_text("you mold the mound of meat into a ball.","blue")
+			var/obj/item/reagent_containers/food/snacks/ingredient/meatball/mb = null
+			mb = new(user)
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(mb)
+
+
+/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/grub
+	name = "grubpaste"
+	desc = "A grubby paste"
+	icon_state = "grubpaste"
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
+/datum/contextAction/fiddle/meatpaste/grub
+	checkRequirements(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/grub/target, var/mob/user)
+		return istype(target)
+
+	meatball
+		name = "form a meatball"
+		icon_state = "meatball"
+
+		execute(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/grub/target, var/mob/user)
+			user.show_text("you mold the mound of meat into a ball.","blue")
+			var/obj/item/reagent_containers/food/snacks/ingredient/meatball/grub/mb = null
+			mb = new(user)
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(mb)
+
+/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/synth
+	name = "synthpaste"
+	desc = "A stringy paste"
+	icon_state = "grubpaste"
+
+ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
+/datum/contextAction/fiddle/meatpaste/synth
+	checkRequirements(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/synth/target, var/mob/user)
+		return istype(target)
+
+	meatball
+		name = "form a meatball"
+		icon_state = "meatball"
+
+		execute(var/obj/item/reagent_containers/food/snacks/ingredient/meatpaste/synth/target, var/mob/user)
+			user.show_text("you mold the mound of synthmeat into a ball.","blue")
+			var/obj/item/reagent_containers/food/snacks/ingredient/meatball/synth/mb = null
+			mb = new(user)
+			user.u_equip(target)
+			qdel(target)
+			user.put_in_hand_or_drop(mb)
 
 /obj/item/reagent_containers/food/snacks/ingredient/sticky_rice
 	name = "sticky rice"
