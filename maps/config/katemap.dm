@@ -1,0 +1,8 @@
+#include "..\katewip\katemap.dmm"
+#include "..\z2.dmm"
+#include "..\katewip\katemap_z3.dmm"
+#include "z4.dm"
+#include "..\z5.dmm"
+#include "nudebris.dm"
+#include "..\z3.dmm"
+#define MAP_MODE "standard"
