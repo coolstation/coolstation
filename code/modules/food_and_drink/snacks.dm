@@ -23,11 +23,21 @@
 	initial_volume = 25
 	initial_reagents = list("yuck"=10,"carbon"=15)
 	can_griddle = false
-	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn/smoldering
 	burn_possible = true
 	burn_point = 350
 	burn_output = 900
 	griddle_time = 10
+	var/timesflamed = 0
+
+	griddle_cook(obj/machinery/griddle/griddle, mult)
+		griddle_time -= 2.5 * mult
+		if (griddle_time <= 0)
+			tfireflash(src,0,500,1,30)
+			griddle_time = 10
+			timesflamed += 1
+		if (timesflamed >= 2)
+			qdel(src)
+
 
 /obj/item/reagent_containers/food/snacks/yuckburn/smoldering
 	name = "smoldering mess"
