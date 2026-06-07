@@ -807,6 +807,28 @@
 	icon_state = "patty-green-cooked"
 	food_color = "#04a038"
 
+/obj/item/reagent_containers/food/snacks/ground_beef
+	name = "ground beef"
+	desc = "what do you call a cow wi-UURK"
+	icon_state = "groundbeef"
+	icon = 'icons/obj/foodNdrink/food_ingredient.dmi'
+	amount = 1
+	heal_amt = 1
+	food_color ="#3d2c11"
+
+/obj/item/reagent_containers/food/snacks/ground_beef/grub
+	name = "ground grub"
+	desc = "there are over one thousand grubs in one pound of ground grub."
+	icon_state = "groundbeef-green"
+	food_color = "#04a038"
+
+/obj/item/reagent_containers/food/snacks/ground_beef/synth
+	name = "ground synthmeat"
+	desc = "it's really crumbly."
+	icon_state = "groundbeef-green"
+	food_color = "#04a038"
+
+
 /obj/item/reagent_containers/food/snacks/meatball
 	name = "meatball"
 	desc = "A great meal all round."

@@ -548,6 +548,7 @@
 	initial_volume = 50
 	initial_reagents = list("meat_slurry"=15)
 	value = 40
+	griddle_result = /obj/item/reagent_containers/food/snacks/ground_beef
 	fiddleType = /datum/contextAction/fiddle/meatpaste
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
@@ -584,6 +585,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
 	desc = "A grubby paste"
 	icon_state = "grubpaste"
 	fiddleType = /datum/contextAction/fiddle/meatpaste/grub
+	griddle_result = /obj/item/reagent_containers/food/snacks/ground_beef/grub
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
 /datum/contextAction/fiddle/meatpaste/grub
@@ -619,6 +621,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
 	desc = "A stringy paste"
 	icon_state = "grubpaste"
 	fiddleType = /datum/contextAction/fiddle/meatpaste/synth
+	griddle_result = /obj/item/reagent_containers/food/snacks/ground_beef/synth
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
 /datum/contextAction/fiddle/meatpaste/synth

@@ -1724,6 +1724,16 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	item1 = /obj/item/reagent_containers/food/snacks/mushroom/psilocybin
 	output = /obj/item/reagent_containers/food/snacks/soup/creamofmushroom/psilocybin
 
+/datum/cookingrecipe/mixer/grubpaste
+	item1 =  /obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat
+	cookbonus = 4
+	output = /obj/item/reagent_containers/food/snacks/ingredient/meatpaste/grub
+
+/datum/cookingrecipe/mixer/synthpaste
+	item1 =  /obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat
+	cookbonus = 4
+	output = /obj/item/reagent_containers/food/snacks/ingredient/meatpaste/synth
+
 /datum/cookingrecipe/mixer/meatpaste
 	item1 =  /obj/item/reagent_containers/food/snacks/ingredient/meat/
 	cookbonus = 4
