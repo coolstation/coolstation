@@ -19,6 +19,10 @@
 	},
 /turf/floor,
 /area/space)
+"bm" = (
+/obj/table/auto,
+/turf/floor/sanitary/white,
+/area/space)
 "bt" = (
 /obj/machinery/door/airlock/gannets/maintenance,
 /turf/floor/carpet/blue,
@@ -35,6 +39,15 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/north,
 /turf/floor/plating/airless,
 /area/space)
+"cs" = (
+/obj/table/reinforced/auto,
+/obj/window/reinforced/south,
+/turf/floor,
+/area/space)
+"cQ" = (
+/obj/table/reinforced/auto,
+/turf/floor,
+/area/space)
 "eb" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/east,
 /turf/floor,
@@ -49,6 +62,9 @@
 	},
 /turf/floor,
 /area/space)
+"gq" = (
+/turf/floor/sanitary/white,
+/area/space)
 "hM" = (
 /obj/table/folding,
 /turf/floor,
@@ -62,6 +78,10 @@
 /obj/wingrille_spawn/reinforced_crystal,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/yellow_pipe/overfloor/vertical,
 /turf/floor/plating/airless,
+/area/space)
+"jB" = (
+/obj/machinery/door/airlock/gannets/security,
+/turf/floor/grime,
 /area/space)
 "jI" = (
 /obj/machinery/atmospherics/valve/digital/purge,
@@ -116,8 +136,30 @@
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
 /turf/floor,
 /area/space)
+"oE" = (
+/obj/submachine/chef_sink/chem_sink{
+	pixel_y = 10
+	},
+/turf/floor/sanitary/white,
+/area/space)
 "pp" = (
 /turf/space,
+/area/space)
+"pt" = (
+/obj/table/reinforced/auto,
+/obj/machinery/door/window/southleft,
+/obj/machinery/cashreg,
+/turf/floor,
+/area/space)
+"pR" = (
+/obj/machinery/computer3/generic/secure_data{
+	dir = 8
+	},
+/turf/floor,
+/area/space)
+"qB" = (
+/obj/machinery/door/airlock/gannets/glass/security,
+/turf/floor,
 /area/space)
 "ra" = (
 /obj/machinery/atmospherics/unary/cold_sink/freezer/north,
@@ -132,6 +174,13 @@
 	dir = 8
 	},
 /area/space)
+"rZ" = (
+/obj/machinery/door/airlock/classic,
+/turf/floor/grime,
+/area/space)
+"tj" = (
+/turf/floor/grime,
+/area/space)
 "tF" = (
 /obj/table/reinforced/auto,
 /turf/space,
@@ -139,6 +188,15 @@
 "tP" = (
 /obj/stool/bar,
 /turf/floor,
+/area/space)
+"uw" = (
+/obj/item/storage/toilet{
+	dir = 4
+	},
+/obj/decoration/toiletholder{
+	pixel_y = 23
+	},
+/turf/floor/sanitary/white,
 /area/space)
 "vd" = (
 /obj/machinery/shuttle/engine/propulsion{
@@ -187,6 +245,14 @@
 	},
 /turf/space,
 /area/space)
+"zl" = (
+/obj/machinery/drainage,
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/window/reinforced/west,
+/turf/floor/sanitary/white,
+/area/space)
 "zn" = (
 /obj/decal/tile_edge/stripe/big,
 /turf/floor/engine/caution,
@@ -200,6 +266,14 @@
 "zT" = (
 /obj/shrub/big/big2,
 /turf/floor/planter,
+/area/space)
+"zY" = (
+/obj/stool/chair/office/red,
+/turf/floor,
+/area/space)
+"Af" = (
+/obj/machinery/door/airlock/gannets/security,
+/turf/floor,
 /area/space)
 "Aq" = (
 /obj/machinery/atmospherics/pipe/simple/insulated/cold/horizontal,
@@ -253,6 +327,12 @@
 /obj/machinery/door/airlock/gannets/glass/command/alt,
 /turf/space,
 /area/space)
+"EE" = (
+/obj/stool/chair{
+	dir = 4
+	},
+/turf/floor,
+/area/space)
 "EQ" = (
 /obj/machinery/meter,
 /obj/decal/tile_edge/stripe/big{
@@ -282,6 +362,10 @@
 	},
 /turf/floor,
 /area/space)
+"JC" = (
+/obj/machinery/door/airlock/gannets/glass/security,
+/turf/floor/grime,
+/area/space)
 "JX" = (
 /turf/wall,
 /area/space)
@@ -293,6 +377,12 @@
 "KG" = (
 /obj/stool/chair/moveable{
 	dir = 4
+	},
+/turf/floor,
+/area/space)
+"Mr" = (
+/obj/stool/chair{
+	dir = 8
 	},
 /turf/floor,
 /area/space)
@@ -313,6 +403,14 @@
 	},
 /turf/space,
 /area/space)
+"PY" = (
+/obj/machinery/door/window/northleft,
+/obj/machinery/light/small/reddish{
+	dir = 4
+	},
+/obj/decal/slipmat/torn,
+/turf/floor/sanitary/white,
+/area/space)
 "Qg" = (
 /obj/wingrille_spawn/reinforced,
 /obj/wingrille_spawn/reinforced,
@@ -325,6 +423,10 @@
 "Sz" = (
 /obj/wingrille_spawn/reinforced,
 /turf/floor/plating,
+/area/space)
+"SZ" = (
+/obj/stool/bed/brig,
+/turf/floor/grime,
 /area/space)
 "Tl" = (
 /turf/floor/grey,
@@ -364,6 +466,10 @@
 /obj/wingrille_spawn/reinforced,
 /obj/wingrille_spawn/reinforced,
 /turf/wall,
+/area/space)
+"WA" = (
+/obj/machinery/door/airlock/gannets/security,
+/turf/floor/carpet/grime,
 /area/space)
 "Yb" = (
 /obj/machinery/atmospherics/binary/volume_pump{
@@ -40052,23 +40158,23 @@ pp
 pp
 pp
 JX
-pp
-pp
+uw
+bm
 JX
-pp
-pp
-pp
-pp
-pp
-pp
+tj
+SZ
+tj
+tj
+SZ
+tj
 JX
-pp
-pp
-pp
+VO
+VO
+VO
 JX
-pp
-pp
-pp
+VO
+VO
+VO
 JX
 pp
 pp
@@ -40354,23 +40460,23 @@ pp
 pp
 pp
 JX
-pp
-pp
+gq
+gq
 JX
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-JX
-pp
-pp
-pp
+tj
+tj
+tj
+tj
+tj
+tj
+jB
+VO
+VO
+VO
+Af
+VO
+VO
+VO
 JX
 pp
 pp
@@ -40656,23 +40762,23 @@ pp
 pp
 pp
 JX
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
+oE
+gq
+rZ
+tj
+tj
+tj
+tj
+tj
+tj
 JX
-pp
-pp
-pp
+VO
+EE
+VO
 JX
-pp
-pp
-pp
+VO
+VO
+VO
 JX
 pp
 pp
@@ -40958,23 +41064,23 @@ pp
 pp
 pp
 JX
-pp
-pp
+zl
+PY
 JX
-pp
-pp
-pp
-pp
-pp
-pp
+tj
+tj
+tj
+tj
+tj
+tj
 JX
-pp
-pp
-pp
+cQ
+cQ
+cQ
 JX
-pp
-pp
-pp
+VO
+VO
+VO
 JX
 pp
 pp
@@ -41263,20 +41369,20 @@ JX
 JX
 JX
 JX
-pp
-pp
-pp
-pp
-pp
-pp
+tj
+tj
+tj
+tj
+tj
+tj
 JX
-pp
-pp
-pp
+Mr
+VO
+Mr
 JX
-pp
-pp
-pp
+VO
+VO
+VO
 JX
 pp
 pp
@@ -41562,23 +41668,23 @@ JX
 Rc
 JX
 JX
-pp
-pp
+VO
+VO
 Sz
-pp
-pp
-pp
-pp
-pp
-pp
+tj
+tj
+tj
+tj
+tj
+tj
 JX
-pp
-pp
-pp
+VO
+VO
+VO
 JX
-pp
-pp
-pp
+VO
+VO
+VO
 JX
 pp
 pp
@@ -41864,23 +41970,23 @@ VO
 VO
 VO
 JX
-pp
-pp
+VO
+VO
 Sz
 Sz
 Sz
 JX
 Sz
-pp
+JC
 Sz
 JX
 Sz
-pp
+qB
 Sz
 JX
-pp
-pp
-pp
+VO
+VO
+VO
 JX
 pp
 pp
@@ -42166,22 +42272,22 @@ VO
 VO
 VO
 JX
-pp
-pp
-pp
-pp
-pp
+VO
+VO
+VO
+VO
+VO
 JX
-pp
-pp
-pp
-pp
-pp
-pp
-pp
+VO
+VO
+VO
+VO
+VO
+VO
+VO
 JX
 JX
-pp
+WA
 JX
 JX
 pp
@@ -42468,19 +42574,19 @@ VO
 VO
 VO
 JX
-pp
-pp
-pp
-pp
-pp
+VO
+VO
+VO
+VO
+VO
 JX
-pp
-pp
-pp
-pp
-pp
-pp
-pp
+VO
+VO
+VO
+VO
+VO
+VO
+VO
 JX
 VO
 VO
@@ -42770,20 +42876,20 @@ VO
 VO
 VO
 JX
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-pp
+VO
+VO
+VO
+VO
+VO
+VO
+VO
+VO
+VO
+VO
+VO
+VO
+VO
+Af
 VO
 VO
 VO
@@ -43072,20 +43178,20 @@ VO
 VO
 VO
 JX
-pp
-pp
-pp
-pp
-pp
+VO
+VO
+VO
+VO
+VO
 JX
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-JX
+VO
+VO
+VO
+VO
+VO
+VO
+zY
+cs
 VO
 VO
 VO
@@ -43374,20 +43480,20 @@ VO
 VO
 VO
 JX
-pp
-pp
-pp
-pp
-pp
+VO
+VO
+VO
+VO
+VO
 JX
-pp
-pp
-pp
-pp
-pp
-pp
-pp
-JX
+VO
+VO
+VO
+VO
+VO
+VO
+pR
+pt
 VO
 VO
 VO
