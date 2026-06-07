@@ -701,7 +701,6 @@
 	if(!H.shoes)
 		bleed(H, 5, violent = TRUE)
 	var/obj/item/affecting = H.organs[pick("l_leg", "r_leg")]
-	playsound(H.loc, "sound/impact_sounds/Generic_Stab_1.ogg", 20, 1)
 	affecting.take_damage(force, 0)
 	H.UpdateDamageIcon()
 
