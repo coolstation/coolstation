@@ -216,7 +216,7 @@
 		if (T)
 			T.visible_message("<span class='alert'>[src] bursts!</span>")
 		playsound(T, 'sound/impact_sounds/Slimy_Splat_1.ogg', 100, 1)
-		var/obj/decal/cleanable/balloon/decal = make_cleanable(/obj/decal/cleanable/balloon,T)
+		var/obj/decal/cleanable/balloon/decal = new /obj/decal/cleanable/balloon(T)
 		decal.icon_state = "balloon_[src.balloon_color]_pop"
 
 		var/mob/M = src.loc
@@ -246,7 +246,7 @@
 			if (T)
 				T.visible_message("<span class='alert'>[user] pops [src]!</span>")
 			playsound(T, 'sound/impact_sounds/Slimy_Splat_1.ogg', 100, 1)
-			var/obj/decal/cleanable/balloon/decal = make_cleanable(/obj/decal/cleanable/balloon,T)
+			var/obj/decal/cleanable/balloon/decal = new /obj/decal/cleanable/balloon(T)
 			decal.color = src.color
 			qdel(src)
 			return

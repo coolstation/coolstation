@@ -7,10 +7,6 @@
 ////////////////
 
 //////////////// a relic of pooling. should be removed eventually, when someone has time to convert every make_cleanable call to a new
-proc/make_cleanable(var/type,var/loc,var/list/viral_list)
-	var/obj/decal/cleanable/C = new type(loc, viral_list)
-	.= C
-
 /obj/decal/cleanable
 	density = 0
 	anchored = ANCHORED
@@ -561,10 +557,12 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	color = DEFAULT_BLOOD_COLOR
 	#endif
 
-	New()
-		src.create_reagents(reagents_max)
-		src.reagents.add_reagent("blood", 10)
+	New(loc, blood_id)
 		..()
+		src.create_reagents(reagents_max)
+		src.reagents.add_reagent(blood_id ? blood_id : (prob(95) ? "blood" : "ketchup"), 10) //stochastically default to blood if no id is provided
+		if (blood_id)
+			sample_reagent = blood_id //save just a lil copypaste from the gibs proc
 		SPAWN_DBG(0)
 			if(src.loc && !src.disposed)
 				var/counter = 0
@@ -616,6 +614,26 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	slippery = 5
 	can_dry = 0
 	can_fluid_absorb = 0
+	var/skin_color
+
+	New(loc, blood_id, skincol = null)
+		skin_color = skincol
+		if (!skin_color)
+			skin_color = pick(standard_skintones)
+			skin_color = standard_skintones[skin_color]
+		..()
+
+	update_color()
+		..()
+		var/image/I = image(src.icon, icon_state = "[src.icon_state]_misc")
+		I.appearance_flags = RESET_COLOR | RESET_ALPHA
+		//This relies on a dummy no-name icon_state to catch missing icons :)
+		UpdateOverlays(I, "guts")
+		I.icon_state = "[src.icon_state]_skin"
+		I.color = skin_color
+		UpdateOverlays(I, "skin", TRUE)
+		qdel(I)
+
 
 	attack_hand(var/mob/user as mob)
 		if (ishuman(user))
@@ -645,7 +663,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			return ..()
 
 /obj/decal/cleanable/tracked_reagents/blood/gibs/body
-	random_icon_states = list("gibhead", "gibtorso")
+	random_icon_states = list("gibhead", "gibtorso", "gibup1", "gibdown1")
 
 /obj/decal/cleanable/tracked_reagents/blood/gibs/core
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
@@ -1976,7 +1994,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			if(step_to(src, T, 0, 300) && num_splats-- >= 1)
 				switch(kind_of_cleanable)
 					if("BLOOD")
-						var/obj/decal/cleanable/tracked_reagents/blood/b = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/splatter/extra,get_turf(src))
+						var/obj/decal/cleanable/tracked_reagents/blood/b = new /obj/decal/cleanable/tracked_reagents/blood/splatter/extra(get_turf(src), src.sample_reagent)
 						if (!b) continue //ZeWaka: fix for null.diseases
 						if (src?.diseases)
 							b.diseases += src.diseases
@@ -1986,12 +2004,10 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 						b.color = src.color
 						if (randcolor) // only used by funnygibs atm. in the future, the possibilities are endless for this var. imagine what it could do..........
 							b.color = random_saturated_hex_color()
-						if(src.sample_reagent)
-							b.set_sample_reagent_custom(src.sample_reagent, 10)
 
 					if("MARTIAN")
 						if (prob(40))
-							var/obj/decal/cleanable/tracked_reagents/blood/b = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/splatter/extra,get_turf(src))
+							var/obj/decal/cleanable/tracked_reagents/blood/b = new  /obj/decal/cleanable/tracked_reagents/blood/splatter/extra(get_turf(src))
 							b.blood_DNA = src.blood_DNA
 							b.blood_type = src.blood_type
 							b.color = "#0b1f8f"
@@ -1999,10 +2015,10 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 							elecflash(src)
 /*
 					if("FLOCK")
-						make_cleanable( /obj/decal/cleanable/flockdrone_debris/fluid,src.loc)*/
+						new  /obj/decal/cleanable/flockdrone_debris/fluid(src.loc)*/
 					if("MACHINE", "ROBOT")
 						if (prob(40))
-							make_cleanable(/obj/decal/cleanable/oil/streak,src.loc)
+							new /obj/decal/cleanable/oil/streak(src.loc)
 						else if (prob(10))
 							elecflash(src)
 			sleep(0.1 SECONDS)
@@ -2067,7 +2083,7 @@ IIIIIIIIII      TTTTTTTTTTT              SSSSSSSSSSSSSSS        PPPPPPPPPP      
 				B = locate(/obj/decal/cleanable/tracked_reagents/dynamic) in T
 
 			if (!B) // look for an existing dynamic blood decal and add to it if you find one
-				B = make_cleanable( /obj/decal/cleanable/tracked_reagents/dynamic,T)
+				B = new  /obj/decal/cleanable/tracked_reagents/dynamic(T)
 
 			B.transfer_volume(src.reagents, src.reagents.total_volume, do_fluid_react = (src.reagents.total_volume >= 15))
 

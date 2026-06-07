@@ -51,7 +51,7 @@ datum/pathogeneffects
 	// this should give people better feedback about how be infected and how to avoid it
 	proc/infect_cloud(var/mob/M as mob, var/datum/pathogen/origin, var/amount = 5)
 		var/turf/T = get_turf(M)
-		var/obj/decal/cleanable/pathogen_cloud/D = make_cleanable(/obj/decal/cleanable/pathogen_cloud,T)
+		var/obj/decal/cleanable/pathogen_cloud/D = new /obj/decal/cleanable/pathogen_cloud(T)
 
 		var/datum/reagent/blood/pathogen/Q = new /datum/reagent/blood/pathogen()
 		D.reagents = new /datum/reagents(amount)
@@ -67,7 +67,7 @@ datum/pathogeneffects
 	// this should give people better feedback about how be infected and how to avoid it
 	proc/infect_puddle(var/mob/M as mob, var/datum/pathogen/origin, var/amount = 5)
 		var/turf/T = get_turf(M)
-		var/obj/decal/cleanable/pathogen_sweat/D = make_cleanable(/obj/decal/cleanable/pathogen_sweat,T)
+		var/obj/decal/cleanable/pathogen_sweat/D = new /obj/decal/cleanable/pathogen_sweat(T)
 
 		var/datum/reagent/blood/pathogen/Q = new /datum/reagent/blood/pathogen()
 		D.reagents = new /datum/reagents(amount)

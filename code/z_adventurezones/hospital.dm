@@ -228,7 +228,7 @@ var/list/hospital_fx_sounds = list('sound/ambience/spooky/Hospital_Chords.ogg', 
 					flick("disintegrated", animation)
 
 					if (prob(20))
-						make_cleanable(/obj/decal/cleanable/ash,target_original_loc)
+						new /obj/decal/cleanable/ash(target_original_loc)
 
 				else
 					gibs(target_original_loc)

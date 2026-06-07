@@ -184,8 +184,8 @@
 
 	proc/burst()
 		var/turf/T = get_turf(src.loc)
-		make_cleanable( /obj/decal/cleanable/generic,T)
-		make_cleanable( /obj/decal/cleanable/greenglow,T)
+		new  /obj/decal/cleanable/generic(T)
+		new  /obj/decal/cleanable/greenglow(T)
 		qdel(src)
 
 	proc/turnon()

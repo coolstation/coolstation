@@ -312,7 +312,7 @@
 		var/turf/T = get_turf(src)
 		if(!locate(/obj/decal/cleanable/vomit) in T)
 			playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-			var/obj/decal/cleanable/vomit/filling = make_cleanable( /obj/decal/cleanable/vomit,src)
+			var/obj/decal/cleanable/vomit/filling = new  /obj/decal/cleanable/vomit(src)
 			var/icon/fillicon = icon(filling.icon, filling.icon_state)
 			fillicon.MapColors(0.50, 0.25, 0)
 			filling.icon = fillicon

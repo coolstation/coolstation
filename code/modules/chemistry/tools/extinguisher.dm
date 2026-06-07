@@ -146,7 +146,7 @@
 			if (src.reagents.has_reagent(reagent))
 				user.visible_message("<span class='alert'>[src] melts!</span>")
 				user.drop_item()
-				make_cleanable(/obj/decal/cleanable/molten_item,get_turf(user))
+				new /obj/decal/cleanable/molten_item(get_turf(user))
 				qdel(src)
 				return
 

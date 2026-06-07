@@ -580,7 +580,7 @@
 		replica.set_dir(O.dir)
 		qdel(O)
 
-/obj/proc/place_on(obj/item/W as obj, mob/user as mob, params)
+/obj/proc/place_on(obj/item/W as obj, mob/user as mob, params, var/clampy = 0)
 	. = 0
 	if (W && !issilicon(user)) // no ghost drones should not be able to do this either, not just borgs
 		if (user && !(W.cant_drop))
@@ -594,6 +594,8 @@
 				if (islist(params) && params["icon-y"] && params["icon-x"])
 					W.pixel_x = text2num(params["icon-x"]) - 16
 					W.pixel_y = text2num(params["icon-y"]) - 16
+				if (clampy)
+					W.pixel_y = max(W.pixel_y,clampy - 16)
 				. = 1
 
 /obj/proc/receive_silicon_hotkey(var/mob/user)

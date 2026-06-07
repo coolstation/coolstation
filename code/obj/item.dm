@@ -866,9 +866,9 @@
 		if (src.health <= 0)
 			STOP_TRACKING_CAT(TR_CAT_BURNING_ITEMS)
 			if (burn_type == 1)
-				make_cleanable( /obj/decal/cleanable/molten_item,get_turf(src))
+				new  /obj/decal/cleanable/molten_item(get_turf(src))
 			else
-				make_cleanable( /obj/decal/cleanable/ash,get_turf(src))
+				new  /obj/decal/cleanable/ash(get_turf(src))
 
 			if (istype(src,/obj/item/parts/human_parts))
 				src:holder = null

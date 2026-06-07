@@ -672,7 +672,7 @@ datum
 
 			reaction_obj(var/obj/O, var/volume)
 				if(isitem(O) && prob(20))
-					var/obj/decal/cleanable/molten_item/I = make_cleanable(/obj/decal/cleanable/molten_item,O.loc)
+					var/obj/decal/cleanable/molten_item/I = new /obj/decal/cleanable/molten_item(O.loc)
 					I.desc = "Looks like this was \an [O] some time ago."
 					for(var/mob/M in AIviewers(5, O))
 						boutput(M, "<span class='alert'>\the [O] melts.</span>")
@@ -2283,7 +2283,7 @@ datum
 				if(volume >= 5 && prob(10))
 					if(!locate(/obj/decal/cleanable/tracked_reagents/blood/gibs) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,T)
+						new /obj/decal/cleanable/tracked_reagents/blood/gibs(T)
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				..() // call your parents  :(
@@ -2787,7 +2787,7 @@ datum
 				var/list/covered = holder.covered_turf()
 				if (volume >= 10 && covered.len < 2)
 					if (!T.messy)
-						make_cleanable(/obj/decal/cleanable/saltpile,T)
+						new /obj/decal/cleanable/saltpile(T)
 					else
 						var/obj/decal/cleanable/saltpile/pile = locate(/obj/decal/cleanable/saltpile) in T
 						if (pile)
@@ -2865,7 +2865,7 @@ datum
 				if (volume >= 5)
 					if (!locate(/obj/decal/cleanable/ketchup) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/ketchup,T)
+						new /obj/decal/cleanable/ketchup(T)
 
 		//tomato sauce + sugar at 4:1 and heat to 200F/94F/366K
 		fooddrink/ketchup
@@ -2888,7 +2888,7 @@ datum
 				if (volume >= 5)
 					if (!locate(/obj/decal/cleanable/ketchup) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/ketchup,T)
+						new /obj/decal/cleanable/ketchup(T)
 
 		fooddrink/mustard
 			name = "mustard"
@@ -4447,3 +4447,23 @@ datum
 			description = "A cocktail from the prohibition era, named after a popular expression."
 			reagent_state = LIQUID
 			taste = "like the bee's knees"
+
+		fooddrink/flour
+			name = "flour"
+			id = "flour"
+			fluid_r = 249
+			fluid_g = 249
+			fluid_b = 249
+			description = "multi-purpose flour to be used in baking."
+			reagent_state = SOLID
+			taste = "like sticky sand"
+
+		fooddrink/batter
+			name = "pancake batter"
+			id = "batter"
+			fluid_r = 249
+			fluid_g = 241
+			fluid_b = 231
+			description = "batter used to fry up pancakes. Or gulp down raw."
+			reagent_state = LIQUID
+			taste = "like sweet flour"

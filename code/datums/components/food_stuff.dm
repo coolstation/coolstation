@@ -85,9 +85,9 @@ TYPEINFO(/datum/component/consume/organpoints)
 					L.abilityHolder.deductPoints(10, target_abilityholder)
 					for (var/turf/T in range(L, rand(1, 3)))
 						if (prob(20))
-							make_cleanable( /obj/decal/cleanable/greenpuke,T)
+							new  /obj/decal/cleanable/greenpuke(T)
 						else
-							make_cleanable( /obj/decal/cleanable/vomit,T)
+							new  /obj/decal/cleanable/vomit(T)
 					return
 				if (/obj/item/skull/noface)
 					L.vomit()
@@ -200,9 +200,9 @@ TYPEINFO(/datum/component/consume/organheal)
 					M.changeStatus("paralysis", 10 SECONDS)
 					for (var/turf/T in range(M, rand(1, 3)))
 						if (prob(20))
-							make_cleanable( /obj/decal/cleanable/greenpuke,T)
+							new  /obj/decal/cleanable/greenpuke(T)
 						else
-							make_cleanable( /obj/decal/cleanable/vomit,T)
+							new  /obj/decal/cleanable/vomit(T)
 					return
 				if (/obj/item/skull/noface)
 					M.vomit()

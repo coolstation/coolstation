@@ -465,6 +465,9 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 1
 	},
+/obj/cable{
+	icon_state = "0-8"
+	},
 /turf/floor/plating,
 /area/station/storage/tools)
 "aqS" = (
@@ -2298,7 +2301,6 @@
 /area/station/hallway/primary/east)
 "bJX" = (
 /obj/blind_switch/area/south,
-/obj/bookshelf/long/end_left,
 /turf/floor/wood/seven,
 /area/station/library)
 "bKv" = (
@@ -2757,7 +2759,6 @@
 /area/station/crew_quarters/baroffice)
 "bWX" = (
 /obj/decal/cleanable/dirt/random,
-/obj/bookshelf/long/end_right,
 /turf/floor/wood/seven,
 /area/station/library)
 "bXa" = (
@@ -8144,12 +8145,12 @@
 /turf/floor/carpet/blue/fancy/edge/sw,
 /area/station/medical/staff)
 "fXU" = (
-/obj/table/auto,
-/obj/item/plate/tray,
 /obj/machinery/power/apc/autoname/north,
 /obj/cable{
 	icon_state = "0-2"
 	},
+/obj/machinery/griddle,
+/obj/item/kitchen/utensil/spatula,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "fYl" = (
@@ -8818,6 +8819,9 @@
 /area/station/security/interrogation)
 "gtE" = (
 /obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "1-2"
+	},
 /turf/floor/plating,
 /area/station/medical/robotics)
 "gtF" = (
@@ -9318,6 +9322,13 @@
 	},
 /turf/space,
 /area/station/shipyard)
+"gIr" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "1-8"
+	},
+/turf/floor/plating,
+/area/station/medical/robotics)
 "gIt" = (
 /obj/machinery/light/small/red{
 	dir = 1
@@ -9761,9 +9772,14 @@
 /turf/floor/black,
 /area/station/turret_protected/ai_upload)
 "gVv" = (
-/obj/bookshelf/long/end_left,
-/turf/floor/wood/seven,
-/area/station/library)
+/obj/cable{
+	icon_state = "1-2"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor,
+/area/station/hallway/primary/west)
 "gVG" = (
 /obj/decal/poster/wallsign/space,
 /turf/wall/auto/rivet,
@@ -11021,6 +11037,7 @@
 /obj/machinery/phone{
 	pixel_y = 13
 	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/grub,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "hQI" = (
@@ -11283,6 +11300,14 @@
 	},
 /turf/floor/plating/random,
 /area/station/maintenance/solar/north)
+"icg" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/floor/plating,
+/area/station/storage/tools)
 "icj" = (
 /obj/random_item_spawner/junk/one,
 /obj/cable{
@@ -14697,6 +14722,9 @@
 /obj/cable{
 	icon_state = "1-2"
 	},
+/obj/cable{
+	icon_state = "2-4"
+	},
 /turf/floor,
 /area/station/hallway/primary/west)
 "kwv" = (
@@ -16717,14 +16745,14 @@
 /obj/item/shaker/salt{
 	pixel_x = -11
 	},
-/obj/item/kitchen/utensil/knife/pizza_cutter{
-	pixel_x = -9;
-	pixel_y = 15
-	},
 /obj/item/material_piece/cloth/rag,
 /obj/item/kitchen/rollingpin{
 	pixel_x = 4;
 	pixel_y = 2
+	},
+/obj/item/kitchen/utensil/knife/pizza_cutter{
+	pixel_x = -9;
+	pixel_y = 15
 	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
@@ -21090,6 +21118,7 @@
 	dir = 10;
 	icon_state = "line2"
 	},
+/obj/bookshelf/persistent,
 /turf/floor/carpet/grime,
 /area/station/library)
 "pgk" = (
@@ -23153,6 +23182,7 @@
 "qvA" = (
 /obj/table/auto,
 /obj/table/auto,
+/obj/item/plate/tray,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "qwf" = (
@@ -26043,7 +26073,11 @@
 /turf/floor/orange,
 /area/station/engine/engineering)
 "ssu" = (
-/obj/machinery/vending/cards,
+/obj/stool/chair/wooden{
+	desc = "An antique chair.";
+	dir = 8;
+	name = "old wooden chair"
+	},
 /turf/floor/wood/seven,
 /area/station/library)
 "ssv" = (
@@ -26766,7 +26800,6 @@
 "sRX" = (
 /obj/decal/cleanable/mess/chips,
 /obj/machinery/light_switch/south,
-/obj/bookshelf/long/end_right,
 /turf/floor/wood/seven,
 /area/station/library)
 "sSd" = (
@@ -28893,6 +28926,7 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
+/obj/machinery/vending/cards,
 /turf/floor/wood/seven,
 /area/station/library)
 "usL" = (
@@ -29975,6 +30009,13 @@
 /obj/storage/crate/loot_crate,
 /turf/floor/grime,
 /area/space)
+"vhW" = (
+/obj/wingrille_spawn/reinforced,
+/obj/cable{
+	icon_state = "2-8"
+	},
+/turf/floor/plating,
+/area/station/medical/robotics)
 "viX" = (
 /obj/machinery/shuttle/engine/heater{
 	dir = 4;
@@ -33057,7 +33098,6 @@
 /turf/space,
 /area/space)
 "xuX" = (
-/obj/bookshelf/persistent,
 /obj/decal/cleanable/paper,
 /turf/floor/wood/seven,
 /area/station/library)
@@ -33112,6 +33152,12 @@
 	},
 /obj/firedoor_spawn,
 /obj/access_spawn/engineering_mechanic,
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
 /turf/floor/yellow,
 /area/station/storage/tools)
 "xwG" = (
@@ -68406,7 +68452,7 @@ jbX
 lHl
 myW
 lrg
-jbX
+gVv
 jbX
 jbX
 ncp
@@ -68708,13 +68754,13 @@ fDt
 fDt
 fDt
 fDt
+vhW
 gtE
 gtE
 gtE
 gtE
 gtE
-gtE
-gtE
+gIr
 qsS
 kiC
 ogS
@@ -69643,7 +69689,7 @@ smE
 uZx
 tcF
 rKl
-gFe
+icg
 dXU
 wbt
 dXU
@@ -77466,7 +77512,7 @@ ezE
 ldA
 tTN
 smS
-gVv
+cwD
 miD
 uop
 tzy

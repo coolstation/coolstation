@@ -108,7 +108,7 @@
 		if(!istype(H)) // just in case something unhuman poops, lets still make a turd.
 			var/turf/T = get_turf(src)
 			if (istype(T))
-				make_cleanable( /obj/decal/cleanable/tracked_reagents/mud,T)
+				new  /obj/decal/cleanable/tracked_reagents/mud(T)
 			return
 		playsound(H, "sound/voice/hoooagh2.ogg", 50, 0, SOUND_RANGE_STANDARD, H.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 		if(H.wear_suit || H.w_uniform) // wearing pants while shitting? fine!!
@@ -192,7 +192,7 @@
 		// possibly change the text colour to the gray emote text
 		src.visible_message(pick("<B>[src]</B> unzips their pants and pees on the floor.", "<B>[src]</B> pisses all over the floor!", "<B>[src]</B> makes a big piss puddle on the floor."))
 		src.cleanhands = 0
-		var/obj/decal/cleanable/urine/U = make_cleanable(/obj/decal/cleanable/urine, src.loc)
+		var/obj/decal/cleanable/urine/U = new /obj/decal/cleanable/urine( src.loc)
 		U.sample_amt = min(src.urine, 80)
 		src.urine = 0
 

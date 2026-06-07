@@ -13,6 +13,12 @@
 	var/festivity = 0
 	var/brewable = 0 // will hitting a still with it do anything?
 	var/brew_result = null // what will it make if it's brewable?
+	var/can_griddle = true //can this be cooked on the griddle
+	var/obj/item/reagent_containers/food/griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn // what will it turn into if griddled - default is to fucking burn it
+	var/obj/item/reagent_containers/food/rolling_result = null // rolling    pin :D
+	var/iscooking = false
+	var/griddle_time = 20 // how long this takes to cook. Subject to slight variation on New(), each tick seems to take about 3 seconds for some reason.
+	var/griddle_message = null
 	var/unlock_medal_when_eaten = null // Add medal name here in the format of e.g. "That tasted funny".
 	var/from_emagged_oven = 0 // to prevent re-rolling of food in emagged ovens
 	var/doants = 1
@@ -20,6 +26,8 @@
 	rc_flags = 0
 
 	New()
+		if (can_griddle)
+			griddle_time += rand(0,4)
 		..()
 /*
 	pooled()
@@ -28,6 +36,36 @@
 	unpooled()
 		made_ants = 0
 		..()*/
+	attack_hand(mob/user)
+		for (var/obj/o in get_turf(src))
+			if (istype(o,/obj/machinery/griddle))
+				iscooking = 1
+		if (iscooking)
+			if (user.traitHolder.hasTrait("hardcore"))
+				user.TakeDamage("All",0,10,0,DAMAGE_BURN,1)
+				boutput(user,"<span class='alert'>You sizzle your hands trying to pick [src] off of the scalding griddle, but since you're no sissy you don't even flinch.</span>")
+			else
+				user.TakeDamage("All",0,5,0,DAMAGE_BURN,1)
+				boutput(user,"<span class='alert'><B>you burn your hand trying to take [src] off of the scalding griddle like a dumbass. Use a spatula.</B></span>")
+				user.emote("scream")
+			playsound(src,"sound/impact_sounds/burn_sizzle.ogg",50)
+		iscooking = 0
+		..()
+
+	attackby(obj/item/I, mob/user)
+		if (istype(I,/obj/item/kitchen/utensil/spatula))
+			user.put_in_hand_or_drop(src)
+			return
+
+		if (istype(I,/obj/item/kitchen/rollingpin) && src.rolling_result)
+			var/obj/item/reagent_containers/food/f = new src.rolling_result
+			JOB_XP(user, "chef", 2)
+			f.set_loc(src.loc)
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			qdel(src)
+		..()
+
 
 	//the only table check is for avoiding doing ants so it might be better to rename this (later)
 	//if there's something else that spawns a food that shouldn't be considered on the floor/antsy add it here
@@ -38,6 +76,21 @@
 				return 1
 		return 0
 
+	proc/griddle_cook(var/obj/machinery/griddle/griddle,mult)
+		if (!src.can_griddle || !src.griddle_result)
+			return
+		griddle_time -= 2.5 * mult
+		if (src.griddle_time <= 0)
+			var/obj/item/reagent_containers/food/f = new src.griddle_result
+			f.set_loc(src.loc)
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			griddle.remove_contents(src)
+			griddle.add_contents(f)
+			if (griddle_message)
+				src.visible_message(griddle_message)
+			playsound(src,"sound/impact_sounds/burn_sizzle.ogg",30)
+			qdel(src)
 
 
 	proc/heal(var/mob/living/M)

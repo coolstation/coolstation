@@ -45,23 +45,25 @@
 	var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = null
 
 	// NORTH
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
+	gib = new /obj/decal/cleanable/tracked_reagents/blood/gibs(location)
 	if (prob(30))
 		gib.icon_state = "gibup1"
+		gib.update_color()
 	gib.streak_cleanable(NORTH)
 
 	// SOUTH
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
+	gib = new /obj/decal/cleanable/tracked_reagents/blood/gibs(location)
 	if (prob(30))
 		gib.icon_state = "gibdown1"
+		gib.update_color()
 	gib.streak_cleanable(SOUTH)
 
 	// WEST
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
+	gib = new /obj/decal/cleanable/tracked_reagents/blood/gibs(location)
 	gib.streak_cleanable(WEST)
 
 	// EAST
-	gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,location)
+	gib = new /obj/decal/cleanable/tracked_reagents/blood/gibs(location)
 	gib.streak_cleanable(EAST)
 
 /obj/npc/ex_act(severity)

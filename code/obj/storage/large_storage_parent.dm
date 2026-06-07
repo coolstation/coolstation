@@ -663,7 +663,7 @@
 			src.dump_contents()
 			SPAWN_DBG(1 DECI SECOND)
 				var/newloc = get_turf(src)
-				make_cleanable( /obj/decal/cleanable/machine_debris,newloc)
+				new  /obj/decal/cleanable/machine_debris(newloc)
 				qdel(src)
 
 	proc/weld(var/shut = 0, var/obj/item/weldingtool/W as obj, var/mob/weldman as mob)

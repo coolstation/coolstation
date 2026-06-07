@@ -438,7 +438,7 @@
 	var/list/bloods = list()
 
 	for (var/i in cardinal)
-		blood = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter/extra, location)
+		blood = new /obj/decal/cleanable/tracked_reagents/blood/splatter/extra( location)
 		blood.blood_DNA = bDNA
 		blood.blood_type = btype
 		blood.color = random_saturated_hex_color()
@@ -447,7 +447,7 @@
 
 	var/extra = rand(2,4)
 	for (var/i = 1, i <= extra, i++)
-		blood = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/splatter/extra, location)
+		blood = new /obj/decal/cleanable/tracked_reagents/blood/splatter/extra( location)
 		blood.blood_DNA = bDNA
 		blood.blood_type = btype
 		blood.color = random_saturated_hex_color()

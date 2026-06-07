@@ -1297,11 +1297,11 @@ datum
 						switch(volume)
 							if (0 to 5)
 								if (prob(volume * 10))
-									make_cleanable(/obj/decal/cleanable/oil/streak,T)
+									new /obj/decal/cleanable/oil/streak(T)
 							if (5 to 12)
-								make_cleanable(/obj/decal/cleanable/oil/streak,T)
+								new /obj/decal/cleanable/oil/streak(T)
 							if (12 to 20)
-								make_cleanable(/obj/decal/cleanable/oil,T)
+								new /obj/decal/cleanable/oil(T)
 							if (20 to INFINITY)
 								..()
 					SPAWN_DBG(20 SECONDS)
@@ -2170,7 +2170,7 @@ datum
 				if (!istype(T, /turf/space))
 					if (volume >= 5)
 						if (!locate(/obj/decal/cleanable/paper) in T)
-							make_cleanable(/obj/decal/cleanable/paper,T)
+							new /obj/decal/cleanable/paper(T)
 
 		rubber
 			name = "rubber"
@@ -2675,7 +2675,7 @@ datum
 				if (!istype(T, /turf/space))
 					if (volume >= 5)
 						if (!locate(/obj/decal/cleanable/glitter) in T)
-							make_cleanable(/obj/decal/cleanable/glitter,T)
+							new /obj/decal/cleanable/glitter(T)
 
 			on_remove()
 				if (!holder) return
@@ -2742,7 +2742,7 @@ datum
 				if (!istype(T, /turf/space))
 					if (volume >= 5)
 						if (!locate(/obj/decal/cleanable/glitter/harmless) in T)
-							make_cleanable(/obj/decal/cleanable/glitter/harmless,T)
+							new /obj/decal/cleanable/glitter/harmless(T)
 
 			on_remove()
 				var/atom/A = holder.my_atom
@@ -3085,7 +3085,7 @@ datum
 				if (volume >= 5)
 					if (!locate(/obj/decal/cleanable/tracked_reagents/blood) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,T)
+						new /obj/decal/cleanable/tracked_reagents/blood(T)
 
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume_passed)
 				. = ..()
@@ -3202,7 +3202,7 @@ datum
 					if (!locate(/obj/decal/cleanable/vomit) in T)
 						// no mob to vomit, so this gets to stay - cirr
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable( /obj/decal/cleanable/vomit,T)
+						new  /obj/decal/cleanable/vomit(T)
 
 		gvomit
 			name = "green vomit"
@@ -3225,7 +3225,7 @@ datum
 				if (volume >= 5)
 					if (!locate(/obj/decal/cleanable/greenpuke) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable( /obj/decal/cleanable/greenpuke,T)
+						new  /obj/decal/cleanable/greenpuke(T)
 
 		urine
 			name = "urine"
@@ -3257,7 +3257,7 @@ datum
 				if (volume >= 5)
 					if (!locate(/obj/decal/cleanable/urine) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						var/obj/decal/cleanable/urine/U = make_cleanable( /obj/decal/cleanable/urine,T)
+						var/obj/decal/cleanable/urine/U = new  /obj/decal/cleanable/urine(T)
 						U.sample_amt = volume
 
 		triplepiss
@@ -3281,7 +3281,7 @@ datum
 				if (volume >= 5)
 					if (!locate(/obj/decal/cleanable/urine) in T)
 						playsound(T, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1)
-						make_cleanable( /obj/decal/cleanable/urine,T)
+						new  /obj/decal/cleanable/urine(T)
 
 		poo
 			name = "poo"
@@ -3950,7 +3950,7 @@ datum
 			reaction_turf(var/turf/T, var/volume)
 				if (!(T.turf_flags & IS_SPACE) && (volume >= 1))
 					if (!T.messy || !locate(/obj/decal/cleanable/sakura) in T)
-						make_cleanable(/obj/decal/cleanable/sakura,T)
+						new /obj/decal/cleanable/sakura(T)
 
 		grassgro
 			name = "Grass Gro"

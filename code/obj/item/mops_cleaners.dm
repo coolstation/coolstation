@@ -328,10 +328,10 @@ WET FLOOR SIGN
 				src.reagents.remove_any(5)
 			else if(src.reagents.has_reagent("blood"))
 				src.reagents.remove_reagent("blood",3)
-				make_cleanable( /obj/decal/cleanable/tracked_reagents/blood, U)
+				new  /obj/decal/cleanable/tracked_reagents/blood( U)
 			else
 				src.reagents.remove_any(3)
-				make_cleanable( /obj/decal/cleanable/dirt, U)
+				new  /obj/decal/cleanable/dirt( U)
 			user.show_text("You make a fucking mess of it with your filthy mop.", "red", group = "mop")
 		else
 			user.show_text("Your mop is way too filthy to be of use.", "red", group = "mop")

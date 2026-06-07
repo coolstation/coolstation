@@ -43,7 +43,7 @@
 		var/obj/skull = user.organHolder.drop_organ("skull")
 		if (skull)
 			skull.set_loc(user.loc)
-		make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,user.loc)
+		new  /obj/decal/cleanable/tracked_reagents/blood(user.loc)
 		playsound(user, "sound/impact_sounds/Flesh_Break_2.ogg", 50, 1)
 		health_update_queue |= user
 
@@ -55,7 +55,7 @@
 				for (var/mob/V in viewers(O, null)) // loop through all the mobs that can see O locally
 					V.show_message("<span class='alert'>[O.name] pukes all over [himself_or_herself(O)]. Thanks, [user.name].</span>", 1) // tell them that O puked
 					playsound(O.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1) // play a sound where O is
-					make_cleanable( /obj/decal/cleanable/vomit,O.loc) // make a vomit decal where O
+					new  /obj/decal/cleanable/vomit(O.loc) // make a vomit decal where O
 					// these last two parts are within the for loop so that means that for EVERY MOB THAT SEES THIS, A SOUND AND DECAL ARE MADE
 */
 		for (var/mob/living/carbon/human/O in AIviewers(user, null))

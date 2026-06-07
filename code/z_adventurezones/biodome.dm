@@ -976,7 +976,7 @@ SYNDICATE DRONE FACTORY AREAS
 				shake_camera(usr, 15, 16, 0.2)
 				sleep(1 SECOND)
 				for(var/turf/T in range(2,middle))
-					make_cleanable(/obj/decal/cleanable/greenglow,T)
+					new /obj/decal/cleanable/greenglow(T)
 				sleep(1 SECOND)
 				world << sound('sound/effects/mag_pandroar.ogg', volume=60) // heh
 				shake_camera(usr, 15, 16, 0.5)
