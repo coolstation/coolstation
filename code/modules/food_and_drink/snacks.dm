@@ -675,6 +675,7 @@
 	heal_amt = 4
 	amount = 1
 	doants = 0
+	griddle_result = /obj/item/reagent_containers/food/snacks/donkpocket_w
 	var/warm = DONK_COLD
 
 	warm
@@ -2338,6 +2339,15 @@
 	heal_amt = 1
 	food_color = "#d9db6c"
 	needfork = 1
+
+	attackby(obj/item/W, mob/user)
+		if (istype(/obj/item/W,/obj/item/reagent_containers/food/snacks/ingredient/heese))
+			var/obj/item/reagent_containers/food/snacks/omelette/om = new()
+			om.set_loc(src)
+			om.pixel_x = src.pixel_x
+			om.pixel_y = src.pixel_y
+			qdel(src)
+		..()
 
 /obj/item/reagent_containers/food/snacks/eggsalad
 	name = "egg salad"
