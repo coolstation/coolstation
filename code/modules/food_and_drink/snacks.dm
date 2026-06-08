@@ -1401,6 +1401,29 @@
 				user.suiciding = 0
 		return 1
 
+/obj/item/reagent_containers/food/snacks/bread_roll
+	name = "bread roll"
+	desc = "a cute little bread roll for you to devour."
+	hint = "can be sawed in half to make hamburger buns."
+	icon = 'icons/obj/foodNdrink/food.dmi'
+	icon_state = "roll"
+	heal_amt = 1
+
+	attackby(obj/item/W, mob/user)
+		if (istool(W, TOOL_CUTTING | TOOL_SAWING))
+			boutput(user, "<span class='notice'>You split the [src] in half.</span>")
+			if (prob(25))
+				JOB_XP(user,"chef",1)
+			for (var/i=0, i <= 1, i++)
+				var/obj/item/reagent_containers/food/snacks/hamburgerbun/B
+				B = new()
+				if(i == 0)
+					B.icon_state = "hamburger-bun-bottom"
+				B.set_loc(src.loc)
+			qdel(src)
+		..()
+
+
 /obj/item/reagent_containers/food/snacks/bagel
 	name = "bagel"
 	desc = "A lovely bread torus to snack on."
@@ -1917,6 +1940,17 @@
 	heal_amt = 4
 	stage = 2
 	food_effects = list("food_energized_big", "food_warm")
+
+/obj/item/reagent_containers/food/snacks/cookedmeat
+	name = "cooked meat"
+	desc = "you're not really sure what kind of meat this is."
+	icon_state = "meat-grilled"
+	amount = 2
+	heal_amt = 3
+	food_color = "#999966"
+	initial_volume = 50
+	initial_reagents = list("cholesterol"=3)
+	food_effects = list("food_hp_up", "food_brute")
 
 /obj/item/reagent_containers/food/snacks/steak_h
 	name = "steak"

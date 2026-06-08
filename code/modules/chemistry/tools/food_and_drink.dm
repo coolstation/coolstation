@@ -23,6 +23,7 @@
 	var/from_emagged_oven = 0 // to prevent re-rolling of food in emagged ovens
 	var/doants = 1
 	var/made_ants = 0
+	var/stackamt = 0 //for sandwiches and burgers
 	rc_flags = 0
 
 	New()

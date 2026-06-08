@@ -220,6 +220,11 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/swedishmeatball
 
+/datum/cookingrecipe/oven/broll
+	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_round
+	cookbonus = 5
+	output = /obj/item/reagent_containers/food/snacks/bread_roll
+
 /datum/cookingrecipe/oven/donkpocket
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/meatball

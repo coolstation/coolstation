@@ -671,6 +671,7 @@ input:checked + div { display: block; }
 	var/list/griddleitems = list()
 	var/max_items = 8
 
+
 	//todo: custom suicide
 
 	New()
@@ -699,14 +700,12 @@ input:checked + div { display: block; }
 			qdel(I)
 			add_contents(egg,user,params)
 			return
-		if (istype(I,/obj/item/reagent_containers/food))
-			src.add_contents(I,user,params)
-			return
 		if (istype(I,/obj/item/grab))
 			var/obj/item/grab/grab = I
 			if (grab.state >= 1)
 				actions.start(new/datum/action/bar/griddle_face(src,grab.affecting,grab.assailant,grab),grab.assailant)
 				return
+		add_contents(I,user,params)
 		..()
 
 	reagent_act(reagent_id, volume)
@@ -730,14 +729,20 @@ input:checked + div { display: block; }
 	process(mult)
 		if (on && working)
 			if (griddleitems.len > 0)
-				for (var/obj/item/reagent_containers/food/food in src.griddleitems)
-					food.griddle_cook(src,mult)
+				for (var/obj/item/food in src.griddleitems)
+					if (istype(food,/obj/item/reagent_containers/food))
+						var/obj/item/reagent_containers/food/afood = food
+						afood.griddle_cook(src,mult)
 				if(!src.sound_emitter.active_sound)
 					src.sound_emitter.play("sizzle")
 			else
 				src.sound_emitter.deactivate()
 		else
 			src.sound_emitter.deactivate()
+		var/turf/location = src.loc
+		location = get_turf(src.loc)
+
+		location?.hotspot_expose((isturf(location) ? 3000 : 4000),2000)
 		..()
 
 
@@ -758,7 +763,7 @@ input:checked + div { display: block; }
 			on = true
 			icon_state = "griddle-on"
 
-	proc/add_contents(obj/item/reagent_containers/food/food,mob/user = null,params = null)
+	proc/add_contents(obj/item/food,mob/user = null,params = null)
 		griddleitems += food
 		src.place_on(food,user,params,16)
 		food.set_loc(src)
@@ -774,7 +779,7 @@ input:checked + div { display: block; }
 		RegisterSignal(food, COMSIG_MOVABLE_SET_LOC, PROC_REF(remove_contents))
 		RegisterSignal(food, COMSIG_ATTACKHAND, PROC_REF(remove_contents))
 
-	proc/remove_contents(obj/item/reagent_containers/food/food)
+	proc/remove_contents(obj/item/food)
 		src.vis_contents -= food
 		griddleitems -= food
 		food.appearance_flags = initial(food.appearance_flags)
