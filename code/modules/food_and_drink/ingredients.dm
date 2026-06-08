@@ -33,6 +33,7 @@
 			blood--
 		..()
 
+
 /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat
 	name = "-meat"
 	desc = "A slab of meat."
@@ -41,11 +42,33 @@
 	var/subjectname = ""
 	var/subjectjob = null
 	amount = 1
+	griddle_result = /obj/item/reagent_containers/food/snacks/steak_h
+
+	attackby(obj/item/W, mob/user)
+		if (W.tool_flags & TOOL_CUTTING)
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			f.set_loc(src.loc)
+			W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
+			qdel(src)
+		..()
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat
 	name = "monkeymeat"
 	desc = "A slab of meat from a monkey."
 	amount = 1
+	griddle_result = /obj/item/reagent_containers/food/snacks/steak_m
+
+	attackby(obj/item/W, mob/user)
+		if (W.tool_flags & TOOL_CUTTING)
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			f.set_loc(src.loc)
+			W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
+			qdel(src)
+		..()
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat
 	name = "grubsteak"
@@ -56,6 +79,17 @@
 	initial_reagents = list("blood"=20)
 	//var/blood_color = "#33C370" // Someone smarter than me figure out how to do this
 	food_effects = list("food_hp_up", "food_brute")
+	griddle_result = /obj/item/reagent_containers/food/snacks/steak_grub
+
+	attackby(obj/item/W, mob/user) //make grub bacon when you decide to not be lazy
+		if (W.tool_flags & TOOL_CUTTING)
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			f.set_loc(src.loc)
+			W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
+			qdel(src)
+		..()
 
 //even more mysterious meat from space meat chunk that nobody should trust to eat, if only because of how normal looking and tasting it is
 //could do with a weird and unnerving effect reagent or disease that seems much worse than it is. maybe makes you hungrier the more you eat?
@@ -65,6 +99,17 @@
 	desc = "An exceptionally regular looking slab of meat from... somewhere? No, really, where did this even come from?"
 	amount = 1
 	value = 75
+	griddle_result = /obj/item/reagent_containers/food/snacks/steak_m
+
+	attackby(obj/item/W, mob/user) //make grub bacon when you decide to not be lazy
+		if (W.tool_flags & TOOL_CUTTING)
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			f.set_loc(src.loc)
+			W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
+			qdel(src)
+		..()
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/fish
 	name = "fish fillet"
@@ -128,6 +173,17 @@
 	food_color = "#228822"
 	initial_reagents = list("synthflesh"=2)
 
+	attackby(obj/item/W, mob/user) //make grub bacon when you decide to not be lazy
+		if (W.tool_flags & TOOL_CUTTING)
+			for (var/i=0, i<3, i++)
+				var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
+				f.pixel_x = src.pixel_x + rand(-4,4)
+				f.pixel_y = src.pixel_y + rand(-4,4)
+				f.set_loc(src.loc)
+				W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
+			qdel(src)
+		..()
+
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat
 	name = "mystery meat"
 	desc = "What the fuck is this??"
@@ -135,6 +191,16 @@
 	amount = 1
 	value = 40
 	var/cybermeat = 0
+
+	attackby(obj/item/W, mob/user) //make grub bacon when you decide to not be lazy
+		if (W.tool_flags & TOOL_CUTTING)
+			var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			f.set_loc(src.loc)
+			W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
+			qdel(src)
+		..()
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		var/turf/T = get_turf(A)
@@ -168,6 +234,7 @@
 		icon_state = "bacon-raw"
 		amount = 1
 		real_name = "bacon"
+		griddle_result = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/hotdograw
 	name = "raw hotdog"
@@ -548,6 +615,7 @@
 	initial_volume = 50
 	initial_reagents = list("meat_slurry"=15)
 	value = 40
+	griddle_result = /obj/item/reagent_containers/food/snacks/ground_beef
 	fiddleType = /datum/contextAction/fiddle/meatpaste
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
@@ -584,6 +652,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
 	desc = "A grubby paste"
 	icon_state = "grubpaste"
 	fiddleType = /datum/contextAction/fiddle/meatpaste/grub
+	griddle_result = /obj/item/reagent_containers/food/snacks/ground_beef/grub
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
 /datum/contextAction/fiddle/meatpaste/grub
@@ -619,6 +688,7 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
 	desc = "A stringy paste"
 	icon_state = "grubpaste"
 	fiddleType = /datum/contextAction/fiddle/meatpaste/synth
+	griddle_result = /obj/item/reagent_containers/food/snacks/ground_beef/synth
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
 /datum/contextAction/fiddle/meatpaste/synth

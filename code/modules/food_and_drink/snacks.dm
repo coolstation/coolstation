@@ -23,11 +23,21 @@
 	initial_volume = 25
 	initial_reagents = list("yuck"=10,"carbon"=15)
 	can_griddle = false
-	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn/smoldering
 	burn_possible = true
 	burn_point = 350
 	burn_output = 900
 	griddle_time = 10
+	var/timesflamed = 0
+
+	griddle_cook(obj/machinery/griddle/griddle, mult)
+		griddle_time -= 2.5 * mult
+		if (griddle_time <= 0)
+			tfireflash(src,0,500,1,30)
+			griddle_time = 10
+			timesflamed += 1
+		if (timesflamed >= 2)
+			qdel(src)
+
 
 /obj/item/reagent_containers/food/snacks/yuckburn/smoldering
 	name = "smoldering mess"
@@ -665,6 +675,7 @@
 	heal_amt = 4
 	amount = 1
 	doants = 0
+	griddle_result = /obj/item/reagent_containers/food/snacks/donkpocket_w
 	var/warm = DONK_COLD
 
 	warm
@@ -796,6 +807,28 @@
 	desc = "it's weirdly stringy and smells like baked beans."
 	icon_state = "patty-green-cooked"
 	food_color = "#04a038"
+
+/obj/item/reagent_containers/food/snacks/ground_beef
+	name = "ground beef"
+	desc = "what do you call a cow wi-UURK"
+	icon_state = "groundbeef"
+	icon = 'icons/obj/foodNdrink/food_ingredient.dmi'
+	amount = 1
+	heal_amt = 1
+	food_color ="#3d2c11"
+
+/obj/item/reagent_containers/food/snacks/ground_beef/grub
+	name = "ground grub"
+	desc = "there are over one thousand grubs in one pound of ground grub."
+	icon_state = "groundbeef-green"
+	food_color = "#04a038"
+
+/obj/item/reagent_containers/food/snacks/ground_beef/synth
+	name = "ground synthmeat"
+	desc = "it's really crumbly."
+	icon_state = "groundbeef-green"
+	food_color = "#04a038"
+
 
 /obj/item/reagent_containers/food/snacks/meatball
 	name = "meatball"
@@ -2306,6 +2339,15 @@
 	heal_amt = 1
 	food_color = "#d9db6c"
 	needfork = 1
+
+	attackby(obj/item/W, mob/user)
+		if (istype(/obj/item/W,/obj/item/reagent_containers/food/snacks/ingredient/heese))
+			var/obj/item/reagent_containers/food/snacks/omelette/om = new()
+			om.set_loc(src)
+			om.pixel_x = src.pixel_x
+			om.pixel_y = src.pixel_y
+			qdel(src)
+		..()
 
 /obj/item/reagent_containers/food/snacks/eggsalad
 	name = "egg salad"
