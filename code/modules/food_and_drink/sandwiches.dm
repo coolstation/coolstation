@@ -313,6 +313,9 @@
 				if	(istype(burgitem, /obj/item/reagent_containers/food/snacks/ingredient/butter))
 					outputburg = new /obj/item/reagent_containers/food/snacks/burger/butterburger
 					uniqueingredients += 1
+				if (istype(burgitem, /obj/item/reagent_containers/food/snacks/ground_beef))
+					outputburg = new /obj/item/reagent_containers/food/snacks/burger/sloppyjoe
+					uniqueingredients += 1
 
 		//BURGERS with multiple ingredients go down here
 		if (uniqueingredients <= 0)

@@ -22,7 +22,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 
 	proc/specialOutput(var/obj/submachine/ourCooker)
 		return null //If returning an object, that is used as the output
-
+/*
 /datum/cookingrecipe/oven/humanburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat
@@ -143,14 +143,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/heartburger
 	category = "Burgers"
-/*
+
 /datum/cookingrecipe/oven/flockburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/organ/brain/flockdrone
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/flockburger
 	category = "Burgers"
-*/
+
 /datum/cookingrecipe/oven/brainburger
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	item2 = /obj/item/organ/brain
@@ -195,6 +195,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	cookbonus = 15
 	output = /obj/item/reagent_containers/food/snacks/burger/butterburger
 	category = "Burgers"
+*/
 
 /datum/cookingrecipe/oven/monster
 	item1 = /obj/item/reagent_containers/food/snacks/burger/bigburger
@@ -1698,12 +1699,12 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	amt3 = 2
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/ingredient/pancake_batter
-
+/*
 /datum/cookingrecipe/oven/pancake
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/pancake_batter
 	cookbonus = 11
 	output = /obj/item/reagent_containers/food/snacks/pancake
-
+*/
 /datum/cookingrecipe/mixer/mashedpotatoes
 	item1 = /obj/item/reagent_containers/food/snacks/plant/potato
 	amt1 = 3
@@ -1743,12 +1744,13 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	item1 =  /obj/item/reagent_containers/food/snacks/ingredient/meat/
 	cookbonus = 4
 	output = /obj/item/reagent_containers/food/snacks/ingredient/meatpaste/
-
+/*
 /datum/cookingrecipe/oven/sloppyjoe
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meatpaste
 	item2 = /obj/item/reagent_containers/food/snacks/ingredient/dough
 	cookbonus = 13
 	output = /obj/item/reagent_containers/food/snacks/burger/sloppyjoe
+*/
 
 /datum/cookingrecipe/oven/meatloaf
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meatpaste
