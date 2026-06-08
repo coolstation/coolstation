@@ -8137,14 +8137,10 @@
 /area/station/janitor/supply)
 "hoT" = (
 /obj/table/auto,
-/obj/item/device/radio{
-	pixel_x = -1;
-	pixel_y = 8
+/obj/item/storage/toolbox/emergency{
+	pixel_y = 6
 	},
-/obj/item/device/radio{
-	pixel_x = -5;
-	pixel_y = 7
-	},
+/obj/item/storage/toolbox/emergency,
 /turf/floor/shuttle{
 	icon_state = "floor3"
 	},
