@@ -840,7 +840,7 @@
 					if (user) playsound(user.loc, "sound/impact_sounds/Flesh_Tear_3.ogg", 40, 1, SOUND_RANGE_STANDARD)
 
 				user.visible_message("<span class='alert'><B>[user] slashes viciously at [victim]!</B></span>")
-				victim.health -= rand(4,8) * victim.brutevuln
+				victim.health -= rand(2,5) * victim.brutevuln
 
 			if (src.weak == 2)
 				var/turf/T = get_edge_target_turf(user, user.dir)
