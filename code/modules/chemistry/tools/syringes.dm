@@ -18,6 +18,7 @@
 	var/image/fluid_image
 	var/image/image_inj_dr
 	rc_flags = RC_SCALE | RC_VISIBLE | RC_SPECTRO
+	event_handler_flags = USE_HASENTERED
 	hide_attack = 2
 
 	on_reagent_change()
@@ -48,6 +49,28 @@
 			src.fluid_image.color = average.to_rgba()
 		src.underlays += src.fluid_image
 		signal_event("icon_updated")
+
+	HasEntered(AM as mob|obj)
+		if(ishuman(AM))
+			var/mob/living/carbon/human/H = AM
+			if(H.getStatusDuration("stunned") || H.getStatusDuration("weakened")) // nerf for dragging a person and a shard to damage them absurdly fast - drsingh
+				return
+			if(isabomination(H))
+				return
+			if(H.throwing || HAS_ATOM_PROPERTY(H, PROP_ATOM_FLOATING))
+				return
+			if(H.lying)
+				boutput(H, "<span class='alert'><B>You crawl on [src]! Ouch!</B></span>")
+				step_on(H)
+			else
+				//Can't step on stuff if you have no legs, and it can't hurt if they're robolegs.
+				if (!istype(H.limbs.l_leg, /obj/item/parts/human_parts) && !istype(H.limbs.r_leg, /obj/item/parts/human_parts))
+					return
+				if(!H.shoes || prob(3))
+					boutput(H, "<span class='alert'><B>You step on [src]! Ouch!</B></span>")
+					step_on(H)
+
+		..()
 
 	pickup(mob/user)
 		..()
@@ -188,6 +211,19 @@
 						target.name = patch_name
 
 		return
+
+	proc/step_on(mob/living/carbon/human/H)
+		game_stats.Increment("workplacesafety")
+		H.changeStatus("weakened", 3 SECONDS)
+		H.force_laydown_standup()
+		var/obj/item/affecting = H.organs[pick("l_leg", "r_leg")]
+		affecting.take_damage(force, 0)
+		H.UpdateDamageIcon()
+		if(!reagents || !reagents.total_volume)
+			return
+		src.reagents.reaction(H, INGEST, src.amount_per_transfer_from_this)
+		src.reagents.trans_to(H, src.amount_per_transfer_from_this)
+		boutput(H,"<span class='notice'><B>You step on [src] and have been injected with its contents!</B></span>")
 
 	proc/syringe_action(mob/user, mob/target)
 		switch(src.mode)
