@@ -2341,7 +2341,7 @@
 	needfork = 1
 
 	attackby(obj/item/W, mob/user)
-		if (istype(W,/obj/item/reagent_containers/food/snacks/ingredient/heese))
+		if (istype(W,/obj/item/reagent_containers/food/snacks/ingredient/cheese))
 			var/obj/item/reagent_containers/food/snacks/omelette/om = new()
 			om.set_loc(src)
 			om.pixel_x = src.pixel_x
