@@ -13,7 +13,7 @@
 	initial_reagents = "yuck"
 
 /obj/item/reagent_containers/food/snacks/yuckburn
-	name = "smoldering mess"
+	name = "burn mess"
 	desc = "This looks more like charcoal than food..."
 	icon = 'icons/obj/foodNdrink/food_yuck.dmi'
 	icon_state = "burnt"
@@ -21,7 +21,34 @@
 	heal_amt = 0
 	food_color = "#33302b"
 	initial_volume = 25
-	initial_reagents = "yuck"
+	initial_reagents = list("yuck"=10,"carbon"=15)
+	can_griddle = false
+	burn_possible = true
+	burn_point = 350
+	burn_output = 900
+	griddle_time = 10
+	var/timesflamed = 0
+
+	griddle_cook(obj/machinery/griddle/griddle, mult)
+		griddle_time -= 2.5 * mult
+		if (griddle_time <= 0)
+			tfireflash(src,0,500,1,30)
+			griddle_time = 10
+			timesflamed += 1
+		if (timesflamed >= 2)
+			qdel(src)
+
+
+/obj/item/reagent_containers/food/snacks/yuckburn/smoldering
+	name = "smoldering mess"
+	desc = "this takes skill."
+	icon_state = "smoldering"
+	initial_volume = 25
+	initial_reagents = list("yuck"=5,"carbon"=20)
+	burn_possible = true
+	burn_point = 1
+	burn_output = 900
+	can_griddle = false
 
 /obj/item/reagent_containers/food/snacks/shell
 	name = "incinerated embodiment of culinary disaster"
@@ -648,6 +675,7 @@
 	heal_amt = 4
 	amount = 1
 	doants = 0
+	griddle_result = /obj/item/reagent_containers/food/snacks/donkpocket_w
 	var/warm = DONK_COLD
 
 	warm
@@ -751,19 +779,84 @@
 	needfork = 1
 	food_effects = list("food_energized_big", "food_hp_up")
 
-
-/obj/item/reagent_containers/food/snacks/meatball
-	name = "meatball"
-	desc = "A great meal all round."
-	icon_state = "meatball"
+/obj/item/reagent_containers/food/snacks/patty
+	name = "meat patty"
+	desc = "(hopefully) fresh off the griddle. Likely not."
+	icon = 'icons/obj/foodNdrink/food.dmi'
+	icon_state = "patty-cooked"
 	amount = 1
 	heal_amt = 2
-	food_color ="#663300"
+	food_color ="#3d2c11"
+	griddle_time = 17
+	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn
+	can_griddle = true
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/reagent_containers/food/snacks/condiment/))
 			src.amount += 1
 		else return ..()
+
+/obj/item/reagent_containers/food/snacks/patty/grub
+	name = "grub patty"
+	desc = "it's really tough and hard to chew."
+	icon_state = "patty-green-cooked"
+	food_color = "#04a038"
+
+/obj/item/reagent_containers/food/snacks/patty/synth
+	name = "synth patty"
+	desc = "it's weirdly stringy and smells like baked beans."
+	icon_state = "patty-green-cooked"
+	food_color = "#04a038"
+
+/obj/item/reagent_containers/food/snacks/ground_beef
+	name = "ground beef"
+	desc = "what do you call a cow wi-UURK"
+	icon_state = "groundbeef"
+	icon = 'icons/obj/foodNdrink/food_ingredient.dmi'
+	amount = 1
+	heal_amt = 1
+	food_color ="#3d2c11"
+
+/obj/item/reagent_containers/food/snacks/ground_beef/grub
+	name = "ground grub"
+	desc = "there are over one thousand grubs in one pound of ground grub."
+	icon_state = "groundbeef-green"
+	food_color = "#04a038"
+
+/obj/item/reagent_containers/food/snacks/ground_beef/synth
+	name = "ground synthmeat"
+	desc = "it's really crumbly."
+	icon_state = "groundbeef-green"
+	food_color = "#04a038"
+
+
+/obj/item/reagent_containers/food/snacks/meatball
+	name = "meatball"
+	desc = "A great meal all round."
+	icon_state = "meatball-cooked"
+	amount = 1
+	heal_amt = 2
+	food_color ="#3d2c11"
+	griddle_time = 17
+	can_griddle = true
+	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/reagent_containers/food/snacks/condiment/))
+			src.amount += 1
+		else return ..()
+
+/obj/item/reagent_containers/food/snacks/meatball/grub
+	name = "grubball"
+	desc = "a horrible meal all around."
+	icon_state = "meatball-green-cooked"
+	food_color = "#04a038"
+
+/obj/item/reagent_containers/food/snacks/meatball/synth
+	name = "synthetic meatball"
+	desc = "this doesn't look like meat."
+	icon_state = "meatball-green-cooked"
+	food_color = "#04a038"
 
 /obj/item/reagent_containers/food/snacks/swedishmeatball
 	name = "swedish meatballs"
@@ -863,8 +956,7 @@
 					if (ishuman(M))
 						var/mob/living/carbon/human/H = M
 
-						var/obj/decal/cleanable/tracked_reagents/blood/gibs/G = null // For forensics (Convair880).
-						G = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs,M.loc)
+						var/obj/decal/cleanable/tracked_reagents/blood/gibs/G = new(H.loc, H.organHolder?.spleen?.blood_id, H.bioHolder?.mobAppearance?.s_tone) // For forensics (Convair880).
 						if (H.bioHolder.Uid && H.bioHolder.bloodType)
 							G.blood_DNA = H.bioHolder.Uid
 							G.blood_type = H.bioHolder.bloodType
@@ -1929,8 +2021,8 @@
 	desc = "<tt>BEE EGGS</tt> make this a delightful breakfast food."
 
 /obj/item/reagent_containers/food/snacks/pancake
-	name = "pancakes"
-	desc = "They seem to be lacking something"
+	name = "pancake"
+	desc = "it seems to be lacking something"
 	icon_state = "pancake"
 	amount = 3
 	heal_amt = 1
@@ -1941,7 +2033,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/reagent_containers/food/snacks/condiment/syrup))
 			boutput(user, "<span class='notice'>You add [W] to [src].</span>")
-			icon_state = "pancake_s"
+			icon_state = "pancake-s"
 			syrup = 1
 			heal_amt = 5
 			desc = "They look delicious!"
@@ -2224,6 +2316,38 @@
 	heal_amt = 1
 	food_color = "#6A532D"
 	food_effects = list("food_energized")
+
+/obj/item/reagent_containers/food/snacks/friedegg
+	name = "fried egg"
+	desc = "contains little bits of shell."
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "egg-cooked"
+	amount = 1
+	heal_amt = 1
+	food_color = "#d9db6c"
+	needfork = 1 //you monster
+	can_griddle = true
+	griddle_time = 10
+	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn
+
+/obj/item/reagent_containers/food/snacks/scrambledegg
+	name = "scrambled eggs"
+	desc = "tastes great, hard to fuck up."
+	icon = 'icons/obj/foodNdrink/food_snacks.dmi'
+	icon_state = "egg-cooked"
+	amount = 1
+	heal_amt = 1
+	food_color = "#d9db6c"
+	needfork = 1
+
+	attackby(obj/item/W, mob/user)
+		if (istype(W,/obj/item/reagent_containers/food/snacks/ingredient/cheese))
+			var/obj/item/reagent_containers/food/snacks/omelette/om = new()
+			om.set_loc(src)
+			om.pixel_x = src.pixel_x
+			om.pixel_y = src.pixel_y
+			qdel(src)
+		..()
 
 /obj/item/reagent_containers/food/snacks/eggsalad
 	name = "egg salad"

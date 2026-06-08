@@ -111,6 +111,8 @@
 	plant_reagent = "juice_tomato"
 	validforhat = 1
 	value = 25
+	brewable = 1
+	brew_result = "ketchup"
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		var/turf/T = get_turf(A)

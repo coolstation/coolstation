@@ -466,7 +466,7 @@
 		if (src._health <= 0)
 			src.visible_message("<span class='alert'><b>[src] pops!</b></span>")
 			playsound(src.loc, 'sound/impact_sounds/Slimy_Splat_1.ogg', 100, 1)
-			var/obj/decal/cleanable/balloon/decal = make_cleanable(/obj/decal/cleanable/balloon,src.loc)
+			var/obj/decal/cleanable/balloon/decal = new /obj/decal/cleanable/balloon(src.loc)
 			decal.icon_state = "balloon_green_pop"
 			qdel(src)
 

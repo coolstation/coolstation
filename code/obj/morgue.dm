@@ -408,7 +408,7 @@
 			playsound(src.loc, "sound/machines/ding.ogg", 50, 1)
 
 			while (ashes > 0)
-				make_cleanable( /obj/decal/cleanable/ash,src)
+				new  /obj/decal/cleanable/ash(src)
 				ashes -= 1
 
 	return
@@ -651,7 +651,7 @@
 							H.update_colorful_parts()
 				if (emagged && isdead(M))
 					qdel(M)
-					make_cleanable( /obj/decal/cleanable/ash,src)
+					new  /obj/decal/cleanable/ash(src)
 
 		SPAWN_DBG(src.settime * 10)
 			if (src)

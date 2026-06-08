@@ -162,6 +162,18 @@ TRAYS
 	fancy
 		icon_state = "fork-new"
 
+/obj/item/kitchen/utensil/spatula
+	name = "spatula"
+	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
+	tool_flags = TOOL_PRYING //prying open the door with the spatula lmao
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
+	icon_state = "spatula"
+	hit_type = DAMAGE_BLUNT
+	hitsound = 'sound/impact_sounds/Generic_Hit_2.ogg'
+	force = 3
+	throwforce = 5
+	desc = "A handy tool for the enterprising burger flipper, used for not burning the shit out of your hands trying to flip burgers. Like a dumbass."
+
 /obj/item/kitchen/utensil/knife
 	name = "knife"
 	icon_state = "knife"
@@ -886,7 +898,7 @@ TRAYS
 			return "<span style=\"color:orange\">There's a positively <i>indescribable</i> amount of food on \the [src]!</span>"
 		return "[food_desc]"
 
-	attackby(obj/item/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj, mob/user as mob,params)
 		if(istype(W, /obj/item/plate) && !istype(W, /obj/item/plate/tray) && W.type == src.type)
 			if(length(src.contents) || length(W.contents))
 				user.visible_message("<b>[user]</b> tries to stack plates but there's food on them.","You try to stack plates but there's food on them.")
@@ -930,7 +942,7 @@ TRAYS
 			return
 		user.drop_item()
 		W.set_loc(src)
-		src.add_contents(W)
+		src.add_contents(W,user,params)
 		src.ClearAllOverlays()
 		src.update_icon()
 		boutput(user, "You put [W] on \the [src]")
@@ -1092,26 +1104,7 @@ TRAYS
 				src.item_state = "tray_6"
 
 	update_icon() //this is what builds the overlays, it looks at the ordered list of food in the tray and does magic
-		for (var/i = 1, i <= ordered_contents.len, i++)
-			var/obj/item/F = ordered_contents[i]
-			var/image/I = SafeGetOverlayImage("food_[i]", F.icon, F.icon_state)
-			I.transform *= 0.75
-			if(i % 2) //i feel clever for this haha
-				I.pixel_x = -8
-			else
-				I.pixel_x = 8
-			y_counter++
-			if(y_counter == 3)
-				y_mod++
-				y_counter = 1
-			I.pixel_y = y_mod * 3 //food layers are 3px above eachother
-			I.layer = src.layer + 0.1
-			src.UpdateOverlays(I, "food_[i]", 0, 1)
-		for (var/i = ordered_contents.len + 1, i <= src.overlays.len, i++) //this is to clear up any funky ghost overlays
-			src.ClearSpecificOverlays("food_[i]")
-		y_counter = 0
-		y_mod = 0
-		src.update_inhand_icon() //update inhand sprite to match
+		..()
 		return
 
 	get_desc(dist)

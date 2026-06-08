@@ -1529,6 +1529,9 @@
 /obj/cable{
 	icon_state = "1-10"
 	},
+/obj/item/kitchen/utensil/spatula{
+	pixel_x = 10
+	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "ee" = (
@@ -14385,16 +14388,8 @@
 /turf/floor/sanitary/blue,
 /area/station/crew_quarters/kitchen/freezer)
 "Lo" = (
-/obj/table/auto,
-/obj/item/hand_warmer/dead{
-	pixel_y = 6;
-	pixel_x = 6
-	},
-/obj/item/paper/book/from_file/cookbook{
-	pixel_x = -11;
-	pixel_y = 6
-	},
 /obj/machinery/light/fluorescent/ceiling/cool,
+/obj/machinery/griddle,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "Lp" = (
@@ -14719,6 +14714,10 @@
 	pixel_x = 8
 	},
 /obj/blind_switch/area/east,
+/obj/item/paper/book/from_file/cookbook{
+	pixel_x = -1;
+	pixel_y = -1
+	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "Md" = (

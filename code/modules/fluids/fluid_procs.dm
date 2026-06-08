@@ -198,7 +198,9 @@
 	if (!IS_VALID_FLUIDREACT_TURF(src)) return
 	//if possible_cleanable has a value, handle exclusively this decal. don't search thru the turf.
 	if (possible_cleanable)
-		if (possible_cleanable.qdeled || possible_cleanable.pooled) return
+		//2026-4-5: can_fluid_absorb check is to prevent gibs being absorbed in. That stuff is body parts and chunky salsa, not just liquid!
+		//will also prevent pathology puddles/decals but those are not in active use atm
+		if (possible_cleanable.qdeled || possible_cleanable.disposed || possible_cleanable.can_fluid_absorb == FALSE) return
 		if (istype(possible_cleanable, /obj/decal/cleanable/tracked_reagents))
 			var/obj/decal/cleanable/tracked_reagents/reagent_spill = possible_cleanable
 			var/blood_dna = reagent_spill.blood_DNA
@@ -229,7 +231,7 @@
 		if (C.qdeled || C.pooled) continue
 		if (C.dry) continue //this was commented out but i figure why not get crusty with it and see what happens
 		if (C.sampled) continue //beware recursion
-		if (istype(C,/obj/decal/cleanable/tracked_reagents/dynamic)) continue // handled above
+		if (istype(C,/obj/decal/cleanable/tracked_reagents)) continue // handled above
 		if (!C.can_fluid_absorb) continue
 		cleanables += C
 

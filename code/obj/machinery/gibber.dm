@@ -163,7 +163,7 @@
 						cur_T = new_T
 					//slightly strange spot to put this, but it's to make sure that gibs appear on the last unblocked turf too.
 					if (decomp <= 2)
-						gibbes = make_cleanable(/obj/decal/cleanable/tracked_reagents/blood/gibs,cur_T)
+						gibbes = new /obj/decal/cleanable/tracked_reagents/blood/gibs(cur_T)
 						if (bdna && btype)
 							gibbes.blood_DNA = bdna
 							gibbes.blood_type = btype

@@ -463,7 +463,7 @@
 		if(t in src.c_char_to_symbol)
 			t = src.c_char_to_symbol[t]
 
-		var/obj/decal/cleanable/writing/spooky/G = make_cleanable(/obj/decal/cleanable/writing/spooky,T)
+		var/obj/decal/cleanable/writing/spooky/G = new /obj/decal/cleanable/writing/spooky(T)
 		G.artist = user.key
 
 		logTheThing("station", user, null, "writes on [T] with [src] [log_loc(T)]: [t]")

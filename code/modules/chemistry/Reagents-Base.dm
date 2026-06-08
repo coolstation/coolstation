@@ -61,7 +61,7 @@ datum
 				if(!istype(T, /turf/space))
 					if(volume >= 5)
 						if(!locate(/obj/decal/cleanable/dirt) in T)
-							make_cleanable(/obj/decal/cleanable/dirt,T)
+							new /obj/decal/cleanable/dirt(T)
 						T.wet = 0
 
 		chlorine
@@ -322,7 +322,7 @@ datum
 						for(var/mob/O in viewers(M, null))
 							O.show_message(text("<span class='alert'>[] vomits on the floor profusely!</span>", M), 1)
 						playsound(M.loc, "sound/effects/splat.ogg", 50, 1)
-						make_cleanable(/obj/decal/cleanable/vomit,M.loc)
+						new /obj/decal/cleanable/vomit(M.loc)
 						M.nutrition -= rand(3,5)
 						M.take_toxin_damage(10) // im bad
 						M.setStatus("stunned", max(M.getStatusDuration("stunned"), 3 SECONDS))
@@ -366,7 +366,7 @@ datum
 			reaction_turf(var/turf/T, var/volume)
 				if (volume >= 10)
 					if (!locate(/obj/decal/cleanable/magnesiumpile) in T)
-						make_cleanable(/obj/decal/cleanable/magnesiumpile,T)
+						new /obj/decal/cleanable/magnesiumpile(T)
 
 		mercury
 			name = "mercury"
@@ -783,7 +783,7 @@ datum
 
 
 				if(spawncleanable && !istype(T, /turf/space) && !(locate(/obj/decal/cleanable/greenglow) in T))
-					make_cleanable(/obj/decal/cleanable/greenglow,T)
+					new /obj/decal/cleanable/greenglow(T)
 
 			on_plant_life(var/obj/machinery/plantpot/P)
 				if (prob(80)) P.HYPdamageplant("radiation",3)

@@ -750,6 +750,11 @@
 		boutput(src, "<span class='alert'>You can not speak!</span>")
 		return
 
+	//I guess changelings don't get paralysis anymore? IDK
+	var/datum/abilityHolder/changeling/lingy = src.get_ability_holder(/datum/abilityHolder/changeling)
+	if (lingy?.in_fakedeath)
+		return
+
 	if (isdead(src))
 		if (dd_hasprefix(message, "*")) // no dead emote spam
 			return
@@ -2103,7 +2108,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				boutput(src, "<span class='alert'><b>[origin] vaporizes you with a lethal arc of electricity!</b></span>")
 				if (H?.shoes)
 					H.drop_from_slot(H.shoes)
-				make_cleanable(/obj/decal/cleanable/ash,src.loc)
+				new /obj/decal/cleanable/ash(src.loc)
 				SPAWN_DBG(1 DECI SECOND)
 					src.elecgib()
 			else

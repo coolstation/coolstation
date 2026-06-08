@@ -1656,6 +1656,9 @@ var/global/noir = 0
 			else
 				alert("If you are below the rank of Primary Admin, you need to be observing and at least a Secondary Administrator to affect player reagents.")
 
+		if ("setbloodid")
+			usr.client.set_blood_id(locate(href_list["target"]))
+
 		if ("possess_mob")
 			if( src.level >= LEVEL_PA )
 				var/mob/M = locate(href_list["target"])

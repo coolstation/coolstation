@@ -437,11 +437,11 @@ var/global/list/module_editors = list()
 	ADMIN_ONLY
 
 	if (!istype(M))
-		boutput(src, "<span class='alert'>That thing has no module!</span>")
+		boutput(src, "<span class='alert'>That is not a cyborg!</span>")
 		return
 
 	if (!M.module)
-		boutput(src, "<span class='alert'>That robot has no module yet.</span>")
+		boutput(src, "<span class='alert'>That cyborg has no module yet.</span>")
 		return
 
 	var/datum/module_editor/editor = module_editors[ckey]

@@ -65,7 +65,7 @@ ABSTRACT_TYPE(/mob/living/critter/robotic/bot)
 			gib()
 		else
 			playsound(src.loc, "sound/impact_sounds/Machinery_Break_1.ogg", 50, 1)
-			make_cleanable(/obj/decal/cleanable/oil,src.loc)
+			new /obj/decal/cleanable/oil(src.loc)
 
 	specific_emotes(var/act, var/param = null, var/voluntary = 0)
 		switch (act)

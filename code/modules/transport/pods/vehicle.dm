@@ -849,7 +849,7 @@
 			SC.on_shipdeath()
 
 		for(T in range(src,1))
-			make_cleanable(/obj/decal/cleanable/machine_debris, T)
+			new /obj/decal/cleanable/machine_debris( T)
 
 		qdel (src)
 ///////////////////////////////////////////////////////////////////////////
@@ -1951,7 +1951,7 @@
 				while(src)
 					step(src,src.dir)
 					if(prob(50))
-						make_cleanable(/obj/decal/cleanable/robot_debris/gib, src.loc)
+						new /obj/decal/cleanable/robot_debris/gib( src.loc)
 					if(prob(20) && pilot)
 						boutput(pilot, "<span class='alert'>You fall out of the rapidly disintegrating escape sub!</span>")
 						src.leave_pod(pilot)

@@ -334,6 +334,9 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 				return
 
 			boutput(user, "<span class='notice'>You crack [I] into [src].</span>")
+			playsound(I,"sound/effects/eggshell.ogg",30)
+			var/turf/T = get_turf(user)
+			new /obj/decal/cleanable/eggshell(T)
 
 			I.reagents.trans_to(src, I.reagents.total_volume)
 			user.u_equip(I)
@@ -370,6 +373,14 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			I.reagents.trans_to(src, I.reagents.total_volume)
 			user.u_equip(I)
 			qdel(I)
+
+		else if (istype(I,/obj/item/reagent_containers/food/snacks/ingredient/flour)) //i hate this. When i have the time I'm going to refactor flour and sugar to be beakers that just have the reagent inside
+			if (src.reagents.total_volume >= src.reagents.maximum_volume)
+				boutput(user, "<span class='alert'>[src] is full.</span>")
+				return
+			boutput(user, "<span class='notice>You pour 10 units from [I] into [src].</span>")
+
+			I.reagents.trans_to(src, 10)
 
 		else if (istype(I, /obj/item/reagent_containers/food/snacks/breadslice))
 			if (src.reagents.total_volume >= src.reagents.maximum_volume)
