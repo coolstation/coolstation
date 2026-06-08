@@ -705,7 +705,8 @@ input:checked + div { display: block; }
 			if (grab.state >= 1)
 				actions.start(new/datum/action/bar/griddle_face(src,grab.affecting,grab.assailant,grab),grab.assailant)
 				return
-		add_contents(I,user,params)
+		if (!istype(I,/obj/item/reagent_containers/glass))
+			add_contents(I,user,params)
 		..()
 
 	reagent_act(reagent_id, volume)
