@@ -137,6 +137,142 @@
 	initial_volume = 5
 	initial_reagents = "bread"
 	food_effects = list("food_hp_up")
+	griddle_result = /obj/item/reagent_containers/food/snacks/breadslice/toastslice
+	var/list/sandwichitems = list()
+	var/max_items = 8 //push the limits
+
+	proc/add_contents(var/obj/item/food,var/mob/user = null,var/params = null)
+		sandwichitems += food
+		src.place_on(food,user,params)
+		food.set_loc(src)
+		src.vis_contents += food
+		food.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+		food.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER | VIS_INHERIT_ID
+		food.event_handler_flags |= NO_MOUSEDROP_QOL
+		food.transform = matrix(matrix(0.7, 0.7, MATRIX_SCALE), rand(-10,10), MATRIX_ROTATE)
+
+		src.update_icon()
+		if (user)
+			user.visible_message("<span class='notice'>[user] puts [food] on [src].</span>")
+
+	proc/construct_name(var/name)
+		var/endstring = ""
+		if (sandwichitems.len == 1)
+			var/obj/item/sanditem = sandwichitems[1]
+			endstring = "[sanditem.name]"
+		var/i = 1
+		for (var/obj/item in sandwichitems)
+			if (i == sandwichitems.len - 1)
+				endstring += item.name + ", and "
+			else if (i == sandwichitems.len)
+				endstring += item.name
+			else
+				endstring += item.name + ", "
+			i++
+		return "[name] with [endstring]."
+
+	proc/search_for_ingredient(var/list/ingredients)
+		for (var/ingredient in ingredients)
+			var/required = ingredients[ingredient]
+
+			if(isnull(required))
+				required = 1
+			var/amt = 0
+
+			for(var/food in sandwichitems)
+				if(istype(food,ingredient))
+					amt++
+			if (amt != required)
+				return false
+		return true
+
+	proc/finish_sandwich(var/obj/item/topslice,var/mob/user) //wassup homeslice
+		var/obj/item/reagent_containers/food/snacks/sandwich/output
+		var/uniqueingredients = 0 //if this goes above one, we just resort to a custom sandy to avoid conflicts.
+
+		if (uniqueingredients <= 0)
+			if (istype(topslice,/obj/item/reagent_containers/food/snacks/breadslice/elvis))
+				//elviswiches here
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/elvis_meat_h
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/elvis_meat_m
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/elvis_meat_s
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/elvis_pb
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter,/obj/item/reagent_containers/food/snacks/ingredient/honey)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/elvis_pbh
+					uniqueingredients += 1
+			else if (istype(topslice,/obj/item/reagent_containers/food/snacks/breadslice/spooky))
+				//scarewitches
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/spooky_meat_h
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/spooky_meat_m
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/spooky_meat_s
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/spooky_pb
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter,/obj/item/reagent_containers/food/snacks/ingredient/honey)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/spooky_pbh
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/cheese)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/spooky_cheese
+					uniqueingredients += 1
+			else
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/meat_h
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/meat_m
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/meat_s
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/grubmeat
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/cheese)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/cheese
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/pb
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/peanutbutter,/obj/item/reagent_containers/food/snacks/ingredient/honey)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/pbh
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/eggsalad)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/eggsalad
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/cheese,/obj/item/parts/human_parts/arm)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/
+					uniqueingredients += 1
+
+			if (!output)
+				output = new /obj/item/reagent_containers/food/snacks/sandwich
+		if (uniqueingredients < 1)
+			output.name = src.construct_name(output.name)
+		output.set_loc(src.loc)
+		if (istype(topslice,/obj/item/reagent_containers))
+			var/obj/item/reagent_containers/rc = topslice
+			if(rc.reagents)
+				rc.reagents.trans_to(output.reagents,rc.reagents.total_volume)
+		src.visible_message("[user] places [topslice] on [src], creating a \the[output]!")
+		user.u_equip(src)
+		user.put_in_hand_or_drop(output)
+		JOB_XP(user,"chef",src.sandwichitems.len)
+		qdel(topslice)
+		qdel(src)
+
 
 	honeywheat
 		name = "slice of honey-wheat bread"
@@ -155,6 +291,7 @@
 		real_name = "banana bread"
 		food_color = "#633821"
 		food_effects = list("food_hp_up","food_energized")
+		griddle_result = /obj/item/reagent_containers/food/snacks/breadslice/toastslice/banana
 
 	brain
 		name = "slice of brain bread"
@@ -165,6 +302,7 @@
 		real_name = "brain bread"
 		food_color = "#DD90A3"
 		food_effects = list("food_hp_up_big")
+		griddle_result = /obj/item/reagent_containers/food/snacks/breadslice/toastslice/brain
 
 	pumpkin
 		name = "slice of pumpkin bread"
@@ -186,6 +324,7 @@
 		initial_volume = 30
 		initial_reagents = list("bread"=5,"essenceofelvis"=25)
 		food_effects = list("food_sweaty","food_energized")
+		griddle_result = /obj/item/reagent_containers/food/snacks/breadslice/toastslice/elvis
 
 	spooky
 		name = "slice of dread"
@@ -197,6 +336,7 @@
 		initial_volume = 20
 		initial_reagents = list("bread"=5,"ectoplasm"=10)
 		food_effects = list("food_all")
+		griddle_result = /obj/item/reagent_containers/food/snacks/breadslice/toastslice/spooky
 
 	corn
 		name = "piece of southern cornbread"
@@ -225,10 +365,23 @@
 		src.pixel_x += rand(-3,3)
 		src.pixel_y += rand(-3,3)
 
-	attackby(obj/item/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj, mob/user as mob,var/params)
 		//WE CAN MAKE FUCKING HOTDOGS --redd
 		if (istype(W, /obj/item/reagent_containers/food/snacks/hotdog))
 			return W.attackby(src, user)
+		if (istype(W,/obj/item/reagent_containers/food/snacks/breadslice))
+			if (sandwichitems.len >= 1)
+				src.finish_sandwich(W,user)
+			else
+				boutput(user,"<span class='notice'>This sandwich isn't finished yet!</span>")
+			return
+		if (istype(W,/obj/item/reagent_containers/food))
+			if (sandwichitems.len < max_items)
+				src.add_contents(W,user,params)
+			else
+				boutput(user,"<span class='alert'>There's too much on [src] already!</span>")
+			return
+		..()
 
 /obj/item/reagent_containers/food/snacks/breadslice/toastslice
 	name = "slice of toast"
@@ -240,6 +393,32 @@
 	food_color = "#CC9966"
 	real_name = "toast"
 	food_effects = list("food_warm", "food_hp_up")
+	var/obj/item/reagent_containers/food/snacks/toastcheese/cheeseresult
+	var/obj/item/reagent_containers/food/snacks/toastbacon/baconresult
+
+	attackby(obj/item/W, mob/user)
+		if (istype(W,/obj/item/reagent_containers/food/snacks/ingredient/cheese))
+			cheeseresult = new()
+			src.reagents.trans_to(cheeseresult,src.reagents.total_volume)
+			cheeseresult.set_loc(src.loc)
+			cheeseresult.pixel_x = src.pixel_x
+			cheeseresult.pixel_y = src.pixel_y
+			user.u_equip(src)
+			user.put_in_hand_or_drop(cheeseresult)
+			boutput(user,"<span class='notice'>You put [W] on [src].</span>")
+			qdel(src)
+		if (istype(W,/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon))
+			baconresult = new()
+			src.reagents.trans_to(baconresult,src.reagents.total_volume)
+			baconresult.set_loc(src.loc)
+			baconresult.pixel_x = src.pixel_x
+			baconresult.pixel_y = src.pixel_y
+			user.u_equip(src)
+			user.put_in_hand_or_drop(baconresult)
+			boutput(user,"<span class='notice'>You put [W] on [src].</span>")
+			qdel(src)
+		..()
+
 
 	banana
 		name = "slice of banana toast"
@@ -268,6 +447,8 @@
 		initial_volume = 30
 		initial_reagents = list("bread"=5,"essenseofelvis"=25)
 		food_effects = list("food_warm", "food_energized")
+		cheeseresult = /obj/item/reagent_containers/food/snacks/toastcheese/elvis
+		baconresult = /obj/item/reagent_containers/food/snacks/toastbacon/elvis
 
 	spooky
 		name = "slice of terror toast"

@@ -1,5 +1,8 @@
 
 /obj/item/reagent_containers/food/snacks/sandwich/
+	name = "sandwich"
+	desc = "yum!"
+	icon_state = "sandwich_p"
 	icon = 'icons/obj/foodNdrink/food_bread.dmi'
 	amount = 4
 	heal_amt = 2
@@ -205,7 +208,6 @@
 	heal_amt = 1
 	custom_food = 1
 	var/list/burgeritems = list()
-	var/list/burgeritemsnames = list()
 	var/max_items = 8 //push the limits
 
 	attackby(obj/item/W, mob/user, params)
