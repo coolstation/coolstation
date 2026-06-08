@@ -264,7 +264,7 @@
 		output.set_loc(src.loc)
 		if (istype(topslice,/obj/item/reagent_containers))
 			var/obj/item/reagent_containers/rc = topslice
-			if(rc.reagents)
+			if(rc.reagents && output.reagents)
 				rc.reagents.trans_to(output.reagents,rc.reagents.total_volume)
 		src.visible_message("[user] places [topslice] on [src], creating a \the[output]!")
 		user.u_equip(src)
