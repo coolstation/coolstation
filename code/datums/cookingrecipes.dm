@@ -611,7 +611,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	output = /obj/item/reagent_containers/food/snacks/sandwich/spooky_meat_s
 	category = "Sandwiches"
 */
-
+/*
 /datum/cookingrecipe/oven/sandwich_mb //Original meatball sub recipe
 	item1 = /obj/item/reagent_containers/food/snacks/meatball
 	item2 = /obj/item/reagent_containers/food/snacks/breadloaf
@@ -629,7 +629,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/sandwich/meatball
 	category = "Sandwiches"
-
+*/
 /*
 /datum/cookingrecipe/oven/sandwich_egg
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice
@@ -639,6 +639,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	output = /obj/item/reagent_containers/food/snacks/sandwich/eggsalad
 	category = "Sandwiches"
 */
+/*
 /datum/cookingrecipe/oven/sandwich_bm //Original banh mi recipe
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw
 	item2 = /obj/item/reagent_containers/food/snacks/breadloaf/honeywheat
@@ -665,7 +666,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	cookbonus = 9 //IDK what this is exactly
 	output = /obj/item/reagent_containers/food/snacks/sandwich/mitraillette
 	category = "Sandwiches"
-
+*/
 /*
 /datum/cookingrecipe/oven/sandwich_knuckle
 	item1 = /obj/item/reagent_containers/food/snacks/breadslice

@@ -138,6 +138,7 @@
 	initial_reagents = "bread"
 	food_effects = list("food_hp_up")
 	griddle_result = /obj/item/reagent_containers/food/snacks/breadslice/toastslice
+	var/obj/item/reagent_containers/food/snacks/sandwich/defaultsandwich = null //what kind of sandwich we default to if we don't have a special recipe
 	var/list/sandwichitems = list()
 	var/max_items = 8 //push the limits
 
@@ -257,8 +258,8 @@
 					output = new /obj/item/reagent_containers/food/snacks/sandwich/
 					uniqueingredients += 1
 
-			if (!output)
-				output = new /obj/item/reagent_containers/food/snacks/sandwich
+		if (!output)
+			output = new defaultsandwich
 		if (uniqueingredients < 1)
 			output.name = src.construct_name(output.name)
 		output.set_loc(src.loc)
@@ -273,6 +274,45 @@
 		qdel(topslice)
 		qdel(src)
 
+	baguette
+		name = "half of a baguette"
+		desc = "a crunchy slice of bread perfect for subs."
+		icon_state = "baguette-bottom"
+		real_name = "baguette-half"
+		food_color = "#C07D1E"
+		food_effects = list("food_hp_up","food_energized")
+		defaultsandwich = /obj/item/reagent_containers/food/snacks/sandwich/custom_sub
+
+		finish_sandwich(obj/item/topslice, mob/user)
+			var/obj/item/reagent_containers/food/snacks/sandwich/output
+			var/uniqueingredients = 0 //if this goes above one, we just resort to a custom sandy to avoid conflicts.
+
+			if (uniqueingredients <= 0) //don't tell anybody, but you can put a regular slice of bread on a baguette half to make a sandwich.
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/meatball = 3,/obj/item/reagent_containers/food/snacks/ingredient/cheese,/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/meatball
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon,/obj/item/reagent_containers/food/snacks/plant/carrot,/obj/item/reagent_containers/food/snacks/plant/cucumber)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/banhmi
+					uniqueingredients += 1
+				if (!output && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/fries,/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon,/obj/item/reagent_containers/food/snacks/condiment)))
+					output = new /obj/item/reagent_containers/food/snacks/sandwich/mitraillette
+					uniqueingredients += 1
+
+			if (!output)
+				output = new defaultsandwich
+			if (uniqueingredients < 1)
+				output.name = src.construct_name(output.name)
+			output.set_loc(src.loc)
+			if (istype(topslice,/obj/item/reagent_containers))
+				var/obj/item/reagent_containers/rc = topslice
+				if(rc.reagents && output.reagents)
+					rc.reagents.trans_to(output.reagents,rc.reagents.total_volume)
+			src.visible_message("[user] places [topslice] on [src], creating a \the[output]!")
+			user.u_equip(src)
+			user.put_in_hand_or_drop(output)
+			JOB_XP(user,"chef",src.sandwichitems.len)
+			qdel(topslice)
+			qdel(src)
 
 	honeywheat
 		name = "slice of honey-wheat bread"
@@ -561,7 +601,7 @@
 	desc = "Hon hon hon, oui oui! Needs to be cut into slices before eating."
 	stamina_damage = 5
 //	stamina_cost = 1
-	var/slicetype = /obj/item/reagent_containers/food/snacks/breadslice
+	var/slicetype = /obj/item/reagent_containers/food/snacks/breadslice/baguette
 
 	New()
 		..()
@@ -577,12 +617,13 @@
 				JOB_XP(user, "Clown", 2)
 				return
 
-			var/turf/T = get_turf(src)
 			user.visible_message("[user] cuts [src] into slices. Magnifique!", "You cut [src] into slices. Magnifique!")
-			var/makeslices = 6
-			while (makeslices > 0)
-				new slicetype (T)
-				makeslices -= 1
+			for (var/i=0, i <= 1, i++)
+				var/obj/item/reagent_containers/food/snacks/breadslice/baguette/B
+				B = new()
+				if(i == 0)
+					B.icon_state = "baguette-top"
+				B.set_loc(src.loc)
 			qdel (src)
 		else ..()
 

@@ -169,6 +169,12 @@
 			..()
 			reagents.add_reagent("honey", 10)
 
+/obj/item/reagent_containers/food/snacks/sandwich/custom_sub
+	name = "sub"
+	desc = "a sandwich made on a long piece of bread that's guarenteed to be soaked in grease."
+	icon_state = "banh-mi"
+	amount = 6
+
 /obj/item/reagent_containers/food/snacks/sandwich/mitraillette
 	name = "mitraillette"
 	desc = "A sandwich with meat, fries and sauce."
