@@ -589,6 +589,10 @@
 	icon_state = "merchant"
 	item_state = "merchant"
 
+	setupProperties()
+		..()
+		src.create_storage(/datum/storage, spawn_contents = null, slots = 15, max_wclass = W_CLASS_NORMAL, opens_if_worn = TRUE)
+
 /obj/item/clothing/head/merchant_hat
 	name = "Salesman's Hat"
 	desc = "A big funny-looking sombrero."
