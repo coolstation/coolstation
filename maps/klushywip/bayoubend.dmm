@@ -20610,6 +20610,29 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/crew_quarters/barber_shop)
+"oMU" = (
+/obj/item/storage/firstaid/crit{
+	pixel_x = -6;
+	pixel_y = 13
+	},
+/obj/table/auto,
+/obj/item/storage/firstaid/crit{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/emergency_injector/epinephrine{
+	pixel_y = 10;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/emergency_injector/epinephrine{
+	pixel_y = 5;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/emergency_injector/saline{
+	pixel_x = 5
+	},
+/turf/floor/white/checker,
+/area/station/medical/medbay)
 "oNf" = (
 /obj/machinery/vending/floppy,
 /turf/floor,
@@ -22272,6 +22295,9 @@
 /area/station/maintenance/solar/east)
 "pQQ" = (
 /obj/disposalpipe/segment,
+/obj/submachine/chef_sink{
+	dir = 8
+	},
 /turf/floor/grey/side{
 	dir = 8
 	},
@@ -70879,7 +70905,7 @@ sik
 vjp
 qKX
 dFv
-qKX
+oMU
 aMk
 gMH
 fMF
