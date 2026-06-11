@@ -210,6 +210,7 @@
 	icon = 'icons/obj/foodNdrink/food.dmi'
 	icon_state = "hamburger-bun"
 	initial_volume = 10
+	var/hname = ""
 
 	heal_amt = 1
 	custom_food = 1
@@ -259,7 +260,10 @@
 			else
 				endstring += item.name + ", "
 			i++
-		return "[name] with [endstring]."
+		if (hname)
+			return "[hname] [src] with [endstring]"
+		else
+			return "[src] with [endstring]."
 
 	proc/search_for_ingredient(var/list/ingredients)
 		for (var/ingredient in ingredients)
@@ -325,6 +329,9 @@
 					outputburg = new /obj/item/reagent_containers/food/snacks/burger/sloppyjoe
 					uniqueingredients += 1
 
+			if (burgitem.subjectname)
+				src.hname = burgitem.subjectname
+
 		//BURGERS with multiple ingredients go down here
 		if (uniqueingredients <= 0)
 			if (!outputburg && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon)))
@@ -346,8 +353,8 @@
 				outputburg = new /obj/item/reagent_containers/food/snacks/burger/tikiburger
 				uniqueingredients += 1
 
-			if (!outputburg)
-				outputburg = new /obj/item/reagent_containers/food/snacks/burger
+		if (!outputburg)
+			outputburg = new /obj/item/reagent_containers/food/snacks/burger
 		if (uniqueingredients < 1)
 			outputburg.name = src.construct_name(outputburg.name)
 		outputburg.set_loc(src.loc)

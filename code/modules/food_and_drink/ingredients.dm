@@ -40,8 +40,6 @@
 	desc = "A slab of meat."
 	value = -500 //should fine you for selling to most people
 	alt_value = 500 //a certain delicacy...
-	var/subjectname = ""
-	var/subjectjob = null
 	amount = 1
 	griddle_result = /obj/item/reagent_containers/food/snacks/steak_h
 
