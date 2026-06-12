@@ -2881,6 +2881,7 @@
 /area/station/science/lab)
 "cWZ" = (
 /obj/machinery/bot/firebot,
+/obj/machinery/bot/firebot,
 /turf/floor,
 /area/station/engine/storage)
 "cXA" = (
@@ -3758,6 +3759,7 @@
 "dOo" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/box/cablesbox/yellow,
+/obj/item/storage/toolbox/electrical,
 /turf/floor,
 /area/station/engine/storage)
 "dOt" = (
@@ -12995,7 +12997,11 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/item/storage/toolbox/electrical,
+/obj/machinery/floor_charger,
+/obj/reagent_dispensers/powerbank,
+/obj/item/plasma_cutter{
+	pixel_x = -17
+	},
 /turf/floor,
 /area/station/engine/storage)
 "mBe" = (

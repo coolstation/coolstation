@@ -1973,6 +1973,10 @@
 	pixel_y = 10
 	},
 /obj/decal/cleanable/dirt/random,
+/obj/item/cell{
+	charge = 100;
+	maxcharge = 15000
+	},
 /turf/floor/cautionblack/side{
 	dir = 4
 	},
@@ -6553,18 +6557,12 @@
 /turf/floor,
 /area/station/quartermaster/cargobay)
 "fHb" = (
-/obj/table/auto,
-/obj/item/sheet/steel{
-	amount = 50
+/obj/decal/cleanable/mess/random_litter,
+/obj/machinery/floor_charger,
+/obj/reagent_dispensers/powerbank,
+/obj/item/plasma_cutter{
+	pixel_x = -17
 	},
-/obj/item/sheet/steel{
-	amount = 50
-	},
-/obj/machinery/light/small{
-	dir = 1;
-	pixel_x = -1
-	},
-/obj/decal/cleanable/dirt/random,
 /turf/floor,
 /area/station/engine/storage)
 "fHd" = (
@@ -22048,11 +22046,13 @@
 /area/station/hallway/secondary/construction2)
 "tCM" = (
 /obj/table/auto,
-/obj/item/cell{
-	charge = 100;
-	maxcharge = 15000
-	},
 /obj/decal/cleanable/dirt/random,
+/obj/item/sheet/steel{
+	amount = 50
+	},
+/obj/item/sheet/steel{
+	amount = 50
+	},
 /turf/floor,
 /area/station/engine/storage)
 "tDn" = (
