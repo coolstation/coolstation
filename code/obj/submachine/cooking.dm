@@ -1339,6 +1339,7 @@ table#cooktime a#start {
 					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat)
 					var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/grub/F = new(src.loc)
+					F.name = "grubball"
 					qdel ( P )
 				if (/obj/item/plant/wheat/metal)
 					new/obj/item/reagent_containers/food/snacks/condiment/ironfilings/(src.loc)

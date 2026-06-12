@@ -213,13 +213,13 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	category = null
 #endif
 
-/datum/cookingrecipe/oven/swede_mball
-	item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball
-	amt1 = 2
-	item2 = /obj/item/reagent_containers/food/snacks/ingredient/flour
-	item3 = /obj/item/reagent_containers/food/snacks/ingredient/egg
-	cookbonus = 10
-	output = /obj/item/reagent_containers/food/snacks/swedishmeatball
+///datum/cookingrecipe/oven/swede_mball
+	//item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball
+	//amt1 = 2
+	//item2 = /obj/item/reagent_containers/food/snacks/ingredient/flour
+	// = /obj/item/reagent_containers/food/snacks/ingredient/egg
+//	cookbonus = 10
+//	output = /obj/item/reagent_containers/food/snacks/swedishmeatball
 
 /datum/cookingrecipe/oven/broll
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_round
@@ -1692,7 +1692,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 /datum/cookingrecipe/oven/omelette_bee
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/egg/bee
 	amt1 = 2
-	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/omelette/bee
