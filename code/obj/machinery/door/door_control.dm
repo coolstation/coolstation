@@ -1043,3 +1043,66 @@
 		signal.source = src
 
 		SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, signal)
+
+/obj/machinery/pressurepad
+	name = "pressure pad"
+	icon_state = "pressure_pad"
+	var/id = null
+	var/timer = 0
+	var/cooldown = 0 SECONDS
+	var/inuse = FALSE
+	var/closes = FALSE //does it close the door or just open it
+	anchored = ANCHORED
+	plane = -101
+	event_handler_flags = USE_HASENTERED
+
+
+	HasEntered(atom/movable/AM as mob|obj)
+		..()
+
+		if (!src.id)
+			return
+
+		logTheThing("station", AM, null, "toggled the [src.name] at [log_loc(src)].")
+
+		for (var/obj/machinery/door/poddoor/M in by_type[/obj/machinery/door])
+			if (M.id == src.id)
+				if (M.density)
+					M.open()
+					if (src.timer && closes)
+						SPAWN_DBG(src.timer)
+							M.close()
+				else
+					if(closes)
+						M.close()
+					if (src.timer)
+						SPAWN_DBG(src.timer)
+							M.open()
+
+		for (var/obj/machinery/door/airlock/M in by_type[/obj/machinery/door])
+			if (M.id == src.id)
+				if (M.density)
+					M.open()
+				else
+					if(closes)
+						M.close()
+
+		for (var/obj/machinery/conveyor/M as anything in machine_registry[MACHINES_CONVEYORS]) // Workaround for the stacked conveyor belt issue (Convair880).
+			if (M.id == src.id)
+				if (M.operating)
+					M.operating = 0
+					if (src.timer)
+						SPAWN_DBG(src.timer)
+							M.operating = 1
+				else
+					M.operating = 1
+					if (src.timer)
+						SPAWN_DBG(src.timer)
+							M.operating = 0
+				M.setdir()
+
+		if(src.cooldown)
+			inuse = TRUE
+			sleep(src.cooldown)
+			inuse = FALSE
+
