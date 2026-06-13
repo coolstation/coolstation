@@ -87,10 +87,23 @@
 	},
 /turf/floor/specialroom/cafeteria,
 /area/space)
+"dQ" = (
+/obj/machinery/glass_recycler{
+	density = 1;
+	glass_amt = 5;
+	pixel_y = 2;
+	pixel_x = -30
+	},
+/turf/floor/sanitary,
+/area/space)
 "dT" = (
 /turf/floor/grey/corner{
 	dir = 8
 	},
+/area/space)
+"dY" = (
+/obj/item/gun_exploder,
+/turf/floor,
 /area/space)
 "eN" = (
 /obj/machinery/sparker{
@@ -197,6 +210,10 @@
 /obj/machinery/atmospherics/portables_connector/south,
 /turf/floor/grey,
 /area/space)
+"iQ" = (
+/obj/machinery/vending/gunse/debug,
+/turf/floor,
+/area/space)
 "jg" = (
 /turf/floor/specialroom/cafeteria,
 /area/space)
@@ -280,12 +297,24 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/horizontal,
 /turf/space,
 /area/space)
+"lW" = (
+/obj/machinery/vending/cigarette/noknobs,
+/turf/floor,
+/area/space)
 "lX" = (
 /turf/floor/grass/leafy,
 /area/space)
 "me" = (
 /obj/machinery/manufacturer/engineering,
 /turf/floor/yellow,
+/area/space)
+"mx" = (
+/obj/machinery/vending/electronics,
+/turf/floor,
+/area/space)
+"nf" = (
+/obj/machinery/vending/cola/splurt,
+/turf/floor,
 /area/space)
 "oc" = (
 /turf/floor/ballpit,
@@ -295,6 +324,14 @@
 	layer = 2
 	},
 /turf/floor/yellow,
+/area/space)
+"ot" = (
+/obj/machinery/vending/clothing,
+/turf/floor,
+/area/space)
+"oM" = (
+/obj/machinery/vending/pda,
+/turf/floor,
 /area/space)
 "oP" = (
 /obj/wingrille_spawn/reinforced,
@@ -397,6 +434,10 @@
 	},
 /turf/floor,
 /area/space)
+"sb" = (
+/obj/machinery/vending/coffee,
+/turf/floor,
+/area/space)
 "sc" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	icon_state = "on";
@@ -411,6 +452,13 @@
 "tm" = (
 /obj/machinery/atmospherics/pipe/manifold/east,
 /turf/floor/grey,
+/area/space)
+"tq" = (
+/obj/window/reinforced/east,
+/obj/reagent_dispensers/fueltank,
+/turf/floor/yellow/checker{
+	dir = 4
+	},
 /area/space)
 "tr" = (
 /obj/machinery/vending/standard/toxins{
@@ -486,6 +534,10 @@
 	},
 /turf/floor/sanitary,
 /area/space)
+"uv" = (
+/obj/machinery/vending/chem,
+/turf/floor,
+/area/space)
 "uD" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/insulated{
@@ -499,6 +551,10 @@
 /turf/floor/grey/side{
 	dir = 1
 	},
+/area/space)
+"uP" = (
+/obj/machinery/vending/gunse/debug/ammo,
+/turf/floor,
 /area/space)
 "uS" = (
 /obj/window/reinforced/south,
@@ -572,11 +628,19 @@
 	dir = 8
 	},
 /area/space)
+"za" = (
+/obj/machinery/vending/computer3,
+/turf/floor,
+/area/space)
 "zy" = (
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/floor/grey/side{
 	dir = 4
 	},
+/area/space)
+"zD" = (
+/obj/machinery/vending/floppy,
+/turf/floor,
 /area/space)
 "zI" = (
 /obj/machinery/chem_master,
@@ -584,11 +648,19 @@
 	dir = 1
 	},
 /area/space)
+"zQ" = (
+/obj/machinery/vending/capsule,
+/turf/floor,
+/area/space)
 "Ad" = (
 /obj/table/reinforced/auto,
 /turf/floor/grey/side{
 	dir = 8
 	},
+/area/space)
+"Aj" = (
+/obj/machinery/vending/pathology,
+/turf/floor,
 /area/space)
 "Ak" = (
 /obj/fluid_spawner/polluted_filth/bathsalts,
@@ -602,6 +674,11 @@
 /area/space)
 "BH" = (
 /obj/window/reinforced/east,
+/obj/machinery/floor_charger,
+/obj/reagent_dispensers/powerbank,
+/obj/item/plasma_cutter{
+	pixel_x = -17
+	},
 /turf/floor/yellow/checker{
 	dir = 4
 	},
@@ -611,6 +688,10 @@
 /turf/floor/bluegreen/side{
 	dir = 1
 	},
+/area/space)
+"BV" = (
+/obj/machinery/vending/cigarette/schweewa,
+/turf/floor,
 /area/space)
 "Co" = (
 /obj/window/reinforced/west,
@@ -672,6 +753,10 @@
 /obj/machinery/door/window/southleft,
 /turf/floor/purple/side,
 /area/space)
+"EX" = (
+/obj/machinery/vending/book,
+/turf/floor,
+/area/space)
 "Fl" = (
 /obj/machinery/optable{
 	id = "robotics"
@@ -699,6 +784,10 @@
 /area/space)
 "Gw" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/floor,
+/area/space)
+"GR" = (
+/obj/machinery/vending/cigarette,
 /turf/floor,
 /area/space)
 "Hc" = (
@@ -746,6 +835,10 @@
 	},
 /turf/floor/sanitary,
 /area/space)
+"Jl" = (
+/obj/machinery/vending/minibar,
+/turf/floor,
+/area/space)
 "Jp" = (
 /obj/machinery/manufacturer/mechanic,
 /turf/floor/yellow,
@@ -763,6 +856,10 @@
 /area/space)
 "Kq" = (
 /obj/machinery/atmospherics/portables_connector/north,
+/turf/floor,
+/area/space)
+"KG" = (
+/obj/machinery/vending/cola/blue,
 /turf/floor,
 /area/space)
 "KZ" = (
@@ -790,6 +887,10 @@
 	dir = 4
 	},
 /turf/floor/ballpit,
+/area/space)
+"LO" = (
+/obj/machinery/vending/gun_safe,
+/turf/floor,
 /area/space)
 "LP" = (
 /obj/machinery/door/poddoor/pyro{
@@ -942,6 +1043,10 @@
 	dir = 1
 	},
 /area/space)
+"QH" = (
+/obj/machinery/vending/cigarette/schweewa/noknobs,
+/turf/floor,
+/area/space)
 "QJ" = (
 /obj/machinery/vending/mechanics,
 /turf/floor/yellow,
@@ -953,6 +1058,10 @@
 "QN" = (
 /obj/machinery/manufacturer/medical,
 /turf/floor/blue,
+/area/space)
+"Re" = (
+/obj/machinery/chem_dispenser/alcohol/ultra,
+/turf/floor/sanitary,
 /area/space)
 "Rx" = (
 /obj/window/reinforced/east,
@@ -989,11 +1098,19 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southwest,
 /turf/space,
 /area/space)
+"Ts" = (
+/obj/machinery/vending/cards,
+/turf/floor,
+/area/space)
 "TC" = (
 /obj/machinery/door/window/eastright,
 /turf/floor/bluegreen/side{
 	dir = 4
 	},
+/area/space)
+"TM" = (
+/obj/machinery/chem_dispenser/chef,
+/turf/floor/sanitary,
 /area/space)
 "TV" = (
 /obj/item/storage/toolbox/mechanical{
@@ -1020,6 +1137,10 @@
 /obj/machinery/vending/medical,
 /turf/floor/blue,
 /area/space)
+"Wi" = (
+/obj/machinery/vending/grub,
+/turf/floor,
+/area/space)
 "Wn" = (
 /obj/stove,
 /obj/item/soup_pot,
@@ -1034,6 +1155,10 @@
 	dir = 6
 	},
 /turf/floor/sanitary/white,
+/area/space)
+"Ws" = (
+/obj/window/reinforced/north,
+/turf/floor/grey,
 /area/space)
 "WU" = (
 /obj/fluid_spawner/polluted_filth/yuck,
@@ -1082,6 +1207,10 @@
 	},
 /turf/floor,
 /area/space)
+"Yk" = (
+/obj/machinery/vending/cola/red,
+/turf/floor,
+/area/space)
 "YC" = (
 /obj/machinery/manufacturer/uniform,
 /turf/floor/blue,
@@ -1094,6 +1223,10 @@
 "YO" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southwest,
 /turf/floor/engine/vacuum,
+/area/space)
+"YP" = (
+/obj/machinery/vending/minibar/jank,
+/turf/floor,
 /area/space)
 "YQ" = (
 /obj/submachine/chem_extractor{
@@ -3845,8 +3978,8 @@ hq
 hq
 Lc
 Jb
-HU
-HU
+dQ
+Re
 Lc
 hq
 hq
@@ -3948,7 +4081,7 @@ hq
 Lc
 us
 HU
-HU
+TM
 Lc
 hq
 hq
@@ -4052,8 +4185,8 @@ iH
 Xa
 Lc
 Lc
-hq
-hq
+Px
+Px
 hq
 hq
 hq
@@ -4154,8 +4287,8 @@ jg
 jg
 qp
 Lc
-hq
-hq
+Px
+Px
 hq
 hq
 hq
@@ -4256,8 +4389,8 @@ jg
 jg
 dO
 Lc
-hq
-hq
+Px
+Px
 hq
 hq
 hq
@@ -4358,8 +4491,8 @@ jg
 jg
 Gp
 iH
-hq
-hq
+Px
+Px
 hq
 hq
 hq
@@ -4460,8 +4593,8 @@ jg
 jg
 tc
 iH
-hq
-hq
+Px
+Px
 hq
 hq
 hq
@@ -4562,8 +4695,8 @@ jg
 jg
 HM
 iH
-hq
-hq
+Px
+Px
 hq
 hq
 hq
@@ -4664,8 +4797,8 @@ jg
 jg
 Xk
 Lc
-hq
-hq
+Px
+Px
 hq
 hq
 hq
@@ -4766,8 +4899,8 @@ Vs
 Rx
 Lc
 Lc
-hq
-hq
+Px
+Px
 hq
 hq
 hq
@@ -5074,12 +5207,12 @@ Lc
 Lc
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Lc
+iH
+iH
+iH
+Lc
+Lc
 hq
 hq
 hq
@@ -5171,17 +5304,17 @@ Fw
 xl
 Fw
 Fw
-Fw
-Fw
+dY
+uP
 Lc
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Ws
+xl
+xl
+xl
+xl
+Lc
 hq
 hq
 hq
@@ -5278,12 +5411,12 @@ Fw
 uS
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Ws
+Fw
+Fw
+Fw
+xl
+iH
 hq
 hq
 hq
@@ -5380,12 +5513,12 @@ Fw
 uS
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+xl
+Fw
+Fw
+Fw
+xl
+iH
 hq
 hq
 hq
@@ -5482,12 +5615,12 @@ Fw
 uS
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+xl
+Fw
+Fw
+Fw
+xl
+iH
 hq
 hq
 hq
@@ -5584,12 +5717,12 @@ Fw
 uS
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Ws
+Fw
+Fw
+Fw
+xl
+Lc
 hq
 hq
 hq
@@ -5686,12 +5819,12 @@ xl
 Lc
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Lc
+xl
+xl
+xl
+xl
+Lc
 hq
 hq
 hq
@@ -5788,12 +5921,12 @@ Px
 Px
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Lc
+Lc
+iH
+iH
+Lc
+Lc
 hq
 hq
 hq
@@ -5890,12 +6023,12 @@ xl
 Lc
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Lc
+xl
+xl
+xl
+xl
+Lc
 hq
 hq
 hq
@@ -5992,12 +6125,12 @@ Fw
 uS
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Ws
+Fw
+Fw
+Fw
+xl
+Lc
 hq
 hq
 hq
@@ -6094,12 +6227,12 @@ Fw
 uS
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+xl
+Fw
+Fw
+Fw
+xl
+iH
 hq
 hq
 hq
@@ -6196,12 +6329,12 @@ Fw
 uS
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+xl
+Fw
+Fw
+Fw
+xl
+iH
 hq
 hq
 hq
@@ -6298,12 +6431,12 @@ Fw
 uS
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Ws
+Fw
+Fw
+Fw
+xl
+iH
 hq
 hq
 hq
@@ -6400,12 +6533,12 @@ Fw
 Lc
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Ws
+xl
+xl
+xl
+xl
+Lc
 hq
 hq
 hq
@@ -6491,7 +6624,7 @@ Lc
 Lc
 BH
 as
-BH
+tq
 Lc
 Fw
 Lc
@@ -6502,12 +6635,12 @@ Lc
 Lc
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
+Lc
+iH
+iH
+iH
+Lc
+Lc
 hq
 hq
 hq
@@ -6793,21 +6926,21 @@ iH
 hz
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
+Lc
+Lc
+iH
+iH
+iH
+Lc
+Fw
+Lc
+iH
+iH
+iH
+Lc
+Lc
+Px
+Px
 hq
 hq
 hq
@@ -6895,21 +7028,21 @@ hq
 iH
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
+Lc
+Jl
+Fw
+Aj
+Fw
+LO
+Fw
+uP
+Fw
+zD
+Fw
+za
+Lc
+Px
+Px
 hq
 hq
 hq
@@ -6997,21 +7130,21 @@ hq
 iH
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
+iH
+YP
+Fw
+oM
+Fw
+iQ
+Fw
+Wi
+Fw
+mx
+Fw
+KG
+iH
+Px
+Px
 hq
 hq
 hq
@@ -7099,21 +7232,21 @@ hq
 iH
 Px
 Px
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+Px
+Px
 hq
 hq
 hq
@@ -7199,23 +7332,23 @@ iH
 iH
 iH
 hz
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
+Px
+Px
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+xl
+Px
+Px
 hq
 hq
 hq
@@ -7301,23 +7434,23 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
+Px
+Px
+iH
+EX
+Fw
+uv
+Fw
+BV
+Fw
+GR
+Fw
+sb
+Fw
+Yk
+iH
+Px
+Px
 hq
 hq
 hq
@@ -7403,23 +7536,23 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
+Px
+Px
+Lc
+zQ
+Fw
+Ts
+Fw
+QH
+Fw
+lW
+Fw
+ot
+Fw
+nf
+Lc
+Px
+Px
 hq
 hq
 hq
@@ -7505,23 +7638,23 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
+Px
+Px
+Lc
+Lc
+iH
+iH
+iH
+iH
+Lc
+iH
+iH
+iH
+iH
+Lc
+Lc
+Px
+Px
 hq
 hq
 hq
