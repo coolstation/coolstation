@@ -655,9 +655,38 @@ input:checked + div { display: block; }
 
 	return oven_recipe_html
 
+/obj/machinery/oven //this is a replacement for the magic autocooker machine
+	name = "oven"
+	desc = "A chef's best friend, bakes whatever is placed on the baking tray inside. When was the last time this thing got serviced? Who knows!"
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
+	icon_state = "oven-off"
+	anchored = ANCHORED
+	density = 1
+	mats = 15
+	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
+	var/emagged = false
+	var/working = true
+	var/obj/item/plate/tray/bakingtray
+	var/obj/submachine/oven_door
+
+	New()
+		bakingtray = new(src.loc)
+		oven_door = new(src.loc)
+
+/obj/submachine/oven_door //does this need to be a submachine? Probably not.
+	name = "oven door"
+	desc = "The hinges could use some oil."
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
+	icon_state = "oven-door"
+	anchored = ANCHORED
+	density = 0
+	mats = 5
+
+
 /obj/machinery/griddle
 	name = "griddle"
 	desc = "A grease covered surface that, when turned on, cooks food placed on it."
+	hint = "click the griddle with food items to start cooking them; take items off with a spatula to avoid burning your hands."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "griddle-on"
 	anchored = ANCHORED
@@ -673,6 +702,7 @@ input:checked + div { display: block; }
 
 
 	//todo: custom suicide
+	//todo: emag behaviour
 
 	New()
 		setup_sound()
@@ -753,7 +783,7 @@ input:checked + div { display: block; }
 			var/sound/sizzle = sound()
 			sizzle.file = "sound/misc/sizzleloop.ogg"
 			sizzle.repeat = 1
-			sizzle.volume = 20
+			sizzle.volume = 10
 			sound_emitter.add(sizzle, "sizzle")
 
 	proc/toggle_status()
