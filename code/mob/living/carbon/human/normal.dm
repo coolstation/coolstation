@@ -26,12 +26,12 @@
 
 			AH.gender = NEUTER
 			real_name = "Cet"
-			AH.customization_first = new /datum/customization_style/none
+			AH.customization_first =  new /datum/customization_style/biological/h3
 			AH.customization_second = new /datum/customization_style/none
-			AH.customization_third = new /datum/customization_style/biological/h3
+			AH.customization_third = new /datum/customization_style/none
 			AH.customization_first_color = "#b2b2b2"
-			AH.customization_second_color = "#cc66ff"
-			AH.customization_third_color = "#b2b2b2"
+			AH.customization_second_color = "#b2b2b2"
+			AH.customization_third_color = "#cc66ff"
 			AH.e_color = "#33ff00"
 			AH.flavor_text = "It's normal."
 
