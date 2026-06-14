@@ -655,9 +655,38 @@ input:checked + div { display: block; }
 
 	return oven_recipe_html
 
+/obj/machinery/oven //this is a replacement for the magic autocooker machine
+	name = "oven"
+	desc = "A chef's best friend, bakes whatever is placed on the baking tray inside. When was the last time this thing got serviced? Who knows!"
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
+	icon_state = "oven-off"
+	anchored = ANCHORED
+	density = 1
+	mats = 15
+	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
+	var/emagged = false
+	var/working = true
+	var/obj/item/plate/tray/bakingtray
+	var/obj/submachine/oven_door
+
+	New()
+		bakingtray = new(src.loc)
+		oven_door = new(src.loc)
+
+/obj/submachine/oven_door //does this need to be a submachine? Probably not.
+	name = "oven door"
+	desc = "The hinges could use some oil."
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
+	icon_state = "oven-door"
+	anchored = ANCHORED
+	density = 0
+	mats = 5
+
+
 /obj/machinery/griddle
 	name = "griddle"
 	desc = "A grease covered surface that, when turned on, cooks food placed on it."
+	hint = "click the griddle with food items to start cooking them; take items off with a spatula to avoid burning your hands."
 	icon = 'icons/obj/foodNdrink/kitchen.dmi'
 	icon_state = "griddle-on"
 	anchored = ANCHORED
@@ -673,6 +702,7 @@ input:checked + div { display: block; }
 
 
 	//todo: custom suicide
+	//todo: emag behaviour
 
 	New()
 		setup_sound()
@@ -753,7 +783,7 @@ input:checked + div { display: block; }
 			var/sound/sizzle = sound()
 			sizzle.file = "sound/misc/sizzleloop.ogg"
 			sizzle.repeat = 1
-			sizzle.volume = 20
+			sizzle.volume = 10
 			sound_emitter.add(sizzle, "sizzle")
 
 	proc/toggle_status()
@@ -1308,35 +1338,39 @@ table#cooktime a#start {
 		for(var/obj/item/P in src.contents)
 			switch( P.type )
 				if (/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat)
-					var/obj/item/reagent_containers/food/snacks/meatball/F = new(src.loc)
+					var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/F = new(src.loc)
 					F.name = P:subjectname + " meatball"
 					F.desc = "Meaty balls taken from the station's finest [P:subjectjob]."
 					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat)
-					var/obj/item/reagent_containers/food/snacks/meatball/F = new(src.loc)
+					var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/F = new(src.loc)
 					F.name = "monkey meatball"
 					F.desc = "Welcome to Space Station 13, where you too can eat a rhesus macaque's balls."
 					qdel( P )
 				if (/obj/item/organ/brain)
-					var/obj/item/reagent_containers/food/snacks/meatball/F = new(src.loc)
+					var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/F = new(src.loc)
 					F.name = "brain meatball"
 					F.desc = "Oh jesus, brain meatballs? That's just nasty."
 					qdel( P )
 				if (/obj/item/clothing/head/butt)
-					var/obj/item/reagent_containers/food/snacks/meatball/F = new(src.loc)
+					var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/F = new(src.loc)
 					F.name = "buttball"
 					F.desc = "The best you can hope for is that the meat was lean..."
 					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat)
-					var/obj/item/reagent_containers/food/snacks/meatball/F = new(src.loc)
+					var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/synth/F = new(src.loc)
 					F.name = "synthetic meatball"
 					F.desc = "Let's be honest, this is probably as good as these things are going to get."
 					qdel( P )
 				if (/obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat)
-					var/obj/item/reagent_containers/food/snacks/meatball/F = new(src.loc)
+					var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/F = new(src.loc)
 					F.name = "mystery meatball"
 					F.desc = "A meatball of even more dubious quality than usual."
 					qdel( P )
+				if (/obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat)
+					var/obj/item/reagent_containers/food/snacks/ingredient/meat/meatball/grub/F = new(src.loc)
+					F.name = "grubball"
+					qdel ( P )
 				if (/obj/item/plant/wheat/metal)
 					new/obj/item/reagent_containers/food/snacks/condiment/ironfilings/(src.loc)
 					qdel( P )
