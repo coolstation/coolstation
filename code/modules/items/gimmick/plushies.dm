@@ -290,3 +290,473 @@
 /obj/item/toy/plush/small/singuloose
 	name = "Singuloose the Singulo"
 	icon_state = "singuloose"
+
+/obj/item/toy/plush/peltpal
+	name = "pelt pal"
+	icon_state = "peltpal_base" // horrifying
+	rand_pos = 0
+	w_class = W_CLASS_NORMAL
+	throw_speed = 3
+	throw_range = 5
+
+
+	appearance_flags = KEEP_TOGETHER
+
+	var/list/datum/contextAction/contexts = list()
+	contextLayout = new /datum/contextLayout/experimentalcircle
+
+	var/obj/item/cell/cell
+
+	var/static/list/message_types = list("idle", "wake", "sleep", "inedible", "edible", "hungry", "bored", "happy", "evil")
+
+	var/glitch_factor = 0 // 1 to 10, how likely it is to do something weird
+
+	var/obj/item/toy/peltpal_guts/fur/fur = null
+	var/obj/item/toy/peltpal_guts/limbs/limbs = null
+	var/obj/item/toy/peltpal_guts/eyes/eyes = null
+	var/obj/item/toy/peltpal_guts/eyelid/eyelid = null
+	var/obj/item/toy/peltpal_guts/mouth/mouth = null
+
+	//brain vars
+	var/think_time = 5
+	var/awake = FALSE
+	var/sleeps = TRUE // false to make it super annoying
+	var/ignored = 0 // how long since it's been interacted with (so it goes to sleep)
+
+	var/hunger = 0 // feed me
+	var/boredom = 0 // let's play a game
+	var/list/eaten_items = list() // now with realistic bathroom action
+
+	New()
+		..()
+
+		// batteries included! we should make some new crappy cell types..
+		cell = new(src)
+		cell.charge = 500
+		cell.maxcharge = 500
+		cell.name = "Ultra-Lo Power Cell"
+		cell.desc = "Now in a slim form factor!"
+		cell.color = "#00ffea"
+
+		fur = new/obj/item/toy/peltpal_guts/fur(src)
+		limbs = new/obj/item/toy/peltpal_guts/limbs(src)
+		eyes = new/obj/item/toy/peltpal_guts/eyes(src)
+		eyelid = new/obj/item/toy/peltpal_guts/eyelid(src)
+		mouth = new/obj/item/toy/peltpal_guts/mouth(src)
+		var/grey = rand(80,255)
+		var/col = pick(random_saturated_hex_color(), (rgb(grey, grey, grey)))
+		src.eyelid.color = pick(col, random_saturated_hex_color())
+		src.mouth.color = col
+		src.limbs.color = col
+		for(var/gut in list(fur, limbs, eyes, mouth, eyelid))
+			src.vis_contents += gut
+
+		processing_items |= src
+
+		for(var/actionType in childrentypesof(/datum/contextAction/peltpal)) //see context_actions.dm
+			src.contexts += new actionType()
+
+	proc/add_piece(var/obj/item/toy/peltpal_guts/p as obj)
+		var/part_added = FALSE
+		if(istype(p, /obj/item/toy/peltpal_guts/fur) && !fur)
+			fur = p
+			p.set_loc(src)
+			src.vis_contents += p
+			part_added = TRUE
+		if(istype(p, /obj/item/toy/peltpal_guts/limbs) && !limbs)
+			limbs = p
+			p.set_loc(src)
+			src.vis_contents += p
+			part_added = TRUE
+		if(istype(p, /obj/item/toy/peltpal_guts/eyes) && !eyes)
+			eyes = p
+			p.set_loc(src)
+			src.vis_contents += p
+
+			//Also add eyelids
+			var/obj/item/toy/peltpal_guts/eyelid/e
+			if(!src.eyelid)
+				e = new/obj/item/toy/peltpal_guts/eyelid
+				src.eyelid = e
+				e.set_loc(src)
+			src.vis_contents += eyelid
+			part_added = TRUE
+		if(istype(p, /obj/item/toy/peltpal_guts/mouth) && !mouth)
+			mouth = p
+			p.set_loc(src)
+			src.vis_contents += p
+			part_added = TRUE
+		if(part_added)
+			p.mouse_opacity = 0
+			p.pixel_x = 0
+			p.pixel_y = 0
+
+	proc/remove_piece(var/t as text, var/forceful = FALSE)
+		var/obj/item/toy/peltpal_guts/o
+		var/part_removed = FALSE
+		switch(t)
+			if("fur")
+				o = fur
+				src.vis_contents -= fur
+				o.set_loc(src.loc)
+				fur = null
+				part_removed = TRUE
+			if("limbs")
+				o = limbs
+				src.vis_contents -= limbs
+				o.set_loc(src.loc)
+				limbs = null
+				part_removed = TRUE
+			if("eyes")
+				o = eyes
+				src.vis_contents -= eyes
+				o.set_loc(src.loc)
+				eyes = null
+				// Hide the eyelid
+				src.vis_contents -= eyelid
+				part_removed = TRUE
+			if("mouth")
+				o = mouth
+				src.vis_contents -= mouth
+				o.set_loc(src.loc)
+				mouth = null
+				part_removed = TRUE
+		if(part_removed)
+			o.mouse_opacity = 1
+			if(forceful)
+				o.streak_object(alldirs)
+				src.visible_message("<span class='alert'>[src]'s [o] suddenly flies off!</span>")
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if(user.a_intent == INTENT_HELP)
+			if(istype(W, /obj/item/toy/peltpal_guts))
+				user.visible_message("<span class='notice'>[user.name] adds [W] to [src]</span>","<span class='notice'>You add [W] to [src].</span>")
+				user.drop_item()
+				add_piece(W)
+			if(istype(W, /obj/item/cell/))
+				if(src.cell)
+					boutput(user, "<span class='alert'>[src] already has a cell!</span>")
+				else
+					user.visible_message("<span class='notice'>[user.name] adds [W] to [src]</span>","<span class='notice'>You add [W] to [src].</span>")
+					user.drop_item()
+					W.set_loc(src)
+					src.cell = W
+			else // no edible guts please
+				if(awake)
+					user.visible_message("<span class='notice'>[user.name] offers [W] to [src]</span>","<span class='notice'>You offer [W] to [src].</span>")
+					if(W.edible || prob(5 * glitch_factor))
+						if(src.hunger >= 10)
+							src.visible_message("<span class='notice'>[src] eats [W]!</span>")
+							prepare_message("edible")
+							user.drop_item()
+							W.set_loc(src)
+							eaten_items += W
+							hunger = 0
+							ignored = 0
+					else
+						prepare_message("inedible")
+		else
+			..()
+
+	attack_hand(var/mob/user as mob)
+		if(user.a_intent == INTENT_HELP)
+			user.showContextActions(contexts, src, contextLayout)
+		else
+			..()
+
+	process()
+		if(!awake)
+			if(!ON_COOLDOWN(src, "wake_chance", 10 SECONDS))
+				if(prob(1)) // very small chance it wakes up randomly
+					wake_up()
+		else
+			if(!ON_COOLDOWN(src, "think", (src.think_time) SECONDS))
+				if(!cell)
+					go_to_sleep()
+					return
+				src.cell.use(rand(1,10))
+				if(cell?.charge <= 0)
+					go_to_sleep()
+					return
+				src.think_time = 5 / sqrt(src.cell.charge / src.cell.maxcharge) // operation speed changes exponentially with battery charge
+				if(think_time <= 1)
+					think_time = 1
+				if(eyelid != null && eyes != null) // Handle blinking
+					flick("peltpal_blink", eyelid)
+
+				if((prob(50) && (src.cell.charge / src.cell.maxcharge) > 1 || prob(glitch_factor * rand(1, 10)))) // shake around a bit
+					animate_shake(src,3,rand(1,3),rand(1,3),src.pixel_x,src.pixel_y)
+
+				if((prob(25) && (src.cell.charge / src.cell.maxcharge) > 1 || prob(glitch_factor * rand(1, 5)))) // sparks
+					if (limiter.canISpawn(/obj/effects/sparks))
+						var/obj/sparks = new /obj/effects/sparks()
+						sparks.set_loc(get_turf(src))
+						SPAWN_DBG(2 SECONDS) if (sparks) qdel(sparks)
+
+				if(sleeps && ignored >= 10) // So it stops being annoying. Maybe.
+					go_to_sleep()
+					ignored = 0
+					return
+
+				if(eaten_items.len >= 3) // don't wanna lose the authentication disk in there
+					eject_food()
+					return
+
+				boredom += rand(0, 2)
+				hunger += rand(0, 2)
+				if(hunger >= 20)
+					prepare_message("hungry")
+					if(limbs)
+						if(prob(33))
+							flick("peltpal_dance", src.limbs)
+					hunger = 20
+					ignored += 1
+				else // hunger is a priority over boredom.. probably
+					if(boredom >= 20)
+						prepare_message("bored")
+						boredom = 20
+						ignored += 1
+					else
+						idle_behavior()
+
+	proc/idle_behavior()
+		if(prob(50))
+			prepare_message("idle")
+		if(src.limbs)
+			if(prob(33))
+				flick("peltpal_dance", src.limbs)
+
+	proc/pet(mob/user as mob)
+		user.visible_message("<span class='notice'>[user.name] pets [src]</span>","<span class='notice'>You pet [src].</span>")
+		if(!ON_COOLDOWN(src, "pet", 30 SECONDS))
+			if(src.limbs)
+				flick("peltpal_dance", src.limbs)
+			prepare_message("happy")
+			boredom = 0
+			ignored = 0
+
+	proc/toggle_awake()
+		if(awake)
+			go_to_sleep()
+		else
+			wake_up()
+		return awake
+
+	proc/wake_up()
+		prepare_message("wake")
+		awake = TRUE
+		eyelid.icon_state = "peltpal_eyelid"
+
+	proc/go_to_sleep()
+		prepare_message("sleep")
+		awake = FALSE
+		eyelid.icon_state = "peltpal_sleep"
+		boredom = 0
+		hunger = 0
+
+	proc/eject_food()
+		var/obj/item/peltpal_poo/poo = new /obj/item/peltpal_poo(src.loc)
+		if(eaten_items != null)
+			for(var/obj/o in eaten_items)
+				if(o.loc == src)
+					o.set_loc(poo)
+			eaten_items = list()
+		if(prob(10 + (10 * glitch_factor)))
+			poo.streak_object(alldirs)
+		src.visible_message("<span class='notice'>[src] suddenly ejects a strange green substance...</span>")
+
+	proc/prepare_message(var/message_type)
+		var/message = null
+		if(!(message_type in message_types))
+			return
+		if(prob(10 * glitch_factor))
+			message_type = pick(message_types)
+		switch(message_type)
+			if("idle")
+				message = pick("*humming*", "Hello?", "Hee-hee-hee!")
+			if("wake")
+				message = pick("Wakey wake!", "Hello!", "Sleep done!")
+			if("sleep")
+				message = pick("Night night.", "I go bed now.", "I'm sleepy.")
+			if("inedible")
+				message = pick("Not food!", "No eat!", "Yuck!")
+			if("edible")
+				message = pick("Yummy!", "*chewing*", "Yum yum!")
+			if("hungry")
+				message = pick("I'm hungry!", "Feed me!", "I want food!")
+			if("bored")
+				message = pick("Let's play!", "Fun time!", "Hmm.. boring!")
+			if("happy")
+				message = pick("Yippee!", "Woohoo!", "Hooray!")
+			if("evil")
+				message = pick("Destroy!", "Death...", "Hahahahahahahaha")
+		if(message != null)
+			if(prob((10 * glitch_factor) / 2)) // divided so the wrong message isn't glitched as often
+				message = corruptText(message, 33)
+			speak(message)
+
+	proc/speak(var/message)
+		if (awake)
+			if(mouth != null)
+				flick("peltpal_talk", mouth)
+		var/floating_text_style = ("")
+		if(istype(src.loc,/turf))
+			for(var/mob/M in oviewers(src))
+				if(!M.client)
+					continue
+				var/chat_text = null
+				if(!ON_COOLDOWN(src, "speak", 2 SECONDS))
+					chat_text = make_chat_maptext(src, message, floating_text_style)
+				M.show_message("<span class='name'>[src.name]</span> beeps: <span class='message'>\"[message]\"</span>",2, assoc_maptext = chat_text)
+		else // it'll bug you even through containers!
+			for(var/mob/M in oviewers(src.loc))
+				if(!M.client)
+					continue
+				var/chat_text = null
+				if(!ON_COOLDOWN(src, "speak", 2 SECONDS))
+					chat_text = make_chat_maptext(get_turf(src), message, floating_text_style)
+				M.show_message("<span class='name'>[src.name]</span> beeps: <span class='message'>\"[message]\"</span>",2, assoc_maptext = chat_text)
+
+/obj/item/toy/peltpal_guts
+	icon = 'icons/obj/items/plushies.dmi'
+	mouse_opacity = 0
+	rand_pos = 0
+
+	fur
+		icon_state = "fur1"
+
+		New()
+			..()
+			icon_state = "fur[rand(1,11)]"
+
+	limbs
+		icon_state = "peltpal_limbs"
+
+	eyes
+		icon_state = "eye1"
+
+		New()
+			..()
+			icon_state = "eye[rand(1,4)]"
+	eyelid
+		icon_state = "peltpal_sleep"
+
+	mouth
+		icon_state = "peltpal_mouth"
+
+/obj/item/peltpal_poo
+	name = "gooey green mass"
+	desc = "You don't want to think too much about it."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "molten"
+	color = "#09ff00"
+	var/splat = 1
+
+	get_desc()
+		if(src.contents.len)
+			. += " There might be something inside."
+
+	attack_self(mob/user as mob)
+		if(src.contents.len)
+			src.loc.visible_message("<span class='alert'>[src] bursts like an overripe melon!</span>")
+			playsound(get_turf(src), "sound/impact_sounds/Flesh_Break_1.ogg", 50, 1)
+			for (var/obj/o in src.contents)
+				o.set_loc(get_turf(src))
+			qdel(src)
+
+
+	throw_impact(atom/A, datum/thrown_thing/thr)
+		var/turf/T = get_turf(A)
+		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
+		if (src.splat <= 0) return ..()
+
+		if (istype(T))
+			var/obj/decal/cleanable/mess/random_splotch/splotch = new /obj/decal/cleanable/mess/random_splotch(T)
+			splotch.color = "#09ff00"
+			splat--
+		..()
+
+/datum/contextAction/peltpal
+	icon = 'icons/ui/context16x16.dmi'
+	close_clicked = TRUE
+	desc = ""
+
+	execute(var/obj/item/toy/plush/peltpal/peltpal, var/mob/user)
+		if (!istype(peltpal))
+			return
+
+	checkRequirements(var/obj/item/toy/plush/peltpal/peltpal, var/mob/user)
+		if (!issilicon(user) && !isAIeye(user) && GET_DIST(peltpal, user) > 1)
+			return FALSE
+		else
+			return TRUE
+
+	power
+		name = "Main Power"
+		desc = "Toggle main power"
+		icon_state = "secbot_power_off"
+
+		execute(var/obj/item/toy/plush/peltpal/peltpal, var/mob/user)
+			..()
+			if(!peltpal.cell)
+				boutput(user, "<span class='notice'>[peltpal] doesn't have a power cell.</span>")
+				return
+			var/toggled_result = peltpal.toggle_awake()
+			src.icon_state = toggled_result ? "secbot_power_off" : "secbot_power_on"
+
+	pet
+		name = "Pet"
+		desc = "Pet the creature"
+		icon_state = "happy_face"
+
+		execute(var/obj/item/toy/plush/peltpal/peltpal, var/mob/user)
+			..()
+			peltpal.add_fingerprint(user)
+			if(!peltpal.awake)
+				return
+			peltpal.pet(user)
+
+	remove_part
+		name = "Remove Part"
+		desc = "Take off a component"
+		icon_state = "return"
+
+		execute(var/obj/item/toy/plush/peltpal/peltpal, var/mob/user)
+			..()
+			peltpal.add_fingerprint(user)
+			var/list/actions = list("Do nothing")
+			if (peltpal.fur)
+				actions.Add("Remove Fur")
+			if (peltpal.limbs)
+				actions.Add("Remove Limbs")
+			if (peltpal.eyes)
+				actions.Add("Remove Eyes")
+			if (peltpal.mouth)
+				actions.Add("Remove Mouth")
+			if(peltpal.cell)
+				actions.Add("Remove Battery")
+
+			if (!actions.len)
+				boutput(user, "<span class='alert'>There's nothing on [peltpal] that can be removed.</span>")
+				return
+
+			var/action = input("What do you want to do?", "Remove Part") in actions
+			if (!action) return
+			if (action == "Do nothing") return
+			if (!issilicon(user) && !isAIeye(user) && GET_DIST(peltpal, user) > 1)
+				boutput(user, "<span class='alert'>You need to move closer!</span>")
+				return
+
+			playsound(get_turf(peltpal), "sound/items/Ratchet.ogg", 40, 1)
+			switch(action)
+				if("Remove Fur")
+					peltpal.remove_piece("fur")
+				if("Remove Limbs")
+					peltpal.remove_piece("limbs")
+				if("Remove Eyes")
+					peltpal.remove_piece("eyes")
+				if("Remove Mouth")
+					peltpal.remove_piece("mouth")
+				if("Remove Battery")
+					user.put_in_hand_or_drop(peltpal.cell)
+					peltpal.cell = null
