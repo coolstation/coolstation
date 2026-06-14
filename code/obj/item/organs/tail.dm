@@ -299,3 +299,14 @@
 	organ_image_under_suit_2 = null
 	organ_image_over_suit = "roach_over_suit"
 	colorful = 1
+
+/obj/item/organ/tail/rodentia
+	name = "rodentia tail"
+	desc = "A long, semiprehensile tail."
+	icon_state = "tail-rodentia"
+	organ_image_icon = 'icons/mob/rodentia.dmi'
+	tail_num = TAIL_RODENTIA
+	organ_image_under_suit_1 = "rodentia_under_suit"
+	organ_image_under_suit_2 = null // i don't understand this
+	organ_image_over_suit = "rodentia_over_suit"
+	colorful = TRUE
