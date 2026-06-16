@@ -105,6 +105,7 @@
 	var/hook = null
 
 	New()
+		..()
 		hook = new /obj/item/extinguisher(src)
 
 	attackby(obj/item/I as obj, mob/user as mob) //place extinguisher on hook
