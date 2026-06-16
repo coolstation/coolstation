@@ -666,12 +666,55 @@ input:checked + div { display: block; }
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
 	var/emagged = false
 	var/working = true
+	var/open = false
 	var/obj/item/plate/tray/bakingtray
 	var/obj/submachine/oven_door
+	//list of food is handled by the bakingtray
 
+	/*
+	//todo:
+		- oven door / tray offsets
+		- plug in sprites
+		- properly call oven_act
+		- add/remove tray to door
+		- sounds
+		- oven_door procs
+		- suicide
+		- baking people???
+		- hobs / putting pots and pans on the top
+	*/
 	New()
 		bakingtray = new(src.loc)
 		oven_door = new(src.loc)
+		oven_door.bakingtray = bakingtray
+
+		//setting everything up. Future flag changes are handled on oven_door
+		src.vis_contents += oven_door
+		oven_door.vis_flags |= VIS_INHERIT_DIR | VIS_INHERIT_PLANE
+		oven_door.appearance_flags |= RESET_TRANSFORM
+
+		oven_door.vis_contents += bakingtray
+		bakingtray.vis_flags |= VIS_INHERIT_PLANE
+		bakingtray.appearance_flags |= RESET_TRANSFORM
+
+	attack_hand(mob/user)
+		toggle_open(user) //let's just say it automatically turns on when there's shit inside
+
+	proc/toggle_open(var/mob/user = null,var/override=null)
+		if (open || override == "close")
+			open = false
+			if (user)
+				user.visible_message("[user] closes [oven_door].")
+				oven_door.close()
+
+			//play close sound
+		else if (!open || override == "open")
+			open = true
+			if (user)
+				user.visible_message("[user] opens [src]")
+				oven_door.open()
+
+			//play open sound(s)
 
 /obj/submachine/oven_door //does this need to be a submachine? Probably not.
 	name = "oven door"
@@ -681,6 +724,19 @@ input:checked + div { display: block; }
 	anchored = ANCHORED
 	density = 0
 	mats = 5
+	var/obj/item/plate/tray/bakingtray
+
+	proc/open()
+		return
+
+	proc/close()
+		return
+
+	proc/add_tray()
+		return
+
+	proc/remove_tray()
+		return
 
 
 /obj/machinery/griddle
