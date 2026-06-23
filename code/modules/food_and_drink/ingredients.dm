@@ -16,7 +16,6 @@
 	heal_amt = 0
 	custom_food = 1
 	value = 50 //base commodity price
-	griddle_result = /obj/item/reagent_containers/food/snacks/cookedmeat
 	var/blood = 7 //how much blood cleanables we are allowed to spawn
 
 	heal(var/mob/living/M)
@@ -34,40 +33,19 @@
 			blood--
 		..()
 
-
 /obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat
 	name = "-meat"
 	desc = "A slab of meat."
 	value = -500 //should fine you for selling to most people
 	alt_value = 500 //a certain delicacy...
+	var/subjectname = ""
+	var/subjectjob = null
 	amount = 1
-	griddle_result = /obj/item/reagent_containers/food/snacks/steak_h
-
-	attackby(obj/item/W, mob/user)
-		if (W.tool_flags & TOOL_CUTTING)
-			var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
-			f.pixel_x = src.pixel_x
-			f.pixel_y = src.pixel_y
-			f.set_loc(src.loc)
-			W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
-			qdel(src)
-		..()
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/monkeymeat
 	name = "monkeymeat"
 	desc = "A slab of meat from a monkey."
 	amount = 1
-	griddle_result = /obj/item/reagent_containers/food/snacks/steak_m
-
-	attackby(obj/item/W, mob/user)
-		if (W.tool_flags & TOOL_CUTTING)
-			var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
-			f.pixel_x = src.pixel_x
-			f.pixel_y = src.pixel_y
-			f.set_loc(src.loc)
-			W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
-			qdel(src)
-		..()
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/grubmeat
 	name = "grubsteak"
@@ -78,17 +56,6 @@
 	initial_reagents = list("blood"=20)
 	//var/blood_color = "#33C370" // Someone smarter than me figure out how to do this
 	food_effects = list("food_hp_up", "food_brute")
-	griddle_result = /obj/item/reagent_containers/food/snacks/steak_grub
-
-	attackby(obj/item/W, mob/user) //make grub bacon when you decide to not be lazy
-		if (W.tool_flags & TOOL_CUTTING)
-			var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
-			f.pixel_x = src.pixel_x
-			f.pixel_y = src.pixel_y
-			f.set_loc(src.loc)
-			W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
-			qdel(src)
-		..()
 
 //even more mysterious meat from space meat chunk that nobody should trust to eat, if only because of how normal looking and tasting it is
 //could do with a weird and unnerving effect reagent or disease that seems much worse than it is. maybe makes you hungrier the more you eat?
@@ -98,17 +65,6 @@
 	desc = "An exceptionally regular looking slab of meat from... somewhere? No, really, where did this even come from?"
 	amount = 1
 	value = 75
-	griddle_result = /obj/item/reagent_containers/food/snacks/steak_m
-
-	attackby(obj/item/W, mob/user) //make grub bacon when you decide to not be lazy
-		if (W.tool_flags & TOOL_CUTTING)
-			var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
-			f.pixel_x = src.pixel_x
-			f.pixel_y = src.pixel_y
-			f.set_loc(src.loc)
-			W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
-			qdel(src)
-		..()
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/fish
 	name = "fish fillet"
@@ -172,17 +128,6 @@
 	food_color = "#228822"
 	initial_reagents = list("synthflesh"=2)
 
-	attackby(obj/item/W, mob/user) //make grub bacon when you decide to not be lazy
-		if (W.tool_flags & TOOL_CUTTING)
-			for (var/i=0, i<3, i++)
-				var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
-				f.pixel_x = src.pixel_x + rand(-4,4)
-				f.pixel_y = src.pixel_y + rand(-4,4)
-				f.set_loc(src.loc)
-				W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
-			qdel(src)
-		..()
-
 /obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat
 	name = "mystery meat"
 	desc = "What the fuck is this??"
@@ -190,16 +135,6 @@
 	amount = 1
 	value = 40
 	var/cybermeat = 0
-
-	attackby(obj/item/W, mob/user) //make grub bacon when you decide to not be lazy
-		if (W.tool_flags & TOOL_CUTTING)
-			var/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw/f = new()
-			f.pixel_x = src.pixel_x
-			f.pixel_y = src.pixel_y
-			f.set_loc(src.loc)
-			W.visible_message("<span class='notice'>[user] cuts [src] into slices.</span>")
-			qdel(src)
-		..()
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		var/turf/T = get_turf(A)
@@ -233,7 +168,6 @@
 		icon_state = "bacon-raw"
 		amount = 1
 		real_name = "bacon"
-		griddle_result = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
 
 /obj/item/reagent_containers/food/snacks/ingredient/meat/hotdograw
 	name = "raw hotdog"
@@ -614,7 +548,6 @@
 	initial_volume = 50
 	initial_reagents = list("meat_slurry"=15)
 	value = 40
-	griddle_result = /obj/item/reagent_containers/food/snacks/ground_beef
 	fiddleType = /datum/contextAction/fiddle/meatpaste
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
@@ -651,7 +584,6 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste)
 	desc = "A grubby paste"
 	icon_state = "grubpaste"
 	fiddleType = /datum/contextAction/fiddle/meatpaste/grub
-	griddle_result = /obj/item/reagent_containers/food/snacks/ground_beef/grub
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
 /datum/contextAction/fiddle/meatpaste/grub
@@ -687,7 +619,6 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/grub)
 	desc = "A stringy paste"
 	icon_state = "grubpaste"
 	fiddleType = /datum/contextAction/fiddle/meatpaste/synth
-	griddle_result = /obj/item/reagent_containers/food/snacks/ground_beef/synth
 
 ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
 /datum/contextAction/fiddle/meatpaste/synth
@@ -866,15 +797,6 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
 			user.put_in_hand_or_drop(D)
 			qdel(W)
 			qdel(src)
-		if (istool(W, TOOL_CUTTING | TOOL_SAWING))
-			boutput(user, "<span class='notice'>You cut the [src] into two pieces.</span>")
-			if (prob(25))
-				JOB_XP(user,"chef",1)
-			for (var/i=0, i <= 2, i++)
-				var/obj/item/reagent_containers/food/snacks/ingredient/dough_round/D = new()
-				D.set_loc(src.loc)
-			qdel(src)
-
 		else ..()
 
 	attack_self(var/mob/user as mob)
@@ -895,26 +817,6 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
 	food_color = "#FFFFF"
 	custom_food = 0
 	value = -1 //standard for used but not completed ingredients
-
-/obj/item/reagent_containers/food/snacks/ingredient/dough_round
-	name = "dough round"
-	desc = "a little lump of dough. Part of the burger pipeline."
-	icon_state = "dough-round"
-	amount = 1
-	food_color = "#FFFFF"
-	value = -1
-	custom_food = 0
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/dough_round))
-			boutput(user, "<span class='notice'>You attach the [src]s back together to make a piece of dough.</span>")
-			if (prob(25))
-				JOB_XP(user, "Chef", 1)
-			var/obj/item/reagent_containers/food/snacks/ingredient/dough_strip/D = new /obj/item/reagent_containers/food/snacks/ingredient/dough_strip(W.loc)
-			user.u_equip(W)
-			user.put_in_hand_or_drop(D)
-			qdel(W)
-			qdel(src)
 
 /obj/item/reagent_containers/food/snacks/ingredient/holey_dough
 	name = "holey dough" //+1 to chaplain magic skills

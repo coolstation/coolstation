@@ -577,7 +577,6 @@
 /area/station/security/main)
 "awJ" = (
 /obj/storage/closet/medicalclothes,
-/obj/item/clothing/suit/bio_suit/paramedic,
 /turf/floor/carpet/blue/fancy/edge/north,
 /area/station/medical/staff)
 "awP" = (
@@ -13096,6 +13095,14 @@
 /obj/machinery/vehicle/pod_smooth/heavy,
 /turf/floor/engine,
 /area/station/hangar/sec)
+"jrw" = (
+/obj/decal/cleanable/dirt/random,
+/obj/machinery/conveyor_switch{
+	id = "Lager";
+	position = 1
+	},
+/turf/floor/grime,
+/area/station/storage/warehouse)
 "jrx" = (
 /obj/decal/poster/wallsign/logistics,
 /turf/wall,
@@ -17206,15 +17213,15 @@
 	},
 /area/station/security/main)
 "mmT" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "shutbelt";
-	operating = 1
-	},
 /obj/machinery/door/poddoor/pyro{
 	dir = 4;
-	id = "shut";
+	id = "belt";
 	name = "Shuttle Blast Door"
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "lager";
+	operating = 1
 	},
 /turf/floor/plating/random,
 /area/station/storage/warehouse)
@@ -20337,18 +20344,6 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/conveyor_switch{
-	id = "Lager";
-	position = 1;
-	pixel_x = -12;
-	pixel_y = 17
-	},
-/obj/machinery/conveyor_switch{
-	id = "shutbelt";
-	position = 1;
-	pixel_x = 12;
-	pixel_y = 17
-	},
 /turf/floor/grime,
 /area/station/storage/warehouse)
 "oCo" = (
@@ -20615,29 +20610,6 @@
 /obj/wingrille_spawn,
 /turf/floor/plating,
 /area/station/crew_quarters/barber_shop)
-"oMU" = (
-/obj/item/storage/firstaid/crit{
-	pixel_x = -6;
-	pixel_y = 13
-	},
-/obj/table/auto,
-/obj/item/storage/firstaid/crit{
-	pixel_x = -6;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/emergency_injector/epinephrine{
-	pixel_y = 10;
-	pixel_x = 6
-	},
-/obj/item/reagent_containers/emergency_injector/epinephrine{
-	pixel_y = 5;
-	pixel_x = 6
-	},
-/obj/item/reagent_containers/emergency_injector/saline{
-	pixel_x = 5
-	},
-/turf/floor/white/checker,
-/area/station/medical/medbay)
 "oNf" = (
 /obj/machinery/vending/floppy,
 /turf/floor,
@@ -22300,9 +22272,6 @@
 /area/station/maintenance/solar/east)
 "pQQ" = (
 /obj/disposalpipe/segment,
-/obj/submachine/chef_sink{
-	dir = 8
-	},
 /turf/floor/grey/side{
 	dir = 8
 	},
@@ -29574,8 +29543,7 @@
 /obj/decal/mule/dropoff,
 /obj/machinery/door_control{
 	name = "Cargo Doors Control";
-	pixel_x = 24;
-	id = "shut"
+	pixel_x = 24
 	},
 /obj/cable{
 	icon_state = "1-2"
@@ -30274,7 +30242,7 @@
 "vpM" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "shutbelt";
+	id = "lager";
 	operating = 1
 	},
 /turf/floor/plating/random,
@@ -70911,7 +70879,7 @@ sik
 vjp
 qKX
 dFv
-oMU
+qKX
 aMk
 gMH
 fMF
@@ -83034,7 +83002,7 @@ jfo
 tyJ
 jdz
 dKU
-klv
+jrw
 xwm
 lWK
 gKk

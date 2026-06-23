@@ -79,6 +79,8 @@
 
 #elif defined(MAP_OVERRIDE_BAYOUBEND)
 
+#elif defined(MAP_OVERRIDE_KATEMAP)
+
 #elif defined(MAP_OVERRIDE_PERDUTA)
 #define ABOVEWATER_MAP
 #define MAGINDARA_MAP

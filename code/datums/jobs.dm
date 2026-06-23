@@ -1952,7 +1952,6 @@ ABSTRACT_TYPE(/datum/job/civilian)
 	slot_head = list(/obj/item/clothing/head/merchant_hat)
 	slot_lhan = list(/obj/item/storage/briefcase)
 	slot_foot = list(/obj/item/clothing/shoes/brown)
-	slot_back = list(/obj/item/furniture_parts/table/folding)
 	alt_names = list("Salesman", "Merchant")
 	change_name_on_spawn = 1
 

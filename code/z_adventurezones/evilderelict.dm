@@ -22,7 +22,7 @@ var/maniac_previous_victim = "Unknown"
 				proximity_act()
 
 			var/dist = get_dist(src, src.target)
-			if(dist > text2num(world.view) * 2)
+			if(dist > world.view * 2)
 				walk_towards(src, src.target, 3)
 			else
 				walk_to(src, src.target, 0, 3)

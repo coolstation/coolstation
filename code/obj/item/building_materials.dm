@@ -253,7 +253,6 @@ MATERIAL
 				L["railing"] = "Railing"
 				L["stool"] = "stool"
 				L["chair"] = "chair"
-				L["stepladder"] = "stepladder"
 				L["table"] = "Table Parts (2 Sheets)"
 				L["light"] = "Light Fixture Parts, Tube (2 Sheets)"
 				L["light2"] = "Light Fixture Parts, Bulb (2 Sheets)"
@@ -403,14 +402,6 @@ MATERIAL
 					a_icon = 'icons/obj/furniture/chairs.dmi'
 					a_icon_state = "stool"
 					a_name = "a stool"
-
-				if("stepladder")
-					a_type = /obj/item/chair/folded/stepladder
-					a_amount = 1
-					a_cost = 1
-					a_icon = 'icons/obj/fluid.dmi' //why is it in fluid, fuck me
-					a_icon_state = "stepladder"
-					a_name = "a stepladder"
 
 				if("railing")
 					a_type = /obj/railing

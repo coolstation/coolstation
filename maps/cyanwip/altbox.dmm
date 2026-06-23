@@ -446,7 +446,6 @@
 /obj/decal/cleanable/dirt/edge{
 	dir = 4
 	},
-/obj/storage/crate/packing,
 /turf/floor,
 /area/station/storage/warehouse)
 "alQ" = (
@@ -2845,13 +2844,6 @@
 "brD" = (
 /turf/wall/r_wall,
 /area/station/security/brig/north_side)
-"brE" = (
-/obj/decal/cleanable/dirt/edge{
-	dir = 4
-	},
-/obj/storage/crate,
-/turf/floor,
-/area/station/storage/warehouse)
 "brI" = (
 /obj/cable/hotpink{
 	icon_state = "0-2-thick"
@@ -7388,7 +7380,6 @@
 /area/space)
 "dyE" = (
 /obj/machinery/griddle,
-/obj/item/kitchen/utensil/spatula,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "dyF" = (
@@ -15653,11 +15644,6 @@
 "hIZ" = (
 /obj/machinery/light/fluorescent/cool,
 /obj/decal/cleanable/rust/jen/grime,
-/obj/machinery/floor_charger,
-/obj/reagent_dispensers/powerbank,
-/obj/item/plasma_cutter{
-	pixel_x = -17
-	},
 /turf/floor,
 /area/station/engine/inner)
 "hJb" = (
@@ -25375,11 +25361,7 @@
 /turf/floor/engine,
 /area/station/science/testchamber)
 "mvs" = (
-/obj/item/pinpointer/nuke{
-	target_criteria = /obj/machinery/networked/nuclear_charge;
-	name = "pinpointer (nuclear charge)";
-	desc = "Points in the direction of the nuclear charge."
-	},
+/obj/item/pinpointer/nuke,
 /obj/machinery/light/fluorescent/cool{
 	dir = 4
 	},
@@ -39664,7 +39646,6 @@
 /obj/decal/cleanable/dirt/edge/edge2{
 	dir = 1
 	},
-/obj/storage/secure/crate/bee/loaded,
 /turf/floor,
 /area/station/storage/warehouse)
 "tlH" = (
@@ -45870,13 +45851,6 @@
 	},
 /turf/floor,
 /area/station/security/checkpoint/arrivals)
-"wlR" = (
-/obj/decal/cleanable/dirt/edge{
-	dir = 4
-	},
-/obj/storage/secure/crate/dan/snacks,
-/turf/floor,
-/area/station/storage/warehouse)
 "wmf" = (
 /obj/cable{
 	icon_state = "0-4"
@@ -80045,11 +80019,11 @@ ePb
 kaw
 iNB
 tTb
-wlR
+faD
 faD
 alD
-brE
-brE
+faD
+faD
 pkz
 whj
 rGn

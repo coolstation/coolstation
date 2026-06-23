@@ -36,6 +36,7 @@ var/global/list/mapNames = list(
 	"Bayou Bend Dock-N-Go" = list("id" = "BAYOUBEND",	"settings" = "bayoubend", 	"playerPickable" = 1,		"MaxPlayersAllowed" = 60),
 	"Summit Outpost" =  list("id" = "SUMMIT",		"settings" = "summit", 			"playerPickable" = 0,		"MaxPlayersAllowed" = 35),
 	"Bobmap" = 			list("id" = "BOBMAP",		"settings" = "bobmap",			"playerPickable" = 0,  	"MinPlayersAllowed" = 20),
+	"Katemap" = 		list("id" = "KATEMAP",		"settings" = "katemap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 20),
 	//"Dockmap" = 		list("id" = "DOCKMAP",		"settings" = "dockmap",			"playerPickable" = 0,	"MaxPlayersAllowed" = 30),
 	"Spirit" =			list("id" = "SPIRIT",		"settings" = "spirit",				"playerPickable" = 0),
 	//"Mushroom" =		list("id" = "MUSHROOM", 	"settings" = "mushroom",		"playerPickable" = ASS_JAM),
@@ -401,6 +402,7 @@ var/global/list/mapNames = list(
 		/datum/job/research/scientist = 0,
 	)
 
+
 /datum/map_settings/bayoubend
 	name = "BAYOUBEND"
 	walls = /turf/wall/
@@ -477,6 +479,59 @@ var/global/list/mapNames = list(
 			if(t_shuttle_l)
 				t_shuttle_l.filler_turf = "/turf/floor/airless/engine/caution"
 	*/
+
+/datum/map_settings/katemap
+	name = "KATEMAP"
+	walls = /turf/wall/
+	rwalls = /turf/wall/r_wall/
+	auto_walls = 0
+	job_limits_from_landmarks = TRUE
+	arrivals_type = MAP_SPAWN_CRYO
+	goonhub_map = "https://play.coolstation.space/maps/bayou/" //set this to whatever when we have it
+
+	windows = /obj/window/auto
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
+	auto_windows = 1
+	qm_supply_type = "shuttle"
+	//shuttle_map_turf = /turf/floor/airless/engine/caution
+
+	ext_airlocks = /obj/machinery/door/airlock/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	//merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
+	//merchant_left_station = /area/shuttle/merchant_shuttle/left_station/destiny
+
+	//merchant_right_centcom = /area/shuttle/merchant_shuttle/left_centcom/destiny
+	//merchant_right_station = /area/shuttle/merchant_shuttle/left_station/destiny
+
+	//IF THE SHUTTLE 9/11s THE STATION, THIS IS HOW YOU FIX IT
+	escape_centcom = /area/shuttle/escape/centcom/donut2
+	escape_outpost = /area/shuttle/escape/outpost/donut2
+	escape_transit = /area/shuttle/escape/transit/donut2
+	escape_station = /area/shuttle/escape/station/donut2
+	escape_def = SHUTTLE_WEST
+	escape_dir = WEST
+
+	//these are for bayou, change once areas are made
+	valid_nuke_targets = list("the main security room" = list(/area/station/security/main),
+		"the research lobby" = list(/area/station/science/lobby),
+		"the logistics bay" = list(/area/station/quartermaster/cargobay),
+		"the engineering control room" = list(/area/station/engine/engineering, /area/station/engine/engineering/breakroom),
+		"the robotics workshop" = list(/area/station/medical/robotics),
+		"the bridge" = list(/area/station/bridge),
+		"the departures wing" = list(/area/station/hallway/secondary/exit, /area/station/maintenance/outer/ne),
+		"the chapel" = list(/area/station/chapel/sanctuary),
+		"the medbay" = list(/area/station/medical/medbay, /area/station/medical/medbay/surgery, /area/station/medical/medbay/pharmacy, /area/station/medical/medbay/treatment ),
+		"the cafeteria" = list(/area/station/crew_quarters/bar))
+
 
 /datum/map_settings/cogmap
 	name = "COGMAP"
