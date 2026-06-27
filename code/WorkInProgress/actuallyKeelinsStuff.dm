@@ -27,7 +27,7 @@ Returns:
 		By default the image is attached to source. You can change this by setting the image's loc to something else.
 		crossed contains a list of crossed turfs if getCrossed was set to 1.
 */
-/proc/drawLine(var/atom/source, var/atom/target, var/render_source_line = null, var/render_source_cap = null, var/src_off_x=0, var/src_off_y=0, var/trg_off_x=0, var/trg_off_y=0, var/mode = LINEMODE_STRETCH, var/getCrossed = 1, var/adjustTiles=1)
+/proc/drawLine(var/atom/source, var/atom/target, var/render_source_line = null, var/render_source_cap = null, var/src_off_x=0, var/src_off_y=0, var/trg_off_x=0, var/trg_off_y=0, var/mode = LINEMODE_STRETCH, var/getCrossed = 1, var/adjustTiles=1, var/applyTransform = TRUE)
 	if(render_source_line == null) return
 	var/datum/lineResult/result = new()
 
@@ -92,21 +92,48 @@ Returns:
 		if(render_source_cap != null)
 			var/matrix/M2 = UNLINT(matrix().Translate(-(iconWidth / 2),0).Turn(angle).Translate(src_off_x,src_off_y))
 			I.filters += filter(type="layer", render_source = (islist(render_source_cap) ? pick(render_source_cap) : render_source_cap), transform=M2)
-		I.transform = UNLINT(matrix().Turn(-angle).Translate((dist),0).Turn(angle))
+		var/matrix/final_matrix = UNLINT(matrix().Turn(-angle).Translate((dist),0).Turn(angle))
+		result.transform = final_matrix
+		if (applyTransform)
+			I.transform = final_matrix
+		result.lineImage = I
+
+	else if(mode == LINEMODE_STRETCH_NO_CLIP)
+		// This mode is mostly the same as LINEMODE_STRETCH, but does the transformation outside of filters.
+		// This prevents some weird issues that cause LINEMODE_STRETCH to cut off the sprite at certain pixel offsets, but
+		// makes it difficult to have caps at both ends of a line.
+
+		//Matrix M scales down our 64 pixel line to whatever length was calculated earlier, then moves it into place.
+		var/matrix/M = UNLINT(matrix().Scale(scale,1).Translate((dist/2),0).Turn(angle).Translate(src_off_x,src_off_y))
+		result.transform = M
+		var/image/I = image(null,source)
+		I.appearance_flags = KEEP_APART  //Required for some odd reason.
+		I.filters += filter(type="layer", render_source = (islist(render_source_line) ? pick(render_source_line) : render_source_line))
+		if(render_source_cap != null)
+			//And to avoid resizing caps, we pre-emptively upscale the source cap, so that it looks the same.
+			//This probably breaks dual-ended caps.
+			var/matrix/M2 = UNLINT(matrix().Scale(1/scale,1).Translate(-((1/scale)-1)*32,0))
+			I.filters += filter(type="layer", render_source = (islist(render_source_cap) ? pick(render_source_cap) : render_source_cap), transform=M2)
+		if (applyTransform)
+			I.transform = M
 		result.lineImage = I
 	else if(mode == LINEMODE_SIMPLE)
 		var/image/I = image(null,source)
 		I.icon = 'icons/effects/lines2.dmi'
 		I.icon_state = islist(render_source_line) ? pick(render_source_line) : render_source_line
 		var/matrix/M = UNLINT(matrix().Scale(scale,1).Translate(dist/2,0).Turn(angle).Translate(src_off_x - iconWidth / 4,src_off_y))
-		I.transform = M
+		result.transform = M
+		if (applyTransform)
+			I.transform = M
 		result.lineImage = I
 	else if(mode == LINEMODE_SIMPLE_REVERSED)
 		var/image/I = image(null,source)
 		I.icon = 'icons/effects/lines2.dmi'
 		I.icon_state = islist(render_source_line) ? pick(render_source_line) : render_source_line
 		var/matrix/M = UNLINT(matrix().Scale(scale,1).Translate(-dist/2,0).Turn(180 + angle).Translate(src_off_x - iconWidth / 4,src_off_y))
-		I.transform = M
+		result.transform = M
+		if (applyTransform)
+			I.transform = M
 		result.lineImage = I
 	else if(mode == LINEMODE_SEGMENT)
 		var/image/composite = image(null,source)
@@ -137,6 +164,9 @@ Returns:
 /datum/lineResult
 	var/image/lineImage = null
 	var/list/crossed = null
+	/// The resulting transform applied to the line, null in the case of LINEMODE_SEGMENT because there's no single transform there.
+	var/matrix/transform = null
+
 
 //Gets a line of turfs between the two atoms. Doesn't miss tiles, like bresenham.
 //Adapted from http://playtechs.blogspot.com/2007/03/raytracing-on-grid.html
