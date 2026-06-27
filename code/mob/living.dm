@@ -2138,6 +2138,8 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 		return
 	if (src.lying || !src.canmove || !can_act(src))
 		return
+	if (src.a_intent != INTENT_HARM)
+		return
 	if (isturf(src.loc) && target)
 		var/turf/T = src.loc
 		var/target_dir = get_dir(src,target)

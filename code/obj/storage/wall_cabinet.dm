@@ -93,6 +93,45 @@
 		if (prob(5))
 			src.storage.add_contents(new /obj/item/storage/toolbox/emergency(src))
 
+/obj/item/storage/wall/exthook
+	name = "fire extinguisher mount"
+	desc = "A wall-mounted storage container that has a few firefighting supplies in it."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "exthook"
+	light_r = 1
+	light_g = 0.2
+	light_b = 0.2
+	slots = 0
+	var/hook = null
+
+	New()
+		..()
+		hook = new /obj/item/extinguisher(src)
+
+	attackby(obj/item/I as obj, mob/user as mob) //place extinguisher on hook
+		if (istype(I,/obj/item/extinguisher))
+			if(src.hook)
+				boutput(user, "There's already a fire extinguisher attached.")
+				return
+			user.remove_item(I)
+			I.set_loc(src)
+			src.hook = I
+			src.icon_state = "exthook"
+			boutput(user, "You place \the [I] onto the wall hook.")
+		//else
+		//	..() //unless there's other weird ass behavior i think we can leave this as is
+		return
+
+	attack_hand(mob/user as mob) //remove extinguisher from hook
+		src.add_fingerprint(user)
+		if (!src.hook)
+			user.show_text("\The [src] is empty.", "red")
+		else
+			boutput(user, "You unhook and take \the [src.hook].")
+			user.put_in_hand_or_drop(src.hook)
+			src.hook = null
+			src.icon_state= "exthook0"
+
 /obj/item/storage/wall/random
 	pixel_y = 32
 	make_my_stuff()
