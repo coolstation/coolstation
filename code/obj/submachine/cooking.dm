@@ -664,6 +664,11 @@ input:checked + div { display: block; }
 	density = 1
 	mats = 15
 	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
+
+	//offsets for the oven door when opened
+	var/door_pixelx = 0
+	var/door_pixely = 0
+
 	var/emagged = false
 	var/working = true
 	var/open = false
@@ -690,29 +695,53 @@ input:checked + div { display: block; }
 
 		//setting everything up. Future flag changes are handled on oven_door
 		src.vis_contents += oven_door
-		oven_door.vis_flags |= VIS_INHERIT_DIR | VIS_INHERIT_PLANE
+		oven_door.vis_flags |= VIS_INHERIT_DIR | VIS_INHERIT_PLANE | VIS_HIDE
 		oven_door.appearance_flags |= RESET_TRANSFORM
 
 		oven_door.vis_contents += bakingtray
-		bakingtray.vis_flags |= VIS_INHERIT_PLANE
+		bakingtray.vis_flags |= VIS_INHERIT_PLANE | VIS_HIDE
 		bakingtray.appearance_flags |= RESET_TRANSFORM
+
+		setup_sound()
 
 	attack_hand(mob/user)
 		toggle_open(user) //let's just say it automatically turns on when there's shit inside
+
+	process(mult)
+		if (!open && oven_door?.bakingtray && working)
+			if (oven_door.bakingtray.ordered_contents.len > 0)
+				for (var/obj/item/reagent_containers/food/food in oven_door.bakingtray.ordered_contents)
+					food.oven_cook(oven_door.bakingtray,mult)
+				if (!src.sound_emitter.active_sound)
+					src.sound_emitter.play("bake")
+			else
+				src.sound_emitter.deactivate()
+		else
+			src.sound_emitter.deactivate()
+		..()
+
+	setup_sound()
+		sound_emitter = new(src)
+		if (sound_emitter)
+			var/sound/bake = sound()
+			bake.file = "sound/misc/sizzleloop.ogg" //REPLACE WITH OVEN SOUND
+			bake.repeat = 1
+			bake.volume = 5
+			sound_emitter.add(bake, "bake")
 
 	proc/toggle_open(var/mob/user = null,var/override=null)
 		if (open || override == "close")
 			open = false
 			if (user)
 				user.visible_message("[user] closes [oven_door].")
-				oven_door.close()
+			oven_door.close()
 
 			//play close sound
 		else if (!open || override == "open")
 			open = true
 			if (user)
 				user.visible_message("[user] opens [src]")
-				oven_door.open()
+			oven_door.open()
 
 			//play open sound(s)
 
@@ -725,12 +754,25 @@ input:checked + div { display: block; }
 	density = 0
 	mats = 5
 	var/obj/item/plate/tray/bakingtray
+	var/obj/machinery/oven/oven
 
 	proc/open()
-		return
+		src.set_loc(oven)
+		src.pixel_x = oven.door_pixelx
+		src.pixel_y = oven.door_pixely
+
+		src.vis_flags |= VIS_INHERIT_DIR | VIS_INHERIT_PLANE
+
+		if (bakingtray)
+			bakingtray.vis_flags |= VIS_INHERIT_DIR | VIS_INHERIT_PLANE
+			bakingtray.appearance_flags |= RESET_TRANSFORM
 
 	proc/close()
-		return
+		src.set_loc(oven)
+		src.vis_flags |= VIS_HIDE
+
+		if (bakingtray)
+			bakingtray.vis_flags |= VIS_HIDE
 
 	proc/add_tray()
 		return
@@ -839,7 +881,7 @@ input:checked + div { display: block; }
 			var/sound/sizzle = sound()
 			sizzle.file = "sound/misc/sizzleloop.ogg"
 			sizzle.repeat = 1
-			sizzle.volume = 10
+			sizzle.volume = 5
 			sound_emitter.add(sizzle, "sizzle")
 
 	proc/toggle_status()
