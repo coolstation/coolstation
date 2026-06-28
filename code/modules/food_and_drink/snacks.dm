@@ -23,21 +23,11 @@
 	initial_volume = 25
 	initial_reagents = list("yuck"=10,"carbon"=15)
 	can_griddle = false
+	griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn/smoldering
 	burn_possible = true
 	burn_point = 350
 	burn_output = 900
 	griddle_time = 10
-	var/timesflamed = 0
-
-	griddle_cook(obj/machinery/griddle/griddle, mult)
-		griddle_time -= 2.5 * mult
-		if (griddle_time <= 0)
-			tfireflash(src,0,500,1,30)
-			griddle_time = 10
-			timesflamed += 1
-		if (timesflamed >= 2)
-			qdel(src)
-
 
 /obj/item/reagent_containers/food/snacks/yuckburn/smoldering
 	name = "smoldering mess"
@@ -675,7 +665,6 @@
 	heal_amt = 4
 	amount = 1
 	doants = 0
-	griddle_result = /obj/item/reagent_containers/food/snacks/donkpocket_w
 	var/warm = DONK_COLD
 
 	warm
@@ -807,28 +796,6 @@
 	desc = "it's weirdly stringy and smells like baked beans."
 	icon_state = "patty-green-cooked"
 	food_color = "#04a038"
-
-/obj/item/reagent_containers/food/snacks/ground_beef
-	name = "ground beef"
-	desc = "what do you call a cow wi-UURK"
-	icon_state = "groundbeef"
-	icon = 'icons/obj/foodNdrink/food_ingredient.dmi'
-	amount = 1
-	heal_amt = 1
-	food_color ="#3d2c11"
-
-/obj/item/reagent_containers/food/snacks/ground_beef/grub
-	name = "ground grub"
-	desc = "there are over one thousand grubs in one pound of ground grub."
-	icon_state = "groundbeef-green"
-	food_color = "#04a038"
-
-/obj/item/reagent_containers/food/snacks/ground_beef/synth
-	name = "ground synthmeat"
-	desc = "it's really crumbly."
-	icon_state = "groundbeef-green"
-	food_color = "#04a038"
-
 
 /obj/item/reagent_containers/food/snacks/meatball
 	name = "meatball"
@@ -1401,29 +1368,6 @@
 				user.suiciding = 0
 		return 1
 
-/obj/item/reagent_containers/food/snacks/bread_roll
-	name = "bread roll"
-	desc = "a cute little bread roll for you to devour."
-	hint = "can be sawed in half to make hamburger buns."
-	icon = 'icons/obj/foodNdrink/food.dmi'
-	icon_state = "roll"
-	heal_amt = 1
-
-	attackby(obj/item/W, mob/user)
-		if (istool(W, TOOL_CUTTING | TOOL_SAWING))
-			boutput(user, "<span class='notice'>You split the [src] in half.</span>")
-			if (prob(25))
-				JOB_XP(user,"chef",1)
-			for (var/i=0, i <= 1, i++)
-				var/obj/item/reagent_containers/food/snacks/hamburgerbun/B
-				B = new()
-				if(i == 0)
-					B.icon_state = "hamburger-bun-bottom"
-				B.set_loc(src.loc)
-			qdel(src)
-		..()
-
-
 /obj/item/reagent_containers/food/snacks/bagel
 	name = "bagel"
 	desc = "A lovely bread torus to snack on."
@@ -1941,17 +1885,6 @@
 	stage = 2
 	food_effects = list("food_energized_big", "food_warm")
 
-/obj/item/reagent_containers/food/snacks/cookedmeat
-	name = "cooked meat"
-	desc = "you're not really sure what kind of meat this is."
-	icon_state = "meat-grilled"
-	amount = 2
-	heal_amt = 3
-	food_color = "#999966"
-	initial_volume = 50
-	initial_reagents = list("cholesterol"=3)
-	food_effects = list("food_hp_up", "food_brute")
-
 /obj/item/reagent_containers/food/snacks/steak_h
 	name = "steak"
 	desc = "Made of people."
@@ -2373,15 +2306,6 @@
 	heal_amt = 1
 	food_color = "#d9db6c"
 	needfork = 1
-
-	attackby(obj/item/W, mob/user)
-		if (istype(W,/obj/item/reagent_containers/food/snacks/ingredient/cheese))
-			var/obj/item/reagent_containers/food/snacks/omelette/om = new()
-			om.set_loc(src)
-			om.pixel_x = src.pixel_x
-			om.pixel_y = src.pixel_y
-			qdel(src)
-		..()
 
 /obj/item/reagent_containers/food/snacks/eggsalad
 	name = "egg salad"

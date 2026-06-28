@@ -23,9 +23,6 @@
 	var/from_emagged_oven = 0 // to prevent re-rolling of food in emagged ovens
 	var/doants = 1
 	var/made_ants = 0
-	var/stackamt = 0 //for sandwiches and burgers
-	var/subjectname = ""
-	var/subjectjob = null
 	rc_flags = 0
 
 	New()
@@ -85,8 +82,6 @@
 		griddle_time -= 2.5 * mult
 		if (src.griddle_time <= 0)
 			var/obj/item/reagent_containers/food/f = new src.griddle_result
-			if (src.subjectname)
-				f.subjectname = subjectname
 			f.set_loc(src.loc)
 			f.pixel_x = src.pixel_x
 			f.pixel_y = src.pixel_y

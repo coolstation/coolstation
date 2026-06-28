@@ -1,8 +1,5 @@
 
 /obj/item/reagent_containers/food/snacks/sandwich/
-	name = "sandwich"
-	desc = "yum!"
-	icon_state = "sandwich_p"
 	icon = 'icons/obj/foodNdrink/food_bread.dmi'
 	amount = 4
 	heal_amt = 2
@@ -169,12 +166,6 @@
 			..()
 			reagents.add_reagent("honey", 10)
 
-/obj/item/reagent_containers/food/snacks/sandwich/custom_sub
-	name = "sub"
-	desc = "a sandwich made on a long piece of bread that's guarenteed to be soaked in grease."
-	icon_state = "banh-mi"
-	amount = 6
-
 /obj/item/reagent_containers/food/snacks/sandwich/mitraillette
 	name = "mitraillette"
 	desc = "A sandwich with meat, fries and sauce."
@@ -202,173 +193,6 @@
 		..()
 		if (src.throwing)
 			src.throwing = THROW_SANDWICH
-
-/obj/item/reagent_containers/food/snacks/hamburgerbun
-	name = "burger bun"
-	desc = "hot buns for your meat. And cheese. And toppings."
-	hint = "add toppings to it and throw another bun on it to complete the burger."
-	icon = 'icons/obj/foodNdrink/food.dmi'
-	icon_state = "hamburger-bun"
-	initial_volume = 10
-	var/hname = ""
-
-	heal_amt = 1
-	custom_food = 1
-	var/list/burgeritems = list()
-	var/max_items = 8 //push the limits
-
-	attackby(obj/item/W, mob/user, params)
-		if (istype(W,/obj/item/reagent_containers/food/snacks/hamburgerbun) || istype(W,/obj/item/clothing/head/butt) || istype(W,/obj/item/parts/robot_parts/head))
-			if (burgeritems.len >= 1)
-				src.finish_burger(W,user)
-			else
-				boutput(user,"<span class='notice'>This burger isn't finished yet!</span>")
-			return
-		if (istype(W,/obj/item/reagent_containers/food))
-			if (burgeritems.len < max_items)
-				src.add_contents(W,user,params)
-			else
-				boutput(user,"<span class='alert'>There's too much on [src] already!</span>")
-			return
-		..()
-
-	proc/add_contents(var/obj/item/reagent_containers/food/food,var/mob/user = null,var/params = null)
-		burgeritems += food
-		src.place_on(food,user,params)
-		food.set_loc(src)
-		src.vis_contents += food
-		food.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
-		food.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER | VIS_INHERIT_ID
-		food.event_handler_flags |= NO_MOUSEDROP_QOL
-		food.transform = matrix(matrix(0.7, 0.7, MATRIX_SCALE), rand(-10,10), MATRIX_ROTATE)
-
-		src.update_icon()
-		if (user)
-			user.visible_message("<span class='notice'>[user] puts [food] on [src].</span>")
-
-	proc/construct_name(var/name)
-		var/endstring = ""
-		if (burgeritems.len == 1)
-			var/obj/item/burgitem = burgeritems[1]
-			endstring = "[burgitem.name]"
-		var/i = 1
-		for (var/obj/item in burgeritems)
-			if (i == burgeritems.len - 1)
-				endstring += item.name + ", and "
-			else if (i == burgeritems.len)
-				endstring += item.name
-			else
-				endstring += item.name + ", "
-			i++
-		if (hname)
-			return "[hname] [src] with [endstring]"
-		else
-			return "[src] with [endstring]."
-
-	proc/search_for_ingredient(var/list/ingredients)
-		for (var/ingredient in ingredients)
-			var/required = ingredients[ingredient]
-
-			if(isnull(required))
-				required = 1
-			var/amt = 0
-
-			for(var/food in burgeritems)
-				if(istype(food,ingredient))
-					amt++
-			if (amt != required)
-				return false
-		return true
-
-	proc/finish_burger(var/obj/item/topbun,var/mob/user) //highway to the, gristle zone
-		var/obj/item/reagent_containers/food/snacks/burger/outputburg
-		var/uniqueingredients = 0 //if this goes above one, we just resort to a custom burger to avoid conflicts.
-
-		//burgers with only one defining ingredient go here
-		if (istype(topbun,/obj/item/parts/robot_parts/head))
-			outputburg = new /obj/item/reagent_containers/food/snacks/burger/roburger
-			uniqueingredients = 1
-		else if(istype(topbun,/obj/item/clothing/head/butt))
-			outputburg = new /obj/item/reagent_containers/food/snacks/burger/buttburger
-			uniqueingredients = 1
-		for (var/obj/item/reagent_containers/food/burgitem in burgeritems)
-			//if (burgitem.reagents.total_volume)
-				//burgitem.reagents.trans_to(topbun.reagents,burgitem.reagents.total_volume / burgeritems.len)
-			if (uniqueingredients < 1)
-				if (istype(burgitem,/obj/item/reagent_containers/food/snacks/ingredient/meat/humanmeat))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/humanburger
-					uniqueingredients += 1
-				if (istype(burgitem,/obj/item/reagent_containers/food/snacks/ingredient/meat/fish))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/fishburger
-					uniqueingredients += 1
-				if (istype(burgitem, /obj/item/reagent_containers/food/snacks/ingredient/meat/synthmeat))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/synthburger
-					uniqueingredients += 1
-				if (istype(burgitem,/obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat/nugget))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/chicken
-					uniqueingredients += 1
-				if (istype(burgitem,/obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat/nugget/spicy))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/chicken/spicy
-					uniqueingredients += 1
-				if (istype(burgitem,/obj/item/reagent_containers/food/snacks/ingredient/meat/mysterymeat))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/mysteryburger
-					uniqueingredients += 1
-				if (istype(burgitem, /obj/item/organ/heart))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/heartburger
-					uniqueingredients += 1
-				if (istype(burgitem, /obj/item/organ/brain))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/brainburger
-					uniqueingredients += 1
-				if (istype(burgitem, /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/baconburger
-					uniqueingredients += 1
-				if	(istype(burgitem, /obj/item/reagent_containers/food/snacks/ingredient/butter))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/butterburger
-					uniqueingredients += 1
-				if (istype(burgitem, /obj/item/reagent_containers/food/snacks/ground_beef))
-					outputburg = new /obj/item/reagent_containers/food/snacks/burger/sloppyjoe
-					uniqueingredients += 1
-
-			if (burgitem.subjectname)
-				src.hname = burgitem.subjectname
-
-		//BURGERS with multiple ingredients go down here
-		if (uniqueingredients <= 0)
-			if (!outputburg && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon)))
-				outputburg = new /obj/item/reagent_containers/food/snacks/burger/baconburger
-				uniqueingredients += 1
-			if (!outputburg && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/patty = 2,/obj/item/reagent_containers/food/snacks/ingredient/cheese)))
-				outputburg = new /obj/item/reagent_containers/food/snacks/burger/bigburger
-				uniqueingredients += 1
-			if (!outputburg && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/patty,/obj/item/reagent_containers/food/snacks/ingredient/cheese=6)))
-				outputburg = new /obj/item/reagent_containers/food/snacks/burger/camembert
-				uniqueingredients += 1
-			if (!outputburg && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/patty,/obj/item/reagent_containers/food/snacks/ingredient/cheese)))
-				outputburg = new /obj/item/reagent_containers/food/snacks/burger/cheeseburger
-				uniqueingredients += 1
-			if (!outputburg && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/patty,/obj/item/reagent_containers/food/snacks/plant/pineappleslice)))
-				outputburg = new /obj/item/reagent_containers/food/snacks/burger/luauburger
-				uniqueingredients += 1
-			if (!outputburg && search_for_ingredient(list(/obj/item/reagent_containers/food/snacks/patty,/obj/item/reagent_containers/food/snacks/plant/pineappleslice,/obj/item/reagent_containers/food/snacks/plant/coconutmeat)))
-				outputburg = new /obj/item/reagent_containers/food/snacks/burger/tikiburger
-				uniqueingredients += 1
-
-		if (!outputburg)
-			outputburg = new /obj/item/reagent_containers/food/snacks/burger
-		if (uniqueingredients < 1)
-			outputburg.name = src.construct_name(outputburg.name)
-		outputburg.set_loc(src.loc)
-		if (istype(topbun,/obj/item/reagent_containers))
-			var/obj/item/reagent_containers/rc = topbun
-			if(rc.reagents)
-				rc.reagents.trans_to(outputburg.reagents,rc.reagents.total_volume)
-		src.visible_message("[user] places [topbun] on [src], creating a \the[outputburg]!")
-		user.u_equip(src)
-		user.put_in_hand_or_drop(outputburg)
-		JOB_XP(user,"chef",src.burgeritems.len)
-		qdel(topbun)
-		qdel(src)
-
 
 /obj/item/reagent_containers/food/snacks/burger
 	name = "burger"

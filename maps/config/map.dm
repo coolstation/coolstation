@@ -85,6 +85,9 @@
 #elif defined(MAP_OVERRIDE_BAYOUBEND)
 #include "bayoubend.dm"
 
+#elif defined(MAP_OVERRIDE_KATEMAP)
+#include "katemap.dm"
+
 #elif defined(MAP_OVERRIDE_SUMMIT)
 #include "summit.dm"
 
