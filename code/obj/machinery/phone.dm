@@ -357,6 +357,7 @@
 		processing_items.Add(src)
 
 	disposing()
+		qdel(parent) //i'll make it possible to create handsets to connect to orphaned phones later
 		parent = null
 		holder = null
 		processing_items.Remove(src)
