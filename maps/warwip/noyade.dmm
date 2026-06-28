@@ -2881,6 +2881,7 @@
 /area/station/science/lab)
 "cWZ" = (
 /obj/machinery/bot/firebot,
+/obj/machinery/bot/firebot,
 /turf/floor,
 /area/station/engine/storage)
 "cXA" = (
@@ -3758,6 +3759,7 @@
 "dOo" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/box/cablesbox/yellow,
+/obj/item/storage/toolbox/electrical,
 /turf/floor,
 /area/station/engine/storage)
 "dOt" = (
@@ -5701,6 +5703,12 @@
 /obj/machinery/light/small,
 /turf/floor/plating,
 /area/station/maintenance/outer/sw)
+"fAN" = (
+/obj/table/auto,
+/turf/floor/specialroom/bar{
+	icon_state = "floorgrime_gb2"
+	},
+/area/station/crew_quarters/bar)
 "fAP" = (
 /obj/machinery/manufacturer/mechanic,
 /obj/machinery/recharger/wall{
@@ -12989,7 +12997,11 @@
 /obj/disposalpipe/segment/mail{
 	dir = 4
 	},
-/obj/item/storage/toolbox/electrical,
+/obj/machinery/floor_charger,
+/obj/reagent_dispensers/powerbank,
+/obj/item/plasma_cutter{
+	pixel_x = -17
+	},
 /turf/floor,
 /area/station/engine/storage)
 "mBe" = (
@@ -13444,6 +13456,13 @@
 	},
 /turf/floor/carpet/grime3,
 /area/station/engine/engineering/breakroom)
+"mUz" = (
+/obj/machinery/griddle,
+/obj/item/kitchen/utensil/spatula,
+/turf/floor/specialroom/bar{
+	icon_state = "floorgrime_gb2"
+	},
+/area/station/crew_quarters/bar)
 "mUB" = (
 /obj/cable/hotpink{
 	icon_state = "1-8"
@@ -23362,6 +23381,7 @@
 "wiU" = (
 /obj/table/auto,
 /obj/item/storage/belt/medical,
+/obj/item/clothing/suit/bio_suit/paramedic,
 /turf/floor,
 /area/station/medical/medbay/surgery/storage)
 "wiV" = (
@@ -65718,7 +65738,7 @@ ogb
 tkP
 loK
 nJY
-wWD
+mUz
 jiy
 edG
 edG
@@ -66019,8 +66039,8 @@ epz
 vrs
 lLu
 jVw
-cae
-qSS
+wWD
+fAN
 dyc
 foG
 edG
@@ -66323,8 +66343,8 @@ tEk
 jVw
 jVw
 jVw
-jVw
-jVw
+cae
+qSS
 edG
 qXJ
 raN

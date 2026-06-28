@@ -148,6 +148,7 @@ ABSTRACT_TYPE(/obj/item/circuitboard)
 /obj/item/circuitboard/transit_terminal
 	name = "Circuit board (Transit Terminal)"
 	computertype = "/obj/machinery/computer/transit_terminal"
+	var/vehicle_id
 
 /obj/computerframe/meteorhit(obj/O as obj)
 	qdel(src)
@@ -231,6 +232,10 @@ ABSTRACT_TYPE(/obj/item/circuitboard)
 				playsound(src.loc, "sound/items/Screwdriver.ogg", 50, 1)
 				boutput(user, "<span class='notice'>You connect the monitor.</span>")
 				var/obj/machinery/computer/B = new src.circuit.computertype ( src.loc )
+				if (istype(B,/obj/machinery/computer/transit_terminal) && istype(src.circuit,/obj/item/circuitboard/transit_terminal))
+					var/obj/machinery/computer/transit_terminal/tt = B
+					var/obj/item/circuitboard/transit_terminal/cbtt = src.circuit
+					tt.vehicle_id = cbtt.vehicle_id
 				B.set_dir(src.dir)
 				if (circuit.powernet)
 					B.powernet = circuit.powernet

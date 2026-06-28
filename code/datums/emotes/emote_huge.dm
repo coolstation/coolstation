@@ -887,8 +887,10 @@ So if shit breaks, that's why. I excised about 2k lines into all these emote dat
 				message = "<B>[user]</B> unzips [his_or_her(user)] pants but, try as [he_or_she(user)] might, [he_or_she(user)] can't pee in the toilet!"
 		else if (user.urine < 5)
 			message = "<B>[user]</B> pees [himself_or_herself(user)] a little bit."
+			user.add_karma(-3)
 		else
 			user.urinate()
+			user.add_karma(-6)
 	return list(message, null, MESSAGE_VISIBLE)
 
 

@@ -33,9 +33,14 @@
 				if("Yes")
 					src << link("https://github.com/coolstation/coolstation/issues/new?template=bug_report.md")
 				if("No")
+				/*
 					var/details_body = {"**Describe+the+bug**%0AA+clear+and+concise+description+of+what+the+bug+is.%0A%0A**To+Reproduce**%0ASteps+to+reproduce+the+behavior:%0A1.+Buy+a+Pizza+from+a+vending+machine%0A2.+Eat+the+pizza%0A3.+The+pizza+has+not+disappeared%0A4.+See+error%0A%0A**Expected+behavior**%0AA+clear+and+concise+description+of+what+you+expected+to+happen.%0A%0A**Screenshots**%0AIf+applicable,+add+screenshots+to+help+explain+your+problem.%0A%0A**Additional+context**%0AAdd+any+other+context+about+the+problem+here.%0A%0A"}
 					var/url = {"https://gitreports.com/issue/coolstation/coolstation?email_public=0&name=[src.ckey]&details=[details_body]%0AReported on: [config.server_name]+[time2text(world.realtime, "YYYY-MM-DD")]+[time2text(world.timeofday, "hh:mm:ss")]"}
 					src << link(url)
+				*/
+					switch (alert(src, "Sorry, this is temporarily disabled. If you don't want to make a github account, please report the bug on the discord.",,"okay cool")) //gitreports has been dead for a long time
+						if ("okay cool")
+							return
 				if("Cancel")
 					return
 

@@ -16,6 +16,7 @@
 	heal_amt = 0
 	custom_food = 1
 	value = 50 //base commodity price
+	griddle_result = /obj/item/reagent_containers/food/snacks/cookedmeat
 	var/blood = 7 //how much blood cleanables we are allowed to spawn
 
 	heal(var/mob/living/M)
@@ -39,8 +40,6 @@
 	desc = "A slab of meat."
 	value = -500 //should fine you for selling to most people
 	alt_value = 500 //a certain delicacy...
-	var/subjectname = ""
-	var/subjectjob = null
 	amount = 1
 	griddle_result = /obj/item/reagent_containers/food/snacks/steak_h
 
@@ -867,6 +866,15 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
 			user.put_in_hand_or_drop(D)
 			qdel(W)
 			qdel(src)
+		if (istool(W, TOOL_CUTTING | TOOL_SAWING))
+			boutput(user, "<span class='notice'>You cut the [src] into two pieces.</span>")
+			if (prob(25))
+				JOB_XP(user,"chef",1)
+			for (var/i=0, i <= 2, i++)
+				var/obj/item/reagent_containers/food/snacks/ingredient/dough_round/D = new()
+				D.set_loc(src.loc)
+			qdel(src)
+
 		else ..()
 
 	attack_self(var/mob/user as mob)
@@ -887,6 +895,26 @@ ABSTRACT_TYPE(/datum/contextAction/fiddle/meatpaste/synth)
 	food_color = "#FFFFF"
 	custom_food = 0
 	value = -1 //standard for used but not completed ingredients
+
+/obj/item/reagent_containers/food/snacks/ingredient/dough_round
+	name = "dough round"
+	desc = "a little lump of dough. Part of the burger pipeline."
+	icon_state = "dough-round"
+	amount = 1
+	food_color = "#FFFFF"
+	value = -1
+	custom_food = 0
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (istype(W, /obj/item/reagent_containers/food/snacks/ingredient/dough_round))
+			boutput(user, "<span class='notice'>You attach the [src]s back together to make a piece of dough.</span>")
+			if (prob(25))
+				JOB_XP(user, "Chef", 1)
+			var/obj/item/reagent_containers/food/snacks/ingredient/dough_strip/D = new /obj/item/reagent_containers/food/snacks/ingredient/dough_strip(W.loc)
+			user.u_equip(W)
+			user.put_in_hand_or_drop(D)
+			qdel(W)
+			qdel(src)
 
 /obj/item/reagent_containers/food/snacks/ingredient/holey_dough
 	name = "holey dough" //+1 to chaplain magic skills

@@ -5613,10 +5613,10 @@
 /turf/floor/plating,
 /area/station/crew_quarters/bar)
 "oH" = (
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northwest,
 /obj/landmark/start{
 	name = "Cargo Technician"
 	},
-/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/northwest,
 /turf/floor/cautionblack/side,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -6467,6 +6467,10 @@
 "qR" = (
 /turf/space/gehenna/desert,
 /area/shuttle/escape/station/cogmap2)
+"qS" = (
+/obj/machinery/navbeacon/mule/medbay_north/west,
+/turf/floor/white,
+/area/station/medical/medbay/surgery)
 "qT" = (
 /obj/cable{
 	icon_state = "1-2"
@@ -7288,6 +7292,7 @@
 "ta" = (
 /obj/machinery/light/fluorescent/ceiling,
 /obj/decal/cleanable/tracked_reagents/blood,
+/obj/machinery/navbeacon/mule/cafeteria_north/west,
 /turf/floor/blackwhite/whitegrime,
 /area/station/crew_quarters/kitchen)
 "tb" = (
@@ -10068,6 +10073,7 @@
 	},
 /area/transit_vehicle/elevator/eng_top)
 "Aj" = (
+/obj/machinery/navbeacon/mule/research_north/south,
 /turf/floor/purple/corner{
 	dir = 4
 	},
@@ -10891,6 +10897,9 @@
 /area/station/hallway/secondary/south)
 "Cz" = (
 /obj/grille/catwalk/jen,
+/obj/machinery/computer/transit_terminal/cargo{
+	dir = 8
+	},
 /turf/floor/plating,
 /area/station/quartermaster/cargooffice/idk_another_one{
 	icon_state = "quart";
@@ -14316,6 +14325,7 @@
 /obj/machinery/bot/mulebot,
 /obj/decal/mule/dropoff,
 /obj/decal/cleanable/dirt,
+/obj/machinery/navbeacon/mule/QM1_north,
 /turf/floor/cautionblack/side{
 	dir = 8
 	},
@@ -15378,10 +15388,10 @@
 	name = "Cargo Bay"
 	})
 "Or" = (
-/obj/machinery/computer/transit_terminal/cargo{
+/obj/decal/cleanable/robot_debris,
+/obj/machinery/computer/supplycomp{
 	dir = 8
 	},
-/obj/decal/cleanable/robot_debris,
 /turf/floor/cautionblack/side{
 	dir = 6
 	},
@@ -16625,6 +16635,14 @@
 /obj/window_blinds/left,
 /turf/floor/plating,
 /area/station/chapel/office)
+"RG" = (
+/obj/machinery/floor_charger,
+/obj/reagent_dispensers/powerbank,
+/obj/item/plasma_cutter{
+	pixel_x = -17
+	},
+/turf/floor,
+/area/station/engine/elect)
 "RH" = (
 /obj/machinery/light_switch/south,
 /turf/floor,
@@ -17675,6 +17693,7 @@
 /area/station/crew_quarters/kitchen)
 "Ut" = (
 /obj/machinery/light/fluorescent/ceiling,
+/obj/machinery/navbeacon/mule/hydroponics_north,
 /turf/floor/green,
 /area/station/hydroponics/lobby)
 "Uu" = (
@@ -51977,7 +51996,7 @@ KW
 Cu
 eB
 Xn
-JT
+qS
 Np
 Me
 JT
@@ -72212,7 +72231,7 @@ qV
 aJ
 kE
 EL
-tW
+RG
 ls
 NK
 bW
