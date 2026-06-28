@@ -36,6 +36,7 @@
 		light.set_brightness(0.8)
 		src.spin_sprite = new /image(src.icon,"ggen-spin")
 		src.tank_sprite = new /image(src.icon,"ggen-tank")
+		setup_sound()
 
 	attackby(obj/item/W, mob/user)
 		if (istype(W, /obj/item/tank/))
@@ -70,9 +71,12 @@
 
 		if (src.active)
 			src.UpdateOverlays(spin_sprite, "spin")
+			if(!src.sound_emitter.active_sound)
+				src.sound_emitter.play("engine")
 			light.enable()
 		else
 			src.UpdateOverlays(null, "spin")
+			src.sound_emitter.deactivate()
 			light.disable()
 
 		if (src.P)
@@ -356,3 +360,12 @@
 
 		src.updateUsrDialog()
 		return
+
+	setup_sound()
+		sound_emitter = new(src)
+		if (sound_emitter)
+			var/sound/engine = sound()
+			engine.file = "sound/machines/generator_loop.ogg"
+			engine.repeat = 1
+			engine.volume = 20
+			sound_emitter.add(engine, "engine")
