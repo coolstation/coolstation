@@ -19,6 +19,7 @@
 #define HEAD_FLASHY 17
 #define HEAD_FERT 18
 #define HEAD_BIRD 19
+#define HEAD_RODENTIA 20
 
 //tail defines
 #define TAIL_NONE 0
@@ -33,6 +34,7 @@
 #define TAIL_FERT 9
 #define TAIL_BIRD 10
 #define TAIL_CATTAIL 11 //i'm so funny
+#define TAIL_RODENTIA 12
 
 /// appearanceholder color vars. Tells mutant races to stick this color into the specified special hair / limb overlay color slot
 #define CUST_1 1
