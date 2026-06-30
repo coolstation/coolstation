@@ -655,6 +655,202 @@ input:checked + div { display: block; }
 
 	return oven_recipe_html
 
+/obj/machinery/griddle
+	name = "griddle"
+	desc = "A grease covered surface that, when turned on, cooks food placed on it."
+	icon = 'icons/obj/foodNdrink/kitchen.dmi'
+	icon_state = "griddle-on"
+	anchored = ANCHORED
+	density = 1
+	mats = 15
+	deconstruct_flags = DECON_WRENCH | DECON_CROWBAR | DECON_WELDER
+
+	var/emagged = false
+	var/working = true
+	var/on = true
+	var/list/griddleitems = list()
+	var/max_items = 8
+
+
+	//todo: custom suicide
+
+	New()
+		setup_sound()
+		..()
+
+	attack_hand(mob/user as mob)
+		if (user.traitHolder.hasTrait("hardcore"))
+			user.TakeDamage("All",0,10,0,DAMAGE_BURN,1)
+			boutput(user,"<span class='alert'>You burn your hand, but since you're not a wuss you wince and keep your hand on the griddle.</span>")
+		else
+			user.TakeDamage("All",0,5,0,DAMAGE_BURN,1)
+			boutput(user,"<span class='alert'><B>you burn the shit out of your hand on the griddle!</B></span>")
+			user.emote("scream")
+		playsound(src,"sound/impact_sounds/burn_sizzle.ogg",50)
+
+	attackby(obj/item/I, mob/user,params)
+		//check for decon and all the shit whatever man
+		if (istype(I, /obj/item/reagent_containers/food/snacks/ingredient/egg))
+			playsound(src,"sound/effects/eggshell.ogg",30)
+			JOB_XP(user, "chef", 1)
+			var/obj/item/reagent_containers/food/snacks/ingredient/egg/raw/egg = new()
+			egg.set_loc(I.loc)
+			user.u_equip(I)
+			new /obj/decal/cleanable/eggshell(user.loc)
+			qdel(I)
+			add_contents(egg,user,params)
+			return
+		if (istype(I,/obj/item/grab))
+			var/obj/item/grab/grab = I
+			if (grab.state >= 1)
+				actions.start(new/datum/action/bar/griddle_face(src,grab.affecting,grab.assailant,grab),grab.assailant)
+				return
+		if (!istype(I,/obj/item/reagent_containers/glass))
+			add_contents(I,user,params)
+		..()
+
+	reagent_act(reagent_id, volume)
+		if (reagent_id == "egg" && volume >= 5)
+			for(var/eggs in 1 to floor(volume) step 5)
+				var/obj/item/reagent_containers/food/snacks/ingredient/egg/raw/scrambled/egg = new()
+				egg.pixel_x = rand(16,-16)
+				egg.pixel_y = rand(16,-16)
+				add_contents(egg)
+			src.visible_message("<span class='notice'>The eggs begin to scramble on [src].</span>")
+
+		if (reagent_id == "batter" && volume >= 5)
+			for(var/pancakes in 1 to floor(volume) step 5)
+				var/obj/item/reagent_containers/food/snacks/ingredient/rawpancake/pc = new()
+				pc.pixel_x = rand(16,-16)
+				pc.pixel_y = rand(16,-16)
+				add_contents(pc)
+			src.visible_message("<span class='notice'>The batter starts to cook on [src].</span>")
+		..()
+
+	process(mult)
+		if (on && working)
+			if (griddleitems.len > 0)
+				for (var/obj/item/food in src.griddleitems)
+					if (istype(food,/obj/item/reagent_containers/food))
+						var/obj/item/reagent_containers/food/afood = food
+						afood.griddle_cook(src,mult)
+				if(!src.sound_emitter.active_sound)
+					src.sound_emitter.play("sizzle")
+			else
+				src.sound_emitter.deactivate()
+		else
+			src.sound_emitter.deactivate()
+		var/turf/location = src.loc
+		location = get_turf(src.loc)
+
+		location?.hotspot_expose((isturf(location) ? 3000 : 4000),2000)
+		..()
+
+
+	setup_sound()
+		sound_emitter = new(src)
+		if (sound_emitter)
+			var/sound/sizzle = sound()
+			sizzle.file = "sound/misc/sizzleloop.ogg"
+			sizzle.repeat = 1
+			sizzle.volume = 20
+			sound_emitter.add(sizzle, "sizzle")
+
+	proc/toggle_status()
+		if (on)
+			on = false
+			icon_state = "griddle-off"
+		else
+			on = true
+			icon_state = "griddle-on"
+
+	proc/add_contents(obj/item/food,mob/user = null,params = null)
+		griddleitems += food
+		src.place_on(food,user,params,16)
+		food.set_loc(src)
+		src.vis_contents += food
+		food.appearance_flags |= RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+		food.vis_flags |= VIS_INHERIT_PLANE | VIS_INHERIT_LAYER
+		food.event_handler_flags |= NO_MOUSEDROP_QOL
+		src.update_icon()
+		if (user)
+			boutput(user,"<span class='notice'>You place [food] on [src].</span>")
+		if(!src.sound_emitter.active_sound)
+			src.sound_emitter.play("sizzle")
+		RegisterSignal(food, COMSIG_MOVABLE_SET_LOC, PROC_REF(remove_contents))
+		RegisterSignal(food, COMSIG_ATTACKHAND, PROC_REF(remove_contents))
+
+	proc/remove_contents(obj/item/food)
+		src.vis_contents -= food
+		griddleitems -= food
+		food.appearance_flags = initial(food.appearance_flags)
+		food.vis_flags = initial(food.vis_flags)
+		food.event_handler_flags = initial(food.event_handler_flags)
+		if (griddleitems.len <= 0)
+			src.sound_emitter.deactivate()
+		src.update_icon()
+		UnregisterSignal(food, COMSIG_MOVABLE_SET_LOC)
+		UnregisterSignal(food, COMSIG_ATTACKHAND)
+
+/datum/action/bar/griddle_face
+	duration = 3 SECONDS
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_STUNNED
+	var/obj/machinery/griddle/griddle
+	var/mob/victim
+	var/mob/source
+	var/obj/item/grab/grab
+	var/damage = 10
+
+	New(var/obj/machinery/griddle/gr,var/mob/vi,var/mob/so,var/obj/item/gra)
+		griddle = gr
+		victim = vi
+		source = so
+		grab = gra
+		..()
+
+	onStart()
+		if (!griddle.sound_emitter.active_sound)
+			griddle.sound_emitter.play("sizzle")
+		source.visible_message("<span class='alert'><b>[source] shoves [victim]'s face in [griddle]!</b></span>")
+		boutput(victim,"<span class='alert'><B>Your face is shoved into [griddle]!</B></span>")
+		victim.emote("scream")
+		victim.TakeDamage("head",0,damage,0,DAMAGE_BURN,1)
+		logTheThing("combat", source, victim, "shoves [constructTarget(victim,"combat")] into [griddle] at [log_loc(source)].")
+		..()
+
+
+	onUpdate()
+		if (get_dist(source,griddle) > 1 || griddle == null || victim == null)
+			interrupt(INTERRUPT_ALWAYS)
+		if (!istype(source.r_hand,/obj/item/grab) && !istype(source.l_hand,/obj/item/grab) || grab?.state < 1)
+			interrupt(INTERRUPT_ALWAYS)
+		if (!griddle.sound_emitter.active_sound)
+			griddle.sound_emitter.play("sizzle")
+		..()
+
+	onInterrupt(flag)
+		griddle.sound_emitter.deactivate()
+		..()
+
+	loopStart()
+		victim.emote("scream")
+		victim.TakeDamage("head",0,damage * 2,0,DAMAGE_BURN,1)
+		logTheThing("combat", source, victim, "shoves [constructTarget(victim,"combat")] into [griddle] at [log_loc(source)].")
+		boutput(victim,"<span class='alert'><B>[griddle] sears your face!</B></span>")
+		..()
+
+	onEnd()
+		if (get_dist(source,griddle) > 1 || griddle == null || victim == null || grab.state < 1)
+			..()
+			interrupt(INTERRUPT_ALWAYS)
+			griddle.sound_emitter.deactivate()
+			return
+		src.onRestart()
+
+
+
+
+
 /obj/submachine/chef_oven
 	name = "oven"
 	desc = "A multi-cooking unit featuring a hob, grill, oven and more."

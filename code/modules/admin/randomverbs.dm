@@ -2221,6 +2221,8 @@ var/global/night_mode_enabled = 0
 		L += H
 	return L
 
+//2026-4-5 This has long been superceded by Modify Parts (/client/proc/modify_parts), which has a basic UI instead of a dialog box phone tree.
+/*
 /client/proc/modify_organs(var/mob/living/carbon/human/H as mob in list_humans())
 	set name = "Modify Organs"
 	SET_ADMIN_CAT(ADMIN_CAT_UNUSED)
@@ -2334,7 +2336,7 @@ var/global/night_mode_enabled = 0
 				logTheThing("diary", usr, H, "deleted [constructTarget(H,"diary")]'s [lowertext(organ)]", "admin")
 			else
 				return
-	return
+	return*/
 
 /client/proc/display_bomb_monitor()
 	set name = "Display Bomb Monitor"

@@ -660,7 +660,7 @@
 	if (!src.anchored)
 		click_drag_tk(over_object, src_location, over_location, over_control, params)
 
-	if (usr.stat || usr.restrained() || !can_reach(usr, src) || usr.getStatusDuration("paralysis") || usr.sleeping || usr.lying || isAIeye(usr) || isAI(usr) || isrobot(usr) || isghostcritter(usr) || (over_object && over_object.event_handler_flags & NO_MOUSEDROP_QOL))
+	if (usr.stat || usr.restrained() || !can_reach(usr, src) || usr.getStatusDuration("paralysis") || usr.sleeping || isAIeye(usr) || isAI(usr) || isrobot(usr) || isghostcritter(usr) || (over_object && over_object.event_handler_flags & NO_MOUSEDROP_QOL))
 		return
 
 	var/on_turf = isturf(src.loc)
@@ -866,9 +866,9 @@
 		if (src.health <= 0)
 			STOP_TRACKING_CAT(TR_CAT_BURNING_ITEMS)
 			if (burn_type == 1)
-				make_cleanable( /obj/decal/cleanable/molten_item,get_turf(src))
+				new  /obj/decal/cleanable/molten_item(get_turf(src))
 			else
-				make_cleanable( /obj/decal/cleanable/ash,get_turf(src))
+				new  /obj/decal/cleanable/ash(get_turf(src))
 
 			if (istype(src,/obj/item/parts/human_parts))
 				src:holder = null

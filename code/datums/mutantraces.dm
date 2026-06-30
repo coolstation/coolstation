@@ -1071,7 +1071,7 @@
 		blood_points = max(0,blood_points)
 		cleanable_tally += (prev_blood - blood_points)
 		if (cleanable_tally > 20)
-			make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,get_turf(mob))
+			new /obj/decal/cleanable/tracked_reagents/blood(get_turf(mob))
 			cleanable_tally = 0
 
 		mob.max_health = blood_points * blood_to_health_scalar
@@ -1688,7 +1688,7 @@
 			mob.blood_color = "#22EE99"
 			M.bioHolder.AddEffect("mattereater")
 			M.bioHolder.AddEffect("jumpy")
-			M.bioHolder.AddEffect("vowelitis")
+			//M.bioHolder.AddEffect("vowelitis")
 			M.bioHolder.AddEffect("accent_brummie")
 
 
@@ -1698,7 +1698,7 @@
 				mob.blood_color = original_blood_color
 				mob.bioHolder.RemoveEffect("mattereater")
 				mob.bioHolder.RemoveEffect("jumpy")
-				mob.bioHolder.RemoveEffect("vowelitis")
+				//mob.bioHolder.RemoveEffect("vowelitis")
 				mob.bioHolder.RemoveEffect("accent_brummie")
 		original_blood_color = null
 		..()

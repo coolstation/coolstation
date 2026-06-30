@@ -906,7 +906,7 @@
 	ai_think()
 		if(!locate(/obj/decal/cleanable/tracked_reagents/blood) in src.loc)
 			playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 50, 1, SOUND_RANGE_STANDARD)
-			make_cleanable( /obj/decal/cleanable/tracked_reagents/blood,loc)
+			new  /obj/decal/cleanable/tracked_reagents/blood(loc)
 		return ..()
 
 /obj/critter/blobman
@@ -1605,6 +1605,6 @@
 	CritterDeath()
 		..()
 		playsound(src.loc, "sound/impact_sounds/Slimy_Splat_1.ogg", 100, 1)
-		make_cleanable(/obj/decal/cleanable/tracked_reagents/blood,src.loc)
+		new /obj/decal/cleanable/tracked_reagents/blood(src.loc)
 		qdel (src)
 

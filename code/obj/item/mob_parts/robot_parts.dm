@@ -132,7 +132,7 @@
 			else
 				src.visible_message("<b>[src]</b> breaks!")
 				playsound(src, "sound/impact_sounds/Metal_Hit_Light_1.ogg", 40, 1)
-				if (istype(src.loc,/turf/)) make_cleanable( /obj/decal/cleanable/robot_debris/limb,src.loc)
+				if (istype(src.loc,/turf/)) new  /obj/decal/cleanable/robot_debris/limb(src.loc)
 				del(src)
 				return 0
 		return 0

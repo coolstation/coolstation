@@ -409,7 +409,7 @@ Returns:
 			currentIcon = icon(M.icon)
 			currentDecal.icon = currentIcon
 		else
-			currentDecal = make_cleanable(/obj/decal/cleanable/markerdrawing,startingLoc)
+			currentDecal = new /obj/decal/cleanable/markerdrawing(startingLoc)
 			currentIcon = icon('icons/effects/effects.dmi', "nothing")
 			currentDecal.icon = currentIcon
 		if(!currentDecal.arteests.Find(usr))

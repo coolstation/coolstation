@@ -56,6 +56,10 @@
 					A.state = 4
 					A.icon_state = "4"
 				var/obj/item/circuitboard/M = new src.circuit_type(A)
+				if (istype(src,/obj/machinery/computer/transit_terminal) && istype(M,/obj/item/circuitboard/transit_terminal))
+					var/obj/machinery/computer/transit_terminal/tt = src
+					var/obj/item/circuitboard/transit_terminal/cbtt = M //torture
+					cbtt.vehicle_id = tt.vehicle_id
 				if (src.material)
 					A.setMaterial(src.material)
 				for (var/obj/C in src)

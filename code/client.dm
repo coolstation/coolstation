@@ -1111,7 +1111,7 @@ var/global/curr_day = null
 		sleep(0.1 SECONDS)
 
 /client/Topic(href, href_list, hsrc = null) //hsrc is the referenced atom from /client/verb/windowclose as set by proc/onclose
-	if (!usr || isnull(usr.client))
+	if (!usr || isnull(usr.client) || usr.client != src)
 		return
 
 	// Tgui Topic middleware

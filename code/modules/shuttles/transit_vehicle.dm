@@ -385,6 +385,12 @@ ABSTRACT_TYPE(/datum/transit_vehicle/elevator)
 				qdel(src)
 				return
 
+	attack_hand(mob/user)
+		if (!vehicle_id)
+			boutput(user,"<span class='alert'>[src] has no vehicle ID.</span>") //give it a second
+			return
+		..()
+
 	ui_status(mob/user, datum/ui_state/state)
 		. = min(
 			..(),

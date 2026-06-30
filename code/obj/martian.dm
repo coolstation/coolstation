@@ -37,9 +37,10 @@
 				boutput(user, "<span class='alert'><B>You fail to break free!</B></span>")
 				sleep(1 SECONDS)
 				playsound(src.loc, "sound/voice/burp_alien.ogg", 50, 1)
-				var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib =make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs/core, src.loc )
+				var/mob/living/L = user //As best as I can tell non-living things are barred from these anyway
+				var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = new /obj/decal/cleanable/tracked_reagents/blood/gibs/core(src.loc, L.organHolder?.spleen?.blood_id, L.bioHolder?.mobAppearance?.s_tone)
 				gib.streak_cleanable(src.dir)
-				gib = make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs, src.loc )
+				gib = new /obj/decal/cleanable/tracked_reagents/blood/gibs(src.loc, L.organHolder?.spleen?.blood_id, L.bioHolder?.mobAppearance?.s_tone)
 				gib.streak_cleanable(src.dir)
 				if (ishuman(user))
 					var/mob/living/carbon/human/H = user
@@ -55,18 +56,18 @@
 				boutput(user, "<span class='alert'>You manage to pull out your hand!</span>")
 				user.changeStatus("stunned", -10 SECONDS)
 				user.TakeDamage("All", 20, 0, DAMAGE_STAB)
-				var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib =make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs, src.loc )
+				var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = new (src.loc) //probably not the user's gibs?
 				gib.streak_cleanable(user.dir)
 
 	else if(prob(60))
 		boutput(user, "<span class='alert'>You pull something out!</span>")
 		var/itemtype = pick(/obj/item/reagent_containers/glass/wateringcan/artifact,/obj/item/artifact/forcewall_wand,/obj/item/strange_candle,/obj/critter/cat,/obj/item/skull,/obj/item/gnomechompski,/obj/item/bat,/obj/critter/meatslinky,/obj/item/paint_can,/obj/item/mine/stun)
 		new itemtype(src.loc)
-		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib =make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs, src.loc )
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = new(src.loc)
 		gib.streak_cleanable(user.dir)
 	else
 		boutput(user, "<span class='alert'>There doesn't appear to be anything inside</span>")
-		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib =make_cleanable( /obj/decal/cleanable/tracked_reagents/blood/gibs, src.loc )
+		var/obj/decal/cleanable/tracked_reagents/blood/gibs/gib = new (src.loc)
 		gib.streak_cleanable(user.dir)
 	icon_state = "crevice1"
 	used = 1

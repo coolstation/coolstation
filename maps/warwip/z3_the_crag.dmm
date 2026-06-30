@@ -1078,7 +1078,7 @@
 /obj/table/auto{
 	pixel_y = 3
 	},
-/obj/shitty_radio/shitty_tv{
+/obj/tuneable_receiver/teevee{
 	pixel_y = 9
 	},
 /obj/machinery/recharger/wall{
@@ -6620,6 +6620,8 @@
 /obj/machinery/light/fluorescent/cool/very{
 	dir = 8
 	},
+/obj/item/clothing/suit/bio_suit/paramedic,
+/obj/storage/closet/medicalclothes,
 /turf/floor/bluewhite{
 	dir = 8
 	},
@@ -9178,6 +9180,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
+/obj/machinery/navbeacon/mule/engineering_north/south,
 /turf/floor/grime,
 /area/station/engine/hotloop)
 "DY" = (
@@ -9909,6 +9912,7 @@
 /obj/disposalpipe/segment/sewage{
 	dir = 4
 	},
+/obj/machinery/navbeacon/mule/security_north,
 /turf/floor/red/side,
 /area/station/security/main)
 "Gf" = (
@@ -12087,6 +12091,7 @@
 	tag = ""
 	},
 /obj/machinery/light/fluorescent/ceiling/yellowish,
+/obj/machinery/navbeacon/mule/bridge_north,
 /turf/floor/grey,
 /area/station/bridge)
 "NK" = (
@@ -12677,7 +12682,7 @@
 	pixel_y = 30
 	},
 /obj/decal/cleanable/dirt/random,
-/obj/shitty_radio/shitty_tv{
+/obj/tuneable_receiver/teevee{
 	pixel_x = 33;
 	pixel_y = 12
 	},

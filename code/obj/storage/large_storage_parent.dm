@@ -326,7 +326,7 @@
 
 	MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
 		var/turf/T = get_turf(src)
-		if (!in_interact_range(user, src) || !in_interact_range(user, O) || user.restrained() || user.getStatusDuration("paralysis") || user.sleeping || user.stat || user.lying || isAI(user))
+		if (!in_interact_range(user, src) || !in_interact_range(user, O) || user.restrained() || user.getStatusDuration("paralysis") || user.getStatusDuration("weakened") || user.sleeping || user.stat || isAI(user))
 			return
 
 		if (!src.is_acceptable_content(O))
@@ -479,7 +479,7 @@
 		return
 
 	proc/is_acceptable_content(var/atom/movable/A)
-		if (!istype(A) || A.flags & (TECHNICAL_ATOM | CANT_FIT_IN_CRATES) || A.density || A.anchored || A == src)
+		if (!istype(A) || A.flags & (TECHNICAL_ATOM | CANT_FIT_IN_CRATES) || (isobj(A) && A.density) || A.anchored || A == src)
 			return FALSE
 		return TRUE
 
@@ -663,7 +663,7 @@
 			src.dump_contents()
 			SPAWN_DBG(1 DECI SECOND)
 				var/newloc = get_turf(src)
-				make_cleanable( /obj/decal/cleanable/machine_debris,newloc)
+				new  /obj/decal/cleanable/machine_debris(newloc)
 				qdel(src)
 
 	proc/weld(var/shut = 0, var/obj/item/weldingtool/W as obj, var/mob/weldman as mob)

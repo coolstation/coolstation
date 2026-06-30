@@ -746,7 +746,7 @@
 			var/obj/item/I = target
 			if(I.anchored)
 				return 0
-			var/obj/decal/cleanable/molten_item/I2 = make_cleanable(/obj/decal/cleanable/molten_item,I.loc)
+			var/obj/decal/cleanable/molten_item/I2 = new /obj/decal/cleanable/molten_item(I.loc)
 			user.visible_message("<span class='alert'>The [I] melts in [user]'s clutch</span>", "<span class='alert'>The [I] melts in your clutch!</span>")
 			qdel(target)
 			I2.desc = "Looks like this was \an [I], melted by someone who was too much."
@@ -840,7 +840,7 @@
 					if (user) playsound(user.loc, "sound/impact_sounds/Flesh_Tear_3.ogg", 40, 1, SOUND_RANGE_STANDARD)
 
 				user.visible_message("<span class='alert'><B>[user] slashes viciously at [victim]!</B></span>")
-				victim.health -= rand(4,8) * victim.brutevuln
+				victim.health -= rand(2,5) * victim.brutevuln
 
 			if (src.weak == 2)
 				var/turf/T = get_edge_target_turf(user, user.dir)

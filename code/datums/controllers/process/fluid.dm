@@ -149,7 +149,7 @@
 							for (var/obj/fluid/F in FG.members)
 								LAGCHECK(LAG_MED)
 								if (!F) continue
-								var/obj/decal/cleanable/tracked_reagents/dynamic/B = make_cleanable(/obj/decal/cleanable/tracked_reagents/dynamic,F.loc)
+								var/obj/decal/cleanable/tracked_reagents/dynamic/B = new /obj/decal/cleanable/tracked_reagents/dynamic(F.loc)
 								B.transfer_volume(FG.reagents, amount = 12, bDNA = F.blood_DNA, btype = F.blood_type, do_fluid_react = 0)
 								if(!FG?.reagents?.total_volume)
 									break

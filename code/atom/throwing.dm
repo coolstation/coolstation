@@ -15,7 +15,7 @@
 			if(isliving(A))
 				var/mob/living/L = A
 				if (!L.throws_can_hit_me) continue
-				if (L.lying) continue
+				if ((L.lying && (GET_COOLDOWN(L, "bullet_dodge_cheese")) || prob(35)) ) continue //lying down no longer a guaranteed miss, now factors dodge and a bit of randomness.
 				src.throw_impact(A, thr)
 				. = TRUE
 			if(isobj(A))

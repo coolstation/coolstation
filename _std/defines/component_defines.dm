@@ -363,4 +363,4 @@
 /// broadcast has reached 0 loops
 //#define COMSIG_BROADCAST_ENDED "broadcast_end"
 /// broadcast has stopped, possibly prematurely
-//#define COMSIG_BROADCAST_STOPPED "broadcast_stop"
+#define COMSIG_BROADCAST_STOPPED "broadcast_stop"

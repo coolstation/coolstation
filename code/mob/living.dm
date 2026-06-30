@@ -381,7 +381,8 @@
 
 /mob/living/projCanHit(datum/projectile/P)
 	if (!P) return 0
-	if (!(src.lying || src.grounded_for_projectiles) || GET_COOLDOWN(src, "lying_bullet_dodge_cheese") || (prob(P.hit_ground_chance))) return 1
+	if (src.lying && GET_COOLDOWN(src, "bullet_dodge_cheese")) return 0 //if lying down and dodge is active.
+	if (!(src.grounded_for_projectiles) || (prob(P.hit_ground_chance))) return 1
 	return 0
 
 /mob/living/proc/hand_attack(atom/target, params, location, control, origParams)
@@ -748,6 +749,11 @@
 
 	if(!src.canspeak)
 		boutput(src, "<span class='alert'>You can not speak!</span>")
+		return
+
+	//I guess changelings don't get paralysis anymore? IDK
+	var/datum/abilityHolder/changeling/lingy = src.get_ability_holder(/datum/abilityHolder/changeling)
+	if (lingy?.in_fakedeath)
 		return
 
 	if (isdead(src))
@@ -2103,7 +2109,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 				boutput(src, "<span class='alert'><b>[origin] vaporizes you with a lethal arc of electricity!</b></span>")
 				if (H?.shoes)
 					H.drop_from_slot(H.shoes)
-				make_cleanable(/obj/decal/cleanable/ash,src.loc)
+				new /obj/decal/cleanable/ash(src.loc)
 				SPAWN_DBG(1 DECI SECOND)
 					src.elecgib()
 			else
@@ -2131,6 +2137,8 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 	if (src.next_click > world.time)
 		return
 	if (src.lying || !src.canmove || !can_act(src))
+		return
+	if (src.a_intent != INTENT_HARM)
 		return
 	if (isturf(src.loc) && target)
 		var/turf/T = src.loc
@@ -2265,7 +2273,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 	var/obj/item/I = src.equipped()
 
-	if (!I || !isitem(I) || I.cant_drop)
+	if (!I || !isitem(I) || I.cant_drop || src.a_intent == INTENT_HARM)
 		slidekick(target)
 		return
 

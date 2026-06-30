@@ -2566,7 +2566,7 @@
 		src.visible_message("<span class='alert'><font size=4><B>A swarm of spiders erupts from [src]'s mouth and devours them! OH GOD!</B></font></span>", "<span class='alert'><font size=4><B>A swarm of spiders erupts from your mouth! OH GOD!</B></font></span>", "<span class='alert'>You hear a vile chittering sound.</span>")
 		playsound(src.loc, 'sound/impact_sounds/Slimy_Hit_4.ogg', 100, 1)
 		SPAWN_DBG(1 SECOND)
-			make_cleanable(/obj/decal/cleanable/vomit/spiders,src.loc)
+			new /obj/decal/cleanable/vomit/spiders(src.loc)
 			for (var/i in 1 to 4)
 				new /obj/critter/spider/baby(src.loc)
 
@@ -2802,9 +2802,7 @@
 	else if(limb == "r_leg" && src.limbs.r_leg) return 1
 
 /mob/living/carbon/human/hand_attack(atom/target, params, location, control)
-	if (src.lying && src.buckled != target) //lol we need to allow unbuckling here i guess...
-		if (src.limbs.r_leg || src.limbs.l_leg) //legless people should still be able to interact
-			return
+
 
 	if (mutantrace?.override_attack)
 		mutantrace.custom_attack(target)
@@ -2843,9 +2841,7 @@
 		 	slot_item.equipment_click(src, target, params, location, control, origParams, slot))
 			return
 
-	if (src.lying)
-		if (src.limbs.r_leg || src.limbs.l_leg) //legless people should still be able to interact
-			return 0
+
 	.=..()
 
 /mob/living/carbon/human/attack_hand(mob/M)

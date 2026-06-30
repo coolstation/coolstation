@@ -1768,7 +1768,7 @@
 		else
 			. = robogibs(src.loc, viral_list)
 	else
-		. = call(custom_gib_handler)(src.loc, viral_list, ejectables, bdna, btype)
+		. = call(custom_gib_handler)(src.loc, viral_list, ejectables, bdna, btype, source = src)
 
 	// splash our fluids around
 	if(src.reagents && src.reagents.total_volume)
@@ -1993,7 +1993,7 @@
 		flick("disintegrated", animation)
 
 		if (prob(20))
-			make_cleanable(/obj/decal/cleanable/ash, src.loc)
+			new /obj/decal/cleanable/ash( src.loc)
 
 		if (!forbid_abberation && prob(50))
 			new /obj/critter/aberration(get_turf(src))
@@ -2850,7 +2850,7 @@
 			new specialType(src.loc)
 	else
 		if(!locate(custom_vomit_type) in src.loc)
-			make_cleanable(custom_vomit_type,src.loc)
+			new custom_vomit_type(src.loc)
 	src.nutrition -= nutrition
 
 /mob/proc/get_hand_pixel_x()

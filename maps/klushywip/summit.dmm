@@ -1529,6 +1529,9 @@
 /obj/cable{
 	icon_state = "1-10"
 	},
+/obj/item/kitchen/utensil/spatula{
+	pixel_x = 10
+	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "ee" = (
@@ -9894,7 +9897,7 @@
 /area/station/medical/medbay/cloner)
 "Ad" = (
 /obj/table/reinforced/auto,
-/obj/shitty_radio,
+/obj/tuneable_receiver/radio,
 /obj/window/reinforced/west,
 /turf/floor/black,
 /area/station/science/recon)
@@ -11444,7 +11447,7 @@
 /turf/floor/grass,
 /area/station/hydroponics/bay)
 "DY" = (
-/obj/shitty_radio/shitty_tv{
+/obj/tuneable_receiver/teevee{
 	icon_state = "small_wall";
 	pixel_x = 3
 	},
@@ -12175,7 +12178,7 @@
 /area/station/medical/medbay/recovery)
 "FN" = (
 /obj/table/folding,
-/obj/shitty_radio/shitty_tv{
+/obj/tuneable_receiver/teevee{
 	pixel_y = 10
 	},
 /obj/decal/cleanable/dirt/random,
@@ -14385,16 +14388,8 @@
 /turf/floor/sanitary/blue,
 /area/station/crew_quarters/kitchen/freezer)
 "Lo" = (
-/obj/table/auto,
-/obj/item/hand_warmer/dead{
-	pixel_y = 6;
-	pixel_x = 6
-	},
-/obj/item/paper/book/from_file/cookbook{
-	pixel_x = -11;
-	pixel_y = 6
-	},
 /obj/machinery/light/fluorescent/ceiling/cool,
+/obj/machinery/griddle,
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "Lp" = (
@@ -14719,6 +14714,10 @@
 	pixel_x = 8
 	},
 /obj/blind_switch/area/east,
+/obj/item/paper/book/from_file/cookbook{
+	pixel_x = -1;
+	pixel_y = -1
+	},
 /turf/floor/specialroom/cafeteria,
 /area/station/crew_quarters/kitchen)
 "Md" = (

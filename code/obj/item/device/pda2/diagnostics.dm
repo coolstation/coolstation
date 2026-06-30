@@ -362,7 +362,7 @@
 		else if(href_list["edit"])
 			var/codekey = href_list["code"]
 
-			var/newkey = copytext(ckeyEx( input("Enter Packet Key", "Packet Sender", codekey) as text|null ), 1, 16)
+			var/newkey = copytext(ckeyEx( input("Enter Packet Key", "Packet Sender", codekey) as text|null ), 1, 255)
 			if(!newkey)
 				return
 
@@ -397,7 +397,7 @@
 			if(keyval && (keyval.len >= MAX_PACKET_KEYS))
 				return
 
-			var/newkey = copytext(ckeyEx( input("Enter Packet Key", "Packet Sender") as text|null ), 1, 16)
+			var/newkey = copytext(ckeyEx( input("Enter Packet Key", "Packet Sender") as text|null ), 1, 255)
 			if(!newkey)
 				return
 
