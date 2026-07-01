@@ -156,3 +156,10 @@
 	desc = "Gross, it's all slimy. It's still dripping."
 	name = "hairball key"
 	icon_state = "key_cat"
+
+/obj/item/device/key/department
+	icon = 'icons/obj/items/keys.dmi'
+	var/key_id = null //department ID
+
+/obj/item/device/key/department/maint
+	key_id = "maint"

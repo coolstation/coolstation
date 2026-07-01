@@ -875,6 +875,7 @@
 	var/blocked = null
 	var/simple_lock = 0
 	var/lock_dir = null
+	var/key_id = null
 
 /obj/machinery/door/unpowered/airlock/New()
 	..()
@@ -916,7 +917,8 @@
 	if (!src.requiresID())
 		//don't care who they are or what they have, act as if they're NOTHING
 		user = null
-	if(istype(I, /obj/item/device/key) && src.density)
+	if(istype(I, /obj/item/device/key/department) && src.density)
+		var/obj/item/device/key/department/key = I
 		if (src.simple_lock)
 			boutput(user, "<span class='alert'>You can't find a keyhole on this [src.name], it just has a little latch.</span>")
 			return
@@ -925,8 +927,14 @@
 			if (!(checkdir & src.lock_dir))
 				boutput(user, "<span class='alert'>[src]'s keyhole isn't on this side!</span>")
 				return
-		src.locked = !src.locked
-		src.visible_message("<span class='notice'><B>[user] [!src.locked ? "un" : null]locks [src].</B></span>")
+
+		if(key.key_id == src.key_id)
+			src.locked = !src.locked
+			src.visible_message("<span class='notice'><B>[user] [!src.locked ? "un" : null]locks [src].</B></span>")
+			if(src.locked)
+				playsound(src.loc, "sound/machines/lock.ogg", 50, 0)
+			else
+				playsound(src.loc, "sound/machines/unlock.ogg", 50, 0)
 		return
 	else if (isscrewingtool(I) && src.locked)
 		actions.start(new /datum/action/bar/icon/door_lockpick(src, I, src.simple_lock ? 40 : 80), user)
@@ -944,8 +952,7 @@
 		else
 			close()
 	else if (src.density)
-		play_animation("deny")
-		playsound(src.loc, "sound/machines/door_locked.ogg", 50, 1, -2)
+		playsound(src.loc, "sound/machines/door_locked.ogg", 50, 0)
 		boutput(user, "<span class='alert'>The door is locked!</span>")
 	return
 
