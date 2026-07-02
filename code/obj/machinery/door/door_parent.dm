@@ -863,6 +863,117 @@
 	icon = 'icons/obj/doors/bulkhead.dmi'
 	operation_time = 20
 
+//unpowered airlocks
+
+/obj/machinery/door/unpowered/airlock
+	name = "manual airlock"
+	icon = 'icons/obj/doors/door_cheap.dmi'
+	icon_state = "door1"
+	icon_base = "door"
+	autoclose = 0
+	visible = 0
+	var/blocked = null
+	var/simple_lock = 0
+	var/lock_dir = null
+	var/key_id = null
+
+/obj/machinery/door/unpowered/airlock/New()
+	..()
+	if (!src.simple_lock)
+		src.verbs -= /obj/machinery/door/unpowered/airlock/verb/simple_lock
+
+/obj/machinery/door/unpowered/wood/isblocked()
+	if (src.density && (src.operating == -1 || src.locked))
+		return 1
+	return 0
+
+/obj/machinery/door/unpowered/airlock/get_desc()
+	. = ..()
+	. += " It's [!src.locked ? "un" : null]locked."
+
+/obj/machinery/door/unpowered/airlock/verb/simple_lock(mob/user)
+	set name = "Lock Door"
+	set category = "Local"
+	set src in oview(1)
+
+	if (!src.density || src.operating)
+		boutput(user, "<span class='alert'>You COULD flip the lock on [src] while it's open, but it wouldn't actually accomplish anything!</span>")
+		return
+	if (src.lock_dir)
+		var/checkdir = get_dir(src, user)
+		if (!(checkdir & src.lock_dir))
+			boutput(user, "<span class='alert'>[src]'s lock isn't on this side!</span>")
+			return
+	src.locked = !src.locked
+	src.visible_message("<span class='notice'><B>[user] [!src.locked ? "un" : null]locks [src].</B></span>")
+	return
+
+/obj/machinery/door/unpowered/airlock/attackby(obj/item/I as obj, mob/user as mob)
+	if (I) // eh, this'll work well enough.
+		src.material?.triggerOnHit(src, I, user, 1)
+	if (src.operating)
+		return
+	src.add_fingerprint(user)
+	if (!src.requiresID())
+		//don't care who they are or what they have, act as if they're NOTHING
+		user = null
+	if(istype(I, /obj/item/device/key/department) && src.density)
+		var/obj/item/device/key/department/key = I
+		if (src.simple_lock)
+			boutput(user, "<span class='alert'>You can't find a keyhole on this [src.name], it just has a little latch.</span>")
+			return
+		else if (src.lock_dir)
+			var/checkdir = get_dir(src, user)
+			if (!(checkdir & src.lock_dir))
+				boutput(user, "<span class='alert'>[src]'s keyhole isn't on this side!</span>")
+				return
+
+		if(key.key_id == src.key_id)
+			src.locked = !src.locked
+			src.visible_message("<span class='notice'><B>[user] [!src.locked ? "un" : null]locks [src].</B></span>")
+			if(src.locked)
+				playsound(src.loc, "sound/machines/lock.ogg", 50, 0)
+			else
+				playsound(src.loc, "sound/machines/unlock.ogg", 50, 0)
+		return
+	else if (isscrewingtool(I) && src.locked)
+		actions.start(new /datum/action/bar/icon/door_lockpick(src, I, src.simple_lock ? 40 : 80), user)
+		return
+	if (user.is_hulk())
+		src.visible_message("<span class='alert'><B>[user] smashes through the door!</B></span>")
+		playsound(src.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 50, 1)
+		src.operating = -1
+		src.locked = 0
+		open()
+		return 1
+	if (!src.locked)
+		if (src.density)
+			open()
+		else
+			close()
+	else if (src.density)
+		playsound(src.loc, "sound/machines/door_locked.ogg", 50, 0)
+		boutput(user, "<span class='alert'>The door is locked!</span>")
+	return
+
+/obj/machinery/door/unpowered/wood/open()
+	if(src.locked) return
+	playsound(src.loc, "sound/machines/door_open.ogg", 50, 1)
+	. = ..()
+
+/obj/machinery/door/unpowered/wood/close()
+	playsound(src.loc, "sound/machines/door_close.ogg", 50, 1)
+	. = ..()
+
+/obj/machinery/door/unpowered/airlock/open()
+	if(src.locked) return
+	playsound(src.loc, "sound/machines/slider_open.ogg", 50, 1)
+	. = ..()
+
+/obj/machinery/door/unpowered/airlock/close()
+	playsound(src.loc, "sound/machines/slider_close.ogg", 50, 1)
+	. = ..()
+
 /obj/machinery/door/unpowered/bulkhead/Bumped()
 	return
 

@@ -728,7 +728,9 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/overfloor/west,
+/obj/machinery/atmospherics/pipe/simple/overfloor/tg_red{
+	dir = 1
+	},
 /turf/floor,
 /area/station/atmos/department)
 "atq" = (
@@ -2448,7 +2450,7 @@
 /area/station/security/secwing)
 "bim" = (
 /obj/decal/tile_edge/stripe/extra_big,
-/obj/machinery/atmospherics/pipe/manifold/overfloor/north,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/horizontal,
 /turf/floor,
 /area/station/atmos/department)
 "biI" = (
@@ -10098,7 +10100,7 @@
 /area/station/maintenance/outer/ne)
 "eRo" = (
 /obj/decal/tile_edge/stripe/extra_big,
-/obj/machinery/atmospherics/pipe/manifold/overfloor/east,
+/obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/overfloor/northwest,
 /turf/floor,
 /area/station/atmos/department)
 "eRu" = (
@@ -10197,7 +10199,7 @@
 /obj/machinery/camera{
 	dir = 8
 	},
-/obj/storage/secure/closet/engineering/atmos,
+/obj/machinery/space_heater,
 /turf/floor/black,
 /area/station/atmos/hookups/south)
 "eTT" = (
@@ -11494,6 +11496,14 @@
 /obj/machinery/computer3/generic/med_data,
 /turf/floor/black,
 /area/station/bridge)
+"fBd" = (
+/obj/rack,
+/obj/item/clothing/suit/fire/heavy,
+/obj/item/clothing/head/helmet/firefighter,
+/turf/floor/yellow/checker{
+	dir = 8
+	},
+/area/station/atmos/department)
 "fBi" = (
 /obj/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe{
@@ -13973,7 +13983,8 @@
 /obj/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/storage/secure/closet/engineering/atmos,
+/obj/machinery/space_heater,
+/obj/machinery/space_heater,
 /turf/floor/black,
 /area/station/atmos/hookups/south)
 "gRo" = (
@@ -29497,6 +29508,14 @@
 "oys" = (
 /turf/wall,
 /area/station/crew_quarters/kitchen)
+"oyx" = (
+/obj/rack,
+/obj/item/clothing/gloves/black,
+/obj/item/clothing/mask/gas,
+/turf/floor/yellow/checker{
+	dir = 8
+	},
+/area/station/atmos/department)
 "oyR" = (
 /obj/machinery/atmospherics/pipe/simple/color_pipe/green_pipe/vertical,
 /obj/landmark/start{
@@ -31389,7 +31408,7 @@
 	name = "Locker Room"
 	})
 "psh" = (
-/obj/machinery/atmospherics/pipe/tank/west,
+/obj/storage/secure/closet/engineering/atmos,
 /turf/floor/yellow/checker{
 	dir = 8
 	},
@@ -31765,6 +31784,10 @@
 	},
 /turf/floor,
 /area/station/mailroom)
+"pCy" = (
+/obj/machinery/atmospherics/valve/horizontal,
+/turf/floor,
+/area/station/atmos/department)
 "pCJ" = (
 /obj/random_item_spawner/vendor,
 /turf/floor/plating,
@@ -34871,6 +34894,11 @@
 /obj/machinery/atmospherics/pipe/simple/color_pipe/cyan_pipe/horizontal,
 /obj/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/machinery/dispenser{
+	o2tanks = 5;
+	pixel_y = 7;
+	pltanks = 15
 	},
 /turf/floor,
 /area/station/atmos/hookups/south)
@@ -38428,7 +38456,6 @@
 /obj/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/storage/secure/closet/engineering/atmos,
 /turf/floor/black,
 /area/station/atmos/hookups/south)
 "sHE" = (
@@ -39647,7 +39674,13 @@
 /area/station/engine/elect)
 "tkF" = (
 /obj/machinery/computer/atmosphere/mixercontrol{
-	frequency = 1437
+	frequency = 1437;
+	mixerid = "air_mix_generator";
+	name = "Gas Mixer Control (Air Mix)";
+	id = "atmos_control"
+	},
+/obj/item/storage/wall/fire{
+	pixel_y = 35
 	},
 /turf/floor/yellow/checker{
 	dir = 8
@@ -40596,6 +40629,9 @@
 "tIJ" = (
 /obj/machinery/light/small/warm{
 	dir = 4
+	},
+/obj/machinery/turretid{
+	pixel_x = 28
 	},
 /turf/floor/black,
 /area/station/turret_protected/ai_upload)
@@ -42090,7 +42126,12 @@
 /area/station/medical/medbay/pharmacy)
 "uxH" = (
 /obj/machinery/phone/wall{
-	pixel_y = 34
+	pixel_y = 34;
+	pixel_x = -5
+	},
+/obj/machinery/turretid{
+	pixel_x = 7;
+	pixel_y = 28
 	},
 /turf/floor/circuit,
 /area/station/turret_protected/ai)
@@ -43477,6 +43518,12 @@
 "vhx" = (
 /turf/wall/r_wall,
 /area/station/science/bot_storage)
+"vhC" = (
+/obj/machinery/alarm{
+	pixel_x = -32
+	},
+/turf/floor,
+/area/station/atmos/department)
 "vhH" = (
 /obj/machinery/door/unpowered/wood/stall,
 /obj/disposalpipe/segment/sewage,
@@ -47684,8 +47731,9 @@
 /obj/machinery/atmospherics/mixer{
 	dir = 4;
 	frequency = 1437;
-	id_tag = "air mix generator";
-	name = "Air mixer"
+	id_tag = "air_mix_generator";
+	name = "Air mixer";
+	master_id = "atmos_control"
 	},
 /turf/floor,
 /area/station/atmos/department)
@@ -48633,7 +48681,7 @@
 	},
 /area/station/crew_quarters/courtroom)
 "xCN" = (
-/obj/machinery/atmospherics/pipe/tank/north,
+/obj/reagent_dispensers/foamtank,
 /turf/floor/yellow/checker{
 	dir = 8
 	},
@@ -49524,6 +49572,12 @@
 	},
 /turf/floor/plating,
 /area/station/maintenance/disposal/crusher)
+"ybY" = (
+/obj/reagent_dispensers/fueltank,
+/turf/floor/yellow/checker{
+	dir = 8
+	},
+/area/station/atmos/department)
 "yck" = (
 /obj/machinery/light/fluorescent/cool,
 /obj/disposalpipe/segment/bent{
@@ -92462,8 +92516,8 @@ rfF
 rfF
 rfF
 rEm
-cYh
-nxE
+pCy
+pCy
 rfF
 rfF
 rfF
@@ -92471,7 +92525,7 @@ rfF
 rfF
 rfF
 xnS
-rfF
+vhC
 rfF
 baB
 jex
@@ -93070,7 +93124,7 @@ bim
 xCN
 woK
 psh
-psh
+fBd
 psh
 woK
 oIN
@@ -93369,7 +93423,7 @@ nxE
 nGT
 rfF
 bim
-xCN
+ybY
 woK
 woK
 woK
@@ -93671,7 +93725,7 @@ uVX
 wfL
 fio
 eRo
-xCN
+oyx
 woK
 hic
 hic
