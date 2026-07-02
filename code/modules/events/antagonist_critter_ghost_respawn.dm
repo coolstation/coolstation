@@ -92,6 +92,15 @@
 			)
 		),
 		list(new /datum/eventSpawnedCritter(
+			critter_types = list(/mob/living/critter/gnome),
+			drop_tables = list(
+				new /datum/event_item_drop_table(
+					potential_drop_items = list(/obj/item/gnomechompski)
+					)
+				)
+			)
+		),
+		list(new /datum/eventSpawnedCritter(
 			critter_types = list(/mob/living/critter/robotic/gunbot),
 			drop_tables = list(
 				new /datum/event_item_drop_table(
