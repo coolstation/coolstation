@@ -16,6 +16,9 @@
 	desc = "Adjustable metal rings joined by cable, made to be applied to a person in such a way that they are unable to use their hands. Difficult to remove from oneself."
 	custom_suicide = 1
 
+	New()
+		..()
+
 /obj/item/handcuffs/setMaterial(var/datum/material/mat1, appearance, setname, use_descriptors)
 	..()
 	if (mat1.mat_id == "silver")
@@ -127,6 +130,7 @@
 	user.drop_item(src)
 	src.two_handed = FALSE
 	user.update_clothing()
+	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
 	if (src.strength == 1) // weak cuffs break
 		if (src.material && src.material.mat_id == "silver")
 			src.visible_message("<span class='alert'>[src] disintegrate.</span>")
@@ -142,6 +146,217 @@
 	user.delStatus("handcuffed")
 	user.update_clothing()
 	qdel(src)
+
+
+/datum/action/bar/icon/handcuffSet //This is used when you try to handcuff someone.
+	duration = 40
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	id = "handcuffsset"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "handcuff"
+	var/mob/living/carbon/human/target
+	var/obj/item/handcuffs/cuffs
+
+	New(Target, Cuffs)
+		target = Target
+		cuffs = Cuffs
+		..()
+
+	onUpdate()
+		..()
+		if(get_dist(owner, target) > 1 || target == null || owner == null || cuffs == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		if(target.hasStatus("handcuffed"))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+	onStart()
+		..()
+		if(get_dist(owner, target) > 1 || target == null || owner == null || cuffs == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		logTheThing("combat", owner, target, "attempts to handcuff [constructTarget(target,"combat")] with [cuffs] at [log_loc(owner)].")
+
+		duration *= cuffs.apply_multiplier
+
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			if(H.traitHolder.hasTrait("training_security"))
+				duration = floor(duration / 2)
+
+		for(var/mob/O in AIviewers(owner))
+			O.show_message("<span class='alert'><B>[owner] attempts to handcuff [target]!</B></span>", 1)
+
+	onEnd()
+		..()
+		var/mob/ownerMob = owner
+		if(owner && ownerMob && target && cuffs && !target.hasStatus("handcuffed") && cuffs == ownerMob.equipped() && get_dist(owner, target) <= 1)
+
+			var/obj/item/handcuffs/tape/cuffs2
+
+			if (initial(cuffs.amount) > 1)
+				if (cuffs.amount >= 1)
+					cuffs2 = new /obj/item/handcuffs/tape
+					cuffs2.apply_multiplier = cuffs.apply_multiplier
+					cuffs2.remove_self_multiplier = cuffs.remove_self_multiplier
+					cuffs2.remove_other_multiplier = cuffs.remove_other_multiplier
+					cuffs.amount--
+					if (cuffs.amount < 1 && cuffs.delete_on_last_use)
+						ownerMob.u_equip(cuffs)
+						boutput(ownerMob, "<span class='alert'>You used up the remaining length of [istype(cuffs, /obj/item/handcuffs/tape_roll) ? "tape" : "ziptie"].</span>")
+						qdel(cuffs)
+					else
+						boutput(ownerMob, "<span class='notice'>The [cuffs.name] now has [cuffs.amount] lengths of [istype(cuffs, /obj/item/handcuffs/tape_roll) ? "tape" : "ziptie"] left.</span>")
+				else
+					boutput(ownerMob, "<span class='alert'>There's nothing left in the [istype(cuffs, /obj/item/handcuffs/tape_roll) ? "tape roll" : "ziptie"].</span>")
+					interrupt(INTERRUPT_ALWAYS)
+			else
+				ownerMob.u_equip(cuffs)
+
+			logTheThing("combat", ownerMob, target, "handcuffs [constructTarget(target,"combat")] with [cuffs2 ? "[cuffs2]" : "[cuffs]"] at [log_loc(ownerMob)].")
+
+			target.drop_from_slot(target.r_hand)
+			target.drop_from_slot(target.l_hand)
+			target.drop_juggle()
+
+			if (cuffs2 && istype(cuffs2))
+				cuffs2.set_loc(target)
+				target.handcuffs = cuffs2
+				cuffs2.two_handed = TRUE
+				cuffs2.cant_drop = TRUE
+				target.put_in_hand(cuffs2)
+			else
+				cuffs.set_loc(target)
+				target.handcuffs = cuffs
+				cuffs.two_handed = TRUE
+				cuffs.cant_drop = TRUE
+				target.put_in_hand(cuffs)
+			target.setStatus("handcuffed", duration = INFINITE_STATUS)
+			target.update_clothing()
+
+
+			for(var/mob/O in AIviewers(ownerMob))
+				O.show_message("<span class='alert'><B>[owner] handcuffs [target]!</B></span>", 1)
+
+/datum/action/bar/icon/handcuffRemovalOther //This is used when you try to remove someone elses handcuffs.
+	duration = 70
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	id = "handcuffsother"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "handcuff"
+	var/mob/living/carbon/human/target
+
+	New(Target)
+		target = Target
+		..()
+
+	onUpdate()
+		..()
+		if(get_dist(owner, target) > 1 || target == null || owner == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		if(!target.hasStatus("handcuffed"))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+	onStart()
+		..()
+		if(get_dist(owner, target) > 1 || target == null || owner == null)
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+		if(target != null && ishuman(target) && target.hasStatus("handcuffed"))
+			var/mob/living/carbon/human/H = target
+			duration = floor(duration * H.handcuffs.remove_other_multiplier)
+
+		for(var/mob/O in AIviewers(owner))
+			O.show_message("<span class='alert'><B>[owner] attempts to remove [target]'s handcuffs!</B></span>", 1)
+
+	onEnd()
+		..()
+		if(owner && target?.hasStatus("handcuffed"))
+			var/mob/living/carbon/human/H = target
+			H.handcuffs.drop_handcuffs(H)
+			for(var/mob/O in AIviewers(H))
+				O.show_message("<span class='alert'><B>[owner] manages to remove [target]'s handcuffs!</B></span>", 1)
+
+/datum/action/bar/private/icon/handcuffRemoval //This is used when you try to resist out of handcuffs.
+	duration = 600
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	id = "handcuffs"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "handcuff"
+
+	New(var/dur)
+		duration = dur
+		..()
+
+	onStart()
+		..()
+		if(owner != null && ishuman(owner) && owner.hasStatus("handcuffed"))
+			var/mob/living/carbon/human/H = owner
+			duration = floor(duration * H.handcuffs.remove_self_multiplier)
+
+		owner.visible_message("<span class='alert'><B>[owner] attempts to remove the handcuffs!</B></span>")
+
+	onUpdate()
+		. = ..()
+		if(!owner.hasStatus("handcuffed"))
+			interrupt(INTERRUPT_ALWAYS)
+			return
+
+	onInterrupt(var/flag)
+		..()
+		boutput(owner, "<span class='alert'>Your attempt to remove your handcuffs was interrupted!</span>")
+
+	onEnd()
+		..()
+		if(owner != null && ishuman(owner) && owner.hasStatus("handcuffed"))
+			var/mob/living/carbon/human/H = owner
+			H.handcuffs.drop_handcuffs(H)
+			H.visible_message("<span class='alert'><B>[H] attempts to remove the handcuffs!</B></span>")
+			boutput(H, "<span class='notice'>You successfully remove your handcuffs.</span>")
+
+/datum/action/bar/private/icon/shackles_removal // Resisting out of shackles (Convair880).
+	duration = 450
+	interrupt_flags = INTERRUPT_MOVE | INTERRUPT_ACT | INTERRUPT_STUNNED | INTERRUPT_ACTION
+	id = "shackles"
+	icon = 'icons/obj/clothing/item_shoes.dmi'
+	icon_state = "orange1"
+
+	New(var/dur)
+		duration = dur
+		..()
+
+	onStart()
+		..()
+		for(var/mob/O in AIviewers(owner))
+			O.show_message(text("<span class='alert'><B>[] attempts to remove the shackles!</B></span>", owner), 1)
+
+	onInterrupt(var/flag)
+		..()
+		boutput(owner, "<span class='alert'>Your attempt to remove the shackles was interrupted!</span>")
+
+	onEnd()
+		..()
+		if (owner != null && ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			if (H.shoes && H.shoes.chained)
+				var/obj/item/clothing/shoes/SH = H.shoes
+				H.u_equip(SH)
+				SH.set_loc(H.loc)
+				H.update_clothing()
+				if (SH)
+					SH.layer = initial(SH.layer)
+				for(var/mob/O in AIviewers(H))
+					O.show_message("<span class='alert'><B>[H] manages to remove the shackles!</B></span>", 1)
+				H.show_text("You successfully remove the shackles.", "blue")
+
+
 
 /obj/item/handcuffs/tape_roll
 	name = "ducktape"
