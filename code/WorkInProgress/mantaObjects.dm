@@ -263,10 +263,9 @@
 //CONSTRUCTION WORKER STUFF//
 
 /obj/item/constructioncone
-	desc = "Caution!"
-	name = "construction cone"
+	desc = "DEPRECIATED"
+	name = "DEPRECIATED"
 	icon = 'icons/obj/decoration.dmi'
-	icon_state = "cone"
 	force = 1.0
 	throwforce = 3.0
 	throw_speed = 1

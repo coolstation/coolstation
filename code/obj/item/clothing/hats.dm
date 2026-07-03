@@ -1263,6 +1263,19 @@ proc/filter_trait_hats(var/type)
 		boutput(user, "<span class='notice'>You unfold the beret into a hat.</span>")
 	return
 
+/obj/item/clothing/head/constructioncone
+	desc = "Caution!"
+	name = "construction cone"
+	wear_image_icon = 'icons/mob/fruithat.dmi'
+	icon = 'icons/obj/decoration.dmi'
+	icon_state = "cone"
+	force = 1.0
+	throwforce = 3.0
+	throw_speed = 1
+	throw_range = 5
+	w_class = W_CLASS_SMALL
+	flags = FPRINT | TABLEPASS
+
 /obj/item/clothing/head/pajama_cap
 	name = "nightcap"
 	desc = "Is it truly a good night without one?"
