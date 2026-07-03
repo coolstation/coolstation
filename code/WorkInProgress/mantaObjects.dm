@@ -263,8 +263,8 @@
 //CONSTRUCTION WORKER STUFF//
 
 /obj/item/constructioncone
-	desc = "DEPRECIATED"
-	name = "DEPRECIATED"
+	desc = "Caution!"
+	name = "construction cone"
 	icon = 'icons/obj/decoration.dmi'
 	force = 1.0
 	throwforce = 3.0
@@ -275,6 +275,15 @@
 	stamina_damage = 15
 //	stamina_cost = 8
 //	stamina_crit_chance = 10
+	New()
+		..()
+		var/turf/T = get_turf(src.loc)
+		if (isturf(T))
+			new/obj/item/clothing/head/constructioncone(T)
+		qdel(src)
+
+
+
 
 /obj/effect/boommarker
 	name = ""
