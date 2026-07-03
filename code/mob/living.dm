@@ -2273,7 +2273,7 @@ var/global/icon/human_static_base_idiocy_bullshit_crap = icon('icons/mob/human.d
 
 	var/obj/item/I = src.equipped()
 
-	if (!I || !isitem(I) || I.cant_drop)
+	if (!I || !isitem(I) || I.cant_drop || src.a_intent == INTENT_HARM)
 		slidekick(target)
 		return
 

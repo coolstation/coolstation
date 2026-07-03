@@ -1004,6 +1004,9 @@
 				W.set_loc(src.loc)
 				W.dropped(src)
 				W.layer = initial(W.layer)
+				if (istype(W,/obj/item/handcuffs))
+					var/obj/item/handcuffs/hc = W
+					hc.drop_handcuffs(src)
 			if(delete_stuff)
 				qdel(W)
 

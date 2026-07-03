@@ -750,7 +750,7 @@ proc/delete_abcu_blueprint(mob/user, var/browse_all_users = FALSE)
 	var/image/corner1img
 	var/list/turf/roomList = new/list()
 
-	var/list/permittedTileTypes = list("/turf/simulated")
+	var/list/permittedTileTypes = list("/turf")
 
 
 	pixelaction(atom/target, params, mob/user)

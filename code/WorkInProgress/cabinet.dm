@@ -325,6 +325,21 @@
 		rebuildOverlays()
 		return ..()
 
+/obj/cabinet/genetics
+	name = "Genetics Research Cabinet"
+	desc = "Cabinet full of nerd shit."
+
+	New()
+		slots["1"] = new/obj/item/storage/box/agarose_separator(src)
+		slots["2"] = new/obj/item/storage/box/agarose_separator(src)
+		slots["3"] = new/obj/item/storage/box/agarose_replicator(src)
+		slots["4"] = new/obj/item/storage/box/agarose_replicator(src)
+		slots["5"] = new/obj/item/storage/box/genetic_syringes(src)
+		slots["6"] = new/obj/item/device/gene_separator(src)
+		rebuildOverlays()
+		return ..()
+
+
 /obj/cabinet/medicalmenders
 
 	New()

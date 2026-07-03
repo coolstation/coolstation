@@ -504,7 +504,12 @@
 /mob/living/carbon/human/disposing()
 	for(var/obj/item/I in src)
 		if(I.equipped_in_slot != slot_w_uniform)
-			src.u_equip(I)
+			if (istype(I,/obj/item/handcuffs))
+				I.two_handed = FALSE
+				I.cant_drop = FALSE
+				src.u_equip(I) //handcuffs are weird and need to be checked
+			else
+				src.u_equip(I)
 	if(src.w_uniform) // last because pockets etc.
 		src.u_equip(src.w_uniform)
 
