@@ -97,7 +97,7 @@
 				boutput(user, "<span class='alert'>Insufficent funds. [W] only has [target_account["current_money"]] credits.</span>")
 				return
 			boutput(user, "<span class='notice'>Sending transaction.</span>")
-			user.visible_message("<span class='notice'>[user] swipes [src] with [W].</span>")
+			user.visible_message("<span class='notice'>[user] wipes [src] with [W].</span>")
 			target_account["current_money"] -= amount
 			mainaccount["current_money"] += amount
 			user.visible_message("<b>[src]</b> beeps, \"[mainaccount["name"]] now holds [mainaccount["current_money"]] credits. Thank you for your service!\"")

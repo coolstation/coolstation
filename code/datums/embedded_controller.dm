@@ -691,7 +691,7 @@ obj/machinery/embedded_controller/radio/department_controller
 
 		var/output = "<B>Department Airlock Control Console</B><HR>"
 		if (src.locked && !issilicon(user))
-			output += "<center><b>Console Locked</b><br><i>Please swipe ID</i></center>"
+			output += "<center><b>Console Locked</b><br><i>Please wipe ID</i></center>"
 		else
 			output += "[state_options]<hr><b>Airlock Status: </b> [door_status]"
 

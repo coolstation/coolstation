@@ -466,7 +466,7 @@
 /obj/machinery/vending/proc/scan_card(var/obj/item/card/id/card as obj, var/mob/user as mob)
 	if (!card || !user || !src.acceptcard)
 		return
-	boutput(user, "<span class='notice'>You swipe [card].</span>")
+	boutput(user, "<span class='notice'>You wipe [card].</span>")
 	var/datum/db_record/account = null
 	account = FindBankAccountByName(card.registered)
 	if (account)
@@ -516,13 +516,13 @@
 		if (src.paying_for && !src.scan)
 			html_parts += "<br><div class = 'disclaimer'>You have selected the following item:</div><br>"
 			html_parts += "<div class = 'itemBox'>[src.paying_for.product_name]</div><br>"
-			html_parts += "<div class = 'disclaimer'>Please swipe your card to authorize payment.</div>"
+			html_parts += "<div class = 'disclaimer'>Please wipe your card to authorize payment.</div>"
 			html_parts += "<div class= 'box'><B>Current ID:</B></div>  None<BR>"
 		else if (src.scan)
 			if (src.paying_for)
 				html_parts += "<br><div class = 'disclaimer'>You have selected the following item for purchase:</div><br>"
 				html_parts += "<div class = 'itembBox'>[src.paying_for.product_name]</div><br>"
-				html_parts += "<div class = 'disclaimer'>Please swipe your card to authorize payment.</div><br>"
+				html_parts += "<div class = 'disclaimer'>Please wipe your card to authorize payment.</div><br>"
 			var/datum/db_record/account = null
 			account = FindBankAccountByName(src.scan.registered)
 			html_parts += "<div class= 'box'><B>Current ID :</B></div>  <a href='byond://?src=\ref[src];logout=1'><div class = 'itemBox'><u>([src.scan])</u></div></A><BR>"

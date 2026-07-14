@@ -316,7 +316,7 @@
 
 		if(locked && !ai)
 			t = {"<TT><B>Navigation Beacon</B><HR><BR>
-<i>(swipe card to unlock controls)</i><BR>
+<i>(wipe card to unlock controls)</i><BR>
 Frequency: [format_frequency(freq)]<BR><HR>
 Beacon ID: [beacon_id ? beacon_id : "(none)"]</A><BR>
 Transponder Codes:<UL>"}
@@ -328,7 +328,7 @@ Transponder Codes:<UL>"}
 		else
 
 			t = {"<TT><B>Navigation Beacon</B><HR><BR>
-<i>(swipe card to lock controls)</i><BR>
+<i>(wipe card to lock controls)</i><BR>
 Frequency:
 <A href='byond://?src=\ref[src];freq=-10'>-</A>
 <A href='byond://?src=\ref[src];freq=-2'>-</A>

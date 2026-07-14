@@ -323,7 +323,7 @@ var/list/ai_emotions = list("Happy" = "ai_happy",\
 
 	else if (istype(W, /obj/item/card/id) || (istype(W, /obj/item/device/pda2) && W:ID_card))
 		if (src.dismantle_stage >= 2)
-			boutput(user, "<span class='alert'>You must close the cover to swipe an ID card.</span>")
+			boutput(user, "<span class='alert'>You must close the cover to wipe an ID card.</span>")
 		else
 			if(src.allowed(user))
 				if (src.dismantle_stage == 1)

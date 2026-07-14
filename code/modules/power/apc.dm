@@ -334,7 +334,7 @@ var/zapLimiter = 0
 	if (!emagged)		// trying to unlock with an emag card
 		if(opened)
 			if(user)
-				boutput(user, "You must close the cover to swipe an ID card.")
+				boutput(user, "You must close the cover to wipe an ID card.")
 		else if(wiresexposed)
 			if(user)
 				boutput(user, "You must close the panel first")
@@ -553,7 +553,7 @@ var/zapLimiter = 0
 		if(emagged)
 			boutput(user, "The interface is broken")
 		else if(opened)
-			boutput(user, "You must close the cover to swipe an ID card.")
+			boutput(user, "You must close the cover to wipe an ID card.")
 		else if(wiresexposed)
 			boutput(user, "You must close the panel")
 		else if (setup_networkapc > 1)
@@ -659,7 +659,7 @@ var/zapLimiter = 0
 		t += "<I>This APC has no configurable settings.</I>"
 	else if((locked || (setup_networkapc > 1)) && !can_access_remotely(user))
 		if (setup_networkapc < 2)
-			t += "<I>(Swipe ID card to unlock inteface.)</I><BR>"
+			t += "<I>(Wipe ID card to unlock inteface.)</I><BR>"
 		else
 			t += "Host Connection: <B>[src.host_id ? "<font color=green>OK</font>" : "<font color=red>NONE</font>"]</B><BR>"
 		t += "Main breaker : <B>[operating ? "On" : "Off"]</B><BR>"
@@ -682,7 +682,7 @@ var/zapLimiter = 0
 
 	else
 		if (!can_access_remotely(user))
-			t += "<I>(Swipe ID card to lock interface.)</I><BR>"
+			t += "<I>(Wipe ID card to lock interface.)</I><BR>"
 		t += "Main breaker: [operating ? "<B>On</B> <A href='byond://?src=\ref[src];breaker=1'>Off</A>" : "<A href='byond://?src=\ref[src];breaker=1'>On</A> <B>Off</B>" ]<BR>"
 		t += "External power : <B>[ main_status ? (main_status ==2 ? "<FONT COLOR=#004000>Good</FONT>" : "<FONT COLOR=#D09000>Low</FONT>") : "<FONT COLOR=#F00000>None</FONT>"]</B><BR>"
 		if(cell)

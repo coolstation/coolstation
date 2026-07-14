@@ -597,7 +597,7 @@
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if (!src.emagged)	// trying to unlock with an emag card
-			if (src.opened && user) boutput(user, "You must close the cover to swipe an ID card.")
+			if (src.opened && user) boutput(user, "You must close the cover to wipe an ID card.")
 			else if (src.wiresexposed && user) boutput(user, "<span class='alert'>You need to get the wires out of the way.</span>")
 			else
 				if (user)
@@ -836,7 +836,7 @@
 
 		else if (istype(W, /obj/item/card/id) || (istype(W, /obj/item/device/pda2) && W:ID_card))	// trying to unlock the interface with an ID card
 			if (opened)
-				boutput(user, "<span class='alert'>You must close the cover to swipe an ID card.</span>")
+				boutput(user, "<span class='alert'>You must close the cover to wipe an ID card.</span>")
 			else if (wiresexposed)
 				boutput(user, "<span class='alert'>You need to get the wires out of the way.</span>")
 			else if (brainexposed)

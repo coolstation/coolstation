@@ -31,7 +31,7 @@
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if(user)
-			boutput(user, "<span class='notice'>You swipe the card along a crack in the machine.</span>")
+			boutput(user, "<span class='notice'>You wipe the card along a crack in the machine.</span>")
 
 		if (prob(5))
 			var/obj/item/paint_can/rainbow/plaid/P = new/obj/item/paint_can/rainbow/plaid(src.loc)

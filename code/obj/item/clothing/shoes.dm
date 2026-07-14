@@ -147,7 +147,7 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
 		if (!src.emagged)
 			if (user)
-				user.show_text("You swipe the card over the pressure regulator, breaking it.", "blue")
+				user.show_text("You wipe the card over the pressure regulator, breaking it.", "blue")
 			src.emagged = 1
 			src.desc += " Something seems to be wrong with them, though."
 			return 1

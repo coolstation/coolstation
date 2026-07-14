@@ -1003,7 +1003,7 @@
 				I = P.ID_card
 		if (istype(I, /obj/item/card/id))
 			var/obj/item/card/id/ID = I
-			boutput(usr, "<span class='notice'>You swipe the ID card in the card reader.</span>")
+			boutput(usr, "<span class='notice'>You wipe the ID card in the card reader.</span>")
 			var/datum/db_record/account = null
 			account = FindBankAccountByName(ID.registered)
 			if(account)

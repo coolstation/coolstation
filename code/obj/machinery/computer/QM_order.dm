@@ -59,7 +59,7 @@
 /obj/machinery/computer/ordercomp/attackby(var/obj/item/I as obj, mob/user as mob)
 	if (istype(I, /obj/item/card/id) || (istype(I, /obj/item/device/pda2) && I:ID_card))
 		if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
-		boutput(user, "<span class='notice'>You swipe the ID card.</span>")
+		boutput(user, "<span class='notice'>You wipe the ID card.</span>")
 		var/datum/db_record/account = null
 		account = FindBankAccountByName(I:registered)
 		if(account)
@@ -209,7 +209,7 @@
 					I = mag.holding
 			if (istype(I, /obj/item/card/id) || (istype(I, /obj/item/device/pda2) && I:ID_card))
 				if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
-				boutput(usr, "<span class='notice'>You swipe the ID card.</span>")
+				boutput(usr, "<span class='notice'>You wipe the ID card.</span>")
 				var/datum/db_record/account = null
 				account = FindBankAccountByName(I:registered)
 				if(account)
@@ -242,7 +242,7 @@
 							<A href='?src=\ref[src];buy=1'>Make Transaction</A><BR>
 							<A href='?src=\ref[src];mainmenu=1'>Cancel Purchase</A>"}
 		else
-			src.temp = {"You need to swipe an ID card first!<BR>
+			src.temp = {"You need to wipe an ID card first!<BR>
 						<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"}
 
 	else if (href_list["buy"])
