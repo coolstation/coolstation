@@ -24,6 +24,7 @@
 	var/tg_amt = 0
 	var/tw_amt = 0
 	var/bblood = 0
+	var/gunpun = FALSE
 
 	if(istype(AM,/obj/item/scrap))
 		var/obj/O = AM
@@ -56,6 +57,8 @@
 		tm_amt += B.m_amt
 		tg_amt += B.g_amt
 		tw_amt += B.w_amt
+		if (istype(AM, /obj/item/gun/modular))
+			gunpun = TRUE
 		for(var/obj/O in AM.contents)
 			if(isobj(O))
 				tm_amt += O.m_amt
@@ -72,6 +75,8 @@
 	var/obj/item/scrap/S = new(get_turf(src))
 	S.blood = bblood
 	S.set_components(tm_amt,tg_amt,tw_amt)
+	if (gunpun)
+		S.name = "gunpowder"
 	qdel(AM)
 	//else
 		//if(tw_amt > tm_amt || tw_amt > tg_amt)
