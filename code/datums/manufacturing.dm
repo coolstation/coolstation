@@ -1043,6 +1043,15 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	create = 1
 	category = "Tool"
 
+/datum/manufacture/maskingtape
+	name = "Duct Tape"
+	item_paths = list("FAB-1")
+	item_amounts = list(2)
+	item_outputs = list(/obj/item/handcuffs/tape_roll/crappy)
+	time = 13 SECONDS
+	create = 1
+	category = "Tool"
+
 /datum/manufacture/cyberheart
 	name = "Cyberheart"
 	item_paths = list("MET-1","CON-1","ALL")
