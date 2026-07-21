@@ -149,7 +149,7 @@
 	if (istype(I, /obj/item/card/id) || (istype(I, /obj/item/device/pda2) && I:ID_card))
 		if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
 		var/obj/item/card/id/ID = I
-		boutput(user, "<span class='notice'>You swipe the ID card.</span>")
+		boutput(user, "<span class='notice'>You wipe the ID card.</span>")
 		var/datum/db_record/account = null
 		account = FindBankAccountByName(ID.registered)
 		if(account)

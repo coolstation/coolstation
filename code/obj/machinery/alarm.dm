@@ -280,7 +280,7 @@
 		output += "<I><FONT color = 'gray'>No atmospheric pipe network detected.<BR>Control functions unavailable.</FONT></I>"
 	else
 		if(!issilicon(user))
-			output += "<I>Swipe card to lock interface.</I><BR><BR>"
+			output += "<I>Wipe card to lock interface.</I><BR><BR>"
 		output += "<A href='byond://?src=\ref[src];toggle_override=1'>Toggle Local Override</A><BR>"
 		if(panic_mode > 0)
 			output += "<A href='byond://?src=\ref[src];unpanic=1'>Cancel Panic Siphon</A><BR>"

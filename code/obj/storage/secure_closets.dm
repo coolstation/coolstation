@@ -9,7 +9,7 @@
 
 /obj/storage/secure/closet/personal
 	name = "personal locker"
-	desc = "The first card swiped gains control."
+	desc = "The first card wiped gains control."
 	personal = 1
 	spawn_contents = list(/obj/item/device/radio/signaler,
 	/obj/item/pen,

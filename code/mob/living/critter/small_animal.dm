@@ -440,8 +440,8 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 		src.icon_state_alive = src.icon_state
 		src.icon_state_dead = "cat-emagged-dead"
 		if (user)
-			user.show_text("You swipe down [src]'s back in a petting motion...")
-			src.show_text("[user] swipes the card down your back in a petting motion...")
+			user.show_text("You wipe down [src]'s back in a petting motion...")
+			src.show_text("[user] wipes the card down your back in a petting motion...")
 		return 1
 
 	attackby(obj/item/W as obj, mob/living/user as mob)

@@ -244,7 +244,7 @@
 		if (istype(I, /obj/item/device/pda2) && I:ID_card)
 			I = I:ID_card
 		if(istype(I, /obj/item/card/id))
-			boutput(user, "<span class='notice'>You swipe your ID card in the ATM.</span>")
+			boutput(user, "<span class='notice'>You wipe your ID card in the ATM.</span>")
 			src.scan = I
 			return
 		if(istype(I, /obj/item/spacecash/))
@@ -329,7 +329,7 @@
 					dat += "<BR>\[ <A HREF='byond://?src=\ref[src];operation=logout'>Logout</A> \]"
 					dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=enterpin'>Enter Pin</A>"
 
-				else dat += "Please swipe your card to begin."
+				else dat += "Please wipe your card to begin."
 
 			if(STATE_LOGGEDIN)
 				if(!src.accessed_record)
@@ -346,7 +346,7 @@
 						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=buy'>Buy Lottery Ticket (100 credits)</A>"
 						dat += "<BR>To claim your winnings you'll need to insert your lottery ticket."
 					else
-						dat += "<BR>Please swipe your card to continue."
+						dat += "<BR>Please wipe your card to continue."
 
 
 		/*if (user.client)
@@ -938,7 +938,7 @@
 		if (istype(I, /obj/item/device/pda2) && I:ID_card)
 			I = I:ID_card
 		if(istype(I, /obj/item/card/id))
-			boutput(user, "<span class='notice'>You swipe your ID card in the ATM.</span>")
+			boutput(user, "<span class='notice'>You wipe your ID card in the ATM.</span>")
 			src.scan = I
 			attack_hand(user)
 			return
@@ -1013,7 +1013,7 @@
 					else
 						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=enterpin'>Enter Pin</A>"
 
-				else dat += "Please swipe your card to begin."
+				else dat += "Please wipe your card to begin."
 
 			if(STATE_LOGGEDIN)
 				if(!src.accessed_record)
@@ -1030,7 +1030,7 @@
 						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=buy'>Buy Lottery Ticket (100 credits)</A>"
 						dat += "<BR>To claim your winnings you'll need to insert your lottery ticket."
 					else
-						dat += "<BR>Please swipe your card to continue."
+						dat += "<BR>Please wipe your card to continue."
 
 
 		/*if (user.client)

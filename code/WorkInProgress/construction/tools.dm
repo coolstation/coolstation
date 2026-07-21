@@ -122,7 +122,7 @@
 		var/t = "<TT><B>Turret Control Panel</B><BR><B>Controlled turrets:</B> [turrets.len] (<A href='byond://?src=\ref[src];rescan=1'>Rescan</a>)<HR>"
 
 		if(src.locked && !can_access_remotely(user))
-			t += "<I>(Swipe ID card to unlock control panel.)</I><BR>"
+			t += "<I>(Wipe ID card to unlock control panel.)</I><BR>"
 		else
 			t += text("Turrets [] - <A href='byond://?src=\ref[];toggleOn=1'>[]?</a><br><br>", src.enabled?"activated":"deactivated", src, src.enabled?"Disable":"Enable")
 			t += text("Currently firing at <A href='byond://?src=\ref[];firesAt=1'>[]</a><br><br>", src, firesat)

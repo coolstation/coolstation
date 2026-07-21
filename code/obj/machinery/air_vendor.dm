@@ -89,7 +89,7 @@ obj/machinery/air_vendor
 	proc/scan_card(var/obj/item/card/id/card as obj, var/mob/user as mob)
 		if (!card || !user)
 			return
-		boutput(user, "<span class='notice'>You swipe [card].</span>")
+		boutput(user, "<span class='notice'>You wipe [card].</span>")
 		var/datum/db_record/account = null
 		account = FindBankAccountByName(card.registered)
 		if (account)

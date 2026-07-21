@@ -117,7 +117,7 @@
 					src.anti_spam = world.time
 					my_gen.turn_on()
 			else
-				boutput(usr, "<span class='alert'>No signal detected. Swipe remote on a cloaking generator to establish a connection.</span>")
+				boutput(usr, "<span class='alert'>No signal detected. Wipe remote on a cloaking generator to establish a connection.</span>")
 		return
 
 	verb/set_pattern()

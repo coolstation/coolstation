@@ -462,7 +462,7 @@
 				var/obj/item/I = usr.equipped()
 				if (istype(I, /obj/item/card/id) || (istype(I, /obj/item/device/pda2) && I:ID_card))
 					if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
-					boutput(usr, "<span class='notice'>You swipe the ID card in the card reader.</span>")
+					boutput(usr, "<span class='notice'>You wipe the ID card in the card reader.</span>")
 					var/datum/db_record/account = null
 					account = FindBankAccountByName(I:registered)
 					if(account)

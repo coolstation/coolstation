@@ -338,7 +338,7 @@
 	attackby(var/obj/item/I as obj, user as mob)
 		if (istype(I, /obj/item/card/id) || (istype(I, /obj/item/device/pda2) && I:ID_card))
 			if (istype(I, /obj/item/device/pda2) && I:ID_card) I = I:ID_card
-			boutput(user, "<span class='notice'>You swipe the ID card.</span>")
+			boutput(user, "<span class='notice'>You wipe the ID card.</span>")
 			account = FindBankAccountByName(I:registered)
 			if(account)
 				var/enterpin = input(user, "Please enter your PIN number.", "Order Console", 0) as null|num

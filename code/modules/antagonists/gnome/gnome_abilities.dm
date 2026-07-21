@@ -255,6 +255,7 @@
 	icon_state = "gnomedisguise"
 	name = "Disguise"
 	desc = "Hide yourself as an imitation of a nearby item."
+
 	pointCost = 0
 	cooldown = 10 SECONDS
 	max_range = 3
@@ -272,6 +273,9 @@
 		if (incapacitation_check() != 1)
 			boutput(M, __red("You can't use this ability while incapacitated!"))
 			return 0
+
+		return 1
+
 
 	cast(var/obj/item/target)
 		if (..())

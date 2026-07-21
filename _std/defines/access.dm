@@ -23,7 +23,7 @@
 #define access_eva 18
 #define access_heads 19 // Mostly just the bridge.
 #define access_captain 20
-#define access_all_personal_lockers 21 // Unused. Personal lockers are always linked to ID that was swiped first.
+#define access_all_personal_lockers 21 // Unused. Personal lockers are always linked to ID that was wiped first.
 #define access_chapel_office 22
 #define access_tech_storage 23
 #define access_research 24
