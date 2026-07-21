@@ -1044,7 +1044,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 	category = "Tool"
 
 /datum/manufacture/maskingtape
-	name = "Duct Tape"
+	name = "Masking Tape"
 	item_paths = list("FAB-1")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/handcuffs/tape_roll/crappy)
