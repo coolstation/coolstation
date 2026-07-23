@@ -89,15 +89,17 @@
 			ADD_STATUS_LIMIT(M, "Food", 6)
 
 	on_removal()
-		REMOVE_STATUS_LIMIT(src.donor, "Food")
 		. = ..()
+		REMOVE_STATUS_LIMIT(src.donor, "Food")
 
 	unbreakme()
-		if(..() && donor)
+		..()
+		if(donor)
 			ADD_STATUS_LIMIT(src.donor, "Food", 6)
 
 	breakme()
-		if(..() && donor)
+		..()
+		if(donor)
 			REMOVE_STATUS_LIMIT(src.donor, "Food")
 
 	emag_act(mob/user, obj/item/card/emag/E)

@@ -72,9 +72,9 @@
 		return 1
 
 	breakme()
-		if(..())
-			overloading = 0
+		. = ..()
+		overloading = 0
 
 	on_removal()
-		overloading = 0
 		. = ..()
+		overloading = 0

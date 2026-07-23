@@ -124,8 +124,8 @@
 				src.holder?.donor?.bioHolder?.AddEffect(src.failure_ability, 0, 0, 0, 1)
 
 	unbreakme()
-		if(..())
-			src.holder?.donor?.bioHolder?.RemoveEffect(src.failure_ability)
+		. = ..()
+		src.holder?.donor?.bioHolder?.RemoveEffect(src.failure_ability)
 
 
 	// builds the mob tail image, the one that gets displayed on the mob when attached
