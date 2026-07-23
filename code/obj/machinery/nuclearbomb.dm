@@ -373,6 +373,11 @@
 		for (var/client/C in clients)
 			cinematic.add_client(C)
 		cinematic.play("gehenna_nuke")
+#elif MAP_OVERRIDE_CRAG
+		var/datum/hud/cinematic/cinematic = new
+		for (var/client/C in clients)
+			cinematic.add_client(C)
+		cinematic.play("gehenna_nuke")
 #else
 		var/datum/hud/cinematic/cinematic = new
 		for (var/client/C in clients)
