@@ -8,6 +8,10 @@
 /obj/railing/yellow,
 /turf/floor/ballpit,
 /area/space)
+"aX" = (
+/obj/landmark/start,
+/turf/floor,
+/area/space)
 "aY" = (
 /obj/table/reinforced/auto,
 /obj/item/device/transfer_valve{
@@ -71,13 +75,27 @@
 /area/space)
 "da" = (
 /obj/machinery/atmospherics/pipe/manifold/overfloor/west,
+/obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/red,
+/area/space)
+"dk" = (
+/obj/machinery/portable_atmospherics/canister/toxins,
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor,
+/area/space)
+"dl" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/grass/leafy,
 /area/space)
 "dB" = (
 /obj/machinery/door/window/northright,
 /turf/floor/bluegreen/side{
 	dir = 1
 	},
+/area/space)
+"dJ" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor,
 /area/space)
 "dO" = (
 /obj/table/auto,
@@ -190,6 +208,7 @@
 /obj/decal/tile_edge/stripe/extra_big{
 	dir = 4
 	},
+/obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/sanitary/white,
 /area/space)
 "ik" = (
@@ -328,6 +347,12 @@
 /obj/decal/mule/dropoff,
 /turf/floor,
 /area/space)
+"mI" = (
+/obj/landmark/map{
+	name = "DEVTEST"
+	},
+/turf/space,
+/area/space)
 "nf" = (
 /obj/machinery/vending/cola/splurt,
 /obj/decal/mule/dropoff,
@@ -386,6 +411,10 @@
 "pV" = (
 /obj/machinery/atmospherics/valve/vertical,
 /turf/floor,
+/area/space)
+"qa" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/grey,
 /area/space)
 "qi" = (
 /obj/table/reinforced/auto,
@@ -453,6 +482,14 @@
 	pixel_y = 2
 	},
 /turf/floor,
+/area/space)
+"rF" = (
+/obj/machinery/atmospherics/pipe/simple/insulated{
+	can_rupture = 0;
+	dir = 4
+	},
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/industrial,
 /area/space)
 "sa" = (
 /obj/window/reinforced/south,
@@ -705,6 +742,10 @@
 	dir = 4
 	},
 /area/space)
+"Bs" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/specialroom/cafeteria,
+/area/space)
 "BH" = (
 /obj/window/reinforced/east,
 /obj/machinery/floor_charger,
@@ -826,6 +867,10 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor,
 /area/space)
+"GF" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/blue,
+/area/space)
 "GR" = (
 /obj/machinery/vending/cigarette,
 /obj/decal/mule/dropoff,
@@ -849,6 +894,7 @@
 /turf/floor/specialroom/cafeteria,
 /area/space)
 "HU" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor/sanitary,
 /area/space)
 "It" = (
@@ -928,6 +974,12 @@
 "Lr" = (
 /obj/table/auto,
 /obj/item/gun/modular/italian/revolver/derringer/preloaded,
+/turf/floor,
+/area/space)
+"LG" = (
+/obj/landmark/start{
+	name = "Captain"
+	},
 /turf/floor,
 /area/space)
 "LN" = (
@@ -1125,6 +1177,7 @@
 /area/space)
 "Sx" = (
 /obj/machinery/chemicompiler_stationary,
+/obj/machinery/light/fluorescent/ceiling/cool,
 /turf/floor,
 /area/space)
 "SY" = (
@@ -1252,6 +1305,10 @@
 	dir = 1
 	},
 /area/space)
+"Yb" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/industrial,
+/area/space)
 "Yc" = (
 /obj/machinery/computer3/generic/amber,
 /turf/floor/yellow,
@@ -1262,6 +1319,12 @@
 /obj/item/reagent_containers/syringe,
 /obj/machinery/defib_mount{
 	pixel_y = 8
+	},
+/turf/floor,
+/area/space)
+"Yh" = (
+/obj/cryotron{
+	layer = 3.9
 	},
 /turf/floor,
 /area/space)
@@ -1278,6 +1341,10 @@
 /turf/floor/grey/side{
 	dir = 1
 	},
+/area/space)
+"YM" = (
+/obj/machinery/light/fluorescent/ceiling/cool,
+/turf/floor/yellow,
 /area/space)
 "YO" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/southwest,
@@ -1433,7 +1500,7 @@ hq
 hq
 hq
 hq
-hq
+mI
 "}
 (2,1,1) = {"
 hq
@@ -4230,8 +4297,8 @@ iH
 iH
 Lc
 Lc
-Px
-Px
+Lc
+Lc
 Lc
 Lc
 iH
@@ -4245,9 +4312,9 @@ iH
 Xa
 Lc
 Lc
-Px
-Px
-hq
+Lc
+Lc
+Lc
 hq
 hq
 hq
@@ -4347,9 +4414,9 @@ jg
 jg
 qp
 Lc
+Yb
 Px
-Px
-hq
+Lc
 hq
 hq
 hq
@@ -4438,20 +4505,20 @@ Px
 Px
 XE
 Fw
-Fw
+dJ
 Fw
 kx
 iH
 cw
 iH
 Wn
-jg
+Bs
 jg
 dO
 Lc
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -4553,7 +4620,7 @@ Gp
 iH
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -4655,7 +4722,7 @@ tc
 iH
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -4751,13 +4818,13 @@ iH
 pg
 iH
 ps
-jg
+Bs
 jg
 HM
 iH
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -4839,14 +4906,14 @@ hq
 Lc
 kG
 Fw
-Fw
+dJ
 Fw
 JN
 Px
 Px
 XE
 Fw
-Fw
+dJ
 Fw
 pE
 Lc
@@ -4857,9 +4924,9 @@ jg
 jg
 Xk
 Lc
+Yb
 Px
-Px
-hq
+Lc
 hq
 hq
 hq
@@ -4931,13 +4998,13 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
-hq
-hq
-hq
+Lc
+Lc
+Lc
+Lc
+Lc
+Lc
+Lc
 Lc
 Lc
 MU
@@ -4961,7 +5028,7 @@ Lc
 Lc
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -5033,37 +5100,37 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
+Lc
+Px
+Px
+Px
+Yb
+Px
+Px
+Px
+Px
+Yb
+Px
+Px
+Px
+Yb
 Px
 Px
 Px
 Px
 Px
+Yb
+Px
+Px
+Px
+Px
+Yb
 Px
 Px
 Px
 Px
 Px
-Px
-Px
-Px
-Px
-Px
-Px
-Px
-Px
-Px
-Px
-Px
-Px
-Px
-Px
-Px
-Px
-hq
+Lc
 hq
 hq
 hq
@@ -5135,10 +5202,7 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
+Lc
 Px
 Px
 Px
@@ -5165,7 +5229,10 @@ Px
 Px
 Px
 Px
-hq
+Px
+Px
+Px
+Lc
 hq
 hq
 hq
@@ -5237,10 +5304,10 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
+Lc
+Fw
+Fw
+Fw
 Lc
 Fw
 Fw
@@ -5339,10 +5406,10 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
+Lc
+Fw
+Fw
+Fw
 Lc
 Lc
 Lc
@@ -5367,7 +5434,7 @@ Fw
 Fw
 dY
 Lc
-Px
+Yb
 Px
 Ws
 xl
@@ -5441,10 +5508,10 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
+Lc
+Fw
+Yh
+Fw
 Lc
 iz
 lX
@@ -5458,14 +5525,14 @@ Px
 Px
 Mb
 ql
-OG
+GF
 OG
 YC
 AH
-Fw
+LG
 xl
 Fw
-Fw
+dJ
 Fw
 Fw
 DA
@@ -5543,20 +5610,20 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
+Lc
+Fw
+Fw
+Fw
 Lc
 lX
-lX
+dl
 cI
 kl
 pb
 Fl
 Os
 wq
-Px
+Yb
 Px
 Mb
 QN
@@ -5564,7 +5631,7 @@ OG
 OG
 OH
 AH
-Fw
+aX
 xl
 Fw
 kb
@@ -5645,10 +5712,10 @@ hq
 hq
 hq
 hq
-hq
-hq
-hq
-hq
+Lc
+Fw
+Fw
+Fw
 Lc
 Na
 Na
@@ -5666,7 +5733,7 @@ OG
 OG
 OG
 AH
-Fw
+dJ
 xl
 Fw
 Fw
@@ -5677,7 +5744,7 @@ Px
 Px
 xl
 Fw
-Fw
+dJ
 Fw
 xl
 iH
@@ -5747,8 +5814,8 @@ hq
 hq
 hq
 hq
-hq
-hq
+Lc
+Lc
 hz
 hz
 hz
@@ -5756,7 +5823,7 @@ hz
 hz
 hz
 kl
-xl
+qa
 xl
 xl
 xz
@@ -5877,7 +5944,7 @@ xl
 xl
 xl
 Lc
-Px
+Yb
 Px
 Lc
 xl
@@ -5955,7 +6022,7 @@ hq
 hq
 hz
 bD
-bD
+dk
 bD
 hz
 hz
@@ -5969,13 +6036,13 @@ Px
 Fw
 Fw
 Fw
-Fw
+dJ
 Fw
 cq
 oc
 aB
 Fw
-Fw
+dJ
 Fw
 Px
 Px
@@ -6066,7 +6133,7 @@ TV
 Nx
 zy
 hz
-Px
+Yb
 Px
 Lc
 as
@@ -6267,7 +6334,7 @@ It
 Ea
 hr
 xl
-xl
+qa
 QM
 So
 Px
@@ -6278,7 +6345,7 @@ wz
 wz
 me
 as
-Fw
+dJ
 xl
 Fw
 Fw
@@ -6387,11 +6454,11 @@ Fw
 Fw
 Fw
 ik
-Px
+Yb
 Px
 xl
 Fw
-Fw
+dJ
 Fw
 xl
 iH
@@ -6478,14 +6545,14 @@ Px
 Px
 DN
 QJ
-wz
+YM
 wz
 wJ
 as
 Fw
 xl
 Fw
-Fw
+dJ
 Fw
 Fw
 IE
@@ -6576,7 +6643,7 @@ qi
 aY
 Ad
 hz
-Px
+Yb
 Px
 Lc
 jj
@@ -6770,11 +6837,11 @@ hq
 hq
 hq
 hq
-hq
+Lc
 Px
 Px
 Px
-Nb
+rF
 Px
 lo
 Px
@@ -6784,20 +6851,20 @@ Px
 Px
 Px
 Px
+Yb
 Px
 Px
 Px
 Px
+Yb
 Px
 Px
 Px
 Px
+Yb
 Px
 Px
-Px
-Px
-Px
-hq
+Lc
 hq
 hq
 hq
@@ -6872,7 +6939,7 @@ hq
 hq
 hq
 hq
-hq
+Lc
 Px
 Px
 Px
@@ -6899,7 +6966,7 @@ Px
 Px
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -6974,7 +7041,7 @@ hq
 hq
 hq
 hq
-hq
+Lc
 hz
 iH
 iH
@@ -7001,7 +7068,7 @@ Lc
 Lc
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -7086,7 +7153,7 @@ PE
 PE
 hq
 iH
-Px
+Yb
 Px
 Lc
 Jl
@@ -7103,7 +7170,7 @@ za
 Lc
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -7205,7 +7272,7 @@ KG
 iH
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -7295,19 +7362,19 @@ Px
 xl
 xl
 xl
+qa
 xl
 xl
 xl
 xl
 xl
+qa
 xl
 xl
 xl
-xl
-xl
+Yb
 Px
-Px
-hq
+Lc
 hq
 hq
 hq
@@ -7409,7 +7476,7 @@ xl
 xl
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -7493,7 +7560,7 @@ hq
 hq
 hq
 hq
-hq
+Lc
 Px
 Px
 iH
@@ -7511,7 +7578,7 @@ Yk
 iH
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -7595,8 +7662,8 @@ hq
 hq
 hq
 hq
-hq
-Px
+Lc
+Yb
 Px
 Lc
 zQ
@@ -7613,7 +7680,7 @@ nf
 Lc
 Px
 Px
-hq
+Lc
 hq
 hq
 hq
@@ -7697,25 +7764,25 @@ hq
 hq
 hq
 hq
-hq
-Px
-Px
 Lc
 Lc
-iH
-iH
-iH
-iH
+Lc
+Lc
 Lc
 iH
 iH
 iH
 iH
 Lc
+iH
+iH
+iH
+iH
 Lc
-Px
-Px
-hq
+Lc
+Lc
+Lc
+Lc
 hq
 hq
 hq

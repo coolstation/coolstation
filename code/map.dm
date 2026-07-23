@@ -52,6 +52,7 @@ var/global/list/mapNames = list(
 	"Atlas" = 			list("id" = "ATLAS", 		"settings" = "atlas", 			"playerPickable" = 0,		"MaxPlayersAllowed" = 30),
 	"Wrestlemap" = 		list("id" = "WRESTLEMAP", 	"settings" = "wrestlemap", 		"playerPickable" = ASS_JAM),
 	"pod_wars" = 		list("id" = "POD_WARS", 	"settings" = "pod_wars", 		"playerPickable" = 0),
+	"devtest" = 		list("id" = "DEVTEST",		"settings" = "devtest",			"playerPickable" = 0),
 	"blank" = 			list("id" = "BLANK", 		"settings" = "", 				"playerPickable" = 0),
 	"blank_underwater" =  list("id" = "BLANK_UNDERWATER", "settings" = "", "playerPickable" = 0)
 )
@@ -1338,6 +1339,48 @@ var/global/list/mapNames = list(
 		"the security lobby" = list(/area/station/chapel/sanctuary),
 		"the chapel" = list(/area/station/security/secwing),
 		"the south crew quarters" = list(/area/station/crew_quarters/quarters_south))
+
+/datum/map_settings/devtest
+	name = "DEVTEST"
+
+	goonhub_map = "https://play.coolstation.space/maps/noyade/"
+
+	arrivals_type = MAP_SPAWN_CRYO
+
+	walls = /turf/wall
+	rwalls = /turf/wall/r_wall
+	auto_walls = 0
+	shuttle_map_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
+
+	qm_supply_type = "shuttle"
+	shuttle_map_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
+
+	windows = /obj/window
+	windows_thin = /obj/window
+	rwindows = /obj/window/reinforced
+	rwindows_thin = /obj/window/reinforced
+	windows_crystal = /obj/window/crystal
+	windows_rcrystal = /obj/window/crystal/reinforced
+	window_layer_full = COG2_WINDOW_LAYER - 0.01
+	window_layer_north = COG2_WINDOW_LAYER
+	window_layer_south = COG2_WINDOW_LAYER
+	auto_windows = 1
+
+	ext_airlocks = /obj/machinery/door/airlock/pyro/external
+	airlock_style = "fart butt old stuff"
+	firelock_style = /obj/machinery/door/firedoor/border_only
+
+	escape_centcom = /area/shuttle/escape/centcom/destiny
+	escape_outpost = /area/shuttle/escape/outpost/destiny
+	escape_transit = /area/shuttle/escape/transit/destiny
+	escape_station = /area/shuttle/escape/station/destiny
+	escape_def = SHUTTLE_EAST
+	escape_dir = EAST
+
+	merchant_left_centcom = /area/shuttle/merchant_shuttle/left_centcom/cogmap
+	merchant_left_station = /area/shuttle/merchant_shuttle/left_station/cogmap
+	merchant_right_centcom = /area/shuttle/merchant_shuttle/right_centcom/cogmap
+	merchant_right_station = /area/shuttle/merchant_shuttle/right_station/cogmap
 
 /datum/map_settings/pod_wars
 	name = "POD_WARS"

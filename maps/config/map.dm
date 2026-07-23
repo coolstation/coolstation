@@ -100,6 +100,9 @@
 #elif defined(MAP_OVERRIDE_WRESTLEMAP)
 #include "wrestlemap.dm"
 
+#elif defined(MAP_OVERRIDE_DEVTEST)
+#include "devtest.dm"
+
 #elif defined(MAP_OVERRIDE_POD_WARS)
 #include "pod_wars.dm"
 
