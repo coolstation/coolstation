@@ -368,17 +368,16 @@
 			qdel(src)
 			return
 		game_stats.Increment("workplacesafety")
-#ifdef MAP_OVERRIDE_GEHENNA
-		var/datum/hud/cinematic/cinematic = new
-		for (var/client/C in clients)
-			cinematic.add_client(C)
-		cinematic.play("gehenna_nuke")
-#else
-		var/datum/hud/cinematic/cinematic = new
-		for (var/client/C in clients)
-			cinematic.add_client(C)
-		cinematic.play("nuke")
-#endif
+		if(map_currently_very_dusty)
+			var/datum/hud/cinematic/cinematic = new
+			for (var/client/C in clients)
+				cinematic.add_client(C)
+			cinematic.play("gehenna_nuke")
+		else
+			var/datum/hud/cinematic/cinematic = new
+			for (var/client/C in clients)
+				cinematic.add_client(C)
+			cinematic.play("nuke")
 		if(istype(NUKEMODE))
 			NUKEMODE.nuke_detonated = 1
 			NUKEMODE.check_win()

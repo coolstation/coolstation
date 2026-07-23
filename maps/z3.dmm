@@ -949,20 +949,33 @@
 /turf/floor/yellow/checker,
 /area/diner/arcade)
 "aeP" = (
-/obj/grille/catwalk{
-	dir = 4
-	},
 /obj/indestructible/shuttle_corner{
 	dir = 1;
 	icon_state = "wall_trans"
 	},
-/turf/space,
-/area/bee_trader)
-"aeQ" = (
-/obj/grille/catwalk{
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 1
+	},
+/turf/floor/airless/plating/catwalk{
 	dir = 4
 	},
-/turf/space,
+/area/bee_trader)
+"aeQ" = (
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
 /area/bee_trader)
 "aeR" = (
 /turf/floor/caution/east{
@@ -1220,8 +1233,16 @@
 /area/radiostation/serverroom)
 "age" = (
 /obj/decal/cleanable/dirt,
-/obj/submachine/ice_cream_dispenser,
-/turf/floor/damaged2,
+/obj/table/reinforced/auto,
+/obj/window/classic/east{
+	dir = 2
+	},
+/obj/machinery/coffeemaker/generic,
+/obj/mug_rack{
+	pixel_y = 2;
+	pixel_x = -31
+	},
+/turf/floor/scorched2,
 /area/diner/kitchen)
 "agi" = (
 /obj/table/auto,
@@ -1468,7 +1489,11 @@
 	dir = 4;
 	icon_state = "wall_trans"
 	},
-/obj/table/wood/auto,
+/obj/storage/crate/bin{
+	pixel_y = 2;
+	pixel_x = 8
+	},
+/obj/item/paper/bombininote/postgame,
 /turf/floor{
 	icon_state = "hive"
 	},
@@ -1481,11 +1506,7 @@
 /obj/stool/chair/couch/yellow{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/snacks/condiment/mayo{
-	desc = "All congealed and dusty. Ugh!";
-	name = "old mayonnaise";
-	quality = -80
-	},
+/obj/npc/trader/bee,
 /turf/floor{
 	icon_state = "hive"
 	},
@@ -1494,11 +1515,16 @@
 /obj/stool/chair/couch/yellow{
 	dir = 4
 	},
-/obj/critter/domestic_bee/bubs,
 /obj/machinery/light/small{
 	dir = 1;
 	status = 2
 	},
+/obj/item/reagent_containers/food/snacks/condiment/mayo{
+	desc = "All congealed and dusty. Ugh!";
+	name = "old mayonnaise";
+	quality = -80
+	},
+/obj/critter/domestic_bee/bubs,
 /turf/floor{
 	icon_state = "hive"
 	},
@@ -1511,9 +1537,9 @@
 /area/diner/motel/observatory)
 "ahE" = (
 /obj/table/wood/auto,
-/obj/item/paper/bombininote/postgame,
-/obj/indestructible/shuttle_corner{
-	icon_state = "wall3_trans"
+/obj/item/paper/postcard/owlery{
+	pixel_y = 5;
+	pixel_x = 3
 	},
 /turf/floor{
 	icon_state = "hive"
@@ -1729,14 +1755,43 @@
 	icon_state = "hive"
 	},
 /area/bee_trader)
-"aix" = (
-/obj/decal/tile_edge/stripe/extra_big,
-/turf/floor{
-	icon_state = "hive"
-	},
-/area/bee_trader)
 "aiy" = (
-/obj/reagent_dispensers/beerkeg,
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 6
+	},
+/obj/storage/secure/closet/fridge,
+/obj/item/reagent_containers/food/snacks/cereal_box/honey,
+/obj/item/reagent_containers/food/snacks/cereal_box/honey{
+	pixel_y = 4;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/snacks/cereal_box/honey{
+	pixel_y = -3;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/snacks/breadslice/corn/sweet/honey{
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/honey{
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/honey{
+	pixel_y = 1;
+	pixel_x = 3
+	},
+/obj/item/reagent_containers/food/snacks/beefood{
+	pixel_y = 5;
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/food/snacks/beefood{
+	pixel_x = 5
+	},
+/obj/item/reagent_containers/food/snacks/beefood{
+	pixel_x = 5;
+	pixel_y = 8
+	},
 /turf/floor/shuttlebay,
 /area/bee_trader)
 "aiz" = (
@@ -1744,6 +1799,11 @@
 	pixel_y = 30
 	},
 /obj/map/light/screen,
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1
+	},
+/obj/critter/roach,
 /turf/floor/shuttlebay,
 /area/bee_trader)
 "aiA" = (
@@ -1790,14 +1850,25 @@
 /obj/indestructible/shuttle_corner{
 	icon_state = "wall_trans"
 	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 10
+	},
 /turf/floor/shuttlebay,
 /area/bee_trader)
 "aiH" = (
-/obj/grille/catwalk{
+/obj/decal/cleanable/dirt,
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1
+	},
+/turf/floor/airless/plating/catwalk{
 	dir = 4
 	},
-/obj/decal/cleanable/dirt,
-/turf/space,
 /area/bee_trader)
 "aiI" = (
 /obj/decal/fakeobjects/shuttleengine{
@@ -1898,7 +1969,10 @@
 /turf/floor/plating,
 /area/diner/motel/observatory)
 "aje" = (
-/obj/machinery/door/airlock/external/shuttle_connect,
+/obj/machinery/door/unpowered/shuttle{
+	autoclose = 1;
+	autoclose_time = 5
+	},
 /turf/floor/shuttlebay,
 /area/bee_trader)
 "ajf" = (
@@ -1911,15 +1985,6 @@
 /obj/window/reinforced/north,
 /turf/floor/plating,
 /area/diner/motel/observatory)
-"ajh" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "delivery2"
-	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 4
-	},
-/turf/floor/shuttlebay,
-/area/bee_trader)
 "aji" = (
 /obj/lattice,
 /turf/space{
@@ -1934,21 +1999,21 @@
 /turf/floor/red/side,
 /area/radiostation/hallway)
 "ajl" = (
-/obj/machinery/door/airlock/external{
-	name = "Compartment Hatch"
+/obj/machinery/door/unpowered/shuttle{
+	autoclose = 1;
+	autoclose_time = 5
+	},
+/obj/airlock_cycle_linker{
+	cycle_id = "bee_lock"
 	},
 /turf/floor/shuttlebay,
 /area/bee_trader)
 "ajm" = (
 /obj/decal/fakeobjects/cargopad,
-/turf/floor/shuttlebay,
-/area/bee_trader)
-"ajo" = (
-/obj/grille/catwalk{
-	dir = 4
+/obj/marker/supplymarker,
+/turf/floor{
+	icon_state = "hive"
 	},
-/obj/machinery/door/airlock/external,
-/turf/space,
 /area/bee_trader)
 "ajq" = (
 /obj/storage/secure/closet/kitchen,
@@ -1956,12 +2021,14 @@
 /turf/floor/wood/two,
 /area/space)
 "ajr" = (
-/obj/grille/catwalk{
-	dir = 4
-	},
 /obj/map/light/screen,
 /obj/decal/cleanable/dirt,
-/turf/space,
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
 /area/bee_trader)
 "ajs" = (
 /obj/decal/fakeobjects/shuttleengine{
@@ -2034,10 +2101,23 @@
 /area/space)
 "ajS" = (
 /obj/machinery/light/small,
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 5
+	},
+/obj/reagent_dispensers/beerkeg{
+	reagents = list("beer"=50,"honey"=20);
+	name = "BEEr keg"
+	},
 /turf/floor/shuttlebay,
 /area/bee_trader)
 "ajT" = (
-/obj/critter/roach,
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 1
+	},
 /turf/floor/shuttlebay,
 /area/bee_trader)
 "ajV" = (
@@ -2087,17 +2167,28 @@
 	dir = 8;
 	icon_state = "wall_trans"
 	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 9
+	},
 /turf/floor/shuttlebay,
 /area/bee_trader)
 "ajZ" = (
-/obj/grille/catwalk{
-	dir = 4
-	},
 /obj/indestructible/shuttle_corner{
 	dir = 4;
 	icon_state = "wall_trans"
 	},
-/turf/space,
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
 /area/bee_trader)
 "aka" = (
 /obj/decal/fakeobjects/shuttleengine{
@@ -2147,7 +2238,6 @@
 /turf/floor/carpet/arcade,
 /area/diner/arcade)
 "akq" = (
-/obj/table/wood/auto,
 /obj/indestructible/shuttle_corner{
 	dir = 1;
 	icon_state = "wall_trans"
@@ -2159,7 +2249,13 @@
 "akr" = (
 /obj/table/wood/auto,
 /obj/machinery/light/small,
-/obj/item/reagent_containers/food/snacks/beefood,
+/obj/item/reagent_containers/food/snacks/beefood{
+	pixel_y = 5;
+	pixel_x = -3
+	},
+/obj/item/toy/plush/small/buddy{
+	pixel_x = 9
+	},
 /turf/floor{
 	icon_state = "hive"
 	},
@@ -2186,10 +2282,9 @@
 /area/buddyfactory)
 "akw" = (
 /obj/table/wood/auto,
-/obj/item/paper/postcard/owlery,
-/obj/indestructible/shuttle_corner{
-	dir = 8;
-	icon_state = "wall3_trans"
+/obj/shitty_radio{
+	pixel_y = 6;
+	pixel_x = -1
 	},
 /turf/floor{
 	icon_state = "hive"
@@ -2374,7 +2469,18 @@
 /turf/floor/airless/black/grime,
 /area/abandonedship)
 "alc" = (
-/turf/floor/specialroom/bar,
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 8
+	},
+/turf/floor/carpet,
 /area/diner/dining)
 "ald" = (
 /obj/machinery/computer/transit_terminal/mining,
@@ -3316,8 +3422,12 @@
 /turf/floor/delivery,
 /area/radiostation/engineering)
 "aob" = (
-/obj/decal/tile_edge/stripe/extra_big{
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
 	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/floor{
 	icon_state = "hive"
@@ -3964,7 +4074,26 @@
 /obj/machinery/computer/security/wooden_tv/small{
 	pixel_y = 8
 	},
-/turf/floor/delivery,
+/obj/decal/fakeobjects/tapedeck{
+	icon_state = "ceilinglight";
+	pixel_y = 20;
+	layer = LIGHTING_LAYER_FULLBRIGHT;
+	name = "ceiling lamp";
+	plane = -89;
+	mouse_opacity = 0
+	},
+/obj/map/light/yellow{
+	brightness = 4.5
+	},
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
+	},
+/turf/floor/scorched2,
 /area/diner/dining)
 "aql" = (
 /turf/wall/r_wall{
@@ -3985,15 +4114,19 @@
 /turf/floor/plating,
 /area/buddyfactory)
 "aqq" = (
+/obj/window/classic/east{
+	pixel_x = 3
+	},
 /obj/stool/chair{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 1
+/obj/decal/fakeobjects/junction_box{
+	pixel_y = 31
 	},
-/turf/floor/carpet{
-	dir = 4;
-	icon_state = "red4"
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/cleanable/mess/chips,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "aqr" = (
@@ -4003,7 +4136,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/specialroom/bar,
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
 /area/diner/dining)
 "aqt" = (
 /obj/machinery/light/fluorescent/neutral{
@@ -4032,7 +4168,16 @@
 /obj/cable{
 	icon_state = "2-4"
 	},
-/turf/floor/specialroom/bar,
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/floor/carpet,
 /area/diner/dining)
 "aqy" = (
 /obj/decal/cleanable/dirt,
@@ -4140,17 +4285,15 @@
 /turf/floor/black,
 /area/buddyfactory)
 "aqP" = (
-/obj/stool/chair{
-	dir = 4
-	},
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/carpet{
-	dir = 8;
-	icon_state = "red2"
+/obj/window/classic/east,
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "aqR" = (
@@ -4414,6 +4557,17 @@
 /obj/grille/catwalk{
 	dir = 1;
 	icon_state = "catwalk_cross"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/obj/cable{
+	icon_state = "2-8"
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/floor/airless/plating/catwalk{
 	dir = 5;
@@ -15976,22 +16130,21 @@
 "bnC" = (
 /obj/machinery/vending/kitchen,
 /obj/decal/cleanable/dirt,
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
 /turf/floor/scorched2,
 /area/diner/kitchen)
 "bnD" = (
 /obj/stove,
 /obj/item/soup_pot,
 /obj/item/ladle,
-/turf/floor/grime,
+/turf/floor/damaged3,
 /area/diner/kitchen)
 "bnW" = (
 /obj/table/reinforced/auto,
 /obj/item/storage/box/glassbox,
 /obj/item/storage/box/cutlery,
-/obj/machinery/light/small{
-	dir = 1;
-	status = 2
-	},
 /obj/item/reagent_containers/food/snacks/ingredient/pancake_batter,
 /obj/item/kitchen/rollingpin,
 /obj/decal/cleanable/dirt,
@@ -16013,29 +16166,31 @@
 "boh" = (
 /obj/submachine/foodprocessor,
 /obj/decal/cleanable/dirt,
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
 /turf/floor/scorched2,
 /area/diner/kitchen)
 "boi" = (
 /obj/decal/fakeobjects/firealarm_broken{
 	pixel_y = 28
 	},
-/obj/machinery/vending/alcohol,
 /obj/decal/cleanable/dirt,
-/turf/floor/grime,
+/obj/machinery/vending/minibar/jank,
+/turf/floor/scorched2,
 /area/diner/kitchen)
 "bom" = (
 /obj/submachine/chef_oven,
 /obj/decal/cleanable/dirt,
-/turf/floor/scorched,
+/turf/floor/scorched2,
 /area/diner/kitchen)
 "bon" = (
 /obj/submachine/chef_sink,
-/obj/machinery/light/small{
-	dir = 1;
-	status = 2
-	},
 /obj/decal/cleanable/dirt,
-/turf/floor/damaged2,
+/obj/machinery/light/fluorescent/neutral{
+	dir = 1
+	},
+/turf/floor/scorched2,
 /area/diner/kitchen)
 "bop" = (
 /obj/machinery/deep_fryer,
@@ -16053,7 +16208,7 @@
 /obj/submachine/mixer,
 /obj/decal/cleanable/cobweb2,
 /obj/decal/cleanable/dirt,
-/turf/floor/grime,
+/turf/floor/scorched2,
 /area/diner/kitchen)
 "bov" = (
 /obj/decal/floatingtiles{
@@ -16065,8 +16220,10 @@
 /turf/floor/airless/plating/damaged2,
 /area/space)
 "bow" = (
-/obj/decal/tile_edge/stripe/extra_big,
-/obj/marker/supplymarker,
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1
+	},
 /turf/floor{
 	icon_state = "hive"
 	},
@@ -16083,15 +16240,6 @@
 /obj/decal/cleanable/dirt,
 /turf/floor/grime,
 /area/diner/hangar)
-"boD" = (
-/obj/decal/tile_edge/stripe/extra_big{
-	icon_state = "delivery2"
-	},
-/obj/decal/tile_edge/stripe/extra_big{
-	dir = 8
-	},
-/turf/floor/shuttlebay,
-/area/bee_trader)
 "boJ" = (
 /obj/window/cubicle{
 	dir = 1
@@ -16118,6 +16266,9 @@
 	picture = "loungebuddy.png";
 	productset = 1;
 	trader_area = "/area/diner/bathroom"
+	},
+/obj/decoration/vent{
+	pixel_y = 33
 	},
 /turf/floor/grime,
 /area/diner/bathroom)
@@ -16291,6 +16442,19 @@
 "caQ" = (
 /mob/living/critter/skeleton,
 /turf/floor/plating/airless/asteroid,
+/area/space)
+"cbb" = (
+/obj/grille/catwalk{
+	dir = 4
+	},
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
 /area/space)
 "cci" = (
 /obj/item/cigbutt,
@@ -16524,6 +16688,23 @@
 /obj/machinery/light/runway_light/delay2,
 /turf/space,
 /area/space)
+"dfU" = (
+/obj/decal/cleanable/rust/jen/grime,
+/obj/machinery/vending/fortune{
+	pixel_y = 4
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
+/area/diner/dining)
+"dgM" = (
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
+/area/bee_trader)
 "djB" = (
 /obj/decal/cleanable/machine_debris,
 /obj/decal/cleanable/dirt,
@@ -16573,6 +16754,14 @@
 	tag = "icon-catwalk (WEST)"
 	},
 /area/derelict_ai_sat/solar)
+"dqO" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/turf/floor/stairs/wide{
+	dir = 4
+	},
+/area/diner/dining)
 "dqV" = (
 /obj/decal/cleanable/machine_debris,
 /obj/decal/cleanable/tracked_reagents/blood/splatter{
@@ -16615,7 +16804,22 @@
 /obj/cable{
 	icon_state = "4-8"
 	},
-/turf/floor/specialroom/bar,
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0;
+	dir = 1
+	},
+/obj/decoration/vent{
+	pixel_y = 33
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 8
+	},
+/turf/floor/carpet,
 /area/diner/dining)
 "dAj" = (
 /obj/machinery/door/airlock/classic,
@@ -16623,6 +16827,18 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"dBc" = (
+/obj/stool/chair{
+	dir = 4
+	},
+/obj/neon_sign/bees{
+	pixel_y = 29
+	},
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
+/area/diner/dining)
 "dEq" = (
 /obj/cable{
 	d1 = 1;
@@ -16747,6 +16963,18 @@
 "eaV" = (
 /turf/floor/airless/plating/damaged2,
 /area/abandonedmedicalship)
+"ebs" = (
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/floor{
+	icon_state = "hive"
+	},
+/area/bee_trader)
 "ecu" = (
 /obj/item/raw_material/shard/glass,
 /turf/floor/plating/airless,
@@ -16794,14 +17022,33 @@
 /obj/grille/catwalk,
 /turf/floor/airless/plating/catwalk,
 /area/derelict_ai_sat/solar)
-"ejs" = (
-/obj/critter/cat{
-	desc = "How long has this cat been here?";
-	icon_state = "cat6";
-	name = "jons the catte";
-	randomize_cat = 0
+"ejf" = (
+/obj/grille/catwalk{
+	dir = 4
 	},
-/turf/floor/specialroom/bar,
+/obj/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
+/area/space)
+"ejY" = (
+/obj/item/poster/titled_photo/bee,
+/obj/item/poster/titled_photo/bee,
+/obj/item/poster/titled_photo/bee,
+/turf/wall/r_wall{
+	icon = 'icons/misc/evilreaverstation.dmi';
+	icon_state = "old_rwall"
+	},
 /area/diner/dining)
 "elp" = (
 /obj/machinery/door/poddoor/blast{
@@ -16840,13 +17087,6 @@
 /obj/machinery/cashreg,
 /turf/floor/carpet/purple/fancy/edge/north,
 /area/juicer/club/outside)
-"epE" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/instrument/harmonica,
-/turf/floor/carpet{
-	icon_state = "red2"
-	},
-/area/diner/dining)
 "erJ" = (
 /obj/machinery/light,
 /obj/decal/cleanable/dirt,
@@ -17040,12 +17280,6 @@
 /turf/floor/plating,
 /area/diner/backroom)
 "eTI" = (
-/obj/stool/chair{
-	dir = 4
-	},
-/obj/landmark/spawner{
-	name = "father_jack"
-	},
 /obj/cable{
 	d1 = 1;
 	d2 = 2;
@@ -17056,10 +17290,15 @@
 	d2 = 4;
 	icon_state = "2-9"
 	},
-/turf/floor/carpet{
-	dir = 9;
-	icon_state = "red2"
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
 	},
+/turf/floor/carpet,
 /area/diner/dining)
 "eVl" = (
 /obj/decal/cleanable/dirt,
@@ -17088,7 +17327,8 @@
 /turf/floor/airless/scorched,
 /area/abandonedmedicalship)
 "feo" = (
-/turf/floor/damaged2,
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grime,
 /area/diner/kitchen)
 "ffG" = (
 /obj/stool/chair/couch/purple{
@@ -17108,6 +17348,19 @@
 /obj/item/plate/tray,
 /turf/floor/plating/damaged1,
 /area/diner/kitchen)
+"fhV" = (
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 1
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
+/area/bee_trader)
 "fjo" = (
 /turf/floor/airless/black,
 /area/debris/harmacy)
@@ -17301,11 +17554,6 @@
 /obj/decal/cleanable/dirt,
 /turf/floor/grime,
 /area/diner/hangar)
-"fHC" = (
-/turf/floor/carpet{
-	icon_state = "red2"
-	},
-/area/diner/dining)
 "fJN" = (
 /obj/machinery/light,
 /turf/floor/shuttlebay,
@@ -17370,6 +17618,22 @@
 	opacity = 0
 	},
 /area/abandonedmedicalship)
+"fWK" = (
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 1
+	},
+/obj/storage/crate/bee/loaded{
+	locked = 1
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
+/area/bee_trader)
 "fWR" = (
 /obj/machinery/space_heater,
 /turf/floor/airless/caution/northsouth,
@@ -17395,10 +17659,10 @@
 /turf/floor/black,
 /area/juicer/club)
 "fYl" = (
-/obj/stool/chair,
-/turf/floor/carpet{
-	dir = 1;
-	icon_state = "red2"
+/obj/window/classic/east,
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "fYE" = (
@@ -17524,10 +17788,19 @@
 /obj/window/reinforced/south,
 /turf/floor/plating,
 /area/juicer/club/outside)
+"goh" = (
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 4
+	},
+/turf/floor/shuttlebay,
+/area/bee_trader)
 "gph" = (
-/turf/floor/carpet{
-	dir = 1;
-	icon_state = "red2"
+/obj/window/classic/west,
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "gpH" = (
@@ -17617,10 +17890,8 @@
 	name = "Bilateral Shop Ship"
 	})
 "gIC" = (
-/obj/item/poster/titled_photo/bee,
-/turf/wall/r_wall{
-	icon = 'icons/misc/evilreaverstation.dmi';
-	icon_state = "old_rwall"
+/turf/floor/stairs/wide/other{
+	dir = 4
 	},
 /area/diner/dining)
 "gLt" = (
@@ -17780,7 +18051,13 @@
 	d2 = 4;
 	icon_state = "6-9"
 	},
-/turf/floor/specialroom/bar,
+/obj/decal/cleanable/rust/jen/grime,
+/obj/table/round/auto{
+	material = "steel"
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
 /area/diner/dining)
 "hnr" = (
 /obj/grille/steel,
@@ -17820,10 +18097,12 @@
 /turf/space,
 /area/space)
 "hvt" = (
-/obj/decal/tile_edge/stripe/extra_big,
-/obj/npc/trader/bee,
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1
 	},
 /turf/floor{
 	icon_state = "hive"
@@ -18366,6 +18645,20 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/floor/plating/damaged1,
 /area/diner/hangar)
+"iPe" = (
+/obj/decal/cleanable/dirt,
+/obj/lattice/grey{
+	icon_state = "grate"
+	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 1
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4
+	},
+/area/bee_trader)
 "iPq" = (
 /obj/table/auto,
 /obj/item/c_tube,
@@ -18495,11 +18788,6 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
-"jll" = (
-/obj/machinery/espresso_machine,
-/obj/item/reagent_containers/food/drinks/espressocup,
-/turf/floor/grime,
-/area/diner/kitchen)
 "jlu" = (
 /obj/lattice{
 	icon_state = "lattice-dir"
@@ -18579,10 +18867,6 @@
 	},
 /turf/space,
 /area/abandonedship)
-"jxo" = (
-/obj/decal/cleanable/dirt,
-/turf/floor/damaged2,
-/area/diner/kitchen)
 "jCK" = (
 /obj/wingrille_spawn,
 /turf/floor/shuttle{
@@ -18718,7 +19002,8 @@
 	name = "Bilateral Shop Ship"
 	})
 "jZY" = (
-/obj/critter/roach,
+/obj/storage/secure/closet/civilian/kitchen,
+/obj/item/kitchen/rollingpin,
 /turf/floor/grime,
 /area/diner/kitchen)
 "kag" = (
@@ -18750,15 +19035,15 @@
 	name = "GLOMAR Salvager"
 	})
 "keG" = (
-/obj/item/kitchen/rollingpin,
-/obj/storage/secure/closet/civilian/kitchen,
 /obj/decal/cleanable/dirt,
-/turf/floor/damaged2,
+/obj/table/reinforced/auto,
+/turf/floor/scorched2,
 /area/diner/kitchen)
 "kfr" = (
 /obj/decal/cleanable/dirt,
 /obj/decal/cleanable/eggsplat,
-/turf/floor/scorched2,
+/obj/table/reinforced/auto,
+/turf/floor/grime,
 /area/diner/kitchen)
 "kga" = (
 /obj/machinery/teleport/portal_ring,
@@ -18772,11 +19057,25 @@
 /turf/space,
 /area/space)
 "kgO" = (
-/obj/machinery/light{
-	dir = 8
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/cleanable/mess/maple{
+	pixel_y = -1;
+	pixel_x = 19
 	},
-/turf/floor/specialroom/bar,
+/obj/window/classic/west,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
 /area/diner/dining)
+"kho" = (
+/obj/grille/catwalk,
+/obj/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/floor/airless/plating/catwalk,
+/area/space)
 "kkO" = (
 /obj/reagent_dispensers/fueltank,
 /turf/floor/industrial,
@@ -18795,12 +19094,19 @@
 	},
 /area/diner/jucer_trader)
 "kob" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/plate,
-/obj/item/reagent_containers/food/snacks/onion_slice,
-/obj/item/reagent_containers/food/snacks/onion_slice,
-/turf/floor/carpet{
-	icon_state = "red2"
+/obj/window/classic/west,
+/obj/decal/cleanable/rust/jen/grime,
+/obj/landmark/spawner{
+	name = "father_jack"
+	},
+/obj/decal/fakeobjects{
+	icon = 'icons/misc/32x64.dmi';
+	icon_state = "boothR";
+	layer = 2.9;
+	name = "booth"
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "kpj" = (
@@ -18881,6 +19187,11 @@
 	},
 /turf/floor/black,
 /area/juicer/club)
+"kFN" = (
+/obj/decal/cleanable/dirt,
+/obj/critter/roach,
+/turf/floor/grime,
+/area/diner/kitchen)
 "kFO" = (
 /obj/decal/tile_edge/line/purple{
 	dir = 1;
@@ -18896,6 +19207,21 @@
 	icon_state = "floor6"
 	},
 /area/diner/jucer_trader)
+"kGa" = (
+/obj/grille/catwalk{
+	dir = 9
+	},
+/obj/cable{
+	icon_state = "1-4"
+	},
+/obj/cable{
+	icon_state = "2-4"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 8;
+	icon_state = "catwalk_cross"
+	},
+/area/space)
 "kGk" = (
 /turf/floor/plating,
 /area/diner/dining)
@@ -18970,14 +19296,19 @@
 	},
 /area/diner/jucer_trader)
 "kOj" = (
-/obj/table/reinforced/bar/auto,
 /obj/item/kitchen/utensil/fork,
-/obj/item/kitchen/utensil/spoon,
-/obj/item/reagent_containers/food/drinks/espressocup,
-/turf/floor/carpet{
-	dir = 5;
-	icon_state = "red2"
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
 	},
+/obj/decal/tile_edge/stripe{
+	dir = 4
+	},
+/turf/floor/carpet,
 /area/diner/dining)
 "kPV" = (
 /obj/machinery/door/unpowered/shuttle,
@@ -19001,6 +19332,13 @@
 	icon_state = "floor6"
 	},
 /area/diner/jucer_trader)
+"kTI" = (
+/obj/grille/steel,
+/obj/window/reinforced/west,
+/obj/window/reinforced/south,
+/obj/window/reinforced/east,
+/turf/floor/plating,
+/area/diner/hallway)
 "kUg" = (
 /turf/wall/s_wall,
 /area/debris/harmacy)
@@ -19030,8 +19368,17 @@
 /turf/floor/grime,
 /area/juicer/club/back)
 "kXH" = (
-/obj/machinery/vending/cola/blue,
-/turf/floor/specialroom/bar,
+/obj/window/classic/west,
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/fakeobjects{
+	icon = 'icons/misc/32x64.dmi';
+	icon_state = "boothR";
+	layer = 2.9;
+	name = "booth"
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
 /area/diner/dining)
 "kYz" = (
 /obj/table/auto,
@@ -19064,11 +19411,16 @@
 	name = "Bilateral Shop Ship"
 	})
 "ldT" = (
-/obj/decal/tile_edge/stripe/extra_big,
-/obj/machinery/computer/security/wooden_tv{
-	desc = "These channels seem to mostly be about robuddies. What is this, some kind of reality show?";
-	name = "Television";
-	network = "Zeta"
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1
+	},
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1
+	},
+/obj/machinery/light/lamp{
+	pixel_y = 35
 	},
 /turf/floor{
 	icon_state = "hive"
@@ -19156,17 +19508,32 @@
 /obj/grille/catwalk,
 /turf/floor/airless/plating/catwalk,
 /area/derelict_ai_sat/solar)
-"lri" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/reagent_containers/food/snacks/mashedpotatoes,
-/turf/floor/carpet{
-	dir = 4;
-	icon_state = "red2"
-	},
-/area/diner/dining)
 "lsr" = (
 /turf/floor/carpet/purple/standard/innercorner/ne,
 /area/juicer/club/outside)
+"lsy" = (
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/floor/carpet,
+/area/diner/dining)
+"lsM" = (
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
+	},
+/turf/floor/carpet,
+/area/diner/dining)
 "ltx" = (
 /obj/machinery/light/small/warm{
 	dir = 8
@@ -19281,10 +19648,54 @@
 	dir = 4
 	},
 /area/juicer/club)
+"lKm" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0;
+	dir = 1
+	},
+/obj/decal/tile_edge/stripe{
+	dir = 4
+	},
+/turf/floor/carpet,
+/area/diner/dining)
 "lNy" = (
-/obj/item/instrument/large/jukebox,
-/turf/floor/carpet{
-	icon_state = "red2"
+/obj/decal/cleanable/rust/jen/grime,
+/obj/item/shaker/ketchup{
+	pixel_x = -3;
+	pixel_y = 17
+	},
+/obj/item/shaker/mustard{
+	pixel_x = 6;
+	pixel_y = 17
+	},
+/obj/item/shaker/pepper{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/table/round/auto{
+	material = "steel"
+	},
+/obj/decal/fakeobjects/tapedeck{
+	icon_state = "ceilinglight";
+	pixel_y = 35;
+	layer = LIGHTING_LAYER_FULLBRIGHT;
+	name = "ceiling lamp";
+	plane = -89;
+	mouse_opacity = 0
+	},
+/obj/map/light/yellow{
+	brightness = 4.5
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "lOP" = (
@@ -19523,15 +19934,6 @@
 /obj/machinery/cashreg,
 /turf/floor/darkpurple,
 /area/juicer/club/outside)
-"mpf" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/reagent_containers/food/snacks/pancake/classic{
-	pixel_y = 7
-	},
-/turf/floor/carpet{
-	icon_state = "red2"
-	},
-/area/diner/dining)
 "mrs" = (
 /obj/neon_sign/medical/weed{
 	name = "harmacy sign";
@@ -19905,6 +20307,13 @@
 /obj/grille/steel,
 /turf/floor/plating,
 /area/diner/arcade)
+"nqY" = (
+/obj/grille/steel,
+/obj/window/reinforced/west,
+/obj/window/reinforced/north,
+/obj/window/reinforced/east,
+/turf/floor/plating,
+/area/diner/hallway)
 "nuu" = (
 /obj/machinery/light{
 	dir = 4
@@ -20117,13 +20526,6 @@
 	},
 /turf/floor/plating/airless/asteroid,
 /area/space)
-"odP" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/reagent_containers/food/snacks/condiment/syrup,
-/turf/floor/carpet{
-	icon_state = "red2"
-	},
-/area/diner/dining)
 "oeL" = (
 /obj/decal/cleanable/robot_debris/limb,
 /turf/floor/plating/airless/asteroid,
@@ -20141,19 +20543,39 @@
 /turf/floor/airless/plating/scorched,
 /area/abandonedmedicalship)
 "oix" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/plate,
-/obj/decal/cleanable/molten_item,
+/obj/decal/cleanable/rust/jen/grime,
 /obj/item/shaker/ketchup{
-	pixel_x = -4;
-	pixel_y = 1
+	pixel_x = -3;
+	pixel_y = 17
 	},
 /obj/item/shaker/mustard{
-	pixel_x = 3
+	pixel_x = 6;
+	pixel_y = 17
 	},
-/turf/floor/carpet{
-	dir = 10;
-	icon_state = "red2"
+/obj/item/shaker/pepper{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/shaker/salt{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/table/round/auto{
+	material = "steel"
+	},
+/obj/decal/fakeobjects/tapedeck{
+	icon_state = "ceilinglight";
+	pixel_y = 35;
+	layer = LIGHTING_LAYER_FULLBRIGHT;
+	name = "ceiling lamp";
+	plane = -89;
+	mouse_opacity = 0
+	},
+/obj/map/light/yellow{
+	brightness = 4.5
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "okf" = (
@@ -20332,12 +20754,17 @@
 /area/debris/pee)
 "oCr" = (
 /obj/table/reinforced/bar/auto,
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/deskclutter,
 /obj/item/reagent_containers/food/drinks/bowl,
-/turf/floor/delivery,
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
+	},
+/turf/floor/scorched2,
 /area/diner/dining)
 "oCw" = (
 /obj/decal/fakeobjects/smallrocks,
@@ -20347,7 +20774,15 @@
 /obj/table/reinforced/bar/auto,
 /obj/item/plate,
 /obj/decal/cleanable/molten_item,
-/turf/floor/delivery,
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
+	},
+/turf/floor/scorched2,
 /area/diner/dining)
 "oFf" = (
 /obj/structure/girder/displaced,
@@ -20356,7 +20791,26 @@
 "oGJ" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
-/turf/floor/delivery,
+/obj/decal/fakeobjects/tapedeck{
+	icon_state = "ceilinglight";
+	pixel_y = 20;
+	layer = LIGHTING_LAYER_FULLBRIGHT;
+	name = "ceiling lamp";
+	plane = -89;
+	mouse_opacity = 0
+	},
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
+	},
+/obj/map/light/yellow{
+	brightness = 4.5
+	},
+/turf/floor/scorched2,
 /area/diner/dining)
 "oNd" = (
 /obj/stool/chair/couch/yellow{
@@ -20423,21 +20877,14 @@
 	},
 /area/shuttle/mining/space)
 "oXv" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/shaker/pepper{
-	pixel_x = -8;
-	pixel_y = 3
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
 	},
-/obj/item/shaker/salt{
-	pixel_x = 1
-	},
-/turf/floor/delivery,
-/area/diner/dining)
-"oXB" = (
-/obj/machinery/optable,
-/turf/floor/airless/black,
-/area/debris/harmacy)
-"oZH" = (
 /obj/npc/trader/robot{
 	desc = "The robot proprieter of the Diner. Deals in food that's to dine for!";
 	name = "B.I.F.F.";
@@ -20445,7 +20892,41 @@
 	productset = 2;
 	trader_area = "/area/diner/dining"
 	},
-/turf/floor/delivery,
+/turf/floor/bot,
+/area/diner/dining)
+"oXB" = (
+/obj/machinery/optable,
+/turf/floor/airless/black,
+/area/debris/harmacy)
+"oZH" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/shaker/pepper{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/decal/fakeobjects/tapedeck{
+	icon_state = "ceilinglight";
+	pixel_y = 20;
+	layer = LIGHTING_LAYER_FULLBRIGHT;
+	name = "ceiling lamp";
+	plane = -89;
+	mouse_opacity = 0
+	},
+/obj/item/shaker/salt{
+	pixel_x = 1
+	},
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
+	},
+/obj/map/light/yellow{
+	brightness = 4.5
+	},
+/turf/floor/scorched2,
 /area/diner/dining)
 "pcy" = (
 /obj/machinery/light/fluorescent/purpleish{
@@ -20454,9 +20935,36 @@
 /turf/floor/carpet/purple/fancy/edge/nw,
 /area/juicer/club/outside)
 "pcF" = (
-/obj/decal/cleanable/dirt,
-/obj/item/reagent_containers/food/snacks/condiment/mayo,
-/turf/floor/specialroom/bar,
+/obj/decal/cleanable/rust/jen/grime,
+/obj/item/shaker/ketchup{
+	pixel_x = -3;
+	pixel_y = 17
+	},
+/obj/item/shaker/mustard{
+	pixel_x = 6;
+	pixel_y = 17
+	},
+/obj/item/shaker/salt{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/table/round/auto{
+	material = "steel"
+	},
+/obj/decal/fakeobjects/tapedeck{
+	icon_state = "ceilinglight";
+	pixel_y = 35;
+	layer = LIGHTING_LAYER_FULLBRIGHT;
+	name = "ceiling lamp";
+	plane = -89;
+	mouse_opacity = 0
+	},
+/obj/map/light/yellow{
+	brightness = 4.5
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
 /area/diner/dining)
 "pda" = (
 /obj/decal/floatingtiles{
@@ -20504,7 +21012,19 @@
 /obj/machinery/cashreg,
 /obj/table/reinforced/bar/auto,
 /obj/machinery/cashreg,
-/turf/floor/delivery,
+/obj/item/shaker/pepper{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
+	},
+/turf/floor/scorched2,
 /area/diner/dining)
 "piU" = (
 /obj/grille/catwalk,
@@ -20568,22 +21088,36 @@
 	name = "Bilateral Shop Ship"
 	})
 "pvn" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/plate,
-/obj/machinery/light,
-/obj/item/reagent_containers/food/snacks/corndog,
-/turf/floor/carpet{
-	icon_state = "red2"
+/obj/window/classic/east,
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/fakeobjects{
+	icon = 'icons/misc/32x64.dmi';
+	icon_state = "boothR";
+	layer = 2.9;
+	name = "booth";
+	dir = 8
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "pwJ" = (
-/obj/table/reinforced/bar/auto,
-/obj/machinery/light,
-/obj/item/reagent_containers/food/drinks/bowl,
-/obj/item/reagent_containers/food/drinks/bottle/hobo_wine,
-/turf/floor/carpet{
-	dir = 6;
-	icon_state = "red2"
+/obj/critter/cat{
+	desc = "How long has this cat been here?";
+	icon_state = "cat6";
+	name = "jons the catte";
+	randomize_cat = 0
+	},
+/obj/window/classic/west,
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/fakeobjects{
+	icon = 'icons/misc/32x64.dmi';
+	icon_state = "boothR";
+	layer = 2.9;
+	name = "booth"
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "pBw" = (
@@ -20671,14 +21205,6 @@
 /obj/decal/cleanable/oil,
 /turf/shuttle/wall,
 /area/salyut)
-"pLw" = (
-/obj/table/reinforced/bar/auto,
-/obj/machinery/light,
-/obj/item/kitchen/utensil/fork,
-/turf/floor/carpet{
-	icon_state = "red2"
-	},
-/area/diner/dining)
 "pNA" = (
 /obj/machinery/door/airlock/external/shuttle_connect,
 /turf/floor/plating,
@@ -20742,6 +21268,21 @@
 	},
 /turf/floor/airless/scorched,
 /area/abandonedship)
+"qgy" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/floor/carpet,
+/area/diner/dining)
 "qio" = (
 /obj/structure/woodwall{
 	icon_state = "woodwall2";
@@ -20868,7 +21409,16 @@
 /obj/cable{
 	icon_state = "6-8"
 	},
-/turf/floor/specialroom/bar,
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/floor/carpet,
 /area/diner/dining)
 "qCb" = (
 /obj/decal/cleanable/dirt,
@@ -20987,9 +21537,17 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/carpet{
-	dir = 10;
-	icon_state = "red2"
+/obj/window/classic/east,
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/fakeobjects{
+	icon = 'icons/misc/32x64.dmi';
+	icon_state = "boothR";
+	layer = 2.9;
+	name = "booth";
+	dir = 8
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "raG" = (
@@ -21009,7 +21567,15 @@
 	d2 = 4;
 	icon_state = "6-9"
 	},
-/turf/floor/specialroom/bar,
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0
+	},
+/turf/floor/carpet,
 /area/diner/dining)
 "rdb" = (
 /obj/table/reinforced/chemistry/auto,
@@ -21138,13 +21704,6 @@
 	icon_state = "floor2"
 	},
 /area/shuttle/mining/space)
-"rsj" = (
-/obj/decal/cleanable/dirt,
-/mob/living/carbon/human/biker,
-/turf/floor/carpet{
-	icon_state = "red2"
-	},
-/area/diner/dining)
 "rsx" = (
 /turf/shuttle/wall{
 	dir = 4;
@@ -21422,6 +21981,14 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"srJ" = (
+/obj/window/classic/east,
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/cleanable/mess/fries,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
+/area/diner/dining)
 "ssA" = (
 /obj/stool/chair/comfy/blue{
 	dir = 4
@@ -21465,6 +22032,25 @@
 	},
 /turf/floor,
 /area/h7/computer_core)
+"szI" = (
+/obj/grille/catwalk{
+	dir = 5
+	},
+/obj/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/floor/airless/plating/catwalk{
+	dir = 4;
+	icon_state = "catwalk_cross"
+	},
+/area/space)
 "szM" = (
 /obj/structure/girder/displaced,
 /turf/space,
@@ -21647,11 +22233,9 @@
 /turf/floor/longtile/black,
 /area/debris/pee)
 "sRn" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/reagent_containers/food/drinks/chickensoup,
-/turf/floor/carpet{
-	dir = 6;
-	icon_state = "red2"
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "sRt" = (
@@ -21798,6 +22382,18 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
+"tpf" = (
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/scorched2,
+/area/diner/kitchen)
+"tpy" = (
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	pixel_y = -1;
+	dir = 8
+	},
+/turf/floor/shuttlebay,
+/area/bee_trader)
 "tqg" = (
 /obj/grille/catwalk,
 /obj/machinery/power/apc/autoname/north,
@@ -22034,10 +22630,12 @@
 /turf/floor/carpet/purple/standard/edge/north,
 /area/juicer/club/outside)
 "tWa" = (
-/obj/stool/chair,
-/turf/floor/carpet{
-	dir = 9;
-	icon_state = "red2"
+/obj/decal/cleanable/rust/jen/grime,
+/obj/table/round/auto{
+	material = "steel"
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "tXl" = (
@@ -22077,6 +22675,13 @@
 	},
 /turf/space,
 /area/debris/falserock)
+"ueY" = (
+/obj/machinery/power/solar/diner,
+/turf/floor/airless{
+	icon_state = "solarbase";
+	name = "solar paneling"
+	},
+/area/space)
 "ufL" = (
 /obj/table/reinforced/auto,
 /obj/random_item_spawner/junk/one_or_zero,
@@ -22136,13 +22741,6 @@
 /obj/machinery/door/airlock/external,
 /turf/floor/plating,
 /area/diner/hangar)
-"uts" = (
-/obj/stool/chair,
-/turf/floor/carpet{
-	dir = 5;
-	icon_state = "red2"
-	},
-/area/diner/dining)
 "utD" = (
 /turf/shuttle/wall{
 	dir = 5
@@ -22194,6 +22792,15 @@
 	stone_color = "#575A5E"
 	},
 /area/space)
+"uJG" = (
+/obj/decal/tile_edge/line/black{
+	icon_state = "line1";
+	dir = 1
+	},
+/turf/floor{
+	icon_state = "hive"
+	},
+/area/bee_trader)
 "uLu" = (
 /obj/item/device/radio/beacon,
 /turf/floor/plating,
@@ -22259,7 +22866,10 @@
 /turf/floor/carpet/green/standard/edge/sw,
 /area/diner/jucer_trader)
 "uRE" = (
-/obj/item/poster/titled_photo/bee,
+/obj/item/poster/titled_photo/bee{
+	plane = -99;
+	layer = 3.1
+	},
 /turf/wall/r_wall{
 	icon = 'icons/misc/evilreaverstation.dmi';
 	icon_state = "old_rwall"
@@ -22277,16 +22887,6 @@
 /obj/machinery/bot/medbot/terrifying,
 /turf/floor/airless/plating/damaged1,
 /area/abandonedmedicalship)
-"uYA" = (
-/obj/table/reinforced/bar/auto,
-/obj/machinery/glass_recycler,
-/obj/window/reinforced/south,
-/obj/window/reinforced/west,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/floor/delivery,
-/area/diner/dining)
 "uYC" = (
 /obj/item/device/gps,
 /turf/wall/r_wall/shuttle_noprotections{
@@ -22296,9 +22896,10 @@
 "uZy" = (
 /obj/stool/bar,
 /obj/decal/cleanable/dirt,
-/turf/floor/carpet{
-	dir = 8;
-	icon_state = "red4"
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/cleanable/mess/nougat,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "vbH" = (
@@ -22315,7 +22916,16 @@
 	d2 = 4;
 	icon_state = "1-6"
 	},
-/turf/floor/specialroom/bar,
+/obj/decal/fakeobjects{
+	layer = 2.1;
+	plane = -110;
+	icon = 'icons/obj/decals/line.dmi';
+	icon_state = "line1";
+	color = "#78413C";
+	mouse_opacity = 0;
+	dir = 1
+	},
+/turf/floor/carpet,
 /area/diner/dining)
 "vel" = (
 /obj/item/storage/belt/hunter,
@@ -22334,8 +22944,9 @@
 /area/diner/jucer_trader)
 "vgG" = (
 /obj/stool/bar,
-/turf/floor/carpet{
-	dir = 10
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "vjQ" = (
@@ -22409,8 +23020,9 @@
 /obj/landmark/spawner{
 	name = "don_glab"
 	},
-/turf/floor/carpet{
-	dir = 10
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "vuu" = (
@@ -22420,13 +23032,6 @@
 	},
 /turf/floor/black,
 /area/juicer/club)
-"vvI" = (
-/obj/stool/bar,
-/turf/floor/carpet{
-	dir = 4;
-	icon_state = "red4"
-	},
-/area/diner/dining)
 "vvV" = (
 /obj/decal/skeleton,
 /turf/floor/plating/airless/asteroid,
@@ -22485,8 +23090,14 @@
 /area/space)
 "vGg" = (
 /obj/decal/cleanable/generic,
+/obj/window/classic/east{
+	pixel_x = 6
+	},
+/obj/decal/cleanable/rust/jen/grime,
 /obj/marker/supplymarker,
-/turf/floor/specialroom/bar,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
 /area/diner/dining)
 "vIo" = (
 /obj/machinery/shower{
@@ -22507,8 +23118,44 @@
 	},
 /area/abandonedmedicalship)
 "vMb" = (
-/obj/submachine/slot_machine,
-/turf/floor/specialroom/bar,
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/poster/wallsign/poster_clown{
+	pixel_y = 38;
+	pixel_x = 14
+	},
+/obj/decal/poster/wallsign/poster_human{
+	pixel_y = 25;
+	pixel_x = 13
+	},
+/obj/decal/fakeobjects/tapedeck{
+	icon_state = "ceilinglight";
+	pixel_y = 25;
+	layer = LIGHTING_LAYER_FULLBRIGHT;
+	name = "ceiling lamp";
+	plane = -89
+	},
+/obj/decal/poster/wallsign/poster_discount{
+	pixel_y = 29;
+	pixel_x = -9
+	},
+/obj/decal/cleanable/rust/jen/grime,
+/obj/item/shaker/salt{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/decal/poster/wallsign/poster_grub{
+	pixel_y = 33;
+	pixel_x = 3
+	},
+/obj/table/round/auto{
+	material = "steel"
+	},
+/obj/map/light/yellow{
+	brightness = 4.5
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
 /area/diner/dining)
 "vNa" = (
 /obj/grille/catwalk/grey{
@@ -22521,15 +23168,24 @@
 	name = "GLOMAR Salvager"
 	})
 "vNX" = (
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/poster/wallsign/poster_nt{
+	pixel_y = 30
+	},
+/obj/decal/poster/wallsign/poster_cig_moose{
+	pixel_y = 28;
+	pixel_x = -7
+	},
+/obj/decal/poster/wallsign/poster_octocluwne{
+	pixel_y = 28;
+	pixel_x = 11
+	},
 /obj/stool/chair{
-	dir = 4
+	dir = 8
 	},
-/obj/neon_sign/flaming{
-	pixel_y = 32
-	},
-/turf/floor/carpet{
-	dir = 8;
-	icon_state = "red4"
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "vOQ" = (
@@ -22636,10 +23292,17 @@
 /turf/floor/carpet/green/standard/edge/west,
 /area/diner/jucer_trader)
 "weI" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
-/turf/floor/carpet{
-	dir = 10
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/poster/wallsign/poster_beach{
+	pixel_y = 32;
+	pixel_x = -9
+	},
+/obj/stool/chair{
+	dir = 4
+	},
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "weY" = (
@@ -22660,12 +23323,31 @@
 	},
 /area/radiostation/bedroom)
 "wjV" = (
-/obj/table/reinforced/bar/auto,
-/obj/item/plate,
-/obj/decal/cleanable/dirt,
-/obj/item/kitchen/utensil/fork,
-/turf/floor/carpet{
-	dir = 10
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decal/poster/wallsign/poster_hair{
+	pixel_y = 30;
+	pixel_x = -19
+	},
+/obj/decal/fakeobjects/tapedeck{
+	icon_state = "ceilinglight";
+	pixel_y = 25;
+	layer = LIGHTING_LAYER_FULLBRIGHT;
+	name = "ceiling lamp";
+	plane = -89;
+	mouse_opacity = 0
+	},
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decoration/vent{
+	pixel_y = 33
+	},
+/obj/table/round/auto{
+	material = "steel"
+	},
+/obj/map/light/yellow{
+	brightness = 4.5
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
 	},
 /area/diner/dining)
 "wks" = (
@@ -22752,9 +23434,17 @@
 /turf/floor/airless/plating/catwalk,
 /area/derelict_ai_sat/solar)
 "wCA" = (
-/obj/machinery/vending/fortune,
 /obj/decal/cleanable/cobweb2,
-/turf/floor/specialroom/bar,
+/obj/decal/cleanable/rust/jen/grime,
+/obj/decoration/vent{
+	pixel_y = 33
+	},
+/obj/machinery/disposal{
+	pixel_y = -2
+	},
+/turf/floor/grey/blackgrime{
+	icon_state = "robar"
+	},
 /area/diner/dining)
 "wGB" = (
 /obj/map/light/dimred,
@@ -22809,7 +23499,6 @@
 /obj/window/reinforced/west{
 	dir = 2
 	},
-/obj/decal/poster/wallsign/bar,
 /turf/floor/plating,
 /area/diner/dining)
 "wNx" = (
@@ -22843,6 +23532,10 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/neon_sign/open{
+	pixel_y = 1;
+	pixel_x = -32
 	},
 /turf/floor/grime,
 /area/diner/dining)
@@ -23163,6 +23856,10 @@
 "xDU" = (
 /turf/space,
 /area/debris/harmacy)
+"xES" = (
+/obj/decal/cleanable/rust/jen/grime,
+/turf/floor/damaged2,
+/area/diner/kitchen)
 "xKo" = (
 /obj/decal/poster/wallsign/pride{
 	pixel_y = 30
@@ -23230,12 +23927,6 @@
 /area/prefab/mobius{
 	name = "Bilateral Shop Ship"
 	})
-"xQe" = (
-/obj/decal/cleanable/dirt,
-/turf/floor/carpet{
-	icon_state = "red2"
-	},
-/area/diner/dining)
 "xRq" = (
 /turf/shuttle/wall{
 	dir = 4;
@@ -23364,6 +24055,23 @@
 	},
 /turf/floor/black,
 /area/juicer/club)
+"yjf" = (
+/obj/cable{
+	icon_state = "4-8"
+	},
+/obj/decal/fakeobjects{
+	desc = "";
+	icon = 'icons/misc/worlds.dmi';
+	icon_state = "shrub-dead";
+	name = "dead plant";
+	tag = "icon-shrub-dead (SOUTHEAST)";
+	pixel_y = 22;
+	pixel_x = 3;
+	layer = 4;
+	plane = -98
+	},
+/turf/floor/grime,
+/area/diner/hangar)
 "ylq" = (
 /turf/floor/scorched,
 /area/prefab/mobius{
@@ -68747,7 +69455,7 @@ efA
 boU
 boU
 uRE
-gVR
+yjf
 ajH
 boU
 aan
@@ -69336,7 +70044,7 @@ aaa
 ahm
 ahx
 hvt
-boD
+anJ
 aob
 akq
 aly
@@ -69639,7 +70347,7 @@ ait
 ahA
 bow
 anJ
-aob
+uJG
 akr
 ait
 aaa
@@ -69653,8 +70361,8 @@ eLc
 age
 oCr
 uZy
-dxg
-alc
+qgy
+lsM
 kgO
 kXH
 qMh
@@ -69937,13 +70645,13 @@ aaa
 aaa
 aaa
 aaa
-ait
+aiw
 ahB
-aix
+bow
 anJ
-aob
+uJG
 akt
-ait
+aiw
 aaa
 aoq
 sxd
@@ -69952,11 +70660,11 @@ gVH
 aoq
 bnA
 eLc
-jll
+eLc
 aqk
 vgG
-dxg
-alc
+qgy
+lsM
 tWa
 oix
 suJ
@@ -70242,8 +70950,8 @@ aaa
 ait
 ahE
 ldT
-ajh
-aob
+anJ
+ebs
 akw
 ait
 aaa
@@ -70253,12 +70961,12 @@ avO
 slC
 axb
 bnC
-eLc
+xES
 eLc
 oEP
 vrI
-dxg
-alc
+qgy
+lsM
 fYl
 pvn
 aqw
@@ -70559,10 +71267,10 @@ eMY
 eLc
 oGJ
 vgG
-dxg
-alc
+qgy
+lsM
 gph
-fHC
+kXH
 aqw
 boP
 boP
@@ -70846,7 +71554,7 @@ aaa
 aaa
 ait
 aiy
-anJ
+goh
 ajS
 ait
 aaa
@@ -70860,11 +71568,11 @@ bnW
 eVl
 eLc
 oXv
-vvI
-dxg
-alc
-fYl
-odP
+vgG
+qgy
+lsM
+tWa
+oix
 qqL
 aaa
 aaa
@@ -71159,14 +71867,14 @@ agV
 aaa
 aoq
 boh
+kFN
 eVl
-jxo
 oZH
-alc
-dxg
-alc
-fYl
-mpf
+vgG
+qgy
+lsM
+srJ
+pvn
 qMh
 aaa
 aaa
@@ -71450,25 +72158,25 @@ aaa
 aaa
 ait
 aiG
-anJ
+tpy
 ajY
 ait
 afs
-afD
-afD
-arq
-afD
-aeZ
+ueY
+ueY
+kGa
+ueY
+aaK
 aoq
 boi
-fbl
 eLc
+fbl
 phN
 vGg
-dxg
-alc
+qgy
+lsM
 gph
-rsj
+kXH
 qMh
 aaa
 aaa
@@ -71752,24 +72460,24 @@ aaa
 aaa
 ahF
 aeP
-ajo
+ajl
 ajZ
 ahF
 aaa
 aaa
 aak
-apj
+cbb
 aaF
 aaa
 aoq
 bom
-eLc
+tpf
 jZY
-uYA
-alc
-dxg
-alc
-gph
+aqw
+dBc
+qgy
+lsM
+tWa
 lNy
 qMh
 aaa
@@ -72053,26 +72761,26 @@ aaa
 aaa
 aaa
 ahP
-aeQ
-aeQ
+fhV
+dgM
 aeQ
 akx
 afs
-afD
-afD
-apj
-afD
-aeZ
+ueY
+ueY
+ejf
+ueY
+aaK
 aoq
 bon
 feo
 keG
 aqw
 vMb
-dxg
-ejs
+qgy
+lsM
 fYl
-pLw
+pvn
 qMh
 aaa
 aaa
@@ -72355,25 +73063,25 @@ aaa
 aaa
 aaa
 aak
-aiH
+iPe
 ajr
 aeQ
 aaF
 aaa
 aaa
 aak
-apj
+cbb
 aaF
 aaa
 axb
 bop
-fbl
+eLc
 kfr
 aqw
 vNX
-dxg
-alc
-fYl
+qgy
+lsM
+gph
 kob
 qMh
 aaa
@@ -72657,26 +73365,26 @@ aaa
 aaa
 aaa
 aak
-aeQ
-aeQ
+fWK
+dgM
 aiH
 aaF
 afs
-afD
-afD
-apj
-afD
-aeZ
+ueY
+ueY
+ejf
+ueY
+aaK
 aoq
 bor
 fsg
 kpj
-aqw
+ejY
 weI
-dxg
-alc
-gph
-xQe
+qgy
+lsM
+tWa
+oix
 qMh
 aaa
 aaa
@@ -72966,7 +73674,7 @@ aeH
 aaa
 aaa
 aak
-apj
+cbb
 aan
 boO
 aql
@@ -72976,9 +73684,9 @@ aql
 aql
 wjV
 qBE
-alc
+lsM
 fYl
-epE
+pvn
 suJ
 aaa
 aaa
@@ -73266,20 +73974,20 @@ aiJ
 aiJ
 aaa
 afs
-afD
-afD
+ueY
+ueY
 art
-apC
-apC
+kho
+kho
 aql
 boJ
 ftO
 wJB
 aKN
 aqq
-alc
+lsy
 rcA
-uts
+gph
 pwJ
 aqw
 ncF
@@ -73570,7 +74278,7 @@ aaa
 aaa
 aaa
 aak
-apj
+cbb
 aan
 boP
 aKN
@@ -73580,7 +74288,7 @@ kzY
 qdH
 aqr
 vch
-alc
+lsM
 hmt
 pcF
 aqw
@@ -73870,17 +74578,17 @@ aaa
 aaa
 aaa
 afs
-afD
-afD
-apl
-afD
-aeZ
+ueY
+ueY
+szI
+ueY
+aaK
 aql
 boN
 fyY
 kDg
 aql
-alc
+dfU
 aqx
 eTI
 aqP
@@ -74183,9 +74891,9 @@ fZL
 aqd
 aql
 wCA
-dxg
+lKm
 kOj
-lri
+sRn
 sRn
 sCn
 aaa
@@ -74477,15 +75185,15 @@ aaa
 aad
 aaa
 boq
-boq
-boq
+nqY
+kTI
 aql
 aql
 aql
 aql
 aql
 wNl
-tix
+dqO
 gIC
 aqw
 mEJ

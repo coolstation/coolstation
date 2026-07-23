@@ -369,6 +369,7 @@
 
 /obj/item/handcuffs/tape_roll/crappy
 	name = "masking tape"
+	desc = "An iconvenient and probably still illegal source of makeshift handcuffs."
 	delete_on_last_use = FALSE
 	apply_multiplier = 2
 	remove_self_multiplier = 0.125

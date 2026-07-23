@@ -2016,7 +2016,8 @@
 		/datum/manufacture/bikehorn,
 		//datum/manufacture/bullet_22,
 		//datum/manufacture/fog_grenade,
-		/datum/manufacture/stapler)
+		/datum/manufacture/stapler,
+		/datum/manufacture/maskingtape)
 
 /obj/machinery/manufacturer/glasswares
 	name = "Glass Manufacturer"
