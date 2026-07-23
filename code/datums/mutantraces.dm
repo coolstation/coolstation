@@ -1980,7 +1980,7 @@
 
 	special_hair_1_icon = 'icons/mob/moth.dmi'
 	special_hair_1_state = "chest_detail_fluff"
-	special_hair_1_color = CUST_1
+	special_hair_1_color = CUST_3
 
 	special_hair_2_icon = 'icons/mob/moth.dmi'
 	special_hair_2_state = "head_detail_ears"
