@@ -3180,6 +3180,16 @@ datum
 				holder.del_reagent(id)
 				holder.del_reagent("blood")
 
+		blood/hemolymph
+			id = "hemolymph"
+			description = "Fluid used in the open circulatory systems of arthropods."
+			hygiene_value = -3
+			viscosity = 0.1
+			fluid_r = 222
+			fluid_b = 255
+			fluid_g = 255
+			transparency = 120
+			taste = "like bugs"
 
 		vomit
 			name = "vomit"

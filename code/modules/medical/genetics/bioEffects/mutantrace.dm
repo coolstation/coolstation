@@ -148,6 +148,16 @@
 	msgLose = "Your beautiful feathers start to fall out!"
 	icon_state = "bird"
 
+/datum/bioEffect/mutantrace/moth
+	name = "Moth Genetics"
+	desc = "The subject grows a ring of fluff and suddenly becomes very interested in the lab lamps."
+	id = "moth"
+	mutantrace_option = "Moth"
+	mutantrace_path = /datum/mutantrace/moth
+	msgGain = "You feel the need to slam your face against the nearest light."
+	msgLose = "You remember that staring into bright lights is bad for you."
+	icon_state = "moth"
+
 /datum/bioEffect/mutantrace/fert
 	name = "Musteline Genetics"
 	desc = "The subject gets \'slinky and stinky\', whatever that means."

@@ -1569,6 +1569,7 @@
 		. = ..()
 		if(ishuman(M))
 			M.mob_flags |= SHOULD_HAVE_A_TAIL
+			M.replace_blood_with("hemolymph")
 		APPLY_ATOM_PROPERTY(M, PROP_RADPROT, src, 100)
 
 	say_verb()
@@ -1956,6 +1957,48 @@
 	New()
 		..()
 		emote_overrides = chicken_emotes
+
+/datum/mutantrace/moth
+	name = "Moth"
+	icon = 'icons/mob/moth.dmi'
+	icon_state = "body_m"
+	override_attack = 0
+	voice_override = "moth"
+	race_mutation = /datum/bioEffect/mutantrace/moth
+	mutant_folder = 'icons/mob/moth.dmi'
+	special_head = HEAD_MOTH
+	special_head_state = "head"
+	eye_state = "eyes_moth"
+	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/moth/right
+	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/moth/left
+	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/moth/right
+	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/moth/left
+	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_HUMAN_EYES | HAS_SPECIAL_HAIR | BUILT_FROM_PIECES | FIX_COLORS | TORSO_HAS_SKINTONE | SKINTONE_USES_PREF_COLOR_1 | HAS_EXTRA_DETAILS | WEARS_UNDERPANTS)
+	dna_mutagen_banned = FALSE
+
+	typevulns = list("blunt" = 1.5, "crush" = 1.5)
+
+	special_hair_1_icon = 'icons/mob/moth.dmi'
+	special_hair_1_state = "chest_detail_fluff"
+	special_hair_1_color = CUST_1
+
+	special_hair_2_icon = 'icons/mob/moth.dmi'
+	special_hair_2_state = "head_detail_ears"
+	special_hair_2_color = CUST_2
+
+
+	say_verb()
+		return "flutters"
+
+	sight_modifier()
+		mob.see_in_dark = SEE_DARK_HUMAN + 1
+		mob.see_invisible = 1
+
+	New(mob/living/carbon/human/M)
+		. = ..()
+		if(ishuman(M))
+			M.replace_blood_with("hemolymph")
+
 
 /datum/mutantrace/birb
 	name = "Birb"
