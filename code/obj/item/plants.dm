@@ -48,9 +48,21 @@
 			boutput(user, "<span class='alert'>You roll up [W] into a cigarette.</span>")
 			var/obj/item/clothing/mask/cigarette/custom/P = new(user.loc)
 
+			var/datum/reagents/paperreagents
+			if(istype(W,/obj/item/paper))
+				var/obj/item/paper/paper = W
+				if(paper.reagents) paperreagents = paper.reagents
+				paperreagents.remove_reagent("paper",paperreagents.get_reagent_amount("paper"))
+				paperreagents.maximum_volume = paperreagents.total_volume
+
 			P.name = build_name(W)
-			P.reagents.maximum_volume = src.reagents.total_volume
-			src.reagents.trans_to(P, src.reagents.total_volume)
+			if(paperreagents)
+				P.reagents.maximum_volume = src.reagents.total_volume + paperreagents.total_volume
+				src.reagents.trans_to(P,src.reagents.total_volume)
+				paperreagents.trans_to(P,paperreagents.total_volume)
+			else
+				P.reagents.maximum_volume = src.reagents.total_volume
+				src.reagents.trans_to(P, src.reagents.total_volume)
 			W.force_drop(user)
 			src.force_drop(user)
 			qdel(W)
