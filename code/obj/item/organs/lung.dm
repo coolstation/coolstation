@@ -93,17 +93,17 @@
 			breath.carbon_dioxide += oxygen_used
 
 		if (CO2_pp > safe_co2_max)
-			if (!donor.co2overloadtime) // If it's the first breath with too much CO2 in it, lets start a counter, then have them pass out after 12s or so.
-				donor.co2overloadtime = world.time
-			else if (world.time - donor.co2overloadtime > 120)
+			if (!donor.co2level) // If it's the first breath with too much CO2 in it, lets start a counter, then have them pass out after 12s or so.
+				donor.co2level = world.time
+			else if (world.time - donor.co2level > 120)
 				donor.changeStatus("paralysis", 4 SECONDS * mult/LUNG_COUNT)
 				donor.take_oxygen_deprivation(1.8 * mult/LUNG_COUNT) // Lets hurt em a little, let them know we mean business
-				if (world.time - donor.co2overloadtime > 300) // They've been in here 30s now, lets start to kill them for their own good!
+				if (world.time - donor.co2level > 300) // They've been in here 30s now, lets start to kill them for their own good!
 					donor.take_oxygen_deprivation(7 * mult/LUNG_COUNT)
 			if (prob(percentmult(20, mult))) // Lets give them some chance to know somethings not right though I guess.
 				update.emotes |= "cough"
 		else
-			donor.co2overloadtime = 0
+			donor.co2level = 0
 
 		if (Toxins_pp > safe_toxins_max) // Too much toxins
 			var/ratio = breath.toxins/safe_toxins_max
