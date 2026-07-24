@@ -457,7 +457,7 @@
 		else
 			src.set_loc(pick_landmark(LANDMARK_LATEJOIN))
 	else
-		discord_send("We got Fresh Fish! Get your asse in gear and come greet them! <byond://lljk2.coolstation.space:8085>","ss13-chat")
+		//discord_send("We got Fresh Fish! Get your asse in gear and come greet them! <byond://lljk2.coolstation.space:8085>","ss13-chat")
 		src.unlock_medal("Fish", 1)
 
 	if (time2text(world.realtime, "MM DD") == "12 25")
