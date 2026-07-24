@@ -3181,6 +3181,7 @@ datum
 				holder.del_reagent("blood")
 
 		blood/hemolymph
+			name = "hemolymph"
 			id = "hemolymph"
 			description = "Fluid used in the open circulatory systems of arthropods."
 			hygiene_value = -3
