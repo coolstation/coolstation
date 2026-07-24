@@ -265,7 +265,7 @@
 		</div>
 		<div style=" text-align: center;">
 			[!gibbed ? {"
-				<a href="byond://winset?command=Ghost" style="display: inline-block; font-size: 130%; font-weight: bold;">Become a Ghost</a>
+				<a href="byond://winset?command=Ghost" style="display: inline-block; font-size: 130%; font-weight: bold;">Become a [prob(1) ? "Boo Berry" : "Ghost"]</a>
 				<br><em style="color: #666; font-size: 75%;">You can also use the "<a href="byond://winset?command=Ghost" style="font-family: 'Consolas', monospace;">Ghost</a>" command to observe.</em><br><br>
 			"} : ""]
 		<strong>You may be revived if someone clones you.</strong>
