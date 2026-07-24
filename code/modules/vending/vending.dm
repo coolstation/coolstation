@@ -1464,6 +1464,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/random, rand(0, 1), hidden=1, cost=420)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/cigarillo/juicer, rand(6, 9), hidden=1, cost=69)
 		product_list += new/datum/data/vending_product(/obj/item/cigpacket/greasy, rand(1,3),hidden=1, cost=PAY_UNTRAINED/5)
+		product_list += new/datum/data/vending_product(/obj/item/bluntwrap, rand(2,6), hidden=1, cost=PAY_UNTRAINED/10)
 
 	noknobs
 		desc = "If you want to get cancer, might as well do it in style!"

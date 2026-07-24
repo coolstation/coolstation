@@ -19,6 +19,7 @@
 #define HEAD_FLASHY 17
 #define HEAD_FERT 18
 #define HEAD_BIRD 19
+#define HEAD_MOTH 20
 
 //tail defines
 #define TAIL_NONE 0

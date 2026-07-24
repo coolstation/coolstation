@@ -119,6 +119,7 @@
 //#define MAP_OVERRIDE_SAXUM				// schwicks terrestrial map!
 //#define MAP_OVERRIDE_GEHENNA			// Warcrimes WIP do not use (very unfinished atm)
 //#define MAP_OVERRIDE_SUMMIT				// klushy snow map (please do not use)
+//#define MAP_OVERRIDE_DEVTEST			// WIP dev testing map, small and fast to load. To replace chunk for GOTTA_GO_FAST_BUT_ZLEVELS_TOO_SLOW when complete.
 
 //---------------------- Maps that exist but maybe not up to date --------------------//
 //#define MAP_OVERRIDE_CONSTRUCTION			// Construction mode

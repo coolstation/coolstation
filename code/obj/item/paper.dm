@@ -306,6 +306,33 @@
 			"stampClass" = "FAKE",
 		)
 
+/obj/item/paper/mouse_drop(atom/movable/o as obj)
+	if (istype(o, /obj/item/reagent_containers/glass))
+		var/obj/item/reagent_containers/glass/container = o
+		var/mob/user
+		if (ismob(src.loc))
+			user = src.loc
+		if(src.reagents.get_reagent_amount("paper") > 0 && !container.reagents.total_volume == 0)
+			src.reagents.remove_reagent("paper",5)
+			container.reagents.trans_to(src,5)
+			boutput(user, "<span class='notice'>You saturate [src] in [container].</span>")
+			return
+		else
+			boutput(user, "<span class='alert'>[src] is already fully saturated!</span>")
+			return
+
+/obj/item/paper/afterattack(atom/target, mob/user)
+	if (istype(target,/obj/fluid) && !istype(target,/obj/fluid/airborne))
+		var/obj/fluid/F = target
+		if (src.reagents.get_reagent_amount("paper") > 0)
+			var/amt = min(5,reagents.maximum_volume - reagents.get_reagent_amount("paper"))
+			boutput(user, "<span class='notice'>You saturate [src] in [F].</span>")
+			F.group.reagents.trans_to(reagents,amt)
+		else
+			boutput(user, "<span class='alert'>[src] is already fully saturated!</span>")
+			return
+		return ..()
+
 /obj/item/paper/attackby(obj/item/P, mob/living/user, params)
 	if(istype(P, /obj/item/portable_typewriter))
 		return // suppress attack sound, the typewriter will load the paper in afterattack
