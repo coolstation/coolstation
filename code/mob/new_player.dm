@@ -157,6 +157,9 @@ mob/new_player
 		if (client?.player.rounds_participated < 10)
 			winshow(client, "pregameBrowser", 1)
 			client << browse(newplayerHTML, "window=pregameBrowser") */
+		if (client?.player.rounds_participated < 3 && !ticker.fishannounce) //new player connected, and this round hasn't already popped a New Person message
+			discord_send("We got Fresh Fish! Get your asse in gear and come greet them! https://play.coolstation.space/","ss13chat") //todo: greeting crew role and pinging it in this message
+			ticker.fishannounce = TRUE //only do this once per round
 		//show pregameHTML if it's available
 		if(!ticker.did_lobbymusic)
 			if(pregameHTML && client)

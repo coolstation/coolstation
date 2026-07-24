@@ -15,6 +15,8 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	var/event_time = null
 	var/event = 0
 
+	var/fishannounce = 0
+
 	var/list/datum/mind/minds = list()
 	var/last_readd_lost_minds_to_ticker = 1 // In relation to world time.
 
