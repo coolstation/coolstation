@@ -158,7 +158,7 @@ mob/new_player
 			winshow(client, "pregameBrowser", 1)
 			client << browse(newplayerHTML, "window=pregameBrowser") */
 		if (client?.player.rounds_participated < 3 && !ticker.fishannounce) //new player connected, and this round hasn't already popped a New Person message
-			discord_send("We got Fresh Fish! Get your asse in gear and come greet them! https://play.coolstation.space/","ss13chat") //todo: greeting crew role and pinging it in this message
+			discord_send("<@&1532877623909290117> We got Fresh Fish! Get your asse in gear and come greet them! https://play.coolstation.space/","ss13chat")
 			ticker.fishannounce = TRUE //only do this once per round
 			boutput(client, "<hr><br><h2>Welcome to Coolstation!</h2><br><b>The welcome party has been alerted on <a href='https://discord.gg/Xh3yfs8KGn'><em>the Discord</em></a>,<br>and we hope you have a cool time here!</b><br><hr>")  // todo: maybe something a little nicer/more visible/frased better? Just wanna let 'em know that we *have* noticed 'em.
 		//show pregameHTML if it's available
