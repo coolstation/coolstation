@@ -89,6 +89,8 @@
 #define COMSIG_ATOM_MOUSEDROP "atom_mousedrop"
 /// when something is dragged onto this atom (object, usr, src_location, over_location, over_control, params)
 #define COMSIG_ATOM_MOUSEDROP_T "atom_mousedrop_t"
+/// sent to the parent object when its handset retracts, see /datum/component/cord
+#define COMSIG_CORD_RETRACT "cord_retract"
 
 // ---- turf signals ----
 
