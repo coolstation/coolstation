@@ -160,7 +160,11 @@ mob/new_player
 		if (client?.player.rounds_participated < 3 && !ticker.fishannounce) //new player connected, and this round hasn't already popped a New Person message
 			if(world.TgsAvailable())
 				// Use `discord.send` if you're going to do this anywhere else.
-				world.TgsChatBroadcast("<@&1532877623909290117> We got Fresh Fish! Get your asse in gear and come greet them! https://play.coolstation.space/","ss13chat")
+				var/list/datum/tgs_chat_channel/da_place = list()
+				for(var/datum/tgs_chat_channel/C in world.TgsChatChannelInfo())
+					if(C.custom_tag == "ss13chat")
+						da_place += C
+				world.TgsChatBroadcast("<@&1532877623909290117> We got Fresh Fish! Get your asse in gear and come greet them! https://play.coolstation.space/", da_place)
 				ticker.fishannounce = TRUE //only do this once per round
 				boutput(client, "<hr><br><h2>Welcome to Coolstation!</h2><br><b>The welcome party has been alerted on <a href='https://discord.gg/Xh3yfs8KGn'><em>the Discord</em></a>,<br>and we hope you have a cool time here!</b><br><hr>")  // todo: maybe something a little nicer/more visible/frased better? Just wanna let 'em know that we *have* noticed 'em.
 		//show pregameHTML if it's available
