@@ -1186,8 +1186,13 @@
 			)
 
 		var/say_thing = pick(voice_lines)
-		if(say_thing == 'sound/voice/binsultbeep.ogg' && prob(90))
-			say_thing = 'sound/voice/bsecureday.ogg'
+		if (src.emagged || ( src.threatlevel >= 25 && prob(66)) || src.threatlevel >= 50) //if emagged or you're a real fucker, bust out the full insult
+			say_thing = 'sound/voice/binsult.ogg'
+		if (say_thing == 'sound/voice/binsultbeep.ogg')
+			if ((src.threatlevel >= 4 && prob(20)) || src.threatlevel >=20 || prob(10)) //sometimes professionalism loses out to anger
+				say_thing = 'sound/voice/binsult.ogg'
+			else if (prob(90)) //make the censored insult a relatively rare thing in normal circumstances (both to make it more special when it does happen, and because it sucks)
+				say_thing = 'sound/voice/bsecureday.ogg'
 		switch(say_thing)
 			if('sound/voice/bgod.ogg')
 				src.speak("GOD MADE TOMORROW FOR THE CROOKS WE DON'T CATCH TO-DAY.")
@@ -1196,10 +1201,20 @@
 			if('sound/voice/bsecureday.ogg')
 				src.speak("HAVE A SECURE DAY.")
 			if('sound/voice/bradio.ogg')
-				src.speak("YOU CANT OUTRUN A RADIO.")
+				src.speak("YOU CAN'T OUTRUN A RADIO.")
 			if('sound/voice/bcreep.ogg')
-				src.speak("YOUR MOVE. CREEP.")
-			if('sound/voice/binsultbeep.ogg')
+				src.speak("YOUR MOVE, CREEP.")
+			// (TODO: dynamic beepsky insult builder. i wonder if we can find the original tts and params?)
+			if('sound/voice/binsult.ogg') //could probably handle this better but for now, copying the censored text one
+				var/qbert = ""
+				for(var/i in 1 to rand(5,20))
+					qbert += "[pick("!", "@", "#", "$", "%", "&", "*", ">:(", 20;"SHUT YOUR ", 20;"ASS-ENDING ", 20;"FROM THE DEPTHS OF ")]"
+					if(prob(10))
+						qbert += " "
+				for(var/j in 1 to rand(2,5))
+					qbert += "[pick("!","?")]"
+				src.speak("[qbert]")
+			if('sound/voice/binsultbeep.ogg') //seriously though the beeps don't work even in a comedy sense with the reverb applied. it just sounds weak and distant and gross!!! but thats just my opinion buzz buzz buzz
 				var/qbert = ""
 				for(var/i in 1 to rand(5,20))
 					qbert += "[pick("!", "@", "#", "$", "%", "&", "*", ">:(", 20;"SHUT YOUR ", 20;"ASS-ENDING ", 20;"FROM THE DEPTHS OF ")]"
