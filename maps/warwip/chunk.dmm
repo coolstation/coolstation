@@ -8254,6 +8254,9 @@
 "hsn" = (
 /obj/stool/chair/office/yellow,
 /obj/machinery/power/apc/autoname/north,
+/obj/cable/orange{
+	icon_state = "0-2"
+	},
 /turf/floor/yellow/checker{
 	dir = 8
 	},
@@ -18231,6 +18234,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/cable/orange,
 /turf/floor/yellow/checker{
 	dir = 8
 	},
