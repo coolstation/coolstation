@@ -28,6 +28,12 @@
 /obj/item/reagent_containers/food/drinks/fueltank/napalm
 	initial_reagents = "napalm_goo"
 
+/obj/item/reagent_containers/food/drinks/fueltank/foam // kind of the opposite of a fuel tank huh (for refilling extinguishers on hooks or on the go)
+	initial_reagents = "ff-foam"
+	initial_volume = 2 LITRES //two extinguishers' worth
+	icon_state = "bottlefoam"
+	name = "fire-fighting foam"
+
 /obj/item/reagent_containers/food/drinks/fueltank/chlorine // high capacity pool chlorine container! will probably do something later ~Warc
 	initial_reagents = "chlorine"
 	icon_state = "bottlecl"
