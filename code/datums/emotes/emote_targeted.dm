@@ -282,6 +282,7 @@
 			if (istype(target,/obj/machinery/bot/secbot))
 				var/obj/machinery/bot/secbot/SB = target
 				SB.EngageTarget(user,0,0,1) //pig can't help itself
+				SB.threatlevel += 6 //with a little extra malice (though I think machinery/bot is supplanted by crittermob...)
 			if (istype(target,/mob/living/critter/robotic/bot/securitron))
 				EXTEND_COOLDOWN(user, "MARKED_FOR_SECURITRON_ARREST", 10 SECONDS)
 			if(istype(target,/obj/machinery/bot/guardbot))
