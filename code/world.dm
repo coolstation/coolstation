@@ -856,8 +856,8 @@ var/f_color_selector_handler/F_Color_Selector
 	shutdown()
 #endif
 	var/newround = 'sound/misc/NewRound.ogg'
-	if (prob(40))
-		newround = pick('sound/misc/NewRound0.ogg','sound/misc/NewRound1.ogg','sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/NewRound7.ogg', 'sound/misc/NewRound8.ogg', 'sound/misc/NewRound9.ogg', 'sound/misc/NewRound1.ogg', 'sound/misc/TimeForANewRound.ogg', 'sound/misc/NewRound11.ogg')
+	if (prob(75)) //we have so many fuckin' good new round sounds. let's hear them more often than 40%.
+		newround = pick('sound/misc/NewRound0.ogg','sound/misc/NewRound1.ogg','sound/misc/NewRound2.ogg', 'sound/misc/NewRound3.ogg', 'sound/misc/NewRound4.ogg', 'sound/misc/NewRound5.ogg', 'sound/misc/NewRound6.ogg', 'sound/misc/NewRound7.ogg', 'sound/misc/NewRound8.ogg', 'sound/misc/NewRound9.ogg', 'sound/misc/NewRound10.ogg', 'sound/misc/TimeForANewRound.ogg', 'sound/misc/NewRound11.ogg', 'sound/misc/NewRound12.ogg')
 
 	SPAWN_DBG(world.tick_lag)
 		for (var/client/C)
