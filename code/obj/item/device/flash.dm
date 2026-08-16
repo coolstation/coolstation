@@ -28,6 +28,17 @@
 	var/obj/item/cell/cell = null
 	var/max_flash_power = 0
 	var/min_flash_power = 0
+	var/datum/light/light
+	var/light_brightness = 1
+	var/light_type = /datum/light/point
+
+	New()
+		..()
+		light_brightness = 1
+		light = new /datum/light/point
+		light.set_brightness(1)
+		light.set_color(1,1,1)
+		light.attach(src)
 
 	cyborg
 		process_burnout(mob/user)
@@ -81,6 +92,18 @@
 					. += "\nThe bulb is in bad condition"
 				else
 					. += "\nThe bulb is in terrible condition"
+
+/obj/item/device/flash/proc/flash_lighting_effect(var/mult = 1, mob/user as mob)
+	light.enable()
+	light.attach(user)
+	SPAWN_DBG(0.1 SECONDS)
+		light.set_brightness(1)
+		sleep(0.1 SECONDS)
+		light.set_brightness(0.5)
+		sleep(0.1 SECONDS)
+		light.set_brightness(0.2)
+		sleep(0.1 SECONDS)
+		light.disable()
 
 //I split attack and flash_mob into seperate procs so the rev_flash code is cleaner
 /obj/item/device/flash/attack(mob/living/M as mob, mob/user as mob)
@@ -142,6 +165,7 @@
 
 	playsound(src, "sound/weapons/flash.ogg", 100, 1)
 	flick(src.animation_type, src)
+	flash_lighting_effect(1, user)
 	src.l_time = world.time
 	if (!src.turboflash)
 		src.use++
@@ -241,6 +265,7 @@
 	// Play animations.
 	playsound(src, "sound/weapons/flash.ogg", 100, 1)
 	flick(src.animation_type, src)
+	flash_lighting_effect(1, user)
 	src.l_time = world.time
 
 	if (isrobot(user))

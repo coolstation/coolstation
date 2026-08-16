@@ -83,6 +83,9 @@
 	inventory_counter_enabled = 1
 	var/flash_mode = 0
 	var/wait_cycle = 0
+	var/datum/light/light
+	var/light_brightness = 1
+	var/light_type = /datum/light/point
 
 	attack_self(mob/user)
 		if (user.find_in_hand(src))
@@ -101,6 +104,11 @@
 		var/cell = new/obj/item/ammo/power_cell/self_charging/medium{recharge_rate = 10}
 		AddComponent(/datum/component/cell_holder,cell, FALSE, 200, FALSE)
 		RegisterSignal(src, COMSIG_UPDATE_ICON, /atom/proc/update_icon)
+		light_brightness = 1
+		light = new /datum/light/point
+		light.set_brightness(1)
+		light.set_color(1,1,1)
+		light.attach(src)
 		..()
 		update_icon()
 
@@ -138,6 +146,7 @@
 		var/blind_success = M.apply_flash(30, 8, 0, 0, 0, rand(0, 1), 0, 0, 100, 70, disorient_time = 30)
 		playsound(src, "sound/weapons/flash.ogg", 100, 1)
 		flick("camera_flash-anim", src)
+		flash_lighting_effect(1, user)
 		// Log entry.
 		var/blind_msg_target = "!"
 		var/blind_msg_others = "!"
@@ -156,6 +165,19 @@
 		return
 	else
 		. = ..() 	// Call /obj/item/camera/spy/afterattack() for photo mode
+
+/obj/item/camera/spy/proc/flash_lighting_effect(var/mult = 1, mob/user as mob)
+	light.enable()
+	light.attach(user)
+	SPAWN_DBG(0.1 SECONDS)
+		light.set_brightness(1)
+		sleep(0.1 SECONDS)
+		light.set_brightness(0.5)
+		sleep(0.1 SECONDS)
+		light.set_brightness(0.2)
+		sleep(0.1 SECONDS)
+		light.disable()
+
 
 /obj/item/camera_film
 	name = "film cartridge"
