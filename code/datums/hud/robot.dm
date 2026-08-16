@@ -470,7 +470,7 @@
 		update_charge()
 			if (master.cell)
 				var/pct = round(100*master.cell.charge/master.cell.maxcharge, 1)
-				charge.maptext = "<span class='ps2p ol vt c' style='color: [rgb(255 * clamp((100 - pct) / 50, 0, 1), 255 * clamp(pct / 50, 1, 0), 0)];'>[pct]%</span>"
+				charge.maptext = "<span class='ps2p ol vt c' style='color: [rgb(64,169,255)];'>[pct]%</span>"
 
 				switch(floor(100*master.cell.charge/master.cell.maxcharge))
 					if(75 to INFINITY)
