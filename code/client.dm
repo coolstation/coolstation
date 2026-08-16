@@ -167,7 +167,7 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 	login_success = 0
 
-	if(findtext(src.key, "Telnet @"))
+	if(findtext(src.key, "Telnet") && findtext(src.key, "@"))
 		boutput(src, "Sorry, this game does not support Telnet.")
 		preferences = new
 		sleep(5 SECONDS)
