@@ -272,7 +272,7 @@ var/global/meteor_shower_active = 0
 			hits = 2
 			icon_state = "smallm"
 			oredrops = list(/obj/decal/cleanable/tracked_reagents/blood/gibs)
-			oredrops_rare = list(/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw, /obj/item/reagent_containers/food/snacks/meatball)
+			oredrops_rare = list(/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw, /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball)
 			ore_rarity = 10
 			chunk_name = "hunk of space meat"
 
