@@ -1507,10 +1507,12 @@
 			src.update_icon()
 			return
 
-	ex_act(severity)
-		src.smash()
+	ex_act(severity, last_touched, var/turf/epicenter, turf_safe)
+		var/turf/T = get_turf(src)
+		src.smash(null, istype(epicenter) ? vector_to_dir(T.x - epicenter.x, T.y - epicenter.y) : null)
 
-	proc/smash(var/atom/A)
+	//2026-9-27 - Let's make thrown glasses messier! - BatElite
+	proc/smash(var/atom/A, var/splash_dir = null)
 		if (src.smashed)
 			return
 		src.smashed = 1
@@ -1522,7 +1524,17 @@
 			qdel(src)
 			return
 		if (src.reagents) // haine fix for cannot execute null.reaction()
-			src.reagents.reaction(A)
+			//This salt business is pointless atm, because of the way salt's turf reaction code is. Less than 10u of volume just gets deleted, but salting a glass only takes 5.
+			/*if (src.salted) // conservation of mass?
+				src.reagents.maximum_volume += 5
+				// Hopefully that flag won't break anything - I figure it's kinda a waste of time to do more than the minimum if we're about to empty the glass
+				src.reagents.add_reagent("salt", 5, donotreact = TRUE)*/
+
+			if (!splash_dir)
+				src.reagents.reaction(A)
+
+			else
+				src.reagents.reaction(A)
 
 		T.visible_message("<span class='alert'>[src] shatters!</span>")
 		playsound(T, "sound/impact_sounds/Glass_Shatter_[rand(1,3)].ogg", 100, 1)
@@ -1532,15 +1544,18 @@
 			G.set_loc(src.loc)
 		if (src.in_glass)
 			src.in_glass.set_loc(src.loc)
+			src.in_glass.throw_at(pick(orange(T, 3)), rand(1,3), 2)
 			src.in_glass = null
 		if (src.wedge)
 			src.wedge.set_loc(src.loc)
+			src.wedge.throw_at(pick(orange(T, 3)), rand(1,3), 2)
 			src.wedge = null
 		qdel(src)
 
 	throw_impact(atom/A, datum/thrown_thing/thr)
 		..()
-		src.smash(A)
+		//Splash in direction glass was thrown if possible
+		src.smash(A, istype(thr) ? vector_to_dir(thr.target.x - thr.thrown_from.x, thr.target.y - thr.thrown_from.y) : null)
 
 //this action accepts a target that is not the owner, incase we want to allow forced chugging.
 /datum/action/bar/icon/chug
@@ -1827,21 +1842,43 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/random_style/filled
 	var/list/whitelist = null
 	var/list/blacklist = list("big_bang_precursor", "big_bang", "nitrotri_parent", "nitrotri_wet", "nitrotri_dry")
+	var/chance_to_be_fancy = 25 //As currently coded, this is a percentage chance for one fancy item to occur (wedge, doodad, or salted rim). Two or all items require multiple successfull rolls. chance^2 and chance^3 likelyhood respectively.
 
 	New()
 		..()
 		SPAWN_DBG(0)
 			if (src.reagents)
 				src.fill_it_up()
-/*
-	unpooled()
-		..()
-		SPAWN_DBG(0)
-			if (src.reagents)
-				src.fill_it_up()
-*/
+
 	proc/fill_it_up()
 		var/flavor = null
+
+		//Doing the fancy stuff first so that it can piggy-back off the reagent code calling for icon updates
+		var/was_fanced_up = FALSE
+		while (prob(chance_to_be_fancy))
+			while (!was_fanced_up)
+				var/picked = rand(1,3)
+				switch (picked)
+					if (1)
+						if (!src.wedge)
+							var/a = pick(/obj/item/reagent_containers/food/snacks/plant/orange/wedge, /obj/item/reagent_containers/food/snacks/plant/lime/wedge, /obj/item/reagent_containers/food/snacks/plant/lemon/wedge, /obj/item/reagent_containers/food/snacks/plant/grapefruit/wedge)
+							src.wedge = new a(src)
+							was_fanced_up = TRUE
+					if (2)
+						if (!src.in_glass)
+							var/b = pick(childrentypesof(/obj/item/cocktail_stuff))
+							src.in_glass = new b(src)
+							was_fanced_up = TRUE
+					if (3)
+						if (!src.salted)
+							src.salted = TRUE
+							was_fanced_up = TRUE
+
+			if (src.wedge && src.in_glass && src.salted) //Inner while loop would be infinite if the outer loop succeeded 4 times.
+				goto post_fancing
+			was_fanced_up = FALSE
+
+		post_fancing:
 
 		if (islist(src.whitelist) && src.whitelist.len > 0)
 			if (islist(src.blacklist) && src.blacklist.len > 0)
