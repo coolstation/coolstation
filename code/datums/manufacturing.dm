@@ -863,7 +863,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/jumpsuit
 	name = "Grey Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/color/grey)
 	time = 5 SECONDS
@@ -881,7 +881,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/shoes
 	name = "Black Shoes"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(3)
 	item_outputs = list(/obj/item/clothing/shoes/black)
 	time = 5 SECONDS
@@ -890,7 +890,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/shoes_white
 	name = "White Shoes"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(3)
 	item_outputs = list(/obj/item/clothing/shoes/white)
 	time = 5 SECONDS
@@ -1018,7 +1018,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/latex_gloves
 	name = "Latex Gloves"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(1)
 	item_outputs = list(/obj/item/clothing/gloves/latex)
 	time = 5 SECONDS
@@ -1027,7 +1027,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/body_bag
 	name = "Body Bag"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(3)
 	item_outputs = list(/obj/item/body_bag)
 	time = 15 SECONDS
@@ -1036,7 +1036,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/rag
 	name = "Rag"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/material_piece/cloth/rag)
 	time = 5 SECONDS
@@ -1045,7 +1045,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/maskingtape
 	name = "Masking Tape"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/handcuffs/tape_roll/crappy)
 	time = 13 SECONDS
@@ -1908,7 +1908,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/breathmask
 	name = "Breath Mask"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(1)
 	item_outputs = list(/obj/item/clothing/mask/breath)
 	time = 5 SECONDS
@@ -1917,7 +1917,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/patch
 	name = "Chemical Patch"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(1)
 	item_outputs = list(/obj/item/reagent_containers/patch)
 	time = 5 SECONDS
@@ -1971,7 +1971,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/oresatchel
 	name = "Ore Satchel"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(5)
 	item_outputs = list(/obj/item/satchel/mining)
 	time = 5 SECONDS
@@ -2084,7 +2084,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/backpack
 	name = "Backpack"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(8)
 	item_outputs = list(/obj/item/storage/backpack)
 	time = 10 SECONDS
@@ -2093,7 +2093,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/backpack_red
 	name = "Red Backpack"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(8)
 	item_outputs = list(/obj/item/storage/backpack/red)
 	time = 10 SECONDS
@@ -2102,7 +2102,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/backpack_green
 	name = "Green Backpack"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(8)
 	item_outputs = list(/obj/item/storage/backpack/green)
 	time = 10 SECONDS
@@ -2111,7 +2111,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/backpack_blue
 	name = "Blue Backpack"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(8)
 	item_outputs = list(/obj/item/storage/backpack/blue)
 	time = 10 SECONDS
@@ -2120,7 +2120,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/satchel
 	name = "Satchel"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(8)
 	item_outputs = list(/obj/item/storage/backpack/satchel)
 	time = 10 SECONDS
@@ -2129,7 +2129,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/satchel_red
 	name = "Red Satchel"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(8)
 	item_outputs = list(/obj/item/storage/backpack/satchel/red)
 	time = 10 SECONDS
@@ -2138,7 +2138,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/satchel_green
 	name = "Green Satchel"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(8)
 	item_outputs = list(/obj/item/storage/backpack/satchel/green)
 	time = 10 SECONDS
@@ -2147,7 +2147,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/satchel_blue
 	name = "Blue Satchel"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(8)
 	item_outputs = list(/obj/item/storage/backpack/satchel/blue)
 	time = 10 SECONDS
@@ -2156,7 +2156,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/shoes_brown
 	name = "Brown Shoes"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/clothing/shoes/brown)
 	time = 2 SECONDS
@@ -2165,7 +2165,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/hat_white
 	name = "White Hat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/clothing/head/white)
 	time = 2 SECONDS
@@ -2174,7 +2174,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/hat_black
 	name = "Black Hat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/clothing/head/black)
 	time = 2 SECONDS
@@ -2183,7 +2183,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/hat_blue
 	name = "Blue Hat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/clothing/head/blue)
 	time = 2 SECONDS
@@ -2192,7 +2192,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/hat_red
 	name = "Red Hat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/clothing/head/red)
 	time = 2 SECONDS
@@ -2201,7 +2201,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/hat_green
 	name = "Green Hat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/clothing/head/green)
 	time = 2 SECONDS
@@ -2210,7 +2210,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/hat_yellow
 	name = "Yellow Hat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/clothing/head/yellow)
 	time = 2 SECONDS
@@ -2219,7 +2219,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/hat_pink
 	name = "Pink Hat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/clothing/head/pink)
 	time = 2 SECONDS
@@ -2228,7 +2228,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/hat_orange
 	name = "Orange Hat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(2)
 	item_outputs = list(/obj/item/clothing/head/orange)
 	time = 2 SECONDS
@@ -2237,7 +2237,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/hat_tophat
 	name = "Top Hat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(3)
 	item_outputs = list(/obj/item/clothing/head/that)
 	time = 3 SECONDS
@@ -2246,7 +2246,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/hat_ltophat
 	name = "Large Top Hat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(5)
 	item_outputs = list(/obj/item/clothing/head/longtophat)
 	time = 5 SECONDS
@@ -2255,7 +2255,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/jumpsuit_white
 	name = "White Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/color/white)
 	time = 5 SECONDS
@@ -2264,7 +2264,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/jumpsuit_red
 	name = "Red Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/color/red)
 	time = 5 SECONDS
@@ -2273,7 +2273,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/jumpsuit_yellow
 	name = "Yellow Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/color/yellow)
 	time = 5 SECONDS
@@ -2282,7 +2282,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/jumpsuit_green
 	name = "Green Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/color/green)
 	time = 5 SECONDS
@@ -2291,7 +2291,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/jumpsuit_pink
 	name = "Pink Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/color/pink)
 	time = 5 SECONDS
@@ -2300,7 +2300,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/jumpsuit_blue
 	name = "Blue Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/color/blue)
 	time = 5 SECONDS
@@ -2309,7 +2309,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/jumpsuit_brown
 	name = "Brown Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/color/brown)
 	time = 5 SECONDS
@@ -2318,7 +2318,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/jumpsuit_black
 	name = "Black Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/color)
 	time = 5 SECONDS
@@ -2327,7 +2327,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/jumpsuit_orange
 	name = "Orange Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/color/orange)
 	time = 5 SECONDS
@@ -2336,7 +2336,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/pride_lgbt
 	name = "LGBT Pride Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/pride)
 	time = 5 SECONDS
@@ -2345,7 +2345,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/pride_ace
 	name = "Asexual Pride Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/pride/ace)
 	time = 5 SECONDS
@@ -2354,7 +2354,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/pride_aro
 	name = "Aromantic Pride Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/pride/aro)
 	time = 5 SECONDS
@@ -2363,7 +2363,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/pride_bi
 	name = "Bisexual Pride Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/pride/bi)
 	time = 5 SECONDS
@@ -2372,7 +2372,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/pride_inter
 	name = "Intersex Pride Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/pride/inter)
 	time = 5 SECONDS
@@ -2381,7 +2381,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/pride_lesb
 	name = "Lesbian Pride Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/pride/lesb)
 	time = 5 SECONDS
@@ -2390,7 +2390,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/pride_nb
 	name = "Non-binary Pride Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/pride/nb)
 	time = 5 SECONDS
@@ -2399,7 +2399,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/pride_pan
 	name = "Pansexual Pride Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/pride/pan)
 	time = 5 SECONDS
@@ -2408,7 +2408,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/pride_poly
 	name = "Polysexual Pride Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/pride/poly)
 	time = 5 SECONDS
@@ -2417,7 +2417,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/pride_trans
 	name = "Trans Pride Jumpsuit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/pride/trans)
 	time = 5 SECONDS
@@ -2426,7 +2426,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet
 	name = "White Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet)
 	time = 5 SECONDS
@@ -2435,7 +2435,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_red
 	name = "Red Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/red)
 	time = 5 SECONDS
@@ -2444,7 +2444,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_orange
 	name = "Orange Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/orange)
 	time = 5 SECONDS
@@ -2453,7 +2453,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_yellow
 	name = "Yellow Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/yellow)
 	time = 5 SECONDS
@@ -2462,7 +2462,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_green
 	name = "Green Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/green)
 	time = 5 SECONDS
@@ -2471,7 +2471,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_blue
 	name = "Blue Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/blue)
 	time = 5 SECONDS
@@ -2480,7 +2480,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_pink
 	name = "Pink Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/pink)
 	time = 5 SECONDS
@@ -2489,7 +2489,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_black
 	name = "Black Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/black)
 	time = 5 SECONDS
@@ -2498,7 +2498,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_lgbt
 	name = "LGBT Pride Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/gay)
 	time = 5 SECONDS
@@ -2507,7 +2507,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_ace
 	name = "Asexual Pride Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/ace)
 	time = 5 SECONDS
@@ -2516,7 +2516,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_aro
 	name = "Aromantic Pride Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/aro)
 	time = 5 SECONDS
@@ -2525,7 +2525,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_bi
 	name = "Bisexual Pride Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/bi)
 	time = 5 SECONDS
@@ -2534,7 +2534,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_inter
 	name = "Intersex Pride Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/inter)
 	time = 5 SECONDS
@@ -2543,7 +2543,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_lesb
 	name = "Lesbian Pride Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/lesb)
 	time = 5 SECONDS
@@ -2552,7 +2552,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_nb
 	name = "Non-binary Pride Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/nb)
 	time = 5 SECONDS
@@ -2561,7 +2561,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_pan
 	name = "Pansexual Pride Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/pan)
 	time = 5 SECONDS
@@ -2570,7 +2570,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_poly
 	name = "Polysexual Pride Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/poly)
 	time = 5 SECONDS
@@ -2579,7 +2579,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/bedsheet_trans
 	name = "Trans Pride Bedsheet"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/bedsheet/trans)
 	time = 5 SECONDS
@@ -2588,7 +2588,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/suit_black
 	name = "Fancy Black Suit"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/suit)
 	time = 5 SECONDS
@@ -2597,7 +2597,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/dress_black
 	name = "Fancy Black Dress"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/suit/dress)
 	time = 5 SECONDS
@@ -2606,7 +2606,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/labcoat
 	name = "Labcoat"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/suit/labcoat)
 	time = 5 SECONDS
@@ -2615,7 +2615,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/scrubs_white
 	name = "White Scrubs"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/scrub)
 	time = 5 SECONDS
@@ -2624,7 +2624,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/scrubs_teal
 	name = "Teal Scrubs"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/scrub/teal)
 	time = 5 SECONDS
@@ -2633,7 +2633,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/scrubs_maroon
 	name = "Maroon Scrubs"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/scrub/maroon)
 	time = 5 SECONDS
@@ -2642,7 +2642,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/scrubs_blue
 	name = "Navy Scrubs"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/scrub/blue)
 	time = 5 SECONDS
@@ -2651,7 +2651,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/scrubs_purple
 	name = "Violet Scrubs"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/scrub/purple)
 	time = 5 SECONDS
@@ -2660,7 +2660,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/scrubs_orange
 	name = "Orange Scrubs"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/scrub/orange)
 	time = 5 SECONDS
@@ -2669,7 +2669,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/scrubs_pink
 	name = "Hot Pink Scrubs"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/scrub/pink)
 	time = 5 SECONDS
@@ -2678,7 +2678,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/medical_backpack
 	name = "Medical Backpack"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/storage/backpack/medic)
 	time = 5 SECONDS
@@ -2687,7 +2687,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/patient_gown
 	name = "Gown"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/under/patient_gown)
 	time = 5 SECONDS
@@ -2696,7 +2696,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/surgical_mask
 	name = "Sterile Mask"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(1)
 	item_outputs = list(/obj/item/clothing/mask/surgical)
 	time = 5 SECONDS
@@ -2705,7 +2705,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/surgical_shield
 	name = "Surgical Face Shield"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(1)
 	item_outputs = list(/obj/item/clothing/mask/surgical_shield)
 	time = 5 SECONDS
@@ -2714,7 +2714,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/eyepatch
 	name = "Medical Eyepatch"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(5)
 	item_outputs = list(/obj/item/clothing/glasses/eyepatch)
 	time = 15 SECONDS
@@ -2723,7 +2723,7 @@ proc/get_nice_mat_name_for_manufacturers(mat)
 
 /datum/manufacture/blindfold
 	name = "Blindfold"
-	item_paths = list("fabric")
+	item_paths = list("cottonfabric")
 	item_amounts = list(4)
 	item_outputs = list(/obj/item/clothing/glasses/blindfold)
 	time = 5 SECONDS
