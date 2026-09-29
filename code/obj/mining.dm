@@ -1020,7 +1020,7 @@
 	var/datum/ore/ore = null
 	var/datum/ore/event/event = null
 	var/list/space_overlays = list()
-	var/floor_turf = "/turf/floor/plating/airless/asteroid"
+	var/floor_turf = /turf/floor/plating/airless/asteroid
 
 	//NEW VARS
 	var/mining_health = 120
@@ -1041,7 +1041,7 @@
 	dark
 		fullbright = 0
 		luminosity = 1
-		floor_turf = "/turf/floor/plating/airless/asteroid/dark"
+		floor_turf = /turf/floor/plating/airless/asteroid/dark
 
 	lighted
 		fullbright = 1
@@ -1072,7 +1072,7 @@
 		icon_state = "comet"
 		hardness = 1
 		default_ore = /obj/item/raw_material/rock
-		floor_turf = "/turf/floor/plating/airless/asteroid/dark"
+		floor_turf = /turf/floor/plating/airless/asteroid/dark
 
 		// varied layers
 
