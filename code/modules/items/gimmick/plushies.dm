@@ -5,7 +5,7 @@
 	icon_state = "claw"
 	anchored = ANCHORED
 	density = 1
-	mats = list("mauxite"=5, "pharosium"=5, "molitz"=5, "fabric"=5)
+	mats = list("mauxite"=5, "pharosium"=5, "molitz"=5, "cotton"=5)
 	deconstruct_flags = DECON_MULTITOOL | DECON_WRENCH | DECON_CROWBAR
 	var/busy = 0
 	var/list/prizes = list(/obj/item/toy/plush/small/bee,\
