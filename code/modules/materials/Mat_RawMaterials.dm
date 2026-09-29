@@ -1,3 +1,12 @@
+// Here's where all the useable materials are. Not ores, not finished products, but the raw materials that you can pick up and put into fabricators.
+// It could later be refined (pun intended) into bars/ingots of material that's been refined for sale and storage, and blocks of material that's ready and portable for putting into fabricators.
+// Generally speaking the refinery/smelter will deal with bars, fabricators with blocks or cubes. This is so there are fixed units per material, whether that's by mass or weight. Partial materials, too!
+// Plan: reclaimer can refine single units of ore into pure blocks
+// Smelter can quickly refine many units of ore into pure bars
+// Smelter recombines blocks into bars, reclaimer/processor splits bars into blocks
+// Smelter also combines and refines materials into single pure-alloy blocks
+// Kinda want other melty/delicate materials to be handled by other equipment (i.e. you are not putting silk and cotton into a smelter to make bulletproof weave come ON)
+
 /// Material piece
 /obj/item/material_piece
 	//weird name for an ingot but whatever. let's call this a bundle of 25 units.
@@ -132,7 +141,19 @@
 							dude.put_in_hand(splitStack, 0)
 		else
 			..()
+
+	bar //okay but what if bar was an explicit type and material piece was the abstract, huh, wouldn't that make sense, maybe
+		//stub for later but yeah, come ON
+		//call this 25 units for legacy purposes (storage and sale as refined commodity)
+		//partial bars sell for -10% commodity, full bars +5% commodity
+		// metal
+		name = "bar"
+		icon_state = "bar"
+		desc = "Some sort of processed material bar."
+
 	block
+		//call this 1 unit for manufacturing purposes (use in fabricators)
+		//sale price -5% refined commodity because pain in the ass form factor, -15% if not a full unit
 		// crystal, rubber
 		name = "block"
 		icon_state = "block"
@@ -190,7 +211,7 @@
 				src.change_stack_amount(-1)
 				user.visible_message("<span class='notice'>[user] hangs up a [B.name] in [A]!.</span>", "<span class='notice'>You hang up a [B.name] in [A]!</span>")
 
-/obj/item/material_piece/flesh
+/obj/item/material_piece/flesh //could be useful in medical fabricator. if we could just add a meat grinder for organs to the morgue...
 	name = "flesh clump"
 	desc = "Unrecognizable homogenous meat."
 	icon_state = "wad"
@@ -210,14 +231,44 @@
 		src.setMaterial(getMaterial("frozenfart"), appearance = 0, setname = 0)
 		..()
 
+/obj/item/material_piece/carbonsteel
+	desc = "A processed bar of carbon steel, a classic alloy from Earth."
+	default_material = "carbonsteel"
+	icon_state = "bar"
+	value = 1000 //legacy iron carbon earth material, collector's edition
+
+	setup_material()
+		src.setMaterial(getMaterial("carbonsteel"), appearance = 1, setname = 1)
+		..()
+
 /obj/item/material_piece/steel
-	desc = "A processed bar of Steel, a common metal."
+	desc = "A processed bar of mauxsteel, the superior frontierside equivalent to earth steel."
 	default_material = "steel"
 	icon_state = "bar"
-	value = 100 //legacy iron carbon earth material
+	value = 100
 
 	setup_material()
 		src.setMaterial(getMaterial("steel"), appearance = 1, setname = 1)
+		..()
+
+/obj/item/material_piece/surgsteel
+	desc = "A refined bar of mauxsteel, stainless and surgical grade."
+	default_material = "surgsteel"
+	icon_state = "bar"
+	value = 600
+
+	setup_material()
+		src.setMaterial(getMaterial("surgsteel"), appearance = 1, setname = 1)
+		..()
+
+/obj/item/material_piece/chromium
+	desc = "A processed bar of chromium, a shiny metal used for alloying and plating."
+	default_material = "chromium"
+	icon_state = "bar"
+	value = 500
+
+	setup_material()
+		src.setMaterial(getMaterial("chromium"), appearance = 1, setname = 1)
 		..()
 
 /obj/item/material_piece/hamburgris
@@ -232,21 +283,42 @@
 		src.setMaterial(getMaterial("hamburgris"), appearance = 0, setname = 0)
 		..()
 
-/obj/item/material_piece/glass
-	desc = "A cut block of glass, a common crystalline substance."
-	default_material = "glass"
+
+/obj/item/material_piece/plastic
+	desc = "A cut block of plastic, a malleable hydrocarbon material sorta thing. Very futuristic. How it's made is a complete mystery."
+	default_material = "plastic"
 	icon_state = "block"
-	value = 100 //legacy silica earth material
+	value = 100
+
+	setup_material()
+		src.setMaterial(getMaterial("plastic"), appearance = 1, setname = 0)
+		..()
+
+/obj/item/material_piece/glass
+	desc = "A cut block of molitz glass, a common crystalline substance."
+	default_material = "molitz"
+	icon_state = "block"
+	value = 100
+
+	setup_material()
+		src.setMaterial(getMaterial("molitz"), appearance = 1, setname = 0)
+		..()
+
+/obj/item/material_piece/silicaglass
+	desc = "A cut block of Earth glass, a relatively rare crystalline substance."
+	default_material = "silicaglass"
+	icon_state = "block"
+	value = 1000 //legacy silica earth material
 
 	setup_material()
 		src.setMaterial(getMaterial("glass"), appearance = 1, setname = 1)
 		..()
 
 /obj/item/material_piece/copper
-	desc = "A processed bar of copper, a conductive metal."
+	desc = "A processed bar of copper, a conductive metal. Likely reclaimed from old Earth electronics and wiring."
 	default_material = "copper"
 	icon_state = "bar"
-	value = 100 //legacy earth material
+	value = 1000 //legacy earth material
 
 	setup_material()
 		src.setMaterial(getMaterial("copper"), appearance = 1, setname = 1)
@@ -280,6 +352,18 @@
 	setup_material()
 		src.setMaterial(getMaterial("slag"), appearance = 0, setname = 0)
 		..()
+
+/obj/item/material_piece/rubber/synthrubber
+	name = "synthrubber sheet"
+	desc = "A sheet of synthrubber."
+	icon_state = "latex"
+	value = 20 //maybe
+
+	setup_material()
+		src.setMaterial(getMaterial("synthrubber"), appearance = 0, setname = 0)
+		src.create_reagents(10)
+		reagents.add_reagent("rubber", 10)
+		return ..()
 
 /obj/item/material_piece/rubber/latex
 	name = "latex sheet"

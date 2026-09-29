@@ -48,7 +48,7 @@
 	name = "mauxite"
 	output = /obj/item/raw_material/mauxite
 	events = list(/datum/ore/event/gem)
-	gems = list(/obj/item/raw_material/gemstone,/obj/item/raw_material/uqill,/obj/item/raw_material/fibrilith)
+	gems = list(/obj/item/raw_material/gemstone,/obj/item/raw_material/uqill,/obj/item/raw_material/fibrilith,/obj/item/raw_material/chromium)
 	hardness_mod = 1
 	mining_health = 160
 
@@ -56,7 +56,7 @@
 	name = "pharosium"
 	output = /obj/item/raw_material/pharosium
 	events = list(/datum/ore/event/gem)
-	gems = list(/obj/item/raw_material/gemstone,/obj/item/raw_material/uqill,/obj/item/raw_material/fibrilith)
+	gems = list(/obj/item/raw_material/gemstone,/obj/item/raw_material/uqill,/obj/item/raw_material/fibrilith,/obj/item/raw_material/chromium)
 	hardness_mod = 1
 	mining_health = 160
 
@@ -64,7 +64,7 @@
 	name = "molitz"
 	output = /obj/item/raw_material/molitz
 	events = list(/datum/ore/event/gem)
-	gems = list(/obj/item/raw_material/gemstone,/obj/item/raw_material/uqill,/obj/item/raw_material/fibrilith)
+	gems = list(/obj/item/raw_material/gemstone,/obj/item/raw_material/uqill,/obj/item/raw_material/fibrilith,/obj/item/raw_material/chromium)
 	event_chance = 12
 	hardness_mod = 1
 	mining_health = 160
@@ -73,7 +73,7 @@
 	name = "char"
 	output = /obj/item/raw_material/char
 	events = list(/datum/ore/event/gem)
-	gems = list(/obj/item/raw_material/gemstone,/obj/item/raw_material/fibrilith)
+	gems = list(/obj/item/raw_material/gemstone,/obj/item/raw_material/fibrilith,/obj/item/raw_material/chromium)
 	tiles_per_rock_min = 6
 	tiles_per_rock_max = 16
 	amount_per_tile_min = 2

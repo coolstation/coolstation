@@ -204,6 +204,18 @@
 		src.setMaterial(getMaterial("mauxite"), appearance = FALSE, setname = FALSE)
 		return ..()
 
+/obj/item/raw_material/chromium
+	name = "chromium ore"
+	desc = "A chunk of chromium, a shiny metal used in refining."
+	icon_state = "chromium"
+	material_name = "Chromium"
+	metal = 1
+	value = 80 //base commodity price
+
+	setup_material()
+		src.setMaterial(getMaterial("chromium"), appearance = FALSE, setname = FALSE)
+		return ..()
+
 /obj/item/raw_material/molitz
 	name = "molitz crystal"
 	desc = "A crystal of Molitz, a common crystalline substance."

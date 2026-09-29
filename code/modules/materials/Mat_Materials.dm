@@ -279,21 +279,51 @@
 		setProperty("electrical", 80)
 		setProperty("density", 5)
 		setProperty("hard", 5)
+		setProperty("reflective", 50)
 		return ..()
 
 /datum/material/metal/steel
 	mat_id = "steel"
 	name = "steel"
-	desc = "Terrestrial steel from Earth."
+	desc = "Frontierside steel, made with mauxite. Better than ordinary steel."
+	New()
+		setProperty("density", 40)
+		setProperty("hard", 20)
+		return ..()
+
+/datum/material/metal/carbonsteel
+	mat_id = "carbonsteel"
+	name = "carbon steel"
+	desc = "Terrestrial steel from Earth, teeming with nostalgia. Made with real iron."
 	New()
 		setProperty("density", 30)
 		setProperty("hard", 15)
 		return ..()
 
-/datum/material/metal/mauxite
+/datum/material/metal/surgsteel
+	mat_id = "surgsteel"
+	name = "surgical steel"
+	desc = "Mauxite steel that has been further refined to be safe for surgical use, super non-porous and stainless as well. Very shiny, too!"
+	New()
+		setProperty("density", 50)
+		setProperty("hard", 35)
+		setProperty("reflective", 40)
+		return ..()
+
+/datum/material/metal/chromium
+	mat_id = "chromium"
+	name = "chromium"
+	desc = "Rust and corrosion resistant metal. Used for plating and alloying."
+	New()
+		setProperty("density", 25)
+		setProperty("hard", 50)
+		setProperty("reflective", 60)
+		return ..()
+
+/datum/material/metal/mauxite //similar to iron but with strange bonds tempered by the plasma giant's influence
 	mat_id = "mauxite"
 	name = "mauxite"
-	desc = "Mauxite is a sturdy common metal."
+	desc = "A sturdy common metal."
 	color = "#574846"
 	New()
 		setProperty("density", 50)
@@ -303,7 +333,7 @@
 /datum/material/metal/copper
 	mat_id = "copper"
 	name = "copper"
-	desc = "Copper is a terrestrial conductive metal from proto-Dan mines. It is inferior to pharosium."
+	desc = "A terrestrial conductive metal. Still found in early Earth-manufactured electronics."
 	color = "#B87333" //the hex value known as copper in RGB colorspace
 	New()
 		setProperty("stability", 30)
@@ -315,7 +345,7 @@
 /datum/material/metal/pharosium
 	mat_id = "pharosium"
 	name = "pharosium"
-	desc = "Pharosium is a conductive metal."
+	desc = "A conductive metal found only in the Frontier."
 	color = "#E39362"
 	New()
 		setProperty("stability", 60)
@@ -502,17 +532,24 @@
 	material_flags = MATERIAL_CRYSTAL
 	color = "#A3DCFF"
 
-/datum/material/crystal/glass
+/datum/material/crystal/glass //processed transparent molitz, more brittle?
 	mat_id = "glass"
 	name = "glass"
-	desc = "Terrestrial glass. Inferior to Molitz."
+	desc = "Molitz processed into a clear form, suitable for windows and containers."
+	color = "#e4f5ff"
+	alpha = 180
+
+/datum/material/crystal/silicaglass
+	mat_id = "silicaglass"
+	name = "silica glass"
+	desc = "Terrestrial glass, made of silica. Not as strong as equivalent molitz, but the color and rarity make it prized."
 	color = "#A3DCFF"
 	alpha = 180
 
-/datum/material/crystal/molitz
+/datum/material/crystal/molitz //raw molitz
 	mat_id = "molitz"
 	name = "molitz"
-	desc = "Molitz is a common crystalline substance."
+	desc = "A common translucent crystalline substance."
 	color = "#FFFFFF"
 	alpha = 180
 
@@ -541,7 +578,7 @@
 /datum/material/crystal/claretine
 	mat_id = "claretine"
 	name = "claretine"
-	desc = "Claretine is a highly conductive salt."
+	desc = "A highly conductive salt crystal."
 	color = "#C2280A"
 
 	New()
@@ -553,7 +590,7 @@
 /datum/material/crystal/erebite
 	mat_id = "erebite"
 	name = "erebite"
-	desc = "Erebite is an extremely volatile high-energy mineral."
+	desc = "An extremely volatile high-energy mineral."
 	color = "#FF3700"
 	material_flags = MATERIAL_CRYSTAL | MATERIAL_ENERGY
 
@@ -607,7 +644,7 @@
 /datum/material/crystal/gemstone
 	mat_id = "quartz"
 	name = "quartz"
-	desc = "Quartz is somewhat valuable but not paticularly useful."
+	desc = "A gemstone. Somewhat valuable, but not particularly useful."
 	color = "#BBBBBB"
 	quality = 50
 	alpha = 100
@@ -750,7 +787,7 @@
 /datum/material/crystal/uqill //Ancients
 	mat_id = "uqill"
 	name = "uqill"
-	desc = "Uqill is a rare and very dense stone."
+	desc = "A rare and very dense stone."
 	color = "#0F0A08"
 	alpha = 255
 
@@ -793,7 +830,7 @@
 /datum/material/crystal/telecrystal
 	mat_id = "telecrystal"
 	name = "telecrystal"
-	desc = "Telecrystal is a gemstone with space-warping properties."
+	desc = "A gemstone with space-warping properties. Individual pieces tend to favor a particular, if rough, triangular shape."
 	color = "#4C14F5"
 	material_flags = MATERIAL_CRYSTAL | MATERIAL_ENERGY
 	alpha = 100
@@ -1160,6 +1197,16 @@
 		setProperty("hard", 50)
 		return ..()
 
+// Plastic
+
+/datum/material/plastic
+	quality = 5
+	mat_id = "plastic"
+	name = "plastic"
+	desc = "Generic plastic. Used in all sorts of stuff. Like tool handles maybe? Crappy little touys?"
+
+//todo: bakelite?
+
 
 // Fabrics
 
@@ -1449,12 +1496,8 @@
 
 
 
-// TODO: THESE
+// TODO: THIS
 /*
 /datum/material/wax
-
-/datum/material/plastic
-
-no for real though we really need to make plastic
 
 */

@@ -106,6 +106,21 @@
 		if(one && two) return 1
 		else return 0
 
+/datum/material_recipe/surgsteel
+	name = "surgical steel"
+	result_id = "surgsteel"
+
+	validate(var/datum/material/M)
+		var/one = 0
+		var/two = 0
+
+		for(var/datum/material/CM in M.parent_materials)
+			if(CM.mat_id == "steel") one = 1
+			if(CM.mat_id == "chromium") two = 1
+
+		if(one && two) return 1
+		else return 0
+
 /datum/material_recipe/electrum
 	name = "electrum"
 	result_id = "electrum"
@@ -132,6 +147,21 @@
 		for(var/datum/material/CM in M.parent_materials)
 			if(CM.mat_id == "plasmastone") one = 1
 			if(CM.mat_id == "steel") two = 1
+
+		if(one && two) return 1
+		else return 0
+
+/datum/material_recipe/glass //clear and brittle vs. standard refined molitz's cloudy and tough
+	name = "glass"
+	result_id = "glass"
+
+	validate(var/datum/material/M)
+		var/one = 0
+		var/two = 0
+
+		for(var/datum/material/CM in M.parent_materials)
+			if(CM.mat_id == "molitz") one = 1
+			if(CM.mat_id == "molitz") two = 1
 
 		if(one && two) return 1
 		else return 0
