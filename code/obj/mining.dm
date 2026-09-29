@@ -1090,7 +1090,6 @@
 			stone_color = "#2070CC"
 			default_ore = /obj/item/raw_material/ice
 			hardness = 5
-			quality = 15
 			amount = 6
 
 		ice_char

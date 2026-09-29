@@ -1,3 +1,7 @@
+//unrefined ores and shit like that
+//contrary to sense these are not raw materials, they're just materials, the refined materials are raw materials and oh no i hate it
+//for chunks of refined materials see /code/modules/materials/Mat_RawMaterials.dm
+
 /obj/item/raw_material/
 	name = "construction materials"
 	desc = "placeholder item!"
@@ -7,6 +11,8 @@
 	value = 70 //base commodity price
 	burn_type = 1
 	stack_type = /obj/item/raw_material/
+	quality = 10 //for bits of raw ore, it's how many pieces of refined material you get when processing divided by 10.
+	//10 for 1 complete piece. this allows partial pieces to be made, which can be added together as a running remainder when smelting big stacks, and spits out as a partial block when done processing
 
 	var/material_name = "Ore" //text to display for this ore in manufacturers
 	var/initial_material_name = null // used to store what the ore is
@@ -844,6 +850,11 @@
 
 // Material-related Machinery
 
+// Takes a single ore and turns it into a single block or bar, with queue handling
+// Eventually make this process ores into blocks, and bars into blocks
+// I think this should be a portable basic smelter and materials handler in fab closets
+// a reclaimer should be more of an advanced disassembly machine (both in foundry area and disposals) in my imo
+
 /obj/machinery/portable_reclaimer
 	name = "portable reclaimer"
 	desc = "A sophisticated piece of machinery that quickly processes minerals into bars."
@@ -860,6 +871,7 @@
 	var/sound/sound_process = sound('sound/effects/pop.ogg')
 	var/sound/sound_grump = sound('sound/machines/buzz-two.ogg')
 	var/atom/output_location = null
+	//todo: list with remainders that fills up and empties during a queue
 
 	attack_hand(var/mob/user as mob)
 		if (active)
@@ -933,6 +945,7 @@
 		icon_state = "reclaimer"
 		src.visible_message("<b>[src]</b> finishes working and shuts down.")
 
+	//process an item, divided by optional modifier, and optionally include another material (explicitly for handling dual material cables)
 	proc/output_bar_from_item(obj/item/O, var/amount_modifier = 1, var/extra_mat)
 		if (!O || !O.material)
 			return

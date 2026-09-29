@@ -240,6 +240,7 @@ var/global/meteor_shower_active = 0
 	var/list/oredrops = list(/obj/item/raw_material/rock)
 	var/list/oredrops_rare = list(/obj/item/raw_material/rock)
 	var/ore_rarity = 1 //prob(this) to pull from rare list (this is the original value)
+	var/ore_quality //set raw_material.quality to this
 	var/chunk_name = "meteor chunk"
 	var/datum/random_event/major/meteor_shower/our_event = null
 	var/broke_station_shit = FALSE
@@ -294,6 +295,7 @@ var/global/meteor_shower_active = 0
 		//animate_spin(src, dir = "R", T = 1, looping = -1)
 		src.set_loc(my_spawn)
 		target = get_turf(trg)
+		ore_quality = rand(10,25)
 		SPAWN_DBG(time_to_die)
 			qdel(src)
 		walk_towards(src, target, speed, pix_speed)
@@ -414,6 +416,9 @@ var/global/meteor_shower_active = 0
 			if (prob(ore_rarity)) type = pick(oredrops_rare)
 			else type = pick(oredrops)
 			var/atom/movable/A = new type()
+			if (istype(A, /obj/item/raw_material))
+				var/obj/item/raw_material/O = A
+				O.quality = ore_quality + rand(-5,5)
 			A.set_loc(T)
 			A.throw_at(target, 10, 2) //what if
 			A.name = src.chunk_name

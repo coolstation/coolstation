@@ -7,6 +7,8 @@
 // Smelter also combines and refines materials into single pure-alloy blocks
 // Kinda want other melty/delicate materials to be handled by other equipment (i.e. you are not putting silk and cotton into a smelter to make bulletproof weave come ON)
 
+//for ACTUALLY raw materials like ores, see /code/obj/item/material.dm
+
 /// Material piece
 /obj/item/material_piece
 	//weird name for an ingot but whatever. let's call this a bundle of 25 units.
