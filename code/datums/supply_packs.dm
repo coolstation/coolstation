@@ -790,6 +790,36 @@ ABSTRACT_TYPE(/datum/supply_packs/construction)
 		containertype = /obj/storage/crate
 		containername = "Glass Sheets Crate - 200 pack"
 
+	latex10
+		name = "10 Latex Sheets"
+		desc = "Cheap rubbers for all your manufacturing needs."
+		contents = "x10 Latex Sheets"
+		contains = list(/obj/item/material_piece/rubber/latex)
+		amount = 10
+		cost = 200
+		containertype = /obj/storage/crate
+		containername = "Latex Sheets Crate - 10 pack"
+
+	synthrubber10
+		name = "10 Synthrubber Sheets"
+		desc = "Electrical insulation for big projects."
+		contents = "x10 Synthrubber Sheets"
+		contains = list(/obj/item/material_piece/rubber/synthrubber)
+		amount = 10
+		cost = 500
+		containertype = /obj/storage/crate
+		containername = "Synthrubber Sheets Crate - 10 pack"
+
+	plastic10
+		name = "10 Plastic Blocks"
+		desc = "Oh, you really don't know how to make plastic? That's fine. That's allowed."
+		contents = "x10 Plastic Blocks"
+		contains = list(/obj/item/material_piece/plastic)
+		amount = 10
+		cost = 200
+		containertype = /obj/storage/crate
+		containername = "Plastic Blocks Crate - 10 pack"
+
 	paint
 		name = "Paint Cans"
 		desc = "A selection of random paints."

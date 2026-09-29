@@ -288,6 +288,18 @@
 	maximum_stock = 3
 	supply_packs = list(/datum/supply_packs/construction/metal50)
 
+/datum/supply_control/latex_kit
+	maximum_stock = 3
+	supply_packs = list(/datum/supply_packs/construction/latex10)
+
+/datum/supply_control/synthrubber_kit
+	maximum_stock = 3
+	supply_packs = list(/datum/supply_packs/construction/synthrubber10)
+
+/datum/supply_control/plastic_kit
+	maximum_stock = 3
+	supply_packs = list(/datum/supply_packs/construction/plastic10)
+
 /datum/supply_control/cable_kit
 	maximum_stock = 3
 	supply_packs = list(/datum/supply_packs/engineering/electrical)
