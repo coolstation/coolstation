@@ -94,7 +94,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	desc = "looks loosely packed"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gehenna_rock"
-	floor_turf = "/turf/space/gehenna/desert"
+	floor_turf = /turf/space/gehenna/desert
 	hardness = 1
 	default_ore = /obj/item/raw_material/rock/gehenna
 
@@ -115,7 +115,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		return
 
 /turf/wall/asteroid/gehenna/z3
-	floor_turf = "/turf/floor/plating/gehenna"
+	floor_turf = /turf/floor/plating/gehenna
 
 /turf/wall/asteroid/gehenna/z3/fun //for an prefab
 	New()
@@ -153,7 +153,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 		return
 
 /turf/wall/asteroid/gehenna/tough/z3
-	floor_turf = "/turf/floor/plating/gehenna"
+	floor_turf = /turf/floor/plating/gehenna
 
 
 /turf/wall/gehenna/
@@ -428,7 +428,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	icon_state = "dither_b"
 	name = "the gehennan desert"
 	is_construction_allowed = TRUE
-	filler_turf = "/turf/space/gehenna/desert"
+	filler_turf = /turf/space/gehenna/desert
 
 
 /area/gehenna/south // just in case i need a separate area for stuff
@@ -567,7 +567,7 @@ var/global/gehenna_underground_loop_vol = (gehenna_surface_loop_vol / 6) //just 
 	luminosity = 0
 	sound_environment = EAX_CAVE
 	is_atmos_simulated = TRUE
-	filler_turf = "/turf/floor/plating/gehenna"
+	filler_turf = /turf/floor/plating/gehenna
 
 /area/gehenna/underground/staffies_nest
 	name = "the rat's nest"

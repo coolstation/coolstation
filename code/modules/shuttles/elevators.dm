@@ -31,11 +31,11 @@ ABSTRACT_TYPE(/area/transit_vehicle/elevator/__id);\
 /area/transit_vehicle/elevator/__id/top;\
 /area/transit_vehicle/elevator/__id/top/name = _areaname;\
 /area/transit_vehicle/elevator/__id/top/icon_state = _area_sprite;\
-/area/transit_vehicle/elevator/__id/top/filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down";\
+/area/transit_vehicle/elevator/__id/top/filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down;\
 /area/transit_vehicle/elevator/__id/bot;\
 /area/transit_vehicle/elevator/__id/bot/name = _areaname;\
 /area/transit_vehicle/elevator/__id/bot/icon_state = _area_sprite;\
-/area/transit_vehicle/elevator/__id/bot/filler_turf = "/turf/floor/plating";\
+/area/transit_vehicle/elevator/__id/bot/filler_turf = /turf/floor/plating;\
 //I'm not sure if the double underscore in __id ended up necessary but too much effort to change
 
 //Example usage
@@ -388,117 +388,117 @@ _________ _______  _______  _        _______ __________________   _______ ______
 /area/transit_vehicle/elevator/qm_top
 	name = "Quartermaster's Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down
 
 /area/transit_vehicle/elevator/qm_bot
 	name = "Quartermaster's Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /area/transit_vehicle/elevator/med_top
 	name = "Hospital Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down
 
 /area/transit_vehicle/elevator/med_bot
 	name = "Hospital Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /area/transit_vehicle/elevator/eng_top
 	name = "Engineering Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down
 
 /area/transit_vehicle/elevator/eng_bot
 	name = "Engineering Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /area/transit_vehicle/elevator/com_top
 	name = "Command Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down
 
 /area/transit_vehicle/elevator/com_bot
 	name = "Command Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /area/transit_vehicle/elevator/sec_top
 	name = "Security Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down
 
 /area/transit_vehicle/elevator/sec_bot
 	name = "Security Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /area/transit_vehicle/elevator/dum_top
 	name = "Dumbwaiter"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down
 
 /area/transit_vehicle/elevator/dum_bot
 	name = "Dumbwaiter"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /area/transit_vehicle/elevator/qmdum_top
 	name = "Cargo Dumbwaiter"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down
 
 /area/transit_vehicle/elevator/qmdum_bot
 	name = "Cargo Dumbwaiter"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /area/transit_vehicle/elevator/ntfc_top
 	name = "Space Elevator"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/ntfc"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/ntfc
 
 /area/transit_vehicle/elevator/ntfc_mid
 	name = "Space Elevator"
 	icon_state = "dither_r"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/ntfcm"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/ntfcm
 
 /area/transit_vehicle/elevator/ntfc_bot
 	name = "Space Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /area/transit_vehicle/elevator/robo_top
 	name = "Robotics Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down
 
 /area/transit_vehicle/elevator/robo_bot
 	name = "Robotics Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/cautionblack"
+	filler_turf = /turf/floor/cautionblack
 
 /area/transit_vehicle/elevator/hydro_top
 	name = "Hydroponics Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down
 
 /area/transit_vehicle/elevator/hydro_bot
 	name = "Hydroponics Elevator"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /area/transit_vehicle/elevator/jani_top
 	name = "Sanitation Center"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/specialroom/elevator_shaft/straight_down"
+	filler_turf = /turf/floor/specialroom/elevator_shaft/straight_down
 
 /area/transit_vehicle/elevator/jani_bot
 	name = "Sanitation Center"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /turf/floor/specialroom/elevator_shaft/ntfcm
 	fall_landmark = LANDMARK_FALL_NTFC

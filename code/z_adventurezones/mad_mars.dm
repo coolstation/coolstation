@@ -134,7 +134,7 @@
 	irradiated = 1
 	permarads = 1
 	ambient_light = rgb(255*0.9, 211*0.9, 183*0.9)
-	filler_turf = "/turf/mars"
+	filler_turf = /turf/mars
 
 
 // """Foliage"""

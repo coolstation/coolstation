@@ -138,8 +138,8 @@ var/global/datum/transit_controller/transit_controls
 			vehicle.departing(stop)
 			var/area/start_location = locate(current.target_area)
 			var/area/end_location = locate(stop.target_area)
-			var/filler_turf_start = text2path(start_location.filler_turf)
-			//var/filler_turf_end = text2path(end_location.filler_turf)
+			var/filler_turf_start = start_location.filler_turf //this was wrapped in text2path which I think may have been traceable to initial shuttle fill wrapping the filler_turf var in quotes, rendering it a string instead of a type. oops
+			//var/filler_turf_end = end_location.filler_turf
 			if (!filler_turf_start)
 				filler_turf_start = /turf/space
 			//need to figure out how to not hardcode the elevators into this

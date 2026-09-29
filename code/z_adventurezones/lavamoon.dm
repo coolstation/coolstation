@@ -92,7 +92,7 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon
 	name = "Lava Moon Surface"
 	icon_state = "red"
-	filler_turf = "/turf/floor/lava"
+	filler_turf = /turf/floor/lava
 	requires_power = 0
 	force_fullbright = 0
 	ambient_light = rgb(0.45 * 255, 0.2 * 255, 0.1 * 255)
@@ -196,7 +196,7 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon/base
 	name = "Power Plant"
 	icon_state = "yellow"
-	filler_turf = "/turf/floor/setpieces/iomoon/crust"
+	filler_turf = /turf/floor/setpieces/iomoon/crust
 	requires_power = 1
 	force_fullbright = 0
 	ambient_light = rgb(0.3 * 255, 0.3 * 255, 0.3 * 255)
@@ -220,7 +220,7 @@ var/sound/iomoon_alarm_sound = null
 
 /area/iomoon/caves
 	name = "Magma Cavern"
-	filler_turf = "/turf/floor/lava"
+	filler_turf = /turf/floor/lava
 	requires_power = 1
 	force_fullbright = 0
 	luminosity = 0
@@ -234,7 +234,7 @@ var/sound/iomoon_alarm_sound = null
 /area/iomoon/robot_ruins
 	name = "Strange Ruins"
 	icon_state = "purple"
-	filler_turf = "/turf/floor/setpieces/iomoon/ancient"
+	filler_turf = /turf/floor/setpieces/iomoon/ancient
 	requires_power = 1
 	force_fullbright = 0
 	luminosity = 0

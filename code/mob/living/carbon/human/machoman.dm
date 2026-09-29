@@ -486,7 +486,7 @@ var/list/snd_macho_idle = list('sound/voice/macho/macho_alert16.ogg', 'sound/voi
 						animate_buff_out(T)
 						SPAWN_DBG(1 SECOND)
 							var/floor_type = T.type
-							var/turf/floor/specialroom/gym/macho_arena/new_turf = T.ReplaceWith("/turf/floor/specialroom/gym/macho_arena/new_turf", 1)
+							var/turf/floor/specialroom/gym/macho_arena/new_turf = T.ReplaceWith(/turf/floor/specialroom/gym/macho_arena/new_turf, 1)
 							new_turf.previous_turf_type = floor_type
 							new_turf.alpha = 0
 							arenaropes += new_turf
@@ -1851,7 +1851,7 @@ ABSTRACT_TYPE(/datum/targetable/macho)
 						animate_buff_out(T)
 						SPAWN_DBG(1 SECOND)
 							var/floor_type = T.type
-							var/turf/floor/specialroom/gym/macho_arena/new_turf = T.ReplaceWith("/turf/floor/specialroom/gym/macho_arena/new_turf", 1)
+							var/turf/floor/specialroom/gym/macho_arena/new_turf = T.ReplaceWith(/turf/floor/specialroom/gym/macho_arena/new_turf, 1)
 							new_turf.previous_turf_type = floor_type
 							new_turf.alpha = 0
 							arenaropes += new_turf

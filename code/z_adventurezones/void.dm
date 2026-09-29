@@ -12,7 +12,7 @@ CONTENTS:
 /area/crunch
 	name = "somewhere"
 	icon_state = "purple"
-	filler_turf = "/turf/floor/void"
+	filler_turf = /turf/floor/void
 	sound_environment = EAX_SEWER_PIPE
 	skip_sims = 1
 	sims_score = 15

@@ -6,7 +6,7 @@
 /area/azarak/cave
 	name = "azarak cave"
 	icon_state = "azarak_cave"
-	filler_turf = "/turf/floor/setpieces/Azarak/lavalethal"
+	filler_turf = /turf/floor/setpieces/Azarak/lavalethal
 	sound_environment = EAX_SEWER_PIPE
 	skip_sims = 1
 	sims_score = 15
@@ -15,7 +15,7 @@
 /area/azarak/retreat
 	name = "azarak retreat"
 	icon_state = "azarak_lava"
-	filler_turf = "/turf/floor/setpieces/Azarak/lavalethal"
+	filler_turf = /turf/floor/setpieces/Azarak/lavalethal
 	sound_environment = EAX_SEWER_PIPE
 	skip_sims = 1
 	sims_score = 15

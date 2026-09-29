@@ -527,7 +527,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	teleport_blocked = 2
 	force_fullbright = 0
 	expandable = 0
-	// filler_turf = "/turf/floor/setpieces/gauntlet"
+	// filler_turf = /turf/floor/setpieces/gauntlet
 	is_atmos_simulated = FALSE
 	requires_power = 0
 
@@ -607,7 +607,7 @@ ABSTRACT_TYPE(/area) // don't instantiate this directly dummies, use /area/space
 	requires_power = 0
 	teleport_blocked = 1
 	force_fullbright = 1
-	filler_turf = "/turf/nicegrass/random"
+	filler_turf = /turf/nicegrass/random
 	is_construction_allowed = TRUE
 
 /** Shuttle Areas
@@ -725,25 +725,25 @@ ABSTRACT_TYPE(/area/shuttle)
 
 /area/shuttle/icebase_crew_elevator/upper
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/arctic/abyss"
+	filler_turf = /turf/floor/arctic/abyss
 	force_fullbright = 0
 	sound_group = "ice_moon"
 
 /area/shuttle/icebase_crew_elevator/lower
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/arctic/snow/ice"
+	filler_turf = /turf/floor/arctic/snow/ice
 	force_fullbright = 0
 	sound_group = "ice_moon"
 
 /area/shuttle/icebase_mine_elevator/upper
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/arctic/abyss"
+	filler_turf = /turf/floor/arctic/abyss
 	force_fullbright = 0
 	sound_group = "ice_moon"
 
 /area/shuttle/icebase_mine_elevator/lower
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/arctic/snow/ice"
+	filler_turf = /turf/floor/arctic/snow/ice
 	force_fullbright = 0
 	sound_group = "ice_moon"
 
@@ -915,7 +915,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 /area/someplace
 	name = "some place"
 	icon_state = "purple"
-	filler_turf = "/turf/floor/void"
+	filler_turf = /turf/floor/void
 	requires_power = 0
 	luminosity = 1
 	force_fullbright = 1
@@ -928,7 +928,7 @@ ABSTRACT_TYPE(/area/shuttle_particle_spawn)
 /area/someplacehot
 	name = "some place"
 	icon_state = "atmos"
-	filler_turf = "/turf/floor/void"
+	filler_turf = /turf/floor/void
 	requires_power = 0
 	luminosity = 1
 	force_fullbright = 1
@@ -1465,12 +1465,12 @@ ABSTRACT_TYPE(/area/prefab)
 /area/shuttle/sea_elevator/lower
 	name = "Sea Elevator Shaft"
 	icon_state = "shuttle2"
-	filler_turf = "/turf/floor/plating"
+	filler_turf = /turf/floor/plating
 
 /area/shuttle/sea_elevator/upper
 	name = "Sea Elevator Shaft"
 	icon_state = "shuttle"
-	filler_turf = "/turf/floor/specialroom/sea_elevator_shaft"
+	filler_turf = /turf/floor/specialroom/sea_elevator_shaft
 
 /area/dank_trench
 	name = "marijuana trench 2" //this is lowercase on purpose
@@ -4396,7 +4396,7 @@ Don't try and do this in the editor nerd. ~Warc
 	sound_fx_1 = 'sound/ambience/station/Station_VocalNoise1.ogg'
 	var/initial_structure_value = 0
 #ifdef MOVING_SUB_MAP
-	filler_turf = "/turf/space/fluid/ocean/manta"
+	filler_turf = /turf/space/fluid/ocean/manta
 
 	New()
 		..()
@@ -6157,7 +6157,7 @@ MAJOR_AST(30)
 /area/centcom/outpost
 	name = "Nanotrasen Temporary Frontier Command"
 	icon_state = "yellow"
-	filler_turf = "/turf/space"
+	filler_turf = /turf/space
 
 /area/centcom/outpost/lower
 	name = "Nanotrasen Temporary Frontier Command Subdeck"

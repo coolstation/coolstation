@@ -165,7 +165,7 @@ datum/shuttle_controller
 						sound_location.sound_loop_1 = 'sound/ambience/loop/Station_Background_Drone.ogg'
 						sound_location.sound_loop_1_vol = 60
 
-						var/filler_turf = text2path(start_location.filler_turf)
+						var/filler_turf = start_location.filler_turf
 						if (!filler_turf)
 							filler_turf = centcom_turf
 						start_location.move_contents_to(end_location, filler_turf)

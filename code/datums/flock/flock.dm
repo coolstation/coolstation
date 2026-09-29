@@ -457,10 +457,10 @@
 			TF.repair()
 			animate_flock_convert_complete(T)
 		else
-			T.ReplaceWith("/turf/floor/feather", 0)
+			T.ReplaceWith(/turf/floor/feather, 0)
 			animate_flock_convert_complete(T)
 	if(istype(T, /turf/wall))
-		T.ReplaceWith("/turf/wall/auto/feather", 0)
+		T.ReplaceWith(/turf/wall/auto/feather, 0)
 		animate_flock_convert_complete(T)
 
 
@@ -469,7 +469,7 @@
 		var/obj/lattice/flock/FL = locate(/obj/lattice/flock) in T
 		if(istype(FL))
 			qdel(FL)
-			T.ReplaceWith("/turf/floor/feather", 0)
+			T.ReplaceWith(/turf/floor/feather, 0)
 			animate_flock_convert_complete(T)
 		// if we have no fibrenet, make one
 		else

@@ -13,7 +13,7 @@ Contents:
 /area/moon
 	name = "moon"
 	icon_state = "blue"
-	filler_turf = "/turf/floor/lunar"
+	filler_turf = /turf/floor/lunar
 	requires_power = 0
 	force_fullbright = 0
 	ambient_light = rgb(0.9 * 255, 0.9 * 255, 0.9 * 255)

@@ -7,7 +7,7 @@
 	skip_sims = 1
 	sims_score = 25
 	sound_group = "centcom"
-	filler_turf = "/turf/nicegrass/random"
+	filler_turf = /turf/nicegrass/random
 	is_centcom = 1
 	is_construction_allowed = FALSE
 	is_atmos_simulated = 1 // why dont we try this out btw

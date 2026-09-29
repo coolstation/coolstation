@@ -20,12 +20,12 @@
 /area/shuttle/mining/station
 	icon_state = "shuttle"
 #ifdef UNDERWATER_MAP
-	filler_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
+	filler_turf = /turf/space/fluid/ocean/noexplosion/nospawn
 #endif
 
 /area/shuttle/mining/space
 	icon_state = "shuttle2"
-	filler_turf = "/turf/space"
+	filler_turf = /turf/space
 	//sneaky
 	sound_loop_1 = 'sound/ambience/music/tane_loop_louder.ogg'
 	sound_loop_1_vol = -5
@@ -36,7 +36,7 @@
 
 /area/shuttle/mining/outpost
 	icon_state = "shuttle"
-	filler_turf = "/turf/space"
+	filler_turf = /turf/space
 
 /datum/transit_vehicle/mining_shuttle
 	vehicle_id = "mining_shuttle"/*
@@ -100,12 +100,12 @@
 /area/shuttle/cargo/station
 	icon_state = "shuttle"
 #ifdef UNDERWATER_MAP
-	filler_turf = "/turf/space/fluid/ocean/noexplosion/nospawn"
+	filler_turf = /turf/space/fluid/ocean/noexplosion/nospawn
 #endif
 
 /area/shuttle/cargo/hub
 	icon_state = "shuttle2"
-	filler_turf = "/turf/space"
+	filler_turf = /turf/space
 
 /datum/transit_stop/cargo_dock
 	stop_id 	= "cargo_dock"
