@@ -510,29 +510,14 @@
 	ex_act(severity)
 		return
 
-
-/obj/machinery/smelter_portable
-	name = "Portable Smelter"
-	desc = "A small furnace-like machine used to melt and combine metals or minerals."
-	icon = 'icons/obj/crafting.dmi'
-	icon_state = "portsmelter0"
-	anchored = UNANCHORED
-	density = 1
-	layer = FLOOR_EQUIP_LAYER1
-	var/list/components = list()
-	var/sound/sound_bubble = sound('sound/effects/bubbles.ogg')
-	var/datum/material/output = null
-	var/datum/light/light
-
-	New()
-		..()
-		light = new /datum/light/point
-		light.attach(src)
-		light.set_brightness(0.5)
-		light.set_color(1, 0.6, 0.2)
-
-	ex_act(severity)
-		return
+//say can we make this one require oxy and plasma canisters hooked up. and the portable unanchored one? give it tanks
+//good excuse to use more gas, without requiring lots of power. nano crucible on the other hand, that can use a lot of power because it's not just melting shit like this
+//note that this machinery is currently *free* to operate. honestly should heat up the room a bunch too
+//in my view (bobskunk) this should melt ore and deposit the material in a number bucket for the respective material and once it's full (say, 25 units) remove 25 units from the bucket and pop out a bar
+//big unit gets 4 or 5 30 unit buckets and pops out commodity bars, portable unit gets 2 10 unit buckets and pops out 5 unit blocks for fabs
+//this will run like the reclaimer perhaps
+//give it an input hopper with a filter, and an organizing output bin or storage (since at this point complete material bars will be 1:1 fungible and pure) so you can just let it run while you dump more ore into the input
+//i dunno just thinking out loud here and putting it where someone might act on it
 
 /obj/machinery/smelter
 	name = "Arc Smelter"
@@ -547,6 +532,9 @@
 
 	var/list/components = list()
 	var/slag_level = 0
+	var/bake_time = 1 SECOND
+	var/icon_base = "smelter"
+	var/busy = FALSE
 
 	var/sound/sound_thunk = sound('sound/items/Deconstruct.ogg')
 	var/sound/sound_zap = sound('sound/effects/elec_bzzz.ogg')
@@ -559,12 +547,17 @@
 	New()
 		..()
 		light = new /datum/light/point
-		light.attach(src, 1.5, 1.5)
-		light.set_brightness(0.5)
+		if(istype_exact(src, /obj/machinery/smelter/portable))
+			light.attach(src)
+			light.set_brightness(0.2)
+		else
+			light.attach(src, 1.5, 1.5)
+			light.set_brightness(0.5)
 		light.set_color(0.4, 0.8, 1)
 
+	//reset to factory defaults
 	proc/resetMats()
-		icon_state = "smelter0"
+		icon_state = "[icon_base]0"
 		output = null
 		for(var/atom/movable/A in components)
 			A.set_loc(null)
@@ -573,15 +566,41 @@
 		components.Cut()
 		return
 
+	//build up crud that fouls further output
+	//quality doesn't really do much since we cleared out a lot of matsci stuff
+	//however, slag that's built up should result in increasing wastage
+	proc/handleSlag()
+		switch(slag_level)
+			if(500 to 1000)
+				particleMaster.SpawnSystem(new /datum/particleSystem/localSmoke("#967360", 10, locate(src.x +1, src.y, src.z)))
+				//output.adjustProperty(PROP_INSTABILITY , 5)
+				output.quality += rand(5, -15)
+			if(1000 to INFINITY)
+				particleMaster.SpawnSystem(new /datum/particleSystem/localSmoke("#221511", 10, locate(src.x +1, src.y, src.z)))
+				output.quality += rand(-15, -30)
+				//output.adjustProperty(PROP_INSTABILITY , 15)
+		slag_level += (100 - output.quality)
+		return
+
 	attack_hand(mob/user as mob)
+		// grab awaiting result
+		if(busy)
+			boutput(user, "<span class='notice'>Hold on a second, \the [src] is still operating.</span>")
 		if(output)
 			var/datum/material_recipe/R = matchesMaterialRecipe(output)
 			if(R)
 				if(R.result_item)
-					var/atom/A = new R.result_item(locate(src.x + 1, src.y, src.z))
+					//because i'm using the same mechanisms for the little guy we gotta handle placement
+					//this offset puts it right in the little ingot divot in front of the big unit
+					var/spititout = locate(src.x + 1, src.y, src.z)
+					if(istype_exact(src, /obj/machinery/smelter/portable))
+						//when we need it centered for the small one
+						spititout = src.loc
+					var/atom/A = new R.result_item(spititout)
 					boutput(user, "<span class='notice'>You remove [A.name] from the [src].</span>")
 					playsound(src.loc, sound_thunk, 40, 1)
 					resetMats()
+					icon_state = "[icon_base]0"
 					return
 				else if(length(R.result_id))
 					output = getMaterial(R.result_id)
@@ -592,7 +611,11 @@
 
 			var/bar_type = getProcessedMaterialForm(output)
 			var/obj/item/material_piece/M = new bar_type()
-			M.set_loc(locate(src.x + 1, src.y, src.z))
+			var/seriouslydropit = locate(src.x + 1, src.y, src.z)
+			if(istype_exact(src, /obj/machinery/smelter/portable))
+				//when we need it centered for the small one
+				seriouslydropit = src.loc
+			M.set_loc(seriouslydropit)
 
 			M.add_fingerprint(user) // May not be the same person who smelted the materials (Convair880).
 			src.add_fingerprint(user) // Add some prints to the smelter too.
@@ -605,23 +628,28 @@
 				M.visible_message("<span class='alert'>[M] [getMatFailString(M.material.material_flags)]!</span>")
 				M.material.triggerOnFail(M)
 			return
-
+		// or turn on loaded smelter
 		if(components.len > 0)
+			src.busy = TRUE //spam prevention
 			light.enable()
 			playsound(src.loc, sound_zap, 40, 1)
 			SPAWN_DBG(0.5 SECONDS)
 				playsound(src.loc, sound_bubble, 40, 1)
+			//just one slot full of smeltable (refine)
 			if(components.len == 1)
 				boutput(user, "<span class='alert'>You activate the [src].</span>")
-				icon_state = "smelter1"
-				sleep(1 SECOND)
+
+				icon_state = "[icon_base]1"
+				sleep(bake_time)
 				var/atom/obj1 = components[1]
 				output = obj1.material
 				logTheThing("station", user, null, "creates a [output] bar (<b>Material:</b> <i>[output.mat_id]</i>) with the [src] at [log_loc(src)].") //  Re-added/fixed because of erebite, plasmastone etc. alloys (Convair880).
 				handleSlag()
+			//both slots full of smeltable (combine)
 			else
-				icon_state = "smelter1"
-				sleep(1 SECOND)
+				boutput(user, "<span class='alert'>You activate the [src].</span>")
+				icon_state = "[icon_base]1"
+				sleep(bake_time)
 				var/atom/obj1 = components[1]
 				var/atom/obj2 = components[2]
 
@@ -629,7 +657,9 @@
 				var/datum/material/mat2 = obj2.material
 
 				if(!mat1 || !mat2)
-					icon_state = "smelter0"
+					//somehow something fucked up: abort and cool the furnace
+					icon_state = "[icon_base]0"
+					src.busy = FALSE
 					return
 
 				output = getFusedMaterial(mat1, mat2)
@@ -639,21 +669,61 @@
 			SPAWN_DBG(0.8 SECONDS)
 				playsound(src.loc, sound_hiss, 45, 1)
 				light.disable()
+				if(istype(src, /obj/machinery/smelter/portable))
+					//leave a little present icon
+					icon_state = "[icon_base]2"
+				else
+					icon_state = "[icon_base]0"
+				src.busy = FALSE
 		else
 			boutput(user, "<span class='alert'>There is nothing in the [src].</span>")
 		return
 
-	proc/handleSlag()
-		switch(slag_level)
-			if(500 to 1000)
-				particleMaster.SpawnSystem(new /datum/particleSystem/localSmoke("#967360", 10, locate(src.x +1, src.y, src.z)))
-				//output.adjustProperty(PROP_INSTABILITY , 5)
-				output.quality += rand(5, -15)
-			if(1000 to INFINITY)
-				particleMaster.SpawnSystem(new /datum/particleSystem/localSmoke("#221511", 10, locate(src.x +1, src.y, src.z)))
-				output.quality += rand(-15, -30)
-				//output.adjustProperty(PROP_INSTABILITY , 15)
-		slag_level += (100 - output.quality)
+	attackby(obj/item/W as obj, mob/user as mob)
+		// clear out mess with shovel
+		if (istype(W, /obj/item/slag_shovel))
+			if(slag_level)
+				src.visible_message("<span class='notice'>[user] removes slag from the [src]</span>")
+				slag_level = 0
+				var/obj/item/material_piece/slag/S = new()
+				S.set_loc(src.loc)
+				return
+			else
+				boutput(user, "<span class='notice'>There is no slag in [src].</span>")
+				return
+
+		// do some weird wizard shit if you put in a crystal i guess
+		if(istype(W, /obj/item/wizard_crystal) && components.len < 2 && !W.material)
+			var/obj/item/wizard_crystal/wc = W
+			wc.setMaterial(getMaterial(wc.assoc_material), appearance = 0, setname = 0)
+
+		// try to add whatever you're holding to one of the two material slots
+		if(W.material != null)
+			if(!W.material.canMix)
+				boutput(user, "<span class='alert'>This material can not be used in the [src].</span>")
+				return
+			//really not how i want to do it, but bare basics smelters need to be able to make steel from mauxite and char
+			//so: for now organic material can go in. this will change.
+			//also seriously what the fuck is a wizard crystal
+			if((W.material.material_flags & MATERIAL_METAL || W.material.material_flags & MATERIAL_CRYSTAL || W.material.material_flags & MATERIAL_ORGANIC) && (istype(W, /obj/item/material_piece) || istype(W, /obj/item/raw_material) || istype(W, /obj/item/wizard_crystal)) )
+				if(components.len < 2)
+					src.visible_message("<span class='notice'>[user] puts [W] into [src]</span>")
+					user.drop_item()
+					components.Add(W)
+					W.set_loc(src)
+					playsound(src.loc, sound_thunk, 40, 1)
+					if(istype(src, /obj/machinery/smelter/portable))
+						//make it look occupied
+						icon_state = "[icon_base]2"
+				else
+					boutput(user, "<span class='alert'>The smelter is already filled to capacity!</span>")
+					return
+			else
+				boutput(user, "<span class='alert'>The smelter can only use metals or minerals in raw form.</span>")
+				return
+		return
+
+	ex_act(severity) // bloo bloo we blew it up and nobody gets to have fun
 		return
 
 	custom_suicide = 1
@@ -673,46 +743,33 @@
 		components += dummyItem
 		user.ghostize()
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/slag_shovel))
-			if(slag_level)
-				src.visible_message("<span class='notice'>[user] removes slag from the [src]</span>")
-				slag_level = 0
-				var/obj/item/material_piece/slag/S = new()
-				S.set_loc(src.loc)
-				return
-			else
-				boutput(user, "<span class='notice'>There is no slag in [src].</span>")
-				return
+//moving this under just for flow sake
+//so this didn't actually work because of the underscore and likely very little work put into it: let's fix that for the sake of the mining outpost
+/obj/machinery/smelter/portable
+	name = "Portable Smelter"
+	desc = "A small furnace-like machine used to melt and combine metals or minerals."
+	icon = 'icons/obj/crafting.dmi'
+	icon_state = "portsmelter0"
+	icon_base = "portsmelter"
+	anchored = UNANCHORED
+	bound_height = 32
+	bound_width = 32
+	density = 1
+	layer = FLOOR_EQUIP_LAYER1
+	bake_time = 5 SECONDS //slower, but you don't have the luxury of high intensity smelting in this little fukken box
 
-		if(istype(W, /obj/item/wizard_crystal) && components.len < 2 && !W.material)
-			var/obj/item/wizard_crystal/wc = W
-			wc.setMaterial(getMaterial(wc.assoc_material), appearance = 0, setname = 0)
+	New()
+		..()
+		light = new /datum/light/point
+		light.attach(src)
+		light.set_brightness(0.5)
+		light.set_color(1, 0.6, 0.2)
 
-		if(W.material != null)
-			if(!W.material.canMix)
-				boutput(user, "<span class='alert'>This material can not be used in the [src].</span>")
-				return
-
-			if((W.material.material_flags & MATERIAL_METAL || W.material.material_flags & MATERIAL_CRYSTAL) && (istype(W, /obj/item/material_piece) || istype(W, /obj/item/raw_material) || istype(W, /obj/item/wizard_crystal)) )
-				if(components.len < 2)
-					src.visible_message("<span class='notice'>[user] puts [W] into [src]</span>")
-					user.drop_item()
-					components.Add(W)
-					W.set_loc(src)
-					playsound(src.loc, sound_thunk, 40, 1)
-				else
-					boutput(user, "<span class='alert'>The smelter is already filled to capacity!</span>")
-					return
-			else
-				boutput(user, "<span class='alert'>The smelter can only use metals or minerals in raw form.</span>")
-				return
+	ex_act(severity)
 		return
 
-	ex_act(severity) // bloo bloo we blew it up and nobody gets to have fun
-		return
+//===============================================
 
-//
 /obj/item/device/matanalyzer
 	icon_state = "matanalyzer"
 	name = "Material analyzer"
