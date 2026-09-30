@@ -926,7 +926,7 @@ var/f_color_selector_handler/F_Color_Selector
 
 	if (map_settings)
 		var/map_name = istext(map_settings.display_name) ? "[map_settings.display_name]" : "[map_settings.name]"
-		//var/map_link_str = map_settings.goonhub_map ? "<a href=\"[map_settings.goonhub_map]\">[map_name]</a>" : "[map_name]"
+		//var/map_link_str = map_settings.coolstation_map ? "<a href=\"[map_settings.coolstation_map]\">[map_name]</a>" : "[map_name]"
 		s += "Map: <b>[map_name]</b><br>"
 
 	var/list/features = list()

@@ -64,9 +64,9 @@
 			set desc = "Open an interactive map in your browser"
 			set hidden = 1
 			if (map_settings)
-				src << link(map_settings.goonhub_map)
+				src << link(map_settings.coolstation_map)
 			else
-				src << link("http://goonhub.com/maps/cogmap")
+				src << link("https://coolstation.space/maps/chunk/")
 
 		discord() //so why not just replace the missing map button with another more currently useful button
 			set category = "Commands"

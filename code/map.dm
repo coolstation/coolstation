@@ -88,7 +88,7 @@ var/global/list/mapNames = list(
 	var/display_name = MAP_NAME_RANDOM
 	var/style = "station"
 	var/default_gamemode = "secret"
-	var/goonhub_map = "https://goonhub.com/maps/cogmap"
+	var/coolstation_map = "https://coolstation.space/maps/chunk/"
 	var/arrivals_type = MAP_SPAWN_SHUTTLE
 	var/dir_fore = null
 
@@ -163,7 +163,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/donut2
 	name = "DONUT2"
-	goonhub_map = "https://goonhub.com/maps/donut2"
+	//coolstation_map = "https://goonhub.com/maps/donut2"
 	airlock_style = "pyro"
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
@@ -193,7 +193,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/donut3
 	name = "DONUT3"
-	goonhub_map = "http://goonhub.com/maps/donut3"
+	//coolstation_map = "http://goonhub.com/maps/donut3"
 	airlock_style = "pyro"
 	walls = /turf/wall/auto/jen
 	rwalls = /turf/wall/auto/reinforced/jen
@@ -257,7 +257,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
-	goonhub_map = "https://coolstation.space/maps/altbox/"
+	coolstation_map = "https://coolstation.space/maps/altbox/"
 
 	windows = /obj/window/classic
 	windows_thin = /obj/window/classic
@@ -307,7 +307,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
-	goonhub_map = "https://play.coolstation.space/maps/chunk/"
+	coolstation_map = "https://play.coolstation.space/maps/chunk/"
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -409,7 +409,7 @@ var/global/list/mapNames = list(
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
 	arrivals_type = MAP_SPAWN_CRYO
-	goonhub_map = "https://play.coolstation.space/maps/bayou/"
+	coolstation_map = "https://play.coolstation.space/maps/bayou/"
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -481,7 +481,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/cogmap
 	name = "COGMAP"
-	goonhub_map = "https://goonhub.com/maps/cogmap"
+	coolstation_map = "https://goonhub.com/maps/cogmap" //leaving this until we have a map screenshotting/slicing/uploading workflow (we also don't have a copy of ~Our~ Cogmap on our maps site)
 	walls = /turf/wall/
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
@@ -533,7 +533,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/cogmap2
 	name = "COGMAP2"
-	goonhub_map = "https://goonhub.com/maps/cogmap2"
+	coolstation_map = "https://goonhub.com/maps/cogmap2"
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
@@ -585,7 +585,7 @@ var/global/list/mapNames = list(
 	display_name = "NSS Destiny"
 	style = "ship"
 	default_gamemode = "extended"
-	goonhub_map = "https://goonhub.com/maps/destiny"
+	//coolstation_map = "https://goonhub.com/maps/destiny"
 	arrivals_type = MAP_SPAWN_CRYO
 	dir_fore = NORTH
 
@@ -625,7 +625,7 @@ var/global/list/mapNames = list(
 /datum/map_settings/destiny/clarion
 	name = "CLARION"
 	display_name = "NSS Clarion"
-	goonhub_map = "https://goonhub.com/maps/clarion"
+	//coolstation_map = "https://goonhub.com/maps/clarion"
 
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
@@ -661,7 +661,7 @@ var/global/list/mapNames = list(
 	name = "HORIZON"
 	display_name = "NSS Horizon"
 	style = "ship"
-	goonhub_map = "https://goonhub.com/maps/horizon"
+	//coolstation_map = "https://goonhub.com/maps/horizon"
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
@@ -728,7 +728,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/mushroom
 	name = "MUSHROOM"
-	goonhub_map = "https://goonhub.com/maps/mushroom"
+	//coolstation_map = "https://goonhub.com/maps/mushroom"
 
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
@@ -755,7 +755,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/trunkmap
 	name = "TRUNKMAP"
-	goonhub_map = "https://goonhub.com/maps/trunkmap"
+	//coolstation_map = "https://goonhub.com/maps/trunkmap"
 	escape_centcom = /area/shuttle/escape/centcom/destiny
 	escape_outpost = /area/shuttle/escape/outpost/destiny
 	escape_transit = /area/shuttle/escape/transit/destiny
@@ -772,7 +772,7 @@ var/global/list/mapNames = list(
 	name = "ATLAS"
 	display_name = "NCS Atlas"
 	style = "ship"
-	goonhub_map = "https://goonhub.com/maps/atlas"
+	//coolstation_map = "https://goonhub.com/maps/atlas"
 	arrivals_type = MAP_SPAWN_CRYO
 	dir_fore = NORTH
 
@@ -804,7 +804,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/kondaru
 	name = "KONDARU"
-	goonhub_map = "https://goonhub.com/maps/kondaru"
+	//coolstation_map = "https://goonhub.com/maps/kondaru"
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
@@ -857,7 +857,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/ozymandias
 	name = "OZYMANDIAS"
-	goonhub_map = "https://i.imgur.com/COYgNvN.jpg"
+	coolstation_map = "https://i.imgur.com/COYgNvN.jpg"
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
@@ -911,7 +911,7 @@ var/global/list/mapNames = list(
 	name = "FLEET"
 	display_name = "Bellerophon Fleet"
 	style = "ship"
-	goonhub_map = "https://goonhub.com/maps/bellerophon fleet"
+	//coolstation_map = "https://goonhub.com/maps/bellerophon fleet"
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
@@ -955,7 +955,7 @@ var/global/list/mapNames = list(
 	name = "ICARUS"
 	display_name = "Icarus"
 	style = "ship"
-	goonhub_map = "https://i.imgur.com/SiI3RC9.png"
+	coolstation_map = "https://i.imgur.com/SiI3RC9.png"
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
@@ -995,7 +995,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/density // I just copied cog2 for now, ok????
 	name = "density"
-	goonhub_map = "https://goonhub.com/maps/density"
+	//coolstation_map = "https://goonhub.com/maps/density"
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
@@ -1039,7 +1039,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/pamgoc
 	name = "PAMGOC"
-	goonhub_map = "https://goonhub.com/maps/cogmap"
+	//coolstation_map = "https://goonhub.com/maps/cogmap"
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
@@ -1076,7 +1076,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/oshan
 	name = "OSHAN"
-	goonhub_map = "https://goonhub.com/maps/oshan"
+	//coolstation_map = "https://goonhub.com/maps/oshan"
 
 	arrivals_type = MAP_SPAWN_MISSILE
 
@@ -1133,7 +1133,7 @@ var/global/list/mapNames = list(
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
 	arrivals_type = MAP_SPAWN_CRYO
-	goonhub_map = ""
+	coolstation_map = ""
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -1186,7 +1186,7 @@ var/global/list/mapNames = list(
 	rwalls = /turf/wall/r_wall/
 	auto_walls = 0
 	job_limits_from_landmarks = TRUE
-	goonhub_map = ""
+	coolstation_map = ""
 
 	windows = /obj/window/auto
 	windows_thin = /obj/window
@@ -1222,7 +1222,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/noyade
 	name = "NOYADE"
-	goonhub_map = "https://play.coolstation.space/maps/noyade/"
+	coolstation_map = "https://play.coolstation.space/maps/noyade/"
 
 	arrivals_type = MAP_SPAWN_MISSILE
 
@@ -1343,7 +1343,7 @@ var/global/list/mapNames = list(
 /datum/map_settings/devtest
 	name = "DEVTEST"
 
-	goonhub_map = "https://play.coolstation.space/maps/noyade/"
+	coolstation_map = "https://play.coolstation.space/maps/noyade/"
 
 	arrivals_type = MAP_SPAWN_CRYO
 
@@ -1385,7 +1385,7 @@ var/global/list/mapNames = list(
 /datum/map_settings/pod_wars
 	name = "POD_WARS"
 	default_gamemode = "pod_wars"
-	goonhub_map = "https://goonhub.com/maps/pod_wars"
+	//coolstation_map = "https://goonhub.com/maps/pod_wars"
 	walls = /turf/wall/auto/supernorn
 	rwalls = /turf/wall/auto/reinforced/supernorn
 	auto_walls = 1
@@ -1423,7 +1423,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/gehenna
 	name = "GEHENNA"
-	goonhub_map = "https://play.coolstation.space/maps/gehenna/"
+	coolstation_map = "https://play.coolstation.space/maps/gehenna/"
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
@@ -1501,7 +1501,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/crag
 	name = "CRAG"
-	goonhub_map = "https://play.coolstation.space/maps/crag/" //what do we do for multi z shite
+	coolstation_map = "https://play.coolstation.space/maps/crag/" //what do we do for multi z shite
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
@@ -1569,7 +1569,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/bobmap
 	name = "BOBMAP"
-	goonhub_map = "https://coolstation.space/stingray.html"
+	coolstation_map = "https://coolstation.space/stingray.html"
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 1
@@ -1619,7 +1619,7 @@ var/global/list/mapNames = list(
 /// currently a crag copy
 /datum/map_settings/saxum
 	name = "SAXUM"
-	goonhub_map = "https://play.coolstation.space/maps/gehenna"
+	coolstation_map = "https://play.coolstation.space/maps/gehenna"
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 0
@@ -1687,7 +1687,7 @@ var/global/list/mapNames = list(
 
 /*/datum/map_settings/dockmap //by robert goodsmells age 34 (for shuttle/offstation econony testing)
 	name = "DOCKMAP"
-	goonhub_map = "https://coolstation.space/stingray.html"
+	coolstation_map = "https://coolstation.space/stingray.html"
 	walls = /turf/wall
 	rwalls = /turf/wall/r_wall
 	auto_walls = 1
@@ -1722,7 +1722,7 @@ var/global/list/mapNames = list(
 
 /datum/map_settings/spirit
 	name = "SPIRIT"
-	goonhub_map = "https://goonhub.com/maps/cogmap"
+	//coolstation_map = "https://goonhub.com/maps/cogmap"
 	walls = /turf/wall/auto/jen/dark2
 	rwalls = /turf/wall/auto/reinforced/jen/dark2
 	auto_walls = 1
