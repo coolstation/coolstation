@@ -1231,16 +1231,14 @@ Read the rules, don't grief, and have fun!</div>"}
 
 			// This is gross. I'm sorry.
 			var/list/servers = list()
-			servers["main1"] = "1 Classic: Heisenbee"
-			servers["main2"] = "2 Classic: Bombini"
-			servers["main3"] = "3 Roleplay: Morty"
-			servers["main4"] = "4 Roleplay: Sylvester"
+			servers["main"] = "Main"
+			servers["dev"] = "Dev"
 
 			var/serverList = ""
 			for (var/serverId in servers)
 				if (serverId == config.server_id)
 					continue
-				serverList += {"\n<a style='color: #88f;' href='byond://winset?command=Change-Server "[serverId]'>Goonstation [servers[serverId]]</a>"}
+				serverList += {"\n<a style='color: #88f;' href='byond://winset?command=Change-Server "[serverId]'>Coolstation [servers[serverId]]</a>"}
 
 			src.maptext_x = 0
 			src.maptext_width = 600

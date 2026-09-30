@@ -279,7 +279,7 @@ var/global/list/playersSeen = list()
 			data["ip"] = M.lastKnownIP
 
 		if (!data["ckey"] && !data["ip"] && !data["compID"])
-			boutput(usr, "<span class='alert'>You need to input a ckey or IP or computer ID, all cannot be blank.</span>")
+			boutput(usr, "<span class='alert'>You need to input at least one ckey, IP, or computer ID.</span>")
 			return null
 
 		boutput(usr, "<span class='alert'><b>You are currently banning the following player:</b></span>")
@@ -293,17 +293,18 @@ var/global/list/playersSeen = list()
 			return
 		data["reason"] = reason
 
-		var/server_nice = input(usr, "What server does the ban apply to?", "Ban") as null|anything in list("All", "1 Classic: Heisenbee", "2 Classic: Bombini", "3 Roleplay: Morty", "4 Roleplay: Sylvester")
+		//we don't really have any other servers so like: whatever. if we get a second server and in the unlikely scenario there's ever ANY reason to ban from one server and not the other, we can reenable this.
+		//not likely though!!!!!!!!!!
+		//var/server_nice = input(usr, "What server does the ban apply to?", "Ban") as null|anything in list("All", "1 Main", "2 Dev")
 		var/server = null
+		//leaving this null server var in because like jobban it's easier to undo, like a vasectomy maybe?? also because the API likely expects a certain structure so it's also a just in case
+		/*
 		switch (server_nice)
-			if ("1 Classic: Heisenbee")
-				server = "main1"
-			if ("2 Classic: Bombini")
-				server = "main2"
-			if ("3 Roleplay: Morty")
-				server = "main3"
-			if ("4 Roleplay: Sylvester")
-				server = "main4"
+			if ("1 Main")
+				server = "main"
+			if ("2 Dev")
+				server = "dev"
+		*/
 		data["server"] = server
 
 		var/ban_time = input(usr,"How long will the ban be?","Ban") as null|anything in list("Half-hour","One Hour","Six Hours","One Day","Half a Week","One Week","One Month","Permanent","Custom")
@@ -442,17 +443,13 @@ var/global/list/playersSeen = list()
 			return
 		data["reason"] = reason
 
-		var/server_nice = input(usr, "What server does the ban apply to?", "Ban") as null|anything in list("All", "1 Classic: Heisenbee", "2 Classic: Bombini", "3 Roleplay: Morty", "4 Roleplay: Sylvester")
+		var/server_nice = input(usr, "What server does the ban apply to?", "Ban") as null|anything in list("All", "1 Main", "2 Dev")
 		var/server = null
 		switch (server_nice)
-			if ("1 Classic: Heisenbee")
-				server = "main1"
-			if ("2 Classic: Bombini")
-				server = "main2"
-			if ("3 Roleplay: Morty")
-				server = "main3"
-			if ("4 Roleplay: Sylvester")
-				server = "main4"
+			if ("1 Main")
+				server = "main"
+			if ("2 Dev")
+				server = "dev"
 		data["server"] = server
 
 		var/ban_time = input(usr,"How long will the ban be? (select Custom to alter existing duration)","Ban") as null|anything in list("Half-hour","One Hour","Six Hours","One Day","Half a Week","One Week","One Month","Permanent","Custom")

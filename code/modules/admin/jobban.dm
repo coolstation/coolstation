@@ -5,17 +5,18 @@
 	if(ismob(M)) //Correct to ckey if provided a mob.
 		var/mob/keysource = M
 		M = keysource.ckey
-	var/server_nice = input(usr, "What server does the ban apply to?", "Ban") as null|anything in list("All", "1 Classic: Heisenbee", "2 Classic: Bombini", "3 Roleplay: Morty", "4 Roleplay: Sylvester")
+	//we do not have separate servers but i am leaving in the below logic for later
+	//or maybe it's useful in another context who knows. but bans are all or nothing really
+	//var/server_nice = input(usr, "What server does the ban apply to?", "Ban") as null|anything in list("All", "1 Main", "2 Dev")
 	var/server = null
+	/*
 	switch (server_nice)
-		if ("1 Classic: Heisenbee")
-			server = "main1"
-		if ("2 Classic: Bombini")
-			server = "main2"
-		if ("3 Roleplay: Morty")
-			server = "main3"
-		if ("4 Roleplay: Sylvester")
-			server = "main4"
+		if ("1 Main")
+			server = "main"
+		if ("2 Dev")
+			server = "dev"
+	*/
+	//left the null var in just so if this becomes relevant somehow (or the API structure demands the server) it can be reenabled without reconstructing the API query below, easy peasy lemon party
 	if(apiHandler.queryAPI("jobbans/add", list("ckey"=M,"rank"=rank, "akey"=akey, "applicable_server"=server)))
 		var/datum/player/player = make_player(M) //Recache the player.
 		player?.cached_jobbans = apiHandler.queryAPI("jobbans/get/player", list("ckey"=M), 1)[M]
