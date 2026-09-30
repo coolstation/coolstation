@@ -2236,6 +2236,8 @@
 		/obj/item/material_piece/pharosium,
 		/obj/item/material_piece/molitz,
 		/obj/item/material_piece/plastic,
+		/obj/item/material_piece/steel,
+		/obj/item/material_piece/cloth/cottonfabric,
 		/obj/item/material_piece/rubber/latex,
 		/obj/item/material_piece/rubber/synthrubber)
 	available = list(/datum/manufacture/pick,
