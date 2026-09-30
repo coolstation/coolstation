@@ -425,7 +425,8 @@
 					RE?.apply_to_obj(piece)
 					first_part = null
 					second_part = null
-					boutput(usr, "<span class='notice'>You make [amt] [piece].</span>")
+					//this had [amt] in it but it was repeating the number because the stacks also had the number in it. whatever.
+					boutput(usr, "<span class='notice'>You make [piece].</span>")
 
 		else if(href_list["eject"])
 			var/obj/item/L = locate(href_list["eject"]) in src
