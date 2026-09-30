@@ -1066,18 +1066,12 @@ var/global/curr_day = null
 	var/serverURL
 	var/serverName
 	switch (server)
-		if (1, "main1")
-			serverName = "Goonstation 1 Classic: Heisenbee"
-			serverURL = "byond://goon1.goonhub.com:26100"
-		if (2, "main2")
-			serverName = "Goonstation 2 Classic: Bombini"
-			serverURL = "byond://goon2.goonhub.com:26200"
-		if (3, "main3")
-			serverName = "Goonstation 3 Roleplay: Morty"
-			serverURL = "byond://goon3.goonhub.com:26300"
-		if (4, "main4")
-			serverName = "Goonstation 4 Roleplay: Sylvester"
-			serverURL = "byond://goon4.goonhub.com:26400"
+		if (1, "main")
+			serverName = "Coolstation Main"
+			serverURL = "byond://lljk.coolstation.space:8085"
+		if (2, "dev")
+			serverName = "Coolstation Dev"
+			serverURL = "byond://fusilli.coolstation.space:8085"
 
 	if (serverURL)
 		boutput(usr, "You are being redirected to [serverName]...")
