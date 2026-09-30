@@ -1242,7 +1242,7 @@
 				var/capname = "someone, the name has been [pick("smeared quite badly", "erased", "scribbled out")],"
 				if(M?.current?.client?.preferences?.name_last)
 					capname = M.current.client.preferences.name_last
-				. += "It says \ [capname] has been awarded a Bachelor of [pick("Farts", "Fards")] Degree for the study of [pick("slipology", "jugglemancy", "pie science", "bicycle horn accoustics", "comic sans calligraphy", "gelotology", "flatology", "nuclear physics", "goonstation coder")]! It appears to be written in faded crayon."
+				. += "It says \ [capname] has been awarded a Bachelor of [pick("Farts", "Fards")] Degree for the study of [pick("slipology", "jugglemancy", "pie science", "bicycle horn accoustics", "comic sans calligraphy", "gelotology", "flatology", "nuclear physics", "coolstation coder")]! It appears to be written in faded crayon."
 
 /obj/decal/poster/wallsign/pod_build
 	name = "\improper How to Build a Space Pod"

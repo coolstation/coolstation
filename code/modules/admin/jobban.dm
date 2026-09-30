@@ -16,7 +16,7 @@
 		if ("2 Dev")
 			server = "dev"
 	*/
-	//left the null var in just so if this becomes relevant somehow (or the API structure demands the server) it can be reenabled without reconstructing the API query below, easy peasy lemon party
+	//left the null var in just so if this becomes relevant somehow (or the API structure demands the server in data) it can be reenabled without reconstructing the API query below, easy peasy lemon party
 	if(apiHandler.queryAPI("jobbans/add", list("ckey"=M,"rank"=rank, "akey"=akey, "applicable_server"=server)))
 		var/datum/player/player = make_player(M) //Recache the player.
 		player?.cached_jobbans = apiHandler.queryAPI("jobbans/get/player", list("ckey"=M), 1)[M]

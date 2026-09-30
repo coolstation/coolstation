@@ -147,7 +147,7 @@
 
 /obj/item/toy/diploma/New()
 	..()
-	src.desc = "This is Clown College diploma, a Bachelor of Farts Degree for the study of [pick("slipology", "jugglemancy", "pie science", "bicycle horn accoustics", "comic sans calligraphy", "gelotology", "flatology", "nuclear physics", "goonstation coder")]. It appears to be written in crayon."
+	src.desc = "This is Clown College diploma, a Bachelor of Farts Degree for the study of [pick("slipology", "jugglemancy", "pie science", "bicycle horn accoustics", "comic sans calligraphy", "gelotology", "flatology", "nuclear physics", "coolstation coder")]. It appears to be written in crayon."
 
 /obj/item/toy/diploma/attack(mob/M as mob, mob/user as mob)
 	if (isliving(user))

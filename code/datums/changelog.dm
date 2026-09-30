@@ -204,7 +204,7 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 
 /datum/changelog/New()
 	..()
-//<img alt="Goonstation 13" src="[resource("images/changelog/postcardsmall.jpg")]" class="postcard" />
+//<img alt="Coolstation" src="[resource("images/changelog/postcardsmall.jpg")]" class="postcard" /> //TODO: let's have a changelog header image like this again. i miss the post card........
 
 	html = {"
 <h1>Cool's tation 13 <a href="#license"><img alt="Creative Commons CC-BY-NC-SA License" src="[resource("images/changelog/88x31.png")]" /></a></h1>
