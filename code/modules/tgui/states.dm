@@ -87,6 +87,11 @@
 		return UI_DISABLED
 	return ..()
 
+/mob/living/silicon/nubot/shared_ui_interaction(src_object)
+	if(!cell || cell.charge <= 0) // Disable UIs if the Ghostdrone is unpowered.
+		return UI_DISABLED
+	return ..()
+
 /**
  * public
  *
