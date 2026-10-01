@@ -407,8 +407,6 @@ var/list/miningModifiersUsed = list()//Assoc list, type:times used
 					T2.amount = rand(picked_ore.amount_per_tile_min,picked_ore.amount_per_tile_max)
 					var/image/ore_overlay = image('icons/turf/asteroid.dmi',picked_ore.name)
 					ore_overlay.transform = turn(ore_overlay.transform, pick(0,90,180,-90))
-					ore_overlay.pixel_x += rand(-6,6)
-					ore_overlay.pixel_y += rand(-6,6)
 					T2.overlays += ore_overlay // faster than UpdateOverlays
 					picked_ore.onGenerate(T2)
 					T2.mining_health = picked_ore.mining_health
