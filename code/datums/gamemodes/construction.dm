@@ -254,8 +254,6 @@
 			AST.amount = rand(ORE.amount_per_tile_min,ORE.amount_per_tile_max)
 			var/image/ore_overlay = image('icons/turf/asteroid.dmi',ORE.name)
 			ore_overlay.transform = turn(ore_overlay.transform, pick(0,90,180,-90))
-			ore_overlay.pixel_x += rand(-6,6)
-			ore_overlay.pixel_y += rand(-6,6)
 			AST.overlays += ore_overlay
 			ORE.onGenerate(AST)
 			AST.mining_health = ORE.mining_health
