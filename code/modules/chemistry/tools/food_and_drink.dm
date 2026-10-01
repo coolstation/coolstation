@@ -13,12 +13,8 @@
 	var/festivity = 0
 	var/brewable = 0 // will hitting a still with it do anything?
 	var/brew_result = null // what will it make if it's brewable?
-	var/can_griddle = true //can this be cooked on the griddle
-	var/obj/item/reagent_containers/food/griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn // what will it turn into if griddled - default is to fucking burn it
 	var/obj/item/reagent_containers/food/rolling_result = null // rolling    pin :D
 	var/iscooking = false
-	var/griddle_time = 20 // how long this takes to cook. Subject to slight variation on New(), each tick seems to take about 3 seconds for some reason.
-	var/griddle_message = null
 	var/unlock_medal_when_eaten = null // Add medal name here in the format of e.g. "That tasted funny".
 	var/from_emagged_oven = 0 // to prevent re-rolling of food in emagged ovens
 	var/doants = 1
@@ -27,6 +23,19 @@
 	var/subjectname = ""
 	var/subjectjob = null
 	rc_flags = 0
+
+	//griddle variables
+	var/griddle_time = 20 // how long this takes to cook. Subject to slight variation on New(), each tick seems to take about 3 seconds for some reason.
+	var/griddle_message = null
+	var/can_griddle = true //can this be cooked on the griddle
+	var/obj/item/reagent_containers/food/griddle_result = /obj/item/reagent_containers/food/snacks/yuckburn // what will it turn into if griddled - default is to fucking burn it
+
+	//oven variables
+	var/bake_time = 30
+	var/bake_message = null
+	var/can_bake = true
+	var/obj/item/reagent_containers/food/bake_result = /obj/item/reagent_containers/food/snacks/yuckburn
+
 
 	New()
 		if (can_griddle)
@@ -97,6 +106,21 @@
 			playsound(src,"sound/impact_sounds/burn_sizzle.ogg",30)
 			qdel(src)
 
+	proc/oven_cook(var/obj/item/plate/tray/bakingtray,mult)
+		if (!src.can_bake || !src.bake_result)
+			return
+		bake_time -= 2.5 * mult
+		if (src.bake_time <= 0)
+			var/obj/item/reagent_containers/food/f = new src.bake_result
+			if (src.subjectname)
+				f.subjectname = subjectname
+			f.set_loc(src.loc)
+			f.pixel_x = src.pixel_x
+			f.pixel_y = src.pixel_y
+			bakingtray.remove_contents(src)
+			bakingtray.add_contents(f)
+			//bake sound or no?
+			qdel(src)
 
 	proc/heal(var/mob/living/M)
 		var/healing = src.heal_amt
