@@ -1751,10 +1751,8 @@
 		create_products()
 			..()
 			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
-			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
-			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
-			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
-			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt/dr, 10, cost=PAY_UNTRAINED/10)
+			product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/drinks/cola/splurt/senor, 10, cost=PAY_UNTRAINED/10)
 
 /obj/machinery/vending/electronics
 	name = "ElecTek Vendomaticotron"
