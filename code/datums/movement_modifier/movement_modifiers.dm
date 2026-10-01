@@ -155,6 +155,12 @@
 /datum/movement_modifier/revenant
 	maximum_slowdown = 2
 
+/datum/movement_modifier/werewolf //not faster...
+	health_deficiency_adjustment = -50 //but they keep coming even if wounded
+	pushpull_multiplier = 0.8 //and are of course very strong
+	mob_pull_multiplier = 0.8 //especially when dragging away a meal
+	lying_multiplier = 0.8 //and good at walking on all fours???? whatever listen it's a werewolf deal with it or die
+
 /datum/movement_modifier/vampiric_thrall
 	ask_proc = 1
 

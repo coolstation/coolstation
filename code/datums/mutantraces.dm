@@ -1250,7 +1250,12 @@
 			mob.AddComponent(/datum/component/consume/organheal)
 			mob.AddComponent(/datum/component/consume/can_eat_inedible_organs, 1) // can also eat heads
 			mob.mob_flags |= SHOULD_HAVE_A_TAIL
+			//maybe since below is no longer a thing we should make them faster
 			mob.add_stam_mod_max("werewolf", 40) // Gave them a significant stamina boost, as they're melee-orientated (Convair880).
+			//like so: better at pulling stuff around and moving on the floor and a bit resistant to damage slowdown
+			//HOWEVER once readding silver bullets for the chaplain/ammo bench whatever, implanted should definitely more than negate all the speedups and make them easier to fight
+			//consider this commit and comment motivation to implement such measures soonish
+			APPLY_MOVEMENT_MODIFIER(mob, /datum/movement_modifier/werewolf, "werewolf")
 			APPLY_ATOM_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "werewolf", 9) //mbc : these increase as they feast now. reduced!
 			APPLY_ATOM_PROPERTY(mob, PROP_STUN_RESIST, "werewolf", 40)
 			APPLY_ATOM_PROPERTY(mob, PROP_STUN_RESIST_MAX, "werewolf", 40)
@@ -1260,7 +1265,7 @@
 			mob.real_name = "werewolf"
 
 			mob.bioHolder.AddEffect("protanopia", null, null, 0, 1)
-			mob.bioHolder.AddEffect("accent_scoob_nerf", null, null, 0, 1)
+			//mob.bioHolder.AddEffect("accent_scoob_nerf", null, null, 0, 1) //funny for a while but i feel like we can get a better snarly accent
 			mob.bioHolder.AddEffect("regenerator_wolf", null, null, 0, 1)
 
 	disposing()
@@ -1270,13 +1275,14 @@
 			var/datum/component/D = mob.GetComponent(/datum/component/consume/can_eat_inedible_organs)
 			D?.RemoveComponent(/datum/component/consume/can_eat_inedible_organs)
 			mob.remove_stam_mod_max("werewolf")
+			REMOVE_MOVEMENT_MODIFIER(mob, /datum/movement_modifier/werewolf, "werewolf")
 			REMOVE_ATOM_PROPERTY(mob, PROP_STAMINA_REGEN_BONUS, "werewolf")
 			REMOVE_ATOM_PROPERTY(mob, PROP_STUN_RESIST, "werewolf")
 			REMOVE_ATOM_PROPERTY(mob, PROP_STUN_RESIST_MAX, "werewolf")
 			mob.max_health -= 50
 			health_update_queue |= mob
 			mob.bioHolder.RemoveEffect("protanopia")
-			mob.bioHolder.RemoveEffect("accent_scoob_nerf")
+			//mob.bioHolder.RemoveEffect("accent_scoob_nerf") //counterpoint to above, change when we got a good monster accent. awoo! uwu
 			mob.bioHolder.RemoveEffect("regenerator_wolf")
 
 			if (!isnull(src.original_name))
