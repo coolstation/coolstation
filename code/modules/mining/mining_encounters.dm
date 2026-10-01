@@ -877,7 +877,7 @@
 				break
 
 			var/turf/wall/asteroid/AST = pick(turfs)
-			if (!istype(AST))
+			if (!istype(AST) || AST.ore) //only asteroid tiles without ore
 				turfs -= AST
 				continue
 			ore_tiles--
@@ -942,7 +942,7 @@
 				break
 
 			var/turf/wall/asteroid/AST = pick(turfs)
-			if (!istype(AST))
+			if (!istype(AST) || AST.ore)
 				turfs -= AST
 				continue
 			ore_tiles--
