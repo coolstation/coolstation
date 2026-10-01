@@ -37,6 +37,28 @@
 		I.quality = AST.quality + rand(-50,50)
 		I.name = "[getGemQualityName(I.quality)] [I.name]"
 
+/datum/ore/event/biggem
+	name = "biggem"
+	analysis_string = "Large extraneous mineral deposit detected."
+	excavation_string = "Something really big and shiny tumbles out of the collapsing rock!"
+	scan_decal = "scan-gem"
+	var/gem_type = /obj/item/raw_material/big_gemstone
+
+	set_up(var/datum/ore/parent)
+		if (..() || !parent)
+			return 1
+		if (parent.gems.len < 1)
+			return 1
+		gem_type = pick(parent.gems)
+
+	onExcavate(var/turf/wall/asteroid/AST)
+		if (..())
+			return
+		var/obj/item/I = new gem_type()
+		I.set_loc(AST)
+		I.quality = AST.quality + rand(-50,50)
+		I.name = "[getGemQualityName(I.quality)] [I.name]"
+
 /*
 /datum/ore/event/gem/molitz_b
 	name = "molitz B"
@@ -138,6 +160,32 @@
 			if (istype(AST)) //Wire note: Fix for Undefined variable /turf/floor/plating/airless/asteroid/var/invincible
 				AST.invincible = 0
 				explosion(AST, AST, 1, 2, 3, 4, 1)
+
+//new stub, if this isn't done in a year kick bobskunk's ass please
+/*
+/datum/ore/event/gaspocket
+	name = "void rock"
+	analysis_string = "Caution! High pressure gas detected!"
+	scan_decal = "scan-danger"
+	prevent_excavation = 1
+	restrict_to_turf_type = /turf/wall/asteroid
+	var/image/warning_overlay = null
+
+	New()
+		..()
+		warning_overlay = image('icons/turf/asteroid.dmi', "venting") //need to make overlay
+
+	//pick gas to fill, pick a varied volume that's substantial but less than a tile's worth. perhaps a standard canister's worth on average
+	//usually CO2/nitrogen, sometimes oxygen/plasma/nox, rarely farts
+	//when struck: vent gas, treat it like an open canister, directed at tile it was attacked from
+	//if you attack again while it's venting, it pops like a canister: not an explosion per se but definitely a forceful concussion that will throw you and dump all its atmos into that tile
+	//if fart gas, play long fart noise instead of hissing
+	//stop hissing and remove venting overlay when empty, also allow safe mining of square
+	//some tools will detonate this. gloves and explosives will immediately pop it. pick and laser drill won't (but laser drill will ignite plasma and farts)
+	//if space attacked from is vacuum or near vacuum, instant explosion/explosive decompression. best to pop it with a charge or leave it
+	//add some mining equipment that can plug or siphon from these things (explosive charge driller?)
+	//could be fun for rare gases
+*/
 
 /datum/ore/event/radioactive
 	name = "radioactive rock"

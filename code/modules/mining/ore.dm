@@ -134,7 +134,7 @@
 /datum/ore/syreline
 	name = "syreline"
 	output = /obj/item/raw_material/syreline
-	events = list(/datum/ore/event/gem)
+	events = list(/datum/ore/event/biggem)
 	gems = list(/obj/item/raw_material/gemstone,/obj/item/raw_material/telecrystal,/obj/item/raw_material/miracle)
 	amount_per_tile_min = 2
 	amount_per_tile_max = 3
@@ -198,7 +198,7 @@
 /datum/ore/gold
 	name = "gold"
 	output = /obj/item/raw_material/gold
-	events = list(/datum/ore/event/gem)
+	events = list(/datum/ore/event/biggem)
 	gems = list(/obj/item/raw_material/gemstone,/obj/item/raw_material/telecrystal,/obj/item/raw_material/miracle)
 	tiles_per_rock_min = 2
 	tiles_per_rock_max = 8

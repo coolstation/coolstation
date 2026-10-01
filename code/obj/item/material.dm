@@ -417,8 +417,8 @@
 
 /obj/item/raw_material/gemstone
 	name = "gem"
-	desc = "A gemstone. It's definitely pretty valuable!"
-	icon_state = "gem"
+	desc = "A gemstone. It's probably pretty valuable!"
+	icon_state = "gem2"
 	material_name = "Gem"
 	force = 1
 	throwforce = 3
@@ -433,14 +433,42 @@
 			if(1 to 10)
 				picklist = list("diamond","ruby","topaz","emerald","sapphire","amethyst")
 				value = 1500
+				icon_state = "gem3"
 			if(11 to 40)
 				picklist = list("jasper","garnet","peridot","malachite","lapislazuli","alexandrite")
 			else
 				picklist = list("onyx","rosequartz","citrine","jade","aquamarine","iolite")
 				value = 500
+				icon_state = "gem1"
 
 		var/datum/material/M = getMaterial(pick(picklist))
-		src.setMaterial(M, appearance = TRUE, setname = TRUE)// why was this set to not update the name/appearance??
+		src.setMaterial(M, appearance = TRUE, setname = TRUE)
+
+/obj/item/raw_material/big_gemstone
+	name = "large gem"
+	desc = "A very large gemstone. It's definitely pretty valuable!"
+	icon_state = "biggem1"
+	material_name = "Gem"
+	force = 1
+	throwforce = 5
+	crystal = 1
+	value = 5000
+
+	setup_material()
+		..()
+		var/list/picklist
+		if(prob(30))
+			picklist = list("diamond","ruby","topaz","emerald","sapphire","amethyst")
+			value = 7500
+			icon_state = "biggem2"
+		else
+			picklist = list("jasper","garnet","peridot","malachite","lapislazuli","alexandrite")
+
+
+		var/datum/material/M = getMaterial(pick(picklist))
+		src.setMaterial(M, appearance = TRUE, setname = TRUE)
+
+
 
 /obj/item/raw_material/uqill // relate this to ancients
 	name = "uqill nugget"
