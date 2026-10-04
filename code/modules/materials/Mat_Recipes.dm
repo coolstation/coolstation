@@ -7,7 +7,10 @@
 	var/result_item = null
 
 	/**
-		* This checks if the recipe applies to the given result material.
+		* This checks if the recipe applies to the given input materials. Not the result, anymore.
+		*
+		* Given that all but one of the existing recipes were just looking at the IDs and names of the ingredient materials,
+		* I figured we needn't to go through the process of fusing them into a new material *first*.
 		*
 		* This is a proc so you can do practically anything for recipes.
 		*
@@ -15,7 +18,7 @@
 		*
 		* Try to keep these cheap if you can.
 		*/
-	proc/validate(var/datum/material/M)
+	proc/validate(var/list/datum/material/ingredients)
 		return null
 
 	/// If no result id or result items are defined, this proc will be executed on the material. Do this if you want a recipe to just modifiy a material.
@@ -26,6 +29,7 @@
 	proc/apply_to_obj(var/obj/O)
 		return
 
+/* This one did actually rely on fusing the material first, but no big loss IMO
 /datum/material_recipe/spacelag
 	name = "spacelag"
 	result_id = "spacelag"
@@ -34,22 +38,19 @@
 	validate(var/datum/material/M)
 		if(M.hasProperty("stability") && M.getProperty("stability") <= 1) return 1
 		else return 0
-
+*/
 /datum/material_recipe/dyneema
 	name = "dyneema"
 	result_id = "dyneema"
 	result_item = /obj/item/material_piece/cloth/dyneema
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/hasCarbon = 0
 		var/hasSilk = 0
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "carbonfibre") hasCarbon = 1
 			if(CM.mat_id == "spidersilk") hasSilk = 1
-
-		if(M.mat_id == "carbonfibre") hasCarbon = 1
-		if(M.mat_id == "spidersilk") hasSilk = 1
 
 		if(hasCarbon && hasSilk) return 1
 		else return 0
@@ -59,16 +60,13 @@
 	result_id = "hauntium"
 	result_item = /obj/item/material_piece/cloth/hauntium
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/hasSteel = 0
 		var/hasKosh = 0
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "soulsteel") hasSteel = 1
 			if(CM.mat_id == "koshmarite") hasKosh = 1
-
-		if(M.mat_id == "soulsteel") hasSteel = 1
-		if(M.mat_id == "koshmarite") hasKosh = 1
 
 		if(hasSteel && hasKosh) return 1
 		else return 0
@@ -77,16 +75,13 @@
 	name = "soul steel"
 	result_id = "soulsteel"
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/hasSoul = 0
 		var/hasSteel = 0
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "ectoplasm") hasSoul = 1
 			if(CM.mat_id == "steel") hasSteel = 1
-
-		if(M.mat_id == "ectoplasm") hasSoul = 1
-		if(M.mat_id == "steel") hasSteel = 1
 
 		if(hasSoul && hasSteel) return 1
 		else return 0
@@ -95,11 +90,11 @@
 	name = "steel"
 	result_id = "steel"
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/one = 0
 		var/two = 0
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "mauxite") one = 1
 			if(CM.mat_id == "char") two = 1
 
@@ -110,11 +105,11 @@
 	name = "surgical steel"
 	result_id = "surgsteel"
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/one = 0
 		var/two = 0
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "steel") one = 1
 			if(CM.mat_id == "chromium") two = 1
 
@@ -125,11 +120,11 @@
 	name = "electrum"
 	result_id = "electrum"
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/one = 0
 		var/two = 0
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "gold") one = 1
 			if(CM.mat_id == "cobryl") two = 1
 
@@ -140,11 +135,11 @@
 	name = "plasmasteel"
 	result_id = "plasmasteel"
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/one = 0
 		var/two = 0
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "plasmastone") one = 1
 			if(CM.mat_id == "steel") two = 1
 
@@ -155,11 +150,11 @@
 	name = "glass"
 	result_id = "glass"
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/one = 0
 		var/two = 0
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "molitz") one = 1
 			if(CM.mat_id == "molitz") two = 1
 
@@ -170,11 +165,11 @@
 	name = "plasmaglass"
 	result_id = "plasmaglass"
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/one = 0
 		var/two = 0
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "plasmastone") one = 1
 			if(CM.mat_id == "glass") two = 1
 
@@ -185,11 +180,11 @@
 	name = "synthleather"
 	result_id = "synthleather"
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/one = 0
 		var/two = 0
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "latex") one = 1
 			if(CM.mat_id == "cotton") two = 1
 
@@ -200,13 +195,13 @@
 	name = "synthblubber"
 	result_id = "synthblubber"
 
-	validate(var/datum/material/M)
+	validate(var/list/datum/material/ingredients)
 		var/one = 0
 		var/two = 0
 
 		var/regex/R = regex("rubber")
 
-		for(var/datum/material/CM in M.parent_materials)
+		for(var/datum/material/CM in ingredients)
 			if(CM.mat_id == "coral") one = 1
 			if(R.Find(CM.mat_id)) two = 1
 

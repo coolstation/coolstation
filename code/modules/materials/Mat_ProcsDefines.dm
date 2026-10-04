@@ -472,8 +472,8 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 		else
 			return "odd"
 
-/// Checks if a material matches a recipe and returns the recipe if a match is found. returns null if nothing matches it.
-/proc/matchesMaterialRecipe(var/datum/material/M)
+/// Given input materials, see if a bespoke material recipe matches. Returns null if nothing matches it.
+/proc/matchesMaterialRecipe(var/list/datum/material/M)
 	for(var/datum/material_recipe/R in materialRecipes)
 		if(R.validate(M)) return R
 	return null

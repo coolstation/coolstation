@@ -347,6 +347,7 @@
 
 	var/obj/item/first_part = null
 	var/obj/item/second_part = null
+	var/datum/material_recipe/current_recipe = null
 	var/resultName = "???"
 
 	New()
@@ -384,45 +385,47 @@
 
 		else if(href_list["activate"])
 			if(first_part && second_part)
-				var/obj/item/FP = first_part
-				var/obj/item/SP = second_part
-				var/maxamt = min(FP.amount, SP.amount)
+				var/maxamt = min(first_part.amount, second_part.amount)
 				var/amt = input(usr, "How many? ([maxamt] max)", "Select amount", maxamt) as null|num
 				amt = max(0, amt)
-				if(amt && isnum(amt) && FP && FP.amount >= amt && SP && SP.amount >= amt && (FP in src) && (SP in src))
+				if(amt && isnum(amt) && first_part && first_part.amount >= amt && second_part && second_part.amount >= amt && (first_part in src) && (second_part in src))
 					flick("smelter1",src)
-					var/datum/material/merged = getFusedMaterial(FP.material, SP.material)
-					var/datum/material_recipe/RE = matchesMaterialRecipe(merged)
+					var/datum/material/merged
 					var/newtype = getProcessedMaterialForm(merged)
 					var/apply_material = 1
 					var/output_item = 0
 
-					if(RE)
-						if(!RE.result_id && !RE.result_item)
-							RE.apply_to(merged)
-						else if(RE.result_item)
-							newtype = RE.result_item
+					//updating special recipes happens in updateResultName
+					if(current_recipe)
+						//Of these three options, only the latter is actually in use. No recipes alter the resulting material or output an item.
+						if(!current_recipe.result_id && !current_recipe.result_item)
+							merged = getFusedMaterial(first_part.material, second_part.material) //smush it together the old-fashioned way *first*
+							current_recipe.apply_to(merged)
+						else if(current_recipe.result_item)
+							newtype = current_recipe.result_item
 							apply_material = 0
 							output_item = 1
-						else if(RE.result_id)
-							merged = getMaterial(RE.result_id)
+						else if(current_recipe.result_id)
+							merged = getMaterial(current_recipe.result_id)
+					else
+						merged = getFusedMaterial(first_part.material, second_part.material) //smush it together the old-fashioned way
 
 					var/obj/item/piece = new newtype(src)
 
-					if(istype(FP.material, /datum/material/fissile) && istype(SP.material, /datum/material/fissile))
-						merged = merge_mat_nuke(merged, FP.material, SP.material)
+					if(istype(first_part.material, /datum/material/fissile) && istype(second_part.material, /datum/material/fissile))
+						merged = merge_mat_nuke(merged, first_part.material, second_part.material)
 
 					if(apply_material)
 						piece.setMaterial(merged)
 
 					piece.change_stack_amount(amt - piece.amount)
-					FP.change_stack_amount(-amt)
-					SP.change_stack_amount(-amt)
+					first_part.change_stack_amount(-amt)
+					second_part.change_stack_amount(-amt)
 					if(!output_item)
 						addMaterial(piece, usr)
 					else
 						piece.set_loc(get_turf(src))
-					RE?.apply_to_obj(piece)
+					current_recipe?.apply_to_obj(piece)
 					first_part = null
 					second_part = null
 					//this had [amt] in it but it was repeating the number because the stacks also had the number in it. whatever.
@@ -448,9 +451,14 @@
 
 	proc/updateResultName()
 		if(first_part && second_part)
-			resultName = getInterpolatedName(first_part.material.name, second_part.material.name, 0.5)
+			current_recipe = matchesMaterialRecipe(list(first_part.material, second_part.material))
+			if (current_recipe)
+				resultName = current_recipe.name
+			else
+				resultName = getInterpolatedName(first_part.material.name, second_part.material.name, 0.5)
 		else
 			resultName = "???"
+			current_recipe = null
 
 	proc/addMaterial(var/obj/item/W, var/mob/user)
 		for(var/obj/item/A in src)
