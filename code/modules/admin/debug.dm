@@ -1116,7 +1116,6 @@ proc/display_camera_paths()
 		output += "<B>[i_goodname] Tier Processing</B><BR><HR>"
 
 		for(var/list/j in machlist)
-			//var/jlist = machlist[j]
 			for (var/X in j)
 				if(!X) continue
 				var/obj/machinery/machine = X
