@@ -2204,7 +2204,7 @@ obj/item/clothing/gloves/concussive
 	density = 1
 	opacity = 0
 	anchored = UNANCHORED
-	processing_tier = PROCESSING_HALF //~0.8Hz
+	processing_tier = PROCESSING_HALF //~0.8s
 	var/active = 0
 	var/cell = null
 	var/target = null
@@ -2254,7 +2254,7 @@ obj/item/clothing/gloves/concussive
 				user.visible_message("[user] inserts [W] into [src].", "You insert [W] into [src].")
 		else ..()
 
-	process()
+	process(mult)
 		var/moved = 0
 		if (src.active)
 			if (!src.cell)

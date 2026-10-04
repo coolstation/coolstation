@@ -891,109 +891,106 @@
 	anchored = UNANCHORED
 	density = 1
 	event_handler_flags = NO_MOUSEDROP_QOL
+	processing_tier = PROCESSING_FULL //~0.4s
 	var/active = 0
-	var/reject = 0
-	var/insufficient = 0
-	var/smelt_interval = 5
+	///How many bars worth of a thing can we process in one go?
+	var/processing_cap = 2
 	var/sound/sound_load = sound('sound/items/Deconstruct.ogg')
 	var/sound/sound_process = sound('sound/effects/pop.ogg')
 	var/sound/sound_grump = sound('sound/machines/buzz-two.ogg')
 	var/atom/output_location = null
 	//todo: list with remainders that fills up and empties during a queue
 
+	New()
+		..()
+		UnsubscribeProcess()
+
 	attack_hand(var/mob/user as mob)
 		if (active)
 			boutput(user, "<span class='alert'>It's already working! Give it a moment!</span>")
 			return
-		if (src.contents.len < 1)
+		if (length(src.contents) < 1)
 			boutput(user, "<span class='alert'>There's nothing inside to reclaim.</span>")
 			return
+
+		SubscribeToProcess()
 		user.visible_message("<b>[user.name]</b> switches on [src].")
 		active = 1
 		anchored = ANCHORED
 		icon_state = "reclaimer-on"
 
-		for (var/obj/item/M in src.contents)
-			if (istype(M, /obj/item/wizard_crystal))
+	//Now with actual processing and no sleep loop! wow!
+	process(mult)
+		var/total_bars_this_process = 0
+
+		while (total_bars_this_process < processing_cap) //allow going through multiple stacks at once if there's space within the cap
+			var/obj/item/M = src.contents[1]
+			var/amount_per_bar = 1
+			var/secondary_mat = null //(explicitly for handling dual material cables)
+
+			if (istype(M, /obj/item/wizard_crystal)) //IDK if these even do anything anymore
 				var/obj/item/wizard_crystal/wc = M
 				wc.setMaterial(getMaterial(wc.assoc_material),0,0,1,0)
 
 			if (!istype(M.material))
 				M.set_loc(src.loc)
-				src.reject = 1
-				continue
+				src.visible_message("<b>[src]</b> emits an angry buzz and rejects some unsuitable materials!")
+				playsound(src.loc, sound_grump, 40, 1)
+				return
 
 			else if (istype(M, /obj/item/raw_material/shard))
-				if (output_bar_from_item(M, 10))
-					qdel(M)
-
-			else if (istype(M, /obj/item/raw_material))
-				output_bar_from_item(M)
-				qdel(M)
+				amount_per_bar = 10
 
 			else if (istype(M, /obj/item/sheet))
-				if (output_bar_from_item(M, 10))
-					qdel(M)
+				amount_per_bar = 10
 
 			else if (istype(M, /obj/item/rods))
-				if (output_bar_from_item(M, 20))
-					qdel(M)
+				amount_per_bar = 20
 
 			else if (istype(M, /obj/item/tile))
-				if (output_bar_from_item(M, 40))
-					qdel(M)
+				amount_per_bar = 40
 
 			else if (istype(M, /obj/item/cable_coil))
+				amount_per_bar = 30
 				var/obj/item/cable_coil/C = M
-				if (output_bar_from_item(M, 30, C.conductor.mat_id))
-					qdel(C)
+				secondary_mat = C.conductor.mat_id
 
 			else if (istype(M, /obj/item/scrap))
-				output_bar_from_item(M, 10)
-				qdel(M)
+				amount_per_bar = 10
 
-			else if (istype(M, /obj/item/wizard_crystal))
-				if (output_bar_from_item(M))
-					qdel(M)
+			else if (!(istype(M, /obj/item/raw_material) || istype(M, /obj/item/wizard_crystal)))
+				M.set_loc(src.loc)
+				src.visible_message("<b>[src]</b> emits an angry buzz and rejects some unsuitable materials!")
+				playsound(src.loc, sound_grump, 40, 1)
+				return
 
-			sleep(smelt_interval)
+			var/stack_amount = 0
+			var/temp_amount = M.amount
+			for (var/i in 1 to processing_cap)
+				if (temp_amount >= amount_per_bar)
+					stack_amount++
+					temp_amount -= amount_per_bar
 
-		if (reject)
-			src.reject = 0
-			src.visible_message("<b>[src]</b> emits an angry buzz and rejects some unsuitable materials!")
-			playsound(src.loc, sound_grump, 40, 1)
+			output_bar(M.material, stack_amount, M.quality)
+			if (secondary_mat)
+				output_bar(secondary_mat, stack_amount, M.quality)
 
-		if (insufficient)
-			src.insufficient = 0
-			src.visible_message("<b>[src]</b> emits a grumpy buzz and ejects some leftovers.")
-			playsound(src.loc, sound_grump, 40, 1)
+			//Has to happen after outputting, since we're referencing M's material directly
+			M.change_stack_amount(-amount_per_bar * stack_amount)
+			total_bars_this_process += stack_amount
 
-		active = 0
-		anchored = UNANCHORED
-		icon_state = "reclaimer"
-		src.visible_message("<b>[src]</b> finishes working and shuts down.")
+			if (M.amount && M.amount < amount_per_bar)
+				src.visible_message("<b>[src]</b> emits a grumpy buzz and ejects some leftovers.")
+				playsound(src.loc, sound_grump, 40, 1)
 
-	//process an item, divided by optional modifier, and optionally include another material (explicitly for handling dual material cables)
-	proc/output_bar_from_item(obj/item/O, var/amount_modifier = 1, var/extra_mat)
-		if (!O || !O.material)
-			return
+			if (!length(src.contents))
+				active = 0
+				anchored = UNANCHORED
+				icon_state = "reclaimer"
+				src.visible_message("<b>[src]</b> finishes working and shuts down.")
+				UnsubscribeProcess()
+				return
 
-		var/stack_amount = O.amount
-		if (amount_modifier)
-			var/divide = O.amount / amount_modifier
-			stack_amount = round(divide)
-			if (stack_amount != divide)
-				src.insufficient = 1
-				O.change_stack_amount(-stack_amount * amount_modifier)
-				O.set_loc(src.loc)
-				if (!stack_amount)
-					return
-			else
-				. = 1
-
-		output_bar(O.material, stack_amount, O.quality)
-		if (extra_mat)
-			output_bar(extra_mat, stack_amount, O.quality)
 
 	proc/output_bar(material, amount, quality)
 
@@ -1005,18 +1002,36 @@
 
 		var/output_location = src.get_output_location()
 
-		var/bar_type = getProcessedMaterialForm(MAT)
-		var/obj/item/material_piece/BAR = new bar_type()
-		BAR.quality = quality
-		BAR.name += getQualityName(quality)
-		BAR.setMaterial(MAT)
-		BAR.change_stack_amount(amount - 1)
 
+
+		//stack onto existing stacks of bars first
+		for(var/obj/item/material_piece/existing_BAR in output_location)
+			if (isSameMaterial(MAT, existing_BAR.material))
+				if (existing_BAR.quality == quality)
+					//At time of writing material bars stack infinitely and we can stack everything onto the first bar we find, so this is mostly for if people fuss with that number
+					var/stackable_amount = (existing_BAR.max_stack == INFINITY ? amount : max(amount, existing_BAR.max_stack - existing_BAR.amount))
+					existing_BAR.change_stack_amount(stackable_amount)
+					amount -= stackable_amount
+					if (!amount)
+						break
+		var/obj/item/material_piece/BAR
+		//amount left after stacking on existing bars
+		if (amount)
+			var/bar_type = getProcessedMaterialForm(MAT)
+			BAR = new bar_type()
+			BAR.quality = quality
+			BAR.name += getQualityName(quality)
+			BAR.setMaterial(MAT)
+			BAR.change_stack_amount(amount - 1)
+
+
+		//oh my they are spawning the bars only to immediately delete them loading them into the manufacturers that's so inefficient girls
 		if (istype(output_location, /obj/machinery/manufacturer))
 			var/obj/machinery/manufacturer/M = output_location
 			M.load_item(BAR)
 		else
 			BAR.set_loc(output_location)
+
 
 		playsound(src.loc, sound_process, 40, 1)
 
