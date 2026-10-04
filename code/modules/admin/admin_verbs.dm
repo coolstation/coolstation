@@ -544,6 +544,7 @@ var/list/admin_verbs = alist(
 #ifdef MACHINE_PROCESSING_DEBUG
 		/client/proc/cmd_display_detailed_machine_stats,
 		/client/proc/cmd_display_detailed_power_stats,
+		/client/proc/cmb_display_processing_tier_stats,
 #endif
 #ifdef QUEUE_STAT_DEBUG
 		/client/proc/cmd_display_queue_stats,

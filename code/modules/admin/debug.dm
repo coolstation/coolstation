@@ -1083,6 +1083,55 @@ proc/display_camera_paths()
 		output += "<BR/>"
 	src.Browse(output, "window=power_data;size=600x500")
 
+/client/proc/cmb_display_processing_tier_stats()
+	set name = "Machine Tier stats"
+	set desc = "Displays how much of each machine type is in the various machine processing weigths."
+
+	SET_ADMIN_CAT(ADMIN_CAT_DEBUG)
+	ADMIN_ONLY
+
+	var/output = ""
+
+	var/datum/controller/process/machines/machine_process = locate() in processScheduler.processes
+
+	for (var/i in 1 to PROCESSING_MAX_IN_USE)
+		var/list/machlist = machine_process.machines[i]
+		var/list/types_per_tier = list()
+		var/i_goodname = "Piss"
+		switch(i)
+			if (1)
+				i_goodname = "Full"
+			if (2)
+				i_goodname = "Half"
+			if (3)
+				i_goodname = "Quarter"
+			if (4)
+				i_goodname = "Eighth"
+			if (5)
+				i_goodname = "Sixteenth"
+			if (6)
+				i_goodname = "Thirty-Second"
+
+
+		output += "<B>[i_goodname] Tier Processing</B><BR><HR>"
+
+		for(var/list/j in machlist)
+			//var/jlist = machlist[j]
+			for (var/X in j)
+				if(!X) continue
+				var/obj/machinery/machine = X
+				if (machine.type in types_per_tier)
+					types_per_tier[machine.type] += 1
+				else
+					types_per_tier += machine.type
+					types_per_tier[machine.type] = 1
+
+		for(var/k in types_per_tier)
+			output += "[k] - [types_per_tier[k]]<BR>"
+
+		output += "<BR><HR>"
+	src.Browse(output, "window=holyfuck;size=600x500")
+
 #endif
 
 #ifdef QUEUE_STAT_DEBUG
