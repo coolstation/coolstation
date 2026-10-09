@@ -287,80 +287,6 @@ Contains:
 		trace_gas.moles = (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD
 		return
 
-////////////////////////////////////////////////////////////
-/obj/item/tank/jetpack
-	name = "Jetpack (Oxygen)"
-	icon_state = "jetpack0"
-	uses_multiple_icon_states = 1
-	var/on = 0.0
-	w_class = W_CLASS_BULKY
-	item_state = "jetpack"
-	mats = 16
-	force = 8
-	desc = "A jetpack that can be toggled on, letting the user use the gas inside as a propellant. Can also be hooked up to a compatible mask to allow you to breathe the gas inside. This is labelled to contain oxygen."
-	distribute_pressure = 17 // setting these things to start at the minimum pressure needed to breathe - Haine
-	compatible_with_TTV = 0
-	c_flags = IS_JETPACK
-
-	New()
-		..()
-		src.air_contents.oxygen = (6*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C)
-		return
-
-	unequipped(mob/user)
-		if(src.on)
-			src.toggle()
-		. = ..()
-
-	process()
-		if(ismob(src.loc))
-			var/mob/M = src.loc
-			if(src.allow_thrust(0.02,M))
-				return 1
-		return 0
-
-	proc/toggle()
-		src.on = !( src.on )
-		src.icon_state = text("jetpack[]", src.on)
-		if(src.on)
-			boutput(usr, "<span class='notice'>The jetpack is now on</span>")
-			processing_items |= src
-			if(src.process())
-				var/mob/M = src.loc // process can't return true otherwise
-				APPLY_ATOM_PROPERTY(M, PROP_ATOM_FLOATING, src)
-		else
-			boutput(usr, "<span class='notice'>The jetpack is now off</span>")
-			processing_items.Remove(src)
-			if(ismob(src.loc))
-				var/mob/M = src.loc
-				REMOVE_ATOM_PROPERTY(M, PROP_ATOM_FLOATING, src)
-		return
-
-	proc/allow_thrust(num, mob/user as mob)
-		if (!( src.on ))
-			return 0
-		if ((num < 0.01 || TOTAL_MOLES(src.air_contents) < num))
-			src.toggle()
-			return 0
-
-		var/datum/gas_mixture/G = src.air_contents.remove(num)
-
-		if (G.oxygen >= 0.01)
-			return 1
-		if (G.toxins > 0.001)
-			if (user)
-				var/d = G.toxins / 2
-				d = min(abs(user.health + 100), d, 25)
-				user.TakeDamage("chest", 0, d)
-			return (G.oxygen >= 0.0075 ? 0.5 : 0)
-		else
-			if (G.oxygen >= 0.0075)
-				return 0.5
-			else
-				src.toggle()
-				return 0
-
-/obj/item/tank/jetpack/abilities = list(/obj/ability_button/jetpack_toggle, /obj/ability_button/tank_valve_toggle)
 
 ////////////////////////////////////////////////////////////
 
@@ -606,36 +532,63 @@ Contains:
 
 /obj/item/tank/emergency_plasma/abilities = list(/obj/ability_button/tank_valve_toggle)
 
-/obj/item/tank/jetpack/jetpackmk2
-	name = "Jetpack MKII (Oxygen)"
-	icon_state = "jetpack_mk2_0"
+////////////////////////////////////////////////////////////
+
+/obj/item/tank/jetpack
+	name = "Jetpack (Oxygen)"
+	icon_state = "jetpack0"
+	var/icon_base = "jetpack"
 	uses_multiple_icon_states = 1
-	on = 0.0
+	var/on = FALSE
 	w_class = W_CLASS_BULKY
-	item_state = "jetpack_mk2_0"
+	item_state = "jetpack"
 	mats = 16
 	force = 8
-	desc = "An upgraded jetpack that can be toggled on, letting the user use the gas inside as a propellant. Can also be hooked up to a compatible mask to allow you to breathe the gas inside. This is labelled to contain oxygen."
+	desc = "A jetpack that can be toggled on, letting the user use the gas inside as a propellant. Can also be hooked up to a compatible mask to allow you to breathe the gas inside. This is labelled to contain oxygen."
 	distribute_pressure = 17 // setting these things to start at the minimum pressure needed to breathe - Haine
+	compatible_with_TTV = FALSE
+	c_flags = IS_JETPACK
 
 	New()
 		..()
-		src.air_contents.volume = 100
-		src.air_contents.oxygen = (6*ONE_ATMOSPHERE)*100/(R_IDEAL_GAS_EQUATION*T20C)
-		setProperty("negate_fluid_speed_penalty",0.6)
+		src.air_contents.oxygen = (6*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C)
+		processing_items.Remove(src)
 		return
 
-	toggle()
-		src.on = !( src.on )
-		src.icon_state = text("jetpack_mk2_[]", src.on)
+	unequipped(mob/user)
 		if(src.on)
-			boutput(usr, "<span class='notice'>The jetpack is now on</span>")
-			playsound(src.loc, "sound/misc/JetpackMK2on.ogg", 50, 1)
+			src.toggle()
+		. = ..()
+
+	process()
+		if(ismob(src.loc))
+			if(src.allow_thrust(0.02,src.loc))
+				return 1
+			else
+				toggle()
+		return 0
+
+	proc/toggle()
+		if(!src.on)
+			on = TRUE
+			if(src.process())
+				boutput(usr, "<span class='notice'>The jetpack is now on</span>")
+				processing_items |= src
+				var/mob/M = src.loc // process can't return true otherwise
+				APPLY_ATOM_PROPERTY(M, PROP_ATOM_FLOATING, src)
+			else on = FALSE
 		else
 			boutput(usr, "<span class='notice'>The jetpack is now off</span>")
+			processing_items.Remove(src)
+			if(ismob(src.loc))
+				var/mob/M = src.loc
+				REMOVE_ATOM_PROPERTY(M, PROP_ATOM_FLOATING, src)
+			on = FALSE
+		src.icon_state = "[icon_base][on]"
 		return
 
-	allow_thrust(num, mob/user as mob)
+
+	proc/allow_thrust(num, mob/user as mob)
 		if (!( src.on ))
 			return 0
 		if ((num < 0.01 || TOTAL_MOLES(src.air_contents) < num))
@@ -645,17 +598,37 @@ Contains:
 
 		if (G.oxygen >= 0.01)
 			return 1
+		//You can fill a jetpack with plasma, and that will harm the wearer apparently?
 		if (G.toxins > 0.001)
 			if (user)
-				var/d = G.toxins / 2
-				d = min(abs(user.health + 100), d, 25)
-				user.TakeDamage("chest", 0, d)
-			return (G.oxygen >= 0.0075 ? 0.5 : 0)
-		else
-			if (G.oxygen >= 0.0075)
-				return 0.5
-			else
-				return 0
+				//Given that we're working with the contents of G, which is the the consumed portion of gas, and this proc is never called with numbers higher that 0.02 moles
+				//That 25 damage cap is pretty fucken rich actually.
+				user.TakeDamage("chest", 0, min(G.toxins / 2, 25))
+			return (G.oxygen >= 0.0075 ? 0.5 : 0) // Still need some oxygen apparently.
+		return 0
+
+/obj/item/tank/jetpack/abilities = list(/obj/ability_button/jetpack_toggle, /obj/ability_button/tank_valve_toggle)
+
+///Larger tank over the regular jetpack (100L over 70L) and fluid movement buff. Despite the latter coming from using the oxygen inside as a propellant, it doesn't consume any extra to do that.
+/obj/item/tank/jetpack/jetpackmk2
+	name = "Jetpack MKII (Oxygen)"
+	icon_state = "jetpack_mk2_0"
+	item_state = "jetpack_mk2"
+	icon_base = "jetpack_mk2"
+	desc = "An upgraded jetpack that can be toggled on, letting the user use the gas inside as a propellant. Can also be hooked up to a compatible mask to allow you to breathe the gas inside. This is labelled to contain oxygen."
+
+	New()
+		..()
+		src.air_contents.volume = 100
+		src.air_contents.oxygen = (6*ONE_ATMOSPHERE)*100/(R_IDEAL_GAS_EQUATION*T20C)
+		setProperty("negate_fluid_speed_penalty",0.6)
+		return
+
+	toggle()
+		..()
+		if(src.on)
+			playsound(src.loc, "sound/misc/JetpackMK2on.ogg", 50, 1)
+
 
 /obj/item/tank/jetpack/jetpackmk2/abilities = list(/obj/ability_button/jetpack2_toggle, /obj/ability_button/tank_valve_toggle)
 
@@ -663,20 +636,5 @@ Contains:
 	name = "Jetpack (Oxygen)"
 	icon_state = "sjetpack_mag0"
 	item_state = "redjetpack"
+	icon_base = "sjetpack_mag"
 	desc = "A syndicate jetpack that can be toggled on, letting the user use the gas inside as a propellant. Can also be hooked up to a compatible mask to allow you to breathe the gas inside. This is labelled to contain oxygen."
-
-	New()
-		..()
-		src.air_contents.oxygen = (6*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C)
-		return
-
-	toggle()
-		src.on = !( src.on )
-		src.icon_state = text("sjetpack_mag[]", src.on)
-		if(src.on)
-			boutput(usr, "<span class='notice'>The jetpack is now on</span>")
-		else
-			boutput(usr, "<span class='notice'>The jetpack is now off</span>")
-		return
-
-/obj/item/tank/jetpack/abilities = list(/obj/ability_button/jetpack_toggle, /obj/ability_button/tank_valve_toggle)
