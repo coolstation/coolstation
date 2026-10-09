@@ -646,10 +646,10 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	proc/allow_thrust(num, mob/user as mob) // blatantly c/p from jetpacks
 		if (!src.on || !istype(src.tank))
 			return 0
-		if ((num < 0.01 || TOTAL_MOLES(src.air_contents) < num))
+		if ((num < 0.01 || TOTAL_MOLES(src.tank.air_contents) < num))
 			return 0
 
-		var/datum/gas_mixture/G = src.air_contents.remove(num)
+		var/datum/gas_mixture/G = src.tank.air_contents.remove(num)
 
 		if (G.oxygen >= 0.01)
 			return 1

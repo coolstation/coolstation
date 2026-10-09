@@ -572,13 +572,10 @@ Contains:
 		if(!src.on)
 			on = TRUE
 			if(src.process())
-				boutput(usr, "<span class='notice'>The jetpack is now on</span>")
 				processing_items |= src
 				var/mob/M = src.loc // process can't return true otherwise
 				APPLY_ATOM_PROPERTY(M, PROP_ATOM_FLOATING, src)
-			else on = FALSE
 		else
-			boutput(usr, "<span class='notice'>The jetpack is now off</span>")
 			processing_items.Remove(src)
 			if(ismob(src.loc))
 				var/mob/M = src.loc
