@@ -133,8 +133,9 @@
 
 	Move(NewLoc, direct)
 		. = ..()
-		if(src.scrapes_floor && src.loc == NewLoc && !src.throwing && prob(75))
-			playsound(src, "sound/misc/chair/normal/scoot[rand(1,5)].ogg", 40, 1)
+		if (!istype(NewLoc, /turf/space)) //please
+			if(src.scrapes_floor && src.loc == NewLoc && !src.throwing && prob(75))
+				playsound(src, "sound/misc/chair/normal/scoot[rand(1,5)].ogg", 40, 1)
 
 	relaymove(mob/user as mob)
 		if (is_incapacitated(user))

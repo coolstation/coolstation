@@ -433,8 +433,12 @@
 	execute_ability()
 		var/obj/item/tank/jetpack/jetpackmk2/J = the_item
 		J.toggle()
-		if(J.on) icon_state = "jet2on"
-		else  icon_state = "jet2off"
+		if(J.on)
+			icon_state = "jet2on"
+			boutput(usr, "<span class='notice'>The jetpack is now on.</span>")
+		else
+			icon_state = "jet2off"
+			boutput(usr, "<span class='notice'>The jetpack is now off.</span>")
 		..()
 
 /obj/ability_button/jetpack_toggle
@@ -444,8 +448,12 @@
 	execute_ability()
 		var/obj/item/tank/jetpack/J = the_item
 		J.toggle()
-		if(J.on) icon_state = "jeton"
-		else  icon_state = "jetoff"
+		if(J.on)
+			icon_state = "jeton"
+			boutput(usr, "<span class='notice'>The jetpack is now on.</span>")
+		else
+			icon_state = "jetoff"
+			boutput(usr, "<span class='notice'>The jetpack is now off.</span>")
 		..()
 
 ////////////////////////////////////////////////////////////

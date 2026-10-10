@@ -646,24 +646,21 @@ ABSTRACT_TYPE(/obj/item/clothing/shoes)
 	proc/allow_thrust(num, mob/user as mob) // blatantly c/p from jetpacks
 		if (!src.on || !istype(src.tank))
 			return 0
-		if (!isnum(num) || num < 0.01 || TOTAL_MOLES(src.tank.air_contents) < num)
+		if ((num < 0.01 || TOTAL_MOLES(src.tank.air_contents) < num))
 			return 0
 
 		var/datum/gas_mixture/G = src.tank.air_contents.remove(num)
 
 		if (G.oxygen >= 0.01)
 			return 1
+		//You can fill a jetpack with plasma, and that will harm the wearer apparently?
 		if (G.toxins > 0.001)
 			if (user)
-				var/d = G.toxins / 2
-				d = min(abs(user.health + 100), d, 25)
-				user.TakeDamage("chest", 0, d)
-			return (G.oxygen >= 0.0075 ? 0.5 : 0)
-		else
-			if (G.oxygen >= 0.0075)
-				return 0.5
-			else
-				return 0
+				//Given that we're working with the contents of G, which is the the consumed portion of gas, and this proc is never called with numbers higher that 0.02 moles
+				//That 25 damage cap is pretty fucken rich actually.
+				user.TakeDamage("chest", 0, min(G.toxins / 2, 25))
+			return (G.oxygen >= 0.0075 ? 0.5 : 0) // Still need some oxygen apparently.
+		return 0
 
 	get_desc(dist)
 		if (dist <= 1)

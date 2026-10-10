@@ -458,11 +458,12 @@
 	Move(NewLoc,Dir)
 		. = ..()
 		if (.)
-			if (prob(75)) //gonna assume that anything with brakes also has castors
-				if (src.has_brakes)
-					playsound(src, "sound/misc/chair/office/scoot[rand(1,5)].ogg", 40, 1)
-				else if (src.scrapes_floor)
-					playsound(src, "sound/misc/chair/normal/scoot[rand(1,5)].ogg", 40, 1)
+			if (!istype(NewLoc, /turf/space)) //please
+				if (prob(75)) //gonna assume that anything with brakes also has castors
+					if (src.has_brakes)
+						playsound(src, "sound/misc/chair/office/scoot[rand(1,5)].ogg", 40, 1)
+					else if (src.scrapes_floor)
+						playsound(src, "sound/misc/chair/normal/scoot[rand(1,5)].ogg", 40, 1)
 
 			//if we're over the max amount a table can fit, have a chance to drop an item. Chance increases with items on tray
 			if (prob((length(src.attached_objs)-max_to_move)*1.1))
