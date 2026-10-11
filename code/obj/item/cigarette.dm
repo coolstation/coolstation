@@ -29,6 +29,8 @@
 	var/numpuffs = 40 //number of times the cig can dispense reagents
 	rand_pos = 8
 	use_bloodoverlay = 0
+	duration_remove = 0.2 SECONDS //yoink
+	duration_put = 1 SECOND
 
 	setupProperties()
 		return
