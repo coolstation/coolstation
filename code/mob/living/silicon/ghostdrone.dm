@@ -61,8 +61,8 @@
 
 
 		src.health = src.max_health
-		src.botcard.access = list(access_maint_tunnels, access_ghostdrone, access_engineering,access_external_airlocks,
-						access_engineering_storage, access_engineering_atmos, access_engineering_engine, access_engineering_power)
+		src.botcard.access = list(access_maint_tunnels, access_ghostdrone, access_engineering,access_external_airlocks, access_engineering_storage,
+						access_engineering_atmos, access_engineering_gas, access_engineering_engine, access_engineering_power)
 		src.radio = new /obj/item/device/radio(src)
 		src.ears = src.radio
 
