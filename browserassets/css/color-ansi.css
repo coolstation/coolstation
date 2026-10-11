@@ -1,0 +1,85 @@
+.black {color: #000000}
+.red {color: #aa0000}
+.green {color: #00aa00}
+.yellow {color: #aa5500}
+.blue {color: #0000ee}
+.magenta {color: #aa00aa}
+.cyan {color: #00aaaa}
+.white {color: #aaaaaa}
+
+.black.bright {color: #555555}
+.red.bright {color: #ff5555}
+.green.bright {color: #55ff55}
+.yellow.bright {color: #ffff55}
+.blue.bright {color: #5555ff}
+.magenta.bright {color: #ff55ff}
+.cyan.bright {color: #55ffff}
+.white.bright {color: #ffffff}
+
+.pln{color:#aaaaaa}
+.civ{color:#55ffff}
+.eng{color:#ffff55}
+.log{color:#aa5500}
+.res{color:#ff55ff}
+.sec{color:#ff5555}
+.com{color:#55ff55}
+
+/* ID colors - Unselected */
+
+a.pln:link {background-color: transparent;color: #aaaaaa}
+a.pln:visited {background-color: transparent;color: #aaaaaa}
+a.pln:active {background-color: #aaaaaa;color: transparent}
+
+a.civ:link {background-color: transparent;color: #55ffff}
+a.civ:visited {background-color: transparent;color: #55ffff}
+a.civ:active {background-color: #55ffff;color: transparent}
+
+a.eng:link {background-color: transparent;color: #ffff55}
+a.eng:visited {background-color: transparent;color: #ffff55}
+a.eng:active {background-color: #ffff55;color: transparent}
+
+a.log:link {background-color: transparent;color: #aa5500}
+a.log:visited {background-color: transparent;color: #aa5500}
+a.log:active {background-color: #aa5500;color: transparent}
+
+a.res:link {background-color: transparent;color: #ff55ff}
+a.res:visited {background-color: transparent;color: #ff55ff}
+a.res:active {background-color: #ff55ff;color: transparent}
+
+a.sec:link {background-color: transparent;color: #ff5555}
+a.sec:visited {background-color: transparent;color: #ff5555}
+a.sec:active {background-color: #ff5555;color: transparent}
+
+a.com:link {background-color: transparent;color: #00aa00}
+a.com:visited {background-color: transparent;color: #00aa00}
+a.com:active {background-color: #00aa00;color: transparent}
+
+/* ID colors - Selected */
+
+a.pln.selected:link {background-color: #aaaaaa;color: transparent;text-decoration:none}
+a.pln.selected:visited {background-color: #aaaaaa;color: transparent;text-decoration:none}
+a.pln.selected:active {background-color: transparent;color: #aaaaaa}
+
+a.civ.selected:link {background-color: #55ffff;color: transparent;text-decoration:none}
+a.civ.selected:visited {background-color: #55ffff;color: transparent;text-decoration:none}
+a.civ.selected:active {background-color: transparent;color: #55ffff}
+
+a.eng.selected:link {background-color: #ffff55;color: transparent;text-decoration:none}
+a.eng.selected:visited {background-color: #ffff55;color: transparent;text-decoration:none}
+a.eng.selected:active {background-color: transparent;color: #ffff55}
+
+a.log.selected:link {background-color: #aa5500;color: transparent;text-decoration:none}
+a.log.selected:visited {background-color: #aa5500;color: transparent;text-decoration:none}
+a.log.selected:active {background-color: transparent;color: #aa5500}
+
+a.res.selected:link {background-color: #ff55ff;color: transparent;text-decoration:none}
+a.res.selected:visited {background-color: #ff55ff;color: transparent;text-decoration:none}
+a.res.selected:active {background-color: transparent;color: #ff55ff}
+
+a.sec.selected:link {background-color: #ff5555;color: transparent;text-decoration:none}
+a.sec.selected:visited {background-color: #ff5555;color: transparent;text-decoration:none}
+a.sec.selected:active {background-color: transparent;color: #ff5555}
+
+a.com.selected:link {background-color: #00aa00;color: transparent;text-decoration:none}
+a.com.selected:visited {background-color: #00aa00;color: transparent;text-decoration:none}
+a.com.selected:active {background-color: transparent;color: #00aa00}
