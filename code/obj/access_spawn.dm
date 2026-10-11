@@ -297,6 +297,11 @@
 	req_access = list(access_engineering_atmos)
 	color = ENGINEERING
 
+/obj/access_spawn/engineering_gas
+	name = "engineering gas storage access spawn"
+	req_access = list(access_engineering_gas)
+	color = ENGINEERING
+
 /obj/access_spawn/engineering_control
 	name = "engineering control access spawn"
 	req_access = list(access_engineering_control)
@@ -308,12 +313,12 @@
 	color = ENGINEERING
 
 /obj/access_spawn/quartermaster
-	name = "quartermaster access spawn"
+	name = "QM access spawn"
 	req_access = list(access_quartermaster)
 	color = CARGO
 
 /obj/access_spawn/mining_shuttle
-	name = "mining_shuttle access spawn"
+	name = "mining shuttle access spawn"
 	req_access = list(access_mining_shuttle)
 	color = CARGO
 
@@ -329,12 +334,17 @@
 	color = CARGO
 
 /obj/access_spawn/mining_outpost
-	name = "mining_outpost access spawn"
+	name = "mining outpost access spawn"
+	req_access = list(access_mining_outpost)
+	color = CARGO
+
+/obj/access_spawn/mining_foundry
+	name = "foundry access spawn"
 	req_access = list(access_mining_outpost)
 	color = CARGO
 
 /obj/access_spawn/syndie_shuttle
-	name = "syndie_shuttle access spawn"
+	name = "syndie shuttle access spawn"
 	req_access = list(access_syndicate_shuttle)
 	color = SECURITY
 
