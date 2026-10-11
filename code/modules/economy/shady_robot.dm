@@ -53,13 +53,13 @@
 	var/card_timer = 0				//does the card display time remaining before its access runs out (costs 1000)?
 
 	//ACCESS LISTS FOR PRICING & SORTING
-	var/list/civilian_access_list = list(6, 12, 22, 23, 25, 26, 27, 28, 35, 36)
-	var/list/engineering_access_list = list(13, 32, 40, 43, 44, 45, 46, 47, 48)
-	var/list/supply_access_list = list(30, 31, 34, 47, 50, 51)
-	var/list/research_access_list = list(5, 7, 8, 9, 10, 24, 29, 33)
-	var/list/security_access_list = list(1, 2, 3, 4, 37, 38, 39)
-	var/list/command_access_list = list(11, 14, 15, 16, 17, 18, 19, 20, 21, 49, 53)
-	var/list/special_access_list = list(37)
+	var/list/civilian_access_list = list(access_morgue, access_maint_tunnels, access_chapel_office, access_tech_storage, access_bar, access_janitor, access_crematorium, access_kitchen, access_hydro, access_mail)
+	var/list/engineering_access_list = list(access_external_airlocks, access_construction, access_engineering, access_engineering_power, access_engineering_engine, access_engineering_mechanic, access_engineering_atmos, access_engineering_gas, access_engineering_control)
+	var/list/supply_access_list = list(access_hangar, access_cargo, access_mining, access_mining_outpost, access_mining_foundry)
+	var/list/research_access_list = list(access_medical, access_tox, access_tox_storage, access_medlab, access_medical_lockers, access_research, access_robotics, access_chemistry)
+	var/list/security_access_list = list(access_security, access_brig, access_armory, access_forensics_lockers, access_maxsec, access_securitylockers)
+	var/list/command_access_list = list(access_research_director, access_emergency_storage, access_change_ids, access_ai_upload, access_teleporter, access_eva, access_heads, access_captain, access_all_personal_lockers, access_engineering_chief, access_quartermaster)
+	var/list/special_access_list = list(access_carrypermit, access_contrabandpermit, access_dwaine_superuser)
 
 	//PRODUCTS
 	var/list/common_products = list(/datum/commodity/bodyparts/butt,
