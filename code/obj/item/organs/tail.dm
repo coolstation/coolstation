@@ -234,6 +234,17 @@
 	tail_num = TAIL_FERT
 	colorful = 1
 
+/obj/item/organ/tail/yeen
+	name = "hyena tail"
+	desc = "A regular fluffy tail."
+	icon_state = "tail-lizard"	// see above
+	organ_image_icon = 'icons/mob/yeen.dmi'
+	organ_image_under_suit_1 = "yeen_under_suit"
+	organ_image_under_suit_2 = null
+	organ_image_over_suit = "yeen_over_suit"
+	tail_num = TAIL_YEEN
+	colorful = 1
+
 /obj/item/organ/tail/wolf
 	name = "wolf tail"
 	desc = "A long, fluffy tail."

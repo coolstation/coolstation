@@ -60,6 +60,13 @@
 	playsound(user, "sound/voice/screams/weaselscream.ogg", 50, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
 	return list("<B>[user]</B> screams!", null, MESSAGE_AUDIBLE)
 
+//need better sounds (also they play really loud for some reason)
+/datum/emote/scream/yeen/enact(mob/living/carbon/human/user, voluntary = 0, param)
+	if (!istype(user))
+		return
+	playsound(user, "sound/voice/screams/yeenscream[pick("1","2","3")].ogg", 50, 0, SOUND_RANGE_STANDARD, user.get_age_pitch(), channel=VOLUME_CHANNEL_EMOTE)
+	return list("<B>[user]</B> bellows!", null, MESSAGE_AUDIBLE)
+
 // ------------------------------ werewolf RP --------------------------------
 
 /datum/emote/werewolf/burp/enact(mob/living/carbon/human/user, voluntary = 0, param)
@@ -263,3 +270,14 @@
 				var/obj/critter/meatslinky/toob = O
 				toob.contagiousfreakout(1) //just a response, cannot force further freakouts
 	return list("<B>[user]</B> [pick("wigs out","frolics","rolls about","freaks out","goes wild","wiggles","wobbles","weasel-wardances")]!", null, MESSAGE_VISIBLE)
+
+// ------------------------------ Hyenas --------------------------------
+
+/datum/emote/yeen/laugh/enact(mob/living/carbon/human/user, voluntary = 0, param)
+	if (!istype(user))
+		return
+	playsound(user, "sound/voice/laughs/yeenlaugh[rand(1,6)].ogg", 60, 1, SOUND_RANGE_STANDARD, channel=VOLUME_CHANNEL_EMOTE)
+	var/which_one = pick("chortles","laughs","giggles","whoops","moos","bleats","huffs","snorts")
+	return list("<span class='alert'><B>[user] [which_one] loudly</B></span>", "<I>[which_one]</I>", MESSAGE_AUDIBLE)
+
+//Hyena sounds by https://freesound.org/people/sounagix/ sounagix -- https://freesound.org/people/sounagix/packs/37991/ -- License: Creative Commons 0

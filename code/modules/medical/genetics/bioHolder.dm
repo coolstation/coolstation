@@ -87,6 +87,17 @@ var/list/datum/bioEffect/mutini_effects = list()
 	var/mob_detail_1_color_ref = CUST_1
 	var/mob_detail_1_offset_y = 0
 
+	// Extra handling (i.e. hyena spots and chest)
+	var/mob_detail_2_icon = null
+	var/mob_detail_2_state = null
+	var/mob_detail_2_color_ref = null
+	var/mob_detail_2_offset_y = null
+
+	var/mob_detail_3_icon = null
+	var/mob_detail_3_state = null
+	var/mob_detail_3_color_ref = null
+	var/mob_detail_3_offset_y = null
+
 	/// An image to be overlaid on the mob between their outer-suit and backpack
 	/// Not to be used to define a tail oversuit, that's done by the tail organ.
 	/// This is for things like the cow having a muzzle that shows up over their outer-suit
@@ -219,6 +230,16 @@ var/list/datum/bioEffect/mutini_effects = list()
 		mob_detail_1_state = toCopy.mob_detail_1_state
 		mob_detail_1_color_ref = toCopy.mob_detail_1_color_ref
 		mob_detail_1_offset_y = toCopy.mob_detail_1_offset_y
+
+		mob_detail_2_icon = toCopy.mob_detail_2_icon
+		mob_detail_2_state = toCopy.mob_detail_2_state
+		mob_detail_2_color_ref = toCopy.mob_detail_2_color_ref
+		mob_detail_2_offset_y = toCopy.mob_detail_2_offset_y
+
+		mob_detail_3_icon = toCopy.mob_detail_3_icon
+		mob_detail_3_state = toCopy.mob_detail_3_state
+		mob_detail_3_color_ref = toCopy.mob_detail_3_color_ref
+		mob_detail_3_offset_y = toCopy.mob_detail_3_offset_y
 
 		mob_oversuit_1_icon = toCopy.mob_oversuit_1_icon
 		mob_oversuit_1_state = toCopy.mob_oversuit_1_state

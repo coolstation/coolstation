@@ -186,6 +186,20 @@
 	var/detail_1_state_f
 	var/detail_1_color = CUST_1
 	var/detail_1_color_f
+	/// Same as above but for mob_detail_2
+	var/detail_2_icon
+	var/detail_2_icon_f
+	var/detail_2_state
+	var/detail_2_state_f
+	var/detail_2_color = CUST_1
+	var/detail_2_color_f
+	/// And again mob_detail_3
+	var/detail_3_icon
+	var/detail_3_icon_f
+	var/detail_3_state
+	var/detail_3_state_f
+	var/detail_3_color = CUST_1
+	var/detail_3_color_f
 
 	/// These details will show up layered between the backpack and the outer suit
 	/// The image to be inserted into the mob's appearanceholder's mob_oversuit_1
@@ -345,13 +359,23 @@
 				AH.special_hair_3_icon = src.special_hair_3_icon
 				AH.special_hair_3_state = src.special_hair_3_state
 				AH.special_hair_3_color_ref = src.special_hair_3_color
-				AH.special_hair_3_layer = src.special_hair_1_layer
+				AH.special_hair_3_layer = src.special_hair_3_layer
 				AH.special_hair_3_offset_y = src.head_offset
 
 				AH.mob_detail_1_icon = src.detail_1_icon
 				AH.mob_detail_1_state = src.detail_1_state
 				AH.mob_detail_1_color_ref = src.detail_1_color
 				AH.mob_detail_1_offset_y = src.body_offset
+
+				AH.mob_detail_2_icon = src.detail_2_icon
+				AH.mob_detail_2_state = src.detail_2_state
+				AH.mob_detail_2_color_ref = src.detail_2_color
+				AH.mob_detail_2_offset_y = src.body_offset
+
+				AH.mob_detail_3_icon = src.detail_3_icon
+				AH.mob_detail_3_state = src.detail_3_state
+				AH.mob_detail_3_color_ref = src.detail_3_color
+				AH.mob_detail_3_offset_y = src.body_offset
 
 				AH.mob_oversuit_1_icon = src.detail_oversuit_1_icon
 				AH.mob_oversuit_1_state = src.detail_oversuit_1_state
@@ -631,6 +655,20 @@
 				src.detail_1_state = src.detail_1_state_f
 			if(src.detail_1_color_f)
 				src.detail_1_color = src.detail_1_color_f
+
+			if(src.detail_2_icon_f)
+				src.detail_2_icon = src.detail_2_icon_f
+			if(src.detail_2_state_f)
+				src.detail_2_state = src.detail_2_state_f
+			if(src.detail_2_color_f)
+				src.detail_2_color = src.detail_2_color_f
+
+			if(src.detail_3_icon_f)
+				src.detail_3_icon = src.detail_3_icon_f
+			if(src.detail_3_state_f)
+				src.detail_3_state = src.detail_3_state_f
+			if(src.detail_3_color_f)
+				src.detail_3_color = src.detail_3_color_f
 
 			if(src.detail_oversuit_1_icon_f)
 				src.detail_oversuit_1_icon = src.detail_oversuit_1_icon_f
@@ -2107,14 +2145,77 @@
 
 	disposing()
 		if(ishuman(mob))
-			//var/mob/living/carbon/human/L = mob
-			//L.bioHolder.RemoveEffect("stinky") //that stink doesn't wash off so easily
+			//var/mob/living/carbon/human/H = mob
+			//H.bioHolder.RemoveEffect("stinky") //that stink doesn't wash off so easily
 			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
 			mob.base_body_temp = initial(mob.base_body_temp)
 		. = ..()
 
 	say_verb()
 		return "dooks"
+
+/datum/mutantrace/yeen
+	name = "hyena"
+	icon = 'icons/mob/yeen.dmi'
+	icon_state = "body_m"
+	override_attack = 0
+	mutant_appearance_flags = (NOT_DIMORPHIC | HAS_HUMAN_EYES | BUILT_FROM_PIECES | HAS_EXTRA_DETAILS | FIX_COLORS | SKINTONE_USES_PREF_COLOR_1 | HAS_SPECIAL_HAIR | TORSO_HAS_SKINTONE | WEARS_UNDERPANTS)
+	voice_override = "yeen"
+	special_head = HEAD_YEEN
+	special_head_state = "head"
+	mutant_organs = list("tail" = /obj/item/organ/tail/yeen)
+	mutant_folder = 'icons/mob/yeen.dmi'
+	special_hair_1_icon = 'icons/mob/yeen.dmi'
+	special_hair_1_state = "head_detail_cntr"
+	special_hair_1_color = CUST_1
+	special_hair_2_icon = 'icons/mob/yeen.dmi'
+	special_hair_2_state = "head_detail_mane"
+	special_hair_2_color = CUST_2
+	special_hair_3_icon = 'icons/mob/yeen.dmi'
+	special_hair_3_state = "head_detail_ears"
+	special_hair_3_color = CUST_3
+	special_hair_3_layer = MOB_HAIR_LAYER1
+	detail_1_icon = 'icons/mob/yeen.dmi'
+	detail_1_state = "chest_center" //center chest, until we can get better toggles for details
+	detail_1_color = CUST_2
+	detail_2_icon = 'icons/mob/yeen.dmi'
+	detail_2_state = "chest_detail_altcolor" //detail chest?, until we can get better toggles for details
+	detail_2_color = CUST_3
+	detail_3_icon = 'icons/mob/yeen.dmi'
+	detail_3_state = "spots_full" //spots, until we can get better toggles for details
+	detail_3_color = CUST_2
+	r_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/yeen/right
+	l_limb_arm_type_mutantrace = /obj/item/parts/human_parts/arm/mutant/yeen/left
+	r_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/yeen/right
+	l_limb_leg_type_mutantrace = /obj/item/parts/human_parts/leg/mutant/yeen/left
+	race_mutation = /datum/bioEffect/mutantrace/yeen
+	clothing_icon_override = 'icons/mob/fert_clothes.dmi' //should be close enough, we can get to that later on
+	color_channel_names = list("Base Coat", "Mane and Spots", "Ears and Chest")
+	dna_mutagen_banned = FALSE
+
+	//thanks again for the sprites and hard work, Cet!!
+
+	New(var/mob/living/carbon/human/H)
+		..()
+		emote_overrides = yeen_emotes
+		if(ishuman(H))
+			H.bioHolder.AddEffect("stinky")
+			H.mob_flags |= SHOULD_HAVE_A_TAIL
+
+			H.update_face()
+			H.update_body()
+			H.update_clothing()
+
+	disposing()
+		if(ishuman(mob))
+			var/mob/living/carbon/human/H = mob
+			H.bioHolder.RemoveEffect("stinky")
+			mob.mob_flags &= ~SHOULD_HAVE_A_TAIL
+			mob.base_body_temp = initial(mob.base_body_temp)
+		. = ..()
+
+	say_verb()
+		return "whoops"
 
 #undef OVERRIDE_ARM_L
 #undef OVERRIDE_ARM_R

@@ -20,6 +20,7 @@
 #define iscat(x) (istype(x, /mob/living/carbon/human) && istype(x:mutantrace, /datum/mutantrace/cat))
 #define iscow(x) (istype(x, /mob/living/carbon/human) && istype(x:mutantrace, /datum/mutantrace/cow))
 #define isfert(x) (istype(x, /mob/living/carbon/human) && istype(x:mutantrace, /datum/mutantrace/fert))
+#define isyeen(x) (istype(x, /mob/living/carbon/human) && istype(x:mutantrace, /datum/mutantrace/yeen))
 #define isfrog(x) (istype(x, /mob/living/carbon/human) && istype(x:mutantrace, /datum/mutantrace/amphibian))
 #define isbird(x) (istype(x, /mob/living/carbon/human) && istype(x:mutantrace, /datum/mutantrace/birb))
 #define iscritter(x) istype(x, /obj/critter)

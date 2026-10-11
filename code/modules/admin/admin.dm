@@ -1229,7 +1229,7 @@ var/global/noir = 0
 					alert("This secret can only be used on human mobs.")
 					return
 				var/mob/living/carbon/human/H = M
-				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","bird","Ghostdrone","Flubber","Cat","Cow")
+				var/which = input("Transform them into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Fert","Yeen","bird","Ghostdrone","Flubber","Cat","Cow")
 				if (!which)
 					return
 				. = 0
@@ -1257,6 +1257,9 @@ var/global/noir = 0
 						H.set_mutantrace(/datum/mutantrace/flashy)
 						. = 1
 					if("Fert")
+						H.set_mutantrace(/datum/mutantrace/fert)
+						. = 1
+					if("Yeen")
 						H.set_mutantrace(/datum/mutantrace/fert)
 						. = 1
 			/*		if("Kudzuman")
@@ -2532,6 +2535,8 @@ var/global/noir = 0
 								H.set_mutantrace(/datum/mutantrace/cow)
 							if ("Fert")
 								H.set_mutantrace(/datum/mutantrace/fert)
+							if ("Yeen")
+								H.set_mutantrace(/datum/mutantrace/yeen)
 							if ("Bird")
 								H.set_mutantrace(/datum/mutantrace/birb)
 						message_admins("<span class='internal'>[key_name(usr)] transformed [H.real_name] into a [which].</span>")
@@ -2539,7 +2544,7 @@ var/global/noir = 0
 						logTheThing("diary", usr, null, "transformed [H.real_name] into a [which].", "admin")
 
 					if("transform_all")
-						var/which = input("Transform everyone into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cat","Cow","Fert")
+						var/which = input("Transform everyone into what?","Transform") as null|anything in list("Monkey","Cyborg","Lizardman","Squidman","Martian","Skeleton","Flashman","Cat","Cow","Fert","Yeen")
 						for(var/mob/living/carbon/human/H in mobs)
 							switch(which)
 								if("Monkey") H.monkeyize()
@@ -2560,6 +2565,8 @@ var/global/noir = 0
 									H.set_mutantrace(/datum/mutantrace/cow)
 								if ("Fert")
 									H.set_mutantrace(/datum/mutantrace/fert)
+								if ("Yeen")
+									H.set_mutantrace(/datum/mutantrace/yeen)
 								if ("Bird")
 									H.set_mutantrace(/datum/mutantrace/birb)
 							LAGCHECK(LAG_LOW)

@@ -772,6 +772,8 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 
 //talksounds
 //spaceradio adapted from file by BenScripps under CC-BY-SA-3.0 and Wikimedia Commons https://en.wikipedia.org/wiki/File:Quindar_tones.ogg
+//Hyena sounds by https://freesound.org/people/sounagix/ sounagix -- https://freesound.org/people/sounagix/packs/37991/ -- License: Creative Commons 0
+
 /var/global/list/sounds_speak = list(	\
 		"1" = sound('sound/misc/talk/speak_1.ogg'),	"1!" = sound('sound/misc/talk/speak_1_exclaim.ogg'),"1?" = sound('sound/misc/talk/speak_1_ask.ogg'),\
 		"2" = sound('sound/misc/talk/speak_2.ogg'),	"2!" = sound('sound/misc/talk/speak_2_exclaim.ogg'),"2?" = sound('sound/misc/talk/speak_2_ask.ogg'),\
@@ -779,6 +781,7 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
  		"4" = sound('sound/misc/talk/speak_4.ogg'),	"4!" = sound('sound/misc/talk/speak_4_exclaim.ogg'),	"4?" = sound('sound/misc/talk/speak_4_ask.ogg'), \
  		"bloop" = sound('sound/misc/talk/buwoo.ogg'),	"bloop!" = sound('sound/misc/talk/buwoo_exclaim.ogg'),	"bloop?" = sound('sound/misc/talk/buwoo_ask.ogg'), \
 		"fert" = sound('sound/misc/talk/fert.ogg'),	"fert!" = sound('sound/misc/talk/fert_exclaim.ogg'),	"fert?" = sound('sound/misc/talk/fert_ask.ogg'), \
+		"yeen" = sound('sound/misc/talk/yeen.ogg'),	"fert!" = sound('sound/misc/talk/yeen_exclaim.ogg'),	"fert?" = sound('sound/misc/talk/yeen_ask.ogg'), \
 		"cat" = sound('sound/misc/talk/cat.ogg'),	"cat!" = sound('sound/misc/talk/cat_exclaim.ogg'),"cat?" = sound('sound/misc/talk/cat_exclaim.ogg'), \
 		"bird" = sound('sound/misc/talk/pigeon_coo.ogg'), "bird!" = sound('sound/misc/talk/pigeon_exclaim.ogg'),"bird?" = sound('sound/misc/talk/pigeon_ask.ogg'), \
  		"lizard" = sound('sound/misc/talk/lizard.ogg'),	"lizard!" = sound('sound/misc/talk/lizard_exclaim.ogg'),"lizard?" = sound('sound/misc/talk/lizard_ask.ogg'), \

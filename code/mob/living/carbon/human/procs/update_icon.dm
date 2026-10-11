@@ -961,6 +961,33 @@ var/list/update_body_limbs = list("r_arm" = "stump_arm_right", "l_arm" = "stump_
 						else
 							human_image.color = "#FFFFFF"
 					src.body_standing.overlays += human_image
+					//but wait there's more (these are set to null by default anyway, currently only yeens use it)
+					//we'll have to play layering and order by ear, luckily for me they were already defined
+					if(AHOLD.mob_detail_2_state)
+						human_image = image(AHOLD.mob_detail_2_icon, AHOLD.mob_detail_2_state, MOB_BODYDETAIL_LAYER2)
+						switch(AHOLD.mob_detail_2_color_ref)
+							if(CUST_1)
+								human_image.color = AHOLD.customization_first_color
+							if(CUST_2)
+								human_image.color = AHOLD.customization_second_color
+							if(CUST_3)
+								human_image.color = AHOLD.customization_third_color
+							else
+								human_image.color = "#FFFFFF"
+						src.body_standing.overlays += human_image
+					//okay 3 is enough
+					if(AHOLD.mob_detail_3_state)
+						human_image = image(AHOLD.mob_detail_3_icon, AHOLD.mob_detail_3_state, MOB_BODYDETAIL_LAYER3)
+						switch(AHOLD.mob_detail_3_color_ref)
+							if(CUST_1)
+								human_image.color = AHOLD.customization_first_color
+							if(CUST_2)
+								human_image.color = AHOLD.customization_second_color
+							if(CUST_3)
+								human_image.color = AHOLD.customization_third_color
+							else
+								human_image.color = "#FFFFFF"
+						src.body_standing.overlays += human_image
 
 				if(AHOLD.mob_appearance_flags & HAS_OVERSUIT_DETAILS)	// need more oversuits? Make more of these!
 					human_detail_image = image(AHOLD.mob_oversuit_1_icon, AHOLD.mob_oversuit_1_state, layer = MOB_OVERSUIT_LAYER1)

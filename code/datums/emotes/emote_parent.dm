@@ -291,6 +291,11 @@ var/static/list/fert_emotes = list(
 	"scream" = /datum/emote/scream/fert
 	)
 
+var/static/list/yeen_emotes = list(
+	"laugh" = /datum/emote/yeen/laugh,
+	"scream" = /datum/emote/scream/yeen
+	)
+
 //shared by AI, borgs, possibly ghostdrones?
 
 //to add: list, listbasic, listtarget

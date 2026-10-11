@@ -1272,6 +1272,17 @@ obj/trait/pilot
 	category = "species"
 	mutantRace = /datum/mutantrace/fert
 
+/obj/trait/yeen
+	name = "Hyaenidine (0) \[Species\]"
+	cleanName = "Hyenaineian"
+	icon_state = "yeenT"
+	desc = "Everything's a big laugh to you, huh?"
+	id = "yeen"
+	points = 0
+	isPositive = 0
+	category = "species"
+	mutantRace = /datum/mutantrace/yeen
+
 /obj/trait/ferg
 	name = "Phibian (0) \[Species\]"
 	cleanName = "Phibian"

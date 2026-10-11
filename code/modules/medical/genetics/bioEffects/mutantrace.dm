@@ -168,7 +168,15 @@
 	msgLose = "You calm down a lot, but for some reason you still stink???"
 	icon_state  = "fert"
 
-
+/datum/bioEffect/mutantrace/yeen
+	name = "Hyaenine Genetics"
+	desc = "The subject really has something to laugh about, and needs a bath."
+	id = "yeen"
+	mutantrace_option = "Hyena"
+	mutantrace_path = /datum/mutantrace/yeen
+	msgGain = "Suddenly everything's a lot more funny to you."
+	msgLose = "You get more serious."
+	icon_state  = "yeen"
 
 /datum/bioEffect/mutantrace/chicken
 	name = "Experimental Strain Epsilon Gamma Gamma #5"
