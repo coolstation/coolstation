@@ -392,6 +392,7 @@ var/global
 
 	datum/configuration/config = null
 	datum/sun/sun = null
+	sunmult = 1 //if there's a solar flare, or maybe it's cloudy/storming. currently in solar_flare event, but if we do Weather let's move it into its own thing
 
 	datum/changelog/changelog = null
 	datum/admin_changelog/admin_changelog = null

@@ -24,7 +24,12 @@
 			command_alert("A solar flare has been detected near the [station_or_ship()]. We estimate a signal interference rate of [headline_estimate]% lasting anywhere between three to five minutes.", "Solar Flare")
 		SPAWN_DBG(flare_start_time)
 			signal_loss += signal_loss_current
+			//boost star output for solars
+			sunmult = ((100 + signal_loss_current)/100)
 
+	//TODO: check for sun position on gehenna before applying this, and depending on angle, intensify brightness and sunburn/suntan
+	//TODO: snowy maps, good opportunity for an aurora effect (and good excuse to have it happen more often)
+	//TODO: consider the pros and cons of proc/stars to interfere with messages, if not just sending messages of static/unknown speaker
 	#ifndef UNDERWATER_MAP
 			for (var/turf/space/S in world)
 				LAGCHECK(LAG_LOW)
@@ -35,6 +40,7 @@
 	#endif
 			sleep(rand(1200,1800))
 			signal_loss -= signal_loss_current
+			sunmult = 1
 
 	#ifndef UNDERWATER_MAP
 			for (var/turf/space/S in world)
