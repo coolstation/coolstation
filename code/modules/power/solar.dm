@@ -479,7 +479,7 @@
 				control.gen += sgen
 
 		if(adir != ndir)
-			SPAWN(10+rand(0,15))
+			SPAWN_DBG(10+rand(0,15))
 				var/old_adir = adir
 				var/max_move = rand(0.25, 0.375) * PROCESSING_TIER_MULTI(src)
 				adir = (360 + adir + clamp((180 - (540 - ndir + adir) % 360), -max_move, max_move)) % 360
