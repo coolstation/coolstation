@@ -31,6 +31,8 @@
 	if ((src.wear_mask && !src.wear_mask.see_face) || (src.head && !src.head.see_face))
 		if (src.name == "Unknown" || src.name != src.real_name) //ID-less or concealed, could be anyone
 			. = "<br>You don't seem to recognize this person." //hint that something is up, but will not provide a positive identity clue
+		else if (usr.real_name == src.real_name) //presented name is the same name as the examiner
+			. = "<br>Wait a minute..."
 		else if (src.name == src.real_name) //not concealing, genuinely on a code-base-level is the person
 			. = "<br>[src.bioHolder.mobAppearance.flavor_text]"
 	else
