@@ -191,7 +191,7 @@
 	if(adir != ndir)
 		var/old_adir = adir
 		var/max_move = rand(0.25, 0.375) * PROCESSING_TIER_MULTI(src) //was between 8,12 when these were on PROCESSING_32TH, this should be equivalent without speeding them up
-		adir = (360 + adir + clamp(ndir - adir, -max_move, max_move)) % 360
+		adir = (360 + adir + clamp((180 - (540 - ndir + adir) % 360), -max_move, max_move)) % 360
 		if(adir != old_adir)
 			use_power(power_usage)
 			updateicon()
@@ -480,6 +480,9 @@
 
 		if(adir != ndir)
 			SPAWN_DBG(10+rand(0,15))
-				adir = (360+adir+clamp(ndir-adir,-10,10))%360
-				updateicon()
+				var/old_adir = adir
+				var/max_move = rand(0.25, 0.375) * PROCESSING_TIER_MULTI(src)
+				adir = (360 + adir + clamp((180 - (540 - ndir + adir) % 360), -max_move, max_move)) % 360
+				if(adir != old_adir)
+					updateicon()
 				update_solar_exposure()

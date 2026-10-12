@@ -163,9 +163,11 @@
 			continue
 		var/mob/living/carbon/human/M = C.mob
 		if (M.ears) boutput(M, "<span class='alert'>Your headset speaker suddenly bursts into weird static!</span>")
-	signal_loss += 100
+	//bumped to 200 to distinguish from real solar flare, because it doesn't seem to actually impact how much interference is caused, it's just a basic threshold of >75
+	//this should really be separate and allow more fucking with signals and I never really thought about that until now. Thanks, Pandemonium. Thandemonium.
+	signal_loss += 200
 	sleep(10 SECONDS)
-	signal_loss -= 100
+	signal_loss -= 200
 
 /mob/living/proc/PAND_Grilles(var/protectuser = 1)
 	for(var/mob/O in AIviewers(src, null)) O.show_message("<span class='alert'><B>[src]</B> reshapes the metal around [himself_or_herself(src)]!</span>", 1)
