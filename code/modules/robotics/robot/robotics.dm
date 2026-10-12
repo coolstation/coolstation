@@ -398,7 +398,7 @@
 
 /obj/item/reagent_containers/glass/oilcan
 	name = "oil can"
-	desc = "Contains oil intended for use on cyborgs and robots."
+	desc = "Contains oil intended for use on cyborgs and robots, and other moving station equipment."
 	icon = 'icons/obj/items/robot_parts.dmi'
 	icon_state = "oilcan"
 	amount_per_transfer_from_this = 15
@@ -411,6 +411,26 @@
 	New()
 		..()
 		reagents.add_reagent("oil", 60)
+
+	afterattack(obj/target, mob/user, flag) //could be useful if we make this a very specific maintenance tool as well
+		if (istype(target, /obj/machinery/power/solar)) // special port only for this oilcan
+			if (!target.reagents)
+				return
+			if (!reagents.total_volume)
+				boutput(user, "<span class='alert'>[src] is empty.</span>")
+				return
+
+			if (target.reagents.total_volume >= target.reagents.maximum_volume)
+				boutput(user, "<span class='alert'>[target] is already full.</span>")
+				return
+
+			logTheThing("combat", user, null, "transfers chemicals from [src] [log_reagents(src)] to [target] at [log_loc(user)].")
+			src.reagents.trans_to(target, 10)
+			//if required reagents > contents of oilcan
+			//you empty \the [src] into the oil tank, but it is not full
+			boutput(user, "<span class='notice'>You fill up \the [target]'s oil tank.</span>")
+			return
+		..()
 
 /*
 Jucier container.
