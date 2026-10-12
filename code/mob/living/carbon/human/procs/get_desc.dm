@@ -34,7 +34,9 @@
 		else if (usr.real_name == src.real_name) //presented name is the same name as the examiner
 			. = "<br>Wait a minute..."
 		else if (src.name == src.real_name) //not concealing, genuinely on a code-base-level is the person
-			. = "<br>[src.bioHolder.mobAppearance.flavor_text]"
+			try
+				. = "<br>[src.bioHolder.mobAppearance.flavor_text]"
+			catch
 	else
 		try
 			. = "<br>[src.bioHolder.mobAppearance.flavor_text]"
