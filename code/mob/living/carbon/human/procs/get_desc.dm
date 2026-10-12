@@ -27,10 +27,21 @@
 		if (!ignore_checks && (get_dist(usr.client.eye, src) > 7 && (!usr.client || !usr.client.eye || !usr.client.holder || usr.client.holder.state != 2)))
 			return "[jointext(., "")]<br><span class='alert'><B>[src.name]</B> is too far away to see clearly.</span>"
 
-	try
-		. = "<br>[src.bioHolder.mobAppearance.flavor_text]"
-	catch
-		//nop
+	//copying from later in the thing, some mask/face/name checks to handle flavor text for anyone trying to be in disguise
+	if ((src.wear_mask && !src.wear_mask.see_face) || (src.head && !src.head.see_face))
+		if (src.name == "Unknown" || src.name != src.real_name) //ID-less or concealed, could be anyone
+			. = "<br>You don't seem to recognize this person." //hint that something is up, but will not provide a positive identity clue
+		else if (usr.real_name == src.real_name) //presented name is the same name as the examiner
+			. = "<br>Wait a minute..."
+		else if (src.name == src.real_name) //not concealing, genuinely on a code-base-level is the person
+			try
+				. = "<br>[src.bioHolder.mobAppearance.flavor_text]"
+			catch
+	else
+		try
+			. = "<br>[src.bioHolder.mobAppearance.flavor_text]"
+		catch
+			//nop
 
 	. +=  "<br><span class='notice'>*---------*</span>"
 
