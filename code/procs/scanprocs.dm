@@ -93,17 +93,15 @@
 
 			//Type
 			//the confusion between the actual blood type of blood and the blood type for forensics makes me want to find a better way to handle both
-			/*
-			this broke compile because i need to address the bioholder correctly so commenting out until i or someone else gets back to it
+			//oh my god i'm an idiot. it was bioHolder and i wrote bioholder. that was the issue the whole time. anyway,
 			if (istype(L,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = L
-				if (!H.bioholder.bloodType || !H.blood_pressure)
+				if (!H.bioHolder.bloodType || !H.blood_pressure)
 					blood_data += " | Blood Type: <span class='alert'>Unknown</span>"
 				else if (isvampire(H))
 					blood_data += " | Blood Type: AB+" //universal recipient, har har
 				else
-					blood_data += " | Blood Type: [H.bioholder?.bloodType]"
-			*/
+					blood_data += " | Blood Type: [H.bioHolder?.bloodType]"
 
 			//Amount
 			if (verbose_reagent_info)
