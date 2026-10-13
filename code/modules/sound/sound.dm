@@ -229,8 +229,10 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.2, 0.3, 0.4, 1, 1)
 			if (forcechannel)
 				S.channel = forcechannel
 			S.repeat = repeat
-			if (source.anchored)
-				S.atom = source //but what if i were to purchase fast food and disguise it as my own cooking
+			if (ismovable(source))
+				var/atom/movable/AM = source
+				if (AM.anchored)
+					S.atom = source //but what if i were to purchase fast food and disguise it as my own cooking
 
 
 			if(cant_hear(M)) //Bone conductivity, I guess?
