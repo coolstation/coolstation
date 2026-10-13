@@ -285,7 +285,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 			var/trans = src.reagents.trans_to(target, 10)
 			boutput(user, "<span class='notice'>You dump [trans] units of the solution to [target].</span>")
 
-		else if (istype(target, /turf/space/fluid)) //specific exception for seafloor rn, since theres no others
+		else if (istype(target, /turf/space/fluid) || istype(target, /turf/space/gehenna)) //specific exception for seafloor (AND the desert wastes of Gehenna!)
 			if (src.reagents.total_volume >= src.reagents.maximum_volume)
 				boutput(user, "<span class='alert'>[src] is full.</span>")
 				return
