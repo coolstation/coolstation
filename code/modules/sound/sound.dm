@@ -51,11 +51,7 @@
 
 	return attenuate
 
-var/global/SPACED_ENV = list(100,0.52,0,-1600,-1500,0,2,2,-10000,0,200,0.01,0.165,0,0.25,0.01,-5,1000,20,10,53,100,0x3f)
-var/global/DEAF_ENV = list(20,0.4,-200,-2000,700,0.15,2,1.2,-8000,0.02,400,0.08,0.165,0,0.25,0.01,-15,500,200,3,70,100,0x3f)
-var/global/SPACED_ECHO = list(-10000,0,-1450,0,0,1,0,1,10,10,0,1,0,10,10,10,10,7)
-var/global/ECHO_AFAR = list(0,0,0,0,0,0,-10000,1.0,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
-var/global/ECHO_CLOSE = list(0,0,0,0,0,0,0,0.25,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
+//relocated global filters to filters.dm in same folder
 var/global/list/list/falloff_cache = list("[SOUND_RANGE_TINY]" = list(), "[SOUND_RANGE_SMALL]" = list(), "[SOUND_RANGE_MODERATE]" = list(), "[SOUND_RANGE_STANDARD]" = list(), "[SOUND_RANGE_LARGE]" = list())
 
 //default volumes, 0 = 0, 1 = 100
@@ -125,7 +121,7 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.2, 0.3, 0.4, 1, 1)
 	if( channel == VOLUME_CHANNEL_ADMIN )
 		src.chatOutput.adjustVolumeRaw( getMasterVolume() * volume )
 
-/proc/playsound(var/atom/source, soundin, vol as num, vary, range = SOUND_RANGE_STANDARD as num, pitch, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE, atom = src)
+/proc/playsound(var/atom/source, soundin, vol as num, vary, range = SOUND_RANGE_STANDARD as num, pitch, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE, atom = src, echo)
 	// don't play if over the per-tick sound limit
 	if (!limiter || !limiter.canISpawn(/sound))
 		return
