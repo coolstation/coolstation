@@ -239,7 +239,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 	var/image/image_under = null
 	layer = MOB_LAYER + 1
 	mats = 8
-	var/weeoo_in_progress = 0
+	var/weeoo_in_progress = FALSE
 	var/icon_weeoo_state = 2
 	soundproofing = 0
 	throw_dropped_items_overboard = 1
@@ -249,27 +249,48 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 /obj/vehicle/segway/New()
 	..()
+	setup_sound()
 	light = new /datum/light/point
 	light.set_brightness(0.7)
 	light.attach(src)
 
-/obj/vehicle/segway/proc/weeoo()
-	if (weeoo_in_progress)
-		return
+/obj/vehicle/segway/setup_sound()
+	sound_emitter = new(src)
+	if (sound_emitter)
+		var/sound/weeoo = sound()
+		weeoo.file = "sound/machines/siren_police.ogg"
+		weeoo.repeat = 1
+		weeoo.volume = 100
+		sound_emitter.add(weeoo, "weeoo")
 
-	weeoo_in_progress = 10
+/obj/vehicle/segway/proc/weeoon()
+
+	if(weeoo_in_progress)
+		return
+	weeoo_in_progress = TRUE
 	SPAWN_DBG(0)
-		playsound(src.loc, "sound/machines/siren_police.ogg", 50, 1)
+		if(!src.sound_emitter.active_sound)
+			src.sound_emitter.play("weeoo")
 		light.enable()
 		src.icon_state = "[src.icon_base][src.icon_weeoo_state]"
-		while (weeoo_in_progress--)
+		while (weeoo_in_progress)
 			light.set_color(0.9, 0.1, 0.1)
 			sleep(0.3 SECONDS)
 			light.set_color(0.1, 0.1, 0.9)
 			sleep(0.3 SECONDS)
-		light.disable()
-		src.update()
 		weeoo_in_progress = 0
+
+/obj/vehicle/segway/proc/weeooff(var/crashed)
+	if(!weeoo_in_progress)
+		return
+	src.sound_emitter.deactivate()
+	if(crashed)
+		playsound(src.loc, "sound/machines/siren_police_stop_wonky.ogg", 50, 1)
+	else
+		playsound(src.loc, "sound/machines/siren_police_stop.ogg", 50, 1)
+	light.disable()
+	src.update()
+	weeoo_in_progress = 0
 
 /obj/ability_button/weeoo
 	name = "Police Siren"
@@ -281,7 +302,10 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 		if (istype(the_mob.loc, /obj/vehicle/segway))
 			var/obj/vehicle/segway/seg = the_mob.loc
-			seg.weeoo()
+			if(!seg.weeoo_in_progress)
+				seg.weeoon()
+			else
+				seg.weeooff()
 		else if (ishuman(the_mob))
 			var/mob/living/carbon/human/H = the_mob
 			var/obj/item/clothing/head/helmet/siren/S = H.head
@@ -423,6 +447,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 		var/turf/target = get_edge_target_turf(src, src.dir)
 		rider.throw_at(target, 5, 1)
 		rider = null
+		weeooff(1)
 		update()
 		return
 	if(selfdismount)
@@ -432,6 +457,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 				continue
 			C.show_message("<B>[rider]</B> dismounts from \the [src].", 1)
 	rider = null
+	weeooff()
 	update()
 	return
 
@@ -599,6 +625,8 @@ ABSTRACT_TYPE(/obj/vehicle)
 		boutput(rider, "<span class='alert'><B>Your segway is destroyed!</B></span>")
 		eject_rider()
 	..()
+	weeooff()
+
 	return
 
 // Some people get really angry over this, so whatever. Logs would've been helpful on occasion (Convair880).
