@@ -215,8 +215,17 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 
 	..()
 
-	if (join_motd)
-		boutput(src, "<div class=\"motd\">[join_motd]</div>")
+	if (!join_motd)
+		sleep(10) //just give it a second, literally. if you're locally compiling and running this your client may be up before load_motd(). this made troubleshooting difficult!
+	if (join_motd && picked_herald)
+		//dynamic header
+		boutput(src, "<div class='motd'><h1 style='text-align: center;'><img src='[resource("images/motd/heralds/[picked_herald]")]'> <img src='[resource("images/motd/welcomes/[picked_welcome]")]'> <img src='[resource("images/motd/heralds/[picked_herald]")]'><br /><img src='[resource("images/motd/rules/[picked_rule]")]'></h1>[join_motd]</div>")
+	else if (join_motd)
+		//the classic
+		boutput(src, "<div class='motd'><h1 style='text-align: center;'><img src='[resource("images/motd/heralds/aibo.gif")]'><img src='[resource("images/motd/welcomes/welcome.png")]'><img src='[resource("images/motd/heralds/aibo.gif")]'><br /><img src='[resource("images/motd/rules/lightsaber.gif")]'></h1>[join_motd]</div>")
+	else
+		//oops
+		boutput(src, "<div class='motd'>welcome to coolstation<br>we dont have an motd for some reason<br>sorry<br>please play our game</div>")
 
 	if (IsGuestKey(src.key))
 		if(!(!src.address || src.address == world.host)) // If you're a host or a developer locally, ignore this check.

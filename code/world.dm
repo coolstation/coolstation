@@ -171,6 +171,14 @@ var/global/mob/twitch_mob = 0
 /world/proc/load_motd()
 	join_motd = grabResource("html/motd.html")
 
+/world/proc/load_heralds()
+	var/list/motdwelcomes = flist("browserassets/images/motd/welcomes/")
+	var/list/motdheralds = flist("browserassets/images/motd/heralds/")
+	var/list/motdrules = flist("browserassets/images/motd/rules/")
+	picked_welcome = pick(motdwelcomes)
+	picked_herald = pick(motdheralds)
+	picked_rule = pick(motdrules)
+
 /world/proc/load_rules()
 	rules = file2text("config/rules.html")
 	/*
@@ -557,6 +565,7 @@ var/f_color_selector_handler/F_Color_Selector
 
 	Z_LOG_DEBUG("World/Init", "Loading MOTD...")
 	src.load_motd()//GUH
+	src.load_heralds()//BUH
 	Z_LOG_DEBUG("World/Init", "Loading admins...")
 	src.load_admins()//UGH
 	Z_LOG_DEBUG("World/Init", "Loading whitelist...")

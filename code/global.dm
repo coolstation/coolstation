@@ -401,6 +401,10 @@ var/global
 
 	join_motd = null
 	rules = null
+	picked_welcome = null
+	picked_herald = null
+	picked_rule = null
+
 	forceblob = 0
 
 	halloween_mode = 0
