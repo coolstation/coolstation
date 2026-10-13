@@ -121,7 +121,7 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.2, 0.3, 0.4, 1, 1)
 	if( channel == VOLUME_CHANNEL_ADMIN )
 		src.chatOutput.adjustVolumeRaw( getMasterVolume() * volume )
 
-/proc/playsound(var/atom/source, soundin, vol as num, vary, range = SOUND_RANGE_STANDARD as num, pitch, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE, atom = src, echo)
+/proc/playsound(var/atom/source, soundin, vol as num, vary, range = SOUND_RANGE_STANDARD as num, pitch, ignore_flag = 0, channel = VOLUME_CHANNEL_GAME, flags = 0, returnchannel = FALSE, forcechannel = 0, repeat = FALSE, atom = src)
 	// don't play if over the per-tick sound limit
 	if (!limiter || !limiter.canISpawn(/sound))
 		return

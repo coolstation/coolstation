@@ -231,7 +231,9 @@
 	force = 1
 	throwforce = 5
 	var/spam_flag = 0
-	var/list/sounds_sax = list('sound/musical_instruments/sax/sax.ogg', 'sound/musical_instruments/sax/sax2.ogg','sound/musical_instruments/sax/sax3.ogg','sound/musical_instruments/sax/sax4.ogg','sound/musical_instruments/sax/sax5.ogg','sound/musical_instruments/sax/sax6.ogg','sound/musical_instruments/sax/sax7.ogg','sound/musical_instruments/sax/sax8.ogg','sound/musical_instruments/sax/sax9.ogg')
+	var/list/sounds_sax = list('sound/musical_instruments/sax/old/sax1.ogg', 'sound/musical_instruments/sax/old/sax2.ogg','sound/musical_instruments/sax/old/sax3.ogg','sound/musical_instruments/sax/old/sax4.ogg','sound/musical_instruments/sax/old/sax5.ogg','sound/musical_instruments/sax/old/sax6.ogg','sound/musical_instruments/sax/old/sax7.ogg','sound/musical_instruments/sax/old/sax8.ogg','sound/musical_instruments/sax/old/sax9.ogg')
+	var/list/adjectives = list("sexy", "sensuous", "libidinous","spicy","flirtatious","salacious","sizzling","carnal","hedonistic")
+	var/cooldown = 10 SECONDS
 	stamina_damage = 10
 //	stamina_cost = 10
 //	stamina_crit_chance = 5
@@ -244,37 +246,22 @@
 			var/mob/living/carbon/human/H = user
 			if (H.sims)
 				H.sims.affectMotive("fun", 5)
-		user.visible_message("<B>[user]</B> lays down a [pick("sexy", "sensuous", "libidinous","spicy","flirtatious","salacious","sizzling","carnal","hedonistic")] riff on [his_or_her(user)] saxophone!")
+		user.visible_message("<B>[user]</B> lays down a [pick(adjectives)] riff on [his_or_her(user)] saxophone!")
 		playsound(get_turf(src), pick(src.sounds_sax), 50, 1)
 		for (var/obj/critter/dog/george/G in range(user,6))
-			if (prob(60))
+			if (istype(src,/obj/item/saxophone/bad) || prob(60))
 				G.howl()
 		src.add_fingerprint(user)
-		SPAWN_DBG(100)
+		SPAWN_DBG(cooldown)
 			spam_flag = 0
 	return
 
 /* -------------------- BAD SAXO -------------------- */
 /obj/item/saxophone/bad
 	desc = "You have no idea how to play this instrument <i>at all</i>."
-	sounds_sax = list('sound/musical_instruments/sax/saxbad-01.ogg', 'sound/musical_instruments/sax/saxbad-02.ogg','sound/musical_instruments/sax/saxbad-03.ogg','sound/musical_instruments/sax/saxbad-04.ogg','sound/musical_instruments/sax/saxbad-05.ogg','sound/musical_instruments/sax/saxbad-06.ogg','sound/musical_instruments/sax/saxbad-07.ogg')
-
-/obj/item/saxophone/bad/attack_self(mob/user as mob)
-	if (spam_flag == 0)
-		spam_flag = 1
-		if (ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if (H.sims)
-				H.sims.affectMotive("fun", 10) //bad on purpose is the most fun but maybe it should make everyone hearing it have less fun
-		user.visible_message("<B>[user]</B> [pick("honks","squeals","toots","gurgles","wails")] out a [pick("horrid", "ear-splitting", "embarrassing","ill-advised","fumbling","atonal","mistaken","bad","tasteless","amateur","possibly avant-garde")] [pick("affront","series of notes","noise","agony","flatulation","musical atrocity","experiment","accident")] on [his_or_her(user)] saxophone!")
-		playsound(get_turf(src), pick(src.sounds_sax), 50, 1)
-		for (var/obj/critter/dog/george/G in range(user,6))
-			if (prob(100))
-				G.howl()
-		src.add_fingerprint(user)
-		SPAWN_DBG(30)
-			spam_flag = 0
-	return
+	sounds_sax = list('sound/musical_instruments/sax/bad/saxbad-01.ogg', 'sound/musical_instruments/sax/bad/saxbad-02.ogg','sound/musical_instruments/sax/bad/saxbad-03.ogg','sound/musical_instruments/sax/bad/saxbad-04.ogg','sound/musical_instruments/sax/bad/saxbad-05.ogg','sound/musical_instruments/sax/bad/saxbad-06.ogg','sound/musical_instruments/sax/bad/saxbad-07.ogg')
+	adjectives = list("honks","squeals","toots","gurgles","wails")
+	cooldown = 3 SECONDS
 
 /* -------------------- Saxophone -------------------- */
 
