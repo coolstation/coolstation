@@ -194,7 +194,7 @@ var/global/lobby_sound_channel = SOUNDCHANNEL_RESERVED_LOBBY_MUSIC
 	set name = "Stop Lobby Music"
 	set desc = "Stops the lobby music from playing immediately."
 	set popup_menu = 0
-	set hidden = 1
+	set hidden = 0
 
 	src.verbs -= /client/verb/stop_the_lobby_music
 	var/sound/stopsound = sound(null,wait = 0,channel=SOUNDCHANNEL_RESERVED_LOBBY_MUSIC)
