@@ -59,11 +59,11 @@ var/global/ECHO_CLOSE = list(0,0,0,0,0,0,0,0.25,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
 var/global/list/list/falloff_cache = list("[SOUND_RANGE_TINY]" = list(), "[SOUND_RANGE_SMALL]" = list(), "[SOUND_RANGE_MODERATE]" = list(), "[SOUND_RANGE_STANDARD]" = list(), "[SOUND_RANGE_LARGE]" = list())
 
 //default volumes, 0 = 0, 1 = 100
-//in order: master, game, ambient, radio, admin, emote, mentorpm
+//in order: master, game, ambient, radio, lobby, admin, emote, mentorpm
 //bumping up ambient to 50% from 10%, with the eventual idea of doing ambient 100% - done as of dec 7 25
 //target mixing for 100% and let people reduce from there!
 //admin sounds/radio music should fuckin' stay at 50% though, they're always loud
-var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
+var/global/list/default_channel_volumes = list(1, 1, 1, 0.2, 0.3, 0.4, 1, 1)
 
 //volumous hair with l'orial paris
 /client/var/list/volumes
@@ -73,7 +73,7 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 
 /// Returns a list of friendly names for available sound channels
 /client/proc/getVolumeNames()
-	return list("Game", "Ambient", "Radio", "Admin", "Emote", "Mentor PM")
+	return list("Game", "Ambient", "Radio", "Lobby", "Admin", "Emote", "Mentor PM")
 
 /// Returns the default volume for a channel, unattenuated for the master channel (0-1)
 /client/proc/getDefaultVolume(channel)
@@ -81,7 +81,7 @@ var/global/list/default_channel_volumes = list(1, 1, 1, 0.5, 0.5, 1, 1)
 
 /// Returns a list of friendly descriptions for available sound channels
 /client/proc/getVolumeDescriptions()
-	return list("This will affect all sounds.", "Most in-game audio will use this channel.", "Ambient background music in various areas will use this channel.", "Any music played from the radio station", "Any music or sounds played by admins.", "Screams and farts.", "Mentor PM notification sound.")
+	return list("This will affect all sounds.", "Most in-game audio will use this channel.", "Ambient background music in various areas will use this channel.", "Any music played from the radio station", "Music played in the lobby prior to round start.", "Any music or sounds played by admins.", "Screams and farts.", "Mentor PM notification sound.")
 
 /// Get the friendly description for a specific sound channel.
 /client/proc/getVolumeChannelDescription(channel)

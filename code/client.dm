@@ -758,21 +758,22 @@ var/global/list/vpn_ip_checks = list() //assoc list of ip = true or ip = false. 
 				music_sound.wait = 0
 				music_sound.repeat = 0
 				music_sound.priority = 254
-				music_sound.channel = admin_sound_channel //having this set to 999 removed layering music functionality -ZeWaka
+				music_sound.channel = lobby_sound_channel //having this set to 999 removed layering music functionality -ZeWaka
 				music_sound.offset = PREGAME_MUSIC_START - ticker.pregame_timeleft
 				music_sound.frequency = 1
 				music_sound.environment = -1
 				music_sound.echo = -1
 
-				var/client_vol = src.getVolume(VOLUME_CHANNEL_ADMIN) * 100
+				var/client_vol = src.getVolume(VOLUME_CHANNEL_LOBBY) * 100
 
 				if (client_vol)
 
-					src.sound_playing[ admin_sound_channel ][1] = 100
-					src.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
+					src.sound_playing[ lobby_sound_channel ][1] = 100
+					src.sound_playing[ lobby_sound_channel ][2] = VOLUME_CHANNEL_LOBBY
 
 					music_sound.volume = client_vol
 					src << music_sound
+					src.verbs += /client/verb/stop_the_lobby_music
 
 	src.reputations = new(src)
 

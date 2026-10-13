@@ -1,4 +1,5 @@
 var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
+var/global/lobby_sound_channel = SOUNDCHANNEL_RESERVED_LOBBY_MUSIC
 
 /client/proc/play_sound_real(S as sound, var/vol as num, var/freq as num)
 	if (!config.allow_admin_sounds)
@@ -187,6 +188,17 @@ var/global/admin_sound_channel = SOUNDCHANNEL_RESERVED_ADMIN_MUSIC_MIN
 		src << 	stopsound
 		mute_channel ++
 	//DEBUG_MESSAGE("Muting sound channel [stopsound.channel] for [src]")
+
+/client/verb/stop_the_lobby_music()
+	set category = "Commands"
+	set name = "Stop Lobby Music"
+	set desc = "Stops the lobby music from playing immediately."
+	set popup_menu = 0
+	set hidden = 1
+
+	src.verbs -= /client/verb/stop_the_lobby_music
+	var/sound/stopsound = sound(null,wait = 0,channel=SOUNDCHANNEL_RESERVED_LOBBY_MUSIC)
+	src << 	stopsound
 
 /client/verb/stop_the_radio()
 	set category = "Commands"

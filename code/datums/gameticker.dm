@@ -209,6 +209,10 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 
 	logTheThing("debug", null, null, "Chosen game mode: [mode] ([master_mode]) on map [getMapNameFromID(map_setting)].")
 
+	//music's done or about to be done, clean up player command tab list
+	for (var/client/C in clients)
+		C.verbs -= /client/verb/stop_the_lobby_music
+
 	#if (defined(I_DONT_WANNA_WAIT_FOR_THIS_PREGAME_SHIT_JUST_GO)) || (DYNAMIC_ARRIVAL_SHUTTLE_TIME == 0)
 	if (map_settings.arrivals_type == MAP_SPAWN_SHUTTLE_DYNAMIC)
 		transit_controls.move_vehicle("arrivals_shuttle", "arrivals_dock", "(shuttle start skipped)")
@@ -380,7 +384,7 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	music_sound.wait = 0
 	music_sound.repeat = 0
 	music_sound.priority = 254
-	music_sound.channel = admin_sound_channel //having this set to 999 removed layering music functionality -ZeWaka
+	music_sound.channel = lobby_sound_channel //having this set to 999 removed layering music functionality -ZeWaka
 
 	music_sound.frequency = 1
 
@@ -390,19 +394,24 @@ var/global/current_state = GAME_STATE_WORLD_INIT
 	SPAWN_DBG(0)
 		for (var/client/C in clients)
 
+			if (!C.preferences) //joined at a bad time and still loading perhaps? this shouldn't cause an issue to skip, as an edge case (famous last words)
+				continue
+
 			if (C.preferences?.skip_lobby_music)
 				continue
 
-			var/client_vol = C.getVolume(VOLUME_CHANNEL_ADMIN) * 100
+			var/client_vol = C.getVolume(VOLUME_CHANNEL_LOBBY) * 100
 
 			if (!client_vol)
 				continue
 
-			C.sound_playing[ admin_sound_channel ][1] = 100
-			C.sound_playing[ admin_sound_channel ][2] = VOLUME_CHANNEL_ADMIN
+			C.sound_playing[ lobby_sound_channel ][1] = 100
+			C.sound_playing[ lobby_sound_channel ][2] = VOLUME_CHANNEL_LOBBY
 
 			music_sound.volume = client_vol
 			C << music_sound
+
+			C.verbs += /client/verb/stop_the_lobby_music
 
 	discord_send("Round starting in 2 minutes on [getMapNameFromID(map_setting)]!","game-updates")
 

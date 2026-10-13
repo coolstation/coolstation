@@ -4566,6 +4566,8 @@ var/global/noir = 0
 		current_state = GAME_STATE_SETTING_UP
 		logTheThing("admin", usr, null, "has started the game.")
 		logTheThing("diary", usr, null, "has started the game.", "admin")
+		for (var/client/C in clients)
+			C.stop_the_lobby_music() //if nothing else, makes debugging/testing nicer
 		message_admins("<span class='internal'>[usr.key] has started the game.</span>")
 		return 1
 	else

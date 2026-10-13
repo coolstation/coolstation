@@ -130,6 +130,7 @@
 		F["score"] << src.view_score
 		F["tickets"] << src.view_tickets
 		F["sounds"] << src.admin_music_volume
+		F["lobby_sounds"] << src.lobby_music_volume
 		F["radio_sounds"] << src.radio_music_volume
 		F["clickbuffer"] << src.use_click_buffer
 		F["font_size"] << src.font_size
@@ -291,6 +292,7 @@
 		F["score"] >> src.view_score
 		F["tickets"] >> src.view_tickets
 		F["sounds"] >> src.admin_music_volume
+		F["lobby_sounds"] >> src.lobby_music_volume
 		F["radio_sounds"] >> src.radio_music_volume
 		F["clickbuffer"] >> src.use_click_buffer
 		F["font_size"] >> src.font_size

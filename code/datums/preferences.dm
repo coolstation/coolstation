@@ -46,8 +46,9 @@ datum/preferences
 	var/view_changelog = 1
 	var/view_score = 1
 	var/view_tickets = 1
-	var/admin_music_volume = 50
-	var/radio_music_volume = 10
+	var/admin_music_volume = 40
+	var/lobby_music_volume = 30
+	var/radio_music_volume = 20
 	var/skip_lobby_music = FALSE
 	var/use_click_buffer = 0
 	var/listen_ooc = 1
