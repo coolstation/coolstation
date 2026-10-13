@@ -49,16 +49,12 @@
 	diner
 		id = "diner"
 
-/obj/machinery/power/tracker/New()
-	..()
-	link_control()
-
 //link up to a single solar controller to send your angle tracking to it, intended to be initiated by controller
 //if there are multiple "east" controllers or something on the same powernet somehow then shame on you
 //controller doesn't link, it just accepts any connection, so that's fine
 /obj/machinery/power/tracker/proc/link_control(var/obj/machinery/power/solar_control/SC)
 	//attempt to accept direct link
-	if (SC.id == id)
+	if(SC && SC.id == id)
 		control = SC
 		return
 	//not matching ID, you fucked up, cancelling here to prevent weird behaviors
@@ -222,7 +218,7 @@
 //link up to a single solar controller to send your power to it, intended to be initiated by controller
 /obj/machinery/power/solar/proc/link_control(var/obj/machinery/power/solar_control/SC)
 	//attempt to accept direct link
-	if (SC.id == id)
+	if (SC && SC.id == id)
 		control = SC
 		controldist = get_dist(src,control)
 		return
