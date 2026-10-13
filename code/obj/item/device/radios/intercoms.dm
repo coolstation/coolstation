@@ -85,6 +85,7 @@
 	protected_radio = 1
 
 	chess //hack to allow folks to banter from across the
+		locked_frequency = TRUE
 		frequency = R_FREQ_INTERCOM_CHESS
 		broadcasting = TRUE
 // --------------------------------------------
