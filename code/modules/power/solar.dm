@@ -626,7 +626,7 @@
 /obj/machinery/power/solar_control/proc/interacted(mob/user)
 	if(HAS_FLAG(status, (NOPOWER|BROKEN))) return
 	if ( (get_dist(src, user) > 1 ))
-		if (!isAI(user) || !issilicon(user))
+		if (!issilicon(user))
 			src.remove_dialog(user)
 			user.Browse(null, "window=solcon")
 			return
