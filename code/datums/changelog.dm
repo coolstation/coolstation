@@ -69,7 +69,7 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 					emoji_labels = copytext(line, 4, 0)
 				if("(t)")
 					if(collapsible_html.len)
-						html += "<li class=\"collapse-button\">Minor Changes</li><div class='collapsible'>[collapsible_html.Join()]</div>"
+						html += "<li class=\"collapse-button\">Minor Changes</li><div class=\"collapsible\">[collapsible_html.Join()]</div>"
 						collapsible_html.Cut()
 						author = null
 						added_collapsible_author = 0
@@ -120,7 +120,7 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 						if("dec")
 							html += "December "
 						else
-							html += "Whoops"
+							html += "Whoopsemberuary"
 					var/date1 = copytext(line, 12, 13)
 					var/date2 = copytext(line, 13, 14)
 					switch(date1)
@@ -169,15 +169,15 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 							var/random_em = ""
 							for(var/i in 1 to rand(1, 4))
 								random_em += random_emoji()
-							html += "<span class='emoji'>[random_em]"
+							html += "<span class=\"emoji\">[random_em]"
 							#else
-							html += "<span class='emoji'>[emoji_parts[1]]"
+							html += "<span class=\"emoji\">[emoji_parts[1]]"
 							#endif
 							if(emoji_parts.len > 1)
-								html += "<span class='tooltiptext'>[emoji_parts[2]]</span>"
+								html += "<span class=\"tooltiptext\">[emoji_parts[2]]</span>"
 							html += "</span>"
 						if(pr_num)
-							html += "<a target='_blank' href='https://github.com/coolstation/coolstation/pull/[pr_num]' class='pr_link'><span class='pr_number'>#[pr_num]</span>&gt;</a>"
+							html += "<a href=\"byond://?action=openLink&link=https://github.com/coolstation/coolstation/pull/[pr_num]\" class=\"pr_link\"><span class=\"pr_number\">#[pr_num]</span>&gt;</a>"
 						html += "</li>"
 						added_author = 1
 					html += "<li>[copytext(line, 4, 0)]</li>"
@@ -186,38 +186,38 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 						collapsible_html += "<li class=\"admin\"><span><i class=\"icon-check\"></i> [author]</span> updated:"
 						if(emoji_labels)
 							var/list/emoji_parts = splittext(emoji_labels, "|")
-							collapsible_html += "<span class='emoji'>[emoji_parts[1]]"
+							collapsible_html += "<span class=\"emoji\">[emoji_parts[1]]"
 							if(emoji_parts.len > 1)
-								collapsible_html += "<span class='tooltiptext'>[emoji_parts[2]]</span>"
+								collapsible_html += "<span class=\"tooltiptext\">[emoji_parts[2]]</span>"
 							collapsible_html += "</span>"
 						if(pr_num)
-							collapsible_html += "<a target='_blank' href='https://github.com/coolstation/coolstation/pull/[pr_num]' class='pr_link'><span class='pr_number'>#[pr_num]</span>&gt;</a>"
+							collapsible_html += "<a href=\"byond://?action=openLink&link=https://github.com/coolstation/coolstation/pull/[pr_num]\" class=\"pr_link\"><span class=\"pr_number\">#[pr_num]</span>&gt;</a>"
 						collapsible_html += "</li>"
 						added_collapsible_author = 1
 					collapsible_html += "<li>[copytext(line, 4, 0)]</li>"
 				else continue
 
 		if(collapsible_html.len)
-			html += "<li class=\"collapse-button\">Minor Changes</li><div class='collapsible'>[collapsible_html.Join()]</div>"
+			html += "<li class=\"collapse-button\">Minor Changes</li><div class=\"collapsible\">[collapsible_html.Join()]</div>"
 		html += "</ul>"
+		html += "</body></html>"
 		return html.Join()
 
 /datum/changelog/New()
 	..()
-//<img alt="Coolstation" src="[resource("images/changelog/postcardsmall.jpg")]" class="postcard" /> //TODO: let's have a changelog header image like this again. i miss the post card........
-
 	html = {"
-<h1>Cool's tation 13 <a href="#license"><img alt="Creative Commons CC-BY-NC-SA License" src="[resource("images/changelog/88x31.png")]" /></a></h1>
-
-<ul class="links cf">
-    <li>Official Wiki<br><strong><a target="_blank" href="https://wiki.coolstation.space">https://wiki.coolstation.space</a></strong><span></span></li>
-    <li>Official Forums<br><strong><a target="_blank" href="https://forum.coolstation.space">https://forum.coolstation.space</a></strong></li>
-</ul>"}
+	<!doctype html><html><head><meta charset=\"utf-8\"><title>Coolstation Changelog</title></head>
+	<h1>COOLSTATION<a href="#license"><img alt="Creative Commons CC-BY-NC-SA License" src="[resource("images/changelog/ccbyncsa88x31.png")]" /></a></h1>
+	<img alt="Coolstation" src="[resource("images/changelog/header.gif")]" class="postcard" /> <!-- I want a new postcard (eventually) -->
+	<ul class="links cf">
+    	<li>Official Wiki<br><strong><a href="byond://?action=openLink&link=https://wiki.coolstation.space">https://wiki.coolstation.space/</a></strong></li>
+    	<li>Official Forums<br><strong><a href="byond://?action=openLink&link=https://forum.coolstation.space">https://forum.coolstation.space/</a></strong></li>
+	</ul>"}
 
 #if ASS_JAM
-	html += "<a id='ass_changelog' href='#' style='color:#ffffff; text-align:center; display:block' onclick='$(\".nano\").nanoScroller({ scrollTo: $(\"#main_changelog\") });'>Jump to regular changelog</a>"
+	html += "<a id=\"ass_changelog\" href=\"#\" style=\"color:#ffffff; text-align:center; display:block\" onclick=\"$(\".nano\").nanoScroller({ scrollTo: $(\"#main_changelog\") });\">Jump to regular changelog</a>"
 	html += changelog_parse(file2text("strings/ass_changelog.txt"), "Ass Jam Changelog", " ass")
-	html += "<a id='main_changelog' href='#' style='color:#ffffff; text-align:center; display:block' onclick='$(\".nano\").nanoScroller({ scrollTo: $(\"#ass_changelog\") });'>Jump to ass jam changelog</a>"
+	html += "<a id=\"main_changelog\" href=\"#\" style=\"color:#ffffff; text-align:center; display:block\" onclick=\"$(\".nano\").nanoScroller({ scrollTo: $(\"#ass_changelog\") });\">Jump to ass jam changelog</a>"
 #endif
 	html += changelog_parse(file2text("strings/changelog.txt"), "Changelog")
 	html += {"
@@ -231,11 +231,17 @@ ATTENTION: The changelog has moved into its own file: strings/changelog.txt
 		<br>
 	not sure this even shows up in the window but anyway
 </p>
-
+<img src="[resource("images/changelog/coolstation88x31-[rand(1,6)].png")]" />
 <p id="license" class="lic">
-    <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" name="license"><img alt="Creative Commons CC-BY-NC-SA License" src="[resource("images/changelog/88x31.png")]" /></a><br/>
+    <a href="byond://?action=openLink&link=https://creativecommons.org/licenses/by-nc-sa/3.0/" name="license"><img alt="Creative Commons CC-BY-NC-SA License" src="[resource("images/changelog/ccbyncsa88x31.png")]" /></a><br/>
 
     <em>
-    	Except where otherwise noted, Coolstation 13 is licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Noncommercial-Share Alike 3.0 License</a>.
+    	Except where otherwise noted, Coolstation 13 is licensed under a <a href="byond://?action=openLink&link=https://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-Noncommercial-Share Alike 3.0 License</a>.
     </em>
 </p>"}
+
+//Webview2 doesn't let you just target _blank any more apparently
+/datum/changelog/Topic(href, href_list)
+	..()
+	if(href_list["action"] == "openLink")
+		src << link(href_list["link"])

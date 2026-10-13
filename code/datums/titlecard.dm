@@ -75,7 +75,7 @@
 	heisenbee //cute illustration of sleeping heisenbee with carnage in the background
 		image_url = "images/titlecards/heisenbee.png"
 		//clickable credit line
-		add_html = {"<a href="https://www.deviantart.com/alexbluebird" target="_blank" style="position:absolute;bottom:3px;right:3px;color:white;opacity:0.7;">by AlexBlueBird</a>"}
+		add_html = {"<a href="byond://?action=openLink&link=https://www.deviantart.com/alexbluebird" style="position:absolute;bottom:3px;right:3px;color:white;opacity:0.7;">by AlexBlueBird</a>"}
 
 	battleroyale //overlays a battle royal edition thing in addition to the standard titlecard
 		overlay_image_url = "images/titlecards/battleroyale_overlay.png"
