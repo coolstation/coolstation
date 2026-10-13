@@ -72,8 +72,8 @@ client/verb/help()
 				The crewmembers must destroy or disarm the nuclear bomb or kill the syndicate operatives.</p>
 				<p><b>PROTIP: IF YOU KILL A MEMBER OF THE SYNDICATE STEAL HIS STUFF.</b></p>
 		<h3>External Links</h3>
-			<ul><a target="_blank" href="https://wiki.coolstation.space/">Coolstation Wiki</a> (The wiki. Beginner and advanced guides.)<br>
-			<a target="_blank" href="https://forum.coolstation.space">Coolstation Forums</a> (The goonstation forums for discussion and ban appeals)</ul>
+			<ul><a href="byond://?action=openLink&link=https://wiki.coolstation.space/">Coolstation Wiki</a> (The wiki. Beginner and advanced guides.)<br>
+			<a href="byond://?action=openLink&link=https://forum.coolstation.space">Coolstation Forums</a> (The goonstation forums for discussion and ban appeals)</ul>
 	</ul>"}, "window=help;title=Help" )
 
 
