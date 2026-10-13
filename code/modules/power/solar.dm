@@ -516,6 +516,9 @@
 
 	if(HAS_FLAG(status, (NOPOWER|BROKEN))) return
 
+	if (issilicon(user) && ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_POWER))
+		boutput(user, "<span class='alert'>You have lost the ability to interface with power equipment.</span>" )
+		return
 	interacted(user)
 
 /obj/machinery/power/solar_control/attack_hand(mob/user)
@@ -626,7 +629,7 @@
 /obj/machinery/power/solar_control/proc/interacted(mob/user)
 	if(HAS_FLAG(status, (NOPOWER|BROKEN))) return
 	if ( (get_dist(src, user) > 1 ))
-		if (!issilicon(user))
+		if (!issilicon(user) || ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_POWER))
 			src.remove_dialog(user)
 			user.Browse(null, "window=solcon")
 			return

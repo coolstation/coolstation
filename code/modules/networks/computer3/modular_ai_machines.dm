@@ -163,10 +163,10 @@ var/list/governor_registry = list()
 	registry_ID = AI_GOVERNOR_AIRLOCKS
 	stripe_colour = "#99BB77" //significantly lighter than the radio governor
 
-/obj/machinery/networked/ai_governor/APCs
-	name = "\improper AI governor (APCs)"
-	desc_func = "interface with APCs"
-	registry_ID = AI_GOVERNOR_APCS
+/obj/machinery/networked/ai_governor/power
+	name = "\improper AI governor (Power)"
+	desc_func = "interface with APCs and Power Equipment"
+	registry_ID = AI_GOVERNOR_POWER
 	stripe_colour = "#FFBB44"
 
 /obj/machinery/networked/ai_governor/cameras

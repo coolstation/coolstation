@@ -14,7 +14,7 @@
 
 //AI governor registry strings. The strings do double duty in the PDA governor manifest, which is why they're human readable
 #define AI_GOVERNOR_AIRLOCKS "Airlock control"
-#define AI_GOVERNOR_APCS "APC control"
+#define AI_GOVERNOR_POWER "Power control"
 #define AI_GOVERNOR_TRACKING "Camera tracking"
 #define AI_GOVERNOR_KILLSWITCH "Killswitch control"
 #define AI_GOVERNOR_VIEWPORTS "Viewport control"

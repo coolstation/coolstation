@@ -69,6 +69,11 @@
 		return
 	..()
 
+/obj/machinery/attack_ai(mob/user as mob)
+	if ((isAI(user) || isrobot(user)) && ACTION_GOVERNOR_BLOCKED(AI_GOVERNOR_POWER))
+		boutput(user, "<span class='alert'>You have lost the ability to interface with SMES units and other power equipment.</span>" )
+		return
+	..()
 
 /obj/machinery/power/smes/construction
 	New(var/turf/iloc, var/idir = 2)
