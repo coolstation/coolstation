@@ -111,16 +111,21 @@
 	var/emote_fail_leading = null
 	var/emote_fail_trailing = null
 	var/pronoun_proc = null //I want you to make the one you use explicit >:(
+	var/can_clap = TRUE
 
 	clap
 		group = "emote_clap"
 		emote_string = "claps"
 		emote_fail = "struggles to move"
 		enact(mob/user, voluntary, param)
-			if (!user.restrained())
-				playsound(user.loc, "sound/impact_sounds/Slap.ogg", 50, 1, channel=VOLUME_CHANNEL_EMOTE)
-				if(prob(5))
-					user.TakeDamage(pick("l_arm", "r_arm"), rand(1,3), damage_type = DAMAGE_BLUNT)
+			if(!issilicon(user))
+				if (!user.restrained() || can_clap == TRUE)
+					playsound(user.loc, "sound/impact_sounds/Slap.ogg", 50, 1, channel=VOLUME_CHANNEL_EMOTE)
+					if(prob(5))
+						user.TakeDamage(pick("l_arm", "r_arm"), rand(1,3), damage_type = DAMAGE_BLUNT)
+			else
+				if(can_clap == TRUE)
+					playsound(user.loc, "sound/impact_sounds/Metal_Clang_3.ogg", 50, 1, channel=VOLUME_CHANNEL_EMOTE)
 			. = ..()
 	salute
 		emote_string = "salutes"
