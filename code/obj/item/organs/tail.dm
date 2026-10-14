@@ -205,7 +205,7 @@
 /obj/item/organ/tail/feathers
 	name = "bird tail"
 	desc = "A ruffle of feathers."
-	icon_state = "tail-lizard"
+	icon_state = "tail-bird"
 	organ_image_icon = 'icons/mob/birb.dmi'
 	tail_num = TAIL_BIRD
 	organ_image_under_suit_1 = "bird_under_suit"
@@ -226,7 +226,7 @@
 /obj/item/organ/tail/fert
 	name = "ferret tail"
 	desc = "A short, energetic tail."
-	icon_state = "tail-lizard"	// need a bloody detached sprite in surgery.dmi but this works for now
+	icon_state = "tail-ferret"	// need a bloody detached sprite in surgery.dmi but this works for now
 	organ_image_icon = 'icons/mob/fert.dmi'
 	organ_image_under_suit_1 = "fert_under_suit"
 	organ_image_under_suit_2 = null
@@ -237,7 +237,7 @@
 /obj/item/organ/tail/yeen
 	name = "hyena tail"
 	desc = "A regular fluffy tail."
-	icon_state = "tail-lizard"	// see above
+	icon_state = "tail-hyena"	// see above
 	organ_image_icon = 'icons/mob/yeen.dmi'
 	organ_image_under_suit_1 = "yeen_under_suit"
 	organ_image_under_suit_2 = null
