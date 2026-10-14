@@ -879,7 +879,7 @@
 /obj/item/deconstructor
 	name = "deconstruction device"
 	desc = "A device meant to facilitate the deconstruction of scannable machines."
-	icon = 'icons/obj/items/device.dmi'
+	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "deconstruction-saw"
 	inhand_image_icon = 'icons/mob/inhand/hand_tools.dmi'
 	item_state = "deconstruction-saw"
