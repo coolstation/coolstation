@@ -246,9 +246,25 @@ ABSTRACT_TYPE(/obj/tuneable_receiver)
 	color = null
 
 	//shitcode override but it's a demo object so who cares
+	//taking this out for now since there's no on state and also we love this tv so much
+	/*
 	attack_hand(mob/user)
 		..()
 		if (on)
 			icon_state = "POCteevee-on"
 		else
 			icon_state = "POCteevee"
+			*/
+
+	shrek
+		name = "shrekky test TV"
+		desc = "And you thought those radios were fucking swamp ooze"
+		icon_state = "shrek"
+	small
+		name = "mini test TV"
+		desc = "And you thought those radios were fucking small"
+		icon_state = "small"
+	small_wall
+		name = "wally test TV"
+		desc = "And you thought those radios were fucking... uh... wall..."
+		icon_state = "small_wall"
