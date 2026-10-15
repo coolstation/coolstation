@@ -303,9 +303,10 @@ TOILET
 	New()
 		..()
 		if (prob(1))
-			var/something = pick(trinket_safelist)
-			if (ispath(something))
-				src.storage.add_contents(new something(src))
+			SPAWN_DBG(0.5 SECONDS)
+				var/something = pick(trinket_safelist)
+				if (ispath(something))
+					src.storage.add_contents(new something(src))
 
 /obj/item/storage/toilet/random/gold // important!!
 	New()
@@ -315,10 +316,11 @@ TOILET
 /obj/item/storage/toilet/random/escapetools
 	New()
 		..()
-		src.storage.add_contents(new /obj/item/wirecutters(src))
-		src.storage.add_contents(new /obj/item/screwdriver(src))
-		src.storage.add_contents(new /obj/item/wrench(src))
-		src.storage.add_contents(new /obj/item/crowbar(src))
+		SPAWN_DBG(0.5 SECONDS)
+			src.storage.add_contents(new /obj/item/wirecutters(src))
+			src.storage.add_contents(new /obj/item/screwdriver(src))
+			src.storage.add_contents(new /obj/item/wrench(src))
+			src.storage.add_contents(new /obj/item/crowbar(src))
 
 
 /obj/item/storage/toilet/goldentoilet
