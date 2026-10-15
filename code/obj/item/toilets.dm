@@ -28,6 +28,9 @@ TOILET
 
 /obj/item/storage/toilet/New()
 	..()
+#ifdef SECRETS_ENABLED
+	src.dosomethingweird()
+#endif
 	START_TRACKING
 	src.create_reagents(300)
 	if(src.refills)
