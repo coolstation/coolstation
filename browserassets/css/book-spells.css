@@ -1,0 +1,39 @@
+.spell {
+	position: relative;
+}
+
+.spell:hover {
+	background: #ddd;
+}
+.spell div {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: -1em;
+	background: #ddd;
+	color: black;
+	padding: 0.1em 0.3em;
+	width: 50%;
+	font-size: 80%;
+	z-index: 9999;
+}
+.spell:hover div {
+	display: block;
+}
+.cantbuy {
+	opacity: 0.7;
+}
+
+.buyme, .owned {
+	font-weight: bold;
+}
+
+.owned {
+	background: rgba(0, 255, 0, 0.3);
+}
+.spell em {
+	color: #888;
+	margin-left: 1em;
+	font-size: 90%;
+	}
+.spelllink { font-weight: bold; }

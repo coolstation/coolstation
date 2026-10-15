@@ -50,50 +50,7 @@
 		if (!user)
 			return
 		src.add_dialog(user)
-		var/HTML = {"<style type="text/css">
-		.desc {
-			background: #1c211e;
-			width: calc(100% - 5px);
-			padding: 2px;
-		}
-		.buttons a {
-			display: inline-flex;
-			background: #6d6617;
-			width: calc(50% - 7px);
-			text-transform: uppercase;
-			text-decoration: none;
-			color: #fff;
-			margin: 1px;
-			padding: 2px 0 2px 5px;
-			font-size: 11px;
-		}
-		.buttons.refresh a {
-			padding: 1px 0 1px 5px;
-			width: calc(100% - 7px);
-		}
-		.buttons a:hover {
-			background: #9a8469;
-		}
-		.buttons.gps a {
-			display: block;
-			width: calc(100% - 7px);
-  			text-transform: none;
-			border-top: 1px solid #3b3122;
-			background: #1c211e;
-			padding: 3px;
-			margin: 0 0 1px 0;
-			font-size: 11px;
-		}
-		.buttons.gps.distress a {
-			border-top: 2px solid #BE3737;
-			background: #2C2121;
-		}
-		.gps.group {
-			background: #3b3122;
-			margin: 0;
-			font-size: 12px;
-		}
-		</style>"}
+		var/HTML = {"<link rel="stylesheet" type="text/css" href="[resource("css/gps.css")]">"}
 		HTML += build_html_gps_form(src, false, src.tracking_target)
 		HTML += "<div><div class='buttons refresh'><A href='byond://?src=\ref[src];refresh=6'>(Refresh)</A></div>"
 		HTML += "<div class='desc'>Each GPS is coined with a unique four digit number followed by a four letter identifier.<br>This GPS is assigned <b>[serial]-[identifier]</b>.</div><hr>"

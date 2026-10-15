@@ -550,55 +550,7 @@ proc/insert_recipe(datum/cookingrecipe/recipe)
 	if (!oven_recipe_html)
 		var/list/dat = list()
 		// we are making it now ok
-		dat += {"<!doctype html>
-<html><head><title>Recipe Book</title><style type="text/css">
-.icon {
-	background: rgba(127, 127, 127, 0.5);
-	vertical-align: middle;
-	display: inline-block;
-	border-radius: 4px;
-	margin: 1px;
-}
-th { text-align: left; font-weight: normal;}
-.item {
-	position: relative;
-	display: inline-block;
-	}
-.item span {
-	position: absolute;
-	bottom: -5px;
-	right: -2px;
-	background: white;
-	color: black;
-	border-radius: 50px;
-	font-size: 70%;
-	padding: 0px 1px;
-	border-right: 1px solid #444;
-	border-bottom: 1px solid #333;
-	}
-label {
-	display: block;
-	background: #555;
-	color: white;
-	text-align: center;
-	font-size: 120%;
-	cursor: pointer;
-	padding: 0.3em;
-	margin-top: 0.25em;
-	}
-label:hover {
-	background: #999;
-	}
-tr:hover {
-	background: rgba(127, 127, 127, 0.3);
-}
-input { display: none; }
-input + div { display: none; }
-input:checked + div { display: block; }
-.x { width: 0%; text-align: right; white-space: pre; }
-</style>
-</head><body><h2>Recipe Book</h2>
-"}
+		dat += {"<!doctype html><html><head><title>Recipe Book</title><link rel="stylesheet" type="text/css" href="[resource("css/ui-ovenrecipes.css")]"></head><body><h2>Recipe Book</h2>"}
 
 		var/list/recipies = list()
 		for (var/datum/cookingrecipe/R in oven_recipes)

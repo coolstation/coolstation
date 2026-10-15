@@ -1256,47 +1256,7 @@ Note: Add new traitor items to syndicate_buylist.dm, not here.
 	var/html = {"
 [(user.client && !user.client.use_chui) ? "<!doctype html>\n<html><head><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"pragma\" content=\"no-cache\"><style type='text/css'>body { font-family: Tahoma, sans-serif; font-size: 10pt; }</style><title>Wizard Spellbook</title></head><body>" : ""]
 
-<style type="text/css">
-	.spell {
-		position: relative;
-	}
-
-	.spell:hover {
-		background: #ddd;
-	}
-	.spell div {
-		display: none;
-		position: absolute;
-		right: 0;
-		top: -1em;
-		background: #ddd;
-		color: black;
-		padding: 0.1em 0.3em;
-		width: 50%;
-		font-size: 80%;
-		z-index: 9999;
-	}
-	.spell:hover div {
-		display: block;
-	}
-	.cantbuy {
-		opacity: 0.7;
-	}
-
-	.buyme, .owned {
-		font-weight: bold;
-	}
-
-	.owned {
-		background: rgba(0, 255, 0, 0.3);
-	}
-	.spell em {
-		color: #888;
-		margin-left: 1em;
-		font-size: 90%;
-		}
-	.spelllink { font-weight: bold; }
-</style>
+	<link rel="stylesheet" type="text/css" href="[resource("css/book-spells.css")]">
 	<h3>[user.real_name]'s Spellbook</h3>
 	Spell slots remaining: [src.uses]
 	"}

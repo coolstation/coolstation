@@ -463,21 +463,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" type="text/css" href="[resource("css/pda2-constants.css")]">
 	<style type='text/css'>
-		hr {
-			color:#000;
-			background-color:#000;
-			height:2px;
-			border-width:0;
-		}
-		h1,h2,h3,h4,h5,h6 { margin: 0.5em 0; padding: 0; }
-		ul, ol { margin: 0.5em; }
 		body {
 			background-color: [src.bg_color];
 			color: [src.link_color];
 			font-family: Tahoma, sans-serif;
 			font-size: [(user?.client?.preferences && user?.client?.preferences.font_size) ? "[user?.client?.preferences.font_size]%" : "10pt"];
-;
 		}
 		a {
 			background-color: [src.linkbg_color];
@@ -485,8 +477,9 @@
 			text-decoration: none;
 			padding: 0.0em 0.2em;
 		}
-		a:hover   { background-color: [src.link_color];   color: [src.bg_color]; }
-
+			a:hover   { background-color: [src.link_color];
+			color: [src.bg_color];
+		}
 	</style>
 </head>
 <body>"}

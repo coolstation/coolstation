@@ -141,60 +141,7 @@
 <head>
 	[title]
 	<meta http-equiv="X-UA-Compatible" content="IE=edge;">
-	<style type="text/css">
-		body {
-			background: black;
-			color: white;
-			font-family: 'Consolas', 'Ubuntu Mono', monospace;
-		}
-		* {
-			border-sizing: border-box;
-			image-rendering: -moz-crisp-edges;
-			image-rendering: -o-crisp-edges;
-			image-rendering: -webkit-optimize-contrast;
-			image-rendering: crisp-edges;
-			image-rendering: pixelated;
-			-ms-interpolation-mode:nearest-neighbor;
-			}
-		#map {
-			position: relative;
-			height: 600px;
-			width: 600px;
-			overflow: hidden;
-			margin: 0 auto;
-		}
-		#map img {
-			position: absolute;
-			bottom: 0
-			left: 0;
-		}
-		.hotspot {
-			position: absolute;
-			background: rgba(255, 120, 120, 0.6);
-		}
-		.key {
-			text-align: center;
-			margin-top: 0.5em;
-		}
-		.key > span {
-			white-space: nowrap;
-			display: inline-block;
-			margin: 0 0.5em;
-		}
-		.key > span > span {
-			display: inline-block;
-			height: 1em;
-			width: 1em;
-			border: 1px solid white;
-		}
-		.empty { background-color: [colors_to_use["empty"]]; }
-		.solid { background-color: [colors_to_use["solid"]]; }
-		.tough { background-color: [colors_to_use["tough"]]; }
-		.station { background-color: [colors_to_use["station"]]; }
-		.other { background-color: [colors_to_use["other"]]; }
-		.ore { background-color: [colors_to_use["ore"]]; }
-		.vent { background-color: rgb(255, 120, 120); }
-	</style>
+	<link rel="stylesheet" type="text/css" href="[resource("css/ui-hotspotmapgen.css")]">
 </head>
 <body>
 		<div id='map'>
