@@ -534,7 +534,7 @@
 		@font-face {
 				font-family: "Not Jam Mono Clean 16";
 				font-style: normal;
-				src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
+				src: '[resource("css/fonts/Not Jam Mono Clean 16.ttf")]'
 			}
 			html { background: #0e0c05;
 					font-family: "Not Jam Mono Clean 16";
