@@ -1,0 +1,75 @@
+.jobtable {
+	margin-top: 0.3em;
+	width: 100%;
+}
+.jobtable td, th {
+	vertical-align: top;
+	text-align: center;
+	width: 25%;
+	margin: 0;
+	padding: 0.1em 0.5em;
+}
+.jobtable td + td {
+	border-left: 1px solid black;
+}
+.jobtable td div {
+	margin-bottom: 3px;
+	text-align: center;
+	position: relative;
+	padding: 0 1.2em;
+	border: 1px solid rgba(128, 128, 128, 0.5);
+	background: white;
+}
+.jobtable td a {
+	font-weight: normal;
+	text-decoration: none;
+}
+.jobtable td div a.job {
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+	background: rgba(128, 128, 128, 0.05);
+}
+.jobtable td div .arrow {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 1em;
+	text-align: center;
+	background: rgba(128, 128, 128, 0.3);
+}
+.jobtable td div .arrow:hover {
+	background: rgba(128, 128, 128, 0.5);
+}
+.jobtable td div a.job:hover {
+	background: rgba(128, 128, 128, 0.15);
+}
+
+.info-thing {
+	background: rgba(128, 128, 255, 0.4);
+	color: rgba(255, 255, 255, 0.8);
+	margin-left: 0.5em;
+	display: inline-block;
+	text-align: center;
+	font-size: 80%;
+	font-weight: bold;
+	min-width: 1.2em;
+	min-height: 1.2em;
+	border-radius: 100%;
+	position: relative;
+	top: -1px;
+	cursor: help;
+}
+
+.antagprefs a {
+	display: block;
+	text-align: left;
+	margin-bottom: 0.2em;
+	text-decoration: none;
+}
+.antagprefs a.yup {
+	color: #ff4444;
+}
+.antagprefs a.nope {
+	color: inherit;
+}
