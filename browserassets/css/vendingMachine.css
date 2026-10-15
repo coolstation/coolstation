@@ -14,7 +14,7 @@ hr {
 @font-face {
 		font-family: "Not Jam Mono Clean 16";
 		font-style: normal;
-		src: 'browserassets/css/fonts/Not Jam Mono Clean 16.ttf'
+		src: url('{{resource("css/fonts/Not Jam Mono Clean 16.ttf")}}') format('truetype','browserassets-css-fonts-Not Jam Mono Clean 16.ttf' format('truetype'))
 	}
 html { background: #0e0c05;
 		font-family: "Not Jam Mono Clean 16";
