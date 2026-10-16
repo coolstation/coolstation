@@ -377,7 +377,7 @@ var/f_color_selector_handler/F_Color_Selector
 		var/patterns = material_pattern_cache[mat_id]
 		if (firstpart in patterns)
 			return secondpart <= patterns[firstpart]
-	return FALSE
+	return (pattern == "ALL") //There had to be one pattern that didn't match anything else huh?
 
 #ifdef TRACY_PROFILER_HOOK
 /proc/prof_init()
