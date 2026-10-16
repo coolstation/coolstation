@@ -7,6 +7,8 @@
 	return
 
 var/global/list/material_cache = list()
+///List of material IDs with their categorical properties
+var/global/list/material_pattern_cache = list()
 /atom/var/datum/material/material = null
 
 /proc/isExploitableObject(var/atom/A)
@@ -284,7 +286,7 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 
 	newMat.value = round(mat1.value * ot + mat2.value * t)
 	newMat.name = getInterpolatedName(mat1.name, mat2.name, 0.5)
-	newMat.mat_id = "([mat1.mat_id]_[mat2.mat_id])"
+	newMat.mat_id = "([mat1.mat_id]_[mat2.mat_id]_[t])"
 	newMat.alpha = round(mat1.alpha * ot + mat2.alpha * t)
 	newMat.color = rgb(round(GetRedPart(mat1.color) * ot + GetRedPart(mat2.color) * t), round(GetGreenPart(mat1.color) * ot + GetGreenPart(mat2.color) * t), round(GetBluePart(mat1.color) * ot + GetBluePart(mat2.color) * t))
 	newMat.properties = mergeProperties(mat1.properties, mat2.properties, t)
@@ -362,6 +364,10 @@ var/global/list/triggerVars = list("triggersOnBullet", "triggersOnEat", "trigger
 	newMat.parent_materials.Add(mat2)
 
 	//RUN VALUE CHANGED ON ALL PROPERTIES TO TRIGGER PROPERS EVENTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	if (!(newMat.mat_id in material_pattern_cache))
+		material_pattern_cache.Add(newMat.mat_id)
+		material_pattern_cache[newMat.mat_id] = determine_material_patterns(newMat)
 
 	return newMat
 

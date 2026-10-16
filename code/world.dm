@@ -287,6 +287,97 @@ var/f_color_selector_handler/F_Color_Selector
 		var/datum/material/M = new mat()
 		material_cache.Add(M.mat_id)
 		material_cache[M.mat_id] = M
+		material_pattern_cache.Add(M.mat_id)
+		material_pattern_cache[M.mat_id] = determine_material_patterns(M)
+
+///Returns a list of a material's categorical properties
+/proc/determine_material_patterns(datum/material/mat)
+	if (!istype(mat))
+		return
+	var/list/patterns = list("ALL") // anything at all
+	var/prop
+
+	//material categories
+	if (mat.material_flags & MATERIAL_METAL)
+		patterns.Add("MET")
+		prop = mat.getProperty("hard")
+		switch (prop)
+			if (30 to INFINITY)
+				patterns["MET"] = 3
+			if (15 to 30)
+				patterns["MET"] = 2
+			else
+				patterns["MET"] = 1
+
+	if (mat.material_flags & MATERIAL_CRYSTAL)
+		patterns.Add("CRY")
+		patterns["CRY"] = 1
+
+		//Dense crystals
+		prop = mat.getProperty("hard")
+		if (prop >= 40)
+			patterns.Add("DEN")
+			switch (prop)
+				if (75 to INFINITY)
+					patterns["DEN"] = 3
+				if (60 to 75)
+					patterns["DEN"] = 2
+				else
+					patterns["DEN"] = 1
+
+
+	if (mat.material_flags & (MATERIAL_CLOTH | MATERIAL_RUBBER | MATERIAL_ORGANIC))
+		patterns.Add("FAB")
+		patterns["FAB"] = 1
+
+	//conductivity: crystals or metals with high levels of conductivity
+	if (mat.material_flags & (MATERIAL_METAL | MATERIAL_CRYSTAL))
+		prop = mat.getProperty("electrical")
+		if (prop >= 50)
+			patterns.Add("CON")
+			patterns["CON"] = (prop >= 75 ? 2 : 1) //75+ conductivity for level 2, 50+ for level 1
+
+	//insulation: fabrics and rubbers with low levels of conductivity
+	if (mat.material_flags & (MATERIAL_CLOTH | MATERIAL_RUBBER))
+		prop = mat.getProperty("electrical")
+		if (prop <= 47)
+			patterns.Add("INS")
+			patterns["INS"] = (prop <= 20 ? 2 : 1) //20- conductivity for level 2, 47- for level 1
+
+	//What uses reflective properties again?
+	prop = mat.getProperty("reflective")
+	if (prop >= 50)
+		patterns.Add("REF")
+		patterns["REF"] = 1
+
+	//power sources
+	if (mat.material_flags & MATERIAL_ENERGY)
+		patterns.Add("POW")
+		prop = mat.getProperty("radioactive")
+		switch (prop)
+			if (55 to INFINITY)
+				patterns["POW"] = 3
+			if (10 to 55)
+				patterns["POW"] = 2
+			else
+				patterns["POW"] = 1
+
+	return patterns
+
+/proc/match_material_pattern(pattern, mat_id) //Hi this is global now
+	if (!mat_id)
+		return FALSE
+
+	if (pattern == mat_id) // specific material id
+		return TRUE
+
+	else if (copytext(pattern, 4, 5) == "-") // wildcard
+		var/firstpart = copytext(pattern, 1, 4)
+		var/secondpart = text2num(copytext(pattern, 5))
+		var/patterns = material_pattern_cache[mat_id]
+		if (firstpart in patterns)
+			return secondpart <= patterns[firstpart]
+	return FALSE
 
 #ifdef TRACY_PROFILER_HOOK
 /proc/prof_init()

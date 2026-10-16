@@ -1242,81 +1242,17 @@
 				src.add_schematic(X,"hidden")
 				src.hidden -= X
 
-	proc/match_material_pattern(pattern, datum/material/mat)
-		if (!mat) // Marq fix for various cannot read null. runtimes
-			return 0
-
-		if (pattern == "ALL") // anything at all
-			return 1
-		else if (copytext(pattern, 4, 5) == "-") // wildcard
-			var/firstpart = copytext(pattern, 1, 4)
-			var/secondpart = text2num(copytext(pattern, 5))
-			switch(firstpart)
-				// this was kind of thrown together in a panic when i felt shitty so if its horrible
-				// go ahead and clean it up a bit
-				if ("MET")
-
-					if (mat.material_flags & MATERIAL_METAL)
-						// maux hardness = 15
-						// bohr hardness = 33
-						switch(secondpart)
-							if(2) //"MET-2"
-								return mat.getProperty("hard") >= 15
-							if(3 to INFINITY) //"MET-3"
-								return mat.getProperty("hard") >= 30
-							else //"MET-1"
-								return 1
-				if ("CRY") //"CRY-1"
-					return (mat.material_flags & MATERIAL_CRYSTAL)
-				if ("REF") //"REF-1"
-					return (mat.getProperty("reflective") >= 50)
-				if ("CON")
-					switch(secondpart)
-						if(2) //"CON-2"
-							return (mat.getProperty("electrical") >= 75) && (mat.material_flags & MATERIAL_METAL) || (mat.getProperty("electrical") >= 75) && (mat.material_flags & MATERIAL_CRYSTAL) //Wow! Claretine has a use again!
-						else //"CON-1"
-							return (mat.getProperty("electrical") >= 50) && (mat.material_flags & MATERIAL_METAL) || (mat.getProperty("electrical") >= 50) && (mat.material_flags & MATERIAL_CRYSTAL)
-				if ("INS")
-					switch(secondpart)
-						if(2) //"INS-2"
-							return mat.getProperty("electrical") <= 20 && (mat.material_flags & MATERIAL_CLOTH) || mat.getProperty("electrical") <= 20 && (mat.material_flags & MATERIAL_RUBBER)
-						else //"INS-1"
-							return mat.getProperty("electrical") <= 47 && (mat.material_flags & MATERIAL_CLOTH) || mat.getProperty("electrical") <= 47 && (mat.material_flags & MATERIAL_RUBBER)
-				if ("DEN")
-					switch(secondpart)
-						if(3) //"DEN-3"
-							return mat.getProperty("density") >= 75  && (mat.material_flags & MATERIAL_CRYSTAL)
-						if(2) //"DEN-2"
-							return mat.getProperty("density") >= 60  && (mat.material_flags & MATERIAL_CRYSTAL)
-						else //"DEN-1"
-							return mat.getProperty("density") >= 40  && (mat.material_flags & MATERIAL_CRYSTAL)
-				if ("POW")
-					if (mat.material_flags & MATERIAL_ENERGY)
-						switch(secondpart)
-							if(3) //"POW-3"
-								return mat.getProperty("radioactive") >= 55 //soulsteel and erebite basically
-							if(2) //"POW-2"
-								return mat.getProperty("radioactive") >= 10
-							else //"POW-1"
-								return 1
-				if ("FAB") //"FAB-1"
-					return mat.material_flags & MATERIAL_CLOTH || mat.material_flags & MATERIAL_RUBBER || mat.material_flags & MATERIAL_ORGANIC
-		else if (pattern == mat.mat_id) // specific material id
-			return 1
-		return 0
-
 	proc/get_materials_needed(datum/manufacture/M) // returns associative list of item_paths with the mat_ids they're gonna use; does not guarantee all item_paths are satisfied
 		var/list/mats_used = list()
 		var/list/mats_available = src.resource_amounts.Copy()
 
-		for (var/i in 1 to M.item_paths.len)
+		for (var/i in 1 to length(M.item_paths))
 			var/pattern = M.item_paths[i]
 			var/amount = M.item_amounts[i]
 			for (var/mat_id in mats_available)
 				if (mats_available[mat_id] < amount)
 					continue
-				var/datum/material/mat = getMaterial(mat_id)
-				if (match_material_pattern(pattern, mat)) // TODO: refactor proc cuz this is bad
+				if (match_material_pattern(pattern, mat_id)) // TODO: refactor proc cuz this is bad
 					mats_used[pattern] = mat_id
 					mats_available[mat_id] -= amount
 					break
@@ -1325,7 +1261,7 @@
 
 	proc/check_enough_materials(datum/manufacture/M)
 		var/list/mats_used = get_materials_needed(M)
-		if (mats_used.len == M.item_paths.len) // we have enough materials, so return the materials list, else return null
+		if (length(mats_used) == length(M.item_paths)) // we have enough materials, so return the materials list, else return null
 			return mats_used
 
 	proc/remove_materials(datum/manufacture/M)

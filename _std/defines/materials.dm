@@ -25,7 +25,7 @@
 var/global/static/list/RARITY_COLOR = list("#9d9d9d", "#ffffff", "#1eff00", "#0070dd", "#a335ee", "#ff8000", "#ff0000")
 
 /// Material category names as displayed in fabricators
-/// see match_material_pattern() for exact definitions
+/// see determine_material_patterns() for exact definitions
 var/global/list/material_category_names = list(
 	"ALL"   = "Any Material",
 	//is metal or crystal, sorted by electrical (higher better)
