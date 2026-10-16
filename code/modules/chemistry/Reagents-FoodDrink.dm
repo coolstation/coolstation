@@ -2917,6 +2917,17 @@ datum
 					M.reagents.add_reagent("cholesterol", rand(1,2) * mult)
 				..()
 
+		fooddrink/sauce_bbq
+			name = "bbq"
+			id = "bbq"
+			description = "A sweet broun and hella juisy gourmét sause."
+			reagent_state = SOLID
+			fluid_r = 66
+			fluid_g = 33
+			fluid_b = 11
+			transparency = 255
+			taste = "dinner"
+
 		fooddrink/parmesan
 			name = "space parmesan cheese"
 			id = "parmesan"

@@ -2001,6 +2001,8 @@ var/list/mob_bird_species = list("smallowl" = /mob/living/critter/small_animal/b
 	density = 1
 	speechverb_say = "oinks"
 	speechverb_exclaim = "squeals"
+	skinresult = /obj/item/shaker/bbq
+	max_skins = 1
 	meat_type = /obj/item/reagent_containers/food/snacks/ingredient/meat/bacon
 	name_the_meat = 0
 

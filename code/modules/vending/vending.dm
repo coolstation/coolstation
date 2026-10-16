@@ -3781,6 +3781,8 @@
 	create_products()
 		..()
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/ketchup, 5, cost=PAY_UNTRAINED/9)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/tomato_sauce, 5, cost=PAY_UNTRAINED/8)
+		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/bbq, 5, cost=PAY_UNTRAINED/8)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/mayo, 5, cost=PAY_UNTRAINED/9)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/hotsauce, 5, cost=PAY_UNTRAINED/6)
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/coldsauce, 5, cost=PAY_UNTRAINED/5)
@@ -3790,6 +3792,7 @@
 		product_list += new/datum/data/vending_product(/obj/item/reagent_containers/food/snacks/condiment/syrup, 5, cost=PAY_UNTRAINED/4)
 		product_list += new/datum/data/vending_product(/obj/item/shaker/mustard, 5, cost=PAY_UNTRAINED/3)
 		product_list += new/datum/data/vending_product(/obj/item/shaker/ketchup, 5, cost=PAY_UNTRAINED/3)
+		product_list += new/datum/data/vending_product(/obj/item/shaker/bbq, 1, cost=PAY_UNTRAINED)
 
 /obj/machinery/vending/meat //MEAT VENDING MACHINE
 	name = "Meat4cash"

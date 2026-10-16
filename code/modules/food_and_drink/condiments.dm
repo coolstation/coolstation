@@ -62,6 +62,13 @@
 	initial_volume = 15
 	initial_reagents = list("mayonnaise"=10)
 
+/obj/item/reagent_containers/food/snacks/condiment/bbq
+	name = "bbq sause"
+	desc = "Looks normal."
+	icon_state = "sachet-bbq"
+	initial_volume = 15
+	initial_reagents = list("sauce_bbq"=10)
+
 /obj/item/reagent_containers/food/snacks/condiment/hotsauce
 	name = "hot sauce"
 	desc = "Dangerously spicy!"
@@ -335,6 +342,13 @@
 		icon_state = "bottle-mayo"
 		stuff = "mayonnaise"
 		myVerb = "squirt"
+
+	bbq
+		name = "bbq sause bottle"
+		desc = "A little bottle of bbq sause. There's two weird guys on the cover squeezing it out of a pig."
+		icon_state = "bottle-bbq"
+		stuff = "sauce_bbq"
+		myVerb = "squart"
 
 	hot
 		name = "hot sauce bottle"
