@@ -797,6 +797,11 @@
 
 			if(length(target.material.properties))
 				boutput(user, "<span class='notice'><u>The material is:</u></span>")
+				var/list/patterns = material_pattern_cache[target.material.mat_id]
+				for(var/pattern in patterns)
+					if (pattern == "ALL") continue
+					var/blah = "[pattern]-[patterns[pattern]]"
+					boutput(user, "<span class='notice'>• <u><b>[material_category_names[blah]]</b></u> </span>")
 				for(var/datum/material_property/X in target.material.properties)
 					var/value = target.material.properties[X] //Why use getProperty you have the damn property
 					boutput(user, "<span class='notice'>• [X.getAdjective(value)] ([value])</span>")
