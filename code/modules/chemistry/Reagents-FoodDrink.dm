@@ -2850,9 +2850,9 @@ datum
 			id = "tomato_sauce"
 			description = "A thick puree derived from the fruits of the tomato plant."
 			reagent_state = LIQUID
-			fluid_r = 255
-			fluid_g = 0
-			fluid_b = 0
+			fluid_r = 180
+			fluid_g = 50
+			fluid_b = 15
 			transparency = 255
 			viscosity = 0.6
 			taste = "like tomato sauce"
@@ -2873,9 +2873,9 @@ datum
 			id = "ketchup"
 			description = "A condiment often used on hotdogs and sandwiches."
 			reagent_state = LIQUID
-			fluid_r = 245
-			fluid_g = 0
-			fluid_b = 0
+			fluid_r = 220
+			fluid_g = 55
+			fluid_b = 20
 			transparency = 255
 			viscosity = 0.7
 			taste = "like sweet tomato sauce"
@@ -2918,8 +2918,8 @@ datum
 				..()
 
 		fooddrink/sauce_bbq
-			name = "bbq"
-			id = "bbq"
+			name = "sauce_bbq"
+			id = "sauce_bbq"
 			description = "A sweet broun and hella juisy gourmét sause."
 			reagent_state = SOLID
 			fluid_r = 66

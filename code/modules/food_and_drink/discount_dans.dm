@@ -139,9 +139,10 @@
 
 			if (13)
 				src.real_name = "Devil Dan's Quik-Noodles - Brimstone BBQ Flavor"
-				src.initial_reagents["sulfur"] = 5
-				src.initial_reagents["beff"] = 5
-				src.initial_reagents["ghostchilijuice"] = 5
+				src.initial_reagents["sulfur"] = 4
+				src.initial_reagents["beff"] = 4
+				src.initial_reagents["ghostchilijuice"] = 4
+				src.initial_reagents["sauce_bbq"] = 4
 /*				R.add_reagent("sulfur",5)
 				R.add_reagent("beff",5)
 				R.add_reagent("ghostchilijuice",5)

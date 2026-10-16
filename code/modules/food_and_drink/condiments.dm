@@ -372,7 +372,7 @@
 			else
 				return ..()
 
-	//todo: add ranch, bbq
+	//todo: add ranch
 
 	//also todo: revamp self-mob interactions so you can fuckin' slurp down mayo and ranch straight from the bottle
 
