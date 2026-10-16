@@ -98,6 +98,11 @@
 	var/slogan_delay = 600 //How long until we can pitch again?
 	var/slogan_chance = 5
 
+	//Sounds
+	var/speaker = 1
+	var/loopsound
+	var/loop_playing = FALSE //make this a flag or genericize it, there's certainly a better way that uses the sound_emitter's state rather than tracking it a second time
+
 	//Icons
 	var/icon_panel = "generic-panel"
 	var/icon_vend //Icon for vending
@@ -179,6 +184,7 @@
 		light.set_brightness(0.6)
 		light.set_height(1.5)
 		light.set_color(light_r, light_g, light_b)
+		start_sound_loop()
 		..()
 		src.panel_image = image(src.icon, src.icon_panel)
 		if(!servicechgaccount)
@@ -409,6 +415,7 @@
 #define WIRE_SHOCK 3
 #define WIRE_SHOOTINV 4
 #define WIRE_FREEZER 5
+#define WIRE_SPEAKER 6
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
@@ -572,7 +579,8 @@
 		"Orange" = 2,\
 		"Goldenrod" = 3,\
 		"Green" = 4,\
-		"Broun" = 5)
+		"Broun" = 5,\
+		"Fuschia" = 6)
 	var/list/html_parts = list()
 	html_parts = "<TT><B>The Access Panel is [src.panel_open ? "open" : "closed"]:</B><br>"
 	html_parts += "<table border=\"1\" style=\"width:100%\"><tbody><tr><td><small>"
@@ -590,6 +598,7 @@
 	html_parts += "The orange light is [(src.seconds_electrified == 0) ? "off" : "on"].<BR>"
 	html_parts += "The red light is [src.shoot_inventory ? "off" : "blinking"].<BR>"
 	html_parts += "The green light is [src.extended_inventory ? "on" : "off"].<BR>"
+	html_parts += "The blue light is [src.speaker ? "on" : "off"].<BR>"
 	html_parts += "The [(src.wires & WIRE_SCANID) ? "purple" : "yellow"] light is on.<BR>"
 	html_parts += "The AI control indicator is [src.ai_control_enabled ? "lit" : "unlit"].<BR>"
 	html_parts += "The compressor is [(!(status & (BROKEN|NOPOWER)) && src.freezer) ? "rumbling softly" : "quiet"].<BR>"
@@ -1014,24 +1023,34 @@
 	playsound(src.loc, 'sound/machines/ping.ogg', 20, 1, SOUND_RANGE_STANDARD)
 	return
 
+/obj/machinery/vending/proc/start_sound_loop() //TODO: let's also make this tie to a new wire state
+	return
+/obj/machinery/vending/proc/stop_sound_loop()
+	return
+
 /obj/machinery/vending/power_change()
 	if (can_fall == 2)
 		icon_state = icon_fallen ? icon_fallen : "[initial(icon_state)]-fallen"
 		light.disable()
+		stop_sound_loop()
 		return
 
 	if (status & BROKEN)
 		icon_state = icon_broken ? icon_broken : "[initial(icon_state)]-broken"
 		light.disable()
+		stop_sound_loop()
 		if(src.has_glow)
 			src.UpdateOverlays(null, "glow")
 	else
 		if ( powered() )
+			if (src.icon_state == "[initial(icon_state)]-vend") //please don't step on vending states!!! it's already powered!!!!
+				return //fuck you!!!!!!
 			icon_state = initial(icon_state)
 			status &= ~NOPOWER
 			light.enable()
 			if(src.has_glow)
 				src.UpdateOverlays(glow, "glow")
+			start_sound_loop()
 		else
 			SPAWN_DBG(rand(0, 15))
 				src.icon_state = icon_off ? icon_off : "[initial(icon_state)]-off"
@@ -1039,6 +1058,7 @@
 				light.disable()
 				if(src.has_glow)
 					src.UpdateOverlays(null, "glow")
+				stop_sound_loop()
 
 /obj/machinery/vending/proc/fall(mob/living/carbon/victim)
 	if (can_fall != 1)
@@ -1172,7 +1192,7 @@
 			throw_item()
 	if (probmult(5)) //cause lasting problems :3
 		//so having this list duplicated here is kinda shit but src.vendwires isn't set until something generates the vending machine's HTML
-		cut(pick(list("Violet", "Orange", "Goldenrod", "Green",	"Broun")))
+		cut(pick(list("Violet", "Orange", "Goldenrod", "Green",	"Broun", "Fuschia")))
 	if (probmult(1))
 		var/mob/living/carbon/human/H = locate() in orange(1, src)
 		fall(H) //:D
@@ -1224,6 +1244,9 @@
 		if (WIRE_FREEZER)
 			if(src.freezer)
 				src.freezer = 0
+		if (WIRE_SPEAKER)
+			if(src.speaker)
+				src.speaker = 0
 	src.generate_HTML(0, 1)
 
 /obj/machinery/vending/proc/mend(var/wireColor)
@@ -1239,6 +1262,9 @@
 			src.shoot_inventory = 0
 		if (WIRE_FREEZER)
 			src.freezer = 1
+		if (WIRE_SPEAKER)
+			if(src.speaker)
+				src.speaker = 1
 	src.generate_HTML(0, 1)
 
 /obj/machinery/vending/proc/pulse(var/wireColor)
@@ -1255,6 +1281,8 @@
 			src.shoot_inventory = !src.shoot_inventory
 		if (WIRE_FREEZER)
 			src.freezer = !src.freezer
+		//if (WIRE_SPEAKER)
+			//TODO: switch between normal sound and alt sound (for some machines this is two normal sounds, other machines normal sounds and fucked up sounds)
 
 
 	src.generate_HTML(0, 1)
@@ -1343,6 +1371,7 @@
 #undef WIRE_SHOCK
 #undef WIRE_SHOOTINV
 #undef WIRE_FREEZER
+#undef WIRE_SPEAKER
 
 /obj/machinery/vending/coffee
 	name = "coffee machine"
@@ -2546,6 +2575,8 @@
 			if (promoimage)
 				icon_state = "[initial(icon_state)]-display"
 				setItemOverlay(promoimage)
+			if (icon_state != "[initial(icon_state)]-vend")
+				return //fuck you
 			else
 				icon_state = initial(icon_state)
 		else
@@ -2755,20 +2786,59 @@
 	name = "pizza vending machine"
 	icon_state = "pizza"
 	desc = "A vending machine that serves... pizza?"
+	loopsound = 'sound/ambience/music/videopizza.ogg'
 	var/pizcooking = 0
-	var/piztopping = "plain"
+	var/piztopping = "Just A Plain"
+	var/image/bakeglow
 	anchored = UNANCHORED
 	acceptcard = 0
 	pay = 1
 	credit = 100
-	slogan_list = list("A revolution in the pizza industry!",
-	"Prepared in moments!",
-	"I'm a chef who works 24 hours a day!")
+	slogan_list = list("No hand-crafting or oven bricks involved, whatsoever!",
+	"Faster and cheaper means better!","Coming Soon: The Auto-Pasta!",
+	"Now with even tastier ketchup!")
 	var/sharpen = FALSE
+
+	//todo: stop baking pizza when power cut or tipped or broken
+	//maybe: spit out a fucked up or raw or possibly soft pizza pizza
 
 	light_r =1
 	light_g = 0.6
 	light_b = 0.2
+
+	New()
+		. = ..()
+		setup_sound()
+		src.bakeglow = image(src.icon, src, "pizza-vend_g")
+		src.bakeglow.plane = PLANE_LIGHTING
+		src.bakeglow.layer = LIGHTING_LAYER_BASE
+		src.bakeglow.blend_mode = BLEND_ADD
+
+	setup_sound()
+		sound_emitter = new /datum/sound_emitter(src)
+		if (sound_emitter)
+			//oh so that's where it's from
+			var/sound/samuraicoptheme = sound()
+			samuraicoptheme.file = loopsound
+			samuraicoptheme.repeat = 1
+			samuraicoptheme.falloff = 1
+			samuraicoptheme.volume = 3
+			sound_emitter.add(samuraicoptheme, "videopizza")
+			return
+
+	start_sound_loop()
+		if (!loop_playing && sound_emitter && speaker)
+			sound_emitter.play("videopizza")
+			loop_playing = TRUE
+			return
+		return 1
+
+	stop_sound_loop()
+		//alternatively, send a speaker crackle sound that interrupts the emitted noise? play with this more later, future me (or future you, the reader)
+		if (loop_playing && sound_emitter)
+			sound_emitter.deactivate()
+			loop_playing = FALSE
+		return
 
 	attackby(obj/item/W, mob/user)
 		if (!sharpen && istype(W, /obj/item/kitchen/utensil/knife/pizza_cutter/traitor))
@@ -2781,12 +2851,31 @@
 		return ..()
 
 	generate_vending_HTML()
-		src.vending_HTML = "<TT><B>PizzaVend 0.5b</B></TT><BR>"
+		src.vending_HTML = "<TT><B>Genuine Italian-Inspired PizzaVend 0.6b</B></TT><BR>"
 
 		if (src.pizcooking)
-			src.vending_HTML += "<TT><B>Cooking your pizza, please wait!</B></TT><BR>"
+			src.vending_HTML += "<TT><B>Cooking your pizza pie, please wait!</B></TT><br><ul>"
+			if(src.pizcooking < 0)
+				src.vending_HTML += "<li>FATAL ERROR: OUT OF KETCHUP... <span style='color: red'>HELP HELP HELP HELP HELP HELP</span></li>"
+			if(src.pizcooking >= 1)
+				src.vending_HTML += "<li>First up, baking up that hot hot bread...</li>"
+			if(src.pizcooking >= 2)
+				src.vending_HTML += "<li>Finished baking! Here comes the ketchup, fresh style!</li>"
+			if (src.pizcooking >= 3)
+				src.vending_HTML += "<li>Did somebody order cheese? Oh yeah. You did. Nice.</li>"
+			if (src.pizcooking >= 4)
+				if (src.piztopping == "Just A Plain" || src.piztopping == "\[DEBUG\]secret recipe DO NOT ORDER IF NOT UNDER NDA")
+					src.vending_HTML += "<li>Not adding anything at all at this step! Your'e the boss!</li>"
+				else
+					src.vending_HTML += "<li>Adding just the right ingredients, just the way you crave...</li>"
+			//done
+			if(src.pizcooking >= 5)
+				src.vending_HTML += "<li>Mmmm... Now that's a good stuff...Great!</li>"
+			src.vending_HTML += "</ul>"
+			if(src.pizcooking >= 5)
+				src.vending_HTML += "<h2><blink>PLEASE ENJOY YOUR MADE TO ORDER ITALIAN-INSPIRED 'PIZZA' 'PIE' <span style='color: red'>NOW</span></blink></h2>"
 		else
-			src.vending_HTML += "Topping - <A href='byond://?src=\ref[src];picktopping=1'>[piztopping]</A><BR>"
+			src.vending_HTML += "Pie Topping - <A href='byond://?src=\ref[src];picktopping=1'>[piztopping]</A><BR>"
 			src.vending_HTML += "<A href='byond://?src=\ref[src];cook=1'>Cook!</A><BR>"
 
 			if (src.pay)
@@ -2814,39 +2903,92 @@
 						credit -= 50
 					pizcooking = 1
 					icon_state = "pizza-vend"
+					//illegal pizza trade secrets
+					if (piztopping == "\[DEBUG\]secret recipe DO NOT ORDER IF NOT UNDER NDA")
+						//stealing the public urination arrest code (useful for framing someone perhaps)
+						var/perpname = usr.name
+						if(usr:wear_id && usr:wear_id:registered)
+							perpname = usr:wear_id:registered
+						var/datum/db_record/sec_record = data_core.security.find_record("name", perpname)
+						if(sec_record && sec_record["usr"] != "*Arrest*")
+							sec_record["criminal"] = "*Arrest*"
+							sec_record["ma_crim"] = "Corporate Espionage."
+					if(bakeglow)
+						src.UpdateOverlays(bakeglow, "glow")
 					src.generate_HTML(1)
 					updateUsrDialog()
-					sleep(20 SECONDS)
+					//status updates, domino's style's
+					sleep(5 SECONDS)
+					pizcooking = 2
+					src.generate_HTML(1)
+					updateUsrDialog()
+					sleep(5 SECONDS)
+					pizcooking = 3
+					src.generate_HTML(1)
+					updateUsrDialog()
+					sleep(5 SECONDS)
+					pizcooking = 4
+					src.generate_HTML(1)
+					updateUsrDialog()
+					sleep(5 SECONDS)
+					pizcooking = 5
+					src.generate_HTML(1)
+					updateUsrDialog()
+					//Pizza's done, spit it out
+					pizcooking = 0
+					icon_state = "pizza"
+					if(glow) //also restore regular glow just in case
+						src.UpdateOverlays(glow, "glow")
 					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1, SOUND_RANGE_STANDARD)
 					var/obj/item/reagent_containers/food/snacks/pizza/P
-					if(emagged)
+					if(emagged) //you can choose pineapple if you want but if it's emagged it's all you get
 						P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pineapple(src.loc)
 					else
 						switch(piztopping)
-							if("plain")
-								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/cheese(src.loc)
-							if("meatball")
+							if("Just A Plain")
+								P = new (src.loc)
+							if("'Spicy' 'Meatball'")
 								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/meatball(src.loc)
-							if("mushroom")
+							if("Mega Mushroom")
 								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/mushroom(src.loc)
-							if("pepperoni")
+							if("Powerful Pepperoni")
 								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pepperoni(src.loc)
+							if("pineapple")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/pineapple(src.loc)
+							if("X-Clusive! BBQ Chicken")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/bbqchicken(src.loc)
+							if("Meat Loaders Deluxe")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/meatloaders(src.loc)
+							if("'The Works'")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/theworks(src.loc)
+							if("\[DEBUG\]secret recipe DO NOT ORDER IF NOT UNDER NDA")
+								P = new /obj/item/reagent_containers/food/snacks/pizza/vendor/deepdish(src.loc)
 					if (src.sharpen)
 						var/list/slices = P.make_slices()
 						for(var/obj/item/reagent_containers/food/snacks/pizzaslice/slice in slices)
 							slice.throw_at(usr, 16, 3)
 
-					if (!(status & (NOPOWER|BROKEN)))
-						icon_state = "pizza"
-
-					pizcooking = 0
-					src.generate_HTML(1)
+					SPAWN_DBG(8 SECONDS)
+						//leave pizza results up for a bit
+						src.generate_HTML(1)
+						updateUsrDialog()
 			if(href_list["picktopping"])
-				switch(piztopping)
-					if("plain") piztopping = "meatball"
-					if("meatball") piztopping = "mushroom"
-					if("mushroom") piztopping = "pepperoni"
-					if("pepperoni") piztopping = "plain"
+				switch(piztopping) //gee i think this can be done a better way. like say eight buttons maybe? with text and the icon? todo on bobskunk's vending machine fuckfest
+					if("Just A Plain")
+						piztopping = "'Spicy' 'Meatball'"
+					if("'Spicy' 'Meatball'")
+						piztopping = "Mega Mushroom"
+					if("Mega Mushroom") piztopping = "Powerful Pepperoni"
+					if("Powerful Pepperoni") piztopping = "pineapple"
+					if("pineapple") piztopping = "X-Clusive! BBQ Chicken"
+					if("X-Clusive! BBQ Chicken") piztopping = "Meat Loaders Deluxe"
+					if("Meat Loaders Deluxe") piztopping = "'The Works'"
+					if("'The Works'")
+						if(extended_inventory)
+							piztopping = "\[DEBUG\]secret recipe DO NOT ORDER IF NOT UNDER NDA"
+						else
+							piztopping = "Just A Plain"
+					if("\[DEBUG\]secret recipe DO NOT ORDER IF NOT UNDER NDA") piztopping = "Just A Plain" //9th, a secret janky mismatched wired in button at the bottom that doesn't work until hacked. for later...
 				src.generate_HTML(1)
 			add_fingerprint(usr)
 			updateUsrDialog()
@@ -2872,7 +3014,6 @@
 		src.visible_message("<span class='alert'><b>[src] launches [P.name] at [target.name]!</b></span>")
 		postvend_effect()
 		return
-
 
 /obj/machinery/vending/pizza/fallen
 	New()

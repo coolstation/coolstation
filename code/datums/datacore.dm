@@ -134,6 +134,7 @@
 								"Stole the captain's spare ID.",\
 								"Arson, murder, jaywalking.",\
 								"Arson.",\
+								"Corporate Espionage.",\
 								"Murder.",\
 								"Jaywalking.",\
 								"Skating right through the bounds of real-space. Wicked sick, but highly illegal.",\

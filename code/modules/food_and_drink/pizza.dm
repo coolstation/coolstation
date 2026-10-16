@@ -311,7 +311,7 @@
 	mat_changeappearance = 0
 	mat_changename = 0
 	mat_changedesc = 0
-	var/sauce_color = "#ff2f00"
+	var/sauce_color = "#b4320f"
 	var/cheesy = 1
 	var/sharpened = FALSE
 
@@ -389,7 +389,7 @@
 	mat_changeappearance = 1
 	mat_changename = 1
 	mat_changedesc = 1
-	var/sauce_color = "#ff2f00"
+	var/sauce_color = "#b4320f"
 	var/cheesy = 1
 	var/image/sauce_image = null
 	var/image/cheese_image = null
@@ -457,36 +457,41 @@
 	name = "fresh cheese pizza"
 	desc = "A cheesy pizza pie with thick tomato sauce."
 	icon_state = "cheesepizza"
-	initial_reagents = list("bread" = 10, "juice_tomato" = 10, "cheese" = 5)
+	initial_reagents = list("bread" = 10, "tomato_sauce" = 10, "cheese" = 5)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/standard/cheese
 
 /obj/item/reagent_containers/food/snacks/pizza/standard/meatball
 	name = "fresh meatball pizza"
 	desc = "A cheesy pizza pie topped with succulent meatballs."
 	icon_state = "meatballpizza"
-	initial_reagents = list("bread" = 10, "juice_tomato" = 10, "cheese" = 5, "beff" = 20)
+	initial_reagents = list("bread" = 10, "tomato_sauce" = 10, "cheese" = 5, "beff" = 20)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/standard/meatball
 
 /obj/item/reagent_containers/food/snacks/pizza/standard/pepperoni
 	name = "fresh pepperoni pizza"
 	desc = "A cheesy pizza pie topped with bright red sizzling pepperoni slices."
 	icon_state = "pepperonipizza"
-	initial_reagents = list("bread" = 10, "juice_tomato" = 10, "cheese" = 5, "pepperoni" = 20)
+	initial_reagents = list("bread" = 10, "tomato_sauce" = 10, "cheese" = 5, "pepperoni" = 20)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/standard/pepperoni
 
 /obj/item/reagent_containers/food/snacks/pizza/standard/mushroom
 	name = "fresh mushroom pizza"
 	desc = "A cheesy pizza pie topped with fresh picked mushrooms."
 	icon_state = "mushroompizza"
-	initial_reagents = list("bread" = 10, "juice_tomato" = 10, "cheese" = 5, "space_fungus" = 20)
+	initial_reagents = list("bread" = 10, "tomato_sauce" = 10, "cheese" = 5, "space_fungus" = 20)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/standard/mushroom
 
+
+//I was so tempted to make the vendor pizza use the old pizza sprite and fresh baked kitchen pizza use the new sprites
+//both as a further means of appetizing fresh made real pizzas and making the vending machine an abomination.
+//that may be revisited, but at least for now, I filled in some missing custom images:
 /obj/item/reagent_containers/food/snacks/pizza/vendor
 	name = "vendor pizza"
 	desc = "Base vendor pizza (you shouldn't see this)."
 	icon_state = "cheesepizza"
 	amount = 6
 	heal_amt = 2
+	sauce_color = "#dc3714"
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor
 	food_effects = list("food_deep_burp")
 
@@ -494,36 +499,68 @@
 	name = "cheese pizza"
 	desc = "A greasy cheese pizza."
 	icon_state = "cheesepizza"
-	initial_reagents = list("bread" = 5, "juice_tomato" = 5, "cheese" = 5, "badgrease" = 20)
+	initial_reagents = list("bread" = 5, "ketchup" = 5, "cheese" = 5, "badgrease" = 20)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/cheese
 
 /obj/item/reagent_containers/food/snacks/pizza/vendor/pepperoni
 	name = "pepperoni pizza"
 	desc = "A greasy pepperoni pizza."
 	icon_state = "pepperonipizza"
-	initial_reagents = list("bread" = 5, "juice_tomato" = 5, "cheese" = 5, "pepperoni" = 15, "badgrease" = 20)
+	initial_reagents = list("bread" = 5, "ketchup" = 5, "cheese" = 5, "pepperoni" = 15, "badgrease" = 20)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/pepperoni
 
 /obj/item/reagent_containers/food/snacks/pizza/vendor/meatball
 	name = "meatball pizza"
 	desc = "A greasy meatball pizza."
 	icon_state = "meatballpizza"
-	initial_reagents = list("bread" = 5, "juice_tomato" = 5, "cheese" = 5, "beff" = 15, "badgrease" = 20)
+	initial_reagents = list("bread" = 5, "ketchup" = 5, "cheese" = 5, "beff" = 15, "badgrease" = 20)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/meatball
 
 /obj/item/reagent_containers/food/snacks/pizza/vendor/mushroom
 	name = "mushroom pizza"
 	desc = "A greasy mushroom pizza."
 	icon_state = "mushroompizza"
-	initial_reagents = list("bread" = 5, "juice_tomato" = 5, "cheese" = 5, "space_fungus" = 15, "badgrease" = 20)
+	initial_reagents = list("bread" = 5, "ketchup" = 5, "cheese" = 5, "space_fungus" = 15, "badgrease" = 20)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/mushroom
 
-/obj/item/reagent_containers/food/snacks/pizza/vendor/pineapple // only from hacked vendor
+/obj/item/reagent_containers/food/snacks/pizza/vendor/pineapple
 	name = "pineapple pizza"
 	desc = "A greasy pineapple pizza. Some people have strong opinions about it."
+	icon_state = "pineapplepizza"
 	contraband = 2
-	initial_reagents = list("bread" = 5, "juice_tomato" = 5, "cheese" = 5, "juice_pineapple" = 15, "badgrease" = 20)
+	initial_reagents = list("bread" = 5, "ketchup" = 5, "cheese" = 5, "juice_pineapple" = 15, "badgrease" = 20)
 	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/pineapple
+
+/obj/item/reagent_containers/food/snacks/pizza/vendor/meatloaders
+	name = "meat loaders pizza"
+	desc = "A greasy meat loaders pizza. You recognize most of the kinds of meat on this."
+	icon_state = "meatloaderspizza"
+	initial_reagents = list("bread" = 5, "ketchup" = 5, "cheese" = 5, "pepperoni" = 5, "beff" = 5, "meat_slurry" = 5, "badgrease" = 20)
+	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/meatloaders
+
+/obj/item/reagent_containers/food/snacks/pizza/vendor/bbqchicken
+	name = "bbq chicken pizza"
+	desc = "A greasy bbq chicken pizza. You have no idea where they got the meat."
+	icon_state = "bbqchickenpizza"
+	initial_reagents = list("bread" = 5, "ketchup" = 5, "cheese" = 5, "meat_slurry" = 10, "sauce_bbq" = 5, "badgrease" = 20)
+	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/bbqchicken
+
+/obj/item/reagent_containers/food/snacks/pizza/vendor/theworks
+	name = "'the works' pizza"
+	desc = "A greasy 'the works' pizza. There's so much shit on this."
+	icon_state = "theworkspizza"
+	initial_reagents = list("bread" = 5, "ketchup" = 5, "cheese" = 5, "pepperoni" = 3, "beff" = 3, "meat_slurry" = 3, "space_fungus" = 3, "juice_pineapple" = 3, "badgrease" = 20)
+	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/meatloaders
+
+/obj/item/reagent_containers/food/snacks/pizza/vendor/deepdish // only from hacked vendor (not a dig at chicago but this is specifically for increasing Italian Ire)
+	name = "some kinda weird pizza bowl"
+	desc = "A greasy weird prototype pizza, or perhaps the vending machine malfunctioned. You can see why it's not normally for sale."
+	icon_state = "deepdishpizza"
+	cheesy = FALSE //overriding overlay-creation vars
+	sauce_color = null
+	initial_reagents = list("bread" = 5, "ketchup" = 20, "cheese" = 5, "badgrease" = 20)
+	slice_product = /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/deepdish
+	//drip 5 reagents when sliced
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/standard
 	name = "slice of fresh basic pizza"
@@ -557,33 +594,58 @@
 	desc = "A slice of base vendor pizza (you shouldn't see this)."
 	amount = 1
 	heal_amt = 2
+	sauce_color = "#dc3714"
 	food_effects = list("food_deep_burp")
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/cheese
 	name = "slice of cheese pizza"
 	desc = "A slice of greasy cheese pizza."
-	initial_reagents = list("bread" = 1, "juice_tomato" = 1, "cheese" = 1, "badgrease" = 4)
+	initial_reagents = list("bread" = 1, "ketchup" = 1, "cheese" = 1, "badgrease" = 4)
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/pepperoni
 	name = "slice of pepperoni pizza"
 	desc = "A slice of greasy pepperoni pizza."
-	initial_reagents = list("bread" = 1, "juice_tomato" = 1, "cheese" = 1, "pepperoni" = 3, "badgrease" = 4)
+	initial_reagents = list("bread" = 1, "ketchup" = 1, "cheese" = 1, "pepperoni" = 3, "badgrease" = 4)
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/meatball
 	name = "slice of meatball pizza"
 	desc = "A slice of greasy meatball pizza."
-	initial_reagents = list("bread" = 1, "juice_tomato" = 1, "cheese" = 1, "beff" = 3, "badgrease" = 4)
+	initial_reagents = list("bread" = 1, "ketchup" = 1, "cheese" = 1, "beff" = 3, "badgrease" = 4)
 
 /obj/item/reagent_containers/food/snacks/pizzaslice/vendor/mushroom
 	name = "slice of mushroom pizza"
 	desc = "A slice of greasy mushroom pizza."
-	initial_reagents = list("bread" = 1, "juice_tomato" = 1, "cheese" = 1, "space_fungus" = 3, "badgrease" = 4)
+	initial_reagents = list("bread" = 1, "ketchup" = 1, "cheese" = 1, "space_fungus" = 3, "badgrease" = 4)
 
-/obj/item/reagent_containers/food/snacks/pizzaslice/vendor/pineapple // only from hacked vendor
+/obj/item/reagent_containers/food/snacks/pizzaslice/vendor/pineapple
 	name = "slice of pineapple pizza"
 	desc = "A slice of greasy pineapple pizza. Some people have strong opinions about it."
 	contraband = 1
-	initial_reagents = list("bread" = 1, "juice_tomato" = 1, "cheese" = 1, "juice_pineapple" = 3, "badgrease" = 4)
+	initial_reagents = list("bread" = 1, "ketchup" = 1, "cheese" = 1, "juice_pineapple" = 3, "badgrease" = 4)
+
+/obj/item/reagent_containers/food/snacks/pizzaslice/vendor/meatloaders
+	name = "slice of meat loaders pizza"
+	desc = "A slice of greasy meat loaders pizza. You recognize most of the kinds of meat on this."
+	initial_reagents = list("bread" = 1, "ketchup" = 1, "cheese" = 1, "juice_pineapple" = 3, "badgrease" = 4)
+
+/obj/item/reagent_containers/food/snacks/pizzaslice/vendor/bbqchicken
+	name = "slice of bbq chicken pizza"
+	desc = "A slice of greasy bbq chicken pizza. The meat source is a mystery."
+	initial_reagents = list("bread" = 1, "ketchup" = 1, "cheese" = 1, "juice_pineapple" = 3, "badgrease" = 4)
+
+/obj/item/reagent_containers/food/snacks/pizzaslice/vendor/theworks // only from hacked vendor
+	name = "slice of 'the works' pizza"
+	desc = "A slice of greasy pizza with way too much shit on it."
+	initial_reagents = list("bread" = 1, "ketchup" = 1, "cheese" = 1, "beff" = 1, "pepperoni" = 1, "space_fungus" = 1, "meat_slurry" = 1, "juice_pineapple" = 1, "badgrease" = 2)
+
+/obj/item/reagent_containers/food/snacks/pizzaslice/vendor/deepdish // only from hacked vendor
+	name = "slice of weird pizza"
+	desc = "A slice of greasy weird prototype pizza. At least you know where the cheese is, but it's dripping EVERYWHERE."
+	icon_state = "deepdishslice" //doing our own icon, overriding the rest (including overlays)
+	sauce_color = null
+	cheesy = FALSE
+	initial_reagents = list("bread" = 1, "ketchup" = 4, "cheese" = 1, "badgrease" = 4)
+	//drip 2 reagents every bite
 
 /obj/item/reagent_containers/food/snacks/pizza/cargo
 	name = "soft serve base pizza"
