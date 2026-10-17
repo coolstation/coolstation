@@ -5,6 +5,9 @@
 // AND ALL THE MONEY WILL BE GONE
 
 #define CREDIT_SIGN "$"
+#define BANK_COMP_BUDGET 1
+#define BANK_COMP_RECORDS 2
+#define BANK_COMP_DEPOSIT 3
 
 /datum/wage_system
 
@@ -326,8 +329,8 @@
 		switch(src.state)
 			if(STATE_LOGGEDOFF)
 				if (src.scan)
-					dat += "<BR>\[ <A HREF='byond://?src=\ref[src];operation=logout'>Logout</A> \]"
-					dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=enterpin'>Enter Pin</A>"
+					dat += "<br>\[ <a href='byond://?src=\ref[src];operation=logout'>Logout</A> \]"
+					dat += "<br><br><a href='byond://?src=\ref[src];operation=enterpin'>Enter Pin</A>"
 
 				else dat += "Please wipe your card to begin."
 
@@ -338,15 +341,15 @@
 					src.updateUsrDialog()
 
 				else
-					dat += "<BR><A HREF='byond://?src=\ref[src];operation=logout'>Logout</A>"
+					dat += "<br><a href='byond://?src=\ref[src];operation=logout'>Logout</A>"
 
 					if (src.scan)
-						dat += "<BR><BR>Your balance is: $ [src.accessed_record["current_money"]]."
-						dat += "<BR><A HREF='byond://?src=\ref[src];operation=withdrawcash'>Withdraw Cash</A>"
-						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=buy'>Buy Lottery Ticket (100 credits)</A>"
-						dat += "<BR>To claim your winnings you'll need to insert your lottery ticket."
+						dat += "<br><br>Your balance is: $ [src.accessed_record["current_money"]]."
+						dat += "<br><a href='byond://?src=\ref[src];operation=withdrawcash'>Withdraw Cash</A>"
+						dat += "<br><br><a href='byond://?src=\ref[src];operation=buy'>Buy Lottery Ticket (100 credits)</A>"
+						dat += "<br>To claim your winnings you'll need to insert your lottery ticket."
 					else
-						dat += "<BR>Please wipe your card to continue."
+						dat += "<br>Please wipe your card to continue."
 
 
 		/*if (user.client)
@@ -363,7 +366,7 @@
 			</div>
 			"}*/
 
-		dat += "<BR><BR><A HREF='byond://?action=mach_close&window=atm'>Close</A></span>"
+		dat += "<br><br><a href='byond://?action=mach_close&window=atm'>Close</A></span>"
 		user.Browse(dat.Join(), "window=atm;size=400x250;title=Automated Teller Machine")
 		onclose(user, "atm")
 
@@ -488,6 +491,8 @@
 	var/printing = null
 	var/can_change_id = 0
 	var/payroll_rate_limit_time = 0 //for preventing coammand message spam
+	var/current_deposit = null
+	var/last_deposit = null
 	var/static/bonus_rate_limit_time = 0 //prevent bonus spam because these have an annoucement
 	///I know we already have department job lists but they suck and are brittle and way too general so I made my own here
 	var/static/list/departments = list(
@@ -515,50 +520,68 @@
 			return
 		var/list/dat = list()
 		if (src.temp)
-			dat += text("<TT>[src.temp]</TT><BR><BR><A href='byond://?src=\ref[src];temp=1'>Clear Screen</A>")
+			dat += text("<TT>[src.temp]</TT><br><br><a href='byond://?src=\ref[src];temp=1'>Clear Screen</A>")
 		else
 			dat+= {"<head><link rel="stylesheet" type="text/css" href="[resource("css/COMPUTAH.css")]" /><div class="crt"></div></head><body><h1>Bank Records</h1>"}
-			dat += text("Confirm Identity: <A href='byond://?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
+			dat += text("Confirm Identity: <a href='byond://?src=\ref[];scan=1'>[]</A><hr>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
 			if (src.authenticated)
 				switch(src.screen)
-					if(1.0)
+					if(BANK_COMP_BUDGET)
 						var/payroll = 0
 						var/totalfunds = wagesystem.station_budget + wagesystem.research_budget + wagesystem.shipping_budget
 						for(var/datum/db_record/R as anything in data_core.bank.records)
 							payroll += R["wage"]
 						dat += {"
-						<div class = "box">Total Station Funds:</b></div> <u>$[num2text(totalfunds,50)]</u>
-						<BR>
-						<BR><div class = "box">Current Payroll Budget:</b></div> $[num2text(wagesystem.station_budget,50)]
-						<BR><div class = "box">Current Research Budget:</b></div> $[num2text(wagesystem.research_budget,50)]
-						<BR><div class = "box">Current Shipping Budget:</b></div> $[num2text(wagesystem.shipping_budget,50)]
-						<BR>
-						<div class = "box">Current Payroll Cost:</b></div> $[payroll]
-						<BR>
-						<BR><br><A href='byond://?src=\ref[src];list=1'>List Payroll Records</A>"}
-						if (wagesystem.pay_active) dat += "<BR><br><a  href='byond://?src=\ref[src];payroll=1' class = 'box error'>Suspend Payroll</a>"
-						else dat += "<BR><br><A href='byond://?src=\ref[src];payroll=1' class = 'box error'>Resume Payroll</A>"
-						dat += {"<BR><br><A href='byond://?src=\ref[src];transfer=1'>Transfer Funds Between Budgets</A>
+						<div class="box">Total Station Funds:</b></div> <u>$[num2text(totalfunds,50)]</u>
+						<br>
+						<br><div class="box">Current Payroll Budget:</b></div> $[num2text(wagesystem.station_budget,50)]
+						<br><div class="box">Current Research Budget:</b></div> $[num2text(wagesystem.research_budget,50)]
+						<br><div class="box">Current Shipping Budget:</b></div> $[num2text(wagesystem.shipping_budget,50)]
+						<br>
+						<div class="box">Current Payroll Cost:</b></div> $[payroll]
+						<br>
+						<br><br><a href='byond://?src=\ref[src];list=1'>List Payroll Records</A>"}
+						if (wagesystem.pay_active) dat += "<br><br><a  href='byond://?src=\ref[src];payroll=1' class = 'box error'>Suspend Payroll</a>"
+						else dat += "<br><br><a href='byond://?src=\ref[src];payroll=1' class = 'box error'>Resume Payroll</A>"
+						dat += {"<br><br><a href='byond://?src=\ref[src];transfer=1'>Transfer Funds Between Budgets</A>
 
-						<BR><br>
-						<A href='byond://?src=\ref[src];bonus=1'>Issue Staff Bonus</A>
-						<BR><br>
-						<BR><br><A href='byond://?src=\ref[src];logout=1'>{Log Out}</A>
-						<BR><br>
+						<br><br>
+						<a href='byond://?src=\ref[src];bonus=1'>Issue Staff Bonus</A>
+						<br><br><a href='byond://?src=\ref[src];insertcash=1'>Deposit Cash In Hand To Payroll</A><br>
+						<br><br><a href='byond://?src=\ref[src];logout=1'>{Log Out}</A>
+						<br><br>
 						</body>"}
-					if(2.0)
-						dat += "<B>Record List</B>:<HR>"
+					if(BANK_COMP_RECORDS)
+						dat += "<B>Record List</B>:<hr>"
 						for(var/datum/db_record/R as anything in data_core.bank.records)
-							dat += text("<BR><b>Name:</b> <A href='byond://?src=\ref[src];Fname=\ref[R]'>[R["name"]]</A> <b>Job:</b> <A href='byond://?src=\ref[src];Fjob=\ref[R]'>[R["job"]]</A>")
-							dat += text("<BR><b>Current Wage:</b> <A href='byond://?src=\ref[src];Fwage=\ref[R]'>[R["wage"]]</A>")
-							dat += text("<BR><b>Current Balance:</b> <A href='byond://?src=\ref[src];Fmoney=\ref[R]'>[R["current_money"]]</A><BR>")
-						dat += text("<HR><A href='byond://?src=\ref[src];main=1'>Back</A>")
+							dat += text("<br><b>Name:</b> <a href='byond://?src=\ref[src];Fname=\ref[R]'>[R["name"]]</A> <b>Job:</b> <a href='byond://?src=\ref[src];Fjob=\ref[R]'>[R["job"]]</A>")
+							dat += text("<br><b>Current Wage:</b> <a href='byond://?src=\ref[src];Fwage=\ref[R]'>[R["wage"]]</A>")
+							dat += text("<br><b>Current Balance:</b> <a href='byond://?src=\ref[src];Fmoney=\ref[R]'>[R["current_money"]]</A><br>")
+						dat += text("<hr><a href='byond://?src=\ref[src];main=1'>Back</A>")
+					if(BANK_COMP_DEPOSIT)
+						//handle outstanding deposit or show results of prior deposit
+						dat += process_deposit()
+						dat += text("<br><br><a href='byond://?src=\ref[src];insertcash=1'>Make Additional Deposit</A><br>")
+						dat += text("<hr><a href='byond://?src=\ref[src];main=1'>Back</A>")
 					else
-			else
-				dat += text("<A href='byond://?src=\ref[];login=1'>{Log In}</A>", src)
+			else if (src.screen == BANK_COMP_DEPOSIT) //okay to show this to unauthorized sessions while making a deposit
+				dat += process_deposit() //sensitive data is omitted when not logged in
+				dat += text("<br><br><a href='byond://?src=\ref[src];insertcash=1'>Make Additional Deposit</A><br>")
+				dat += text("<hr><a href='byond://?src=\ref[src];logout=1'>Back</A>") //square one reset, we're not actually logged in
+			else //no deposit, plain login
+				dat += text("<br><br><a href='byond://?src=\ref[src];insertcash=1'>Deposit Cash In Hand To Payroll</A><br>")
+				dat += text("<a href='byond://?src=\ref[];login=1'>{Log In}</A>", src)
 		user.Browse(dat.Join(), "window=secure_bank;title=Bank Records")
 		onclose(user, "secure_bank")
 		return
+
+	attackby(obj/item/W as obj, mob/user as mob)
+		if (try_take_cash(W, user)) //successfully either took valid money or produced an invalid money error
+			screen = BANK_COMP_DEPOSIT
+			active1 = null
+			attack_hand(user)
+			return
+		..()
 
 	Topic(href, href_list)
 		if(..())
@@ -585,25 +608,33 @@
 					src.authenticated = null
 					src.screen = null
 					src.active1 = null
+					src.last_deposit = null
+				else if (href_list["insertcash"])
+					//check for actual cash, count it, and either keep it or prep an error
+					var/obj/item/I = usr.equipped()
+					try_take_cash(I, usr)
+					//send to screen
+					src.screen = BANK_COMP_DEPOSIT
+					src.active1 = null
 				else
 					if (href_list["login"])
 						if (usr_is_robot && !isghostdrone(usr))
 							src.active1 = null
 							src.authenticated = 1
 							src.rank = "AI"
-							src.screen = 1
+							src.screen = BANK_COMP_BUDGET
 						if (istype(src.scan, /obj/item/card/id))
 							src.active1 = null
 							if(check_access(src.scan))
 								src.authenticated = src.scan.registered
 								src.rank = src.scan.assignment
-								src.screen = 1
+								src.screen = BANK_COMP_BUDGET
 			if (src.authenticated)
 				if (href_list["list"])
-					src.screen = 2
+					src.screen = BANK_COMP_RECORDS
 					src.active1 = null
 				else if (href_list["main"])
-					src.screen = 1
+					src.screen = BANK_COMP_BUDGET
 					src.active1 = null
 				else if(href_list["Fname"])
 					var/datum/db_record/R = locate(href_list["Fname"])
@@ -760,6 +791,92 @@
 
 		return
 
+	//do not null current_deposit or manipulate last deposit, that's what process_deposit() is for
+	//do not call process_deposit() from this, do that from the code you're calling this from
+	proc/try_take_cash(I as obj, mob/user as mob)
+		//cash only
+		if(istype(I, /obj/item/spacecash))
+			//delay handling if we already got stuff inside
+			if(current_deposit)
+				boutput(usr, "<span class='alert'>Something's already in there...</span>")
+				playsound(src.loc, "sound/machines/scan.ogg", 40, 0)
+				return
+			//check for cash, count it, and either keep it or prep an error
+			var/obj/item/spacecash/dosh = I
+			//handle jokes
+			if (istype(dosh, /obj/item/spacecash/buttcoin))
+				current_deposit = "buttcoin"
+				playsound(src.loc, "sound/voice/farts/poo2_robot.ogg", 40, 1)
+			else if (istype(dosh, /obj/item/spacecash/bag))
+				current_deposit = "bag"
+				playsound(src.loc, "sound/machines/scan.ogg", 40, 0)
+			else if (istype(dosh, /obj/item/spacecash/zero))
+				current_deposit = "zero"
+				playsound(src.loc, "sound/machines/scan.ogg", 40, 0)
+			//actual money inserted
+			else if (dosh.amount >= 1 && prob(95)) //sometimes it just doesn't want to take your money even if it's good (adjustable var later?)
+				//but this time it worked
+				current_deposit = dosh.amount
+				usr.visible_message("<span class='alert'><b>[usr] inserts [current_deposit >= 10000 ? "a lot of" : "some"] cash into [src]</b></span>","<span class='alert'><b>You insert [I] into [src]</b></span>","<span class='alert'><b>You hear paper being shredded!</b></span>","inserting_cash")
+				qdel(dosh)
+				playsound(src.loc, "sound/machines/paper_shredder.ogg", 40, 1)
+			//error or negative amount
+			else
+				current_deposit = "error"
+				playsound(src.loc, "sound/machines/scan.ogg", 40, 0)
+			return 1 //spacecash object detected
+		//other joke currencies someone might try and expect a response
+		else if (istype(I, /obj/item/spacebux) || istype(I, /obj/item/ticket))
+			current_deposit = "buttcoin"
+			playsound(src.loc, "sound/voice/farts/poo2_robot.ogg", 40, 1)
+			return 1 //joke currency object detected
+		return 0 //no cash-like object detected
+
+	//take money that's stuck in there and turn it into budget
+	//or display prior deposits
+	proc/process_deposit()
+		var/list/dat = list()
+		//handle active real positive cash first
+		if(current_deposit > 0) //maybe negative cash will be a thing in the future for traitors to be jerks with
+			last_deposit = current_deposit
+			current_deposit = null
+			wagesystem.station_budget += last_deposit
+			dat = "<B>Payroll Deposit Accepted</B><hr>"
+			for(var/datum/db_record/R as anything in data_core.bank.records)
+				dat += text("<br><b>Amount Deposited:</b> $[num2text(last_deposit,50)]")
+				if(authenticated)
+					dat += text("<br><b>Current Payroll Budget:</b> $[num2text(wagesystem.station_budget,50)]")
+				else
+					dat += text("<br><b>Thank you for your generous, <em>non-tax-deductible</em> contribution.</b>")
+			return jointext(dat,"")
+		//report errors and prior deposit
+		switch (last_deposit)
+			if ("buttcoin")
+				dat = "<B>Deposit NOT Accepted</B><hr>"
+				dat += text("<br>Attempts at humor are not considered legal tender and will not be accepted for payroll.")
+			if ("bag")
+				dat = "<B>Deposit NOT Accepted</B><hr>"
+				dat += text("<br>Inserted bills must be free of any bag or envelope.")
+			if ("zero")
+				dat = "<B>Deposit NOT Accepted</B><hr>"
+				dat += text("<br>Deposit has zero face value.")
+			if ("error")
+				dat = "<B>Deposit NOT Accepted</B><hr>"
+				dat += text("<br>Please confirm only standard credits are inserted, and all bills are properly smoothed and oriented correctly.")
+			else
+				//last actual cash deposit, positive or error
+				if (last_deposit > 0)
+					for(var/datum/db_record/R as anything in data_core.bank.records)
+						dat = text("<br><b>Previous Amount Deposited:</b> $[num2text(last_deposit,50)]")
+						if(authenticated)
+							dat += text("<br><b>Current Payroll Budget:</b> $[num2text(wagesystem.station_budget,50)]")
+				else
+					dat = "<B>No Deposit Detected</B><hr>"
+					dat += text("<br>Please confirm only standard credits are inserted, and all bills are properly smoothed and oriented correctly.")
+					if(authenticated)
+						dat += text("<br><b>Current Payroll Budget:</b> $[num2text(wagesystem.station_budget,50)]")
+		return jointext(dat,"")
+
 /obj/machinery/computer/bank_data/console_upper
 	icon = 'icons/obj/machines/computerpanel.dmi'
 	icon_state = "bank1"
@@ -819,6 +936,7 @@
 				boutput(user, "<span class='notice'>You insert the lottery ticket into the ATM.</span>")
 				if(I:winner)
 					boutput(user, "<span class='notice'>Congratulations, this ticket is a winner netting you [I:winner] credits</span>")
+					playsound(src.loc, "sound/machines/paper_shredder.ogg", 40, 1)
 					src.accessed_record["current_money"] += I:winner
 
 					if(wagesystem.lotteryJackpot > I:winner)
@@ -827,6 +945,7 @@
 						wagesystem.lotteryJackpot = 0
 				else
 					boutput(user, "<span class='alert'>This ticket isn't a winner. Better luck next time!</span>")
+					playsound(src.loc, "sound/machines/scan.ogg", 50, 0)
 				qdel(I)
 			else boutput(user, "<span class='alert'>You need to log in before inserting a ticket!</span>")
 			return
@@ -867,11 +986,11 @@
 		switch(src.state)
 			if(STATE_LOGGEDOFF)
 				if (src.scan)
-					dat += "<BR>\[ <A HREF='byond://?src=\ref[src];operation=logout'>Logout</A> \]"
+					dat += "<br>\[ <a href='byond://?src=\ref[src];operation=logout'>Logout</A> \]"
 					if(afterlife)
-						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=login'>Log In</A>"
+						dat += "<br><br><a href='byond://?src=\ref[src];operation=login'>Log In</A>"
 					else
-						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=enterpin'>Enter Pin</A>"
+						dat += "<br><br><a href='byond://?src=\ref[src];operation=enterpin'>Enter Pin</A>"
 
 				else dat += "Please wipe your card to begin."
 
@@ -882,15 +1001,15 @@
 					src.updateUsrDialog()
 
 				else
-					dat += "<BR><A HREF='byond://?src=\ref[src];operation=logout'>Logout</A>"
+					dat += "<br><a href='byond://?src=\ref[src];operation=logout'>Logout</A>"
 
 					if (src.scan)
-						dat += "<BR><BR>Your balance is: $ [src.accessed_record["current_money"]]."
-						dat += "<BR><A HREF='byond://?src=\ref[src];operation=withdrawcash'>Withdraw Cash</A>"
-						dat += "<BR><BR><A HREF='byond://?src=\ref[src];operation=buy'>Buy Lottery Ticket (100 credits)</A>"
-						dat += "<BR>To claim your winnings you'll need to insert your lottery ticket."
+						dat += "<br><br>Your balance is: $ [src.accessed_record["current_money"]]."
+						dat += "<br><a href='byond://?src=\ref[src];operation=withdrawcash'>Withdraw Cash</A>"
+						dat += "<br><br><a href='byond://?src=\ref[src];operation=buy'>Buy Lottery Ticket (100 credits)</A>"
+						dat += "<br>To claim your winnings you'll need to insert your lottery ticket."
 					else
-						dat += "<BR>Please wipe your card to continue."
+						dat += "<br>Please wipe your card to continue."
 
 
 		/*if (user.client)
@@ -907,7 +1026,7 @@
 			</div>
 			"}*/
 
-		dat += "<BR><BR><A HREF='byond://?action=mach_close&window=atm'>Close</A></span>"
+		dat += "<br><br><a href='byond://?action=mach_close&window=atm'>Close</A></span>"
 		user.Browse(dat.Join(), "window=atm;size=400x250;title=Automated Teller Machine")
 		onclose(user, "atm")
 
@@ -1094,3 +1213,7 @@ proc/FindBankAccountByName(var/nametosearch)
 	RETURN_TYPE(/datum/db_record)
 	if (!nametosearch) return
 	return data_core.bank.find_record("name", nametosearch)
+
+#undef BANK_COMP_BUDGET
+#undef BANK_COMP_RECORDS
+#undef BANK_COMP_DEPOSIT
