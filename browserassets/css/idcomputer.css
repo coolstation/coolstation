@@ -9,12 +9,17 @@
 @font-face {
 	font-family: "IBM 3270";
 	font-style: normal;
-	src: url('{{resource("css/fonts/3270/3270-Regular.woff")}}') format('woff'),'browserassets-css-fonts-3270-3270-Regular.woff' format('woff')
+	src: url('{{resource("css/fonts/3270/3270-Regular.woff")}}') format('woff'), /*CDN-handled*/
+	url('browserassets-css-fonts-3270-3270-Regular.woff') format('woff'); /*Local Fallback*/
+}
+
+html {
+	font-size: 100%; /* base font size, let browser scale i guess*/
 }
 
 body {
 	font-family: "IBM 3270";
-	font-size: 12pt;
+	font-size: 0.80rem; /* 12px or so */
 	letter-spacing: 1px;
 	color: #55ff55;
 	padding: 5px;
@@ -23,7 +28,7 @@ h1 {
 	text-transform: uppercase;
 	color: #55ff55;
 	width: 100%;
-	font-size: 12pt;
+	font-size: 0.80rem;
 	font-weight: bold;
 	padding: 0px 5px 0px 5px;
 }
@@ -216,4 +221,9 @@ tbody tr:hover td {
 
 .holder {
 	color: #171716;
+}
+
+/* Overrides of COMPUTAH.css */
+.box.button{
+	font-size: 0.75rem;
 }
