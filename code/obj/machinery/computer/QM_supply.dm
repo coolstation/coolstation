@@ -136,6 +136,8 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	var/updatelist = 1
 	var/tradeamt = 1
 	var/in_dialogue_box = 0
+	var/current_deposit //temporarily here until i have digital vault dropboxes
+	var/last_deposit
 	var/obj/item/card/id/scan = null
 	var/list/datum/supply_pack
 
@@ -168,6 +170,11 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	return 1
 
 /obj/machinery/computer/supplycomp/attackby(I as obj, mob/user as mob)
+	if (try_take_cash(I, user)) //successfully either took money or produced a money error
+		temp = budget("attackcash") //set the deposit screen (this also runs process_deposit())
+		if(src.allowed(user))
+			attack_hand(user)	//show the results page if the depositor has permission to use QM console
+								//but they'll exist and be shown to anyone with access anyway
 	if(!istype(I,/obj/item/card/emag))
 		//I guess you'll wanna put the emag away now instead of getting a massive popup
 		..()
@@ -263,7 +270,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 		<div style='float: right;'>
 			Market updates in <strong>[timer ? timer : "...uh"]</strong>
 		</div>
-		Budget: <strong>[wagesystem.shipping_budget]</strong> Credits. | [shippingmarket.CSS_at_NTFC ? "All Clear" : "<span style='color:red;'>SHUTTLE NOT IN POSITION</span>"]
+		<a href='[topicLink("budget")]'>Budget</a>: <strong>[wagesystem.shipping_budget]</strong> Credits. | [shippingmarket.CSS_at_NTFC ? "All Clear" : "<span style='color:red;'>SHUTTLE NOT IN POSITION</span>"]
 		<div style='clear: both; text-align: center; font-weight: bold; padding: 0.2em;'>
 			<a href='[topicLink("requests")]'>Requests ([shippingmarket.supply_requests.len])</a> &bull;
 			<a href='[topicLink("order")]'>Place NT Order</a> &bull;
@@ -305,7 +312,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	if (src.last_cdc_message)
 		src.temp += "[last_cdc_message]<br><br>"
 
-	src.temp += "<B>Pathogen analysis services</B><br>"
+	src.temp += "<b>Pathogen analysis services</b><br>"
 	src.temp += "To send us pathogen samples, you can <A href='[topicLink("req_biohazard_crate")]'>requisition a biohazardous materials crate</a> from us for 5 credits.<br>"
 	if (!QM_CDC.current_analysis)
 		src.temp += "Our researchers currently have free capacity to analyze pathogen and blood samples for you.<br>"
@@ -328,7 +335,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 			var/DA = round((QM_CDC.current_analysis.description_available - ticker.round_elapsed_ticks) / 600)
 			src.temp += "We cannot tell you anything about this pathogen so far. Check back in [DA > 1 ? "[DA] minutes" : (DA > 0 ? "1 minute" : "a few seconds")].<br>"
 	src.temp += "<br>"
-	src.temp += "<B>Pathogen cure services</B><br>"
+	src.temp += "<b>Pathogen cure services</b><br>"
 	if (length(QM_CDC.working_on))
 		src.temp += "We are currently working on [QM_CDC.batches_left] batch[QM_CDC.batches_left > 1 ? "es" : null] of cures for the [QM_CDC.working_on.name] pathogen. The crate will be delivered soon."
 	else if (length(QM_CDC.completed_analysis))
@@ -507,9 +514,6 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 					. += "</div>[ordershit]"
 					return .
 
-
-
-
 				return . + .("list", list("vendor" = vendor))
 
 
@@ -518,6 +522,43 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 		for(var/S in shippingmarket.supply_history)
 			. += S
 
+		return .
+
+	budget(subaction, href_list, attackhand = FALSE) //eventually, get a list of prior orders so you can see where the money came and went and who to blame or praise (outgoing is difficult to determine)
+		switch (subaction)
+			//extremely basic budget info, where you land when you click the budget link on the header
+			if (null, "list")
+				. = "<center><h2>Cargo Budget Status</h2><br>[wagesystem.shipping_budget]</strong> Credits. <br>"
+				. += "<br><br><a href='byond://?src=\ref[src];action=budget;subaction=insertcash'>Insert Cash In Hand</a><br></center>"
+				. += "<br><br><a href='byond://?src=\ref[src];action=mainmenu'>Back</a><br></center>"
+				return .
+
+			//try_take_cash() already done by attackby, do not do it again or you'll double dip
+			//we may already have a current_deposit, just process and wrap it in header/back buttons
+			if ("attackcash")
+				. = "<center><h2>Cargo Budget Status</h2><br><br>"
+				. += process_deposit()
+				. += "<br><br><a href='byond://?src=\ref[src];action=budget;subaction=insertcash'>Make Additional Deposit</a><br></center>"
+				. += "<br><br><a href='byond://?src=\ref[src];action=budget'>Back</a><br></center>"
+				last_deposit = null
+
+			//try_take_cash() not already done
+			if ("insertcash")
+				. = "<center><h2>Cargo Budget Status</h2><br><br>"
+				//check for cash, count it, and either keep it or prep an error
+				var/obj/item/I = usr.equipped()
+				try_take_cash(I, usr) //try to take cash or produce an error (both are successes)
+				. += process_deposit()
+				. += "<br><br><a href='byond://?src=\ref[src];action=budget;subaction=insertcash'>Make Additional Deposit</a><br>"
+				. += "<br><br><a href='byond://?src=\ref[src];action=budget'>Back</a><br></center>"
+				last_deposit = null //it's been shown, no need to keep it around
+			//catchall
+			else
+				. = "<center><h2>Cargo Budget Status</h2><br>[wagesystem.shipping_budget]</strong> Credits. <br>"
+				. += "<br><br><a href='byond://?src=\ref[src];action=budget;subaction=insertcash'>Deposit Cash In Hand</a><br>"
+				. += "<br><br><a href='byond://?src=\ref[src];action=budget'>Back</a><br></center>"
+				last_deposit = null
+		//TODO: budget request maker, answerable at the bank records computer
 		return .
 
 
@@ -551,9 +592,9 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 		switch (subaction)
 			if (null, "list")
 				. = {"<h2>Rockbox™ Ore Cloud Storage Service Settings:</h2><ul><br>
-					<B>Rockbox™ Fees:</B> $[!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0] per ore [!rockbox_globals.rockbox_premium_purchased ? "(Purchase our <A href='[topicLink("rockbox_controls", "premium_service")]'>Premium Service</A> to remove this fee!)" : ""]<BR>
-					<B>Client Quartermaster Transaction Fee:</B> <A href='[topicLink("rockbox_controls", "fee_pct")]'>[rockbox_globals.rockbox_client_fee_pct]%</A><BR>
-					<B>Client Quartermaster Transaction Fee Per Ore Minimum:</B> <A href='[topicLink("rockbox_controls", "fee_min")]'>$[rockbox_globals.rockbox_client_fee_min]</A><BR>
+					<b>Rockbox™ Fees:</b> $[!rockbox_globals.rockbox_premium_purchased ? rockbox_globals.rockbox_standard_fee : 0] per ore [!rockbox_globals.rockbox_premium_purchased ? "(Purchase our <A href='[topicLink("rockbox_controls", "premium_service")]'>Premium Service</A> to remove this fee!)" : ""]<br>
+					<b>Client Quartermaster Transaction Fee:</b> <A href='[topicLink("rockbox_controls", "fee_pct")]'>[rockbox_globals.rockbox_client_fee_pct]%</A><br>
+					<b>Client Quartermaster Transaction Fee Per Ore Minimum:</b> <A href='[topicLink("rockbox_controls", "fee_min")]'>$[rockbox_globals.rockbox_client_fee_min]</A><br>
 					</ul>"}
 
 				return
@@ -672,6 +713,9 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 		if ("order_history")
 			src.temp = order_history(subaction, href_list)
 
+		if ("budget")
+			src.temp = budget(subaction, href_list)
+
 		if ("requests")
 			src.temp = requests(subaction, href_list)
 
@@ -731,7 +775,7 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 			if (signal_loss >= 75)
 				boutput(usr, "<span class='alert'>Severe signal interference is preventing contact with the CDC.</span>")
 				return
-			src.temp = "<B>Center for Disease Control communication line</B><HR>"
+			src.temp = "<b>Center for Disease Control communication line</b><hr>"
 			src.temp += "<i>These are the unanalyzed samples we have from you, [station_name].</i><br><br>"
 			if (QM_CDC.current_analysis)
 				src.temp += "We are currently researching the sample [QM_CDC.current_analysis.assoc_pathogen.name]. We can start on a new one if you like, but the analysis cost will not be refunded.<br><br>"
@@ -1205,3 +1249,87 @@ var/global/datum/cdc_contact_controller/QM_CDC = new()
 	status_signal.data["command"] = command
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_RADIO_PACKET, status_signal, null, FREQ_STATUS)
+
+//do not null current_deposit or manipulate last deposit, that's what process_deposit() is for
+//do not call process_deposit() from this, do that from the code you're calling this from
+/obj/machinery/computer/supplycomp/proc/try_take_cash(I as obj, mob/user as mob)
+	//cash only
+	if(istype(I, /obj/item/spacecash))
+		//delay handling if we already got stuff inside
+		if(current_deposit)
+			boutput(usr, "<span class='alert'>Something's already in there...</span>")
+			playsound(src.loc, "sound/machines/scan.ogg", 40, 0)
+			return
+		//check for cash, count it, and either keep it or prep an error
+		var/obj/item/spacecash/dosh = I
+		//handle jokes
+		if (istype(dosh, /obj/item/spacecash/buttcoin))
+			current_deposit = "buttcoin"
+			playsound(src.loc, "sound/voice/farts/poo2_robot.ogg", 40, 1)
+		else if (istype(dosh, /obj/item/spacecash/bag))
+			current_deposit = "bag"
+			playsound(src.loc, "sound/machines/scan.ogg", 40, 0)
+		else if (istype(dosh, /obj/item/spacecash/zero))
+			current_deposit = "zero"
+			playsound(src.loc, "sound/machines/scan.ogg", 40, 0)
+		//actual money inserted
+		else if (dosh.amount >= 1 && prob(95)) //sometimes it just doesn't want to take your money even if it's good (adjustable var later?)
+			//but this time it worked
+			current_deposit = dosh.amount
+			usr.visible_message("<span class='alert'><b>[usr] inserts [current_deposit >= 10000 ? "a lot of" : "some"] cash into [src]</b></span>","<span class='alert'><b>You insert [I] into [src]</b></span>","<span class='alert'><b>You hear paper being shredded!</b></span>","inserting_cash")
+			qdel(dosh)
+			playsound(src.loc, "sound/machines/paper_shredder.ogg", 40, 1)
+		//error or negative amount
+		else
+			current_deposit = "error"
+			playsound(src.loc, "sound/machines/scan.ogg", 40, 0)
+		return 1 //spacecash object detected
+	//other joke currencies someone might try and expect a response
+	else if (istype(I, /obj/item/spacebux) || istype(I, /obj/item/ticket))
+		current_deposit = "buttcoin"
+		playsound(src.loc, "sound/voice/farts/poo2_robot.ogg", 40, 1)
+		return 1 //joke currency object detected
+	return 0 //no cash-like object detected
+
+//take money that's in there and turn it into budget
+//or display prior deposits (do not null last_deposits here)
+/obj/machinery/computer/supplycomp/proc/process_deposit()
+	var/list/dat = list()
+	if(current_deposit)
+		last_deposit = current_deposit
+	//handle active real positive cash first
+	if(isnum(current_deposit) && current_deposit > 0) //maybe negative cash will be a thing in the future for traitors to be jerks with
+		last_deposit = current_deposit
+		current_deposit = null
+		wagesystem.shipping_budget += last_deposit
+		dat = "<b>Shipping Deposit Accepted</b><hr>"
+		for(var/datum/db_record/R as anything in data_core.bank.records)
+			dat += text("<br><b>Amount Deposited:</b> $[num2text(last_deposit,50)]")
+			dat += text("<br><br><b>Current Shipping Budget:</b> $[num2text(wagesystem.shipping_budget,50)]")
+		return jointext(dat,"") //successful deposit
+	current_deposit = null
+	//report errors and prior deposits
+	switch (last_deposit)
+		if ("buttcoin")
+			dat = "<b>Deposit NOT Accepted</b><hr>"
+			dat += text("<br>Attempts at humor are not considered legal tender and will not be accepted for shipping budget.")
+		if ("bag")
+			dat = "<b>Deposit NOT Accepted</b><hr>"
+			dat += text("<br>Inserted bills must be free of any bag or envelope.")
+		if ("zero")
+			dat = "<b>Deposit NOT Accepted</b><hr>"
+			dat += text("<br>Deposit has zero face value.")
+		if ("error")
+			dat = "<b>Deposit NOT Accepted</b><hr>"
+			dat += text("<br>Please confirm only standard credits are inserted, and all bills are properly smoothed and oriented correctly.")
+		else
+			//last actual cash deposit, positive or error
+			if (last_deposit > 0) //positive cash, not already reported by current_deposit handling (because it's not current)
+				for(var/datum/db_record/R as anything in data_core.bank.records)
+					dat = text("<br><b>Current Shipping Budget:</b> $[num2text(wagesystem.shipping_budget,50)]")
+					dat += text("<br><b>Previous Amount Deposited:</b> $[num2text(last_deposit,50)]")
+			else
+				dat = "<b>No Deposit Detected</b><hr>"
+				dat += text("<br>Please confirm only standard credits are inserted, and all bills are properly smoothed and oriented correctly.")
+				dat += text("<br><b>Current Shipping Budget:</b> $[num2text(wagesystem.shipping_budget,50)]")
+	return jointext(dat,"") //a fucked up bogus deposit
