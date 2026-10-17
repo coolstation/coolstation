@@ -810,6 +810,7 @@
 				src.accessed_record["current_money"] += I.amount
 				I.amount = 0
 				qdel(I)
+				playsound(src.loc, "sound/machines/paper_shredder.ogg", 40, 1)
 				attack_hand(user)
 			else boutput(user, "<span class='alert'>You need to log in before depositing cash!</span>")
 			return
@@ -962,6 +963,7 @@
 				else
 					src.accessed_record["current_money"] -= amount
 					var/obj/item/spacecash/S = new()
+					playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 40, 1)
 					S.setup(src.loc, amount)
 					usr.put_in_hand_or_drop(S)
 
@@ -970,6 +972,7 @@
 					src.accessed_record["current_money"] -= 100
 					boutput(usr, "<span class='alert'>Ticket being dispensed. Good luck!</span>")
 
+					playsound(src.loc, "sound/machines/printer_dotmatrix.ogg", 40, 1)
 					usr.put_in_hand_or_drop(new /obj/item/lotteryTicket())
 					wagesystem.start_lottery()
 
