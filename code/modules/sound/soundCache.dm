@@ -700,6 +700,7 @@ var/global/list/soundCache = list(
  	"sound/machines/siren_generalquarters.ogg" = 'sound/machines/siren_generalquarters.ogg',\
  	"sound/machines/siren_generalquarters_quiet.ogg" = 'sound/machines/siren_generalquarters_quiet.ogg',\
  	"sound/machines/siren_police.ogg" = 'sound/machines/siren_police.ogg',\
+ 	"sound/machines/siren_police_short_loop.ogg" = 'sound/machines/siren_police_short_loop.ogg',\
  	"sound/machines/siren_police_stop.ogg" = 'sound/machines/siren_police_stop.ogg',\
  	"sound/machines/siren_police_stop_wonky.ogg" = 'sound/machines/siren_police_stop_wonky.ogg',\
  	"sound/machines/sleeper_close.ogg" = 'sound/machines/sleeper_close.ogg',\

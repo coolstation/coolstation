@@ -258,9 +258,9 @@ ABSTRACT_TYPE(/obj/vehicle)
 	sound_emitter = new(src)
 	if (sound_emitter)
 		var/sound/weeoo = sound()
-		weeoo.file = "sound/machines/siren_police.ogg"
+		weeoo.file = "sound/machines/siren_police_short_loop.ogg"
 		weeoo.repeat = 1
-		weeoo.volume = 100
+		weeoo.volume = 50
 		sound_emitter.add(weeoo, "weeoo")
 
 /obj/vehicle/segway/proc/weeoon()
