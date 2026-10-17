@@ -123,12 +123,12 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 		overlay_eyes.color = eye_color
 		src.UpdateOverlays(overlay_eyes, "eyes")
 
-	death()
+	death(gibbed)
 		src.ClearAllOverlays()
 		var/image/overlay = image('icons/mob/critter.dmi', "mouse_colorkey-dead")
 		overlay.color = fur_color
 		src.UpdateOverlays(overlay, "hair")
-		..()
+		..(gibbed)
 
 	full_heal()
 		..()
@@ -266,9 +266,18 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	setup_overlays()
 		return
 
-	death()
-		..()
+	death(gibbed)
+		..(gibbed)
 		src.ClearAllOverlays()
+		if (src.client)
+			src.become_ghost()
+		// Mickey always goes to hell
+		var/turf/target_turf = pick(get_area_turfs(/area/afterlife/hell))
+		var/mob/living/critter/small_animal/mouse/mickey/newbody = new()
+		newbody.set_loc(target_turf)
+		if(inhell(src))
+			qdel(src)
+		return
 
 /* ============================================= */
 /* -------------------- Cat -------------------- */

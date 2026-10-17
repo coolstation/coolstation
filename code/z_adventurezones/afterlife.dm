@@ -103,6 +103,9 @@ proc/inafterlifebar(var/mob/M as mob in world)
 proc/inafterlife(var/mob/M as mob in world)
 	return istype(get_area(M),/area/afterlife)
 
+proc/inhell(var/mob/M as mob in world)
+	return istype(get_area(M),/area/afterlife/hell)
+
 // list of ([ckey] = TIME) for handling ghosts doing interesting things,
 // like spawning in the afterlife. with a cooldown so you can't spam it.
 var/global/list/afterlife_announcements = list()
