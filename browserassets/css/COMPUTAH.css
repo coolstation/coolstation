@@ -1,9 +1,8 @@
 @font-face {
 	font-family: "Not Jam Mono Clean 16";
-	src:url('{{resource("css/fonts/Not Jam Mono Clean 16.ttf")}}') format('truetype'), /*CDN-handled*/
-		url('browserassets-css-fonts-Not Jam Mono Clean 16.ttf') format('truetype'); /*Local Fallback*/
+	src:url('{{resource("css/fonts/Not Jam Mono Clean 16.ttf")}}') format('truetype');
 	font-style: normal;
-			}
+}
 
 html {
 	background-color: #0e0c05;
