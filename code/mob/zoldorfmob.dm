@@ -101,7 +101,7 @@
 
 		the_zoldorf = list()
 		SPAWN_DBG(0)
-			src << browse(grabResource("html/traitorTips/souldorfTips.htm"),"window=antagTips;titlebar=1;size=600x400;can_minimize=0;can_resize=0")
+			src << browse(grabResource("html/traitorTips/souldorfTips.html"),"window=antagTips;titlebar=1;size=600x400;can_minimize=0;can_resize=0")
 
 	Login()
 		..()

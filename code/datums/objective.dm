@@ -553,7 +553,7 @@ proc/create_fluff(datum/mind/target)
 		return 0
 
 
-/*
+
 /datum/objective/regular/borgdeath
 	explanation_text = "Deactivate or destroy all Cyborgs on the station. If you end up borged, you do not need to kill yourself or be un-borged to win."
 
@@ -574,7 +574,81 @@ proc/create_fluff(datum/mind/target)
 			return 1
 		else
 			return 0
-*/
+
+////////////////////////////////
+// Italian treason objectives //
+////////////////////////////////
+
+//real
+//break or destroy all pizza vending machines on station
+//kill really just one target:chef (for breaking pasta before putting it in pot, using ketchup as red sauce, adding cream to carbonara, overcooking spaghetti, putting too many toppings on pizza, cheesing up seafood, serving cappucino after noon)
+//gimmick
+//insult the chef's cooking until he_or_she(chef) quits
+
+/////////////////////////////
+// FOSS treason objectives //
+/////////////////////////////
+
+//destroy mainframes
+//replace station OS tape with special foss OS tape (add to backpack on spawn, latejoin get 1 free in uplink)
+//steal all copies of OS tape
+//steal briefcase laptop
+//steal ai brain
+//upload a virus to a specific terminal (add to backpack on spawn, latejoin get 1 free in uplink)
+//untracked gimmicks
+//argue with fucking everyone about software licensing
+//talk about all the cool computer shit you can do on opendwaine without people leaving
+
+///////////////////////////////
+// Soviet treason objectives //
+///////////////////////////////
+
+//impact capitalists, fight heads, strike means of production, enforce embargo, direct confrontation
+//kill between 1 and all heads
+//damage cargo, damage mining, damage foundry, damage stock exchange, damage trader docks
+//untracked gimmicks:
+//incite strikes
+//depose and replace heads
+
+//items
+//gimmick (free)
+//stack of pamphlets
+//auto-wheatpaste posters
+
+//////////////////////////////////
+// anarchist treason objectives //
+//////////////////////////////////
+
+//undermine authority, fight sec, indirect violence and sabotage
+//kill between 1 and all sec
+//damage brig, damage sec, damage detective's office, damage bridge, damage stock exchange
+//leave zines in at least five different departments
+//get at least 1-3 people to accept a zine you try to give to them
+//have at least 2 people read a zine
+//untracked gimmicks:
+//take credit for every act of violence
+//refuse 10-50 orders
+//incite a revolt
+//jailbreak everyone in the brig every time someone is arrested
+
+//items
+//gimmick (free)
+//stack of zines
+//spraypaint
+//objective
+//
+
+///////////////////////////////
+// Juicer treason objectives //
+///////////////////////////////
+//tracked
+//put selfpromo posters up in at least five different departments
+//steal and embezzle at least 50k
+//fight cops (tracked by brutedamage given not kills)
+//open unregistered contraband storefront and do at least 10k in sales (place item, anyone can buy from in cash, you get a 25% cut deposited to your juicercard. it can be deactivated and hauled away by sec but not destroyed. you can steal it back and set it up again)
+//untracked
+//sell drugs to a head/sec
+//throw a party in the middle of a main department area
 
 ////////////////////////////////
 // Specialist role objectives //
