@@ -1,6 +1,12 @@
 @font-face {
 	font-family: "Not Jam Mono Clean 16";
-	src:url('{{resource("css/fonts/Not Jam Mono Clean 16.ttf")}}') format('truetype');
+	src:url('{{resource("css/fonts/notjammono/Not Jam Mono Clean 16.woff2")}}') format('woff2');
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Not Jam Mono Clean 13";
+	src:url('{{resource("css/fonts/notjammono/Not Jam Mono Clean 13.woff2")}}') format('woff2');
 	font-style: normal;
 }
 

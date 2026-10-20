@@ -1,21 +1,28 @@
 body {
-			background: #030602;
-			font-family: "Not Jam Mono Clean 16";
-			font-size: 12pt;
-			letter-spacing: 1px;
-			color: #52ff00;
-			padding: 5px;
+	background: #030602;
+	font-family: "Not Jam Mono Clean 16";
+	font-size: 12pt;
+	letter-spacing: 1px;
+	color: #52ff00;
+	padding: 5px;
 
-		}
+}
 hr {
 	border: 1px solid #fffe03;
 }
 
 @font-face {
-		font-family: "Not Jam Mono Clean 16";
-		font-style: normal;
-		src: url('{{resource("css/fonts/Not Jam Mono Clean 16.ttf")}}') format('truetype');
-	}
+	font-family: "Not Jam Mono Clean 16";
+	font-style: normal;
+	src:url('{{resource("css/fonts/notjammono/Not Jam Mono Clean 16.woff2")}}') format('woff2');
+}
+
+@font-face {
+	font-family: "Not Jam Mono Clean 13";
+	src:url('{{resource("css/fonts/notjammono/Not Jam Mono Clean 13.woff2")}}') format('woff2');
+	font-style: normal;
+}
+
 html { background: #0e0c05;
 		font-family: "Not Jam Mono Clean 16";
 		font-size: 16pt;
