@@ -1297,12 +1297,8 @@ obj/machinery/embedded_controller/radio/maintpanel
 
 	@font-face
 	{
-		font-family: 'Glass_TTY_VT220';
-		src: url('glass_tty_vt220.eot');
-		src: url('glass_tty_vt220.eot') format('embedded-opentype'),
-			 url('glass_tty_vt220.ttf') format('truetype'),
-			 url('glass_tty_vt220.woff') format('woff'),
-			 url('glass_tty_vt220.svg') format('svg');
+		font-family: "GlassTTY VT220";
+		src: url([resource("css/fonts/glassttyvt220/Glass_TTY_VT220.woff2")]) format('woff2');
 	}
 
 	body {background-color:#999876;}
@@ -1346,7 +1342,7 @@ obj/machinery/embedded_controller/radio/maintpanel
 		word-break: break-all;
 		background-color:#111F10;
 		color:#31C131;
-		font-family: Glass_TTY_VT220;
+		font-family:"Glass TTY VT220";
 		font-size: 14pt;
 	}
 
