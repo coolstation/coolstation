@@ -49,7 +49,7 @@
 	<title>[title]</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-[Make_view_variabls_style()]
+	<link rel="stylesheet" type="text/css" href="[resource("css/viewvariables.css")]">
 </head>
 	<body>
 	<strong>Global Variable: [S]</strong>
@@ -152,7 +152,8 @@
 	<title>[title]</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-[Make_view_variabls_style()]</head>
+	<link rel="stylesheet" type="text/css" href="[resource("css/viewvariables.css")]">
+</head>
 <body>
 	<div class="refresh_controls">
 		<a href='byond://?src=\ref[src];Pause=\ref[D]'>⏯</a>
@@ -254,61 +255,6 @@
 			<a href='byond://?src=\ref[src];Vars=\ref[D];varToEdit=[V]'>Edit</a> &middot;
 		</div>
 		"}
-	//Really, move this out to a .css file or something, too lazy and don't know how offhand
-/proc/Make_view_variabls_style()
-	return {"	<style>
-		body {
-			font-family: Verdana, sans-serif;
-			font-size: 9pt;
-			color: black !important;
-		}
-		a {
-			text-decoration: none;
-		}
-		a:hover, a:active {
-			text-decoration: underline;
-		}
-		.var {
-			min-width: 10em;
-		}
-		.value {
-			font-family: "Consolas", "Courier New", monospace;
-		}
-		table {
-			border: none;
-			border-collapse: collapse;
-			width: 100%;
-			font-size: 100%;
-		}
-		tr:hover {
-			background-color: rgba(128, 128, 128, .2);
-		}
-		th, td {
-			text-align: left;
-			padding: 0.1em 0.25em;
-			border-bottom: 1px solid rgba(128, 128, 128, .5);
-			border-right: 1px solid rgba(128, 128, 128, .3);
-			vertical-align: top;
-
-			overflow-wrap: break-word;
-			word-wrap: break-word;
-			word-break: break-all;
-			break-word: break-all;
-		}
-
-		thead th {
-			white-space: nowrap;
-		}
-		.nowrap {
-			white-space: nowrap;
-			font-size: 80%;
-		}
-		.refresh_controls {
-			display:block;
-			position:fixed;
-			right: 20px;
-		}
-</style>"}
 
 /client/proc/debug_variable(name, value, var/fullvar, level, max_list_len=150)
 	var/html = ""

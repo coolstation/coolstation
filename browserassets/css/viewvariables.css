@@ -1,0 +1,51 @@
+body {
+			font-family: Verdana, sans-serif;
+			font-size: 9pt;
+			color: black !important;
+		}
+		a {
+			text-decoration: none;
+		}
+		a:hover, a:active {
+			text-decoration: underline;
+		}
+		.var {
+			min-width: 10em;
+		}
+		.value {
+			font-family: "Consolas", "Courier New", monospace;
+		}
+		table {
+			border: none;
+			border-collapse: collapse;
+			width: 100%;
+			font-size: 100%;
+		}
+		tr:hover {
+			background-color: rgba(128, 128, 128, .2);
+		}
+		th, td {
+			text-align: left;
+			padding: 0.1em 0.25em;
+			border-bottom: 1px solid rgba(128, 128, 128, .5);
+			border-right: 1px solid rgba(128, 128, 128, .3);
+			vertical-align: top;
+
+			overflow-wrap: break-word;
+			word-wrap: break-word;
+			word-break: break-all;
+			break-word: break-all;
+		}
+
+		thead th {
+			white-space: nowrap;
+		}
+		.nowrap {
+			white-space: nowrap;
+			font-size: 80%;
+		}
+		.refresh_controls {
+			display:block;
+			position:fixed;
+			right: 20px;
+		}
