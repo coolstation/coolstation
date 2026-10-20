@@ -141,8 +141,8 @@
 					for(var/datum/db_record/t as anything in data_core.general.records)
 						crew += "<tr><td>[t["name"]]</td> <td>[t["rank"]]</td></tr>"
 					//splitting this out for readability and easy tag handling
-					dat += {"<div class="box inverse surround"><table>[crew]</table><br>"}
-					dat += {"<div class="box button inverse"><a href="?src=\ref[src];print=1">Print</a></div></div>"}
+					body += {"<div class="box inverse surround"><table>[crew]</table><br></div>"}
+					body += {"<div class="box inverse surround"><div class="box button inverse"><a href="?src=\ref[src];print=1">Print</a></div></div></div>"}
 					//goto end for footer add
 				if (IDCOMP_JOB)
 					if (!src.modify)
@@ -155,7 +155,7 @@
 					var/list/commandjobs = list("Captain", "Head of Personnel",  "Research Director", "Medical Director", "Chief Engineer", "Quartermaster")
 					//TODO: "adjust salary?" button
 					//start container box and put in headerheader
-					header += {"<div class="box inverse"><div class="inHeader white bright">Job-Based Quick Access Selection</div>"}
+					header = {"<div class="box inverse"><div class="inHeader white bright">Job-Based Quick Access Selection</div>"}
 					//list the jobs
 					//highlight job if inserted title matches name
 					//also use nonbreaking spaces to make sure there isn't a line break in the middle of a job
@@ -196,13 +196,10 @@
 					var/head_access = list("<div class=\"box inverse accessgroup\">Head:")
 
 					//Modify Name/Job/PIN at top
-					//put this in a wide div with properties tbd
-					//removed <div class="box inverse surround"> from start of first header line here
-					header += {"<div class="white bright">Individual Access Selection</div>"}
-					header += {"<div class="box inverse surround">Individual Access Selection</div>"}
-					header = {"<div class="box">ID Registered Name:</div> <a href="byond://?src=\ref[src];reg=1">[target_owner]</a>"}
+					header = {"<div class="box inverse surround white bright">Individual Access Selection</div>"}
+					header += {"<div class="box inverse surround"><div class="box">ID Registered Name:</div> <a href="byond://?src=\ref[src];reg=1">[target_owner]</a>"}
 					header += {"<div class="box">ID Job Assignment:</div> <a href="byond://?src=\ref[src];assign=Custom Assignment">[replacetext(target_rank, " ", "&nbsp")]</a>"}
-					header += {"<div class="box">Personal PIN Number:</div> <a href="byond://?src=\ref[src];pin=1">****</a></div></div>"}
+					header += {"<div class="box">Personal PIN Number:</div> <a href="byond://?src=\ref[src];pin=1">****</a></div>"}
 					//holder for access below. see if we can move these styles to css
 					//body += {"<div class="box inverse" style="justify-content: space-evenly; align-items: center;">"} //probably can reimplement this but holding on just in case
 
@@ -233,9 +230,9 @@
 								if ("[access_name_lookup[A]]" in head_locker_access_list)
 									var/access_num_locker = head_locker_access_list["[access_name_lookup[A]]"]
 									if (access_num_locker in src.modify.access)
-										head_access += {"&nbsp<i>(<a class="selected" href="byond://?src=\ref[src];access=[access_num_locker];allowed=0">Locker</a>)</i>"}
+										head_access += {"&nbsp<i><a class="selected" href="byond://?src=\ref[src];access=[access_num_locker];allowed=0">(Locker)</a></i>"}
 									else
-										head_access += {"&nbsp<i>(<a class="inactive red" href="byond://?src=\ref[src];access=[access_num_locker];allowed=1">Locker</a>)</i>"}
+										head_access += {"&nbsp<i><a class="inactive red" href="byond://?src=\ref[src];access=[access_num_locker];allowed=1">(Locker)</a></i>"}
 						//Add Access entries to be added to the HTML blob
 						else
 							if (access_name_lookup[A] in civilian_access_list)
@@ -270,7 +267,7 @@
 					//This has a two column grid (80/20) wrapper with the 80 column subdivided into two more columns via flexbox with access divs stuffed into them
 					//The flexbox is closed in this line but the 80/20 wrapper remains open for the ID colors and custom access
 					//Closing div tag after every access list added keeps it nice and clean
-					body += {"<div class="box inverse"><div class="accessgrid"><div class=\"accesslist\">[jointext(civilian_access, "")]</div>[jointext(utility_access, "")]</div>[jointext(engineering_access, "")]</div>[jointext(supply_access, "")]</div>[jointext(medical_access, "")]</div>[jointext(research_access, "")]</div>[jointext(security_access, "")]</div>[jointext(command_access, "")]</div>[jointext(head_access, "")]</div></div></div>"}
+					body += {"<div class="accessgrid"><div class=\"accesslist\">[jointext(civilian_access, "")]</div>[jointext(utility_access, "")]</div>[jointext(engineering_access, "")]</div>[jointext(supply_access, "")]</div>[jointext(medical_access, "")]</div>[jointext(research_access, "")]</div>[jointext(security_access, "")]</div>[jointext(command_access, "")]</div>[jointext(head_access, "")]</div></div>"}
 					//20% right-hand column
 					//ID colors
 					//if your ID matches a state, highlight the box and make it not clickable
@@ -304,7 +301,7 @@
 	footer = jointext(footer, "")
 	//fuck you there is some dangling div fuck you
 	dat += {"</div></div></div><div class="box inverse surround" style="flex-direction:row">[footer]</div></body></html>"}
-	user.Browse(dat, "window=id_com;size=1000x700")
+	user.Browse(dat, "window=id_com;size=1000x850")
 	onclose(user, "id_com")
 	return
 
