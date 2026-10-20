@@ -9,7 +9,22 @@
 @font-face {
 	font-family: "IBM 3270";
 	font-style: normal;
-	src: url('{{resource("css/fonts/3270/3270-Regular.woff")}}') format('woff');
+	font-width: normal;
+	src: url('{{resource("css/fonts/3270/3270-Regular.woff2")}}') format('woff2');
+}
+
+@font-face {
+	font-family: "IBM 3270";
+	font-style: normal;
+	font-width: semi-condensed;
+	src: url('{{resource("css/fonts/3270/3270SemiCondensed-Regular.woff2")}}') format('woff2');
+}
+
+@font-face {
+	font-family: "IBM 3270";
+	font-style: normal;
+	font-width: condensed;
+	src: url('{{resource("css/fonts/3270/3270Condensed-Regular.woff2")}}') format('woff2');
 }
 
 html {
