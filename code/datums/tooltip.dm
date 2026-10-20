@@ -96,9 +96,6 @@ var/global/list/atomTooltips = new()
 				"browserassets/js/errorHandler.js",
 				"browserassets/js/animatePopup.js",
 				"browserassets/js/tooltip.js",
-				"browserassets/css/fonts/fontawesome-webfont.eot",
-				"browserassets/css/fonts/fontawesome-webfont.svg",
-				"browserassets/css/fonts/fontawesome-webfont.ttf",
 				"browserassets/css/fonts/fontawesome-webfont.woff",
 				"browserassets/css/font-awesome.css",
 				"browserassets/css/tooltip.css"
