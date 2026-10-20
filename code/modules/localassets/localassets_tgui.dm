@@ -42,10 +42,8 @@
 /datum/asset/basic/fontawesome
 	local_assets = list(
 		"browserassets-css-tgui-all.min.css",
-		"browserassets-css-fonts-fa-regular-400.eot",
-		"browserassets-css-fonts-fa-regular-400.woff",
-		"browserassets-css-fonts-fa-solid-900.eot",
-		"browserassets-css-fonts-fa-solid-900.woff"
+		"browserassets-css-fonts-fontawesome-fa-regular-400.woff2",
+		"browserassets-css-fonts-fontawesome-fa-solid-900.woff2"
 	)
 
 	url_map = list(
