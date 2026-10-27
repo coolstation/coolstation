@@ -1,0 +1,114 @@
+/* Traitor tips stuff included here due to the large amount of html files necessary for them */
+html {
+	font-size:12px;
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+
+@media screen and (min-width: 25em){
+  html { font-size: calc( 12px + (14 - 12) * (100vw - 400px) / (800 - 400) ); }
+}
+
+body {
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+	line-height: 1.3;
+	min-height: 0px;
+}
+
+h1 {
+	font-size: 125%;
+	color:#000;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+em {
+	font-size:110%;
+	color:red;
+	font-weight:bold;
+	font-style:normal;
+}
+
+span.sub {
+	font-size:80%;
+}
+
+.indent {
+	padding:5px 0 5px 25px;
+	display:block;
+}
+
+.center {
+	text-align:center;
+	margin: 0 auto;
+}
+
+.small {
+	font-size:80%;
+}
+
+img {
+	image-rendering: pixelated;
+}
+
+img.flip {
+	transform: scaleX(-1);
+}
+
+img.right {
+	position:absolute;
+	top:5px;
+	right:20px;
+}
+
+.header {
+	font-size:200%;
+	text-align:center;
+	padding: 0px 10px 0px 10px;
+	margin: 0px;
+	border: solid 2px;
+	background-color:beige;
+}
+
+.header h3 {
+	text-align: left;
+	font-size: 50%;
+	transform: rotate(-5deg);
+}
+
+.image64 {
+	width: 64px;
+	height: auto;
+}
+
+.antag-quote {
+	font-size:50%;
+}
+
+.powers-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	width:auto;
+	padding: 16px;
+	margin: 16px;
+}
+
+.power {
+	flex: 1 1 calc(33.333% - 32px);
+	padding: 5px;
+	margin: 5px;
+	border: solid 2px;
+	background-color:beige;
+}
+
+.power h4 {
+	font-size: 120%;
+}
+
+.power p {
+	font-size: 75%;
+}

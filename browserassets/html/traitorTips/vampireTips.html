@@ -1,34 +1,158 @@
-<link rel="stylesheet" type="text/css" href="{{resource("css/style.css")}}">
-<div class="traitor-tips">
-	<h1 class="center">You are a dracula!</h1>
-	<img src="{{resource("images/antagTips/vampire-image.png")}}" class="center" />
-
-	<p>1. To drink blood, use the <em>Bite Victim</em> ability. Remove their headgear first.<br>
-		  You must remain still while draining blood.</p>
-
- 	<p>2. <em>Danger!</em> If you walk in space, starlight will burn you to a crisp.<br>
- 		  The chaplain is your nemesis. Avoid him and the chapel. However, they are weak to <b>gun</b>.</p>
-
- 	<p class="cf image-right">
-		3. New <em>powers</em> unlock when you collect a certain amount of blood (as indicated below).
-		Every time you use a power that isn't free, it depletes part of your blood reserve.<br>
- 		<span class="small"><br><br>
- 			<span style="float:left;width:50%;">
-				40 - <em>Bat Form</em>, consume stamina to morph into a bat.<br>
-				40 - <em>Enthrall / Thrall Speak</em>, revive a dead human as an enthralled servant.<br>
-				300 - <em>Coffin Escape / Mark Coffin</em>, escape to a coffin to regenerate.<br>
-				300 - <em>Vampiric Vision</em>, thermals.<br>
-				600 - <em>Frost Bats</em>, defensive spell.<br>
-				600 - <em>Chiropteran Screech</em>, stun people, break glass.<br>
-				900 - <em>Diseased Touch</em>, give someone grave fever.<br>
-				900 - <em>Bat Form</em> cloaks in dark areas.<br>
- 			</span>
- 			<span style="float:right;width:50%;">
-				1400 - <em>Chiropteran Screech</em>, breaks nearby radios.<br>
-				1800 - <em>Full power</em>, no harm from chapel.<br>
- 			</span>
- 		</span>
- 	</p>
-
-	<p>4. For more information, please consult <A HREF='http://wiki.coolstation.space/Vampire'>the wiki</A>. haha page not exist yet</p>
-</div>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{{resource("css/traitortips.css")}}">
+	</head>
+	<body>
+		<div class="traitor-tips">
+			<div class="header">
+				<h3>Wwhoa... It's a.... It's a...!</h3>
+				<h1><em style="text-decoration: underline">You</em> are a god-damn dracula!</h1>
+				<img src="{{resource("images/antagTips/vampire/scarybat.gif")}}" class="image64 center flip" />
+				<img src="{{resource("images/antagTips/vampire/dracula.png")}}" class="image64 center flip" />
+				<img src="{{resource("images/antagTips/vampire/scarybat.gif")}}" class="image64 center flip" />
+				<br>
+				<span class="antag-quote">"blehhhh bluhhh" - you</span>
+			</div>
+			<section class="description">
+				<p>A horrendous and ghastly creature of the night, you have come to this station in order to <em>SUCK</em> as many people as possible and drink lots of <em>BLOOD</em>.</p>
+				<p><em>Please note:</em> if you're sucking on people without drinking blood that's not allowed here at all and you will be asked to leave.</p>
+			</section>
+			<section class="objective">
+				<h2>What you're here to do:</h2>
+				<ol>
+					<li><em>Drink Blood</em></li>
+					<ul>
+						<li>Use the <em>Bite Victim</em> ability button in the top left.</li>
+						<li>You may need to remove headgear first in case it's blocking neck access.</li>
+						<li>You must remain still while draining blood. If you move away from them, your blood-sucking bite will be broken!</li>
+					</ul>
+					<li><em>Escape</em> (Probably!)</li>
+				</ol>
+				That's pretty much it!
+			</section>
+			<section class="tips">
+				<h2>Things to know:</h2>
+				<ol>
+					<li>If you walk in space, starlight will <em>burn you to a crisp.</em> Which seems a bit silly because earth draculas aren't killed by starlight so, who knows.</li>
+					<li>The <em>chaplain</em> is your nemesis. Avoid them and the chapel. However, they are weak to <em>gun.</em></li>
+					<li>New <em>powers</em> unlock when you collect a certain amount of blood (as indicated below.)</li>
+					<li>Every time you use a power that isn't free, it depletes part of your blood reserve. Without enough blood, it will simply fail to cast.<br></li>
+				</ol>
+			</section>
+			<section class="powers">
+				<h2 class="center">Your Fabulous Dracula Powers</h2>
+				<div class="powers-list center">
+					<!-- SOOOO we don't actually have batform right now it's old ass mist form. Culling this for now:
+					<div class="power">
+						<img src="{{resource("images/antagTips/vampire/batform.png")}}" class="image64 center" />
+						<h3>Bat&nbsp;Form</h3>
+						<p>
+							Level&nbsp;1 - 0 Blood<br>
+							Cost: Free<br>
+							Cooldown: 0 Seconds
+						</p>
+						<p>Morph into a bat for a limited period</p>
+						<p>At <b>900 Blood</b>, also cloaks automatically in dark areas</p>
+					</div> -->
+					<div class="power">
+						<img src="{{resource("images/antagTips/vampire/mist.png")}}" class="image64 center" />
+						<h3>Mist&nbsp;Form</h3>
+						<p>
+							Level&nbsp;1 - 5 Blood<br>
+							Cost: Free<br>
+							Cooldown: 60 Seconds
+						</p>
+						<p>Become incorporeal and pass through solid objects!</p>
+					</div>
+					<div class="power">
+						<img src="{{resource("images/antagTips/vampire/enthrall.png")}}" class="image64 center" />
+						<h3>Enthrall</h3>
+						<p>
+							Level&nbsp;1 - 5 Blood<br>
+							Cost: 40 Blood<br>
+							Cooldown: 30 Seconds
+						</p>
+						<p>Revive a dead human as an enthralled servant (who must also feed on blood)</p>
+					</div>
+					<div class="power">
+						<img src="{{resource("images/antagTips/vampire/thrallspeak.png")}}" class="image64 center" />
+						<h3>Speak&nbsp;with&nbsp;Thrall</h3>
+						<p>
+							Level&nbsp;1 - 5 Blood<br>
+							Cost: Free<br>
+							Cooldown: 0 Seconds
+						</p>
+						<p>Talk to your undead buddy over your own secret psychic link</p>
+					</div>
+					<div class="power">
+						<img src="{{resource("images/antagTips/vampire/coffin.png")}}" class="image64 center" />
+						<h3>Coffin&nbsp;Escape</h3>
+						<p>
+							Level&nbsp;2 - 300 Blood<br>
+							Cost: 400 Blood<br>
+							Cooldown: 60 Seconds
+						</p>
+						<p>First, place your coffin somewhere on the station (for&nbsp;free)</p>
+						<p>Later, when you're in trouble, use the ability again to return and heal</p>
+					</div>
+					<div class="power">
+						<img src="{{resource("images/antagTips/vampire/eye.gif")}}" class="image64 center" />
+						<h3>Dracula Vision</h3>
+						<p class="small">
+							Level&nbsp;2 - 300 Blood<br>
+							Cost: Free<br>
+							Cooldown: N/A
+						</p>
+						<p>Always-on thermal vision, at no cost</p>
+						<p>Always-on x-ray vision at Level 6<br><strong>(1800 Blood)</strong></p>
+					</div>
+					<div class="power">
+						<img src="{{resource("images/antagTips/vampire/frostbats.png")}}" class="image64 center" />
+						<h3>Frost&nbsp;Bats</h3>
+						<p>
+							Level&nbsp;2 - 300 Blood<br>
+							Cost: Free<br>
+							Cooldown: 60 Seconds
+						</p>
+						<p>Call some icy bats&nbsp; to rotate around you and inflict cold damage on anyone who stands next to you</p>
+						<p><strong>Note:</strong> &nbsp;Bats are destroyed on touch.<br>
+						&nbsp; You can *flip to launch them!</p>
+					</div>
+					<div class="power">
+						<img src="{{resource("images/antagTips/vampire/screech.png")}}" class="image64 center" />
+						<h3>Chiropteran Screech</h3>
+						<p>
+							Level&nbsp;3 - 600 Blood<br>
+							Cost: 60 Blood<br>
+							Cooldown: 30 Seconds
+						</p>
+						<p>Stuns people and breaks glass</p>
+						<p>Breaks radios at Level 5<br><strong>(1400 Blood)</strong></p>
+					</div>
+					<div class="power">
+						<img src="{{resource("images/antagTips/vampire/gravefever.png")}}" class="image64 center" />
+						<h3>Diseased Touch</h3>
+						<p>
+							Level&nbsp;4 - 900 Blood<br>
+							Cost: 30 Blood<br>
+							Cooldown: 60 Seconds
+						</p>
+						<p>Silently give someone standing next to you grave fever, a terrible disease</p>
+					</div>
+					<div class="power">
+						<img src="{{resource("images/antagTips/vampire/dracula.png")}}" class="image64 center" />
+						<h3>Full Power</h3>
+						<p class="small">
+							Level&nbsp;6 - 1800 Blood<br>
+							Cost: N/A<br>
+							Cooldown: N/A
+						</p>
+						<p>No harm from chapel, along with the prior dracula vision upgrade. Neat!</p>
+					</div>
+				</div>
+			</section>
+			<br>
+			<p class="center">For more information, please consult <a href="https://wiki.coolstation.space/wiki/Draculas">the wiki page</a>.</p>
+		</div>
+	</body>
+</html>
