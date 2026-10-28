@@ -213,13 +213,13 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 	category = null
 #endif
 
-/datum/cookingrecipe/oven/swede_mball
-	item1 = /obj/item/reagent_containers/food/snacks/meatball
-	amt1 = 2
-	item2 = /obj/item/reagent_containers/food/snacks/ingredient/flour
-	item3 = /obj/item/reagent_containers/food/snacks/ingredient/egg
-	cookbonus = 10
-	output = /obj/item/reagent_containers/food/snacks/swedishmeatball
+///datum/cookingrecipe/oven/swede_mball
+	//item1 = /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball
+	//amt1 = 2
+	//item2 = /obj/item/reagent_containers/food/snacks/ingredient/flour
+	// = /obj/item/reagent_containers/food/snacks/ingredient/egg
+//	cookbonus = 10
+//	output = /obj/item/reagent_containers/food/snacks/swedishmeatball
 
 /datum/cookingrecipe/oven/broll
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough_round
@@ -228,13 +228,13 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 
 /datum/cookingrecipe/oven/donkpocket
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
-	item2 = /obj/item/reagent_containers/food/snacks/meatball
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/donkpocket/warm
 
 /datum/cookingrecipe/oven/honkpocket
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/dough
-	item2 = /obj/item/reagent_containers/food/snacks/meatball
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball
 	item3 = /obj/item/instrument/bikehorn
 	cookbonus = 10
 	output = /obj/item/reagent_containers/food/snacks/donkpocket/honk/warm
@@ -306,14 +306,14 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 
 /datum/cookingrecipe/oven/spaghetti_m
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
-	item2 = /obj/item/reagent_containers/food/snacks/meatball
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/meatball
 	category = "Pasta"
 
 /datum/cookingrecipe/oven/spaghetti_tw
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/spaghetti
-	item2 = /obj/item/reagent_containers/food/snacks/meatball
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/meatball
 	item3 = /obj/item/reagent_containers/food/snacks/condiment/tomato_sauce
 	cookbonus = 16
 	output = /obj/item/reagent_containers/food/snacks/spaghetti/theworks
@@ -1692,7 +1692,7 @@ ABSTRACT_TYPE(/datum/cookingrecipe/fryer)
 /datum/cookingrecipe/oven/omelette_bee
 	item1 = /obj/item/reagent_containers/food/snacks/ingredient/egg/bee
 	amt1 = 2
-	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat/
+	item2 = /obj/item/reagent_containers/food/snacks/ingredient/meat
 	item3 = /obj/item/reagent_containers/food/snacks/ingredient/cheese
 	cookbonus = 12
 	output = /obj/item/reagent_containers/food/snacks/omelette/bee

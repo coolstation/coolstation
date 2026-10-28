@@ -1150,6 +1150,10 @@ TRAYS
 
 		src.visible_message("\The [src] looks less sturdy now.")
 
+	proc/bake_act(var/mult) //called on process by the oven to cook the food inside
+		for (var/obj/item/reagent_containers/food/f in src.ordered_contents)
+			f.oven_cook(src,mult)
+
 //sushiiiiiii
 /obj/item/kitchen/sushi_roller
 	name = "rolling mat"
