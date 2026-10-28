@@ -331,31 +331,21 @@
 	icon_state = "cola-27"
 	item_state = "cola-27"
 	desc = "its good and its for you"
-
-	senior
-		name = "Splurt Senior"
-		icon_state = "cola-28"
-		item_state = "cola-28"
-		desc = "For those who splurt in volume"
+	initial_reagents = list("epinephrine"=5, "ginger_ale"=15, "VHFCS"=4, "nitric_acid"=5, "hydrogen"=4, "dye_green"=8)
 
 	senor
 		name = "Señor Splurt"
-		icon_state = "cola-29"
-		item_state = "cola-29"
+		icon_state = "cola-28"
+		item_state = "cola-28"
 		desc = "Its a fiesta in your mouth!"
-
-	monsieur
-		name = "Monsieur Splurt"
-		icon_state = "cola-30"
-		item_state = "cola-30"
-		desc = "A finer splurt"
+		initial_reagents = list("epinephrine"=5, "ghostchilijuice"=15, "VHFCS"=4, "capsaicin"=8, "hydrogen"=4, "dye_red"=8, "dye_green"=2)
 
 	dr
 		name = "Dr. Splurt"
-		icon_state = "cola-31"
-		item_state = "cola-31"
-		desc = "4/5 doctors say that Dr. Splurt is a drink!"
-
+		icon_state = "cola-29"
+		item_state = "cola-29"
+		desc = "4/5 doctors agree that Dr. Splurt is a drink!"
+		initial_reagents = list("atropine"=9, "cola"=18, "VHFCS"=4, "hydrogen"=8, "sugar"=4, "dye_red"=8)
 
 
 /obj/item/crushed_can
