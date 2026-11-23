@@ -108,7 +108,7 @@
 		if (src.r_hand && src.r_hand.custom_suicide)
 			suicides += src.r_hand
 
-		for (var/obj/O in orange(1,src))
+		for (var/obj/O in range(1,src))
 			LAGCHECK(LAG_HIGH)
 			if (O.custom_suicide)
 				if (isitem(O))

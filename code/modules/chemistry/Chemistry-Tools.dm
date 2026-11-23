@@ -491,6 +491,7 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 	flags = FPRINT | OPENCONTAINER | SUPPRESSATTACK
 	rc_flags = RC_FULLNESS | RC_VISIBLE | RC_SPECTRO | RC_INV_COUNT_AMT
 	can_recycle = FALSE
+	suicide_in_hand = FALSE
 	var/helmet_bucket_type = /obj/item/clothing/head/helmet/bucket
 	var/hat_bucket_type = /obj/item/clothing/head/helmet/bucket/hat
 	var/bucket_sensor_type = /obj/item/bucket_sensor
@@ -545,8 +546,10 @@ ABSTRACT_TYPE(/obj/item/reagent_containers)
 
 	custom_suicide = 1
 	suicide(var/mob/user as mob)
-		user.u_equip(src)
-		src.set_loc(get_turf(user))
+		if (src.loc == user)
+			user.u_equip(src)
+			src.set_loc(get_turf(user))
+		src.reagents.trans_to(src.loc, src.reagents.total_volume)
 		step_rand(src)
 		user.visible_message("<span class='alert'><b>[user] kicks the bucket!</b></span>")
 		user.death(0)
