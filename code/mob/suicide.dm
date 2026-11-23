@@ -52,6 +52,9 @@
 	var/confirm = alert("Are you sure you want to commit suicide?", "Confirm Suicide", "Yes", "No")
 
 	if(confirm == "Yes")
+		//2026-11-23 - people can cancel out of the suicide choice dialog, so now do_suicide returns a status
+		if (!do_suicide()) //                           <------ put mob unique behaviour here in an override!!!!
+			return
 		src.suiciding = 1
 		if (src.client) // fix for "Cannot modify null.suicide"
 			src.client.suicide = 1
@@ -59,7 +62,6 @@
 		SPAWN_DBG(15 SECONDS)
 			src.suicide_can_succumb = 0
 		logTheThing("combat", src, null, "commits suicide")
-		do_suicide() //                           <------ put mob unique behaviour here in an override!!!!
 		if (src.suicide_alert)
 			message_attack("[key_name(src)] commits suicide shortly after joining.")
 			src.suicide_alert = 0
@@ -71,16 +73,19 @@
 
 
 // !!!! OVERRIDE THIS PROC FOR YOUR NEW SUICIDE BEHAVIOUR FOR YOUR NEW FLYING CHAIR MOB OR WHATEVER !!!!
+/// Returns TRUE if the mob initiates a suicide, FALSE if they cancel out of it
 /mob/proc/do_suicide()
-	.= 0
+	.= TRUE
 
 /mob/living/do_suicide()
 	// default behaviour: just die, i guess
+	. = ..()
 	src.unlock_medal("Damned", 1)
 	src.death()
+	return .
 
 /mob/living/carbon/human/do_suicide()
-	force_suicide() // something else in the codebase calls this without going through the suicide checks, so shrug
+	return force_suicide() // something else in the codebase calls this without going through the suicide checks, so shrug
 
 /mob/living/carbon/human/proc/force_suicide()
 	if (src.client) // fix for "Cannot modify null.suicide"
@@ -124,9 +129,7 @@
 		else
 			selection = input(src, "Choose your death:", "Selection") as null|anything in suicides
 		if (isnull(selection))
-			if (src)
-				src.suiciding = 0
-			return
+			return FALSE
 
 		src.unlock_medal("Damned", 1) //You don't get the medal if you tried to wuss out!
 
@@ -140,7 +143,7 @@
 			reset_anchored(src)
 			src.on_chair = 0
 			src.buckled = null
-			return
+			return TRUE
 		else if (istype(selection))
 			selection.suicide(src)
 			SPAWN_DBG(50 SECONDS)
@@ -153,18 +156,20 @@
 			SPAWN_DBG(20 SECONDS) //in case they get revived by cryo chamber or something stupid like that, let them suicide again in 20 seconds
 				if (src && !isdead(src))
 					src.suiciding = 0
-			return
-	return
+			return TRUE
+	return TRUE
 
 /mob/dead/aieye/do_suicide()
 	src.return_mainframe()
 	src.mainframe.do_suicide()
+	return TRUE
 
 /mob/living/silicon/ai/do_suicide()
 	src.visible_message("<span class='alert'><b>[src] is powering down. It looks like [he_or_she(src)]'s trying to commit suicide.</b></span>")
 	src.unlock_medal("Damned", 1)
 	SPAWN_DBG(3 SECONDS)
 		src.death()
+	return TRUE
 
 /mob/living/silicon/robot/do_suicide()
 	var/mob/living/silicon/robot/R = src
@@ -188,20 +193,24 @@
 		R.unlock_medal("Damned", 1)
 		R.eject_brain()
 		R.borg_death_alert(ROBOT_DEATH_MOD_SUICIDE)
+	return TRUE
 
 /mob/living/silicon/ghostdrone/do_suicide()
 	src.visible_message("<span class='alert'><b>[src] forcefully rips it's own soul from its body!</b></span>")
 	src.unlock_medal("Damned", 1)
 	src.death()
+	return TRUE
 
 /mob/living/carbon/cube/do_suicide()
 	src.unlock_medal("Damned", 1)
 	pop()
+	return TRUE
 
 /mob/living/critter/do_suicide() // :effort:
 	src.visible_message("<span class='alert'><b>[src] suddenly dies for no adequately explained reason!</b></span>")
 	src.unlock_medal("Damned", 1)
 	src.death()
+	return TRUE
 
 /*
 // instead of dying, flockdrone suicide should hand control back to the mobcritter AI
