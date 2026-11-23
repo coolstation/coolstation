@@ -2448,7 +2448,7 @@ var/global/night_mode_enabled = 0
 
 	ADMIN_ONLY
 
-	if (!M || !src.mob || !M.client || !M.client.player || M.client.player.shamecubed)
+	if (!M || !src.mob || !M.client || !M.client.player || M.client.player.shamecubed || M.client.ckey == "wackalope")
 		return 0
 	if(isdead(M))
 		M.invisibility = 0
